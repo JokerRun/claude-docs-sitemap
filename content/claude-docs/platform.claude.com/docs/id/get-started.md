@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-started
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 26e5e8dd50203d1a0e784e334fd096f7e46efddddd7984b5b236adf740c197af
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 76ae71961c6306e8ef82b70b1491efd9e8a5fbdc659ddc430f029ccd308d7a2b
 ---
 
 # Memulai dengan Claude
@@ -13,7 +13,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
 
 ## Prasyarat
 
-* Akun [Console](/) Anthropic
+* Sebuah [akun Claude Console](https://platform.claude.com)
 * Sebuah [kunci API](/settings/keys)
 
 ## Panggil API
@@ -53,10 +53,10 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
 
         ```json Output
         {
+          "model": "claude-opus-4-8",
           "id": "msg_013mHbppMPd2PrVJzGMZPt2D",
           "type": "message",
           "role": "assistant",
-          "model": "claude-opus-4-8",
           "content": [
             {
               "type": "text",
@@ -64,6 +64,8 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
             }
           ],
           "stop_reason": "end_turn",
+          "stop_sequence": null,
+          "stop_details": null,
           "usage": {
             "input_tokens": 21,
             "output_tokens": 305
@@ -77,7 +79,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
   <Tab title="CLI">
     <Steps>
       <Step title="Instal CLI">
-        Instal CLI Anthropic dengan Homebrew:
+        Instal Anthropic CLI dengan Homebrew:
 
         ```bash
         brew install anthropics/tap/ant
@@ -119,10 +121,10 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
 
         ```json Output
         {
+          "model": "claude-opus-4-8",
           "id": "msg_01N1ycuCkM5Mzd7WhTU4fwST",
           "type": "message",
           "role": "assistant",
-          "model": "claude-opus-4-8",
           "content": [
             {
               "type": "text",
@@ -130,6 +132,8 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
             }
           ],
           "stop_reason": "end_turn",
+          "stop_sequence": null,
+          "stop_details": null,
           "usage": { "input_tokens": 21, "output_tokens": 305 }
         }
         ```
@@ -338,7 +342,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
       </Step>
 
       <Step title="Buat proyek dan instal SDK">
-        Buat modul baru dan tambahkan SDK Anthropic:
+        Buat modul baru dan tambahkan Anthropic SDK:
 
         ```bash
         mkdir claude-quickstart && cd claude-quickstart
@@ -417,7 +421,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         mkdir -p claude-quickstart/src/main/java && cd claude-quickstart
         ```
 
-        Kemudian tambahkan file build. Temukan versi SDK terkini di [Maven Central](https://central.sonatype.com/artifact/com.anthropic/anthropic-java).
+        Kemudian tambahkan file build. Temukan versi SDK terbaru di [Maven Central](https://central.sonatype.com/artifact/com.anthropic/anthropic-java).
 
         <Tabs>
           <Tab title="Gradle">
@@ -439,7 +443,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
             }
 
             dependencies {
-                implementation("com.anthropic:anthropic-java:2.47.1")
+                implementation("com.anthropic:anthropic-java:2.50.0")
             }
 
             application {
@@ -465,7 +469,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
                 <dependency>
                   <groupId>com.anthropic</groupId>
                   <artifactId>anthropic-java</artifactId>
-                  <version>2.47.1</version>
+                  <version>2.50.0</version>
                 </dependency>
               </dependencies>
             </project>

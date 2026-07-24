@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: b42118e8c6d787db55460dde549d739732400c5bc714051412389246a16e1839
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: f5ad16a736bfd3f58231483d15e9354852416ad44e1120fe3f4edbd21037189c
 ---
 
 # Introducing Claude Fable 5 and Claude Mythos 5
@@ -76,7 +76,7 @@ Claude Fable 5 responds to the same prompting techniques as other Claude models,
 
 ### Adaptive thinking is always on
 
-[Adaptive thinking](/docs/en/build-with-claude/adaptive-thinking) is the only thinking mode on Claude Fable 5 and Claude Mythos 5. It applies whenever the `thinking` parameter is unset. `thinking: {"type": "disabled"}` is not supported. Use the [effort parameter](/docs/en/build-with-claude/effort) to control thinking depth.
+[Adaptive thinking](/docs/en/build-with-claude/thinking-steering-and-cost) is the only thinking mode on Claude Fable 5 and Claude Mythos 5. It applies whenever the `thinking` parameter is unset. `thinking: {"type": "disabled"}` is not supported. Use the [effort parameter](/docs/en/build-with-claude/effort) to control thinking depth.
 
 ### Raw thinking content is never returned
 
@@ -85,7 +85,7 @@ The raw chain of thought is never returned on Claude Fable 5 and Claude Mythos 5
 * `"summarized"` returns thinking blocks with a readable summary of the reasoning.
 * `"omitted"` (the default) returns thinking blocks with an empty `thinking` field.
 
-Pass thinking blocks back unchanged in multi-turn conversations on the same model. See [thinking output on Claude Fable 5 and Claude Mythos 5](/docs/en/build-with-claude/adaptive-thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5) for cross-model handling.
+Pass thinking blocks back unchanged in multi-turn conversations on the same model. See [thinking output on Claude Fable 5 and Claude Mythos 5](/docs/en/build-with-claude/thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5) for cross-model handling.
 
 ## Supported features
 
@@ -118,7 +118,7 @@ Step-by-step instructions live in the migration guide:
     Specs and comparison for all current Claude models.
   </Card>
 
-  <Card title="Adaptive thinking" icon="brain" href="/docs/en/build-with-claude/adaptive-thinking">
+  <Card title="Adaptive thinking" icon="brain" href="/docs/en/build-with-claude/thinking-steering-and-cost">
     The only thinking mode on Claude Fable 5 and Claude Mythos 5.
   </Card>
 

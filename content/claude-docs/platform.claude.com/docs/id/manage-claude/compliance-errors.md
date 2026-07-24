@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-errors
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 1390802a871623dec63802c45a7aca3ffe18f0b86e3d141df136476b6355615a
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: c73293457f81b9a5886c7915edbb57e5490bbdf50df033f1bc52cc8c5597f16b
 ---
 
 # Menangani error Compliance API
@@ -39,7 +39,7 @@ Tabel berikut memberi tahu Anda secara sekilas apakah harus mencoba ulang. Setia
 | [403 Forbidden](#403-forbidden)                         | Tidak                       | Tambahkan scope yang hilang atau gunakan jenis kunci yang tepat, lalu kirim ulang.                                                     |
 | [404 Not Found](#404-not-found)                         | Tidak                       | Sumber daya telah dihapus atau tidak pernah ada; hapus dari antrean Anda.                                                              |
 | [409 Conflict](#409-conflict)                           | Tidak                       | Permintaan bertentangan dengan status sumber daya saat ini; selesaikan konflik (seperti melepaskan sumber daya anak), lalu coba ulang. |
-| [429 Too Many Requests](#429-too-many-requests)         | Ya, setelah `retry-after`   | Tunggu selama detik yang tertera di `retry-after`, lalu coba ulang; jangan majukan cursor Anda.                                        |
+| [429 Too Many Requests](#429-too-many-requests)         | Ya, setelah `retry-after`   | Tunggu selama detik yang tertera di `retry-after`, lalu coba ulang; jangan majukan kursor Anda.                                        |
 | [500 Internal Server Error](#500-internal-server-error) | Tergantung `x-should-retry` | Periksa header respons `x-should-retry` sebelum mencoba ulang.                                                                         |
 | [502, 503, 504, 529](#500-internal-server-error)        | Ya, dengan backoff          | Sementara; coba ulang dengan exponential backoff.                                                                                      |
 
@@ -79,11 +79,11 @@ The limit parameter must be between 1 and 1000, inclusive. Got 1500.
 Invalid `after_id`. No activity found for `after_id` "activity_invalid123"
 ```
 
-**Penyebab:** Cursor `after_id` atau `before_id` tidak dapat didekode sebagai cursor opaque atau diurai sebagai ID aktivitas.
+**Penyebab:** Kursor `after_id` atau `before_id` tidak dapat didekode sebagai kursor opaque atau diurai sebagai ID aktivitas.
 
-**Perbaikan:** Perlakukan cursor paginasi sebagai string opaque. Selalu salin nilai `first_id` atau `last_id` yang dikembalikan oleh halaman sebelumnya; berhenti ketika `has_more` bernilai `false`. Jangan membangun cursor dari ID objek.
+**Perbaikan:** Perlakukan kursor paginasi sebagai string opaque. Selalu salin nilai `first_id` atau `last_id` yang dikembalikan oleh halaman sebelumnya; berhenti ketika `has_more` bernilai `false`. Jangan membangun kursor dari ID objek.
 
-Endpoint direktori dan proyek (organizations, users, roles, role permissions, groups, group members, projects, dan project attachments) melakukan paginasi dengan token `page` opaque alih-alih `after_id` dan `before_id`. Saran yang sama berlaku: teruskan nilai `next_page` dari respons sebelumnya tanpa perubahan, dan berhenti ketika `has_more` bernilai `false`. Token `page` yang salah bentuk mengembalikan 400 `invalid_request_error` yang sama seperti `after_id` atau `before_id` yang salah bentuk.
+Endpoint direktori dan proyek (organizations, users, roles, role permissions, groups, group members, projects, dan project attachments) melakukan paginasi dengan token `page` opaque alih-alih `after_id` dan `before_id`. Saran yang sama berlaku: teruskan nilai `next_page` dari respons sebelumnya tanpa diubah, dan berhenti ketika `has_more` bernilai `false`. Token `page` yang salah format mengembalikan 400 `invalid_request_error` yang sama seperti `after_id` atau `before_id` yang salah format.
 
 ## 401 Unauthorized
 
@@ -99,7 +99,7 @@ The API key provided is invalid or has been revoked.
 
 **Penyebab:** Kunci di `x-api-key` tidak ada, telah dihapus, atau telah dinonaktifkan. Header `x-api-key` yang hilang atau kosong mengembalikan body yang sama, jadi periksa baik secret store Anda maupun status pencabutan kunci.
 
-**Perbaikan:** Konfirmasi nilai kunci, periksa bahwa kunci tersebut belum dihapus di claude.ai (Compliance Access Keys) atau Claude Console (kunci Admin API), dan konfirmasi bahwa kunci tersebut diaktifkan. Lihat [Menyiapkan Compliance API](/docs/id/manage-claude/compliance-api-access).
+**Perbaikan:** Konfirmasi nilai kunci, periksa bahwa kunci belum dihapus di claude.ai (Compliance Access Keys) atau Claude Console (kunci Admin API), dan konfirmasi bahwa kunci tersebut aktif. Lihat [Menyiapkan Compliance API](/docs/id/manage-claude/compliance-api-access).
 
 ## 403 Forbidden
 
@@ -145,7 +145,7 @@ Missing required scopes. Got: ['read:compliance_org_settings'] Needed: ['read:co
 
 **Penyebab:** Scope `read:compliance_org_settings` dipensiunkan pada 30 Juni 2026. `GET /v1/compliance/organizations/{organization_id}/settings` sekarang memerlukan `read:compliance_org_data`, scope yang sama dengan endpoint organisasi lainnya, dan scope yang dipensiunkan tidak lagi mengotorisasi apa pun. Compliance Access Key yang hanya membawa `read:compliance_org_settings` mengembalikan error ini pada setiap panggilan ke endpoint settings, meskipun kunci tersebut berfungsi sebelum pemensiunan. Scope yang dipensiunkan tidak lagi dapat dipilih atau diberikan saat membuat kunci.
 
-**Perbaikan:** Scope Compliance Access Key tidak dapat diubah setelah pembuatan. [Buat Compliance Access Key baru](/docs/id/manage-claude/compliance-api-access#set-up-the-compliance-api) dengan `read:compliance_org_data` dipilih, perbarui integrasi Anda untuk menggunakannya, lalu hapus kunci lama. Kunci yang sudah membawa `read:compliance_org_data` tidak terpengaruh oleh pemensiunan.
+**Perbaikan:** Scope Compliance Access Key tidak dapat diubah setelah pembuatan. [Buat Compliance Access Key baru](/docs/id/manage-claude/compliance-api-access#set-up-the-compliance-api) dengan `read:compliance_org_data` dipilih, perbarui integrasi Anda untuk menggunakannya, lalu hapus kunci lama. Kunci yang sudah membawa `read:compliance_org_data` tidak terpengaruh oleh pemensiunan ini.
 
 ### Scope tidak mencukupi: data pengguna
 
@@ -176,7 +176,7 @@ Missing required scopes. Got: ['read:compliance_user_data'] Needed: ['delete:com
 
 ## 404 Not Found
 
-Endpoint berhasil diselesaikan tetapi ID sumber daya tidak ada atau sudah dihapus. Penghapusan Compliance API bersifat langsung dan permanen, jadi 404 pada ID yang sebelumnya dikenal biasanya berarti konten telah dihapus secara permanen melalui panggilan delete Compliance API atau dihapus oleh kebijakan retensi. String activity-type yang dikutip di setiap Perbaikan (misalnya, `claude_chat_created`) adalah nilai yang dapat Anda teruskan ke filter `activity_types[]` Activity Feed; lihat [Query compliance activities](/docs/id/api/compliance/activities/list) untuk setiap nilai yang didukung.
+Endpoint berhasil ditemukan tetapi ID sumber daya tidak ada atau sudah dihapus. Penghapusan Compliance API bersifat langsung dan permanen, jadi 404 pada ID yang sebelumnya dikenal biasanya berarti konten telah dihapus permanen melalui panggilan delete Compliance API atau dihapus oleh kebijakan retensi. String activity-type yang dikutip di setiap Perbaikan (misalnya, `claude_chat_created`) adalah nilai yang dapat Anda teruskan ke filter `activity_types[]` Activity Feed; lihat [Query compliance activities](/docs/id/api/compliance/activities/list) untuk setiap nilai yang didukung.
 
 ### Chat tidak ditemukan
 
@@ -186,9 +186,9 @@ Endpoint berhasil diselesaikan tetapi ID sumber daya tidak ada atau sudah dihapu
 Chat claude_chat_01H5CWunD7RpVJ5bHa8RCkja not found.
 ```
 
-**Penyebab:** ID chat di path tidak cocok dengan chat yang dapat dibaca melalui Compliance API. Chat mungkin telah dihapus secara permanen melalui panggilan Compliance API sebelumnya atau dihapus oleh kebijakan retensi organisasi Anda, atau mungkin milik organisasi yang tidak dapat dibaca oleh kunci pemanggil. Chat yang dihapus secara soft-delete oleh pengguna di claude.ai tidak mengembalikan 404; chat tersebut tetap dapat dibaca dengan `deleted_at` terisi.
+**Penyebab:** ID chat di path tidak cocok dengan chat yang dapat dibaca melalui Compliance API. Chat mungkin telah dihapus permanen melalui panggilan Compliance API sebelumnya atau dihapus oleh kebijakan retensi organisasi Anda, atau mungkin milik organisasi yang tidak dapat dibaca oleh kunci pemanggil. Chat yang dihapus sementara (soft-delete) oleh pengguna di claude.ai tidak mengembalikan 404; chat tersebut tetap dapat dibaca dengan `deleted_at` terisi.
 
-**Perbaikan:** Konfirmasi ID chat terhadap aktivitas `claude_chat_created` atau `claude_chat_viewed` terbaru. Jika aktivitas tersebut baru dan pembacaan masih gagal, chat telah dihapus secara permanen (melalui API ini atau karena kedaluwarsa kebijakan retensi) atau milik organisasi di luar scope kunci Anda.
+**Perbaikan:** Konfirmasi ID chat terhadap aktivitas `claude_chat_created` atau `claude_chat_viewed` terbaru. Jika aktivitasnya baru dan pembacaan masih gagal, chat telah dihapus permanen (melalui API ini atau karena kedaluwarsa kebijakan retensi) atau milik organisasi di luar cakupan kunci Anda.
 
 ### File tidak ditemukan
 
@@ -200,7 +200,7 @@ No file found with provided id, or it has already been deleted.
 
 **Penyebab:** ID file tidak ada atau telah dihapus. Error ini berlaku untuk file yang dilampirkan ke chat (`claude_file_...`) maupun file proyek.
 
-**Perbaikan:** Rekonsiliasi terhadap aktivitas `claude_file_uploaded` atau `claude_file_deleted` terbaru. Jika file telah dihapus, binary-nya sudah hilang; catatan aktivitas tetap ada di feed selama jendela retensi 6 tahun.
+**Perbaikan:** Rekonsiliasi terhadap aktivitas `claude_file_uploaded` atau `claude_file_deleted` terbaru. Jika file telah dihapus, binernya sudah hilang; catatan aktivitas tetap ada di feed selama jendela retensi 6 tahun.
 
 ### Proyek tidak ditemukan
 
@@ -212,7 +212,7 @@ No project is found with the provided id.
 
 **Penyebab:** ID proyek tidak ada atau telah dihapus.
 
-**Perbaikan:** Rekonsiliasi terhadap aktivitas `claude_project_created` atau `claude_project_deleted` terbaru. Activity Feed terus mengekspos event siklus hidup proyek bahkan setelah proyek itu sendiri hilang.
+**Perbaikan:** Rekonsiliasi terhadap aktivitas `claude_project_created` atau `claude_project_deleted` terbaru. Activity Feed terus menampilkan peristiwa siklus hidup proyek bahkan setelah proyek itu sendiri hilang.
 
 ### Dokumen proyek tidak ditemukan
 
@@ -224,7 +224,7 @@ No project document found with provided id, or it has already been deleted.
 
 **Penyebab:** ID dokumen proyek tidak ada atau telah dihapus. Error ini berlaku untuk dokumen proyek teks (`claude_proj_doc_...`), bukan untuk file proyek.
 
-**Perbaikan:** Gunakan `GET /v1/compliance/apps/projects/{project_id}/attachments` untuk mencantumkan lampiran saat ini. Jika dokumen hilang, dokumen tersebut telah dihapus; ambil melalui catatan aktivitas `claude_project_document_uploaded` jika Anda hanya membutuhkan metadata-nya.
+**Perbaikan:** Gunakan `GET /v1/compliance/apps/projects/{project_id}/attachments` untuk mencantumkan lampiran saat ini. Jika dokumen hilang, berarti telah dihapus; ambil melalui catatan aktivitas `claude_project_document_uploaded` jika Anda hanya membutuhkan metadatanya.
 
 ### Organisasi, role, atau grup tidak ditemukan
 
@@ -234,9 +234,9 @@ No project document found with provided id, or it has already been deleted.
 The "ce86b5f3-7c16-48b3-a9f3-e1d2c4b8a0f1" organization does not exist or the requester is not authorized to access it.
 ```
 
-Endpoint organisasi, role, dan grup mengembalikan 404 `not_found_error` dalam format error standar. Pesan organisasi menyebutkan `org_uuid`; pesan role dan grup bersifat generik (`Role not found.`, `Group not found.`). Ini terjadi ketika ID path (`org_uuid`, `role_id`, atau `group_id`) tidak ada atau tidak lagi termasuk dalam pohon yang dapat dibaca oleh kunci pemanggil.
+Endpoint organization, role, dan group mengembalikan 404 `not_found_error` dalam format error standar. Pesan organisasi menyebutkan `org_uuid`; pesan role dan group bersifat generik (`Role not found.`, `Group not found.`). Ini terjadi ketika ID path (`org_uuid`, `role_id`, atau `group_id`) tidak ada atau tidak lagi termasuk dalam pohon yang dapat dibaca oleh kunci pemanggil.
 
-**Penyebab:** ID di path tidak cocok dengan catatan yang dapat dibaca melalui Compliance API. Role dan grup dapat dihapus, dan organisasi dapat dilepaskan dari pohon induk.
+**Penyebab:** ID di path tidak cocok dengan catatan yang dapat dibaca melalui Compliance API. Role dan grup dapat dihapus, dan organisasi dapat dilepas tautannya dari pohon induk.
 
 **Perbaikan:** Verifikasi ID terhadap endpoint list yang sesuai, dan rekonsiliasi terhadap aktivitas organisasi, role, atau grup terbaru di [Activity Feed](/docs/id/manage-claude/compliance-activity-feed).
 
@@ -248,7 +248,7 @@ Endpoint organisasi, role, dan grup mengembalikan 404 `not_found_error` dalam fo
 organization `91012d09-e48b-438e-a489-1bebfd8fa6f9` not found in this organization's hierarchy
 ```
 
-**Penyebab:** `GET /v1/compliance/organizations/{organization_id}/settings` mengembalikan 404 ini dalam tiga kasus yang sengaja berbagi body yang sama sehingga respons tidak mengungkapkan apakah suatu organisasi ada: `organization_id` bukan salah satu organisasi tertaut dari induk Anda, nilainya bukan UUID yang valid, atau endpoint settings belum diaktifkan untuk organisasi induk Anda.
+**Penyebab:** `GET /v1/compliance/organizations/{organization_id}/settings` mengembalikan 404 ini dalam tiga kasus yang sengaja berbagi body yang sama agar respons tidak mengungkapkan apakah suatu organisasi ada: `organization_id` bukan salah satu organisasi tertaut dari induk Anda, nilainya bukan UUID yang valid, atau endpoint settings belum diaktifkan untuk organisasi induk Anda.
 
 **Perbaikan:** Verifikasi ID terhadap [List organizations](/docs/id/api/compliance/organizations/list). Jika ID organisasi yang diketahui valid masih mengembalikan 404, endpoint settings belum diaktifkan untuk organisasi induk Anda; hubungi perwakilan Anthropic Anda.
 
@@ -270,13 +270,13 @@ The "claude_proj_01KGp4eZNug9ri4kE35RSppq" project cannot be deleted as it has c
 
 ## 429 Too Many Requests
 
-Permintaan ke Compliance API dibatasi hingga **600 permintaan per menit per [organisasi induk](/docs/id/manage-claude/compliance-api#how-the-compliance-api-works)**. Batas ini adalah satu anggaran tunggal yang dibagi di antara setiap kunci di bawah induk (Compliance Access Keys dan kunci Admin API dari semua organisasi tertaut) dan di antara setiap endpoint `/v1/compliance/*`. Hubungi perwakilan Anthropic Anda jika integrasi Anda memerlukan batas yang lebih tinggi.
+Permintaan ke Compliance API dibatasi hingga **600 permintaan per menit per [organisasi induk](/docs/id/manage-claude/compliance-api#how-the-compliance-api-works)**. Batas ini adalah anggaran tunggal yang dibagi di antara setiap kunci di bawah induk (Compliance Access Keys dan kunci Admin API dari semua organisasi tertaut) dan di antara setiap endpoint `/v1/compliance/*`. Hubungi perwakilan Anthropic Anda jika integrasi Anda memerlukan batas yang lebih tinggi.
 
 Setelah kunci API Anda terautentikasi, setiap respons Compliance API menyertakan [header respons rate-limit](/docs/id/api/rate-limits#response-headers) standar sehingga klien Anda dapat melakukan throttling secara proaktif alih-alih menunggu 429:
 
 * `anthropic-ratelimit-requests-limit` adalah anggaran permintaan per menit organisasi induk Anda.
 * `anthropic-ratelimit-requests-remaining` adalah anggaran yang tersisa di jendela saat ini.
-* `anthropic-ratelimit-requests-reset` adalah timestamp RFC 3339 saat jendela direset dan anggaran penuh dipulihkan.
+* `anthropic-ratelimit-requests-reset` adalah timestamp RFC 3339 ketika jendela direset dan anggaran penuh dipulihkan.
 
 Respons 429 juga membawa header `retry-after` dengan jumlah detik yang harus ditunggu sebelum mengirim permintaan berikutnya. Nilai ini mungkin menyertakan margin keamanan kecil di luar `anthropic-ratelimit-requests-reset`; patuhi `retry-after`.
 
@@ -298,17 +298,17 @@ anthropic-ratelimit-requests-reset: 2026-04-21T14:38:25Z
 }
 ```
 
-**Penyebab:** Organisasi induk Anda mengirim lebih dari 600 permintaan ke `/v1/compliance/*` dalam jendela 1 menit, di seluruh kuncinya dan organisasi tertautnya.
+**Penyebab:** Organisasi induk Anda mengirim lebih dari 600 permintaan ke `/v1/compliance/*` dalam jendela 1 menit, di seluruh kunci dan organisasi tertautnya.
 
-**Perbaikan:** Tunggu selama jumlah detik di header `retry-after`, lalu coba ulang. Jika header tidak ada (misalnya, dihapus oleh perantara), gunakan exponential backoff sebagai cadangan (mulai dari 1 detik, gandakan hingga 60 detik). Jangan majukan cursor paginasi Anda pada 429: permintaan yang gagal tidak mengembalikan data, jadi cursor dari halaman terakhir yang berhasil masih benar.
+**Perbaikan:** Tunggu selama jumlah detik di header `retry-after`, lalu coba ulang. Jika header tidak ada (misalnya, dihapus oleh perantara), gunakan exponential backoff sebagai cadangan (mulai dari 1 detik, gandakan hingga 60 detik). Jangan majukan kursor paginasi Anda pada 429: permintaan yang gagal tidak mengembalikan data, jadi kursor dari halaman terakhir yang berhasil masih benar.
 
 Permintaan yang gagal autentikasi (kunci yang hilang atau tidak dikenali, atau kunci Claude API alih-alih Compliance Access Key atau kunci Admin API) ditolak sebelum rate limiter dan tidak mengonsumsi kuota. Kunci valid yang tidak memiliki scope yang dibutuhkan endpoint mengonsumsi satu unit kuota sebelum 403 dikembalikan.
 
-Jika Anda melakukan polling [Activity Feed](/docs/id/manage-claude/compliance-activity-feed) secara terjadwal, anggarkan laju permintaan agregat Anda (di seluruh kunci, organisasi tertaut, dan worker bersamaan) di bawah batas organisasi induk. Pantau `anthropic-ratelimit-requests-remaining` untuk memperlambat sebelum Anda mencapainya. Lihat [Merancang integrasi kepatuhan Anda](/docs/id/manage-claude/compliance-integration-patterns#choose-a-feed-consumption-pattern) untuk memilih antara window-polling dan ingesti berbasis cursor.
+Jika Anda melakukan polling [Activity Feed](/docs/id/manage-claude/compliance-activity-feed) secara terjadwal, anggarkan laju permintaan agregat Anda (di seluruh kunci, organisasi tertaut, dan worker konkuren) di bawah batas organisasi induk. Pantau `anthropic-ratelimit-requests-remaining` untuk memperlambat sebelum Anda mencapainya. Lihat [Merancang integrasi kepatuhan Anda](/docs/id/manage-claude/compliance-integration-patterns#choose-a-feed-consumption-pattern) untuk memilih antara window-polling dan ingesti berbasis kursor.
 
 ## 500 Internal Server Error
 
-Respons 500 dari Compliance API membawa header respons `x-should-retry: false` ketika kegagalannya bersifat deterministik. SDK Anthropic mematuhi header ini secara otomatis. Jika Anda menggunakan library retry HTTP generik yang mencoba ulang pada setiap 5xx, tekan percobaan ulang ketika `x-should-retry` bernilai `false`; mencoba ulang error ini akan gagal dengan cara yang sama pada setiap percobaan.
+Respons 500 dari Compliance API membawa header respons `x-should-retry: false` ketika kegagalannya bersifat deterministik. SDK Anthropic mematuhi header ini secara otomatis. Jika Anda menggunakan pustaka retry HTTP generik yang mencoba ulang pada setiap 5xx, tekan percobaan ulang ketika `x-should-retry` bernilai `false`; mencoba ulang error ini akan gagal dengan cara yang sama pada setiap percobaan.
 
 Respons 500 tanpa header `x-should-retry: false` bersifat sementara: coba ulang dengan exponential backoff (mulai dari 1 detik, gandakan hingga 60 detik). Hal yang sama berlaku untuk respons 502, 503, 504, dan 529. Lihat [Errors](/docs/id/api/errors) untuk semantik percobaan ulang di seluruh platform.
 

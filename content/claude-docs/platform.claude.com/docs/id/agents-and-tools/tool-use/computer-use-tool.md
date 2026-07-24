@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: e4348df5c235ae7653bdde833d0c7850846276aa5a26362e5e6980c678967fcf
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: f41ac169f74fa53a01016d9a3ed82a7ec75544bcbb867ac8b66bc0e8f7e7dedc
 ---
 
 # Alat computer use
@@ -23,7 +23,7 @@ Claude dapat berinteraksi dengan lingkungan komputer melalui alat computer use, 
 </Note>
 
 <Note>
-  Fitur ini memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/api-and-data-retention). Ketika organisasi Anda memiliki pengaturan ZDR, data yang dikirim melalui fitur ini tidak disimpan setelah respons API dikembalikan.
+  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 ## Ikhtisar
@@ -2150,21 +2150,21 @@ Karena aplikasi Anda mengontrol di mana dan bagaimana data computer use disimpan
 
 Computer use mengikuti [harga penggunaan alat](/docs/id/agents-and-tools/tool-use/overview#pricing) standar. Saat menggunakan alat computer use:
 
-**Overhead prompt sistem**: Beta computer use menambahkan 466-499 token ke prompt sistem
+**Overhead prompt sistem:** Beta computer use menambahkan 466–499 token ke prompt sistem
 
-**Penggunaan token alat computer use**:
+**Penggunaan token alat computer use:**
 
 | Model            | Token input per definisi alat |
 | ---------------- | ----------------------------- |
 | Model Claude 4.x | 735 token                     |
 
-**Konsumsi token tambahan**:
+**Konsumsi token tambahan:**
 
-* Gambar tangkapan layar (lihat [Harga Vision](/docs/id/build-with-claude/vision))
+* Gambar tangkapan layar (lihat [harga Vision](/docs/id/build-with-claude/vision))
 * Hasil eksekusi alat yang dikembalikan ke Claude
 
 <Note>
-  Jika Anda juga menggunakan alat bash atau text editor bersamaan dengan computer use, alat-alat tersebut memiliki biaya token tersendiri sebagaimana didokumentasikan di halaman masing-masing.
+  Jika Anda juga menggunakan alat bash atau text editor bersama computer use, alat-alat tersebut memiliki biaya token sendiri sebagaimana didokumentasikan di halaman masing-masing.
 </Note>
 
 ## Langkah selanjutnya

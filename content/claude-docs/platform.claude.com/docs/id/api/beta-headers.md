@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/beta-headers
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 8ef0a41cd0ef646227519cb27fe400501ef38721988021eca5e42a197838e0f1
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 8a643490d31a41a90a1574cca8c350c71ed6862a63bd426336746462b1b7c11f
 ---
 
 # Header beta
@@ -161,8 +161,8 @@ Contoh berikut menunjukkan permintaan yang sama dengan cURL, CLI `ant`, dan SDK.
 <Warning>
   Fitur beta bersifat eksperimental dan mungkin:
 
-  * Memiliki perubahan yang merusak (breaking changes) dengan pemberitahuan
-  * Dihentikan atau dihapus
+  * Memiliki perubahan yang merusak kompatibilitas (breaking changes) dengan pemberitahuan
+  * Dihentikan (deprecated) atau dihapus
   * Memiliki batas laju atau harga yang berbeda
   * Tidak tersedia di semua wilayah
 </Warning>
@@ -185,16 +185,19 @@ Beberapa API beta terbatas pada endpoint tertentu dan memerlukan header beta khu
 | ------------------------------------------------ | --------------------------- |
 | `/v1/agents`, `/v1/sessions`, `/v1/environments` | `managed-agents-2026-04-01` |
 | `/v1/tunnels`                                    | `mcp-tunnels-2026-06-22`    |
+| `/v1/memory_stores` dan sub-resource             | `agent-memory-2026-07-22`   |
 
-Namespace `beta` pada SDK menambahkan header ini secara otomatis. Tambahkan sendiri hanya saat membuat permintaan HTTP mentah. Lihat [ikhtisar Managed Agents](/docs/id/managed-agents/overview) dan [referensi MCP tunnels](/docs/id/agents-and-tools/mcp-tunnels/reference#tunnels-api) untuk detailnya.
+Namespace `beta` pada SDK menambahkan header ini secara otomatis. Tambahkan sendiri hanya saat membuat permintaan HTTP mentah. Lihat [ikhtisar Managed Agents](/docs/id/managed-agents/overview), [Menggunakan memori agen](/docs/id/managed-agents/memory), dan [referensi MCP tunnels](/docs/id/agents-and-tools/mcp-tunnels/reference#tunnels-api) untuk detailnya.
+
+Header khusus endpoint yang berlaku untuk endpoint yang sama tidak selalu dapat digabungkan. Pada endpoint memory store, `agent-memory-2026-07-22` menggantikan `managed-agents-2026-04-01`: mengirim keduanya pada permintaan yang sama akan mengembalikan error `400`. SDK klien mengirimkan header yang benar untuk setiap endpoint secara otomatis.
 
 ### Konvensi penamaan versi
 
-Nama fitur beta biasanya mengikuti pola `feature-name-YYYY-MM-DD`, di mana tanggal menunjukkan kapan beta tersebut dirilis. Selalu gunakan nama fitur beta yang tepat sebagaimana didokumentasikan.
+Nama fitur beta biasanya mengikuti pola `feature-name-YYYY-MM-DD`, di mana tanggal menunjukkan kapan beta tersebut dirilis. Selalu gunakan nama fitur beta yang tepat seperti yang didokumentasikan.
 
-## Penanganan kesalahan
+## Penanganan error
 
-Jika Anda menggunakan nama beta yang tidak valid, atau beta yang tidak dapat diakses oleh organisasi Anda, Anda akan menerima respons kesalahan `400`:
+Jika Anda menggunakan nama beta yang tidak valid, atau beta yang tidak dapat diakses oleh organisasi Anda, Anda akan menerima respons error `400`:
 
 ```json Output
 {
@@ -214,8 +217,8 @@ Untuk pembaruan fitur beta, lihat [catatan rilis](/docs/id/release-notes/overvie
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Kesalahan" icon="info" href="/docs/id/api/errors">
-    Pahami kode status HTTP, bentuk respons kesalahan, dan ID permintaan yang dikembalikan oleh Claude API, serta tangani kesalahan dengan exception bertipe dari SDK.
+  <Card title="Error" icon="info" href="/docs/id/api/errors">
+    Pahami kode status HTTP, bentuk respons error, dan ID permintaan yang dikembalikan oleh Claude API, serta tangani error dengan exception bertipe dari SDK.
   </Card>
 
   <Card title="Ikhtisar API" icon="compass" href="/docs/id/api/overview">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/dreams
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 7980744a2ab1597faac07e63a3fc52160dbe5a523d91b0db27843cc8994aba1c
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 25fe0885b417e6972463ae3b41b8a48c89bca3569d359a989cab511b7b63340b
 ---
 
 # Dreams
@@ -15,24 +15,24 @@ Biarkan Claude merefleksikan sesi-sesi sebelumnya untuk mengkurasi memori agen d
   Dreaming adalah fitur pratinjau riset. [Minta akses](https://claude.com/form/claude-managed-agents) untuk mencobanya.
 </Tip>
 
-Agen menulis ke [memory store](/docs/id/managed-agents/memory) (penyimpanan memori) mereka saat bekerja, tetapi penulisan ini bersifat lokal dan inkremental: setelah banyak sesi, sebuah memory store akan mengakumulasi duplikat, kontradiksi, dan entri yang sudah usang.
+Agen menulis ke [memory store](/docs/id/managed-agents/memory) mereka saat bekerja, tetapi penulisan ini bersifat lokal dan inkremental: selama banyak sesi, sebuah memory store mengakumulasi duplikat, kontradiksi, dan entri yang usang.
 
-**Dreams** memungkinkan Claude membersihkan hal tersebut. Sebuah dream membaca memory store yang sudah ada bersama dengan transkrip sesi sebelumnya, lalu menghasilkan memory store baru yang telah direorganisasi: duplikat digabungkan, entri yang usang atau bertentangan diganti dengan nilai terbaru, dan wawasan baru dimunculkan.
+**Dreams** memungkinkan Claude membersihkan hal tersebut. Sebuah dream membaca memory store yang sudah ada bersama dengan transkrip sesi sebelumnya, lalu menghasilkan memory store baru yang telah direorganisasi: duplikat digabungkan, entri yang usang atau saling bertentangan diganti dengan nilai terbaru, dan wawasan baru dimunculkan.
 
 Store input tidak pernah dimodifikasi, sehingga Anda dapat meninjau output dan membuangnya jika Anda tidak menyukai hasilnya.
 
 <Note>
-  Semua permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`. Dreams juga memerlukan header beta `dreaming-2026-04-21`. SDK mengatur ini secara otomatis.
+  Endpoint dream dibatasi oleh header beta `dreaming-2026-04-21`; header `managed-agents-2026-04-01` saja tidak memberikan akses ke dreams. Contoh endpoint dream di halaman ini mengirimkan kedua header; panggilan sesi dan memory-store hanya memerlukan `managed-agents-2026-04-01`. SDK mengatur ini secara otomatis.
 </Note>
 
 ## Cara kerjanya
 
 Sebuah **dream** adalah pekerjaan asinkron yang menerima:
 
-* sebuah **memory store** yang sudah ada: store yang akan diverifikasi, dideduplikasi, dan direorganisasi oleh Claude, dan
-* 1 hingga 100 **sesi**: transkrip sebelumnya yang ditambang oleh Claude untuk menemukan pola dan wawasan yang akan dimasukkan ke dalam output.
+* sebuah **memory store** yang sudah ada sebelumnya: store yang diverifikasi, dideduplikasi, dan direorganisasi oleh Claude, dan
+* 1 hingga 100 **sesi:** transkrip sebelumnya yang ditelusuri Claude untuk menemukan pola dan wawasan yang akan dimasukkan ke dalam output.
 
-Dream menghasilkan **memory store output** lain, yang terpisah dari input. ID store output muncul di `outputs[]` milik dream setelah statusnya menjadi `running`.
+Dream menghasilkan **memory store output** lain, terpisah dari input. ID store output muncul di `outputs[]` dream tidak lama setelah dream mulai `running`, setelah alur kerja mengkloning store input; dream yang `running` dapat secara singkat melaporkan `outputs[]` yang kosong.
 
 ## Membuat dream
 
@@ -171,7 +171,7 @@ Dream menghasilkan **memory store output** lain, yang terpisah dari input. ID st
   ```
 </CodeGroup>
 
-Input dreaming mencakup memory store yang sudah ada dan sebuah array sesi. Model yang dipilih akan menjalankan pipeline dreaming; selama pratinjau riset, `claude-opus-4-8`, `claude-opus-4-7`, dan `claude-sonnet-4-6` didukung. Anda dapat secara opsional meneruskan `instructions` untuk mengarahkan proses dreaming; lihat [Mengarahkan dengan instruksi](#steer-with-instructions).
+Input dreaming mencakup memory store yang sudah ada sebelumnya dan sebuah array sesi. Model yang dipilih menjalankan pipeline dreaming; selama pratinjau riset, `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-sonnet-5`, dan `claude-sonnet-4-6` didukung. Anda dapat secara opsional meneruskan `instructions` untuk mengarahkan proses dreaming; lihat [Mengarahkan dengan instruksi](#steer-with-instructions).
 
 Responsnya adalah resource `dream` lengkap dengan `status: "pending"`:
 
@@ -194,8 +194,8 @@ Responsnya adalah resource `dream` lengkap dengan `status: "pending"`:
   "usage": {
     "input_tokens": 0,
     "output_tokens": 0,
-    "cache_creation_input_tokens": 0,
-    "cache_read_input_tokens": 0
+    "cache_read_input_tokens": 0,
+    "cache_creation_input_tokens": 0
   },
   "error": null
 }
@@ -207,13 +207,13 @@ Responsnya adalah resource `dream` lengkap dengan `status: "pending"`:
 
 ### Mengarahkan dengan instruksi
 
-Field opsional `instructions` mengarahkan apa yang disintesis oleh pipeline dreaming. Field ini diterapkan di seluruh pipeline: apa yang harus dibaca dengan cermat, apa yang harus digabungkan atau dibuang, dan bagaimana menyusun struktur store output.
+Field opsional `instructions` mengarahkan apa yang disintesis oleh pipeline dreaming. Field ini diterapkan di seluruh pipeline: apa yang harus dibaca dengan cermat, apa yang harus digabungkan atau dibuang, dan bagaimana menyusun store output.
 
-Gunakan `instructions` untuk panduan sintesis tingkat tinggi seperti area fokus ("fokus pada preferensi gaya pengkodean"), konten yang harus dipertahankan tanpa perubahan, atau konvensi output yang ingin Anda terapkan di seluruh store. Pipeline ini adalah proses sintesis atas input, bukan editor yang diterapkan pada teks store, sehingga arahan imperatif yang menargetkan baris tertentu ("ubah kalimat X menjadi Y", "perbaiki hitungan di bagian Z") umumnya tidak menghasilkan perubahan. Untuk melakukan pengeditan yang ditargetkan pada memori individual, gunakan [Memory Stores API](/docs/id/managed-agents/memory#view-and-edit-memories) langsung pada store output.
+Gunakan `instructions` untuk panduan sintesis tingkat tinggi seperti area fokus ("fokus pada preferensi gaya penulisan kode"), konten yang harus dipertahankan tanpa perubahan, atau konvensi output yang ingin Anda terapkan di seluruh store. Pipeline adalah proses sintesis atas input, bukan editor yang diterapkan pada teks store, sehingga arahan imperatif yang menargetkan baris tertentu ("ubah kalimat X menjadi Y", "perbaiki hitungan di bagian Z") umumnya tidak menghasilkan perubahan. Untuk membuat pengeditan yang ditargetkan pada memori individual, gunakan [Memory Stores API](/docs/id/managed-agents/memory#view-and-edit-memories) langsung pada store output.
 
-## Melacak progres
+## Melacak kemajuan
 
-Dreams berjalan secara asinkron dan biasanya memakan waktu beberapa menit hingga puluhan menit tergantung pada ukuran input. Lakukan polling pada dream berdasarkan ID untuk memeriksa status:
+Dreams berjalan secara asinkron dan biasanya memakan waktu beberapa menit hingga beberapa jam, tergantung pada jumlah transkrip input. Lakukan polling pada dream berdasarkan ID untuk memeriksa status:
 
 <CodeGroup>
   ```bash curl
@@ -299,21 +299,21 @@ Dreams berjalan secara asinkron dan biasanya memakan waktu beberapa menit hingga
 | `status`    | Arti                                                                                                                                 |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | `pending`   | Dream berhasil dibuat dan dimasukkan ke antrean.                                                                                     |
-| `running`   | Pipeline sedang memproses. `usage` diperbarui seiring berjalannya pekerjaan.                                                         |
+| `running`   | Pipeline sedang memproses. `usage` diperbarui seiring kemajuan pekerjaan.                                                            |
 | `completed` | Selesai dengan sukses. Nilai `outputs[]` adalah memory store baru.                                                                   |
 | `failed`    | Proses dreaming berakhir dengan error. Memory store output dibiarkan apa adanya dengan apa pun yang telah ditulis sebelum kegagalan. |
 | `canceled`  | Proses dreaming dibatalkan. Memory store output dibiarkan apa adanya.                                                                |
 
 ### Mengamati pipeline berjalan
 
-Setelah sebuah dream berstatus `running`, field `session_id`-nya menunjuk ke [sesi](/docs/id/managed-agents/sessions) yang mendasari dan menjalankan pipeline tersebut. Anda dapat melakukan streaming [event](/docs/id/managed-agents/events-and-streaming) sesi tersebut untuk mengamati apa yang sedang dibaca dan ditulis oleh dream secara real time. Sesi tersebut diarsipkan (bukan dihapus) ketika dream mencapai status terminal, sehingga transkripnya tetap tersedia setelahnya.
+Setelah sebuah dream berstatus `running`, field `session_id`-nya menunjuk ke [sesi](/docs/id/managed-agents/sessions) yang mendasari yang menjalankan pipeline. Anda dapat melakukan streaming [event](/docs/id/managed-agents/events-and-streaming) sesi tersebut untuk mengamati apa yang dibaca dan ditulis oleh dream secara real time. Sesi tersebut diarsipkan (tidak dihapus) ketika dream mencapai status terminal, sehingga transkrip tetap tersedia setelahnya.
 
 ## Menggunakan output
 
-Ketika `status` mencapai `completed`, entri `memory_store` di `outputs[]` mereferensikan store yang telah terisi penuh. Ini adalah memory store biasa di workspace Anda. Tinjau dengan [Memory Stores API](/docs/id/managed-agents/memory#view-and-edit-memories) atau di Console, lalu:
+Ketika `status` mencapai `completed`, entri `memory_store` di `outputs[]` mereferensikan store yang telah terisi penuh. Ini adalah memory store biasa di workspace Anda. Tinjau dengan [Memory Stores API](/docs/id/managed-agents/memory#view-and-edit-memories) atau di Console, lalu pilih salah satu:
 
-* **Manfaatkan:** lampirkan ke sesi-sesi berikutnya sebagai resource `memory_store` sebagai pengganti (atau bersama dengan) memory store input, atau
-* **Buang:** [hapus](/docs/id/api/beta/memory_stores/delete) atau [arsipkan](/docs/id/api/beta/memory_stores/archive).
+* **Manfaatkan:** lampirkan ke sesi mendatang sebagai resource `memory_store` sebagai pengganti (atau bersama dengan) memory store input, atau
+* **Buang:** [hapus memory store](/docs/id/api/beta/memory_stores/delete) atau [arsipkan memory store](/docs/id/api/beta/memory_stores/archive).
 
 <CodeGroup>
   ```bash curl
@@ -469,18 +469,18 @@ Ketika `status` mencapai `completed`, entri `memory_store` di `outputs[]` merefe
   ```
 </CodeGroup>
 
-Dream itu sendiri tidak pernah menghapus atau memodifikasi inputnya. Pada status `failed` atau `canceled`, store output tetap ada dengan konten parsial sehingga Anda dapat memeriksa apa yang telah dihasilkan sebelum berhenti; bersihkan melalui Memory Stores API jika Anda tidak membutuhkannya.
+Dream itu sendiri tidak pernah menghapus atau memodifikasi inputnya. Pada status `failed` atau `canceled`, store output tetap ada dengan konten parsial sehingga Anda dapat memeriksa apa yang dihasilkan sebelum berhenti; bersihkan melalui Memory Stores API jika Anda tidak membutuhkannya.
 
 <Warning>
-  Saat sebuah dream berstatus `pending` atau `running`, pengarsipan atau penghapusan store output-nya akan ditolak dengan kode 400. Mengarsipkan atau menghapus store atau sesi *input* di tengah proses akan menyebabkan dream gagal dengan `input_memory_store_unavailable` atau `input_session_unavailable`.
+  Saat sebuah dream berstatus `pending` atau `running`, penjagaan 400 berlaku untuk pengarsipan dream itu sendiri, bukan store-nya. Mengarsipkan atau menghapus memory store *input* di tengah proses (atau menghapus sesi input) akan menyebabkan dream gagal dengan `input_memory_store_unavailable` atau `input_session_unavailable`.
 </Warning>
 
 ## Membatalkan dream
 
-Cancel memindahkan dream yang berstatus `pending` atau `running` ke `canceled` secara langsung. Membatalkan dream yang sudah berstatus `canceled` adalah no-op idempoten; membatalkan dream yang berstatus `completed` atau `failed` mengembalikan kode 400.
+Pembatalan memindahkan dream yang berstatus `pending` atau `running` ke `canceled` secara langsung. Membatalkan dream yang sudah berstatus `canceled` adalah no-op yang idempoten; membatalkan dream yang berstatus `completed` atau `failed` mengembalikan 400.
 
 <Note>
-  Setelah pembatalan, field `usage` pada dream mungkin terus diperbarui selama beberapa detik sementara pekerjaan yang sedang berjalan diselesaikan. Lakukan polling pada dream hingga `usage` stabil jika Anda memerlukan hitungan akhir.
+  Setelah pembatalan, field `usage` dream mungkin terus diperbarui selama beberapa detik sementara pekerjaan yang sedang berlangsung berakhir. Lakukan polling pada dream hingga `usage` stabil jika Anda memerlukan hitungan akhir.
 </Note>
 
 <CodeGroup>
@@ -529,7 +529,7 @@ Cancel memindahkan dream yang berstatus `pending` atau `running` ke `canceled` s
 
 ## Mengarsipkan dream
 
-Archive menetapkan `archived_at` pada dream yang telah mencapai status terminal (`completed`, `failed`, atau `canceled`); `status` dibiarkan tidak berubah. Dream yang diarsipkan dikecualikan dari respons list default tetapi tetap dapat dibaca berdasarkan ID. Mengarsipkan dream yang sudah diarsipkan adalah no-op idempoten. Mengarsipkan dream yang berstatus `pending` atau `running` mengembalikan kode 400; batalkan terlebih dahulu. Tidak ada fitur unarchive.
+Pengarsipan mengatur `archived_at` pada dream yang telah mencapai status terminal (`completed`, `failed`, atau `canceled`); `status` dibiarkan tidak berubah. Dream yang diarsipkan dikecualikan dari respons daftar default tetapi tetap dapat dibaca berdasarkan ID. Mengarsipkan dream yang sudah diarsipkan adalah no-op yang idempoten. Mengarsipkan dream yang berstatus `pending` atau `running` mengembalikan 400; batalkan terlebih dahulu. Tidak ada fitur unarchive.
 
 <CodeGroup>
   ```bash curl
@@ -575,11 +575,11 @@ Archive menetapkan `archived_at` pada dream yang telah mencapai status terminal 
   ```
 </CodeGroup>
 
-Mengarsipkan dream tidak menyentuh memory store output-nya; kelola itu secara terpisah melalui [Memory Stores API](/docs/id/managed-agents/memory).
+Mengarsipkan dream tidak menyentuh memory store output-nya; kelola itu secara terpisah melalui [Memory Stores API](/docs/id/managed-agents/memory#view-and-edit-memories).
 
-## Mendaftar dreams
+## Menampilkan daftar dream
 
-Mengembalikan semua dream yang tidak diarsipkan di workspace, yang terbaru lebih dulu. Gunakan `limit` (default 20, maks 100) dan kursor `page` untuk paginasi. Teruskan `include_archived=true` untuk menyertakan dream yang diarsipkan.
+Mengembalikan semua dream yang tidak diarsipkan di workspace, yang terbaru terlebih dahulu. Gunakan `limit` (default 20, maksimum 100) dan kursor `page` untuk paginasi. Teruskan `include_archived=true` untuk menyertakan dream yang diarsipkan.
 
 <CodeGroup>
   ```bash curl
@@ -648,27 +648,27 @@ Mengembalikan semua dream yang tidak diarsipkan di workspace, yang terbaru lebih
 
 ## Error
 
-Daftar non-lengkap dari kemungkinan error dreaming ada di bawah ini.
+Berikut adalah daftar tidak lengkap dari kemungkinan error dreaming.
 
 | `error.type`                      | Kapan                                                                                           |
 | --------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `timeout`                         | Pipeline melebihi anggaran waktu prosesnya.                                                     |
+| `timeout`                         | Pipeline melebihi anggaran waktu eksekusinya.                                                   |
 | `internal_error`                  | Kegagalan pipeline yang tidak terklasifikasi.                                                   |
-| `memory_store_org_limit_exceeded` | Organisasi Anda mencapai batas memory store saat pipeline sedang menyediakan penyimpanan kerja. |
+| `memory_store_org_limit_exceeded` | Organisasi Anda mencapai batas memory-store saat pipeline sedang menyediakan penyimpanan kerja. |
 | `input_memory_store_too_large`    | Memory store input melebihi batas ukuran pipeline.                                              |
 | `input_memory_store_unavailable`  | Memory store input diarsipkan atau dihapus setelah dream dibuat.                                |
-| `input_session_unavailable`       | Sebuah sesi input diarsipkan atau dihapus setelah dream dibuat.                                 |
+| `input_session_unavailable`       | Sebuah sesi input dihapus setelah dream dibuat.                                                 |
 
 ## Penagihan
 
-Dreams ditagih dengan tarif token API standar untuk model yang Anda pilih; `usage` pada resource melaporkan total yang tepat. Biaya berskala kira-kira linear dengan jumlah dan panjang sesi input. Mulailah dengan batch sesi yang kecil dan tingkatkan setelah Anda puas dengan kualitas kurasi.
+Dreams ditagih dengan tarif token API standar untuk model yang Anda pilih; `usage` pada resource melaporkan total yang tepat. Biaya meningkat secara kurang lebih linear dengan jumlah dan panjang sesi input. Mulailah dengan batch sesi yang kecil dan tingkatkan setelah Anda puas dengan kualitas kurasinya.
 
 ## Batasan
 
-| Batasan                | Nilai                                                     |
-| ---------------------- | --------------------------------------------------------- |
-| Sesi per dream         | 100                                                       |
-| Panjang `instructions` | 4.096 karakter                                            |
-| Model yang didukung    | `claude-opus-4-8`, `claude-opus-4-7`, `claude-sonnet-4-6` |
+| Batasan                | Nilai                                                                                          |
+| ---------------------- | ---------------------------------------------------------------------------------------------- |
+| Sesi per dream         | 100                                                                                            |
+| Panjang `instructions` | 4.096 karakter                                                                                 |
+| Model yang didukung    | `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-sonnet-5`, `claude-sonnet-4-6` |
 
-Batas laju default berlaku untuk pembuatan dream selama fitur ini dalam versi beta. [Hubungi dukungan](https://support.claude.com) jika Anda memerlukan batas yang lebih tinggi.
+Batas laju default berlaku untuk pembuatan dream selama fitur ini dalam pratinjau riset. [Hubungi dukungan](https://support.claude.com) jika Anda memerlukan batas yang lebih tinggi.

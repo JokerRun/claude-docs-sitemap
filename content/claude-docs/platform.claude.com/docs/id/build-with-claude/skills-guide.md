@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/skills-guide
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: 4868aa38243c4208e73bf77b2bbd9c917f7d851ba9e7379090e32e16192963d9
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 5ea44392a129f159b516b3ee81c58fbae8d73e320c9790bab3d0e6347489834f
 ---
 
 # Menggunakan Agent Skills dengan API
@@ -21,7 +21,7 @@ Agent Skills memperluas kemampuan Claude melalui folder terorganisir yang berisi
 </Note>
 
 <Note>
-  Fitur ini **tidak** memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/api-and-data-retention). Data disimpan sesuai dengan kebijakan retensi standar fitur ini.
+  Untuk mengetahui bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 ## Tautan cepat
@@ -39,7 +39,7 @@ Agent Skills memperluas kemampuan Claude melalui folder terorganisir yang berisi
 ## Ikhtisar
 
 <Note>
-  Untuk pembahasan mendalam tentang arsitektur dan penerapan Agent Skills di dunia nyata, baca postingan blog engineering: [Equipping agents for the real world with Agent Skills](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills).
+  Untuk melihat lebih detail arsitektur dan penerapan Agent Skills di dunia nyata, baca postingan blog engineering: [Equipping agents for the real world with Agent Skills](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills).
 </Note>
 
 Skills terintegrasi dengan Messages API melalui [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool). Baik menggunakan Skills bawaan yang dikelola oleh Anthropic maupun Skills kustom yang Anda unggah, bentuk integrasinya identik: keduanya memerlukan eksekusi kode dan menggunakan struktur `container` yang sama.
@@ -58,13 +58,13 @@ Skills terintegrasi secara identik di Messages API terlepas dari sumbernya. Anda
 | **Manajemen**    | Bawaan dan dikelola oleh Anthropic         | Unggah dan kelola melalui [Skills API](/docs/id/api/beta/skills/create) |
 | **Ketersediaan** | Tersedia untuk semua pengguna              | Privat untuk workspace Anda                                             |
 
-Kedua sumber skill dikembalikan oleh [endpoint List Skills](/docs/id/api/beta/skills/list) (gunakan parameter `source` untuk memfilter). Bentuk integrasi dan lingkungan eksekusinya identik. Satu-satunya perbedaan adalah dari mana Skills berasal dan bagaimana Skills tersebut dikelola.
+Kedua sumber skill dikembalikan oleh [endpoint List Skills](/docs/id/api/beta/skills/list) (gunakan parameter `source` untuk memfilter). Bentuk integrasi dan lingkungan eksekusinya identik. Satu-satunya perbedaan adalah dari mana Skills berasal dan bagaimana Skills dikelola.
 
 ### Prasyarat
 
 Untuk menggunakan Skills, Anda memerlukan:
 
-1. **Kunci API Claude** dari [Console](/settings/keys)
+1. **Kunci API Claude** dari [Claude Console](/settings/keys)
 
 2. **Header beta:**
 
@@ -80,9 +80,9 @@ Untuk menggunakan Skills, Anda memerlukan:
 
 ### Parameter container
 
-Skills ditentukan menggunakan parameter `container` di Messages API. Anda dapat menyertakan hingga 8 Skills per request.
+Skills ditentukan menggunakan parameter `container` di Messages API. Anda dapat menyertakan hingga 8 Skills untuk setiap request.
 
-Strukturnya identik untuk Skills Anthropic maupun kustom. Tentukan `type` dan `skill_id` yang diperlukan, dan secara opsional sertakan `version` untuk mengunci ke versi tertentu:
+Strukturnya identik untuk Skills Anthropic maupun kustom. Tentukan `type` dan `skill_id` yang wajib, dan secara opsional sertakan `version` untuk mengunci ke versi tertentu:
 
 <CodeGroup>
   ```bash cURL
@@ -848,16 +848,16 @@ Ketika Skills membuat dokumen (Excel, PowerPoint, PDF, Word), Skills mengembalik
   const client = new Anthropic();
   const fileId = "file_011CNha8iCJcU1wXNR6q4V8w";
 
-  // Dapatkan metadata file
+  // Mendapatkan metadata file
   const fileInfo = await client.beta.files.retrieveMetadata(fileId);
   console.log(`Filename: ${fileInfo.filename}, Size: ${fileInfo.size_bytes} bytes`);
 
-  // Daftar semua file
+  // Menampilkan daftar semua file
   for await (const file of client.beta.files.list()) {
     console.log(`${file.filename} - ${file.created_at}`);
   }
 
-  // Hapus file
+  // Menghapus file
   await client.beta.files.delete(fileId);
   ```
 
@@ -935,17 +935,17 @@ Ketika Skills membuat dokumen (Excel, PowerPoint, PDF, Word), Skills mengembalik
   $client = new Client();
   $fileId = 'file_011CNha8iCJcU1wXNR6q4V8w';
 
-  // Mendapatkan metadata file
+  // Dapatkan metadata file
   $fileInfo = $client->beta->files->retrieveMetadata($fileId);
   echo "Filename: {$fileInfo->filename}, Size: {$fileInfo->sizeBytes} bytes\n";
 
-  // Menampilkan daftar file (halaman pertama)
+  // Daftar file (halaman pertama)
   $files = $client->beta->files->list();
   foreach ($files->data as $file) {
       echo "{$file->filename} - {$file->createdAt->format(DATE_ATOM)}\n";
   }
 
-  // Menghapus file
+  // Hapus file
   $client->beta->files->delete($fileId);
   ```
 
@@ -968,7 +968,7 @@ Ketika Skills membuat dokumen (Excel, PowerPoint, PDF, Word), Skills mengembalik
 </CodeGroup>
 
 <Note>
-  Untuk detail lengkap tentang Files API, lihat [dokumentasi Files API](/docs/id/api/beta/files/download).
+  Untuk detail lengkap tentang Files API, lihat dokumentasi [Files API](/docs/id/api/beta/files/download).
 </Note>
 
 ### Percakapan multi-giliran
@@ -977,7 +977,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
 
 <CodeGroup>
   ```bash cURL
-  # Penggunaan ulang container multi-giliran tidak cocok untuk perintah shell
+  # Penggunaan ulang container multi-turn tidak cocok untuk perintah shell
   # sekali pakai; salah satu opsi SDK akan lebih sesuai. Ambil
   # container.id dari respons pertama, lalu teruskan pada permintaan berikutnya sebagai
   # "container": {"id": "...", "skills": [...]} bersama riwayat percakapan.
@@ -1043,7 +1043,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
   messages = [
       {"role": "user", "content": "Create a sample sales dataset and analyze it"},
       {
-          # Bawa teks asisten ke permintaan berikutnya; container.id membawa status eksekusi
+          # Teruskan teks asisten; container.id membawa status eksekusi
           "role": "assistant",
           "content": "\n".join(
               block.text for block in response1.content if block.type == "text"
@@ -1110,7 +1110,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
   ```csharp C#
   AnthropicClient client = new();
 
-  // Permintaan pertama dengan sebuah Skill
+  // Permintaan pertama dengan Skill
   var parameters1 = new MessageCreateParams
   {
       Model = "claude-opus-4-8",
@@ -1135,10 +1135,10 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
   var response1 = await client.Beta.Messages.Create(parameters1);
 
   // Lanjutkan percakapan dalam container yang sama
-  // Teruskan teks asisten; container.id membawa status eksekusi
+  // Teruskan teks asisten ke permintaan berikutnya; container.id membawa status eksekusi
   var assistantText = string.Join(
       "\n",
-      response1.Content.Select(block => block.TryPickText(out var text) ? text.Text : null).Where(t => t is not null)
+      response1.Content.Select(block => block.TryPickText(out var text) ? text.Text : null).Where(text => text is not null)
   );
 
   var parameters2 = new MessageCreateParams
@@ -1201,7 +1201,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
   	log.Fatal(err)
   }
 
-  // Teruskan teks asisten ke depan; container.id membawa status eksekusi
+  // Teruskan teks asisten ke permintaan berikutnya; container.id membawa status eksekusi
   var textParts []string
   for _, block := range response1.Content {
   	if block.Type == "text" {
@@ -1322,7 +1322,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
 
   $messages = [
       ['role' => 'user', 'content' => 'Create a sample sales dataset and analyze it'],
-      // Teruskan teks asisten ke langkah berikutnya; container.id membawa status eksekusi
+      // Teruskan teks asisten ke permintaan berikutnya; container.id membawa status eksekusi
       ['role' => 'assistant', 'content' => implode("\n", array_map(
           fn ($block) => $block->text,
           array_filter($response1->content, fn ($block) => $block->type === 'text'),
@@ -1529,7 +1529,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani alasan 
       tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
   )
 
-  # Menangani pause_turn untuk operasi yang panjang
+  # Menangani pause_turn untuk operasi yang lama
   for _ in range(max_retries):
       if response.stop_reason != "pause_turn":
           break
@@ -2246,7 +2246,7 @@ Gabungkan beberapa Skills dalam satu request untuk menangani alur kerja yang kom
 
 Bundel Skill adalah direktori yang berisi file `SKILL.md` di tingkat teratas dengan frontmatter YAML `name` dan `description`, ditambah skrip atau sumber daya pendukung apa pun. Lihat [Mulai dengan Agent Skills di API](/docs/id/agents-and-tools/agent-skills/quickstart) untuk membuatnya, dan daftar **Persyaratan** setelah contoh-contoh untuk batasan lengkapnya.
 
-Unggah Skill kustom Anda agar tersedia di workspace Anda. Anda dapat mengunggah arsip zip atau objek file individual; Python SDK juga menyediakan helper `files_from_dir` yang menerima path direktori.
+Unggah Skill kustom Anda agar tersedia di workspace Anda. Anda dapat mengunggah arsip zip atau objek file individual; SDK Python juga menyediakan helper `files_from_dir` yang menerima path direktori.
 
 File diidentifikasi berdasarkan nama file yang Anda lampirkan. Unggahan per-file harus mempertahankan direktori tingkat teratas yang sama dalam path-nya (sufiks `;filename=` dalam contoh cURL dan argumen nama file dalam contoh SDK), dan arsip zip harus berisi direktori skill sebagai satu-satunya entri tingkat teratas.
 
@@ -2265,8 +2265,8 @@ File diidentifikasi berdasarkan nama file yang Anda lampirkan. Unggahan per-file
     --file example_skill.zip \
     --beta skills-2025-10-02
 
-  # Unggahan per file memerlukan nama file dengan path lengkap, yang saat ini
-  # belum dapat diatur oleh CLI. Sebagai gantinya, unggah arsip zip.
+  # Unggah per file memerlukan nama file dengan kualifikasi path, yang saat ini
+  # tidak dapat diatur oleh CLI. Sebagai gantinya, unggah arsip zip.
   ```
 
   ```python Python
@@ -2348,7 +2348,7 @@ File diidentifikasi berdasarkan nama file yang Anda lampirkan. Unggahan per-file
 
   var skill = await client.Beta.Skills.Create(parameters);
 
-  // Opsi 2: Menggunakan file satu per satu (nama file dengan path lengkap mempertahankan tata letak direktori Skill)
+  // Opsi 2: Menggunakan file individual (nama file dengan path mempertahankan tata letak direktori Skill)
   var parameters2 = new SkillCreateParams
   {
       Files =
@@ -2438,7 +2438,7 @@ File diidentifikasi berdasarkan nama file yang Anda lampirkan. Unggahan per-file
 
       SkillCreateResponse skill = client.beta().skills().create(params);
 
-      // Opsi 2: Menggunakan file individual (nama file dengan path lengkap mempertahankan tata letak direktori Skill)
+      // Opsi 2: Menggunakan file individual (nama file dengan path mempertahankan tata letak direktori Skill)
       SkillCreateParams params2 = SkillCreateParams.builder()
           .addFile(MultipartField.<InputStream>builder()
               .value(Files.newInputStream(Path.of("financial_skill/SKILL.md")))
@@ -2541,13 +2541,13 @@ Ambil semua Skills yang tersedia untuk workspace Anda, termasuk Skills bawaan An
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  # Mencantumkan semua Skill
+  # Daftar semua Skill
   curl "https://api.anthropic.com/v1/skills" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: skills-2025-10-02"
 
-  # Mencantumkan hanya Skill kustom
+  # Daftar hanya Skill kustom
   curl "https://api.anthropic.com/v1/skills?source=custom" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -2565,23 +2565,23 @@ Ambil semua Skills yang tersedia untuk workspace Anda, termasuk Skills bawaan An
   ```python Python
   client = anthropic.Anthropic()
 
-  # Daftar semua Skill
+  # Daftar semua Skills
   for skill in client.beta.skills.list():
       print(f"{skill.id}: {skill.display_title} (source: {skill.source})")
 
-  # Daftar hanya Skill kustom
+  # Daftar hanya Skills kustom
   custom_skills = client.beta.skills.list(source="custom")
   ```
 
   ```typescript TypeScript
   const client = new Anthropic();
 
-  // Daftar semua Skills
+  // Daftar semua Skill
   for await (const skill of client.beta.skills.list()) {
     console.log(`${skill.id}: ${skill.display_title} (source: ${skill.source})`);
   }
 
-  // Daftar hanya Skills kustom
+  // Daftar hanya Skill kustom
   const customSkills = await client.beta.skills.list({
     source: "custom"
   });
@@ -2636,14 +2636,14 @@ Ambil semua Skills yang tersedia untuk workspace Anda, termasuk Skills bawaan An
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-      // Daftar Skill (halaman pertama)
+      // Menampilkan daftar Skill (halaman pertama)
       SkillListPage skills = client.beta().skills().list();
 
       for (SkillListResponse skill : skills.data()) {
           System.out.println(skill.id() + ": " + skill.displayTitle().orElseThrow() + " (source: " + skill.source() + ")");
       }
 
-      // Daftar hanya Skill kustom
+      // Menampilkan daftar Skill kustom saja
       SkillListParams customParams = SkillListParams.builder()
           .source("custom")
           .build();
@@ -2671,12 +2671,12 @@ Ambil semua Skills yang tersedia untuk workspace Anda, termasuk Skills bawaan An
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  # Daftar semua Skill
+  # Mencantumkan semua Skill
   client.beta.skills.list.auto_paging_each do |skill|
     puts "#{skill.id}: #{skill.display_title} (source: #{skill.source})"
   end
 
-  # Daftar hanya Skill kustom
+  # Mencantumkan hanya Skill kustom
   custom_skills = client.beta.skills.list(
     source: "custom"
   )
@@ -2792,7 +2792,7 @@ Untuk menghapus Skill, Anda harus terlebih dahulu menghapus semua versinya:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  # Langkah 1: Daftar versi-versinya, lalu hapus satu per satu
+  # Langkah 1: Daftarkan versi-versinya, lalu hapus satu per satu
   curl "https://api.anthropic.com/v1/skills/skill_01AbCdEfGhIjKlMnOpQrStUv/versions" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -3005,7 +3005,7 @@ Skills mendukung pembuatan versi untuk mengelola pembaruan dengan aman:
 
   VERSION_NUMBER=$(echo "$NEW_VERSION" | jq -r '.version')
 
-  # Menggunakan versi spesifik
+  # Menggunakan versi tertentu
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -3102,7 +3102,7 @@ Skills mendukung pembuatan versi untuk mengelola pembaruan dengan aman:
       files=files_from_dir("/path/to/updated_skill"),
   )
 
-  # Menggunakan versi tertentu
+  # Menggunakan versi spesifik
   response = client.beta.messages.create(
       model="claude-opus-4-8",
       max_tokens=4096,
@@ -3366,7 +3366,7 @@ Skills mendukung pembuatan versi untuk mengelola pembaruan dengan aman:
       VersionCreateResponse newVersion = client.beta().skills().versions()
           .create("skill_01AbCdEfGhIjKlMnOpQrStUv", versionParams);
 
-      // Menggunakan versi spesifik
+      // Menggunakan versi tertentu
       MessageCreateParams specificVersionParams = MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_4_8)
           .maxTokens(4096L)
@@ -3511,11 +3511,11 @@ Lihat [referensi API Create Skill Version](/docs/id/api/beta/skills/versions/cre
 
 ## Bagaimana Skills dimuat
 
-Ketika Anda menentukan Skills dalam container:
+Ketika Anda menentukan Skills dalam sebuah container:
 
-1. **Penemuan metadata:** Claude melihat metadata untuk setiap Skill (name, description) dalam prompt sistem.
+1. **Penemuan metadata:** Claude melihat metadata untuk setiap Skill (nama, deskripsi) dalam prompt sistem.
 2. **Pemuatan file:** File Skill disalin ke dalam container di `/skills/{directory}/`.
-3. **Penggunaan otomatis:** Claude secara otomatis memuat dan menggunakan Skills saat relevan dengan request Anda.
+3. **Penggunaan otomatis:** Claude secara otomatis memuat dan menggunakan Skills ketika relevan dengan request Anda.
 4. **Komposisi:** Beberapa Skills dapat digabungkan untuk alur kerja yang kompleks.
 
 Arsitektur "progressive disclosure" (pengungkapan bertahap) memastikan penggunaan konteks yang efisien: Claude hanya memuat instruksi Skill lengkap saat diperlukan.
@@ -3909,7 +3909,7 @@ Gabungkan Skills Excel dan analisis DCF kustom:
 
 * **Maksimum Skills per request:** 8
 
-* **Maksimum ukuran unggahan Skill:** 30 MB (semua file digabungkan)
+* **Ukuran unggahan Skill maksimum:** 30 MB (semua file digabungkan)
 
 * **Persyaratan frontmatter YAML:**
 
@@ -3942,14 +3942,14 @@ Gabungkan Skills ketika tugas melibatkan beberapa jenis dokumen atau domain:
 
 **Hindari:**
 
-* Menyertakan Skills yang tidak digunakan (memengaruhi kinerja)
+* Menyertakan Skills yang tidak digunakan (memengaruhi performa)
 
 ### Strategi manajemen versi
 
 **Untuk produksi:**
 
 ```python
-# Sematkan ke versi tertentu untuk stabilitas
+# Sematkan ke versi spesifik untuk stabilitas
 container = {
     "skills": [
         {
@@ -4412,7 +4412,7 @@ Saat menggunakan caching prompt, perhatikan bahwa mengubah daftar Skills di cont
   ```
 </CodeGroup>
 
-Untuk kinerja caching terbaik, jaga agar daftar Skills Anda konsisten di seluruh request.
+Untuk performa caching terbaik, jaga agar daftar Skills Anda konsisten di seluruh request.
 
 ### Penanganan error
 

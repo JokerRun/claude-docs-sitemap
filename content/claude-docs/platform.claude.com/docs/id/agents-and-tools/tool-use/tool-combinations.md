@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-combinations
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: e90e8cfce34cc7a09c950d61639759ee851b006f690688ace72039766176c900
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: d4e26d71f60d6fe86e43f4f8a3a147e7d5ea553664110c0219ef2b334b0ad05e
 ---
 
 # Kombinasi alat
@@ -17,7 +17,7 @@ Setiap cuplikan hanya menampilkan array `tools`. Lihat [Menangani panggilan alat
 
 ## Agen riset: web\_search + code\_execution
 
-Pencarian menemukan sumber; eksekusi kode menganalisis dan menyintesis. Claude mencari data, lalu menulis Python untuk memproses, menabulasi, atau memvisualisasikannya. Pasangan ini cocok untuk pertanyaan yang memerlukan informasi terkini sekaligus komputasi yang tidak sederhana atas informasi tersebut, seperti "bandingkan pendapatan kuartal ini di antara lima penyedia cloud teratas."
+Pencarian menemukan sumber; eksekusi kode menganalisis dan menyintesis. Claude mencari data, lalu menulis Python untuk memproses, menabulasi, atau memvisualisasikannya. Pasangan ini cocok untuk pertanyaan yang membutuhkan informasi terkini sekaligus komputasi yang tidak sepele atas informasi tersebut, seperti "bandingkan pendapatan kuartal ini di antara lima penyedia cloud teratas."
 
 ```json
 {
@@ -28,11 +28,11 @@ Pencarian menemukan sumber; eksekusi kode menganalisis dan menyintesis. Claude m
 }
 ```
 
-Alurnya biasanya adalah mencari, lalu mengeksekusi, kemudian secara opsional mencari lagi jika langkah pertama menemukan kekurangan. Eksekusi kode berjalan di sisi server, sehingga tidak ada sandbox sisi klien yang perlu dikelola.
+Alurnya biasanya adalah mencari, lalu mengeksekusi, kemudian secara opsional mencari lagi jika tahap pertama menemukan celah. Eksekusi kode berjalan di sisi server, sehingga tidak ada sandbox sisi klien yang perlu dikelola.
 
 ## Agen coding: text\_editor + bash
 
-Editor teks membaca dan memodifikasi file; bash menjalankan pengujian dan perintah build. Ini adalah siklus pengembangan perangkat lunak yang klasik: periksa kode, lakukan pengeditan, jalankan pengujian, ulangi. Kedua alat dieksekusi di sisi klien, sehingga aplikasi Anda mengontrol file dan perintah mana yang dapat diakses.
+Editor teks membaca dan memodifikasi file; bash menjalankan pengujian dan perintah build. Ini adalah siklus pengembangan perangkat lunak yang kanonis: periksa kode, lakukan pengeditan, jalankan pengujian, ulangi. Kedua alat dieksekusi di sisi klien, sehingga aplikasi Anda mengontrol file dan perintah mana yang dapat diakses.
 
 ```json
 {
@@ -43,9 +43,9 @@ Editor teks membaca dan memodifikasi file; bash menjalankan pengujian dan perint
 }
 ```
 
-Padukan ini dengan direktori kerja yang dibatasi dan daftar perintah yang diizinkan (allowlist) jika agen beroperasi pada kode yang tidak tepercaya. Lihat [Alat editor teks](/docs/id/agents-and-tools/tool-use/text-editor-tool) dan [Alat bash](/docs/id/agents-and-tools/tool-use/bash-tool) untuk kontrak eksekusinya.
+Pasangkan ini dengan direktori kerja yang dibatasi dan daftar perintah yang diizinkan (allowlist) jika agen beroperasi pada kode yang tidak tepercaya. Lihat [Alat editor teks](/docs/id/agents-and-tools/tool-use/text-editor-tool) dan [Alat bash](/docs/id/agents-and-tools/tool-use/bash-tool) untuk kontrak eksekusinya.
 
-## Cite-then-fetch: web\_search + web\_fetch
+## Kutip-lalu-ambil: web\_search + web\_fetch
 
 Pencarian memunculkan URL kandidat; fetch mengambil konten halaman lengkap untuk yang relevan. Ini menghindari pengambilan semuanya di awal. Claude menjalankan pencarian, memeriksa cuplikannya, memilih dua atau tiga hasil yang benar-benar terlihat relevan, dan hanya mengambil yang itu saja.
 
@@ -58,7 +58,7 @@ Pencarian memunculkan URL kandidat; fetch mengambil konten halaman lengkap untuk
 }
 ```
 
-Pasangan ini berguna ketika jawabannya berada dalam konten berbentuk panjang (halaman dokumentasi, artikel, spesifikasi) yang tidak dapat sepenuhnya ditangkap oleh cuplikan pencarian. Fetch menarik halaman lengkap sehingga Claude dapat mengutip bagian-bagian tertentu.
+Pasangan ini berguna ketika jawabannya berada dalam konten berbentuk panjang (halaman dokumentasi, artikel, spesifikasi) yang tidak dapat ditangkap sepenuhnya oleh cuplikan pencarian. Fetch menarik halaman lengkap sehingga Claude dapat mengutip bagian-bagian tertentu.
 
 ## Agen yang berjalan lama: memory + toolset apa pun
 
@@ -72,11 +72,11 @@ Memory mempertahankan state di seluruh percakapan; alat-alat lainnya melakukan p
 
 Tambahkan alat-alat Anda yang lain bersama `memory` dalam array yang sama.
 
-Memory bersifat ortogonal terhadap toolset Anda yang lain. Memory tidak mengubah cara kerja alat lain; memory memberi Claude tempat untuk mencatat dan kemudian mengambil kembali fakta-fakta yang jika tidak akan hilang ketika "context window" (jendela konteks) direset. Lihat [Alat memory](/docs/id/agents-and-tools/tool-use/memory-tool) untuk model penyimpanannya.
+Memory bersifat ortogonal terhadap toolset Anda yang lain. Memory tidak mengubah cara alat lain berperilaku; memory memberi Claude tempat untuk mencatat dan kemudian mengambil kembali fakta-fakta yang jika tidak akan hilang ketika jendela konteks direset. Lihat [Alat memory](/docs/id/agents-and-tools/tool-use/memory-tool) untuk model penyimpanannya.
 
-## Serba bisa: computer\_use
+## Semua-dalam-satu: computer\_use
 
-Alat computer use mencakup sebagian besar alat lainnya dengan mengoperasikan desktop penuh. Claude melihat tangkapan layar dan mengeluarkan aksi mouse dan keyboard, yang berarti Claude dapat menjalankan aplikasi apa pun yang dapat dijalankan manusia. Gunakan ini ketika tugas memerlukan interaksi GUI sembarang yang tidak dapat dijangkau oleh alat yang lebih spesifik: perangkat lunak lawas tanpa API, langkah verifikasi visual, atau alur kerja yang mencakup beberapa aplikasi desktop.
+Alat computer use mencakup sebagian besar alat lainnya dengan mengoperasikan desktop penuh. Claude melihat tangkapan layar dan mengeluarkan aksi mouse dan keyboard, yang berarti Claude dapat menjalankan aplikasi apa pun yang bisa dijalankan manusia. Gunakan ini ketika tugas memerlukan interaksi GUI sembarang yang tidak dapat dijangkau oleh alat yang lebih spesifik: perangkat lunak lawas tanpa API, langkah verifikasi visual, atau alur kerja yang mencakup beberapa aplikasi desktop.
 
 ```json
 {

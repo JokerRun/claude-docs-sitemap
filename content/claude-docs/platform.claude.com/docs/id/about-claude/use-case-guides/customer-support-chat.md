@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 9b96988d47820f16cff77b71a995a8837c9fbbd9c28d145cface3fad9c74cbee
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 0d40bea249b4bf248b67c990c31015d11ae5f672a300f4ce9d654413ace49b91
 ---
 
 # Agen dukungan pelanggan
@@ -18,7 +18,7 @@ Untuk mengikuti panduan ini, Anda memerlukan:
 * Kunci API Claude (diatur sebagai variabel lingkungan `ANTHROPIC_API_KEY`)
 * Python 3.9 atau yang lebih baru
 
-Instal paket yang diperlukan:
+Instal paket-paket yang diperlukan:
 
 ```bash
 pip install anthropic streamlit python-dotenv
@@ -26,13 +26,13 @@ pip install anthropic streamlit python-dotenv
 
 ## Sebelum membangun dengan Claude
 
-### Tentukan apakah akan menggunakan Claude untuk obrolan dukungan
+### Putuskan apakah akan menggunakan Claude untuk chat dukungan
 
-Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan LLM seperti Claude untuk mengotomatiskan sebagian proses dukungan pelanggan Anda:
+Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan LLM seperti Claude untuk mengotomatiskan sebagian dari proses dukungan pelanggan Anda:
 
 <AccordionGroup>
-  <Accordion title="Volume pertanyaan berulang yang tinggi">
-    Claude unggul dalam menangani sejumlah besar pertanyaan serupa secara efisien, membebaskan agen manusia untuk menangani masalah yang lebih kompleks.
+  <Accordion title="Volume tinggi pertanyaan berulang">
+    Claude unggul dalam menangani sejumlah besar pertanyaan serupa secara efisien, membebaskan agen manusia untuk masalah yang lebih kompleks.
   </Accordion>
 
   <Accordion title="Kebutuhan sintesis informasi yang cepat">
@@ -44,7 +44,7 @@ Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan LLM sep
   </Accordion>
 
   <Accordion title="Penskalaan cepat selama periode puncak">
-    Claude dapat menangani peningkatan volume pertanyaan secara tiba-tiba tanpa perlu merekrut dan melatih staf tambahan.
+    Claude dapat menangani peningkatan mendadak dalam volume pertanyaan tanpa perlu merekrut dan melatih staf tambahan.
   </Accordion>
 
   <Accordion title="Suara merek yang konsisten">
@@ -52,23 +52,23 @@ Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan LLM sep
   </Accordion>
 </AccordionGroup>
 
-Beberapa pertimbangan untuk memilih Claude dibandingkan LLM lainnya:
+Beberapa pertimbangan untuk memilih Claude dibandingkan LLM lain:
 
-* Anda memprioritaskan percakapan yang alami dan bernuansa: Pemahaman bahasa Claude yang canggih memungkinkan percakapan yang lebih alami dan sadar konteks yang terasa lebih seperti manusia dibandingkan obrolan dengan LLM lainnya.
+* Anda memprioritaskan percakapan yang alami dan bernuansa: Pemahaman bahasa Claude yang canggih memungkinkan percakapan yang lebih alami dan sadar konteks yang terasa lebih mirip manusia dibandingkan chat dengan LLM lain.
 * Anda sering menerima pertanyaan yang kompleks dan terbuka: Claude dapat menangani berbagai topik dan pertanyaan tanpa menghasilkan respons kaku atau memerlukan pemrograman ekstensif untuk berbagai permutasi ucapan pengguna.
-* Anda memerlukan dukungan multibahasa yang dapat diskalakan: Kemampuan multibahasa Claude memungkinkannya terlibat dalam percakapan dalam lebih dari 200 bahasa tanpa memerlukan chatbot terpisah atau proses terjemahan ekstensif untuk setiap bahasa yang didukung.
+* Anda memerlukan dukungan multibahasa yang dapat diskalakan: Kemampuan multibahasa Claude memungkinkannya terlibat dalam percakapan dalam lebih dari 200 bahasa tanpa perlu chatbot terpisah atau proses terjemahan ekstensif untuk setiap bahasa yang didukung.
 
-### Definisikan interaksi obrolan ideal Anda
+### Definisikan interaksi chat ideal Anda
 
-Buat garis besar interaksi pelanggan yang ideal untuk mendefinisikan bagaimana dan kapan Anda mengharapkan pelanggan berinteraksi dengan Claude. Garis besar ini akan membantu menentukan persyaratan teknis solusi Anda.
+Buat garis besar interaksi pelanggan yang ideal untuk mendefinisikan bagaimana dan kapan Anda mengharapkan pelanggan berinteraksi dengan Claude. Garis besar ini akan membantu menentukan persyaratan teknis dari solusi Anda.
 
-Berikut adalah contoh interaksi obrolan untuk dukungan pelanggan asuransi mobil:
+Berikut adalah contoh interaksi chat untuk dukungan pelanggan asuransi mobil:
 
-* **Pelanggan:** Memulai pengalaman obrolan dukungan
+* **Pelanggan:** Memulai pengalaman chat dukungan
   * **Claude:** Menyapa pelanggan dengan hangat dan memulai percakapan
 
 * **Pelanggan:** Bertanya tentang asuransi untuk mobil listrik baru mereka
-  * **Claude:** Memberikan informasi relevan tentang cakupan kendaraan listrik
+  * **Claude:** Memberikan informasi yang relevan tentang pertanggungan kendaraan listrik
 
 * **Pelanggan:** Mengajukan pertanyaan terkait kebutuhan unik untuk asuransi kendaraan listrik
   * **Claude:** Merespons dengan jawaban yang akurat dan informatif serta memberikan tautan ke sumbernya
@@ -78,9 +78,9 @@ Berikut adalah contoh interaksi obrolan untuk dukungan pelanggan asuransi mobil:
 
 * **Pelanggan:** Menyatakan minat pada penawaran harga asuransi
 
-  * **Claude:** Mengajukan serangkaian pertanyaan untuk menentukan penawaran yang sesuai, menyesuaikan dengan respons mereka
-  * **Claude:** Mengirim permintaan untuk menggunakan alat API pembuatan penawaran bersama dengan informasi yang diperlukan yang dikumpulkan dari pengguna
-  * **Claude:** Menerima informasi respons dari penggunaan alat API, mensintesis informasi menjadi respons yang alami, dan menyajikan penawaran yang diberikan kepada pengguna
+  * **Claude:** Mengajukan serangkaian pertanyaan untuk menentukan penawaran harga yang sesuai, menyesuaikan dengan respons mereka
+  * **Claude:** Mengirim permintaan untuk menggunakan alat API pembuatan penawaran harga bersama dengan informasi yang diperlukan yang dikumpulkan dari pengguna
+  * **Claude:** Menerima informasi respons dari penggunaan alat API, mensintesis informasi menjadi respons yang alami, dan menyajikan penawaran harga yang diberikan kepada pengguna
 
 * **Pelanggan:** Mengajukan pertanyaan lanjutan
 
@@ -88,15 +88,15 @@ Berikut adalah contoh interaksi obrolan untuk dukungan pelanggan asuransi mobil:
   * **Claude:** Memandu pelanggan ke langkah berikutnya dalam proses asuransi dan menutup percakapan
 
 <Tip>
-  Dalam contoh nyata yang Anda tulis untuk kasus penggunaan Anda sendiri, Anda mungkin merasa berguna untuk menuliskan kata-kata sebenarnya dalam interaksi ini sehingga Anda juga dapat memahami nada ideal, panjang respons, dan tingkat detail yang Anda inginkan dari Claude.
+  Dalam contoh nyata yang Anda tulis untuk kasus penggunaan Anda sendiri, Anda mungkin merasa berguna untuk menuliskan kata-kata sebenarnya dalam interaksi ini sehingga Anda juga dapat merasakan nada ideal, panjang respons, dan tingkat detail yang Anda inginkan dari Claude.
 </Tip>
 
 ### Pecah interaksi menjadi tugas-tugas unik
 
-Obrolan dukungan pelanggan adalah kumpulan dari berbagai tugas yang berbeda, mulai dari menjawab pertanyaan hingga pengambilan informasi hingga mengambil tindakan atas permintaan, yang dikemas dalam satu interaksi pelanggan. Sebelum Anda mulai membangun, pecah interaksi pelanggan ideal Anda menjadi setiap tugas yang Anda ingin Claude dapat lakukan. Ini memastikan Anda dapat membuat prompt dan mengevaluasi Claude untuk setiap tugas, dan memberi Anda gambaran yang baik tentang rentang interaksi yang perlu Anda perhitungkan saat menulis kasus uji.
+Chat dukungan pelanggan adalah kumpulan dari berbagai tugas yang berbeda, mulai dari menjawab pertanyaan hingga pengambilan informasi hingga mengambil tindakan atas permintaan, yang dibungkus dalam satu interaksi pelanggan. Sebelum Anda mulai membangun, pecah interaksi pelanggan ideal Anda menjadi setiap tugas yang Anda ingin Claude dapat lakukan. Ini memastikan Anda dapat membuat prompt dan mengevaluasi Claude untuk setiap tugas, dan memberi Anda gambaran yang baik tentang rentang interaksi yang perlu Anda perhitungkan saat menulis kasus uji.
 
 <Tip>
-  Pelanggan terkadang merasa terbantu untuk memvisualisasikan ini sebagai diagram alur interaksi dari titik-titik perubahan percakapan yang mungkin terjadi tergantung pada permintaan pengguna.
+  Pelanggan terkadang merasa terbantu dengan memvisualisasikan ini sebagai diagram alur interaksi dari titik-titik belok percakapan yang mungkin terjadi tergantung pada permintaan pengguna.
 </Tip>
 
 Berikut adalah tugas-tugas utama yang terkait dengan contoh interaksi asuransi:
@@ -108,7 +108,7 @@ Berikut adalah tugas-tugas utama yang terkait dengan contoh interaksi asuransi:
 
 2. Informasi produk
 
-   * Memberikan informasi tentang cakupan kendaraan listrik
+   * Memberikan informasi tentang pertanggungan kendaraan listrik
      <Note>
        Ini akan mengharuskan Claude memiliki informasi yang diperlukan dalam konteksnya, dan mungkin menyiratkan bahwa 
 
@@ -116,25 +116,25 @@ Berikut adalah tugas-tugas utama yang terkait dengan contoh interaksi asuransi:
 
         diperlukan.
      </Note>
-   * Menjawab pertanyaan terkait kebutuhan asuransi kendaraan listrik yang unik
-   * Menjawab pertanyaan lanjutan tentang penawaran atau detail asuransi
-   * Menawarkan tautan ke sumber jika sesuai
+   * Menjawab pertanyaan terkait kebutuhan unik asuransi kendaraan listrik
+   * Menjawab pertanyaan lanjutan tentang penawaran harga atau detail asuransi
+   * Menawarkan tautan ke sumber bila sesuai
 
 3. Manajemen percakapan
 
    * Tetap pada topik (asuransi mobil)
    * Mengarahkan kembali pertanyaan di luar topik ke subjek yang relevan
 
-4. Pembuatan penawaran
+4. Pembuatan penawaran harga
 
-   * Mengajukan pertanyaan yang sesuai untuk menentukan kelayakan penawaran
+   * Mengajukan pertanyaan yang sesuai untuk menentukan kelayakan penawaran harga
    * Menyesuaikan pertanyaan berdasarkan respons pelanggan
-   * Mengirimkan informasi yang dikumpulkan ke API pembuatan penawaran
-   * Menyajikan penawaran yang diberikan kepada pelanggan
+   * Mengirimkan informasi yang dikumpulkan ke API pembuatan penawaran harga
+   * Menyajikan penawaran harga yang diberikan kepada pelanggan
 
 ### Tetapkan kriteria keberhasilan
 
-Bekerja sama dengan tim dukungan Anda untuk [mendefinisikan kriteria keberhasilan dan menulis evaluasi terperinci](/docs/id/test-and-evaluate/develop-tests) dengan tolok ukur dan tujuan yang terukur.
+Bekerja samalah dengan tim dukungan Anda untuk [mendefinisikan kriteria keberhasilan dan menulis evaluasi terperinci](/docs/id/test-and-evaluate/develop-tests) dengan tolok ukur dan tujuan yang dapat diukur.
 
 Berikut adalah kriteria dan tolok ukur yang dapat digunakan untuk mengevaluasi seberapa berhasil Claude melakukan tugas-tugas yang telah didefinisikan:
 
@@ -144,7 +144,7 @@ Berikut adalah kriteria dan tolok ukur yang dapat digunakan untuk mengevaluasi s
   </Accordion>
 
   <Accordion title="Relevansi respons">
-    Ini menilai seberapa baik respons Claude menjawab pertanyaan atau masalah spesifik pelanggan. Evaluasi serangkaian percakapan dan beri nilai relevansi setiap respons (menggunakan penilaian berbasis LLM untuk skala). Targetkan skor relevansi 90% atau lebih.
+    Ini menilai seberapa baik respons Claude menjawab pertanyaan atau masalah spesifik pelanggan. Evaluasi serangkaian percakapan dan nilai relevansi setiap respons (menggunakan penilaian berbasis LLM untuk skala). Targetkan skor relevansi 90% atau lebih.
   </Accordion>
 
   <Accordion title="Akurasi respons">
@@ -155,16 +155,16 @@ Berikut adalah kriteria dan tolok ukur yang dapat digunakan untuk mengevaluasi s
     Lacak frekuensi dan relevansi tautan atau sumber yang ditawarkan. Targetkan penyediaan sumber yang relevan dalam 80% interaksi di mana informasi tambahan dapat bermanfaat.
   </Accordion>
 
-  <Accordion title="Kepatuhan topik">
+  <Accordion title="Kepatuhan pada topik">
     Ukur seberapa baik Claude tetap pada topik, seperti topik asuransi mobil dalam contoh implementasi. Targetkan 95% respons terkait langsung dengan asuransi mobil atau pertanyaan spesifik pelanggan.
   </Accordion>
 
   <Accordion title="Efektivitas pembuatan konten">
-    Ukur seberapa berhasil Claude dalam menentukan kapan harus menghasilkan konten informasional dan seberapa relevan konten tersebut. Misalnya, dalam implementasi ini, Anda akan menentukan seberapa baik Claude memahami kapan harus menghasilkan penawaran dan seberapa akurat penawaran tersebut. Targetkan akurasi 100%, karena ini adalah informasi vital untuk interaksi pelanggan yang berhasil.
+    Ukur seberapa berhasil Claude dalam menentukan kapan harus menghasilkan konten informasional dan seberapa relevan konten tersebut. Misalnya, dalam implementasi ini, Anda akan menentukan seberapa baik Claude memahami kapan harus menghasilkan penawaran harga dan seberapa akurat penawaran harga tersebut. Targetkan akurasi 100%, karena ini adalah informasi vital untuk interaksi pelanggan yang berhasil.
   </Accordion>
 
   <Accordion title="Efisiensi eskalasi">
-    Ini mengukur kemampuan Claude untuk mengenali kapan suatu pertanyaan memerlukan intervensi manusia dan mengeskalasi dengan tepat. Lacak persentase percakapan yang dieskalasi dengan benar versus yang seharusnya dieskalasi tetapi tidak. Targetkan akurasi eskalasi 95% atau lebih tinggi.
+    Ini mengukur kemampuan Claude untuk mengenali kapan sebuah pertanyaan memerlukan intervensi manusia dan mengeskalasi dengan tepat. Lacak persentase percakapan yang dieskalasi dengan benar dibandingkan dengan yang seharusnya dieskalasi tetapi tidak. Targetkan akurasi eskalasi 95% atau lebih tinggi.
   </Accordion>
 </AccordionGroup>
 
@@ -184,7 +184,7 @@ Berikut adalah kriteria dan tolok ukur yang dapat digunakan untuk mengevaluasi d
   </Accordion>
 
   <Accordion title="Waktu penanganan rata-rata">
-    Waktu rata-rata yang dibutuhkan chatbot untuk menyelesaikan suatu pertanyaan. Ini sangat bervariasi berdasarkan kompleksitas masalah, tetapi secara umum, targetkan AHT yang lebih rendah dibandingkan dengan agen manusia.
+    Waktu rata-rata yang dibutuhkan chatbot untuk menyelesaikan sebuah pertanyaan. Ini sangat bervariasi berdasarkan kompleksitas masalah, tetapi secara umum, targetkan AHT yang lebih rendah dibandingkan dengan agen manusia.
   </Accordion>
 </AccordionGroup>
 
@@ -192,15 +192,15 @@ Berikut adalah kriteria dan tolok ukur yang dapat digunakan untuk mengevaluasi d
 
 ### Pilih model Claude yang tepat
 
-Pilihan model bergantung pada pertukaran antara biaya, akurasi, dan waktu respons.
+Pilihan model bergantung pada pertimbangan antara biaya, akurasi, dan waktu respons.
 
-Untuk obrolan dukungan pelanggan, Claude Opus 4.8 sangat cocok untuk menyeimbangkan kecerdasan, latensi, dan biaya. Namun, untuk kasus di mana Anda memiliki alur percakapan dengan beberapa prompt termasuk RAG, penggunaan alat, atau prompt konteks panjang, Claude Haiku 4.5 mungkin lebih cocok untuk mengoptimalkan latensi.
+Untuk chat dukungan pelanggan, Claude Opus 4.8 sangat cocok untuk menyeimbangkan kecerdasan, "latency" (latensi), dan biaya. Namun, untuk kasus di mana Anda memiliki alur percakapan dengan beberapa prompt termasuk RAG, penggunaan alat, atau prompt konteks panjang, Claude Haiku 4.5 mungkin lebih cocok untuk mengoptimalkan latensi.
 
 ### Bangun prompt yang kuat
 
 Menggunakan Claude untuk dukungan pelanggan mengharuskan Claude memiliki arahan dan konteks yang cukup untuk merespons dengan tepat, sambil memiliki fleksibilitas yang cukup untuk menangani berbagai pertanyaan pelanggan.
 
-Mulailah dengan menulis elemen-elemen prompt yang kuat, dimulai dengan prompt sistem. Buat file bernama `config.py` dan tambahkan setiap blok berikut ke dalamnya:
+Mulailah dengan menulis elemen-elemen dari prompt yang kuat, dimulai dengan prompt sistem. Buat file bernama `config.py` dan tambahkan setiap blok berikut ke dalamnya:
 
 ```python
 IDENTITY = """You are Eva, a friendly and knowledgeable AI assistant for Acme Insurance
@@ -214,14 +214,14 @@ insurance. You can also help customers get quotes for their insurance needs."""
 
   `User`
 
-   pertama (dengan satu-satunya pengecualian adalah prompting peran). Baca lebih lanjut di 
+   pertama (dengan satu-satunya pengecualian adalah role prompting). Baca lebih lanjut di 
 
-  [Memberikan Claude peran dengan prompt sistem](/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role)
+  [Memberikan Claude sebuah peran dengan prompt sistem](/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role)
 
   .
 </Tip>
 
-Sebaiknya pecah prompt yang kompleks menjadi subbagian dan tulis satu bagian pada satu waktu. Untuk setiap tugas, Anda mungkin menemukan keberhasilan yang lebih besar dengan mengikuti proses langkah demi langkah untuk mendefinisikan bagian-bagian prompt yang dibutuhkan Claude untuk melakukan tugas dengan baik. Untuk contoh dukungan pelanggan asuransi mobil ini, Anda akan menulis secara bertahap semua bagian untuk prompt yang dimulai dengan tugas "Sapaan dan panduan umum". Ini juga membuat debugging prompt Anda lebih mudah karena Anda dapat lebih cepat menyesuaikan bagian-bagian individual dari keseluruhan prompt.
+Sebaiknya pecah prompt yang kompleks menjadi subbagian dan tulis satu bagian pada satu waktu. Untuk setiap tugas, Anda mungkin menemukan keberhasilan yang lebih besar dengan mengikuti proses langkah demi langkah untuk mendefinisikan bagian-bagian prompt yang dibutuhkan Claude untuk melakukan tugas dengan baik. Untuk contoh dukungan pelanggan asuransi mobil ini, Anda akan menulis sedikit demi sedikit semua bagian untuk sebuah prompt dimulai dengan tugas "Sapaan dan panduan umum". Ini juga membuat debugging prompt Anda lebih mudah karena Anda dapat lebih cepat menyesuaikan bagian-bagian individual dari keseluruhan prompt.
 
 ```python
 STATIC_GREETINGS_AND_GENERAL = """
@@ -287,7 +287,7 @@ that gives you the confidence to enjoy every electron-powered mile.
 """
 ```
 
-Sekarang setelah Anda memiliki konten statis, tambahkan setidaknya 4-5 contoh interaksi "baik" untuk memandu respons Claude. Contoh-contoh ini harus mewakili interaksi pelanggan ideal Anda dan dapat mencakup pagar pembatas, pemanggilan alat, dll.
+Sekarang setelah Anda memiliki konten statis, tambahkan setidaknya 4-5 contoh interaksi "baik" untuk memandu respons Claude. Contoh-contoh ini harus mewakili interaksi pelanggan ideal Anda dan dapat mencakup guardrail, pemanggilan alat, dll.
 
 ```python
 EXAMPLES = """
@@ -356,7 +356,7 @@ Once you provide this information, I'll use our quoting tool to generate a perso
 """
 ```
 
-Anda juga perlu menyertakan instruksi penting apa pun yang menguraikan hal-hal yang boleh dan tidak boleh dilakukan tentang bagaimana Claude harus berinteraksi dengan pelanggan. Ini mungkin diambil dari pagar pembatas merek atau kebijakan dukungan.
+Anda juga perlu menyertakan instruksi penting apa pun yang menguraikan hal yang boleh dan tidak boleh dilakukan tentang bagaimana Claude harus berinteraksi dengan pelanggan. Ini dapat diambil dari guardrail merek atau kebijakan dukungan.
 
 ```python
 ADDITIONAL_GUARDRAILS = """Please adhere to the following guardrails:
@@ -386,12 +386,12 @@ TASK_SPECIFIC_INSTRUCTIONS = " ".join(
 
 ### Tambahkan kemampuan dinamis dan agentik dengan penggunaan alat
 
-Claude mampu mengambil tindakan dan mengambil informasi secara dinamis menggunakan fungsionalitas penggunaan alat sisi klien. Mulailah dengan membuat daftar alat eksternal atau API apa pun yang harus digunakan prompt.
+Claude mampu mengambil tindakan dan mengambil informasi secara dinamis menggunakan fungsionalitas "tool use" (penggunaan alat) sisi klien. Mulailah dengan mendaftar alat eksternal atau API apa pun yang harus digunakan oleh prompt.
 
-Untuk contoh ini, mulailah dengan satu alat untuk menghitung penawaran.
+Untuk contoh ini, mulailah dengan satu alat untuk menghitung penawaran harga.
 
 <Tip>
-  Sebagai pengingat, alat ini tidak akan melakukan perhitungan sebenarnya, alat ini hanya akan memberi sinyal kepada aplikasi bahwa suatu alat harus digunakan dengan argumen apa pun yang ditentukan.
+  Sebagai pengingat, alat ini tidak akan melakukan perhitungan yang sebenarnya, alat ini hanya akan memberi sinyal kepada aplikasi bahwa sebuah alat harus digunakan dengan argumen apa pun yang ditentukan.
 </Tip>
 
 Tambahkan nama model, definisi alat, dan implementasi stub ke `config.py`:
@@ -432,7 +432,7 @@ TOOLS = [
 def get_quote(make, model, year, mileage, driver_age):
     """Returns the premium per month in USD"""
     # Anda dapat memanggil endpoint http atau database untuk mendapatkan penawaran harga.
-    # Di sini, kita mensimulasikan penundaan 1 detik dan mengembalikan penawaran tetap sebesar 100.
+    # Di sini, kita mensimulasikan penundaan 1 detik dan mengembalikan penawaran harga tetap sebesar 100.
     time.sleep(1)
     return 100
 ```
@@ -441,109 +441,635 @@ def get_quote(make, model, year, mileage, driver_age):
 
 Sulit untuk mengetahui seberapa baik prompt Anda bekerja tanpa men-deploy-nya dalam pengaturan produksi uji dan [menjalankan evaluasi](/docs/id/test-and-evaluate/develop-tests). Bangun aplikasi kecil menggunakan prompt, Anthropic SDK, dan Streamlit untuk antarmuka pengguna.
 
-Dalam file bernama `chatbot.py`, mulailah dengan menyiapkan kelas ChatBot, yang akan mengenkapsulasi interaksi dengan Anthropic SDK.
+Dalam file bernama `chatbot.py` (atau modul yang setara dalam bahasa Anda), siapkan kelas ChatBot, yang akan mengenkapsulasi interaksi dengan Anthropic SDK.
 
-Kelas ini harus memiliki dua metode utama: `generate_message` dan `process_user_input`.
+Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghasilkan pesan, dan satu yang memproses setiap input pengguna yang masuk.
 
-```python
-from anthropic import Anthropic
-from config import IDENTITY, TOOLS, MODEL, get_quote
-from dotenv import load_dotenv
+<CodeGroup exclude="shell">
+  ```python Python
+  # Di chatbot.py Anda, impor ini dari config.py yang Anda tulis di atas:
+  # from config import IDENTITY, TOOLS, MODEL, get_quote
+  from anthropic import Anthropic
+  from dotenv import load_dotenv
 
-load_dotenv()
+  load_dotenv()
 
 
-class ChatBot:
-    def __init__(self, session_state):
-        self.anthropic = Anthropic()
-        self.session_state = session_state
+  class ChatBot:
+      def __init__(self, session_state):
+          self.anthropic = Anthropic()
+          self.session_state = session_state
 
-    def generate_message(
-        self,
+      def generate_message(
+          self,
+          messages,
+          max_tokens,
+      ):
+          try:
+              response = self.anthropic.messages.create(
+                  model=MODEL,
+                  system=IDENTITY,
+                  max_tokens=max_tokens,
+                  messages=messages,
+                  tools=TOOLS,
+              )
+              return response
+          except Exception as e:
+              return {"error": str(e)}
+
+      def process_user_input(self, user_input):
+          self.session_state.messages.append({"role": "user", "content": user_input})
+
+          response_message = self.generate_message(
+              messages=self.session_state.messages,
+              max_tokens=2048,
+          )
+
+          if "error" in response_message:
+              return f"An error occurred: {response_message['error']}"
+
+          if response_message.content[-1].type == "tool_use":
+              tool_use = response_message.content[-1]
+              func_name = tool_use.name
+              func_params = tool_use.input
+              tool_use_id = tool_use.id
+
+              result = self.handle_tool_use(func_name, func_params)
+              self.session_state.messages.append(
+                  {"role": "assistant", "content": response_message.content}
+              )
+              self.session_state.messages.append(
+                  {
+                      "role": "user",
+                      "content": [
+                          {
+                              "type": "tool_result",
+                              "tool_use_id": tool_use_id,
+                              "content": f"{result}",
+                          }
+                      ],
+                  }
+              )
+
+              follow_up_response = self.generate_message(
+                  messages=self.session_state.messages,
+                  max_tokens=2048,
+              )
+
+              if "error" in follow_up_response:
+                  return f"An error occurred: {follow_up_response['error']}"
+
+              response_text = follow_up_response.content[0].text
+              self.session_state.messages.append(
+                  {"role": "assistant", "content": response_text}
+              )
+              return response_text
+
+          elif response_message.content[0].type == "text":
+              response_text = response_message.content[0].text
+              self.session_state.messages.append(
+                  {"role": "assistant", "content": response_text}
+              )
+              return response_text
+
+          else:
+              raise Exception("An error occurred: Unexpected response type")
+
+      def handle_tool_use(self, func_name, func_params):
+          if func_name == "get_quote":
+              premium = get_quote(**func_params)
+              return f"Quote generated: ${premium:.2f} per month"
+
+          raise Exception("An unexpected tool was used")
+  ```
+
+  ```typescript TypeScript
+  import Anthropic from "@anthropic-ai/sdk";
+
+  class ChatBot {
+    // IDENTITY, MODEL, TOOLS, dan getQuote mencerminkan nilai config.py yang didefinisikan
+    // sebelumnya dalam panduan ini (ditampilkan dalam Python).
+    readonly anthropic = new Anthropic();
+    readonly messages: Anthropic.MessageParam[] = [];
+
+    async generateMessage(
+      messages: Anthropic.MessageParam[],
+      maxTokens: number
+    ): Promise<Anthropic.Message> {
+      return this.anthropic.messages.create({
+        model: MODEL,
+        system: IDENTITY,
+        max_tokens: maxTokens,
         messages,
-        max_tokens,
-    ):
-        try:
-            response = self.anthropic.messages.create(
-                model=MODEL,
-                system=IDENTITY,
-                max_tokens=max_tokens,
-                messages=messages,
-                tools=TOOLS,
-            )
-            return response
-        except Exception as e:
-            return {"error": str(e)}
+        tools: TOOLS
+      });
+    }
 
-    def process_user_input(self, user_input):
-        self.session_state.messages.append({"role": "user", "content": user_input})
+    async processUserInput(userInput: string): Promise<string> {
+      this.messages.push({ role: "user", content: userInput });
 
-        response_message = self.generate_message(
-            messages=self.session_state.messages,
-            max_tokens=2048,
-        )
+      const responseMessage = await this.generateMessage(this.messages, 2048);
 
-        if "error" in response_message:
-            return f"An error occurred: {response_message['error']}"
+      const lastBlock = responseMessage.content.at(-1);
+      if (lastBlock?.type === "tool_use") {
+        const toolResult = this.handleToolUse(lastBlock.name, lastBlock.input);
 
-        if response_message.content[-1].type == "tool_use":
-            tool_use = response_message.content[-1]
-            func_name = tool_use.name
-            func_params = tool_use.input
-            tool_use_id = tool_use.id
+        this.messages.push({ role: "assistant", content: responseMessage.content });
+        this.messages.push({
+          role: "user",
+          content: [{ type: "tool_result", tool_use_id: lastBlock.id, content: toolResult }]
+        });
 
-            result = self.handle_tool_use(func_name, func_params)
-            self.session_state.messages.append(
-                {"role": "assistant", "content": response_message.content}
-            )
-            self.session_state.messages.append(
-                {
-                    "role": "user",
-                    "content": [
-                        {
-                            "type": "tool_result",
-                            "tool_use_id": tool_use_id,
-                            "content": f"{result}",
-                        }
-                    ],
-                }
-            )
+        const followUpResponse = await this.generateMessage(this.messages, 2048);
 
-            follow_up_response = self.generate_message(
-                messages=self.session_state.messages,
-                max_tokens=2048,
-            )
+        const followUpBlock = followUpResponse.content[0];
+        if (followUpBlock.type !== "text") {
+          throw new Error("An error occurred: Unexpected response type");
+        }
+        this.messages.push({ role: "assistant", content: followUpBlock.text });
+        return followUpBlock.text;
+      }
 
-            if "error" in follow_up_response:
-                return f"An error occurred: {follow_up_response['error']}"
+      const firstBlock = responseMessage.content[0];
+      if (firstBlock.type === "text") {
+        this.messages.push({ role: "assistant", content: firstBlock.text });
+        return firstBlock.text;
+      }
 
-            response_text = follow_up_response.content[0].text
-            self.session_state.messages.append(
-                {"role": "assistant", "content": response_text}
-            )
-            return response_text
+      throw new Error("An error occurred: Unexpected response type");
+    }
 
-        elif response_message.content[0].type == "text":
-            response_text = response_message.content[0].text
-            self.session_state.messages.append(
-                {"role": "assistant", "content": response_text}
-            )
-            return response_text
+    handleToolUse(toolName: string, toolInput: unknown): string {
+      if (toolName === "get_quote") {
+        // SDK mengetikkan tool_use.input sebagai unknown; persempit ke skema get_quote.
+        if (
+          toolInput === null ||
+          typeof toolInput !== "object" ||
+          !("make" in toolInput) || typeof toolInput.make !== "string" ||
+          !("model" in toolInput) || typeof toolInput.model !== "string" ||
+          !("year" in toolInput) || typeof toolInput.year !== "number" ||
+          !("mileage" in toolInput) || typeof toolInput.mileage !== "number" ||
+          !("driver_age" in toolInput) || typeof toolInput.driver_age !== "number"
+        ) {
+          throw new Error("An error occurred: Unexpected tool input");
+        }
+        const { make, model: vehicleModel, year, mileage, driver_age: driverAge } = toolInput;
 
-        else:
-            raise Exception("An error occurred: Unexpected response type")
+        const premium = getQuote(make, vehicleModel, year, mileage, driverAge);
+        return `Quote generated: $${premium.toFixed(2)} per month`;
+      }
 
-    def handle_tool_use(self, func_name, func_params):
-        if func_name == "get_quote":
-            premium = get_quote(**func_params)
-            return f"Quote generated: ${premium:.2f} per month"
+      throw new Error("An unexpected tool was used");
+    }
+  }
+  ```
 
-        raise Exception("An unexpected tool was used")
-```
+  ```csharp C#
+  using System.Text.Json;
+  using Anthropic;
+  using Anthropic.Models.Messages;
+
+  // Config.Model, Config.Identity, Config.Tools, dan Config.GetQuote mencerminkan
+  // nilai config.py yang didefinisikan sebelumnya dalam panduan ini (ditampilkan dalam Python).
+  public class ChatBot
+  {
+      private readonly AnthropicClient _anthropic = new();
+
+      public List<MessageParam> Messages { get; } = [];
+
+      public async Task<Message> GenerateMessage(List<MessageParam> messages, long maxTokens) =>
+          await _anthropic.Messages.Create(
+              new MessageCreateParams
+              {
+                  Model = Config.Model,
+                  System = Config.Identity,
+                  MaxTokens = maxTokens,
+                  Messages = messages,
+                  Tools = Config.Tools,
+              }
+          );
+
+      public async Task<string> ProcessUserInput(string userInput)
+      {
+          Messages.Add(new() { Role = Role.User, Content = userInput });
+
+          var responseMessage = await GenerateMessage(Messages, maxTokens: 2048);
+
+          if (responseMessage.Content[^1].TryPickToolUse(out var toolUse))
+          {
+              var toolResult = HandleToolUse(toolUse.Name, toolUse.Input);
+
+              Messages.Add(new()
+              {
+                  Role = Role.Assistant,
+                  Content = responseMessage.Content
+                      .Select(contentBlock => new ContentBlockParam(contentBlock.Json))
+                      .ToList(),
+              });
+              Messages.Add(new()
+              {
+                  Role = Role.User,
+                  Content = new List<ContentBlockParam>
+                  {
+                      new ToolResultBlockParam { ToolUseID = toolUse.ID, Content = toolResult },
+                  },
+              });
+
+              var followUpResponse = await GenerateMessage(Messages, maxTokens: 2048);
+
+              if (!followUpResponse.Content[0].TryPickText(out var followUpText))
+              {
+                  throw new InvalidOperationException("An error occurred: Unexpected response type");
+              }
+
+              Messages.Add(new() { Role = Role.Assistant, Content = followUpText.Text });
+              return followUpText.Text;
+          }
+
+          if (responseMessage.Content[0].TryPickText(out var textBlock))
+          {
+              Messages.Add(new() { Role = Role.Assistant, Content = textBlock.Text });
+              return textBlock.Text;
+          }
+
+          throw new InvalidOperationException("An error occurred: Unexpected response type");
+      }
+
+      public string HandleToolUse(string funcName, IReadOnlyDictionary<string, JsonElement> funcParams)
+      {
+          if (funcName == "get_quote")
+          {
+              var premium = Config.GetQuote(
+                  funcParams["make"].GetString()!,
+                  funcParams["model"].GetString()!,
+                  funcParams["year"].GetInt64(),
+                  funcParams["mileage"].GetInt64(),
+                  funcParams["driver_age"].GetInt64()
+              );
+              return $"Quote generated: ${premium:F2} per month";
+          }
+
+          throw new ArgumentException("An unexpected tool was used");
+      }
+  }
+  ```
+
+  ```go Go
+  import (
+  	"context"
+  	"encoding/json"
+  	"fmt"
+
+  	"github.com/anthropics/anthropic-sdk-go"
+  )
+
+  // ChatBot membungkus klien Anthropic dan riwayat percakapan. Nilai
+  // identity, model, tools, dan getQuote yang digunakannya mencerminkan definisi config.py
+  // yang dibahas sebelumnya dalam panduan ini (ditampilkan dalam Python).
+  type ChatBot struct {
+  	client   anthropic.Client
+  	messages []anthropic.MessageParam
+  }
+
+  func NewChatBot() *ChatBot {
+  	return &ChatBot{client: anthropic.NewClient()}
+  }
+
+  func (bot *ChatBot) GenerateMessage(ctx context.Context, messages []anthropic.MessageParam, maxTokens int64) (*anthropic.Message, error) {
+  	return bot.client.Messages.New(ctx, anthropic.MessageNewParams{
+  		Model:     model,
+  		System:    []anthropic.TextBlockParam{{Text: identity}},
+  		MaxTokens: maxTokens,
+  		Messages:  messages,
+  		Tools:     tools,
+  	})
+  }
+
+  func (bot *ChatBot) ProcessUserInput(ctx context.Context, userInput string) (string, error) {
+  	bot.messages = append(bot.messages, anthropic.NewUserMessage(anthropic.NewTextBlock(userInput)))
+
+  	response, err := bot.GenerateMessage(ctx, bot.messages, 2048)
+  	if err != nil {
+  		return "", err
+  	}
+
+  	lastBlock := response.Content[len(response.Content)-1]
+  	if toolUse, ok := lastBlock.AsAny().(anthropic.ToolUseBlock); ok {
+  		result, err := bot.HandleToolUse(toolUse.Name, toolUse.Input)
+  		if err != nil {
+  			return "", err
+  		}
+
+  		bot.messages = append(bot.messages,
+  			response.ToParam(),
+  			anthropic.NewUserMessage(anthropic.NewToolResultBlock(toolUse.ID, result, false)),
+  		)
+
+  		followUp, err := bot.GenerateMessage(ctx, bot.messages, 2048)
+  		if err != nil {
+  			return "", err
+  		}
+
+  		textBlock, ok := followUp.Content[0].AsAny().(anthropic.TextBlock)
+  		if !ok {
+  			return "", fmt.Errorf("unexpected response type: %s", followUp.Content[0].Type)
+  		}
+  		bot.messages = append(bot.messages, anthropic.NewAssistantMessage(anthropic.NewTextBlock(textBlock.Text)))
+  		return textBlock.Text, nil
+  	}
+
+  	if textBlock, ok := response.Content[0].AsAny().(anthropic.TextBlock); ok {
+  		bot.messages = append(bot.messages, anthropic.NewAssistantMessage(anthropic.NewTextBlock(textBlock.Text)))
+  		return textBlock.Text, nil
+  	}
+
+  	return "", fmt.Errorf("unexpected response type: %s", response.Content[0].Type)
+  }
+
+  func (bot *ChatBot) HandleToolUse(toolName string, toolInput json.RawMessage) (string, error) {
+  	if toolName != "get_quote" {
+  		return "", fmt.Errorf("an unexpected tool was used: %s", toolName)
+  	}
+
+  	var input struct {
+  		Make      string `json:"make"`
+  		Model     string `json:"model"`
+  		Year      int    `json:"year"`
+  		Mileage   int    `json:"mileage"`
+  		DriverAge int    `json:"driver_age"`
+  	}
+  	if err := json.Unmarshal(toolInput, &input); err != nil {
+  		return "", err
+  	}
+  	premium := getQuote(input.Make, input.Model, input.Year, input.Mileage, input.DriverAge)
+  	return fmt.Sprintf("Quote generated: $%.2f per month", premium), nil
+  }
+
+  ```
+
+  ```java Java
+  import com.anthropic.client.AnthropicClient;
+  import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+  import com.anthropic.core.JsonValue;
+  import com.anthropic.models.messages.ContentBlock;
+  import com.anthropic.models.messages.ContentBlockParam;
+  import com.anthropic.models.messages.Message;
+  import com.anthropic.models.messages.MessageCreateParams;
+  import com.anthropic.models.messages.MessageParam;
+  import com.anthropic.models.messages.ToolResultBlockParam;
+  import com.anthropic.models.messages.ToolUseBlock;
+
+  // IDENTITY, MODEL, TOOLS, dan getQuote mencerminkan nilai config.py yang didefinisikan
+  // sebelumnya dalam panduan ini (ditampilkan dalam Python).
+  class ChatBot {
+      final AnthropicClient anthropic;
+      final List<MessageParam> messages;
+
+      ChatBot() {
+          // Membaca kunci API dari variabel lingkungan ANTHROPIC_API_KEY
+          this.anthropic = AnthropicOkHttpClient.fromEnv();
+          this.messages = new ArrayList<>();
+      }
+
+      Message generateMessage(List<MessageParam> messages, long maxTokens) {
+          return anthropic.messages().create(MessageCreateParams.builder()
+                  .model(MODEL)
+                  .system(IDENTITY)
+                  .maxTokens(maxTokens)
+                  .messages(messages)
+                  .tools(TOOLS)
+                  .build());
+      }
+
+      String processUserInput(String userInput) {
+          messages.add(MessageParam.builder()
+                  .role(MessageParam.Role.USER)
+                  .content(userInput)
+                  .build());
+
+          Message responseMessage = generateMessage(messages, 2048);
+
+          List<ContentBlock> content = responseMessage.content();
+          ContentBlock lastBlock = content.getLast();
+          if (lastBlock.isToolUse()) {
+              ToolUseBlock toolUse = lastBlock.asToolUse();
+              Map<String, JsonValue> toolInput =
+                      (Map<String, JsonValue>) toolUse._input().asObject().orElseThrow();
+              String result = handleToolUse(toolUse.name(), toolInput);
+
+              messages.add(MessageParam.builder()
+                      .role(MessageParam.Role.ASSISTANT)
+                      .contentOfBlockParams(content.stream().map(ContentBlock::toParam).toList())
+                      .build());
+              messages.add(MessageParam.builder()
+                      .role(MessageParam.Role.USER)
+                      .contentOfBlockParams(List.of(ContentBlockParam.ofToolResult(
+                              ToolResultBlockParam.builder()
+                                      .toolUseId(toolUse.id())
+                                      .content(result)
+                                      .build())))
+                      .build());
+
+              Message followUpResponse = generateMessage(messages, 2048);
+
+              ContentBlock followUpBlock = followUpResponse.content().getFirst();
+              if (!followUpBlock.isText()) {
+                  throw new IllegalStateException("An error occurred: Unexpected response type");
+              }
+              String responseText = followUpBlock.asText().text();
+              messages.add(MessageParam.builder()
+                      .role(MessageParam.Role.ASSISTANT)
+                      .content(responseText)
+                      .build());
+              return responseText;
+          } else if (content.getFirst().isText()) {
+              String responseText = content.getFirst().asText().text();
+              messages.add(MessageParam.builder()
+                      .role(MessageParam.Role.ASSISTANT)
+                      .content(responseText)
+                      .build());
+              return responseText;
+          } else {
+              throw new IllegalStateException("An error occurred: Unexpected response type");
+          }
+      }
+
+      String handleToolUse(String funcName, Map<String, JsonValue> funcParams) {
+          return switch (funcName) {
+              case "get_quote" -> {
+                  double premium = getQuote(
+                          funcParams.get("make").asStringOrThrow(),
+                          funcParams.get("model").asStringOrThrow(),
+                          ((Number) funcParams.get("year").asNumber().orElseThrow()).longValue(),
+                          ((Number) funcParams.get("mileage").asNumber().orElseThrow()).longValue(),
+                          ((Number) funcParams.get("driver_age").asNumber().orElseThrow()).longValue());
+                  yield "Quote generated: $%.2f per month".formatted(premium);
+              }
+              default -> throw new IllegalArgumentException("An unexpected tool was used");
+          };
+      }
+  }
+  ```
+
+  ```php PHP
+  use Anthropic\Client;
+  use Anthropic\Messages\Message;
+  use Anthropic\Messages\MessageParam;
+  use Anthropic\Messages\TextBlock;
+  use Anthropic\Messages\ToolResultBlockParam;
+  use Anthropic\Messages\ToolUseBlock;
+
+  class ChatBot
+  {
+      // MODEL, IDENTITY, TOOLS, dan get_quote() mencerminkan nilai config.py
+      // yang didefinisikan sebelumnya dalam panduan ini (ditampilkan dalam Python).
+
+      /** @var list<MessageParam> */
+      public private(set) array $messages = [];
+
+      public function __construct(
+          private readonly Client $anthropic = new Client(),
+      ) {}
+
+      /**
+       * @param list<MessageParam> $messages
+       */
+      public function generateMessage(array $messages, int $maxTokens): Message
+      {
+          return $this->anthropic->messages->create(
+              model: MODEL,
+              system: IDENTITY,
+              maxTokens: $maxTokens,
+              messages: $messages,
+              tools: TOOLS,
+          );
+      }
+
+      public function processUserInput(string $userInput): string
+      {
+          $this->messages[] = MessageParam::with(role: 'user', content: $userInput);
+
+          $responseMessage = $this->generateMessage($this->messages, maxTokens: 2048);
+
+          $content = $responseMessage->content;
+          $lastBlock = array_last($content);
+
+          if ($lastBlock instanceof ToolUseBlock) {
+              $toolResult = $this->handleToolUse($lastBlock->name, $lastBlock->input);
+
+              $this->messages[] = MessageParam::with(role: 'assistant', content: $content);
+              $this->messages[] = MessageParam::with(
+                  role: 'user',
+                  content: [
+                      ToolResultBlockParam::with(toolUseID: $lastBlock->id, content: $toolResult),
+                  ],
+              );
+
+              $followUpResponse = $this->generateMessage($this->messages, maxTokens: 2048);
+
+              $firstBlock = array_first($followUpResponse->content);
+              if (!$firstBlock instanceof TextBlock) {
+                  throw new RuntimeException('An error occurred: Unexpected response type');
+              }
+
+              $this->messages[] = MessageParam::with(role: 'assistant', content: $firstBlock->text);
+
+              return $firstBlock->text;
+          }
+
+          $firstBlock = array_first($content);
+          if ($firstBlock instanceof TextBlock) {
+              $this->messages[] = MessageParam::with(role: 'assistant', content: $firstBlock->text);
+
+              return $firstBlock->text;
+          }
+
+          throw new RuntimeException('An error occurred: Unexpected response type');
+      }
+
+      /**
+       * @param array<string, mixed> $funcParams
+       */
+      private function handleToolUse(string $funcName, array $funcParams): string
+      {
+          if ($funcName === 'get_quote') {
+              $premium = get_quote(...$funcParams);
+
+              return sprintf('Quote generated: $%.2f per month', $premium);
+          }
+
+          throw new RuntimeException('An unexpected tool was used');
+      }
+  }
+  ```
+
+  ```ruby Ruby
+  # IDENTITY, MODEL, TOOLS, dan get_quote mencerminkan nilai config.py yang didefinisikan
+  # sebelumnya dalam panduan ini (ditampilkan dalam Python).
+  require "anthropic"
+
+  class ChatBot
+    attr_reader :messages
+
+    def initialize
+      @anthropic = Anthropic::Client.new
+      @messages = []
+    end
+
+    def generate_message(messages, max_tokens)
+      @anthropic.messages.create(
+        model: MODEL,
+        system_: IDENTITY,
+        max_tokens:,
+        messages:,
+        tools: TOOLS
+      )
+    end
+
+    def process_user_input(user_input)
+      @messages << {role: "user", content: user_input}
+
+      response_message = generate_message(@messages, 2048)
+
+      case response_message.content
+      in [*, Anthropic::ToolUseBlock => tool_use]
+        result = handle_tool_use(tool_use.name, tool_use.input)
+        @messages << {role: "assistant", content: response_message.content}
+        @messages << {
+          role: "user",
+          content: [{type: "tool_result", tool_use_id: tool_use.id, content: result}]
+        }
+
+        follow_up_response = generate_message(@messages, 2048)
+
+        case follow_up_response.content
+        in [Anthropic::TextBlock => text_block, *]
+          @messages << {role: "assistant", content: text_block.text}
+          text_block.text
+        else
+          raise "An error occurred: Unexpected response type"
+        end
+      in [Anthropic::TextBlock => text_block, *]
+        @messages << {role: "assistant", content: text_block.text}
+        text_block.text
+      else
+        raise "An error occurred: Unexpected response type"
+      end
+    end
+
+    def handle_tool_use(tool_name, tool_input)
+      raise "An unexpected tool was used" unless tool_name == "get_quote"
+
+      premium = get_quote(**tool_input)
+      format("Quote generated: $%.2f per month", premium)
+    end
+  end
+  ```
+</CodeGroup>
 
 ### Bangun antarmuka pengguna Anda
 
-Uji deployment kode ini dengan Streamlit menggunakan metode main. Fungsi `main()` ini menyiapkan antarmuka obrolan berbasis Streamlit.
+Uji deploy kode ini dengan Streamlit menggunakan metode main. Fungsi `main()` ini menyiapkan antarmuka chat berbasis Streamlit. Streamlit adalah framework Python, jadi bagian dari panduan ini hanya ditampilkan dalam Python; kelas ChatBot di atas adalah bagian yang dapat Anda porting ke bahasa apa pun.
 
 Lakukan ini dalam file bernama `app.py`
 
@@ -564,9 +1090,9 @@ def main():
 
     chatbot = ChatBot(st.session_state)
 
-    # Tampilkan pesan pengguna dan asisten dengan melewati dua yang pertama
+    # Tampilkan pesan user dan assistant dengan melewati dua pesan pertama
     for message in st.session_state.messages[2:]:
-        # abaikan blok tool use
+        # abaikan blok penggunaan alat
         if isinstance(message["content"], str):
             with st.chat_message(message["role"]):
                 st.markdown(message["content"])
@@ -593,41 +1119,35 @@ streamlit run app.py
 
 ### Evaluasi prompt Anda
 
-Prompting sering kali memerlukan pengujian dan optimasi agar siap untuk produksi. Untuk menentukan kesiapan solusi Anda, evaluasi kinerja chatbot menggunakan proses sistematis yang menggabungkan metode kuantitatif dan kualitatif. Membuat [evaluasi empiris yang kuat](/docs/id/test-and-evaluate/develop-tests#building-evals-and-test-cases) berdasarkan kriteria keberhasilan yang telah Anda definisikan akan memungkinkan Anda mengoptimalkan prompt Anda.
-
-<Tip>
-  [Claude Console](/dashboard)
-
-   sekarang memiliki fitur alat Evaluation yang memungkinkan Anda menguji prompt Anda dalam berbagai skenario.
-</Tip>
+Prompting sering kali memerlukan pengujian dan optimasi agar siap untuk produksi. Untuk menentukan kesiapan solusi Anda, evaluasi kinerja chatbot menggunakan proses sistematis yang menggabungkan metode kuantitatif dan kualitatif. Membuat [evaluasi empiris yang kuat](/docs/id/test-and-evaluate/develop-tests#building-evals-and-test-cases) berdasarkan kriteria keberhasilan yang Anda definisikan akan memungkinkan Anda mengoptimalkan prompt Anda.
 
 ### Tingkatkan kinerja
 
-Dalam skenario yang kompleks, mungkin berguna untuk mempertimbangkan strategi tambahan untuk meningkatkan kinerja di luar [teknik rekayasa prompt](/docs/id/build-with-claude/prompt-engineering/overview) standar & [strategi implementasi pagar pembatas](/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations). Berikut adalah beberapa skenario umum:
+Dalam skenario yang kompleks, mungkin berguna untuk mempertimbangkan strategi tambahan untuk meningkatkan kinerja di luar [teknik prompt engineering](/docs/id/build-with-claude/prompt-engineering/overview) standar & [strategi implementasi guardrail](/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations). Berikut adalah beberapa skenario umum:
 
 #### Kurangi latensi konteks panjang dengan RAG
 
-Saat menangani sejumlah besar konteks statis dan dinamis, menyertakan semua informasi dalam prompt dapat menyebabkan biaya tinggi, waktu respons yang lebih lambat, dan mencapai batas jendela konteks. Dalam skenario ini, mengimplementasikan teknik "Retrieval Augmented Generation" (RAG) dapat meningkatkan kinerja dan efisiensi.
+Saat menangani sejumlah besar konteks statis dan dinamis, menyertakan semua informasi dalam prompt dapat menyebabkan biaya tinggi, waktu respons yang lebih lambat, dan mencapai batas jendela konteks. Dalam skenario ini, mengimplementasikan teknik "Retrieval Augmented Generation" (generasi yang diperkaya pengambilan), atau RAG, dapat meningkatkan kinerja dan efisiensi.
 
-Dengan menggunakan [model embedding seperti Voyage](/docs/id/build-with-claude/embeddings) untuk mengonversi informasi menjadi representasi vektor, Anda dapat membuat sistem yang lebih dapat diskalakan dan responsif. Pendekatan ini memungkinkan pengambilan informasi relevan secara dinamis berdasarkan pertanyaan saat ini, daripada menyertakan semua konteks yang mungkin dalam setiap prompt.
+Dengan menggunakan [model embedding seperti Voyage](/docs/id/build-with-claude/embeddings) untuk mengonversi informasi menjadi representasi vektor, Anda dapat membuat sistem yang lebih dapat diskalakan dan responsif. Pendekatan ini memungkinkan pengambilan dinamis informasi yang relevan berdasarkan kueri saat ini, alih-alih menyertakan semua konteks yang mungkin dalam setiap prompt.
 
-Mengimplementasikan RAG untuk kasus penggunaan dukungan telah terbukti meningkatkan akurasi, mengurangi waktu respons, dan mengurangi biaya API dalam sistem dengan persyaratan konteks yang luas. Lihat [resep RAG](https://platform.claude.com/cookbook/capabilities-retrieval-augmented-generation-guide) untuk contoh yang telah dikerjakan.
+Mengimplementasikan RAG untuk kasus penggunaan dukungan telah terbukti meningkatkan akurasi, mengurangi waktu respons, dan mengurangi biaya API dalam sistem dengan persyaratan konteks yang luas. Lihat [resep RAG](https://platform.claude.com/cookbook/capabilities-retrieval-augmented-generation-guide) untuk contoh yang sudah dikerjakan.
 
 #### Integrasikan data real-time dengan penggunaan alat
 
-Saat menangani pertanyaan yang memerlukan informasi real-time, seperti saldo akun atau detail polis, pendekatan RAG berbasis embedding tidak cukup. Sebagai gantinya, penggunaan alat dapat meningkatkan kemampuan chatbot Anda untuk memberikan respons yang akurat dan real-time. Misalnya, Anda dapat menggunakan penggunaan alat untuk mencari informasi pelanggan, mengambil detail pesanan, dan membatalkan pesanan atas nama pelanggan.
+Saat menangani kueri yang memerlukan informasi real-time, seperti saldo akun atau detail polis, pendekatan RAG berbasis embedding tidaklah cukup. Sebagai gantinya, penggunaan alat dapat meningkatkan kemampuan chatbot Anda untuk memberikan respons yang akurat dan real-time. Misalnya, Anda dapat menggunakan penggunaan alat untuk mencari informasi pelanggan, mengambil detail pesanan, dan membatalkan pesanan atas nama pelanggan.
 
-Pendekatan ini, [diuraikan dalam resep penggunaan alat: agen layanan pelanggan](https://platform.claude.com/cookbook/tool-use-customer-service-agent), memungkinkan Anda mengintegrasikan data langsung ke dalam respons Claude dan memberikan pengalaman pelanggan yang lebih personal dan efisien.
+Pendekatan ini, [yang diuraikan dalam resep penggunaan alat: agen layanan pelanggan](https://platform.claude.com/cookbook/tool-use-customer-service-agent), memungkinkan Anda mengintegrasikan data langsung ke dalam respons Claude dan memberikan pengalaman pelanggan yang lebih personal dan efisien.
 
-#### Perkuat pagar pembatas input dan output
+#### Perkuat guardrail input dan output
 
-Saat men-deploy chatbot, terutama dalam skenario layanan pelanggan, penting untuk mencegah risiko yang terkait dengan penyalahgunaan, pertanyaan di luar cakupan, dan respons yang tidak pantas. Meskipun Claude secara inheren tangguh terhadap skenario semacam itu, berikut adalah langkah-langkah tambahan untuk memperkuat pagar pembatas chatbot Anda:
+Saat men-deploy chatbot, terutama dalam skenario layanan pelanggan, penting untuk mencegah risiko yang terkait dengan penyalahgunaan, kueri di luar cakupan, dan respons yang tidak pantas. Meskipun Claude secara inheren tangguh terhadap skenario semacam itu, berikut adalah langkah-langkah tambahan untuk memperkuat guardrail chatbot Anda:
 
-* [Kurangi halusinasi](/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations): Implementasikan mekanisme pemeriksaan fakta dan [sitasi](https://platform.claude.com/cookbook/misc-using-citations) untuk mendasarkan respons pada informasi yang disediakan.
+* [Kurangi halusinasi](/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations): Implementasikan mekanisme pemeriksaan fakta dan [sitasi](https://platform.claude.com/cookbook/misc-using-citations) untuk mendasarkan respons pada informasi yang diberikan.
 * Periksa silang informasi: Verifikasi bahwa respons agen selaras dengan kebijakan perusahaan Anda dan fakta yang diketahui.
 * Hindari komitmen kontraktual: Pastikan agen tidak membuat janji atau masuk ke dalam perjanjian yang tidak diizinkan untuk dibuatnya.
-* [Mitigasi jailbreak](/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks): Gunakan metode seperti penyaringan ketidakberbahayaan dan validasi input untuk mencegah pengguna mengeksploitasi kerentanan model, yang bertujuan menghasilkan konten yang tidak pantas.
-* Hindari menyebutkan pesaing: Implementasikan filter penyebutan pesaing untuk mempertahankan fokus merek dan tidak menyebutkan produk atau layanan pesaing mana pun.
+* [Mitigasi jailbreak](/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks): Gunakan metode seperti penyaringan harmlessness dan validasi input untuk mencegah pengguna mengeksploitasi kerentanan model, yang bertujuan menghasilkan konten yang tidak pantas.
+* Hindari menyebut pesaing: Implementasikan filter penyebutan pesaing untuk mempertahankan fokus merek dan tidak menyebutkan produk atau layanan pesaing mana pun.
 * [Tingkatkan konsistensi output](/docs/id/test-and-evaluate/strengthen-guardrails/increase-consistency): Cegah Claude mengubah gaya atau keluar dari karakter, bahkan selama interaksi yang panjang dan kompleks.
 * Hapus Informasi Identitas Pribadi (PII): Kecuali secara eksplisit diperlukan dan diizinkan, hapus PII apa pun dari respons.
 
@@ -640,30 +1160,30 @@ Berikut cara mengimplementasikan streaming:
 1. Gunakan [Anthropic Streaming API](/docs/id/build-with-claude/streaming) untuk mendukung respons streaming.
 2. Siapkan frontend Anda untuk menangani potongan teks yang masuk.
 3. Tampilkan setiap potongan saat tiba, mensimulasikan pengetikan real-time.
-4. Implementasikan mekanisme untuk menyimpan respons lengkap, memungkinkan pengguna melihatnya jika mereka menavigasi keluar dan kembali.
+4. Implementasikan mekanisme untuk menyimpan respons lengkap, memungkinkan pengguna melihatnya jika mereka berpindah halaman dan kembali.
 
-Dalam beberapa kasus, streaming memungkinkan penggunaan model yang lebih canggih dengan latensi dasar yang lebih tinggi, karena tampilan progresif mengurangi dampak waktu pemrosesan yang lebih lama.
+Dalam beberapa kasus, streaming memungkinkan penggunaan model yang lebih canggih dengan latensi dasar yang lebih tinggi, karena tampilan progresif mengurangi dampak dari waktu pemrosesan yang lebih lama.
 
 #### Skalakan chatbot Anda
 
-Seiring bertambahnya kompleksitas chatbot Anda, arsitektur aplikasi Anda dapat berkembang untuk menyesuaikan. Sebelum Anda menambahkan lapisan lebih lanjut ke arsitektur Anda, pertimbangkan opsi-opsi yang kurang menyeluruh berikut:
+Seiring bertambahnya kompleksitas chatbot Anda, arsitektur aplikasi Anda dapat berkembang untuk menyesuaikan. Sebelum Anda menambahkan lapisan lebih lanjut ke arsitektur Anda, pertimbangkan opsi-opsi berikut yang tidak lengkap:
 
-* Pastikan Anda memaksimalkan prompt Anda dan mengoptimalkan melalui rekayasa prompt. Gunakan [panduan rekayasa prompt](/docs/id/build-with-claude/prompt-engineering/overview) untuk menulis prompt yang paling efektif.
+* Pastikan Anda memaksimalkan prompt Anda dan mengoptimalkan melalui prompt engineering. Gunakan [panduan prompt engineering](/docs/id/build-with-claude/prompt-engineering/overview) untuk menulis prompt yang paling efektif.
 * Tambahkan [alat](/docs/id/agents-and-tools/tool-use/overview) tambahan ke prompt (yang dapat mencakup [rantai prompt](/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#chain-complex-prompts)) dan lihat apakah Anda dapat mencapai fungsionalitas yang diperlukan.
 
-Jika chatbot Anda menangani tugas yang sangat bervariasi, Anda mungkin ingin mempertimbangkan untuk menambahkan [pengklasifikasi maksud terpisah](https://platform.claude.com/cookbook/capabilities-classification-guide) untuk merutekan pertanyaan pelanggan awal. Untuk aplikasi yang ada, ini akan melibatkan pembuatan pohon keputusan yang akan merutekan pertanyaan pelanggan melalui pengklasifikasi dan kemudian ke percakapan khusus (dengan set alat dan prompt sistem mereka sendiri). Perhatikan, metode ini memerlukan panggilan tambahan ke Claude yang dapat meningkatkan latensi.
+Jika chatbot Anda menangani tugas yang sangat bervariasi, Anda mungkin ingin mempertimbangkan untuk menambahkan [pengklasifikasi maksud terpisah](https://platform.claude.com/cookbook/capabilities-classification-guide) untuk merutekan kueri pelanggan awal. Untuk aplikasi yang ada, ini akan melibatkan pembuatan pohon keputusan yang akan merutekan kueri pelanggan melalui pengklasifikasi dan kemudian ke percakapan khusus (dengan set alat dan prompt sistem mereka sendiri). Perhatikan, metode ini memerlukan panggilan tambahan ke Claude yang dapat meningkatkan latensi.
 
 ### Integrasikan Claude ke dalam alur kerja dukungan Anda
 
 Meskipun contoh-contoh ini berfokus pada fungsi Python yang dapat dipanggil dalam lingkungan Streamlit, men-deploy Claude untuk chatbot dukungan real-time memerlukan layanan API.
 
-Berikut cara Anda dapat melakukan pendekatan ini:
+Berikut cara Anda dapat mendekati ini:
 
 1. Buat pembungkus API: Kembangkan pembungkus API sederhana di sekitar fungsi klasifikasi Anda. Misalnya, Anda dapat menggunakan Flask API atau Fast API untuk membungkus kode Anda menjadi Layanan HTTP. Layanan HTTP Anda dapat menerima input pengguna dan mengembalikan respons Assistant secara keseluruhan. Dengan demikian, layanan Anda dapat memiliki karakteristik berikut:
 
    * Server-Sent Events (SSE): SSE memungkinkan streaming respons secara real-time dari server ke klien. Ini memberikan pengalaman yang mulus dan interaktif saat bekerja dengan LLM.
    * Caching: Mengimplementasikan caching dapat meningkatkan waktu respons dan mengurangi panggilan API yang tidak perlu.
-   * Retensi konteks: Mempertahankan konteks saat pengguna menavigasi keluar dan kembali penting untuk kontinuitas dalam percakapan.
+   * Retensi konteks: Mempertahankan konteks ketika pengguna berpindah halaman dan kembali penting untuk kesinambungan dalam percakapan.
 
 2. Bangun antarmuka web: Implementasikan UI web yang ramah pengguna untuk berinteraksi dengan agen yang didukung Claude.
 
@@ -675,14 +1195,14 @@ Berikut cara Anda dapat melakukan pendekatan ini:
   </Card>
 
   <Card title="Kembangkan pengujian" icon="check" href="/docs/id/test-and-evaluate/develop-tests">
-    Bangun evaluasi untuk mengukur agen dukungan Anda terhadap kriteria keberhasilan yang telah Anda definisikan.
+    Bangun evaluasi untuk mengukur agen dukungan Anda terhadap kriteria keberhasilan yang Anda definisikan.
   </Card>
 
   <Card title="Streaming" icon="bolt" href="/docs/id/build-with-claude/streaming">
-    Stream respons sehingga pelanggan melihat jawaban saat dihasilkan.
+    Streaming respons sehingga pelanggan melihat jawaban saat dihasilkan.
   </Card>
 
-  <Card title="Rekayasa prompt" icon="lightbulb" href="/docs/id/build-with-claude/prompt-engineering/overview">
+  <Card title="Prompt engineering" icon="lightbulb" href="/docs/id/build-with-claude/prompt-engineering/overview">
     Sempurnakan prompt sistem dan contoh Anda untuk kinerja tugas yang lebih baik.
   </Card>
 </CardGroup>

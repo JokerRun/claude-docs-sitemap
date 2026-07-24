@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: d5bd1297976e8d6a984476de95fa61b6fcc22a88d06068b08162b95bc18c29a6
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: b24d4b87fcf795b14a59d451d4751e3508920f5dfc422d4ca2c93466c32c5583
 ---
 
 # Diagnostik cache
@@ -12,7 +12,7 @@ Diagnosis cache miss prompt yang tidak terduga dengan membandingkan permintaan b
 ---
 
 <Note>
-  Fitur ini memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/api-and-data-retention) dengan retensi teknis terbatas. Lihat bagian [Retensi data](#data-retention) untuk detail tentang apa yang disimpan dan alasannya.
+  Untuk mengetahui bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 [Prompt caching](/docs/id/build-with-claude/prompt-caching) (caching prompt) memangkas latensi dan biaya secara signifikan, tetapi hanya jika bagian awal prompt Anda identik byte demi byte dengan permintaan terbaru. Alat yang diurutkan ulang, timestamp yang diinterpolasi ke dalam prompt sistem Anda, atau pengeditan pada pesan sebelumnya dapat secara diam-diam membatalkan cache. Tanpa diagnostik cache, satu-satunya sinyal adalah `usage.cache_read_input_tokens` yang turun menjadi nol, tanpa indikasi apa yang berubah.

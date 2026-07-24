@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: ffb3ad842e684f0d6834964904b58db04dab790eeebccfb142c053ca3e763be3
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 5b6fffcc61280de63decc72de39f5b9a537d75c41c39dd47176b890aa234903f
 ---
 
 # Penyiapan lingkungan cloud
@@ -16,7 +16,7 @@ Lingkungan mendefinisikan konfigurasi sandbox tempat agen Anda berjalan. Anda me
 Halaman ini membahas lingkungan `type: cloud`. Untuk menjalankan sandbox pada infrastruktur Anda sendiri, lihat [Sandbox yang di-host sendiri](/docs/id/managed-agents/self-hosted-sandboxes).
 
 <Note>
-  Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Membuat lingkungan

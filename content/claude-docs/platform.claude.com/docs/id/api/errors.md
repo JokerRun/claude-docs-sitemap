@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/errors
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: b30f585ccac8482bfc97481d52e58edbd138822dcce49b3c321a25d7bf396bfc
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 8359a1925f51963a7608ad0d0ec3bfa2034a7d7acfd91cc77fb960340011ddae
 ---
 
-# Error
+# Error API Claude
 
 Pahami kode status HTTP, bentuk respons error, dan ID permintaan yang dikembalikan oleh Claude API, serta tangani error dengan exception bertipe dari SDK.
 
@@ -17,13 +17,13 @@ API mengikuti format kode error HTTP yang dapat diprediksi:
 
 * 400 - `invalid_request_error`: Ada masalah dengan format atau konten permintaan Anda. Tipe error ini juga dapat digunakan untuk kode status 4XX lainnya yang tidak tercantum di bagian ini.
 
-* 401 - `authentication_error`: Ada masalah dengan kunci API Anda. Pada Claude Platform di AWS, ini juga dapat menunjukkan masalah dengan kredensial AWS atau tanda tangan SigV4 Anda.
+* 401 - `authentication_error`: Ada masalah dengan kunci API Anda (misalnya, formatnya salah, dicabut, atau kedaluwarsa; lihat [Kedaluwarsa kunci](/docs/id/manage-claude/authentication#key-expiration)). Pada Claude Platform di AWS, ini juga dapat menunjukkan masalah dengan kredensial AWS atau tanda tangan SigV4 Anda.
 
 * 402 - `billing_error`: Ada masalah dengan informasi penagihan atau pembayaran Anda. Periksa detail pembayaran Anda di [Claude Console](https://platform.claude.com), atau di AWS Marketplace jika Anda menggunakan Claude Platform di AWS.
 
-* 403 - `permission_error`: Kunci API Anda tidak memiliki izin untuk menggunakan sumber daya yang ditentukan.
+* 403 - `permission_error`: Kunci API Anda tidak memiliki izin untuk menggunakan sumber daya yang ditentukan. Periksa pengaturan akses dan workspace organisasi Anda di [Claude Console](https://platform.claude.com).
 
-* 404 - `not_found_error`: Sumber daya yang diminta tidak ditemukan.
+* 404 - `not_found_error`: Sumber daya yang diminta tidak ditemukan. Periksa jalur endpoint dan ID sumber daya apa pun di URL permintaan.
 
 * 409 - `conflict_error`: Permintaan bertentangan dengan status sumber daya saat ini. Misalnya, sumber daya dimodifikasi secara bersamaan, atau nilai yang harus unik sudah digunakan. Selesaikan konflik tersebut, lalu coba lagi permintaannya.
 
@@ -31,9 +31,9 @@ API mengikuti format kode error HTTP yang dapat diprediksi:
 
 * 429 - `rate_limit_error`: Akun Anda telah mencapai "rate limit" (batas laju).
 
-* 500 - `api_error`: Terjadi error tak terduga di dalam sistem internal Anthropic.
+* 500 - `api_error`: Terjadi error tak terduga di dalam sistem internal Anthropic. Coba lagi permintaan dengan exponential backoff; jika error tetap terjadi, hubungi dukungan dengan menyertakan [ID permintaan](#request-id).
 
-* 504 - `timeout_error`: Permintaan kehabisan waktu saat diproses. Pertimbangkan untuk menggunakan [streaming](/docs/id/build-with-claude/streaming) untuk permintaan yang berjalan lama. Lihat [Permintaan panjang](#long-requests) untuk opsi lainnya.
+* 504 - `timeout_error`: Permintaan kehabisan waktu saat diproses. Pertimbangkan untuk menggunakan [streaming Messages API](/docs/id/build-with-claude/streaming) untuk permintaan yang berjalan lama. Lihat [Permintaan panjang](#long-requests) untuk opsi lainnya.
 
 * 529 - `overloaded_error`: API sedang kelebihan beban untuk sementara.
 
@@ -58,7 +58,7 @@ API memberlakukan batas ukuran permintaan:
 | [Batch API](/docs/id/build-with-claude/batch-processing) | 256 MB                     |
 | [Files API](/docs/id/build-with-claude/files)            | 500 MB                     |
 
-Jika Anda melebihi batas ini, Anda akan menerima error 413 `request_too_large`. Pada Claude API langsung, error ini dikembalikan dari Cloudflare sebelum permintaan mencapai server API.
+Jika Anda melebihi batas ini, Anda akan menerima error 413 `request_too_large`. Pada Claude API langsung, Cloudflare mengembalikan error ini sebelum permintaan mencapai server API.
 
 ## Bentuk error
 
@@ -75,15 +75,15 @@ API selalu mengembalikan error sebagai JSON, dengan objek `error` tingkat atas y
 }
 ```
 
-Sesuai dengan kebijakan [versioning](/docs/id/api/versioning), nilai-nilai di dalam objek ini dapat berkembang, dan ada kemungkinan nilai `type` akan bertambah seiring waktu.
+Sesuai dengan kebijakan [versioning](/docs/id/api/versioning), nilai-nilai di dalam objek ini dapat bertambah, dan ada kemungkinan nilai `type` akan bertambah seiring waktu.
 
 ## Tipe error SDK
 
-SDK resmi memunculkan exception bertipe untuk error ini alih-alih mengembalikan JSON mentah, dan nama kelas serta namespace berbeda menurut bahasa. Misalnya, 404 muncul sebagai `anthropic.NotFoundError` di Python, `Anthropic::Errors::NotFoundError` di Ruby, `com.anthropic.errors.NotFoundException` di Java, dan sebagai nilai tunggal `*anthropic.Error` (bercabang pada `StatusCode`) di Go. Tangkap kelas bertipe dari SDK alih-alih mencocokkan string pesan error, dengan menangani kelas yang paling spesifik terlebih dahulu. Setiap halaman SDK mendokumentasikan hierarki exception lengkapnya:
+SDK resmi memunculkan exception bertipe untuk error ini alih-alih mengembalikan JSON mentah, dan nama kelas serta namespace berbeda menurut bahasa. Misalnya, 404 muncul sebagai `anthropic.NotFoundError` di Python, `Anthropic::Errors::NotFoundError` di Ruby, `com.anthropic.errors.NotFoundException` di Java, dan sebagai satu nilai `*anthropic.Error` (bercabang pada `StatusCode`) di Go. Tangkap kelas bertipe dari SDK alih-alih mencocokkan string pesan error, dengan menangani kelas yang paling spesifik terlebih dahulu. Setiap halaman SDK mendokumentasikan hierarki exception lengkapnya:
 
 * [Python](/docs/id/cli-sdks-libraries/sdks/python#handling-errors) · [TypeScript](/docs/id/cli-sdks-libraries/sdks/typescript#handling-errors) · [C#](/docs/id/cli-sdks-libraries/sdks/csharp#error-handling) · [Go](/docs/id/cli-sdks-libraries/sdks/go#error-handling) · [Java](/docs/id/cli-sdks-libraries/sdks/java#error-handling) · [PHP](/docs/id/cli-sdks-libraries/sdks/php#error-handling) · [Ruby](/docs/id/cli-sdks-libraries/sdks/ruby#handling-errors)
 
-## ID Permintaan
+## ID permintaan
 
 Setiap respons API menyertakan header `request-id` yang unik. Header ini berisi nilai seperti `req_018EeWyXxfu5pfWkrYcMdjWG`. Pengidentifikasi yang sama muncul sebagai field `request_id` di [badan respons error](#error-shapes). Saat menghubungi dukungan tentang permintaan tertentu, sertakan ID ini untuk membantu menyelesaikan masalah Anda dengan cepat.
 
@@ -258,11 +258,11 @@ Jika Anda membangun integrasi API langsung, menetapkan [TCP socket keep-alive](h
 
 [SDK](/docs/id/cli-sdks-libraries/overview) memvalidasi bahwa permintaan Messages API non-streaming Anda tidak diperkirakan melebihi timeout 10 menit. SDK juga menetapkan opsi socket untuk TCP keep-alive.
 
-Jika Anda tidak perlu memproses event secara bertahap, SDK dapat mengonsumsi stream untuk Anda dan mengembalikan objek `Message` lengkap, identik dengan apa yang dikembalikan oleh panggilan non-streaming:
+Jika Anda tidak perlu memproses event secara bertahap, SDK dapat mengonsumsi stream untuk Anda dan mengembalikan objek `Message` lengkap, identik dengan yang dikembalikan oleh panggilan non-streaming:
 
 <CodeGroup>
   ```bash cURL
-  # Output SSE mentah memerlukan penanganan event; tidak ada cara satu perintah
+  # Output SSE mentah memerlukan penanganan event; tidak ada cara dengan satu perintah
   # untuk mengakumulasi pesan akhir dengan curl. Gunakan contoh SDK sebagai gantinya.
   ```
 
@@ -410,7 +410,7 @@ Lihat [Streaming Messages](/docs/id/build-with-claude/streaming#get-the-final-me
 
 ### Prefill tidak didukung
 
-Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6 tidak mendukung prefill pesan assistant. Mengirim permintaan dengan pesan assistant terakhir yang di-prefill ke salah satu model ini mengembalikan error 400 `invalid_request_error`:
+Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6 tidak mendukung prefilling pesan assistant. Mengirim permintaan dengan pesan assistant terakhir yang sudah diisi sebelumnya ke salah satu model ini mengembalikan error 400 `invalid_request_error`:
 
 ```json
 {
@@ -422,17 +422,17 @@ Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), [Claude Myth
 }
 ```
 
-Sebagai gantinya, gunakan [structured outputs](/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, instruksi prompt sistem, atau [`output_config.format`](/docs/id/build-with-claude/structured-outputs#json-outputs).
+Sebagai gantinya, gunakan [structured outputs](/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, instruksi "system prompt" (prompt sistem), atau [`output_config.format`](/docs/id/build-with-claude/structured-outputs#json-outputs).
 
 ### Blok thinking tidak dapat dimodifikasi
 
-Jika pesan assistant terbaru berisi blok `thinking` atau `redacted_thinking` yang diedit, diurutkan ulang, disaring, atau direkonstruksi sebelum dikirim kembali ke API, permintaan mengembalikan error 400 `invalid_request_error`. Pesan error dimulai dengan posisi blok yang bermasalah (misalnya, `messages.1.content.0`) dan berisi:
+Jika pesan assistant terbaru berisi blok `thinking` atau `redacted_thinking` yang diedit, diurutkan ulang, difilter, atau direkonstruksi sebelum dikirim kembali ke API, permintaan mengembalikan error 400 `invalid_request_error`. Pesan error dimulai dengan posisi blok yang bermasalah (misalnya, `messages.1.content.0`) dan berisi:
 
 ```text wrap
 `thinking` or `redacted_thinking` blocks in the latest assistant message cannot be modified. These blocks must remain as they were in the original response.
 ```
 
-Dengan "tool use" (penggunaan alat), setiap blok `thinking` dan `redacted_thinking` dari giliran assistant harus dikirim kembali persis seperti yang diterima, termasuk blok yang field `thinking`-nya kosong. Kirim kembali blok thinking tanpa perubahan, dan jika aplikasi Anda menyaring blok konten berdasarkan tipe sebelum mengirim ulang, sertakan baik `thinking` maupun `redacted_thinking`. Lihat [Mempertahankan blok thinking](/docs/id/build-with-claude/extended-thinking#preserving-thinking-blocks) dan [Output thinking pada Claude Fable 5 dan Claude Mythos 5](/docs/id/build-with-claude/adaptive-thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5).
+Dengan "tool use" (penggunaan alat), setiap blok `thinking` dan `redacted_thinking` dari giliran assistant harus dikirim kembali persis seperti yang diterima, termasuk blok yang field `thinking`-nya kosong. Kirim kembali blok thinking tanpa perubahan, dan jika aplikasi Anda memfilter blok konten berdasarkan tipe sebelum mengirim ulang, sertakan baik `thinking` maupun `redacted_thinking`. Lihat [Mempertahankan blok thinking](/docs/id/build-with-claude/extended-thinking#preserving-thinking-blocks) dan [Output thinking pada Claude Fable 5 dan Claude Mythos 5](/docs/id/build-with-claude/adaptive-thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5).
 
 ### Outbound web identity federation dinonaktifkan (Claude Platform di AWS)
 
@@ -446,10 +446,10 @@ Jika setiap permintaan ke [Claude Platform di AWS](/docs/id/build-with-claude/cl
   </Card>
 
   <Card title="Batas laju" icon="gauge" href="/docs/id/api/rate-limits">
-    Untuk mengurangi penyalahgunaan dan mengelola kapasitas pada API, terdapat batasan pada seberapa banyak sebuah organisasi dapat menggunakan Claude API.
+    Untuk mengurangi penyalahgunaan dan mengelola kapasitas pada API, terdapat batasan seberapa banyak sebuah organisasi dapat menggunakan Claude API.
   </Card>
 
   <Card title="Streaming pesan" icon="lightning" href="/docs/id/build-with-claude/streaming">
-    Lakukan streaming respons Messages API secara bertahap dengan server-sent events, termasuk delta teks, penggunaan alat, dan pemikiran diperpanjang.
+    Streaming respons Messages API secara bertahap dengan server-sent events, termasuk delta teks, penggunaan alat, dan pemikiran diperpanjang.
   </Card>
 </CardGroup>

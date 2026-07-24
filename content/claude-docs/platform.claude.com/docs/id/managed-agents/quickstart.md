@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 32e7f6acb87c6cb4c670b5f0eca95d6c65b1a6ee5ed83f86c8a8c45bc2d4f58a
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: db8f712dddb33284bf1db3dd8b7a3ea932f254844387ac7c078291a63f2c7681
 ---
 
 # Memulai dengan Claude Managed Agents
@@ -11,7 +11,7 @@ Buat agen otonom pertama Anda.
 
 ---
 
-Panduan ini memandu Anda membuat agen, menyiapkan environment, memulai sesi, dan melakukan streaming respons agen.
+Panduan ini memandu Anda melalui pembuatan agen, menyiapkan environment, memulai sesi, dan melakukan streaming respons agen.
 
 <Tip>
   **Lebih suka panduan interaktif?** Jalankan `/claude-api managed-agents-onboard` di versi terbaru [Claude Code](https://claude.com/product/claude-code) untuk penyiapan terpandu dan tanya jawab interaktif.
@@ -28,8 +28,8 @@ Panduan ini memandu Anda membuat agen, menyiapkan environment, memulai sesi, dan
 
 ## Prasyarat
 
-* Akun [Console](https://platform.claude.com) Anthropic
-* Sebuah [kunci API](/settings/keys)
+* Akun [Claude Console](https://platform.claude.com)
+* [Kunci API](/settings/keys)
 
 ## Instal CLI
 
@@ -44,7 +44,7 @@ Panduan ini memandu Anda membuat agen, menyiapkan environment, memulai sesi, dan
     Untuk lingkungan Linux, unduh binary rilis secara langsung.
 
     ```bash
-    VERSION=1.15.0
+    VERSION=1.19.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -95,7 +95,7 @@ ant --version
 
   <Tab title="Java">
     ```groovy Gradle
-    implementation("com.anthropic:anthropic-java:2.47.1")
+    implementation("com.anthropic:anthropic-java:2.50.0")
     ```
   </Tab>
 
@@ -133,7 +133,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 ## Buat sesi pertama Anda
 
 <Note>
-  Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 <Steps>
@@ -562,8 +562,8 @@ export ANTHROPIC_API_KEY="your-api-key-here"
     </CodeGroup>
   </Step>
 
-  <Step title="Kirim pesan dan streaming responsnya">
-    Buka stream, kirim event pengguna, lalu proses event saat event tersebut tiba:
+  <Step title="Kirim pesan dan streaming respons">
+    Buka stream, kirim event pengguna, lalu proses event saat tiba:
 
     <CodeGroup>
       ```bash curl
@@ -850,7 +850,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       ```
     </CodeGroup>
 
-    Agen menulis skrip Python, mengeksekusinya di dalam sandbox, dan memverifikasi bahwa file output telah dibuat. Output Anda akan terlihat mirip seperti ini:
+    Agen menulis skrip Python, mengeksekusinya di sandbox, dan memverifikasi bahwa file output telah dibuat. Output Anda akan terlihat mirip dengan ini:
 
     ```text wrap
     I'll create a Python script that generates the first 20 Fibonacci numbers and saves them to a file.
@@ -871,7 +871,7 @@ Ketika Anda mengirim event pengguna, Claude Managed Agents:
 
 1. **Menyediakan sandbox:** Konfigurasi environment Anda menentukan bagaimana sandbox dibangun.
 2. **Menjalankan loop agen:** Claude menentukan alat mana yang akan digunakan berdasarkan pesan Anda.
-3. **Mengeksekusi alat:** Penulisan file, perintah bash, dan pemanggilan alat lainnya berjalan di dalam sandbox.
+3. **Mengeksekusi alat:** Penulisan file, perintah bash, dan panggilan alat lainnya berjalan di dalam sandbox.
 4. **Streaming event:** Anda menerima pembaruan real-time saat agen bekerja.
 5. **Menjadi idle:** Agen mengeluarkan event `session.status_idle` ketika tidak ada lagi yang perlu dilakukan.
 

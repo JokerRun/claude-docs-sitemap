@@ -1,37 +1,37 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: d5415fdcdb71727934586d1b90bf2cf64b5dcf453988388dfe0095610a7266f4
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 09e3bf44f8e002a0e8e17e34aace6dd5622cb08c19acdf77f4ab282072221339
 ---
 
 # Compaction
 
-Pemadatan konteks sisi server untuk mengelola percakapan panjang yang mendekati batas jendela konteks.
+Compaction konteks sisi server untuk mengelola percakapan panjang yang mendekati batas jendela konteks.
 
 ---
 
 <Note>
-  Fitur ini memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/api-and-data-retention). Ketika organisasi Anda memiliki pengaturan ZDR, data yang dikirim melalui fitur ini tidak disimpan setelah respons API dikembalikan.
+  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 <Tip>
-  "Compaction" (pemadatan) sisi server adalah strategi yang direkomendasikan untuk mengelola konteks dalam percakapan yang berjalan lama dan alur kerja agentik. Fitur ini menangani manajemen konteks secara otomatis, tanpa kode peringkasan sisi klien.
+  Compaction sisi server adalah strategi yang direkomendasikan untuk mengelola konteks dalam percakapan yang berjalan lama dan alur kerja agentik. Ini menangani manajemen konteks secara otomatis, tanpa kode ringkasan sisi klien.
 </Tip>
 
-Compaction memperpanjang panjang konteks efektif untuk percakapan dan tugas yang berjalan lama dengan secara otomatis meringkas konteks yang lebih lama ketika mendekati batas jendela konteks. Fitur ini juga menjaga konteks aktif tetap kecil: seiring percakapan bertambah panjang, kualitas respons menurun, sehingga compaction menggantikan konten yang lebih lama dengan ringkasan yang padat.
+"Compaction" (pemadatan) memperluas panjang konteks efektif untuk percakapan dan tugas yang berjalan lama dengan secara otomatis meringkas konteks yang lebih lama saat mendekati batas jendela konteks. Ini juga menjaga konteks aktif tetap kecil: seiring percakapan bertambah panjang, kualitas respons menurun, sehingga compaction menggantikan konten yang lebih lama dengan ringkasan yang padat.
 
 <Tip>
-  Untuk pemahaman lebih dalam tentang mengapa konteks panjang mengalami penurunan kualitas dan bagaimana compaction membantu, lihat [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
+  Untuk melihat lebih dalam mengapa konteks panjang menurunkan kualitas dan bagaimana compaction membantu, lihat [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
 </Tip>
 
-Fitur ini ideal untuk:
+Ini ideal untuk:
 
 * Percakapan multi-giliran berbasis chat di mana Anda ingin pengguna menggunakan satu chat untuk jangka waktu yang lama
 * Prompt berorientasi tugas yang memerlukan banyak pekerjaan lanjutan (sering kali penggunaan alat) yang mungkin melebihi jendela konteks
 
 <Note>
-  Compaction masih dalam versi beta. Sertakan [beta header](/docs/id/api/beta-headers) `compact-2026-01-12` dalam permintaan API Anda untuk menggunakan fitur ini.
+  Compaction sedang dalam tahap beta. Sertakan [header beta](/docs/id/api/beta-headers) `compact-2026-01-12` dalam permintaan API Anda untuk menggunakan fitur ini.
 </Note>
 
 ## Model yang didukung
@@ -49,14 +49,14 @@ Compaction didukung pada model-model berikut:
 
 ## Cara kerja compaction
 
-Ketika compaction diaktifkan, Claude secara otomatis meringkas percakapan Anda ketika mencapai ambang batas token yang dikonfigurasi. API akan:
+Ketika compaction diaktifkan, Claude secara otomatis meringkas percakapan Anda ketika mencapai ambang batas token yang dikonfigurasi. API:
 
 1. Mendeteksi ketika token input mencapai ambang batas pemicu yang Anda tentukan.
 2. Menghasilkan ringkasan dari percakapan saat ini.
 3. Membuat blok `compaction` yang berisi ringkasan tersebut.
 4. Melanjutkan respons dengan konteks yang telah dipadatkan.
 
-Pada permintaan berikutnya, tambahkan respons ke pesan Anda. API secara otomatis menghapus semua blok konten sebelum blok `compaction`, melanjutkan percakapan dari ringkasan.
+Pada permintaan berikutnya, tambahkan respons tersebut ke pesan Anda. API secara otomatis membuang semua blok konten sebelum blok `compaction`, melanjutkan percakapan dari ringkasan tersebut.
 
 ![Alur compaction: ketika token input mencapai pemicu, Claude menulis ringkasan ke dalam blok compaction dan melanjutkan](/docs/images/compaction-flow.svg)
 
@@ -116,7 +116,7 @@ Aktifkan compaction dengan menambahkan strategi `compact_20260112` ke `context_m
       context_management={"edits": [{"type": "compact_20260112"}]},
   )
 
-  # Tambahkan respons (termasuk blok pemadatan apa pun) untuk melanjutkan percakapan
+  # Tambahkan respons (termasuk blok compaction apa pun) untuk melanjutkan percakapan
   messages.append({"role": "assistant", "content": response.content})
   ```
 
@@ -141,7 +141,7 @@ Aktifkan compaction dengan menambahkan strategi `compact_20260112` ke `context_m
     }
   });
 
-  // Tambahkan respons (termasuk blok pemadatan apa pun) untuk melanjutkan percakapan
+  // Tambahkan respons (termasuk blok compaction apa pun) untuk melanjutkan percakapan
   messages.push({
     role: "assistant",
     content: response.content
@@ -181,7 +181,7 @@ Aktifkan compaction dengan menambahkan strategi `compact_20260112` ke `context_m
 
           var response = await client.Beta.Messages.Create(parameters);
 
-          // Tambahkan respons (termasuk blok pemadatan apa pun) untuk melanjutkan percakapan
+          // Tambahkan respons (termasuk blok compaction apa pun) untuk melanjutkan percakapan
           messages.Add(new BetaMessageParam
           {
               Role = Role.Assistant,
@@ -215,7 +215,7 @@ Aktifkan compaction dengan menambahkan strategi `compact_20260112` ke `context_m
   	log.Fatal(err)
   }
 
-  // Tambahkan respons (termasuk blok pemadatan apa pun) untuk melanjutkan percakapan
+  // Tambahkan respons (termasuk blok compaction apa pun) untuk melanjutkan percakapan
   messages = append(messages, response.ToParam())
 
   fmt.Println(response)
@@ -240,7 +240,7 @@ Aktifkan compaction dengan menambahkan strategi `compact_20260112` ke `context_m
           BetaMessage response = client.beta().messages().create(params);
 
           // Tambahkan respons (termasuk blok pemadatan apa pun) untuk melanjutkan percakapan
-          // dengan menyertakannya dalam pesan permintaan berikutnya
+          // dengan menyertakannya dalam messages pada permintaan berikutnya
           System.out.println(response);
   ```
 
@@ -263,7 +263,7 @@ Aktifkan compaction dengan menambahkan strategi `compact_20260112` ke `context_m
       ]
   );
 
-  // Tambahkan respons (termasuk blok pemadatan apa pun) untuk melanjutkan percakapan
+  // Tambahkan respons (termasuk blok compaction apa pun) untuk melanjutkan percakapan
   $messages[] = ['role' => 'assistant', 'content' => $response->content];
 
   echo $response->content[0]->text;
@@ -297,10 +297,10 @@ Aktifkan compaction dengan menambahkan strategi `compact_20260112` ke `context_m
 
 | Parameter                | Tipe    | Default                                     | Deskripsi                                                                                                                  |
 | ------------------------ | ------- | ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `type`                   | string  | Wajib                                       | Harus berupa `"compact_20260112"`                                                                                          |
-| `trigger`                | object  | `{"type": "input_tokens", "value": 150000}` | Kapan compaction dipicu. `input_tokens` adalah satu-satunya tipe pemicu yang didukung. `value` harus minimal 50.000 token. |
+| `type`                   | string  | Wajib                                       | Harus `"compact_20260112"`                                                                                                 |
+| `trigger`                | object  | `{"type": "input_tokens", "value": 150000}` | Kapan memicu compaction. `input_tokens` adalah satu-satunya tipe pemicu yang didukung. `value` harus minimal 50.000 token. |
 | `pause_after_compaction` | boolean | `false`                                     | Apakah akan berhenti sejenak setelah menghasilkan ringkasan compaction                                                     |
-| `instructions`           | string  | `null`                                      | Prompt peringkasan kustom. Sepenuhnya menggantikan prompt default jika disediakan.                                         |
+| `instructions`           | string  | `null`                                      | Prompt ringkasan kustom. Sepenuhnya menggantikan prompt default jika disediakan.                                           |
 
 ### Konfigurasi pemicu
 
@@ -517,9 +517,9 @@ Konfigurasikan kapan compaction dipicu menggunakan parameter `trigger`:
   ```
 </CodeGroup>
 
-### Instruksi peringkasan kustom
+### Instruksi ringkasan kustom
 
-Prompt peringkasan default bervariasi menurut model. Setiap default menginstruksikan Claude untuk menulis ringkasan di dalam tag `<summary></summary>` dengan informasi yang diperlukan untuk melanjutkan tugas di jendela konteks berikutnya. Sebagai contoh, beberapa model menggunakan prompt berikut:
+Prompt ringkasan default bervariasi menurut model. Setiap default menginstruksikan Claude untuk menulis ringkasan di dalam tag `<summary></summary>` dengan informasi yang diperlukan untuk melanjutkan tugas di jendela konteks berikutnya. Sebagai contoh, beberapa model menggunakan prompt berikut:
 
 ```text wrap
 You have written a partial transcript for the initial task above. Please write a summary of the transcript. The purpose of this summary is to provide continuity so you can continue to make progress towards solving the task in a future context, where the raw history above may not be accessible and will be replaced with this summary. Write down anything that would be helpful, including the state, next steps, learnings etc. You must wrap your summary in a <summary></summary> block.
@@ -754,16 +754,16 @@ Anda dapat memberikan instruksi kustom melalui parameter `instructions`. Instruk
 
 ### Berhenti sejenak setelah compaction
 
-Gunakan `pause_after_compaction` untuk menjeda API setelah menghasilkan ringkasan compaction. Ini memungkinkan Anda menambahkan blok konten tambahan (seperti mempertahankan pesan terbaru atau pesan berorientasi instruksi tertentu) sebelum API melanjutkan dengan respons.
+Gunakan `pause_after_compaction` untuk menghentikan sementara API setelah menghasilkan ringkasan compaction. Ini memungkinkan Anda menambahkan blok konten tambahan (seperti mempertahankan pesan terbaru atau pesan berorientasi instruksi tertentu) sebelum API melanjutkan dengan respons.
 
-Ketika diaktifkan, API mengembalikan pesan dengan stop reason `compaction` setelah menghasilkan blok compaction:
+Ketika diaktifkan, API mengembalikan pesan dengan alasan berhenti `compaction` setelah menghasilkan blok compaction:
 
 <CodeGroup>
   ```bash cURL
   # pause_after_compaction menghentikan respons tepat setelah ringkasan
   # pemadatan agar Anda dapat menyesuaikan pesan sebelum melanjutkan. Langkah
-  # lanjutan tidak cocok dijalankan sebagai perintah shell sekali jalan; lihat tab SDK
-  # untuk alur jeda-dan-lanjutkan lengkap. Permintaan tunggal yang dijeda:
+  # lanjutan ini sulit diterjemahkan ke perintah shell sekali jalan; lihat tab SDK
+  # untuk alur jeda-dan-lanjut selengkapnya. Satu permintaan yang dijeda:
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -792,8 +792,8 @@ Ketika diaktifkan, API mengembalikan pesan dengan stop reason `compaction` setel
   ```bash CLI
   # pause_after_compaction menghentikan respons tepat setelah ringkasan
   # pemadatan agar Anda dapat menyesuaikan pesan sebelum melanjutkan. Langkah
-  # lanjutan tidak cocok untuk perintah CLI sekali jalan; lihat tab SDK
-  # untuk alur jeda-dan-lanjutkan lengkap. Permintaan tunggal yang dijeda:
+  # lanjut tidak cocok sebagai perintah CLI sekali jalan; lihat tab SDK
+  # untuk alur jeda-dan-lanjut selengkapnya. Satu permintaan yang dijeda:
   ant beta:messages create \
     --beta compact-2026-01-12 \
     --format jsonl <<'YAML'
@@ -1008,11 +1008,11 @@ Ketika diaktifkan, API mengembalikan pesan dengan stop reason `compaction` setel
 
           BetaMessage response = client.beta().messages().create(params);
 
-          // Periksa apakah pemadatan memicu jeda
+          // Periksa apakah kompaksi memicu jeda
           if (response.stopReason().isPresent()
                   && response.stopReason().get().equals(BetaStopReason.COMPACTION)) {
-              // Tambahkan blok pemadatan dan lanjutkan permintaan
-              // dengan membuat permintaan baru menggunakan konteks yang dipadatkan
+              // Tambahkan blok kompaksi dan lanjutkan permintaan
+              // dengan membangun permintaan baru menggunakan konteks yang telah dikompaksi
               MessageCreateParams continueParams = MessageCreateParams.builder()
                   .model("claude-opus-4-8")
                   .maxTokens(4096L)
@@ -1110,11 +1110,11 @@ Ketika diaktifkan, API mengembalikan pesan dengan stop reason `compaction` setel
 
 #### Menerapkan anggaran token total
 
-Ketika model mengerjakan tugas panjang dengan banyak iterasi penggunaan alat, konsumsi token total dapat meningkat secara signifikan. Anda dapat menggabungkan `pause_after_compaction` dengan penghitung compaction untuk memperkirakan penggunaan kumulatif dan menyelesaikan tugas dengan baik setelah anggaran tercapai.
+Ketika model mengerjakan tugas panjang dengan banyak iterasi penggunaan alat, konsumsi token total dapat tumbuh secara signifikan. Anda dapat menggabungkan `pause_after_compaction` dengan penghitung compaction untuk memperkirakan penggunaan kumulatif dan menyelesaikan tugas dengan baik setelah anggaran tercapai.
 
 Contoh ini hanya muncul dalam bahasa SDK: nilainya terletak pada logika pelacakan anggaran di sekitar permintaan. Permintaan mentahnya menggabungkan `trigger` dari [Konfigurasi pemicu](#trigger-configuration) dengan `pause_after_compaction` dari [Berhenti sejenak setelah compaction](#pausing-after-compaction).
 
-<CodeGroup>
+<CodeGroup exclude="shell">
   ```python Python
   client = anthropic.Anthropic()
   messages = [{"role": "user", "content": "Hello, Claude"}]
@@ -1142,7 +1142,7 @@ Contoh ini hanya muncul dalam bahasa SDK: nilainya terletak pada logika pelacaka
       n_compactions += 1
       messages.append({"role": "assistant", "content": response.content})
 
-      # Estimasi total token yang dikonsumsi; minta penutupan jika melebihi anggaran
+      # Perkirakan total token yang dikonsumsi; minta penutupan jika melebihi anggaran
       if n_compactions * TRIGGER_THRESHOLD >= TOTAL_TOKEN_BUDGET:
           messages.append(
               {
@@ -1181,7 +1181,7 @@ Contoh ini hanya muncul dalam bahasa SDK: nilainya terletak pada logika pelacaka
     compactionCount += 1;
     messages.push({ role: "assistant", content: response.content });
 
-    // Estimasi total token yang dikonsumsi; minta penutupan jika melebihi anggaran
+    // Perkirakan total token yang dikonsumsi; minta penutupan jika melebihi anggaran
     if (compactionCount * TRIGGER_THRESHOLD >= TOTAL_TOKEN_BUDGET) {
       messages.push({
         role: "user",
@@ -1224,7 +1224,7 @@ Contoh ini hanya muncul dalam bahasa SDK: nilainya terletak pada logika pelacaka
           Content = response.Content.Select(b => new BetaContentBlockParam(b.Json)).ToList()
       });
 
-      // Estimasi total token yang dikonsumsi; minta penutupan jika melebihi anggaran
+      // Perkirakan total token yang dikonsumsi; minta penutupan jika melebihi anggaran
       if (compactionCount * TriggerThreshold >= TotalTokenBudget)
       {
           messages.Add(new()
@@ -1268,7 +1268,7 @@ Contoh ini hanya muncul dalam bahasa SDK: nilainya terletak pada logika pelacaka
   	compactionCount++
   	messages = append(messages, response.ToParam())
 
-  	// Estimasi total token yang dikonsumsi; minta penutupan jika melebihi anggaran
+  	// Perkirakan total token yang dikonsumsi; minta penutupan jika melebihi anggaran
   	if compactionCount*triggerThreshold >= totalTokenBudget {
   		messages = append(messages, anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Please wrap up your current work and summarize the final state.")))
   	}
@@ -1317,7 +1317,7 @@ Contoh ini hanya muncul dalam bahasa SDK: nilainya terletak pada logika pelacaka
               compactionCount += 1;
               messages.add(response.toParam());
 
-              // Estimasi total token yang dikonsumsi; minta penutupan jika melebihi anggaran
+              // Perkirakan total token yang dikonsumsi; minta penutupan jika melebihi anggaran
               if (compactionCount * triggerThreshold >= totalTokenBudget) {
                   messages.add(BetaMessageParam.builder()
                       .role(BetaMessageParam.Role.USER)
@@ -1358,7 +1358,7 @@ Contoh ini hanya muncul dalam bahasa SDK: nilainya terletak pada logika pelacaka
       $compactionCount += 1;
       $messages[] = ['role' => 'assistant', 'content' => $response->content];
 
-      // Estimasi total token yang dikonsumsi; minta penutupan jika melebihi anggaran
+      // Perkirakan total token yang dikonsumsi; minta penyelesaian jika melebihi anggaran
       if ($compactionCount * $triggerThreshold >= $totalTokenBudget) {
           $messages[] = [
               'role' => 'user',
@@ -1395,7 +1395,7 @@ Contoh ini hanya muncul dalam bahasa SDK: nilainya terletak pada logika pelacaka
     compaction_count += 1
     messages << { role: "assistant", content: response.content }
 
-    # Estimasi total token yang dikonsumsi; minta penutupan jika melebihi anggaran
+    # Perkirakan total token yang terpakai; minta penutupan jika melebihi anggaran
     if compaction_count * TRIGGER_THRESHOLD >= TOTAL_TOKEN_BUDGET
       messages << {
         role: "user",
@@ -1410,7 +1410,7 @@ Contoh ini hanya muncul dalam bahasa SDK: nilainya terletak pada logika pelacaka
 
 Ketika compaction dipicu, API mengembalikan blok `compaction` di awal respons asisten.
 
-Percakapan yang berjalan lama mungkin menghasilkan beberapa compaction. Blok compaction terakhir mencerminkan keadaan akhir prompt, menggantikan konten sebelumnya dengan ringkasan yang dihasilkan.
+Percakapan yang berjalan lama mungkin menghasilkan beberapa compaction. Blok compaction terakhir mencerminkan keadaan akhir dari prompt, menggantikan konten sebelumnya dengan ringkasan yang dihasilkan.
 
 ```json Output
 {
@@ -1427,15 +1427,15 @@ Percakapan yang berjalan lama mungkin menghasilkan beberapa compaction. Blok com
 }
 ```
 
-### Mengirim kembali blok compaction
+### Mengirimkan kembali blok compaction
 
-Anda harus mengirim kembali blok `compaction` ke API pada permintaan berikutnya untuk melanjutkan percakapan dengan prompt yang telah dipersingkat. Pendekatan paling sederhana adalah menambahkan seluruh konten respons ke pesan Anda:
+Anda harus mengirimkan kembali blok `compaction` ke API pada permintaan berikutnya untuk melanjutkan percakapan dengan prompt yang dipersingkat. Pendekatan paling sederhana adalah menambahkan seluruh konten respons ke pesan Anda:
 
 <CodeGroup>
   ```bash cURL
-  # Konten respons, termasuk blok pemadatan, harus dikirim kembali ke
-  # API sebagai giliran asisten pada permintaan berikutnya. Mengelola daftar pesan itu
-  # tidak cocok dilakukan lewat perintah shell sekali jalan; lihat tab CLI dan SDK
+  # Konten respons, termasuk blok compaction, harus dikirim kembali ke
+  # API sebagai giliran asisten pada permintaan berikutnya. Mengelola daftar pesan
+  # tersebut tidak cocok untuk perintah shell sekali jalan; lihat tab CLI dan SDK
   # untuk alur lengkapnya. Permintaan pertama:
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -1476,7 +1476,7 @@ Anda harus mengirim kembali blok `compaction` ke API pada permintaan berikutnya 
       - type: compact_20260112
   YAML
 
-  # Setelah menerima respons dengan blok pemadatan, tambahkan sebagai
+  # Setelah menerima respons dengan blok compaction, tambahkan sebagai
   # giliran asisten dan lanjutkan percakapan
   ant beta:messages create --beta compact-2026-01-12 <<YAML
   model: claude-opus-4-8
@@ -1504,7 +1504,7 @@ Anda harus mengirim kembali blok `compaction` ke API pada permintaan berikutnya 
       messages=messages,
       context_management={"edits": [{"type": "compact_20260112"}]},
   )
-  # Setelah menerima respons dengan blok pemadatan
+  # Setelah menerima respons dengan blok compaction
   messages.append({"role": "assistant", "content": response.content})
 
   # Lanjutkan percakapan
@@ -1535,7 +1535,7 @@ Anda harus mengirim kembali blok `compaction` ke API pada permintaan berikutnya 
     }
   });
 
-  // Setelah menerima respons dengan blok pemadatan
+  // Setelah menerima respons dengan blok compaction
   messages.push({
     role: "assistant",
     content: response.content
@@ -1671,8 +1671,8 @@ Anda harus mengirim kembali blok `compaction` ke API pada permintaan berikutnya 
                       .build())
                   .build());
 
-          // Setelah menerima respons dengan blok pemadatan, tambahkan seluruh
-          // konten (termasuk blok pemadatan) dan lanjutkan percakapan
+          // Setelah menerima respons dengan blok compaction, tambahkan seluruh
+          // konten (termasuk blok compaction) dan lanjutkan percakapan
           BetaMessage nextResponse = client.beta().messages().create(
               MessageCreateParams.builder()
                   .addBeta("compact-2026-01-12")
@@ -1758,10 +1758,10 @@ Anda harus mengirim kembali blok `compaction` ke API pada permintaan berikutnya 
   ```
 </CodeGroup>
 
-Ketika API menerima blok `compaction`, semua blok konten sebelumnya diabaikan. Anda dapat:
+Ketika API menerima blok `compaction`, semua blok konten sebelumnya diabaikan. Anda dapat memilih:
 
 * Menyimpan pesan asli dalam daftar Anda dan membiarkan API menangani penghapusan konten yang telah dipadatkan
-* Secara manual menghapus pesan yang telah dipadatkan dan hanya menyertakan blok compaction dan seterusnya
+* Secara manual membuang pesan yang telah dipadatkan dan hanya menyertakan blok compaction dan seterusnya
 
 ### Streaming
 
@@ -2069,7 +2069,7 @@ Blok compaction di-stream secara berbeda dari blok teks. Anda menerima event `co
 
 ### Caching prompt
 
-Compaction bekerja dengan baik bersama [caching prompt](/docs/id/build-with-claude/prompt-caching). Anda dapat menambahkan breakpoint `cache_control` pada blok compaction untuk meng-cache konten yang telah diringkas.
+Compaction bekerja dengan baik bersama [caching prompt](/docs/id/build-with-claude/prompt-caching). Anda dapat menambahkan breakpoint `cache_control` pada blok compaction untuk menyimpan konten yang telah diringkas ke dalam cache.
 
 ```json
 {
@@ -2090,7 +2090,7 @@ Compaction bekerja dengan baik bersama [caching prompt](/docs/id/build-with-clau
 
 #### Memaksimalkan cache hit dengan prompt sistem
 
-Ketika compaction terjadi, ringkasan menjadi konten baru yang perlu ditulis ke cache. Tanpa breakpoint cache tambahan, hal ini juga akan membatalkan prompt sistem yang telah di-cache, sehingga perlu di-cache ulang bersama dengan ringkasan compaction.
+Ketika compaction terjadi, ringkasan menjadi konten baru yang perlu ditulis ke cache. Tanpa breakpoint cache tambahan, ini juga akan membatalkan prompt sistem yang telah di-cache, sehingga perlu di-cache ulang bersama dengan ringkasan compaction.
 
 Untuk memaksimalkan tingkat cache hit, tambahkan breakpoint `cache_control` di akhir prompt sistem Anda. Ini menjaga prompt sistem tetap di-cache secara terpisah dari percakapan, sehingga ketika compaction terjadi:
 
@@ -2343,7 +2343,7 @@ Ini menjaga prompt sistem yang panjang tetap di-cache di sepanjang beberapa peri
 
 ## Memahami penggunaan
 
-Compaction memerlukan langkah sampling tambahan, yang berkontribusi pada batas laju dan penagihan. API mengembalikan informasi penggunaan terperinci dalam respons:
+Compaction memerlukan langkah sampling tambahan, yang berkontribusi pada batas laju dan penagihan. API mengembalikan informasi penggunaan yang terperinci dalam respons:
 
 ```json Output
 {
@@ -2371,7 +2371,7 @@ Array `iterations` menunjukkan penggunaan untuk setiap iterasi sampling. Ketika 
 <Note>
   `input_tokens` dan `output_tokens` tingkat atas tidak menyertakan penggunaan iterasi compaction. Keduanya mencerminkan jumlah dari semua iterasi non-compaction. Untuk menghitung total token yang dikonsumsi dan ditagih untuk sebuah permintaan, jumlahkan semua entri dalam array `usage.iterations`.
 
-  Jika sebelumnya Anda mengandalkan `usage.input_tokens` dan `usage.output_tokens` untuk pelacakan biaya atau audit, Anda perlu memperbarui logika pelacakan Anda untuk mengagregasi di seluruh `usage.iterations` ketika compaction diaktifkan. Dengan beta compaction diaktifkan, setiap respons menyertakan `usage.iterations`, bahkan jika tidak ada compaction yang terjadi. Entri `compaction` hanya muncul ketika compaction baru dipicu selama permintaan. Menerapkan kembali blok `compaction` sebelumnya tidak menimbulkan biaya compaction tambahan, dan field penggunaan tingkat atas tetap akurat dalam kasus tersebut.
+  Jika sebelumnya Anda mengandalkan `usage.input_tokens` dan `usage.output_tokens` untuk pelacakan biaya atau audit, Anda perlu memperbarui logika pelacakan Anda untuk mengagregasi di seluruh `usage.iterations` ketika compaction diaktifkan. Dengan beta compaction diaktifkan, setiap respons menyertakan `usage.iterations`, bahkan jika tidak ada compaction yang terjadi. Entri `compaction` hanya muncul ketika compaction baru dipicu selama permintaan. Menerapkan kembali blok `compaction` sebelumnya tidak menimbulkan biaya compaction tambahan, dan bidang penggunaan tingkat atas tetap akurat dalam kasus tersebut.
 </Note>
 
 ## Menggabungkan dengan fitur lain
@@ -2382,7 +2382,7 @@ Saat menggunakan alat server (seperti pencarian web), pemicu compaction diperiks
 
 ### Penghitungan token
 
-Endpoint penghitungan token (`/v1/messages/count_tokens`) menerapkan blok `compaction` yang sudah ada dalam prompt Anda tetapi tidak memicu compaction baru. Gunakan endpoint ini untuk memeriksa jumlah token efektif Anda setelah compaction sebelumnya:
+Endpoint penghitungan token (`/v1/messages/count_tokens`) menerapkan blok `compaction` yang sudah ada dalam prompt Anda tetapi tidak memicu compaction baru. Gunakan ini untuk memeriksa jumlah token efektif Anda setelah compaction sebelumnya:
 
 <CodeGroup>
   ```bash cURL
@@ -2574,7 +2574,7 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
 
 <CodeGroup>
   ```bash cURL
-  # curl mengirim permintaan individual; kelola array messages di
+  # curl mengirim permintaan satu per satu; kelola array messages di
   # skrip pemanggil. Lihat tab SDK untuk loop chat() lengkap. Bentuk
   # permintaan satu giliran:
   curl https://api.anthropic.com/v1/messages \
@@ -2606,9 +2606,9 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
   ```
 
   ```bash CLI
-  # CLI menangani giliran individual; pertahankan array messages di
-  # skrip pemanggil. Lihat tab SDK untuk loop chat() lengkap. Bentuk
-  # permintaan satu giliran:
+  # CLI menangani setiap giliran secara terpisah; kelola array messages di
+  # skrip pemanggil. Lihat tab SDK untuk loop chat() lengkap. Bentuk permintaan
+  # satu giliran:
   ant beta:messages create \
     --beta compact-2026-01-12 \
     --transform 'content.#(type=="text").text' \
@@ -2651,7 +2651,7 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
           },
       )
 
-      # Tambahkan respons (blok pemadatan otomatis disertakan)
+      # Tambahkan respons (blok kompaksi disertakan secara otomatis)
       messages.append({"role": "assistant", "content": response.content})
 
       # Kembalikan konten teks
@@ -2662,7 +2662,7 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
   print(chat("Help me build a Python web scraper"))
   print(chat("Add support for JavaScript-rendered pages"))
   print(chat("Now add rate limiting and error handling"))
-  # Terus panggil chat() selama percakapan masih diperlukan
+  # Lanjutkan memanggil chat() selama percakapan masih membutuhkannya
   ```
 
   ```typescript TypeScript
@@ -2688,7 +2688,7 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
       }
     });
 
-    // Tambahkan respons (blok pemadatan otomatis disertakan)
+    // Tambahkan respons (blok kompaksi disertakan secara otomatis)
     messages.push({ role: "assistant", content: response.content });
 
     // Kembalikan konten teks
@@ -2700,7 +2700,7 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
   console.log(await chat("Help me build a Python web scraper"));
   console.log(await chat("Add support for JavaScript-rendered pages"));
   console.log(await chat("Now add rate limiting and error handling"));
-  // Terus panggil chat() selama percakapan masih diperlukan
+  // Lanjutkan memanggil chat() selama percakapan masih membutuhkannya
   ```
 
   ```csharp C#
@@ -2848,7 +2848,7 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
 
           BetaMessage response = client.beta().messages().create(params);
 
-          // Tambahkan respons (blok pemadatan otomatis disertakan)
+          // Tambahkan respons (blok kompaksi disertakan secara otomatis)
           messages.add(response.toParam());
 
           return response.content().stream()
@@ -2933,9 +2933,9 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
 
 <CodeGroup>
   ```bash cURL
-  # curl mengirim permintaan individual; kelola array messages di skrip
-  # pemanggil. Lihat tab SDK untuk loop chat() lengkap dengan penanganan
-  # jeda-dan-pertahankan. Bentuk permintaan satu giliran:
+  # curl mengirim permintaan satu per satu; pertahankan array messages di
+  # skrip pemanggil. Lihat tab SDK untuk loop chat() lengkap dengan
+  # penanganan jeda-dan-simpan. Bentuk permintaan satu giliran:
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -2968,7 +2968,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
   ```bash CLI
   # CLI menangani giliran individual; pertahankan array messages di
   # skrip pemanggil. Lihat tab SDK untuk loop chat() lengkap dengan
-  # penanganan jeda-dan-pertahankan. Bentuk permintaan satu giliran:
+  # penanganan jeda-dan-simpan. Bentuk permintaan satu giliran:
   ant beta:messages create \
     --beta compact-2026-01-12 \
     --transform 'content.#(type=="text").text' \
@@ -3050,11 +3050,11 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
       return next(block.text for block in response.content if block.type == "text")
 
 
-  # Jalankan percakapan panjang
+  # Jalankan percakapan yang panjang
   print(chat("Help me build a Python web scraper"))
   print(chat("Add support for JavaScript-rendered pages"))
   print(chat("Now add rate limiting and error handling"))
-  # Terus panggil chat() selama percakapan masih membutuhkannya
+  # Terus panggil chat() selama percakapan membutuhkannya
   ```
 
   ```typescript TypeScript
@@ -3081,22 +3081,22 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
       }
     });
 
-    // Periksa apakah pemadatan terjadi dan dijeda
+    // Periksa apakah kompaksi terjadi dan dijeda
     if (response.stop_reason === "compaction") {
-      // Ambil blok pemadatan dari respons
+      // Ambil blok kompaksi dari respons
       const compactionBlock = response.content[0];
 
       // Pertahankan pertukaran sebelumnya + pesan pengguna saat ini (3 pesan)
-      // dengan menyertakannya setelah blok pemadatan
+      // dengan menyertakannya setelah blok kompaksi
       const preservedMessages = messages.length >= 3 ? messages.slice(-3) : [...messages];
 
-      // Bangun daftar pesan baru: pemadatan + pesan yang dipertahankan
+      // Bangun daftar pesan baru: kompaksi + pesan yang dipertahankan
       const messagesAfterCompaction: Anthropic.Beta.Messages.BetaMessageParam[] = [
         { role: "assistant", content: [compactionBlock] },
         ...preservedMessages
       ];
 
-      // Lanjutkan permintaan dengan konteks yang dipadatkan + pesan yang dipertahankan
+      // Lanjutkan permintaan dengan konteks terkompaksi + pesan yang dipertahankan
       response = await client.beta.messages.create({
         betas: ["compact-2026-01-12"],
         model: "claude-opus-4-8",
@@ -3107,7 +3107,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
         }
       });
 
-      // Perbarui daftar pesan kita untuk mencerminkan pemadatan
+      // Perbarui daftar pesan kita untuk mencerminkan kompaksi
       messages = messagesAfterCompaction;
     }
 
@@ -3123,7 +3123,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
   console.log(await chat("Help me build a Python web scraper"));
   console.log(await chat("Add support for JavaScript-rendered pages"));
   console.log(await chat("Now add rate limiting and error handling"));
-  // Terus panggil chat() selama percakapan masih membutuhkannya
+  // Terus panggil chat() selama percakapan membutuhkannya
   ```
 
   ```csharp C#
@@ -3504,11 +3504,11 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
   ```
 </CodeGroup>
 
-## Batasan saat ini
+## Keterbatasan saat ini
 
-* **Model yang sama untuk peringkasan:** Model yang ditentukan dalam permintaan Anda digunakan untuk peringkasan. Tidak ada opsi untuk menggunakan model yang berbeda (misalnya, yang lebih murah) untuk ringkasan.
+* **Model yang sama untuk ringkasan:** Model yang ditentukan dalam permintaan Anda digunakan untuk ringkasan. Tidak ada opsi untuk menggunakan model yang berbeda (misalnya, yang lebih murah) untuk ringkasan.
 
-* **Compaction mungkin gagal ketika alat didefinisikan:** Ketika permintaan Anda menyertakan `tools`, model terkadang memanggil alat selama langkah peringkasan internal alih-alih menulis ringkasan. Ketika ini terjadi, respons berisi blok `compaction` dengan `content: null`. Untuk mencegah hal ini, atur [`instructions`](#custom-summarization-instructions) ke prompt yang secara eksplisit memberi tahu model untuk tidak memanggil alat, misalnya:
+* **Compaction mungkin gagal ketika alat didefinisikan:** Ketika permintaan Anda menyertakan `tools`, model terkadang memanggil alat selama langkah ringkasan internal alih-alih menulis ringkasan. Ketika ini terjadi, respons berisi blok `compaction` dengan `content: null`. Untuk mencegah hal ini, atur [`instructions`](#custom-summarization-instructions) ke prompt yang secara eksplisit memberi tahu model untuk tidak memanggil alat, misalnya:
 
   ```text wrap
   Summarize the transcript inside <summary></summary> tags. Include relevant information in the summary for continuing the task in the next context window. Do not call any tools while writing this summary; respond with text only.
@@ -3525,7 +3525,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
     Pelajari tentang ukuran jendela konteks dan strategi pengelolaannya.
   </Card>
 
-  <Card title="Cookbook pemadatan memori sesi" icon="book" href="https://platform.claude.com/cookbook/misc-session-memory-compaction">
-    Jelajahi implementasi praktis yang mengelola percakapan yang berjalan lama dengan pemadatan memori sesi instan menggunakan background threading dan caching prompt.
+  <Card title="Cookbook compaction memori sesi" icon="book" href="https://platform.claude.com/cookbook/misc-session-memory-compaction">
+    Jelajahi implementasi praktis yang mengelola percakapan yang berjalan lama dengan compaction memori sesi instan menggunakan background threading dan caching prompt.
   </Card>
 </CardGroup>

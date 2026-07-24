@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 541dcf07bcecf469fc96c9c251138c6f1d734b7d001cdc684f0ad8223b0f1fa4
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 2c88c727f8f0fc3c2230fbfca54d8c28c7e3517ad6a4d6459ae8cb318713bab6
 ---
 
 # TypeScript SDK
@@ -40,7 +40,7 @@ Runtime berikut didukung:
 
 Perhatikan bahwa React Native tidak didukung saat ini.
 
-Jika Anda tertarik dengan lingkungan runtime lainnya, buka atau beri dukungan (upvote) pada issue di [GitHub](https://github.com/anthropics/anthropic-sdk-typescript).
+Jika Anda tertarik dengan lingkungan runtime lainnya, buka atau beri dukungan (upvote) pada issue di [repositori GitHub](https://github.com/anthropics/anthropic-sdk-typescript).
 
 ## Penggunaan
 
@@ -66,7 +66,7 @@ Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi
 
 ## Tipe request dan response
 
-Library ini menyertakan definisi TypeScript untuk semua parameter request dan field response. Anda dapat mengimpor dan menggunakannya seperti berikut:
+Library ini menyertakan definisi TypeScript untuk semua parameter request dan field response. Anda dapat mengimpor dan menggunakannya seperti ini:
 
 ```typescript
 const client = new Anthropic({
@@ -81,11 +81,11 @@ const params: Anthropic.MessageCreateParams = {
 const message: Anthropic.Message = await client.messages.create(params);
 ```
 
-Dokumentasi untuk setiap metode, parameter request, dan field response tersedia dalam docstring dan akan muncul saat hover di sebagian besar editor modern.
+Dokumentasi untuk setiap metode, parameter request, dan field response tersedia dalam docstring dan muncul saat hover di sebagian besar editor modern.
 
 ## Menghitung token
 
-Anda dapat melihat penggunaan yang tepat untuk request tertentu melalui properti response `usage`, misalnya
+Anda dapat melihat penggunaan yang tepat untuk request tertentu melalui properti response `usage`, misalnya:
 
 ```typescript
 const message = await client.messages.create(/* ... */);
@@ -145,7 +145,7 @@ Sebagai alternatif, Anda dapat menggunakan `client.messages.create({ ..., stream
 
 ## Helper alat
 
-SDK ini menyediakan helper untuk memudahkan pembuatan dan menjalankan alat di Messages API. Anda dapat menggunakan skema Zod atau JSON Schema untuk mendeskripsikan input ke sebuah alat. Anda kemudian dapat menjalankan alat-alat tersebut menggunakan metode `client.beta.messages.toolRunner()`. Metode ini akan menangani penerusan input yang dihasilkan oleh model yang dipilih ke alat yang tepat dan meneruskan hasilnya kembali ke model.
+SDK ini menyediakan helper untuk memudahkan pembuatan dan menjalankan alat di Messages API. Anda dapat menggunakan skema Zod atau JSON Schema untuk mendeskripsikan input ke sebuah alat. Anda kemudian dapat menjalankan alat-alat tersebut menggunakan metode `client.beta.messages.toolRunner()`. Metode ini menangani penerusan input yang dihasilkan oleh model yang dipilih ke alat yang tepat dan meneruskan hasilnya kembali ke model.
 
 Untuk detail lebih lanjut tentang penggunaan alat, lihat [Penggunaan alat dengan Claude](/docs/id/agents-and-tools/tool-use/overview).
 
@@ -213,14 +213,14 @@ Jika `Error` biasa dilempar, pesannya akan dikonversi menjadi blok konten teks.
 
 ## Penggunaan alat
 
-SDK ini menyediakan dukungan untuk penggunaan alat, yang juga dikenal sebagai function calling. Untuk detail lebih lanjut, lihat [Penggunaan alat dengan Claude](/docs/id/agents-and-tools/tool-use/overview).
+SDK ini menyediakan dukungan untuk penggunaan alat (tool use), juga dikenal sebagai function calling. Untuk detail lebih lanjut, lihat [Penggunaan alat dengan Claude](/docs/id/agents-and-tools/tool-use/overview).
 
 ## Helper MCP
 
 SDK ini menyediakan helper untuk integrasi dengan server [Model Context Protocol (MCP)](https://modelcontextprotocol.io/). Helper ini mengonversi tipe MCP ke tipe Claude API, mengurangi boilerplate saat bekerja dengan alat, prompt, dan resource MCP.
 
 <Tip>
-  Claude API juga mendukung [parameter `mcp_servers`](/docs/id/agents-and-tools/mcp-connector) yang memungkinkan Claude terhubung langsung ke server MCP jarak jauh. Gunakan `mcp_servers` ketika Anda memiliki server jarak jauh yang dapat diakses melalui URL dan hanya membutuhkan dukungan alat. Gunakan helper MCP ketika Anda membutuhkan server MCP lokal, prompt, resource, atau kontrol lebih besar atas koneksi MCP.
+  Claude API juga mendukung [parameter `mcp_servers`](/docs/id/agents-and-tools/mcp-connector) yang memungkinkan Claude terhubung langsung ke server MCP jarak jauh. Gunakan `mcp_servers` ketika Anda memiliki server jarak jauh yang dapat diakses melalui URL dan hanya memerlukan dukungan alat. Gunakan helper MCP ketika Anda memerlukan server MCP lokal, prompt, resource, atau kontrol lebih besar atas koneksi MCP.
 </Tip>
 
 ```typescript
@@ -423,7 +423,7 @@ console.log(message._request_id); // req_018EeWyXxfu5pfWkrYcMdjWG
 
 ## Percobaan ulang
 
-Error tertentu akan secara otomatis dicoba ulang 2 kali secara default, dengan exponential backoff singkat. Error koneksi (misalnya, karena masalah konektivitas jaringan), 408 Request Timeout, 409 Conflict, 429 Rate Limit, dan error Internal >=500 semuanya dicoba ulang secara default.
+Error tertentu secara otomatis dicoba ulang 2 kali secara default, dengan exponential backoff singkat. Error koneksi (misalnya, karena masalah konektivitas jaringan), 408 Request Timeout, 409 Conflict, 429 Rate Limit, dan error Internal >=500 semuanya dicoba ulang secara default.
 
 Anda dapat menggunakan opsi `maxRetries` untuk mengonfigurasi atau menonaktifkan ini:
 
@@ -464,7 +464,7 @@ const client = new Anthropic({
   timeout: 20 * 1000 // 20 seconds (default is 10 minutes)
 });
 
-// Timpa per permintaan:
+// Ganti per permintaan:
 await client.messages.create(
   {
     max_tokens: 1024,
@@ -485,11 +485,11 @@ Perhatikan bahwa request yang timeout akan [dicoba ulang dua kali secara default
   Pertimbangkan untuk menggunakan [Messages API](#streaming-responses) dengan streaming untuk request yang berjalan lebih lama.
 </Warning>
 
-Hindari mengatur nilai `max_tokens` yang besar tanpa menggunakan streaming. Beberapa jaringan mungkin memutus koneksi yang idle setelah periode waktu tertentu, yang dapat menyebabkan request gagal atau [timeout](#timeouts) tanpa menerima respons dari Anthropic.
+Hindari mengatur nilai `max_tokens` yang besar tanpa menggunakan streaming. Beberapa jaringan mungkin memutuskan koneksi yang idle setelah jangka waktu tertentu, yang dapat menyebabkan request gagal atau [timeout](#timeouts) tanpa menerima respons dari Anthropic.
 
-SDK ini juga akan melempar error jika request non-streaming diperkirakan akan berlangsung lebih dari sekitar 10 menit. Memberikan `stream: true` atau [menimpa](#timeouts) opsi `timeout` pada level klien atau request akan menonaktifkan error ini.
+SDK ini juga melempar error jika request non-streaming diperkirakan akan berlangsung lebih dari sekitar 10 menit. Memberikan `stream: true` atau [menimpa](#timeouts) opsi `timeout` pada level klien atau request akan menonaktifkan error ini.
 
-Latensi request yang diperkirakan lebih lama dari [timeout](#timeouts) untuk request non-streaming akan mengakibatkan klien memutus koneksi dan mencoba ulang tanpa menerima respons.
+"Latency" (latensi) request yang diperkirakan lebih lama dari [timeout](#timeouts) untuk request non-streaming akan mengakibatkan klien memutuskan koneksi dan mencoba ulang tanpa menerima respons.
 
 Ketika didukung oleh implementasi `fetch`, SDK mengatur opsi [TCP socket keep-alive](https://tldp.org/HOWTO/TCP-Keepalive-HOWTO/overview.html) untuk mengurangi dampak timeout koneksi idle pada beberapa jaringan. Ini dapat [ditimpa](#configuring-proxies) dengan mengonfigurasi proxy kustom.
 
@@ -548,9 +548,9 @@ const message = await client.messages.create(
 
 ### Mengakses data Response mentah (misalnya, header)
 
-`Response` "mentah" yang dikembalikan oleh `fetch()` dapat diakses melalui metode `.asResponse()` pada tipe `APIPromise` yang dikembalikan oleh semua metode. Metode ini mengembalikan hasil segera setelah header untuk respons yang berhasil diterima dan tidak mengonsumsi body respons, sehingga Anda bebas menulis logika parsing atau streaming kustom.
+`Response` "mentah" yang dikembalikan oleh `fetch()` dapat diakses melalui metode `.asResponse()` pada tipe `APIPromise` yang dikembalikan oleh semua metode. Metode ini mengembalikan segera setelah header untuk respons yang berhasil diterima dan tidak mengonsumsi body respons, sehingga Anda bebas menulis logika parsing atau streaming kustom.
 
-Anda juga dapat menggunakan metode `.withResponse()` untuk mendapatkan `Response` mentah bersama dengan data yang telah di-parse. Tidak seperti `.asResponse()`, metode ini mengonsumsi body, dan mengembalikan hasil setelah di-parse.
+Anda juga dapat menggunakan metode `.withResponse()` untuk mendapatkan `Response` mentah bersama dengan data yang telah di-parse. Tidak seperti `.asResponse()`, metode ini mengonsumsi body, dan mengembalikan setelah selesai di-parse.
 
 ```typescript
 const client = new Anthropic();
@@ -579,12 +579,12 @@ console.log(message.content);
 ### Logging
 
 <Warning>
-  Semua pesan log hanya ditujukan untuk debugging. Format dan isi pesan log dapat berubah antar rilis.
+  Semua pesan log hanya dimaksudkan untuk debugging. Format dan isi pesan log dapat berubah antar rilis.
 </Warning>
 
 #### Level log
 
-Level log dapat dikonfigurasi dengan dua cara:
+Anda dapat mengonfigurasi level log dengan dua cara:
 
 1. Melalui variabel lingkungan `ANTHROPIC_LOG`
 2. Menggunakan opsi klien `logLevel` (menimpa variabel lingkungan jika diatur)
@@ -595,7 +595,7 @@ const client = new Anthropic({
 });
 ```
 
-Level log yang tersedia, dari yang paling verbose hingga paling sedikit:
+Level log yang tersedia, dari yang paling verbose hingga yang paling sedikit:
 
 * `'debug'` - Menampilkan pesan debug, info, peringatan, dan error
 * `'info'` - Menampilkan pesan info, peringatan, dan error
@@ -609,7 +609,7 @@ Pada level `'debug'`, semua request dan respons HTTP dicatat, termasuk header da
 
 Secara default, library ini mencatat log ke `globalThis.console`. Anda juga dapat menyediakan logger kustom. Sebagian besar library logging didukung, termasuk [pino](https://www.npmjs.com/package/pino), [winston](https://www.npmjs.com/package/winston), [bunyan](https://www.npmjs.com/package/bunyan), [consola](https://www.npmjs.com/package/consola), [signale](https://www.npmjs.com/package/signale), dan [@std/log](https://jsr.io/@std/log). Jika logger Anda tidak berfungsi, buka sebuah issue.
 
-Saat menyediakan logger kustom, opsi `logLevel` tetap mengontrol pesan mana yang dikeluarkan, pesan di bawah level yang dikonfigurasi tidak akan dikirim ke logger Anda.
+Saat menyediakan logger kustom, opsi `logLevel` tetap mengontrol pesan mana yang dikeluarkan; pesan di bawah level yang dikonfigurasi tidak akan dikirim ke logger Anda.
 
 ```typescript
 import pino from "pino";
@@ -628,7 +628,7 @@ Library ini memiliki tipe untuk akses yang mudah ke API yang terdokumentasi. Jik
 
 #### Endpoint yang tidak terdokumentasi
 
-Untuk membuat request ke endpoint yang tidak terdokumentasi, Anda dapat menggunakan `client.get`, `client.post`, dan verba HTTP lainnya. Opsi pada klien, seperti percobaan ulang, akan dihormati saat membuat request ini.
+Untuk membuat request ke endpoint yang tidak terdokumentasi, Anda dapat menggunakan `client.get`, `client.post`, dan verba HTTP lainnya. Opsi pada klien, seperti percobaan ulang, tetap dihormati saat membuat request ini.
 
 ```typescript
 await client.post("/some/path", {
@@ -639,7 +639,7 @@ await client.post("/some/path", {
 
 #### Parameter request yang tidak terdokumentasi
 
-Untuk membuat request menggunakan parameter yang tidak terdokumentasi, Anda dapat menggunakan `// @ts-expect-error` pada parameter yang tidak terdokumentasi. Library ini tidak memvalidasi pada saat runtime bahwa request cocok dengan tipenya, jadi nilai tambahan apa pun yang Anda kirim akan dikirim apa adanya.
+Untuk membuat request menggunakan parameter yang tidak terdokumentasi, Anda dapat menggunakan `// @ts-expect-error` pada parameter yang tidak terdokumentasi. Library ini tidak memvalidasi saat runtime bahwa request cocok dengan tipenya, jadi nilai tambahan apa pun yang Anda kirim akan dikirim apa adanya.
 
 ```typescript
 client.messages.create({
@@ -649,7 +649,7 @@ client.messages.create({
 });
 ```
 
-Untuk request dengan verba `GET`, parameter tambahan apa pun akan berada di query, semua request lainnya akan mengirimkan parameter tambahan di body.
+Untuk request dengan verba `GET`, parameter tambahan apa pun akan berada di query; semua request lainnya akan mengirimkan parameter tambahan di body.
 
 Jika Anda ingin secara eksplisit mengirim argumen tambahan, Anda dapat melakukannya dengan opsi request `query`, `body`, dan `headers`.
 
@@ -770,9 +770,9 @@ const response = await client.beta.messages.create({
 
   **Kapan hal ini mungkin tidak berbahaya?**
 
-  Dalam skenario tertentu di mana mengaktifkan dukungan browser mungkin tidak menimbulkan risiko yang signifikan:
+  Dalam skenario tertentu di mana mengaktifkan dukungan browser mungkin tidak menimbulkan risiko signifikan:
 
-  * **Alat Internal:** Jika aplikasi hanya digunakan dalam lingkungan internal yang terkontrol di mana penggunanya terpercaya, risiko terpaparnya kredensial dapat dimitigasi.
+  * **Alat internal:** Jika aplikasi digunakan semata-mata dalam lingkungan internal yang terkontrol di mana penggunanya tepercaya, risiko terpaparnya kredensial dapat dimitigasi.
   * **Tujuan pengembangan atau debugging:** Mengaktifkan fitur ini sementara mungkin dapat diterima, asalkan kredensialnya berumur pendek, tidak juga digunakan di lingkungan produksi, atau sering dirotasi.
 </Accordion>
 
@@ -782,24 +782,24 @@ const response = await client.beta.messages.create({
   Untuk panduan penyiapan platform yang terperinci dengan contoh kode, lihat:
 
   * [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock)
-  * [Amazon Bedrock (legacy)](/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
+  * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
+  * [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws)
   * [Google Cloud](/docs/id/build-with-claude/claude-on-vertex-ai)
   * [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry)
-  * [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws)
 </Note>
 
 TypeScript SDK mendukung platform berikut:
 
-* **Bedrock:** `npm install @anthropic-ai/bedrock-sdk`: Menyediakan klien `AnthropicBedrockMantle`, dan `AnthropicBedrock` untuk jalur `bedrock-runtime`
 * **Agent Platform:** `npm install @anthropic-ai/vertex-sdk`: Menyediakan klien `AnthropicVertex`
-* **Foundry:** `npm install @anthropic-ai/foundry-sdk`: Menyediakan klien `AnthropicFoundry`
+* **Bedrock:** `npm install @anthropic-ai/bedrock-sdk`: Menyediakan klien `AnthropicBedrockMantle`, dan `AnthropicBedrock` untuk jalur `bedrock-runtime`
 * **Claude Platform di AWS:** `npm install @anthropic-ai/aws-sdk`: Menyediakan klien `AnthropicAws`. Berikan `workspaceId` ke konstruktor atau atur variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID`. Tersedia dalam beta.
+* **Foundry:** `npm install @anthropic-ai/foundry-sdk`: Menyediakan klien `AnthropicFoundry`
 
-Gunakan `AnthropicBedrockMantle` untuk proyek baru; `AnthropicBedrock` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
+Gunakan `AnthropicBedrockMantle` untuk proyek baru; `AnthropicBedrock` tetap ada untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
 
 ## Semantic versioning
 
-Paket ini umumnya mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang dapat dirilis sebagai versi minor:
+Paket ini secara umum mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang dapat dirilis sebagai versi minor:
 
 1. Perubahan yang hanya memengaruhi tipe statis, tanpa merusak perilaku runtime.
 2. Perubahan pada internal library yang secara teknis publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal.

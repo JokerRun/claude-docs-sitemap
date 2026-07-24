@@ -1,36 +1,36 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/skills
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: b5ac61d90057cd201c10fada41402a3c19a70f5183dd90bded6b858b8b995eba
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 299d9c27604d01751634445f3ab0ff1273d235c1a718cda32262ae0221c9aedb
 ---
 
 # Skills
 
-Lampirkan keahlian berbasis sistem file yang dapat digunakan kembali ke agen Anda untuk alur kerja spesifik domain.
+Lampirkan keahlian berbasis filesystem yang dapat digunakan kembali ke agen Anda untuk alur kerja spesifik domain.
 
 ---
 
-Skills adalah sumber daya berbasis sistem file yang dapat digunakan kembali yang memberikan keahlian spesifik domain kepada agen Anda: alur kerja, konteks, dan praktik terbaik yang mengubah agen serbaguna menjadi spesialis. Tidak seperti prompt (instruksi tingkat percakapan untuk tugas satu kali), skills dimuat sesuai permintaan, hanya memengaruhi "context window" (jendela konteks) saat diperlukan.
+Skills adalah sumber daya berbasis filesystem yang dapat digunakan kembali yang memberikan agen Anda keahlian spesifik domain: alur kerja, konteks, dan praktik terbaik yang mengubah agen serba guna menjadi spesialis. Setiap skill yang Anda tambahkan menimbulkan biaya kecil pada "context window" (jendela konteks) sesi, menambahkan instruksi dan metadata yang membantu model menggunakan skill tersebut. Pelajari lebih lanjut di ikhtisar [Agent Skills](/docs/id/agents-and-tools/agent-skills/overview).
 
 Anda dapat melampirkan dua jenis skill. Keduanya bekerja dengan cara yang sama: agen Anda memanggilnya secara otomatis ketika relevan dengan tugas.
 
-* **Skill bawaan Anthropic:** Tugas dokumen umum seperti penanganan PowerPoint, Excel, Word, dan PDF (`pptx`, `xlsx`, `docx`, `pdf`).
+* **Skill pre-built Anthropic:** Tugas dokumen umum seperti penanganan PowerPoint, Excel, Word, dan PDF (`pptx`, `xlsx`, `docx`, `pdf`).
 * **Skill kustom:** Skill yang Anda buat dan unggah ke workspace Anda.
 
 Untuk mempelajari cara membuat skill kustom, lihat [Agent Skills](/docs/id/agents-and-tools/agent-skills/overview) dan [Praktik terbaik pembuatan skill](/docs/id/agents-and-tools/agent-skills/best-practices). Untuk mengunggah skill kustom ke workspace Anda, lihat [Membuat skill kustom](#create-a-custom-skill).
 
 <Note>
-  Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Membuat skill kustom
 
-Skill kustom adalah direktori yang berisi file `SKILL.md` beserta file pendukung lainnya, yang diunggah ke workspace Anda sebagai arsip zip atau sebagai file individual. Membuat skill akan mengembalikan ID `skill_*` yang Anda referensikan saat melampirkannya ke agen. Skill bawaan Anthropic sudah tersedia di setiap workspace dan tidak memerlukan langkah ini. Untuk hanya menggunakan skill bawaan, lewati ke [Melampirkan skill ke agen](#attach-skills-to-an-agent).
+Skill kustom adalah direktori yang berisi file `SKILL.md` ditambah file pendukung apa pun, yang diunggah ke workspace Anda sebagai arsip zip atau sebagai file individual. Membuat skill mengembalikan ID `skill_*` yang Anda referensikan saat melampirkannya ke agen. Skill pre-built Anthropic sudah tersedia di setiap workspace dan tidak memerlukan langkah ini. Untuk hanya menggunakan skill pre-built, lewati ke [Melampirkan skill ke agen](#attach-skills-to-an-agent).
 
-Saat Anda memanggil Skills API secara langsung dengan cURL atau CLI, sertakan header `anthropic-beta: skills-2025-10-02` secara eksplisit. SDK mengirimkannya secara otomatis.
+Saat Anda memanggil Skills API secara langsung dengan cURL, teruskan header `anthropic-beta: skills-2025-10-02` secara eksplisit. CLI dan SDK mengirimkannya secara otomatis.
 
-Contoh-contoh ini menghilangkan field opsional `display_title`, sehingga judul skill diturunkan dari `SKILL.md`. `display_title` yang diteruskan secara eksplisit harus unik di antara skill kustom dalam workspace Anda.
+Contoh-contoh ini menghilangkan field opsional `display_title`, sehingga judul skill diturunkan dari `SKILL.md`. `display_title` yang diteruskan secara eksplisit harus unik di antara skill kustom di workspace Anda.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -43,8 +43,7 @@ Contoh-contoh ini menghilangkan field opsional `display_title`, sehingga judul s
 
   ```bash CLI
   ant beta:skills create \
-    --file example_skill.zip \
-    --beta skills-2025-10-02
+    --file example_skill.zip
   ```
 
   ```python Python
@@ -200,15 +199,19 @@ Untuk membuat daftar, mengambil, menghapus, dan membuat versi skill kustom, liha
 
 ## Melampirkan skill ke agen
 
-Lampirkan skill saat membuat agen. Setiap [sesi](/docs/id/managed-agents/sessions) mendukung hingga 20 skill secara total, dihitung di seluruh agen dalam sesi tersebut (lihat [Sesi multi-agen](/docs/id/managed-agents/multi-agent)).
+Lampirkan skill saat membuat agen. Setiap [sesi](/docs/id/managed-agents/sessions) mendukung hingga total 500 skill, dihitung di seluruh agen dalam sesi (lihat [Orkestrasi multiagen](/docs/id/managed-agents/multiagent-orchestration)).
+
+<Note>
+  Memasang lebih banyak skill meningkatkan waktu yang dibutuhkan sandbox sesi untuk memulai. Lampirkan hanya skill yang dibutuhkan setiap agen untuk tugasnya.
+</Note>
 
 Setiap entri dalam array `skills` menggunakan field berikut:
 
 | Field      | Deskripsi                                                                                                                                                                                                                |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `type`     | Bernilai `anthropic` untuk skill bawaan atau `custom` untuk skill yang dibuat di workspace.                                                                                                                              |
+| `type`     | Baik `anthropic` untuk skill pre-built atau `custom` untuk skill yang dibuat di workspace.                                                                                                                               |
 | `skill_id` | Pengidentifikasi skill. Untuk skill Anthropic, gunakan nama pendek (misalnya, `xlsx`). Untuk skill kustom, gunakan ID `skill_*` yang dikembalikan saat pembuatan (lihat [Membuat skill kustom](#create-a-custom-skill)). |
-| `version`  | Hanya untuk skill kustom. Sematkan ke versi tertentu atau gunakan `latest`. Opsional. Default-nya adalah `latest` jika dihilangkan.                                                                                      |
+| `version`  | Sematkan ke versi tertentu atau gunakan `latest`. Opsional. Default ke `latest` jika dihilangkan. Berlaku untuk skill Anthropic maupun kustom.                                                                           |
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -384,7 +387,7 @@ Setiap entri dalam array `skills` menggunakan field berikut:
     Unggah file sekali dan referensikan di seluruh permintaan API.
   </Card>
 
-  <Card title="Memulai dengan Agent Skills di API" icon="graduation-cap" href="/docs/id/agents-and-tools/agent-skills/quickstart">
+  <Card title="Mulai dengan Agent Skills di API" icon="graduation-cap" href="/docs/id/agents-and-tools/agent-skills/quickstart">
     Pelajari cara menggunakan Agent Skills untuk membuat dokumen dengan Claude API dalam waktu kurang dari 10 menit.
   </Card>
 </CardGroup>

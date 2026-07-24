@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshooting
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 90cc239e41097219bcec924daf692aeec2c2bbb1655871dd65a9ee8d54870a54
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: e252d23b41d756e5843cc930dec11b6646d0692b5de977b55c2b0d5b1c1b2da5
 ---
 
 > ## Documentation Index
@@ -24,6 +24,7 @@ This page covers performance, stability, and search problems once Claude Code is
 | `API Error: 5xx`, `529 Overloaded`, `429`, request validation errors                                                                                 | [Error reference](/docs/en/errors)                                                            |
 | `model not found` or `you may not have access to it`                                                                                                 | [Error reference](/docs/en/errors#theres-an-issue-with-the-selected-model)                    |
 | VS Code extension not connecting or detecting Claude                                                                                                 | [VS Code integration](/docs/en/vs-code#fix-common-issues)                                     |
+| `Claude Code process exited with code 1` in VS Code or an SDK app                                                                                    | [Error reference](/docs/en/errors#claude-code-process-exited-with-code-n)                     |
 | JetBrains plugin or IDE not detected                                                                                                                 | [JetBrains integration](/docs/en/jetbrains#troubleshooting)                                   |
 | High CPU or memory, slow responses, hangs, search not finding files                                                                                  | [Performance and stability](#performance-and-stability) below                            |
 

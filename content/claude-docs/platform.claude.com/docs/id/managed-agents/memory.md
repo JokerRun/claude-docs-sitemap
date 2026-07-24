@@ -1,33 +1,39 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/memory
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 48738296e6e2125aba61797c1bc7d7e18f4507b82efe491d881684e977e350bb
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: e451fa552452354ca908a78fd92d739fd5c5e3d2d2a7ff7535d3884dcedc5260
 ---
 
 # Menggunakan memori agen
 
-Berikan agen Anda memori persisten yang bertahan di seluruh sesi menggunakan penyimpanan memori.
+Berikan agen Anda memori persisten yang bertahan di seluruh sesi menggunakan memory store.
 
 ---
 
-Setiap sesi Managed Agents dimulai dengan konteks baru secara default. Ketika sesi berakhir, semua state yang telah dibangun oleh agen akan hilang. "Memory store" (penyimpanan memori) memungkinkan agen membawa informasi di seluruh sesi: preferensi pengguna, konvensi proyek, kesalahan sebelumnya, dan konteks domain.
+Setiap sesi Managed Agents dimulai dengan konteks baru secara default. Ketika sesi berakhir, semua state yang dibangun agen akan hilang. Memory store memungkinkan agen membawa informasi di seluruh sesi: preferensi pengguna, konvensi proyek, kesalahan sebelumnya, dan konteks domain.
 
 <Note>
-  Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](/docs/id/api/beta-headers#endpoint-specific-headers).
+</Note>
+
+<Note>
+  Jangan menggabungkan `agent-memory-2026-07-22` dengan `managed-agents-2026-04-01` pada permintaan memory store: mengirim keduanya akan mengembalikan error `400`. Jika kode Anda menetapkan header beta secara eksplisit, ganti `managed-agents-2026-04-01` dengan `agent-memory-2026-07-22` pada panggilan memory store alih-alih menambahkan nilai kedua. Endpoint sesi, termasuk melampirkan memory store ke sesi, tetap menggunakan `managed-agents-2026-04-01`.
+
+  Pada 22 Juli 2026, header `managed-agents-2026-04-01` akan mengadopsi perilaku daftar yang sama pada `GET /v1/memory_stores/{memory_store_id}/memories`; mengirim `agent-memory-2026-07-22` membuat Anda memilih perilaku tersebut sekarang. Kursor halaman dari permintaan yang dibuat tanpa header tersebut tidak valid dengannya, jadi mulai ulang dari halaman pertama.
 </Note>
 
 ## Ikhtisar
 
-**Memory store** adalah kumpulan dokumen teks dengan cakupan workspace yang dioptimalkan untuk Claude. Ketika Anda melampirkan sebuah store ke sesi, store tersebut di-mount sebagai direktori di dalam sandbox sesi. Agen membaca dan menulisnya dengan alat file yang sama yang digunakannya untuk bagian filesystem lainnya, dan catatan yang mendeskripsikan setiap mount secara otomatis ditambahkan ke prompt sistem, memberi tahu agen di mana harus mencari. [Agent toolset](/docs/id/managed-agents/tools) diperlukan untuk interaksi ini; pastikan untuk mengaktifkannya selama [pembuatan agen](/docs/id/managed-agents/agent-setup).
+**Memory store** adalah kumpulan dokumen teks dengan cakupan workspace yang dioptimalkan untuk Claude. Ketika Anda melampirkan store ke sebuah sesi, store tersebut dipasang (mount) sebagai direktori di dalam sandbox sesi. Agen membaca dan menulisnya dengan alat file yang sama yang digunakan untuk sisa filesystem, dan catatan yang menjelaskan setiap mount secara otomatis ditambahkan ke prompt sistem, memberi tahu agen di mana harus mencari. [Toolset agen](/docs/id/managed-agents/tools) diperlukan untuk interaksi ini; pastikan untuk mengaktifkannya selama [pembuatan agen](/docs/id/managed-agents/agent-setup).
 
-Setiap **memory** dalam sebuah store dialamatkan dengan path dan dapat dibaca serta diedit langsung melalui API atau Console, memungkinkan penyetelan, impor, dan ekspor.
+Setiap **memori** dalam sebuah store dialamatkan dengan path dan dapat dibaca serta diedit langsung melalui API atau Console, memungkinkan penyetelan, impor, dan ekspor.
 
-Setiap perubahan pada memory membuat **memory version** yang tidak dapat diubah (immutable), memberi Anda jejak audit dan pemulihan point-in-time untuk semua yang ditulis agen.
+Setiap perubahan pada memori membuat **versi memori** yang tidak dapat diubah (immutable), memberi Anda jejak audit dan pemulihan point-in-time untuk semua yang ditulis agen.
 
 ## Membuat memory store
 
-Berikan store sebuah `name` dan `description`. Deskripsi tersebut diteruskan ke agen, memberi tahu agen apa isi store tersebut.
+Berikan store sebuah `name` dan `description`. Deskripsi tersebut diteruskan ke agen, memberi tahu apa isi store tersebut.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -119,11 +125,11 @@ Berikan store sebuah `name` dan `description`. Deskripsi tersebut diteruskan ke 
   ```
 </CodeGroup>
 
-`id` memory store (`memstore_...`) adalah yang Anda berikan saat melampirkan store ke sesi.
+`id` memory store (`memstore_...`) adalah yang Anda teruskan saat melampirkan store ke sebuah sesi.
 
-### Mengisi awal dengan konten (opsional)
+### Mengisinya dengan konten (opsional)
 
-Muat store terlebih dahulu dengan materi referensi sebelum agen dijalankan:
+Muat store terlebih dahulu dengan materi referensi sebelum agen apa pun berjalan:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -204,16 +210,16 @@ Muat store terlebih dahulu dengan materi referensi sebelum agen dijalankan:
 </CodeGroup>
 
 <Tip>
-  Memory individual dalam store dibatasi hingga 100 kB (\~25 ribu token). Sebuah store menampung maksimum 2.000 memory. Susun memory sebagai banyak file kecil yang terfokus, bukan beberapa file besar.
+  Memori individual dalam store dibatasi hingga 100 kB (\~25k token). Sebuah store menampung maksimum 2.000 memori. Susun memori sebagai banyak file kecil yang terfokus, bukan beberapa file besar.
 </Tip>
 
 ## Melampirkan memory store ke sesi
 
-Memory store dilampirkan dalam array `resources[]` sesi saat sesi dibuat. Tidak seperti resource file dan repository, memory store hanya dapat dilampirkan pada saat pembuatan sesi; menambahkan atau menghapusnya dari sesi yang sedang berjalan tidak didukung.
+Memory store dilampirkan dalam array `resources[]` sesi saat sesi dibuat. Tidak seperti sumber daya file dan repositori, memory store hanya dapat dilampirkan pada saat pembuatan sesi; menambahkan atau menghapusnya dari sesi yang sedang berjalan tidak didukung.
 
-Secara opsional sertakan `instructions` untuk memberikan panduan spesifik sesi tentang bagaimana agen harus menggunakan store ini. Instruksi ini ditampilkan kepada agen bersama dengan `name` dan `description` store, dan dibatasi hingga 4.096 karakter.
+Secara opsional sertakan `instructions` untuk memberikan panduan khusus sesi tentang bagaimana agen harus menggunakan store ini. Ini ditampilkan kepada agen bersama dengan `name` dan `description` store, dan dibatasi hingga 4.096 karakter.
 
-Anda juga dapat mengonfigurasi `access`. Nilai default-nya adalah `read_write` (ditampilkan secara eksplisit dalam contoh berikut), tetapi `read_only` juga didukung.
+Anda juga dapat mengonfigurasi `access`. Nilai defaultnya adalah `read_write` (ditampilkan secara eksplisit dalam contoh berikut), tetapi `read_only` juga didukung.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -367,30 +373,33 @@ Anda juga dapat mengonfigurasi `access`. Nilai default-nya adalah `read_write` (
 </CodeGroup>
 
 <Warning>
-  Memory store dilampirkan dengan akses `read_write` secara default. Jika agen memproses input yang tidak tepercaya (prompt yang disediakan pengguna, konten web yang diambil, atau output alat pihak ketiga), prompt injection yang berhasil dapat menulis konten berbahaya ke dalam store. Sesi berikutnya kemudian membaca konten tersebut sebagai memory tepercaya. Gunakan `read_only` untuk materi referensi, lookup bersama, dan store apa pun yang tidak perlu dimodifikasi oleh agen.
+  Memory store dilampirkan dengan akses `read_write` secara default. Jika agen memproses input yang tidak tepercaya (prompt yang diberikan pengguna, konten web yang diambil, atau output alat pihak ketiga), prompt injection yang berhasil dapat menulis konten berbahaya ke dalam store. Sesi berikutnya kemudian membaca konten tersebut sebagai memori tepercaya. Gunakan `read_only` untuk materi referensi, pencarian bersama, dan store apa pun yang tidak perlu dimodifikasi oleh agen.
 </Warning>
 
-Maksimum **8 memory store** didukung per sesi. Lampirkan beberapa store ketika bagian memory yang berbeda memiliki pemilik atau aturan akses yang berbeda. Alasan umum:
+Maksimum **8 memory store** didukung per sesi. Lampirkan beberapa store ketika bagian memori yang berbeda memiliki pemilik atau aturan akses yang berbeda. Alasan umum:
 
-* **Materi referensi bersama:** satu store read-only yang dilampirkan ke banyak sesi (standar, konvensi, pengetahuan domain), dipisahkan dari store read-write milik setiap sesi.
-* **Memetakan ke struktur produk Anda:** satu store per pengguna akhir, per tim, atau per proyek, sambil berbagi satu konfigurasi agen.
-* **Siklus hidup yang berbeda:** store yang bertahan lebih lama dari satu sesi, atau yang ingin Anda arsipkan dengan jadwalnya sendiri.
+* **Materi referensi bersama:** satu store read-only yang dilampirkan ke banyak sesi (standar, konvensi, pengetahuan domain), dipisahkan dari store read-write milik masing-masing sesi.
+* **Pemetaan ke struktur produk Anda:** satu store per pengguna akhir, per tim, atau per proyek, sambil berbagi satu konfigurasi agen.
+* **Siklus hidup yang berbeda:** store yang bertahan lebih lama dari satu sesi mana pun, atau yang ingin Anda arsipkan dengan jadwalnya sendiri.
 
-### Bagaimana agen mengakses memory
+### Bagaimana agen mengakses memori
 
-Setiap store yang dilampirkan di-mount di dalam sandbox sesi sebagai direktori di bawah `/mnt/memory/`. Nama direktori adalah nama tampilan store yang disanitasi menjadi slug yang aman untuk filesystem (huruf kecil; rangkaian karakter non-alfanumerik menjadi satu tanda hubung), sehingga store bernama "Demo Memory" di-mount di `/mnt/memory/demo-memory/`. Path yang tepat dikembalikan dalam field `mount_path` pada resource memory-store sesi; baca dari sana daripada menyusunnya sendiri. Agen membaca dan menulis store dengan [agent toolset](/docs/id/managed-agents/tools) standar. Penulisan di bawah mount path dipersistenkan kembali ke store dan tetap sinkron di seluruh sesi yang membagikannya; penulisan ke path lain di bawah `/mnt/memory/` masuk ke scratch lokal container dan hilang ketika sesi berakhir. Deskripsi singkat dari setiap mount (nama tampilan, mount path, mode akses, `description` store, dan `instructions` apa pun) secara otomatis ditambahkan ke prompt sistem.
+Setiap store yang dilampirkan dipasang di dalam sandbox sesi sebagai direktori di bawah `/mnt/memory/`. Nama direktori adalah nama tampilan store yang disanitasi menjadi slug yang aman untuk filesystem (huruf kecil; rangkaian karakter non-alfanumerik menjadi satu tanda hubung), jadi store bernama "Demo Memory" dipasang di `/mnt/memory/demo-memory/`. Path yang tepat dikembalikan dalam field `mount_path` pada sumber daya memory-store sesi; baca dari sana alih-alih membangunnya sendiri. Agen membaca dan menulis store dengan [toolset agen](/docs/id/managed-agents/tools) standar. Penulisan di bawah mount path dipersistenkan kembali ke store dan tetap sinkron di seluruh sesi yang membagikannya; penulisan ke path lain di bawah `/mnt/memory/` masuk ke scratch lokal container dan hilang ketika sesi berakhir. Deskripsi singkat dari setiap mount (nama tampilan, mount path, mode akses, `description` store, dan `instructions` apa pun) secara otomatis ditambahkan ke prompt sistem.
 
-`access` diberlakukan pada level filesystem: mount `read_only` menolak penulisan, sementara penulisan ke mount `read_write` menghasilkan [memory version](#audit-memory-changes) yang diatribusikan ke sesi.
+`access` diberlakukan di tingkat filesystem: mount `read_only` menolak penulisan, sementara penulisan ke mount `read_write` menghasilkan [versi memori](#audit-memory-changes) yang diatribusikan ke sesi tersebut.
 
-Pembacaan dan penulisan agen muncul dalam [event stream](/docs/id/managed-agents/events-and-streaming) sebagai event `agent.tool_use` dan `agent.tool_result` biasa untuk alat mana pun yang menyentuh mount tersebut.
+Pembacaan dan penulisan agen muncul di [event stream](/docs/id/managed-agents/events-and-streaming) sebagai event `agent.tool_use` dan `agent.tool_result` biasa untuk alat mana pun yang menyentuh mount tersebut.
 
-## Melihat dan mengedit memory
+## Melihat dan mengedit memori
 
-Memory store dapat dikelola langsung melalui API. Gunakan ini untuk membangun alur kerja peninjauan, memperbaiki memory yang buruk, atau mengisi store sebelum sesi apa pun dijalankan.
+Memory store dapat dikelola langsung melalui API. Gunakan ini untuk membangun alur kerja peninjauan, memperbaiki memori yang buruk, atau mengisi store sebelum sesi apa pun berjalan.
 
-### Membuat daftar memory
+### Mendaftar memori
 
-Buat daftar memory dalam sebuah store, secara opsional difilter dengan `path_prefix` untuk menelusuri path seperti direktori:
+Daftarkan memori dalam sebuah store. Hasil dikembalikan dalam urutan stabil yang ditentukan server.
+
+* `path_prefix` membatasi daftar ke satu direktori. Harus diakhiri dengan `/` dan mencocokkan segmen path utuh, jadi `path_prefix=/notes/` mengembalikan `/notes/todo.md` tetapi tidak `/notes-archive/todo.md`.
+* `depth` mengontrol seberapa dalam daftar berjalan di bawah `path_prefix`: hilangkan (atau berikan `0`) untuk mendaftar seluruh subtree, atau berikan `1` untuk mendaftar hanya anak langsung. Nilai lain mengembalikan error `400`.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -484,9 +493,9 @@ Buat daftar memory dalam sebuah store, secara opsional difilter dengan `path_pre
 
 Lihat [referensi List memories](/docs/id/api/beta/memory_stores/memories/list) untuk parameter lengkap dan skema respons.
 
-### Membaca memory
+### Membaca memori
 
-Mengambil memory individual mengembalikan konten lengkap.
+Mengambil memori individual mengembalikan konten lengkap.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -559,9 +568,9 @@ Mengambil memory individual mengembalikan konten lengkap.
 
 Lihat [referensi Retrieve a memory](/docs/id/api/beta/memory_stores/memories/retrieve) untuk parameter lengkap dan skema respons.
 
-### Membuat memory
+### Membuat memori
 
-`memories.create` membuat memory pada `path` tertentu. Create tidak menimpa; untuk mengubah memory yang sudah ada, gunakan [`memories.update`](#update-a-memory).
+`memories.create` membuat memori pada `path` tertentu. Create tidak menimpa; untuk mengubah memori yang sudah ada, gunakan [`memories.update`](#update-a-memory).
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -647,9 +656,9 @@ Lihat [referensi Retrieve a memory](/docs/id/api/beta/memory_stores/memories/ret
 
 Lihat [referensi Create a memory](/docs/id/api/beta/memory_stores/memories/create) untuk parameter lengkap dan skema respons.
 
-### Memperbarui memory
+### Memperbarui memori
 
-`memories.update` memodifikasi memory yang sudah ada berdasarkan ID. Anda dapat mengubah `content`, `path` (penggantian nama), atau keduanya. Contoh berikut mengganti nama memory ke path arsip:
+`memories.update` memodifikasi memori yang sudah ada berdasarkan ID. Anda dapat mengubah `content`, `path` (penggantian nama), atau keduanya. Contoh ini mengganti nama memori ke path arsip:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -731,9 +740,9 @@ Lihat [referensi Create a memory](/docs/id/api/beta/memory_stores/memories/creat
 
 Lihat [referensi Update a memory](/docs/id/api/beta/memory_stores/memories/update) untuk parameter lengkap dan skema respons.
 
-#### Edit konten yang aman (optimistic concurrency)
+#### Pengeditan konten yang aman (optimistic concurrency)
 
-Untuk menghindari menimpa penulisan yang terjadi bersamaan, berikan prasyarat `content_sha256`. Pembaruan hanya diterapkan jika hash konten yang tersimpan masih cocok dengan yang Anda baca; jika tidak cocok, baca ulang memory dan coba lagi terhadap state yang baru.
+Untuk menghindari menimpa penulisan yang bersamaan, berikan prasyarat `content_sha256`. Pembaruan hanya diterapkan jika hash konten yang tersimpan masih cocok dengan yang Anda baca; jika tidak cocok, baca ulang memori dan coba lagi terhadap state yang baru.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -838,7 +847,7 @@ Untuk menghindari menimpa penulisan yang terjadi bersamaan, berikan prasyarat `c
   ```
 </CodeGroup>
 
-### Menghapus memory
+### Menghapus memori
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -905,19 +914,19 @@ Untuk menghindari menimpa penulisan yang terjadi bersamaan, berikan prasyarat `c
 
 Lihat [referensi Delete a memory](/docs/id/api/beta/memory_stores/memories/delete) untuk parameter lengkap dan skema respons.
 
-## Audit perubahan memory
+## Audit perubahan memori
 
-Setiap mutasi pada memory membuat **memory version** yang tidak dapat diubah (`memver_...`). Gunakan endpoint version untuk mengaudit siapa yang mengubah apa dan kapan, untuk memeriksa atau memulihkan snapshot sebelumnya, dan untuk menghapus konten sensitif dari riwayat dengan redact.
+Setiap mutasi pada memori membuat **versi memori** yang tidak dapat diubah (`memver_...`). Gunakan endpoint versi untuk mengaudit siapa mengubah apa dan kapan, untuk memeriksa atau memulihkan snapshot sebelumnya, dan untuk membersihkan konten sensitif dari riwayat dengan redact.
 
-Version dimiliki oleh store (bukan memory individual) dan tetap ada bahkan setelah memory itu sendiri dihapus, sehingga jejak audit tetap lengkap. Version disimpan selama 30 hari; namun, version terbaru selalu disimpan terlepas dari usianya, sehingga memory yang jarang berubah mungkin mempertahankan riwayat lebih dari 30 hari. Panggilan `memories.retrieve` langsung selalu mengembalikan version terbaru; endpoint version memberi Anda riwayat yang disimpan.
+Versi dimiliki oleh store (bukan memori individual) dan tetap ada bahkan setelah memori itu sendiri dihapus, sehingga jejak audit tetap lengkap. Versi disimpan selama 30 hari; namun, versi terbaru selalu disimpan terlepas dari usianya, jadi memori yang jarang berubah mungkin mempertahankan riwayat lebih dari 30 hari. Panggilan `memories.retrieve` langsung selalu mengembalikan versi terbaru; endpoint versi memberi Anda riwayat yang disimpan.
 
-Tidak ada endpoint restore khusus; untuk melakukan rollback, ambil version yang Anda inginkan dan tulis kembali `content`-nya dengan `memories.update` (atau `memories.create` jika memory induk telah dihapus, karena version bertahan lebih lama dari induknya).
+Tidak ada endpoint pemulihan khusus; untuk melakukan rollback, ambil versi yang Anda inginkan dan tulis kembali `content`-nya dengan `memories.update` (atau `memories.create` jika memori induknya telah dihapus, karena versi bertahan lebih lama dari induknya).
 
-Memory version lama mungkin dihapus setelah 30 hari. Untuk mempertahankan riwayat memory lebih lama, ekspor version melalui API.
+Versi memori lama mungkin dihapus setelah 30 hari. Untuk mempertahankan riwayat memori lebih lama, ekspor versi melalui API.
 
-### Membuat daftar version
+### Mendaftar versi
 
-Buat daftar riwayat version untuk sebuah store, yang terbaru lebih dulu. Contoh berikut memfilter ke riwayat satu memory:
+Daftarkan riwayat versi untuk sebuah store, yang terbaru lebih dulu. Contoh ini memfilter ke riwayat satu memori:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -1035,9 +1044,9 @@ Buat daftar riwayat version untuk sebuah store, yang terbaru lebih dulu. Contoh 
 
 Lihat [referensi List memory versions](/docs/id/api/beta/memory_stores/memory_versions/list) untuk parameter lengkap dan skema respons.
 
-### Mengambil version
+### Mengambil versi
 
-Mengambil version individual mengembalikan field yang sama seperti respons list ditambah isi `content` lengkap.
+Mengambil versi individual mengembalikan field yang sama dengan respons daftar ditambah isi `content` lengkap.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -1113,11 +1122,11 @@ Mengambil version individual mengembalikan field yang sama seperti respons list 
 
 Lihat [referensi Retrieve a memory version](/docs/id/api/beta/memory_stores/memory_versions/retrieve) untuk parameter lengkap dan skema respons.
 
-### Meredaksi version
+### Meredaksi versi
 
-Redact menghapus konten dari version historis sambil mempertahankan jejak audit (siapa melakukan apa, kapan). Gunakan ini untuk alur kerja kepatuhan seperti menghapus rahasia yang bocor, PII, atau permintaan penghapusan pengguna.
+Redact membersihkan konten dari versi historis sambil mempertahankan jejak audit (siapa melakukan apa, kapan). Gunakan untuk alur kerja kepatuhan seperti menghapus rahasia yang bocor, PII, atau permintaan penghapusan pengguna.
 
-Version yang merupakan head saat ini dari memory yang aktif tidak dapat diredaksi. Tulis version baru terlebih dahulu (atau hapus memory), lalu redaksi yang lama.
+Versi yang merupakan head saat ini dari memori yang masih aktif tidak dapat diredaksi. Tulis versi baru terlebih dahulu (atau hapus memorinya), lalu redaksi versi yang lama.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -1192,9 +1201,9 @@ Lihat [referensi Redact a memory version](/docs/id/api/beta/memory_stores/memory
 
 Selain [`create`](/docs/id/api/beta/memory_stores/create), memory store mendukung [`retrieve`](/docs/id/api/beta/memory_stores/retrieve), [`update`](/docs/id/api/beta/memory_stores/update), [`list`](/docs/id/api/beta/memory_stores/list), [`archive`](/docs/id/api/beta/memory_stores/archive), dan [`delete`](/docs/id/api/beta/memory_stores/delete).
 
-### Membuat daftar store
+### Mendaftar store
 
-Buat daftar store dalam workspace. Store yang diarsipkan dikecualikan secara default; berikan `include_archived: true` untuk menyertakannya.
+Daftarkan store dalam workspace. Store yang diarsipkan dikecualikan secara default; berikan `include_archived: true` untuk menyertakannya.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -1313,16 +1322,16 @@ Pengarsipan membuat store menjadi read-only dan mencegahnya dilampirkan ke sesi 
 
 Lihat [referensi Archive a memory store](/docs/id/api/beta/memory_stores/archive) untuk parameter lengkap dan skema respons.
 
-Untuk menghapus store secara permanen beserta semua memory dan version-nya, gunakan [`memory_stores.delete`](/docs/id/api/beta/memory_stores/delete).
+Untuk menghapus store secara permanen beserta semua memori dan versinya, gunakan [`memory_stores.delete`](/docs/id/api/beta/memory_stores/delete).
 
-## Praktik terbaik untuk manajemen memory
+## Praktik terbaik untuk manajemen memori
 
-Ketika sebuah store mencapai batas 2.000 memory, penulisan ke memory baru akan gagal: baik panggilan `memories.create` langsung maupun penulisan file agen ke path yang belum dipetakan. Memory yang sudah ada tetap dapat dibaca dan diedit. Praktik berikut membantu Anda tetap jauh di bawah batas dan pulih dengan baik jika Anda mencapainya.
+Ketika sebuah store mencapai batas 2.000 memorinya, penulisan ke memori baru akan gagal: baik panggilan `memories.create` langsung maupun penulisan file agen ke path yang belum dipetakan. Memori yang sudah ada tetap dapat dibaca dan diedit. Praktik berikut membantu Anda tetap jauh di bawah batas dan pulih dengan baik jika Anda mencapainya.
 
-* **Gunakan store yang terfokus.** Daripada satu store besar serbaguna, gunakan store yang lebih kecil dan dibuat untuk tujuan tertentu — satu per pengguna, satu untuk pengetahuan domain bersama, dan satu untuk konteks spesifik proyek. Setiap store memiliki batas 2.000 memory sendiri, sehingga menjaga store tetap terbatas cakupannya mengurangi kemungkinan salah satunya penuh.
+* **Gunakan store yang terfokus.** Alih-alih satu store besar serbaguna, gunakan store yang lebih kecil dan dibuat untuk tujuan tertentu: satu per pengguna, satu untuk pengetahuan domain bersama, dan satu untuk konteks khusus proyek. Setiap store memiliki batas 2.000 memorinya sendiri, jadi menjaga store tetap terbatas cakupannya mengurangi kemungkinan salah satunya penuh.
 
-* **Padatkan atau pangkas sebelum store penuh.** Hapus memory yang usang atau redundan dengan `memories.delete`. Anda juga dapat menjalankan [dreaming session](/docs/id/managed-agents/dreams), yang mengonsolidasikan konten yang terfragmentasi ke dalam store output baru yang terpisah daripada memodifikasi yang asli. Alihkan sesi Anda ke store output tersebut, lalu arsipkan atau hapus yang asli.
+* **Padatkan atau pangkas sebelum store penuh.** Hapus memori yang usang atau berlebihan dengan `memories.delete`. Anda juga dapat menjalankan [sesi dreaming](/docs/id/managed-agents/dreams), yang mengonsolidasikan konten yang terfragmentasi ke dalam store output baru yang terpisah alih-alih memodifikasi yang asli. Alihkan sesi Anda ke store output tersebut, lalu arsipkan atau hapus yang asli.
 
-* **Lampirkan store baru jika diperlukan.** Jika sebuah store telah berkembang melampaui cakupan yang berguna, lampirkan store baru untuk konten baru dan lampirkan yang asli dengan akses `read_only`. Agen dapat membaca dari keduanya sambil hanya menulis ke yang baru.
+* **Lampirkan store baru ketika masuk akal.** Jika sebuah store telah tumbuh melampaui cakupan yang berguna, lampirkan yang baru untuk konten baru dan lampirkan yang asli dengan akses `read_only`. Agen dapat membaca dari keduanya sambil hanya menulis ke yang baru.
 
-* **Batasi akses tulis jika sesuai.** Sesi yang hanya membaca materi referensi bersama tidak memerlukan `read_write`. Menjaga akses tulis terbatas pada sesi yang benar-benar menambahkan memory baru memudahkan pelacakan dari mana pertumbuhan berasal.
+* **Batasi akses tulis jika sesuai.** Sesi yang hanya membaca materi referensi bersama tidak memerlukan `read_write`. Menjaga akses tulis terbatas pada sesi yang benar-benar menambahkan memori baru memudahkan pelacakan dari mana pertumbuhan berasal.

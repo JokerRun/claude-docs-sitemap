@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-editing
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: fdf4ddfa54f9e558c1165afee532c3cb47e9f01968dc320b5301d6eb33a48bd2
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: b15a2e65e6a50a40fc730a6d30404c0aafc9e29ee7d4c000c4c659c99f7ad508
 ---
 
 # Pengeditan konteks
@@ -12,69 +12,69 @@ Kelola konteks percakapan secara otomatis seiring pertumbuhannya dengan pengedit
 ---
 
 <Note>
-  Fitur ini memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/api-and-data-retention). Ketika organisasi Anda memiliki pengaturan ZDR, data yang dikirim melalui fitur ini tidak disimpan setelah respons API dikembalikan.
+  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 ## Ikhtisar
 
 <Note>
-  Untuk sebagian besar kasus penggunaan, [kompaksi sisi server](/docs/id/build-with-claude/compaction) adalah strategi utama untuk mengelola konteks dalam percakapan yang berjalan lama. Strategi di halaman ini berguna untuk skenario spesifik di mana Anda memerlukan kontrol yang lebih terperinci atas konten apa yang dihapus.
+  Untuk sebagian besar kasus penggunaan, [compaction sisi server](/docs/id/build-with-claude/compaction) adalah strategi utama untuk mengelola konteks dalam percakapan yang berjalan lama. Strategi di halaman ini berguna untuk skenario spesifik di mana Anda memerlukan kontrol yang lebih terperinci atas konten apa yang dihapus.
 </Note>
 
-"Context editing" (pengeditan konteks) memungkinkan Anda menghapus konten tertentu secara selektif dari riwayat percakapan seiring pertumbuhannya. Selain mengoptimalkan biaya dan tetap berada dalam batas, ini tentang mengkurasi secara aktif apa yang dilihat Claude: konteks adalah sumber daya terbatas dengan hasil yang semakin berkurang, dan konten yang tidak relevan menurunkan fokus model. Pengeditan konteks memberi Anda kontrol runtime yang terperinci atas kurasi tersebut. Untuk prinsip yang lebih luas di balik manajemen konteks, lihat [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents). Halaman ini membahas:
+Pengeditan konteks memungkinkan Anda untuk secara selektif menghapus konten tertentu dari riwayat percakapan seiring pertumbuhannya. Di luar mengoptimalkan biaya dan tetap berada dalam batas, ini adalah tentang secara aktif mengkurasi apa yang dilihat Claude: konteks adalah sumber daya terbatas dengan hasil yang semakin berkurang, dan konten yang tidak relevan menurunkan fokus model. Pengeditan konteks memberi Anda kontrol runtime yang terperinci atas kurasi tersebut. Untuk prinsip yang lebih luas di balik manajemen konteks, lihat [Rekayasa konteks yang efektif](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents). Halaman ini mencakup:
 
-* **Penghapusan hasil alat** - Paling cocok untuk alur kerja agentic dengan penggunaan alat yang intensif di mana hasil alat lama tidak lagi diperlukan
+* **Penghapusan hasil alat** - Terbaik untuk alur kerja agentik dengan penggunaan alat yang berat di mana hasil alat lama tidak lagi diperlukan
 * **Penghapusan blok pemikiran** - Untuk mengelola blok pemikiran saat menggunakan pemikiran diperpanjang, dengan opsi untuk mempertahankan pemikiran terbaru demi kontinuitas konteks
-* **Kompaksi SDK sisi klien** - Alternatif berbasis SDK untuk manajemen konteks berbasis ringkasan (kompaksi sisi server umumnya lebih disarankan)
+* **Compaction SDK sisi klien** - Alternatif berbasis SDK untuk manajemen konteks berbasis ringkasan (compaction sisi server umumnya lebih disarankan)
 
-| Pendekatan      | Di mana dijalankan | Strategi                                                                                                   | Cara kerja                                                                                                                                                                                                                                                                                           |
-| --------------- | ------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Sisi server** | API                | Penghapusan hasil alat (`clear_tool_uses_20250919`) Penghapusan blok pemikiran (`clear_thinking_20251015`) | Diterapkan sebelum prompt mencapai Claude. Menghapus konten tertentu dari riwayat percakapan. Setiap strategi dapat dikonfigurasi secara independen.                                                                                                                                                 |
-| **Sisi klien**  | SDK                | Kompaksi                                                                                                   | Tersedia di [SDK Python, TypeScript, dan Ruby](/docs/id/cli-sdks-libraries/overview) saat menggunakan [`tool_runner`](/docs/id/agents-and-tools/tool-use/tool-runner). Menghasilkan ringkasan dan menggantikan seluruh riwayat percakapan. Lihat [Kompaksi sisi klien](#client-side-compaction-sdk). |
+| Pendekatan      | Di mana berjalan | Strategi                                                                                                   | Cara kerja                                                                                                                                                                                                                                                                                             |
+| --------------- | ---------------- | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Sisi server** | API              | Penghapusan hasil alat (`clear_tool_uses_20250919`) Penghapusan blok pemikiran (`clear_thinking_20251015`) | Diterapkan sebelum prompt mencapai Claude. Menghapus konten tertentu dari riwayat percakapan. Setiap strategi dapat dikonfigurasi secara independen.                                                                                                                                                   |
+| **Sisi klien**  | SDK              | Compaction                                                                                                 | Tersedia di [SDK Python, TypeScript, dan Ruby](/docs/id/cli-sdks-libraries/overview) saat menggunakan [`tool_runner`](/docs/id/agents-and-tools/tool-use/tool-runner). Menghasilkan ringkasan dan menggantikan riwayat percakapan lengkap. Lihat [Compaction sisi klien](#client-side-compaction-sdk). |
 
 ## Strategi sisi server
 
 <Note>
-  Pengeditan konteks masih dalam tahap beta dengan dukungan untuk penghapusan hasil alat dan penghapusan blok pemikiran. Untuk mengaktifkannya, gunakan header beta `context-management-2025-06-27` dalam permintaan API Anda.
+  Pengeditan konteks berada dalam tahap beta dengan dukungan untuk penghapusan hasil alat dan penghapusan blok pemikiran. Untuk mengaktifkannya, gunakan header beta `context-management-2025-06-27` dalam permintaan API Anda.
 
   Bagikan umpan balik tentang fitur ini melalui [formulir umpan balik](https://forms.gle/YXC2EKGMhjN1c4L88).
 </Note>
 
 ### Penghapusan hasil alat
 
-Strategi `clear_tool_uses_20250919` menghapus hasil alat ketika konteks percakapan tumbuh melampaui ambang batas yang Anda konfigurasikan. Ini sangat berguna untuk alur kerja agentic dengan penggunaan alat yang intensif. Hasil alat yang lebih lama (seperti isi file atau hasil pencarian) tidak lagi diperlukan setelah Claude memprosesnya.
+Strategi `clear_tool_uses_20250919` menghapus hasil alat ketika konteks percakapan tumbuh melampaui ambang batas yang Anda konfigurasikan. Ini sangat berguna untuk alur kerja agentik dengan penggunaan alat yang berat. Hasil alat yang lebih lama (seperti konten file atau hasil pencarian) tidak lagi diperlukan setelah Claude memprosesnya.
 
-Saat diaktifkan, API secara otomatis menghapus hasil alat tertua dalam urutan kronologis. API mengganti setiap hasil yang dihapus dengan teks placeholder sehingga Claude tahu bahwa hasil tersebut telah dihapus. Secara default, hanya hasil alat yang dihapus. Anda dapat secara opsional menghapus hasil alat sekaligus panggilan alat (parameter penggunaan alat) dengan mengatur `clear_tool_inputs` ke true.
+Saat diaktifkan, API secara otomatis menghapus hasil alat tertua dalam urutan kronologis. API menggantikan setiap hasil yang dihapus dengan teks placeholder sehingga Claude tahu bahwa hasil tersebut telah dihapus. Secara default, hanya hasil alat yang dihapus. Anda dapat secara opsional menghapus baik hasil alat maupun panggilan alat (parameter tool use) dengan mengatur `clear_tool_inputs` ke true.
 
 ### Penghapusan blok pemikiran
 
-Strategi `clear_thinking_20251015` mengelola blok `thinking` dalam percakapan ketika pemikiran diperpanjang diaktifkan. Strategi ini memberi Anda kontrol atas preservasi pemikiran: Anda dapat memilih untuk mempertahankan lebih banyak blok pemikiran guna menjaga kontinuitas penalaran, atau menghapusnya secara lebih agresif untuk menghemat ruang konteks.
+Strategi `clear_thinking_20251015` mengelola blok `thinking` dalam percakapan ketika pemikiran diperpanjang diaktifkan. Strategi ini memberi Anda kontrol atas pelestarian pemikiran: Anda dapat memilih untuk menyimpan lebih banyak blok pemikiran untuk mempertahankan kontinuitas penalaran, atau menghapusnya secara lebih agresif untuk menghemat ruang konteks.
 
 <Tip>
   **Perilaku default:** Default bervariasi berdasarkan kelas model.
 
-  | Kelas model | Pertahankan semua pemikiran sebelumnya | Pertahankan hanya pemikiran giliran terakhir               |
-  | ----------- | -------------------------------------- | ---------------------------------------------------------- |
-  | Opus        | Claude Opus 4.5 dan yang lebih baru    | Claude Opus 4.1 (tidak digunakan lagi) dan yang lebih lama |
-  | Sonnet      | Claude Sonnet 4.6 dan yang lebih baru  | Claude Sonnet 4.5 dan yang lebih lama                      |
-  | Haiku       | (tidak ada)                            | Semua model hingga Claude Haiku 4.5                        |
+  | Kelas model | Simpan semua pemikiran sebelumnya     | Simpan hanya pemikiran dari giliran terakhir |
+  | ----------- | ------------------------------------- | -------------------------------------------- |
+  | Opus        | Claude Opus 4.5 dan yang lebih baru   | Claude Opus 4.1 (usang) dan yang lebih lama  |
+  | Sonnet      | Claude Sonnet 4.6 dan yang lebih baru | Claude Sonnet 4.5 dan yang lebih lama        |
+  | Haiku       | (tidak ada)                           | Semua model hingga Claude Haiku 4.5          |
 
-  Gunakan strategi ini untuk mengganti default. Jika kode Anda berjalan di beberapa tingkatan model, atur `keep` secara eksplisit daripada mengandalkan default per model.
+  Gunakan strategi ini untuk mengganti default. Jika kode Anda berjalan di beberapa tingkatan model, atur `keep` secara eksplisit daripada mengandalkan default per-model.
 </Tip>
 
-Satu giliran percakapan asisten dapat mencakup beberapa blok konten (misalnya, saat menggunakan alat) dan beberapa blok pemikiran (misalnya, dengan [interleaved thinking](/docs/id/build-with-claude/extended-thinking#interleaved-thinking)).
+Giliran percakapan asisten dapat mencakup beberapa blok konten (misalnya, saat menggunakan alat) dan beberapa blok pemikiran (misalnya, dengan [pemikiran berselang](/docs/id/build-with-claude/extended-thinking#interleaved-thinking)).
 
 ### Pengeditan konteks terjadi di sisi server
 
-Pengeditan konteks diterapkan di sisi server sebelum prompt mencapai Claude. Aplikasi klien Anda mempertahankan riwayat percakapan lengkap yang tidak dimodifikasi. Anda tidak perlu menyinkronkan state klien Anda dengan versi yang telah diedit. Lanjutkan mengelola riwayat percakapan lengkap Anda secara lokal seperti biasa.
+Pengeditan konteks diterapkan di sisi server sebelum prompt mencapai Claude. Aplikasi klien Anda mempertahankan riwayat percakapan lengkap yang tidak dimodifikasi. Anda tidak perlu menyinkronkan status klien Anda dengan versi yang diedit. Lanjutkan mengelola riwayat percakapan lengkap Anda secara lokal seperti biasa.
 
 ### Pengeditan konteks dan caching prompt
 
 Interaksi pengeditan konteks dengan [caching prompt](/docs/id/build-with-claude/prompt-caching) bervariasi berdasarkan strategi:
 
-* **Penghapusan hasil alat**: Membatalkan prefiks prompt yang di-cache ketika konten dihapus. Untuk mengatasinya, hapus cukup banyak token agar pembatalan cache tersebut sepadan. Gunakan parameter `clear_at_least` untuk memastikan jumlah minimum token dihapus setiap kali. Anda akan dikenakan biaya penulisan cache setiap kali konten dihapus, tetapi permintaan berikutnya dapat menggunakan kembali prefiks yang baru di-cache.
+* **Penghapusan hasil alat**: Membatalkan prefiks prompt yang di-cache ketika konten dihapus. Untuk memperhitungkan hal ini, hapus token yang cukup agar pembatalan cache sepadan. Gunakan parameter `clear_at_least` untuk memastikan jumlah minimum token dihapus setiap kali. Anda akan dikenakan biaya penulisan cache setiap kali konten dihapus, tetapi permintaan berikutnya dapat menggunakan kembali prefiks yang baru di-cache.
 
-* **Penghapusan blok pemikiran**: Ketika blok pemikiran **dipertahankan** dalam konteks (tidak dihapus), cache prompt tetap terjaga, memungkinkan cache hit dan mengurangi biaya token input. Ketika blok pemikiran **dihapus**, cache dibatalkan pada titik di mana penghapusan terjadi. Konfigurasikan parameter `keep` berdasarkan apakah Anda ingin memprioritaskan performa cache atau ketersediaan jendela konteks.
+* **Penghapusan blok pemikiran**: Ketika blok pemikiran **disimpan** dalam konteks (tidak dihapus), cache prompt dipertahankan, memungkinkan cache hit dan mengurangi biaya token input. Ketika blok pemikiran **dihapus**, cache dibatalkan pada titik di mana penghapusan terjadi. Konfigurasikan parameter `keep` berdasarkan apakah Anda ingin memprioritaskan kinerja cache atau ketersediaan jendela konteks.
 
 ## Model yang didukung
 
@@ -82,7 +82,7 @@ Pengeditan konteks tersedia di semua model Claude yang didukung.
 
 ## Penggunaan penghapusan hasil alat
 
-Cara paling sederhana untuk mengaktifkan penghapusan hasil alat adalah dengan hanya menentukan tipe strategi. Semua [opsi konfigurasi](#configuration-options-for-tool-result-clearing) lainnya menggunakan nilai default:
+Cara paling sederhana untuk mengaktifkan penghapusan hasil alat adalah dengan hanya menentukan tipe strategi. Semua [opsi konfigurasi](#configuration-options-for-tool-result-clearing) lainnya menggunakan nilai default-nya:
 
 <CodeGroup>
   ```bash cURL
@@ -404,11 +404,11 @@ Anda dapat menyesuaikan perilaku penghapusan hasil alat dengan parameter tambaha
           "edits": [
               {
                   "type": "clear_tool_uses_20250919",
-                  # Picu pembersihan ketika ambang batas terlampaui
+                  # Memicu pembersihan saat ambang batas terlampaui
                   "trigger": {"type": "input_tokens", "value": 30000},
                   # Jumlah penggunaan alat yang dipertahankan setelah pembersihan
                   "keep": {"type": "tool_uses", "value": 3},
-                  # Opsional: Bersihkan setidaknya sejumlah token ini
+                  # Opsional: Bersihkan setidaknya sebanyak token ini
                   "clear_at_least": {"type": "input_tokens", "value": 5000},
                   # Kecualikan alat-alat ini dari pembersihan
                   "exclude_tools": ["web_search"],
@@ -449,7 +449,7 @@ Anda dapat menyesuaikan perilaku penghapusan hasil alat dengan parameter tambaha
       edits: [
         {
           type: "clear_tool_uses_20250919",
-          // Picu pembersihan saat ambang batas terlampaui
+          // Memicu pembersihan saat ambang batas terlampaui
           trigger: {
             type: "input_tokens",
             value: 30000
@@ -459,7 +459,7 @@ Anda dapat menyesuaikan perilaku penghapusan hasil alat dengan parameter tambaha
             type: "tool_uses",
             value: 3
           },
-          // Opsional: Bersihkan setidaknya sejumlah token ini
+          // Opsional: Bersihkan setidaknya sebanyak token ini
           clear_at_least: {
             type: "input_tokens",
             value: 5000
@@ -936,13 +936,13 @@ Aktifkan penghapusan blok pemikiran untuk mengelola konteks dan caching prompt s
 
 Strategi `clear_thinking_20251015` mendukung konfigurasi berikut:
 
-| Opsi konfigurasi | Default            | Deskripsi                                                                                                                                                                                                                                                                                                                                                                        |
-| ---------------- | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `keep`           | Spesifik per model | Menentukan berapa banyak giliran asisten terbaru dengan blok pemikiran yang akan dipertahankan. Gunakan `{type: "thinking_turns", value: N}` di mana N harus > 0 untuk mempertahankan N giliran terakhir, atau `"all"` untuk mempertahankan semua blok pemikiran. Opus 4.5+ dan Sonnet 4.6+: semua giliran. Opus/Sonnet yang lebih lama dan semua Haiku: hanya giliran terakhir. |
+| Opsi konfigurasi | Default            | Deskripsi                                                                                                                                                                                                                                                                                                                                                              |
+| ---------------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `keep`           | Spesifik per model | Menentukan berapa banyak giliran asisten terbaru dengan blok pemikiran yang akan dipertahankan. Gunakan `{type: "thinking_turns", value: N}` di mana N harus > 0 untuk menyimpan N giliran terakhir, atau `"all"` untuk menyimpan semua blok pemikiran. Opus 4.5+ dan Sonnet 4.6+: semua giliran. Opus/Sonnet yang lebih lama dan semua Haiku: hanya giliran terakhir. |
 
 **Contoh konfigurasi:**
 
-Pertahankan blok pemikiran dari 3 giliran asisten terakhir:
+Simpan blok pemikiran dari 3 giliran asisten terakhir:
 
 <CodeGroup>
   ```bash cURL
@@ -1166,7 +1166,7 @@ Pertahankan blok pemikiran dari 3 giliran asisten terakhir:
   ```
 </CodeGroup>
 
-Pertahankan semua blok pemikiran (memaksimalkan cache hit):
+Simpan semua blok pemikiran (memaksimalkan cache hit):
 
 <CodeGroup>
   ```bash cURL
@@ -1377,7 +1377,7 @@ Pertahankan semua blok pemikiran (memaksimalkan cache hit):
 Anda dapat menggunakan penghapusan blok pemikiran dan penghapusan hasil alat secara bersamaan:
 
 <Note>
-  Saat menggunakan beberapa strategi, strategi `clear_thinking_20251015` harus dicantumkan pertama dalam array `edits`.
+  Saat menggunakan beberapa strategi, strategi `clear_thinking_20251015` harus dicantumkan terlebih dahulu dalam array `edits`.
 </Note>
 
 <CodeGroup>
@@ -1775,17 +1775,17 @@ Anda dapat menggunakan penghapusan blok pemikiran dan penghapusan hasil alat sec
 
 ## Opsi konfigurasi untuk penghapusan hasil alat
 
-| Opsi konfigurasi    | Default             | Deskripsi                                                                                                                                                                                                                                                                |
-| ------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `trigger`           | 100.000 token input | Menentukan kapan strategi pengeditan konteks diaktifkan. Setelah prompt melebihi ambang batas ini, penghapusan akan dimulai. Anda dapat menentukan nilai ini dalam `input_tokens` atau `tool_uses`.                                                                      |
-| `keep`              | 3 penggunaan alat   | Menentukan berapa banyak pasangan penggunaan/hasil alat terbaru yang akan dipertahankan setelah penghapusan terjadi. API menghapus interaksi alat tertua terlebih dahulu, mempertahankan yang terbaru.                                                                   |
-| `clear_at_least`    | Tidak ada           | Memastikan jumlah minimum token dihapus setiap kali strategi diaktifkan. Jika API tidak dapat menghapus setidaknya jumlah yang ditentukan, strategi tidak akan diterapkan. Ini membantu menentukan apakah penghapusan konteks sepadan dengan rusaknya cache prompt Anda. |
-| `exclude_tools`     | Tidak ada           | Daftar nama alat yang penggunaan dan hasilnya tidak boleh dihapus. Berguna untuk mempertahankan konteks penting.                                                                                                                                                         |
-| `clear_tool_inputs` | `false`             | Mengontrol apakah parameter panggilan alat dihapus bersama dengan hasil alat. Secara default, hanya hasil alat yang dihapus sementara panggilan alat asli Claude tetap terlihat.                                                                                         |
+| Opsi konfigurasi    | Default             | Deskripsi                                                                                                                                                                                                                                                               |
+| ------------------- | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `trigger`           | 100.000 token input | Menentukan kapan strategi pengeditan konteks diaktifkan. Setelah prompt melebihi ambang batas ini, penghapusan akan dimulai. Anda dapat menentukan nilai ini dalam `input_tokens` atau `tool_uses`.                                                                     |
+| `keep`              | 3 tool use          | Menentukan berapa banyak pasangan tool use/hasil terbaru yang akan disimpan setelah penghapusan terjadi. API menghapus interaksi alat tertua terlebih dahulu, mempertahankan yang terbaru.                                                                              |
+| `clear_at_least`    | Tidak ada           | Memastikan jumlah minimum token dihapus setiap kali strategi diaktifkan. Jika API tidak dapat menghapus setidaknya jumlah yang ditentukan, strategi tidak akan diterapkan. Ini membantu menentukan apakah penghapusan konteks sepadan dengan merusak cache prompt Anda. |
+| `exclude_tools`     | Tidak ada           | Daftar nama alat yang tool use dan hasilnya tidak boleh dihapus. Berguna untuk mempertahankan konteks penting.                                                                                                                                                          |
+| `clear_tool_inputs` | `false`             | Mengontrol apakah parameter panggilan alat dihapus bersama dengan hasil alat. Secara default, hanya hasil alat yang dihapus sementara panggilan alat asli Claude tetap terlihat.                                                                                        |
 
 ## Respons pengeditan konteks
 
-Anda dapat melihat pengeditan konteks mana yang diterapkan pada permintaan Anda menggunakan field respons `context_management`, beserta statistik berguna tentang konten dan token input yang dihapus.
+Anda dapat melihat pengeditan konteks mana yang diterapkan pada permintaan Anda menggunakan bidang respons `context_management`, bersama dengan statistik yang berguna tentang konten dan token input yang dihapus.
 
 ```json Output
 {
@@ -1839,7 +1839,7 @@ Untuk respons streaming, pengeditan konteks disertakan dalam event `message_delt
 
 ## Penghitungan token
 
-Endpoint [penghitungan token](/docs/id/build-with-claude/token-counting) mendukung manajemen konteks, memungkinkan Anda melihat pratinjau berapa banyak token yang akan digunakan prompt Anda setelah pengeditan konteks diterapkan.
+Endpoint [penghitungan token](/docs/id/build-with-claude/token-counting) mendukung manajemen konteks, memungkinkan Anda untuk melihat pratinjau berapa banyak token yang akan digunakan prompt Anda setelah pengeditan konteks diterapkan.
 
 <CodeGroup>
   ```bash cURL
@@ -2143,21 +2143,21 @@ Endpoint [penghitungan token](/docs/id/build-with-claude/token-counting) menduku
 }
 ```
 
-Respons menunjukkan jumlah token akhir setelah manajemen konteks diterapkan (`input_tokens`) dan jumlah token asli sebelum penghapusan apa pun terjadi (`original_input_tokens`).
+Respons menunjukkan baik jumlah token akhir setelah manajemen konteks diterapkan (`input_tokens`) maupun jumlah token asli sebelum penghapusan apa pun terjadi (`original_input_tokens`).
 
 ## Menggunakan dengan alat memori
 
-Pengeditan konteks dapat dikombinasikan dengan [alat memori](/docs/id/agents-and-tools/tool-use/memory-tool). Ketika konteks percakapan Anda mendekati ambang batas penghapusan yang dikonfigurasi, Claude menerima peringatan otomatis untuk menyimpan informasi penting. Ini memungkinkan Claude menyimpan hasil alat atau konteks ke file memorinya sebelum dihapus dari riwayat percakapan.
+Pengeditan konteks dapat dikombinasikan dengan [alat memori](/docs/id/agents-and-tools/tool-use/memory-tool). Ketika konteks percakapan Anda mendekati ambang batas penghapusan yang dikonfigurasi, Claude menerima peringatan otomatis untuk mempertahankan informasi penting. Ini memungkinkan Claude untuk menyimpan hasil alat atau konteks ke file memorinya sebelum dihapus dari riwayat percakapan.
 
 Kombinasi ini memungkinkan Anda untuk:
 
-* **Mempertahankan konteks penting:** Claude dapat menulis informasi esensial dari hasil alat ke file memori sebelum hasil tersebut dihapus
-* **Menjaga alur kerja yang berjalan lama:** Memungkinkan alur kerja agentic yang seharusnya melebihi batas konteks dengan memindahkan informasi ke penyimpanan persisten
-* **Mengakses informasi sesuai kebutuhan:** Claude dapat mencari informasi yang sebelumnya dihapus dari file memori saat diperlukan, daripada menyimpan semuanya di jendela konteks aktif
+* **Mempertahankan konteks penting:** Claude dapat menulis informasi penting dari hasil alat ke file memori sebelum hasil tersebut dihapus
+* **Mempertahankan alur kerja yang berjalan lama:** Memungkinkan alur kerja agentik yang jika tidak akan melebihi batas konteks dengan memindahkan informasi ke penyimpanan persisten
+* **Mengakses informasi sesuai permintaan:** Claude dapat mencari informasi yang sebelumnya dihapus dari file memori saat diperlukan, daripada menyimpan semuanya di jendela konteks aktif
 
 Misalnya, dalam alur kerja pengeditan file di mana Claude melakukan banyak operasi, Claude dapat merangkum perubahan yang telah selesai ke file memori seiring pertumbuhan konteks. Ketika hasil alat dihapus, Claude tetap memiliki akses ke informasi tersebut melalui sistem memorinya dan dapat terus bekerja secara efektif.
 
-Untuk menggunakan kedua fitur bersamaan, aktifkan keduanya dalam permintaan API Anda:
+Untuk menggunakan kedua fitur bersama-sama, aktifkan keduanya dalam permintaan API Anda:
 
 <CodeGroup>
   ```bash cURL
@@ -2369,43 +2369,43 @@ Untuk menggunakan kedua fitur bersamaan, aktifkan keduanya dalam permintaan API 
 
 Untuk referensi lengkap alat memori termasuk perintah dan contoh, lihat [Alat memori](/docs/id/agents-and-tools/tool-use/memory-tool).
 
-## Kompaksi sisi klien (SDK)
+## Compaction sisi klien (SDK)
 
 <Warning>
-  **Anthropic merekomendasikan kompaksi sisi server daripada kompaksi SDK.** [Kompaksi sisi server](/docs/id/build-with-claude/compaction) menangani manajemen konteks secara otomatis dengan kompleksitas integrasi yang lebih rendah, perhitungan penggunaan token yang lebih baik, dan tanpa keterbatasan sisi klien. Gunakan kompaksi SDK hanya jika Anda secara spesifik memerlukan kontrol sisi klien atas proses peringkasan.
+  **Anthropic merekomendasikan compaction sisi server daripada compaction SDK.** [Compaction sisi server](/docs/id/build-with-claude/compaction) menangani manajemen konteks secara otomatis dengan kompleksitas integrasi yang lebih rendah, perhitungan penggunaan token yang lebih baik, dan tanpa keterbatasan sisi klien. Gunakan compaction SDK hanya jika Anda secara khusus memerlukan kontrol sisi klien atas proses peringkasan.
 
-  Parameter `compaction_control` sudah tidak digunakan lagi (deprecated) di SDK Python, TypeScript, dan Ruby dan akan dihapus di versi mendatang. SDK akan mengeluarkan peringatan deprecation saat parameter ini diaktifkan. Untuk menggunakan kompaksi sisi server dengan tool runner, teruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
+  Parameter `compaction_control` sudah usang di SDK Python, TypeScript, dan Ruby dan akan dihapus di versi mendatang. SDK mengeluarkan peringatan penghentian ketika parameter ini diaktifkan. Untuk menggunakan compaction sisi server dengan tool runner, teruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
 </Warning>
 
 <Note>
-  Kompaksi tersedia di [SDK Python, TypeScript, dan Ruby](/docs/id/cli-sdks-libraries/overview) saat menggunakan [metode `tool_runner`](/docs/id/agents-and-tools/tool-use/tool-runner).
+  Compaction tersedia di [SDK Python, TypeScript, dan Ruby](/docs/id/cli-sdks-libraries/overview) saat menggunakan [metode `tool_runner`](/docs/id/agents-and-tools/tool-use/tool-runner).
 </Note>
 
-Kompaksi adalah fitur SDK yang secara otomatis mengelola konteks percakapan dengan menghasilkan ringkasan ketika penggunaan token tumbuh terlalu besar. Tidak seperti strategi pengeditan konteks sisi server yang menghapus konten, kompaksi menginstruksikan Claude untuk merangkum riwayat percakapan, lalu mengganti seluruh riwayat dengan ringkasan tersebut. Ini memungkinkan Claude untuk terus mengerjakan tugas yang berjalan lama yang seharusnya melebihi [jendela konteks](/docs/id/build-with-claude/context-windows).
+Compaction adalah fitur SDK yang secara otomatis mengelola konteks percakapan dengan menghasilkan ringkasan ketika penggunaan token tumbuh terlalu besar. Tidak seperti strategi pengeditan konteks sisi server yang menghapus konten, compaction menginstruksikan Claude untuk merangkum riwayat percakapan, lalu menggantikan riwayat lengkap dengan ringkasan tersebut. Ini memungkinkan Claude untuk terus mengerjakan tugas yang berjalan lama yang jika tidak akan melebihi [jendela konteks](/docs/id/build-with-claude/context-windows).
 
-### Cara kerja kompaksi
+### Cara kerja compaction
 
-Ketika kompaksi diaktifkan, SDK memantau penggunaan token setelah setiap respons model:
+Ketika compaction diaktifkan, SDK memantau penggunaan token setelah setiap respons model:
 
 1. **Pemeriksaan ambang batas:** SDK menghitung total token sebagai `input_tokens + cache_creation_input_tokens + cache_read_input_tokens + output_tokens`.
 2. **Pembuatan ringkasan:** Ketika ambang batas terlampaui, prompt ringkasan disisipkan sebagai giliran pengguna, dan Claude menghasilkan ringkasan terstruktur yang dibungkus dalam tag `<summary></summary>`.
-3. **Penggantian konteks:** SDK mengekstrak ringkasan dan mengganti seluruh riwayat pesan dengannya.
-4. **Kelanjutan:** Percakapan dilanjutkan dari ringkasan, dengan Claude melanjutkan dari titik terakhir.
+3. **Penggantian konteks:** SDK mengekstrak ringkasan dan menggantikan seluruh riwayat pesan dengannya.
+4. **Kelanjutan:** Percakapan dilanjutkan dari ringkasan, dengan Claude melanjutkan dari titik terakhirnya.
 
-### Menggunakan kompaksi
+### Menggunakan compaction
 
 Tambahkan `compaction_control` ke panggilan `tool_runner` Anda untuk mengaktifkan peringkasan otomatis ketika penggunaan token melebihi ambang batas.
 
 <Tabs>
   <Tab title="cURL">
     <Note>
-      Kompaksi berjalan di sisi klien dalam helper `tool_runner` SDK, sehingga tidak memiliki padanan HTTP langsung. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani kompaksi di server Anthropic.
+      Compaction berjalan di sisi klien dalam helper `tool_runner` SDK, sehingga tidak memiliki padanan HTTP langsung. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani compaction di server Anthropic.
     </Note>
   </Tab>
 
   <Tab title="CLI">
     <Note>
-      CLI tidak menyertakan helper `tool_runner`. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani kompaksi di server Anthropic tanpa integrasi sisi SDK.
+      CLI tidak menyertakan helper `tool_runner`. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani compaction di server Anthropic tanpa integrasi sisi SDK.
     </Note>
   </Tab>
 
@@ -2446,25 +2446,25 @@ Tambahkan `compaction_control` ke panggilan `tool_runner` Anda untuk mengaktifka
 
   <Tab title="C#">
     <Note>
-      SDK C# menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
+      SDK C# menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
   <Tab title="Go">
     <Note>
-      SDK Go menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
+      SDK Go menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
   <Tab title="Java">
     <Note>
-      SDK Java menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
+      SDK Java menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
   <Tab title="PHP">
     <Note>
-      SDK PHP menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
+      SDK PHP menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
@@ -2487,11 +2487,11 @@ Tambahkan `compaction_control` ke panggilan `tool_runner` Anda untuk mengaktifka
   </Tab>
 </Tabs>
 
-#### Apa yang terjadi selama kompaksi
+#### Apa yang terjadi selama compaction
 
 Seiring pertumbuhan percakapan, riwayat pesan terakumulasi:
 
-**Sebelum kompaksi (mendekati 100k token):**
+**Sebelum compaction (mendekati 100k token):**
 
 ```json
 [
@@ -2511,9 +2511,9 @@ Seiring pertumbuhan percakapan, riwayat pesan terakumulasi:
 ]
 ```
 
-Ketika token melebihi ambang batas, SDK menyisipkan permintaan ringkasan dan Claude menghasilkan ringkasan. Seluruh riwayat kemudian diganti:
+Ketika token melebihi ambang batas, SDK menyisipkan permintaan ringkasan dan Claude menghasilkan ringkasan. Seluruh riwayat kemudian digantikan:
 
-**Setelah kompaksi (kembali ke \~2–3k token):**
+**Setelah compaction (kembali ke \~2–3k token):**
 
 ```json
 [
@@ -2524,31 +2524,31 @@ Ketika token melebihi ambang batas, SDK menyisipkan permintaan ringkasan dan Cla
 ]
 ```
 
-Claude melanjutkan pekerjaan dari ringkasan ini seolah-olah itu adalah riwayat percakapan asli.
+Claude terus bekerja dari ringkasan ini seolah-olah itu adalah riwayat percakapan asli.
 
 ### Opsi konfigurasi
 
 | Parameter                 | Tipe    | Wajib | Default                                                   | Deskripsi                                         |
 | ------------------------- | ------- | ----- | --------------------------------------------------------- | ------------------------------------------------- |
-| `enabled`                 | boolean | Ya    | -                                                         | Apakah akan mengaktifkan kompaksi otomatis        |
-| `context_token_threshold` | number  | Tidak | 100.000                                                   | Jumlah token di mana kompaksi dipicu              |
+| `enabled`                 | boolean | Ya    | -                                                         | Apakah mengaktifkan compaction otomatis           |
+| `context_token_threshold` | number  | Tidak | 100.000                                                   | Jumlah token di mana compaction dipicu            |
 | `model`                   | string  | Tidak | Sama dengan model utama                                   | Model yang digunakan untuk menghasilkan ringkasan |
 | `summary_prompt`          | string  | Tidak | Lihat [Prompt ringkasan default](#default-summary-prompt) | Prompt kustom untuk pembuatan ringkasan           |
 
 #### Memilih ambang batas token
 
-Ambang batas menentukan kapan kompaksi terjadi. Ambang batas yang lebih rendah berarti kompaksi lebih sering dengan jendela konteks yang lebih kecil. Ambang batas yang lebih tinggi memungkinkan lebih banyak konteks tetapi berisiko mencapai batas.
+Ambang batas menentukan kapan compaction terjadi. Ambang batas yang lebih rendah berarti compaction yang lebih sering dengan jendela konteks yang lebih kecil. Ambang batas yang lebih tinggi memungkinkan lebih banyak konteks tetapi berisiko mencapai batas.
 
 <Tabs>
   <Tab title="cURL">
     <Note>
-      Kompaksi berjalan di sisi klien dalam helper `tool_runner` SDK, sehingga tidak memiliki padanan HTTP langsung. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani kompaksi di server Anthropic.
+      Compaction berjalan di sisi klien dalam helper `tool_runner` SDK, sehingga tidak memiliki padanan HTTP langsung. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani compaction di server Anthropic.
     </Note>
   </Tab>
 
   <Tab title="CLI">
     <Note>
-      CLI tidak menyertakan helper `tool_runner`. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani kompaksi di server Anthropic tanpa integrasi sisi SDK.
+      CLI tidak menyertakan helper `tool_runner`. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani compaction di server Anthropic tanpa integrasi sisi SDK.
     </Note>
   </Tab>
 
@@ -2561,7 +2561,7 @@ Ambang batas menentukan kapan kompaksi terjadi. Ambang batas yang lebih rendah b
         max_tokens=1024,
         tools=[read_file],
         messages=[{"role": "user", "content": "What's in config.json?"}],
-        # Nilai lebih rendah memadatkan lebih sering; naikkan ke 150000 jika tugas butuh lebih banyak konteks
+        # Nilai yang lebih rendah melakukan pemadatan lebih sering; naikkan ke 150000 jika tugas membutuhkan lebih banyak konteks
         compaction_control={"enabled": True, "context_token_threshold": 50000},
     )
 
@@ -2579,7 +2579,7 @@ Ambang batas menentukan kapan kompaksi terjadi. Ambang batas yang lebih rendah b
       max_tokens: 1024,
       tools: [readFile],
       messages: [{ role: "user", content: "What's in config.json?" }],
-      // Nilai lebih rendah memadatkan lebih sering; naikkan ke 150000 jika tugas butuh lebih banyak konteks
+      // Nilai yang lebih rendah memadatkan lebih sering; naikkan ke 150000 jika tugas membutuhkan lebih banyak konteks
       compactionControl: { enabled: true, contextTokenThreshold: 50000 }
     });
 
@@ -2591,25 +2591,25 @@ Ambang batas menentukan kapan kompaksi terjadi. Ambang batas yang lebih rendah b
 
   <Tab title="C#">
     <Note>
-      SDK C# menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
+      SDK C# menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
   <Tab title="Go">
     <Note>
-      SDK Go menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
+      SDK Go menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
   <Tab title="Java">
     <Note>
-      SDK Java menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
+      SDK Java menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
   <Tab title="PHP">
     <Note>
-      SDK PHP menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
+      SDK PHP menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
@@ -2622,7 +2622,7 @@ Ambang batas menentukan kapan kompaksi terjadi. Ambang batas yang lebih rendah b
       max_tokens: 1024,
       tools: [ReadFile.new],
       messages: [{ role: "user", content: "What's in config.json?" }],
-      # Nilai lebih rendah memadatkan lebih sering; naikkan ke 150000 jika tugas butuh lebih banyak konteks
+      # Nilai yang lebih rendah melakukan pemadatan lebih sering; naikkan ke 150000 jika tugas membutuhkan lebih banyak konteks
       compaction_control: { enabled: true, context_token_threshold: 50000 }
     )
 
@@ -2633,20 +2633,20 @@ Ambang batas menentukan kapan kompaksi terjadi. Ambang batas yang lebih rendah b
   </Tab>
 </Tabs>
 
-#### Menggunakan model berbeda untuk ringkasan
+#### Menggunakan model yang berbeda untuk ringkasan
 
 Anda dapat menggunakan model yang lebih cepat atau lebih murah untuk menghasilkan ringkasan:
 
 <Tabs>
   <Tab title="cURL">
     <Note>
-      Kompaksi berjalan di sisi klien dalam helper `tool_runner` SDK, sehingga tidak memiliki padanan HTTP langsung. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani kompaksi di server Anthropic.
+      Compaction berjalan di sisi klien dalam helper `tool_runner` SDK, sehingga tidak memiliki padanan HTTP langsung. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani compaction di server Anthropic.
     </Note>
   </Tab>
 
   <Tab title="CLI">
     <Note>
-      CLI tidak menyertakan helper `tool_runner`. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani kompaksi di server Anthropic tanpa integrasi sisi SDK.
+      CLI tidak menyertakan helper `tool_runner`. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani compaction di server Anthropic tanpa integrasi sisi SDK.
     </Note>
   </Tab>
 
@@ -2695,25 +2695,25 @@ Anda dapat menggunakan model yang lebih cepat atau lebih murah untuk menghasilka
 
   <Tab title="C#">
     <Note>
-      SDK C# menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
+      SDK C# menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
   <Tab title="Go">
     <Note>
-      SDK Go menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
+      SDK Go menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
   <Tab title="Java">
     <Note>
-      SDK Java menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
+      SDK Java menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
   <Tab title="PHP">
     <Note>
-      SDK PHP menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
+      SDK PHP menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
@@ -2742,18 +2742,18 @@ Anda dapat menggunakan model yang lebih cepat atau lebih murah untuk menghasilka
 
 #### Prompt ringkasan kustom
 
-Anda dapat menyediakan prompt kustom untuk kebutuhan spesifik domain. Prompt Anda harus menginstruksikan Claude untuk membungkus ringkasannya dalam tag `<summary></summary>`.
+Anda dapat memberikan prompt kustom untuk kebutuhan spesifik domain. Prompt Anda harus menginstruksikan Claude untuk membungkus ringkasannya dalam tag `<summary></summary>`.
 
 <Tabs>
   <Tab title="cURL">
     <Note>
-      Kompaksi berjalan di sisi klien dalam helper `tool_runner` SDK, sehingga tidak memiliki padanan HTTP langsung. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani kompaksi di server Anthropic.
+      Compaction berjalan di sisi klien dalam helper `tool_runner` SDK, sehingga tidak memiliki padanan HTTP langsung. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani compaction di server Anthropic.
     </Note>
   </Tab>
 
   <Tab title="CLI">
     <Note>
-      CLI tidak menyertakan helper `tool_runner`. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani kompaksi di server Anthropic tanpa integrasi sisi SDK.
+      CLI tidak menyertakan helper `tool_runner`. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani compaction di server Anthropic tanpa integrasi sisi SDK.
     </Note>
   </Tab>
 
@@ -2812,25 +2812,25 @@ Anda dapat menyediakan prompt kustom untuk kebutuhan spesifik domain. Prompt And
 
   <Tab title="C#">
     <Note>
-      SDK C# menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
+      SDK C# menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
   <Tab title="Go">
     <Note>
-      SDK Go menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
+      SDK Go menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
   <Tab title="Java">
     <Note>
-      SDK Java menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
+      SDK Java menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
   <Tab title="PHP">
     <Note>
-      SDK PHP menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
+      SDK PHP menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya: ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
@@ -2871,10 +2871,10 @@ Prompt ringkasan bawaan menginstruksikan Claude untuk membuat ringkasan kelanjut
 1. **Ikhtisar Tugas:** Permintaan inti pengguna, kriteria keberhasilan, dan batasan.
 2. **Status Saat Ini:** Apa yang telah diselesaikan, file yang dimodifikasi, dan artefak yang dihasilkan.
 3. **Penemuan Penting:** Batasan teknis, keputusan yang dibuat, kesalahan yang diselesaikan, dan pendekatan yang gagal.
-4. **Langkah Selanjutnya:** Tindakan spesifik yang diperlukan, hambatan, dan urutan prioritas.
+4. **Langkah Selanjutnya:** Tindakan spesifik yang diperlukan, penghambat, dan urutan prioritas.
 5. **Konteks yang Harus Dipertahankan:** Preferensi pengguna, detail spesifik domain, dan komitmen yang dibuat.
 
-Struktur ini memungkinkan Claude melanjutkan pekerjaan secara efisien tanpa kehilangan konteks penting atau mengulangi kesalahan.
+Struktur ini memungkinkan Claude untuk melanjutkan pekerjaan secara efisien tanpa kehilangan konteks penting atau mengulangi kesalahan.
 
 <Accordion title="Lihat prompt default lengkap">
   ```text wrap
@@ -2916,10 +2916,10 @@ Struktur ini memungkinkan Claude melanjutkan pekerjaan secara efisien tanpa kehi
 #### Alat sisi server
 
 <Warning>
-  Kompaksi memerlukan pertimbangan khusus saat menggunakan alat sisi server seperti [web search](/docs/id/agents-and-tools/tool-use/web-search-tool) atau [web fetch](/docs/id/agents-and-tools/tool-use/web-fetch-tool).
+  Compaction memerlukan pertimbangan khusus saat menggunakan alat sisi server seperti [pencarian web](/docs/id/agents-and-tools/tool-use/web-search-tool) atau [pengambilan web](/docs/id/agents-and-tools/tool-use/web-fetch-tool).
 </Warning>
 
-Saat menggunakan alat sisi server, SDK mungkin salah menghitung penggunaan token, menyebabkan kompaksi terpicu pada waktu yang salah.
+Saat menggunakan alat sisi server, SDK mungkin salah menghitung penggunaan token, menyebabkan compaction dipicu pada waktu yang salah.
 
 Misalnya, setelah operasi pencarian web, respons API mungkin menunjukkan:
 
@@ -2934,36 +2934,36 @@ Misalnya, setelah operasi pencarian web, respons API mungkin menunjukkan:
 }
 ```
 
-SDK menghitung total penggunaan sebagai 63.000 + 0 + 270.000 + 1.400 = 334.400 token. Namun, nilai `cache_read_input_tokens` mencakup pembacaan terakumulasi dari beberapa panggilan API internal yang dibuat oleh alat sisi server, bukan konteks percakapan Anda yang sebenarnya. Panjang konteks Anda yang sebenarnya mungkin hanya 63.000 `input_tokens`, tetapi SDK melihat 334k dan memicu kompaksi secara prematur.
+SDK menghitung total penggunaan sebagai 63.000 + 0 + 270.000 + 1.400 = 334.400 token. Namun, nilai `cache_read_input_tokens` mencakup pembacaan terakumulasi dari beberapa panggilan API internal yang dibuat oleh alat sisi server, bukan konteks percakapan Anda yang sebenarnya. Panjang konteks Anda yang sebenarnya mungkin hanya 63.000 `input_tokens`, tetapi SDK melihat 334k dan memicu compaction secara prematur.
 
 **Solusi alternatif:**
 
 * Gunakan endpoint [penghitungan token](/docs/id/build-with-claude/token-counting) untuk mendapatkan panjang konteks yang akurat
-* Hindari kompaksi saat menggunakan alat sisi server secara ekstensif
+* Hindari compaction saat menggunakan alat sisi server secara ekstensif
 
 #### Kasus khusus penggunaan alat
 
-Ketika SDK memicu kompaksi saat respons penggunaan alat masih tertunda, SDK menghapus blok penggunaan alat dari riwayat pesan sebelum menghasilkan ringkasan. Claude akan mengeluarkan kembali panggilan alat setelah melanjutkan dari ringkasan jika masih diperlukan.
+Ketika SDK memicu compaction saat respons tool use masih tertunda, SDK menghapus blok tool use dari riwayat pesan sebelum menghasilkan ringkasan. Claude akan mengeluarkan kembali panggilan alat setelah melanjutkan dari ringkasan jika masih diperlukan.
 
-### Memantau kompaksi
+### Memantau compaction
 
-Memahami kapan kompaksi terpicu membantu Anda menyesuaikan ambang batas dan memverifikasi perilaku yang diharapkan.
+Memahami kapan compaction dipicu membantu Anda menyetel ambang batas dan memverifikasi perilaku yang diharapkan.
 
 <Tabs>
   <Tab title="cURL">
     <Note>
-      Kompaksi berjalan di sisi klien dalam helper `tool_runner` SDK, sehingga tidak memiliki padanan HTTP langsung. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani kompaksi di server Anthropic.
+      Compaction berjalan di sisi klien dalam helper `tool_runner` SDK, sehingga tidak memiliki padanan HTTP langsung. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani compaction di server Anthropic.
     </Note>
   </Tab>
 
   <Tab title="CLI">
     <Note>
-      CLI tidak menyertakan helper `tool_runner`. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani kompaksi di server Anthropic tanpa integrasi sisi SDK.
+      CLI tidak menyertakan helper `tool_runner`. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani compaction di server Anthropic tanpa integrasi sisi SDK.
     </Note>
   </Tab>
 
   <Tab title="Python">
-    SDK Python mencatat event kompaksi pada level INFO. Aktifkan logger `anthropic.lib.tools`:
+    SDK Python mencatat event compaction pada level INFO. Aktifkan logger `anthropic.lib.tools`:
 
     ```python Python
     import logging
@@ -2978,7 +2978,7 @@ Memahami kapan kompaksi terpicu membantu Anda menyesuaikan ambang batas dan memv
   </Tab>
 
   <Tab title="TypeScript">
-    `toolRunner` SDK TypeScript mendukung kompaksi tetapi tidak mencatat event. Deteksi kompaksi dengan mengamati `runner.params.messages.length` yang menyusut di antara giliran:
+    `toolRunner` SDK TypeScript mendukung compaction tetapi tidak mencatat event. Deteksi compaction dengan mengamati `runner.params.messages.length` yang menyusut di antara giliran:
 
     ```typescript TypeScript
     let prevMsgCount = 0;
@@ -2995,30 +2995,30 @@ Memahami kapan kompaksi terpicu membantu Anda menyesuaikan ambang batas dan memv
 
   <Tab title="C#">
     <Note>
-      Tool runner SDK C# tidak mendukung `compaction_control`. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya.
+      Tool runner SDK C# tidak mendukung `compaction_control`. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya.
     </Note>
   </Tab>
 
   <Tab title="Go">
     <Note>
-      Tool runner SDK Go tidak mendukung `compaction_control`. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya.
+      Tool runner SDK Go tidak mendukung `compaction_control`. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya.
     </Note>
   </Tab>
 
   <Tab title="Java">
     <Note>
-      Tool runner SDK Java tidak mendukung `compaction_control`. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya.
+      Tool runner SDK Java tidak mendukung `compaction_control`. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya.
     </Note>
   </Tab>
 
   <Tab title="PHP">
     <Note>
-      Tool runner SDK PHP tidak mendukung `compaction_control`. Gunakan [kompaksi sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya.
+      Tool runner SDK PHP tidak mendukung `compaction_control`. Gunakan [compaction sisi server](/docs/id/build-with-claude/compaction) sebagai gantinya.
     </Note>
   </Tab>
 
   <Tab title="Ruby">
-    SDK Ruby mendukung callback `on_compact:` yang dipicu saat kompaksi terjadi. Tambahkan ke konfigurasi `compaction_control` Anda:
+    SDK Ruby mendukung callback `on_compact:` yang dipicu ketika compaction terjadi. Tambahkan ke konfigurasi `compaction_control` Anda:
 
     ```ruby Ruby
     client = Anthropic::Client.new
@@ -3044,29 +3044,29 @@ Memahami kapan kompaksi terpicu membantu Anda menyesuaikan ambang batas dan memv
   </Tab>
 </Tabs>
 
-### Kapan menggunakan kompaksi
+### Kapan menggunakan compaction
 
-**Kasus penggunaan yang cocok:**
+**Kasus penggunaan yang baik:**
 
 * Tugas agen yang berjalan lama yang memproses banyak file atau sumber data
-* Alur kerja riset yang mengakumulasi informasi dalam jumlah besar
-* Tugas multi-langkah dengan kemajuan yang jelas dan terukur
+* Alur kerja riset yang mengakumulasi sejumlah besar informasi
+* Tugas multilangkah dengan kemajuan yang jelas dan terukur
 * Tugas yang menghasilkan artefak (file, laporan) yang bertahan di luar percakapan
 
 **Kasus penggunaan yang kurang ideal:**
 
-* Tugas yang memerlukan pengingatan presisi atas detail percakapan awal
+* Tugas yang memerlukan pengingatan tepat atas detail percakapan awal
 * Alur kerja yang menggunakan alat sisi server secara ekstensif
-* Tugas yang perlu mempertahankan state yang tepat di banyak variabel
+* Tugas yang perlu mempertahankan status yang tepat di banyak variabel
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Kompaksi" icon="arrows-clockwise" href="/docs/id/build-with-claude/compaction">
-    Kelola percakapan panjang dengan kompaksi sisi server, strategi yang direkomendasikan untuk sebagian besar kasus penggunaan.
+  <Card title="Compaction" icon="arrows-clockwise" href="/docs/id/build-with-claude/compaction">
+    Kelola percakapan panjang dengan compaction sisi server, strategi yang direkomendasikan untuk sebagian besar kasus penggunaan.
   </Card>
 
   <Card title="Caching prompt" icon="database" href="/docs/id/build-with-claude/prompt-caching">
-    Kurangi biaya dan latensi dengan melakukan caching prefiks prompt, dan pelajari bagaimana pengeditan konteks berinteraksi dengan cache.
+    Kurangi biaya dan latensi dengan melakukan caching pada prefiks prompt, dan pelajari bagaimana pengeditan konteks berinteraksi dengan cache.
   </Card>
 </CardGroup>

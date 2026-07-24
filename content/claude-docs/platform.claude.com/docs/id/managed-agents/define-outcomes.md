@@ -1,34 +1,34 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: c6d76b88e86774c03477245260615a54a104675e00e5af747f7ded3999207b5f
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 4feb177e2b047fc8aa4a791e1dd70a2b164d08306cffb8a94616a1f04b2b4f5d
 ---
 
-# Mendefinisikan hasil
+# Definisikan hasil
 
-Beri tahu agen seperti apa kondisi 'selesai' itu, dan biarkan agen melakukan iterasi hingga mencapainya.
+Beri tahu agen seperti apa 'selesai' itu, dan biarkan agen melakukan iterasi hingga mencapainya.
 
 ---
 
-`outcome` meningkatkan sebuah sesi dari sekadar *percakapan* menjadi *pekerjaan*. Anda mendefinisikan seperti apa hasil akhir yang diharapkan dan bagaimana mengukur kualitasnya. Agen bekerja menuju target tersebut, melakukan evaluasi mandiri dan iterasi hingga hasil tercapai.
+Sebuah outcome (hasil) memberi tahu sesi seperti apa hasil akhirnya seharusnya dan bagaimana mengukur kualitasnya. Agen bekerja menuju target tersebut, mengevaluasi diri sendiri dan melakukan iterasi hingga hasil tercapai.
 
-Ketika Anda mendefinisikan sebuah outcome, harness secara otomatis menyediakan *grader* (penilai) untuk mengevaluasi artefak terhadap sebuah rubrik. Grader menggunakan jendela konteks terpisah agar tidak terpengaruh oleh pilihan implementasi agen utama.
+Ketika Anda mendefinisikan sebuah hasil, harness secara otomatis menyediakan *grader* (penilai) untuk mengevaluasi artefak terhadap sebuah rubrik. Grader menggunakan "context window" (jendela konteks) terpisah untuk menghindari pengaruh dari pilihan implementasi agen utama.
 
 Grader mengembalikan penjelasan yang merangkum kriteria mana yang lulus atau gagal, atau mengonfirmasi bahwa artefak memenuhi rubrik. Umpan balik tersebut diserahkan kembali ke agen untuk iterasi berikutnya.
 
 <Note>
-  Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
-## Membuat rubrik
+## Buat rubrik
 
-Rubrik adalah dokumen markdown yang menjelaskan penilaian per kriteria. Rubrik bersifat wajib.
+Rubrik adalah dokumen markdown yang menjelaskan penilaian per kriteria. Rubrik ini wajib ada.
 
 <Accordion title="Tips untuk menulis rubrik yang efektif">
-  Susun rubrik sebagai kriteria yang eksplisit dan dapat dinilai, seperti "CSV berisi kolom harga dengan nilai numerik" alih-alih "Datanya terlihat bagus." Grader menilai setiap kriteria secara independen, sehingga kriteria yang samar menghasilkan evaluasi yang tidak konsisten.
+  Susun rubrik sebagai kriteria yang eksplisit dan dapat dinilai, seperti "CSV berisi kolom price dengan nilai numerik" daripada "Datanya terlihat bagus." Grader menilai setiap kriteria secara independen, sehingga kriteria yang samar menghasilkan evaluasi yang tidak konsisten.
 
-  Jika Anda belum memiliki rubrik, coba berikan Claude contoh artefak yang diketahui baik dan minta Claude menganalisis apa yang membuat konten tersebut baik, lalu ubah analisis itu menjadi rubrik. Pendekatan jalan tengah ini sering kali menghasilkan hasil yang lebih baik daripada menulis kriteria dari awal.
+  Jika Anda tidak memiliki rubrik, coba berikan Claude contoh artefak yang sudah diketahui baik dan minta Claude menganalisis apa yang membuat konten tersebut baik, lalu ubah analisis itu menjadi rubrik. Pendekatan jalan tengah ini sering menghasilkan hasil yang lebih baik daripada menulis kriteria dari awal.
 </Accordion>
 
 Contoh rubrik:
@@ -59,10 +59,10 @@ Contoh rubrik:
 - Sensitivity analysis on WACC and terminal growth rate is included
 ```
 
-Kirimkan rubrik sebagai teks inline pada `user.define_outcome` (lihat bagian berikutnya), atau unggah melalui Files API untuk digunakan kembali di berbagai sesi.
+Berikan rubrik sebagai teks inline pada `user.define_outcome` (lihat [Buat sesi dengan hasil](#create-a-session-with-an-outcome)), atau unggah melalui Files API untuk digunakan kembali di berbagai sesi.
 
 <Note>
-  Mengunggah melalui Files API memerlukan kedua header beta `managed-agents-2026-04-01` dan `files-api-2025-04-14`.
+  Mengunggah melalui Files API memerlukan header beta yang memberikan akses Files API. Header beta Managed Agents Anda sudah memberikan akses ini dengan sendirinya, jadi Anda tidak perlu mengirim `files-api-2025-04-14` bersamanya. Contoh curl meneruskan header-nya secara eksplisit.
 </Note>
 
 <CodeGroup>
@@ -92,11 +92,11 @@ Kirimkan rubrik sebagai teks inline pada `user.define_outcome` (lihat bagian ber
 
   RUBRIC = """# DCF Model Rubric
 
-  ## Revenue Projections
+  ## Proyeksi Pendapatan
   - Uses historical revenue data from the last 5 fiscal years
   - Projects revenue for at least 5 years forward
 
-  ## Output Quality
+  ## Kualitas Output
   - All figures are in a single .xlsx file with clearly labeled sheets
   """
   Path("/tmp/rubric.md").write_text(RUBRIC)
@@ -255,13 +255,13 @@ Kirimkan rubrik sebagai teks inline pada `user.define_outcome` (lihat bagian ber
   $client = new Client();
 
   $rubricText = <<<'MD'
-  # DCF Model Rubric
+  # Rubrik Model DCF
 
-  ## Revenue Projections
+  ## Proyeksi Pendapatan
   - Uses historical revenue data from the last 5 fiscal years
   - Projects revenue for at least 5 years forward
 
-  ## Output Quality
+  ## Kualitas Output
   - All figures are in a single .xlsx file with clearly labeled sheets
   MD;
   file_put_contents('/tmp/rubric.md', $rubricText);
@@ -279,13 +279,13 @@ Kirimkan rubrik sebagai teks inline pada `user.define_outcome` (lihat bagian ber
   client = Anthropic::Client.new
 
   RUBRIC = <<~MD
-    # DCF Model Rubric
+    # Rubrik Model DCF
 
-    ## Revenue Projections
+    ## Proyeksi Pendapatan
     - Uses historical revenue data from the last 5 fiscal years
     - Projects revenue for at least 5 years forward
 
-    ## Output Quality
+    ## Kualitas Output
     - All figures are in a single .xlsx file with clearly labeled sheets
   MD
   File.write("/tmp/rubric.md", RUBRIC)
@@ -295,13 +295,13 @@ Kirimkan rubrik sebagai teks inline pada `user.define_outcome` (lihat bagian ber
   ```
 </CodeGroup>
 
-## Membuat sesi dengan outcome
+## Buat sesi dengan hasil
 
-Setelah membuat sesi, kirim event `user.define_outcome`. Agen segera mulai bekerja; tidak diperlukan event pesan pengguna tambahan.
+Contoh berikut membuat sebuah [sesi](/docs/id/managed-agents/sessions) untuk [agen](/docs/id/managed-agents/agent-setup) dan [lingkungan](/docs/id/managed-agents/environments) yang sudah ada (keduanya dibuat secara terpisah), lalu mengirim event `user.define_outcome`. Agen langsung mulai bekerja. Tidak diperlukan event pesan pengguna tambahan.
 
 <CodeGroup>
   ```bash curl
-  # Create a session
+  # Membuat sesi
   session=$(curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -316,7 +316,7 @@ Setelah membuat sesi, kirim event `user.define_outcome`. Agen segera mulai beker
   )
   session_id=$(jq -r '.id' <<<"$session")
 
-  # Define the outcome — agent starts working on receipt
+  # Mendefinisikan hasil — agen mulai bekerja begitu menerimanya
   curl -fsSL "https://api.anthropic.com/v1/sessions/$session_id/events" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -333,39 +333,39 @@ Setelah membuat sesi, kirim event `user.define_outcome`. Agen segera mulai beker
     ]
   }
   EOF
-  # or: "rubric": {"type": "file", "file_id": "$rubric_id"}
-  # "max_iterations" is optional; default 3, max 20
+  # atau: "rubric": {"type": "file", "file_id": "$rubric_id"}
+  # "max_iterations" bersifat opsional; default 3, maksimum 20
   ```
 
   ```bash CLI
-  # Create a session
+  # Membuat sesi
   SESSION_ID=$(ant beta:sessions create \
     --agent "$AGENT_ID" \
     --environment-id "$ENVIRONMENT_ID" \
     --title "Financial analysis on Costco" \
     --transform id --raw-output)
 
-  # Define the outcome — agent starts working on receipt
+  # Mendefinisikan hasil — agen mulai bekerja begitu diterima
   ant beta:sessions:events send \
     --session-id "$SESSION_ID" <<YAML
   events:
     - type: user.define_outcome
       description: Build a DCF model for Costco in .xlsx
       rubric: {type: file, file_id: $RUBRIC_ID}
-      # or: rubric: {type: text, content: "..."}
+      # atau: rubric: {type: text, content: "..."}
       max_iterations: 5  # optional; default 3, max 20
   YAML
   ```
 
   ```python Python
-  # Create a session
+  # Buat sesi
   session = client.beta.sessions.create(
       agent=agent.id,
       environment_id=environment.id,
       title="Financial analysis on Costco",
   )
 
-  # Define the outcome — agent starts working on receipt
+  # Definisikan hasil — agen mulai bekerja begitu diterima
   client.beta.sessions.events.send(
       session_id=session.id,
       events=[
@@ -373,7 +373,7 @@ Setelah membuat sesi, kirim event `user.define_outcome`. Agen segera mulai beker
               "type": "user.define_outcome",
               "description": "Build a DCF model for Costco in .xlsx",
               "rubric": {"type": "text", "content": RUBRIC},
-              # or: "rubric": {"type": "file", "file_id": rubric.id},
+              # atau: "rubric": {"type": "file", "file_id": rubric.id},
               "max_iterations": 5,  # optional; default 3, max 20
           }
       ],
@@ -381,21 +381,21 @@ Setelah membuat sesi, kirim event `user.define_outcome`. Agen segera mulai beker
   ```
 
   ```typescript TypeScript
-  // Create a session
+  // Membuat sesi
   const session = await client.beta.sessions.create({
     agent: agent.id,
     environment_id: environment.id,
     title: "Financial analysis on Costco",
   });
 
-  // Define the outcome — agent starts working on receipt
+  // Mendefinisikan hasil — agen mulai bekerja saat diterima
   await client.beta.sessions.events.send(session.id, {
     events: [
       {
         type: "user.define_outcome",
         description: "Build a DCF model for Costco in .xlsx",
         rubric: { type: "text", content: RUBRIC },
-        // or: rubric: { type: "file", file_id: rubric.id },
+        // atau: rubric: { type: "file", file_id: rubric.id },
         max_iterations: 5, // optional; default 3, max 20
       },
     ],
@@ -403,7 +403,7 @@ Setelah membuat sesi, kirim event `user.define_outcome`. Agen segera mulai beker
   ```
 
   ```csharp C#
-  // Create a session
+  // Buat sesi
   var session = await client.Beta.Sessions.Create(new()
   {
       Agent = agent.ID,
@@ -411,7 +411,7 @@ Setelah membuat sesi, kirim event `user.define_outcome`. Agen segera mulai beker
       Title = "Financial analysis on Costco",
   });
 
-  // Define the outcome — agent starts working on receipt
+  // Definisikan hasil — agen mulai bekerja saat diterima
   await client.Beta.Sessions.Events.Send(session.ID, new()
   {
       Events =
@@ -425,7 +425,7 @@ Setelah membuat sesi, kirim event `user.define_outcome`. Agen segera mulai beker
                   Type = BetaManagedAgentsTextRubricParamsType.Text,
                   Content = Rubric,
               },
-              // or: Rubric = new BetaManagedAgentsFileRubricParams
+              // atau: Rubric = new BetaManagedAgentsFileRubricParams
               //     { Type = BetaManagedAgentsFileRubricParamsType.File, FileID = rubric.ID },
               MaxIterations = 5, // optional; default 3, max 20
           },
@@ -434,7 +434,7 @@ Setelah membuat sesi, kirim event `user.define_outcome`. Agen segera mulai beker
   ```
 
   ```go Go
-  // Create a session
+  // Membuat sesi
   session, err := client.Beta.Sessions.New(ctx, anthropic.BetaSessionNewParams{
   	Agent: anthropic.BetaSessionNewParamsAgentUnion{
   		OfString: anthropic.String(agent.ID),
@@ -446,7 +446,7 @@ Setelah membuat sesi, kirim event `user.define_outcome`. Agen segera mulai beker
   	panic(err)
   }
 
-  // Define the outcome — agent starts working on receipt
+  // Mendefinisikan outcome — agen mulai bekerja begitu diterima
   _, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   		OfUserDefineOutcome: &anthropic.BetaManagedAgentsUserDefineOutcomeEventParams{
@@ -458,7 +458,7 @@ Setelah membuat sesi, kirim event `user.define_outcome`. Agen segera mulai beker
   					Content: rubric,
   				},
   			},
-  			// or: OfFile: &anthropic.BetaManagedAgentsFileRubricParams{
+  			// atau: OfFile: &anthropic.BetaManagedAgentsFileRubricParams{
   			//     Type: anthropic.BetaManagedAgentsFileRubricParamsTypeFile, FileID: uploaded.ID},
   			MaxIterations: anthropic.Int(5), // optional; default 3, max 20
   		},
@@ -470,7 +470,7 @@ Setelah membuat sesi, kirim event `user.define_outcome`. Agen segera mulai beker
   ```
 
   ```java Java
-  // Create a session
+  // Membuat sesi
   var session = client.beta().sessions().create(
       SessionCreateParams.builder()
           .agent(agent.id())
@@ -478,7 +478,7 @@ Setelah membuat sesi, kirim event `user.define_outcome`. Agen segera mulai beker
           .title("Financial analysis on Costco")
           .build());
 
-  // Define the outcome — agent starts working on receipt
+  // Mendefinisikan hasil — agen mulai bekerja begitu diterima
   client.beta().sessions().events().send(
       session.id(),
       EventSendParams.builder()
@@ -489,7 +489,7 @@ Setelah membuat sesi, kirim event `user.define_outcome`. Agen segera mulai beker
                   .type(BetaManagedAgentsTextRubricParams.Type.TEXT)
                   .content(RUBRIC)
                   .build())
-              // or: .rubric(BetaManagedAgentsFileRubricParams.builder()
+              // atau: .rubric(BetaManagedAgentsFileRubricParams.builder()
               //     .type(BetaManagedAgentsFileRubricParams.Type.FILE).fileId(rubric.id()).build())
               .maxIterations(5) // optional; default 3, max 20
               .build())
@@ -497,14 +497,14 @@ Setelah membuat sesi, kirim event `user.define_outcome`. Agen segera mulai beker
   ```
 
   ```php PHP
-  // Create a session
+  // Buat sesi
   $session = $client->beta->sessions->create(
       agent: $agent->id,
       environmentID: $environment->id,
       title: 'Financial analysis on Costco',
   );
 
-  // Define the outcome — agent starts working on receipt
+  // Definisikan hasil — agen mulai bekerja saat diterima
   $client->beta->sessions->events->send(
       $session->id,
       events: [
@@ -512,7 +512,7 @@ Setelah membuat sesi, kirim event `user.define_outcome`. Agen segera mulai beker
               'type' => 'user.define_outcome',
               'description' => 'Build a DCF model for Costco in .xlsx',
               'rubric' => ['type' => 'text', 'content' => $rubricText],
-              // or: 'rubric' => ['type' => 'file', 'file_id' => $rubric->id],
+              // atau: 'rubric' => ['type' => 'file', 'file_id' => $rubric->id],
               'max_iterations' => 5, // optional; default 3, max 20
           ],
       ],
@@ -520,14 +520,14 @@ Setelah membuat sesi, kirim event `user.define_outcome`. Agen segera mulai beker
   ```
 
   ```ruby Ruby
-  # Create a session
+  # Membuat sesi
   session = client.beta.sessions.create(
     agent: agent.id,
     environment_id: environment.id,
     title: "Financial analysis on Costco"
   )
 
-  # Define the outcome — agent starts working on receipt
+  # Mendefinisikan outcome — agen mulai bekerja begitu diterima
   client.beta.sessions.events.send_(
     session.id,
     events: [
@@ -535,7 +535,7 @@ Setelah membuat sesi, kirim event `user.define_outcome`. Agen segera mulai beker
         type: "user.define_outcome",
         description: "Build a DCF model for Costco in .xlsx",
         rubric: {type: "text", content: RUBRIC},
-        # or: rubric: {type: "file", file_id: rubric.id},
+        # atau: rubric: {type: "file", file_id: rubric.id},
         max_iterations: 5 # optional; default 3, max 20
       }
     ]
@@ -543,23 +543,27 @@ Setelah membuat sesi, kirim event `user.define_outcome`. Agen segera mulai beker
   ```
 </CodeGroup>
 
-## Event outcome
+<Note>
+  Anda juga dapat mendefinisikan hasil dalam permintaan pembuatan itu sendiri: berikan satu event `user.define_outcome` di [`initial_events`](/docs/id/managed-agents/sessions#seed-the-session-with-initial-events) untuk membuat sesi dan memulai pekerjaan menuju hasil dalam satu panggilan.
+</Note>
 
-Progres pada sesi berorientasi outcome ditampilkan pada [stream](/docs/id/managed-agents/events-and-streaming) event.
+## Event hasil
 
-* Event `agent.*` (seperti pesan dan penggunaan alat) menunjukkan progres menuju outcome.
-* Event `span.outcome_evaluation_*` hanya dipancarkan untuk sesi berorientasi outcome dan menunjukkan jumlah loop iterasi serta proses umpan balik grader.
-* Anda juga dapat mengirim [event](/docs/id/managed-agents/reference#event-types) `user.message` ke sesi berorientasi outcome untuk mengarahkan pekerjaan agen selama berlangsung, tetapi ini tidak wajib: agen bekerja menuju outcome secara mandiri, melakukan iterasi hingga berhasil atau kehabisan iterasi.
-* Event `user.interrupt` menjeda pekerjaan pada outcome saat ini dan menandai `span.outcome_evaluation_end.result` sebagai `interrupted`, memungkinkan Anda memulai outcome baru.
-* Setelah evaluasi outcome terakhir, sesi dapat dilanjutkan sebagai sesi percakapan, atau outcome baru dapat dimulai. Sesi mempertahankan riwayat dari outcome sebelumnya.
+Kemajuan pada sesi yang berorientasi hasil ditampilkan pada [stream](/docs/id/managed-agents/events-and-streaming) event.
+
+* Event `agent.*` (seperti pesan dan penggunaan alat) menunjukkan kemajuan menuju hasil.
+* Event `span.outcome_evaluation_*` hanya dipancarkan untuk sesi yang berorientasi hasil dan menunjukkan jumlah loop iterasi serta proses umpan balik grader.
+* Anda juga dapat mengirim [event](/docs/id/managed-agents/reference#event-types) `user.message` ke sesi yang berorientasi hasil untuk mengarahkan pekerjaan agen saat berlangsung, tetapi ini tidak wajib: agen bekerja menuju hasil dengan sendirinya, melakukan iterasi hingga berhasil atau kehabisan iterasi.
+* Event `user.interrupt` menjeda pekerjaan pada hasil saat ini dan menandai `span.outcome_evaluation_end.result` sebagai `interrupted`, memungkinkan Anda memulai hasil baru.
+* Setelah evaluasi hasil terakhir, sesi dapat dilanjutkan sebagai sesi percakapan, atau hasil baru dapat dimulai. Sesi menyimpan riwayat hasil sebelumnya.
 
 ### Event pengguna define outcome
 
 <Note>
-  Hanya satu outcome yang didukung dalam satu waktu, tetapi Anda dapat merangkai outcome secara berurutan. Untuk melakukannya, kirim event `user.define_outcome` baru setelah event terminal dari outcome sebelumnya.
+  Hanya satu hasil yang didukung pada satu waktu, tetapi Anda dapat merangkai hasil secara berurutan. Untuk melakukannya, kirim event `user.define_outcome` baru setelah event terminal `span.outcome_evaluation_end` dari hasil sebelumnya.
 </Note>
 
-Ini adalah event yang Anda kirim untuk memulai sebuah outcome. Event ini dipantulkan kembali saat diterima, termasuk timestamp `processed_at` dan `outcome_id`.
+Ini adalah event yang Anda kirim untuk memulai sebuah hasil. Event ini digemakan kembali saat diterima, termasuk timestamp `processed_at` dan `outcome_id`.
 
 ```json
 {
@@ -570,9 +574,9 @@ Ini adalah event yang Anda kirim untuk memulai sebuah outcome. Event ini dipantu
 }
 ```
 
-### Outcome evaluation start
+### Mulai evaluasi hasil
 
-Dipancarkan begitu grader memulai evaluasi pada satu loop iterasi. Field `iteration` adalah penghitung revisi berbasis indeks 0: `0` adalah evaluasi pertama, `1` adalah evaluasi ulang setelah revisi pertama, dan seterusnya.
+Dipancarkan saat grader memulai evaluasi pada satu loop iterasi. Field `iteration` adalah penghitung revisi berindeks 0: `0` adalah evaluasi pertama, `1` adalah evaluasi ulang setelah revisi pertama, dan seterusnya.
 
 ```json
 {
@@ -584,30 +588,31 @@ Dipancarkan begitu grader memulai evaluasi pada satu loop iterasi. Field `iterat
 }
 ```
 
-### Outcome evaluation ongoing
+### Evaluasi hasil sedang berlangsung
 
-Heartbeat yang dipancarkan selama grader berjalan. Penalaran internal grader bersifat tertutup: Anda melihat bahwa grader sedang bekerja, bukan apa yang sedang dipikirkannya.
+Heartbeat yang dipancarkan saat grader berjalan. Penalaran internal grader bersifat tertutup: Anda melihat bahwa grader sedang bekerja, bukan apa yang sedang dipikirkannya.
 
 ```json
 {
   "type": "span.outcome_evaluation_ongoing",
   "id": "sevt_01ghi...",
   "outcome_id": "outc_01a...",
+  "iteration": 0,
   "processed_at": "2026-03-25T14:02:10Z"
 }
 ```
 
-### Outcome evaluation end
+### Akhir evaluasi hasil
 
-Dipancarkan setelah grader selesai mengevaluasi satu iterasi. Field `result` menunjukkan apa yang terjadi selanjutnya.
+Dipancarkan ketika siklus evaluasi hasil berakhir: setelah grader selesai mengevaluasi satu iterasi, atau ketika sesi diinterupsi saat sebuah hasil sedang aktif. Field `result` menunjukkan apa yang terjadi selanjutnya.
 
-| Result                   | Selanjutnya                                                                                                                                                 |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `satisfied`              | Sesi bertransisi ke `idle`.                                                                                                                                 |
-| `needs_revision`         | Agen memulai siklus iterasi baru.                                                                                                                           |
-| `max_iterations_reached` | Tidak ada siklus evaluasi lebih lanjut. Agen dapat menjalankan satu revisi terakhir sebelum sesi bertransisi ke `idle`.                                     |
-| `failed`                 | Sesi bertransisi ke `idle`. Dikembalikan ketika rubrik secara fundamental tidak cocok dengan tugas, misalnya jika deskripsi dan rubrik saling bertentangan. |
-| `interrupted`            | Hanya dipancarkan jika `outcome_evaluation_start` sudah terpicu sebelum interupsi.                                                                          |
+| Result                   | Selanjutnya                                                                                                                                                                                                                          |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `satisfied`              | Sesi bertransisi ke `idle`.                                                                                                                                                                                                          |
+| `needs_revision`         | Agen memulai siklus iterasi baru.                                                                                                                                                                                                    |
+| `max_iterations_reached` | Satu giliran pengakuan terakhir mengikuti sebelum sesi bertransisi ke `idle`. Tidak ada evaluasi lebih lanjut yang dijalankan.                                                                                                       |
+| `failed`                 | Sesi bertransisi ke `idle`. Dikembalikan ketika rubrik tidak berlaku untuk deliverable, misalnya jika deskripsi dan rubrik saling bertentangan.                                                                                      |
+| `interrupted`            | Dipancarkan ketika sesi diinterupsi saat sebuah hasil sedang aktif, bahkan jika evaluasi belum dimulai. Jika tidak ada `outcome_evaluation_start` yang dipicu sebelum interupsi, `outcome_evaluation_start_id` adalah string kosong. |
 
 ```json
 {
@@ -628,9 +633,9 @@ Dipancarkan setelah grader selesai mengevaluasi satu iterasi. Field `result` men
 }
 ```
 
-## Memeriksa status outcome
+## Periksa status hasil
 
-Anda dapat mendengarkan pada [event stream](/docs/id/managed-agents/events-and-streaming) untuk `span.outcome_evaluation_end`, atau melakukan polling `GET /v1/sessions/:id` dan membaca `outcome_evaluations[].result`:
+Anda dapat mendengarkan [stream event](/docs/id/managed-agents/events-and-streaming) untuk `span.outcome_evaluation_end`, atau melakukan polling `GET /v1/sessions/{session_id}` dan membaca `outcome_evaluations[].result`. Hingga evaluasi selesai, `result` melaporkan `pending`, `running`, atau `evaluating`:
 
 <CodeGroup>
   ```bash curl
@@ -715,21 +720,25 @@ Anda dapat mendengarkan pada [event stream](/docs/id/managed-agents/events-and-s
   ```
 </CodeGroup>
 
-## Mengambil deliverable
+## Ambil deliverable
 
-Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah sesi berada dalam status idle, ambil file tersebut melalui [Files API](/docs/id/build-with-claude/files) yang dicakupkan ke sesi:
+Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah sesi idle, ambil file tersebut melalui [Files API](/docs/id/build-with-claude/files) yang dicakup ke sesi tersebut.
+
+<Note>
+  Memfilter berdasarkan `scope_id` memerlukan header beta `managed-agents-2026-04-01` pada permintaan files. Metode files SDK hanya mengirim beta files secara otomatis, sehingga contoh-contoh meneruskannya secara eksplisit.
+</Note>
 
 <CodeGroup>
   ```bash curl
-  # List files produced by this session
-  # scope_id filtering requires the managed-agents beta
+  # Mencantumkan file yang dihasilkan oleh sesi ini
+  # Pemfilteran scope_id memerlukan beta managed-agents
   files=$(curl -fsSL "https://api.anthropic.com/v1/files?scope_id=$session_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01")
   jq -r '.data[] | "\(.id) \(.filename)"' <<<"$files"
 
-  # Download a file
+  # Mengunduh file
   file_id=$(jq -r '.data[0].id // empty' <<<"$files")
   if [[ -n $file_id ]]; then
     curl -fsSL "https://api.anthropic.com/v1/files/$file_id/content" \
@@ -741,12 +750,12 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah se
   ```
 
   ```bash CLI
-  # List files produced by this session
-  # scope_id filtering requires the managed-agents beta on the files request
+  # Menampilkan daftar file yang dihasilkan oleh sesi ini
+  # Pemfilteran scope_id memerlukan beta managed-agents pada permintaan files
   ant beta:files list --scope-id "$SESSION_ID" \
     --beta managed-agents-2026-04-01
 
-  # Download a file
+  # Mengunduh file
   FILE_ID=$(ant beta:files list --scope-id "$SESSION_ID" \
     --beta managed-agents-2026-04-01 \
     --transform 'data[0].id' --raw-output)
@@ -756,21 +765,21 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah se
   ```
 
   ```python Python
-  # List files produced by this session
-  # scope_id filtering requires the managed-agents beta on the files request
+  # Daftar file yang dihasilkan oleh sesi ini
+  # pemfilteran scope_id memerlukan beta managed-agents pada permintaan files
   files = client.beta.files.list(scope_id=session.id, betas=["managed-agents-2026-04-01"])
   for file in files:
       print(file.id, file.filename)
 
-  # Download a file
+  # Unduh file
   if files.data:
       content = client.beta.files.download(files.data[0].id)
       content.write_to_file("/tmp/output.txt")
   ```
 
   ```typescript TypeScript
-  // List files produced by this session
-  // scope_id filtering requires the managed-agents beta on the files request
+  // Menampilkan daftar file yang dihasilkan oleh sesi ini
+  // Pemfilteran scope_id memerlukan beta managed-agents pada permintaan files
   const files = await client.beta.files.list({
     scope_id: session.id,
     betas: ["managed-agents-2026-04-01"],
@@ -779,7 +788,7 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah se
     console.log(file.id, file.filename);
   }
 
-  // Download a file
+  // Mengunduh file
   if (files.data.length > 0) {
     const content = await client.beta.files.download(files.data[0].id);
     await writeFile("/tmp/output.txt", new Uint8Array(await content.arrayBuffer()));
@@ -787,8 +796,8 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah se
   ```
 
   ```csharp C#
-  // List files produced by this session
-  // (scope_id filtering requires the managed-agents beta on the files request)
+  // Daftar file yang dihasilkan oleh sesi ini
+  // (pemfilteran scope_id memerlukan beta managed-agents pada permintaan files)
   var files = await client.Beta.Files.List(new()
   {
       ScopeID = session.ID,
@@ -799,7 +808,7 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah se
       Console.WriteLine($"{file.ID} {file.Filename}");
   }
 
-  // Download a file
+  // Unduh file
   if (files.Items.Count > 0)
   {
       using var download = await client.Beta.Files.Download(files.Items[0].ID);
@@ -809,8 +818,8 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah se
   ```
 
   ```go Go
-  // List files produced by this session
-  // (scope_id filtering requires the managed-agents beta on the files request)
+  // Menampilkan daftar file yang dihasilkan oleh sesi ini
+  // (pemfilteran scope_id memerlukan beta managed-agents pada permintaan files)
   files, err := client.Beta.Files.List(ctx, anthropic.BetaFileListParams{
   	ScopeID: anthropic.String(session.ID),
   	Betas:   []anthropic.AnthropicBeta{anthropic.AnthropicBetaManagedAgents2026_04_01},
@@ -822,7 +831,7 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah se
   	fmt.Println(file.ID, file.Filename)
   }
 
-  // Download a file
+  // Mengunduh file
   if len(files.Data) > 0 {
   	resp, err := client.Beta.Files.Download(ctx, files.Data[0].ID, anthropic.BetaFileDownloadParams{})
   	if err != nil {
@@ -841,8 +850,8 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah se
   ```
 
   ```java Java
-  // List files produced by this session
-  // (scope_id filtering requires the managed-agents beta on the files request)
+  // Menampilkan daftar file yang dihasilkan oleh sesi ini
+  // (pemfilteran scope_id memerlukan beta managed-agents pada permintaan files)
   var files = client.beta().files().list(
       FileListParams.builder()
           .scopeId(session.id())
@@ -852,7 +861,7 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah se
       IO.println(file.id() + " " + file.filename());
   }
 
-  // Download a file
+  // Mengunduh file
   if (!files.data().isEmpty()) {
       try (HttpResponse response = client.beta().files().download(files.data().getFirst().id())) {
           try (InputStream body = response.body()) {
@@ -863,14 +872,14 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah se
   ```
 
   ```php PHP
-  // List files produced by this session
-  // scope_id filtering requires the managed-agents beta on the files request
+  // Daftar file yang dihasilkan oleh sesi ini
+  // Pemfilteran scope_id memerlukan beta managed-agents pada permintaan files
   $files = $client->beta->files->list(scopeID: $session->id, betas: ['managed-agents-2026-04-01']);
   foreach ($files->data as $file) {
       echo "{$file->id} {$file->filename}\n";
   }
 
-  // Download a file
+  // Unduh file
   if (count($files->data) > 0) {
       $content = $client->beta->files->download($files->data[0]->id);
       file_put_contents('/tmp/output.txt', $content);
@@ -878,15 +887,31 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah se
   ```
 
   ```ruby Ruby
-  # List files produced by this session
-  # scope_id filtering requires the managed-agents beta on the files request
+  # Menampilkan daftar file yang dihasilkan oleh sesi ini
+  # Pemfilteran scope_id memerlukan beta managed-agents pada permintaan files
   files = client.beta.files.list(scope_id: session.id, betas: ["managed-agents-2026-04-01"])
   files.data.each { |file| puts "#{file.id} #{file.filename}" }
 
-  # Download a file
+  # Mengunduh file
   if (first = files.data.first)
     content = client.beta.files.download(first.id)
     File.binwrite("/tmp/output.txt", content.read)
   end
   ```
 </CodeGroup>
+
+## Langkah selanjutnya
+
+<CardGroup cols={3}>
+  <Card title="Autentikasi dengan vault" icon="fingerprint" href="/docs/id/managed-agents/vaults">
+    Daftarkan kredensial per pengguna saat membuat sesi.
+  </Card>
+
+  <Card title="Stream event sesi" icon="lightning" href="/docs/id/managed-agents/events-and-streaming">
+    Kirim event, streaming respons, dan interupsi atau alihkan sesi Anda di tengah eksekusi.
+  </Card>
+
+  <Card title="Menambahkan file" icon="file" href="/docs/id/managed-agents/files">
+    Unggah file dan pasang di sandbox Anda untuk dibaca dan diproses.
+  </Card>
+</CardGroup>

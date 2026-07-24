@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/okta
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: d7dab50ddc245e83394074320df6c5f6740617ad27c5db7a4ae4a6a3796b02a7
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 9a381618e3f2785b499fd78a2f841cd2060dbdb483e7b1a22b5e40efc8cb3c91
 ---
 
 # Menggunakan WIF dengan Okta
@@ -11,15 +11,15 @@ Federasikan identitas aplikasi layanan Okta ke Claude API dengan Workload Identi
 
 ---
 
-Okta dapat bertindak sebagai penyedia identitas workload dengan menerbitkan token akses OIDC ke **aplikasi layanan** melalui grant `client_credentials` OAuth 2.0. Workload Anda melakukan autentikasi ke Okta (biasanya dengan `private_key_jwt`, sehingga tidak ada rahasia bersama yang disimpan), menerima JSON Web Token (JWT) yang ditandatangani, dan menukarkan JWT tersebut dengan Anthropic untuk mendapatkan token akses berumur pendek.
+Okta dapat bertindak sebagai penyedia identitas workload dengan menerbitkan token akses OIDC ke **aplikasi layanan** melalui grant OAuth 2.0 `client_credentials`. Workload Anda melakukan autentikasi ke Okta (biasanya dengan `private_key_jwt`, sehingga tidak ada shared secret yang disimpan), menerima "JSON Web Token" (token web JSON), atau JWT, yang ditandatangani, dan menukarkan JWT tersebut dengan Anthropic untuk mendapatkan token akses berumur pendek.
 
-URL issuer dari authorization server Okta memiliki bentuk `https://<your-domain>.okta.com/oauth2/<auth-server-id>`. Jika Anda menggunakan server default bawaan, path-nya adalah `/oauth2/default`.
+URL issuer dari authorization server Okta berbentuk `https://<your-domain>.okta.com/oauth2/<auth-server-id>`. Jika Anda menggunakan server default bawaan, path-nya adalah `/oauth2/default`.
 
 <Note>
-  Anda harus menggunakan **custom authorization server** Okta (termasuk yang `default`). Token yang diterbitkan langsung oleh Okta org authorization server (endpoint `/oauth2/v1/token` tanpa ID authorization server di path) tidak dapat divalidasi oleh pihak eksternal karena Okta tidak memublikasikan kunci penandatanganan untuk token tersebut.
+  Anda harus menggunakan **custom authorization server** Okta (termasuk yang `default`). Token yang diterbitkan langsung oleh authorization server org Okta (endpoint `/oauth2/v1/token` tanpa ID authorization server di path) tidak dapat divalidasi oleh pihak eksternal karena Okta tidak mempublikasikan kunci penandatanganan untuk token tersebut.
 </Note>
 
-Ada banyak cara untuk mengonfigurasi dan melakukan autentikasi ke Okta yang berada di luar cakupan dokumentasi ini. Pastikan konfigurasi dan mekanisme autentikasi Anda mengikuti panduan dan praktik keamanan perusahaan Anda.
+Ada banyak cara untuk mengonfigurasi dan melakukan autentikasi ke Okta yang berada di luar cakupan dokumentasi ini. Pastikan bahwa konfigurasi dan mekanisme autentikasi Anda mengikuti panduan dan praktik keamanan perusahaan Anda.
 
 ## Prasyarat
 
@@ -30,21 +30,21 @@ Ada banyak cara untuk mengonfigurasi dan melakukan autentikasi ke Okta yang bera
 
 ## Mengonfigurasi Okta
 
-Secara garis besar, Anda perlu:
+Secara garis besar Anda perlu:
 
 1. Membuat aplikasi layanan Okta.
-2. Mengonfigurasi authorization server default Anda (atau membuat custom authorization server baru) dengan audience, scope, access policy, dan klaim kustom apa pun yang ingin Anda cocokkan.
+2. Mengonfigurasi authorization server default Anda (atau membuat custom authorization server baru) dengan audience, scope, access policy, dan custom claim apa pun yang ingin Anda cocokkan.
 
-Navigasi yang tepat bergantung pada konfigurasi org Okta dan versi admin console Anda. Langkah-langkah bernomor berikut memandu Anda melalui salah satu jalur yang umum:
+Navigasi yang tepat bergantung pada konfigurasi org Okta Anda dan versi admin console. Langkah-langkah bernomor berikut memandu Anda melalui salah satu jalur yang umum:
 
-1. **Buat integrasi aplikasi layanan.** Di Okta Admin Console, buat integrasi aplikasi baru dengan tipe **API Services** (OIDC, machine-to-machine). Catat **Client ID** yang dihasilkan.
-2. **Konfigurasikan autentikasi klien.** Untuk penyiapan tanpa kunci, pilih **Public key / Private key** (`private_key_jwt`) dan daftarkan JWK publik workload Anda. Sebagai alternatif, gunakan client secret jika lingkungan Anda dapat menyimpannya dengan aman. Untuk contoh berikut, Anda mungkin perlu menonaktifkan persyaratan DPoP pada aplikasi; pastikan penyiapan produksi Anda mematuhi persyaratan keamanan organisasi Anda.
+1. **Buat integrasi service app.** Di Okta Admin Console, buat integrasi aplikasi baru dengan tipe **API Services** (OIDC, machine-to-machine). Catat **Client ID** yang dihasilkan.
+2. **Konfigurasikan autentikasi klien.** Untuk pengaturan tanpa kunci rahasia, pilih **Public key / Private key** (`private_key_jwt`) dan daftarkan JWK publik workload Anda. Sebagai alternatif, gunakan client secret jika lingkungan Anda dapat menyimpannya dengan aman. Untuk contoh berikut Anda mungkin perlu menonaktifkan persyaratan DPoP pada aplikasi; pastikan bahwa pengaturan produksi Anda mematuhi persyaratan keamanan organisasi Anda.
 3. **Tetapkan audience.** Pada custom authorization server Anda, tetapkan audience ke `https://api.anthropic.com` sehingga token akses yang diterbitkan membawa klaim `aud` tersebut. Anthropic memvalidasi `aud` terhadap nilai tetap ini.
-4. **Berikan scope.** Pada custom authorization server Anda, pastikan setidaknya ada satu scope yang diizinkan untuk diminta oleh aplikasi layanan (misalnya, `anthropic.access`). Okta menolak permintaan `client_credentials` yang tidak menyertakan scope yang diberikan.
-5. **Buat access policy.** Pada custom authorization server Anda, buat access policy dengan setidaknya satu aturan yang mengizinkan aplikasi layanan Anda meminta scope yang Anda berikan di langkah 4.
-6. **(Opsional) Tambahkan klaim kustom.** Jika Anda ingin mencocokkan berdasarkan sesuatu selain client ID, tambahkan klaim ke token akses di tab **Claims** pada authorization server Anda.
+4. **Berikan scope.** Pada custom authorization server Anda, pastikan setidaknya ada satu scope yang boleh diminta oleh service app (misalnya, `anthropic.access`). Okta menolak permintaan `client_credentials` yang tidak menyertakan scope yang telah diberikan.
+5. **Buat access policy.** Pada custom authorization server Anda, buat access policy dengan setidaknya satu aturan yang mengizinkan service app Anda meminta scope yang Anda berikan pada langkah 4.
+6. **(Opsional) Tambahkan custom claim.** Jika Anda ingin mencocokkan pada sesuatu selain client ID, tambahkan klaim ke token akses di tab **Claims** pada authorization server Anda.
 
-Untuk aplikasi layanan yang menggunakan `client_credentials`, Okta menetapkan klaim `sub` dari token akses yang diterbitkan ke **Client ID** aplikasi, dan `iss` ke URL issuer authorization server.
+Untuk service app yang menggunakan `client_credentials`, Okta menetapkan klaim `sub` dari token akses yang diterbitkan ke **Client ID** aplikasi, dan `iss` ke URL issuer dari authorization server.
 
 ## Mengonfigurasi Anthropic
 
@@ -52,7 +52,7 @@ Di Claude Console, buka **Settings → Workload identity**, klik **Connect workl
 
 Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut baik saat Anda memasukkannya di wizard maupun saat mengirimkannya ke [Admin API](/docs/id/manage-claude/wif-admin-api):
 
-**Federation issuer:** Gunakan URL custom authorization server Okta Anda dan mode discovery. Anthropic membaca dokumen discovery `.well-known/openid-configuration` Okta dan mengambil JWKS dari `jwks_uri` yang diiklankan.
+**Federation issuer:** Gunakan URL custom authorization server Okta Anda dan mode discovery. Anthropic membaca dokumen discovery `.well-known/openid-configuration` Okta dan mengambil JWKS dari `jwks_uri` yang diiklankannya.
 
 ```json
 {
@@ -62,7 +62,7 @@ Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut 
 }
 ```
 
-**Federation rule:** Cocokkan pada klaim `sub` Okta, yang merupakan Client ID aplikasi layanan. Jika Anda mendefinisikan klaim kustom di Okta, Anda dapat mencocokkan berdasarkan klaim tersebut dengan map `claims` atau `condition` CEL.
+**Federation rule:** Cocokkan pada klaim `sub` Okta, yang merupakan Client ID dari service app. Jika Anda mendefinisikan custom claim di Okta, Anda dapat mencocokkan pada klaim tersebut sebagai gantinya dengan map `claims` atau `condition` CEL.
 
 ```json
 {
@@ -81,11 +81,11 @@ Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut 
 
 ## Memperoleh token dan memanggil Claude API
 
-Tidak seperti penyedia native platform (AWS, Google Cloud, Kubernetes), yang menyediakan token di dalam runtime workload (melalui file yang diproyeksikan atau endpoint metadata lokal), Okta tidak melakukannya. Workload Anda harus memanggil endpoint token Okta untuk memperoleh JWT, lalu meneruskan JWT tersebut ke SDK Anthropic sebagai token identitas.
+Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang menyediakan token di dalam runtime workload (melalui file yang diproyeksikan atau endpoint metadata lokal), Okta tidak melakukannya. Workload Anda harus memanggil endpoint token Okta untuk mendapatkan JWT, lalu meneruskan JWT tersebut ke Anthropic SDK sebagai token identitas.
 
 <CodeGroup>
   ```bash cURL
-  # 1. Minta access token dari Okta (client_credentials dengan private_key_jwt).
+  # 1. Minta token akses dari Okta (client_credentials dengan private_key_jwt).
   OKTA_JWT=$(curl -sS "https://acme.okta.com/oauth2/aus1a2b3c4d5e6f7g8h9/v1/token" \
     -d grant_type=client_credentials \
     -d scope=anthropic.access \
@@ -93,7 +93,7 @@ Tidak seperti penyedia native platform (AWS, Google Cloud, Kubernetes), yang men
     --data-urlencode client_assertion="$SIGNED_CLIENT_ASSERTION" \
     | jq -r .access_token)
 
-  # 2. Tukarkan JWT Okta dengan access token Anthropic.
+  # 2. Tukarkan JWT Okta dengan token akses Anthropic.
   ACCESS_TOKEN=$(curl -sS https://api.anthropic.com/v1/oauth/token \
     -H "content-type: application/json" \
     -d @- <<JSON | jq -r .access_token
@@ -108,12 +108,12 @@ Tidak seperti penyedia native platform (AWS, Google Cloud, Kubernetes), yang men
   JSON
   )
 
-  # 3. Panggil API Claude.
+  # 3. Panggil Claude API.
   curl https://api.anthropic.com/v1/messages \
     -H "authorization: Bearer $ACCESS_TOKEN" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
-    -d '{"model": "claude-sonnet-4-6", "max_tokens": 1024, "messages": [{"role": "user", "content": "Hello, Claude"}]}' \
+    -d '{"model": "claude-opus-4-8", "max_tokens": 1024, "messages": [{"role": "user", "content": "Hello, Claude"}]}' \
     | jq -r '.content[0].text'
   ```
 
@@ -131,7 +131,7 @@ Tidak seperti penyedia native platform (AWS, Google Cloud, Kubernetes), yang men
               "grant_type": "client_credentials",
               "scope": "anthropic.access",
               "client_assertion_type": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-              # Buat JWT client_assertion RFC 7523 yang ditandatangani dengan kunci privat aplikasi Okta Anda
+              # Bangun JWT client_assertion RFC 7523 yang ditandatangani dengan kunci privat aplikasi Okta Anda
               "client_assertion": build_signed_client_assertion(),
           },
       )
@@ -150,7 +150,7 @@ Tidak seperti penyedia native platform (AWS, Google Cloud, Kubernetes), yang men
   )
 
   message = client.messages.create(
-      model="claude-sonnet-4-6",
+      model="claude-opus-4-8",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello, Claude"}],
   )
@@ -169,7 +169,7 @@ Tidak seperti penyedia native platform (AWS, Google Cloud, Kubernetes), yang men
         grant_type: "client_credentials",
         scope: "anthropic.access",
         client_assertion_type: "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-        // Buat JWT client_assertion RFC 7523 yang ditandatangani dengan kunci privat aplikasi Okta Anda
+        // Bangun JWT client_assertion RFC 7523 yang ditandatangani dengan kunci privat aplikasi Okta Anda
         client_assertion: buildSignedClientAssertion()
       })
     });
@@ -190,7 +190,7 @@ Tidak seperti penyedia native platform (AWS, Google Cloud, Kubernetes), yang men
   });
 
   const message = await client.messages.create({
-    model: "claude-sonnet-4-6",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello, Claude" }]
   });
@@ -222,7 +222,7 @@ Tidak seperti penyedia native platform (AWS, Google Cloud, Kubernetes), yang men
   		"grant_type":            {"client_credentials"},
   		"scope":                 {"anthropic.access"},
   		"client_assertion_type": {"urn:ietf:params:oauth:client-assertion-type:jwt-bearer"},
-  		// Buat JWT client_assertion RFC 7523 yang ditandatangani dengan kunci privat aplikasi Okta Anda
+  		// Bangun JWT client_assertion RFC 7523 yang ditandatangani dengan kunci privat aplikasi Okta Anda
   		"client_assertion": {buildSignedClientAssertion()},
   	}
   	req, err := http.NewRequestWithContext(ctx, http.MethodPost,
@@ -255,7 +255,7 @@ Tidak seperti penyedia native platform (AWS, Google Cloud, Kubernetes), yang men
   		}),
   	)
   	message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeSonnet4_6,
+  		Model:     anthropic.ModelClaudeOpus4_8,
   		MaxTokens: 1024,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),
@@ -275,7 +275,7 @@ Tidak seperti penyedia native platform (AWS, Google Cloud, Kubernetes), yang men
                           "grant_type", "client_credentials",
                           "scope", "anthropic.access",
                           "client_assertion_type", "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-                          // Buat JWT client_assertion RFC 7523 yang ditandatangani dengan kunci privat aplikasi Okta Anda
+                          // Bangun JWT client_assertion RFC 7523 yang ditandatangani dengan kunci privat aplikasi Okta Anda
                           "client_assertion", buildSignedClientAssertion())
                   .entrySet().stream()
                   .map(entry -> entry.getKey() + "=" + URLEncoder.encode(entry.getValue(), UTF_8))
@@ -300,7 +300,7 @@ Tidak seperti penyedia native platform (AWS, Google Cloud, Kubernetes), yang men
           .build();
 
   var message = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_SONNET_4_6)
+          .model(Model.CLAUDE_OPUS_4_8)
           .maxTokens(1024)
           .addUserMessage("Hello, Claude")
           .build());
@@ -321,7 +321,7 @@ Tidak seperti penyedia native platform (AWS, Google Cloud, Kubernetes), yang men
 
   var message = await client.Messages.Create(new()
   {
-      Model = Model.ClaudeSonnet4_6,
+      Model = Model.ClaudeOpus4_8,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
   });
@@ -344,7 +344,7 @@ Tidak seperti penyedia native platform (AWS, Google Cloud, Kubernetes), yang men
               ["grant_type"] = "client_credentials",
               ["scope"] = "anthropic.access",
               ["client_assertion_type"] = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-              // Buat JWT client_assertion RFC 7523 yang ditandatangani dengan kunci privat aplikasi Okta Anda
+              // Membangun JWT client_assertion RFC 7523 yang ditandatangani dengan kunci privat aplikasi Okta Anda
               ["client_assertion"] = BuildSignedClientAssertion(),
           });
           var response = await Http.PostAsync(
@@ -358,7 +358,7 @@ Tidak seperti penyedia native platform (AWS, Google Cloud, Kubernetes), yang men
   ```
 
   ```bash CLI
-  # 1. Minta access token dari Okta dan tulis ke file sementara.
+  # 1. Minta token akses dari Okta dan tulis ke file sementara.
   ANTHROPIC_IDENTITY_TOKEN_FILE=$(mktemp)
   curl -sS "$OKTA_ISSUER/v1/token" \
     -d grant_type=client_credentials \
@@ -368,11 +368,11 @@ Tidak seperti penyedia native platform (AWS, Google Cloud, Kubernetes), yang men
     | jq -r .access_token > "$ANTHROPIC_IDENTITY_TOKEN_FILE"
   export ANTHROPIC_IDENTITY_TOKEN_FILE
 
-  # 2. Panggil API Claude. CLI membaca ANTHROPIC_FEDERATION_RULE_ID,
+  # 2. Panggil Claude API. CLI membaca ANTHROPIC_FEDERATION_RULE_ID,
   # ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan
-  # ANTHROPIC_IDENTITY_TOKEN_FILE lalu melakukan pertukaran token.
+  # ANTHROPIC_IDENTITY_TOKEN_FILE lalu melakukan pertukaran.
   ant messages create \
-    --model claude-sonnet-4-6 \
+    --model claude-opus-4-8 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello, Claude"}'
   ```
@@ -390,7 +390,7 @@ Tidak seperti penyedia native platform (AWS, Google Cloud, Kubernetes), yang men
               'grant_type' => 'client_credentials',
               'scope' => 'anthropic.access',
               'client_assertion_type' => 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
-              // Buat JWT client_assertion RFC 7523 yang ditandatangani dengan kunci privat aplikasi Okta Anda
+              // Bangun JWT client_assertion RFC 7523 yang ditandatangani dengan kunci privat aplikasi Okta Anda
               'client_assertion' => buildSignedClientAssertion(),
           ]),
       ]);
@@ -410,7 +410,7 @@ Tidak seperti penyedia native platform (AWS, Google Cloud, Kubernetes), yang men
   );
 
   $message = $client->messages->create(
-      model: 'claude-sonnet-4-6',
+      model: 'claude-opus-4-8',
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello, Claude']],
   );
@@ -446,7 +446,7 @@ Tidak seperti penyedia native platform (AWS, Google Cloud, Kubernetes), yang men
   )
 
   message = client.messages.create(
-    model: "claude-sonnet-4-6",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello, Claude"}]
   )
@@ -454,26 +454,26 @@ Tidak seperti penyedia native platform (AWS, Google Cloud, Kubernetes), yang men
   ```
 </CodeGroup>
 
-Setiap tab SDK menunjukkan pola callable: SDK Anthropic memanggil penyedia token identitas Anda lagi setiap kali token akses Anthropic mendekati kedaluwarsa, sehingga fetcher Okta Anda harus mengembalikan token baru pada setiap panggilan alih-alih menyimpannya dalam cache tanpa batas waktu. CLI `ant` membaca ulang `ANTHROPIC_IDENTITY_TOKEN_FILE` pada setiap pertukaran, jadi perbarui file tersebut secara berkala untuk shell yang berjalan lama.
+Setiap tab SDK menunjukkan pola callable: Anthropic SDK memanggil penyedia token identitas Anda lagi setiap kali token akses Anthropic mendekati kedaluwarsa, sehingga fetcher Okta Anda harus mengembalikan token baru pada setiap panggilan alih-alih menyimpan satu token dalam cache tanpa batas waktu. CLI `ant` membaca ulang `ANTHROPIC_IDENTITY_TOKEN_FILE` pada setiap pertukaran, jadi segarkan file tersebut dengan timer untuk shell yang berjalan lama.
 
-## Memverifikasi penyiapan
+## Memverifikasi pengaturan
 
-Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Pada `400 invalid_grant`, lihat [Memecahkan masalah pertukaran yang gagal](/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi Okta adalah ketidakcocokan `issuer_url` (harus menyertakan path `/oauth2/<auth-server-id>`; Okta org authorization server tidak dapat digunakan).
+Pertukaran yang berhasil mengembalikan `access_token` yang dimulai dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Pada `400 invalid_grant`, lihat [Memecahkan masalah pertukaran yang gagal](/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi Okta adalah ketidakcocokan `issuer_url` (harus menyertakan path `/oauth2/<auth-server-id>`; authorization server org Okta tidak dapat digunakan).
 
-## Membatasi cakupan aturan Anda
+## Membatasi cakupan rule Anda
 
 <Warning>
-  Beberapa aplikasi layanan di bawah authorization server Okta yang sama berbagi issuer yang sama. Aturan yang menghilangkan `subject_prefix` akan cocok dengan setiap aplikasi layanan di server tersebut, sehingga tim mana pun yang dapat mendaftarkan satu aplikasi dapat memperoleh token Anthropic yang difederasikan.
+  Beberapa service app di bawah authorization server Okta yang sama berbagi issuer yang sama. Rule yang menghilangkan `subject_prefix` akan cocok dengan setiap service app pada server tersebut, sehingga tim mana pun yang dapat mendaftarkan satu service app dapat memperoleh token Anthropic terfederasi.
 </Warning>
 
-Kunci blok `match` aturan ke cakupan tersempit yang sesuai dengan kasus penggunaan Anda:
+Kunci blok `match` pada rule ke cakupan tersempit yang sesuai dengan kasus penggunaan Anda:
 
-* **Tetapkan Client ID yang tepat:** Tetapkan `subject_prefix` ke Client ID lengkap aplikasi layanan tanpa `*` di akhir.
-* **Tetapkan audience:** Cocokkan nilai `audience` yang Anda konfigurasikan pada authorization server sehingga token yang dibuat untuk audience berbeda akan ditolak.
-* **Cocokkan pada klaim kustom:** Untuk pembatasan cakupan yang lebih terperinci, tambahkan klaim di tab **Claims** authorization server dan cocokkan dengan map `claims` aturan atau `condition` CEL.
-* **Gunakan satu aturan per aplikasi layanan:** Buat federation rule terpisah untuk setiap aplikasi layanan alih-alih berbagi satu aturan di antara beberapa aplikasi.
+* **Tetapkan Client ID yang tepat:** Atur `subject_prefix` ke Client ID lengkap dari service app tanpa `*` di akhir.
+* **Tetapkan audience:** Cocokkan nilai `audience` yang Anda konfigurasikan pada authorization server sehingga token yang dibuat untuk audience yang berbeda akan ditolak.
+* **Cocokkan pada custom claim:** Untuk pembatasan cakupan yang lebih terperinci, tambahkan klaim di tab **Claims** pada authorization server dan cocokkan dengan map `claims` pada rule atau `condition` CEL.
+* **Gunakan satu rule per service app:** Buat federation rule terpisah untuk setiap service app alih-alih berbagi satu rule di antara beberapa aplikasi.
 
 ## Langkah selanjutnya
 
 * Tinjau [referensi WIF](/docs/id/manage-claude/wif-reference) untuk urutan resolusi kredensial lengkap dan konfigurasi profil.
-* Lihat [referensi WIF](/docs/id/manage-claude/wif-reference#rule-matching-semantics) untuk mencocokkan klaim kustom Okta dengan ekspresi CEL.
+* Lihat [referensi WIF](/docs/id/manage-claude/wif-reference#rule-matching-semantics) untuk mencocokkan pada custom claim Okta dengan ekspresi CEL.

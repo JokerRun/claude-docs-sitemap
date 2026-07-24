@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 518791c52829f0547f646192faa3f28b75e6ccda370b0b0fcce31bb20d5e73ba
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 977749e298f98d5cf35d7b85e6655c248c6c465c57cf1e0f98084ace95dfbd32
 ---
 
 # Alat
@@ -13,32 +13,32 @@ Konfigurasikan alat yang tersedia untuk agen Anda.
 
 Claude Managed Agents menyediakan serangkaian alat bawaan yang dapat digunakan Claude secara otonom dalam sebuah [sesi](/docs/id/managed-agents/sessions). Anda mengontrol alat mana yang tersedia dengan menentukannya dalam konfigurasi agen.
 
-Claude Managed Agents juga mendukung alat kustom yang didefinisikan pengguna. Aplikasi Anda mengeksekusi alat-alat ini secara terpisah dan mengembalikan hasilnya ke Claude, yang kemudian menggunakannya untuk melanjutkan tugas. Untuk memberikan agen alat dari server MCP, gunakan [konektor MCP](/docs/id/managed-agents/mcp-connector) sebagai gantinya.
+Claude Managed Agents juga mendukung alat kustom yang didefinisikan pengguna. Aplikasi Anda mengeksekusi alat-alat ini secara terpisah dan mengembalikan hasilnya ke Claude, yang menggunakannya untuk melanjutkan tugas. Untuk memberikan alat dari server MCP kepada agen, gunakan [konektor MCP](/docs/id/managed-agents/mcp-connector) sebagai gantinya.
 
 <Note>
-  Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Alat yang tersedia
 
-Toolset agen mencakup alat-alat berikut. Semuanya diaktifkan secara default ketika Anda menyertakan toolset dalam konfigurasi agen Anda. Gunakan nilai di kolom Nama untuk mereferensikan alat dalam array `configs`.
+Toolset agen mencakup alat-alat berikut. Semuanya diaktifkan secara default ketika Anda menyertakan toolset dalam konfigurasi agen Anda. Gunakan nilai-nilai di kolom Nama untuk mereferensikan alat dalam array `configs`.
 
-| Alat       | Nama         | Deskripsi                                        |
-| ---------- | ------------ | ------------------------------------------------ |
-| Bash       | `bash`       | Mengeksekusi perintah bash dalam sesi shell      |
-| Read       | `read`       | Membaca file dari filesystem sandbox             |
-| Write      | `write`      | Menulis file ke filesystem sandbox               |
-| Edit       | `edit`       | Melakukan penggantian string dalam file          |
-| Glob       | `glob`       | Pencocokan pola file cepat menggunakan pola glob |
-| Grep       | `grep`       | Pencarian teks menggunakan pola regex            |
-| Web fetch  | `web_fetch`  | Mengambil konten dari URL                        |
-| Web search | `web_search` | Mencari informasi di web                         |
+| Alat       | Nama         | Deskripsi                                             |
+| ---------- | ------------ | ----------------------------------------------------- |
+| Bash       | `bash`       | Mengeksekusi perintah bash dalam sesi shell           |
+| Read       | `read`       | Membaca file dari filesystem sandbox                  |
+| Write      | `write`      | Menulis file ke filesystem sandbox                    |
+| Edit       | `edit`       | Melakukan penggantian string dalam sebuah file        |
+| Glob       | `glob`       | Pencocokan pola file yang cepat menggunakan pola glob |
+| Grep       | `grep`       | Pencarian teks menggunakan pola regex                 |
+| Web fetch  | `web_fetch`  | Mengambil konten dari sebuah URL                      |
+| Web search | `web_search` | Mencari informasi di web                              |
 
-Ketika output alat melebihi 100.000 token, output tersebut secara otomatis ditulis ke file dalam [sandbox](/docs/id/managed-agents/environments). Model menerima pratinjau yang dipotong beserta path file dan dapat membaca konten lengkapnya dari sana.
+Ketika output alat melebihi 100.000 karakter (sekitar 25.000 token), output tersebut secara otomatis ditulis ke sebuah file di [sandbox](/docs/id/managed-agents/environments). Model menerima pratinjau yang dipotong beserta jalur file dan dapat membaca konten lengkapnya dari sana.
 
 ## Mengonfigurasi toolset
 
-Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Gunakan array `configs` untuk menonaktifkan alat tertentu atau mengganti pengaturannya. Setiap entri config juga dapat menetapkan `permission_policy` yang mengontrol apakah panggilan alat disetujui secara otomatis atau memerlukan konfirmasi. Lihat [Kebijakan izin](/docs/id/managed-agents/permission-policies) untuk jenis kebijakan yang tersedia.
+Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Gunakan array `configs` untuk menonaktifkan alat tertentu atau menimpa pengaturannya. Setiap entri config juga dapat menetapkan `permission_policy` yang mengontrol apakah panggilan alat tersebut disetujui secara otomatis atau memerlukan konfirmasi. Lihat [Kebijakan izin](/docs/id/managed-agents/permission-policies) untuk jenis kebijakan yang tersedia.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -195,7 +195,7 @@ Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Guna
 
 ### Menonaktifkan alat tertentu
 
-Untuk menonaktifkan alat, tetapkan `enabled: false` dalam entri config-nya di objek toolset pada array `tools` agen Anda:
+Untuk menonaktifkan sebuah alat, atur `enabled: false` pada entri config-nya di objek toolset dalam array `tools` agen Anda:
 
 ```json
 {
@@ -209,7 +209,7 @@ Untuk menonaktifkan alat, tetapkan `enabled: false` dalam entri config-nya di ob
 
 ### Mengaktifkan hanya alat tertentu
 
-Objek `default_config` menetapkan baseline untuk setiap alat dalam set, dan entri `configs` per-alat akan menggantinya. Untuk memulai dengan semuanya nonaktif dan hanya mengaktifkan yang Anda butuhkan, tetapkan `default_config.enabled` ke `false`:
+Objek `default_config` menetapkan baseline untuk setiap alat dalam set tersebut, dan entri `configs` per-alat akan menimpanya. Untuk memulai dengan semuanya nonaktif dan hanya mengaktifkan yang Anda butuhkan, atur `default_config.enabled` ke `false`:
 
 ```json
 {
@@ -227,7 +227,9 @@ Objek `default_config` menetapkan baseline untuk setiap alat dalam set, dan entr
 
 Selain alat bawaan, Anda dapat mendefinisikan alat kustom. Alat kustom analog dengan [alat klien yang didefinisikan pengguna](/docs/id/agents-and-tools/tool-use/how-tool-use-works#user-defined-tools-client-executed) di Messages API.
 
-Setiap alat kustom mendefinisikan sebuah kontrak: Anda menentukan operasi apa yang tersedia dan apa yang dikembalikannya, dan Claude menentukan kapan dan bagaimana memanggilnya. Model tidak pernah mengeksekusi apa pun sendiri. Model mengeluarkan permintaan terstruktur, kode Anda menjalankan operasi tersebut, dan hasilnya mengalir kembali ke dalam percakapan. Lihat [Aliran event sesi](/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls) untuk cara menerima panggilan alat kustom dan mengembalikan hasil selama sesi.
+Setiap alat kustom mendefinisikan sebuah kontrak: Anda menentukan operasi apa yang tersedia dan apa yang dikembalikannya, dan Claude menentukan kapan dan bagaimana memanggilnya. Model tidak pernah mengeksekusi apa pun sendiri. Model mengeluarkan permintaan terstruktur, kode Anda menjalankan operasinya, dan hasilnya mengalir kembali ke dalam percakapan. Lihat [Aliran event sesi](/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls) untuk cara menerima panggilan alat kustom dan mengembalikan hasil selama sesi berlangsung.
+
+Jika sesi Anda berjalan di sandbox yang di-hosting sendiri, environment worker dapat [menyajikan alat kustom dari sandbox Anda](/docs/id/managed-agents/self-hosted-sandboxes#serve-custom-tools-from-your-sandbox), termasuk alat yang membungkus server MCP di dalam jaringan Anda.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -459,14 +461,14 @@ Setiap alat kustom mendefinisikan sebuah kontrak: Anda menentukan operasi apa ya
   ```
 </CodeGroup>
 
-Setelah Anda mendefinisikan alat kustom pada agen, agen akan memanggilnya selama sesi.
+Setelah Anda mendefinisikan alat kustom pada agen, agen akan memanggilnya selama sesi berlangsung.
 
 ### Praktik terbaik untuk definisi alat kustom
 
-* **Berikan deskripsi yang sangat detail.** Ini adalah faktor terpenting dalam performa alat. Deskripsi Anda harus menjelaskan apa yang dilakukan alat dan kapan menggunakannya (dan kapan tidak). Jelaskan apa arti setiap parameter dan bagaimana pengaruhnya terhadap perilaku alat. Sebutkan peringatan atau batasan penting apa pun. Semakin banyak konteks yang dapat Anda berikan kepada Claude tentang alat Anda, semakin baik Claude dalam menentukan kapan dan bagaimana menggunakannya. Targetkan tiga hingga empat kalimat untuk setiap deskripsi alat, lebih banyak jika alatnya kompleks.
-* **Konsolidasikan operasi terkait ke dalam lebih sedikit alat.** Daripada membuat alat terpisah untuk setiap tindakan (`create_pr`, `review_pr`, `merge_pr`), kelompokkan ke dalam satu alat dengan parameter `action`. Alat yang lebih sedikit namun lebih mumpuni mengurangi ambiguitas pemilihan dan membuat kumpulan alat Anda lebih mudah dinavigasi oleh Claude.
-* **Gunakan namespacing yang bermakna dalam nama alat.** Ketika alat Anda mencakup beberapa layanan atau sumber daya, beri prefiks nama dengan sumber daya tersebut (misalnya, `db_query` atau `storage_read`). Ini membuat pemilihan alat tidak ambigu seiring bertambahnya pustaka Anda.
-* **Rancang respons alat agar hanya mengembalikan informasi bernilai tinggi.** Kembalikan pengidentifikasi yang semantik dan stabil (misalnya, slug atau UUID) daripada referensi internal yang tidak jelas, dan sertakan hanya field yang dibutuhkan Claude untuk menentukan langkah berikutnya. Respons yang membengkak memboroskan konteks dan mempersulit Claude untuk mengekstrak apa yang penting.
+* **Berikan deskripsi yang sangat detail.** Ini sejauh ini merupakan faktor terpenting dalam kinerja alat. Deskripsi Anda harus menjelaskan apa yang dilakukan alat tersebut dan kapan menggunakannya (dan kapan tidak). Jelaskan arti setiap parameter dan bagaimana parameter tersebut memengaruhi perilaku alat. Sebutkan setiap peringatan atau batasan penting. Semakin banyak konteks yang dapat Anda berikan kepada Claude tentang alat Anda, semakin baik Claude dalam menentukan kapan dan bagaimana menggunakannya. Usahakan tiga hingga empat kalimat untuk setiap deskripsi alat, lebih banyak jika alatnya kompleks.
+* **Konsolidasikan operasi terkait ke dalam lebih sedikit alat.** Daripada membuat alat terpisah untuk setiap aksi (`create_pr`, `review_pr`, `merge_pr`), kelompokkan menjadi satu alat dengan parameter `action`. Alat yang lebih sedikit namun lebih mumpuni mengurangi ambiguitas pemilihan dan membuat permukaan alat Anda lebih mudah dinavigasi oleh Claude.
+* **Gunakan namespacing yang bermakna dalam nama alat.** Ketika alat Anda mencakup beberapa layanan atau sumber daya, awali nama dengan sumber dayanya (misalnya, `db_query` atau `storage_read`). Ini membuat pemilihan alat menjadi tidak ambigu seiring bertambahnya pustaka Anda.
+* **Rancang respons alat agar hanya mengembalikan informasi bernilai tinggi.** Kembalikan pengidentifikasi yang semantik dan stabil (misalnya, slug atau UUID) daripada referensi internal yang tidak jelas, dan sertakan hanya field yang dibutuhkan Claude untuk menentukan langkah berikutnya. Respons yang membengkak memboroskan konteks dan mempersulit Claude untuk mengekstrak hal yang penting.
 
 ## Langkah selanjutnya
 
@@ -480,6 +482,6 @@ Setelah Anda mendefinisikan alat kustom pada agen, agen akan memanggilnya selama
   </Card>
 
   <Card title="Aliran event sesi" icon="lightning" href="/docs/id/managed-agents/events-and-streaming">
-    Kirim event, stream respons, dan interupsi atau arahkan ulang sesi Anda di tengah eksekusi.
+    Kirim event, streaming respons, dan interupsi atau alihkan sesi Anda di tengah eksekusi.
   </Card>
 </CardGroup>

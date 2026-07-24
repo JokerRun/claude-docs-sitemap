@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-07-17T03:08:17.884216Z
-sha256: f3ee264b1730d023f0ae93d24fbdee6bc093ac97a12cb323d98bd4a89296f0de
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 1f1804bfec1841cb494b009c6d9487797a9311b6d22e57b8554cb65b30e418fe
 ---
 
 # Define tools
@@ -23,7 +23,7 @@ Use the latest Claude Opus (4.8) model for complex tools and ambiguous queries; 
 Use Claude Haiku models for straightforward tools, but note they may infer missing parameters.
 
 <Tip>
-  If using Claude with tool use and extended thinking, refer to the [extended thinking](/docs/en/build-with-claude/extended-thinking) guide for more information.
+  If using Claude with tool use and thinking, see [Thinking](/docs/en/build-with-claude/thinking) for more information.
 </Tip>
 
 ## Specifying client tools
@@ -864,7 +864,7 @@ This diagram illustrates how each option works:
 Note that when you have `tool_choice` as `any` or `tool`, the API prefills the assistant message to force a tool to be used. This means that the models will not emit a natural language response or explanation before `tool_use` content blocks, even if explicitly asked to do so.
 
 <Note>
-  When using [extended thinking](/docs/en/build-with-claude/extended-thinking) with tool use, `tool_choice: {"type": "any"}` and `tool_choice: {"type": "tool", "name": "..."}` are not supported and will result in an error. Only `tool_choice: {"type": "auto"}` (the default) and `tool_choice: {"type": "none"}` are compatible with extended thinking.
+  When using [thinking](/docs/en/build-with-claude/thinking) with tool use, `tool_choice: {"type": "any"}` and `tool_choice: {"type": "tool", "name": "..."}` are not supported and result in an error. Only `tool_choice: {"type": "auto"}` (the default) and `tool_choice: {"type": "none"}` are compatible with thinking.
 </Note>
 
 <Note>

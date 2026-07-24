@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-faq
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 1db39634d27f7586f7df6c23d3d144de20877cdeb70c9a8e129248f6bd10babb
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 13709191cc7e797c8d93a4110ee6e0f7844be73c4981bad949b51c4634966129
 ---
 
 # FAQ Compliance API
 
-Jawaban atas pertanyaan umum tentang akses, cakupan, retensi, dan integrasi Compliance API.
+Jawaban atas pertanyaan umum tentang akses, scope, retensi, dan integrasi Compliance API.
 
 ---
 
@@ -15,24 +15,24 @@ Jawaban atas pertanyaan umum tentang akses, cakupan, retensi, dan integrasi Comp
   Untuk mengaktifkan Compliance API, lihat [Menyiapkan Compliance API](/docs/id/manage-claude/compliance-api-access).
 </Note>
 
-## Akses dan cakupan
+## Akses dan scope
 
 <AccordionGroup>
-  <Accordion title="Mengapa organisasi induk saya tidak muncul di Claude Console saat membuat kunci Admin API?">
-    Ini memang diharapkan. Organisasi induk Claude Enterprise memusatkan identitas di seluruh organisasi yang tertaut; organisasi induk tidak membawa beban kerja, dan tidak muncul sama sekali di Claude Console. Claude Console hanya menampilkan organisasi Claude Console yang tertaut di bawah organisasi induk.
+  <Accordion title="Mengapa organisasi induk saya tidak muncul di Claude Console saat membuat Admin API key?">
+    Ini memang sesuai harapan. Organisasi induk Claude Enterprise memusatkan identitas di seluruh organisasi yang tertaut; organisasi induk tidak membawa beban kerja, dan tidak muncul sama sekali di Claude Console. Claude Console hanya menampilkan organisasi Claude Console yang tertaut di bawah organisasi induk.
 
     Untuk memanggil Compliance API, Anda membuat salah satu dari dua jenis kunci berikut:
 
     * **Untuk akses penuh Compliance API ([Activity Feed](/docs/id/manage-claude/compliance-activity-feed) ditambah chat, file, proyek, pengguna, metadata organisasi, dan pengaturan organisasi),** pemilik utama organisasi induk (atau pemilik organisasi, untuk kunci yang dibatasi hanya pada organisasinya sendiri) membuat [Compliance Access Key](/docs/id/manage-claude/compliance-api-access#set-up-the-compliance-api) di claude.ai.
-    * **Untuk akses Activity Feed saja,** admin organisasi di organisasi Claude Console Anda membuat [kunci Admin API](/docs/id/manage-claude/compliance-api-access#create-an-admin-api-key) di Claude Console. Compliance API harus sudah diaktifkan untuk organisasi tersebut, dan admin harus membuat kunci Admin API setelah pengaktifan agar kunci tersebut membawa cakupan `read:compliance_activities`.
+    * **Untuk akses Activity Feed saja,** admin organisasi di organisasi Claude Console Anda membuat [Admin API key](/docs/id/manage-claude/compliance-api-access#create-an-admin-api-key) di Claude Console. Compliance API harus sudah diaktifkan untuk organisasi tersebut, dan admin harus membuat Admin API key setelah pengaktifan agar kunci tersebut membawa scope `read:compliance_activities`.
   </Accordion>
 
-  <Accordion title="Dapatkah saya menggunakan kunci Claude API biasa saya dengan Compliance API?">
-    Tidak. Kunci Claude API (`sk-ant-api03-...`) mengautentikasi panggilan ke model Claude pada Claude API; kunci tersebut tidak mengautentikasi panggilan ke `/v1/compliance/*`. Compliance API hanya menerima Compliance Access Key (`sk-ant-api01-...`) dan kunci Admin API (`sk-ant-admin01-...`). Lihat [Kunci mana yang Anda butuhkan?](/docs/id/manage-claude/compliance-api-access#which-key-do-you-need) untuk pemetaan lengkapnya.
+  <Accordion title="Dapatkah saya menggunakan kunci Claude API reguler saya dengan Compliance API?">
+    Tidak. Kunci Claude API (`sk-ant-api03-...`) mengautentikasi panggilan ke model Claude pada Claude API; kunci tersebut tidak mengautentikasi panggilan ke `/v1/compliance/*`. Compliance API hanya menerima Compliance Access Key (`sk-ant-api01-...`) dan Admin API key (`sk-ant-admin01-...`). Lihat [Kunci mana yang Anda butuhkan?](/docs/id/manage-claude/compliance-api-access#which-key-do-you-need) untuk pemetaan lengkapnya.
   </Accordion>
 
-  <Accordion title="Mengapa kunci Admin API saya mengembalikan 403 pada endpoint chat atau file?">
-    Kunci Admin API membawa cakupan tetap `read:compliance_activities`, yang hanya mengotorisasi Activity Feed. Setiap endpoint Compliance API lainnya memerlukan cakupan yang hanya dapat dibawa oleh Compliance Access Key yang dibuat di claude.ai. Memanggil endpoint konten atau direktori dengan kunci Admin API mengembalikan 403 yang menyebutkan cakupan yang diperlukan oleh keluarga endpoint tersebut: `read:compliance_user_data` untuk chat, file, proyek, lampiran proyek, pengguna, dan anggota grup, serta `read:compliance_org_data` untuk organisasi, peran, grup, dan pengaturan organisasi efektif. Misalnya, menampilkan daftar chat mengembalikan respons berikut.
+  <Accordion title="Mengapa Admin API key saya mengembalikan 403 pada endpoint chat atau file?">
+    Admin API key membawa scope tetap `read:compliance_activities`, yang hanya mengotorisasi Activity Feed. Setiap endpoint Compliance API lainnya memerlukan scope yang hanya dapat dibawa oleh Compliance Access Key yang dibuat di claude.ai. Memanggil endpoint konten atau direktori dengan Admin API key mengembalikan 403 yang menyebutkan scope yang diperlukan oleh keluarga endpoint tersebut: `read:compliance_user_data` untuk chat, file, proyek, lampiran proyek, pengguna, dan anggota grup, serta `read:compliance_org_data` untuk organisasi, peran, grup, dan pengaturan organisasi efektif. Sebagai contoh, menampilkan daftar chat mengembalikan respons berikut.
 
     ```json Response
     {
@@ -61,11 +61,11 @@ Jawaban atas pertanyaan umum tentang akses, cakupan, retensi, dan integrasi Comp
   </Accordion>
 
   <Accordion title="Apakah konten yang dihapus dapat dipulihkan melalui Compliance API?">
-    Tidak. Penghapusan yang dilakukan melalui Compliance API bersifat langsung, permanen, dan tidak dapat dipulihkan. Chat yang dihapus pengguna melalui claude.ai dihapus secara lunak (soft-deleted): chat tersebut tetap terlihat melalui Compliance API dengan `deleted_at` terisi hingga jendela retensi organisasi Anda berakhir atau Anda menghapusnya secara permanen melalui API ini. Tarik konten apa pun yang perlu Anda simpan (untuk penahanan hukum atau pengarsipan) sebelum mengeluarkan permintaan `DELETE`.
+    Tidak. Penghapusan yang dilakukan melalui Compliance API bersifat langsung, permanen, dan tidak dapat dipulihkan. Chat yang dihapus pengguna melalui claude.ai bersifat soft-delete: chat tersebut tetap terlihat melalui Compliance API dengan `deleted_at` terisi hingga jendela retensi organisasi Anda berakhir atau Anda melakukan hard-delete melalui API ini. Tarik konten apa pun yang perlu Anda simpan (untuk legal hold atau pengarsipan) sebelum mengeluarkan permintaan `DELETE`.
   </Accordion>
 
   <Accordion title="Apa yang tidak ditangkap oleh Compliance API?">
-    Compliance API memiliki batasan cakupan yang diketahui: Activity Feed mencatat peristiwa sumber daya tetapi tidak mencatat teks prompt atau respons, beban kerja Claude Console dan Claude API sama sekali tidak mengekspos konten pesan, dan konten yang dihapus oleh kebijakan retensi Anda atau oleh penghapusan permanen tidak dapat dipulihkan. Untuk batasan cakupan lengkap dan kontrak pengiriman, lihat [Jaminan pengiriman dan kelengkapan](/docs/id/manage-claude/compliance-integration-patterns#delivery-guarantees-and-completeness).
+    Compliance API memiliki batasan cakupan yang diketahui: Activity Feed mencatat peristiwa sumber daya tetapi tidak mencatat teks prompt atau respons, beban kerja Claude Console dan Claude API sama sekali tidak mengekspos konten pesan, dan konten yang dihapus oleh kebijakan retensi Anda atau oleh hard delete tidak dapat dipulihkan. Untuk batasan cakupan lengkap dan kontrak pengiriman, lihat [Jaminan pengiriman dan kelengkapan](/docs/id/manage-claude/compliance-integration-patterns#delivery-guarantees-and-completeness).
   </Accordion>
 </AccordionGroup>
 
@@ -77,15 +77,15 @@ Jawaban atas pertanyaan umum tentang akses, cakupan, retensi, dan integrasi Comp
   </Accordion>
 
   <Accordion title="Dapatkah satu pelanggan memiliki beberapa organisasi di bawah satu induk?">
-    Ya. Organisasi induk Claude Enterprise dapat memiliki banyak organisasi tertaut, termasuk campuran organisasi claude.ai dan organisasi Claude Console (misalnya, organisasi Claude Console produksi dan staging yang terpisah). Identitas, SSO, dan SCIM dibagikan di seluruh organisasi induk; penagihan, anggota, proyek, dan kunci API tetap terpisah untuk setiap organisasi. Pengaktifan Compliance API terjadi di tingkat organisasi induk dan berlaku ke semua organisasi tertaut, dan Compliance Access Key yang mencakup organisasi induk serta membawa `read:compliance_org_data` dapat menampilkan setiap organisasi di bawah induk melalui `GET /v1/compliance/organizations`.
+    Ya. Organisasi induk Claude Enterprise dapat memiliki banyak organisasi tertaut, termasuk campuran organisasi claude.ai dan organisasi Claude Console (misalnya, organisasi Claude Console produksi dan staging yang terpisah). Identitas, SSO, dan SCIM dibagikan di seluruh organisasi induk; penagihan, anggota, proyek, dan kunci API tetap terpisah untuk setiap organisasi. Pengaktifan Compliance API terjadi di tingkat organisasi induk dan berlaku ke semua organisasi tertaut, dan Compliance Access Key yang mencakup organisasi induk serta membawa `read:compliance_org_data` dapat menghitung setiap organisasi di bawah induk melalui `GET /v1/compliance/organizations`.
   </Accordion>
 
-  <Accordion title="Apakah aktivitas dikembalikan secara berurutan, dan bagaimana cara mendeteksi ketika saya telah mencapai waktu nyata?">
-    Aktivitas dikembalikan dari yang terbaru terlebih dahulu, dengan kesamaan pada `created_at` dipecahkan berdasarkan ID aktivitas. Untuk mengejar ketertinggalan, telusuri halaman ke depan dengan `before_id` hingga `has_more` bernilai `false`; `first_id` dari respons terakhir tersebut adalah kursor baru Anda dan Anda telah mencapai saat ini. Loop lengkapnya, termasuk backfill awal dan kondisi keamanan pada persistensi kursor, ada di [Pembacaan inkremental berbasis kursor](/docs/id/manage-claude/compliance-integration-patterns#cursor-driven-incremental-reads).
+  <Accordion title="Apakah aktivitas dikembalikan secara berurutan, dan bagaimana cara mendeteksi ketika saya sudah mencapai waktu nyata?">
+    Aktivitas dikembalikan dari yang terbaru terlebih dahulu, dengan nilai `created_at` yang sama diurutkan berdasarkan ID aktivitas. Untuk mengejar ketertinggalan, telusuri halaman ke depan dengan `before_id` hingga `has_more` bernilai `false`; `first_id` dari respons terakhir tersebut adalah kursor baru Anda dan Anda telah mencapai waktu saat ini. Loop lengkapnya, termasuk backfill awal dan kondisi keamanan pada persistensi kursor, ada di [Pembacaan inkremental berbasis kursor](/docs/id/manage-claude/compliance-integration-patterns#cursor-driven-incremental-reads).
   </Accordion>
 
   <Accordion title="Bagaimana cara mendapatkan sandbox untuk menguji Compliance API?">
-    Siapkan organisasi sandbox Claude Enterprise yang tertaut ke organisasi Claude Console di bawah induk yang sama. Ini memungkinkan sandbox menguji baik Activity Feed (melalui kunci Admin API) maupun endpoint chat, file, dan proyek (melalui Compliance Access Key).
+    Siapkan organisasi sandbox Claude Enterprise yang tertaut ke organisasi Claude Console di bawah induk yang sama. Ini memungkinkan sandbox menguji baik Activity Feed (melalui Admin API key) maupun endpoint chat, file, dan proyek (melalui Compliance Access Key).
 
     1. **Sediakan organisasi Claude Enterprise.** Hubungi perwakilan Anthropic Anda untuk menyiapkan organisasi sandbox Claude Enterprise. Pada organisasi Claude Enterprise yang sudah ada, pemilik utama dapat [mengaktifkan Compliance API langsung di claude.ai](/docs/id/manage-claude/compliance-api-access#set-up-the-compliance-api).
     2. **Buat organisasi Claude Console.** Buat sendiri organisasi Claude Console di `platform.claude.com` menggunakan alamat email yang sama.

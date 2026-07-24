@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 61f3b61423a1c953edbd242e2e9e639a213397a6eb3a3fdc53da7232d4aac9f3
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: a215e57b39a13c794a9590a9e9a59700c6bbf0e387bf10d71e75c23970accb09
 ---
 
 # Prompting Claude Fable 5
@@ -179,5 +179,5 @@ Do not route narration or internal reasoning through `send_to_user`; over-callin
 * **Start at the top of your difficulty range.** Pick a task harder than what you'd assign to prior models, and have Claude Fable 5 scope it, ask clarifying questions, and execute.
 * **Make self-verification explicit in long-run prompts.** Separate, fresh-context verifier subagents tend to outperform self-critique. For long-running tasks, instruct: `Establish a method for checking your own work at an interval of [X] as you build. Run this every [X interval], verifying your work with subagents against the specification.`
 * **Refactor existing prompts and skills.** Skills developed for prior models are often too prescriptive for Claude Fable 5 and can degrade output quality. Review and consider removing older instructions if default performance is better. Claude Fable 5 also does a good job of updating skills on the fly based on what it learns from the task at hand.
-* **Don't instruct Claude to reproduce its reasoning in the response.** Prompts, skills, or harness instructions that tell the model to echo, transcribe, or explain its internal reasoning as response text can trigger the [`reasoning_extraction` refusal category](/docs/en/build-with-claude/refusals-and-fallback#refusal-response) on Claude Fable 5, causing elevated fallbacks to Claude Opus 4.8. Audit existing skills and system prompts for reflection or show-your-thinking instructions when migrating. If your application needs reasoning visibility, read the structured `thinking` blocks from [adaptive thinking](/docs/en/build-with-claude/adaptive-thinking) instead, and use a [send-to-user tool](#create-a-send-to-user-tool) to surface progress during long runs.
+* **Don't instruct Claude to reproduce its reasoning in the response.** Prompts, skills, or harness instructions that tell the model to echo, transcribe, or explain its internal reasoning as response text can trigger the [`reasoning_extraction` refusal category](/docs/en/build-with-claude/refusals-and-fallback#refusal-response) on Claude Fable 5, causing elevated fallbacks to Claude Opus 4.8. Audit existing skills and system prompts for reflection or show-your-thinking instructions when migrating. If your application needs reasoning visibility, read the structured `thinking` blocks from [adaptive thinking](/docs/en/build-with-claude/thinking-steering-and-cost) instead, and use a [send-to-user tool](#create-a-send-to-user-tool) to surface progress during long runs.
 * **Create a send-to-user tool.** For long, asynchronous agents, a client-side tool delivers messages to the user verbatim without ending the turn. See [Create a send-to-user tool](#create-a-send-to-user-tool).

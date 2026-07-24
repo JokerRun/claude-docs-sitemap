@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins-reference
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 049e382c1972913032d000cf18426cf97c7cc498b07bcfcaeac38e9075e0bd5d
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: dcd1c4e8145041dfafc02c77798692ddfc6316db467ab7482a61c51f1cbc3c73
 ---
 
 > ## Documentation Index
@@ -50,6 +50,8 @@ skills/
 * Skills can include supporting files alongside SKILL.md
 
 If a plugin has no `skills/` directory and no `skills` manifest field, a `SKILL.md` at the plugin root is loaded as a single skill. Set the frontmatter `name` field to control the skill's invocation name. Without it, Claude Code falls back to the install directory name, which for marketplace-installed plugins is a version string that changes on every update. For plugins that ship more than one skill, use the `skills/` directory layout shown above.
+
+In plugin skills and commands, Boolean frontmatter fields such as `disable-model-invocation` accept `yes`, `no`, `on`, `off`, `1`, and `0` in any letter case, in addition to `true` and `false`. Before v2.1.218, Claude Code recognized only `true` and `false`.
 
 For complete details, see [Skills](/docs/en/skills).
 

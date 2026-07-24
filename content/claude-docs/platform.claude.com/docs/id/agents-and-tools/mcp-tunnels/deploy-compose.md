@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-compose
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: c71c601b2eeba0176970a97169babfdfc334f88d3b0011f85a0b0340ecc5a451
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: a3b0fdf51e7a243ca8b617d20533e8259b63552f9392fb84a5b14e085169de20
 ---
 
 # Deploy tunnel MCP dengan Docker Compose
@@ -21,12 +21,12 @@ Panduan ini men-deploy [tunnel stack](/docs/id/agents-and-tools/mcp-tunnels/conc
 
 Anda memerlukan:
 
-* **Sebuah tunnel.** Dengan akses programatik, [komponen setup](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) membuatnya untuk Anda ketika Anda tidak menyediakan ID tunnel; untuk melekat ke tunnel yang sudah ada, [buat di Console](/docs/id/agents-and-tools/mcp-tunnels/console#create-a-tunnel) dan catat ID tunnel (`tnl_...`). Provisioning manual selalu dimulai dari tunnel yang dibuat di Console.
+* **Sebuah tunnel.** Dengan akses programatik, [komponen setup](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) membuatnya untuk Anda ketika Anda tidak menyediakan ID tunnel; untuk melampirkan ke tunnel yang sudah ada, [buat di Console](/docs/id/agents-and-tools/mcp-tunnels/console#create-a-tunnel) dan catat ID tunnel (`tnl_...`). Provisioning manual selalu dimulai dari tunnel yang dibuat di Console.
 
 * **Cara bagi host untuk mengautentikasi ke Tunnels API.**
 
   * **Akses programatik (direkomendasikan).** Aktifkan **Set up programmatic access** saat membuat tunnel (atau buat aturan federasi langsung di bawah **Settings > Workload identity** jika Anda membiarkan komponen setup membuat tunnel) sehingga komponen setup dapat mengautentikasi melalui Workload Identity Federation. Catat ID aturan federasi (`fdrl_...`) dan ID organisasi Anda.
-  * **Manual.** Lewati akses programatik. Anda akan [mendapatkan token tunnel dari Console](/docs/id/agents-and-tools/mcp-tunnels/console#get-the-connection-details), menghasilkan CA dan sertifikat server sendiri, dan [mendaftarkan CA di Console](/docs/id/agents-and-tools/mcp-tunnels/console#add-a-ca-certificate).
+  * **Manual.** Lewati akses programatik. Anda akan [mendapatkan token tunnel dari Console](/docs/id/agents-and-tools/mcp-tunnels/console#get-the-connection-details), membuat CA dan sertifikat server sendiri, dan [mendaftarkan CA di Console](/docs/id/agents-and-tools/mcp-tunnels/console#add-a-ca-certificate).
 
 * **Host dengan Docker dan Docker Compose** terinstal. Alur manual juga memerlukan `openssl` (1.1.1 atau lebih baru).
 
@@ -57,7 +57,7 @@ if __name__ == "__main__":
 EOF
 ```
 
-Langkah-langkah Instal berikut melakukan `cd` ke dalam `mcp-tunnel/` dan mencatat di mana menambahkan service dan route yang sesuai.
+Langkah-langkah Instal berikut melakukan `cd` ke dalam `mcp-tunnel/` dan mencatat di mana harus menambahkan service dan route yang sesuai.
 
 ## Instal
 
@@ -67,7 +67,7 @@ Panduan ini menyediakan satu pendekatan referensi menggunakan Docker Compose. An
   <Tab title="Dengan akses programatik">
     Jalur ini mengharuskan host memiliki penyedia identitas OIDC (seperti server metadata VM cloud atau SPIFFE). Jika tidak, gunakan tab **Tanpa akses programatik** sebagai gantinya.
 
-    Komponen setup menggunakan Workload Identity Federation untuk mengambil token tunnel, menghasilkan CA dan sertifikat server, dan mendaftarkan CA ke Anthropic.
+    Komponen setup menggunakan Workload Identity Federation untuk mengambil token tunnel, membuat CA dan sertifikat server, dan mendaftarkan CA ke Anthropic.
 
     <Steps>
       <Step title="Siapkan direktori deployment">
@@ -81,7 +81,7 @@ Panduan ini menyediakan satu pendekatan referensi menggunakan Docker Compose. An
       </Step>
 
       <Step title="Tulis docker-compose.yaml">
-        File compose mengunci image berdasarkan digest SHA-256, menjalankan setiap container sebagai non-root dengan filesystem read-only, menghapus semua kapabilitas Linux, dan menonaktifkan eskalasi privilese.
+        File compose menyematkan (pin) image berdasarkan digest SHA-256, menjalankan setiap container sebagai non-root dengan filesystem hanya-baca, menghapus semua kapabilitas Linux, dan menonaktifkan eskalasi hak istimewa.
 
         ```bash
         cat > docker-compose.yaml <<'EOF'
@@ -167,15 +167,15 @@ Panduan ini menyediakan satu pendekatan referensi menggunakan Docker Compose. An
       </Step>
 
       <Step title="Provisikan tunnel">
-        Atur pengidentifikasi. Biarkan `TUNNEL_ID` tidak diatur agar komponen setup membuat tunnel; atur untuk melekat ke tunnel yang sudah ada dari [Console](/docs/id/agents-and-tools/mcp-tunnels/console#create-a-tunnel):
+        Atur pengidentifikasinya. Biarkan `TUNNEL_ID` tidak diatur agar komponen setup membuat tunnel; atur untuk melampirkan ke tunnel yang sudah ada dari [Console](/docs/id/agents-and-tools/mcp-tunnels/console#create-a-tunnel):
 
         ```bash
-        # export TUNNEL_ID=tnl_...   # atur untuk melampirkan ke tunnel yang sudah ada
+        # export TUNNEL_ID=tnl_...   # atur untuk menyambung ke tunnel yang sudah ada
         export ANTHROPIC_FEDERATION_RULE_ID=fdrl_...
         export ANTHROPIC_ORGANIZATION_ID=00000000-0000-0000-0000-000000000000
         ```
 
-        Jika aturan federasi Anda dibatasi pada workspace selain workspace default organisasi Anda, atur juga `ANTHROPIC_WORKSPACE_ID=wrkspc_...`; jika tidak, komponen setup menggunakan workspace default. Tunnel yang dibuat otomatis akan dibuat di workspace tersebut.
+        Jika aturan federasi Anda dicakup ke workspace selain default organisasi Anda, atur juga `ANTHROPIC_WORKSPACE_ID=wrkspc_...`; jika tidak, komponen setup menggunakan workspace default. Tunnel yang dibuat otomatis akan dibuat di workspace tersebut.
 
         Atur `ANTHROPIC_IDENTITY_TOKEN` ke JWT OIDC dari penyedia identitas host ini. Ikuti [panduan WIF untuk penyedia Anda](/docs/id/manage-claude/workload-identity-federation#identity-providers) untuk mendaftarkan issuer, mengatur subject aturan, dan menerbitkan token; audience aturan harus cocok dengan audience yang Anda minta saat menerbitkan token.
 
@@ -185,7 +185,7 @@ Panduan ini menyediakan satu pendekatan referensi menggunakan Docker Compose. An
         docker compose run --rm setup
         ```
 
-        `setup init` bersifat idempoten terhadap `data/`: menjalankannya kembali akan menggunakan kembali ID tunnel dan CA yang sudah tersimpan di sana dan tidak pernah membuat tunnel kedua. CA baru dihasilkan dan didaftarkan hanya ketika `data/` kosong atau `TUNNEL_ID` telah berubah; dalam kasus itu batas dua sertifikat aktif berlaku, jadi cabut salah satunya di Console terlebih dahulu jika kedua slot terisi.
+        `setup init` bersifat idempoten terhadap `data/`: menjalankannya kembali akan menggunakan kembali ID tunnel dan CA yang sudah tersimpan di sana dan tidak pernah membuat tunnel kedua. CA baru dibuat dan didaftarkan hanya ketika `data/` kosong atau `TUNNEL_ID` telah berubah; dalam kasus itu batas dua sertifikat aktif berlaku, jadi cabut salah satunya di Console terlebih dahulu jika kedua slot terisi.
 
         Lihat [Kegagalan autentikasi komponen setup](/docs/id/agents-and-tools/mcp-tunnels/troubleshooting#setup-component-authentication-failures) jika terjadi error.
 
@@ -197,7 +197,7 @@ Panduan ini menyediakan satu pendekatan referensi menggunakan Docker Compose. An
         ```
 
         <Note>
-          Token Workload Identity Federation berumur pendek (satu jam secara default) dan kedaluwarsa secara otomatis; tidak ada yang perlu dicabut setelah setup selesai.
+          Token Workload Identity Federation berumur pendek (1 jam secara default) dan kedaluwarsa secara otomatis; tidak ada yang perlu dicabut setelah setup selesai.
         </Note>
       </Step>
 
@@ -254,8 +254,8 @@ Panduan ini menyediakan satu pendekatan referensi menggunakan Docker Compose. An
         Proxy mendengarkan pada `:8080` melalui WebSocket biasa; handshake [inner TLS](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) terjadi **di dalam** stream WebSocket tersebut menggunakan sertifikat-sertifikat ini. Anthropic memverifikasi handshake inner terhadap CA yang Anda daftarkan di Console. Subject Alternative Name (SAN) sertifikat server harus menyertakan `*.<tunnel-domain>` sesuai [persyaratan sertifikat](/docs/id/agents-and-tools/mcp-tunnels/reference#certificate-requirements).
 
         ```bash
-        # CA self-signed. Ekstensi eksplisit agar memenuhi persyaratan sertifikat
-        # terlepas dari default openssl.cnf distro.
+        # CA self-signed. Ekstensi eksplisit agar memenuhi persyaratan
+        # sertifikat terlepas dari default openssl.cnf distro.
         openssl req -x509 -newkey rsa:2048 -nodes \
           -keyout data/ca.key -out data/ca.crt \
           -days 3650 -subj "/CN=mcp-tunnel-ca" \
@@ -326,7 +326,7 @@ Panduan ini menyediakan satu pendekatan referensi menggunakan Docker Compose. An
           cloudflared:
             image: cloudflare/cloudflared@sha256:6b599ca3e974349ead3286d178da61d291961182ec3fe9c505e1dd02c8ac31b0
             # --url wajib ada: tidak ada aturan ingress yang dikirim pada alur manual,
-            # jadi tanpanya cloudflared akan merespons 503 untuk setiap permintaan.
+            # sehingga tanpanya cloudflared akan merespons 503 untuk setiap permintaan.
             command: tunnel --no-autoupdate run --url http://localhost:8080
             environment:
               - TUNNEL_TOKEN
@@ -390,7 +390,7 @@ Panduan ini menyediakan satu pendekatan referensi menggunakan Docker Compose. An
   </Tab>
 </Tabs>
 
-File compose membaca `TUNNEL_TOKEN` dari environment host tanpa nilai default, jadi export harus diulang di setiap shell baru dan setelah reboot.
+File compose membaca `TUNNEL_TOKEN` dari environment host tanpa nilai default, sehingga export harus diulang di setiap shell baru dan setelah reboot.
 
 Untuk deployment multi-VM, salin direktori `mcp-tunnel/` ke setiap host, atur `TUNNEL_TOKEN`, dan jalankan `docker compose up -d`. Dalam alur programatik `TUNNEL_TOKEN` adalah `$(sudo cat data/tunnel-token)`; dalam alur manual nilainya adalah yang Anda salin dari Console. Token tunnel dan sertifikat yang sama berfungsi di semua replika.
 
@@ -404,18 +404,18 @@ Jalankan perintah di bagian ini dari dalam direktori deployment `mcp-tunnel/`.
 
 ### Rotasi token tunnel
 
-Dengan akses programatik, naikkan `--token-version` pada perintah service `setup`, atur pengidentifikasi Workload Identity Federation, terbitkan JWT OIDC baru, dan jalankan kembali komponen setup:
+Dengan akses programatik, naikkan `--token-version` pada command service `setup`, atur pengidentifikasi Workload Identity Federation, terbitkan JWT OIDC baru, dan jalankan kembali komponen setup:
 
 ```bash
 # Edit docker-compose.yaml: naikkan bilangan bulat pada argumen
 # --token-version di layanan setup (misalnya, --token-version=1 menjadi
 # --token-version=2). Binary setup menolak melakukan rotasi jika nilainya
-# belum berubah.
+# tidak berubah.
 
 # export TUNNEL_ID=tnl_...   # atur hanya jika Anda mengaturnya saat instalasi
 export ANTHROPIC_FEDERATION_RULE_ID=fdrl_...
 export ANTHROPIC_ORGANIZATION_ID=00000000-0000-0000-0000-000000000000
-# export ANTHROPIC_WORKSPACE_ID=wrkspc_...   # jika aturan Anda berlingkup workspace
+# export ANTHROPIC_WORKSPACE_ID=wrkspc_...   # jika aturan Anda dibatasi pada workspace
 # Terbitkan ulang ANTHROPIC_IDENTITY_TOKEN sesuai panduan penyedia WIF untuk
 # lingkungan Anda (token tersebut sudah kedaluwarsa sejak instalasi).
 export ANTHROPIC_IDENTITY_TOKEN=...
@@ -426,12 +426,12 @@ export TUNNEL_TOKEN=$(sudo cat data/tunnel-token)
 docker compose up -d cloudflared
 ```
 
-Argumen `--token-version` diedit di `docker-compose.yaml` alih-alih diteruskan pada baris perintah agar nilai baru tetap tersimpan untuk eksekusi komponen setup di masa mendatang. Komponen setup mengautentikasi dengan Workload Identity Federation; tidak ada token API yang perlu dicabut.
+Argumen `--token-version` diedit di `docker-compose.yaml` alih-alih diteruskan pada baris perintah sehingga nilai baru tetap tersimpan untuk eksekusi komponen setup di masa mendatang. Komponen setup mengautentikasi dengan Workload Identity Federation; tidak ada token API yang perlu dicabut.
 
-Tanpa akses programatik, klik **Rotate token** pada halaman detail tunnel di Console, lalu perbarui variabel environment `TUNNEL_TOKEN` pada setiap host dan mulai ulang cloudflared (`docker compose up -d cloudflared`).
+Tanpa akses programatik, klik **Rotate token** pada halaman detail tunnel di Console, lalu perbarui variabel environment `TUNNEL_TOKEN` di setiap host dan mulai ulang cloudflared (`docker compose up -d cloudflared`).
 
 <Warning>
-  Mengklik **Rotate token** langsung membatalkan token saat ini. Antara momen tersebut dan pembaruan `TUNNEL_TOKEN` pada setiap host serta mulai ulang cloudflared, host mana pun yang cloudflared-nya dimulai ulang (crash, reboot host) tidak dapat terhubung kembali. Perbarui setiap host segera setelah rotasi.
+  Mengklik **Rotate token** langsung membatalkan token saat ini. Antara momen tersebut dan pembaruan `TUNNEL_TOKEN` di setiap host serta memulai ulang cloudflared, host mana pun yang cloudflared-nya dimulai ulang (crash, reboot host) tidak dapat terhubung kembali. Perbarui setiap host segera setelah rotasi.
 </Warning>
 
 ### Pembaruan sertifikat
@@ -447,7 +447,7 @@ docker compose run --rm setup renew-cert --output=dir:/data
 Argumen CLI menggantikan `command` service `setup` (argumen `init`) tetapi mempertahankan `entrypoint`-nya, sehingga ini menjalankan `/setup renew-cert --output=dir:/data`.
 
 <Tip>
-  Teruskan `--renew-before=720h` agar perintah menjadi no-op ketika masa berlaku yang tersisa lebih dari 30 hari. Ini membuatnya aman untuk dijalankan pada jadwal tetap.
+  Teruskan `--renew-before=720h` untuk membuat perintah tidak melakukan apa-apa (no-op) ketika masa berlaku yang tersisa lebih dari 30 hari. Ini membuatnya aman untuk dijalankan pada jadwal tetap.
 </Tip>
 
 Tanpa akses programatik, tanda tangani sertifikat server baru dengan CA yang sudah ada (CA yang terdaftar di Console tidak berubah) dan ganti `data/tls.crt`. Atur `TUNNEL_DOMAIN` terlebih dahulu jika Anda menjalankan ini dari shell baru.
@@ -462,13 +462,13 @@ openssl x509 -req -in /tmp/server.csr \
   -extfile data/tls.ext
 ```
 
-Dalam kedua alur tersebut, proxy melakukan polling terhadap `tls.cert_file` dan memuat ulangnya secara otomatis, sehingga tidak diperlukan restart.
+Dalam kedua alur tersebut, proxy melakukan polling `tls.cert_file` dan memuat ulangnya secara otomatis, sehingga tidak diperlukan restart.
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
   <Card title="Gunakan server MCP yang di-tunnel" icon="link" href="/docs/id/agents-and-tools/mcp-tunnels/overview#use-the-tunneled-mcp-servers">
-    Lekatkan server MCP upstream ke Managed Agent atau Messages API.
+    Lampirkan server MCP upstream ke Managed Agent atau Messages API.
   </Card>
 
   <Card title="Keamanan" icon="lock" href="/docs/id/agents-and-tools/mcp-tunnels/security">

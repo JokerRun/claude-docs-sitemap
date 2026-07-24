@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/pricing
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: d8c3a35ecdc6e8127768066c21ab1a137ba24695d0d633e6e375e47de5ef53bb
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 6a22b12016e5d3f9a29ec5011c7d52686899c37fc2944bff9cae592df358d4dd
 ---
 
 # Harga
@@ -273,16 +273,16 @@ Lihat [harga penggunaan alat](#tool-use-pricing) untuk detail harga lengkap.
 
 #### Alat eksekusi kode
 
-**Code execution gratis ketika digunakan bersama web search atau web fetch.** Ketika `web_search_20260209` (atau versi lebih baru) atau `web_fetch_20260209` (atau versi lebih baru) disertakan dalam permintaan API Anda, tidak ada biaya tambahan untuk panggilan alat code execution selain biaya token input dan output standar.
+**Eksekusi kode gratis saat digunakan dengan web search atau web fetch.** Ketika `web_search_20260209` (atau yang lebih baru) atau `web_fetch_20260209` (atau yang lebih baru) disertakan dalam permintaan API Anda, tidak ada biaya tambahan untuk pemanggilan alat eksekusi kode di luar biaya token input dan output standar.
 
-Ketika digunakan tanpa alat-alat tersebut, code execution ditagih berdasarkan waktu eksekusi, yang dilacak secara terpisah dari penggunaan token:
+Saat digunakan tanpa alat-alat tersebut, eksekusi kode ditagih berdasarkan waktu eksekusi, yang dilacak secara terpisah dari penggunaan token:
 
 * Waktu eksekusi memiliki minimum 5 menit
 * Setiap organisasi menerima **1.550 jam gratis** penggunaan per bulan
-* Penggunaan tambahan di luar 1.550 jam ditagih sebesar **$0,05 per jam, per kontainer**
-* Jika file disertakan dalam permintaan, waktu eksekusi tetap ditagih meskipun alat tidak dipanggil, karena file dimuat terlebih dahulu ke dalam kontainer
+* Penggunaan tambahan di atas 1.550 jam ditagih sebesar **$0,05 USD per jam, per container**
+* Jika file disertakan dalam permintaan, waktu eksekusi tetap ditagih meskipun alat tidak dipanggil, karena file dimuat terlebih dahulu ke dalam container
 
-Penggunaan code execution dilacak dalam respons:
+Penggunaan eksekusi kode dilacak dalam respons:
 
 ```json
 {
@@ -362,21 +362,21 @@ Contoh penggunaan token untuk konten umum:
 
 Computer use mengikuti [harga penggunaan alat](/docs/id/agents-and-tools/tool-use/overview#pricing) standar. Saat menggunakan alat computer use:
 
-**Overhead prompt sistem**: Beta computer use menambahkan 466-499 token ke prompt sistem
+**Overhead prompt sistem:** Beta computer use menambahkan 466–499 token ke prompt sistem
 
-**Penggunaan token alat computer use**:
+**Penggunaan token alat computer use:**
 
 | Model            | Token input per definisi alat |
 | ---------------- | ----------------------------- |
 | Model Claude 4.x | 735 token                     |
 
-**Konsumsi token tambahan**:
+**Konsumsi token tambahan:**
 
-* Gambar tangkapan layar (lihat [Harga Vision](/docs/id/build-with-claude/vision))
+* Gambar tangkapan layar (lihat [harga Vision](/docs/id/build-with-claude/vision))
 * Hasil eksekusi alat yang dikembalikan ke Claude
 
 <Note>
-  Jika Anda juga menggunakan alat bash atau text editor bersamaan dengan computer use, alat-alat tersebut memiliki biaya token tersendiri sebagaimana didokumentasikan di halaman masing-masing.
+  Jika Anda juga menggunakan alat bash atau text editor bersama computer use, alat-alat tersebut memiliki biaya token sendiri sebagaimana didokumentasikan di halaman masing-masing.
 </Note>
 
 ## Harga Claude Managed Agents

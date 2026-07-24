@@ -1,32 +1,32 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: 8a9461140ae5babc5d1a7dc4a94a9ae5f814d69223bfeaacf9002d4660d2581a
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: a48cac48fce2a18f60078d16a71ac21985690a87110fe5e31ccd7c723cdae079
 ---
 
-# Aliran event sesi
+# Stream event sesi
 
-Kirim event, stream respons, dan interupsi atau arahkan ulang sesi Anda di tengah eksekusi.
+Kirim event, streaming respons, dan interupsi atau alihkan sesi Anda di tengah eksekusi.
 
 ---
 
 Komunikasi dengan Claude Managed Agents berbasis event. Anda mengirim event pengguna ke agen, dan menerima kembali event agen dan event sesi untuk melacak status.
 
 <Note>
-  Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Jenis event
 
 Event mengalir dalam dua arah.
 
-* **Event pengguna** dan **event sistem** adalah yang Anda kirim ke agen: event `user.*` memulai sesi dan mengarahkannya saat sesi berjalan; `system.message` memperbarui prompt sistem agen di antara giliran.
-* **Event sesi**, **event span**, dan **event agen** dikirim kepada Anda untuk observabilitas ke dalam status sesi dan progres agen Anda. Koneksi stream yang memilih untuk ikut serta juga menerima [event delta](#event-deltas).
+* **Event pengguna** dan **event sistem** adalah yang Anda kirim ke agen: event `user.*` memulai sesi dan mengarahkannya seiring berjalannya sesi; `system.message` menambahkan konteks tingkat sistem yang berlaku untuk giliran yang menyertainya dan semua giliran berikutnya.
+* **Event sesi**, **event span**, dan **event agen** dikirim kepada Anda untuk observabilitas terhadap status sesi dan kemajuan agen Anda. Koneksi stream yang memilih ikut serta juga menerima [event delta](#event-deltas).
 
 String jenis event sesi, span, agen, pengguna, dan sistem mengikuti konvensi penamaan `{domain}.{action}`. Event pratinjau delta khusus stream (`event_start`, `event_delta`) adalah pengecualian. Lihat [Jenis event](/docs/id/managed-agents/reference#event-types) di referensi untuk katalog lengkapnya.
 
-Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunjukkan kapan event tersebut dicatat di sisi server. Jika `processed_at` bernilai null, itu berarti event telah diantrekan oleh harness dan ditangani setelah event sebelumnya selesai diproses.
+Setiap event yang dipersistenkan menyertakan timestamp `processed_at` yang diatur saat event selesai diproses. Pada event yang Anda kirim, `processed_at` bernilai null selama event masih mengantre di belakang event-event sebelumnya. Pengecualiannya adalah `user.define_outcome`, `user.custom_tool_result`, dan `user.tool_result`, yang diproses saat diterima dan dikembalikan dengan `processed_at` yang sudah terisi.
 
 ## Mengintegrasikan event
 
@@ -183,7 +183,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
       ```
     </CodeGroup>
 
-    Kirim event `user.interrupt` untuk menghentikan agen di tengah eksekusi, lalu lanjutkan dengan event `user.message` untuk mengarahkannya ulang:
+    Kirim event `user.interrupt` untuk menghentikan agen di tengah eksekusi, lalu lanjutkan dengan event `user.message` untuk mengalihkannya:
 
     <CodeGroup>
       ```bash curl
@@ -332,8 +332,8 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
       ```
 
       ```php PHP
-      // Agent is currently analyzing a file...
-      // Interrupt with a new direction:
+      // Agen sedang menganalisis sebuah file...
+      // Interupsi dengan arahan baru:
       $client->beta->sessions->events->send(
           $session->id,
           events: [
@@ -369,15 +369,15 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
       ```
     </CodeGroup>
 
-    Agen mengakui interupsi tersebut dan beralih ke tugas baru.
+    Agen mengakui interupsi tersebut dan beralih ke tugas baru. Giliran yang diinterupsi berakhir dengan event `session.status_idle` yang `stop_reason`-nya adalah `end_turn`, nilai yang sama dengan giliran yang selesai dengan sendirinya; tidak ada stop reason khusus untuk interupsi.
   </Tab>
 
   <Tab title="Streaming event">
-    Stream event dari sesi untuk menerima pembaruan real-time saat agen bekerja. Hanya event yang dipancarkan setelah stream dibuka yang akan dikirimkan, jadi buka stream sebelum mengirim event untuk menghindari race condition.
+    Streaming event dari sesi untuk menerima pembaruan real-time saat agen bekerja. Hanya event yang dipancarkan setelah stream dibuka yang akan dikirimkan, jadi buka stream sebelum mengirim event untuk menghindari race condition.
 
     <CodeGroup>
       ```bash curl
-      # Open the stream first, then send the user message
+      # Buka stream terlebih dahulu, lalu kirim pesan pengguna
       exec {stream}< <(
         curl --fail-with-body -sS -N \
           "https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream?beta=true" \
@@ -425,12 +425,12 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
       ```
 
       ```bash CLI
-      # This workflow does not translate well to a one-off shell command.
-      # Use one of the SDK examples in this code group instead.
+      # Alur kerja ini tidak cocok dijadikan perintah shell sekali jalan.
+      # Gunakan salah satu contoh SDK di grup kode ini sebagai gantinya.
       ```
 
       ```python Python
-      # Open the stream first, then send the user message
+      # Buka stream terlebih dahulu, lalu kirim pesan pengguna
       with client.beta.sessions.events.stream(session.id) as stream:
           client.beta.sessions.events.send(
               session.id,
@@ -457,7 +457,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
       ```
 
       ```typescript TypeScript
-      // Open the stream first, then send the user message
+      // Buka stream terlebih dahulu, lalu kirim pesan pengguna
       const stream = await client.beta.sessions.events.stream(session.id);
       await client.beta.sessions.events.send(session.id, {
         events: [
@@ -485,7 +485,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
       ```
 
       ```csharp C#
-      // Open the stream first, then send the user message
+      // Buka stream terlebih dahulu, lalu kirim pesan pengguna
       using var stream = await client.Beta.Sessions.Events.WithRawResponse.StreamStreaming(session.ID);
       await client.Beta.Sessions.Events.Send(session.ID, new()
       {
@@ -528,7 +528,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
       ```
 
       ```go Go
-      	// Open the stream first, then send the user message
+      	// Buka stream terlebih dahulu, lalu kirim pesan pengguna
       	stream := client.Beta.Sessions.Events.StreamEvents(ctx, session.ID, anthropic.BetaSessionEventStreamParams{})
       	defer stream.Close()
 
@@ -552,7 +552,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
       	for stream.Next() {
       		switch event := stream.Current().AsAny().(type) {
       		case anthropic.BetaManagedAgentsAgentMessageEvent:
-      			// concrete-typed list: BetaManagedAgentsTextBlock
+      			// daftar bertipe konkret: BetaManagedAgentsTextBlock
       			for _, block := range event.Content {
       				fmt.Print(block.Text)
       			}
@@ -569,7 +569,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
       ```
 
       ```java Java
-      // Open the stream first, then send the user message
+      // Buka stream terlebih dahulu, lalu kirim pesan pengguna
       try (var stream = client.beta().sessions().events().streamStreaming(session.id())) {
           client.beta().sessions().events().send(
               session.id(),
@@ -588,7 +588,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
               } else if (event.isSessionStatusIdle()) {
                   break;
               } else if (event.isSessionError()) {
-                  // The `message` field spans all error variants; read it from the raw JSON.
+                  // Field `message` ada di semua varian error; baca dari JSON mentah.
                   var errorMessage =
                       event.asSessionError().error()._json().orElse(null) instanceof JsonObject json
                           ? json.values().get("message").asStringOrThrow()
@@ -601,7 +601,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
       ```
 
       ```php PHP
-      // Open the stream first, then send the user message
+      // Buka stream terlebih dahulu, lalu kirim pesan pengguna
       $stream = $client->beta->sessions->events->streamStream($session->id);
       $client->beta->sessions->events->send(
           $session->id,
@@ -630,7 +630,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
       ```
 
       ```ruby Ruby
-      # Open the stream first, then send the user message
+      # Buka stream terlebih dahulu, lalu kirim pesan pengguna
       stream = client.beta.sessions.events.stream_events(session.id)
 
       client.beta.sessions.events.send_(
@@ -651,7 +651,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
           puts "\n[Error: #{event.error&.message || "unknown"}]"
           break
         else
-          # ignore other event types
+          # abaikan tipe event lainnya
         end
       end
       ```
@@ -660,7 +660,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
     Untuk menyambung kembali ke sesi yang sudah ada tanpa melewatkan event:
 
     1. Buka stream baru.
-    2. Ambil daftar riwayat event lengkap untuk menginisialisasi kumpulan ID event yang sudah dilihat.
+    2. Daftarkan riwayat event lengkap untuk mengisi kumpulan ID event yang sudah terlihat.
     3. Ikuti stream langsung, lewati event apa pun yang sudah dikembalikan oleh daftar riwayat.
 
     <CodeGroup>
@@ -675,7 +675,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
           -H "accept: text/event-stream"
       )
 
-      # Stream is open and buffering. List history before tailing live.
+      # Stream terbuka dan melakukan buffering. Tampilkan riwayat sebelum mengikuti event langsung.
       declare -A seen_event_ids
       while IFS= read -r event_id; do
         seen_event_ids[$event_id]=1
@@ -688,7 +688,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
           -H "content-type: application/json" | jq -r '.data[].id'
       )
 
-      # Tail live events, skipping anything already seen
+      # Ikuti event langsung, lewati yang sudah pernah dilihat
       while IFS= read -r -u "$stream" event_line; do
         [[ $event_line == data:* ]] || continue
         event_json=${event_line#data: }
@@ -708,20 +708,20 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
       ```
 
       ```bash CLI
-      # This workflow does not translate well to a one-off shell command.
-      # Use one of the SDK examples in this code group instead.
+      # Alur kerja ini tidak cocok dijadikan perintah shell sekali jalan.
+      # Gunakan salah satu contoh SDK di grup kode ini sebagai gantinya.
       ```
 
       ```python Python
       with client.beta.sessions.events.stream(session.id) as stream:
-          # Stream is open and buffering. List history before tailing live.
+          # Stream terbuka dan sedang buffering. Tampilkan riwayat sebelum mengikuti event langsung.
           history = client.beta.sessions.events.list(session.id)
           seen_event_ids = {past_event.id for past_event in history}
 
-          # Tail live events, skipping anything already seen
+          # Ikuti event langsung, lewati yang sudah pernah terlihat
           for event in stream:
               if event.type == "event_start" or event.type == "event_delta":
-                  # Delta previews aren't enabled on this connection.
+                  # Pratinjau delta tidak diaktifkan pada koneksi ini.
                   continue
               if event.id in seen_event_ids:
                   continue
@@ -739,14 +739,14 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
       const seenEventIds = new Set<string>();
       const stream = await client.beta.sessions.events.stream(session.id);
 
-      // Stream is open and buffering. List history before tailing live.
+      // Stream terbuka dan melakukan buffering. Tampilkan riwayat sebelum mengikuti event langsung.
       for await (const event of client.beta.sessions.events.list(session.id)) {
         seenEventIds.add(event.id);
       }
 
-      // Tail live events, skipping anything already seen
+      // Ikuti event langsung, lewati yang sudah terlihat
       for await (const event of stream) {
-        // Preview events (event_start/event_delta) carry no top-level id
+        // Event pratinjau (event_start/event_delta) tidak membawa id tingkat atas
         if (event.type === "event_start" || event.type === "event_delta") continue;
         if (seenEventIds.has(event.id)) continue;
         seenEventIds.add(event.id);
@@ -765,7 +765,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
       ```csharp C#
       using var stream = await client.Beta.Sessions.Events.WithRawResponse.StreamStreaming(session.ID);
 
-      // Stream is open and buffering. List history before tailing live.
+      // Stream terbuka dan melakukan buffering. Daftar riwayat sebelum mengikuti event langsung.
       HashSet<string> seenEventIds = [];
       var history = await client.Beta.Sessions.Events.List(session.ID);
       await foreach (var pastEvent in history.Paginate())
@@ -773,7 +773,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
           seenEventIds.Add(pastEvent.ID);
       }
 
-      // Tail live events, skipping anything already seen
+      // Ikuti event langsung, lewati yang sudah terlihat
       await foreach (var streamEvent in stream.Enumerate())
       {
           if (!seenEventIds.Add(streamEvent.ID))
@@ -798,7 +798,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
       	stream := client.Beta.Sessions.Events.StreamEvents(ctx, session.ID, anthropic.BetaSessionEventStreamParams{})
       	defer stream.Close()
 
-      	// Stream is open and buffering. List history before tailing live.
+      	// Stream terbuka dan melakukan buffering. Daftarkan riwayat sebelum men-tail secara langsung.
       	seenEventIDs := map[string]struct{}{}
       	history := client.Beta.Sessions.Events.ListAutoPaging(ctx, session.ID, anthropic.BetaSessionEventListParams{})
       	for history.Next() {
@@ -808,7 +808,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
       		panic(err)
       	}
 
-      	// Tail live events, skipping anything already seen
+      	// Tail event langsung, lewati yang sudah terlihat
       tail:
       	for stream.Next() {
       		event := stream.Current()
@@ -818,7 +818,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
       		seenEventIDs[event.ID] = struct{}{}
       		switch event := event.AsAny().(type) {
       		case anthropic.BetaManagedAgentsAgentMessageEvent:
-      			// concrete-typed list: BetaManagedAgentsTextBlock
+      			// daftar bertipe konkret: BetaManagedAgentsTextBlock
       			for _, block := range event.Content {
       				fmt.Print(block.Text)
       			}
@@ -833,8 +833,8 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
 
       ```java Java
       try (var stream = client.beta().sessions().events().streamStreaming(session.id())) {
-          // Stream is open and buffering. List history before tailing live.
-          // Every event variant carries `id`; read it from the raw JSON to dedup across variants.
+          // Stream terbuka dan melakukan buffering. Daftarkan riwayat sebelum mengikuti event langsung.
+          // Setiap varian event membawa `id`; baca dari JSON mentah untuk deduplikasi antar varian.
           var seenEventIds = new HashSet<String>();
           for (var pastEvent : client.beta().sessions().events().list(session.id()).autoPager()) {
               if (pastEvent._json().orElseThrow() instanceof JsonObject json) {
@@ -842,7 +842,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
               }
           }
 
-          // Tail live events; Set.add returns false for already-seen IDs, skipping the replay.
+          // Ikuti event langsung; Set.add mengembalikan false untuk ID yang sudah terlihat, melewati replay.
           stream.stream()
               .filter(event -> event._json().orElseThrow() instanceof JsonObject json
                   && seenEventIds.add(json.values().get("id").asStringOrThrow()))
@@ -855,13 +855,13 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
       ```php PHP
       $stream = $client->beta->sessions->events->streamStream($session->id);
 
-      // Stream is open and buffering. List history before tailing live.
+      // Stream terbuka dan sedang buffering. Tampilkan riwayat sebelum mengikuti event langsung.
       $seenEventIds = [];
       foreach ($client->beta->sessions->events->list($session->id)->pagingEachItem() as $event) {
           $seenEventIds[$event->id] = true;
       }
 
-      // Tail live events, skipping anything already seen
+      // Ikuti event langsung, lewati apa pun yang sudah terlihat
       foreach ($stream as $event) {
           if (isset($seenEventIds[$event->id])) {
               continue;
@@ -884,11 +884,11 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
       ```ruby Ruby
       stream = client.beta.sessions.events.stream_events(session.id)
 
-      # Stream is open and buffering. List history before tailing live.
+      # Stream terbuka dan melakukan buffering. Tampilkan riwayat sebelum mengikuti event langsung.
       seen_event_ids = Set.new
       client.beta.sessions.events.list(session.id).auto_paging_each { seen_event_ids << it.id }
 
-      # Tail live events, skipping anything already seen — Set#add? returns nil for duplicates
+      # Ikuti event langsung, lewati yang sudah terlihat — Set#add? mengembalikan nil untuk duplikat
       stream.each do |event|
         next unless seen_event_ids.add?(event.id)
         case event.type
@@ -897,14 +897,14 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
         in :"session.status_idle"
           break
         else
-          # ignore other event types
+          # abaikan tipe event lainnya
         end
       end
       ```
     </CodeGroup>
   </Tab>
 
-  <Tab title="Mengambil daftar event sebelumnya">
+  <Tab title="Mendaftar event sebelumnya">
     Ambil riwayat event lengkap untuk sebuah sesi:
 
     <CodeGroup>
@@ -1051,14 +1051,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
       ```
 
       ```php PHP
-      $events = $client->beta->sessions->events->list(
-          $session->id,
-          types: ['agent.tool_use', 'agent.tool_result'],
-      );
-      foreach ($events->data as $event) {
-          $processedAt = ($event->processedAt ?? null)?->format(DATE_RFC3339) ?? 'null';
-          echo "[{$event->type}] {$processedAt}\n";
-      }
+      // Pemfilteran event berdasarkan tipe saat ini belum tersedia di SDK PHP.
       ```
 
       ```ruby Ruby
@@ -1074,13 +1067,13 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
 
 ## Event delta
 
-Secara default, teks respons agen mencapai stream sebagai event `agent.message` yang di-buffer, masing-masing dipancarkan hanya setelah permintaan model yang menghasilkannya selesai. Event delta memungkinkan Anda merender teks tersebut secara inkremental, sebagai pratinjau langsung, saat model masih menghasilkannya. Pratinjau bukanlah respons: pratinjau adalah alat bantu tampilan best-effort, dan `agent.message` yang di-buffer selalu menjadi catatan otoritatif. Klien yang mengabaikan pratinjau tetap menerima stream yang lengkap dan benar.
+Secara default, teks respons agen mencapai stream sebagai event `agent.message` yang di-buffer, masing-masing dipancarkan hanya setelah permintaan model yang menghasilkannya selesai. Event delta memungkinkan Anda merender teks tersebut secara inkremental, sebagai pratinjau langsung, sementara model masih menghasilkannya. Pratinjau bukanlah respons: pratinjau adalah alat bantu tampilan yang bersifat best-effort, dan `agent.message` yang di-buffer selalu menjadi catatan otoritatif. Klien yang mengabaikan pratinjau tetap menerima stream yang lengkap dan benar.
 
-### Memilih untuk menerima pratinjau
+### Memilih ikut serta untuk pratinjau
 
-Pratinjau bersifat opt-in per koneksi stream. Tambahkan parameter kueri `event_deltas[]` ke `GET /v1/sessions/{session_id}/events/stream`, ulangi sekali untuk setiap jenis event yang ingin Anda pratinjau. Nilai yang diterima adalah `agent.message` dan `agent.thinking`; nilai lain apa pun mengembalikan error 400. Hanya stream event tingkat sesi yang mendukung parameter ini. Stream event [thread sesi](/docs/id/managed-agents/multi-agent) menolaknya.
+Pratinjau bersifat opt-in per koneksi stream. Tambahkan parameter query `event_deltas[]` ke stream yang Anda baca, ulangi sekali untuk setiap jenis event yang ingin Anda pratinjau. Karena `[]` adalah pola glob shell, beri tanda kutip pada URL setiap kali Anda membangun permintaan di shell; contoh-contoh melakukan percent-encoding pada tanda kurung sebagai `%5B%5D`, yang juga berfungsi. Kedua endpoint stream menerima parameter ini: stream tingkat sesi di `GET /v1/sessions/{session_id}/events/stream`, dan stream milik setiap [thread sesi](/docs/id/managed-agents/multiagent-orchestration) di `GET /v1/sessions/{session_id}/threads/{thread_id}/stream`. Nilai yang diterima adalah `agent.message` dan `agent.thinking`; nilai lain apa pun mengembalikan error 400, begitu juga permintaan dengan lebih dari 100 nilai. Pratinjau subagen muncul di [stream thread milik subagen itu sendiri](#preview-session-thread-events).
 
-Ketika event yang dipratinjau dimulai, stream memancarkan `event_start` yang membawa jenis dan `id` dari event yang akan datang:
+Saat event yang dipratinjau dimulai, stream memancarkan `event_start` yang membawa jenis dan `id` event yang akan datang:
 
 ```json
 {
@@ -1092,7 +1085,7 @@ Ketika event yang dipratinjau dimulai, stream memancarkan `event_start` yang mem
 }
 ```
 
-Untuk `agent.message`, start diikuti oleh event `event_delta` yang membawa teks inkremental. Setiap delta menyebutkan event yang diperluasnya di `event_id` dan blok konten yang diperluasnya di `delta.index`:
+Untuk `agent.message`, awal tersebut diikuti oleh event `event_delta` yang membawa teks inkremental. Setiap delta menyebutkan event yang diperluasnya di `event_id` dan blok konten yang diperluasnya di `delta.index`:
 
 ```json
 {
@@ -1109,28 +1102,42 @@ Untuk `agent.message`, start diikuti oleh event `event_delta` yang membawa teks 
 }
 ```
 
-Ketika event `agent.thinking` dipratinjau, hanya `event_start` yang dipancarkan. Tidak ada event `event_delta` yang mengikuti, dan konten tiba dalam event `agent.thinking` yang di-buffer seperti biasa.
+Saat event `agent.thinking` dipratinjau, hanya `event_start` yang dipancarkan. Tidak ada event `event_delta` yang mengikuti, dan event `agent.thinking` yang di-buffer yang mengakhiri pratinjau tidak membawa konten pemikiran; ini adalah sinyal kemajuan, bukan pembawa konten.
 
-Tidak seperti event yang dipersistensi, `event_start` dan `event_delta` tidak memiliki `id` atau `processed_at` sendiri. Satu-satunya pengidentifikasi yang mereka bawa adalah `id` dari event yang mereka pratinjau.
+Tidak seperti event yang dipersistenkan, `event_start` dan `event_delta` tidak memiliki `id` atau `processed_at` sendiri. Satu-satunya pengidentifikasi yang mereka bawa adalah `id` dari event yang mereka pratinjau.
 
 <Note>
-  Event delta menggunakan format wire yang berbeda dari [Streaming messages](/docs/id/build-with-claude/streaming), dan perbedaan ini disengaja. `agent.message` yang dipratinjau mendapatkan satu `event_start` yang diikuti hanya oleh event `event_delta`. Tidak ada event start atau stop per blok konten dan tidak ada event stop untuk event yang dipratinjau itu sendiri. Jenis delta adalah `content_delta`, bukan `content_block_delta`. Kode akumulator yang ditulis untuk Messages API tidak dapat digunakan langsung tanpa perubahan.
+  Event delta menggunakan format wire yang berbeda dari [Streaming messages](/docs/id/build-with-claude/streaming), dan perbedaan ini disengaja. `agent.message` yang dipratinjau mendapatkan satu `event_start` yang hanya diikuti oleh event `event_delta`. Tidak ada event start atau stop per blok konten dan tidak ada event stop untuk event yang dipratinjau itu sendiri. Jenis delta-nya adalah `content_delta`, bukan `content_block_delta`. Kode akumulator yang ditulis untuk Messages API tidak dapat dipindahkan begitu saja tanpa perubahan.
 </Note>
 
 ### Akumulasi dan rekonsiliasi
 
-SDK Python, TypeScript, dan Go menyertakan helper akumulator yang mengindeks pratinjau berdasarkan `id` event dan menangani pembukuan `index` untuk Anda. Pola manual berfungsi di setiap bahasa: di SDK lainnya, terapkan pola ini ke jenis event yang dihasilkan.
+Setiap SDK yang mendukung event delta menyertakan helper akumulator yang mengunci pratinjau berdasarkan `id` event dan menangani pembukuan `index` untuk Anda (event delta saat ini belum tersedia di SDK PHP; lihat tab PHP berikutnya). Pola manual juga berfungsi di setiap bahasa saat Anda memerlukan pembukuan khusus: terapkan pada jenis event yang dihasilkan.
 
-Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang di-buffer sebagai catatan. Indeks buffer berdasarkan `(event_id, index)`. Rekonsiliasi per permintaan model: sebuah giliran dibuka dengan satu event `session.status_running`, lalu pada giliran yang selesai secara normal, setiap permintaan model menghasilkan, secara berurutan, `span.model_request_start`, `event_start`, event-event `event_delta`, `agent.message` yang di-buffer, dan akhirnya [`span.model_request_end`](/docs/id/managed-agents/reference#event-types) (di tab Event span). Proses setiap event saat tiba:
+Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang di-buffer sebagai catatan. Kunci buffer berdasarkan `(event_id, index)`. Rekonsiliasi per permintaan model: sebuah giliran dibuka dengan satu event `session.status_running`, lalu pada giliran yang selesai secara normal setiap permintaan model menghasilkan, secara berurutan, `span.model_request_start`, `event_start`, event-event `event_delta`, `agent.message` yang di-buffer, dan akhirnya [`span.model_request_end`](/docs/id/managed-agents/reference#event-types) (di tab Span events). Di wire, ini adalah bagian yang dipratinjau dari urutan tersebut, diselingi dengan event-event ter-buffer lainnya dari koneksi:
+
+```text wrap
+event_start     {"event": {"type": "agent.message", "id": "sevt_01abc..."}}
+event_delta     {"event_id": "sevt_01abc...", "delta": {"type": "content_delta", "index": 0, "content": {"type": "text", "text": "..."}}}
+...
+agent.message   {"id": "sevt_01abc...", "content": [...]}
+```
+
+Baris `event_delta` berulang sekali per fragmen teks. Proses setiap event saat tiba:
 
 1. Pada `event_start`, catat `id` yang diumumkan. Pengidentifikasi selalu selaras: `event_start.event.id`, setiap `event_delta.event_id`, dan `id` dari `agent.message` yang di-buffer adalah nilai yang sama.
 2. Pada setiap `event_delta`, tambahkan `delta.content.text` ke entri di `(event_id, delta.index)` dan render teks yang sedang berjalan. Delta pertama untuk sebuah `index` membuat entri tersebut.
-3. Ketika `agent.message` yang di-buffer tiba, cocokkan berdasarkan `id`, buang pratinjau yang terakumulasi, dan render konten pesan sebagai gantinya.
-4. Pada `span.model_request_end`, tutup pratinjau apa pun yang belum direkonsiliasi oleh event yang di-buffer-nya. Tidak ada lagi delta yang akan datang untuknya. Jika giliran mengalami error atau diinterupsi, event yang di-buffer mungkin tidak pernah tiba; `span.model_request_end` tetap tiba.
+3. Saat `agent.message` yang di-buffer tiba, cocokkan berdasarkan `id`, buang pratinjau yang terakumulasi, dan render konten pesan sebagai gantinya.
+4. Pada `span.model_request_end`, tutup pratinjau apa pun yang belum direkonsiliasi oleh event ter-buffer-nya. Tidak ada lagi delta yang akan datang untuknya. Jika giliran mengalami error atau diinterupsi, event yang di-buffer mungkin tidak pernah tiba; `span.model_request_end` tetap tiba.
+
+Jaminan yang diandalkan oleh pola ini:
+
+* Menggabungkan delta-delta sebuah pratinjau dalam urutan kedatangan, dikunci berdasarkan `(event_id, index)`, menghasilkan prefiks dari `content[index].text` di event yang di-buffer (prefiks, tidak selalu seluruh teks, karena delta dapat dibuang saat beban tinggi).
+* Sebuah koneksi memancarkan paling banyak satu `event_start` per `event_id`, dan event yang di-buffer adalah hal terakhir yang dikirimkan koneksi tersebut untuk `id` itu.
 
 <CodeGroup>
   ```bash curl
-  # Opt in to agent.message previews via event_deltas, then accumulate manually.
+  # Aktifkan pratinjau agent.message melalui event_deltas, lalu akumulasikan secara manual.
   exec {stream}< <(
     curl --fail-with-body -sS -N \
       "https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream?beta=true&event_deltas%5B%5D=agent.message" \
@@ -1157,8 +1164,8 @@ Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang 
   }
   EOF
 
-  # Accumulate deltas keyed by (message id, content index); the final
-  # agent.message carries the full text, so it replaces every preview for that id.
+  # Akumulasikan delta dengan kunci (id pesan, indeks konten); agent.message
+  # final membawa teks lengkap, sehingga menggantikan semua pratinjau untuk id tersebut.
   declare -A preview
   while IFS= read -r -u "$stream" event_line; do
     [[ $event_line == data:* ]] || continue
@@ -1197,17 +1204,17 @@ Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang 
   ```
 
   ```bash CLI
-  # This workflow does not translate well to a one-off shell command.
-  # Use one of the SDK examples in this code group instead.
+  # Alur kerja ini tidak cocok dijadikan perintah shell sekali jalan.
+  # Gunakan salah satu contoh SDK di grup kode ini sebagai gantinya.
   ```
 
   ```python Python
-  # Preview snapshots, keyed by event id. accumulate_managed_agents_event folds each
-  # event_start / event_delta into an agent.message snapshot; the buffered
-  # agent.message replaces it.
+  # Snapshot pratinjau, dengan kunci id event. accumulate_managed_agents_event melipat setiap
+  # event_start / event_delta menjadi snapshot agent.message; agent.message
+  # yang di-buffer akan menggantikannya.
   previews: dict[str, BetaManagedAgentsAgentMessageEvent] = {}
 
-  # Opt in to agent.message previews on this connection
+  # Aktifkan pratinjau agent.message pada koneksi ini
   with client.beta.sessions.events.stream(
       session.id, event_deltas=["agent.message"]
   ) as stream:
@@ -1235,13 +1242,13 @@ Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang 
                       text = "".join(block.text for block in preview.content)
                       print(f"event_delta             preview: {text!r}")
               case "agent.message":
-                  # The buffered event is the record: it replaces and closes the preview
+                  # Event yang di-buffer adalah catatan resminya: ia menggantikan dan menutup pratinjau
                   preview = accumulate_managed_agents_event(previews.pop(event.id, None), event)
                   text = "".join(block.text for block in preview.content)
                   print(f"agent.message           {event.id} {text!r}")
               case "span.model_request_end":
-                  # No more deltas are coming. Close any preview whose
-                  # buffered event never arrived.
+                  # Tidak ada delta lagi yang akan datang. Tutup setiap pratinjau yang
+                  # event buffer-nya tidak pernah tiba.
                   for event_id in previews:
                       print(f"span.model_request_end  closing preview for {event_id}")
                   previews.clear()
@@ -1250,11 +1257,11 @@ Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang 
   ```
 
   ```typescript TypeScript
-  // Preview snapshots, keyed by event id. `accumulateManagedAgentsEvent`
-  // folds event_start / event_delta previews into an agent.message snapshot.
+  // Snapshot pratinjau, dikunci berdasarkan id event. `accumulateManagedAgentsEvent`
+  // menggabungkan pratinjau event_start / event_delta menjadi snapshot agent.message.
   const previews = new Map<string, BetaManagedAgentsAgentMessageEvent>();
 
-  // Opt in to agent.message previews for this connection only
+  // Aktifkan pratinjau agent.message hanya untuk koneksi ini
   const stream = await client.beta.sessions.events.stream(session.id, {
     event_deltas: ["agent.message"],
   });
@@ -1269,13 +1276,13 @@ Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang 
 
   for await (const event of stream) {
     if (event.type === "event_start") {
-      // 1. Note the announced id and open the snapshot. Deltas and the
-      //    buffered event carry the same id.
+      // 1. Catat id yang diumumkan dan buka snapshot. Delta dan
+      //    event yang di-buffer membawa id yang sama.
       const preview = accumulateManagedAgentsEvent(undefined, event);
       if (preview) previews.set(event.event.id, preview);
       console.log(`event_start             ${event.event.type} ${event.event.id}`);
     } else if (event.type === "event_delta") {
-      // 2. Fold the fragment into the snapshot and render it
+      // 2. Gabungkan fragmen ke dalam snapshot dan render
       const preview = accumulateManagedAgentsEvent(previews.get(event.event_id), event);
       if (preview) {
         previews.set(event.event_id, preview);
@@ -1283,13 +1290,13 @@ Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang 
         console.log(`event_delta             preview: ${JSON.stringify(text)}`);
       }
     } else if (event.type === "agent.message") {
-      // 3. The buffered event is the record: it replaces and closes the preview
+      // 3. Event yang di-buffer adalah rekamannya: menggantikan dan menutup pratinjau
       const message = accumulateManagedAgentsEvent(previews.get(event.id), event);
       previews.delete(event.id);
       const text = message.content.map((block) => block.text).join("");
       console.log(`agent.message           ${event.id} ${JSON.stringify(text)}`);
     } else if (event.type === "span.model_request_end") {
-      // 4. No more deltas are coming. Close any preview that was never reconciled.
+      // 4. Tidak ada delta lagi yang akan datang. Tutup pratinjau yang belum pernah direkonsiliasi.
       for (const eventId of previews.keys()) {
         console.log(`span.model_request_end  closing preview for ${eventId}`);
       }
@@ -1302,7 +1309,7 @@ Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang 
   ```
 
   ```csharp C#
-  // Opt in to event deltas: agent.message events are previewed as they are produced.
+  // Aktifkan delta event: event agent.message dipratinjau saat dihasilkan.
   using var stream = await client.Beta.Sessions.Events.WithRawResponse.StreamStreaming(
       session.ID,
       new() { EventDeltas = [BetaManagedAgentsDeltaType.AgentMessage] }
@@ -1326,18 +1333,18 @@ Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang 
       ],
   });
 
-  // Accumulate preview fragments per (event id, content index). The buffered
-  // agent.message that follows carries the complete content, so it replaces the
-  // accumulated preview rather than appending to it.
+  // Akumulasikan fragmen pratinjau per (id event, indeks konten). Event agent.message
+  // yang di-buffer berikutnya membawa konten lengkap, sehingga menggantikan
+  // pratinjau yang terakumulasi alih-alih menambahkannya.
   Dictionary<string, SortedDictionary<long, string>> previews = [];
 
   await foreach (var streamEvent in stream.Enumerate())
   {
       if (streamEvent.TryPickStartEvent(out var start))
       {
-          // A preview opened for the event with this id. This stream only opts in
-          // to agent.message deltas; TryPick* returns false instead of throwing,
-          // so other preview types (including ones added later) are skipped.
+          // Pratinjau dibuka untuk event dengan id ini. Stream ini hanya mengaktifkan
+          // delta agent.message; TryPick* mengembalikan false alih-alih melempar error,
+          // sehingga tipe pratinjau lain (termasuk yang ditambahkan kemudian) dilewati.
           if (start.Event.TryPickAgentMessage(out var preview))
           {
               Console.WriteLine($"event_start             {preview.Type.Raw()} {preview.ID}");
@@ -1345,7 +1352,7 @@ Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang 
       }
       else if (streamEvent.TryPickDeltaEvent(out var delta))
       {
-          // Insert at a new index, append at an existing one
+          // Sisipkan pada indeks baru, tambahkan pada indeks yang sudah ada
           if (!previews.TryGetValue(delta.EventID, out var fragments))
           {
               previews[delta.EventID] = fragments = [];
@@ -1356,13 +1363,13 @@ Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang 
       }
       else if (streamEvent.TryPickAgentMessageEvent(out var message))
       {
-          // Deltas are best-effort: discard the preview and use the buffered event
+          // Delta bersifat best-effort: buang pratinjau dan gunakan event yang di-buffer
           previews.Remove(message.ID);
           Console.WriteLine($"agent.message           {message.ID} {string.Concat(message.Content.Select(block => block.Text))}");
       }
       else if (streamEvent.TryPickSpanModelRequestEndEvent(out _))
       {
-          // No more deltas are coming; close any preview that was never reconciled.
+          // Tidak ada delta lagi yang datang; tutup pratinjau apa pun yang belum direkonsiliasi.
           foreach (var eventId in previews.Keys)
           {
               Console.WriteLine($"span.model_request_end  closing preview for {eventId}");
@@ -1377,7 +1384,7 @@ Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang 
   ```
 
   ```go Go
-  	// Opt in to incremental previews of agent.message events
+  	// Aktifkan pratinjau inkremental untuk event agent.message
   	stream := client.Beta.Sessions.Events.StreamEvents(ctx, session.ID, anthropic.BetaSessionEventStreamParams{
   		EventDeltas: []anthropic.BetaManagedAgentsDeltaType{
   			anthropic.BetaManagedAgentsDeltaTypeAgentMessage,
@@ -1400,8 +1407,8 @@ Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang 
   		panic(err)
   	}
 
-  	// The accumulator folds event_start / event_delta fragments into
-  	// per-event-id agent.message snapshots. The zero value is ready to use.
+  	// Akumulator menggabungkan fragmen event_start / event_delta menjadi
+  	// snapshot agent.message per event-id. Nilai zero-nya siap dipakai.
   	var previews anthropic.BetaManagedAgentsEventAccumulator
 
   deltas:
@@ -1415,13 +1422,13 @@ Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang 
   		case anthropic.BetaManagedAgentsDeltaEvent:
   			fmt.Printf("event_delta             preview: %q\n", previews.AgentMessageText(event.EventID))
   		case anthropic.BetaManagedAgentsAgentMessageEvent:
-  			// The buffered event carries the complete content: the accumulator
-  			// replaces the preview with it
+  			// Event yang di-buffer membawa konten lengkap: akumulator
+  			// menggantikan pratinjau dengannya
   			fmt.Printf("agent.message           %s %q\n", event.ID, previews.AgentMessageText(event.ID))
   		case anthropic.BetaManagedAgentsSpanModelRequestEndEvent:
-  			// No more deltas are coming for this request. The accumulator
-  			// drops its snapshots here, closing any preview that was never
-  			// reconciled by a buffered agent.message.
+  			// Tidak ada delta lagi untuk permintaan ini. Akumulator
+  			// membuang snapshot-nya di sini, menutup pratinjau apa pun yang tidak pernah
+  			// direkonsiliasi oleh agent.message yang di-buffer.
   			fmt.Println("span.model_request_end  no more deltas for this request")
   		case anthropic.BetaManagedAgentsSessionStatusIdleEvent:
   			break deltas
@@ -1434,10 +1441,10 @@ Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang 
   ```
 
   ```java Java
-  // Preview text, keyed by event ID then content index. The buffered agent.message replaces it.
+  // Teks pratinjau, dikunci oleh ID event lalu indeks konten. agent.message yang di-buffer menggantikannya.
   Map<String, Map<Long, StringBuilder>> previews = new HashMap<>();
 
-  // Opt in to agent.message previews on this connection
+  // Aktifkan pratinjau agent.message pada koneksi ini
   try (var stream = client.beta().sessions().events().streamStreaming(
           session.id(),
           EventStreamParams.builder()
@@ -1468,7 +1475,7 @@ Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang 
               buffer.append(fragment.content().text());
               IO.println("event_delta             preview: " + buffer);
           } else if (event.isAgentMessage()) {
-              // The buffered event is the record: drop its preview, render its content
+              // Event yang di-buffer adalah catatan resminya: buang pratinjaunya, render kontennya
               var message = event.asAgentMessage();
               previews.remove(message.id());
               var text = message.content().stream()
@@ -1476,7 +1483,7 @@ Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang 
                   .collect(Collectors.joining());
               IO.println("agent.message           " + message.id() + " " + text);
           } else if (event.isSpanModelRequestEnd()) {
-              // No more deltas are coming. Close any preview whose buffered event never arrived.
+              // Tidak ada delta lagi yang akan datang. Tutup pratinjau yang event buffer-nya tidak pernah tiba.
               previews.keySet().forEach(eventId ->
                   IO.println("span.model_request_end  closing preview for " + eventId));
               previews.clear();
@@ -1488,61 +1495,11 @@ Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang 
   ```
 
   ```php PHP
-  // Opt in to event deltas: agent.message previews stream as incremental fragments.
-  $stream = $client->beta->sessions->events->streamStream(
-      $session->id,
-      eventDeltas: [BetaManagedAgentsDeltaType::AGENT_MESSAGE],
-  );
-
-  $client->beta->sessions->events->send(
-      $session->id,
-      events: [
-          [
-              'type' => 'user.message',
-              'content' => [['type' => 'text', 'text' => 'Give a one-sentence project tagline.']],
-          ],
-      ],
-  );
-
-  // Accumulate preview fragments by (event id, index). The buffered agent.message
-  // with the same id is authoritative and replaces whatever the deltas built up.
-  $buffers = [];
-
-  foreach ($stream as $event) {
-      if ($event->type === 'event_start') {
-          printf("event_start             %s %s\n", $event->event->type, $event->event->id);
-      } elseif ($event->type === 'event_delta') {
-          // index is optional on the wire; a single-element preview omits it.
-          $index = $event->delta->index ?? 0;
-          $fragment = $event->delta->content->text;
-          $buffers[$event->eventID][$index] ??= '';
-          $buffers[$event->eventID][$index] .= $fragment;
-          printf("event_delta             preview: %s\n", json_encode($buffers[$event->eventID][$index]));
-      } elseif ($event->type === 'agent.message') {
-          // Replace: drop the accumulated preview and render the complete event.
-          unset($buffers[$event->id]);
-          $text = '';
-          foreach ($event->content as $block) {
-              if ($block->type === 'text') {
-                  $text .= $block->text;
-              }
-          }
-          printf("agent.message           %s %s\n", $event->id, json_encode($text));
-      } elseif ($event->type === 'span.model_request_end') {
-          // No more deltas are coming. Close any preview that was never reconciled.
-          foreach (array_keys($buffers) as $eventID) {
-              printf("span.model_request_end  closing preview for %s\n", $eventID);
-          }
-          $buffers = [];
-      } elseif ($event->type === 'session.status_idle') {
-          break;
-      }
-  }
-  $stream->close();
+  // Delta event saat ini belum tersedia di SDK PHP.
   ```
 
   ```ruby Ruby
-  # Opt in to event deltas: agent.message previews stream as incremental fragments.
+  # Aktifkan delta event: pratinjau agent.message di-stream sebagai fragmen inkremental.
   stream = client.beta.sessions.events.stream_events(
     session.id,
     event_deltas: [Anthropic::Beta::BetaManagedAgentsDeltaType::AGENT_MESSAGE]
@@ -1556,9 +1513,9 @@ Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang 
     }]
   )
 
-  # Accumulate preview fragments by (event_id, index) into explicitly mutable
-  # (`+""`) buffers so `<<` can append in place. The buffered agent.message with
-  # the same id is authoritative and replaces whatever the deltas built up.
+  # Akumulasikan fragmen pratinjau berdasarkan (event_id, index) ke dalam buffer yang
+  # secara eksplisit mutable (`+""`) agar `<<` bisa menambahkan di tempat. agent.message ter-buffer dengan
+  # id yang sama bersifat otoritatif dan menggantikan apa pun yang dibangun oleh delta.
   buffers = Hash.new do |by_event, event_id|
     by_event[event_id] = Hash.new { |fragments, index| fragments[index] = +"" }
   end
@@ -1573,42 +1530,357 @@ Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang 
       buffers[event.event_id][delta.index || 0] << fragment
       puts "event_delta             preview: #{buffers[event.event_id][delta.index || 0].inspect}"
     in :"agent.message"
-      # Replace: drop the accumulated preview and render the complete event.
+      # Ganti: buang pratinjau yang terakumulasi dan render event lengkapnya.
       buffers.delete(event.id)
       puts "agent.message           #{event.id} #{event.content.map(&:text).join.inspect}"
     in :"span.model_request_end"
-      # No more deltas are coming. Close any preview that was never reconciled.
+      # Tidak ada delta lagi yang akan datang. Tutup pratinjau yang belum pernah direkonsiliasi.
       buffers.each_key { |event_id| puts "span.model_request_end  closing preview for #{event_id}" }
       buffers.clear
     in :"session.status_idle"
       break
     else
-      # ignore other event types
+      # abaikan tipe event lainnya
     end
   end
   ```
 </CodeGroup>
 
+### Pratinjau event thread sesi
+
+Dalam sesi [multiagen](/docs/id/managed-agents/multiagent-orchestration), setiap thread sesi memiliki stream event-nya sendiri di `GET /v1/sessions/{session_id}/threads/{thread_id}/stream`, dan menerima parameter `event_deltas[]` yang sama dengan nilai yang sama. Pratinjau dibatasi per thread secara desain: sebuah koneksi hanya mempratinjau thread yang sedang dibacanya. Pratinjau thread anak dikirimkan pada stream milik anak tersebut dan tidak pernah disalin-silang ke stream tingkat sesi, yang pratinjaunya tetap terbatas pada thread utama. Untuk melihat teks subagen saat model menghasilkannya, buka stream thread subagen tersebut.
+
+Path stream thread mudah keliru: path-nya adalah `/threads/{thread_id}/stream`, bukan `/events/stream` (yang hanya ada di tingkat sesi), dan tidak ada endpoint `/threads/{thread_id}/events/stream`.
+
+Event pratinjau itu sendiri tidak berubah. `event_start` dan `event_delta` memiliki bentuk yang sama pada stream thread seperti pada stream tingkat sesi, dan pola [akumulasi dan rekonsiliasi](#accumulate-and-reconcile) berlaku sebagaimana tertulis. Satu-satunya penyesuaian adalah pembukuan: jalankan satu instans akumulator per koneksi stream.
+
+<CodeGroup defaultLanguage="curl">
+  ```bash curl
+  # Tampilkan daftar thread sesi dan pilih satu anak: thread anak memiliki
+  # parent_thread_id yang tidak null, dan parent_thread_id thread utama bernilai null.
+  THREAD_ID=$(
+    curl --fail-with-body -sS \
+      "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads?beta=true" \
+      -H "x-api-key: $ANTHROPIC_API_KEY" \
+      -H "anthropic-version: 2023-06-01" \
+      -H "anthropic-beta: managed-agents-2026-04-01" |
+      jq -er 'first(.data[] | select(.parent_thread_id != null)).id'
+  )
+
+  # Stream thread anak menerima parameter event_deltas[] yang sama dengan
+  # stream sesi. Lakukan percent-encode pada tanda kurung (%5B%5D) dan beri tanda kutip pada URL.
+  exec {stream}< <(
+    curl --fail-with-body -sS -N \
+      "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/stream?beta=true&event_deltas%5B%5D=agent.message" \
+      -H "x-api-key: $ANTHROPIC_API_KEY" \
+      -H "anthropic-version: 2023-06-01" \
+      -H "anthropic-beta: managed-agents-2026-04-01" \
+      -H "accept: text/event-stream"
+  )
+
+  while IFS= read -r -u "$stream" event_line; do
+    [[ $event_line == data:* ]] || continue
+    event_json=${event_line#data: }
+    case $(jq -r '.type' <<<"$event_json") in
+      event_delta)
+        jq -j '.delta.content.text' <<<"$event_json"
+        ;;
+      agent.message)
+        # Event yang di-buffer adalah catatan otoritatif; render kontennya.
+        printf '\n'
+        jq -j '.content[] | select(.type == "text") | .text' <<<"$event_json"
+        printf '\n'
+        ;;
+      session.thread_status_idle)
+        break
+        ;;
+    esac
+  done
+  exec {stream}<&-
+  ```
+
+  ```bash CLI
+  # Daftarkan thread sesi dan pilih satu anak: thread anak membawa parent_thread_id
+  # non-null, dan parent_thread_id thread utama bernilai null
+  # (kueri #(parent_thread_id!=~null) pada --transform mencocokkan nilai non-null).
+  THREAD_ID=$(ant beta:sessions:threads list \
+    --session-id "$SESSION_ID" \
+    --format raw --transform 'data.#(parent_thread_id!=~null).id' --raw-output)
+
+  # Stream thread anak menerima parameter event_deltas yang sama dengan stream
+  # sesi, satu flag --event-delta per tipe event yang akan dipratinjau. @tostr
+  # mengenkode ulang setiap field teks sebagai string JSON, sehingga setiap nilai tetap
+  # pada satu baris YAML dan fromjson milik jq memulihkan teks aslinya.
+  transform='{type,frag:delta.content.text|@tostr,text:content.#(type=="text").text|@tostr}'
+  exec {stream}< <(ant beta:sessions:threads:events stream \
+    --session-id "$SESSION_ID" \
+    --thread-id "$THREAD_ID" \
+    --event-delta agent.message \
+    --transform "$transform" \
+    --format yaml)
+
+  type=
+  while IFS= read -r -u "$stream" line; do
+    case "$line" in
+      type:\ session.thread_status_idle) break ;;
+      type:\ *) type=${line#type: } ;;
+      frag:*)
+        [[ $type == event_delta ]] || continue
+        jq -j fromjson <<<"${line#frag: }" ;;
+      text:*)
+        [[ $type == agent.message ]] || continue
+        # Event yang di-buffer adalah catatan otoritatif; render kontennya.
+        printf '\n'
+        jq -r fromjson <<<"${line#text: }" ;;
+    esac
+  done
+  exec {stream}<&-
+  ```
+
+  ```python Python
+  # Daftar thread milik sesi dan pilih satu anak: thread anak membawa parent_thread_id
+  # non-null, sedangkan parent_thread_id thread utama bernilai null.
+  child_thread = next(
+      thread
+      for thread in client.beta.sessions.threads.list(session.id)
+      if thread.parent_thread_id is not None
+  )
+
+  # Stream thread anak menerima parameter event_deltas yang sama dengan
+  # stream sesi.
+  with client.beta.sessions.threads.events.stream(
+      child_thread.id,
+      session_id=session.id,
+      event_deltas=["agent.message"],
+  ) as stream:
+      for event in stream:
+          match event.type:
+              case "event_delta":
+                  print(event.delta.content.text, end="")
+              case "agent.message":
+                  # Event yang di-buffer adalah catatan otoritatif; render kontennya
+                  print()
+                  for block in event.content:
+                      if block.type == "text":
+                          print(block.text, end="")
+                  print()
+              case "session.thread_status_idle":
+                  break
+  ```
+
+  ```typescript TypeScript
+  // Tampilkan daftar thread sesi dan pilih anak: thread anak membawa parent_thread_id
+  // non-null, dan parent_thread_id thread utama bernilai null.
+  let childThreadId: string | undefined;
+  for await (const thread of client.beta.sessions.threads.list(session.id)) {
+    if (thread.parent_thread_id !== null) {
+      childThreadId = thread.id;
+      break;
+    }
+  }
+  if (!childThreadId) throw new Error("No child thread found");
+
+  // Stream thread anak menerima parameter event_deltas yang sama dengan
+  // stream sesi.
+  const stream = await client.beta.sessions.threads.events.stream(childThreadId, {
+    session_id: session.id,
+    event_deltas: ["agent.message"],
+  });
+
+  for await (const event of stream) {
+    if (event.type === "event_delta") {
+      process.stdout.write(event.delta.content.text);
+    } else if (event.type === "agent.message") {
+      // Event yang di-buffer adalah rekaman otoritatif; render kontennya.
+      process.stdout.write("\n");
+      const text = event.content.map((block) => block.text).join("");
+      console.log(text);
+    } else if (event.type === "session.thread_status_idle") {
+      break;
+    }
+  }
+  stream.controller.abort();
+  ```
+
+  ```csharp C#
+  // Daftar thread sesi dan pilih satu anak: thread anak membawa parent_thread_id
+  // non-null, dan parent_thread_id thread utama bernilai null.
+  var threads = await client.Beta.Sessions.Threads.List(session.ID);
+  var childThread = threads.Items.First(thread => thread.ParentThreadID is not null);
+
+  // Stream thread anak menerima parameter event_deltas yang sama dengan
+  // stream sesi.
+  using var stream = await client.Beta.Sessions.Threads.Events.WithRawResponse.StreamStreaming(
+      childThread.ID,
+      new() { SessionID = session.ID, EventDeltas = [BetaManagedAgentsDeltaType.AgentMessage] }
+  );
+
+  await foreach (var streamEvent in stream.Enumerate())
+  {
+      if (streamEvent.TryPickDeltaEvent(out var delta))
+      {
+          Console.Write(delta.Delta.Content.Text);
+      }
+      else if (streamEvent.TryPickAgentMessageEvent(out var message))
+      {
+          // Event yang di-buffer adalah catatan otoritatif; render kontennya.
+          Console.WriteLine();
+          Console.WriteLine(string.Concat(message.Content.Select(block => block.Text)));
+      }
+      else if (streamEvent.TryPickSessionThreadStatusIdleEvent(out _))
+      {
+          break;
+      }
+  }
+  ```
+
+  ```go Go
+  	// Daftarkan thread sesi dan pilih satu anak: thread anak memiliki parent_thread_id
+  	// non-null, dan parent_thread_id thread utama bernilai null.
+  	var childThreadID string
+  	threads := client.Beta.Sessions.Threads.ListAutoPaging(ctx, session.ID, anthropic.BetaSessionThreadListParams{})
+  	for threads.Next() {
+  		if thread := threads.Current(); thread.ParentThreadID != "" {
+  			childThreadID = thread.ID
+  			break
+  		}
+  	}
+  	if err := threads.Err(); err != nil {
+  		panic(err)
+  	}
+
+  	// Stream thread anak menerima parameter event_deltas yang sama dengan
+  	// stream sesi; jalankan satu loop baca per koneksi stream.
+  	stream := client.Beta.Sessions.Threads.Events.StreamEvents(ctx, childThreadID, anthropic.BetaSessionThreadEventStreamParams{
+  		SessionID: session.ID,
+  		EventDeltas: []anthropic.BetaManagedAgentsDeltaType{
+  			anthropic.BetaManagedAgentsDeltaTypeAgentMessage,
+  		},
+  	})
+
+  threadDeltas:
+  	for stream.Next() {
+  		switch event := stream.Current().AsAny().(type) {
+  		case anthropic.BetaManagedAgentsDeltaEvent:
+  			fmt.Print(event.Delta.Content.Text)
+  		case anthropic.BetaManagedAgentsAgentMessageEvent:
+  			// Event yang di-buffer adalah catatan otoritatif; render kontennya.
+  			fmt.Println()
+  			// daftar bertipe konkret: BetaManagedAgentsTextBlock
+  			for _, block := range event.Content {
+  				fmt.Print(block.Text)
+  			}
+  			fmt.Println()
+  		case anthropic.BetaManagedAgentsSessionThreadStatusIdleEvent:
+  			break threadDeltas
+  		}
+  	}
+  	if err := stream.Err(); err != nil {
+  		panic(err)
+  	}
+  	stream.Close()
+  ```
+
+  ```java Java
+  // Daftarkan thread milik sesi dan pilih satu anak: thread anak membawa
+  // parent_thread_id non-null, dan parent_thread_id thread utama bernilai null.
+  var childThread = client.beta().sessions().threads().list(session.id()).autoPager().stream()
+      .filter(thread -> thread.parentThreadId().isPresent())
+      .findFirst()
+      .orElseThrow();
+
+  // Stream thread anak menerima parameter event_deltas yang sama dengan stream
+  // sesi. Kelas params-nya punya nama sederhana yang sama dengan milik level sesi, jadi kualifikasikan.
+  try (var stream = client.beta().sessions().threads().events().streamStreaming(
+          childThread.id(),
+          com.anthropic.models.beta.sessions.threads.events.EventStreamParams.builder()
+              .sessionId(session.id())
+              .addEventDelta(BetaManagedAgentsDeltaType.AGENT_MESSAGE)
+              .build()
+  )) {
+      Iterable<BetaManagedAgentsStreamSessionThreadEvents> events = stream.stream()::iterator;
+      for (var event : events) {
+          if (event.isEventDelta()) {
+              IO.print(event.asEventDelta().delta().content().text());
+          } else if (event.isAgentMessage()) {
+              // Event yang di-buffer adalah catatan otoritatif; render kontennya.
+              IO.println();
+              event.asAgentMessage().content().forEach(block -> IO.print(block.text()));
+              IO.println();
+          } else if (event.isSessionThreadStatusIdle()) {
+              break;
+          }
+      }
+  }
+  ```
+
+  ```php PHP
+  // Pratinjau event thread sesi saat ini belum tersedia di SDK PHP.
+  ```
+
+  ```ruby Ruby
+  # Daftarkan thread milik sesi dan pilih satu anak: thread anak memiliki
+  # parent_thread_id non-null, dan parent_thread_id thread utama bernilai null.
+  child_thread = client.beta.sessions.threads.list(session.id).to_enum.find { it.parent_thread_id }
+
+  # Stream thread anak menerima parameter event_deltas yang sama dengan
+  # stream sesi.
+  stream = client.beta.sessions.threads.events.stream_events(
+    child_thread.id,
+    session_id: session.id,
+    event_deltas: [Anthropic::Beta::BetaManagedAgentsDeltaType::AGENT_MESSAGE]
+  )
+
+  stream.each do |event|
+    case event.type
+    in :event_delta
+      print event.delta.content.text
+    in :"agent.message"
+      # Event yang ter-buffer adalah catatan otoritatif; render kontennya.
+      puts
+      event.content.each { print it.text }
+      puts
+    in :"session.thread_status_idle"
+      break
+    else
+      # abaikan tipe event lainnya
+    end
+  end
+  ```
+</CodeGroup>
+
+Loop pembacaan keluar pada [`session.thread_status_idle`](/docs/id/managed-agents/reference#event-types), event yang dipancarkan saat giliran thread sesi selesai dan thread menjadi idle.
+
 ### Keterbatasan
 
-Pratinjau disetel untuk responsivitas. Bangun dengan mempertimbangkan batasan berikut:
+Pratinjau disetel untuk responsivitas. Bangun dengan mempertimbangkan batasan-batasan berikut:
 
-* **Best effort:** Di bawah beban tinggi, server mungkin membuang delta untuk sebuah event. Ketika itu terjadi, Anda menerima prefiks teks yang berurutan dan kemudian tidak ada delta lebih lanjut untuk event tersebut. `agent.message` yang di-buffer tetap tiba lengkap. Jangan pernah memperlakukan pratinjau yang terakumulasi sebagai final.
-* **Tidak ada replay saat reconnect:** Delta hanya dikirimkan ke koneksi yang memilih untuk ikut serta, selama koneksi tersebut terbuka. Jika stream terputus, ikuti [prosedur reconnect](#mengintegrasikan-event) di tab Streaming event: buka kembali stream dan ambil daftar riwayat event. Riwayat mencakup event yang di-buffer apa pun yang dipancarkan saat Anda terputus, termasuk `agent.message` yang ditunggu oleh pratinjau Anda. Tidak ada cara untuk meminta ulang delta yang terlewat.
-* **Thread utama, teks saja:** Pratinjau mencakup teks asisten pada thread utama sesi. Penggunaan alat, hasil alat, hasil MCP, dan aktivitas pada [thread sesi](/docs/id/managed-agents/multi-agent) lainnya tidak pernah dipratinjau.
-* **`agent.thinking` hanya start:** Pratinjau `agent.thinking` hanya memancarkan `event_start` sebagai sinyal bahwa blok thinking telah dimulai; tidak ada event `event_delta` yang mengikutinya.
-* **Tidak pernah dipersistensi:** `event_start` dan `event_delta` hanya ada di stream langsung. Mereka tidak muncul di riwayat event sesi (`GET /v1/sessions/{session_id}/events`).
+* **Best effort:** Saat beban tinggi, server dapat membuang delta untuk sebuah event. Saat itu terjadi, Anda menerima prefiks teks yang berkesinambungan dan kemudian tidak ada delta lebih lanjut untuk event tersebut. `agent.message` yang di-buffer tetap tiba secara lengkap. Jangan pernah memperlakukan pratinjau yang terakumulasi sebagai final.
+* **Tidak ada replay saat menyambung kembali:** Delta hanya dikirimkan ke koneksi yang memilih ikut serta, selama koneksi tersebut terbuka. Ini berlaku untuk stream tingkat sesi dan untuk setiap stream thread sesi, dan koneksi yang dibuka setelah permintaan model dimulai tidak menerima delta untuk event yang sedang berjalan tersebut. Jika stream terputus, ikuti [prosedur penyambungan kembali](#integrating-events) di tab Streaming event: buka kembali stream dan daftarkan riwayat event. Riwayat tersebut mencakup event ter-buffer apa pun yang dipancarkan saat Anda terputus, termasuk `agent.message` yang ditunggu oleh pratinjau Anda. Tidak ada cara untuk meminta ulang delta yang terlewat.
+* **Satu thread, teks saja:** Pratinjau mencakup teks asisten pada thread yang sedang dibaca oleh koneksi. Penggunaan alat, hasil alat, hasil MCP, dan aktivitas pada [thread sesi](/docs/id/managed-agents/multiagent-orchestration) lain mana pun tidak pernah dipratinjau pada koneksi tersebut.
+* **`agent.thinking` hanya start:** Pratinjau `agent.thinking` hanya memancarkan `event_start` sebagai sinyal bahwa blok pemikiran telah dimulai; tidak ada event `event_delta` yang mengikutinya.
+* **Tidak pernah dipersistenkan:** `event_start` dan `event_delta` hanya ada di stream langsung. Keduanya tidak muncul di riwayat event sesi (`GET /v1/sessions/{session_id}/events`) atau di riwayat event thread sesi mana pun.
+
+### Pemecahan masalah pratinjau
+
+Jika stream tidak berperilaku seperti yang Anda harapkan:
+
+| Yang Anda lihat                                                              | Artinya                                                                                                                                                                                                                                                                                                                         |
+| ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Stream dengan event ter-buffer tetapi tanpa `event_start` atau `event_delta` | Koneksi yang Anda baca tidak memilih ikut serta (`event_deltas[]` berlaku per koneksi, bukan per sesi), atau giliran tersebut tidak pernah menyentuh thread yang Anda streaming. Pratinjau dibatasi per thread, jadi daftarkan thread-thread sesi (`GET /v1/sessions/{session_id}/threads`) untuk menemukan mana yang berjalan. |
+| 404 pada URL stream                                                          | Path atau ID salah, atau permintaan sama sekali tidak membawa header beta managed-agents. Endpoint thread dibatasi oleh beta, jadi tanpa header tersebut endpoint-nya tidak ada.                                                                                                                                                |
+| 400 yang menyebutkan `event_deltas`                                          | Hanya `agent.message` dan `agent.thinking` yang diterima.                                                                                                                                                                                                                                                                       |
 
 ## Skenario tambahan
 
 ### Menangani panggilan alat kustom
 
-Ketika agen memanggil [alat kustom](/docs/id/managed-agents/tools#custom-tools):
+Saat agen memanggil [alat kustom](/docs/id/managed-agents/tools#custom-tools):
 
 1. Sesi memancarkan event `agent.custom_tool_use` yang berisi nama alat dan input.
 2. Sesi berhenti sementara dengan event `session.status_idle` yang berisi `stop_reason: requires_action`. ID event yang memblokir ada di array `stop_reason.event_ids`.
-3. Jalankan alat di sistem Anda dan kirim event `user.custom_tool_result` untuk masing-masing, dengan meneruskan ID event di parameter `custom_tool_use_id` bersama dengan konten hasil.
-4. Setelah semua event yang memblokir diselesaikan, sesi bertransisi kembali ke `running`.
+3. Eksekusi alat di sistem Anda dan kirim event `user.custom_tool_result` untuk masing-masing, dengan meneruskan ID event di parameter `custom_tool_use_id` bersama dengan konten hasilnya.
+4. Setelah semua event yang memblokir terselesaikan, sesi bertransisi kembali ke `running`.
 
 <CodeGroup>
   ```bash curl
@@ -1826,11 +2098,11 @@ Ketika agen memanggil [alat kustom](/docs/id/managed-agents/tools#custom-tools):
       if ($event->type === 'session.status_idle' && $event->stopReason) {
           if ($event->stopReason->type === 'requires_action') {
               foreach ($event->stopReason->eventIDs as $eventId) {
-                  // Look up the custom tool use event and execute it
+                  // Cari event penggunaan alat kustom lalu eksekusi
                   $toolEvent = $eventsById[$eventId];
                   $result = callTool($toolEvent->name, $toolEvent->input);
 
-                  // Send the result back
+                  // Kirim kembali hasilnya
                   $client->beta->sessions->events->send(
                       $session->id,
                       events: [
@@ -1879,12 +2151,12 @@ Ketika agen memanggil [alat kustom](/docs/id/managed-agents/tools#custom-tools):
 
 ### Konfirmasi alat
 
-Ketika [kebijakan izin](/docs/id/managed-agents/permission-policies) memerlukan konfirmasi sebelum alat dieksekusi:
+Saat [kebijakan izin](/docs/id/managed-agents/permission-policies) memerlukan konfirmasi sebelum alat dieksekusi:
 
 1. Sesi memancarkan event `agent.tool_use` atau `agent.mcp_tool_use`.
 2. Sesi berhenti sementara dengan event `session.status_idle` yang berisi `stop_reason: requires_action`. ID event yang memblokir ada di array `stop_reason.event_ids`.
 3. Kirim event `user.tool_confirmation` untuk masing-masing, dengan meneruskan ID event di parameter `tool_use_id`. Atur `result` ke `"allow"` atau `"deny"`. Gunakan `deny_message` untuk menjelaskan penolakan.
-4. Setelah semua event yang memblokir diselesaikan, sesi bertransisi kembali ke `running`.
+4. Setelah semua event yang memblokir terselesaikan, sesi bertransisi kembali ke `running`.
 
 <CodeGroup>
   ```bash curl
@@ -2067,7 +2339,7 @@ Ketika [kebijakan izin](/docs/id/managed-agents/permission-policies) memerlukan 
       if ($event->type === 'session.status_idle' && $event->stopReason) {
           if ($event->stopReason->type === 'requires_action') {
               foreach ($event->stopReason->eventIDs as $eventId) {
-                  // Approve the pending tool call
+                  // Setujui panggilan alat yang tertunda
                   $client->beta->sessions->events->send(
                       $session->id,
                       events: [
@@ -2107,12 +2379,12 @@ Ketika [kebijakan izin](/docs/id/managed-agents/permission-policies) memerlukan 
   ```
 </CodeGroup>
 
-### Melanjutkan sesi idle
+### Melanjutkan sesi yang idle
 
-Sesi tetap ada di antara interaksi. Riwayat percakapan dipertahankan kecuali sesi dihapus secara eksplisit. Ketika sesi menjadi idle, sandbox-nya di-checkpoint, mempertahankan seluruh status sandbox, termasuk filesystem, paket yang terinstal, dan file apa pun yang dibuat agen. Ini memungkinkan Anda melanjutkan dengan bersih dari ketidakaktifan.
+Sesi tetap ada di antara interaksi. Riwayat percakapan dipertahankan kecuali sesi dihapus secara eksplisit. Saat sesi menjadi idle, sandbox-nya di-checkpoint, mempertahankan seluruh status sandbox, termasuk filesystem, paket yang terpasang, dan file apa pun yang dibuat agen. Ini memungkinkan Anda melanjutkan dengan bersih dari ketidakaktifan.
 
 <Note>
-  Meskipun riwayat sesi dipersistensi hingga dihapus, checkpoint hanya dipertahankan selama 30 hari setelah aktivitas terakhir sesi. Jika alur kerja Anda memerlukan status sandbox lengkap (file, alat yang terinstal, dan sebagainya) untuk bertahan lebih dari 30 hari, kirim event `user.message` secara berkala untuk mereset timer ketidakaktifan sebelum checkpoint kedaluwarsa.
+  Meskipun riwayat sesi dipersistenkan hingga dihapus, status sandbox hanya dipertahankan selama 30 hari setelah sandbox dibuat. Aktivitas tidak memperpanjang jendela ini: setelah 30 hari status sandbox (file, alat yang terpasang, dan sebagainya) tidak dapat dipulihkan, dan sesi yang dilanjutkan dimulai dari sandbox yang baru. Jika alur kerja Anda bergantung pada isi sandbox, minta agen menulis artefak penting ke [output](/docs/id/managed-agents/define-outcomes#retrieving-deliverables) sebelum jendela tersebut berakhir.
 </Note>
 
 Untuk melanjutkan sesi, kirim event `user.message` ke sesi tersebut seperti biasa:
@@ -2244,8 +2516,8 @@ Untuk melanjutkan sesi, kirim event `user.message` ke sesi tersebut seperti bias
   ```
 
   ```php PHP
-  // Resume a previously created session by sending it a new user.message event.
-  // In production, pass the session ID you stored when the session was created.
+  // Lanjutkan sesi yang dibuat sebelumnya dengan mengirimkan event user.message baru.
+  // Di produksi, berikan ID sesi yang Anda simpan saat sesi dibuat.
   $client->beta->sessions->events->send(
       $session->id,
       events: [
@@ -2282,10 +2554,10 @@ Untuk melanjutkan sesi, kirim event `user.message` ke sesi tersebut seperti bias
 ### Mengirim pesan sistem
 
 <Note>
-  `system.message` saat ini hanya didukung oleh Claude Opus 4.8. Jika ada model yang dikonfigurasi pada agen yang tidak mendukung injeksi sistem di tengah percakapan, event tersebut ditolak dengan error validasi `model_does_not_support_mid_conversation_system`.
+  `system.message` saat ini didukung oleh Claude Opus 4.8, Claude Sonnet 5, Claude Fable 5, dan Claude Mythos 5. Jika model utama agen tidak mendukung injeksi sistem di tengah percakapan, event tersebut ditolak dengan error validasi `model_does_not_support_mid_conversation_system`; model subagen tidak diperiksa, karena `system.message` hanya masuk ke thread utama.
 </Note>
 
-Kirim event `system.message` untuk memperbarui prompt sistem agen di antara giliran. Tidak seperti field `system` pada definisi agen (yang ditetapkan saat pembuatan sesi), `system.message` memungkinkan Anda mengubah prompt sistem saat sesi berjalan. Gunakan ini ketika agen memerlukan panduan tingkat sistem yang diperbarui di tengah sesi: persona yang berbeda, batasan yang direvisi, atau konteks yang diambil saat runtime yang seharusnya membentuk perilaku model ke depannya.
+Kirim event `system.message` untuk memberi agen konteks tingkat sistem yang memiliki hak istimewa yang berlaku untuk giliran yang menyertainya dan semua giliran berikutnya. Tidak seperti field `system` pada definisi agen (yang mengatur prompt sistem tingkat atas), konten `system.message` ditambahkan ke konteks sistem sesi sebagai giliran `role: "system"` alih-alih menggantikan prompt tersebut. Gunakan ini saat agen memerlukan panduan tingkat sistem yang diperbarui di tengah sesi: persona yang berbeda, batasan yang direvisi, atau konteks yang diambil saat runtime yang harus membentuk perilaku model ke depannya.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -2431,11 +2703,11 @@ Kirim event `system.message` untuk memperbarui prompt sistem agen di antara gili
   ```
 </CodeGroup>
 
-`system.message` tidak dapat dikirim saat sesi idle dengan `stop_reason: requires_action`. `content` menerima 1–1000 item teks.
+Saat sesi idle dengan `stop_reason: requires_action`, `system.message` hanya diterima jika mengikuti event hasil alat dalam permintaan yang sama; jika dikirim sendiri atau bersama `user.message`, event tersebut ditolak hingga event alat yang tertunda terselesaikan. `content` menerima 1–1000 item teks.
 
 ### Melacak penggunaan
 
-Objek sesi menyertakan field `usage` dengan statistik token kumulatif. Ambil sesi setelah menjadi idle untuk membaca total terbaru, dan gunakan untuk melacak biaya, menerapkan anggaran, atau memantau konsumsi.
+Objek sesi menyertakan field `usage` dengan statistik token kumulatif. Ambil sesi setelah menjadi idle untuk membaca total terbaru, dan gunakan untuk melacak biaya, menegakkan anggaran, atau memantau konsumsi.
 
 ```json
 {
@@ -2444,25 +2716,29 @@ Objek sesi menyertakan field `usage` dengan statistik token kumulatif. Ambil ses
   "usage": {
     "input_tokens": 5000,
     "output_tokens": 3200,
-    "cache_creation_input_tokens": 2000,
-    "cache_read_input_tokens": 20000
+    "cache_read_input_tokens": 20000,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 2000,
+      "ephemeral_1h_input_tokens": 0
+    }
   }
 }
 ```
 
-`input_tokens` melaporkan token input yang tidak di-cache dan `output_tokens` melaporkan total token output di seluruh panggilan model dalam sesi. Field `cache_creation_input_tokens` dan `cache_read_input_tokens` mencerminkan aktivitas caching prompt. Entri cache menggunakan TTL 5 menit, sehingga giliran berturut-turut dalam jendela waktu tersebut mendapat manfaat dari pembacaan cache, yang mengurangi biaya per token.
+`input_tokens` melaporkan token input yang tidak di-cache dan `output_tokens` melaporkan total token output di semua panggilan model dalam sesi. Field `cache_read_input_tokens` melaporkan token yang dibaca dari cache prompt, dan objek `cache_creation` merinci token pembuatan cache berdasarkan masa hidup cache (`ephemeral_5m_input_tokens` dan `ephemeral_1h_input_tokens`). Entri cache menggunakan TTL 5 menit secara default, jadi giliran yang berurutan dalam jendela tersebut mendapat manfaat dari pembacaan cache, yang mengurangi biaya per token.
 
 ## Observabilitas Console
 
 Console menyediakan tampilan timeline visual dari sesi agen Anda. Navigasikan ke bagian Claude Managed Agents di Console untuk melihat:
 
-* **Daftar sesi:** Semua sesi dengan status, waktu pembuatan, dan modelnya
+* **Daftar sesi:** Semua sesi dengan status, waktu pembuatan, dan agennya
 * **Tampilan tracing:** Tampilan kronologis event (konten, timestamp, penggunaan token) dalam sebuah sesi. Tampilan tracing hanya dapat diakses oleh Developer dan Admin.
 * **Eksekusi alat:** Detail setiap panggilan alat dan hasilnya
 
 ## Tips debugging
 
 * **Periksa event sesi:** Error sesi disampaikan melalui event `session.error`
-* **Tinjau hasil alat:** Kegagalan eksekusi alat sering kali menjelaskan perilaku agen yang tidak terduga
+* **Tinjau hasil alat:** Kegagalan eksekusi alat sering menjelaskan perilaku agen yang tidak terduga
 * **Lacak penggunaan token:** Pantau konsumsi token untuk mengoptimalkan prompt dan mengurangi biaya
 * **Gunakan prompt sistem:** Tambahkan instruksi logging ke prompt sistem agar agen menjelaskan penalarannya
+* **Pecahkan masalah pratinjau:** Jika stream yang memilih ikut serta untuk event delta tidak berperilaku seperti yang Anda harapkan, lihat [Pemecahan masalah pratinjau](#troubleshoot-previews)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-07-18T03:07:08.309502Z
-sha256: 33aaf1e4ff4c9584521aade0caef415a832cc99fdc3bb8d1f086d222627eb529
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 5826e8e74f2f920a2475ca4e49b7d327be427909a8e4fa17d418990240bb3eb9
 ---
 
 # Computer use tool
@@ -843,9 +843,9 @@ The computer use tool supports these actions:
   **Important:** Your application must explicitly run the computer use tool; Claude cannot run it directly. You are responsible for implementing the screenshot capture, mouse movements, keyboard inputs, and other actions based on Claude's requests.
 </Note>
 
-### Combining with extended thinking
+### Combining with thinking
 
-For combining computer use with extended thinking, see [Extended thinking](/docs/en/build-with-claude/extended-thinking).
+For combining computer use with thinking, see [Thinking](/docs/en/build-with-claude/thinking).
 
 <Tip>
   For computer use specifically, internal benchmarking suggests these `effort` settings:

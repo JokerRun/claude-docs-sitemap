@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/aws
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 0c752f70762b17d7927bd408ddc7e7c2fc1879d9696a759ce62983f305db9e79
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: e3489c5271ef03fcbdb67ea640b2724d95ce8ee097d7764f67c1e97ae9b45c0c
 ---
 
 # Menggunakan WIF dengan AWS
@@ -11,7 +11,7 @@ Autentikasi workload AWS di Lambda, EC2, ECS, atau EKS ke Claude API dengan Work
 
 ---
 
-Workload AWS dapat melakukan autentikasi ke Claude API tanpa kunci API statis dengan menukarkan token identitas OIDC yang ditandatangani AWS. Jalur yang direkomendasikan adalah memanggil API AWS STS [`GetWebIdentityToken`](https://docs.aws.amazon.com/STS/latest/APIReference/API_GetWebIdentityToken.html), yang berfungsi di mana pun workload memiliki kredensial AWS: Lambda, EC2, ECS, dan EKS. Workload EKS dapat menggunakan alternatif [jalur projected token Kubernetes](#use-eks-projected-service-account-tokens), yang memiliki lebih sedikit langkah konfigurasi tetapi hanya berfungsi di dalam pod.
+Workload AWS dapat melakukan autentikasi ke Claude API tanpa kunci API statis dengan menukarkan token identitas OIDC yang ditandatangani AWS. Jalur yang direkomendasikan memanggil API AWS STS [`GetWebIdentityToken`](https://docs.aws.amazon.com/STS/latest/APIReference/API_GetWebIdentityToken.html), yang berfungsi di mana pun workload memiliki kredensial AWS: Lambda, EC2, ECS, dan EKS. Workload EKS dapat secara alternatif menggunakan [jalur projected-token Kubernetes](#use-eks-projected-service-account-tokens), yang memiliki lebih sedikit langkah konfigurasi tetapi hanya berfungsi di dalam pod.
 
 Panduan ini menunjukkan kedua jalur tersebut. Untuk konsep yang mendasarinya (service account, federation issuer, dan federation rule), lihat [Workload Identity Federation](/docs/id/manage-claude/workload-identity-federation).
 
@@ -19,18 +19,18 @@ Panduan ini menunjukkan kedua jalur tersebut. Untuk konsep yang mendasarinya (se
 
 * Pemahaman tentang [konsep WIF](/docs/id/manage-claude/workload-identity-federation#concepts): service account, federation issuer, dan federation rule.
 * Workload AWS (pod EKS, task ECS, fungsi Lambda, atau instance EC2) dengan IAM role yang terpasang.
-* CLI `aws` atau AWS SDK yang tersedia di workload.
+* CLI `aws` atau AWS SDK yang tersedia di dalam workload.
 * Izin untuk membuat service account, federation issuer, dan federation rule di Claude Console untuk organisasi Anthropic Anda.
 
-## Menggunakan token identitas web STS (direkomendasikan)
+## Menggunakan token web identity STS (direkomendasikan)
 
-API AWS STS `GetWebIdentityToken` mengembalikan token OIDC yang ditandatangani oleh AWS yang menyatakan identitas IAM pemanggil. Karena menggunakan kredensial AWS ambien milik workload, integrasi yang sama mencakup Lambda, EC2, ECS, dan EKS.
+API AWS STS `GetWebIdentityToken` mengembalikan token OIDC yang ditandatangani oleh AWS yang menyatakan identitas IAM pemanggil. Karena menggunakan kredensial AWS ambient milik workload, integrasi yang sama mencakup Lambda, EC2, ECS, dan EKS.
 
-### Mengonfigurasi AWS
+### Konfigurasi AWS
 
 <Steps>
   <Step title="Aktifkan outbound web identity federation untuk akun">
-    Ini adalah flag tingkat akun, yang secara default nonaktif. Di konsol AWS, buka **IAM**, pilih **Account settings**, dan aktifkan **Outbound web identity federation**. Untuk mengaktifkannya secara terprogram:
+    Ini adalah flag tingkat akun, nonaktif secara default. Di konsol AWS, buka **IAM**, pilih **Account settings**, dan aktifkan **Outbound web identity federation**. Untuk mengaktifkannya secara terprogram:
 
     ```bash
     python3 -c "import boto3; boto3.client('iam').enable_outbound_web_identity_federation()"
@@ -40,7 +40,7 @@ API AWS STS `GetWebIdentityToken` mengembalikan token OIDC yang ditandatangani o
   </Step>
 
   <Step title="Berikan izin kepada IAM role workload untuk memanggil API">
-    Lampirkan policy ini ke IAM role yang digunakan oleh fungsi Lambda, instance EC2, atau task ECS Anda:
+    Lampirkan kebijakan ini ke IAM role yang digunakan oleh fungsi Lambda, instance EC2, atau task ECS Anda:
 
     ```json
     {
@@ -57,7 +57,7 @@ API AWS STS `GetWebIdentityToken` mengembalikan token OIDC yang ditandatangani o
   </Step>
 
   <Step title="Temukan URL issuer STS akun Anda">
-    Setelah mengaktifkan outbound federation, halaman **IAM > Account settings** menampilkan kolom **Get Token Issuer URL** dengan nilai dalam bentuk `https://<uuid>.tokens.sts.global.api.aws`. URL ini unik untuk akun AWS Anda; salin untuk langkah berikutnya. Untuk mengambilnya secara terprogram:
+    Setelah mengaktifkan outbound federation, halaman **IAM > Account settings** menampilkan bidang **Get Token Issuer URL** dengan nilai dalam bentuk `https://<uuid>.tokens.sts.global.api.aws`. URL ini unik untuk akun AWS Anda; salin untuk langkah berikutnya. Untuk mengambilnya secara terprogram:
 
     ```bash
     python3 -c "import boto3; print(boto3.client('iam').get_outbound_web_identity_federation_info())"
@@ -65,13 +65,13 @@ API AWS STS `GetWebIdentityToken` mengembalikan token OIDC yang ditandatangani o
   </Step>
 </Steps>
 
-### Mengonfigurasi Anthropic
+### Konfigurasi Anthropic
 
-Di Claude Console, buka **Settings → Workload identity**, klik **Connect workload**, dan pilih tile **AWS**. Wizard akan memandu Anda mendaftarkan issuer, membuat service account, dan membuat federation rule.
+Di Claude Console, buka **Settings → Workload identity**, klik **Connect workload**, dan pilih tile **AWS**. Wizard akan memandu Anda melalui pendaftaran issuer, pembuatan service account, dan pembuatan federation rule.
 
 Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut baik saat Anda memasukkannya di wizard maupun saat mengirimkannya ke [Admin API](/docs/id/manage-claude/wif-admin-api):
 
-**Federation issuer:** Daftarkan URL issuer STS per-akun yang Anda salin pada langkah sebelumnya. URL tersebut mengekspos endpoint JWKS publik, jadi gunakan mode discovery.
+**Federation issuer:** Daftarkan URL issuer STS per-akun yang Anda salin pada langkah sebelumnya. URL ini mengekspos endpoint JWKS publik, jadi gunakan mode discovery.
 
 ```json
 {
@@ -81,7 +81,7 @@ Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut 
 }
 ```
 
-**Federation rule:** Cocokkan audience yang Anda berikan ke `GetWebIdentityToken` dan ARN IAM role pemanggil di klaim `sub`. Nilai `sub` adalah ARN IAM role dari workload yang memanggil API, dalam bentuk `arn:aws:iam::<account>:role/<role-name>`. Token juga membawa klaim `https://sts.amazonaws.com/` dengan `aws_account`, `org_id`, `principal_id`, dan `request_tags` apa pun yang Anda berikan; Anda dapat mencocokkannya dengan map `claims` pada rule atau `condition` CEL untuk kontrol yang lebih detail.
+**Federation rule:** Cocokkan audience yang Anda berikan ke `GetWebIdentityToken` dan ARN IAM role dari role pemanggil dalam klaim `sub`. Nilai `sub` adalah ARN IAM role dari workload yang memanggil API, dalam bentuk `arn:aws:iam::<account>:role/<role-name>`. Token juga membawa klaim `https://sts.amazonaws.com/` dengan `aws_account`, `org_id`, `principal_id`, dan `request_tags` apa pun yang Anda berikan; Anda dapat mencocokkan nilai-nilai tersebut dengan map `claims` pada rule atau `condition` CEL untuk kontrol yang lebih halus.
 
 ```json
 {
@@ -98,7 +98,7 @@ Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut 
 }
 ```
 
-Buat sespesifik yang diizinkan oleh workload. Cocokkan ARN role yang tepat, dan hanya perluas `subject_prefix` (misalnya, menjadi `arn:aws:iam::123456789012:role/*`) jika beberapa IAM role harus dipetakan ke service account Anthropic yang sama.
+Buat sespesifik mungkin sesuai yang dimungkinkan oleh workload. Cocokkan ARN role secara persis, dan hanya perluas `subject_prefix` (misalnya, menjadi `arn:aws:iam::123456789012:role/*`) jika beberapa IAM role harus dipetakan ke service account Anthropic yang sama.
 
 ### Memperoleh dan menggunakan token
 
@@ -138,7 +138,7 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-sonnet-4-6",
+      "model": "claude-opus-4-8",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello from AWS"}]
     }' | jq -r '.content[0].text'
@@ -173,7 +173,7 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
   )
 
   message = client.messages.create(
-      model="claude-sonnet-4-6",
+      model="claude-opus-4-8",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello from AWS"}],
   )
@@ -211,7 +211,7 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
   });
 
   const message = await client.messages.create({
-    model: "claude-sonnet-4-6",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello from AWS" }]
   });
@@ -252,7 +252,7 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
   )
 
   message, err := client.Messages.New(ctx, anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeSonnet4_6,
+  	Model:     anthropic.ModelClaudeOpus4_8,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello from AWS")),
@@ -284,7 +284,7 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
           .build();
 
   var message = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_SONNET_4_6)
+          .model(Model.CLAUDE_OPUS_4_8)
           .maxTokens(1024)
           .addUserMessage("Hello from AWS")
           .build());
@@ -305,7 +305,7 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
 
   var message = await client.Messages.Create(new()
   {
-      Model = Model.ClaudeSonnet4_6,
+      Model = Model.ClaudeOpus4_8,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello from AWS" }],
   });
@@ -347,7 +347,7 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
   # ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID, dan
   # ANTHROPIC_SERVICE_ACCOUNT_ID, dan ANTHROPIC_WORKSPACE_ID dibaca dari environment
   ant messages create \
-    --model claude-sonnet-4-6 \
+    --model claude-opus-4-8 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello from AWS"}'
   ```
@@ -371,7 +371,7 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
   ));
 
   $message = $client->messages->create(
-      model: 'claude-sonnet-4-6',
+      model: 'claude-opus-4-8',
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello from AWS']],
   );
@@ -400,7 +400,7 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
   )
 
   message = client.messages.create(
-    model: "claude-sonnet-4-6",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello from AWS"}]
   )
@@ -408,7 +408,7 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
   ```
 </CodeGroup>
 
-### Memverifikasi pengaturan
+### Verifikasi pengaturan
 
 Dari dalam workload, tukarkan token yang diterbitkan STS secara langsung dan periksa responsnya:
 
@@ -432,19 +432,19 @@ curl -sS https://api.anthropic.com/v1/oauth/token \
   }" | jq
 ```
 
-Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Jika terjadi `400 invalid_grant`, lihat [Memecahkan masalah pertukaran yang gagal](/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi AWS adalah ketidakcocokan `iss` (URL issuer STS per-akun harus cocok persis dengan `issuer_url` yang terdaftar).
+Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Pada `400 invalid_grant`, lihat [Memecahkan masalah pertukaran yang gagal](/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi AWS adalah ketidakcocokan `iss` (URL issuer STS per-akun harus sama persis dengan `issuer_url` yang terdaftar).
 
-## Menggunakan projected service-account token EKS
+## Menggunakan token service-account terproyeksi EKS
 
-Jika workload Anda berjalan di pod EKS, Anda dapat melewati panggilan STS dan membaca projected service-account token Kubernetes langsung dari disk. Kubernetes secara native memproyeksikan token yang kompatibel dengan OIDC ke dalam pod, dan SDK dapat membacanya dari path file, sehingga tidak diperlukan callable token-provider. Jalur ini memiliki dua langkah konfigurasi AWS lebih sedikit dibandingkan jalur STS tetapi hanya berfungsi di dalam pod; mekanisme yang mendasarinya sama dengan [integrasi Kubernetes generik](/docs/id/manage-claude/wif-providers/kubernetes).
+Jika workload Anda berjalan di pod EKS, Anda dapat melewati panggilan STS dan membaca token service-account yang diproyeksikan Kubernetes langsung dari disk. Kubernetes secara native memproyeksikan token yang kompatibel dengan OIDC ke dalam pod, dan SDK dapat membacanya dari path file, sehingga tidak diperlukan callable token-provider. Jalur ini memiliki dua langkah konfigurasi AWS lebih sedikit dibandingkan jalur STS tetapi hanya berfungsi di dalam pod; mekanisme yang mendasarinya sama dengan [integrasi Kubernetes generik](/docs/id/manage-claude/wif-providers/kubernetes).
 
-Jalur ini juga memerlukan cluster EKS dengan [IAM OIDC provider yang diaktifkan](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html) dan akses `kubectl` ke cluster.
+Jalur ini juga memerlukan klaster EKS dengan [IAM OIDC provider yang diaktifkan](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html) dan akses `kubectl` ke klaster tersebut.
 
-### Mengonfigurasi cluster EKS Anda
+### Konfigurasi klaster EKS Anda
 
 <Steps>
-  <Step title="Temukan URL issuer OIDC cluster Anda">
-    Setiap cluster EKS memiliki issuer OIDC yang unik. Ambil dengan AWS CLI:
+  <Step title="Temukan URL issuer OIDC klaster Anda">
+    Setiap klaster EKS memiliki issuer OIDC yang unik. Ambil dengan AWS CLI:
 
     ```bash CLI
     aws eks describe-cluster \
@@ -457,7 +457,7 @@ Jalur ini juga memerlukan cluster EKS dengan [IAM OIDC provider yang diaktifkan]
   </Step>
 
   <Step title="Buat service account dan proyeksikan token dengan audience Anthropic">
-    Webhook identitas pod EKS mendeteksi anotasi `eks.amazonaws.com/role-arn` dan secara otomatis memproyeksikan token dengan `aud: sts.amazonaws.com`, mengekspos path-nya sebagai `AWS_WEB_IDENTITY_TOKEN_FILE`. Token tersebut untuk asumsi role AWS. Untuk pertukaran Anthropic, proyeksikan token kedua dengan `audience: https://api.anthropic.com` dan mount di path khusus.
+    Webhook pod identity EKS mendeteksi anotasi `eks.amazonaws.com/role-arn` dan secara otomatis memproyeksikan token dengan `aud: sts.amazonaws.com`, mengekspos path-nya sebagai `AWS_WEB_IDENTITY_TOKEN_FILE`. Token tersebut digunakan untuk asumsi role AWS. Untuk pertukaran Anthropic, proyeksikan token kedua dengan `audience: https://api.anthropic.com` dan pasang di path khusus.
 
     ```yaml
     apiVersion: v1
@@ -507,7 +507,7 @@ Jalur ini juga memerlukan cluster EKS dengan [IAM OIDC provider yang diaktifkan]
   </Step>
 
   <Step title="Perhatikan bentuk klaim token">
-    Projected token adalah "JSON Web Token", atau JWT, yang ditandatangani oleh issuer OIDC cluster Anda. Klaim `sub`-nya mengikuti konvensi Kubernetes `system:serviceaccount:<namespace>:<service-account-name>`:
+    Token yang diproyeksikan adalah JSON Web Token (JWT) yang ditandatangani oleh issuer OIDC klaster Anda. Klaim `sub`-nya mengikuti konvensi Kubernetes `system:serviceaccount:<namespace>:<service-account-name>`:
 
     ```json
     {
@@ -523,17 +523,17 @@ Jalur ini juga memerlukan cluster EKS dengan [IAM OIDC provider yang diaktifkan]
     }
     ```
 
-    Proyeksi `serviceAccountToken` menetapkan `aud` ke `https://api.anthropic.com`. Token terpisah yang diinjeksi IRSA di `AWS_WEB_IDENTITY_TOKEN_FILE` membawa `aud: sts.amazonaws.com` dan ditujukan untuk panggilan API AWS, bukan pertukaran ini.
+    Proyeksi `serviceAccountToken` menetapkan `aud` ke `https://api.anthropic.com`. Token terpisah yang diinjeksikan IRSA di `AWS_WEB_IDENTITY_TOKEN_FILE` membawa `aud: sts.amazonaws.com` dan digunakan untuk panggilan API AWS, bukan untuk pertukaran ini.
   </Step>
 </Steps>
 
-### Mengonfigurasi Anthropic
+### Konfigurasi Anthropic
 
-Di Claude Console, buka **Settings → Workload identity**, klik **Connect workload**, dan pilih tile **AWS**. Wizard akan memandu Anda mendaftarkan issuer, membuat service account, dan membuat federation rule.
+Di Claude Console, buka **Settings → Workload identity**, klik **Connect workload**, dan pilih tile **AWS**. Wizard akan memandu Anda melalui pendaftaran issuer, pembuatan service account, dan pembuatan federation rule.
 
 Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut baik saat Anda memasukkannya di wizard maupun saat mengirimkannya ke [Admin API](/docs/id/manage-claude/wif-admin-api):
 
-**Federation issuer:** Issuer EKS mengekspos endpoint JWKS publik, jadi gunakan mode discovery. URL issuer harus cocok persis dengan klaim `iss` token. Daftarkan satu issuer per cluster.
+**Federation issuer:** Issuer EKS mengekspos endpoint JWKS publik, jadi gunakan mode discovery. URL issuer harus sama persis dengan klaim `iss` pada token. Daftarkan satu issuer per klaster.
 
 ```json
 {
@@ -543,7 +543,7 @@ Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut 
 }
 ```
 
-**Federation rule:** Cocokkan klaim `sub` Kubernetes dan audience Anthropic `https://api.anthropic.com`. (Proyeksikan service-account token khusus dengan audience tersebut; jangan gunakan kembali token default IRSA `sts.amazonaws.com`.)
+**Federation rule:** Cocokkan klaim `sub` Kubernetes dan audience Anthropic `https://api.anthropic.com`. (Proyeksikan token service-account khusus dengan audience tersebut; jangan gunakan kembali token default IRSA `sts.amazonaws.com`.)
 
 ```json
 {
@@ -560,11 +560,11 @@ Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut 
 }
 ```
 
-Buat sespesifik yang diizinkan oleh workload. Longgarkan `subject_prefix` menjadi `system:serviceaccount:inference:*` (tanda `*` di akhir menjadikannya pencocokan prefix) hanya jika setiap service account di namespace tersebut harus dipetakan ke service account Anthropic yang sama.
+Buat sespesifik mungkin sesuai yang dimungkinkan oleh workload. Longgarkan `subject_prefix` menjadi `system:serviceaccount:inference:*` (tanda `*` di akhir menjadikannya pencocokan prefix) hanya jika setiap service account di namespace tersebut harus dipetakan ke service account Anthropic yang sama.
 
 ### Memperoleh dan menggunakan token
 
-Di dalam pod, projected token berada di `/var/run/secrets/anthropic.com/token` (diekspos sebagai `ANTHROPIC_IDENTITY_TOKEN_FILE` di spesifikasi Pod). Berikan file tersebut ke kredensial federasi SDK dan SDK akan menangani pertukaran dan refresh.
+Di dalam pod, token yang diproyeksikan berada di `/var/run/secrets/anthropic.com/token` (diekspos sebagai `ANTHROPIC_IDENTITY_TOKEN_FILE` dalam spesifikasi Pod). Berikan file tersebut ke kredensial federasi SDK dan SDK akan menangani pertukaran dan refresh.
 
 <CodeGroup>
   ```bash cURL
@@ -591,7 +591,7 @@ Di dalam pod, projected token berada di `/var/run/secrets/anthropic.com/token` (
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-sonnet-4-6",
+      "model": "claude-opus-4-8",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello from EKS"}]
     }' | jq -r '.content[0].text'
@@ -616,7 +616,7 @@ Di dalam pod, projected token berada di `/var/run/secrets/anthropic.com/token` (
   )
 
   message = client.messages.create(
-      model="claude-sonnet-4-6",
+      model="claude-opus-4-8",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello from EKS"}],
   )
@@ -641,7 +641,7 @@ Di dalam pod, projected token berada di `/var/run/secrets/anthropic.com/token` (
   });
 
   const message = await client.messages.create({
-    model: "claude-sonnet-4-6",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello from EKS" }]
   });
@@ -673,7 +673,7 @@ Di dalam pod, projected token berada di `/var/run/secrets/anthropic.com/token` (
   )
 
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeSonnet4_6,
+  	Model:     anthropic.ModelClaudeOpus4_8,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello from EKS")),
@@ -689,7 +689,7 @@ Di dalam pod, projected token berada di `/var/run/secrets/anthropic.com/token` (
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   var message = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_SONNET_4_6)
+          .model(Model.CLAUDE_OPUS_4_8)
           .maxTokens(1024)
           .addUserMessage("Hello from EKS")
           .build());
@@ -704,7 +704,7 @@ Di dalam pod, projected token berada di `/var/run/secrets/anthropic.com/token` (
 
   var message = await client.Messages.Create(new()
   {
-      Model = Model.ClaudeSonnet4_6,
+      Model = Model.ClaudeOpus4_8,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello from EKS" }],
   });
@@ -721,7 +721,7 @@ Di dalam pod, projected token berada di `/var/run/secrets/anthropic.com/token` (
   # Membaca ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
   # ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan ANTHROPIC_IDENTITY_TOKEN_FILE
   ant messages create \
-    --model claude-sonnet-4-6 \
+    --model claude-opus-4-8 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello from EKS"}'
   ```
@@ -734,7 +734,7 @@ Di dalam pod, projected token berada di `/var/run/secrets/anthropic.com/token` (
   $client = new Client();
 
   $message = $client->messages->create(
-      model: 'claude-sonnet-4-6',
+      model: 'claude-opus-4-8',
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello from EKS']],
   );
@@ -749,7 +749,7 @@ Di dalam pod, projected token berada di `/var/run/secrets/anthropic.com/token` (
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-sonnet-4-6",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello from EKS"}]
   )
@@ -761,9 +761,9 @@ Di dalam pod, projected token berada di `/var/run/secrets/anthropic.com/token` (
   Spesifikasi Pod sudah menetapkan `ANTHROPIC_IDENTITY_TOKEN_FILE`, `ANTHROPIC_FEDERATION_RULE_ID`, `ANTHROPIC_ORGANIZATION_ID`, `ANTHROPIC_SERVICE_ACCOUNT_ID`, dan `ANTHROPIC_WORKSPACE_ID`, sehingga Anda dapat membuat klien tanpa argumen dan SDK akan membaca variabel lingkungan federasi secara otomatis.
 </Tip>
 
-### Memverifikasi pengaturan
+### Verifikasi pengaturan
 
-Dari dalam pod, tukarkan projected token secara langsung dan periksa responsnya:
+Dari dalam pod, tukarkan token yang diproyeksikan secara langsung dan periksa responsnya:
 
 ```bash cURL
 JWT=$(cat "$ANTHROPIC_IDENTITY_TOKEN_FILE")
@@ -780,9 +780,9 @@ curl -sS https://api.anthropic.com/v1/oauth/token \
   }" | jq
 ```
 
-Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Jika terjadi `400 invalid_grant`, lihat [Memecahkan masalah pertukaran yang gagal](/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi EKS adalah `aud` pada projected token tidak cocok dengan rule (proyeksikan token dengan `audience: https://api.anthropic.com`, bukan default IRSA `sts.amazonaws.com`).
+Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Pada `400 invalid_grant`, lihat [Memecahkan masalah pertukaran yang gagal](/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi EKS adalah `aud` pada token yang diproyeksikan tidak cocok dengan rule (proyeksikan token dengan `audience: https://api.anthropic.com`, bukan default IRSA `sts.amazonaws.com`).
 
-## Membatasi cakupan rule Anda
+## Batasi cakupan rule Anda
 
 <Warning>
   `subject_prefix` dengan nilai `arn:aws:iam::123456789012:role/*` cocok dengan setiap IAM role di akun tersebut. Principal mana pun yang dapat mengasumsikan role yang cocok dapat memperoleh token Anthropic terfederasi.
@@ -790,12 +790,12 @@ Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-an
 
 Kunci blok `match` pada rule ke cakupan tersempit yang sesuai dengan kasus penggunaan Anda:
 
-* **Tetapkan ARN role lengkap:** Gunakan `subject_prefix: "arn:aws:iam::<account>:role/<role-name>"` tanpa `*` di akhir sehingga role lain di akun tidak cocok.
-* **Tetapkan ID akun:** Cocokkan field `aws_account` dari klaim `https://sts.amazonaws.com/` pada token dengan map `claims` atau `condition` CEL sebagai pemeriksaan pertahanan berlapis terhadap prefix yang salah konfigurasi.
-* **Tetapkan namespace dan service account di EKS:** Gunakan nilai `system:serviceaccount:<namespace>:<name>` yang tepat tanpa `*` setelah prefix `system:serviceaccount:`.
-* **Gunakan rule terpisah per lingkungan:** Buat rule yang berbeda untuk workload production, staging, dan development daripada memperluas satu prefix untuk mencakup semuanya.
+* **Tetapkan ARN role lengkap:** Gunakan `subject_prefix: "arn:aws:iam::<account>:role/<role-name>"` tanpa `*` di akhir sehingga role lain di akun tersebut tidak cocok.
+* **Tetapkan ID akun:** Cocokkan bidang `aws_account` dari klaim `https://sts.amazonaws.com/` pada token dengan map `claims` atau `condition` CEL sebagai pemeriksaan defense-in-depth terhadap prefix yang salah konfigurasi.
+* **Tetapkan namespace dan service account di EKS:** Gunakan nilai `system:serviceaccount:<namespace>:<name>` yang persis tanpa `*` setelah prefix `system:serviceaccount:`.
+* **Gunakan rule terpisah per lingkungan:** Buat rule yang berbeda untuk workload produksi, staging, dan pengembangan alih-alih memperluas satu prefix untuk mencakup semuanya.
 
 ## Langkah selanjutnya
 
-* Tinjau [referensi WIF](/docs/id/manage-claude/wif-reference) untuk referensi lengkap tentang prioritas kredensial, konfigurasi profil, dan pencocokan rule.
-* Untuk cluster Kubernetes yang dikelola sendiri dan bukan di EKS, lihat [Menggunakan WIF dengan Kubernetes](/docs/id/manage-claude/wif-providers/kubernetes).
+* Tinjau [referensi WIF](/docs/id/manage-claude/wif-reference) untuk referensi lengkap tentang urutan prioritas kredensial, konfigurasi profil, dan pencocokan rule.
+* Untuk klaster Kubernetes yang dikelola sendiri dan tidak berada di EKS, lihat [Menggunakan WIF dengan Kubernetes](/docs/id/manage-claude/wif-providers/kubernetes).

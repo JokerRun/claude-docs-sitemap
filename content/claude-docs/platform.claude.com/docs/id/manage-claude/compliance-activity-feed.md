@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 11b96d7957543dbc75d3feb8b76a11cd65b4c66aaba09076a107265987badefc
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: f32842296c2ff43eb65ed705806ee5bf7787cd03525f4903e71af54ab5623994
 ---
 
 # Melakukan kueri pada Activity Feed
 
-Mengambil, memfilter, dan melakukan paginasi pada Compliance API Activity Feed organisasi Anda.
+Mengambil, memfilter, dan melakukan paginasi pada Activity Feed Compliance API organisasi Anda.
 
 ---
 
@@ -59,7 +59,7 @@ Activity Feed mencatat setiap tindakan autentikasi, chat, file, proyek, administ
 
 ## Memfilter aktivitas
 
-Filter berdasarkan organisasi, aktor, jenis aktivitas, atau jendela waktu `created_at` menggunakan sub-parameter bertitik `created_at.gte`, `.gt`, `.lte`, dan `.lt`. Lihat [referensi API](/docs/id/api/compliance/activities/list) untuk jenis dan nilai yang diterima setiap parameter.
+Filter berdasarkan organisasi, aktor, jenis aktivitas, atau jendela waktu `created_at` menggunakan sub-parameter bertitik `created_at.gte`, `.gt`, `.lte`, dan `.lt`. Lihat [referensi API](/docs/id/api/compliance/activities/list) untuk jenis dan nilai yang diterima dari setiap parameter.
 
 Parameter yang dapat diulang menggunakan sintaks kueri array-bracket: kirimkan `activity_types[]=...`, `actor_ids[]=...`, atau `organization_ids[]=...` satu kali untuk setiap nilai.
 
@@ -90,7 +90,7 @@ Compliance API menggunakan dua skema paginasi tergantung pada keluarga endpoint:
 
 File tidak dipaginasi: file diambil satu per satu berdasarkan ID.
 
-Cursor paginasi dan token halaman adalah string opak: kirimkan kembali tanpa perubahan. Format internalnya tidak stabil, dan mem-parsing-nya akan rusak tanpa pemberitahuan. Hanya salah satu dari `after_id` atau `before_id` yang boleh diatur dalam setiap permintaan, dan kedua skema mengembalikan `has_more` sehingga Anda tahu kapan harus berhenti.
+Cursor paginasi dan token halaman adalah string opaque: kirimkan kembali tanpa perubahan. Format internalnya tidak stabil, dan mem-parsing-nya akan rusak tanpa pemberitahuan. Hanya salah satu dari `after_id` atau `before_id` yang boleh diatur dalam setiap permintaan, dan kedua skema mengembalikan `has_more` sehingga Anda tahu kapan harus berhenti.
 
 Untuk menelusuri halaman aktivitas:
 
@@ -154,7 +154,7 @@ Setiap entri dalam `data` adalah Activity dengan bentuk tingkat atas berikut:
 | `type`              | string           | Jenis aktivitas, misalnya `claude_chat_created`.                                                                                                                                                                                                 |
 | *field tambahan*    | bervariasi       | Field spesifik per jenis, misalnya `claude_chat_id` pada peristiwa chat atau `filename` pada peristiwa file. Lihat [Melakukan kueri aktivitas kepatuhan](/docs/id/api/compliance/activities/list) di referensi API untuk daftar field per jenis. |
 
-Field `actor` adalah discriminated union. Diskriminator `type` memberi tahu Anda field lain mana yang ada:
+Field `actor` adalah discriminated union. Discriminator `type` memberi tahu Anda field lain mana yang ada:
 
 | `actor.type`                 | Kapan muncul                                                                                                                                                                                                           | Field kunci                                                                                                                                                |
 | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -177,7 +177,7 @@ Field `actor` adalah discriminated union. Diskriminator `type` memberi tahu Anda
   </Card>
 
   <Card title="Mengambil dan menghapus chat, file, dan proyek" href="/docs/id/manage-claude/compliance-content-data">
-    Melakukan kueri dan menghapus konten yang mendasari aktivitas yang Anda temukan di feed (memerlukan Compliance Access Key).
+    Kueri dan hapus konten yang mendasari aktivitas yang Anda temukan di feed (memerlukan Compliance Access Key).
   </Card>
 
   <Card title="Merancang integrasi kepatuhan Anda" href="/docs/id/manage-claude/compliance-integration-patterns">

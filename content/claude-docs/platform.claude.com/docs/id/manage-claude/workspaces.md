@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workspaces
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 28eb337574ea569f64a0ca8c0f53a9b8d82d59cf48a7224771cc36eb9bf0d736
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: ee1386a5d3dfe06a6236cd1e6f2c67d95013c8110f750375c355c24f1df8fb8f
 ---
 
 # Workspaces
@@ -11,7 +11,7 @@ Atur kunci API, kelola akses tim, dan kendalikan biaya dengan workspace.
 
 ---
 
-Workspace menyediakan cara untuk mengatur penggunaan API Anda dalam sebuah organisasi. Gunakan workspace untuk memisahkan berbagai proyek, lingkungan, atau tim sambil mempertahankan penagihan dan administrasi terpusat.
+Workspace menyediakan cara untuk mengatur penggunaan API Anda dalam sebuah organisasi. Gunakan workspace untuk memisahkan proyek, lingkungan, atau tim yang berbeda sambil mempertahankan penagihan dan administrasi terpusat.
 
 ## Cara kerja workspace
 
@@ -26,7 +26,7 @@ Karakteristik utama:
 
 ### Workspace Claude Code
 
-Ketika anggota organisasi Anda pertama kali masuk ke [Claude Code](https://code.claude.com/docs/en/overview) dengan akun Claude Console mereka, Anthropic secara otomatis membuat workspace **Claude Code** di organisasi tersebut dan menambahkan anggota itu ke dalamnya. Setiap anggota berikutnya yang masuk ke Claude Code ditambahkan dengan cara yang sama.
+Ketika anggota organisasi Anda pertama kali masuk ke [Claude Code](https://code.claude.com/docs/id/overview) dengan akun Claude Console mereka, Anthropic secara otomatis membuat workspace **Claude Code** di organisasi tersebut dan menambahkan anggota itu ke dalamnya. Setiap anggota berikutnya yang masuk ke Claude Code ditambahkan dengan cara yang sama.
 
 Workspace Claude Code menjaga lalu lintas Claude Code tetap terpisah dari beban kerja API Anda yang lain:
 
@@ -45,7 +45,7 @@ Anggota dapat memiliki peran yang berbeda di setiap workspace, memungkinkan kont
 
 | Peran                       | Izin                                                                                                                 |
 | --------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| Workspace User              | Hanya menggunakan Workbench                                                                                          |
+| Workspace User              | Hanya menggunakan Anthropic Workbench                                                                                |
 | Workspace Limited Developer | Membuat dan mengelola kunci API, menggunakan API. Tidak dapat mengakses tampilan pelacakan sesi atau mengunduh file. |
 | Workspace Developer         | Membuat dan mengelola kunci API, menggunakan API                                                                     |
 | Workspace Admin             | Kontrol penuh atas pengaturan dan anggota workspace                                                                  |
@@ -99,9 +99,9 @@ Buat dan kelola workspace di [Claude Console](/settings/workspaces).
 
 Untuk mengubah nama atau warna workspace:
 
-1. Pilih workspace dari daftar
-2. Klik menu elipsis (**...**) dan pilih **Edit details**
-3. Perbarui nama atau warna dan simpan perubahan Anda
+1. Pilih workspace dari daftar.
+2. Klik menu elipsis (**...**) dan pilih **Edit details**.
+3. Perbarui nama atau warna dan simpan perubahan Anda.
 
 <Note>
   Default Workspace tidak dapat diganti namanya atau dihapus.
@@ -109,10 +109,10 @@ Untuk mengubah nama atau warna workspace:
 
 #### Menambahkan anggota ke workspace
 
-1. Navigasikan ke tab **Members** pada workspace
-2. Klik **Add to Workspace**
-3. Pilih anggota organisasi dan tetapkan [peran workspace](#workspace-roles-and-permissions) kepada mereka
-4. Konfirmasikan penambahan
+1. Navigasikan ke tab **Members** pada workspace.
+2. Klik **Add to Workspace**.
+3. Pilih anggota organisasi dan tetapkan [peran workspace](#workspace-roles-and-permissions) kepada mereka.
+4. Konfirmasikan penambahan.
 
 Untuk menghapus anggota, klik ikon tempat sampah di sebelah nama mereka.
 
@@ -149,20 +149,20 @@ Kelola workspace secara terprogram menggunakan [Admin API](/docs/id/manage-claud
 
 ```bash cURL
 # Membuat workspace
-curl --request POST "https://api.anthropic.com/v1/organizations/workspaces" \
-  --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
-  --data '{"name": "Production"}'
+curl -X POST "https://api.anthropic.com/v1/organizations/workspaces" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  -d '{"name": "Production"}'
 
 # Menampilkan daftar workspace
 curl "https://api.anthropic.com/v1/organizations/workspaces?limit=10&include_archived=false" \
-  --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
+  -H "anthropic-version: 2023-06-01" \
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 
 # Mengarsipkan workspace
-curl --request POST "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/archive" \
-  --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
+curl -X POST "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/archive" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
 Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspaces API](/docs/id/api/admin-api/workspaces/get-workspace).
@@ -173,24 +173,24 @@ Tambahkan, perbarui, atau hapus anggota dari workspace:
 
 ```bash cURL
 # Menambahkan anggota ke workspace
-curl --request POST "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/members" \
-  --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
-  --data '{
+curl -X POST "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/members" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  -d '{
     "user_id": "user_xxx",
     "workspace_role": "workspace_developer"
   }'
 
 # Memperbarui peran anggota
-curl --request POST "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/members/{user_id}" \
-  --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
-  --data '{"workspace_role": "workspace_admin"}'
+curl -X POST "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/members/{user_id}" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  -d '{"workspace_role": "workspace_admin"}'
 
 # Menghapus anggota dari workspace
-curl --request DELETE "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/members/{user_id}" \
-  --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
+curl -X DELETE "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/members/{user_id}" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
 Untuk detail parameter lengkap, lihat [referensi Workspace Members API](/docs/id/api/admin-api/workspace_members/get-workspace-member).
@@ -224,7 +224,7 @@ Anda dapat mengatur batas pengeluaran dan batas laju khusus untuk setiap workspa
 
 ### Mengatur batas workspace
 
-Batas workspace dapat diatur lebih rendah dari (tetapi tidak lebih tinggi dari) batas organisasi Anda:
+Anda dapat mengatur batas workspace lebih rendah dari (tetapi tidak lebih tinggi dari) batas organisasi Anda:
 
 * **Batas pengeluaran:** Batasi pengeluaran bulanan untuk sebuah workspace
 * **Batas laju:** Batasi permintaan per menit, token input per menit, atau token output per menit
@@ -248,8 +248,8 @@ ending_at=2025-01-08T00:00:00Z&\
 workspace_ids[]=wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ&\
 group_by[]=workspace_id&\
 bucket_width=1d" \
-  --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
+  -H "anthropic-version: 2023-06-01" \
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
 Penggunaan dan biaya yang diatribusikan ke Default Workspace memiliki nilai `null` untuk `workspace_id`.
@@ -330,7 +330,7 @@ Buat workspace untuk proyek atau produk tertentu guna melacak penggunaan dan bia
   </Accordion>
 
   <Accordion title="Apa yang terjadi pada akses workspace ketika peran organisasi berubah?">
-    Jika admin organisasi atau anggota penagihan diturunkan menjadi pengguna atau developer, mereka kehilangan akses ke semua workspace kecuali workspace di mana mereka ditetapkan peran secara manual. Ketika pengguna dipromosikan ke peran admin atau penagihan, mereka mendapatkan akses otomatis ke semua workspace.
+    Jika admin organisasi atau anggota penagihan diturunkan menjadi pengguna atau developer, mereka kehilangan akses ke semua workspace kecuali workspace di mana mereka ditetapkan peran secara manual. Ketika pengguna dipromosikan ke peran admin atau penagihan, mereka secara otomatis mendapatkan akses ke semua workspace.
   </Accordion>
 
   <Accordion title="Apa yang terjadi pada kunci API ketika pengguna dihapus dari workspace?">

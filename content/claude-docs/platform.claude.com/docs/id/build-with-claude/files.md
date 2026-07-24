@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: f018d85b1cb97e47fcc6e2534c719c5b3d59b44b3474d784f874ed38558556f7
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 38177e60b05f004eca0928391737ae188a7999fcecdd23e3a56055901b462efa
 ---
 
 # Files API
@@ -14,11 +14,11 @@ Unggah file sekali, referensikan dengan file_id dalam permintaan Messages, dan u
 Files API memungkinkan Anda mengunggah dan mengelola file untuk digunakan dengan Claude API tanpa mengunggah ulang konten pada setiap permintaan. Ini sangat berguna saat menggunakan [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk menyediakan input (misalnya, dataset dan dokumen) dan kemudian mengunduh output (misalnya, grafik). Anda dapat [menjelajahi referensi API secara langsung](/docs/id/api/beta/files/upload), selain panduan ini.
 
 <Note>
-  Files API berada dalam tahap beta. Hubungi kami melalui [formulir umpan balik](https://forms.gle/tisHyierGwgN4DUE9) untuk berbagi pengalaman Anda dengan Files API.
+  Files API berada dalam tahap beta. Hubungi kami melalui [formulir umpan balik](https://forms.gle/tisHyierGwgN4DUE9) untuk membagikan pengalaman Anda dengan Files API.
 </Note>
 
 <Note>
-  Fitur ini **tidak** memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/api-and-data-retention). Data disimpan sesuai dengan kebijakan retensi standar fitur ini.
+  Untuk mengetahui bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 ## Model yang didukung
@@ -155,7 +155,7 @@ Unggah file untuk direferensikan dalam panggilan API di masa mendatang:
   ```
 </CodeGroup>
 
-Respons dari pengunggahan file mencakup:
+Respons dari mengunggah file mencakup:
 
 ```json Response
 {
@@ -171,7 +171,7 @@ Respons dari pengunggahan file mencakup:
 
 `downloadable` bernilai `false` untuk file yang Anda unggah. Hanya file yang dibuat oleh [skills](/docs/id/build-with-claude/skills-guide) atau [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) yang dapat diunduh. Lihat [Mengunduh file](#downloading-a-file).
 
-### Menggunakan file dalam pesan
+### Menggunakan file dalam messages
 
 Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan sebagai `file_id`:
 
@@ -408,7 +408,7 @@ Files API mendukung berbagai tipe file yang sesuai dengan tipe blok konten yang 
 | Gambar                                                                                                       | `image/jpeg`, `image/png`, `image/gif`, `image/webp` | `image`            | Analisis gambar, tugas visual          |
 | [Dataset, lainnya](/docs/id/agents-and-tools/tool-use/code-execution-tool#upload-and-analyze-your-own-files) | Bervariasi                                           | `container_upload` | Menganalisis data, membuat visualisasi |
 
-#### Blok dokumen
+#### Blok document
 
 Untuk PDF dan file teks, gunakan blok konten `document`:
 
@@ -425,7 +425,7 @@ Untuk PDF dan file teks, gunakan blok konten `document`:
 }
 ```
 
-#### Blok gambar
+#### Blok image
 
 Untuk gambar, gunakan blok konten `image`:
 
@@ -683,7 +683,7 @@ Contoh berikut membaca file teks dan mengirim isinya sebagai teks biasa:
 
 #### Menampilkan daftar file
 
-Ambil daftar file yang telah Anda unggah. Endpoint ini dipaginasi: setiap permintaan mengembalikan hingga `limit` file (20 secara default), dan parameter `before_id` serta `after_id` mengambil halaman yang berdekatan. Lihat [referensi List Files API](/docs/id/api/beta/files/list). SDK mengembalikan halaman pertama dan menyediakan helper paginasi otomatis. Contoh CLI membatasi total dengan `--max-items`:
+Ambil daftar file yang telah Anda unggah. Endpoint ini menggunakan paginasi: setiap permintaan mengembalikan hingga `limit` file (20 secara default), dan parameter `before_id` serta `after_id` mengambil halaman yang berdekatan. Lihat [referensi List Files API](/docs/id/api/beta/files/list). SDK mengembalikan halaman pertama dan menyediakan helper paginasi otomatis. Contoh CLI membatasi total dengan `--max-items`:
 
 <CodeGroup>
   ```bash cURL
@@ -870,7 +870,7 @@ Hapus file dari workspace Anda:
 
 ### Mengunduh file
 
-Unduh file yang dibuat oleh [skills](/docs/id/build-with-claude/skills-guide) atau [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool). File yang Anda unggah tidak dapat diunduh. `file_id` dari file yang dihasilkan muncul di [blok konten `code_execution_tool_result`](/docs/id/agents-and-tools/tool-use/code-execution-tool#retrieve-generated-files) dari respons Messages yang membuatnya:
+Unduh file yang dibuat oleh [skills](/docs/id/build-with-claude/skills-guide) atau [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool). File yang Anda unggah tidak dapat diunduh. `file_id` dari file yang dihasilkan muncul di [blok konten `bash_code_execution_tool_result`](/docs/id/agents-and-tools/tool-use/code-execution-tool#retrieve-generated-files) dari respons Messages yang membuatnya:
 
 <CodeGroup>
   ```bash cURL
@@ -957,9 +957,9 @@ Unduh file yang dibuat oleh [skills](/docs/id/build-with-claude/skills-guide) at
   File hanya dapat diunduh jika metadatanya menunjukkan `"downloadable": true`, yang berlaku untuk file yang dibuat oleh skills atau alat eksekusi kode. Mengunduh file yang Anda unggah akan mengembalikan error 400.
 </Note>
 
-## Penyimpanan dan batasan file
+## Penyimpanan dan batas file
 
-### Batasan penyimpanan
+### Batas penyimpanan
 
 * **Ukuran file maksimum:** 500 MB per file
 * **Total penyimpanan:** 500 GB per organisasi
@@ -978,7 +978,7 @@ Unduh file yang dibuat oleh [skills](/docs/id/build-with-claude/skills-guide) at
 Error umum saat menggunakan Files API meliputi:
 
 * **File tidak ditemukan (404):** `file_id` yang ditentukan tidak ada atau Anda tidak memiliki akses ke file tersebut
-* **Tipe file tidak valid (400):** Tipe file tidak cocok dengan tipe blok konten (misalnya, menggunakan file gambar dalam blok dokumen)
+* **Tipe file tidak valid (400):** Tipe file tidak cocok dengan tipe blok konten (misalnya, menggunakan file gambar dalam blok document)
 * **Tidak dapat diunduh (400):** File yang Anda unggah memiliki `"downloadable": false` dan tidak dapat diunduh. Hanya file yang dibuat oleh skills atau alat eksekusi kode yang dapat diunduh
 * **Melebihi ukuran jendela konteks (400):** File lebih besar dari ukuran jendela konteks (misalnya, menggunakan file teks biasa 500 MB dalam permintaan `/v1/messages`)
 * **Nama file tidak valid (400):** Nama file tidak memenuhi persyaratan panjang (1-255 karakter) atau mengandung karakter terlarang (`<`, `>`, `:`, `"`, `|`, `?`, `*`, `\`, `/`, atau karakter Unicode 0-31)
@@ -1023,7 +1023,7 @@ Selama periode beta:
   </Card>
 
   <Card title="Alat eksekusi kode" icon="terminal" href="/docs/id/agents-and-tools/tool-use/code-execution-tool">
-    Jalankan kode Python dan bash dalam container sandbox untuk menganalisis data, menghasilkan file, dan mengiterasi solusi.
+    Jalankan kode Python dan bash dalam kontainer sandbox untuk menganalisis data, menghasilkan file, dan mengiterasi solusi.
   </Card>
 
   <Card title="Vision" icon="image" href="/docs/id/build-with-claude/vision">

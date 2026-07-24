@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/streaming
-fetched_at: 2026-07-17T03:08:17.884216Z
-sha256: 16fedbcddcd16efc0c5a9946fe6bcf905e8faa144fe6bbf3ed7a5f4221c7d825
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: fa86525379c75ea52ced67568c8396182a15fdf2c0b562eea0e848eefe612c76
 ---
 
 # Streaming messages
@@ -350,11 +350,11 @@ Note: Current models only support emitting one complete key and value property f
 
 ### Thinking delta
 
-When using [extended thinking](/docs/en/build-with-claude/extended-thinking#streaming-thinking) with streaming enabled, you'll receive thinking content through `thinking_delta` events. These deltas correspond to the `thinking` field of the `thinking` content blocks.
+When using [thinking](/docs/en/build-with-claude/thinking#streaming-thinking) with streaming enabled, you'll receive thinking content through `thinking_delta` events. These deltas correspond to the `thinking` field of the `thinking` content blocks.
 
 For thinking content, a special `signature_delta` event is sent just before the `content_block_stop` event. This signature is used to verify the integrity of the thinking block.
 
-When `display: "omitted"` is set on the thinking configuration, no `thinking_delta` events are sent. The thinking block opens, receives a single `signature_delta`, and closes. See [Controlling thinking display](/docs/en/build-with-claude/extended-thinking#controlling-thinking-display).
+When `display: "omitted"` is set on the thinking configuration, no `thinking_delta` events are sent. The thinking block opens, receives a single `signature_delta`, and closes. See [Controlling thinking display](/docs/en/build-with-claude/thinking#controlling-thinking-display).
 
 A typical thinking delta looks like:
 
@@ -1514,8 +1514,8 @@ For Claude 4.6 and later models, the same capture-and-resume strategy applies, b
     Stream tool input JSON without server-side buffering for lower latency.
   </Card>
 
-  <Card title="Extended thinking" icon="brain" href="/docs/en/build-with-claude/extended-thinking">
-    Stream extended thinking output with `thinking_delta` and `signature_delta` events.
+  <Card title="Thinking" icon="brain" href="/docs/en/build-with-claude/thinking">
+    Stream thinking output with `thinking_delta` and `signature_delta` events.
   </Card>
 
   <Card title="Client SDKs" icon="code" href="/docs/en/cli-sdks-libraries/overview">

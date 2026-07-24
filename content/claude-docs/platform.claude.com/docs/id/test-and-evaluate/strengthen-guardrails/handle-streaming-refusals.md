@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: fc2da31055bbc4bd16d40e31c8b47ed47dfd8d4126163242d7800e396aef1089
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 3f5cdd986ecd8805881efe15332d96884430cf8a5c69b3dfb2ec8ea7b88b3d8e
 ---
 
-# Penolakan streaming
+# Menangani penolakan streaming
 
 Deteksi dan tangani stop reason penolakan dalam respons streaming, dan coba ulang permintaan yang ditolak pada model fallback.
 
@@ -69,10 +69,10 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
   ```bash cURL
   # Lakukan streaming permintaan dan periksa adanya penolakan
   response=$(curl -N https://api.anthropic.com/v1/messages \
-    --header "anthropic-version: 2023-06-01" \
-    --header "content-type: application/json" \
-    --header "x-api-key: $ANTHROPIC_API_KEY" \
-    --data '{
+    -H "anthropic-version: 2023-06-01" \
+    -H "content-type: application/json" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -d '{
       "model": "claude-opus-4-8",
       "messages": [{"role": "user", "content": "Hello"}],
       "max_tokens": 1024,
@@ -82,7 +82,7 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
   # Periksa adanya penolakan dalam stream
   if echo "$response" | grep -q '"stop_reason":"refusal"'; then
     echo "Response refused - resetting conversation context"
-    # Reset status percakapan Anda di sini
+    # Atur ulang status percakapan Anda di sini
   fi
   ```
 
@@ -144,49 +144,36 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
   ```
 
   ```csharp C#
-  using System;
-  using System.Collections.Generic;
-  using System.Threading.Tasks;
-  using Anthropic;
-  using Anthropic.Models.Messages;
+  List<Message> messages = new();
+  AnthropicClient client = new();
 
-  class Program
+  var parameters = new MessageCreateParams
   {
-      private static List<Message> messages = new();
+      Model = Model.ClaudeOpus4_8,
+      MaxTokens = 1024,
+      Messages = [new() { Role = Role.User, Content = "Hello" }]
+  };
 
-      static async Task Main(string[] args)
+  try
+  {
+      await foreach (var msg in client.Messages.CreateStreaming(parameters))
       {
-          AnthropicClient client = new();
-
-          var parameters = new MessageCreateParams
+          if (msg.Type == "message_delta" && msg.Delta?.StopReason == "refusal")
           {
-              Model = Model.ClaudeOpus4_8,
-              MaxTokens = 1024,
-              Messages = [new() { Role = Role.User, Content = "Hello" }]
-          };
-
-          try
-          {
-              await foreach (var msg in client.Messages.CreateStreaming(parameters))
-              {
-                  if (msg.Type == "message_delta" && msg.Delta?.StopReason == "refusal")
-                  {
-                      ResetConversation();
-                      break;
-                  }
-              }
-          }
-          catch (Exception e)
-          {
-              Console.WriteLine($"Error: {e.Message}");
+              ResetConversation();
+              break;
           }
       }
+  }
+  catch (Exception e)
+  {
+      Console.WriteLine($"Error: {e.Message}");
+  }
 
-      private static void ResetConversation()
-      {
-          messages.Clear();
-          Console.WriteLine("Conversation reset due to refusal");
-      }
+  void ResetConversation()
+  {
+      messages.Clear();
+      Console.WriteLine("Conversation reset due to refusal");
   }
   ```
 
@@ -326,11 +313,11 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
 
 API saat ini menangani penolakan dengan tiga cara berbeda:
 
-| Jenis Penolakan                  | Format Respons               | Kapan Terjadi                                      |
+| Jenis penolakan                  | Format respons               | Kapan terjadi                                      |
 | -------------------------------- | ---------------------------- | -------------------------------------------------- |
 | Penolakan classifier streaming   | **`stop_reason`: `refusal`** | Selama streaming ketika konten melanggar kebijakan |
 | Validasi input API dan hak cipta | Kode error 400               | Ketika input gagal dalam pemeriksaan validasi      |
-| Penolakan yang dihasilkan model  | Respons teks standar         | Ketika model itu sendiri memutuskan untuk menolak  |
+| Penolakan yang dihasilkan model  | Respons teks standar         | Ketika model itu sendiri menolak                   |
 
 <Note>
   Versi API mendatang akan memperluas pola **`stop_reason`: `refusal`** untuk menyatukan penanganan penolakan di semua jenis.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 21910f8721d95d94110b30805573ececeeb36e1f3a0bb15aae1a83cda44d1b58
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: cdedcdf1ed1034465d1861cba347e1d316773733a3f2effbd1858ca0ab9263ac
 ---
 
 # Prompting Claude Sonnet 5
@@ -51,7 +51,7 @@ If you observe shallow reasoning on complex problems, raise effort to `high` or 
 This task involves multistep reasoning. Think carefully through the problem before responding.
 ```
 
-On Claude Sonnet 5, [adaptive thinking](/docs/en/build-with-claude/adaptive-thinking) is on by default. Requests without a `thinking` field run with adaptive thinking. This is a change from Claude Sonnet 4.6, where the same requests ran without thinking. To turn thinking off entirely, pass `thinking: {type: "disabled"}`. Because `max_tokens` is a hard limit on total output (thinking plus response text), revisit it for workloads that ran without thinking on Claude Sonnet 4.6. If you were previously using thinking off with Claude Sonnet 4.6, try thinking on with lower effort levels for Claude Sonnet 5.
+On Claude Sonnet 5, [adaptive thinking](/docs/en/build-with-claude/thinking-steering-and-cost) is on by default. Requests without a `thinking` field run with adaptive thinking. This is a change from Claude Sonnet 4.6, where the same requests ran without thinking. To turn thinking off entirely, pass `thinking: {type: "disabled"}`. Because `max_tokens` is a hard limit on total output (thinking plus response text), revisit it for workloads that ran without thinking on Claude Sonnet 4.6. If you were previously using thinking off with Claude Sonnet 4.6, try thinking on with lower effort levels for Claude Sonnet 5.
 
 The triggering behavior for adaptive thinking is steerable. If you find the model emitting thinking blocks more often than you'd like, which can happen with large or complex system prompts, add guidance to steer it. As always, measure the effect of any prompting changes on performance. Example:
 

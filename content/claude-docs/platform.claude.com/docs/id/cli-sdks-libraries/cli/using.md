@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 3aeada20fa73a21d41e27029c33b995763707933d2fb69a436976b665b510ee0
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 966e6229932fa7238380e381f0fd09ff378b72f167481f6f8ff22648d93589cc
 ---
 
 # Menggunakan CLI
@@ -11,19 +11,19 @@ Struktur perintah, format output, transformasi GJSON, body permintaan, dan debug
 
 ---
 
-Halaman ini membahas mekanisme input dan output CLI `ant` yang berlaku di setiap endpoint. Untuk instalasi dan autentikasi, lihat [Quickstart](/docs/id/cli-sdks-libraries/cli/quickstart). Untuk merangkai perintah dan mengelola sumber daya dengan version control, lihat [Scripting dan otomatisasi CLI](/docs/id/cli-sdks-libraries/cli/scripting).
+Halaman ini membahas mekanisme input dan output CLI `ant` yang berlaku di semua endpoint. Untuk instalasi dan autentikasi, lihat [Quickstart](/docs/id/cli-sdks-libraries/cli/quickstart). Untuk merangkai perintah dan mengelola versi sumber daya, lihat [Scripting dan otomatisasi CLI](/docs/id/cli-sdks-libraries/cli/scripting).
 
 ## Struktur perintah
 
-Perintah mengikuti pola `resource action`. Sumber daya bersarang menggunakan titik dua:
+Perintah mengikuti pola `resource action`. Sumber daya bersarang menggunakan tanda titik dua:
 
 ```text wrap
 ant <resource>[:<subresource>] <action> [flags]
 ```
 
-Jalankan `ant --help` untuk daftar lengkap sumber daya, atau tambahkan `--help` ke subperintah mana pun untuk melihat flag-nya.
+Jalankan `ant --help` untuk daftar sumber daya lengkap, atau tambahkan `--help` ke subperintah mana pun untuk melihat flag-nya.
 
-Sumber daya dalam beta (termasuk agents, sessions, deployments, environments, dan skills) berada di bawah prefiks `beta:`. Perintah dalam namespace ini secara otomatis mengirim header `anthropic-beta` yang sesuai untuk sumber daya tersebut, sehingga Anda tidak perlu meneruskannya sendiri. Gunakan `--beta <header>` hanya untuk menimpa default (misalnya, untuk memilih versi skema yang berbeda).
+Sumber daya dalam tahap beta (termasuk agents, sessions, deployments, environments, dan skills) berada di bawah prefiks `beta:`. Perintah dalam namespace ini secara otomatis mengirimkan header `anthropic-beta` yang sesuai untuk sumber daya tersebut, sehingga Anda tidak perlu meneruskannya sendiri. Gunakan `--beta <header>` hanya untuk menimpa nilai default (misalnya, untuk memilih versi skema yang berbeda).
 
 ```bash
 ant models list
@@ -46,7 +46,7 @@ ant beta:sessions:events list --session-id session_01...
 
 ## Format output
 
-`auto` mencetak JSON dengan format yang rapi (pretty-print) dan merupakan default untuk perintah yang membuat atau memodifikasi sumber daya. Perintah list dan retrieve secara default menggunakan [explorer interaktif](#interactive-explorer) saat menulis ke terminal, dan JSON yang dicetak rapi saat di-pipe. Timpa salah satu default tersebut dengan `--format`:
+`auto` mencetak JSON dengan format rapi (pretty-print) dan merupakan default untuk perintah yang membuat atau memodifikasi sumber daya. Perintah list dan retrieve secara default menggunakan [explorer interaktif](#interactive-explorer) saat menulis ke terminal, dan JSON dengan format rapi saat di-pipe. Timpa salah satu default tersebut dengan `--format`:
 
 ```bash
 ant models retrieve --model-id claude-opus-4-8 --format yaml
@@ -60,17 +60,17 @@ created_at: "2026-02-04T00:00:00Z"
 ...
 ```
 
-Endpoint list melakukan paginasi otomatis. Dalam format default, setiap item ditulis secara terpisah (satu objek JSON ringkas per baris dalam mode `jsonl`, aliran dokumen YAML dalam mode `yaml`), yang mengalir dengan bersih ke `head`, `grep`, dan filter `--transform`.
+Endpoint list melakukan paginasi otomatis. Dalam format default, setiap item ditulis secara terpisah (satu objek JSON kompak per baris dalam mode `jsonl`, aliran dokumen YAML dalam mode `yaml`), yang mengalir dengan mulus ke `head`, `grep`, dan filter `--transform`.
 
 ### Explorer interaktif
 
-Explorer adalah TUI lipat-dan-cari untuk menelusuri respons berukuran besar. Tombol panah membuka dan menutup node, `/` untuk mencari, `q` untuk keluar. Perintah list dan retrieve membukanya secara default saat terhubung ke terminal. Berikan `--format explore` untuk membukanya secara eksplisit:
+Explorer adalah TUI lipat-dan-cari untuk menjelajahi respons berukuran besar. Tombol panah memperluas dan menciutkan node, `/` untuk mencari, `q` untuk keluar. Perintah list dan retrieve membukanya secara default saat terhubung ke terminal. Berikan `--format explore` untuk membukanya secara eksplisit:
 
 ```bash
 ant models list --format explore
 ```
 
-## Mentransformasi output dengan GJSON
+## Transformasi output dengan GJSON
 
 Gunakan `--transform` untuk membentuk ulang respons sebelum dicetak. Ekspresinya adalah [path GJSON](https://github.com/tidwall/gjson/blob/master/SYNTAX.md). Untuk endpoint list, transformasi dijalankan terhadap setiap item secara individual, bukan terhadap envelope-nya:
 
@@ -81,19 +81,19 @@ ant beta:agents list \
 ```
 
 ```jsonl Output
-{"id": "agent_011CYm1BLqPX...", "name": "Docs CLI Test Agent", "model": "claude-sonnet-4-6"}
-{"id": "agent_011CYkVwfaEt...", "name": "Coffee Making Assistant", "model": "claude-sonnet-4-6"}
-{"id": "agent_011CYixHhtUP...", "name": "Coding Assistant", "model": "claude-opus-4-5"}
+{"id": "agent_011CYm1BLqPX...", "name": "Docs CLI Test Agent", "model": "claude-opus-4-8"}
+{"id": "agent_011CYkVwfaEt...", "name": "Coffee Making Assistant", "model": "claude-opus-4-8"}
+{"id": "agent_011CYixHhtUP...", "name": "Coding Assistant", "model": "claude-opus-4-8"}
 ```
 
-### Mengekstrak skalar
+### Mengekstrak nilai skalar
 
-Untuk menangkap satu field sebagai string tanpa tanda kutip (misalnya, ID dari sumber daya yang baru dibuat), pasangkan `--transform` dengan `--raw-output`. Hasilnya dicetak tanpa tanda kutip JSON dan siap untuk ditetapkan ke variabel shell:
+Untuk menangkap satu field sebagai string tanpa tanda kutip (misalnya, ID dari sumber daya yang baru dibuat), padukan `--transform` dengan `--raw-output`. Hasilnya dicetak tanpa tanda kutip JSON dan siap untuk ditetapkan ke variabel shell:
 
 ```bash
 AGENT_ID=$(ant beta:agents create \
   --name "My Agent" \
-  --model '{id: claude-sonnet-4-6}' \
+  --model '{id: claude-opus-4-8}' \
   --transform id --raw-output)
 
 printf '%s\n' "$AGENT_ID"
@@ -104,12 +104,12 @@ agent_011CYm1BLqPXpQRk5khsSXrs
 ```
 
 <Note>
-  `--raw-output` berbeda dari `--format raw`. `--raw-output` menghapus tanda kutip JSON dari hasil string, seperti `jq -r`. `--format raw` mencetak byte JSON mentah dari body respons tanpa paginasi otomatis; pada endpoint list, opsi ini menerapkan `--transform` ke envelope paginasi, bukan ke setiap item.
+  `--raw-output` berbeda dari `--format raw`. `--raw-output` menghapus tanda kutip JSON dari hasil string, seperti `jq -r`. `--format raw` mencetak byte JSON mentah dari body respons tanpa paginasi otomatis; pada endpoint list, opsi ini menerapkan `--transform` pada envelope paginasi, bukan pada setiap item.
 </Note>
 
 ## Meneruskan body permintaan
 
-Mekanisme input yang tepat bergantung pada bentuk data: gunakan **flag** untuk field skalar dan nilai terstruktur yang pendek, pipe dokumen melalui **stdin** untuk body bersarang atau multi-baris, dan gunakan **referensi `@file`** untuk menarik konten file ke dalam field string atau biner mana pun.
+Mekanisme input yang tepat bergantung pada bentuk datanya: gunakan **flag** untuk field skalar dan nilai terstruktur yang pendek, pipe dokumen melalui **stdin** untuk body bersarang atau multibaris, dan gunakan **referensi `@file`** untuk menarik isi file ke dalam field string atau biner mana pun.
 
 ### Flag
 
@@ -134,14 +134,14 @@ ant beta:agents create \
 
 ### Stdin
 
-Pipe dokumen JSON atau YAML ke stdin untuk menyediakan body permintaan lengkap. Field dari stdin digabungkan dengan flag, dengan flag yang diutamakan. Di sini `version` adalah token optimistic-locking yang dikembalikan oleh `retrieve` sebelumnya, dan `$AGENT_ID` ditangkap seperti pada [Mengekstrak skalar](#extract-a-scalar):
+Pipe dokumen JSON atau YAML ke stdin untuk menyediakan body permintaan lengkap. Field dari stdin digabungkan dengan flag, dengan flag yang diprioritaskan. Di sini `version` adalah token optimistic-locking yang dikembalikan oleh `retrieve` sebelumnya, dan `$AGENT_ID` ditangkap seperti pada [Mengekstrak nilai skalar](#extract-a-scalar):
 
 ```bash
 echo '{"description": "Updated test agent.", "version": 1}' | \
   ant beta:agents update --agent-id "$AGENT_ID"
 ```
 
-Heredoc bekerja dengan cara yang sama dan praktis untuk YAML multi-baris. Beri tanda kutip pada delimiter (seperti pada `<<'YAML'`) untuk menonaktifkan ekspansi variabel di dalam body.
+Heredoc bekerja dengan cara yang sama dan praktis untuk YAML multibaris. Beri tanda kutip pada delimiter (seperti pada `<<'YAML'`) untuk menonaktifkan ekspansi variabel di dalam body.
 
 ```bash
 ant beta:agents create <<'YAML'
@@ -162,11 +162,11 @@ Flag yang menerima path file, seperti `--file` pada perintah upload, menerima pa
 ant beta:files upload --file ./report.pdf
 ```
 
-Untuk menyisipkan konten file secara inline ke dalam field bernilai string, awali path dengan `@`:
+Untuk menyisipkan isi file ke dalam field bernilai string, awali path dengan `@`:
 
 ```bash
 ant beta:agents create \
-  --name "Researcher" --model '{id: claude-sonnet-4-6}' \
+  --name "Researcher" --model '{id: claude-opus-4-8}' \
   --system @./prompts/researcher.txt
 ```
 
@@ -183,11 +183,11 @@ ant messages create \
   --transform 'content.0.text' --raw-output
 ```
 
-CLI mendeteksi tipe file dan mengenkode file biner sebagai base64 secara otomatis. Untuk memaksa encoding tertentu, gunakan `@file://` untuk teks biasa atau `@data://` untuk base64. Escape karakter `@` literal di awal dengan backslash (`\@username`).
+CLI mendeteksi tipe file dan mengenkode file biner sebagai base64 secara otomatis. Untuk memaksa enkoding tertentu, gunakan `@file://` untuk teks biasa atau `@data://` untuk base64. Escape karakter `@` literal di awal dengan backslash (`\@username`).
 
 ## Debugging
 
-Tambahkan `--debug` ke perintah mana pun untuk mencetak permintaan dan respons HTTP yang persis (header dan body) ke stderr. Kunci API disamarkan.
+Tambahkan `--debug` ke perintah mana pun untuk mencetak permintaan dan respons HTTP yang tepat (header dan body) ke stderr. Kunci API akan disamarkan.
 
 ```bash
 ant --debug beta:agents list
@@ -204,13 +204,13 @@ X-Api-Key: <REDACTED>
 
 ## Sumber daya yang tersedia
 
-Setiap sumber daya API yang diekspos CLI didokumentasikan dalam [referensi API](/docs/id/api/cli/messages/create). Untuk daftar lokal, jalankan `ant --help`, dan tambahkan `--help` ke subperintah mana pun untuk melihat flag dan parameternya.
+Setiap sumber daya API yang diekspos oleh CLI didokumentasikan dalam [referensi API](/docs/id/api/cli/messages/create). Untuk daftar lokal, jalankan `ant --help`, dan tambahkan `--help` ke subperintah mana pun untuk melihat flag dan parameternya.
 
 ## Langkah selanjutnya
 
 <CardGroup cols={3}>
   <Card title="Scripting dan otomatisasi CLI" icon="code" href="/docs/id/cli-sdks-libraries/cli/scripting">
-    Version control untuk sumber daya API, pola scripting, dan penggunaan dari Claude Code
+    Mengelola versi sumber daya API, pola scripting, dan penggunaan dari Claude Code
   </Card>
 
   <Card title="Referensi API" icon="book" href="/docs/id/api/cli/messages/create">

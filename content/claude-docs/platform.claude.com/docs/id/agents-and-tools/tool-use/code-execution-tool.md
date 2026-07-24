@@ -1,19 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: e482446d80efb14318c90ad8a0ea6c179b4b3bc8954ecdd281433e86f6f62ea3
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: df7b14d413f837a84eccbc4493b9f167536979b9b627cb580c1cf0a7d0bf03e8
 ---
 
 # Alat eksekusi kode
 
-Jalankan kode Python dan bash dalam container yang di-sandbox untuk menganalisis data, menghasilkan file, dan melakukan iterasi pada solusi.
+Jalankan kode Python dan bash dalam kontainer sandbox untuk menganalisis data, menghasilkan file, dan melakukan iterasi pada solusi.
 
 ---
 
 Claude dapat menganalisis data, membuat visualisasi, melakukan perhitungan kompleks, menjalankan perintah sistem, membuat dan mengedit file, serta memproses file yang diunggah langsung dalam percakapan API. Alat eksekusi kode memungkinkan Claude menjalankan perintah Bash dan memanipulasi file, termasuk menulis kode, dalam lingkungan yang aman dan ter-sandbox.
 
-**Eksekusi kode gratis saat digunakan dengan web search atau web fetch (`web_search_20260209`, `web_fetch_20260209`, atau yang lebih baru).** Ketika salah satu alat tersebut ada dalam permintaan Anda, tidak ada biaya tambahan untuk eksekusi kode dalam permintaan tersebut di luar biaya token standar. Ini mencakup eksekusi kode di balik pemfilteran dinamis maupun kode apa pun yang dijalankan Claude secara langsung. Harga eksekusi kode standar berlaku jika keduanya tidak disertakan.
+**Eksekusi kode gratis saat digunakan dengan web search atau web fetch (`web_search_20260209`, `web_fetch_20260209`, atau yang lebih baru).** Ketika salah satu alat tersebut ada dalam permintaan Anda, tidak ada biaya tambahan untuk eksekusi kode dalam permintaan tersebut di luar biaya token standar. Ini mencakup eksekusi kode di balik pemfilteran dinamis maupun kode apa pun yang dijalankan Claude secara langsung. Harga eksekusi kode standar berlaku ketika alat-alat tersebut tidak disertakan.
 
 Eksekusi kode juga mendukung pemfilteran dinamis pada alat [web search](/docs/id/agents-and-tools/tool-use/web-search-tool) dan [web fetch](/docs/id/agents-and-tools/tool-use/web-fetch-tool): Claude memfilter hasil di dalam lingkungan eksekusi kode sebelum hasil tersebut mencapai jendela konteks. Ketika pemfilteran dinamis berjalan, API secara otomatis menyediakan eksekusi kode yang dibutuhkan untuk permintaan tersebut, sehingga Anda tidak perlu menambahkan alat eksekusi kode ke permintaan Anda untuk itu.
 
@@ -22,34 +22,34 @@ Eksekusi kode juga mendukung pemfilteran dinamis pada alat [web search](/docs/id
 </Note>
 
 <Note>
-  Fitur ini **tidak** memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/api-and-data-retention). Data disimpan sesuai dengan kebijakan retensi standar fitur ini.
+  Untuk mengetahui bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 ## Kompatibilitas model
 
 Alat eksekusi kode tersedia pada model-model berikut:
 
-| Model                                                                                                         | Versi alat                                                                      |
-| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| Claude Fable 5 (claude-fable-5)                                                                               | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
-| Claude Mythos 5 (claude-mythos-5)                                                                             | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
-| Claude Sonnet 5 (claude-sonnet-5)                                                                             | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
-| Claude Opus 4.8 (claude-opus-4-8)                                                                             | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
-| Claude Opus 4.7 (claude-opus-4-7)                                                                             | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
-| Claude Opus 4.6 (claude-opus-4-6)                                                                             | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
-| Claude Sonnet 4.6 (claude-sonnet-4-6)                                                                         | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
-| Claude Opus 4.5 (claude-opus-4-5-20251101)                                                                    | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
-| Claude Sonnet 4.5 (claude-sonnet-4-5-20250929)                                                                | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
-| Claude Haiku 4.5 (claude-haiku-4-5-20251001)                                                                  | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
-| Claude Opus 4.1 (claude-opus-4-1-20250805) ([tidak digunakan lagi](/docs/id/about-claude/model-deprecations)) | `code_execution_20250825`                                                       |
+| Model                                                                                                                                  | Versi alat                                                                      |
+| -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Claude Fable 5 (claude-fable-5)                                                                                                        | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
+| Claude Mythos 5 (claude-mythos-5)                                                                                                      | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
+| Claude Sonnet 5 (claude-sonnet-5)                                                                                                      | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
+| Claude Opus 4.8 (claude-opus-4-8)                                                                                                      | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
+| Claude Opus 4.7 (claude-opus-4-7)                                                                                                      | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
+| Claude Opus 4.6 (claude-opus-4-6)                                                                                                      | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
+| Claude Sonnet 4.6 (claude-sonnet-4-6)                                                                                                  | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
+| Claude Opus 4.5 (claude-opus-4-5-20251101)                                                                                             | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
+| Claude Sonnet 4.5 (claude-sonnet-4-5-20250929)                                                                                         | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
+| Claude Haiku 4.5 (claude-haiku-4-5-20251001)                                                                                           | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
+| Claude Opus 4.1 (claude-opus-4-1-20250805) (tidak digunakan lagi, lihat [Penghentian model](/docs/id/about-claude/model-deprecations)) | `code_execution_20250825`                                                       |
 
 Setiap versi alat dibangun di atas versi sebelumnya:
 
 * `code_execution_20250825` mendukung perintah Bash dan operasi file serta tersedia pada setiap model dalam tabel.
 * `code_execution_20260120` menambahkan persistensi state REPL dan [pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling) dari dalam sandbox. Claude Haiku 4.5 menerima tipe alat `code_execution_20260120` dan `code_execution_20260521`, tetapi pemanggilan alat terprogram dan persistensi state REPL yang bergantung padanya tidak tersedia di model tersebut, sehingga versi yang lebih baru berperilaku seperti `code_execution_20250825` di sana.
-* `code_execution_20260521` adalah runtime yang sama dengan `code_execution_20260120`. Perbedaannya adalah deskripsi alat memberi tahu Claude tentang batas wall-clock 90 detik pada setiap sel Python dalam pemanggilan alat terprogram, sehingga Claude dapat mengatur anggaran untuk sel yang berjalan lama. Sel yang melebihi batas mengembalikan hasil eksekusi kode normal dengan `return_code` bukan nol dan pesan status `detection_timeout` dalam output-nya. Ini terpisah dari [kode kesalahan](#errors) `execution_time_exceeded`, yang dikembalikan API ketika seluruh pemanggilan alat melebihi waktu eksekusi maksimum.
+* `code_execution_20260521` adalah runtime yang sama dengan `code_execution_20260120`. Perbedaannya adalah deskripsi alat memberi tahu Claude tentang batas waktu nyata (wall-clock) 90 detik pada setiap sel Python dalam pemanggilan alat terprogram, sehingga Claude dapat mengatur anggaran untuk sel yang berjalan lama. Sel yang melebihi batas mengembalikan hasil eksekusi kode normal dengan `return_code` bukan nol dan pesan status `detection_timeout` dalam outputnya. Ini terpisah dari [kode kesalahan](#errors) `execution_time_exceeded`, yang dikembalikan API ketika seluruh pemanggilan alat melebihi waktu eksekusi maksimum.
 
-Ketiga versi alat tersedia secara umum dan tidak memerlukan header `anthropic-beta`. Header beta eksekusi kode lama tetap menjadi opt-in yang valid.
+Ketiga versi alat tersedia secara umum dan tidak memerlukan header `anthropic-beta`. Header beta eksekusi kode lama tetap merupakan opt-in yang valid.
 
 Contoh-contoh di halaman ini menggunakan `code_execution_20250825` karena setiap model dalam tabel mendukungnya. Alat [web search](/docs/id/agents-and-tools/tool-use/web-search-tool) dan [web fetch](/docs/id/agents-and-tools/tool-use/web-fetch-tool) saat ini (`web_search_20260209`, `web_fetch_20260209`, dan yang lebih baru) memerlukan `code_execution_20260120` atau yang lebih baru sebagai versi eksekusi kodenya.
 
@@ -72,12 +72,12 @@ Eksekusi kode tersedia di:
 Eksekusi kode saat ini tidak tersedia di Amazon Bedrock atau Google Cloud.
 
 <Note>
-  Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), eksekusi kode hanya didukung di Claude API dan Microsoft Foundry. Fitur ini tidak tersedia untuk Mythos Preview di Amazon Bedrock, Google Cloud, atau Claude Platform on AWS.
+  Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), eksekusi kode hanya didukung di Claude API dan Microsoft Foundry. Fitur ini tidak tersedia untuk Mythos Preview di Amazon Bedrock, Claude Platform on AWS, atau Google Cloud.
 </Note>
 
 ## Mulai cepat
 
-Berikut adalah contoh sederhana yang meminta Claude melakukan perhitungan:
+Berikut adalah contoh yang meminta Claude melakukan perhitungan:
 
 <CodeGroup>
   ```bash cURL
@@ -244,28 +244,28 @@ Ketika Anda menambahkan alat eksekusi kode ke permintaan API Anda:
 
 1. Claude mengevaluasi apakah eksekusi kode akan membantu menjawab pertanyaan Anda
 
-2. Alat ini secara otomatis memberikan Claude kemampuan berikut:
+2. Alat ini secara otomatis memberi Claude kemampuan berikut:
 
-   * **Perintah Bash**: Menjalankan perintah shell untuk operasi sistem
-   * **Operasi file**: Membuat, melihat, dan mengedit file secara langsung, termasuk menulis kode
+   * **Perintah Bash:** Menjalankan perintah shell untuk operasi sistem
+   * **Operasi file:** Membuat, melihat, dan mengedit file secara langsung, termasuk menulis kode
 
 3. Claude dapat menggunakan kombinasi apa pun dari kemampuan ini dalam satu permintaan
 
-4. Semua operasi berjalan dalam container yang aman dan ter-sandbox. Container tidak memiliki akses internet, sehingga Claude tidak dapat mengunduh paket saat runtime: hanya [pustaka yang sudah terpasang](#pre-installed-libraries) yang tersedia
+4. Semua operasi berjalan dalam kontainer yang aman dan ter-sandbox. Kontainer tidak memiliki akses internet, sehingga Claude tidak dapat mengunduh paket saat runtime: hanya [pustaka yang sudah terpasang](#pre-installed-libraries) yang tersedia
 
 5. API menjalankan setiap perintah di sisi server dan mengembalikan hasilnya ke Claude dalam permintaan yang sama, sehingga Anda tidak pernah mengeksekusi kode atau mengirim kembali blok `tool_result` sendiri. Satu pengecualian adalah ketika Claude memanggil salah satu alat klien Anda bersamaan dengan eksekusi kode: API mengembalikan panggilan eksekusi kode tanpa hasilnya. Hasilnya tiba dalam respons berikutnya, setelah Anda mengirim kembali blok `tool_result` untuk alat klien Anda
 
-6. Setiap permintaan berjalan dalam container baru kecuali Anda mengirimkan kembali ID container dari respons sebelumnya (lihat [Penggunaan kembali container](#container-reuse))
+6. Setiap permintaan berjalan dalam kontainer baru kecuali Anda mengirimkan kembali ID kontainer dari respons sebelumnya (lihat [Penggunaan kembali kontainer](#container-reuse))
 
 7. Claude memberikan hasil beserta grafik, perhitungan, atau analisis yang dihasilkan
 
-Container sudah memiliki Python terpasang. Claude menulis Python dengan sub-alat operasi file dan menjalankannya dengan perintah Bash. Dengan `code_execution_20260120` atau yang lebih baru dan [pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), state interpreter Python (seperti binding variabel) juga bertahan di seluruh permintaan yang menggunakan kembali container tersebut.
+Kontainer sudah memiliki Python terpasang. Claude menulis Python dengan sub-alat operasi file dan menjalankannya dengan perintah Bash. Dengan `code_execution_20260120` atau yang lebih baru dan [pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), state interpreter Python (seperti binding variabel) juga bertahan di seluruh permintaan yang menggunakan kembali kontainer tersebut.
 
 ### Kapan Claude menjalankan kode
 
 Claude menjalankan kode ketika permintaan mendapat manfaat dari komputasi atau penanganan file:
 
-* Matematika non-trivial (angka besar, banyak langkah, hasil yang sensitif terhadap presisi)
+* Matematika yang tidak sepele (angka besar, banyak langkah, hasil yang sensitif terhadap presisi)
 * Analisis data, parsing file, atau visualisasi
 * Eksekusi algoritma atau simulasi
 * Permintaan eksplisit untuk "run", "compute", atau "execute"
@@ -276,7 +276,7 @@ Claude menjawab langsung tanpa menjalankan kode untuk:
 * Permintaan faktual, percakapan, atau kreatif
 * Konversi satuan atau terjemahan sederhana
 
-Jika Anda ingin Claude menjalankan kode untuk permintaan yang ambigu, minta secara eksplisit (misalnya, "jalankan kode untuk memverifikasi ini").
+Jika Anda ingin Claude menjalankan kode untuk permintaan yang ambigu, mintalah secara eksplisit (misalnya, "jalankan kode untuk memverifikasi ini").
 
 ## Bekerja dengan file
 
@@ -285,10 +285,10 @@ Jika Anda ingin Claude menjalankan kode untuk permintaan yang ambigu, minta seca
 Untuk menganalisis file data Anda sendiri (seperti CSV, Excel, atau gambar), unggah melalui Files API dan referensikan dalam permintaan Anda:
 
 <Note>
-  Menggunakan Files API dengan Eksekusi Kode memerlukan header beta Files API: `"anthropic-beta": "files-api-2025-04-14"`
+  Menggunakan Files API dengan eksekusi kode memerlukan header beta Files API: `"anthropic-beta": "files-api-2025-04-14"`
 </Note>
 
-Lingkungan Python dapat memproses berbagai jenis file yang diunggah melalui Files API, termasuk:
+Lingkungan Python dapat memproses berbagai tipe file yang diunggah melalui Files API, termasuk:
 
 * CSV
 * Excel (.xlsx, .xls)
@@ -584,15 +584,15 @@ Lingkungan Python dapat memproses berbagai jenis file yang diunggah melalui File
   ```
 </CodeGroup>
 
-### Ambil file yang dihasilkan
+### Mengambil file yang dihasilkan
 
 Ketika Claude membuat file selama eksekusi kode, ID setiap file yang dibuat muncul dalam hasil alat eksekusi kode, dan Anda dapat mengunduhnya dengan [Files API](/docs/id/build-with-claude/files):
 
 <CodeGroup>
   ```bash cURL
   # Mengunduh setiap file yang dihasilkan berarti melakukan loop atas ID file dalam hasil
-  # alat, yang tidak bisa diubah menjadi satu perintah shell sekali jalan. Gunakan salah satu
-  # contoh SDK sebagai gantinya.
+  # alat, yang tidak dapat diubah menjadi satu perintah shell sekali jalan. Gunakan
+  # salah satu contoh SDK sebagai gantinya.
   ```
 
   ```bash CLI
@@ -888,7 +888,7 @@ Ketika Claude membuat file selama eksekusi kode, ID setiap file yang dibuat munc
   client = Anthropic::Client.new
 
   response = client.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: Anthropic::Model::CLAUDE_OPUS_4_8,
     betas: ["files-api-2025-04-14"],
     max_tokens: 4096,
     messages: [
@@ -949,16 +949,16 @@ Alat eksekusi kode tidak memerlukan parameter tambahan:
 
 Kedua field bersifat tetap: `type` memilih versi alat, dan `name` harus `code_execution`.
 
-Ketika alat ini disediakan, Claude secara otomatis mendapatkan akses ke dua sub-alat:
+Ketika Anda menyediakan alat ini, Claude secara otomatis mendapatkan akses ke dua sub-alat:
 
 * `bash_code_execution`: Menjalankan perintah shell
 * `text_editor_code_execution`: Melihat, membuat, dan mengedit file, termasuk menulis kode
 
-Ketika Claude menjalankan kode, respons juga menyertakan objek `container` tingkat teratas dengan `id` container dan timestamp `expires_at`. Kirimkan kembali ID tersebut dalam parameter permintaan `container` tingkat teratas untuk terus menggunakan container yang sama. Lihat [Penggunaan kembali container](#container-reuse).
+Ketika Claude menjalankan kode, respons juga menyertakan objek `container` tingkat atas dengan `id` kontainer dan timestamp `expires_at`. Kirimkan kembali ID tersebut dalam parameter permintaan `container` tingkat atas untuk terus menggunakan kontainer yang sama. Lihat [Penggunaan kembali kontainer](#container-reuse).
 
 ## Format respons
 
-Alat eksekusi kode dapat mengembalikan dua jenis hasil tergantung pada operasinya:
+Alat eksekusi kode dapat mengembalikan dua tipe hasil tergantung pada operasinya:
 
 ### Respons perintah Bash
 
@@ -986,7 +986,7 @@ Alat eksekusi kode dapat mengembalikan dua jenis hasil tergantung pada operasiny
 
 ### Respons operasi file
 
-**Lihat file:**
+**Melihat file:**
 
 ```json Output
 {
@@ -1012,7 +1012,7 @@ Alat eksekusi kode dapat mengembalikan dua jenis hasil tergantung pada operasiny
 }
 ```
 
-**Buat file:**
+**Membuat file:**
 
 ```json Output
 {
@@ -1035,7 +1035,7 @@ Alat eksekusi kode dapat mengembalikan dua jenis hasil tergantung pada operasiny
 }
 ```
 
-**Edit file (str\_replace):**
+**Mengedit file (str\_replace):**
 
 ```json Output
 {
@@ -1080,7 +1080,7 @@ Hasil operasi file memiliki field-nya sendiri:
 
 ### Kesalahan
 
-Setiap jenis alat dapat mengembalikan kesalahan tertentu:
+Setiap tipe alat dapat mengembalikan kesalahan tertentu:
 
 **Kesalahan umum (semua alat):**
 
@@ -1095,7 +1095,7 @@ Setiap jenis alat dapat mengembalikan kesalahan tertentu:
 }
 ```
 
-**Kode kesalahan berdasarkan jenis alat:**
+**Kode kesalahan berdasarkan tipe alat:**
 
 | Alat         | Kode kesalahan            | Deskripsi                                         |
 | ------------ | ------------------------- | ------------------------------------------------- |
@@ -1106,63 +1106,63 @@ Setiap jenis alat dapat mengembalikan kesalahan tertentu:
 | bash         | `output_file_too_large`   | Output perintah melebihi ukuran maksimum          |
 | text\_editor | `file_not_found`          | File tidak ada (untuk operasi view/edit)          |
 
-Container yang kedaluwarsa tidak dapat digunakan kembali: permintaan yang mereferensikannya mengembalikan kesalahan alih-alih memulihkannya. Kirim permintaan lagi tanpa parameter `container` untuk mendapatkan container baru.
+Kontainer yang kedaluwarsa tidak dapat digunakan kembali: permintaan yang mereferensikannya mengembalikan kesalahan alih-alih memulihkannya. Kirim permintaan lagi tanpa parameter `container` untuk mendapatkan kontainer baru.
 
 ### Alasan berhenti `pause_turn`
 
 Respons mungkin menyertakan alasan berhenti `pause_turn`, yang menunjukkan bahwa API menjeda giliran yang berjalan lama. Anda dapat memberikan respons kembali apa adanya dalam permintaan berikutnya agar Claude melanjutkan gilirannya, atau memodifikasi kontennya jika Anda ingin menginterupsi percakapan.
 
-## Container
+## Kontainer
 
-Alat eksekusi kode berjalan dalam lingkungan ter-container yang aman yang dirancang khusus untuk eksekusi kode, dengan fokus lebih tinggi pada Python.
+Alat eksekusi kode berjalan dalam lingkungan terkontainerisasi yang aman dan dirancang khusus untuk eksekusi kode, dengan fokus lebih tinggi pada Python.
 
 ### Lingkungan runtime
 
-* **Versi Python**: 3.11
-* **Sistem operasi**: Container berbasis Linux
-* **Arsitektur**: x86\_64 (AMD64)
+* **Versi Python:** 3.11
+* **Sistem operasi:** Kontainer berbasis Linux
+* **Arsitektur:** x86\_64 (AMD64)
 
 ### Batas sumber daya
 
-* **Memori**: 5GiB RAM
-* **Ruang disk**: 5GiB penyimpanan workspace
-* **CPU**: 1 CPU
-* **Waktu eksekusi**: Pemanggilan alat yang berjalan melewati waktu eksekusi maksimum mengembalikan [kesalahan](#errors) `execution_time_exceeded`. Dengan [pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), setiap sel REPL juga memiliki batas wall-clock 90 detik
+* **Memori:** 5 GiB RAM
+* **Ruang disk:** 5 GiB penyimpanan workspace
+* **CPU:** 1 CPU
+* **Waktu eksekusi:** Pemanggilan alat yang berjalan melewati waktu eksekusi maksimum mengembalikan [kesalahan](#errors) `execution_time_exceeded`. Dengan [pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), setiap sel REPL juga memiliki batas waktu nyata (wall-clock) 90 detik
 
 ### Jaringan dan keamanan
 
-* **Akses internet**: Sepenuhnya dinonaktifkan demi keamanan
-* **Koneksi eksternal**: Tidak ada permintaan jaringan keluar yang diizinkan
-* **Isolasi sandbox**: Isolasi penuh dari sistem host dan container lain
-* **Akses file**: Terbatas hanya pada direktori workspace
-* **Pembatasan workspace**: Seperti [Files](/docs/id/build-with-claude/files), container dibatasi pada workspace dari kunci API
-* **Kedaluwarsa**: Container kedaluwarsa 30 hari setelah dibuat
+* **Akses internet:** Sepenuhnya dinonaktifkan demi keamanan
+* **Koneksi eksternal:** Tidak ada permintaan jaringan keluar yang diizinkan
+* **Isolasi sandbox:** Isolasi penuh dari sistem host dan kontainer lain
+* **Akses file:** Terbatas hanya pada direktori workspace
+* **Cakupan workspace:** Seperti [Files API](/docs/id/build-with-claude/files), kontainer dicakup ke workspace dari kunci API
+* **Kedaluwarsa:** Kontainer kedaluwarsa 30 hari setelah dibuat
 
 ### Pustaka yang sudah terpasang
 
 Lingkungan Python yang ter-sandbox mencakup pustaka-pustaka yang umum digunakan berikut:
 
-* **Data science**: pandas, numpy, scipy, scikit-learn, statsmodels
-* **Visualisasi**: matplotlib, seaborn
-* **Pemrosesan file**: pyarrow, openpyxl, xlsxwriter, xlrd, pillow, python-pptx, python-docx, pypdf, pdfplumber, pypdfium2, pdf2image, pdfkit, tabula-py, reportlab\[pycairo], Img2pdf
-* **Matematika dan komputasi**: sympy, mpmath
-* **Utilitas**: tqdm, python-dateutil, pytz, joblib
+* **Ilmu data:** pandas, numpy, scipy, scikit-learn, statsmodels
+* **Visualisasi:** matplotlib, seaborn
+* **Pemrosesan file:** pyarrow, openpyxl, xlsxwriter, xlrd, pillow, python-pptx, python-docx, pypdf, pdfplumber, pypdfium2, pdf2image, pdfkit, tabula-py, reportlab\[pycairo], Img2pdf
+* **Matematika dan komputasi:** sympy, mpmath
+* **Utilitas:** tqdm, python-dateutil, pytz, joblib
 
-Container juga menyertakan alat baris perintah seperti unzip, unrar, 7zip, bc, rg (ripgrep), fd, dan sqlite.
+Kontainer juga mencakup alat baris perintah seperti unzip, unrar, 7zip, bc, rg (ripgrep), fd, dan sqlite.
 
-Container tidak memiliki akses internet, sehingga Claude tidak dapat mengunduh atau memasang paket tambahan saat runtime: hanya pustaka yang sudah terpasang yang tersedia.
+Kontainer tidak memiliki akses internet, sehingga Claude tidak dapat mengunduh atau memasang paket tambahan saat runtime: hanya pustaka yang sudah terpasang yang tersedia.
 
-## Penggunaan kembali container
+## Penggunaan kembali kontainer
 
-Anda dapat menggunakan kembali container yang sudah ada di beberapa permintaan API dengan memberikan ID container dari respons sebelumnya. Ini memungkinkan Anda mempertahankan file yang dibuat di antara permintaan. Dengan `code_execution_20260120` atau yang lebih baru dan [pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), state interpreter Python juga bertahan.
+Anda dapat menggunakan kembali kontainer yang sudah ada di beberapa permintaan API dengan memberikan ID kontainer dari respons sebelumnya. Ini memungkinkan Anda mempertahankan file yang dibuat di antara permintaan. Dengan `code_execution_20260120` atau yang lebih baru dan [pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), state interpreter Python juga bertahan.
 
-Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar lima menit tidak aktif, container di-checkpoint, dan mengirim permintaan dengan ID-nya dalam jendela 30 hari akan memulihkannya. Timestamp `expires_at` dalam objek `container` respons adalah nilai bergulir yang lebih pendek dan tidak melaporkan batas 30 hari. Container yang telah kedaluwarsa tidak dapat digunakan kembali. Kirim permintaan lagi tanpa parameter `container` untuk mendapatkan container baru.
+Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak aktif, kontainer di-checkpoint, dan mengirim permintaan dengan ID-nya dalam jendela 30 hari akan memulihkannya. Timestamp `expires_at` dalam objek `container` pada respons adalah nilai bergulir yang lebih pendek dan tidak melaporkan batas 30 hari. Kontainer yang telah kedaluwarsa tidak dapat digunakan kembali. Kirim permintaan lagi tanpa parameter `container` untuk mendapatkan kontainer baru.
 
 ### Contoh
 
 <CodeGroup>
   ```bash cURL
-  # Permintaan pertama: Buat file dengan angka acak, sambil menangkap ID container (menggunakan jq)
+  # Permintaan pertama: Buat file berisi angka acak, sambil menangkap ID container (menggunakan jq)
   CONTAINER_ID=$(curl -s https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -1272,7 +1272,7 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar lima menit tidak a
     throw new Error("Expected the first response to include a container");
   }
 
-  // Permintaan kedua: kirimkan kembali ID container agar container yang sama digunakan ulang
+  // Permintaan kedua: kirimkan kembali ID container agar container yang sama digunakan kembali
   const response2 = await client.messages.create({
     container: response1.container.id,
     model: "claude-opus-4-8",
@@ -1391,7 +1391,7 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar lima menit tidak a
       tools: [new CodeExecutionTool20250825()],
   );
 
-  // Permintaan kedua: gunakan kembali container tersebut agar '/tmp/number.txt' masih ada
+  // Permintaan kedua: gunakan kembali container tersebut sehingga '/tmp/number.txt' masih ada
   $response2 = $client->messages->create(
       container: $response1->container->id,
       maxTokens: 4096,
@@ -1444,7 +1444,7 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar lima menit tidak a
 
 ## Menggunakan eksekusi kode dengan alat eksekusi lainnya
 
-Ketika Anda menyediakan eksekusi kode bersamaan dengan alat yang disediakan klien yang juga menjalankan kode (seperti [alat Bash](/docs/id/agents-and-tools/tool-use/bash-tool) atau REPL kustom), Claude beroperasi dalam lingkungan multi-komputer. Alat eksekusi kode berjalan dalam container ter-sandbox milik Anthropic, sementara alat yang disediakan klien Anda berjalan di lingkungan terpisah yang Anda kendalikan. Claude terkadang dapat mengacaukan lingkungan-lingkungan ini, mencoba menggunakan alat yang salah atau mengasumsikan state dibagikan di antara keduanya.
+Ketika Anda menyediakan eksekusi kode bersamaan dengan alat yang disediakan klien yang juga menjalankan kode (seperti [alat Bash](/docs/id/agents-and-tools/tool-use/bash-tool) atau REPL kustom), Claude beroperasi dalam lingkungan multikomputer. Alat eksekusi kode berjalan dalam kontainer sandbox Anthropic, sementara alat yang disediakan klien Anda berjalan di lingkungan terpisah yang Anda kendalikan. Claude terkadang dapat bingung membedakan lingkungan-lingkungan ini, mencoba menggunakan alat yang salah atau mengasumsikan state dibagikan di antara keduanya.
 
 Untuk menghindari hal ini, tambahkan instruksi ke prompt sistem Anda yang memperjelas perbedaannya:
 
@@ -1485,16 +1485,16 @@ Anda dapat menyertakan alat eksekusi kode dalam [Messages Batches API](/docs/id/
 
 ## Penggunaan dan harga
 
-**Code execution gratis ketika digunakan bersama web search atau web fetch.** Ketika `web_search_20260209` (atau versi lebih baru) atau `web_fetch_20260209` (atau versi lebih baru) disertakan dalam permintaan API Anda, tidak ada biaya tambahan untuk panggilan alat code execution selain biaya token input dan output standar.
+**Eksekusi kode gratis saat digunakan dengan web search atau web fetch.** Ketika `web_search_20260209` (atau yang lebih baru) atau `web_fetch_20260209` (atau yang lebih baru) disertakan dalam permintaan API Anda, tidak ada biaya tambahan untuk pemanggilan alat eksekusi kode di luar biaya token input dan output standar.
 
-Ketika digunakan tanpa alat-alat tersebut, code execution ditagih berdasarkan waktu eksekusi, yang dilacak secara terpisah dari penggunaan token:
+Saat digunakan tanpa alat-alat tersebut, eksekusi kode ditagih berdasarkan waktu eksekusi, yang dilacak secara terpisah dari penggunaan token:
 
 * Waktu eksekusi memiliki minimum 5 menit
 * Setiap organisasi menerima **1.550 jam gratis** penggunaan per bulan
-* Penggunaan tambahan di luar 1.550 jam ditagih sebesar **$0,05 per jam, per kontainer**
-* Jika file disertakan dalam permintaan, waktu eksekusi tetap ditagih meskipun alat tidak dipanggil, karena file dimuat terlebih dahulu ke dalam kontainer
+* Penggunaan tambahan di atas 1.550 jam ditagih sebesar **$0,05 USD per jam, per container**
+* Jika file disertakan dalam permintaan, waktu eksekusi tetap ditagih meskipun alat tidak dipanggil, karena file dimuat terlebih dahulu ke dalam container
 
-Penggunaan code execution dilacak dalam respons:
+Penggunaan eksekusi kode dilacak dalam respons:
 
 ```json
 {
@@ -1510,7 +1510,7 @@ Penggunaan code execution dilacak dalam respons:
 
 ## Tingkatkan ke versi alat terbaru
 
-Versi alat terbaru adalah `code_execution_20260521`. Untuk berpindah di antara ketiga versi saat ini, perbarui string `type` dalam permintaan Anda: ketiganya mengembalikan blok respons yang didokumentasikan di [Format respons](#response-format). Lihat [Kompatibilitas model](#model-compatibility) untuk apa yang ditambahkan setiap versi dan model mana yang mendukungnya.
+Versi alat terbaru adalah `code_execution_20260521`. Untuk berpindah di antara ketiga versi saat ini, perbarui string `type` dalam permintaan Anda: ketiganya mengembalikan blok respons yang didokumentasikan dalam [Format respons](#response-format). Lihat [Kompatibilitas model](#model-compatibility) untuk mengetahui apa yang ditambahkan setiap versi dan model mana yang mendukungnya.
 
 Sisa bagian ini membahas migrasi dari `code_execution_20250522` lama yang hanya mendukung Python ke versi alat saat ini.
 
@@ -1539,12 +1539,12 @@ Untuk meningkatkan, perbarui tipe alat dalam permintaan API Anda:
 
 **Tinjau penanganan respons** (jika mem-parsing respons secara terprogram):
 
-* Blok sebelumnya untuk respons eksekusi Python tidak akan dikirim lagi
-* Sebagai gantinya, tipe respons baru untuk operasi Bash dan file akan dikirim (lihat [Format respons](#response-format))
+* API tidak lagi mengirim blok sebelumnya untuk respons eksekusi Python
+* Sebagai gantinya, API mengirim tipe respons baru untuk operasi Bash dan file (lihat [Format respons](#response-format))
 
 ## Retensi data
 
-Eksekusi kode berjalan dalam container sandbox sisi server. Data container, termasuk artefak eksekusi, file yang diunggah, dan output, disimpan hingga 30 hari. Retensi ini berlaku untuk semua data yang diproses dalam lingkungan container. File yang dibuat oleh eksekusi kode di [Files API](/docs/id/build-with-claude/files) (dapat diambil dengan `client.beta.files.download()`) tetap ada sampai dihapus secara eksplisit.
+Eksekusi kode berjalan dalam kontainer sandbox sisi server. Data kontainer, termasuk artefak eksekusi, file yang diunggah, dan output, disimpan hingga 30 hari. Retensi ini berlaku untuk semua data yang diproses dalam lingkungan kontainer. File yang dibuat eksekusi kode di [Files API](/docs/id/build-with-claude/files) (dapat diambil dengan `client.beta.files.download()`) bertahan hingga dihapus secara eksplisit.
 
 Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
 
@@ -1556,7 +1556,7 @@ Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](/docs/id/manage
   </Card>
 
   <Card title="Pemanggilan alat terprogram" icon="code" href="/docs/id/agents-and-tools/tool-use/programmatic-tool-calling">
-    Panggil alat Anda sendiri dari kode yang berjalan di dalam container eksekusi kode.
+    Panggil alat Anda sendiri dari kode yang berjalan di dalam kontainer eksekusi kode.
   </Card>
 
   <Card title="Files API" icon="file" href="/docs/id/build-with-claude/files">

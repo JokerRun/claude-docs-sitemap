@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/files
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: 1b0280fe9f1223a1ff5e5a7e6f0fee73a4612aba85bcb2c140e17fd5d314b80d
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 23e0724aed9de36d63528722d4aa15eff690647c1fcda3a7541dc9c325862c2b
 ---
 
 # Menambahkan file
@@ -11,10 +11,10 @@ Unggah file dan pasang (mount) file tersebut di sandbox Anda untuk dibaca dan di
 
 ---
 
-Anda dapat menyediakan file untuk agen Anda dengan mengunggahnya melalui Files API dan memasangnya (mount) di sandbox sesi.
+Anda dapat menyediakan file untuk agen Anda dengan mengunggahnya melalui Files API dan memasangnya (mounting) di sandbox sesi.
 
 <Note>
-  Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Mengunggah file
@@ -92,7 +92,7 @@ Pertama, unggah file menggunakan [Files API](/docs/id/build-with-claude/files):
 
 ## Memasang file dalam sesi
 
-Pasang (mount) file yang telah diunggah ke dalam sandbox dengan menambahkannya ke array `resources` saat membuat sesi:
+Pasang file yang telah diunggah ke dalam sandbox dengan menambahkannya ke array `resources` saat membuat sesi:
 
 <Tip>
   `mount_path` bersifat opsional, tetapi pastikan file yang diunggah memiliki nama yang deskriptif agar agen dapat mengidentifikasinya.
@@ -242,7 +242,9 @@ Pasang (mount) file yang telah diunggah ke dalam sandbox dengan menambahkannya k
   ```
 </CodeGroup>
 
-Sebuah `file_id` baru dibuat yang merujuk pada instans file tersebut di dalam sesi. Salinan ini tidak dihitung terhadap [batas penyimpanan](/docs/id/build-with-claude/files) Anda.
+Dengan `mount_path` di atas, agen membaca file di `/mnt/session/uploads/data.csv` (lihat [Jalur file](#file-paths)).
+
+Sebuah `file_id` baru dibuat yang merujuk pada instans file dalam sesi tersebut. Salinan ini tidak dihitung terhadap [batas penyimpanan](/docs/id/build-with-claude/files) Anda.
 
 ## Beberapa file
 
@@ -251,9 +253,9 @@ Pasang beberapa file dengan menambahkan entri ke array `resources`:
 <CodeGroup>
   ```json curl
   "resources": [
-    { "type": "file", "file_id": "file_abc123", "mount_path": "/workspace/data.csv" },
-    { "type": "file", "file_id": "file_def456", "mount_path": "/workspace/config.json" },
-    { "type": "file", "file_id": "file_ghi789", "mount_path": "/workspace/src/main.py" }
+    { "type": "file", "file_id": "file_abc123", "mount_path": "/data.csv" },
+    { "type": "file", "file_id": "file_def456", "mount_path": "/config.json" },
+    { "type": "file", "file_id": "file_ghi789", "mount_path": "/src/main.py" }
   ]
   ```
 
@@ -261,82 +263,81 @@ Pasang beberapa file dengan menambahkan entri ke array `resources`:
   resources:
     - type: file
       file_id: file_abc123
-      mount_path: /workspace/data.csv
+      mount_path: /data.csv
     - type: file
       file_id: file_def456
-      mount_path: /workspace/config.json
+      mount_path: /config.json
     - type: file
       file_id: file_ghi789
-      mount_path: /workspace/src/main.py
+      mount_path: /src/main.py
   ```
 
   ```python Python
   resources = [
-      {"type": "file", "file_id": "file_abc123", "mount_path": "/workspace/data.csv"},
-      {"type": "file", "file_id": "file_def456", "mount_path": "/workspace/config.json"},
-      {"type": "file", "file_id": "file_ghi789", "mount_path": "/workspace/src/main.py"},
+      {"type": "file", "file_id": "file_abc123", "mount_path": "/data.csv"},
+      {"type": "file", "file_id": "file_def456", "mount_path": "/config.json"},
+      {"type": "file", "file_id": "file_ghi789", "mount_path": "/src/main.py"},
   ]
   ```
 
   ```typescript TypeScript
   resources: [
-    { type: "file", file_id: "file_abc123", mount_path: "/workspace/data.csv" },
-    { type: "file", file_id: "file_def456", mount_path: "/workspace/config.json" },
-    { type: "file", file_id: "file_ghi789", mount_path: "/workspace/src/main.py" }
+    { type: "file", file_id: "file_abc123", mount_path: "/data.csv" },
+    { type: "file", file_id: "file_def456", mount_path: "/config.json" },
+    { type: "file", file_id: "file_ghi789", mount_path: "/src/main.py" }
   ]
   ```
 
   ```csharp C#
   var resources = new[]
   {
-      new BetaManagedAgentsFileResourceParams { Type = BetaManagedAgentsFileResourceParamsType.File, FileID = "file_abc123", MountPath = "/workspace/data.csv" },
-      new BetaManagedAgentsFileResourceParams { Type = BetaManagedAgentsFileResourceParamsType.File, FileID = "file_def456", MountPath = "/workspace/config.json" },
-      new BetaManagedAgentsFileResourceParams { Type = BetaManagedAgentsFileResourceParamsType.File, FileID = "file_ghi789", MountPath = "/workspace/src/main.py" },
+      new BetaManagedAgentsFileResourceParams { Type = BetaManagedAgentsFileResourceParamsType.File, FileID = "file_abc123", MountPath = "/data.csv" },
+      new BetaManagedAgentsFileResourceParams { Type = BetaManagedAgentsFileResourceParamsType.File, FileID = "file_def456", MountPath = "/config.json" },
+      new BetaManagedAgentsFileResourceParams { Type = BetaManagedAgentsFileResourceParamsType.File, FileID = "file_ghi789", MountPath = "/src/main.py" },
   };
   ```
 
   ```go Go
   resources := []anthropic.BetaSessionNewParamsResourceUnion{
-  	{OfFile: &anthropic.BetaManagedAgentsFileResourceParams{Type: "file", FileID: "file_abc123", MountPath: anthropic.String("/workspace/data.csv")}},
-  	{OfFile: &anthropic.BetaManagedAgentsFileResourceParams{Type: "file", FileID: "file_def456", MountPath: anthropic.String("/workspace/config.json")}},
-  	{OfFile: &anthropic.BetaManagedAgentsFileResourceParams{Type: "file", FileID: "file_ghi789", MountPath: anthropic.String("/workspace/src/main.py")}},
+  	{OfFile: &anthropic.BetaManagedAgentsFileResourceParams{Type: "file", FileID: "file_abc123", MountPath: anthropic.String("/data.csv")}},
+  	{OfFile: &anthropic.BetaManagedAgentsFileResourceParams{Type: "file", FileID: "file_def456", MountPath: anthropic.String("/config.json")}},
+  	{OfFile: &anthropic.BetaManagedAgentsFileResourceParams{Type: "file", FileID: "file_ghi789", MountPath: anthropic.String("/src/main.py")}},
   }
-  _ = resources
   ```
 
   ```java Java
   var resources = List.of(
       BetaManagedAgentsFileResourceParams.builder()
-          .type(BetaManagedAgentsFileResourceParams.Type.FILE).fileId("file_abc123").mountPath("/workspace/data.csv").build(),
+          .type(BetaManagedAgentsFileResourceParams.Type.FILE).fileId("file_abc123").mountPath("/data.csv").build(),
       BetaManagedAgentsFileResourceParams.builder()
-          .type(BetaManagedAgentsFileResourceParams.Type.FILE).fileId("file_def456").mountPath("/workspace/config.json").build(),
+          .type(BetaManagedAgentsFileResourceParams.Type.FILE).fileId("file_def456").mountPath("/config.json").build(),
       BetaManagedAgentsFileResourceParams.builder()
-          .type(BetaManagedAgentsFileResourceParams.Type.FILE).fileId("file_ghi789").mountPath("/workspace/src/main.py").build()
+          .type(BetaManagedAgentsFileResourceParams.Type.FILE).fileId("file_ghi789").mountPath("/src/main.py").build()
   );
   ```
 
   ```php PHP
   $resources = [
-      ['type' => 'file', 'file_id' => 'file_abc123', 'mount_path' => '/workspace/data.csv'],
-      ['type' => 'file', 'file_id' => 'file_def456', 'mount_path' => '/workspace/config.json'],
-      ['type' => 'file', 'file_id' => 'file_ghi789', 'mount_path' => '/workspace/src/main.py'],
+      ['type' => 'file', 'file_id' => 'file_abc123', 'mount_path' => '/data.csv'],
+      ['type' => 'file', 'file_id' => 'file_def456', 'mount_path' => '/config.json'],
+      ['type' => 'file', 'file_id' => 'file_ghi789', 'mount_path' => '/src/main.py'],
   ];
   ```
 
   ```ruby Ruby
   resources = [
-    {type: "file", file_id: "file_abc123", mount_path: "/workspace/data.csv"},
-    {type: "file", file_id: "file_def456", mount_path: "/workspace/config.json"},
-    {type: "file", file_id: "file_ghi789", mount_path: "/workspace/src/main.py"}
+    {type: "file", file_id: "file_abc123", mount_path: "/data.csv"},
+    {type: "file", file_id: "file_def456", mount_path: "/config.json"},
+    {type: "file", file_id: "file_ghi789", mount_path: "/src/main.py"}
   ]
   ```
 </CodeGroup>
 
-Maksimum 100 file didukung per sesi.
+Maksimum 500 file didukung per sesi.
 
 ## Mengelola file pada sesi yang sedang berjalan
 
-Anda dapat menambahkan atau menghapus file dari sesi setelah pembuatan menggunakan API sumber daya sesi. Setiap sumber daya memiliki `id` yang dikembalikan saat ditambahkan (atau didaftarkan), yang Anda gunakan untuk penghapusan.
+Anda dapat menambahkan atau menghapus file dari sesi setelah pembuatan menggunakan API sumber daya sesi. Setiap sumber daya memiliki `id` yang dikembalikan saat ditambahkan (atau didaftar), yang Anda gunakan untuk penghapusan.
 
 <CodeGroup>
   ```bash curl
@@ -430,7 +431,7 @@ Anda dapat menambahkan atau menghapus file dari sesi setelah pembuatan menggunak
   ```
 </CodeGroup>
 
-Daftarkan semua sumber daya pada sebuah sesi dengan `resources.list`. Untuk menghapus file, panggil `resources.delete` dengan ID sumber daya:
+Daftarkan semua sumber daya pada sesi dengan `resources.list`. Untuk menghapus file, panggil `resources.delete` dengan ID sumber daya:
 
 <CodeGroup>
   ```bash curl
@@ -537,7 +538,7 @@ Gunakan [Files API](/docs/id/build-with-claude/files) untuk mendaftar file yang 
 
 <CodeGroup>
   ```bash curl
-  # Mencantumkan file yang terkait dengan sebuah sesi
+  # Menampilkan daftar file yang terkait dengan sebuah sesi
   curl -fsSL "https://api.anthropic.com/v1/files?scope_id=sesn_abc123" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -554,7 +555,7 @@ Gunakan [Files API](/docs/id/build-with-claude/files) untuk mendaftar file yang 
   ```bash CLI
   # Menampilkan daftar file yang terkait dengan sebuah sesi
   ant beta:files list --scope-id sesn_abc123 \
-    --beta files-api-2025-04-14,managed-agents-2026-04-01
+    --beta managed-agents-2026-04-01
 
   # Mengunduh file
   ant beta:files download --file-id "$FILE_ID" --output output.txt
@@ -566,8 +567,8 @@ Gunakan [Files API](/docs/id/build-with-claude/files) untuk mendaftar file yang 
       scope_id="sesn_abc123",
       betas=["managed-agents-2026-04-01"],
   )
-  for f in files:
-      print(f.id, f.filename)
+  for file in files:
+      print(file.id, file.filename)
 
   # Mengunduh file
   content = client.beta.files.download(files.data[0].id)
@@ -580,8 +581,8 @@ Gunakan [Files API](/docs/id/build-with-claude/files) untuk mendaftar file yang 
     scope_id: "sesn_abc123",
     betas: ["managed-agents-2026-04-01"]
   });
-  for (const f of files.data) {
-    console.log(f.id, f.filename);
+  for (const file of files.data) {
+    console.log(file.id, file.filename);
   }
 
   // Mengunduh file
@@ -590,7 +591,7 @@ Gunakan [Files API](/docs/id/build-with-claude/files) untuk mendaftar file yang 
   ```
 
   ```csharp C#
-  // Menampilkan daftar file yang terkait dengan sebuah sesi
+  // Mencantumkan file yang terkait dengan sebuah sesi
   var files = await client.Beta.Files.List(new FileListParams
   {
       ScopeID = "sesn_abc123",
@@ -603,7 +604,7 @@ Gunakan [Files API](/docs/id/build-with-claude/files) untuk mendaftar file yang 
   ```
 
   ```go Go
-  // Menampilkan daftar file yang terkait dengan sebuah sesi
+  // Mencantumkan file yang terkait dengan sebuah sesi
   files, err := client.Beta.Files.List(ctx, anthropic.BetaFileListParams{
   	ScopeID: anthropic.String("sesn_abc123"),
   	Betas:   []anthropic.AnthropicBeta{"managed-agents-2026-04-01"},
@@ -618,11 +619,12 @@ Gunakan [Files API](/docs/id/build-with-claude/files) untuk mendaftar file yang 
   	panic(err)
   }
   defer resp.Body.Close()
-  fileContent, err := io.ReadAll(resp.Body)
+  out, err := os.Create("output.txt")
   if err != nil {
   	panic(err)
   }
-  if err := os.WriteFile("output.txt", fileContent, 0644); err != nil {
+  defer out.Close()
+  if _, err := io.Copy(out, resp.Body); err != nil {
   	panic(err)
   }
   ```
@@ -643,7 +645,7 @@ Gunakan [Files API](/docs/id/build-with-claude/files) untuk mendaftar file yang 
   ```
 
   ```php PHP
-  // Mencantumkan file yang terkait dengan sebuah sesi
+  // Menampilkan daftar file yang terkait dengan sebuah sesi
   $files = $client->beta->files->list(
       scopeID: 'sesn_abc123',
       betas: ['managed-agents-2026-04-01'],
@@ -655,7 +657,7 @@ Gunakan [Files API](/docs/id/build-with-claude/files) untuk mendaftar file yang 
   ```
 
   ```ruby Ruby
-  # Menampilkan daftar file yang terkait dengan sebuah sesi
+  # Mencantumkan file yang terkait dengan sebuah sesi
   files = client.beta.files.list(
     scope_id: "sesn_abc123",
     betas: ["managed-agents-2026-04-01"]
@@ -680,9 +682,10 @@ Agen dapat bekerja dengan tipe file apa pun, termasuk:
 ## Jalur file
 
 <Note>
-  File yang dipasang di sandbox adalah salinan hanya-baca (read-only). Agen dapat membacanya tetapi tidak dapat memodifikasi file asli yang diunggah. Untuk bekerja dengan versi yang dimodifikasi, agen menulis ke jalur baru di dalam sandbox.
+  File yang dipasang di sandbox adalah salinan hanya-baca. Agen dapat membacanya tetapi tidak dapat memodifikasi file asli yang diunggah. Untuk bekerja dengan versi yang dimodifikasi, agen menulis ke jalur baru di dalam sandbox.
 </Note>
 
-* File dipasang pada jalur persis yang Anda tentukan
+* Jalur yang Anda tentukan berakar di bawah direktori uploads milik sesi: `mount_path` berupa `/data.csv` menempatkan file di `/mnt/session/uploads/data.csv` dalam sandbox
+* Jika Anda menghilangkan `mount_path`, file ditempatkan di `/mnt/session/uploads/<file_id>`
 * Direktori induk dibuat secara otomatis
 * Jalur harus absolut (dimulai dengan `/`)

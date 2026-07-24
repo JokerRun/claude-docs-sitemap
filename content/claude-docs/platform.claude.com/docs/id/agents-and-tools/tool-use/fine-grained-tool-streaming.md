@@ -1,33 +1,33 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 52f922393d61f586badb9f8df54b7c55fee2c4f71b56e830c1798a1f537ff91f
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: c7931cfc75833f66c71c76f08ca5fc44bb1db444c2df0f6eb661f182c631c971
 ---
 
-# Streaming alat terperinci
+# Streaming alat berbutir halus
 
-Stream input alat tanpa buffering JSON di sisi server untuk aplikasi yang sensitif terhadap latensi.
+Streaming input alat tanpa buffering JSON sisi server untuk aplikasi yang sensitif terhadap latensi.
 
 ---
 
 <Note>
-  Fitur ini memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/api-and-data-retention). Ketika organisasi Anda memiliki pengaturan ZDR, data yang dikirim melalui fitur ini tidak disimpan setelah respons API dikembalikan.
+  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
-"Fine-grained tool streaming" (streaming alat terperinci) mengirimkan input sebuah alat ke klien Anda saat Claude menghasilkannya, tanpa buffering atau validasi JSON di sisi server. Melewatkan langkah buffering mengurangi waktu hingga fragmen pertama dari parameter besar, seperti dokumen atau blok kode, dan fragmen-fragmen tersebut tiba melalui event [Streaming messages](/docs/id/build-with-claude/streaming) yang sama seperti penggunaan alat standar.
+"Fine-grained tool streaming" (streaming alat berbutir halus) mengirimkan input alat ke klien Anda saat Claude menghasilkannya, tanpa buffering sisi server atau validasi JSON. Melewati langkah buffering mengurangi waktu hingga fragmen pertama dari parameter besar, seperti dokumen atau blok kode, dan fragmen-fragmen tersebut tiba melalui event [Streaming messages](/docs/id/build-with-claude/streaming) yang sama seperti penggunaan alat standar.
 
 <Warning>
-  Karena API tidak melakukan buffering atau memvalidasi input alat sebelum melakukan streaming, Anda mungkin menerima JSON yang parsial atau tidak valid. Respons yang berakhir dengan [stop reason](/docs/id/build-with-claude/handling-stop-reasons) `max_tokens` juga dapat memotong parameter di tengah jalan. Akumulasikan fragmen-fragmen tersebut, lindungi proses parsing, dan lihat [Menangani JSON tidak valid dalam respons alat](#handling-invalid-json-in-tool-responses) untuk cara mengembalikan input yang tidak dapat di-parse ke Claude.
+  Karena API tidak melakukan buffering atau memvalidasi input alat sebelum melakukan streaming, Anda mungkin menerima JSON yang parsial atau tidak valid. Respons yang berakhir dengan [stop reason](/docs/id/build-with-claude/handling-stop-reasons) `max_tokens` juga dapat memotong parameter di tengah jalan. Akumulasikan fragmen-fragmennya, lindungi proses parsing, dan lihat [Menangani JSON tidak valid dalam respons alat](#handling-invalid-json-in-tool-responses) untuk cara mengembalikan input yang tidak dapat di-parse ke Claude.
 </Warning>
 
-## Cara menggunakan streaming alat terperinci
+## Cara menggunakan streaming alat berbutir halus
 
-Semua model mendukung streaming alat terperinci pada Claude API, [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock), [Google Cloud](/docs/id/build-with-claude/claude-on-vertex-ai), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Untuk menggunakannya, atur `eager_input_streaming` ke `true` pada setiap alat yang didefinisikan pengguna di mana Anda ingin mengaktifkan streaming terperinci, dan aktifkan streaming pada permintaan Anda.
+Semua model mendukung streaming alat berbutir halus di Claude API, [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws), [Google Cloud](/docs/id/build-with-claude/claude-on-vertex-ai), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Untuk menggunakannya, atur `eager_input_streaming` ke `true` pada alat yang didefinisikan pengguna di mana Anda ingin streaming berbutir halus diaktifkan, dan aktifkan streaming pada permintaan Anda.
 
-Field `eager_input_streaming` bersifat opsional. Mengaturnya ke `true` mengaktifkan streaming terperinci untuk alat tersebut, dan menghilangkannya memberi Anda streaming dengan buffering standar, di mana API melakukan buffering dan memvalidasi setiap nilai parameter sebelum melakukan streaming kembali. Pengecualiannya adalah permintaan yang masih mengirim header beta lama `fine-grained-tool-streaming-2025-05-14`, yang mengaktifkan streaming terperinci untuk alat yang tidak mengatur field tersebut. Field per-alat ini menggantikan header tersebut, dan nilai `false` yang eksplisit mempertahankan streaming dengan buffering untuk sebuah alat bahkan ketika permintaan masih mengirim header tersebut. Lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference) untuk definisi field.
+Field `eager_input_streaming` bersifat opsional. Mengaturnya ke `true` mengaktifkan streaming berbutir halus untuk alat tersebut, dan menghilangkannya memberi Anda streaming buffered standar, di mana API melakukan buffering dan memvalidasi setiap nilai parameter sebelum melakukan streaming kembali. Pengecualiannya adalah permintaan yang masih mengirimkan header beta lama `fine-grained-tool-streaming-2025-05-14`, yang mengaktifkan streaming berbutir halus untuk alat yang tidak mengatur field tersebut. Field per-alat menggantikan header tersebut, dan nilai `false` yang eksplisit mempertahankan streaming buffered untuk sebuah alat bahkan ketika permintaan masih mengirimkannya. Lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference) untuk definisi field.
 
-Contoh berikut mengaktifkan streaming terperinci untuk alat `make_file` dan meminta Claude untuk membuat puisi panjang, sehingga input alat cukup besar untuk diamati saat di-stream:
+Contoh berikut mengaktifkan streaming berbutir halus untuk alat `make_file` dan meminta Claude membuat puisi panjang, sehingga input alat cukup besar untuk diamati saat streaming masuk:
 
 <CodeGroup>
   ```bash cURL
@@ -475,22 +475,22 @@ Contoh berikut mengaktifkan streaming terperinci untuk alat `make_file` dan memi
   ```
 </CodeGroup>
 
-Setiap tab mengaktifkan streaming terperinci untuk alat `make_file`. Tab SDK mencetak setiap fragmen input pada saat fragmen tersebut tiba, kemudian mencetak input lengkap yang terakumulasi setelah stream berakhir. Tab cURL menampilkan stream event mentah, dan tab CLI menggunakan `jq` untuk mencetak hanya fragmen-fragmennya. Karena fragmen yang dicetak bergabung menjadi input alat lengkap, puisi tersebut mengisi terminal Anda saat Claude menulisnya:
+Setiap tab mengaktifkan streaming berbutir halus untuk alat `make_file`. Tab SDK mencetak setiap fragmen input saat tiba, lalu mencetak input terakumulasi lengkap setelah stream berakhir. Tab cURL menampilkan stream event mentah, dan tab CLI menggunakan `jq` untuk mencetak hanya fragmen-fragmennya. Karena fragmen yang dicetak bergabung menjadi input alat lengkap, puisi tersebut memenuhi terminal Anda saat Claude menulisnya:
 
 ```text wrap
 {"filename": "poem.txt", "lines_of_text": ["The Wanderer's Journey", "", "I.", "", "Beneath the vast and star-strewn sky,", "Where silver moonbeams softly lie,", ...
 Complete tool input: {"filename": "poem.txt", "lines_of_text": ["The Wanderer's Journey", ...]}
 ```
 
-Tanpa `eager_input_streaming`, API melakukan buffering dan memvalidasi setiap nilai parameter sebelum melakukan streaming kembali, sehingga tidak ada yang dicetak untuk parameter besar sampai Claude selesai menghasilkannya. Dengan field tersebut, fragmen mulai tiba segera setelah Claude memulai parameter, dan fragmen-fragmen tersebut biasanya lebih panjang, dengan lebih sedikit pemotongan di tengah kata.
+Tanpa `eager_input_streaming`, API melakukan buffering dan memvalidasi setiap nilai parameter sebelum melakukan streaming kembali, sehingga tidak ada yang dicetak untuk parameter besar sampai Claude selesai menghasilkannya. Dengannya, fragmen mulai tiba segera setelah Claude memulai parameter tersebut, dan biasanya lebih panjang, dengan lebih sedikit pemotongan di tengah kata.
 
 ## Mengakumulasi delta input alat
 
-Kontrak akumulasi sama dengan streaming penggunaan alat standar, sehingga bagian ini berlaku dengan dan tanpa `eager_input_streaming`. Lihat [Input JSON delta](/docs/id/build-with-claude/streaming#input-json-delta) di Streaming messages untuk format event. Streaming alat terperinci mengubah apa yang dapat Anda asumsikan tentang hasilnya: server melakukan streaming fragmen tanpa memvalidasinya, sehingga string yang terakumulasi mungkin bukan JSON yang valid.
+Kontrak akumulasi sama dengan streaming penggunaan alat standar, jadi bagian ini berlaku dengan dan tanpa `eager_input_streaming`. Lihat [Input JSON delta](/docs/id/build-with-claude/streaming#input-json-delta) di Streaming messages untuk format event. Streaming alat berbutir halus mengubah apa yang dapat Anda asumsikan tentang hasilnya: server melakukan streaming fragmen tanpa memvalidasinya, sehingga string yang terakumulasi mungkin bukan JSON yang valid.
 
-Ketika blok konten `tool_use` di-stream, event `content_block_start` awal berisi `input: {}` (objek kosong). Ini adalah placeholder. Input sebenarnya tiba sebagai serangkaian event `input_json_delta`, masing-masing membawa fragmen string `partial_json`. Untuk menyusun input lengkap, gabungkan fragmen-fragmen ini dan parse hasilnya ketika blok ditutup.
+Ketika blok konten `tool_use` di-streaming, event `content_block_start` awal berisi `input: {}` (objek kosong). Ini adalah placeholder. Input sebenarnya tiba sebagai serangkaian event `input_json_delta`, masing-masing membawa fragmen string `partial_json`. Untuk merakit input lengkap, gabungkan fragmen-fragmen ini dan parse hasilnya ketika blok ditutup.
 
-Jika SDK Anda menyediakan helper akumulator (seperti yang dilakukan tab Python, TypeScript, Go, Java, dan Ruby pada contoh sebelumnya), helper tersebut menangani ini untuk Anda. Pola manual ditujukan untuk SDK tanpa helper, atau ketika Anda menginginkan kontrol penuh atas bagaimana input disusun.
+Jika SDK Anda menyediakan helper akumulator (seperti yang dilakukan tab Python, TypeScript, Go, Java, dan Ruby pada contoh sebelumnya), helper tersebut menanganinya untuk Anda. Pola manual ditujukan untuk SDK tanpa helper, atau ketika Anda menginginkan kontrol penuh atas cara input dirakit.
 
 Kontrak akumulasi:
 
@@ -504,12 +504,12 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
 
 <CodeGroup>
   ```bash cURL
-  # Mengakumulasi delta input per blok memerlukan bahasa pemrograman; tab CLI
+  # Mengakumulasi delta input per blok memerlukan bahasa pemrograman; tab CLI pada
   # contoh pertama menampilkan fragmen mentah dengan jq. Lihat tab SDK.
   ```
 
   ```bash CLI
-  # Mengakumulasi delta input per-blok memerlukan bahasa pemrograman; tab CLI
+  # Mengakumulasi delta input per-blok memerlukan bahasa pemrograman; tab CLI pada
   # contoh pertama menampilkan fragmen mentah dengan jq. Lihat tab SDK.
   ```
 
@@ -547,7 +547,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
                       parsed = json.loads(raw_input)
                   except json.JSONDecodeError:
                       # String yang terakumulasi tidak dijamin merupakan JSON yang valid.
-                      # Lihat "Handling invalid JSON in tool responses" di halaman ini.
+                      # Lihat "Menangani JSON yang tidak valid dalam respons alat" di halaman ini.
                       print(f"Invalid tool input: {raw_input}")
                   else:
                       print(f"Tool input: {parsed}")
@@ -590,7 +590,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
         console.log("Tool input:", JSON.parse(rawInput));
       } catch {
         // String yang terakumulasi tidak dijamin merupakan JSON yang valid.
-        // Lihat "Handling invalid JSON in tool responses" di halaman ini.
+        // Lihat "Menangani JSON tidak valid dalam respons alat" di halaman ini.
         console.log("Invalid tool input:", rawInput);
       }
     }
@@ -625,7 +625,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
   };
 
   // Indeks blok -> fragmen JSON yang terakumulasi
-  // Contoh ini mengakumulasi delta secara manual untuk menunjukkan stream mentah;
+  // Contoh ini mengakumulasi delta secara manual untuk menampilkan stream mentah;
   // MessageContentAggregator dari SDK juga dapat mengakumulasi input alat secara otomatis.
   var toolInputs = new Dictionary<long, StringBuilder>();
 
@@ -658,7 +658,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
           catch (JsonException)
           {
               // String yang terakumulasi tidak dijamin merupakan JSON yang valid.
-              // Lihat "Menangani JSON yang tidak valid dalam respons alat" di halaman ini.
+              // Lihat "Handling invalid JSON in tool responses" di halaman ini.
               Console.WriteLine($"Invalid tool input: {accumulated}");
           }
       }
@@ -706,7 +706,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
   			var parsed map[string]any
   			if err := json.Unmarshal([]byte(accumulated), &parsed); err != nil {
   				// String yang terakumulasi tidak dijamin merupakan JSON yang valid.
-  				// Lihat "Handling invalid JSON in tool responses" di halaman ini.
+  				// Lihat "Menangani JSON yang tidak valid dalam respons alat" di halaman ini.
   				fmt.Println("Invalid tool input:", accumulated)
   			} else {
   				fmt.Println("Tool input:", parsed)
@@ -787,8 +787,8 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
 
   $client = new Client();
 
-  // The PHP SDK does not provide a stream accumulator for tool input;
-  // the manual pattern shown here is the supported approach.
+  // SDK PHP tidak menyediakan akumulator stream untuk input alat;
+  // pola manual yang ditunjukkan di sini adalah pendekatan yang didukung.
   $toolInputs = []; // index => accumulated JSON string
 
   $stream = $client->messages->createStream(
@@ -829,8 +829,8 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
               $parsed = json_decode($accumulated, associative: true, flags: JSON_THROW_ON_ERROR);
               echo "Tool input: " . json_encode($parsed) . "\n";
           } catch (JsonException $e) {
-              // The accumulated string is not guaranteed to be valid JSON.
-              // See "Handling invalid JSON in tool responses" on this page.
+              // String yang terakumulasi tidak dijamin merupakan JSON yang valid.
+              // Lihat "Menangani JSON tidak valid dalam respons alat" di halaman ini.
               echo "Invalid tool input: {$accumulated}\n";
           }
       }
@@ -876,7 +876,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
           puts "Tool input: #{parsed}"
         rescue JSON::ParserError
           # String yang terakumulasi tidak dijamin merupakan JSON yang valid.
-          # Lihat "Handling invalid JSON in tool responses" di halaman ini.
+          # Lihat "Menangani JSON yang tidak valid dalam respons alat" di halaman ini.
           puts "Invalid tool input: #{accumulated}"
         end
       end
@@ -886,12 +886,12 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
 </CodeGroup>
 
 <Tip>
-  Bereaksi terhadap fragmen dan menyusunnya adalah dua hal yang terpisah. Contoh pertama bereaksi terhadap setiap fragmen saat tiba dan tetap menyerahkan penyusunan ke SDK pada tab yang menggunakan helper akumulator. Gunakan pola manual ketika Anda tidak menggunakan helper akumulator atau ketika Anda menginginkan kontrol penuh atas penyusunan.
+  Bereaksi terhadap fragmen dan merakitnya adalah dua hal yang terpisah. Contoh pertama bereaksi terhadap setiap fragmen saat tiba dan tetap menyerahkan perakitan ke SDK pada tab yang menggunakan helper akumulator. Gunakan pola manual ketika Anda tidak menggunakan helper akumulator atau ketika Anda menginginkan kontrol penuh atas perakitan.
 </Tip>
 
 ## Menangani JSON tidak valid dalam respons alat
 
-Dengan streaming alat terperinci, input yang terakumulasi untuk pemanggilan alat mungkin berupa JSON yang tidak valid atau tidak lengkap. Ketika hal itu terjadi, Anda tidak dapat menjalankan alat tersebut, jadi laporkan kegagalan tersebut kembali ke Claude. `content` dari hasil alat tidak harus berupa JSON, tetapi membungkus string mentah dalam objek JSON di bawah satu key membuat jelas bagi Claude bahwa Anda menerima JSON yang tidak valid, dan mempertahankan input asli untuk debugging:
+Dengan streaming alat berbutir halus, input terakumulasi untuk pemanggilan alat mungkin berupa JSON yang tidak valid atau tidak lengkap. Ketika itu terjadi, Anda tidak dapat menjalankan alat tersebut, jadi laporkan kegagalan tersebut kembali ke Claude. `content` dari hasil alat tidak harus berupa JSON, tetapi membungkus string mentah dalam objek JSON di bawah satu kunci membuatnya jelas bagi Claude bahwa Anda menerima JSON yang tidak valid, dan mempertahankan input asli untuk debugging:
 
 ```json
 {
@@ -911,18 +911,18 @@ Kembalikan wrapper tersebut, yang diserialisasi menjadi string, sebagai `content
 ```
 
 <Note>
-  Bangun wrapper dengan library JSON Anda daripada dengan menggabungkan string, sehingga tanda kutip dan karakter khusus lainnya dalam input yang tidak valid di-escape dengan benar.
+  Bangun wrapper dengan pustaka JSON Anda alih-alih dengan menggabungkan string, sehingga tanda kutip dan karakter khusus lainnya dalam input yang tidak valid di-escape dengan benar.
 </Note>
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
   <Card title="Jendela konteks" icon="stack" href="/docs/id/build-with-claude/context-windows">
-    Pahami cara kerja jendela konteks, bagaimana pemikiran diperpanjang dan penggunaan alat dihitung terhadapnya, dan cara mengelola konteks seiring berkembangnya percakapan.
+    Pahami cara kerja jendela konteks, bagaimana pemikiran diperpanjang dan penggunaan alat dihitung di dalamnya, dan cara mengelola konteks saat percakapan berkembang.
   </Card>
 
   <Card title="Streaming messages" icon="lightning" href="/docs/id/build-with-claude/streaming">
-    Stream respons Messages API secara inkremental dengan server-sent events, termasuk delta teks, penggunaan alat, dan pemikiran diperpanjang.
+    Streaming respons Messages API secara bertahap dengan server-sent events, termasuk teks, penggunaan alat, dan delta pemikiran diperpanjang.
   </Card>
 
   <Card title="Menangani pemanggilan alat" icon="arrows-left-right" href="/docs/id/agents-and-tools/tool-use/handle-tool-calls">

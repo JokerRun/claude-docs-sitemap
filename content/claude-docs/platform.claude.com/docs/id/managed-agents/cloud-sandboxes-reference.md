@@ -1,27 +1,27 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 805c48bb4434e9cf598a7bb03a03635efe2e9c84e797897577c66d96c5df1037
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 3798ccb83f5f19464d9b68d7816f19037602875a2a0463ebe6da511f0d1873d2
 ---
 
-# Referensi sandbox cloud
+# Referensi cloud sandbox
 
-Paket, database, dan utilitas yang sudah terinstal dan tersedia di sandbox cloud.
+Paket, database, dan utilitas yang sudah terpasang sebelumnya yang tersedia di cloud sandbox.
 
 ---
 
-Sandbox cloud berjalan sebagai kontainer Linux yang terisolasi pada infrastruktur yang dikelola Anthropic. Sandbox ini sudah dilengkapi dengan serangkaian lengkap bahasa pemrograman, database, dan utilitas yang terinstal sebelumnya. Agen dapat langsung menggunakannya tanpa langkah instalasi apa pun.
+Cloud sandbox berjalan sebagai kontainer Linux terisolasi pada infrastruktur yang dikelola Anthropic. Sandbox ini sudah dilengkapi dengan serangkaian bahasa pemrograman, database, dan utilitas yang komprehensif. Agen dapat langsung menggunakannya tanpa langkah instalasi apa pun.
 
-Spesifikasi ini berlaku untuk lingkungan `cloud`. Sandbox yang di-host sendiri (self-hosted) berjalan pada infrastruktur Anda dengan apa pun yang disediakan oleh worker Anda.
+Spesifikasi ini berlaku untuk lingkungan `cloud`. Sandbox yang di-hosting sendiri berjalan pada infrastruktur Anda dengan apa pun yang disediakan oleh worker Anda.
 
 <Note>
-  Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Bahasa pemrograman
 
-| Bahasa  | Versi   | Package manager |
+| Bahasa  | Versi   | Manajer paket   |
 | ------- | ------- | --------------- |
 | Python  | 3.12+   | pip, uv         |
 | Node.js | 20+     | npm, yarn, pnpm |
@@ -36,12 +36,12 @@ Spesifikasi ini berlaku untuk lingkungan `cloud`. Sandbox yang di-host sendiri (
 
 | Database         | Deskripsi                                          |
 | ---------------- | -------------------------------------------------- |
-| SQLite           | Sudah terinstal, tersedia langsung                 |
+| SQLite           | Sudah terpasang sebelumnya, langsung tersedia      |
 | Klien PostgreSQL | Klien `psql` untuk terhubung ke database eksternal |
-| Klien Redis      | `redis-cli` untuk terhubung ke instance eksternal  |
+| Klien Redis      | `redis-cli` untuk terhubung ke instans eksternal   |
 
 <Note>
-  Server database (seperti PostgreSQL dan Redis) tidak berjalan di sandbox secara default. Sandbox menyertakan alat klien untuk terhubung ke instance database eksternal. SQLite sepenuhnya tersedia untuk penggunaan lokal.
+  Server database (seperti PostgreSQL dan Redis) tidak berjalan di sandbox secara default. Sandbox menyertakan alat klien untuk terhubung ke instans database eksternal. SQLite sepenuhnya tersedia untuk penggunaan lokal.
 </Note>
 
 ## Utilitas
@@ -52,8 +52,8 @@ Spesifikasi ini berlaku untuk lingkungan `cloud`. Sandbox yang di-host sendiri (
 * `curl`, `wget` - Klien HTTP
 * `jq` - Pemrosesan JSON
 * `tar`, `zip`, `unzip` - Alat arsip
-* `ssh`, `scp` - Akses jarak jauh (memerlukan jaringan yang diaktifkan)
-* `tmux`, `screen` - Terminal multiplexer
+* `ssh`, `scp` - Akses jarak jauh (memerlukan mode jaringan yang mengizinkan host tujuan)
+* `tmux`, `screen` - Multiplexer terminal
 
 ### Alat pengembangan
 
@@ -71,10 +71,10 @@ Spesifikasi ini berlaku untuk lingkungan `cloud`. Sandbox yang di-host sendiri (
 
 ## Spesifikasi sandbox
 
-| Properti       | Nilai                                                             |
-| -------------- | ----------------------------------------------------------------- |
-| Sistem operasi | Ubuntu 22.04 LTS                                                  |
-| Arsitektur     | x86\_64 (amd64)                                                   |
-| Memori         | Hingga 8 GB                                                       |
-| Ruang disk     | Hingga 10 GB                                                      |
-| Jaringan       | Dinonaktifkan secara default (aktifkan di konfigurasi lingkungan) |
+| Properti       | Nilai                                                                                                                                                                                                                        |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sistem operasi | Ubuntu 22.04 LTS                                                                                                                                                                                                             |
+| Arsitektur     | x86\_64 (amd64)                                                                                                                                                                                                              |
+| Memori         | Hingga 8 GB                                                                                                                                                                                                                  |
+| Ruang disk     | Hingga 10 GB                                                                                                                                                                                                                 |
+| Jaringan       | Lingkungan yang dibuat melalui API secara default menggunakan [jaringan `unrestricted`](/docs/id/managed-agents/environments#networking); sandbox yang disediakan melalui Claude Studio secara default menggunakan `limited` |

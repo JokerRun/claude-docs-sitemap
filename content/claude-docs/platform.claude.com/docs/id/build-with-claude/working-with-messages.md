@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: c269c4463b7b8c24fe0c2799b2d3c89f8f8ab66bde540d05b8276e76578de442
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 4d25791620fabbcfd333e68913de8f83c779c76da4157d2195fd93730439eca1
 ---
 
 # Menggunakan Messages API
@@ -19,33 +19,32 @@ Anthropic menawarkan dua cara untuk membangun dengan Claude, masing-masing cocok
 | **Paling cocok untuk**    | Loop agen kustom dan kontrol yang sangat terperinci                          | Tugas yang berjalan lama dan pekerjaan asinkron                                                |
 | **Pelajari lebih lanjut** | [Dokumentasi Messages API](/docs/id/build-with-claude/working-with-messages) | [Dokumentasi Claude Managed Agents](/docs/id/managed-agents/overview)                          |
 
-Panduan ini membahas pola umum untuk bekerja dengan Messages API, termasuk permintaan dasar, percakapan multi-giliran, teknik prefill, dan kemampuan vision. Untuk spesifikasi API lengkap, lihat [referensi Messages API](/docs/id/api/messages/create).
+Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permintaan dasar, percakapan multi-giliran, teknik prefill, dan kemampuan vision. Untuk spesifikasi API lengkap, lihat [referensi Messages API](/docs/id/api/messages/create).
 
 <Note>
-  Fitur ini memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/api-and-data-retention). Ketika organisasi Anda memiliki pengaturan ZDR, data yang dikirim melalui fitur ini tidak disimpan setelah respons API dikembalikan.
+  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 ## Permintaan dan respons dasar
 
 <Note>
-  Parameter sampling `temperature`, `top_p`, dan `top_k` tidak didukung pada Claude Opus 4.7 dan model yang lebih baru, termasuk Claude Opus 4.8. Mengaturnya ke nilai non-default akan mengembalikan error 400. Hilangkan parameter tersebut dari payload permintaan dan gunakan prompting untuk mengarahkan perilaku model sebagai gantinya. Lihat [panduan migrasi](/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-47).
+  Parameter sampling `temperature`, `top_p`, dan `top_k` tidak didukung pada Claude Opus 4.7 dan model yang lebih baru, termasuk Claude Opus 4.8. Mengaturnya ke nilai non-default akan mengembalikan error 400. Hilangkan parameter tersebut dari payload permintaan dan gunakan prompting untuk memandu perilaku model sebagai gantinya. Lihat [panduan migrasi](/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-47).
 </Note>
 
 <CodeGroup>
   ```bash cURL
   #!/bin/sh
   curl https://api.anthropic.com/v1/messages \
-       --header "x-api-key: $ANTHROPIC_API_KEY" \
-       --header "anthropic-version: 2023-06-01" \
-       --header "content-type: application/json" \
-       --data \
-  '{
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "content-type: application/json" \
+    -d '{
       "model": "claude-opus-4-8",
       "max_tokens": 1024,
       "messages": [
-          {"role": "user", "content": "Hello, Claude"}
+        {"role": "user", "content": "Hello, Claude"}
       ]
-  }'
+    }'
   ```
 
   ```bash CLI
@@ -76,9 +75,6 @@ Panduan ini membahas pola umum untuk bekerja dengan Messages API, termasuk permi
   ```
 
   ```csharp C#
-  using Anthropic;
-  using Anthropic.Models.Messages;
-
   AnthropicClient client = new();
 
   var parameters = new MessageCreateParams
@@ -166,30 +162,29 @@ Panduan ini membahas pola umum untuk bekerja dengan Messages API, termasuk permi
 }
 ```
 
-Pada Claude Opus 4.7 dan model yang lebih baru, respons penolakan (`stop_reason: "refusal"`) juga menyertakan objek `stop_details` yang mengidentifikasi kategori kebijakan yang memicu penolakan tersebut. Lihat [Menangani stop reason](/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk referensi field dan contoh kode penanganannya.
+Pada Claude Opus 4.7 dan model yang lebih baru, respons penolakan (`stop_reason: "refusal"`) juga menyertakan objek `stop_details` yang mengidentifikasi kategori kebijakan yang memicu penolakan tersebut. Lihat [Menangani stop reasons](/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk referensi field dan contoh kode penanganannya.
 
 ## Beberapa giliran percakapan
 
-Messages API bersifat stateless, yang berarti Anda selalu mengirimkan riwayat percakapan lengkap ke API. Anda dapat menggunakan pola ini untuk membangun percakapan dari waktu ke waktu. Giliran percakapan sebelumnya tidak harus benar-benar berasal dari Claude. Anda dapat menggunakan pesan `assistant` sintetis.
+Messages API bersifat stateless, yang berarti Anda selalu mengirimkan seluruh riwayat percakapan ke API. Anda dapat menggunakan pola ini untuk membangun percakapan dari waktu ke waktu. Giliran percakapan sebelumnya tidak harus benar-benar berasal dari Claude. Anda dapat menggunakan pesan `assistant` sintetis.
 
 <CodeGroup>
   ```bash cURL
   #!/bin/sh
   curl https://api.anthropic.com/v1/messages \
-       --header "x-api-key: $ANTHROPIC_API_KEY" \
-       --header "anthropic-version: 2023-06-01" \
-       --header "content-type: application/json" \
-       --data \
-  '{
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "content-type: application/json" \
+    -d '{
       "model": "claude-opus-4-8",
       "max_tokens": 1024,
       "messages": [
-          {"role": "user", "content": "Hello, Claude"},
-          {"role": "assistant", "content": "Hello!"},
-          {"role": "user", "content": "Can you describe LLMs to me?"}
+        {"role": "user", "content": "Hello, Claude"},
+        {"role": "assistant", "content": "Hello!"},
+        {"role": "user", "content": "Can you describe LLMs to me?"}
 
       ]
-  }'
+    }'
   ```
 
   ```bash CLI
@@ -230,9 +225,6 @@ Messages API bersifat stateless, yang berarti Anda selalu mengirimkan riwayat pe
   ```
 
   ```csharp C#
-  using Anthropic;
-  using Anthropic.Models.Messages;
-
   AnthropicClient client = new();
 
   var parameters = new MessageCreateParams
@@ -339,36 +331,35 @@ Messages API bersifat stateless, yang berarti Anda selalu mengirimkan riwayat pe
 
 ### Peran system dalam pesan
 
-Pada Claude Opus 4.8, Anda dapat menyertakan pesan dengan `"role": "system"` setelah giliran user (sesuai dengan [aturan penempatan](/docs/id/build-with-claude/mid-conversation-system-messages#limitations)) untuk menambahkan instruksi sistem baru di tengah percakapan. Pesan `system` tidak boleh menjadi entri pertama dalam `messages`; gunakan field `system` tingkat atas untuk instruksi yang berlaku sejak awal.
+Pada Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), dan Claude Opus 4.8, Anda dapat menyertakan pesan dengan `"role": "system"` setelah giliran user (tunduk pada [aturan penempatan](/docs/id/build-with-claude/mid-conversation-system-messages#limitations)) untuk menambahkan instruksi sistem baru di tengah percakapan. Pesan `system` tidak dapat menjadi entri pertama dalam `messages`; gunakan field `system` tingkat atas untuk instruksi yang berlaku sejak awal.
 
-Pesan sistem di tengah percakapan memiliki otoritas yang sama dengan field `system` tingkat atas, tetapi karena ditambahkan di akhir riwayat pesan, pesan ini tidak membatalkan prefix yang telah di-cache sebelumnya. Gunakan field `system` tingkat atas untuk instruksi yang harus berlaku sejak giliran pertama, dan pesan sistem di tengah percakapan untuk instruksi yang baru menjadi relevan di kemudian waktu.
+Pesan sistem di tengah percakapan memiliki otoritas yang sama dengan field `system` tingkat atas, tetapi karena ditambahkan di akhir riwayat pesan, pesan tersebut tidak membatalkan prefix yang telah di-cache sebelumnya. Gunakan field `system` tingkat atas untuk instruksi yang harus berlaku sejak giliran pertama, dan pesan sistem di tengah percakapan untuk instruksi yang baru menjadi relevan kemudian.
 
 Lihat [Pesan sistem di tengah percakapan](/docs/id/build-with-claude/mid-conversation-system-messages) untuk panduan lengkap, termasuk cara menggabungkannya dengan [caching prompt](/docs/id/build-with-claude/prompt-caching).
 
-## Menaruh kata-kata di mulut Claude
+## Mengisi awal respons Claude
 
-Anda dapat mengisi sebagian respons Claude terlebih dahulu di posisi terakhir daftar pesan input. Ini dapat digunakan untuk membentuk respons Claude. Contoh di bawah ini menggunakan `"max_tokens": 1` untuk mendapatkan satu jawaban pilihan ganda dari Claude.
+Anda dapat mengisi sebagian awal respons Claude pada posisi terakhir dari daftar pesan input. Gunakan teknik ini untuk membentuk respons Claude. Contoh berikut menggunakan `"max_tokens": 1` untuk mendapatkan satu jawaban pilihan ganda dari Claude.
 
 <Warning>
-  Prefilling tidak didukung pada Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, dan Claude Sonnet 4.6. Permintaan yang menggunakan prefill dengan model-model ini akan mengembalikan error 400. Gunakan [structured outputs](/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, atau instruksi prompt sistem, sebagai gantinya. Lihat [panduan migrasi](/docs/id/about-claude/models/migration-guide) untuk pola migrasi.
+  Prefilling tidak didukung pada Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, dan Claude Sonnet 4.6. Permintaan yang menggunakan prefill dengan model-model ini akan mengembalikan error 400. Sebagai gantinya, gunakan [structured outputs](/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, atau instruksi prompt sistem. Lihat [panduan migrasi](/docs/id/about-claude/models/migration-guide) untuk pola migrasi.
 </Warning>
 
 <CodeGroup>
   ```bash cURL
   #!/bin/sh
   curl https://api.anthropic.com/v1/messages \
-       --header "x-api-key: $ANTHROPIC_API_KEY" \
-       --header "anthropic-version: 2023-06-01" \
-       --header "content-type: application/json" \
-       --data \
-  '{
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "content-type: application/json" \
+    -d '{
       "model": "claude-sonnet-4-5",
       "max_tokens": 1,
       "messages": [
-          {"role": "user", "content": "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae"},
-          {"role": "assistant", "content": "The answer is ("}
+        {"role": "user", "content": "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae"},
+        {"role": "assistant", "content": "The answer is ("}
       ]
-  }'
+    }'
   ```
 
   ```bash CLI
@@ -416,9 +407,6 @@ Anda dapat mengisi sebagian respons Claude terlebih dahulu di posisi terakhir da
   ```
 
   ```csharp C#
-  using Anthropic;
-  using Anthropic.Models.Messages;
-
   AnthropicClient client = new();
 
   var parameters = new MessageCreateParams
@@ -521,62 +509,60 @@ Anda dapat mengisi sebagian respons Claude terlebih dahulu di posisi terakhir da
 
 ## Vision
 
-Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan menggunakan tipe sumber `base64`, `url`, atau `file`. Tipe sumber `file` merujuk pada gambar yang diunggah melalui [Files API](/docs/id/build-with-claude/files). Tipe media yang didukung adalah `image/jpeg`, `image/png`, `image/gif`, dan `image/webp`. Lihat [panduan vision](/docs/id/build-with-claude/vision) untuk detail lebih lanjut.
+Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan gambar menggunakan tipe sumber `base64`, `url`, atau `file`. Tipe sumber `file` merujuk pada gambar yang diunggah melalui [Files API](/docs/id/build-with-claude/files). Tipe media yang didukung adalah `image/jpeg`, `image/png`, `image/gif`, dan `image/webp`. Lihat [panduan vision](/docs/id/build-with-claude/vision) untuk detail lebih lanjut.
 
 <CodeGroup>
   ```bash cURL
   #!/bin/sh
 
-  # Opsi 1: Gambar yang di-encode Base64
+  # Opsi 1: Gambar yang dienkode Base64
   IMAGE_URL="https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
   IMAGE_MEDIA_TYPE="image/jpeg"
   IMAGE_BASE64=$(curl "$IMAGE_URL" | base64 | tr -d '\n')
 
   curl https://api.anthropic.com/v1/messages \
-       --header "x-api-key: $ANTHROPIC_API_KEY" \
-       --header "anthropic-version: 2023-06-01" \
-       --header "content-type: application/json" \
-       --data \
-  '{
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "content-type: application/json" \
+    -d '{
       "model": "claude-opus-4-8",
       "max_tokens": 1024,
       "messages": [
-          {"role": "user", "content": [
-              {"type": "image", "source": {
-                  "type": "base64",
-                  "media_type": "'$IMAGE_MEDIA_TYPE'",
-                  "data": "'$IMAGE_BASE64'"
-              }},
-              {"type": "text", "text": "What is in the above image?"}
-          ]}
+        {"role": "user", "content": [
+          {"type": "image", "source": {
+            "type": "base64",
+            "media_type": "'$IMAGE_MEDIA_TYPE'",
+            "data": "'$IMAGE_BASE64'"
+          }},
+          {"type": "text", "text": "What is in the above image?"}
+        ]}
       ]
-  }'
+    }'
 
-  # Opsi 2: Gambar yang direferensikan melalui URL
+  # Opsi 2: Gambar yang dirujuk melalui URL
   curl https://api.anthropic.com/v1/messages \
-       --header "x-api-key: $ANTHROPIC_API_KEY" \
-       --header "anthropic-version: 2023-06-01" \
-       --header "content-type: application/json" \
-       --data \
-  '{
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "content-type: application/json" \
+    -d '{
       "model": "claude-opus-4-8",
       "max_tokens": 1024,
       "messages": [
-          {"role": "user", "content": [
-              {"type": "image", "source": {
-                  "type": "url",
-                  "url": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
-              }},
-              {"type": "text", "text": "What is in the above image?"}
-          ]}
+        {"role": "user", "content": [
+          {"type": "image", "source": {
+            "type": "url",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
+          }},
+          {"type": "text", "text": "What is in the above image?"}
+        ]}
       ]
-  }'
+    }'
   ```
 
   ```bash CLI
   IMAGE_URL="https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
 
-  # Opsi 1: Gambar yang di-encode Base64 (CLI otomatis meng-encode referensi @file biner)
+  # Opsi 1: Gambar yang dienkode Base64 (CLI otomatis mengenkode referensi @file biner)
   curl -s "$IMAGE_URL" -o ./ant.jpg
 
   ant messages create <<'YAML'
@@ -614,7 +600,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
   import base64
   import httpx
 
-  # Opsi 1: Gambar yang di-encode Base64
+  # Opsi 1: Gambar yang dienkode Base64
   image_url = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
   image_media_type = "image/jpeg"
   image_data = base64.standard_b64encode(httpx.get(image_url).content).decode("utf-8")
@@ -668,11 +654,11 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
   const anthropic = new Anthropic();
 
   // Opsi 1: Gambar yang dienkode Base64
-  const image_url =
+  const imageUrl =
     "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
-  const image_media_type = "image/jpeg";
-  const image_array_buffer = await (await fetch(image_url)).arrayBuffer();
-  const image_data = Buffer.from(image_array_buffer).toString("base64");
+  const imageMediaType = "image/jpeg";
+  const imageArrayBuffer = await (await fetch(imageUrl)).arrayBuffer();
+  const imageData = Buffer.from(imageArrayBuffer).toString("base64");
 
   const message = await anthropic.messages.create({
     model: "claude-opus-4-8",
@@ -685,8 +671,8 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
             type: "image",
             source: {
               type: "base64",
-              media_type: image_media_type,
-              data: image_data
+              media_type: imageMediaType,
+              data: imageData
             }
           },
           {
@@ -767,7 +753,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
   var message = await client.Messages.Create(parameters);
   Console.WriteLine(message);
 
-  // Opsi 2: Gambar yang direferensikan melalui URL
+  // Opsi 2: Gambar yang dirujuk melalui URL
   var parametersFromUrl = new MessageCreateParams
   {
       Model = Model.ClaudeOpus4_8,
@@ -796,6 +782,8 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
   ```
 
   ```go Go
+  client := anthropic.NewClient()
+
   // Opsi 1: Gambar yang dienkode Base64
   imageURL := "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
 
@@ -911,7 +899,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
   $client = new Client();
 
   // Opsi 1: Gambar yang dienkode Base64
-  $image_url = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
+  $image_url = 'https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg';
   $image_media_type = "image/jpeg";
   $image_data = base64_encode(file_get_contents($image_url));
 
@@ -940,7 +928,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
   );
   echo $message;
 
-  // Opsi 2: Gambar yang direferensikan melalui URL
+  // Opsi 2: Gambar yang dirujuk melalui URL
   $message_from_url = $client->messages->create(
       maxTokens: 1024,
       messages: [
@@ -972,7 +960,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
 
   client = Anthropic::Client.new
 
-  # Opsi 1: Gambar yang dienkode Base64
+  # Opsi 1: Gambar yang dikodekan Base64
   image_url = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
   image_media_type = "image/jpeg"
   image_data = Base64.strict_encode64(Net::HTTP.get(URI(image_url)))
@@ -1053,12 +1041,12 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Stop reason dan fallback" icon="list" href="/docs/id/build-with-claude/handling-stop-reasons">
-    Tangani setiap nilai `stop_reason` dan tentukan apa yang harus dilakukan ketika respons berakhir.
+  <Card title="Stop reasons dan fallback" icon="list" href="/docs/id/build-with-claude/handling-stop-reasons">
+    Tangani setiap nilai `stop_reason` dan tentukan apa yang harus dilakukan ketika sebuah respons berakhir.
   </Card>
 
   <Card title="Penggunaan alat dengan Claude" icon="wrench" href="/docs/id/agents-and-tools/tool-use/overview">
-    Berikan Claude alat untuk memanggil layanan dan API eksternal dari dalam Messages API.
+    Berikan Claude alat untuk memanggil layanan eksternal dan API dari dalam Messages API.
   </Card>
 
   <Card title="Alat computer use" icon="computer" href="/docs/id/agents-and-tools/tool-use/computer-use-tool">
@@ -1070,6 +1058,6 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
   </Card>
 
   <Card title="Task budgets" icon="gauge" href="/docs/id/build-with-claude/task-budgets">
-    Tetapkan anggaran token advisori di seluruh loop agentik penuh dengan `output_config.task_budget`.
+    Tetapkan anggaran token advisory di seluruh loop agentik penuh dengan `output_config.task_budget`.
   </Card>
 </CardGroup>

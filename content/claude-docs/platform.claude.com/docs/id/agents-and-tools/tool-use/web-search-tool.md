@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 1fa23c6870f4799b5513d10b1dffb3571bd21f38909bd8565684262c455f34e3
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 6550f497e317547d8ce44d23a68881f91092865b98b355b4da0b4bca3f5e2840
 ---
 
 # Alat pencarian web
@@ -11,9 +11,13 @@ Berikan Claude akses ke konten web terkini dengan sumber yang dikutip, pemfilter
 
 ---
 
+<Note>
+  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
+</Note>
+
 Alat pencarian web memberi Claude akses langsung ke konten web real-time, memungkinkannya menjawab pertanyaan dengan informasi terkini di luar batas pengetahuannya. Respons menyertakan sitasi untuk sumber yang diambil dari hasil pencarian.
 
-Dengan `web_search_20260209` dan versi yang lebih baru, Claude dapat menulis dan menjalankan kode yang memfilter hasil pencarian sebelum mencapai "context window" (jendela konteks) (**dynamic filtering** atau pemfilteran dinamis), sehingga hanya informasi yang relevan yang dipertahankan. Pemfilteran dinamis tersedia dengan Claude Fable 5, Claude Opus 4.8, Claude Mythos 5, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, dan Claude Sonnet 4.6.
+Dengan `web_search_20260209` dan versi yang lebih baru, Claude dapat menulis dan menjalankan kode yang memfilter hasil pencarian sebelum mencapai jendela konteks (**dynamic filtering** atau pemfilteran dinamis), sehingga hanya informasi yang relevan yang disimpan. Pemfilteran dinamis tersedia dengan Claude Fable 5, Claude Opus 4.8, Claude Mythos 5, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, dan Claude Sonnet 4.6.
 
 Tiga versi alat pencarian web tersedia:
 
@@ -55,11 +59,11 @@ Claude menjawab langsung tanpa mencari ketika permintaan mengandalkan pengetahua
 * Analisis konten yang sudah disediakan dalam percakapan
 * Giliran percakapan dan sapaan
 
-Pemicuan dapat diarahkan melalui prompt sistem Anda: Anda dapat mendorong Claude untuk lebih sering mencari atau lebih memilih menjawab langsung. Untuk batasan yang tegas, gunakan `max_uses` untuk membatasi jumlah pencarian untuk setiap permintaan.
+Pemicuan dapat diarahkan melalui prompt sistem Anda: Anda dapat mendorong Claude untuk lebih sering mencari atau lebih memilih menjawab langsung. Untuk batasan yang ketat, gunakan `max_uses` untuk membatasi jumlah pencarian untuk setiap permintaan.
 
 ### Pemfilteran dinamis
 
-Dengan pencarian web dasar, setiap hasil pencarian dimuat ke dalam jendela konteks Claude, dan sebagian besar konten tersebut bisa jadi tidak relevan dengan permintaan. Dengan `web_search_20260209` atau yang lebih baru, Claude sebagai gantinya menulis dan menjalankan kode yang memfilter hasil terlebih dahulu, sehingga hanya konten yang relevan yang mencapai jendela konteks. Ini mengurangi penggunaan token pada permintaan yang banyak melakukan pencarian.
+Dengan pencarian web dasar, setiap hasil pencarian dimuat ke dalam jendela konteks Claude, dan banyak dari konten tersebut bisa jadi tidak relevan dengan permintaan. Dengan `web_search_20260209` atau yang lebih baru, Claude sebagai gantinya menulis dan menjalankan kode yang memfilter hasil terlebih dahulu, sehingga hanya konten yang relevan yang mencapai jendela konteks. Ini mengurangi penggunaan token pada permintaan yang banyak melakukan pencarian.
 
 Pemfilteran dinamis menjalankan pencarian web dari dalam [eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool): pada `web_search_20260209` dan yang lebih baru, field `allowed_callers` alat ini secara default bernilai `["code_execution_20260120"]`, dan ketika pemfilteran dinamis berjalan, API secara otomatis menyediakan eksekusi kode yang dibutuhkan untuk permintaan tersebut. Anda tidak perlu menambahkan alat eksekusi kode ke `tools` sendiri. Tidak ada biaya tambahan untuk panggilan eksekusi kode yang dilakukan dengan cara ini di luar biaya token standar.
 
@@ -74,23 +78,23 @@ Contoh-contoh berikut menggunakan `web_search_20260318`:
 <CodeGroup>
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
-      --header "x-api-key: $ANTHROPIC_API_KEY" \
-      --header "anthropic-version: 2023-06-01" \
-      --header "content-type: application/json" \
-      --data '{
-          "model": "claude-opus-4-8",
-          "max_tokens": 4096,
-          "messages": [
-              {
-                  "role": "user",
-                  "content": "Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio."
-              }
-          ],
-          "tools": [{
-              "type": "web_search_20260318",
-              "name": "web_search"
-          }]
-      }'
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "content-type: application/json" \
+    -d '{
+      "model": "claude-opus-4-8",
+      "max_tokens": 4096,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio."
+        }
+      ],
+      "tools": [{
+        "type": "web_search_20260318",
+        "name": "web_search"
+      }]
+    }'
   ```
 
   ```bash CLI
@@ -245,24 +249,24 @@ Sediakan alat pencarian web dalam permintaan API Anda:
 <CodeGroup>
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
-      --header "x-api-key: $ANTHROPIC_API_KEY" \
-      --header "anthropic-version: 2023-06-01" \
-      --header "content-type: application/json" \
-      --data '{
-          "model": "claude-opus-4-8",
-          "max_tokens": 1024,
-          "messages": [
-              {
-                  "role": "user",
-                  "content": "What is the weather in NYC?"
-              }
-          ],
-          "tools": [{
-              "type": "web_search_20250305",
-              "name": "web_search",
-              "max_uses": 5
-          }]
-      }'
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "content-type: application/json" \
+    -d '{
+      "model": "claude-opus-4-8",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is the weather in NYC?"
+        }
+      ],
+      "tools": [{
+        "type": "web_search_20250305",
+        "name": "web_search",
+        "max_uses": 5
+      }]
+    }'
   ```
 
   ```bash CLI
@@ -435,19 +439,19 @@ Alat pencarian web mendukung parameter berikut:
 }
 ```
 
-Semua versi alat pencarian web menerima `allowed_callers`, yang mengontrol apakah Claude memanggil pencarian web secara langsung atau dari [eksekusi kode](#dynamic-filtering). Pada `web_search_20260209` dan yang lebih baru, nilai defaultnya adalah `["code_execution_20260120"]` alih-alih `["direct"]`. Lihat [Alat server](/docs/id/agents-and-tools/tool-use/server-tools#zdr-and-allowed-callers) untuk cara mengonfigurasinya. `web_search_20260318` dan yang lebih baru juga menerima [`response_inclusion`](#response-inclusion).
+Semua versi alat pencarian web menerima `allowed_callers`, yang mengontrol apakah Claude memanggil pencarian web secara langsung atau dari eksekusi kode melalui [pemfilteran dinamis](#dynamic-filtering). Pada `web_search_20260209` dan yang lebih baru, nilai defaultnya adalah `["code_execution_20260120"]` alih-alih `["direct"]`. Lihat [Alat server](/docs/id/agents-and-tools/tool-use/server-tools#zdr-and-allowed-callers) untuk cara mengonfigurasinya. `web_search_20260318` dan yang lebih baru juga menerima [`response_inclusion`](#response-inclusion).
 
 ### Penggunaan maksimum
 
-Parameter `max_uses` membatasi jumlah pencarian yang dilakukan. Jika Claude mencoba melakukan lebih banyak pencarian daripada yang diizinkan, `web_search_tool_result` akan berupa error dengan kode error `max_uses_exceeded`.
+Parameter `max_uses` membatasi jumlah pencarian yang dilakukan. Jika Claude mencoba melakukan lebih banyak pencarian daripada yang diizinkan, `web_search_tool_result` berupa error dengan kode error `max_uses_exceeded`.
 
-Kueri faktual sederhana biasanya menggunakan 1–3 pencarian; riset komparatif atau multi-entitas dapat menggunakan 10 atau lebih. Untuk pencarian yang sensitif terhadap latensi, `max_uses: 3` membatasi biaya sambil jarang memotong hasil. Untuk agen riset, atur `max_uses` ke 15–20 atau hilangkan sepenuhnya.
+Kueri faktual sederhana biasanya menggunakan 1–3 pencarian; riset komparatif atau multi-entitas dapat menggunakan 10 atau lebih. Untuk panduan memilih nilai, lihat [Alat server](/docs/id/agents-and-tools/tool-use/server-tools).
 
 ### Pemfilteran domain
 
 Sediakan `allowed_domains` atau `blocked_domains`, bukan keduanya. Jika permintaan menyertakan keduanya, API mengembalikan error 400. Entri berupa domain polos dengan path opsional, misalnya `example.com` atau `example.com/blog`, tanpa skema.
 
-Untuk aturan pemfilteran domain lengkap, lihat [Alat server](/docs/id/agents-and-tools/tool-use/server-tools#domain-filtering).
+Untuk aturan pemfilteran domain lengkap, lihat [Pemfilteran domain](/docs/id/agents-and-tools/tool-use/server-tools#domain-filtering) di panduan Alat server.
 
 ### Lokalisasi
 
@@ -481,7 +485,7 @@ Parameter `response_inclusion` mengontrol bagaimana blok hasil pencarian muncul 
 
 ## Respons
 
-Berikut adalah contoh struktur respons:
+Berikut contoh struktur respons:
 
 ```json Output
 {
@@ -546,7 +550,7 @@ Berikut adalah contoh struktur respons:
 }
 ```
 
-Contoh ini menunjukkan pencarian langsung. Ketika pencarian berjalan melalui [pemfilteran dinamis](#dynamic-filtering), respons juga berisi blok hasil [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool), dan setiap pasangan `server_tool_use` dan `web_search_tool_result` bersarang membawa field `caller` yang mengidentifikasi panggilan eksekusi kode yang membuatnya.
+Contoh ini menunjukkan pencarian langsung. Ketika pencarian berjalan melalui [pemfilteran dinamis](#dynamic-filtering), respons juga berisi blok hasil [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool), dan setiap pasangan `server_tool_use` dan `web_search_tool_result` yang bersarang membawa field `caller` yang mengidentifikasi panggilan eksekusi kode yang membuatnya.
 
 ### Hasil pencarian
 
@@ -565,13 +569,13 @@ Sitasi selalu diaktifkan untuk pencarian web, dan setiap `web_search_result_loca
 
 * `url`: URL sumber yang dikutip
 * `title`: Judul sumber yang dikutip
-* `encrypted_index`: Referensi yang harus dikirimkan kembali untuk percakapan multi-giliran.
+* `encrypted_index`: Referensi yang harus dikirimkan kembali untuk percakapan multi-giliran
 * `cited_text`: Hingga 150 karakter dari konten yang dikutip
 
 Field sitasi pencarian web `cited_text`, `title`, dan `url` tidak dihitung dalam penggunaan token input atau output.
 
 <Note>
-  Saat menampilkan output API langsung kepada pengguna akhir, sitasi harus disertakan ke sumber aslinya. Jika Anda melakukan modifikasi pada output API, termasuk dengan memproses ulang dan/atau menggabungkannya dengan materi Anda sendiri sebelum menampilkannya kepada pengguna akhir, tampilkan sitasi sebagaimana mestinya berdasarkan konsultasi dengan tim hukum Anda.
+  Saat menampilkan output API langsung kepada pengguna akhir, sitasi harus disertakan ke sumber aslinya. Jika Anda melakukan modifikasi pada output API, termasuk dengan memproses ulang atau menggabungkannya dengan materi Anda sendiri sebelum menampilkannya kepada pengguna akhir, tampilkan sitasi sebagaimana mestinya berdasarkan konsultasi dengan tim hukum Anda.
 </Note>
 
 ### Error
@@ -589,9 +593,9 @@ Ketika alat pencarian web mengalami error (seperti mencapai batas laju), Claude 
 }
 ```
 
-Pada error, `content` adalah satu objek error, bukan daftar blok hasil. Pencarian yang berhasil tetapi tidak menemukan hasil mengembalikan daftar `content` kosong, bukan error.
+Pada error, `content` berupa satu objek error, bukan daftar blok hasil. Pencarian yang berhasil tetapi tidak menemukan hasil mengembalikan daftar `content` kosong, bukan error.
 
-Berikut adalah kode error yang mungkin terjadi:
+Berikut kode error yang mungkin terjadi:
 
 * `too_many_requests`: Batas laju terlampaui
 * `invalid_tool_input`: Parameter kueri pencarian tidak valid
@@ -606,15 +610,15 @@ API dapat menjeda giliran pencarian yang berjalan lama dan mengembalikan `stop_r
 
 Jika Claude memanggil pencarian web dan salah satu alat klien Anda dalam kelompok panggilan alat paralel yang sama, API mengembalikan `stop_reason: "tool_use"` sebagai gantinya dan belum menjalankan pencarian. Untuk melanjutkan, kembalikan hasil alat klien, dan API menjalankan pencarian pada permintaan berikutnya. Lihat [Menggabungkan alat server dan alat klien dalam satu giliran](/docs/id/agents-and-tools/tool-use/server-tools#mixing-server-tools-and-client-tools-in-one-turn).
 
-Untuk loop sisi server dan penanganan `pause_turn`, lihat [Alat server](/docs/id/agents-and-tools/tool-use/server-tools#the-server-side-loop-and-pause-turn).
+Untuk loop sisi server dan penanganan `pause_turn`, lihat [Loop sisi server dan pause\_turn](/docs/id/agents-and-tools/tool-use/server-tools#the-server-side-loop-and-pause-turn) di panduan Alat server.
 
 ## Caching prompt
 
-Untuk caching definisi alat antar giliran, lihat [Penggunaan alat dengan caching prompt](/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching).
+Untuk melakukan caching definisi alat antar giliran, lihat [Penggunaan alat dengan caching prompt](/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching).
 
 ## Streaming
 
-Dengan streaming diaktifkan, Anda akan menerima event pencarian sebagai bagian dari stream. Akan ada jeda saat pencarian dieksekusi:
+Dengan streaming diaktifkan, Anda akan menerima event pencarian sebagai bagian dari stream. Akan ada jeda saat pencarian berjalan:
 
 ```sse Output
 event: message_start

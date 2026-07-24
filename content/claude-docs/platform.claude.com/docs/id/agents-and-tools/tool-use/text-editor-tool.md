@@ -1,19 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 7a1aab9be7c4664f0395906c502cd60bc6aa266fee5570fff4dbc9b6fe32671a
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: fdc0606ab4b275ec2852e1306f75a076dd9c3cb5225b9ab6aa9dd0fc35368d5b
 ---
 
 # Alat text editor
 
+Berikan Claude alat text editor yang didefinisikan Anthropic untuk melihat, membuat, dan mengedit file, serta menangani perintah view, str_replace, create, dan insert.
+
 ---
 
 <Note>
-  Fitur ini memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/api-and-data-retention). Ketika organisasi Anda memiliki pengaturan ZDR, data yang dikirim melalui fitur ini tidak disimpan setelah respons API dikembalikan.
+  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
-Claude dapat menggunakan alat text editor berskema Anthropic untuk melihat dan memodifikasi file teks, membantu Anda melakukan debug, memperbaiki, dan meningkatkan kode atau dokumen teks lainnya. Ini memungkinkan Claude untuk berinteraksi langsung dengan file Anda, memberikan bantuan langsung alih-alih hanya menyarankan perubahan.
+Claude dapat menggunakan alat text editor dengan skema Anthropic untuk melihat dan memodifikasi file teks, membantu Anda melakukan debug, memperbaiki, dan meningkatkan kode atau dokumen teks lainnya. Ini memungkinkan Claude berinteraksi langsung dengan file Anda, memberikan bantuan langsung alih-alih hanya menyarankan perubahan.
 
 Untuk dukungan model, lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference).
 
@@ -21,10 +23,10 @@ Untuk dukungan model, lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/
 
 Beberapa contoh kapan menggunakan alat text editor adalah:
 
-* **Debugging kode:** Minta Claude mengidentifikasi dan memperbaiki bug dalam kode Anda, dari kesalahan sintaks hingga masalah logika.
-* **Refactoring kode:** Biarkan Claude meningkatkan struktur, keterbacaan, dan kinerja kode Anda melalui pengeditan yang terarah.
+* **Debugging kode:** Minta Claude mengidentifikasi dan memperbaiki bug dalam kode Anda, mulai dari kesalahan sintaks hingga masalah logika.
+* **Refactoring kode:** Biarkan Claude meningkatkan struktur, keterbacaan, dan performa kode Anda melalui pengeditan yang terarah.
 * **Pembuatan dokumentasi:** Minta Claude menambahkan docstring, komentar, atau file README ke basis kode Anda.
-* **Pembuatan pengujian:** Minta Claude membuat unit test untuk kode Anda berdasarkan pemahamannya terhadap implementasi.
+* **Pembuatan pengujian:** Minta Claude membuat unit test untuk kode Anda berdasarkan analisisnya terhadap implementasi.
 
 ## Menggunakan alat text editor
 
@@ -164,6 +166,7 @@ Anda dapat secara opsional menentukan parameter `max_characters` untuk mengontro
   ```java Java
   import com.anthropic.models.messages.ToolTextEditor20250728;
   // ...
+  void main() {
     AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
     ToolTextEditor20250728 editorTool =
@@ -180,6 +183,7 @@ Anda dapat secara opsional menentukan parameter `max_characters` untuk mengontro
 
     Message message = client.messages().create(params);
     IO.println(message);
+  }
   ```
 
   ```php PHP
@@ -225,7 +229,7 @@ Anda dapat secara opsional menentukan parameter `max_characters` untuk mengontro
   ```
 </CodeGroup>
 
-Alat text editor dapat digunakan dengan cara berikut:
+Gunakan alat text editor dengan cara berikut:
 
 <Steps>
   <Step title="Sediakan alat text editor dan prompt pengguna kepada Claude">
@@ -234,15 +238,15 @@ Alat text editor dapat digunakan dengan cara berikut:
   </Step>
 
   <Step title="Claude menggunakan alat untuk memeriksa file atau direktori">
-    * Claude menilai apa yang perlu dilihatnya dan menggunakan perintah `view` untuk memeriksa isi file atau mendaftar isi direktori
+    * Claude menilai apa yang perlu dilihatnya dan menggunakan perintah `view` untuk memeriksa isi file atau menampilkan daftar isi direktori
     * Respons API akan berisi blok konten `tool_use` dengan perintah `view`
   </Step>
 
   <Step title="Jalankan perintah view dan kembalikan hasilnya">
     * Ekstrak jalur file atau direktori dari permintaan penggunaan alat Claude
-    * Baca isi file atau daftar isi direktori
+    * Baca isi file atau tampilkan daftar isi direktori
     * Jika parameter `max_characters` ditentukan dalam konfigurasi alat, potong isi file hingga panjang tersebut
-    * Kembalikan hasilnya ke Claude dengan melanjutkan percakapan menggunakan pesan `user` baru yang berisi blok konten `tool_result`
+    * Kembalikan hasilnya kepada Claude dengan melanjutkan percakapan menggunakan pesan `user` baru yang berisi blok konten `tool_result`
   </Step>
 
   <Step title="Claude menggunakan alat untuk memodifikasi file">
@@ -253,7 +257,7 @@ Alat text editor dapat digunakan dengan cara berikut:
   <Step title="Jalankan pengeditan dan kembalikan hasilnya">
     * Ekstrak jalur file, teks lama, dan teks baru dari permintaan penggunaan alat Claude
     * Lakukan penggantian teks dalam file
-    * Kembalikan hasilnya ke Claude
+    * Kembalikan hasilnya kepada Claude
   </Step>
 
   <Step title="Claude memberikan analisis dan penjelasannya">
@@ -267,7 +271,7 @@ Alat text editor mendukung beberapa perintah untuk melihat dan memodifikasi file
 
 #### view
 
-Perintah `view` memungkinkan Claude memeriksa isi file atau mendaftar isi direktori. Perintah ini dapat membaca seluruh file atau rentang baris tertentu.
+Perintah `view` memungkinkan Claude memeriksa isi file atau menampilkan daftar isi direktori. Perintah ini dapat membaca seluruh file atau rentang baris tertentu.
 
 Parameter:
 
@@ -508,6 +512,7 @@ Pertama, aplikasi Anda menyediakan alat text editor dan prompt kepada Claude unt
   ```java Java
   import com.anthropic.models.messages.ToolTextEditor20250728;
   // ...
+  void main() {
     AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
     ToolTextEditor20250728 editorTool =
@@ -522,6 +527,7 @@ Pertama, aplikasi Anda menyediakan alat text editor dan prompt kepada Claude unt
 
     Message message = client.messages().create(params);
     IO.println(message);
+  }
   ```
 
   ```php PHP
@@ -587,7 +593,7 @@ Claude menggunakan alat text editor terlebih dahulu untuk melihat file:
 }
 ```
 
-Aplikasi Anda kemudian harus membaca file dan mengembalikan isinya ke Claude:
+Aplikasi Anda kemudian harus membaca file dan mengembalikan isinya kepada Claude:
 
 <CodeGroup>
   ```bash cURL
@@ -888,50 +894,48 @@ Aplikasi Anda kemudian harus membaca file dan mengembalikan isinya ke Claude:
   ```
 
   ```java Java
-  import com.anthropic.models.messages.ToolTextEditor20250728;
-  // ...
-      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+  AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-      MessageCreateParams params = MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_4_8)
-        .maxTokens(1024)
-        .addTool(ToolTextEditor20250728.builder().build())
-        .addUserMessage("There's a syntax error in my primes.py file. Can you help me fix it?")
-        .addAssistantMessageOfBlockParams(
-          List.of(
-            ContentBlockParam.ofText(
-              TextBlockParam.builder()
-                .text("I'll help you fix the syntax error in your primes.py file. First, let me take a look at the file to identify the issue.")
-                .build()
-            ),
-            ContentBlockParam.ofToolUse(
-              ToolUseBlockParam.builder()
-                .id("toolu_01AbCdEfGhIjKlMnOpQrStU")
-                .name("str_replace_based_edit_tool")
-                .input(
-                  ToolUseBlockParam.Input.builder()
-                    .putAdditionalProperty("command", JsonValue.from("view"))
-                    .putAdditionalProperty("path", JsonValue.from("primes.py"))
-                    .build()
-                )
+  MessageCreateParams params = MessageCreateParams.builder()
+    .model(Model.CLAUDE_OPUS_4_8)
+    .maxTokens(1024)
+    .addTool(ToolTextEditor20250728.builder().build())
+    .addUserMessage("There's a syntax error in my primes.py file. Can you help me fix it?")
+    .addAssistantMessageOfBlockParams(
+      List.of(
+        ContentBlockParam.ofText(
+          TextBlockParam.builder()
+            .text("I'll help you fix the syntax error in your primes.py file. First, let me take a look at the file to identify the issue.")
+            .build()
+        ),
+        ContentBlockParam.ofToolUse(
+          ToolUseBlockParam.builder()
+            .id("toolu_01AbCdEfGhIjKlMnOpQrStU")
+            .name("str_replace_based_edit_tool")
+            .input(
+              ToolUseBlockParam.Input.builder()
+                .putAdditionalProperty("command", JsonValue.from("view"))
+                .putAdditionalProperty("path", JsonValue.from("primes.py"))
                 .build()
             )
-          )
+            .build()
         )
-        .addUserMessageOfBlockParams(
-          List.of(
-            ContentBlockParam.ofToolResult(
-              ToolResultBlockParam.builder()
-                .toolUseId("toolu_01AbCdEfGhIjKlMnOpQrStU")
-                .content("1: def is_prime(n):\n2:     \"\"\"Check if a number is prime.\"\"\"\n3:     if n <= 1:\n4:         return False\n5:     if n <= 3:\n6:         return True\n7:     if n % 2 == 0 or n % 3 == 0:\n8:         return False\n9:     i = 5\n10:     while i * i <= n:\n11:         if n % i == 0 or n % (i + 2) == 0:\n12:             return False\n13:         i += 6\n14:     return True\n15: \n16: def get_primes(limit):\n17:     \"\"\"Generate a list of prime numbers up to the given limit.\"\"\"\n18:     primes = []\n19:     for num in range(2, limit + 1)\n20:         if is_prime(num):\n21:             primes.append(num)\n22:     return primes\n23: \n24: def main():\n25:     \"\"\"Main function to demonstrate prime number generation.\"\"\"\n26:     limit = 100\n27:     prime_list = get_primes(limit)\n28:     print(f\"Prime numbers up to {limit}:\")\n29:     print(prime_list)\n30:     print(f\"Found {len(prime_list)} prime numbers.\")\n31: \n32: if __name__ == \"__main__\":\n33:     main()")
-                .build()
-            )
-          )
+      )
+    )
+    .addUserMessageOfBlockParams(
+      List.of(
+        ContentBlockParam.ofToolResult(
+          ToolResultBlockParam.builder()
+            .toolUseId("toolu_01AbCdEfGhIjKlMnOpQrStU")
+            .content("1: def is_prime(n):\n2:     \"\"\"Check if a number is prime.\"\"\"\n3:     if n <= 1:\n4:         return False\n5:     if n <= 3:\n6:         return True\n7:     if n % 2 == 0 or n % 3 == 0:\n8:         return False\n9:     i = 5\n10:     while i * i <= n:\n11:         if n % i == 0 or n % (i + 2) == 0:\n12:             return False\n13:         i += 6\n14:     return True\n15: \n16: def get_primes(limit):\n17:     \"\"\"Generate a list of prime numbers up to the given limit.\"\"\"\n18:     primes = []\n19:     for num in range(2, limit + 1)\n20:         if is_prime(num):\n21:             primes.append(num)\n22:     return primes\n23: \n24: def main():\n25:     \"\"\"Main function to demonstrate prime number generation.\"\"\"\n26:     limit = 100\n27:     prime_list = get_primes(limit)\n28:     print(f\"Prime numbers up to {limit}:\")\n29:     print(prime_list)\n30:     print(f\"Found {len(prime_list)} prime numbers.\")\n31: \n32: if __name__ == \"__main__\":\n33:     main()")
+            .build()
         )
-        .build();
+      )
+    )
+    .build();
 
-      Message message = client.messages().create(params);
-      System.out.println(message);
+  Message message = client.messages().create(params);
+  System.out.println(message);
   ```
 
   ```php PHP
@@ -1024,7 +1028,7 @@ Aplikasi Anda kemudian harus membaca file dan mengembalikan isinya ke Claude:
 <Tip>
   **Nomor baris**
 
-  Dalam contoh di atas, hasil alat `view` menyertakan isi file dengan nomor baris yang ditambahkan di awal setiap baris (misalnya, "1: def is\_prime(n):"). Nomor baris tidak wajib, tetapi sangat penting untuk berhasil menggunakan parameter `view_range` untuk memeriksa bagian tertentu dari file dan parameter `insert_line` untuk menambahkan konten di lokasi yang tepat.
+  Pada contoh sebelumnya, hasil alat `view` menyertakan isi file dengan nomor baris yang ditambahkan di awal setiap baris (misalnya, "1: def is\_prime(n):"). Nomor baris tidak wajib, tetapi sangat penting untuk berhasil menggunakan parameter `view_range` dalam memeriksa bagian tertentu dari file dan parameter `insert_line` untuk menambahkan konten di lokasi yang tepat.
 </Tip>
 
 Claude mengidentifikasi kesalahan sintaks dan menggunakan perintah `str_replace` untuk memperbaikinya:
@@ -1324,60 +1328,58 @@ Aplikasi Anda kemudian harus melakukan pengeditan dan mengembalikan hasilnya:
   ```
 
   ```java Java
-  import com.anthropic.models.messages.ToolTextEditor20250728;
-  // ...
-      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+  AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-      MessageCreateParams params = MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_4_8)
-        .maxTokens(1024)
-        .addTool(ToolTextEditor20250728.builder().build())
-        // Pesan-pesan sebelumnya akan ditempatkan di sini
-        .addAssistantMessageOfBlockParams(
-          List.of(
-            ContentBlockParam.ofText(
-              TextBlockParam.builder()
-                .text(
-                  "I found the syntax error in your primes.py file. In the `get_primes` function, there is a missing colon (:) at the end of the for loop line. Let me fix that for you."
+  MessageCreateParams params = MessageCreateParams.builder()
+    .model(Model.CLAUDE_OPUS_4_8)
+    .maxTokens(1024)
+    .addTool(ToolTextEditor20250728.builder().build())
+    // Pesan-pesan sebelumnya akan ditempatkan di sini
+    .addAssistantMessageOfBlockParams(
+      List.of(
+        ContentBlockParam.ofText(
+          TextBlockParam.builder()
+            .text(
+              "I found the syntax error in your primes.py file. In the `get_primes` function, there is a missing colon (:) at the end of the for loop line. Let me fix that for you."
+            )
+            .build()
+        ),
+        ContentBlockParam.ofToolUse(
+          ToolUseBlockParam.builder()
+            .id("toolu_01PqRsTuVwXyZAbCdEfGh")
+            .name("str_replace_based_edit_tool")
+            .input(
+              ToolUseBlockParam.Input.builder()
+                .putAdditionalProperty("command", JsonValue.from("str_replace"))
+                .putAdditionalProperty("path", JsonValue.from("primes.py"))
+                .putAdditionalProperty(
+                  "old_str",
+                  JsonValue.from("    for num in range(2, limit + 1)")
                 )
-                .build()
-            ),
-            ContentBlockParam.ofToolUse(
-              ToolUseBlockParam.builder()
-                .id("toolu_01PqRsTuVwXyZAbCdEfGh")
-                .name("str_replace_based_edit_tool")
-                .input(
-                  ToolUseBlockParam.Input.builder()
-                    .putAdditionalProperty("command", JsonValue.from("str_replace"))
-                    .putAdditionalProperty("path", JsonValue.from("primes.py"))
-                    .putAdditionalProperty(
-                      "old_str",
-                      JsonValue.from("    for num in range(2, limit + 1)")
-                    )
-                    .putAdditionalProperty(
-                      "new_str",
-                      JsonValue.from("    for num in range(2, limit + 1):")
-                    )
-                    .build()
+                .putAdditionalProperty(
+                  "new_str",
+                  JsonValue.from("    for num in range(2, limit + 1):")
                 )
                 .build()
             )
-          )
+            .build()
         )
-        .addUserMessageOfBlockParams(
-          List.of(
-            ContentBlockParam.ofToolResult(
-              ToolResultBlockParam.builder()
-                .toolUseId("toolu_01PqRsTuVwXyZAbCdEfGh")
-                .content("Successfully replaced text at exactly one location.")
-                .build()
-            )
-          )
+      )
+    )
+    .addUserMessageOfBlockParams(
+      List.of(
+        ContentBlockParam.ofToolResult(
+          ToolResultBlockParam.builder()
+            .toolUseId("toolu_01PqRsTuVwXyZAbCdEfGh")
+            .content("Successfully replaced text at exactly one location.")
+            .build()
         )
-        .build();
+      )
+    )
+    .build();
 
-      Message message = client.messages().create(params);
-      System.out.println(message);
+  Message message = client.messages().create(params);
+  System.out.println(message);
   ```
 
   ```php PHP
@@ -1471,7 +1473,7 @@ Aplikasi Anda kemudian harus melakukan pengeditan dan mengembalikan hasilnya:
   ```
 </CodeGroup>
 
-Terakhir, Claude memberikan penjelasan lengkap tentang perbaikannya:
+Terakhir, Claude memberikan penjelasan lengkap tentang perbaikan tersebut:
 
 ````json Output
 {
@@ -1490,7 +1492,7 @@ Terakhir, Claude memberikan penjelasan lengkap tentang perbaikannya:
 
 ## Mengimplementasikan alat text editor
 
-Alat text editor diimplementasikan sebagai alat tanpa skema. Saat menggunakan alat ini, Anda tidak perlu menyediakan skema input seperti pada alat lainnya; skema sudah terpasang di dalam model Claude dan tidak dapat dimodifikasi.
+Alat text editor diimplementasikan sebagai alat tanpa skema. Saat menggunakan alat ini, Anda tidak perlu menyediakan skema input seperti pada alat lainnya; skema sudah terpasang dalam model Claude dan tidak dapat dimodifikasi.
 
 Tipe alatnya adalah `type: "text_editor_20250728"` untuk model Claude 4.
 
@@ -1502,7 +1504,7 @@ Tipe alatnya adalah `type: "text_editor_20250728"` untuk model Claude 4.
   <Step title="Tangani panggilan alat editor">
     Buat fungsi yang memproses panggilan alat dari Claude berdasarkan tipe perintah:
 
-    <CodeGroup>
+    <CodeGroup exclude="shell">
       ```python Python
       def handle_editor_tool(tool_call):
           input_params = tool_call.input
@@ -1573,7 +1575,7 @@ Tipe alatnya adalah `type: "text_editor_20250728"` untuk model Claude 4.
       func handleEditorTool(input map[string]any) string {
       	command, _ := input["command"].(string)
       	filePath, _ := input["path"].(string)
-      	_ = filePath
+      // ...
 
       	switch command {
       	case "view":
@@ -1657,7 +1659,7 @@ Tipe alatnya adalah `type: "text_editor_20250728"` untuk model Claude 4.
   <Step title="Proses respons Claude">
     Ekstrak dan tangani panggilan alat dari respons Claude:
 
-    <CodeGroup>
+    <CodeGroup exclude="shell">
       ```python Python
       # Memproses penggunaan alat dalam respons Claude
       for content in response.content:
@@ -1717,7 +1719,7 @@ Tipe alatnya adalah `type: "text_editor_20250728"` untuk model Claude 4.
       		result := handleEditorTool(input)
 
       		toolResult := anthropic.NewToolResultBlock(block.ID, result, false)
-      		_ = toolResult
+      // ...
       	}
       }
       ```
@@ -1779,7 +1781,7 @@ Tipe alatnya adalah `type: "text_editor_20250728"` untuk model Claude 4.
 
 ### Menangani kesalahan
 
-Saat menggunakan alat text editor, berbagai kesalahan dapat terjadi. Berikut panduan tentang cara menanganinya:
+Saat menggunakan alat text editor, berbagai kesalahan dapat terjadi. Berikut panduan cara menanganinya:
 
 <AccordionGroup>
   <Accordion title="File tidak ditemukan">
@@ -1861,23 +1863,23 @@ Saat menggunakan alat text editor, berbagai kesalahan dapat terjadi. Berikut pan
   <Accordion title="Berikan konteks yang jelas">
     Saat meminta Claude memperbaiki atau memodifikasi kode, jelaskan secara spesifik file mana yang perlu diperiksa atau masalah apa yang perlu ditangani. Konteks yang jelas membantu Claude mengidentifikasi file yang tepat dan membuat perubahan yang sesuai.
 
-    **Prompt yang kurang membantu**: "Bisakah Anda memperbaiki kode saya?"
+    **Prompt yang kurang membantu:** "Bisakah Anda memperbaiki kode saya?"
 
-    **Prompt yang lebih baik**: "Ada kesalahan sintaks di file primes.py saya yang mencegahnya berjalan. Bisakah Anda memperbaikinya?"
+    **Prompt yang lebih baik:** "Ada kesalahan sintaks di file primes.py saya yang mencegahnya berjalan. Bisakah Anda memperbaikinya?"
   </Accordion>
 
   <Accordion title="Jelaskan jalur file secara eksplisit">
-    Tentukan jalur file dengan jelas saat diperlukan, terutama jika Anda bekerja dengan beberapa file atau file di direktori yang berbeda.
+    Tentukan jalur file dengan jelas saat diperlukan, terutama jika Anda bekerja dengan banyak file atau file di direktori yang berbeda.
 
-    **Prompt yang kurang membantu**: "Tinjau file helper saya"
+    **Prompt yang kurang membantu:** "Tinjau file helper saya"
 
-    **Prompt yang lebih baik**: "Bisakah Anda memeriksa file utils/helpers.py saya untuk masalah kinerja?"
+    **Prompt yang lebih baik:** "Bisakah Anda memeriksa file utils/helpers.py saya untuk masalah performa?"
   </Accordion>
 
   <Accordion title="Buat cadangan sebelum mengedit">
     Implementasikan sistem cadangan dalam aplikasi Anda yang membuat salinan file sebelum mengizinkan Claude mengeditnya, terutama untuk kode penting atau kode produksi.
 
-    <CodeGroup>
+    <CodeGroup exclude="shell">
       ```python Python
       def backup_file(file_path):
           """Create a backup of a file before editing."""
@@ -1956,7 +1958,7 @@ Saat menggunakan alat text editor, berbagai kesalahan dapat terjadi. Berikut pan
   <Accordion title="Tangani penggantian teks unik dengan hati-hati">
     Perintah `str_replace` memerlukan kecocokan persis untuk teks yang akan diganti. Aplikasi Anda harus memastikan bahwa ada tepat satu kecocokan untuk teks lama atau memberikan pesan kesalahan yang sesuai.
 
-    <CodeGroup>
+    <CodeGroup exclude="shell">
       ```python Python
       def safe_replace(file_path, old_text, new_text):
           """Replace text only if there's exactly one match."""
@@ -2099,7 +2101,7 @@ Saat menggunakan alat text editor, berbagai kesalahan dapat terjadi. Berikut pan
   <Accordion title="Verifikasi perubahan">
     Setelah Claude membuat perubahan pada file, verifikasi perubahan tersebut dengan menjalankan pengujian atau memeriksa bahwa kode masih berfungsi seperti yang diharapkan.
 
-    <CodeGroup>
+    <CodeGroup exclude="shell">
       ```python Python
       def verify_changes(file_path):
           """Run tests or checks after making changes."""
@@ -2245,23 +2247,23 @@ Untuk informasi lebih rinci tentang harga alat, lihat [Harga penggunaan alat](/d
 
 ## Mengintegrasikan alat text editor dengan alat lain
 
-Alat text editor dapat digunakan bersama alat Claude lainnya. Saat menggabungkan alat, pastikan Anda:
+Anda dapat menggunakan alat text editor bersama alat Claude lainnya. Saat menggabungkan alat, pastikan Anda:
 
 * Mencocokkan versi alat dengan model yang Anda gunakan
 * Memperhitungkan penggunaan token tambahan untuk semua alat yang disertakan dalam permintaan Anda
 
 ## Log perubahan
 
-| Tanggal         | Versi                  | Perubahan                                                                                                                                                                                                                                                   |
-| --------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 28 Juli 2025    | `text_editor_20250728` | Rilis alat text editor yang diperbarui yang memperbaiki beberapa masalah dan menambahkan parameter opsional `max_characters`. Selain itu identik dengan `text_editor_20250429`.                                                                             |
-| 29 April 2025   | `text_editor_20250429` | Rilis alat text editor untuk Claude 4. Versi ini menghapus perintah `undo_edit` tetapi mempertahankan semua kemampuan lainnya. Nama alat telah diperbarui untuk mencerminkan arsitekturnya yang berbasis str\_replace.                                      |
-| 13 Maret 2025   | `text_editor_20250124` | Pengenalan dokumentasi alat text editor mandiri. Versi ini dioptimalkan untuk Claude Sonnet 3.7 tetapi memiliki kemampuan yang identik dengan versi sebelumnya.                                                                                             |
-| 22 Oktober 2024 | `text_editor_20241022` | Rilis awal alat text editor dengan Claude Sonnet 3.5 ([dihentikan](/docs/id/about-claude/model-deprecations)). Menyediakan kemampuan untuk melihat, membuat, dan mengedit file melalui perintah `view`, `create`, `str_replace`, `insert`, dan `undo_edit`. |
+| Tanggal         | Versi                  | Perubahan                                                                                                                                                                                                                                                                                  |
+| --------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 28 Juli 2025    | `text_editor_20250728` | Rilis alat text editor yang diperbarui yang memperbaiki beberapa masalah dan menambahkan parameter opsional `max_characters`. Selain itu identik dengan `text_editor_20250429`.                                                                                                            |
+| 29 April 2025   | `text_editor_20250429` | Rilis alat text editor untuk Claude 4. Versi ini menghapus perintah `undo_edit` tetapi mempertahankan semua kemampuan lainnya. Nama alat telah diperbarui untuk mencerminkan arsitekturnya yang berbasis str\_replace.                                                                     |
+| 13 Maret 2025   | `text_editor_20250124` | Pengenalan dokumentasi alat text editor mandiri. Versi ini dioptimalkan untuk Claude Sonnet 3.7 tetapi memiliki kemampuan yang identik dengan versi sebelumnya.                                                                                                                            |
+| 22 Oktober 2024 | `text_editor_20241022` | Rilis awal alat text editor dengan Claude Sonnet 3.5 (sudah dihentikan; lihat [Penghentian model](/docs/id/about-claude/model-deprecations)). Menyediakan kemampuan untuk melihat, membuat, dan mengedit file melalui perintah `view`, `create`, `str_replace`, `insert`, dan `undo_edit`. |
 
 ## Langkah selanjutnya
 
-Berikut beberapa ide tentang cara menggunakan alat text editor dengan cara yang lebih praktis dan lebih kuat:
+Berikut beberapa ide tentang cara menggunakan alat text editor dengan cara yang lebih praktis dan lebih andal:
 
 * **Integrasikan dengan alur kerja pengembangan Anda**: Bangun alat text editor ke dalam alat pengembangan atau IDE Anda
 * **Buat sistem tinjauan kode**: Minta Claude meninjau kode Anda dan membuat perbaikan

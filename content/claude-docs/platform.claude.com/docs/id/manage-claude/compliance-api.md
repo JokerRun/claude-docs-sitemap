@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-api
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 05dee89e2356185483d5d5e945065d408373a20db1f672f328d1aece63567130
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 9a6383225b50922f7227fc4adfa7d46287dccd41e012698001f5a2a9a07afbfc
 ---
 
 # Compliance API
 
-Akses terprogram ke aktivitas Claude, chat, file, proyek, dan pengguna organisasi Anda untuk kepatuhan, audit, dan tata kelola.
+Akses terprogram ke aktivitas Claude organisasi Anda, chat, file, proyek, dan pengguna untuk kepatuhan, audit, dan tata kelola.
 
 ---
 
@@ -69,17 +69,17 @@ Semua endpoint `/v1/compliance/*` berbagi satu "rate limit" (batas laju) sebesar
 
 ***
 
-## Compliance API dibandingkan fitur terkait
+## Compliance API versus fitur terkait
 
 Dua fitur yang berdekatan tumpang tindih dengan Compliance API; berikut cara memilihnya.
 
 ### Mengekspor log audit
 
-Ekspor log audit adalah fitur terpisah di [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls) yang memungkinkan owner dan primary owner mengunduh CSV berisi peristiwa organisasi. Fitur ini jauh lebih sempit daripada Compliance API: jendela lihat-balik yang dibatasi, hanya unduhan CSV, dan tidak ada akses ke konten chat, file, atau proyek. Gunakan Compliance API sebagai standar untuk penggunaan terprogram yang berkelanjutan.
+Ekspor log audit adalah fitur terpisah di [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls) yang memungkinkan owner dan primary owner mengunduh CSV berisi peristiwa organisasi. Fitur ini jauh lebih sempit daripada Compliance API: jendela lihat-balik yang dibatasi, hanya unduhan CSV, dan tidak ada akses ke konten chat, file, atau proyek. Standarkan pada Compliance API untuk penggunaan terprogram yang berkelanjutan.
 
 ### Analytics API
 
-Anthropic menyediakan dua API analitik: Claude Enterprise Analytics API dan [Claude Code Analytics API](/docs/id/manage-claude/claude-code-analytics-api). Keduanya mengembalikan angka penggunaan dan biaya teragregasi untuk tim IT, FinOps, dan platform, sedangkan Compliance API mengembalikan record per peristiwa untuk tim keamanan, hukum, dan kepatuhan. Kedua keluarga API ini menjawab pertanyaan yang berbeda, menggunakan kunci yang berbeda, dan disediakan secara terpisah.
+Anthropic menyediakan dua API analitik: Claude Enterprise Analytics API dan [Claude Code Analytics API](/docs/id/manage-claude/claude-code-analytics-api). Keduanya mengembalikan angka penggunaan dan biaya teragregasi untuk tim IT, FinOps, dan platform, sedangkan Compliance API mengembalikan record per-peristiwa untuk tim keamanan, hukum, dan kepatuhan. Kedua keluarga API ini menjawab pertanyaan yang berbeda, menggunakan kunci yang berbeda, dan disediakan secara terpisah.
 
 ***
 
@@ -91,7 +91,7 @@ Anthropic menyediakan dua API analitik: Claude Enterprise Analytics API dan [Cla
   </Card>
 
   <Card href="/docs/id/manage-claude/compliance-activity-feed" title="Melakukan kueri Activity Feed">
-    Ambil, filter, dan paginasi Activity Feed bersama. Didukung oleh kedua jenis kunci.
+    Ambil, filter, dan lakukan paginasi pada Activity Feed bersama. Didukung oleh kedua jenis kunci.
   </Card>
 
   <Card href="/docs/id/manage-claude/compliance-content-data" title="Mengambil dan menghapus chat, file, dan proyek">

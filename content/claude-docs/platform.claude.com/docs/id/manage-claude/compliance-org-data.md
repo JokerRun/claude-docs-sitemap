@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-org-data
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 67e4352aa74ea7611c12f76841a22b77bdbebc960dbaf08de0a51c39ebbb383b
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 47564fbcc97cd6315c4663ffd7860d7cb2dbd1aefd4d371f0cc1f88babef4cc3
 ---
 
 # Daftar organisasi, pengguna, peran, grup, dan pengaturan
@@ -27,13 +27,13 @@ Endpoint pada halaman ini mengekspos sisi direktori dari organisasi Claude Enter
 
 Endpoint [List organizations](/docs/id/api/compliance/organizations/list) mengembalikan setiap organisasi di bawah induk tempat kunci terikat.
 
-Panggilan berikut mencantumkan setiap organisasi di bawah induk Anda. Responsnya adalah array `data` berisi catatan organisasi yang diurutkan berdasarkan `created_at` secara menaik, ditambah `has_more` dan `next_page` untuk paginasi. Ketika `has_more` bernilai `true`, kirimkan kembali token `next_page` yang dikembalikan tanpa perubahan sebagai parameter kueri `page` pada permintaan berikutnya. Lihat [List organizations](/docs/id/api/compliance/organizations/list) di referensi API untuk nilai default dan rentang parameter `limit` dan `page`.
+Panggilan berikut mencantumkan setiap organisasi di bawah induk Anda. Responsnya adalah array `data` berisi rekaman organisasi yang diurutkan berdasarkan `created_at` secara menaik, ditambah `has_more` dan `next_page` untuk paginasi. Ketika `has_more` bernilai `true`, kirimkan kembali token `next_page` yang dikembalikan tanpa perubahan sebagai parameter kueri `page` pada permintaan berikutnya. Lihat [List organizations](/docs/id/api/compliance/organizations/list) di referensi API untuk nilai default dan rentang parameter `limit` dan `page`.
 
 <CodeGroup>
   ```bash cURL
   curl --fail-with-body -sS \
     "https://api.anthropic.com/v1/compliance/organizations" \
-    --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
+    -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
   ```
 </CodeGroup>
 
@@ -61,20 +61,20 @@ Field `uuid` adalah pengidentifikasi kanonis untuk pencarian lanjutan. Tabel ber
 | Field                | Lokasi                                                                                                                                                                                            | Hubungan dengan `uuid`                                                                                                                                            |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `{org_uuid}`         | Parameter path pada endpoint per-organisasi di halaman ini                                                                                                                                        | Nilai yang sama                                                                                                                                                   |
-| `organization_uuid`  | Catatan Activity Feed, chat, dan proyek                                                                                                                                                           | Nilai yang sama; gabungkan langsung pada kedua field ini                                                                                                          |
-| `organization_id`    | Catatan Activity Feed, chat, dan proyek                                                                                                                                                           | Organisasi yang sama, dengan awalan `org_`. Sudah usang pada catatan chat dan proyek; gunakan `organization_uuid` sebagai gantinya.                               |
+| `organization_uuid`  | Rekaman Activity Feed, chat, dan proyek                                                                                                                                                           | Nilai yang sama; gabungkan kedua field ini secara langsung                                                                                                        |
+| `organization_id`    | Rekaman Activity Feed, chat, dan proyek                                                                                                                                                           | Organisasi yang sama, dengan awalan `org_`. Tidak digunakan lagi pada rekaman chat dan proyek; gunakan `organization_uuid` sebagai gantinya.                      |
 | `organization_ids[]` | Filter pada [Mengkueri Activity Feed](/docs/id/manage-claude/compliance-activity-feed) dan [Mengambil chat dan pesan](/docs/id/manage-claude/compliance-content-data#retrieve-chats-and-messages) | Menerima `uuid` atau bentuk berawalan `org_`                                                                                                                      |
-| `organization_id`    | Respons [Get effective organization settings](#get-effective-organization-settings)                                                                                                               | Nilai yang sama, UUID polos; respons ini **tidak** menggunakan bentuk berawalan `org_` yang dibawa `organization_id` pada catatan Activity Feed, chat, dan proyek |
+| `organization_id`    | Respons [Effective organization settings](#get-effective-organization-settings)                                                                                                                   | Nilai yang sama, UUID polos; respons ini **tidak** menggunakan bentuk berawalan `org_` yang dibawa `organization_id` pada rekaman Activity Feed, chat, dan proyek |
 
 Sebagian besar API Anthropic lainnya menggunakan bentuk berawalan `org_`.
 
-Untuk melacak perubahan keanggotaan organisasi dari waktu ke waktu, daftarkan ulang endpoint ini secara berkala, mengikuti token `next_page` melalui setiap halaman pada setiap putaran. Activity Feed juga menampilkan peristiwa keanggotaan melalui jenis aktivitas `org_deletion_requested`, `org_deleted_via_bulk`, `org_parent_join_proposal_created`, dan `org_join_proposal_decided`; lihat [Mengkueri Activity Feed](/docs/id/manage-claude/compliance-activity-feed).
+Untuk melacak perubahan keanggotaan organisasi dari waktu ke waktu, panggil ulang endpoint ini secara berkala, mengikuti token `next_page` melalui setiap halaman pada setiap putaran. Activity Feed juga menampilkan peristiwa keanggotaan melalui jenis aktivitas `org_deletion_requested`, `org_deleted_via_bulk`, `org_parent_join_proposal_created`, dan `org_join_proposal_decided`; lihat [Mengkueri Activity Feed](/docs/id/manage-claude/compliance-activity-feed).
 
 ## Daftar pengguna organisasi
 
-Endpoint [List organization users](/docs/id/api/compliance/organizations/users/list) mengembalikan daftar berpaginasi berisi catatan pengguna untuk satu organisasi.
+Endpoint [List organization users](/docs/id/api/compliance/organizations/users/list) mengembalikan daftar berpaginasi berisi rekaman pengguna untuk satu organisasi.
 
-Endpoint ini memerlukan `read:compliance_user_data`, bukan `read:compliance_org_data`. Buat Compliance Access Key dengan kedua scope tersebut jika Anda berniat menggunakannya untuk enumerasi direktori; jika tidak, panggilan akan mengembalikan [403 Forbidden](/docs/id/manage-claude/compliance-errors#403-forbidden).
+Endpoint ini memerlukan `read:compliance_user_data`, bukan `read:compliance_org_data`. Buat Compliance Access Key dengan kedua scope tersebut jika Anda bermaksud menggunakannya untuk enumerasi direktori; jika tidak, panggilan akan mengembalikan [403 Forbidden](/docs/id/manage-claude/compliance-errors#403-forbidden).
 
 Lihat [List organization users](/docs/id/api/compliance/organizations/users/list) di referensi API untuk nilai default dan rentang parameter kueri `limit` dan `page`.
 
@@ -86,7 +86,7 @@ Hasil diurutkan berdasarkan tanggal bergabung ke organisasi secara menaik. Berbe
 
   curl --fail-with-body -sS -G \
     "https://api.anthropic.com/v1/compliance/organizations/$org_uuid/users" \
-    --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+    -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
     --data-urlencode "limit=500"
   ```
 </CodeGroup>
@@ -107,15 +107,15 @@ Hasil diurutkan berdasarkan tanggal bergabung ke organisasi secara menaik. Berbe
 }
 ```
 
-ID pengguna yang dikembalikan di sini adalah pengidentifikasi `user_...` yang sama yang diterima oleh filter `actor_ids[]` pada [Mengkueri Activity Feed](/docs/id/manage-claude/compliance-activity-feed) dan filter `user_ids[]` pada [Mengambil chat dan pesan](/docs/id/manage-claude/compliance-content-data#retrieve-chats-and-messages). Field `organization_role` membawa tingkat keanggotaan bawaan pengguna dalam organisasi yang tercantum (salah satu dari `admin`, `billing`, `claude_code_user`, `developer`, `managed`, `membership_admin`, `owner`, `primary_owner`, atau `user`), sebuah sumbu yang independen dari penugasan peran RBAC kustom apa pun yang dikembalikan oleh [Daftar peran](#list-roles). Alur eDiscovery yang umum mencantumkan pengguna untuk satu atau lebih organisasi, memfilternya terhadap catatan eksternal Anda sendiri, dan memasukkan ID yang dihasilkan ke dalam kueri chat dan proyek.
+ID pengguna yang dikembalikan di sini adalah pengidentifikasi `user_...` yang sama yang diterima oleh filter `actor_ids[]` pada [Mengkueri Activity Feed](/docs/id/manage-claude/compliance-activity-feed) dan filter `user_ids[]` pada [Mengambil chat dan pesan](/docs/id/manage-claude/compliance-content-data#retrieve-chats-and-messages). Field `organization_role` membawa tingkat keanggotaan bawaan pengguna dalam organisasi yang tercantum (salah satu dari `admin`, `billing`, `claude_code_user`, `developer`, `managed`, `membership_admin`, `owner`, `primary_owner`, atau `user`), sebuah sumbu yang independen dari penugasan peran RBAC kustom apa pun yang dikembalikan oleh [Daftar peran](#list-roles). Alur eDiscovery yang umum mencantumkan pengguna untuk satu atau beberapa organisasi, memfilternya terhadap catatan eksternal Anda sendiri, dan memasukkan ID yang dihasilkan ke dalam kueri chat dan proyek.
 
-Seorang pengguna hanya muncul di sini selama mereka adalah anggota aktif organisasi. Pengguna yang dihapus langsung dikeluarkan dari daftar. Aktivitas historis mereka tetap dapat dikueri melalui Activity Feed selama jendela retensi penuh, diindeks dengan ID `user_...` yang sama.
+Seorang pengguna hanya muncul di sini selama mereka menjadi anggota aktif organisasi. Pengguna yang dihapus langsung dikeluarkan dari daftar. Aktivitas historis mereka tetap dapat dikueri melalui Activity Feed selama jendela retensi penuh, diindeks dengan ID `user_...` yang sama.
 
 ## Daftar peran
 
-Endpoint [List Compliance Roles](/docs/id/api/compliance/organizations/roles/list) mengembalikan daftar berpaginasi berisi catatan peran yang didefinisikan pada satu organisasi, dan [Get Compliance Role](/docs/id/api/compliance/organizations/roles/retrieve) mengembalikan satu peran berdasarkan ID.
+Endpoint [List Compliance Roles](/docs/id/api/compliance/organizations/roles/list) mengembalikan daftar berpaginasi berisi rekaman peran yang didefinisikan pada satu organisasi, dan [Get Compliance Role](/docs/id/api/compliance/organizations/roles/retrieve) mengembalikan satu peran berdasarkan ID.
 
-Kedua endpoint peran memerlukan `read:compliance_org_data`. Endpoint daftar menerima parameter `limit` dan `page` yang sama dengan [Daftar pengguna organisasi](#list-organization-users).
+Kedua endpoint peran memerlukan `read:compliance_org_data`. Endpoint daftar menerima parameter `limit` dan `page` yang sama dengan [endpoint pengguna organisasi](#list-organization-users).
 
 <CodeGroup>
   ```bash cURL
@@ -123,7 +123,7 @@ Kedua endpoint peran memerlukan `read:compliance_org_data`. Endpoint daftar mene
 
   curl --fail-with-body -sS \
     "https://api.anthropic.com/v1/compliance/organizations/${org_uuid}/roles" \
-    --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
+    -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
   ```
 </CodeGroup>
 
@@ -143,23 +143,23 @@ Kedua endpoint peran memerlukan `read:compliance_org_data`. Endpoint daftar mene
 }
 ```
 
-Lihat skema respons [List Compliance Roles](/docs/id/api/compliance/organizations/roles/list) untuk bentuk lengkap catatan peran. Untuk mencantumkan izin yang saat ini diberikan kepada suatu peran, gunakan [List Compliance Role Permissions](/docs/id/api/compliance/organizations/roles/permissions/list). Untuk mengaudit penugasan peran historis dan perubahan izin, kueri jenis aktivitas RBAC (misalnya, `rbac_role_assigned` dan `rbac_role_permission_added`) melalui Activity Feed; lihat [Memfilter aktivitas](/docs/id/manage-claude/compliance-activity-feed#filter-activities).
+Lihat skema respons [List Compliance Roles](/docs/id/api/compliance/organizations/roles/list) untuk bentuk lengkap rekaman peran. Untuk mencantumkan izin yang saat ini diberikan kepada suatu peran, gunakan [List Compliance Role Permissions](/docs/id/api/compliance/organizations/roles/permissions/list). Untuk mengaudit penugasan peran historis dan perubahan izin, kueri jenis aktivitas RBAC (misalnya, `rbac_role_assigned` dan `rbac_role_permission_added`) melalui Activity Feed; lihat [Memfilter aktivitas](/docs/id/manage-claude/compliance-activity-feed#filter-activities).
 
 ## Daftar grup dan anggota
 
 Endpoint [List Compliance Groups](/docs/id/api/compliance/groups/list) mengembalikan daftar berpaginasi berisi grup RBAC dan grup yang disediakan melalui SCIM, dan [Get Compliance Group](/docs/id/api/compliance/groups/retrieve) mengembalikan satu grup berdasarkan ID. Endpoint [List Compliance Group Members](/docs/id/api/compliance/groups/members/list) mengembalikan anggota dari satu grup.
 
-Endpoint daftar dan pengambilan grup memerlukan `read:compliance_org_data`. Endpoint anggota memerlukan `read:compliance_user_data`. Buat kunci dengan kedua scope untuk menelusuri grup dari awal hingga akhir. Kedua endpoint daftar menerima parameter `limit` dan `page` yang sama dengan [Daftar pengguna organisasi](#list-organization-users).
+Endpoint daftar dan pengambilan grup memerlukan `read:compliance_org_data`. Endpoint anggota memerlukan `read:compliance_user_data`. Buat kunci dengan kedua scope untuk menelusuri grup dari awal hingga akhir. Kedua endpoint daftar menerima parameter `limit` dan `page` yang sama dengan [endpoint pengguna organisasi](#list-organization-users).
 
-Lihat skema respons [List Compliance Groups](/docs/id/api/compliance/groups/list) untuk bentuk lengkap catatan grup. Array `roles` mencantumkan ID peran yang ditugaskan ke grup, yang cocok dengan ID dari [Daftar peran](#list-roles). `source_type` adalah pembeda antara grup yang dibuat secara manual melalui claude.ai (`direct`) dan grup yang disinkronkan dari penyedia identitas eksternal melalui SCIM (`scim`).
+Lihat skema respons [List Compliance Groups](/docs/id/api/compliance/groups/list) untuk bentuk lengkap rekaman grup. Array `roles` mencantumkan ID peran yang ditugaskan ke grup, yang cocok dengan ID dari [Daftar peran](#list-roles). `source_type` adalah pembeda antara grup yang dibuat secara manual melalui claude.ai (`direct`) dan grup yang disinkronkan dari penyedia identitas eksternal melalui SCIM (`scim`).
 
-Daftarkan grup, lalu untuk setiap grup daftarkan anggotanya:
+Cantumkan grup, lalu untuk setiap grup cantumkan anggotanya:
 
 <CodeGroup>
   ```bash cURL
   curl --fail-with-body -sS -G \
     "https://api.anthropic.com/v1/compliance/groups" \
-    --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
+    -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
   ```
 </CodeGroup>
 
@@ -181,7 +181,7 @@ Daftarkan grup, lalu untuk setiap grup daftarkan anggotanya:
 }
 ```
 
-Untuk setiap ID grup, daftarkan anggotanya:
+Untuk setiap ID grup, cantumkan anggotanya:
 
 <CodeGroup>
   ```bash cURL
@@ -189,7 +189,7 @@ Untuk setiap ID grup, daftarkan anggotanya:
 
   curl --fail-with-body -sS -G \
     "https://api.anthropic.com/v1/compliance/groups/$group_id/members" \
-    --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
+    -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
   ```
 </CodeGroup>
 
@@ -208,16 +208,16 @@ Untuk setiap ID grup, daftarkan anggotanya:
 }
 ```
 
-Lihat skema respons [List Compliance Group Members](/docs/id/api/compliance/groups/members/list) untuk bentuk lengkap catatan anggota. Field `user_id` adalah pengidentifikasi `user_...` yang sama yang diterima oleh Activity Feed dan daftar chat. Untuk mendapatkan nama lengkap anggota, cari melalui daftar pengguna organisasi.
+Lihat skema respons [List Compliance Group Members](/docs/id/api/compliance/groups/members/list) untuk bentuk lengkap rekaman anggota. Field `user_id` adalah pengidentifikasi `user_...` yang sama yang diterima oleh Activity Feed dan daftar chat. Untuk mendapatkan nama lengkap anggota, cari melalui daftar pengguna organisasi.
 
 ## Mendapatkan pengaturan organisasi efektif
 
-Endpoint [Get effective organization settings](/docs/id/api/compliance/organizations/settings/retrieve) mengembalikan pengaturan yang berlaku untuk satu organisasi di bawah induk Anda: keadaan yang diberlakukan setelah pembatasan regulasi (seperti HIPAA), aturan ketersediaan fitur, default jenis organisasi, dan ketergantungan antar-fitur diterapkan, yang dapat berbeda dari apa yang dikonfigurasi oleh administrator. Gunakan endpoint ini untuk membuktikan bahwa jendela retensi, penyuntingan konten, penegakan single sign-on, daftar IP yang diizinkan, dan kontrol durasi sesi sesuai dengan baseline terdokumentasi Anda, tanpa akses Console administrator.
+Endpoint [Get effective organization settings](/docs/id/api/compliance/organizations/settings/retrieve) mengembalikan pengaturan yang berlaku untuk satu organisasi di bawah induk Anda: keadaan yang diberlakukan setelah pembatasan regulasi (seperti HIPAA), aturan ketersediaan fitur, nilai default jenis organisasi, dan ketergantungan antar-fitur diterapkan, yang dapat berbeda dari apa yang dikonfigurasi oleh administrator. Gunakan endpoint ini untuk memastikan bahwa jendela retensi, penyuntingan konten, penegakan single sign-on, daftar IP yang diizinkan, dan kontrol durasi sesi sesuai dengan baseline terdokumentasi Anda, tanpa akses Console administrator.
 
-Endpoint ini memerlukan `read:compliance_org_data`; kunci tanpa scope tersebut mengembalikan [403 Forbidden](/docs/id/manage-claude/compliance-errors#403-forbidden). Target harus merupakan salah satu organisasi tertaut dari induk: organisasi induk itu sendiri bukan target yang valid. Organisasi yang tidak dikenal, ID organisasi yang bukan UUID yang valid, organisasi di luar pohon induk Anda, dan organisasi induk yang belum memiliki akses ke endpoint ini semuanya mengembalikan [404 Not Found](/docs/id/manage-claude/compliance-errors#404-not-found) yang sama, sehingga 404 tidak mengungkapkan apakah suatu organisasi ada. Endpoint pengaturan diaktifkan per organisasi induk secara terpisah dari bagian lain Compliance API; jika setiap permintaan mengembalikan 404, hubungi perwakilan Anthropic Anda.
+Endpoint ini memerlukan `read:compliance_org_data`; kunci tanpa scope tersebut mengembalikan [403 Forbidden](/docs/id/manage-claude/compliance-errors#403-forbidden). Target harus merupakan salah satu organisasi tertaut dari induk: organisasi induk itu sendiri bukan target yang valid. Organisasi yang tidak dikenal, ID organisasi yang bukan UUID valid, organisasi di luar pohon induk Anda, dan organisasi induk yang belum memiliki akses ke endpoint ini semuanya mengembalikan [404 Not Found](/docs/id/manage-claude/compliance-errors#404-not-found) yang sama, sehingga 404 tidak mengungkapkan apakah suatu organisasi ada. Endpoint pengaturan diaktifkan per organisasi induk secara terpisah dari bagian lain Compliance API; jika setiap permintaan mengembalikan 404, hubungi perwakilan Anthropic Anda.
 
 <Note>
-  Sebelum 30 Juni 2026, endpoint ini memerlukan scope terpisah `read:compliance_org_settings`. Scope tersebut telah dipensiunkan: scope itu tidak lagi dapat dipilih atau diberikan saat membuat kunci, dan kunci yang hanya membawa scope yang dipensiunkan tersebut mengembalikan [403 Forbidden](/docs/id/manage-claude/compliance-errors#403-forbidden) — buat Compliance Access Key baru dengan `read:compliance_org_data` sebagai gantinya.
+  Sebelum 30 Juni 2026, endpoint ini memerlukan scope terpisah `read:compliance_org_settings`. Scope tersebut telah dihentikan: scope itu tidak lagi dapat dipilih atau diberikan saat membuat kunci, dan kunci yang hanya membawa scope yang telah dihentikan tersebut mengembalikan [403 Forbidden](/docs/id/manage-claude/compliance-errors#403-forbidden). Buat Compliance Access Key baru dengan `read:compliance_org_data` sebagai gantinya.
 </Note>
 
 ```bash cURL
@@ -225,10 +225,10 @@ org_uuid="91012d09-e48b-438e-a489-1bebfd8fa6f9"
 
 curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/compliance/organizations/$org_uuid/settings" \
-  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
+  -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
 ```
 
-Responsnya adalah daftar baris pengaturan bertipe, dan baris mana yang muncul bervariasi menurut organisasi: pengaturan yang tidak dapat diubah oleh administrator organisasi, karena dikendalikan oleh kebijakan Anthropic atau tidak tersedia untuk organisasi tersebut, dihilangkan dari daftar. Perlakukan baris yang hilang sebagai "tidak dapat dikendalikan oleh administrator organisasi ini", bukan sebagai "nonaktif". Contoh ringkas berikut menunjukkan tiga dari baris yang dapat dimuat dalam sebuah respons:
+Responsnya adalah daftar baris pengaturan bertipe, dan baris mana yang muncul bervariasi menurut organisasi: pengaturan yang tidak dapat diubah oleh administrator organisasi, karena dikendalikan oleh kebijakan Anthropic atau tidak tersedia untuk organisasi tersebut, dihilangkan dari daftar. Perlakukan baris yang hilang sebagai "tidak dapat dikendalikan oleh administrator organisasi ini", bukan sebagai "nonaktif". Contoh ringkas berikut menunjukkan tiga dari baris yang dapat dimuat dalam respons:
 
 ```json Response
 {
@@ -274,9 +274,9 @@ Responsnya adalah daftar baris pengaturan bertipe, dan baris mana yang muncul be
 
 Setiap baris membawa `name`, `type`, dan `value`; field `type` (`boolean`, `integer`, `string_list`, `provisioning_mode`, atau `data_retention`) memberi tahu Anda bentuk dari `value`. Daftar lengkap nama pengaturan, dan skema `value` untuk setiap tipe, ada di [Get effective organization settings](/docs/id/api/compliance/organizations/settings/retrieve) di referensi API.
 
-Array `api_keys` mencantumkan setiap Compliance Access Key yang dikonfigurasi untuk organisasi induk Anda, sehingga daftar yang sama dikembalikan terlepas dari organisasi tertaut mana yang Anda kueri. Setiap entri membawa `type` kunci (`compliance_api_key`), `id`, `name`, `scopes`, flag `is_active`, stempel waktu `created_at` dan `expires_at`, serta `created_by_id` (ID pengguna yang membuat kunci; dapat bernilai `null`). Nilai rahasia kunci tidak pernah dikembalikan. Kunci yang dinonaktifkan disertakan dengan `is_active: false` sehingga Anda dapat meninjau kunci yang sebelumnya memiliki akses, dan kunci yang hanya membawa scope `read:compliance_org_settings` yang telah dipensiunkan tetap ada dalam daftar untuk visibilitas audit dan pembersihan meskipun scope tersebut tidak lagi memberikan akses.
+Array `api_keys` mencantumkan setiap Compliance Access Key yang dikonfigurasi untuk organisasi induk Anda, sehingga daftar yang sama dikembalikan terlepas dari organisasi tertaut mana yang Anda kueri. Setiap entri membawa `type` kunci (`compliance_api_key`), `id`, `name`, `scopes`, flag `is_active`, stempel waktu `created_at` dan `expires_at`, serta `created_by_id` (ID pengguna yang membuat kunci; dapat bernilai `null`). Nilai rahasia kunci tidak pernah dikembalikan. Kunci yang dinonaktifkan disertakan dengan `is_active: false` sehingga Anda dapat meninjau kunci yang sebelumnya memiliki akses, dan kunci yang hanya membawa scope `read:compliance_org_settings` yang telah dihentikan tetap ada dalam daftar untuk visibilitas audit dan pembersihan meskipun scope tersebut tidak lagi memberikan akses.
 
-`organization_id` tingkat atas adalah UUID polos organisasi: nilai yang sama dengan `uuid` dalam daftar organisasi, bukan bentuk berawalan `org_` yang dibawa `organization_id` pada catatan Activity Feed, chat, dan proyek (lihat tabel pengidentifikasi di [Daftar organisasi](#list-organizations)).
+`organization_id` tingkat atas adalah UUID polos organisasi: nilai yang sama dengan `uuid` dalam daftar organisasi, bukan bentuk berawalan `org_` yang dibawa `organization_id` pada rekaman Activity Feed, chat, dan proyek (lihat [tabel pengidentifikasi organisasi](#list-organizations)).
 
 Baris mencerminkan keadaan yang diberlakukan, bukan konfigurasi yang terakhir disimpan: misalnya, `sso_provisioning_mode` melaporkan mode SCIM yang dikonfigurasi hanya selama sinkronisasi direktori diaktifkan, `ip_allowlist_enabled` bernilai `true` hanya selama daftar yang diizinkan aktif dan memiliki setidaknya satu rentang aktif, dan `code_execution_network_egress_enabled` bernilai `false` setiap kali eksekusi kode nonaktif.
 
@@ -289,7 +289,7 @@ Respons mencerminkan keadaan pada saat pembacaan; tidak ada yang di-snapshot. Pe
     Skema permintaan dan respons lengkap untuk setiap endpoint organisasi, pengguna, peran, grup, dan pengaturan.
   </Card>
 
-  <Card title="Menangani kesalahan Compliance API" href="/docs/id/manage-claude/compliance-errors">
-    Payload kesalahan verbatim dan perbaikan untuk masing-masing.
+  <Card title="Menangani error Compliance API" href="/docs/id/manage-claude/compliance-errors">
+    Payload error verbatim dan perbaikan untuk masing-masing.
   </Card>
 </CardGroup>

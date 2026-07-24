@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/pdf-support
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: e9c586881993eb5ceb0c3015bda6495df97d05bf07b56b30cd281cebcb4127f0
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: c7b1e4cd42344f9b552aa8e6f37bb5f39c2d3c1585f4640a62305a40b47ffd45
 ---
 
 # Dukungan PDF
@@ -12,14 +12,14 @@ Proses PDF dengan Claude: ekstrak teks, analisis bagan, dan pahami konten visual
 ---
 
 <Note>
-  Fitur ini memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/api-and-data-retention). Ketika organisasi Anda memiliki pengaturan ZDR, data yang dikirim melalui fitur ini tidak disimpan setelah respons API dikembalikan.
+  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 Anda dapat bertanya kepada Claude tentang teks, gambar, bagan, dan tabel apa pun dalam PDF yang Anda berikan. Beberapa contoh kasus penggunaan:
 
 * Menganalisis laporan keuangan dan memahami bagan/tabel
 * Mengekstrak informasi penting dari dokumen hukum
-* Bantuan penerjemahan untuk dokumen
+* Membantu penerjemahan dokumen
 * Mengonversi informasi dokumen ke dalam format terstruktur
 
 ## Sebelum Anda mulai
@@ -34,7 +34,7 @@ Claude bekerja dengan PDF standar apa pun. Pastikan ukuran permintaan Anda memen
 | Jumlah halaman maksimum per permintaan | 600 (100 ketika jendela konteks permintaan di bawah 1M token)                    |
 | Format                                 | PDF standar (tanpa kata sandi/enkripsi)                                          |
 
-Kedua batas tersebut berlaku untuk seluruh payload permintaan, termasuk konten lain yang dikirim bersama PDF. Untuk PDF berukuran besar, pertimbangkan untuk mengunggah dengan [Files API](#option-3-files-api) dan mereferensikannya melalui `file_id` agar payload permintaan tetap kecil.
+Kedua batas tersebut berlaku untuk seluruh payload permintaan, termasuk konten lain yang dikirim bersama PDF. Untuk PDF berukuran besar, pertimbangkan untuk mengunggah dengan [Files API](/docs/id/build-with-claude/files) dan mereferensikannya melalui `file_id` agar payload permintaan tetap kecil.
 
 <Tip>
   PDF yang padat (banyak halaman dengan font kecil, tabel kompleks, atau grafik berat) dapat memenuhi jendela konteks sebelum mencapai batas halaman. Permintaan dengan PDF besar juga dapat gagal sebelum mencapai batas halaman, bahkan saat menggunakan Files API. Coba pisahkan dokumen menjadi beberapa bagian; untuk file besar, karena setiap halaman diproses sebagai gambar, melakukan downsampling pada gambar yang disematkan juga dapat membantu.
@@ -44,11 +44,11 @@ Karena dukungan PDF bergantung pada kemampuan visi Claude, dukungan ini tunduk p
 
 ### Platform dan model yang didukung
 
-Dukungan PDF tersedia di Claude API, [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock) (lihat [dukungan PDF Amazon Bedrock](#amazon-bedrock-pdf-support)), [Google Cloud](/docs/id/build-with-claude/claude-on-vertex-ai), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Semua [model aktif](/docs/id/about-claude/models/overview) mendukung pemrosesan PDF.
+Dukungan PDF tersedia di Claude API, [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock) (lihat [dukungan PDF Amazon Bedrock](#amazon-bedrock-pdf-support)), [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws), [Google Cloud](/docs/id/build-with-claude/claude-on-vertex-ai), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Semua [model aktif](/docs/id/about-claude/models/overview) mendukung pemrosesan PDF.
 
 ### Dukungan PDF Amazon Bedrock
 
-Saat menggunakan dukungan PDF melalui Converse API, bagian dari [Claude on Amazon Bedrock (legacy)](/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), terdapat dua mode pemrosesan dokumen yang berbeda:
+Saat menggunakan dukungan PDF melalui Converse API, bagian dari [Claude on Amazon Bedrock (Opus 4.6 dan sebelumnya)](/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), terdapat dua mode pemrosesan dokumen yang berbeda:
 
 <Note>
   **Penting:** Untuk mengakses kemampuan pemahaman visual PDF Claude secara penuh di Converse API, Anda harus mengaktifkan sitasi. Tanpa sitasi yang diaktifkan, API hanya akan kembali ke ekstraksi teks dasar. Pelajari lebih lanjut tentang [bekerja dengan sitasi](/docs/id/build-with-claude/citations).
@@ -73,8 +73,8 @@ Saat menggunakan dukungan PDF melalui Converse API, bagian dari [Claude on Amazo
 
 #### Keterbatasan utama
 
-* **Converse API**: Analisis visual PDF memerlukan sitasi untuk diaktifkan. Saat ini tidak ada opsi untuk menggunakan analisis visual tanpa sitasi (tidak seperti InvokeModel API).
-* **InvokeModel API**: Menyediakan kontrol penuh atas pemrosesan PDF tanpa sitasi yang dipaksakan.
+* **Converse API:** Analisis visual PDF memerlukan sitasi untuk diaktifkan. Saat ini tidak ada opsi untuk menggunakan analisis visual tanpa sitasi (tidak seperti InvokeModel API).
+* **InvokeModel API:** Menyediakan kontrol penuh atas pemrosesan PDF tanpa sitasi yang dipaksakan.
 
 #### Masalah umum
 
@@ -92,7 +92,7 @@ Jika Claude tidak melihat gambar atau bagan dalam PDF Anda saat menggunakan Conv
 
 ### Kirim permintaan PDF pertama Anda
 
-Mari kita mulai dengan contoh sederhana menggunakan Messages API. Anda dapat memberikan PDF kepada Claude dengan tiga cara:
+Mulailah dengan contoh sederhana menggunakan Messages API. Anda dapat memberikan PDF kepada Claude dengan tiga cara:
 
 1. Sebagai referensi URL ke PDF yang dihosting secara online
 2. Sebagai PDF yang dienkode base64 dalam blok konten `document`
@@ -376,7 +376,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
 
 <CodeGroup>
   ```bash cURL
-  # Metode 1: Ambil dan enkode PDF dari remote
+  # Metode 1: Ambil dan enkode PDF dari jarak jauh
   curl -sL "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf" | base64 | tr -d '\n' > pdf_base64.txt
 
   # Metode 2: Enkode file PDF lokal
@@ -592,7 +592,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
   ```java Java
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-  // Metode 1: Unduh dan enkode PDF dari remote
+  // Metode 1: Unduh dan enkode PDF jarak jauh
   String pdfUrl =
     "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf";
   HttpClient httpClient = HttpClient.newBuilder().followRedirects(HttpClient.Redirect.NORMAL).build();
@@ -818,7 +818,7 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
     })
   });
 
-  // Gunakan file yang diunggah dalam sebuah pesan
+  // Gunakan file yang diunggah dalam pesan
   const response = await anthropic.beta.messages.create({
     model: "claude-opus-4-8",
     max_tokens: 1024,
@@ -935,7 +935,7 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
     .files()
     .upload(FileUploadParams.builder().file(Path.of("/path/to/document.pdf")).build());
 
-  // Gunakan file yang diunggah dalam pesan
+  // Gunakan file yang diunggah dalam sebuah pesan
   MessageCreateParams params = MessageCreateParams.builder()
     .model(Model.CLAUDE_OPUS_4_8)
     .addBeta("files-api-2025-04-14")
@@ -1012,7 +1012,7 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
     )
   end
 
-  # Gunakan file yang diunggah dalam pesan
+  # Gunakan file yang diunggah dalam sebuah pesan
   message = anthropic.beta.messages.create(
     model: "claude-opus-4-8",
     max_tokens: 1024,
@@ -1040,30 +1040,30 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
 Ketika Anda mengirim PDF ke Claude, langkah-langkah berikut terjadi:
 
 <Steps>
-  <Step title="Sistem mengekstrak isi dokumen.">
+  <Step title="Sistem mengekstrak konten dokumen.">
     * Sistem mengonversi setiap halaman dokumen menjadi gambar.
-    * Teks dari setiap halaman diekstrak dan disediakan bersama gambar setiap halaman.
+    * Teks dari setiap halaman diekstrak dan diberikan bersama gambar setiap halaman.
   </Step>
 
   <Step title="Claude menganalisis teks dan gambar untuk memahami dokumen dengan lebih baik.">
-    * Dokumen disediakan sebagai kombinasi teks dan gambar untuk dianalisis.
+    * Dokumen diberikan sebagai kombinasi teks dan gambar untuk dianalisis.
     * Ini memungkinkan pengguna untuk meminta wawasan tentang elemen visual dari PDF, seperti bagan, diagram, dan konten non-tekstual lainnya.
   </Step>
 
-  <Step title="Claude merespons, mereferensikan isi PDF jika relevan.">
-    Claude dapat mereferensikan konten tekstual maupun visual saat merespons. Anda dapat lebih meningkatkan kinerja dengan mengintegrasikan dukungan PDF dengan:
+  <Step title="Claude merespons, mereferensikan konten PDF jika relevan.">
+    Claude dapat mereferensikan konten tekstual dan visual saat merespons. Anda dapat lebih meningkatkan kinerja dengan mengintegrasikan dukungan PDF dengan:
 
-    * [Caching prompt](#use-prompt-caching): Untuk meningkatkan kinerja pada analisis berulang.
-    * [Pemrosesan batch](#process-document-batches): Untuk pemrosesan dokumen bervolume tinggi.
+    * [Gunakan caching prompt](#use-prompt-caching): Untuk meningkatkan kinerja pada analisis berulang.
+    * [Proses batch dokumen](#process-document-batches): Untuk pemrosesan dokumen bervolume tinggi.
     * [Penggunaan alat](/docs/id/agents-and-tools/tool-use/overview): Untuk mengekstrak informasi spesifik dari dokumen untuk digunakan sebagai input alat.
   </Step>
 </Steps>
 
 ### Perkirakan biaya Anda
 
-Jumlah token dari file PDF bergantung pada total teks yang diekstrak dari dokumen serta jumlah halaman:
+Jumlah token dari file PDF bergantung pada total teks yang diekstrak dari dokumen dan jumlah halaman:
 
-* Biaya token teks: Setiap halaman biasanya menggunakan 1.500-3.000 token per halaman tergantung pada kepadatan konten. Harga API standar berlaku tanpa biaya PDF tambahan.
+* Biaya token teks: Setiap halaman biasanya menggunakan 1.500–3.000 token per halaman tergantung pada kepadatan konten. Harga API standar berlaku tanpa biaya PDF tambahan.
 * Biaya token gambar: Karena setiap halaman dikonversi menjadi gambar, [perhitungan biaya berbasis gambar](/docs/id/build-with-claude/vision#evaluate-image-size) yang sama diterapkan.
 
 Anda dapat menggunakan [penghitungan token](/docs/id/build-with-claude/token-counting) untuk memperkirakan biaya untuk PDF spesifik Anda.
@@ -1269,7 +1269,7 @@ Lakukan cache pada PDF dengan [caching prompt](/docs/id/build-with-claude/prompt
   }
   pdfBase64 := base64.StdEncoding.EncodeToString(pdfBytes)
 
-  // Buat blok dokumen dengan cache control
+  // Buat blok dokumen dengan kontrol cache
   client := anthropic.NewClient()
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
   	Model:     anthropic.ModelClaudeOpus4_8,
@@ -1989,17 +1989,17 @@ Gunakan [Message Batches API](/docs/id/build-with-claude/batch-processing) untuk
   ```
 </CodeGroup>
 
-Batch diproses secara asinkron. Untuk memeriksa progres dan mengambil hasil setelah pemrosesan selesai, lihat [Pemrosesan batch](/docs/id/build-with-claude/batch-processing).
+Batch diproses secara asinkron. Untuk memeriksa kemajuan dan mengambil hasil setelah pemrosesan selesai, lihat [Pemrosesan batch](/docs/id/build-with-claude/batch-processing).
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
   <Card title="Visi" icon="image" href="/docs/id/build-with-claude/vision">
-    Kemampuan visi Claude memungkinkannya memahami dan menganalisis gambar, membuka kemungkinan menarik untuk interaksi multimodal.
+    Kemampuan visi Claude memungkinkannya untuk memahami dan menganalisis gambar, membuka kemungkinan menarik untuk interaksi multimodal.
   </Card>
 
   <Card title="Coba contoh PDF" icon="file" href="https://platform.claude.com/cookbook/multimodal-getting-started-with-vision">
-    Jelajahi contoh praktis pemrosesan PDF dalam resep cookbook.
+    Jelajahi contoh praktis pemrosesan PDF dalam resep Claude Cookbook.
   </Card>
 
   <Card title="Lihat referensi API" icon="code" href="/docs/id/api/messages/create">

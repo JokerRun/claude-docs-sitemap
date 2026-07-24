@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/structured-outputs
-fetched_at: 2026-07-18T03:07:08.309502Z
-sha256: b783c1fdd396bc2f42577ed988984550519e606f6f8805e154b663a03df62138
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 01788a6c7613cd8840f5f4241f6478a3e474563a89d17a5832129ec0156ce5c7
 ---
 
 # Structured outputs
@@ -397,7 +397,7 @@ Instead of writing raw JSON schemas, you can use familiar schema definition tool
 * **Go:** Go structs reflected into JSON schemas automatically on the beta API, or raw JSON schemas through `output_config`
 * **CLI:** Raw JSON schemas passed through `output_config`
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL">
   ```bash CLI
   { read -r _ NAME; read -r _ EMAIL; } < <(
     ant messages create \
@@ -1405,6 +1405,43 @@ This means Claude receives a simplified schema, but your code still enforces all
     Extract structured data from unstructured text:
 
     <CodeGroup>
+      ```bash cURL
+      curl https://api.anthropic.com/v1/messages \
+        -H "content-type: application/json" \
+        -H "x-api-key: $ANTHROPIC_API_KEY" \
+        -H "anthropic-version: 2023-06-01" \
+        -d '{
+          "model": "claude-opus-4-8",
+          "max_tokens": 4096,
+          "messages": [
+            {
+              "role": "user",
+              "content": "Extract invoice data from: Invoice #12345, Date: 2024-01-15, Total: $500.00"
+            }
+          ],
+          "output_config": {
+            "format": {
+              "type": "json_schema",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "invoice_number": {"type": "string"},
+                  "date": {"type": "string"},
+                  "total_amount": {"type": "number"},
+                  "line_items": {
+                    "type": "array",
+                    "items": {"type": "object", "additionalProperties": false}
+                  },
+                  "customer_name": {"type": "string"}
+                },
+                "required": ["invoice_number", "date", "total_amount", "line_items", "customer_name"],
+                "additionalProperties": false
+              }
+            }
+          }
+        }'
+      ```
+
       ```bash CLI
       ant messages create \
         --transform 'content.0.text|@fromstr' \
@@ -1702,6 +1739,39 @@ This means Claude receives a simplified schema, but your code still enforces all
     Classify content with structured categories:
 
     <CodeGroup>
+      ```bash cURL
+      curl https://api.anthropic.com/v1/messages \
+        -H "content-type: application/json" \
+        -H "x-api-key: $ANTHROPIC_API_KEY" \
+        -H "anthropic-version: 2023-06-01" \
+        -d '{
+          "model": "claude-opus-4-8",
+          "max_tokens": 1024,
+          "messages": [
+            {
+              "role": "user",
+              "content": "Classify this feedback: Great product, fast shipping!"
+            }
+          ],
+          "output_config": {
+            "format": {
+              "type": "json_schema",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "category": {"type": "string"},
+                  "confidence": {"type": "number"},
+                  "tags": {"type": "array", "items": {"type": "string"}},
+                  "sentiment": {"type": "string"}
+                },
+                "required": ["category", "confidence", "tags", "sentiment"],
+                "additionalProperties": false
+              }
+            }
+          }
+        }'
+      ```
+
       ```bash CLI
       ant messages create \
         --transform 'content.0.text|@fromstr' \
@@ -1956,6 +2026,42 @@ This means Claude receives a simplified schema, but your code still enforces all
     Generate API-ready responses:
 
     <CodeGroup>
+      ```bash cURL
+      curl https://api.anthropic.com/v1/messages \
+        -H "content-type: application/json" \
+        -H "x-api-key: $ANTHROPIC_API_KEY" \
+        -H "anthropic-version: 2023-06-01" \
+        -d '{
+          "model": "claude-opus-4-8",
+          "max_tokens": 1024,
+          "messages": [
+            {
+              "role": "user",
+              "content": "Process this request: ..."
+            }
+          ],
+          "output_config": {
+            "format": {
+              "type": "json_schema",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {"type": "string"},
+                  "data": {"type": "object", "additionalProperties": false},
+                  "errors": {
+                    "type": "array",
+                    "items": {"type": "object", "additionalProperties": false}
+                  },
+                  "metadata": {"type": "object", "additionalProperties": false}
+                },
+                "required": ["status", "data", "metadata"],
+                "additionalProperties": false
+              }
+            }
+          }
+        }'
+      ```
+
       ```bash CLI
       ant messages create \
         --transform 'content.0.text' \
@@ -2272,6 +2378,52 @@ JSON outputs and strict tool use solve different problems and work together:
 When combined, Claude can call tools with guaranteed-valid parameters AND return structured JSON responses. This is useful for agentic workflows where you need both reliable tool calls and structured final outputs.
 
 <CodeGroup>
+  ```bash cURL
+  curl https://api.anthropic.com/v1/messages \
+    -H "content-type: application/json" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -d '{
+      "model": "claude-opus-4-8",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Help me plan a trip to Paris departing May 15, 2026"
+        }
+      ],
+      "output_config": {
+        "format": {
+          "type": "json_schema",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "summary": {"type": "string"},
+              "next_steps": {"type": "array", "items": {"type": "string"}}
+            },
+            "required": ["summary", "next_steps"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "tools": [
+        {
+          "name": "search_flights",
+          "strict": true,
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "destination": {"type": "string"},
+              "date": {"type": "string", "format": "date"}
+            },
+            "required": ["destination", "date"],
+            "additionalProperties": false
+          }
+        }
+      ]
+    }'
+  ```
+
   ```bash CLI
   ant messages create <<'YAML'
   model: claude-opus-4-8
@@ -2849,7 +3001,7 @@ For ZDR and HIPAA eligibility across all features, see [API and data retention](
 * **Message Prefilling:** Incompatible with JSON outputs
 
 <Tip>
-  **Grammar scope:** Grammars apply only to Claude's direct output, not to tool use calls, tool results, or thinking tags (when using [Extended Thinking](/docs/en/build-with-claude/extended-thinking)). Grammar state resets between sections, allowing Claude to think freely while still producing structured output in the final response.
+  **Grammar scope:** Grammars apply only to Claude's direct output, not to tool use calls, tool results, or thinking tags (when using [thinking](/docs/en/build-with-claude/thinking)). Grammar state resets between sections, allowing Claude to think freely while still producing structured output in the final response.
 </Tip>
 
 ## Next steps

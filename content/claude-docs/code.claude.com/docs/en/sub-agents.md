@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sub-agents
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: 9d775d5413924f524196a0243467b28e4423e64209997da3cbe19507502ffc1d
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: b91475b186ff8ef96958d38d583c0cd1e859e9bcf3bd27f9329d04d910349803
 ---
 
 > ## Documentation Index
@@ -760,7 +760,7 @@ Subagents can run in the foreground or the background:
 * **Foreground subagents** block the main conversation until complete. Permission prompts are passed through to you as they come up.
 * **Background subagents** run concurrently while you continue working. {/* min-version: 2.1.186 */}As of v2.1.186, when a background subagent reaches a tool call that needs permission, the prompt surfaces in your main session and names the subagent that is asking. Approve to let the subagent continue, or press Esc to deny that one tool call without stopping the subagent. Before v2.1.186, background subagents auto-denied any tool call that would have prompted.
 
-{/* min-version: 2.1.198 */}As of v2.1.198, subagents run in the background by default. Claude runs a subagent in the foreground when it needs the result before continuing. Background subagents run with a [smaller built-in tool set](#available-tools) than foreground subagents, and they surface every permission prompt in your main session.
+{/* min-version: 2.1.198 */}As of v2.1.198, subagents run in the background by default. Claude runs a subagent in the foreground when it needs the result before continuing. Background subagents run with a [smaller built-in tool set](#available-tools) than foreground subagents, except for conversation forks, and they surface every permission prompt in your main session.
 
 {/* min-version: 2.1.211 */}A background subagent's results reach Claude as a completion notification in a later turn. Claude waits for that notification before reporting the subagent's results, and if you ask about progress first, it reports that the subagent is still running. Before v2.1.211, Claude sometimes reported results for a background subagent that hadn't finished.
 

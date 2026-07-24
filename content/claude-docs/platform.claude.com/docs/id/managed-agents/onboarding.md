@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/onboarding
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 5cb47bacfc624dd9dd1bd79b9412f4af5ae216395d93a434ab234ff938e40d1d
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 8756669c47383d574e8973ed30777549711fe66ca61f5f916b9f46001c1a4abc
 ---
 
 # Membuat prototipe di Console
@@ -14,7 +14,7 @@ Buat dan uji agen secara visual di Console tanpa menulis panggilan API.
 [Console](https://platform.claude.com/workspaces/default/agent-quickstart/) menyediakan antarmuka visual untuk membuat dan mengonfigurasi agen. Antarmuka ini memungkinkan Anda melakukan iterasi pada konfigurasi secara interaktif sebelum menulis kode.
 
 <Note>
-  Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Cara membangun agen

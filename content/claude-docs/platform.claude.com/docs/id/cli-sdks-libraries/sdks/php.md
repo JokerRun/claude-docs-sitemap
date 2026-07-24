@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 3f97204419c23d6317848170fc2c137812c1293c6669fbeb75a3961536845f03
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: abe58e0c2443280ff6ee4cade235ce8ef106e01e9336808eaa009485f8865a73
 ---
 
 # PHP SDK
@@ -14,7 +14,7 @@ Instal dan konfigurasikan Anthropic PHP SDK dengan value object dan pola builder
 Pustaka Anthropic PHP menyediakan akses yang mudah ke Anthropic REST API dari aplikasi PHP 8.1.0+ apa pun.
 
 <Info>
-  PHP SDK saat ini masih dalam tahap beta. API dapat berubah antar versi.
+  PHP SDK saat ini dalam tahap beta. API dapat berubah antar versi.
 </Info>
 
 <Info>
@@ -23,7 +23,7 @@ Pustaka Anthropic PHP menyediakan akses yang mudah ke Anthropic REST API dari ap
 
 ## Instalasi
 
-SDK ini menggunakan [PSR-18](https://www.php-fig.org/psr/psr-18/) untuk HTTP dan secara otomatis mendeteksi klien PSR-18 apa pun yang terinstal. [Guzzle](https://docs.guzzlephp.org/) direkomendasikan karena SDK mengonfigurasinya untuk streaming tanpa pengaturan tambahan:
+SDK ini menggunakan [PSR-18](https://www.php-fig.org/psr/psr-18/) untuk HTTP dan secara otomatis menemukan klien PSR-18 apa pun yang terinstal. [Guzzle](https://docs.guzzlephp.org/) direkomendasikan karena SDK mengonfigurasinya untuk streaming tanpa pengaturan tambahan:
 
 ```bash
 composer require "anthropic-ai/sdk" "guzzlehttp/guzzle:^7"
@@ -35,7 +35,7 @@ PHP 8.1.0 atau lebih tinggi.
 
 ## Penggunaan
 
-Pustaka ini menggunakan "named parameters" (parameter bernama) untuk menentukan argumen opsional. Parameter dengan nilai default harus ditetapkan berdasarkan nama.
+Pustaka ini menggunakan named parameter untuk menentukan argumen opsional. Parameter dengan nilai default harus diatur berdasarkan nama.
 
 ```php
 $client = new Client();
@@ -53,7 +53,7 @@ Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi
 
 ## Value object
 
-Disarankan untuk menggunakan konstruktor statis `with` seperti `Base64ImageSource::with(data: "U3RhaW5sZXNzIHJvY2tz", ...)` dan parameter bernama untuk menginisialisasi value object.
+Disarankan untuk menggunakan konstruktor statis `with` `Base64ImageSource::with(data: "U3RhaW5sZXNzIHJvY2tz", ...)` dan named parameter untuk menginisialisasi value object.
 
 Namun, builder juga disediakan `(new Base64ImageSource)->withData("U3RhaW5sZXNzIHJvY2tz")`.
 
@@ -75,7 +75,7 @@ foreach ($stream as $event) {
 }
 ```
 
-Streaming memerlukan klien HTTP yang mengembalikan body respons secara bertahap. Ketika Guzzle adalah klien PSR-18 yang terdeteksi, SDK mengonfigurasinya untuk streaming secara otomatis. Dengan klien yang melakukan buffering, loop `foreach` akan menghasilkan semua event sekaligus ketika respons selesai, bukan secara bertahap; jika Anda mengamati gejala tersebut, instal Guzzle atau sediakan klien PSR-18 yang mendukung streaming melalui opsi permintaan `streamingTransporter`:
+Streaming memerlukan klien HTTP yang mengembalikan body respons secara bertahap. Ketika Guzzle adalah klien PSR-18 yang ditemukan, SDK mengonfigurasinya untuk streaming secara otomatis. Dengan klien yang melakukan buffering, loop `foreach` menghasilkan semua event sekaligus ketika respons selesai alih-alih secara bertahap; jika Anda mengamati gejala tersebut, instal Guzzle atau sediakan klien PSR-18 yang mendukung streaming melalui opsi permintaan `streamingTransporter`:
 
 ```php
 $client = new Anthropic\Client(
@@ -85,7 +85,7 @@ $client = new Anthropic\Client(
 
 ## Penanganan error
 
-Ketika pustaka tidak dapat terhubung ke API, atau jika API mengembalikan kode status non-sukses (yaitu, respons 4xx atau 5xx), subkelas dari `Anthropic\Core\Exceptions\APIException` akan dilemparkan:
+Ketika pustaka tidak dapat terhubung ke API, atau jika API mengembalikan kode status non-sukses (yaitu, respons 4xx atau 5xx), subclass dari `Anthropic\Core\Exceptions\APIException` akan dilemparkan:
 
 ```php
 <?php
@@ -161,11 +161,11 @@ $client = new Client();
 
 $page = $client->beta->messages->batches->list(limit: 20);
 
-// ambil item dari halaman saat ini
+// mengambil item dari halaman saat ini
 foreach ($page->getItems() as $item) {
   echo $item->id, PHP_EOL;
 }
-// buat permintaan jaringan tambahan untuk mengambil item dari semua halaman, termasuk dan setelah halaman saat ini
+// membuat permintaan jaringan tambahan untuk mengambil item dari semua halaman, termasuk halaman saat ini dan setelahnya
 foreach ($page->pagingEachItem() as $item) {
   echo $item->id, PHP_EOL;
 }
@@ -204,7 +204,7 @@ Jika Anda ingin secara eksplisit mengirim parameter tambahan, Anda dapat melakuk
 
 ### Endpoint yang tidak terdokumentasi
 
-Untuk membuat permintaan ke endpoint yang tidak terdokumentasi sambil tetap mendapatkan manfaat autentikasi, percobaan ulang, dan fitur klien lainnya, Anda dapat membuat permintaan menggunakan `client->request`, sebagai berikut:
+Untuk membuat permintaan ke endpoint yang tidak terdokumentasi sambil tetap mempertahankan manfaat autentikasi, percobaan ulang, dan fitur klien lainnya, Anda dapat membuat permintaan menggunakan `client->request`, sebagai berikut:
 
 ```php
 $client = new Client();
@@ -224,27 +224,27 @@ $response = $client->request(
   Untuk panduan pengaturan platform yang terperinci dengan contoh kode, lihat:
 
   * [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock)
-  * [Amazon Bedrock (legacy)](/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
+  * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
+  * [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws)
   * [Google Cloud](/docs/id/build-with-claude/claude-on-vertex-ai)
   * [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry)
-  * [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws)
 </Note>
 
 PHP SDK mendukung platform berikut:
 
+* **Agent Platform:** `Anthropic\Vertex\Client`. Gunakan `::fromEnvironment()`.
 * **Bedrock:** `Anthropic\Bedrock\MantleClient`. Gunakan `new MantleClient(awsRegion: ...)`.
 * **Bedrock (legacy):** `Anthropic\Bedrock\Client`. Gunakan `::fromEnvironment()` atau `::withCredentials()`.
-* **Agent Platform:** `Anthropic\Vertex\Client`. Gunakan `::fromEnvironment()`.
+* **Claude Platform di AWS:** `Anthropic\Aws\Client` (memerlukan `aws/aws-sdk-php` sebagai soft dependency). Gunakan `new Anthropic\Aws\Client(workspaceId: ...)` atau atur `ANTHROPIC_AWS_WORKSPACE_ID`. Tersedia dalam beta.
 * **Foundry:** `Anthropic\Foundry\Client`. Gunakan `::withCredentials()`.
-* **Claude Platform di AWS:** `Anthropic\Aws\Client` (memerlukan `aws/aws-sdk-php` sebagai soft dependency). Gunakan `new Anthropic\Aws\Client(workspaceId: ...)` atau atur `ANTHROPIC_AWS_WORKSPACE_ID`. Tersedia dalam versi beta.
 
-Gunakan `MantleClient` untuk proyek baru; `Anthropic\Bedrock\Client` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan Bedrock `InvokeModel` API.
+Gunakan `MantleClient` untuk proyek baru; `Anthropic\Bedrock\Client` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
 
 ## Semantic versioning
 
 Paket ini mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html). Karena pustaka ini masih dalam pengembangan awal dan memiliki versi mayor `0`, API dapat berubah kapan saja.
 
-Paket ini menganggap peningkatan pada definisi tipe PHPDoc (non-runtime) sebagai perubahan yang tidak bersifat breaking.
+Paket ini menganggap perbaikan pada definisi tipe PHPDoc (non-runtime) sebagai perubahan yang tidak merusak kompatibilitas.
 
 ## Sumber daya tambahan
 

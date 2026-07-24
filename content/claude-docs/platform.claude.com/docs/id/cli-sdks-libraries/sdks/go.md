@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 84f6cb1ad22e8d567227f91cef34af1566bb8a516379c85a6a7f0c5f90a7c1fd
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 6601fc19edccd04219d6eea7da9e3e188b5e412523ed56476a9e33e370a4e2d5
 ---
 
 # Go SDK
 
-Instal dan konfigurasikan Anthropic Go SDK dengan pembatalan berbasis konteks dan opsi fungsional
+Instal dan konfigurasikan Anthropic Go SDK dengan pembatalan berbasis context dan functional options
 
 ---
 
-Pustaka Anthropic Go menyediakan akses yang mudah ke Anthropic REST API dari aplikasi yang ditulis dalam Go.
+Library Go Anthropic menyediakan akses yang nyaman ke REST API Anthropic dari aplikasi yang ditulis dalam Go.
 
 <Info>
   Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK yang spesifik untuk Go.
@@ -33,7 +33,7 @@ go get github.com/anthropics/anthropic-sdk-go
 
 ## Persyaratan
 
-Pustaka ini memerlukan Go 1.23+.
+Library ini memerlukan Go 1.23+.
 
 ## Penggunaan
 
@@ -73,7 +73,7 @@ func main() {
 Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](/docs/id/manage-claude/authentication).
 
 <AccordionGroup>
-  <Accordion title="Percakapan">
+  <Accordion title="Conversations">
     ```go
     messages := []anthropic.MessageParam{
     	anthropic.NewUserMessage(anthropic.NewTextBlock("What is my first name?")),
@@ -108,7 +108,7 @@ Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi
     ```
   </Accordion>
 
-  <Accordion title="Prompt sistem">
+  <Accordion title="System prompts">
     ```go
     message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
     	Model:     anthropic.ModelClaudeOpus4_8,
@@ -161,7 +161,7 @@ Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi
     ```
   </Accordion>
 
-  <Accordion title="Pemanggilan alat">
+  <Accordion title="Tool calling">
     ```go
     messages := []anthropic.MessageParam{
     	anthropic.NewUserMessage(anthropic.NewTextBlock(content)),
@@ -247,15 +247,15 @@ Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi
   </Accordion>
 </AccordionGroup>
 
-## Field permintaan
+## Field request
 
-Pustaka anthropic menggunakan semantik [`omitzero`](https://tip.golang.org/doc/go1.24#encodingjsonpkgencodingjson) dari rilis `encoding/json` Go 1.24+ untuk field permintaan.
+Library anthropic menggunakan semantik [`omitzero`](https://tip.golang.org/doc/go1.24#encodingjsonpkgencodingjson) dari rilis `encoding/json` Go 1.24+ untuk field request.
 
-Field primitif yang wajib (`int64`, `string`, dll.) memiliki tag `` `json:"...,required"` ``. Field ini selalu diserialisasi, bahkan nilai nolnya.
+Field primitif yang wajib (`int64`, `string`, dll.) memiliki tag `` `json:"...,required"` ``. Field-field ini selalu diserialisasi, bahkan nilai zero-nya.
 
-Tipe primitif opsional dibungkus dalam `param.Opt[T]`. Field ini dapat diatur dengan konstruktor yang disediakan, `anthropic.String(string)`, `anthropic.Int(int64)`, dll.
+Tipe primitif opsional dibungkus dalam `param.Opt[T]`. Field-field ini dapat diatur dengan konstruktor yang disediakan, `anthropic.String(string)`, `anthropic.Int(int64)`, dll.
 
-Setiap `param.Opt[T]`, map, slice, struct, atau enum string menggunakan tag `` `json:"...,omitzero"` ``. Nilai nolnya dianggap dihilangkan.
+Setiap `param.Opt[T]`, map, slice, struct, atau string enum menggunakan tag `` `json:"...,omitzero"` ``. Nilai zero-nya dianggap dihilangkan.
 
 Fungsi `param.IsOmitted(any)` dapat mengonfirmasi keberadaan field `omitzero` apa pun.
 
@@ -284,10 +284,10 @@ param.IsNull(p.Name)  // true
 param.IsNull(p.Point) // true
 ```
 
-Struct permintaan berisi metode `.SetExtraFields(map[string]any)` yang dapat mengirim field yang tidak sesuai dalam body permintaan. Field tambahan akan menimpa field struct apa pun dengan key yang cocok.
+Struct request berisi metode `.SetExtraFields(map[string]any)` yang dapat mengirim field yang tidak sesuai dalam body request. Field tambahan akan menimpa field struct apa pun dengan key yang cocok.
 
 <Warning>
-  Untuk alasan keamanan, hanya gunakan `SetExtraFields` dengan data tepercaya.
+  Untuk alasan keamanan, hanya gunakan `SetExtraFields` dengan data yang tepercaya.
 </Warning>
 
 Untuk mengirim nilai kustom alih-alih struct, gunakan fungsi generik `param.Override` (misalnya, `param.Override[anthropic.FooParams](12)`).
@@ -303,14 +303,14 @@ p.SetExtraFields(map[string]any{
 custom := param.Override[anthropic.FooParams](12)
 ```
 
-### Union permintaan
+### Union request
 
-Union direpresentasikan sebagai struct dengan field yang diawali dengan "Of" untuk setiap variannya, hanya satu field yang boleh bernilai non-zero. Field non-zero tersebut yang akan diserialisasi.
+Union direpresentasikan sebagai struct dengan field yang diawali dengan "Of" untuk setiap variannya, hanya satu field yang boleh bernilai non-zero. Field non-zero tersebut akan diserialisasi.
 
-Subproperti dari union dapat diakses melalui metode pada struct union. Metode ini mengembalikan pointer yang dapat diubah ke data yang mendasarinya, jika ada.
+Subproperti dari union dapat diakses melalui metode pada struct union. Metode-metode ini mengembalikan pointer yang dapat diubah ke data yang mendasarinya, jika ada.
 
 ```go
-// Hanya satu field yang boleh bernilai non-zero, gunakan param.IsOmitted() untuk memeriksa apakah field telah diatur
+// Hanya satu field yang boleh bernilai bukan nol, gunakan param.IsOmitted() untuk memeriksa apakah sebuah field telah diatur
 type AnimalUnionParam struct {
 	OfCat *Cat `json:",omitzero,inline"`
 	OfDog *Dog `json:",omitzero,inline"`
@@ -325,7 +325,7 @@ animal := AnimalUnionParam{
 	},
 }
 
-// Memodifikasi sebuah field
+// Mengubah sebuah field
 if address := animal.GetOwner().GetAddress(); address != nil {
 	address.ZipCode = 94304
 }
@@ -337,9 +337,9 @@ if address := animal.GetOwner().GetAddress(); address != nil {
   `param.SetJSON` memerlukan SDK v1.20.0 atau yang lebih baru.
 </Note>
 
-Tipe param (tipe yang diakhiri dengan `Param`, seperti `MessageNewParams` atau `ToolUnionParam`) dirancang hanya untuk permintaan keluar. Tipe ini melakukan marshal ke JSON dengan benar tetapi tidak sepenuhnya mendukung deserialisasi bolak-balik (round-trip). Jika Anda melakukan unmarshal JSON mentah ke dalam struct param, field union bertipe seperti `OfBashTool20250124` akan bernilai nil meskipun JSON yang mendasarinya valid.
+Tipe param (tipe yang diakhiri dengan `Param`, seperti `MessageNewParams` atau `ToolUnionParam`) dirancang hanya untuk request keluar. Tipe-tipe ini melakukan marshal dengan benar ke JSON tetapi tidak sepenuhnya mendukung deserialisasi bolak-balik. Jika Anda melakukan unmarshal JSON mentah ke dalam struct param, field union bertipe seperti `OfBashTool20250124` akan bernilai nil bahkan ketika JSON yang mendasarinya valid.
 
-Jika Anda perlu merekonstruksi params dari JSON mentah (misalnya, dari database, middleware, atau permintaan sebelumnya), panggil `UnmarshalJSON` untuk mengisi field non-union, lalu gunakan `param.SetJSON` untuk melampirkan byte mentah agar serialisasi ulang dilakukan dengan benar:
+Jika Anda perlu merekonstruksi params dari JSON mentah (misalnya, dari database, middleware, atau request sebelumnya), panggil `UnmarshalJSON` untuk mengisi field non-union, lalu gunakan `param.SetJSON` untuk melampirkan byte mentah agar serialisasi ulang berjalan dengan benar:
 
 ```go
 // Serialisasi params (misalnya, untuk penyimpanan atau penerusan)
@@ -357,17 +357,17 @@ param.SetJSON(b, &params)
 
 // params.Model dan field skalar lainnya diisi oleh UnmarshalJSON.
 // params.Tools[0].OfBashTool20250124 bernilai nil (keterbatasan union),
-// tetapi JSON mentahnya tetap dipertahankan. Ketika params di-marshal lagi
-// untuk panggilan API, tools akan diserialisasi dengan benar.
+// tetapi JSON mentahnya tetap dipertahankan. Saat params di-marshal lagi
+// untuk panggilan API, tools akan terserialisasi dengan benar.
 b2, _ := json.Marshal(params)
 fmt.Println(string(b) == string(b2)) // true
 ```
 
-Untuk kasus penggunaan ini, `param.SetJSON` (tersedia sejak v1.20.0) lebih disarankan daripada `param.Override[T](any)` yang lebih umum karena tidak memerlukan penulisan parameter tipe secara eksplisit dan membuat maksud round-trip menjadi jelas.
+Untuk kasus penggunaan ini, `param.SetJSON` (tersedia sejak v1.20.0) lebih disarankan daripada `param.Override[T](any)` yang lebih umum karena tidak memerlukan penulisan parameter tipe secara eksplisit dan membuat maksud bolak-balik menjadi jelas.
 
 ## Objek respons
 
-Semua field dalam struct respons adalah tipe nilai biasa (bukan pointer atau wrapper). Struct respons juga menyertakan field `JSON` khusus yang berisi metadata tentang setiap properti.
+Semua field dalam struct respons adalah tipe nilai biasa (bukan pointer atau wrapper). Struct respons juga menyertakan field khusus `JSON` yang berisi metadata tentang setiap properti.
 
 ```go
 type Animal struct {
@@ -385,7 +385,7 @@ type Animal struct {
 
 Untuk menangani data opsional, gunakan metode `.Valid()` pada field JSON. `.Valid()` mengembalikan true ketika field tersebut ada, bukan `null`, dan berhasil di-unmarshal.
 
-Jika `.Valid()` bernilai false, field yang bersangkutan akan bernilai nol.
+Jika `.Valid()` bernilai false, field yang bersangkutan akan bernilai zero.
 
 ```go
 raw := `{"owners": 1, "name": null}`
@@ -414,7 +414,7 @@ res.JSON.Age.Raw() == ""               // true
 res.JSON.Age.Raw() == respjson.Omitted // true
 ```
 
-Struct `.JSON` ini juga menyertakan map `ExtraFields` yang berisi properti apa pun dalam respons json yang tidak ditentukan dalam struct. Ini dapat berguna untuk fitur API yang belum tersedia di SDK.
+Struct `.JSON` ini juga menyertakan map `ExtraFields` yang berisi properti apa pun dalam respons json yang tidak ditentukan dalam struct. Ini dapat berguna untuk fitur API yang belum ada di SDK.
 
 ```go
 body := res.JSON.ExtraFields["my_unexpected_field"].Raw()
@@ -422,9 +422,9 @@ body := res.JSON.ExtraFields["my_unexpected_field"].Raw()
 
 ### Union respons
 
-Dalam respons, union direpresentasikan oleh struct yang diratakan (flattened) yang berisi semua field yang mungkin dari setiap varian objek. Untuk mengonversinya ke varian, gunakan metode `.AsFooVariant()` atau metode `.AsAny()` jika tersedia.
+Dalam respons, union direpresentasikan oleh struct yang diratakan yang berisi semua field yang mungkin dari setiap varian objek. Untuk mengonversinya ke sebuah varian, gunakan metode `.AsFooVariant()` atau metode `.AsAny()` jika ada.
 
-Jika union nilai respons berisi nilai primitif, field primitif akan berada di samping properti lainnya tetapi diawali dengan `Of` dan memiliki tag `json:"...,inline"`.
+Jika union nilai respons berisi nilai primitif, field primitif akan berada berdampingan dengan properti lainnya tetapi diawali dengan `Of` dan memiliki tag `json:"...,inline"`.
 
 ```go
 type AnimalUnion struct {
@@ -447,7 +447,7 @@ if animal.Owner.Address.ZipCode == "" {
 	panic("missing zip code")
 }
 
-// Switch berdasarkan varian
+// Switch pada varian
 switch variant := animal.AsAny().(type) {
 case Dog:
 case Cat:
@@ -458,7 +458,7 @@ default:
 
 ## Penanganan error
 
-Ketika API mengembalikan kode status non-sukses, SDK mengembalikan error dengan tipe `*anthropic.Error`. Ini berisi nilai `StatusCode`, `*http.Request`, dan `*http.Response` dari permintaan, serta JSON dari body error (seperti objek respons lainnya di SDK). Error ini juga menyertakan `RequestID` dari header respons, yang berguna untuk pemecahan masalah dengan dukungan Anthropic.
+Ketika API mengembalikan kode status non-sukses, SDK mengembalikan error dengan tipe `*anthropic.Error`. Ini berisi nilai `StatusCode`, `*http.Request`, dan `*http.Response` dari request, serta JSON dari body error (seperti objek respons lainnya di SDK). Error ini juga menyertakan `RequestID` dari header respons, yang berguna untuk pemecahan masalah dengan dukungan Anthropic.
 
 Untuk menangani error, gunakan pola `errors.As`:
 
@@ -500,7 +500,7 @@ client := anthropic.NewClient(
 	option.WithMaxRetries(0), // default is 2
 )
 
-// Ganti per permintaan:
+// Timpa per permintaan:
 // ...
 	client.Messages.New(
 		context.TODO(),
@@ -520,11 +520,11 @@ client := anthropic.NewClient(
 	)
 ```
 
-## Timeout
+## Batas waktu
 
-Permintaan Messages non-streaming mengalami timeout setelah 10 menit secara default; permintaan lain tidak memiliki timeout default. Gunakan context untuk mengonfigurasi timeout untuk siklus hidup permintaan.
+Request Messages non-streaming akan habis waktunya setelah 10 menit secara default; request lainnya tidak memiliki batas waktu default. Gunakan context untuk mengonfigurasi batas waktu untuk siklus hidup request.
 
-Perhatikan bahwa jika permintaan [dicoba ulang](#retries), timeout context tidak dimulai dari awal. Untuk mengatur timeout per percobaan ulang, gunakan `option.WithRequestTimeout()`.
+Perhatikan bahwa jika sebuah request [dicoba ulang](#retries), batas waktu context tidak dimulai ulang. Untuk mengatur batas waktu per percobaan ulang, gunakan `option.WithRequestTimeout()`.
 
 ```go
 // Ini mengatur timeout untuk permintaan, termasuk semua percobaan ulang.
@@ -550,19 +550,19 @@ defer cancel()
 	)
 ```
 
-## Permintaan panjang
+## Request yang panjang
 
 <Warning>
-  Pertimbangkan untuk menggunakan Messages API streaming untuk permintaan yang berjalan lebih lama.
+  Pertimbangkan untuk menggunakan Messages API streaming untuk request yang berjalan lebih lama.
 </Warning>
 
-Hindari mengatur nilai `MaxTokens` yang besar tanpa menggunakan streaming karena beberapa jaringan mungkin memutus koneksi idle setelah periode waktu tertentu, yang dapat menyebabkan permintaan gagal atau mengalami [timeout](#timeouts) tanpa menerima respons dari Anthropic.
+Hindari mengatur nilai `MaxTokens` yang besar tanpa menggunakan streaming karena beberapa jaringan dapat memutus koneksi yang idle setelah periode waktu tertentu, yang dapat menyebabkan request gagal atau [habis waktu](#timeouts) tanpa menerima respons dari Anthropic.
 
-SDK ini juga akan mengembalikan error jika permintaan non-streaming diperkirakan akan berlangsung lebih dari sekitar 10 menit. Memanggil `.Messages.NewStreaming()` atau [mengatur timeout kustom](#timeouts) akan menonaktifkan error ini.
+SDK ini juga akan mengembalikan error jika request non-streaming diperkirakan akan berlangsung lebih dari sekitar 10 menit. Memanggil `.Messages.NewStreaming()` atau [mengatur batas waktu kustom](#timeouts) menonaktifkan error ini.
 
-## Unggahan file
+## Unggah file
 
-Parameter permintaan yang berkaitan dengan unggahan file dalam permintaan multipart bertipe `io.Reader`. Konten dari `io.Reader` secara default akan dikirim sebagai bagian form multipart dengan nama file "anonymous\_file" dan content-type "application/octet-stream", sehingga pendekatan yang direkomendasikan adalah menentukan content-type kustom dengan helper `anthropic.File(reader io.Reader, filename string, contentType string)`, yang membungkus `io.Reader` apa pun dengan nama file dan content type yang sesuai.
+Parameter request yang sesuai dengan unggahan file dalam request multipart bertipe `io.Reader`. Konten dari `io.Reader` secara default akan dikirim sebagai bagian form multipart dengan nama file "anonymous\_file" dan content-type "application/octet-stream", sehingga pendekatan yang direkomendasikan adalah menentukan content-type kustom dengan helper `anthropic.File(reader io.Reader, filename string, contentType string)`, yang membungkus `io.Reader` apa pun dengan nama file dan content type yang sesuai.
 
 ```go
 // File dari sistem file
@@ -577,11 +577,11 @@ anthropic.BetaFileUploadParams{
 }
 ```
 
-Nama file dan content-type juga dapat dikustomisasi dengan mengimplementasikan `Name() string` atau `ContentType() string` pada tipe run-time dari `io.Reader`. Perhatikan bahwa `os.File` mengimplementasikan `Name() string`, sehingga file yang dikembalikan oleh `os.Open` akan dikirim dengan nama file di disk.
+Nama file dan content-type juga dapat dikustomisasi dengan mengimplementasikan `Name() string` atau `ContentType() string` pada tipe run-time dari `io.Reader`. Perhatikan bahwa `os.File` mengimplementasikan `Name() string`, sehingga file yang dikembalikan oleh `os.Open` akan dikirim dengan nama file yang ada di disk.
 
 ## Paginasi
 
-Pustaka ini menyediakan beberapa kemudahan untuk bekerja dengan endpoint daftar yang dipaginasi.
+Library ini menyediakan beberapa kemudahan untuk bekerja dengan endpoint daftar yang dipaginasi.
 
 Anda dapat menggunakan metode `.ListAutoPaging()` untuk melakukan iterasi melalui item di semua halaman:
 
@@ -618,7 +618,7 @@ if err != nil {
 
 ## RequestOptions
 
-Pustaka ini menggunakan pola opsi fungsional. Fungsi yang didefinisikan dalam package `option` mengembalikan `RequestOption`, yang merupakan closure yang memutasi `RequestConfig`. Opsi ini dapat diberikan ke client atau pada permintaan individual. Misalnya:
+Library ini menggunakan pola functional options. Fungsi yang didefinisikan dalam paket `option` mengembalikan `RequestOption`, yang merupakan closure yang memutasi `RequestConfig`. Opsi-opsi ini dapat diberikan ke client atau pada request individual. Misalnya:
 
 ```go
 client := anthropic.NewClient(
@@ -627,20 +627,20 @@ client := anthropic.NewClient(
 )
 
 client.Messages.New(context.TODO(), // ...,
-	// Menimpa header tersebut
+	// Menimpa header
 	option.WithHeader("X-Some-Header", "some_other_custom_header_info"),
-	// Menambahkan field tak terdokumentasi ke body permintaan, menggunakan sintaks sjson
+	// Menambahkan field yang tidak terdokumentasi ke body permintaan, menggunakan sintaks sjson
 	option.WithJSONSet("some.json.path", map[string]string{"my": "object"}),
 )
 ```
 
-Opsi permintaan `option.WithDebugLog(nil)` mungkin berguna saat melakukan debugging.
+Opsi request `option.WithDebugLog(nil)` mungkin berguna saat melakukan debugging.
 
-Lihat [daftar lengkap opsi permintaan](https://pkg.go.dev/github.com/anthropics/anthropic-sdk-go/option).
+Lihat [daftar lengkap opsi request](https://pkg.go.dev/github.com/anthropics/anthropic-sdk-go/option).
 
 ## Kustomisasi HTTP client
 
-Untuk middleware permintaan (`option.WithMiddleware`) dan mengganti `http.Client` default (`option.WithHTTPClient`), lihat [middleware SDK](/docs/id/cli-sdks-libraries/middleware).
+Untuk middleware request (`option.WithMiddleware`) dan mengganti `http.Client` default (`option.WithHTTPClient`), lihat [middleware SDK](/docs/id/cli-sdks-libraries/middleware).
 
 ## Integrasi platform
 
@@ -648,17 +648,17 @@ Untuk middleware permintaan (`option.WithMiddleware`) dan mengganti `http.Client
   Untuk panduan penyiapan platform yang terperinci dengan contoh kode, lihat:
 
   * [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock)
-  * [Amazon Bedrock (legacy)](/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
-  * [Google Cloud](/docs/id/build-with-claude/claude-on-vertex-ai)
+  * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
   * [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws)
+  * [Google Cloud](/docs/id/build-with-claude/claude-on-vertex-ai)
 </Note>
 
-Go SDK mendukung platform berikut:
+Go SDK mendukung platform-platform berikut:
 
-* **Bedrock:** `import "github.com/anthropics/anthropic-sdk-go/bedrock"`. Gunakan `bedrock.NewMantleClient` untuk endpoint Bedrock Messages-API (melakukan streaming melalui SSE), atau `bedrock.WithLoadDefaultConfig(ctx)` / `bedrock.WithConfig(cfg)` (jalur `bedrock-runtime`). Mengimpor package `bedrock` secara global mendaftarkan decoder untuk `application/vnd.amazon.eventstream` dengan lapisan streaming SDK (melalui `init()` package). Ini berlaku baik Anda menggunakan jalur `WithConfig`/`WithLoadDefaultConfig` dari `bedrock-runtime` maupun `NewMantleClient`.
 * **Agent Platform:** `import "github.com/anthropics/anthropic-sdk-go/vertex"`. Gunakan `vertex.WithGoogleAuth(ctx, region, projectID)` atau `vertex.WithCredentials(ctx, region, projectID, creds)`.
+* **Bedrock:** `import "github.com/anthropics/anthropic-sdk-go/bedrock"`. Gunakan `bedrock.NewMantleClient` untuk endpoint Bedrock Messages-API (streaming melalui SSE), atau `bedrock.WithLoadDefaultConfig(ctx)` / `bedrock.WithConfig(cfg)` (jalur `bedrock-runtime`). Mengimpor paket `bedrock` secara global mendaftarkan decoder untuk `application/vnd.amazon.eventstream` dengan lapisan streaming SDK (melalui `init()` paket). Ini berlaku baik Anda menggunakan jalur `bedrock-runtime` `WithConfig`/`WithLoadDefaultConfig` maupun `NewMantleClient`.
+* **Claude Platform di AWS:** `import anthropicaws "github.com/anthropics/anthropic-sdk-go/aws"`. Gunakan `anthropicaws.NewClient(ctx, cfg)` dengan nilai `anthropicaws.ClientConfig` untuk membuat client; atur `WorkspaceID` pada config atau variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID`. Alias impor `anthropicaws` menghindari tabrakan nama dengan `github.com/aws/aws-sdk-go-v2/aws` ketika keduanya diimpor. Tersedia dalam beta.
 * **Foundry:** Saat ini tidak didukung di Go SDK. Lihat [Claude di Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk SDK yang didukung.
-* **Claude Platform di AWS:** `import anthropicaws "github.com/anthropics/anthropic-sdk-go/aws"`. Gunakan `anthropicaws.NewClient(ctx, cfg)` dengan nilai `anthropicaws.ClientConfig` untuk membuat client; atur `WorkspaceID` pada config atau variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID`. Alias import `anthropicaws` menghindari konflik nama dengan `github.com/aws/aws-sdk-go-v2/aws` ketika keduanya diimpor. Tersedia dalam beta.
 
 Gunakan `bedrock.NewMantleClient` untuk proyek baru; `bedrock.WithLoadDefaultConfig`/`WithConfig` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
 
@@ -666,7 +666,7 @@ Gunakan `bedrock.NewMantleClient` untuk proyek baru; `bedrock.WithLoadDefaultCon
 
 ### Mengakses data respons mentah (misalnya, header respons)
 
-Anda dapat mengakses data respons HTTP mentah dengan menggunakan opsi permintaan `option.WithResponseInto()`. Ini berguna ketika Anda perlu memeriksa header respons, kode status, atau detail lainnya.
+Anda dapat mengakses data respons HTTP mentah dengan menggunakan opsi request `option.WithResponseInto()`. Ini berguna ketika Anda perlu memeriksa header respons, kode status, atau detail lainnya.
 
 ```go
 // Buat variabel untuk menyimpan respons HTTP
@@ -696,21 +696,21 @@ fmt.Printf("Status Code: %d\n", response.StatusCode)
 fmt.Printf("Headers: %+#v\n", response.Header)
 ```
 
-### Membuat permintaan kustom/tidak terdokumentasi
+### Membuat request kustom/tidak terdokumentasi
 
-Pustaka ini diberi tipe untuk akses yang mudah ke API yang terdokumentasi. Jika Anda perlu mengakses endpoint, params, atau properti respons yang tidak terdokumentasi, pustaka ini tetap dapat digunakan.
+Library ini diberi tipe untuk akses yang nyaman ke API yang terdokumentasi. Jika Anda perlu mengakses endpoint, param, atau properti respons yang tidak terdokumentasi, library ini tetap dapat digunakan.
 
-#### Endpoint tidak terdokumentasi
+#### Endpoint yang tidak terdokumentasi
 
-Untuk membuat permintaan ke endpoint yang tidak terdokumentasi, Anda dapat menggunakan `client.Get`, `client.Post`, dan verb HTTP lainnya. `RequestOptions` pada client, seperti percobaan ulang, akan dihormati saat membuat permintaan ini.
+Untuk membuat request ke endpoint yang tidak terdokumentasi, Anda dapat menggunakan `client.Get`, `client.Post`, dan verba HTTP lainnya. `RequestOptions` pada client, seperti percobaan ulang, akan dihormati saat membuat request ini.
 
 ```go
 var (
-	// params dapat berupa io.Reader, []byte, objek yang dapat diserialisasi encoding/json,
+	// params dapat berupa io.Reader, []byte, objek yang dapat diserialisasi dengan encoding/json,
 	// atau struct "...Params" yang didefinisikan dalam pustaka ini.
 	params map[string]any
 
-	// result dapat berupa []byte, *http.Response, objek yang dapat dideserialisasi encoding/json,
+	// result dapat berupa []byte, *http.Response, objek yang dapat dideserialisasi dengan encoding/json,
 	// atau model yang didefinisikan dalam pustaka ini.
 	result *http.Response
 )
@@ -720,9 +720,9 @@ if err != nil {
 }
 ```
 
-#### Parameter permintaan tidak terdokumentasi
+#### Param request yang tidak terdokumentasi
 
-Untuk membuat permintaan menggunakan parameter yang tidak terdokumentasi, Anda dapat menggunakan metode `option.WithQuerySet()` atau `option.WithJSONSet()`.
+Untuk membuat request menggunakan parameter yang tidak terdokumentasi, Anda dapat menggunakan metode `option.WithQuerySet()` atau `option.WithJSONSet()`.
 
 ```go
 params := FooNewParams{
@@ -734,7 +734,7 @@ params := FooNewParams{
 client.Foo.New(context.Background(), params, option.WithJSONSet("data.last_name", "Doe"))
 ```
 
-#### Properti respons tidak terdokumentasi
+#### Properti respons yang tidak terdokumentasi
 
 Untuk mengakses properti respons yang tidak terdokumentasi, Anda dapat mengakses JSON mentah dari respons sebagai string dengan `result.JSON.RawJSON()`, atau mendapatkan JSON mentah dari field tertentu pada hasil dengan `result.JSON.Foo.Raw()`.
 
@@ -742,18 +742,18 @@ Field apa pun yang tidak ada pada struct respons akan disimpan dan dapat diakses
 
 ## Semantic versioning
 
-Package ini secara umum mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang dapat dirilis sebagai versi minor:
+Paket ini secara umum mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang dapat dirilis sebagai versi minor:
 
-1. Perubahan pada internal pustaka yang secara teknis bersifat publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal.
+1. Perubahan pada internal library yang secara teknis publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal.
 2. Perubahan yang tidak diperkirakan akan memengaruhi sebagian besar pengguna dalam praktiknya.
 
 Kompatibilitas ke belakang ditangani dengan serius untuk memastikan Anda dapat mengandalkan pengalaman upgrade yang lancar.
 
-Masukan Anda sangat diterima; buka [issue](https://github.com/anthropics/anthropic-sdk-go/issues) dengan pertanyaan, bug, atau saran.
+Masukan Anda sangat diterima; buka sebuah [issue](https://github.com/anthropics/anthropic-sdk-go/issues) dengan pertanyaan, bug, atau saran.
 
 ## Sumber daya tambahan
 
 * [Repositori GitHub](https://github.com/anthropics/anthropic-sdk-go)
-* [Dokumentasi package Go](https://pkg.go.dev/github.com/anthropics/anthropic-sdk-go)
+* [Dokumentasi paket Go](https://pkg.go.dev/github.com/anthropics/anthropic-sdk-go)
 * [Referensi API](/docs/id/api/overview)
 * [Streaming Messages](/docs/id/build-with-claude/streaming)

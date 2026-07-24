@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/get-started
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: 7b48d6a1d0f3526959bc579cf6469cabc2a216ed80a9d74c036d938a33c147e4
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: d8efb533d2b4996ccd9dc564c3664542158dad6fc88bd55fc1b36656d62b4a7b
 ---
 
 # Get started with Claude
@@ -443,7 +443,7 @@ Make your first API call to Claude and build a simple web search assistant.
             }
 
             dependencies {
-                implementation("com.anthropic:anthropic-java:2.48.0")
+                implementation("com.anthropic:anthropic-java:2.50.0")
             }
 
             application {
@@ -469,7 +469,7 @@ Make your first API call to Claude and build a simple web search assistant.
                 <dependency>
                   <groupId>com.anthropic</groupId>
                   <artifactId>anthropic-java</artifactId>
-                  <version>2.48.0</version>
+                  <version>2.50.0</version>
                 </dependency>
               </dependencies>
             </project>

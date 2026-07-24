@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-errors
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: 9278c01f8c8ca0d434ed8491609a41f305445d6393693146e37685fff1a7f272
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 906e76a7ea64e23c34538b952b76760f9e08a5d0b07f106cbdee53d7f818f3b6
 ---
 
 # Handle Compliance API errors
@@ -17,7 +17,7 @@ Every Compliance API error message with cause and fix, organized by HTTP status 
 
 This page lists the response messages each documented Compliance API endpoint returns, the cause, and the fix.
 
-The Compliance API returns errors in an error format consistent with the rest of the [Anthropic error format](/docs/en/api/errors): a non-2xx status code, a `request-id` response header, and a JSON body with an `error` object containing `type` and `message`. Include the `request-id` header value when you escalate to support.
+The Compliance API returns errors in the standard [Anthropic error format](/docs/en/api/errors): a non-2xx status code, a `request-id` response header, and a JSON body with an `error` object containing `type` and `message`. Include the `request-id` header value when you escalate to support.
 
 ```json
 {

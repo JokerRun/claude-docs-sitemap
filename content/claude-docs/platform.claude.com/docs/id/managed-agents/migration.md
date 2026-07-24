@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/migration
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 71c8c8ddd08be9ceb234787f53b5d160dba50a0d56e06ca7a883a22697a902cc
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 78d75df95822b66fd41eb514953cbf9cb5a21cebcdfa57d0f9ddd309bc5d1da8
 ---
 
 # Migrasi
@@ -14,7 +14,7 @@ Pindahkan agen yang sudah ada yang dibangun di atas Messages API atau Claude Age
 Claude Managed Agents menggantikan loop agen yang Anda tulis sendiri dengan infrastruktur terkelola. Halaman ini membahas apa saja yang berubah ketika Anda bermigrasi dari loop kustom yang dibangun di atas [Messages API](/docs/id/build-with-claude/working-with-messages) atau dari [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview).
 
 <Note>
-  Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Dari loop agen Messages API

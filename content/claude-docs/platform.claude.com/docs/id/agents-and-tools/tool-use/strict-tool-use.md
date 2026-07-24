@@ -1,36 +1,36 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 302a9091449a4e50633e6388e69bde7865883451bfcafd48b8bcd7faaad57859
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: b8048cd2892d433568772e7de3308741c0830c3df7d83aa12a3ca79fde88545c
 ---
 
-# Penggunaan alat strict
+# Penggunaan alat ketat
 
 Terapkan kepatuhan JSON Schema pada input alat Claude dengan grammar-constrained sampling.
 
 ---
 
-Menetapkan `strict: true` pada definisi alat menjamin input alat Claude sesuai dengan JSON Schema Anda dengan membatasi pengambilan sampel token model hanya pada output yang valid menurut skema (teknik yang disebut "grammar-constrained sampling" (pengambilan sampel yang dibatasi tata bahasa)). Halaman ini membahas mengapa mode strict penting untuk agen, cara mengaktifkannya, dan kasus penggunaan umum. Untuk subset JSON Schema yang didukung, lihat [Batasan JSON Schema](/docs/id/build-with-claude/structured-outputs#json-schema-limitations). Untuk panduan skema non-strict, lihat [Mendefinisikan alat](/docs/id/agents-and-tools/tool-use/define-tools).
+Mengatur `strict: true` pada definisi alat menjamin input alat Claude sesuai dengan JSON Schema Anda dengan membatasi sampling token model ke output yang valid terhadap skema (teknik yang disebut "grammar-constrained sampling" atau sampling yang dibatasi tata bahasa). Halaman ini membahas mengapa mode ketat penting untuk agen, cara mengaktifkannya, dan kasus penggunaan umum. Untuk subset JSON Schema yang didukung, lihat [batasan JSON Schema](/docs/id/build-with-claude/structured-outputs#json-schema-limitations). Untuk panduan skema non-ketat, lihat [Mendefinisikan alat](/docs/id/agents-and-tools/tool-use/define-tools).
 
-Penggunaan alat strict memvalidasi parameter alat, memastikan Claude memanggil fungsi Anda dengan argumen yang bertipe benar. Gunakan penggunaan alat strict ketika Anda perlu:
+Penggunaan alat ketat memvalidasi parameter alat, memastikan Claude memanggil fungsi Anda dengan argumen yang bertipe benar. Gunakan penggunaan alat ketat ketika Anda perlu:
 
 * Memvalidasi parameter alat
 * Membangun alur kerja agentik
 * Memastikan pemanggilan fungsi yang type-safe
 * Menangani alat kompleks dengan properti bersarang
 
-## Mengapa penggunaan alat strict penting untuk agen
+## Mengapa penggunaan alat ketat penting untuk agen
 
-Membangun sistem agentik yang andal memerlukan jaminan kesesuaian skema. Tanpa mode strict, Claude mungkin mengembalikan tipe yang tidak kompatibel (`"2"` alih-alih `2`) atau menghilangkan field yang wajib, sehingga merusak fungsi Anda dan menyebabkan error runtime.
+Membangun sistem agentik yang andal memerlukan jaminan kesesuaian skema. Tanpa mode ketat, Claude mungkin mengembalikan tipe yang tidak kompatibel (`"2"` alih-alih `2`) atau menghilangkan field yang wajib, merusak fungsi Anda dan menyebabkan error runtime.
 
-Penggunaan alat strict menjamin parameter yang type-safe:
+Penggunaan alat ketat menjamin parameter yang type-safe:
 
-* Fungsi menerima argumen dengan tipe yang benar setiap saat
-* Tidak perlu memvalidasi dan mencoba ulang pemanggilan alat
+* Fungsi menerima argumen yang bertipe benar setiap saat
+* Tidak perlu memvalidasi dan mengulangi pemanggilan alat
 * Agen siap produksi yang bekerja secara konsisten dalam skala besar
 
-Misalnya, anggaplah sistem pemesanan membutuhkan `passengers: int`. Tanpa mode strict, Claude mungkin memberikan `passengers: "two"` atau `passengers: "2"`. Dengan `strict: true`, respons selalu berisi `passengers: 2`.
+Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mode ketat, Claude mungkin memberikan `passengers: "two"` atau `passengers: "2"`. Dengan `strict: true`, respons selalu berisi `passengers: 2`.
 
 ## Mulai cepat
 
@@ -375,25 +375,53 @@ Misalnya, anggaplah sistem pemesanan membutuhkan `passengers: int`. Tanpa mode s
 
 <Steps>
   <Step title="Definisikan skema alat Anda">
-    Buat skema JSON untuk `input_schema` alat Anda. Skema ini menggunakan format JSON Schema standar dengan beberapa batasan (lihat [Batasan JSON Schema](/docs/id/build-with-claude/structured-outputs#json-schema-limitations)).
+    Buat skema JSON untuk `input_schema` alat Anda. Skema menggunakan format JSON Schema standar dengan beberapa batasan (lihat [batasan JSON Schema](/docs/id/build-with-claude/structured-outputs#json-schema-limitations)).
   </Step>
 
   <Step title="Tambahkan strict: true">
-    Tetapkan `"strict": true` sebagai properti tingkat atas dalam definisi alat Anda, bersama dengan `name`, `description`, dan `input_schema`.
+    Atur `"strict": true` sebagai properti tingkat atas dalam definisi alat Anda, bersama dengan `name`, `description`, dan `input_schema`.
   </Step>
 
   <Step title="Tangani pemanggilan alat">
-    Ketika Claude menggunakan alat tersebut, field `input` dalam blok tool\_use secara ketat mengikuti `input_schema` Anda, dan `name` selalu valid.
+    Ketika Claude menggunakan alat, field `input` dalam blok tool\_use secara ketat mengikuti `input_schema` Anda, dan `name` selalu valid.
   </Step>
 </Steps>
 
 ## Kasus penggunaan umum
 
 <AccordionGroup>
-  <Accordion title="Input alat yang tervalidasi">
-    Pastikan parameter alat sesuai persis dengan skema Anda:
+  <Accordion title="Input alat tervalidasi">
+    Pastikan parameter alat sama persis dengan skema Anda:
 
     <CodeGroup>
+      ```bash cURL
+      curl https://api.anthropic.com/v1/messages \
+        -H "content-type: application/json" \
+        -H "x-api-key: $ANTHROPIC_API_KEY" \
+        -H "anthropic-version: 2023-06-01" \
+        -d '{
+          "model": "claude-opus-4-8",
+          "max_tokens": 1024,
+          "messages": [
+            {"role": "user", "content": "Search for flights to Tokyo departing June 1, 2026"}
+          ],
+          "tools": [{
+            "name": "search_flights",
+            "strict": true,
+            "input_schema": {
+              "type": "object",
+              "properties": {
+                "destination": {"type": "string"},
+                "departure_date": {"type": "string", "format": "date"},
+                "passengers": {"type": "integer", "enum": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+              },
+              "required": ["destination", "departure_date"],
+              "additionalProperties": false
+            }
+          }]
+        }'
+      ```
+
       ```bash CLI
       ant messages create <<'YAML'
       model: claude-opus-4-8
@@ -663,10 +691,55 @@ Misalnya, anggaplah sistem pemesanan membutuhkan `passengers: int`. Tanpa mode s
     </CodeGroup>
   </Accordion>
 
-  <Accordion title="Alur kerja agentik dengan beberapa alat yang tervalidasi">
-    Bangun agen multi-langkah yang andal dengan parameter alat yang terjamin:
+  <Accordion title="Alur kerja agentik dengan beberapa alat tervalidasi">
+    Bangun agen multilangkah yang andal dengan parameter alat yang terjamin:
 
     <CodeGroup>
+      ```bash cURL
+      curl https://api.anthropic.com/v1/messages \
+        -H "content-type: application/json" \
+        -H "x-api-key: $ANTHROPIC_API_KEY" \
+        -H "anthropic-version: 2023-06-01" \
+        -d '{
+          "model": "claude-opus-4-8",
+          "max_tokens": 1024,
+          "messages": [
+            {"role": "user", "content": "Help me plan a trip from New York to Paris for 2 people, departing June 1, 2026"}
+          ],
+          "tools": [
+            {
+              "name": "search_flights",
+              "strict": true,
+              "input_schema": {
+                "type": "object",
+                "properties": {
+                  "origin": {"type": "string"},
+                  "destination": {"type": "string"},
+                  "departure_date": {"type": "string", "format": "date"},
+                  "travelers": {"type": "integer", "enum": [1, 2, 3, 4, 5, 6]}
+                },
+                "required": ["origin", "destination", "departure_date"],
+                "additionalProperties": false
+              }
+            },
+            {
+              "name": "search_hotels",
+              "strict": true,
+              "input_schema": {
+                "type": "object",
+                "properties": {
+                  "city": {"type": "string"},
+                  "check_in": {"type": "string", "format": "date"},
+                  "guests": {"type": "integer", "enum": [1, 2, 3, 4]}
+                },
+                "required": ["city", "check_in"],
+                "additionalProperties": false
+              }
+            }
+          ]
+        }'
+      ```
+
       ```bash CLI
       ant messages create <<'YAML'
       model: claude-opus-4-8
@@ -1049,11 +1122,11 @@ Misalnya, anggaplah sistem pemesanan membutuhkan `passengers: int`. Tanpa mode s
 
 ## Retensi data
 
-Penggunaan alat strict mengompilasi definisi `input_schema` alat menjadi tata bahasa menggunakan pipeline yang sama dengan [structured outputs](/docs/id/build-with-claude/structured-outputs). Skema alat disimpan sementara dalam cache hingga 24 jam sejak penggunaan terakhir. Prompt dan respons tidak disimpan setelah respons API dikembalikan.
+Penggunaan alat ketat mengompilasi definisi `input_schema` alat menjadi tata bahasa menggunakan pipeline yang sama dengan [structured outputs](/docs/id/build-with-claude/structured-outputs). Skema alat di-cache sementara hingga 24 jam sejak penggunaan terakhir. Prompt dan respons tidak disimpan setelah respons API.
 
-Penggunaan alat strict memenuhi syarat HIPAA, tetapi **PHI tidak boleh disertakan dalam definisi skema alat**. API menyimpan skema yang telah dikompilasi dalam cache secara terpisah dari konten pesan, dan skema yang di-cache ini tidak menerima perlindungan PHI yang sama seperti prompt dan respons. Jangan sertakan PHI dalam nama properti `input_schema`, nilai `enum`, nilai `const`, atau ekspresi reguler `pattern`. PHI hanya boleh muncul dalam konten pesan (prompt dan respons), di mana PHI dilindungi di bawah pengamanan HIPAA.
+Penggunaan alat ketat memenuhi syarat HIPAA, tetapi **PHI tidak boleh disertakan dalam definisi skema alat**. API menyimpan cache skema yang telah dikompilasi secara terpisah dari konten pesan, dan skema yang di-cache ini tidak menerima perlindungan PHI yang sama seperti prompt dan respons. Jangan sertakan PHI dalam nama properti `input_schema`, nilai `enum`, nilai `const`, atau ekspresi reguler `pattern`. PHI hanya boleh muncul dalam konten pesan (prompt dan respons), di mana PHI dilindungi di bawah perlindungan HIPAA.
 
-Untuk kelayakan ZDR dan HIPAA di seluruh fitur, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
+Untuk kelayakan ZDR dan HIPAA di semua fitur, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
 
 ## Langkah selanjutnya
 
@@ -1067,7 +1140,7 @@ Untuk kelayakan ZDR dan HIPAA di seluruh fitur, lihat [API dan retensi data](/do
   </Card>
 
   <Card title="Structured outputs" icon="code-brackets" href="/docs/id/build-with-claude/structured-outputs">
-    Dapatkan respons JSON yang tervalidasi menggunakan grammar-constrained sampling yang sama.
+    Dapatkan respons JSON tervalidasi menggunakan grammar-constrained sampling yang sama.
   </Card>
 
   <Card title="Mendefinisikan alat" icon="hammer" href="/docs/id/agents-and-tools/tool-use/define-tools">

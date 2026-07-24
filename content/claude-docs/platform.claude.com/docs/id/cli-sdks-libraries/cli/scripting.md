@@ -1,21 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 7cb080d9d08b603e754858659e8cfe01cf7af55556d551ecfe33dab367dd07c4
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 4727bbda13c4f4b9ae9ce7f4930e06891171adb286a5193c83ee9df53e052d22
 ---
 
 # Scripting dan otomatisasi CLI
 
-Kelola versi sumber daya API sebagai YAML, rangkai perintah CLI ant dalam skrip, dan operasikan sumber daya dari Claude Code.
+Kontrol versi sumber daya API sebagai YAML, rangkai perintah CLI ant dalam skrip, operasikan sumber daya dari Claude Code, dan autentikasi panggilan curl dengan kredensial CLI.
 
 ---
 
 Halaman ini membahas alur kerja berorientasi tugas yang dibangun di atas CLI `ant`. Untuk flag dan opsi output yang mendasarinya, lihat [Menggunakan CLI](/docs/id/cli-sdks-libraries/cli/using).
 
-## Mengelola versi sumber daya API
+## Kontrol versi sumber daya API
 
-Anda dapat menggunakan CLI untuk mengelola versi sumber daya API seperti skill, agen, environment, atau deployment sebagai file YAML di repositori Anda dan menjaganya tetap sinkron dengan Claude API.
+Anda dapat menggunakan CLI untuk mengontrol versi sumber daya API seperti skill, agen, environment, atau deployment sebagai file YAML di repositori Anda dan menjaganya tetap sinkron dengan Claude API.
 
 <Note>
   Untuk informasi lebih lanjut tentang sumber daya ini, lihat [Managed Agents](/docs/id/managed-agents/overview).
@@ -27,7 +27,7 @@ Anda dapat menggunakan CLI untuk mengelola versi sumber daya API seperti skill, 
 
     ```yaml summarizer.agent.yaml
     name: Summarizer
-    model: claude-sonnet-4-6
+    model: claude-opus-4-8
     system: |
       You are a helpful assistant that writes concise summaries.
     tools:
@@ -45,7 +45,7 @@ Anda dapat menggunakan CLI untuk mengelola versi sumber daya API seperti skill, 
       "id": "agent_011CYm1BLqPXpQRk5khsSXrs",
       "version": 1,
       "name": "Summarizer",
-      "model": "claude-sonnet-4-6"
+      "model": "claude-opus-4-8"
       /* ... */
     }
     ```
@@ -62,7 +62,7 @@ Anda dapat menggunakan CLI untuk mengelola versi sumber daya API seperti skill, 
   </Step>
 
   <Step title="Definisikan environment">
-    Sebuah sesi berjalan di dalam [environment](/docs/id/api/cli/beta/environments), yang mendefinisikan sandbox tempat sesi tersebut dieksekusi. Tulis definisi environment ke `summarizer.environment.yaml`:
+    Sebuah sesi berjalan dalam sebuah [environment](/docs/id/api/cli/beta/environments), yang mendefinisikan sandbox tempat sesi tersebut dieksekusi. Tulis definisi environment ke `summarizer.environment.yaml`:
 
     ```yaml summarizer.environment.yaml
     name: summarizer-env
@@ -127,7 +127,7 @@ Anda dapat menggunakan CLI untuk mengelola versi sumber daya API seperti skill, 
   </Step>
 
   <Step title="Baca percakapan">
-    `--transform` dijalankan terhadap setiap event yang terdaftar, sehingga ini mencetak teks dari setiap pesan secara berurutan. `--format auto` menggantikan explorer interaktif yang secara default dibuka oleh perintah list di terminal:
+    `--transform` dijalankan terhadap setiap event yang terdaftar, sehingga ini mencetak teks dari setiap pesan secara berurutan. `--format auto` menggantikan explorer interaktif yang dibuka secara default oleh perintah list di terminal:
 
     ```bash
     ant beta:sessions:events list \
@@ -141,7 +141,7 @@ Anda dapat menggunakan CLI untuk mengelola versi sumber daya API seperti skill, 
     ```
 
     <Tip>
-      Untuk memantau sesi saat berjalan, gunakan `ant beta:sessions:events stream --session-id session_01JZCh78XvmxJjiXVy3oSi7K`. Event ditulis ke stdout saat event tersebut tiba.
+      Untuk memantau sesi saat berjalan, gunakan `ant beta:sessions:events stream --session-id session_01JZCh78XvmxJjiXVy3oSi7K`. Event ditulis ke stdout saat tiba.
     </Tip>
   </Step>
 </Steps>
@@ -179,10 +179,34 @@ Agent not found.
 
 ## Menggunakan CLI dari Claude Code
 
-[Claude Code](https://code.claude.com/docs/en/overview) dapat menggunakan CLI `ant` secara langsung. Dengan CLI yang sudah terpasang dan terautentikasi, Anda dapat meminta Claude Code untuk mengoperasikan sumber daya API Anda secara langsung. Sebagai contoh:
+[Claude Code](https://code.claude.com/docs/id/overview) dapat menggunakan CLI `ant` secara langsung. Dengan CLI yang terpasang dan terautentikasi, Anda dapat meminta Claude Code untuk mengoperasikan sumber daya API Anda secara langsung. Sebagai contoh:
 
-* "Daftar sesi agen terbaru saya dan rangkum mana saja yang mengalami error."
+* "Daftarkan sesi agen terbaru saya dan rangkum mana saja yang mengalami error."
 * "Unggah setiap PDF di `./reports` ke Files API dan cetak ID yang dihasilkan."
 * "Ambil event untuk sesi `session_01...` dan beri tahu saya di mana agen mengalami kebuntuan."
 
-Claude Code menjalankan `ant` melalui shell, mem-parsing output terstruktur, dan melakukan penalaran atas hasilnya (tanpa memerlukan kode integrasi khusus).
+Claude Code menjalankan `ant` melalui shell, mengurai output terstruktur, dan melakukan penalaran atas hasilnya (tidak memerlukan kode integrasi khusus).
+
+## Autentikasi permintaan curl dengan kredensial CLI
+
+Skrip yang memanggil API dengan `curl` atau klien HTTP lainnya dapat menggunakan kredensial yang disimpan oleh [`ant auth login`](/docs/id/cli-sdks-libraries/cli/quickstart#authentication) alih-alih kunci API statis. Token akses OAuth ditempatkan di header `Authorization` sebagai bearer token; header `x-api-key` hanya untuk kunci API statis.
+
+`ant auth print-credentials --access-token` mencetak token akses dari profil aktif, menyegarkannya terlebih dahulu jika sudah kedaluwarsa atau mendekati kedaluwarsa:
+
+```bash cURL
+curl https://api.anthropic.com/v1/messages \
+  -H "Authorization: Bearer $(ant auth print-credentials --access-token)" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "content-type: application/json" \
+  -d '{
+    "model": "claude-opus-4-8",
+    "max_tokens": 256,
+    "messages": [{"role": "user", "content": "hi"}]
+  }'
+```
+
+<Note>
+  Biarkan `ANTHROPIC_API_KEY` dan `ANTHROPIC_AUTH_TOKEN` tidak diatur saat bekerja dari login CLI. Salah satu variabel tersebut akan diprioritaskan di atas login untuk perintah `ant` (lihat [Prioritas kredensial](/docs/id/manage-claude/wif-reference#credential-precedence)) dan dapat secara diam-diam mengarahkannya ke organisasi atau workspace yang berbeda.
+</Note>
+
+Jalankan [`ant auth status`](/docs/id/cli-sdks-libraries/cli/authentication#check-authentication-status) untuk mengonfirmasi organisasi dan workspace mana yang sedang Anda gunakan untuk login; perintah ini akan memberi peringatan ketika sebuah variabel lingkungan menimpa login Anda.

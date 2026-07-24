@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/permission-policies
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 251f4c53791b889da2b6072359121668d33aad12d07c2fed0d3c5f7ef3dbe828
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: bd56b8127e88a32b4a9da1b4a2e34bc195b9d26553af3543967decd5a5e6efce
 ---
 
 # Kebijakan izin
@@ -14,7 +14,7 @@ Kontrol kapan alat agen dan MCP dieksekusi.
 Kebijakan izin mengontrol apakah alat yang dieksekusi server (toolset agen bawaan dan toolset MCP) berjalan secara otomatis atau menunggu persetujuan Anda. Alat kustom dieksekusi oleh aplikasi Anda dan dikontrol oleh Anda, sehingga tidak diatur oleh kebijakan izin.
 
 <Note>
-  Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Jenis kebijakan izin

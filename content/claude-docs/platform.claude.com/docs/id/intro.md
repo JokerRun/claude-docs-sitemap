@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/intro
-fetched_at: 2026-07-03T03:11:00.926352Z
-sha256: dacf2657d36ac95eb87ca4ad16808ed3b8c5d97cd1f97edd5d4ccd523d6a3045
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 1ca8e1f4673159e8d9aadf73f6acd2aca9fe000fd987678f162c28c2cc0f8563
 ---
 
 # Pengenalan Claude
 
-Claude adalah platform AI yang sangat berkinerja tinggi, tepercaya, dan cerdas yang dibangun oleh Anthropic. Claude unggul dalam tugas-tugas yang melibatkan bahasa, penalaran, analisis, pengodean, dan banyak lagi.
+Claude adalah platform AI yang sangat berkinerja tinggi, tepercaya, dan cerdas yang dibangun oleh Anthropic. Claude unggul dalam tugas-tugas yang melibatkan bahasa, penalaran, analisis, pengkodean, dan banyak lagi.
 
 ---
 
@@ -39,17 +39,17 @@ Anthropic menawarkan dua cara untuk membangun dengan Claude, masing-masing cocok
 
 ## Jalur yang direkomendasikan untuk developer baru
 
-Ikuti langkah-langkah ini untuk memulai dari nol hingga memiliki integrasi Claude yang berfungsi.
+Ikuti langkah-langkah berikut untuk memulai dari nol hingga integrasi Claude yang berfungsi.
 
 <Steps>
-  <Step title="Lakukan panggilan API pertama Anda">
+  <Step title="Buat panggilan API pertama Anda">
     Siapkan lingkungan Anda, instal SDK, dan kirim pesan pertama Anda ke Claude.
 
-    [Buka panduan memulai cepat](/docs/id/get-started)
+    [Buka quickstart](/docs/id/get-started)
   </Step>
 
   <Step title="Pahami Messages API">
-    Pelajari struktur inti permintaan dan respons, termasuk percakapan multi-giliran, prompt sistem, dan alasan penghentian.
+    Pelajari struktur permintaan dan respons inti, termasuk percakapan multi-giliran, prompt sistem, dan alasan berhenti.
 
     [Baca panduan Messages API](/docs/id/build-with-claude/working-with-messages)
   </Step>
@@ -75,15 +75,15 @@ Anthropic menyediakan alat developer untuk membantu Anda membangun dan menskalak
 
 <CardGroup cols={3}>
   <Card title="Developer Console" icon="computer" href="/">
-    Buat prototipe dan uji prompt di browser Anda dengan Workbench dan generator prompt.
+    Buat prototipe dan uji prompt di browser Anda dengan Workbench.
   </Card>
 
   <Card title="Referensi API" icon="code" href="/docs/id/api/overview">
-    Jelajahi dokumentasi lengkap API Claude dan SDK klien.
+    Jelajahi dokumentasi lengkap Claude API dan SDK klien.
   </Card>
 
   <Card title="Claude Cookbook" icon="chef-hat" href="https://platform.claude.com/cookbooks">
-    Belajar dengan notebook Jupyter interaktif yang mencakup PDF, embeddings, dan banyak lagi.
+    Belajar dengan notebook Jupyter interaktif yang mencakup PDF, embedding, dan banyak lagi.
   </Card>
 </CardGroup>
 
@@ -109,7 +109,7 @@ Claude dapat membantu banyak tugas yang melibatkan teks, kode, dan gambar.
 
 <CardGroup cols={2}>
   <Card title="Pusat Bantuan" icon="help" href="https://support.claude.com/en/">
-    Temukan jawaban atas pertanyaan umum seputar akun dan penagihan.
+    Temukan jawaban atas pertanyaan yang sering diajukan tentang akun dan penagihan.
   </Card>
 
   <Card title="Status Layanan" icon="chart" href="https://status.claude.com">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-editing
-fetched_at: 2026-07-18T03:07:08.309502Z
-sha256: c3c0a210446eb0ff5d1f2c669ae45e9840e650821dacda008ed62eb0e80515da
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 7c5cb7ec99e022cbb9bf66f27cc9a3e69c1a615cd6a9d9a0fa748e7751cc36c6
 ---
 
 # Context editing
@@ -62,7 +62,7 @@ The `clear_thinking_20251015` strategy manages `thinking` blocks in conversation
   Use this strategy to override the default. If your code runs across multiple model tiers, set `keep` explicitly rather than relying on the per-model default.
 </Tip>
 
-An assistant conversation turn may include multiple content blocks (for example, when using tools) and multiple thinking blocks (for example, with [interleaved thinking](/docs/en/build-with-claude/extended-thinking#interleaved-thinking)).
+An assistant conversation turn may include multiple content blocks (for example, when using tools) and multiple thinking blocks (for example, with [interleaved thinking](/docs/en/build-with-claude/thinking#interleaved-thinking)).
 
 ### Context editing happens server-side
 

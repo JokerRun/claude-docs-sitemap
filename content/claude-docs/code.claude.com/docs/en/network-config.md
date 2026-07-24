@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/network-config
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 9802e513a385c0e43bf61b20ff2290f9ca417c961e90d038d64d3772e83b151b
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 3f3b934c153143a006bee9eaeeb16f71537d1cff6d6d93adf3c2e90ac0e3aa3b
 ---
 
 > ## Documentation Index
@@ -23,7 +23,7 @@ Claude Code supports various enterprise network and security configurations thro
 
 ### Environment variables
 
-Claude Code respects standard proxy environment variables:
+Claude Code respects standard proxy environment variables. {/* min-version: 2.1.217 */}In Claude Desktop sessions where the app manages the provider connection, Claude Code reads them only from managed settings and `~/.claude/settings.json`; see [mTLS authentication](#mtls-authentication) for the scope rules.
 
 ```bash theme={null}
 # HTTPS proxy (recommended)
@@ -117,6 +117,8 @@ In [cloud sessions](/docs/en/claude-code-on-the-web), the hosting environment ma
 * `CLAUDE_CODE_OAUTH_SCOPES`
 
 Claude Code notes each ignored key in the session's debug log.
+
+In [Claude Desktop](/docs/en/desktop) sessions where the app manages the provider connection, such as the Code tab on a [third-party provider](/docs/en/third-party-integrations) and Cowork sessions, Claude Code reads these variables and the proxy variables `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` only from [managed settings](/docs/en/settings#settings-files) and `~/.claude/settings.json`: it ignores them in a repository's own settings files, so a checked-out repository can't redirect the TLS or proxy path of a session whose credentials come from the app. In a local, SSH, or WSL Code tab session signed in through claude.ai, the app doesn't manage the connection, and Claude Code reads these variables from every settings scope, like any terminal session; [cloud sessions](/docs/en/claude-code-on-the-web) follow the cloud-session rules above wherever you start them. Before v2.1.217, Claude Code ignored these variables in every settings file when the app managed the connection.
 
 ## Apply network settings to background agents
 

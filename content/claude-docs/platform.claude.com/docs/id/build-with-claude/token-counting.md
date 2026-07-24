@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 47d7e7659d9750891cf526d22c7929d1ef09eeb27b6f6a72aec62a37fd096d11
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 5bf2b620226a60c0c0e4af0d3ca904b936e764179ca514df0cae6c906eedce44
 ---
 
 # Penghitungan token
@@ -13,12 +13,12 @@ Hitung token dalam sebuah pesan sebelum Anda mengirimkannya ke Claude. Gunakan j
 
 Penghitungan token memungkinkan Anda menentukan jumlah token dalam sebuah pesan sebelum Anda mengirimkannya ke Claude. Ini membantu Anda membuat keputusan yang tepat tentang prompt dan penggunaan Anda. Dengan penghitungan token, Anda dapat:
 
-* Mengelola "rate limit" (batas laju) dan biaya secara proaktif
+* Mengelola batas laju dan biaya secara proaktif
 * Membuat keputusan perutean model yang cerdas
 * Mengoptimalkan prompt ke panjang tertentu
 
 <Note>
-  Fitur ini memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/api-and-data-retention). Ketika organisasi Anda memiliki pengaturan ZDR, data yang dikirim melalui fitur ini tidak disimpan setelah respons API dikembalikan.
+  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 ***
@@ -28,7 +28,7 @@ Penghitungan token memungkinkan Anda menentukan jumlah token dalam sebuah pesan 
 Endpoint [penghitungan token](/docs/id/api/messages-count-tokens) menerima daftar input terstruktur yang sama untuk membuat pesan, termasuk dukungan untuk prompt sistem, [alat](/docs/id/agents-and-tools/tool-use/overview), [gambar](/docs/id/build-with-claude/vision), dan [PDF](/docs/id/build-with-claude/pdf-support). Respons berisi jumlah total token input.
 
 <Note>
-  Jumlah token harus dianggap sebagai **estimasi**. Dalam beberapa kasus, jumlah token input aktual yang digunakan saat membuat pesan mungkin berbeda sedikit.
+  Jumlah token adalah sebuah **estimasi**. Dalam beberapa kasus, jumlah token input aktual yang digunakan saat membuat pesan mungkin berbeda sedikit.
 
   Jumlah token dapat mencakup token yang ditambahkan secara otomatis oleh Anthropic untuk optimasi sistem. **Anda tidak ditagih untuk token yang ditambahkan sistem**. Penagihan hanya mencerminkan konten Anda.
 </Note>
@@ -38,7 +38,7 @@ Endpoint [penghitungan token](/docs/id/api/messages-count-tokens) menerima dafta
 Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitungan token, termasuk Claude Sonnet 5.
 
 <Note>
-  Claude Opus 4.7 dan model Opus yang lebih baru, Claude Fable 5, Claude Mythos 5, Claude Mythos Preview, dan Claude Sonnet 5 menggunakan tokenizer yang lebih baru. Teks input yang sama menghasilkan sekitar 30% lebih banyak token dibandingkan model sebelumnya. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Hitung ulang prompt terhadap model yang akan Anda gunakan daripada menggunakan kembali jumlah yang diukur terhadap model sebelumnya.
+  Claude Opus 4.7 dan model Opus yang lebih baru, Claude Fable 5, Claude Mythos 5, Claude Mythos Preview, dan Claude Sonnet 5 menggunakan tokenizer yang lebih baru. Teks input yang sama menghasilkan sekitar 30 persen lebih banyak token dibandingkan model sebelumnya. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Hitung ulang prompt terhadap model yang akan Anda gunakan alih-alih menggunakan kembali jumlah yang diukur terhadap model sebelumnya.
 </Note>
 
 ### Menghitung token dalam pesan dasar
@@ -46,17 +46,17 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
 <CodeGroup>
   ```bash cURL
   curl https://api.anthropic.com/v1/messages/count_tokens \
-      --header "x-api-key: $ANTHROPIC_API_KEY" \
-      --header "content-type: application/json" \
-      --header "anthropic-version: 2023-06-01" \
-      --data '{
-        "model": "claude-opus-4-8",
-        "system": "You are a scientist",
-        "messages": [{
-          "role": "user",
-          "content": "Hello, Claude"
-        }]
-      }'
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "content-type: application/json" \
+    -H "anthropic-version: 2023-06-01" \
+    -d '{
+      "model": "claude-opus-4-8",
+      "system": "You are a scientist",
+      "messages": [{
+        "role": "user",
+        "content": "Hello, Claude"
+      }]
+    }'
   ```
 
   ```bash CLI
@@ -101,23 +101,17 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   using Anthropic;
   using Anthropic.Models.Messages;
 
-  class Program
+  AnthropicClient client = new();
+
+  var parameters = new MessageCountTokensParams
   {
-      static async Task Main(string[] args)
-      {
-          AnthropicClient client = new();
+      Model = Model.ClaudeOpus4_8,
+      System = "You are a scientist",
+      Messages = [new() { Role = Role.User, Content = "Hello, Claude" }]
+  };
 
-          var parameters = new MessageCountTokensParams
-          {
-              Model = Model.ClaudeOpus4_8,
-              System = "You are a scientist",
-              Messages = [new() { Role = Role.User, Content = "Hello, Claude" }]
-          };
-
-          var response = await client.Messages.CountTokens(parameters);
-          Console.WriteLine(response);
-      }
-  }
+  var response = await client.Messages.CountTokens(parameters);
+  Console.WriteLine(response);
   ```
 
   ```go Go
@@ -143,6 +137,10 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   import com.anthropic.models.messages.MessageCountTokensParams;
   import com.anthropic.models.messages.MessageTokensCount;
   // ...
+
+  public class CountTokensExample {
+
+    public static void main(String[] args) {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCountTokensParams params = MessageCountTokensParams.builder()
@@ -153,6 +151,8 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
 
       MessageTokensCount count = client.messages().countTokens(params);
       System.out.println(count);
+    }
+  }
   ```
 
   ```php PHP
@@ -197,34 +197,34 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
 <CodeGroup>
   ```bash cURL
   curl https://api.anthropic.com/v1/messages/count_tokens \
-      --header "x-api-key: $ANTHROPIC_API_KEY" \
-      --header "content-type: application/json" \
-      --header "anthropic-version: 2023-06-01" \
-      --data '{
-        "model": "claude-opus-4-8",
-        "tools": [
-          {
-            "name": "get_weather",
-            "description": "Get the current weather in a given location",
-            "input_schema": {
-              "type": "object",
-              "properties": {
-                "location": {
-                  "type": "string",
-                  "description": "The city and state, e.g. San Francisco, CA"
-                }
-              },
-              "required": ["location"]
-            }
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "content-type: application/json" \
+    -H "anthropic-version: 2023-06-01" \
+    -d '{
+      "model": "claude-opus-4-8",
+      "tools": [
+        {
+          "name": "get_weather",
+          "description": "Get the current weather in a given location",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "location": {
+                "type": "string",
+                "description": "The city and state, e.g. San Francisco, CA"
+              }
+            },
+            "required": ["location"]
           }
-        ],
-        "messages": [
-          {
-            "role": "user",
-            "content": "What'\''s the weather like in San Francisco?"
-          }
-        ]
-      }'
+        }
+      ],
+      "messages": [
+        {
+          "role": "user",
+          "content": "What'\''s the weather like in San Francisco?"
+        }
+      ]
+    }'
   ```
 
   ```bash CLI
@@ -309,41 +309,37 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   using Anthropic;
   using Anthropic.Models.Messages;
 
-  class Program
+  AnthropicClient client = new();
+
+  var parameters = new MessageCountTokensParams
   {
-      static async Task Main(string[] args)
-      {
-          AnthropicClient client = new();
-
-          var parameters = new MessageCountTokensParams
+      Model = Model.ClaudeOpus4_8,
+      Tools =
+      [
+          new MessageCountTokensTool(new Tool()
           {
-              Model = Model.ClaudeOpus4_8,
-              Tools =
-              [
-                  new MessageCountTokensTool(new Tool()
+              Name = "get_weather",
+              Description = "Get the current weather in a given location",
+              InputSchema = new InputSchema()
+              {
+                  Properties = new Dictionary<string, JsonElement>
                   {
-                      Name = "get_weather",
-                      Description = "Get the current weather in a given location",
-                      InputSchema = new InputSchema()
-                      {
-                          Properties = new Dictionary<string, JsonElement>
-                          {
-                              ["location"] = JsonSerializer.SerializeToElement(new { type = "string", description = "The city and state, e.g. San Francisco, CA" }),
-                          },
-                          Required = ["location"],
-                      },
-                  }),
-              ],
-              Messages = [new() { Role = Role.User, Content = "What's the weather like in San Francisco?" }]
-          };
+                      ["location"] = JsonSerializer.SerializeToElement(new { type = "string", description = "The city and state, e.g. San Francisco, CA" }),
+                  },
+                  Required = ["location"],
+              },
+          }),
+      ],
+      Messages = [new() { Role = Role.User, Content = "What's the weather like in San Francisco?" }]
+  };
 
-          var count = await client.Messages.CountTokens(parameters);
-          Console.WriteLine(count);
-      }
-  }
+  var count = await client.Messages.CountTokens(parameters);
+  Console.WriteLine(count);
   ```
 
   ```go Go
+  client := anthropic.NewClient()
+
   response, err := client.Messages.CountTokens(context.TODO(), anthropic.MessageCountTokensParams{
   	Model: anthropic.ModelClaudeOpus4_8,
   	Tools: []anthropic.MessageCountTokensToolUnionParam{
@@ -486,22 +482,22 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   IMAGE_BASE64=$(curl -s "$IMAGE_URL" | base64 | tr -d '\n')
 
   curl https://api.anthropic.com/v1/messages/count_tokens \
-       --header "x-api-key: $ANTHROPIC_API_KEY" \
-       --header "anthropic-version: 2023-06-01" \
-       --header "content-type: application/json" \
-       --data @- <<EOF
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "content-type: application/json" \
+    -d @- <<EOF
   {
-      "model": "claude-opus-4-8",
-      "messages": [
-          {"role": "user", "content": [
-              {"type": "image", "source": {
-                  "type": "base64",
-                  "media_type": "$IMAGE_MEDIA_TYPE",
-                  "data": "$IMAGE_BASE64"
-              }},
-              {"type": "text", "text": "Describe this image"}
-          ]}
-      ]
+    "model": "claude-opus-4-8",
+    "messages": [
+      {"role": "user", "content": [
+        {"type": "image", "source": {
+          "type": "base64",
+          "media_type": "$IMAGE_MEDIA_TYPE",
+          "data": "$IMAGE_BASE64"
+        }},
+        {"type": "text", "text": "Describe this image"}
+      ]}
+    ]
   }
   EOF
   ```
@@ -560,11 +556,11 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   ```typescript TypeScript
   const anthropic = new Anthropic();
 
-  const image_url =
+  const imageUrl =
     "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
-  const image_media_type = "image/jpeg";
-  const image_array_buffer = await (await fetch(image_url)).arrayBuffer();
-  const image_data = Buffer.from(image_array_buffer).toString("base64");
+  const imageMediaType = "image/jpeg";
+  const imageArrayBuffer = await (await fetch(imageUrl)).arrayBuffer();
+  const imageData = Buffer.from(imageArrayBuffer).toString("base64");
 
   const response = await anthropic.messages.countTokens({
     model: "claude-opus-4-8",
@@ -576,8 +572,8 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
             type: "image",
             source: {
               type: "base64",
-              media_type: image_media_type,
-              data: image_data
+              media_type: imageMediaType,
+              data: imageData
             }
           },
           {
@@ -599,45 +595,39 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   using Anthropic;
   using Anthropic.Models.Messages;
 
-  public class Program
+  AnthropicClient client = new();
+
+  string imageUrl = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
+
+  using HttpClient httpClient = new();
+  byte[] imageBytes = await httpClient.GetByteArrayAsync(imageUrl);
+  string imageData = Convert.ToBase64String(imageBytes);
+
+  var parameters = new MessageCountTokensParams
   {
-      public static async Task Main(string[] args)
-      {
-          AnthropicClient client = new();
-
-          string imageUrl = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
-
-          using HttpClient httpClient = new();
-          byte[] imageBytes = await httpClient.GetByteArrayAsync(imageUrl);
-          string imageData = Convert.ToBase64String(imageBytes);
-
-          var parameters = new MessageCountTokensParams
+      Model = Model.ClaudeOpus4_8,
+      Messages =
+      [
+          new()
           {
-              Model = Model.ClaudeOpus4_8,
-              Messages =
-              [
-                  new()
-                  {
-                      Role = Role.User,
-                      Content = new MessageParamContent(new List<ContentBlockParam>
+              Role = Role.User,
+              Content = new MessageParamContent(new List<ContentBlockParam>
+              {
+                  new ContentBlockParam(new ImageBlockParam(
+                      new ImageBlockParamSource(new Base64ImageSource()
                       {
-                          new ContentBlockParam(new ImageBlockParam(
-                              new ImageBlockParamSource(new Base64ImageSource()
-                              {
-                                  Data = imageData,
-                                  MediaType = MediaType.ImageJpeg,
-                              })
-                          )),
-                          new ContentBlockParam(new TextBlockParam("Describe this image")),
-                      }),
-                  }
-              ]
-          };
+                          Data = imageData,
+                          MediaType = MediaType.ImageJpeg,
+                      })
+                  )),
+                  new ContentBlockParam(new TextBlockParam("Describe this image")),
+              }),
+          }
+      ]
+  };
 
-          var count = await client.Messages.CountTokens(parameters);
-          Console.WriteLine(count);
-      }
-  }
+  var count = await client.Messages.CountTokens(parameters);
+  Console.WriteLine(count);
   ```
 
   ```go Go
@@ -793,7 +783,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
 ### Menghitung token dalam pesan dengan pemikiran diperpanjang
 
 <Note>
-  Lihat [bagaimana jendela konteks dihitung dengan pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking#how-context-window-is-calculated-with-extended-thinking) untuk detail lebih lanjut
+  Lihat [bagaimana jendela konteks dihitung dengan pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking#how-context-window-is-calculated-with-extended-thinking) untuk detail lebih lanjut.
 
   * Blok pemikiran dari giliran asisten **sebelumnya** diabaikan dan **tidak** dihitung dalam token input Anda
   * Pemikiran giliran asisten **saat ini** **dihitung** dalam token input Anda
@@ -802,40 +792,40 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
 <CodeGroup>
   ```bash cURL
   curl https://api.anthropic.com/v1/messages/count_tokens \
-      --header "x-api-key: $ANTHROPIC_API_KEY" \
-      --header "content-type: application/json" \
-      --header "anthropic-version: 2023-06-01" \
-      --data '{
-        "model": "claude-sonnet-4-6",
-        "thinking": {
-          "type": "enabled",
-          "budget_tokens": 16000
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "content-type: application/json" \
+    -H "anthropic-version: 2023-06-01" \
+    -d '{
+      "model": "claude-sonnet-4-6",
+      "thinking": {
+        "type": "enabled",
+        "budget_tokens": 16000
+      },
+      "messages": [
+        {
+          "role": "user",
+          "content": "Are there an infinite number of prime numbers such that n mod 4 == 3?"
         },
-        "messages": [
-          {
-            "role": "user",
-            "content": "Are there an infinite number of prime numbers such that n mod 4 == 3?"
-          },
-          {
-            "role": "assistant",
-            "content": [
-              {
-                "type": "thinking",
-                "thinking": "This is a nice number theory question. Lets think about it step by step...",
-                "signature": "EuYBCkQYAiJAgCs1le6/Pol5Z4/JMomVOouGrWdhYNsH3ukzUECbB6iWrSQtsQuRHJID6lWV..."
-              },
-              {
-                "type": "text",
-                "text": "Yes, there are infinitely many prime numbers p such that p mod 4 = 3..."
-              }
-            ]
-          },
-          {
-            "role": "user",
-            "content": "Can you write a formal proof?"
-          }
-        ]
-      }'
+        {
+          "role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "This is a nice number theory question. Lets think about it step by step...",
+              "signature": "EuYBCkQYAiJAgCs1le6/Pol5Z4/JMomVOouGrWdhYNsH3ukzUECbB6iWrSQtsQuRHJID6lWV..."
+            },
+            {
+              "type": "text",
+              "text": "Yes, there are infinitely many prime numbers p such that p mod 4 = 3..."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can you write a formal proof?"
+        }
+      ]
+    }'
   ```
 
   ```bash CLI
@@ -940,54 +930,50 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   using Anthropic;
   using Anthropic.Models.Messages;
 
-  public class Program
+  AnthropicClient client = new()
   {
-      public static async Task Main(string[] args)
-      {
-          AnthropicClient client = new()
-          {
-              ApiKey = Environment.GetEnvironmentVariable("ANTHROPIC_API_KEY")
-          };
+      ApiKey = Environment.GetEnvironmentVariable("ANTHROPIC_API_KEY")
+  };
 
-          var parameters = new MessageCountTokensParams
+  var parameters = new MessageCountTokensParams
+  {
+      Model = Model.ClaudeSonnet4_6,
+      Thinking = new ThinkingConfigEnabled(budgetTokens: 16000),
+      Messages =
+      [
+          new()
           {
-              Model = Model.ClaudeSonnet4_6,
-              Thinking = new ThinkingConfigEnabled(budgetTokens: 16000),
-              Messages =
-              [
-                  new()
+              Role = Role.User,
+              Content = "Are there an infinite number of prime numbers such that n mod 4 == 3?"
+          },
+          new()
+          {
+              Role = Role.Assistant,
+              Content = new MessageParamContent(new List<ContentBlockParam>
+              {
+                  new ContentBlockParam(new ThinkingBlockParam()
                   {
-                      Role = Role.User,
-                      Content = "Are there an infinite number of prime numbers such that n mod 4 == 3?"
-                  },
-                  new()
-                  {
-                      Role = Role.Assistant,
-                      Content = new MessageParamContent(new List<ContentBlockParam>
-                      {
-                          new ContentBlockParam(new ThinkingBlockParam()
-                          {
-                              Thinking = "This is a nice number theory question. Let's think about it step by step...",
-                              Signature = "EuYBCkQYAiJAgCs1le6/Pol5Z4/JMomVOouGrWdhYNsH3ukzUECbB6iWrSQtsQuRHJID6lWV...",
-                          }),
-                          new ContentBlockParam(new TextBlockParam("Yes, there are infinitely many prime numbers p such that p mod 4 = 3...")),
-                      }),
-                  },
-                  new()
-                  {
-                      Role = Role.User,
-                      Content = "Can you write a formal proof?"
-                  }
-              ]
-          };
+                      Thinking = "This is a nice number theory question. Let's think about it step by step...",
+                      Signature = "EuYBCkQYAiJAgCs1le6/Pol5Z4/JMomVOouGrWdhYNsH3ukzUECbB6iWrSQtsQuRHJID6lWV...",
+                  }),
+                  new ContentBlockParam(new TextBlockParam("Yes, there are infinitely many prime numbers p such that p mod 4 = 3...")),
+              }),
+          },
+          new()
+          {
+              Role = Role.User,
+              Content = "Can you write a formal proof?"
+          }
+      ]
+  };
 
-          var response = await client.Messages.CountTokens(parameters);
-          Console.WriteLine(response);
-      }
-  }
+  var response = await client.Messages.CountTokens(parameters);
+  Console.WriteLine(response);
   ```
 
   ```go Go
+  client := anthropic.NewClient()
+
   thinkingBlock := anthropic.NewThinkingBlock(
   	"EuYBCkQYAiJAgCs1le6/Pol5Z4/JMomVOouGrWdhYNsH3ukzUECbB6iWrSQtsQuRHJID6lWV...",
   	"This is a nice number theory question. Let's think about it step by step...",
@@ -998,7 +984,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   )
 
   response, err := client.Messages.CountTokens(context.TODO(), anthropic.MessageCountTokensParams{
-  	Model:    anthropic.Model("claude-sonnet-4-6"),
+  	Model:    anthropic.ModelClaudeSonnet4_6,
   	Thinking: anthropic.ThinkingConfigParamOfEnabled(16000),
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Are there an infinite number of prime numbers such that n mod 4 == 3?")),
@@ -1135,16 +1121,16 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
 ### Menghitung token dalam pesan dengan PDF
 
 <Note>
-  Penghitungan token mendukung PDF dengan [batasan](/docs/id/build-with-claude/pdf-support#pdf-support-limitations) yang sama seperti Messages API.
+  Penghitungan token mendukung PDF dengan [batasan dukungan PDF](/docs/id/build-with-claude/pdf-support#pdf-support-limitations) yang sama seperti Messages API.
 </Note>
 
 <CodeGroup>
   ```bash cURL
   curl https://api.anthropic.com/v1/messages/count_tokens \
-      --header "x-api-key: $ANTHROPIC_API_KEY" \
-      --header "content-type: application/json" \
-      --header "anthropic-version: 2023-06-01" \
-      --data @- <<EOF
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "content-type: application/json" \
+    -H "anthropic-version: 2023-06-01" \
+    -d @- <<EOF
   {
     "model": "claude-opus-4-8",
     "messages": [{
@@ -1257,44 +1243,40 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   using Anthropic;
   using Anthropic.Models.Messages;
 
-  class Program
+  AnthropicClient client = new();
+
+  byte[] pdfBytes = await File.ReadAllBytesAsync("/path/to/document.pdf");
+  string pdfBase64 = Convert.ToBase64String(pdfBytes);
+
+  var parameters = new MessageCountTokensParams
   {
-      static async Task Main(string[] args)
-      {
-          AnthropicClient client = new();
-
-          byte[] pdfBytes = await File.ReadAllBytesAsync("/path/to/document.pdf");
-          string pdfBase64 = Convert.ToBase64String(pdfBytes);
-
-          var parameters = new MessageCountTokensParams
+      Model = Model.ClaudeOpus4_8,
+      Messages =
+      [
+          new()
           {
-              Model = Model.ClaudeOpus4_8,
-              Messages =
-              [
-                  new()
-                  {
-                      Role = Role.User,
-                      Content = new MessageParamContent(new List<ContentBlockParam>
+              Role = Role.User,
+              Content = new MessageParamContent(new List<ContentBlockParam>
+              {
+                  new ContentBlockParam(new DocumentBlockParam(
+                      new DocumentBlockParamSource(new Base64PdfSource()
                       {
-                          new ContentBlockParam(new DocumentBlockParam(
-                              new DocumentBlockParamSource(new Base64PdfSource()
-                              {
-                                  Data = pdfBase64,
-                              })
-                          )),
-                          new ContentBlockParam(new TextBlockParam("Please summarize this document.")),
-                      }),
-                  }
-              ]
-          };
+                          Data = pdfBase64,
+                      })
+                  )),
+                  new ContentBlockParam(new TextBlockParam("Please summarize this document.")),
+              }),
+          }
+      ]
+  };
 
-          var count = await client.Messages.CountTokens(parameters);
-          Console.WriteLine(count);
-      }
-  }
+  var count = await client.Messages.CountTokens(parameters);
+  Console.WriteLine(count);
   ```
 
   ```go Go
+  client := anthropic.NewClient()
+
   pdfBytes, err := os.ReadFile("/path/to/document.pdf")
   if err != nil {
   	log.Fatal(err)
@@ -1423,10 +1405,10 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
 
 ## Jumlah token pada Claude Fable 5 dan Claude Mythos 5
 
-Claude Fable 5 dan Claude Mythos 5 menggunakan tokenizer yang diperkenalkan dengan Claude Opus 4.7, yang menghasilkan sekitar 30% lebih banyak token dibandingkan model sebelum Claude Opus 4.7 untuk teks yang sama. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Endpoint penghitungan token mengembalikan jumlah berdasarkan tokenizer dari `model` yang Anda berikan, jadi untuk mengukur perbedaan pada beban kerja Anda, hitung permintaan yang sama dua kali: sekali dengan model Anda saat ini dan sekali dengan `model: "claude-fable-5"` (atau `"claude-mythos-5"`), lalu bandingkan kedua nilai `input_tokens`.
+Claude Fable 5 dan Claude Mythos 5 menggunakan tokenizer yang diperkenalkan dengan Claude Opus 4.7, yang menghasilkan sekitar 30 persen lebih banyak token dibandingkan model sebelum Claude Opus 4.7 untuk teks yang sama. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Endpoint penghitungan token mengembalikan jumlah berdasarkan tokenizer dari `model` yang Anda berikan, jadi untuk mengukur perbedaan pada beban kerja Anda, hitung permintaan yang sama dua kali: sekali dengan model Anda saat ini dan sekali dengan `model: "claude-fable-5"` (atau `"claude-mythos-5"`), lalu bandingkan kedua nilai `input_tokens`.
 
 <Note>
-  **Penagihan dan migrasi:** Penggunaan dan penagihan pada Claude Fable 5 dan Claude Mythos 5 mencerminkan jumlah dari tokenizer ini. Jika Anda bermigrasi dari model sebelum Claude Opus 4.7, konten yang sama mengonsumsi sekitar 30% lebih banyak token. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Saat memigrasikan beban kerja ke Claude Fable 5 dan Claude Mythos 5, jangan gunakan kembali jumlah token yang diukur pada model sebelum Claude Opus 4.7 untuk memperkirakan biaya atau kesesuaian jendela konteks. Hitung prompt Anda dengan `model: "claude-fable-5"` (atau `"claude-mythos-5"`).
+  **Penagihan dan migrasi:** Penggunaan dan penagihan pada Claude Fable 5 dan Claude Mythos 5 mencerminkan jumlah dari tokenizer ini. Jika Anda bermigrasi dari model sebelum Claude Opus 4.7, konten yang sama mengonsumsi sekitar 30 persen lebih banyak token. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Saat memigrasikan beban kerja ke Claude Fable 5 dan Claude Mythos 5, jangan gunakan kembali jumlah token yang diukur pada model sebelum Claude Opus 4.7 untuk memperkirakan biaya atau kesesuaian jendela konteks. Hitung prompt Anda dengan `model: "claude-fable-5"` (atau `"claude-mythos-5"`).
 </Note>
 
 ***
@@ -1473,6 +1455,6 @@ Penghitungan token **gratis untuk digunakan** tetapi tunduk pada batas laju perm
   </Card>
 
   <Card title="Caching prompt" icon="database" href="/docs/id/build-with-claude/prompt-caching">
-    Kurangi biaya dan latensi pada prompt berulang dengan melakukan caching pada prefiks prompt.
+    Kurangi biaya dan latensi pada prompt yang berulang dengan melakukan caching pada prefiks prompt.
   </Card>
 </CardGroup>

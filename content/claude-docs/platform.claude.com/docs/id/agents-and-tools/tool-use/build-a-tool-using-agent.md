@@ -1,29 +1,29 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 7bc81c44640bf277c064778e5efb0c8bdbbd0d7aa6b22f2c073e2e3f2c0520fe
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: bd237b8076e73de33b2c61e5203dc3997ee7ab3e27fbadb8c0a677861b047b6f
 ---
 
 # Tutorial: Membangun agen yang menggunakan alat
 
-Panduan langkah demi langkah dari satu pemanggilan alat hingga loop agentik yang siap produksi.
+Panduan langkah demi langkah dari satu panggilan alat hingga loop agentik yang siap produksi.
 
 ---
 
-Tutorial ini membangun agen pengelola kalender dalam lima lapisan konsentris. Setiap lapisan adalah program lengkap yang dapat dijalankan dan menambahkan tepat satu konsep ke lapisan sebelumnya. Pada akhirnya, Anda akan menulis loop agentik secara manual dan kemudian menggantinya dengan abstraksi SDK Tool Runner.
+Tutorial ini membangun agen manajemen kalender dalam lima ring konsentris. Setiap ring adalah program lengkap yang dapat dijalankan dan menambahkan tepat satu konsep ke ring sebelumnya. Pada akhirnya Anda akan menulis loop agentik secara manual dan kemudian menggantinya dengan abstraksi Tool Runner SDK.
 
-Alat contoh yang digunakan adalah `create_calendar_event`. Skemanya menggunakan objek bersarang, array, dan field opsional, sehingga Anda akan melihat bagaimana Claude menangani bentuk input yang realistis, bukan sekadar satu string datar.
+Alat contohnya adalah `create_calendar_event`. Skemanya menggunakan objek bersarang, array, dan field opsional, sehingga Anda akan melihat bagaimana Claude menangani bentuk input yang realistis alih-alih satu string datar.
 
 <Note>
-  Setiap lapisan dapat dijalankan secara mandiri. Salin lapisan mana pun ke dalam file baru dan kode tersebut akan berjalan tanpa memerlukan kode dari lapisan sebelumnya.
+  Setiap ring berjalan secara mandiri. Salin ring mana pun ke file baru dan ring tersebut akan berjalan tanpa kode dari ring sebelumnya.
 </Note>
 
-## Lapisan 1: Satu alat, satu giliran
+## Ring 1: Satu alat, satu giliran
 
-Program penggunaan alat sekecil mungkin: satu alat, satu pesan pengguna, satu pemanggilan alat, satu hasil. Kode ini diberi banyak komentar sehingga Anda dapat memetakan setiap baris ke [siklus hidup penggunaan alat](/docs/id/agents-and-tools/tool-use/how-tool-use-works).
+Program penggunaan alat terkecil yang mungkin: satu alat, satu pesan pengguna, satu panggilan alat, satu hasil. Kode ini diberi komentar secara mendetail sehingga Anda dapat memetakan setiap baris ke [siklus hidup penggunaan alat](/docs/id/agents-and-tools/tool-use/how-tool-use-works).
 
-Permintaan mengirimkan array `tools` bersama dengan pesan pengguna. Ketika Claude memutuskan untuk memanggil alat, respons kembali dengan `stop_reason: "tool_use"` dan blok konten `tool_use` yang berisi nama alat, `id` unik, dan `input` terstruktur. Kode Anda mengeksekusi alat tersebut, lalu mengirimkan hasilnya kembali dalam blok `tool_result` yang `tool_use_id`-nya cocok dengan `id` dari pemanggilan tersebut.
+Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menentukan bahwa panggilan alat diperlukan, respons kembali dengan `stop_reason: "tool_use"` dan blok konten `tool_use` yang berisi nama alat, `id` unik, dan `input` terstruktur. Kode Anda menjalankan alat tersebut, lalu mengirimkan hasilnya kembali dalam blok `tool_result` yang `tool_use_id`-nya cocok dengan `id` dari panggilan tersebut.
 
 <CodeGroup>
   ```bash cURL
@@ -1018,7 +1018,7 @@ Permintaan mengirimkan array `tools` bersama dengan pesan pengguna. Ketika Claud
   ```
 </CodeGroup>
 
-**Yang diharapkan**
+**Apa yang diharapkan**
 
 ```text Output wrap
 stop_reason: tool_use
@@ -1028,13 +1028,13 @@ stop_reason: end_turn
 I've scheduled your 30-minute sync with Alice and Bob for next Monday at 10am.
 ```
 
-`stop_reason` pertama adalah `tool_use` karena Claude sedang menunggu hasil dari kalender. Setelah Anda mengirimkan hasilnya, `stop_reason` kedua adalah `end_turn` dan kontennya berupa bahasa alami untuk pengguna.
+`stop_reason` pertama adalah `tool_use` karena Claude sedang menunggu hasil kalender. Setelah Anda mengirimkan hasilnya, `stop_reason` kedua adalah `end_turn` dan kontennya adalah bahasa alami untuk pengguna.
 
-## Lapisan 2: Loop agentik
+## Ring 2: Loop agentik
 
-Lapisan 1 mengasumsikan Claude akan memanggil alat tepat satu kali. Tugas nyata sering kali membutuhkan beberapa pemanggilan: Claude mungkin membuat sebuah acara, membaca konfirmasinya, lalu membuat acara lain. Solusinya adalah loop `while` yang terus menjalankan alat dan mengirimkan hasilnya kembali hingga `stop_reason` tidak lagi bernilai `"tool_use"`.
+Ring 1 mengasumsikan Claude akan memanggil alat tepat satu kali. Tugas nyata sering kali membutuhkan beberapa panggilan: Claude mungkin membuat sebuah acara, membaca konfirmasinya, lalu membuat acara lain. Solusinya adalah loop `while` yang terus menjalankan alat dan mengirimkan hasilnya kembali hingga `stop_reason` tidak lagi bernilai `"tool_use"`.
 
-Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `messages` dari awal pada setiap permintaan, simpan daftar yang terus berjalan dan tambahkan ke dalamnya. Setiap giliran melihat konteks lengkap sebelumnya.
+Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `messages` dari awal pada setiap permintaan, simpan daftar yang terus berjalan dan tambahkan ke dalamnya. Setiap giliran melihat konteks sebelumnya secara lengkap.
 
 <CodeGroup>
   ```bash cURL
@@ -1945,19 +1945,19 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
   ```
 </CodeGroup>
 
-**Yang diharapkan**
+**Apa yang diharapkan**
 
 ```text Output wrap
 I've set up your weekly team standup for the next 4 Mondays at 9am with Alice, Bob, and Carol invited.
 ```
 
-Loop mungkin berjalan sekali atau beberapa kali tergantung pada bagaimana Claude memecah tugas tersebut. Kode Anda tidak lagi perlu mengetahuinya di awal.
+Loop mungkin berjalan sekali atau beberapa kali tergantung bagaimana Claude memecah tugasnya. Kode Anda tidak lagi perlu mengetahuinya sebelumnya.
 
-## Lapisan 3: Beberapa alat, pemanggilan paralel
+## Ring 3: Beberapa alat, panggilan paralel
 
 Agen jarang hanya memiliki satu kemampuan. Tambahkan alat kedua, `list_calendar_events`, sehingga Claude dapat memeriksa jadwal yang ada sebelum membuat sesuatu yang baru.
 
-Ketika Claude memiliki beberapa pemanggilan alat independen yang perlu dilakukan, Claude mungkin mengembalikan beberapa blok `tool_use` dalam satu respons. Loop Anda perlu memproses semuanya dan mengirimkan semua hasil bersama-sama dalam satu pesan pengguna. Iterasi setiap blok `tool_use` dalam `response.content`, bukan hanya yang pertama.
+Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claude mungkin mengembalikan beberapa blok `tool_use` dalam satu respons. Loop Anda perlu memproses semuanya dan mengirimkan kembali semua hasil bersama-sama dalam satu pesan pengguna. Iterasi setiap blok `tool_use` di `response.content`, bukan hanya yang pertama.
 
 <CodeGroup>
   ```bash cURL
@@ -2926,17 +2926,17 @@ Ketika Claude memiliki beberapa pemanggilan alat independen yang perlu dilakukan
   ```
 </CodeGroup>
 
-**Yang diharapkan**
+**Apa yang diharapkan**
 
 ```text Output wrap
 I checked your calendar for next Monday and found an existing meeting from 2pm to 3pm. I've scheduled the planning session for 10am to 11am to avoid the conflict.
 ```
 
-Untuk informasi lebih lanjut tentang eksekusi konkuren dan jaminan urutan, lihat [Penggunaan alat paralel](/docs/id/agents-and-tools/tool-use/parallel-tool-use).
+Untuk informasi lebih lanjut tentang eksekusi bersamaan dan jaminan urutan, lihat [Penggunaan alat paralel](/docs/id/agents-and-tools/tool-use/parallel-tool-use).
 
-## Lapisan 4: Penanganan error
+## Ring 4: Penanganan kesalahan
 
-Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak peserta, atau format tanggal mungkin salah. Ketika alat memunculkan error, kirimkan pesan error kembali dengan `is_error: true` alih-alih membiarkan program crash. Claude membaca error tersebut dan dapat mencoba lagi dengan input yang diperbaiki, meminta klarifikasi dari pengguna, atau menjelaskan keterbatasannya.
+Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak peserta, atau tanggal mungkin salah format. Ketika alat menghasilkan kesalahan, kirimkan pesan kesalahan kembali dengan `is_error: true` alih-alih membuat program crash. Claude membaca kesalahan tersebut dan dapat mencoba lagi dengan input yang diperbaiki, meminta klarifikasi kepada pengguna, atau menjelaskan keterbatasannya.
 
 <CodeGroup>
   ```bash cURL
@@ -4012,22 +4012,22 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
   ```
 </CodeGroup>
 
-**Yang diharapkan**
+**Apa yang diharapkan**
 
 ```text Output wrap
 I tried to schedule the all-hands but the calendar only allows 10 attendees per event. I can split this into two sessions, or you can let me know which 10 people to prioritize.
 ```
 
-Flag `is_error` adalah satu-satunya perbedaan dari hasil yang berhasil. Claude melihat flag tersebut dan teks error-nya, lalu merespons sesuai dengan itu. Lihat [Menangani pemanggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls) untuk referensi lengkap penanganan error.
+Flag `is_error` adalah satu-satunya perbedaan dari hasil yang berhasil. Claude melihat flag tersebut dan teks kesalahannya, lalu merespons sesuai kondisi. Lihat [Menangani panggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls) untuk referensi penanganan kesalahan yang lengkap.
 
-## Lapisan 5: Abstraksi SDK Tool Runner
+## Ring 5: Abstraksi Tool Runner SDK
 
-Lapisan 2 hingga 4 menulis loop yang sama secara manual: memanggil API, memeriksa `stop_reason`, menjalankan alat, menambahkan hasil, ulangi. Tool Runner melakukan ini untuk Anda. Definisikan setiap alat sebagai fungsi, berikan daftarnya ke `tool_runner`, dan ambil pesan akhir setelah loop selesai. Pembungkusan error, pemformatan hasil, dan pengelolaan percakapan ditangani secara internal.
+Ring 2 hingga 4 menulis loop yang sama secara manual: panggil API, periksa `stop_reason`, jalankan alat, tambahkan hasil, ulangi. Tool Runner melakukan ini untuk Anda. Definisikan setiap alat sebagai fungsi, berikan daftarnya ke `tool_runner`, dan ambil pesan akhir setelah loop selesai. Pembungkusan kesalahan, pemformatan hasil, dan manajemen percakapan ditangani secara internal.
 
-SDK Python menggunakan dekorator `@beta_tool` untuk menyimpulkan skema dari type hint dan docstring. SDK TypeScript menggunakan `betaZodTool` dengan skema Zod. SDK lainnya mengikuti pola yang sama dengan helper masing-masing: `BetaRunnableTool` di C# dan PHP, kelas alat bertipe di Java dan Ruby, serta `toolrunner.NewBetaToolFromJSONSchema` di Go.
+Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat dijalankan dan menurunkan skema input dari signature-nya; tab di bawah menunjukkan bentuk idiomatik untuk setiap bahasa.
 
 <Note>
-  Tool Runner tersedia di ketujuh SDK: Python, TypeScript, C#, Go, Java, PHP, dan Ruby. Lihat [Tool Runner](/docs/id/agents-and-tools/tool-use/tool-runner) untuk referensi lengkapnya. Tab cURL dan CLI menampilkan catatan alih-alih kode; tetap gunakan loop Lapisan 4 untuk skrip berbasis curl atau CLI.
+  Tool Runner tersedia di ketujuh SDK: Python, TypeScript, C#, Go, Java, PHP, dan Ruby. Lihat [Tool Runner](/docs/id/agents-and-tools/tool-use/tool-runner) untuk referensi lengkapnya. Tab cURL dan CLI menampilkan catatan alih-alih kode; pertahankan loop Ring 4 untuk skrip berbasis curl atau CLI.
 </Note>
 
 <CodeGroup>
@@ -4652,17 +4652,17 @@ SDK Python menggunakan dekorator `@beta_tool` untuk menyimpulkan skema dari type
   ```
 </CodeGroup>
 
-**Yang diharapkan**
+**Apa yang diharapkan**
 
 ```text Output wrap
 I checked your calendar for next Monday and found an existing meeting from 2pm to 3pm. I've scheduled the planning session for 10am to 11am to avoid the conflict.
 ```
 
-Output-nya identik dengan Lapisan 3. Perbedaannya ada pada kode: kira-kira setengah jumlah baris, tanpa loop manual, dan skema berada tepat di samping implementasinya.
+Outputnya identik dengan Ring 3. Perbedaannya ada pada kode: kira-kira setengah jumlah baris, tanpa loop manual, dan skema berada tepat di samping implementasinya.
 
 ## Apa yang telah Anda bangun
 
-Anda memulai dengan satu pemanggilan alat yang di-hardcode dan berakhir dengan agen berbentuk produksi yang menangani beberapa alat, pemanggilan paralel, dan error, lalu meringkas semua itu ke dalam Tool Runner. Sepanjang proses, Anda telah melihat setiap bagian dari protokol penggunaan alat: blok `tool_use`, blok `tool_result`, pencocokan `tool_use_id`, pemeriksaan `stop_reason`, dan penandaan `is_error`.
+Anda memulai dengan satu panggilan alat yang di-hardcode dan berakhir dengan agen berbentuk produksi yang menangani beberapa alat, panggilan paralel, dan kesalahan, lalu meringkas semuanya ke dalam Tool Runner. Sepanjang perjalanan Anda melihat setiap bagian dari protokol penggunaan alat: blok `tool_use`, blok `tool_result`, pencocokan `tool_use_id`, pemeriksaan `stop_reason`, dan pemberian sinyal `is_error`.
 
 ## Langkah selanjutnya
 
@@ -4671,11 +4671,11 @@ Anda memulai dengan satu pemanggilan alat yang di-hardcode dan berakhir dengan a
     Spesifikasi skema dan praktik terbaik.
   </Card>
 
-  <Card href="/docs/id/agents-and-tools/tool-use/tool-runner" title="Pendalaman Tool Runner">
+  <Card href="/docs/id/agents-and-tools/tool-use/tool-runner" title="Tool Runner">
     Referensi lengkap abstraksi SDK.
   </Card>
 
   <Card href="/docs/id/agents-and-tools/tool-use/troubleshooting-tool-use" title="Pemecahan masalah">
-    Perbaiki error umum penggunaan alat.
+    Perbaiki kesalahan penggunaan alat yang umum.
   </Card>
 </CardGroup>

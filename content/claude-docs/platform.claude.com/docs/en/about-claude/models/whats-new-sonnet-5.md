@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/whats-new-sonnet-5
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: e9838313d3e2564bd487883b4bd18624327dc009fe5b0a59487cbef444700cae
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: c23f07ceb5a9b5d9765aed28c1c3a21888e75cfd0d41c10826edfde83e43aeb3
 ---
 
 # What's new in Claude Sonnet 5
@@ -11,7 +11,7 @@ Overview of new features and behavior changes in Claude Sonnet 5.
 
 ---
 
-Claude Sonnet 5 is the next generation of Anthropic's Sonnet model family. It is a drop-in upgrade for Claude Sonnet 4.6 with three behavior changes: [adaptive thinking](/docs/en/build-with-claude/adaptive-thinking) is on by default, manual extended thinking now returns a 400 error (it was deprecated on Claude Sonnet 4.6), and setting sampling parameters (`temperature`, `top_p`, `top_k`) to non-default values returns a 400 error. This page summarizes everything new at launch, including a new tokenizer.
+Claude Sonnet 5 is the next generation of Anthropic's Sonnet model family. It is a drop-in upgrade for Claude Sonnet 4.6 with three behavior changes: [adaptive thinking](/docs/en/build-with-claude/thinking-steering-and-cost) is on by default, manual extended thinking now returns a 400 error (it was deprecated on Claude Sonnet 4.6), and setting sampling parameters (`temperature`, `top_p`, `top_k`) to non-default values returns a 400 error. This page summarizes everything new at launch, including a new tokenizer.
 
 ## New model
 
@@ -19,7 +19,7 @@ Claude Sonnet 5 is the next generation of Anthropic's Sonnet model family. It is
 | --------------- | ----------------- | ---------------------------------------------- |
 | Claude Sonnet 5 | `claude-sonnet-5` | The best combination of speed and intelligence |
 
-Claude Sonnet 5 supports the [1M token context window](/docs/en/build-with-claude/context-windows) by default (1M tokens is both the default and the maximum; there is no smaller context variant), 128k max output tokens, [adaptive thinking](/docs/en/build-with-claude/adaptive-thinking), and the same set of tools and platform features as Claude Sonnet 4.6, except [Priority Tier](/docs/en/api/service-tiers#supported-models), which is not available on Claude Sonnet 5.
+Claude Sonnet 5 supports the [1M token context window](/docs/en/build-with-claude/context-windows) by default (1M tokens is both the default and the maximum; there is no smaller context variant), 128k max output tokens, [adaptive thinking](/docs/en/build-with-claude/thinking-steering-and-cost), and the same set of tools and platform features as Claude Sonnet 4.6, except [Priority Tier](/docs/en/api/service-tiers#supported-models), which is not available on Claude Sonnet 5.
 
 For complete pricing and specs, see the [models overview](/docs/en/about-claude/models/overview).
 
@@ -27,7 +27,7 @@ For complete pricing and specs, see the [models overview](/docs/en/about-claude/
 
 ### Adaptive thinking on by default
 
-On Claude Sonnet 4.6, requests without a `thinking` field run without thinking. On Claude Sonnet 5, the same requests run with [adaptive thinking](/docs/en/build-with-claude/adaptive-thinking). To turn thinking off, pass `thinking: {type: "disabled"}`. Because `max_tokens` is a hard limit on total output (thinking plus response text), revisit it for workloads that ran without thinking on Claude Sonnet 4.6.
+On Claude Sonnet 4.6, requests without a `thinking` field run without thinking. On Claude Sonnet 5, the same requests run with [adaptive thinking](/docs/en/build-with-claude/thinking-steering-and-cost). To turn thinking off, pass `thinking: {type: "disabled"}`. Because `max_tokens` is a hard limit on total output (thinking plus response text), revisit it for workloads that ran without thinking on Claude Sonnet 4.6.
 
 ### Sampling parameters not accepted
 
@@ -107,7 +107,7 @@ model = "claude-sonnet-5"  # After
 Then review the following:
 
 1. **Token budgets and counts:** the [new tokenizer](#new-tokenizer) produces approximately 30% more tokens for the same text. The exact increase depends on the content and workload shape. Recount prompts with [token counting](/docs/en/build-with-claude/token-counting), and revisit `max_tokens` limits sized close to your expected output length.
-2. **Extended thinking:** if you still set `budget_tokens`, migrate to [adaptive thinking](/docs/en/build-with-claude/adaptive-thinking). Manual extended thinking (`thinking: {type: "enabled"}`) is not supported and returns a 400 error.
+2. **Extended thinking:** if you still set `budget_tokens`, migrate to [adaptive thinking](/docs/en/build-with-claude/thinking-steering-and-cost). Manual extended thinking (`thinking: {type: "enabled"}`) is not supported and returns a 400 error.
 3. **Sampling parameters:** requests that set sampling parameters (`temperature`, `top_p`, `top_k`) to a non-default value return a 400 error; remove them when migrating. Tool definitions and response shapes are unchanged, and assistant message prefilling was already unsupported on Claude Sonnet 4.6.
 
 See the [Claude Sonnet 5 section of the migration guide](/docs/en/about-claude/models/migration-guide#migrating-from-claude-sonnet-4-6-to-claude-sonnet-5) for details.
@@ -123,7 +123,7 @@ See the [Claude Sonnet 5 section of the migration guide](/docs/en/about-claude/m
     Measure your prompts under the new tokenizer before you migrate.
   </Card>
 
-  <Card title="Adaptive thinking" icon="brain" href="/docs/en/build-with-claude/adaptive-thinking">
+  <Card title="Adaptive thinking" icon="brain" href="/docs/en/build-with-claude/thinking-steering-and-cost">
     The recommended thinking-on mode on Claude Sonnet 5.
   </Card>
 

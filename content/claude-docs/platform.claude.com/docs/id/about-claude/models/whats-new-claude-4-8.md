@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/whats-new-claude-4-8
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 6963598dedccd245518c1749796dc02e82e8dc1c5bc7267de40f8396c58cdf86
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: 874450d70b182dcc4207a172e5f5c925cb1d62535652774a5fbe8465776e1853
 ---
 
 # Apa yang baru di Claude Opus 4.8
@@ -11,15 +11,15 @@ Ikhtisar fitur baru dan perubahan perilaku di Claude Opus 4.8.
 
 ---
 
-Claude Opus 4.8 dibangun untuk pengodean agentik yang kompleks dan pekerjaan enterprise. Model ini dibangun di atas Claude Opus 4.7. Halaman ini merangkum semua yang baru pada saat peluncuran, termasuk "fast mode" (mode cepat, pratinjau riset di Claude API) dan panjang prompt minimum yang dapat di-cache yang lebih rendah, yaitu 1.024 token.
+Claude Opus 4.8 dibangun untuk agentic coding yang kompleks dan pekerjaan enterprise. Model ini dibangun di atas Claude Opus 4.7. Halaman ini merangkum semua hal baru saat peluncuran, termasuk fast mode (research preview di Claude API) dan panjang prompt minimum yang dapat di-cache yang lebih rendah yaitu 1.024 token.
 
 ## Model baru
 
-| Model           | ID model API    | Deskripsi                                                      |
-| --------------- | --------------- | -------------------------------------------------------------- |
-| Claude Opus 4.8 | claude-opus-4-8 | Untuk pengodean agentik yang kompleks dan pekerjaan enterprise |
+| Model           | ID model API    | Deskripsi                                                   |
+| --------------- | --------------- | ----------------------------------------------------------- |
+| Claude Opus 4.8 | claude-opus-4-8 | Untuk agentic coding yang kompleks dan pekerjaan enterprise |
 
-Claude Opus 4.8 mendukung [jendela konteks 1 juta token](/docs/id/build-with-claude/context-windows) secara default di Claude API, Amazon Bedrock, Google Cloud, dan Microsoft Foundry, 128k token output maksimum, [adaptive thinking](/docs/id/build-with-claude/adaptive-thinking), dan kumpulan alat serta fitur platform yang sama dengan Claude Opus 4.7.
+Claude Opus 4.8 mendukung [jendela konteks 1M token](/docs/id/build-with-claude/context-windows) secara default di Claude API, Amazon Bedrock, Google Cloud, dan Microsoft Foundry, maksimum 128k token output, [adaptive thinking](/docs/id/build-with-claude/adaptive-thinking), dan rangkaian alat serta fitur platform yang sama dengan Claude Opus 4.7.
 
 Untuk harga dan spesifikasi lengkap, lihat [ikhtisar model](/docs/id/about-claude/models/overview).
 
@@ -27,19 +27,19 @@ Untuk harga dan spesifikasi lengkap, lihat [ikhtisar model](/docs/id/about-claud
 
 ### Pesan sistem di tengah percakapan
 
-Claude Opus 4.8 menerima pesan `role: "system"` segera setelah giliran pengguna dalam array `messages` (tunduk pada [aturan penempatan](/docs/id/build-with-claude/mid-conversation-system-messages#limitations)). Ini memungkinkan Anda menambahkan instruksi yang diperbarui di kemudian hari dalam percakapan yang berjalan lama tanpa menyatakan ulang prompt sistem secara lengkap. Memperbarui instruksi dengan cara ini mempertahankan hit [prompt cache](/docs/id/build-with-claude/prompt-caching) pada giliran sebelumnya dan mengurangi biaya input pada loop agentik. Tidak diperlukan header beta. Lihat [Pesan sistem di tengah percakapan](/docs/id/build-with-claude/mid-conversation-system-messages) untuk detail penggunaan.
+Claude Opus 4.8 menerima pesan `role: "system"` segera setelah giliran pengguna dalam array `messages` (tunduk pada [aturan penempatan](/docs/id/build-with-claude/mid-conversation-system-messages#limitations)). Ini memungkinkan Anda menambahkan instruksi yang diperbarui di kemudian waktu dalam percakapan yang berjalan lama tanpa menyatakan ulang prompt sistem secara lengkap. Memperbarui instruksi dengan cara ini mempertahankan cache hit [prompt cache](/docs/id/build-with-claude/prompt-caching) pada giliran-giliran sebelumnya dan mengurangi biaya input pada loop agentic. Tidak diperlukan beta header. Lihat [Pesan sistem di tengah percakapan](/docs/id/build-with-claude/mid-conversation-system-messages) untuk detail penggunaan.
 
-### Detail stop penolakan
+### Detail penghentian penolakan
 
-Objek `stop_details` pada respons penolakan (tersedia sejak Claude Opus 4.7) kini didokumentasikan secara publik. Ketika Claude menolak untuk menyelesaikan permintaan, objek ini menjelaskan kategori penolakan, sebagai tambahan dari stop reason `refusal` yang sudah ada. Aplikasi Anda dapat menggunakannya untuk membedakan berbagai kelas permintaan yang ditolak dan mengarahkan pengguna ke langkah berikutnya yang tepat. Tidak diperlukan header beta. Lihat [Penolakan dan fallback](/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk daftar kategori dan [Stop reason dan fallback](/docs/id/build-with-claude/handling-stop-reasons) untuk panduan penanganan.
+Objek `stop_details` pada respons penolakan (tersedia sejak Claude Opus 4.7) kini didokumentasikan secara publik. Ketika Claude menolak untuk menyelesaikan sebuah permintaan, objek ini mendeskripsikan kategori penolakan, sebagai tambahan dari stop reason `refusal` yang sudah ada. Aplikasi Anda dapat menggunakannya untuk membedakan berbagai kelas permintaan yang ditolak dan mengarahkan pengguna ke langkah berikutnya yang tepat. Tidak diperlukan beta header. Lihat [Penolakan dan fallback](/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk daftar kategori dan [Stop reason dan fallback](/docs/id/build-with-claude/handling-stop-reasons) untuk panduan penanganan.
 
 ### Default effort
 
-Default [parameter effort](/docs/id/build-with-claude/effort) pada Claude Opus 4.8 adalah `high` di semua permukaan, termasuk Claude API dan Claude Code. Jika Anda mengatur effort secara eksplisit saat ini, pengaturan Anda tidak berubah. Lihat [Effort](/docs/id/build-with-claude/effort) untuk panduan per level.
+Default [parameter effort](/docs/id/build-with-claude/effort) pada Claude Opus 4.8 adalah `high` di semua permukaan, termasuk Claude API dan Claude Code. Jika Anda menetapkan effort secara eksplisit saat ini, pengaturan Anda tidak berubah. Lihat [Effort](/docs/id/build-with-claude/effort) untuk panduan per level.
 
 ### Fast mode
 
-[Fast mode](/docs/id/build-with-claude/fast-mode) kini tersedia untuk Claude Opus 4.8 sebagai pratinjau riset di Claude API. Atur `speed: "fast"` dengan header beta `fast-mode-2026-02-01` untuk mendapatkan hingga 2,5x lebih banyak token output per detik dari model yang sama dengan harga premium. Lihat [Fast mode](/docs/id/build-with-claude/fast-mode) untuk akses, model yang didukung, dan harga.
+[Fast mode](/docs/id/build-with-claude/fast-mode) kini tersedia untuk Claude Opus 4.8 sebagai research preview di Claude API. Tetapkan `speed: "fast"` dengan beta header `fast-mode-2026-02-01` untuk mendapatkan output token per detik hingga 2,5x lebih tinggi dari model yang sama dengan harga premium. Lihat [Fast mode](/docs/id/build-with-claude/fast-mode) untuk akses, model yang didukung, dan harga.
 
 ### Minimum prompt cache yang lebih rendah
 
@@ -48,18 +48,18 @@ Panjang prompt minimum yang dapat di-cache pada Claude Opus 4.8 adalah 1.024 tok
 ## Batasan API yang diwarisi dari Claude Opus 4.7
 
 <Note>
-  Batasan ini tidak berubah dari Claude Opus 4.7, sehingga kode yang sudah berjalan di Claude Opus 4.7 tidak memerlukan perubahan. Batasan ini hanya berlaku untuk Messages API. Claude Managed Agents tidak terpengaruh.
+  Batasan-batasan ini tidak berubah dari Claude Opus 4.7, sehingga kode yang sudah berjalan di Claude Opus 4.7 tidak memerlukan perubahan. Batasan ini hanya berlaku untuk Messages API. Claude Managed Agents tidak terpengaruh.
 </Note>
 
 ### Parameter sampling tidak didukung
 
-Mengatur `temperature`, `top_p`, atau `top_k` ke nilai non-default akan mengembalikan error 400 pada Claude Opus 4.8, sama seperti pada Claude Opus 4.7. Hilangkan parameter ini dan gunakan prompting untuk memandu perilaku model.
+Menetapkan `temperature`, `top_p`, atau `top_k` ke nilai non-default akan mengembalikan error 400 pada Claude Opus 4.8, sama seperti pada Claude Opus 4.7. Hilangkan parameter-parameter ini dan gunakan prompting untuk memandu perilaku model.
 
 ### Adaptive thinking adalah satu-satunya mode thinking
 
-Seperti Claude Opus 4.7, Claude Opus 4.8 tidak mendukung anggaran pemikiran diperpanjang. Mengatur `thinking: {type: "enabled", budget_tokens: N}` akan mengembalikan error 400.
+Seperti Claude Opus 4.7, Claude Opus 4.8 tidak mendukung budget pemikiran diperpanjang (extended thinking). Menetapkan `thinking: {type: "enabled", budget_tokens: N}` akan mengembalikan error 400.
 
-Diff berikut memperbarui permintaan yang ditulis untuk Claude Opus 4.6 atau sebelumnya agar dapat berjalan di Claude Opus 4.8. Baris yang dihapus (`-`) mengatur ID model lama dan anggaran thinking manual yang ditolak oleh Claude Opus 4.8. Baris yang ditambahkan (`+`) mengatur ID model baru, beralih ke [adaptive thinking](/docs/id/build-with-claude/adaptive-thinking), dan mengontrol kedalaman thinking dengan [parameter effort](/docs/id/build-with-claude/effort), yang diteruskan dalam field `output_config` tingkat atas. Model menentukan kapan dan seberapa banyak berpikir pada setiap giliran. Jika Anda menghapus field `thinking` sepenuhnya, permintaan berjalan tanpa thinking:
+Diff berikut memperbarui permintaan yang ditulis untuk Claude Opus 4.6 atau versi sebelumnya agar berjalan di Claude Opus 4.8. Baris yang dihapus (`-`) menetapkan ID model lama dan budget thinking manual yang ditolak oleh Claude Opus 4.8. Baris yang ditambahkan (`+`) menetapkan ID model baru, beralih ke [adaptive thinking](/docs/id/build-with-claude/adaptive-thinking), dan mengontrol kedalaman thinking dengan [parameter effort](/docs/id/build-with-claude/effort), yang diteruskan dalam field `output_config` tingkat atas. Model menentukan kapan dan seberapa banyak berpikir pada setiap giliran. Jika Anda menghapus field `thinking` sepenuhnya, permintaan berjalan tanpa thinking:
 
 <CodeGroup>
   ```diff cURL
@@ -277,36 +277,36 @@ Diff berikut memperbarui permintaan yang ditulis untuk Claude Opus 4.6 atau sebe
 
 Dibandingkan dengan Claude Opus 4.7, Claude Opus 4.8 menargetkan peningkatan perilaku dalam:
 
-* **Pengodean agentik jangka panjang**, termasuk penanganan konteks panjang yang lebih baik, lebih sedikit pemadatan, dan pemulihan [pemadatan](/docs/id/build-with-claude/compaction) yang lebih baik.
-* **Kalibrasi effort penalaran**, dengan perilaku yang lebih andal di setiap level effort di berbagai domain.
-* **Pemicuan alat**, dengan lebih sedikit kasus melewatkan pemanggilan alat yang diperlukan oleh tugas.
+* **Agentic coding jangka panjang**, termasuk penanganan konteks panjang yang lebih baik, lebih sedikit kompaksi, dan pemulihan [kompaksi](/docs/id/build-with-claude/compaction) yang lebih baik.
+* **Kalibrasi effort penalaran**, dengan perilaku yang lebih andal pada setiap level effort di berbagai domain.
+* **Pemicuan alat**, dengan lebih sedikit kasus melewatkan panggilan alat yang dibutuhkan oleh tugas.
 
 ### Adaptive thinking
 
-Dengan [adaptive thinking](/docs/id/build-with-claude/adaptive-thinking) diaktifkan, Claude Opus 4.8 memicu penalaran hanya ketika model menentukan bahwa giliran tersebut membutuhkannya. Pada pencarian sederhana dan langkah agentik singkat, model merespons secara langsung. Pada masalah multi-langkah yang kompleks, model bernalar sebelum menjawab. Ini mengurangi token thinking yang terbuang pada beban kerja bimodal dibandingkan dengan Claude Opus 4.7 pada level effort yang sama. Seperti pada Claude Opus 4.7, thinking dinonaktifkan kecuali Anda secara eksplisit mengatur `thinking: {type: "adaptive"}` dalam permintaan Anda.
+Dengan [adaptive thinking](/docs/id/build-with-claude/adaptive-thinking) diaktifkan, Claude Opus 4.8 memicu penalaran hanya ketika model menentukan bahwa giliran tersebut membutuhkannya. Pada pencarian sederhana dan langkah agentic pendek, model merespons secara langsung. Pada masalah multilangkah yang kompleks, model bernalar sebelum menjawab. Ini mengurangi token thinking yang terbuang pada beban kerja bimodal dibandingkan dengan Claude Opus 4.7 pada level effort yang sama. Seperti pada Claude Opus 4.7, thinking dalam keadaan mati kecuali Anda secara eksplisit menetapkan `thinking: {type: "adaptive"}` dalam permintaan Anda.
 
 ## Perubahan perilaku
 
 Ini bukan perubahan yang merusak API tetapi mungkin memerlukan pembaruan prompt. Lihat [Migrasi ke Claude Opus 4.8](/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-47) untuk panduan lengkap.
 
-* **Lebih sedikit token thinking yang terbuang** pada level effort yang sama ketika adaptive thinking diaktifkan, karena model menentukan per giliran apakah akan berpikir.
-* **Pemicuan alat yang lebih baik.** Model lebih kecil kemungkinannya untuk melewatkan pemanggilan alat yang diperlukan oleh tugas, masalah yang dilaporkan beberapa pengguna pada Claude Opus 4.7.
-* **Penanganan pemadatan dan kualitas konteks panjang yang lebih baik.** Jejak agentik yang panjang tetap pada jalurnya dengan lebih sedikit penyimpangan setelah pemadatan.
-* **Level effort dikalibrasi ulang.** Alokasi token di balik setiap level effort berubah dibandingkan dengan Claude Opus 4.7: `medium` memungkinkan sedikit lebih banyak thinking, `high` sedikit lebih sedikit, dan `xhigh` jauh lebih banyak. Jika Anda telah menyetel level effort terhadap Claude Opus 4.7, tetapkan ulang baseline biaya dan latensi pada level tersebut sebelum menyesuaikannya.
+* **Lebih sedikit token thinking yang terbuang** pada level effort yang sama ketika adaptive thinking diaktifkan, karena model menentukan per giliran apakah perlu berpikir.
+* **Pemicuan alat yang lebih baik.** Model lebih kecil kemungkinannya melewatkan panggilan alat yang dibutuhkan oleh tugas, sebuah masalah yang dilaporkan beberapa pengguna pada Claude Opus 4.7.
+* **Penanganan kompaksi dan kualitas konteks panjang yang lebih baik.** Jejak agentic yang panjang tetap fokus pada tugas dengan lebih sedikit penyimpangan setelah kompaksi.
+* **Level effort dikalibrasi ulang.** Alokasi token di balik setiap level effort berubah dibandingkan dengan Claude Opus 4.7: `medium` memungkinkan thinking yang agak lebih banyak, `high` agak lebih sedikit, dan `xhigh` jauh lebih banyak. Jika Anda menyetel level effort terhadap Claude Opus 4.7, lakukan baseline ulang biaya dan latensi pada level tersebut sebelum menyesuaikannya.
 
 ## Panduan migrasi
 
-Untuk instruksi migrasi langkah demi langkah dan daftar periksa migrasi lengkap, lihat [Migrasi ke Claude Opus 4.8](/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-47). Jika Anda melakukan upgrade dari Claude Opus 4.6 atau sebelumnya, terapkan juga [langkah migrasi Claude Opus 4.7](/docs/id/about-claude/models/migration-guide#migrating-to-claude-opus-4-7). Langkah-langkah tersebut mencakup perubahan yang merusak yang tidak dicakup oleh upgrade Claude Opus 4.8 saja. Jika Anda menggunakan Claude Code atau Agent SDK, [skill Claude API](/docs/id/agents-and-tools/agent-skills/claude-api-skill) dapat menerapkan langkah-langkah migrasi ini ke basis kode Anda secara otomatis.
+Untuk instruksi migrasi langkah demi langkah dan daftar periksa migrasi lengkap, lihat [Migrasi ke Claude Opus 4.8](/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-47). Jika Anda melakukan upgrade dari Claude Opus 4.6 atau versi sebelumnya, terapkan juga [Migrasi ke Claude Opus 4.8 dari Claude Opus 4.6](/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-46). Langkah-langkah tersebut mencakup perubahan yang merusak yang tidak tercakup oleh upgrade dari Claude Opus 4.7 saja. Jika Anda menggunakan Claude Code atau Agent SDK, [skill Claude API](/docs/id/agents-and-tools/agent-skills/claude-api-skill) dapat menerapkan langkah-langkah migrasi ini ke basis kode Anda secara otomatis.
 
 ## Langkah selanjutnya
 
 <CardGroup cols={3}>
   <Card title="Panduan migrasi" icon="arrow-right" href="/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-47">
-    Panduan untuk migrasi ke model Claude terbaru dari versi Claude sebelumnya.
+    Panduan untuk bermigrasi ke model Claude terbaru dari versi Claude sebelumnya.
   </Card>
 
   <Card title="Effort" icon="gauge" href="/docs/id/build-with-claude/effort">
-    Kontrol berapa banyak token yang digunakan Claude saat merespons dengan parameter effort, menyeimbangkan antara kelengkapan respons dan efisiensi token.
+    Kontrol berapa banyak token yang digunakan Claude saat merespons dengan parameter effort, menyeimbangkan antara ketelitian respons dan efisiensi token.
   </Card>
 
   <Card title="Adaptive thinking" icon="brain" href="/docs/id/build-with-claude/adaptive-thinking">
@@ -318,10 +318,10 @@ Untuk instruksi migrasi langkah demi langkah dan daftar periksa migrasi lengkap,
   </Card>
 
   <Card title="Stop reason dan fallback" icon="code" href="/docs/id/build-with-claude/handling-stop-reasons">
-    Pelajari apa arti setiap nilai stop\_reason dan cara menangani pemotongan, penggunaan alat, giliran yang dijeda, dan penolakan dalam aplikasi Anda.
+    Pelajari arti setiap nilai stop\_reason dan cara menangani pemotongan, penggunaan alat, giliran yang dijeda, dan penolakan dalam aplikasi Anda.
   </Card>
 
-  <Card title="Fast mode (pratinjau riset)" icon="bolt" href="/docs/id/build-with-claude/fast-mode">
-    Dapatkan hingga 2,5x lebih banyak token output per detik dari model Claude Opus.
+  <Card title="Fast mode (research preview)" icon="bolt" href="/docs/id/build-with-claude/fast-mode">
+    Dapatkan output token per detik hingga 2,5x lebih tinggi dari model Claude Opus.
   </Card>
 </CardGroup>

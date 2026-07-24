@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/errors
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 180b373a012a3df0cf77896efda5fd98907834ac70784e62de7572bd37ba0e15
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: a96ed2e5e885df9838097aafd8a0364268f579fa543320a7ba8c70f2d30a4f6a
 ---
 
 # Claude API errors
@@ -410,7 +410,7 @@ See [Streaming Messages](/docs/en/build-with-claude/streaming#get-the-final-mess
 
 ### Prefill not supported
 
-Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 do not support prefilling assistant messages. Sending a request with a prefilled last assistant message to any of these models returns a 400 `invalid_request_error`:
+Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, and Claude Sonnet 4.6 do not support prefilling assistant messages. Sending a request with a prefilled last assistant message to any of these models returns a 400 `invalid_request_error`:
 
 ```json
 {
@@ -432,7 +432,37 @@ If the most recent assistant message contains `thinking` or `redacted_thinking` 
 `thinking` or `redacted_thinking` blocks in the latest assistant message cannot be modified. These blocks must remain as they were in the original response.
 ```
 
-With tool use, every `thinking` and `redacted_thinking` block from the assistant turn must be passed back exactly as received, including blocks whose `thinking` field is empty. Pass thinking blocks back unchanged, and if your application filters content blocks by type before resending, include both `thinking` and `redacted_thinking`. See [Preserving thinking blocks](/docs/en/build-with-claude/extended-thinking#preserving-thinking-blocks) and [Thinking output on Claude Fable 5 and Claude Mythos 5](/docs/en/build-with-claude/adaptive-thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5).
+With tool use, every `thinking` and `redacted_thinking` block from the assistant turn must be passed back exactly as received, including blocks whose `thinking` field is empty. Pass thinking blocks back unchanged, and if your application filters content blocks by type before resending, include both `thinking` and `redacted_thinking`. See [Troubleshooting thinking](/docs/en/build-with-claude/thinking-troubleshooting#error-thinking-blocks-modified), [Preserving thinking blocks](/docs/en/build-with-claude/thinking#preserving-thinking-blocks), and [Thinking output on Claude Fable 5 and Claude Mythos 5](/docs/en/build-with-claude/thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5).
+
+### Extended thinking not supported
+
+Claude Opus 4.7, Claude Opus 4.8, Claude Sonnet 5, Claude Fable 5, and [Claude Mythos 5](https://anthropic.com/glasswing) have removed extended thinking. Sending `thinking: {"type": "enabled"}` to any of these models returns a 400 `invalid_request_error`:
+
+```text wrap
+"thinking.type.enabled" is not supported for this model. Use "thinking.type.adaptive" and "output_config.effort" to control thinking behavior.
+```
+
+Use [adaptive thinking](/docs/en/build-with-claude/thinking-steering-and-cost) instead. [Migrating to adaptive thinking](/docs/en/build-with-claude/extended-thinking#migrating-to-adaptive-thinking) shows the parameter mapping, and [Troubleshooting thinking](/docs/en/build-with-claude/thinking-troubleshooting#error-thinking-type-enabled) covers the symptom-first fix.
+
+### Adaptive thinking not supported
+
+Models that support only extended thinking (Claude Opus 4.5, Claude Haiku 4.5, Claude Sonnet 4.5, and earlier Claude 4 models) reject `thinking: {"type": "adaptive"}` with a 400 `invalid_request_error`:
+
+```text wrap
+adaptive thinking is not supported on this model
+```
+
+Use `thinking: {"type": "enabled", "budget_tokens": N}` on these models; see [Extended thinking](/docs/en/build-with-claude/extended-thinking) for the configuration and [Troubleshooting thinking](/docs/en/build-with-claude/thinking-troubleshooting#error-thinking-type-adaptive) for the symptom-first fix.
+
+### Thinking cannot be disabled
+
+On Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), and [Claude Mythos Preview](https://anthropic.com/glasswing), thinking is always on. Sending `thinking: {"type": "disabled"}` to any of these models returns a 400 `invalid_request_error`:
+
+```text wrap
+"thinking.type.disabled" is not supported for this model. Thinking defaults to adaptive mode when not specified; use "thinking.type.enabled" with "budget_tokens" for extended thinking.
+```
+
+On Claude Fable 5 and Claude Mythos 5, the error message's own suggestion of `"thinking.type.enabled"` is also rejected. Omit the `thinking` parameter and the request runs with adaptive thinking. To keep thinking content out of responses without turning thinking off, set `display: "omitted"` on the thinking configuration. See [Troubleshooting thinking](/docs/en/build-with-claude/thinking-troubleshooting#error-thinking-type-disabled).
 
 ### Outbound web identity federation disabled (Claude Platform on AWS)
 

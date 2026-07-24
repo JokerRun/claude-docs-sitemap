@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/structured-outputs
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: e74fb8c1f06b3bc6b7467351b3c35f4d392b6cc9569e500f1b9cd79778902aa2
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: ca62ca521929b519d5a9d8c61c0cd65c375019b4ff773f90c28f80b7b790f0f5
 ---
 
 # Output terstruktur
@@ -23,7 +23,7 @@ Anda dapat menggunakan fitur-fitur ini secara independen atau bersama-sama dalam
 </Note>
 
 <Note>
-  Fitur ini memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/api-and-data-retention) dengan retensi teknis terbatas. Lihat bagian [Retensi data](#data-retention) untuk detail tentang apa yang disimpan dan alasannya.
+  Untuk mengetahui bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 <Tip>

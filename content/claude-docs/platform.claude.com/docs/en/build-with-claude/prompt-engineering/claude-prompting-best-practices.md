@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 30eec771316c9a604fdedbb1b660ed7a7a7cb84dfa11174a106c7f2d86aa0697
+fetched_at: 2026-07-24T03:08:28.781260Z
+sha256: f5813523ecf28fa173dedf2328c2d690d2e57654ec5001d8266168d2d6ef183f
 ---
 
 # Prompting best practices
@@ -537,15 +537,15 @@ contradicts your reasoning. If you're weighing two approaches, pick one and see 
 through. You can always course-correct later if the chosen approach fails.
 ```
 
-If you need a hard ceiling on thinking costs, extended thinking with a `budget_tokens` cap is still functional on Opus 4.6 and Sonnet 4.6 but is deprecated. On Claude Opus 4.7 and later models, and on Claude Fable 5 and Claude Mythos 5, setting `budget_tokens` returns a 400 error. Prefer lowering the [effort](/docs/en/build-with-claude/effort) setting or using `max_tokens` as a hard limit with [adaptive thinking](/docs/en/build-with-claude/adaptive-thinking).
+If you need a hard ceiling on thinking costs, extended thinking with a `budget_tokens` cap is still functional on Opus 4.6 and Sonnet 4.6 but is deprecated. On Claude Opus 4.7 and later models, and on Claude Fable 5 and Claude Mythos 5, setting `budget_tokens` returns a 400 error. Prefer lowering the [effort](/docs/en/build-with-claude/effort) setting or using `max_tokens` as a hard limit with [adaptive thinking](/docs/en/build-with-claude/thinking-steering-and-cost).
 
 ### Leverage thinking & interleaved thinking capabilities
 
 Claude's latest models offer thinking capabilities that can be especially helpful for tasks involving reflection after tool use or complex multistep reasoning. You can guide its initial or interleaved thinking for better results.
 
-Claude Opus 4.6, Claude Opus 4.7, Claude Opus 4.8, and Claude Sonnet 4.6 use [adaptive thinking](/docs/en/build-with-claude/adaptive-thinking) (`thinking: {type: "adaptive"}`), where Claude dynamically decides when and how much to think. On Claude Fable 5 and Claude Mythos 5, thinking is always on and adaptive thinking is the only mode. Claude calibrates its thinking based on two factors: the `effort` parameter and query complexity. Higher effort elicits more thinking, and more complex queries do the same. On easier queries that don't require thinking, the model responds directly. In internal evaluations, adaptive thinking reliably drives better performance than extended thinking. Consider moving to adaptive thinking to get the most intelligent responses.
+Claude Opus 4.6, Claude Opus 4.7, Claude Opus 4.8, and Claude Sonnet 4.6 use [adaptive thinking](/docs/en/build-with-claude/thinking-steering-and-cost) (`thinking: {type: "adaptive"}`), where Claude dynamically decides when and how much to think. On Claude Fable 5 and Claude Mythos 5, thinking is always on and adaptive thinking is the only mode. Claude calibrates its thinking based on two factors: the `effort` parameter and query complexity. Higher effort elicits more thinking, and more complex queries do the same. On easier queries that don't require thinking, the model responds directly. In internal evaluations, adaptive thinking reliably drives better performance than extended thinking. Consider moving to adaptive thinking to get the most intelligent responses.
 
-Use adaptive thinking for workloads that require agentic behavior such as multistep tool use, complex coding tasks, and long-horizon agent loops. Older models use manual [extended thinking](/docs/en/build-with-claude/extended-thinking) with `budget_tokens`; see the [supported models table](/docs/en/build-with-claude/extended-thinking#supported-models) for which mode each model accepts.
+Use adaptive thinking for workloads that require agentic behavior such as multistep tool use, complex coding tasks, and long-horizon agent loops. Older models use manual [extended thinking](/docs/en/build-with-claude/extended-thinking) with `budget_tokens`; see the [per-model configuration table](/docs/en/build-with-claude/thinking-troubleshooting#supported-models) for which configuration each model accepts.
 
 You can guide Claude's thinking behavior:
 
@@ -784,7 +784,7 @@ If you are not using extended thinking, no changes are required. On Claude Opus 
 </Note>
 
 <Info>
-  For more information on thinking capabilities, see [Extended thinking](/docs/en/build-with-claude/extended-thinking) and [Adaptive thinking](/docs/en/build-with-claude/adaptive-thinking).
+  For more information on thinking capabilities, see [Thinking](/docs/en/build-with-claude/thinking) and [Adaptive thinking](/docs/en/build-with-claude/thinking-steering-and-cost).
 </Info>
 
 ## Agentic systems
@@ -1076,7 +1076,7 @@ When migrating to current Claude models from earlier generations:
 
 3. **Request specific features explicitly:** Animations and interactive elements should be requested explicitly when desired.
 
-4. **Update thinking configuration:** Claude 4.6 models use [adaptive thinking](/docs/en/build-with-claude/adaptive-thinking) (`thinking: {type: "adaptive"}`) instead of manual thinking with `budget_tokens`. Use the [effort parameter](/docs/en/build-with-claude/effort) to control thinking depth.
+4. **Update thinking configuration:** Claude 4.6 models use [adaptive thinking](/docs/en/build-with-claude/thinking-steering-and-cost) (`thinking: {type: "adaptive"}`) instead of manual thinking with `budget_tokens`. Use the [effort parameter](/docs/en/build-with-claude/effort) to control thinking depth.
 
 5. **Migrate away from prefilled responses:** Prefilled responses on the last assistant turn are no longer supported starting with Claude 4.6 models. See [Migrating away from prefilled responses](#migrating-away-from-prefilled-responses) for detailed guidance on alternatives.
 
