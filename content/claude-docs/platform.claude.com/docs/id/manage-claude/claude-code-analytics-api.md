@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/claude-code-analytics-api
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 1a64537df2db62dad985345da7ed50afec92c039441813bd8da90a0863445ed3
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 16459992d3abd4354ef7aa94afcc4f42b5648e4ebd5a10c9d41cf018b2cae0df
 ---
 
 # Claude Code Analytics API
@@ -15,11 +15,11 @@ Akses analitik penggunaan Claude Code dan metrik produktivitas organisasi Anda s
   **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, atur organisasi Anda di **Console → Settings → Organization**.
 </Tip>
 
-Claude Code Analytics Admin API menyediakan akses terprogram ke metrik penggunaan agregat harian untuk pengguna Claude Code, memungkinkan organisasi menganalisis produktivitas pengembang dan membangun dasbor kustom. API ini memberikan detail lebih banyak daripada [dasbor Analytics](/claude-code) dasar tanpa kompleksitas integrasi OpenTelemetry.
+Claude Code Analytics Admin API menyediakan akses terprogram ke metrik penggunaan agregat harian untuk pengguna Claude Code, memungkinkan organisasi menganalisis produktivitas developer dan membangun dasbor kustom. API ini memberikan detail lebih banyak daripada [dasbor Analytics](/claude-code) dasar tanpa kompleksitas integrasi OpenTelemetry.
 
 API ini memungkinkan Anda untuk memantau, menganalisis, dan mengoptimalkan adopsi Claude Code Anda dengan lebih baik:
 
-* **Analisis produktivitas pengembang:** Lacak sesi, baris kode yang ditambahkan/dihapus, commit, dan pull request yang dibuat menggunakan Claude Code
+* **Analisis produktivitas developer:** Lacak sesi, baris kode yang ditambahkan/dihapus, commit, dan pull request yang dibuat menggunakan Claude Code
 * **Metrik penggunaan alat:** Pantau tingkat penerimaan dan penolakan untuk berbagai alat Claude Code (Edit, MultiEdit, Write, NotebookEdit)
 * **Analisis biaya:** Lihat estimasi biaya dan penggunaan token yang dirinci berdasarkan model Claude
 * **Pelaporan kustom:** Ekspor data untuk membangun dasbor eksekutif dan laporan untuk tim manajemen
@@ -61,7 +61,7 @@ limit=20" \
 
 ## Claude Code Analytics API
 
-Lacak penggunaan Claude Code, metrik produktivitas, dan aktivitas pengembang di seluruh organisasi Anda dengan endpoint `/v1/organizations/usage_report/claude_code`.
+Lacak penggunaan Claude Code, metrik produktivitas, dan aktivitas developer di seluruh organisasi Anda dengan endpoint `/v1/organizations/usage_report/claude_code`.
 
 ### Konsep utama
 
@@ -125,7 +125,7 @@ Setiap record respons berisi metrik berikut untuk satu pengguna pada satu hari:
 
 #### Metrik inti
 
-* **num\_sessions:** Jumlah sesi Claude Code berbeda yang dimulai oleh aktor ini
+* **num\_sessions:** Jumlah sesi Claude Code berbeda yang dimulai oleh actor ini
 * **lines\_of\_code.added:** Jumlah total baris kode yang ditambahkan di semua file oleh Claude Code
 * **lines\_of\_code.removed:** Jumlah total baris kode yang dihapus di semua file oleh Claude Code
 * **commits\_by\_claude\_code:** Jumlah commit git yang dibuat melalui fungsionalitas commit Claude Code
@@ -144,7 +144,7 @@ Rincian tingkat penerimaan dan penolakan tindakan alat berdasarkan jenis alat:
 
 Untuk setiap model Claude yang digunakan:
 
-* **model:** Pengidentifikasi model Claude (misalnya, `claude-opus-4-8`)
+* **model:** Pengidentifikasi model Claude (misalnya, `claude-opus-5`)
 * **tokens.input/output:** Jumlah token input dan output untuk model ini
 * **tokens.cache\_read/cache\_creation:** Penggunaan token terkait cache untuk model ini
 * **estimated\_cost.amount:** Estimasi biaya dalam sen USD untuk model ini
@@ -195,7 +195,7 @@ API mengembalikan data dalam format berikut:
       },
       "model_breakdown": [
         {
-          "model": "claude-opus-4-8",
+          "model": "claude-opus-5",
           "tokens": {
             "input": 100000,
             "output": 35000,
@@ -204,7 +204,7 @@ API mengembalikan data dalam format berikut:
           },
           "estimated_cost": {
             "currency": "USD",
-            "amount": 1025
+            "amount": 141
           }
         }
       ]
@@ -217,7 +217,7 @@ API mengembalikan data dalam format berikut:
 
 ## Paginasi
 
-API mendukung paginasi berbasis kursor untuk organisasi dengan jumlah pengguna yang besar:
+API ini mendukung paginasi berbasis kursor untuk organisasi dengan jumlah pengguna yang besar:
 
 1. Buat permintaan awal Anda dengan parameter `limit` opsional.
 2. Jika `has_more` bernilai `true` dalam respons, gunakan nilai `next_page` dalam permintaan Anda berikutnya.
@@ -228,10 +228,10 @@ Kursor mengkodekan posisi record terakhir dan memastikan paginasi yang stabil ba
 ## Kasus penggunaan umum
 
 * **Dasbor eksekutif:** Buat laporan tingkat tinggi yang menunjukkan dampak Claude Code pada kecepatan pengembangan
-* **Perbandingan alat AI:** Ekspor metrik untuk membandingkan Claude Code dengan alat pengkodean AI lainnya seperti Copilot dan Cursor
-* **Analisis produktivitas pengembang:** Lacak metrik produktivitas individu dan tim dari waktu ke waktu
+* **Perbandingan alat AI:** Ekspor metrik untuk membandingkan Claude Code dengan alat coding AI lainnya seperti Copilot dan Cursor
+* **Analisis produktivitas developer:** Lacak metrik produktivitas individu dan tim dari waktu ke waktu
 * **Pelacakan dan alokasi biaya:** Pantau pola pengeluaran dan alokasikan biaya berdasarkan tim atau proyek
-* **Pemantauan adopsi:** Identifikasi tim dan pengguna mana yang mendapatkan nilai terbesar dari Claude Code
+* **Pemantauan adopsi:** Identifikasi tim dan pengguna mana yang mendapatkan nilai paling besar dari Claude Code
 * **Justifikasi ROI:** Sediakan metrik konkret untuk menjustifikasi dan memperluas adopsi Claude Code secara internal
 
 ## Pertanyaan yang sering diajukan
@@ -271,7 +271,7 @@ Tingkat penerimaan alat = `accepted / (accepted + rejected)` untuk setiap jenis 
 
 ### Zona waktu apa yang digunakan untuk parameter tanggal?
 
-Semua tanggal dalam UTC. Parameter `starting_at` harus dalam format YYYY-MM-DD dan merepresentasikan tengah malam UTC untuk hari tersebut.
+Semua tanggal dalam UTC. Parameter `starting_at` harus dalam format YYYY-MM-DD dan mewakili tengah malam UTC untuk hari tersebut.
 
 ## Lihat juga
 

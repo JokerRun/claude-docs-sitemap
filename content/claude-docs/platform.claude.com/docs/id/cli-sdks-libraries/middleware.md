@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/middleware
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 412c5968e449053a1089d6297d7dbee9a4627a1dc407bc7ca1e394c012828145
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 538f19f96ebef4e4a315fc0ab359e7a1980efb803f4612f91eaa3016fc9157f5
 ---
 
 # Middleware SDK
@@ -172,14 +172,14 @@ Setiap middleware adalah fungsi yang menerima permintaan keluar dan sebuah calla
 
 ## Urutan middleware
 
-Ketika Anda mendaftarkan beberapa middleware, middleware tersebut diterapkan sesuai urutan yang diberikan: kode "sebelum" dari middleware pertama berjalan lebih dulu, dan kode "sesudah"-nya berjalan paling akhir. Middleware yang didaftarkan pada klien berjalan sebelum middleware yang diberikan sebagai opsi per-permintaan.
+Ketika Anda mendaftarkan beberapa middleware, middleware tersebut diterapkan sesuai urutan yang diberikan: kode "before" dari middleware pertama berjalan lebih dulu, dan kode "after"-nya berjalan terakhir. Middleware yang didaftarkan pada klien berjalan sebelum middleware yang diberikan sebagai opsi per-permintaan.
 
 Di SDK Go, pemanggilan `option.WithMiddleware` yang berulang akan digabungkan (klien lebih dulu, kemudian metode). Di SDK lainnya, berikan sebuah array; entri yang lebih akhir membungkus yang lebih dalam.
 
 ## Mengganti klien HTTP
 
-Setiap SDK juga menerima klien HTTP kustom (untuk konfigurasi proxy, TLS kustom, atau connection pooling). Hanya satu klien HTTP yang digunakan per klien SDK; mengaturnya akan menggantikan yang default. Klien HTTP kustom menerima permintaan setelah semua middleware berjalan.
+Setiap SDK juga menerima klien HTTP kustom (untuk konfigurasi proxy, TLS kustom, atau connection pooling). Hanya satu klien HTTP yang digunakan per klien SDK; mengaturnya akan menggantikan yang default. Klien HTTP kustom menerima permintaan setelah semua middleware selesai berjalan.
 
 ## Middleware bawaan
 
-SDK menyertakan middleware refusal-fallback yang secara otomatis mencoba ulang permintaan yang ditolak oleh Claude Fable 5 pada model fallback. Lihat [Deteksi dan coba ulang pada model fallback](/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) untuk penyiapan dan contoh per bahasa.
+SDK menyertakan middleware refusal-fallback yang secara otomatis mencoba ulang permintaan yang ditolak oleh Claude Fable 5 pada model fallback. Lihat [Mendeteksi dan mencoba ulang pada model fallback](/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) untuk penyiapan dan contoh per bahasa.

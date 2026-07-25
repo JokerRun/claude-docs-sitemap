@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 0128d9f236e906d56a972a233262c3781bd3fc65b4488f28ba8ab116d3f4d733
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 7a63ab03a2c3b37391be31944a0a624ee99472966af4076d3efbced76da34632
 ---
 
 # Memperkenalkan Claude Fable 5 dan Claude Mythos 5
 
-Kemampuan Claude Fable 5 dan Claude Mythos 5, perubahan API, dan ketersediaannya.
+Kemampuan Claude Fable 5 dan Claude Mythos 5, perubahan API, dan ketersediaan.
 
 ---
 
@@ -28,7 +28,7 @@ Perubahan utama untuk integrasi: Claude Fable 5 menyertakan pengklasifikasi keam
 
 Claude Fable 5 dan Claude Mythos 5 memiliki spesifikasi dan harga yang sama:
 
-* **Jendela konteks dan output:** "context window" (jendela konteks) [1M token](/docs/id/build-with-claude/context-windows) secara default, dan hingga 128k token output per permintaan.
+* **Jendela konteks dan output:** "context window" ([jendela konteks](/docs/id/build-with-claude/context-windows)) 1M token secara default, dan hingga 128k token output per permintaan.
 * **Harga:** $10 USD per juta token input dan $50 USD per juta token output.
 
 Untuk spesifikasi semua model saat ini, lihat [ikhtisar model](/docs/id/about-claude/models/overview).
@@ -45,13 +45,13 @@ Ketika Claude Fable 5 menolak sebuah permintaan, Messages API mengembalikan `sto
 
 Permintaan yang ditolak oleh Claude Fable 5 biasanya dapat dilayani oleh model Claude lain. Ada tiga cara untuk mencoba ulang:
 
-* **Sisi server:** Teruskan parameter `fallbacks` agar API mencoba ulang untuk Anda (dalam versi beta di Claude API dan Claude Platform on AWS). Lihat [Fallback sisi server](/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback).
+* **Sisi server:** Teruskan parameter `fallbacks` agar API mencoba ulang untuk Anda, menggunakan mode `"default"`-nya untuk model yang direkomendasikan Anthropic atau menyebutkan model pilihan Anda sendiri (dalam beta di Claude API). Lihat [Fallback sisi server](/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback).
 * **Sisi klien:** Gunakan [middleware SDK](/docs/id/cli-sdks-libraries/middleware) untuk mencoba ulang dari klien di platform mana pun. Lihat [Fallback sisi klien](/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback).
 * **Manual:** Bangun sendiri mekanisme coba ulang, di platform mana pun dan dalam bahasa apa pun. Lihat [Kredit fallback](/docs/id/build-with-claude/fallback-credit).
 
 ### Penagihan
 
-Anda tidak ditagih untuk permintaan yang ditolak sebelum output apa pun dihasilkan. Ketika Anda mencoba ulang pada model lain, [kredit fallback](/docs/id/build-with-claude/fallback-credit) mengembalikan biaya prompt-cache dari perpindahan tersebut, sehingga Anda tidak perlu membayar biaya itu dua kali.
+Anda tidak ditagih untuk permintaan yang ditolak sebelum output apa pun dihasilkan. Ketika Anda mencoba ulang pada model lain, [kredit fallback](/docs/id/build-with-claude/fallback-credit) mengembalikan biaya prompt-cache dari perpindahan tersebut, sehingga Anda terhindar dari membayar biaya itu dua kali.
 
 ## Ketersediaan
 
@@ -70,35 +70,31 @@ Claude Fable 5 merespons teknik prompting yang sama dengan model Claude lainnya,
 
 ## Messages API pada Claude Fable 5 dan Claude Mythos 5
 
-<Note>
-  Perilaku di bagian ini khusus untuk Claude Fable 5 dan Claude Mythos 5. Messages API tidak berubah untuk model Opus, Sonnet, dan Haiku.
-</Note>
+### Pemikiran adaptif selalu aktif
 
-### Adaptive thinking selalu aktif
-
-[Adaptive thinking](/docs/id/build-with-claude/adaptive-thinking) adalah satu-satunya mode berpikir pada Claude Fable 5 dan Claude Mythos 5. Mode ini berlaku setiap kali parameter `thinking` tidak diatur. `thinking: {"type": "disabled"}` tidak didukung. Gunakan [parameter effort](/docs/id/build-with-claude/effort) untuk mengontrol kedalaman berpikir.
+Claude Fable 5 dan Claude Mythos 5 selalu memiliki pemikiran yang diaktifkan; meneruskan `thinking: {"type": "disabled"}` tidak didukung. Untuk mengurangi atau mengontrol kedalaman pemikiran, gunakan parameter [effort](/docs/id/build-with-claude/effort).
 
 ### Konten pemikiran mentah tidak pernah dikembalikan
 
 Rantai pemikiran mentah tidak pernah dikembalikan pada Claude Fable 5 dan Claude Mythos 5. Pengaturan `thinking.display` mengontrol apa yang dikandung blok pemikiran sebagai gantinya:
 
 * `"summarized"` mengembalikan blok pemikiran dengan ringkasan penalaran yang dapat dibaca.
-* `"omitted"` (default) mengembalikan blok pemikiran dengan field `thinking` yang kosong.
+* `"omitted"` (default) mengembalikan blok pemikiran dengan bidang `thinking` yang kosong.
 
-Teruskan kembali blok pemikiran tanpa perubahan dalam percakapan multi-giliran pada model yang sama. Lihat [output pemikiran pada Claude Fable 5 dan Claude Mythos 5](/docs/id/build-with-claude/adaptive-thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5) untuk penanganan lintas model.
+Teruskan kembali blok pemikiran tanpa perubahan dalam percakapan multi-giliran pada model yang sama. Lihat [output pemikiran pada Claude Fable 5 dan Claude Mythos 5](/docs/id/build-with-claude/thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5) untuk penanganan lintas model.
 
 ## Fitur yang didukung
 
 Saat peluncuran, Claude Fable 5 dan Claude Mythos 5 mendukung:
 
 * [Effort](/docs/id/build-with-claude/effort)
-* [Task budgets](/docs/id/build-with-claude/task-budgets) (beta: atur header `task-budgets-2026-03-13`)
-* [Memory tool](/docs/id/agents-and-tools/tool-use/memory-tool)
+* [Anggaran tugas](/docs/id/build-with-claude/task-budgets) (beta: setel header `task-budgets-2026-03-13`)
+* [Alat memori](/docs/id/agents-and-tools/tool-use/memory-tool)
 * [Eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool)
 * [Pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling)
-* Pembersihan hasil alat melalui [pengeditan konteks](/docs/id/build-with-claude/context-editing) (beta: atur header `context-management-2025-06-27`)
+* Pembersihan hasil alat melalui [pengeditan konteks](/docs/id/build-with-claude/context-editing) (beta: setel header `context-management-2025-06-27`)
 * [Kompaksi](/docs/id/build-with-claude/compaction)
-* [Vision](/docs/id/build-with-claude/vision)
+* [Visi](/docs/id/build-with-claude/vision)
 
 ## Migrasi dari model sebelumnya
 
@@ -118,8 +114,8 @@ Instruksi langkah demi langkah tersedia di panduan migrasi:
     Spesifikasi dan perbandingan untuk semua model Claude saat ini.
   </Card>
 
-  <Card title="Adaptive thinking" icon="brain" href="/docs/id/build-with-claude/adaptive-thinking">
-    Satu-satunya mode berpikir pada Claude Fable 5 dan Claude Mythos 5.
+  <Card title="Pemikiran adaptif" icon="brain" href="/docs/id/build-with-claude/thinking">
+    Satu-satunya mode pemikiran pada Claude Fable 5 dan Claude Mythos 5.
   </Card>
 
   <Card title="Penolakan dan fallback" icon="shield" href="/docs/id/build-with-claude/refusals-and-fallback">
@@ -131,11 +127,11 @@ Instruksi langkah demi langkah tersedia di panduan migrasi:
   </Card>
 
   <Card title="Cookbook fallback dan penagihan" icon="book-open" href="https://platform.claude.com/cookbook/fable-5-fallback-billing-guide">
-    Contoh lengkap dari awal hingga akhir tentang penanganan penolakan, fallback, dan penagihan.
+    Contoh lengkap ujung ke ujung tentang penanganan penolakan, fallback, dan penagihan.
   </Card>
 
   <Card title="Effort" icon="sliders" href="/docs/id/build-with-claude/effort">
-    Kontrol kedalaman berpikir dan biaya pada Claude Fable 5 dan Claude Mythos 5.
+    Kontrol kedalaman pemikiran dan biaya pada Claude Fable 5 dan Claude Mythos 5.
   </Card>
 
   <Card title="Prompting Claude Fable 5" icon="terminal" href="/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5">

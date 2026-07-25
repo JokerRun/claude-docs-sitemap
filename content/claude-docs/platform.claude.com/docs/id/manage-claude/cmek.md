@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: e472361edd92bc0bec1d43b205427d0a975b175af8f62ba5e76e3be141d53f57
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: bd00bfd747ba6a5dbeebd5a16ffd8190bf687dc042fcf83289fa3d86f9322862
 ---
 
 # Kunci enkripsi yang dikelola pelanggan
@@ -22,7 +22,7 @@ Penggunaan CMEK bersifat opsional. Organisasi yang memenuhi syarat dapat **memil
 <Warning>
   **Mengaktifkan CMEK bersifat permanen dan dapat menyebabkan kehilangan data yang tidak dapat dipulihkan**
 
-  Mengaktifkan CMEK bersifat permanen. Anthropic tidak menyimpan salinan kunci Anda, sehingga kesalahan konfigurasi atau kehilangan kunci dapat menghancurkan data yang dilindungi CMEK Anda secara permanen. Jika Anda tidak yakin tentang langkah apa pun, hubungi perwakilan Anthropic Anda sebelum menerapkan perubahan.
+  Mengaktifkan CMEK bersifat permanen. Anthropic tidak menyimpan salinan kunci Anda, sehingga kesalahan konfigurasi atau kehilangan kunci dapat menghancurkan data yang dilindungi CMEK secara permanen. Jika Anda tidak yakin tentang langkah apa pun, hubungi perwakilan Anthropic Anda sebelum menerapkan perubahan.
 
   * **Kehilangan data permanen:** Jika kunci enkripsi Anda dihapus, dijadwalkan untuk dihapus, atau materi kuncinya dihancurkan, Anthropic tidak dapat memulihkan data Anda.
   * **Verifikasi identifier wajib dilakukan:** Memberikan akses kunci kepada principal yang salah atau dipalsukan dapat mengekspos data Anda kepada pihak yang tidak berwenang. Selalu verifikasi identifier Anthropic terhadap identitas produksi yang dipublikasikan di setiap panduan konfigurasi. Jangan pernah mempercayai identifier yang diberikan melalui email, chat, atau saluran onboarding apa pun.
@@ -38,7 +38,7 @@ Anthropic memanggil layanan manajemen kunci Anda dari rentang IP publik standarn
 
 ## Prasyarat
 
-* Izin untuk membuat kunci enkripsi dan mengelola akses kunci di akun, proyek, atau langganan yang akan menjadi host kunci enkripsi.
+* Izin untuk membuat kunci enkripsi dan mengelola akses kunci di akun, proyek, atau langganan yang akan menampung kunci enkripsi.
 * Peran Organization Admin di Claude Console pada Claude Platform, atau peran Owner atau Primary Owner pada Claude Enterprise.
 * Konfigurasi retensi data: CMEK diizinkan dengan [Zero data retention (ZDR)](/docs/id/manage-claude/api-and-data-retention) untuk Claude Platform maupun Claude Enterprise.
 
@@ -46,7 +46,7 @@ Anthropic memanggil layanan manajemen kunci Anda dari rentang IP publik standarn
 
 CMEK saat ini hanya tersedia di region AS, dan semua operasi enkripsi diproses di region AS.
 
-Pada [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws), CMEK hanya tersedia dengan kunci AWS KMS; kunci Google Cloud KMS dan Azure Key Vault tidak dapat didaftarkan. Buat, validasi, dan lampirkan kunci di Claude Console; endpoint API `external_keys` saat ini tidak tersedia di Claude Platform on AWS. Kunci harus berada di region AWS yang sama dengan workspace tempat kunci tersebut dilampirkan.
+Di [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws), CMEK hanya tersedia dengan kunci AWS KMS; kunci Google Cloud KMS dan Azure Key Vault tidak dapat didaftarkan. Buat, validasi, dan lampirkan kunci di Claude Console; endpoint API `external_keys` saat ini tidak tersedia di Claude Platform on AWS. Kunci harus berada di region AWS yang sama dengan workspace tempat kunci tersebut dilampirkan.
 
 Untuk "latency" (latensi) minimal, pilih region yang dekat dengan infrastruktur AS milik Anthropic:
 
@@ -58,7 +58,7 @@ Untuk "latency" (latensi) minimal, pilih region yang dekat dengan infrastruktur 
 
 ## Apa yang dilindungi CMEK
 
-Cakupan CMEK bergantung pada produk yang Anda gunakan.
+Apa yang dicakup CMEK bergantung pada produk yang Anda gunakan.
 
 ### Dienkripsi
 
@@ -68,7 +68,7 @@ Cakupan CMEK bergantung pada produk yang Anda gunakan.
 
 **Claude Enterprise**
 
-* Konten chat, termasuk skill, plugin, dan artifacts.
+* Konten chat, termasuk skill, plugin, dan artifact.
 * Lampiran chat dan lampiran proyek.
 * Claude Code di CLI, termasuk konten pesan.
 * Cowork di Claude Desktop.
@@ -85,7 +85,7 @@ Beberapa fitur dimatikan atau dimodifikasi secara substansial ketika CMEK diakti
 
 * Workbench di Claude Console dinonaktifkan.
 * Bagian dari Compliance API yang mengembalikan konten mentah, seperti prompt, respons, dan file, dinonaktifkan.
-* Fitur beta dan pratinjau riset mungkin tidak tercakup oleh CMEK. Ini termasuk Claude Managed Agents, fitur beta yang dinonaktifkan secara keseluruhan, termasuk agent memory dan agent dreaming.
+* Fitur beta dan pratinjau riset mungkin tidak dicakup oleh CMEK. Ini termasuk Claude Managed Agents, fitur beta yang dinonaktifkan secara keseluruhan, termasuk agent memory dan agent dreaming.
 
 **Claude Enterprise**
 
@@ -94,7 +94,7 @@ Beberapa fitur dimatikan atau dimodifikasi secara substansial ketika CMEK diakti
 * Analytics API dan analitik dalam produk mengalami penurunan. Beberapa tampilan penggunaan dan laporan mungkin tidak lengkap.
 * Ekspor log audit dinonaktifkan.
 * Signed URL untuk pertukaran file sementara dinonaktifkan. Ini mendukung ekspor data organisasi di claude.ai dan alur file Claude Code Remote seperti pembaruan tangkapan layar.
-* Preferensi pribadi dinonaktifkan untuk pengguna yang termasuk dalam organisasi yang dilindungi CMEK, di semua organisasi di bawah induk yang sama. Pengguna yang tidak termasuk dalam organisasi yang dilindungi CMEK masih dapat menggunakannya di semua organisasi.
+* Preferensi pribadi dinonaktifkan untuk pengguna yang tergabung dalam organisasi yang dilindungi CMEK, di semua organisasi di bawah induk yang sama. Pengguna yang tidak tergabung dalam organisasi yang dilindungi CMEK masih dapat menggunakannya di semua organisasi.
 
 ### Tidak dienkripsi
 
@@ -102,49 +102,49 @@ Fitur-fitur ini tetap tersedia, tetapi datanya tidak dienkripsi dengan kunci And
 
 **Claude Platform**
 
-* Data yang tidak dalam keadaan at rest (seperti cache) dan data dengan TTL lebih pendek dari 24 jam.
+* Data yang tidak dalam keadaan tidak aktif (seperti cache) dan data dengan TTL lebih pendek dari 24 jam.
 * Activity Feed, log audit, dan lalu lintas jaringan telemetri seperti OTEL, sehingga pelanggan dapat mempertahankan kepatuhan bahkan jika kunci dicabut.
 
 **Claude Enterprise**
 
 * Claude Code Desktop, Claude Code di web, dan Claude in Slack. Anthropic merekomendasikan untuk menonaktifkan fitur-fitur ini yang tidak sesuai untuk kasus penggunaan Anda di konsol admin.
-* Fitur beta dan pratinjau riset mungkin tidak tercakup oleh CMEK dan dapat rusak di organisasi CMEK, misalnya Claude Security dan Claude Design.
-* Ekspor data on-demand di bawah **Settings** > **Privacy**.
+* Fitur beta dan pratinjau riset mungkin tidak dicakup oleh CMEK dan dapat rusak di organisasi CMEK, misalnya Claude Security dan Claude Design.
+* Ekspor data sesuai permintaan di **Settings** > **Privacy**.
 
 Pada kedua produk, data akun untuk pengguna di organisasi Anda (seperti nama, alamat email, dan foto profil) tidak dienkripsi dengan kunci Anda.
 
 ### Dukungan fitur
 
-API dan alat Claude Platform berikut menyimpan data at rest dengan kunci Anda ketika CMEK diaktifkan:
+API dan alat Claude Platform berikut menyimpan data saat tidak aktif dengan kunci Anda ketika CMEK diaktifkan:
 
-| API           | Alat dan fitur                                                    |
-| ------------- | ----------------------------------------------------------------- |
-| Messages      | Web search                                                        |
-| Models        | Web fetch                                                         |
-| Files         | Code execution                                                    |
-| Batch         | Bash tool                                                         |
-| Skills        | Text editor tool                                                  |
-| User profiles | MCP connector                                                     |
-|               | Structured outputs (hanya Claude Sonnet 4.6 dan Claude Haiku 4.5) |
-|               | Advisor tool                                                      |
-|               | Computer use                                                      |
-|               | Context management                                                |
+| API           | Alat dan fitur                                                                                       |
+| ------------- | ---------------------------------------------------------------------------------------------------- |
+| Messages      | Web search                                                                                           |
+| Models        | Web fetch                                                                                            |
+| Files         | Code execution                                                                                       |
+| Batch         | Bash tool                                                                                            |
+| Skills        | Text editor tool                                                                                     |
+| User profiles | MCP connector                                                                                        |
+|               | Structured outputs (tidak tersedia untuk model Claude Fable 5 atau Claude Mythos di organisasi CMEK) |
+|               | Advisor tool                                                                                         |
+|               | Computer use                                                                                         |
+|               | Context management                                                                                   |
 
 ## Preservasi terbatas di luar kunci Anda
 
 Dalam tiga kasus yang sempit, Anthropic dapat mempertahankan catatan tertentu dengan enkripsi yang dikelola Anthropic:
 
 * Ketika Anthropic diwajibkan oleh hukum untuk menyimpan catatan (misalnya, materi yang dilaporkan ke NCMEC berdasarkan 18 U.S.C. § 2258A).
-* Risiko mendesak akan bahaya serius (misalnya, pengembangan senjata CBRNE, serangan siber ofensif, atau ancaman kekerasan yang akan segera terjadi).
+* Risiko mendesak berupa bahaya serius (misalnya, pengembangan senjata CBRNE, serangan siber ofensif, atau ancaman kekerasan yang akan segera terjadi).
 * Pelanggaran terhadap Bagian D.4 dari [Commercial Terms of Service](https://www.anthropic.com/legal/commercial-terms) Anthropic atau ketentuan setara dalam perjanjian lain yang berlaku antara pelanggan dan Anthropic.
 
-Di luar [penyaringan CSAM](https://support.claude.com/en/articles/9020328-csam-detection-and-reporting), preservasi memerlukan keputusan eksplisit dari peninjau manusia dan mengikuti [kebijakan retensi Anthropic untuk data komersial](https://privacy.claude.com/en/articles/10023548-how-long-do-you-store-my-data). Untuk setiap instans preservasi, peristiwa [Compliance API Activity Feed](/docs/id/manage-claude/compliance-activity-feed) yang sesuai dihasilkan dengan kode alasan yang menyampaikan tujuan preservasi tersebut. Lihat [preservasi konten CMEK](/docs/id/manage-claude/access-transparency#cmek-content-preservation) untuk detailnya. Metadata penyaringan keamanan (catatan yang berasal dari pemindaian keamanan otomatis Anthropic, seperti identifier pola dan indikator kecocokan, bukan konten percakapan) disimpan dengan enkripsi yang dikelola Anthropic dan tetap dapat dibaca setelah pencabutan kunci.
+Di luar [penyaringan CSAM](https://support.claude.com/en/articles/9020328-csam-detection-and-reporting), preservasi memerlukan keputusan eksplisit dari peninjau manusia dan mengikuti [kebijakan retensi Anthropic untuk data komersial](https://privacy.claude.com/en/articles/10023548-how-long-do-you-store-my-data). Untuk setiap kejadian preservasi, peristiwa [Compliance API Activity Feed](/docs/id/manage-claude/compliance-activity-feed) yang sesuai dihasilkan dengan kode alasan yang menyampaikan tujuan preservasi tersebut. Lihat [preservasi konten CMEK](/docs/id/manage-claude/access-transparency#cmek-content-preservation) untuk detailnya. Metadata penyaringan keamanan (catatan yang berasal dari pemindaian keamanan otomatis Anthropic, seperti identifier pola dan indikator kecocokan, bukan konten percakapan) disimpan dengan enkripsi yang dikelola Anthropic dan tetap dapat dibaca setelah pencabutan kunci.
 
 ## Batasan
 
 * **Tindakan yang tidak dapat dibatalkan:** Setelah kunci dilampirkan ke workspace, kunci tersebut tidak dapat dilepas atau ditukar. Di Claude Platform, melampirkan kunci juga mengunci pengaturan retensi data workspace: Anda tidak dapat mematikan retensi data 30 hari untuk workspace tersebut, dan kembali ke zero data retention memerlukan pembuatan workspace baru dan memindahkan lalu lintas Anda ke sana. Merotasi materi kunci dalam kunci yang sama (misalnya, rotasi otomatis AWS KMS, jadwal rotasi Cloud KMS, atau kebijakan rotasi Azure Key Vault) didukung secara transparan dan tidak memerlukan perubahan di Anthropic. Beralih ke kunci yang *berbeda* memerlukan pembuatan workspace baru dengan kunci baru dan migrasi data Anda. Mencabut atau menonaktifkan kunci membuat semua data yang dilindungi CMEK di workspace tersebut tidak dapat diakses secara permanen, tanpa jalur pemulihan.
 * **Tidak ada enkripsi retroaktif:** CMEK hanya melindungi data yang ditulis setelah kunci diaktifkan.
-* **Latency:** Operasi yang melakukan wrap atau unwrap kunci data melakukan perjalanan bolak-balik ke layanan manajemen kunci Anda, yang dapat menambahkan sedikit latency pada tindakan yang membaca atau menulis data at rest.
+* **Latency:** Operasi yang melakukan wrap atau unwrap kunci data melakukan perjalanan bolak-balik ke layanan manajemen kunci Anda, yang dapat menambahkan sedikit latency pada tindakan yang membaca atau menulis data saat tidak aktif.
 * **Penundaan pencabutan:** Pencabutan kunci dapat memakan waktu hingga 1 jam (TTL cache). Permintaan yang sudah berjalan selama jendela waktu tersebut mungkin tetap berhasil.
 * **Biaya KMS:** CMEK memerlukan kunci di layanan manajemen kunci pihak ketiga (AWS KMS, Google Cloud KMS, atau Azure Key Vault), yang dapat menimbulkan biaya terpisah yang ditagih oleh penyedia KMS Anda.
 
@@ -158,7 +158,7 @@ Ikuti panduan untuk layanan manajemen kunci yang Anda gunakan.
   </Card>
 
   <Card href="/docs/id/manage-claude/cmek-google-cloud-kms" title="Google Cloud KMS">
-    Buat crypto key Cloud KMS, berikan akses ke service account Anthropic, lalu daftarkan.
+    Buat crypto key Cloud KMS, berikan akses ke akun layanan Anthropic, lalu daftarkan.
   </Card>
 
   <Card href="/docs/id/manage-claude/cmek-azure-key-vault" title="Azure Key Vault">

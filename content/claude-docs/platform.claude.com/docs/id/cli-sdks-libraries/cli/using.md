@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 966e6229932fa7238380e381f0fd09ff378b72f167481f6f8ff22648d93589cc
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: a6aeef2a93440059f877b29152bd4315738a69cc4e9a08c0cf222de6be0ced06
 ---
 
 # Menggunakan CLI
@@ -23,11 +23,11 @@ ant <resource>[:<subresource>] <action> [flags]
 
 Jalankan `ant --help` untuk daftar sumber daya lengkap, atau tambahkan `--help` ke subperintah mana pun untuk melihat flag-nya.
 
-Sumber daya dalam tahap beta (termasuk agents, sessions, deployments, environments, dan skills) berada di bawah prefiks `beta:`. Perintah dalam namespace ini secara otomatis mengirimkan header `anthropic-beta` yang sesuai untuk sumber daya tersebut, sehingga Anda tidak perlu meneruskannya sendiri. Gunakan `--beta <header>` hanya untuk menimpa nilai default (misalnya, untuk memilih versi skema yang berbeda).
+Sumber daya dalam tahap beta (termasuk agents, sessions, deployments, environments, dan skills) berada di bawah prefiks `beta:`. Perintah dalam namespace ini secara otomatis mengirimkan header `anthropic-beta` yang sesuai untuk sumber daya tersebut, sehingga Anda tidak perlu mengirimkannya sendiri. Gunakan `--beta <header>` hanya untuk menimpa nilai default (misalnya, untuk memilih versi skema yang berbeda).
 
 ```bash
 ant models list
-ant messages create --model claude-opus-4-8 --max-tokens 1024 ...
+ant messages create --model claude-opus-5 --max-tokens 1024 ...
 ant beta:agents retrieve --agent-id agent_01...
 ant beta:sessions:events list --session-id session_01...
 ```
@@ -49,18 +49,18 @@ ant beta:sessions:events list --session-id session_01...
 `auto` mencetak JSON dengan format rapi (pretty-print) dan merupakan default untuk perintah yang membuat atau memodifikasi sumber daya. Perintah list dan retrieve secara default menggunakan [explorer interaktif](#interactive-explorer) saat menulis ke terminal, dan JSON dengan format rapi saat di-pipe. Timpa salah satu default tersebut dengan `--format`:
 
 ```bash
-ant models retrieve --model-id claude-opus-4-8 --format yaml
+ant models retrieve --model-id claude-opus-5 --format yaml
 ```
 
 ```yaml Output
 type: model
-id: claude-opus-4-8
-display_name: Claude Opus 4.8
-created_at: "2026-02-04T00:00:00Z"
+id: claude-opus-5
+display_name: Claude Opus 5
+created_at: "2026-07-24T00:00:00Z"
 ...
 ```
 
-Endpoint list melakukan paginasi otomatis. Dalam format default, setiap item ditulis secara terpisah (satu objek JSON kompak per baris dalam mode `jsonl`, aliran dokumen YAML dalam mode `yaml`), yang mengalir dengan mulus ke `head`, `grep`, dan filter `--transform`.
+Endpoint list melakukan paginasi otomatis. Dalam format default, setiap item ditulis secara terpisah (satu objek JSON ringkas per baris dalam mode `jsonl`, aliran dokumen YAML dalam mode `yaml`), yang mengalir dengan mulus ke `head`, `grep`, dan filter `--transform`.
 
 ### Explorer interaktif
 
@@ -81,9 +81,9 @@ ant beta:agents list \
 ```
 
 ```jsonl Output
-{"id": "agent_011CYm1BLqPX...", "name": "Docs CLI Test Agent", "model": "claude-opus-4-8"}
-{"id": "agent_011CYkVwfaEt...", "name": "Coffee Making Assistant", "model": "claude-opus-4-8"}
-{"id": "agent_011CYixHhtUP...", "name": "Coding Assistant", "model": "claude-opus-4-8"}
+{"id": "agent_011CYm1BLqPX...", "name": "Docs CLI Test Agent", "model": "claude-opus-5"}
+{"id": "agent_011CYkVwfaEt...", "name": "Coffee Making Assistant", "model": "claude-opus-5"}
+{"id": "agent_011CYixHhtUP...", "name": "Coding Assistant", "model": "claude-opus-5"}
 ```
 
 ### Mengekstrak nilai skalar
@@ -93,7 +93,7 @@ Untuk menangkap satu field sebagai string tanpa tanda kutip (misalnya, ID dari s
 ```bash
 AGENT_ID=$(ant beta:agents create \
   --name "My Agent" \
-  --model '{id: claude-opus-4-8}' \
+  --model '{id: claude-opus-5}' \
   --transform id --raw-output)
 
 printf '%s\n' "$AGENT_ID"
@@ -107,7 +107,7 @@ agent_011CYm1BLqPXpQRk5khsSXrs
   `--raw-output` berbeda dari `--format raw`. `--raw-output` menghapus tanda kutip JSON dari hasil string, seperti `jq -r`. `--format raw` mencetak byte JSON mentah dari body respons tanpa paginasi otomatis; pada endpoint list, opsi ini menerapkan `--transform` pada envelope paginasi, bukan pada setiap item.
 </Note>
 
-## Meneruskan body permintaan
+## Mengirim body permintaan
 
 Mekanisme input yang tepat bergantung pada bentuk datanya: gunakan **flag** untuk field skalar dan nilai terstruktur yang pendek, pipe dokumen melalui **stdin** untuk body bersarang atau multibaris, dan gunakan **referensi `@file`** untuk menarik isi file ke dalam field string atau biner mana pun.
 
@@ -127,7 +127,7 @@ Flag yang dapat diulang membangun array. Setiap `--tool` atau `--event` menambah
 ```bash
 ant beta:agents create \
   --name "Research Agent" \
-  --model '{id: claude-opus-4-8}' \
+  --model '{id: claude-opus-5}' \
   --tool '{type: agent_toolset_20260401}' \
   --tool '{type: custom, name: search_docs, input_schema: {type: object, properties: {query: {type: string}}}}'
 ```
@@ -146,7 +146,7 @@ Heredoc bekerja dengan cara yang sama dan praktis untuk YAML multibaris. Beri ta
 ```bash
 ant beta:agents create <<'YAML'
 name: Research Agent
-model: claude-opus-4-8
+model: claude-opus-5
 system: |
   You are a research assistant. Cite sources for every claim.
 tools:
@@ -166,7 +166,7 @@ Untuk menyisipkan isi file ke dalam field bernilai string, awali path dengan `@`
 
 ```bash
 ant beta:agents create \
-  --name "Researcher" --model '{id: claude-opus-4-8}' \
+  --name "Researcher" --model '{id: claude-opus-5}' \
   --system @./prompts/researcher.txt
 ```
 
@@ -174,20 +174,20 @@ Di dalam nilai flag terstruktur, bungkus path dengan tanda kutip. Untuk mengirim
 
 ```bash
 ant messages create \
-  --model claude-opus-4-8 \
+  --model claude-opus-5 \
   --max-tokens 1024 \
   --message '{role: user, content: [
     {type: document, source: {type: base64, media_type: application/pdf, data: "@./scan.pdf"}},
     {type: text, text: "Extract the text from this scanned document."}
   ]}' \
-  --transform 'content.0.text' --raw-output
+  --transform 'content.#(type=="text").text' --raw-output
 ```
 
 CLI mendeteksi tipe file dan mengenkode file biner sebagai base64 secara otomatis. Untuk memaksa enkoding tertentu, gunakan `@file://` untuk teks biasa atau `@data://` untuk base64. Escape karakter `@` literal di awal dengan backslash (`\@username`).
 
 ## Debugging
 
-Tambahkan `--debug` ke perintah mana pun untuk mencetak permintaan dan respons HTTP yang tepat (header dan body) ke stderr. Kunci API akan disamarkan.
+Tambahkan `--debug` ke perintah mana pun untuk mencetak permintaan dan respons HTTP yang persis (header dan body) ke stderr. Kunci API akan disamarkan.
 
 ```bash
 ant --debug beta:agents list
@@ -210,7 +210,7 @@ Setiap sumber daya API yang diekspos oleh CLI didokumentasikan dalam [referensi 
 
 <CardGroup cols={3}>
   <Card title="Scripting dan otomatisasi CLI" icon="code" href="/docs/id/cli-sdks-libraries/cli/scripting">
-    Mengelola versi sumber daya API, pola scripting, dan penggunaan dari Claude Code
+    Kelola versi sumber daya API, pola scripting, dan penggunaan dari Claude Code
   </Card>
 
   <Card title="Referensi API" icon="book" href="/docs/id/api/cli/messages/create">

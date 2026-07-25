@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/scripting
-fetched_at: 2026-07-22T03:08:36.547264Z
-sha256: b169947071ad4db50fcaf222c1c7dd0800ecc6c71bc487e644c88f5daf768ca8
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 506513f9235cc123f4107c3371edfb992950a5c23d7f466d57454e799106cd5b
 ---
 
 # CLI scripting and automation
@@ -27,7 +27,7 @@ You can use the CLI to version control API resources such as skills, agents, env
 
     ```yaml summarizer.agent.yaml
     name: Summarizer
-    model: claude-opus-4-8
+    model: claude-opus-5
     system: |
       You are a helpful assistant that writes concise summaries.
     tools:
@@ -45,7 +45,7 @@ You can use the CLI to version control API resources such as skills, agents, env
       "id": "agent_011CYm1BLqPXpQRk5khsSXrs",
       "version": 1,
       "name": "Summarizer",
-      "model": "claude-opus-4-8"
+      "model": "claude-opus-5"
       /* ... */
     }
     ```
@@ -199,7 +199,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-version: 2023-06-01" \
   -H "content-type: application/json" \
   -d '{
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5",
     "max_tokens": 256,
     "messages": [{"role": "user", "content": "hi"}]
   }'

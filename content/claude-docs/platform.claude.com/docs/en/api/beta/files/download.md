@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/download
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: 548810c04657481ff7b071aa864ecaf3b8242c647725673d973408b96f0a3d75
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 707d0ba8e9108b04cc438a2efac3bc90de809fdf14f7f306c6dea0230352314a
 ---
 
 ## Download File
@@ -25,7 +25,7 @@ Download File
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 27 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -83,7 +83,11 @@ Download File
 
     - `"server-side-fallback-2026-06-01"`
 
+    - `"server-side-fallback-2026-07-01"`
+
     - `"fallback-credit-2026-06-01"`
+
+    - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
 

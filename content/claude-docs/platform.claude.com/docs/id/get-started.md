@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-started
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 76ae71961c6306e8ef82b70b1491efd9e8a5fbdc659ddc430f029ccd308d7a2b
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: a8c5549c98ab9d95f3b68ce71441af003f95036cecbf8c6bcb5918e00b82fc53
 ---
 
 # Memulai dengan Claude
@@ -38,7 +38,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
           -H "x-api-key: $ANTHROPIC_API_KEY" \
           -H "anthropic-version: 2023-06-01" \
           -d '{
-            "model": "claude-opus-4-8",
+            "model": "claude-opus-5",
             "max_tokens": 1000,
             "messages": [
               {
@@ -53,7 +53,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
 
         ```json Output
         {
-          "model": "claude-opus-4-8",
+          "model": "claude-opus-5",
           "id": "msg_013mHbppMPd2PrVJzGMZPt2D",
           "type": "message",
           "role": "assistant",
@@ -109,7 +109,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
 
         ```bash CLI
         ant messages create \
-          --model claude-opus-4-8 \
+          --model claude-opus-5 \
           --max-tokens 1000 \
           --message '{
             role: user,
@@ -121,7 +121,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
 
         ```json Output
         {
-          "model": "claude-opus-4-8",
+          "model": "claude-opus-5",
           "id": "msg_01N1ycuCkM5Mzd7WhTU4fwST",
           "type": "message",
           "role": "assistant",
@@ -168,7 +168,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         client = anthropic.Anthropic()
 
         message = client.messages.create(
-            model="claude-opus-4-8",
+            model="claude-opus-5",
             max_tokens=1000,
             messages=[
                 {
@@ -228,7 +228,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         const client = new Anthropic();
 
         const message = await client.messages.create({
-          model: "claude-opus-4-8",
+          model: "claude-opus-5",
           max_tokens: 1000,
           messages: [
             {
@@ -293,7 +293,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
 
         var message = await client.Messages.Create(new MessageCreateParams
         {
-            Model = Model.ClaudeOpus4_8,
+            Model = Model.ClaudeOpus5,
             MaxTokens = 1000,
             Messages =
             [
@@ -369,7 +369,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         	client := anthropic.NewClient()
 
         	message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-        		Model:     anthropic.ModelClaudeOpus4_8,
+        		Model:     anthropic.ModelClaudeOpus5,
         		MaxTokens: 1000,
         		Messages: []anthropic.MessageParam{
         			anthropic.NewUserMessage(anthropic.NewTextBlock("What should I search for to find the latest developments in renewable energy?")),
@@ -415,7 +415,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
       </Step>
 
       <Step title="Siapkan proyek Anda">
-        Anda memerlukan JDK (25 atau yang lebih baru) dan [Gradle](https://gradle.org/install/) atau [Maven](https://maven.apache.org/install.html) pada `PATH` Anda. Buat direktori untuk proyek Anda dengan direktori sumber Java di dalamnya:
+        Anda memerlukan JDK (25 atau lebih baru) dan [Gradle](https://gradle.org/install/) atau [Maven](https://maven.apache.org/install.html) di `PATH` Anda. Buat direktori untuk proyek Anda dengan direktori sumber Java di dalamnya:
 
         ```bash
         mkdir -p claude-quickstart/src/main/java && cd claude-quickstart
@@ -443,7 +443,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
             }
 
             dependencies {
-                implementation("com.anthropic:anthropic-java:2.50.0")
+                implementation("com.anthropic:anthropic-java:2.52.0")
             }
 
             application {
@@ -469,7 +469,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
                 <dependency>
                   <groupId>com.anthropic</groupId>
                   <artifactId>anthropic-java</artifactId>
-                  <version>2.50.0</version>
+                  <version>2.52.0</version>
                 </dependency>
               </dependencies>
             </project>
@@ -491,7 +491,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
             var client = AnthropicOkHttpClient.fromEnv();
 
             var params = MessageCreateParams.builder()
-                .model(Model.CLAUDE_OPUS_4_8)
+                .model(Model.CLAUDE_OPUS_5)
                 .maxTokens(1000)
                 .addUserMessage(
                     "What should I search for to find the latest developments in renewable energy?"
@@ -563,7 +563,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         $client = new Client();
 
         $message = $client->messages->create(
-            model: Model::CLAUDE_OPUS_4_8,
+            model: Model::CLAUDE_OPUS_5,
             maxTokens: 1000,
             messages: [
                 [
@@ -624,7 +624,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         client = Anthropic::Client.new
 
         message = client.messages.create(
-          model: Anthropic::Model::CLAUDE_OPUS_4_8,
+          model: Anthropic::Model::CLAUDE_OPUS_5,
           max_tokens: 1000,
           messages: [
             {

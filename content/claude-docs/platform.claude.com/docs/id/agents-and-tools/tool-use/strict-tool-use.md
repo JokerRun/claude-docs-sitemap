@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: b8048cd2892d433568772e7de3308741c0830c3df7d83aa12a3ca79fde88545c
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 31982250357a4cd99bb0d11201307763336aad1ab830163526b54265a396c3b0
 ---
 
 # Penggunaan alat ketat
@@ -11,7 +11,7 @@ Terapkan kepatuhan JSON Schema pada input alat Claude dengan grammar-constrained
 
 ---
 
-Mengatur `strict: true` pada definisi alat menjamin input alat Claude sesuai dengan JSON Schema Anda dengan membatasi sampling token model ke output yang valid terhadap skema (teknik yang disebut "grammar-constrained sampling" atau sampling yang dibatasi tata bahasa). Halaman ini membahas mengapa mode ketat penting untuk agen, cara mengaktifkannya, dan kasus penggunaan umum. Untuk subset JSON Schema yang didukung, lihat [batasan JSON Schema](/docs/id/build-with-claude/structured-outputs#json-schema-limitations). Untuk panduan skema non-ketat, lihat [Mendefinisikan alat](/docs/id/agents-and-tools/tool-use/define-tools).
+Mengatur `strict: true` pada definisi alat menjamin input alat Claude sesuai dengan JSON Schema Anda dengan membatasi sampling token model ke output yang valid terhadap skema (teknik yang disebut "grammar-constrained sampling" atau sampling yang dibatasi tata bahasa). Halaman ini membahas mengapa mode ketat penting untuk agen, cara mengaktifkannya, dan kasus penggunaan umum. Untuk subset JSON Schema yang didukung, lihat [Batasan JSON Schema](/docs/id/build-with-claude/structured-outputs#json-schema-limitations). Untuk panduan skema non-ketat, lihat [Mendefinisikan alat](/docs/id/agents-and-tools/tool-use/define-tools).
 
 Penggunaan alat ketat memvalidasi parameter alat, memastikan Claude memanggil fungsi Anda dengan argumen yang bertipe benar. Gunakan penggunaan alat ketat ketika Anda perlu:
 
@@ -22,12 +22,12 @@ Penggunaan alat ketat memvalidasi parameter alat, memastikan Claude memanggil fu
 
 ## Mengapa penggunaan alat ketat penting untuk agen
 
-Membangun sistem agentik yang andal memerlukan jaminan kesesuaian skema. Tanpa mode ketat, Claude mungkin mengembalikan tipe yang tidak kompatibel (`"2"` alih-alih `2`) atau menghilangkan field yang wajib, merusak fungsi Anda dan menyebabkan error runtime.
+Membangun sistem agentik yang andal memerlukan kesesuaian skema yang terjamin. Tanpa mode ketat, Claude mungkin mengembalikan tipe yang tidak kompatibel (`"2"` alih-alih `2`) atau menghilangkan field yang wajib, merusak fungsi Anda dan menyebabkan error runtime.
 
 Penggunaan alat ketat menjamin parameter yang type-safe:
 
 * Fungsi menerima argumen yang bertipe benar setiap saat
-* Tidak perlu memvalidasi dan mengulangi pemanggilan alat
+* Tidak perlu memvalidasi dan mencoba ulang pemanggilan alat
 * Agen siap produksi yang bekerja secara konsisten dalam skala besar
 
 Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mode ketat, Claude mungkin memberikan `passengers: "two"` atau `passengers: "2"`. Dengan `strict: true`, respons selalu berisi `passengers: 2`.
@@ -41,7 +41,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "messages": [
         {"role": "user", "content": "What is the weather in San Francisco?"}
@@ -71,7 +71,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
 
   ```bash CLI
   ant messages create --transform content <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1024
   messages:
     - role: user
@@ -98,7 +98,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "What's the weather like in San Francisco?"}],
       tools=[
@@ -134,7 +134,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
   });
 
   const response = await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -177,7 +177,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "What's the weather like in San Francisco?" }],
       Tools = [
@@ -208,7 +208,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("What's the weather like in San Francisco?")),
@@ -265,7 +265,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
       .build();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_8)
+      .model(Model.CLAUDE_OPUS_5)
       .maxTokens(1024L)
       .addUserMessage("What's the weather like in San Francisco?")
       .addTool(
@@ -290,7 +290,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
       messages: [
           ['role' => 'user', 'content' => "What's the weather like in San Francisco?"]
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       tools: [
           [
               'name' => 'get_weather',
@@ -322,7 +322,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       { role: "user", content: "What's the weather like in San Francisco?" }
@@ -354,7 +354,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
   ```
 </CodeGroup>
 
-**Format respons:** Blok tool use dengan input yang tervalidasi di `response.content[x].input`
+**Format respons:** Blok tool use dengan input tervalidasi di `response.content[x].input`
 
 ```json Output
 {
@@ -375,7 +375,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
 
 <Steps>
   <Step title="Definisikan skema alat Anda">
-    Buat skema JSON untuk `input_schema` alat Anda. Skema menggunakan format JSON Schema standar dengan beberapa batasan (lihat [batasan JSON Schema](/docs/id/build-with-claude/structured-outputs#json-schema-limitations)).
+    Buat skema JSON untuk `input_schema` alat Anda. Skema ini menggunakan format JSON Schema standar dengan beberapa batasan (lihat [Batasan JSON Schema](/docs/id/build-with-claude/structured-outputs#json-schema-limitations)).
   </Step>
 
   <Step title="Tambahkan strict: true">
@@ -383,7 +383,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
   </Step>
 
   <Step title="Tangani pemanggilan alat">
-    Ketika Claude menggunakan alat, field `input` dalam blok tool\_use secara ketat mengikuti `input_schema` Anda, dan `name` selalu valid.
+    Ketika Claude menggunakan alat tersebut, field `input` dalam blok tool\_use secara ketat mengikuti `input_schema` Anda, dan `name` selalu valid.
   </Step>
 </Steps>
 
@@ -400,7 +400,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
         -d '{
-          "model": "claude-opus-4-8",
+          "model": "claude-opus-5",
           "max_tokens": 1024,
           "messages": [
             {"role": "user", "content": "Search for flights to Tokyo departing June 1, 2026"}
@@ -424,7 +424,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
 
       ```bash CLI
       ant messages create <<'YAML'
-      model: claude-opus-4-8
+      model: claude-opus-5
       max_tokens: 1024
       messages:
         - role: user
@@ -451,7 +451,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
       ```python Python
       client = Anthropic()
       response = client.messages.create(
-          model="claude-opus-4-8",
+          model="claude-opus-5",
           max_tokens=1024,
           messages=[
               {
@@ -502,7 +502,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
       };
 
       const response = await client.messages.create({
-        model: "claude-opus-4-8",
+        model: "claude-opus-5",
         max_tokens: 1024,
         messages: [{ role: "user", content: "Search for flights to Tokyo departing June 1, 2026" }],
         tools: [searchFlightsTool]
@@ -520,7 +520,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
 
       var parameters = new MessageCreateParams
       {
-          Model = Model.ClaudeOpus4_8,
+          Model = Model.ClaudeOpus5,
           MaxTokens = 1024,
           Messages = [new() { Role = Role.User, Content = "Search for flights to Tokyo departing June 1, 2026" }],
           Tools = [
@@ -551,7 +551,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
       client := anthropic.NewClient()
 
       response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus4_8,
+      	Model:     anthropic.ModelClaudeOpus5,
       	MaxTokens: 1024,
       	Messages: []anthropic.MessageParam{
       		anthropic.NewUserMessage(anthropic.NewTextBlock("Search for flights to Tokyo departing June 1, 2026")),
@@ -608,7 +608,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
           .build();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(1024L)
           .addUserMessage("Search for flights to Tokyo departing June 1, 2026")
           .addTool(
@@ -632,7 +632,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
           messages: [
               ['role' => 'user', 'content' => 'Search for flights to Tokyo departing June 1, 2026']
           ],
-          model: 'claude-opus-4-8',
+          model: 'claude-opus-5',
           tools: [
               [
                   'name' => 'search_flights',
@@ -661,7 +661,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
       client = Anthropic::Client.new
 
       message = client.messages.create(
-        model: "claude-opus-4-8",
+        model: "claude-opus-5",
         max_tokens: 1024,
         messages: [
           { role: "user", content: "Search for flights to Tokyo departing June 1, 2026" }
@@ -701,7 +701,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
         -d '{
-          "model": "claude-opus-4-8",
+          "model": "claude-opus-5",
           "max_tokens": 1024,
           "messages": [
             {"role": "user", "content": "Help me plan a trip from New York to Paris for 2 people, departing June 1, 2026"}
@@ -742,7 +742,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
 
       ```bash CLI
       ant messages create <<'YAML'
-      model: claude-opus-4-8
+      model: claude-opus-5
       max_tokens: 1024
       messages:
         - role: user
@@ -777,7 +777,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
       ```python Python
       client = Anthropic()
       response = client.messages.create(
-          model="claude-opus-4-8",
+          model="claude-opus-5",
           max_tokens=1024,
           messages=[
               {
@@ -857,7 +857,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
       ];
 
       const response = await client.messages.create({
-        model: "claude-opus-4-8",
+        model: "claude-opus-5",
         max_tokens: 1024,
         messages: [
           {
@@ -881,7 +881,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
 
       var parameters = new MessageCreateParams
       {
-          Model = Model.ClaudeOpus4_8,
+          Model = Model.ClaudeOpus5,
           MaxTokens = 1024,
           Messages = [new() { Role = Role.User, Content = "Help me plan a trip from New York to Paris for 2 people, departing June 1, 2026" }],
           Tools = [
@@ -929,7 +929,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
       client := anthropic.NewClient()
 
       response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus4_8,
+      	Model:     anthropic.ModelClaudeOpus5,
       	MaxTokens: 1024,
       	Messages: []anthropic.MessageParam{
       		anthropic.NewUserMessage(anthropic.NewTextBlock("Help me plan a trip from New York to Paris for 2 people, departing June 1, 2026")),
@@ -1005,7 +1005,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
           .build();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(1024L)
           .addUserMessage("Help me plan a trip from New York to Paris for 2 people, departing June 1, 2026")
           .addTool(
@@ -1036,7 +1036,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
           messages: [
               ['role' => 'user', 'content' => 'Help me plan a trip from New York to Paris for 2 people, departing June 1, 2026']
           ],
-          model: 'claude-opus-4-8',
+          model: 'claude-opus-5',
           tools: [
               [
                   'name' => 'search_flights',
@@ -1077,7 +1077,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
       client = Anthropic::Client.new
 
       message = client.messages.create(
-        model: "claude-opus-4-8",
+        model: "claude-opus-5",
         max_tokens: 1024,
         messages: [
           { role: "user", content: "Help me plan a trip from New York to Paris for 2 people, departing June 1, 2026" }
@@ -1122,7 +1122,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
 
 ## Retensi data
 
-Penggunaan alat ketat mengompilasi definisi `input_schema` alat menjadi tata bahasa menggunakan pipeline yang sama dengan [structured outputs](/docs/id/build-with-claude/structured-outputs). Skema alat di-cache sementara hingga 24 jam sejak penggunaan terakhir. Prompt dan respons tidak disimpan setelah respons API.
+Penggunaan alat ketat mengompilasi definisi `input_schema` alat menjadi grammar menggunakan pipeline yang sama dengan [structured outputs](/docs/id/build-with-claude/structured-outputs). Skema alat di-cache sementara hingga 24 jam sejak terakhir digunakan. Prompt dan respons tidak disimpan setelah respons API.
 
 Penggunaan alat ketat memenuhi syarat HIPAA, tetapi **PHI tidak boleh disertakan dalam definisi skema alat**. API menyimpan cache skema yang telah dikompilasi secara terpisah dari konten pesan, dan skema yang di-cache ini tidak menerima perlindungan PHI yang sama seperti prompt dan respons. Jangan sertakan PHI dalam nama properti `input_schema`, nilai `enum`, nilai `const`, atau ekspresi reguler `pattern`. PHI hanya boleh muncul dalam konten pesan (prompt dan respons), di mana PHI dilindungi di bawah perlindungan HIPAA.
 

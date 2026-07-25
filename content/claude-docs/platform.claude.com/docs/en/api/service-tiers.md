@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/service-tiers
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 53b2a7a36efbef398133c50c4b2eabb87c93bcc73d2e7a4a5e32744f766df9dd
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 190de891418d6fc9d8679539175db457cfbcac99889c8d2e8a7563dc5fe79269
 ---
 
 # Service tiers
@@ -45,18 +45,18 @@ Anthropic counts usage against Priority Tier capacity as follows:
 * Cache reads as 0.1 tokens per token read from the cache
 * Cache writes as 1.25 tokens per token written to the cache with a 5 minute TTL
 * Cache writes as 2.00 tokens per token written to the cache with a 1 hour TTL
-* For [US-only inference](/docs/en/manage-claude/data-residency) (`inference_geo: "us"`) requests on Claude Opus 4.6, Claude Sonnet 4.6, and later models, input tokens are 1.1 tokens per token
+* For [US-only inference](/docs/en/manage-claude/data-residency) (`inference_geo: "us"`) requests on Claude 4.6 and later models, input tokens are 1.1 tokens per token
 * All other input tokens are 1 token per token
 
 **Output tokens**
 
-* For [US-only inference](/docs/en/manage-claude/data-residency) (`inference_geo: "us"`) requests on Claude Opus 4.6, Claude Sonnet 4.6, and later models, output tokens are 1.1 tokens per token
+* For [US-only inference](/docs/en/manage-claude/data-residency) (`inference_geo: "us"`) requests on Claude 4.6 and later models, output tokens are 1.1 tokens per token
 * All other output tokens are 1 token per token
 
 Otherwise, requests proceed at standard tier.
 
 <Note>
-  These burndown rates reflect the relative pricing of each token type. For example, US-only inference is priced at 1.1x on Opus 4.6, Sonnet 4.6, and later models, so each token consumed with `inference_geo: "us"` draws down 1.1 tokens from your Priority Tier capacity.
+  These burndown rates reflect the relative pricing of each token type. For example, US-only inference is priced at 1.1x on Claude 4.6 and later models, so each token consumed with `inference_geo: "us"` draws down 1.1 tokens from your Priority Tier capacity.
 </Note>
 
 <Note>
@@ -236,6 +236,6 @@ Priority Tier targets 99.5% uptime with prioritized computational resources. Req
 
 ### Supported models
 
-Priority Tier is supported on all available Claude models (including Claude Fable 5 and Claude Opus 4.8) except Claude Sonnet 5, [Claude Mythos Preview](https://anthropic.com/glasswing), and Claude Mythos 5.
+Priority Tier is supported on all available Claude models except Claude Mythos 5, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 5, and Claude Sonnet 5.
 
 Check the [Models overview](/docs/en/about-claude/models/overview) for more details on available models.

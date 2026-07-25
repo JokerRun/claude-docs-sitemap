@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/list
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: cff00f9bbd31454e548e4803d626b20e87a248a2bb5192e8ccaa9d6b49cd07ae
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: bb4b9d19dc719ca3fcc9c712497e2f089f2be1db91b2327e15d0b7dba657b345
 ---
 
 ## List Session Resources
@@ -33,7 +33,7 @@ List Session Resources
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 27 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -91,7 +91,11 @@ List Session Resources
 
     - `"server-side-fallback-2026-06-01"`
 
+    - `"server-side-fallback-2026-07-01"`
+
     - `"fallback-credit-2026-06-01"`
+
+    - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 3b1169c701e1f72b4f34dbab5b939a0bd68e8a0f1e7eae39f2b49f0697bd047f
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 473ee69f5211ec8c8170297937df222a5884efbb4cdb1613d973ed794355e8f2
 ---
 
 # Prompting Claude Sonnet 5
@@ -29,7 +29,7 @@ Jika produk Anda bergantung pada gaya atau verbositas output tertentu, Anda mung
 Provide concise, focused responses. Skip non-essential context, and keep examples minimal.
 ```
 
-Jika Anda melihat jenis verbositas tertentu (seperti penjelasan berlebihan), Anda dapat menambahkan instruksi tambahan dalam prompt Anda untuk mencegahnya. Contoh positif yang menunjukkan bagaimana Claude dapat berkomunikasi dengan tingkat keringkasan yang sesuai cenderung lebih efektif daripada contoh negatif atau instruksi yang memberi tahu model apa yang tidak boleh dilakukan.
+Jika Anda melihat jenis verbositas tertentu (seperti penjelasan berlebihan), Anda dapat menambahkan instruksi tambahan dalam prompt Anda untuk mencegahnya. Contoh positif yang menunjukkan bagaimana Claude dapat berkomunikasi dengan tingkat keringkasan yang tepat cenderung lebih efektif daripada contoh negatif atau instruksi yang memberi tahu model apa yang tidak boleh dilakukan.
 
 ## Mengkalibrasi effort dan kedalaman pemikiran
 
@@ -38,10 +38,10 @@ Jika Anda melihat jenis verbositas tertentu (seperti penjelasan berlebihan), And
 * **`max`:** Kemampuan maksimum absolut tanpa batasan pada pengeluaran token.
 * **`xhigh`:** Effort ekstra tinggi adalah pengaturan yang direkomendasikan untuk kasus penggunaan coding dan agentik yang paling sulit.
 * **`high`:** Default. Pengaturan ini menyeimbangkan penggunaan token dan kecerdasan untuk sebagian besar kasus penggunaan.
-* **`medium`:** Baik untuk kasus penggunaan yang sensitif terhadap biaya yang perlu mengurangi penggunaan token dengan mengorbankan kecerdasan.
+* **`medium`:** Baik untuk kasus penggunaan yang sensitif terhadap biaya yang perlu mengurangi penggunaan token dengan menukar kecerdasan.
 * **`low`:** Cadangkan untuk tugas pendek dan terbatas serta beban kerja yang sensitif terhadap latensi yang tidak sensitif terhadap kecerdasan.
 
-Sebagai pemetaan lintas model kasar saat bermigrasi: Claude Sonnet 5 pada medium sebanding dalam kecerdasan dengan Claude Sonnet 4.6 pada high, dan Claude Sonnet 5 pada high sebanding dengan Claude Sonnet 4.6 pada max. Saat melakukan benchmarking, cocokkan berdasarkan panjang pemikiran yang diamati alih-alih nama effort.
+Sebagai pemetaan lintas model kasar saat bermigrasi: Claude Sonnet 5 pada medium sebanding dalam kecerdasan dengan Claude Sonnet 4.6 pada high, dan Claude Sonnet 5 pada high sebanding dengan Claude Sonnet 4.6 pada max. Saat melakukan benchmarking, cocokkan berdasarkan panjang pemikiran yang diamati daripada nama effort.
 
 Claude Sonnet 5 mematuhi level effort secara ketat, terutama pada level rendah. Pada `low` dan `medium`, model membatasi pekerjaannya pada apa yang diminta alih-alih melakukan lebih dari yang diperlukan. Ini baik untuk latensi dan biaya, tetapi pada tugas yang cukup kompleks yang berjalan pada effort `low` ada risiko pemikiran yang kurang mendalam.
 
@@ -51,7 +51,7 @@ Jika Anda mengamati penalaran yang dangkal pada masalah kompleks, naikkan effort
 This task involves multistep reasoning. Think carefully through the problem before responding.
 ```
 
-Pada Claude Sonnet 5, [adaptive thinking](/docs/id/build-with-claude/adaptive-thinking) aktif secara default. Permintaan tanpa field `thinking` berjalan dengan adaptive thinking. Ini adalah perubahan dari Claude Sonnet 4.6, di mana permintaan yang sama berjalan tanpa thinking. Untuk menonaktifkan thinking sepenuhnya, kirimkan `thinking: {type: "disabled"}`. Karena `max_tokens` adalah batas keras pada total output (thinking ditambah teks respons), tinjau kembali nilainya untuk beban kerja yang berjalan tanpa thinking pada Claude Sonnet 4.6. Jika sebelumnya Anda menggunakan thinking nonaktif dengan Claude Sonnet 4.6, coba thinking aktif dengan level effort yang lebih rendah untuk Claude Sonnet 5.
+Pada Claude Sonnet 5, [adaptive thinking](/docs/id/build-with-claude/thinking) aktif secara default. Permintaan tanpa field `thinking` berjalan dengan adaptive thinking. Ini adalah perubahan dari Claude Sonnet 4.6, di mana permintaan yang sama berjalan tanpa thinking. Untuk mematikan thinking sepenuhnya, kirimkan `thinking: {type: "disabled"}`. Karena `max_tokens` adalah batas keras pada total output (thinking ditambah teks respons), tinjau kembali nilainya untuk beban kerja yang berjalan tanpa thinking pada Claude Sonnet 4.6. Jika sebelumnya Anda menggunakan thinking nonaktif dengan Claude Sonnet 4.6, coba thinking aktif dengan level effort yang lebih rendah untuk Claude Sonnet 5.
 
 Perilaku pemicu untuk adaptive thinking dapat diarahkan. Jika Anda menemukan model mengeluarkan blok thinking lebih sering dari yang Anda inginkan, yang dapat terjadi dengan prompt sistem yang besar atau kompleks, tambahkan panduan untuk mengarahkannya. Seperti biasa, ukur efek dari setiap perubahan prompting terhadap kinerja. Contoh:
 
@@ -61,7 +61,7 @@ Thinking adds latency and should only be used when it will meaningfully improve 
 
 Sebaliknya, jika Anda menjalankan beban kerja yang sulit pada `medium` dan melihat pemikiran yang kurang mendalam, tuas pertama adalah menaikkan effort. Jika Anda memerlukan kontrol yang lebih halus, berikan prompt secara langsung untuk itu.
 
-Extended thinking manual (`thinking: {type: "enabled", budget_tokens: N}`) tidak didukung pada Claude Sonnet 5 dan mengembalikan error 400. Fitur ini sudah usang pada Claude Sonnet 4.6 dan sekarang dihapus. Gunakan adaptive thinking dengan parameter effort sebagai gantinya.
+Extended thinking manual (`thinking: {type: "enabled", budget_tokens: N}`) tidak didukung pada Claude Sonnet 5 dan mengembalikan error 400. Fitur ini telah dideprekasi pada Claude Sonnet 4.6 dan sekarang dihapus. Gunakan adaptive thinking dengan parameter effort sebagai gantinya.
 
 <Note>
   Jika Anda menjalankan Claude Sonnet 5 pada effort `high`, `xhigh`, atau `max`, sisakan ruang pada `max_tokens` agar model memiliki ruang untuk thinking dan pemanggilan alat. Pada tugas yang panjang, adaptive thinking dapat menggunakan sebagian besar anggaran; jika anggaran ketat, Anda mungkin melihat respons yang hampir seluruhnya berupa thinking diikuti oleh jawaban yang terpotong dan `stop_reason: "max_tokens"`. Menaikkan `max_tokens` atau menurunkan ke effort `medium` menyelesaikan masalah ini. Karena Claude Sonnet 5 menggunakan [tokenizer baru](/docs/id/about-claude/models/whats-new-sonnet-5#new-tokenizer) yang menghasilkan sekitar 30% lebih banyak token untuk teks yang sama, batas `max_tokens` yang disetel untuk Claude Sonnet 4.6 dapat memotong output yang setara. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja.
@@ -69,21 +69,21 @@ Extended thinking manual (`thinking: {type: "enabled", budget_tokens: N}`) tidak
 
 ## Pemicu penggunaan alat
 
-Claude Sonnet 5 lebih agentik daripada Claude Sonnet 4.6 secara default dan akan lebih mudah menggunakan alat dan menjalankan loop verifikasi mandiri. Dengan thinking dinonaktifkan, model cenderung tidak menggunakan alat atau mempertimbangkan pencarian; jika Anda mengandalkan pemanggilan alat dengan thinking nonaktif, tambahkan dorongan eksplisit dalam prompt sistem. Effort juga merupakan tuas untuk penggunaan alat: pengaturan effort `high` atau `xhigh` menunjukkan penggunaan alat yang jauh lebih banyak dalam pencarian agentik dan coding. Untuk skenario di mana Anda menginginkan lebih banyak penggunaan alat, Anda juga dapat menyesuaikan prompt Anda untuk secara eksplisit menginstruksikan model tentang kapan dan bagaimana menggunakan alatnya dengan benar. Misalnya, jika Anda menemukan bahwa model tidak menggunakan alat pencarian web Anda, jelaskan dengan jelas mengapa dan bagaimana seharusnya model menggunakannya.
+Claude Sonnet 5 lebih agentik daripada Claude Sonnet 4.6 secara default dan akan lebih mudah menggunakan alat serta menjalankan loop verifikasi mandiri. Dengan thinking dinonaktifkan, model cenderung kurang menggunakan alat atau mempertimbangkan pencarian; jika Anda mengandalkan pemanggilan alat dengan thinking nonaktif, tambahkan dorongan eksplisit dalam prompt sistem. Effort juga merupakan tuas untuk penggunaan alat: pengaturan effort `high` atau `xhigh` menunjukkan penggunaan alat yang jauh lebih banyak dalam pencarian agentik dan coding. Untuk skenario di mana Anda menginginkan lebih banyak penggunaan alat, Anda juga dapat menyesuaikan prompt Anda untuk secara eksplisit menginstruksikan model tentang kapan dan bagaimana menggunakan alatnya dengan benar. Misalnya, jika Anda menemukan bahwa model tidak menggunakan alat pencarian web Anda, jelaskan dengan jelas mengapa dan bagaimana seharusnya model menggunakannya.
 
 ## Pembaruan progres untuk pengguna
 
-Claude Sonnet 5 memberikan pembaruan yang teratur dan berkualitas lebih tinggi kepada pengguna sepanjang jejak agentik yang panjang. Jika Anda telah menambahkan scaffolding untuk memaksa pesan status sementara ("Setelah setiap 3 pemanggilan alat, ringkas progres"), coba hapus. Jika Anda menemukan bahwa panjang atau isi pembaruan untuk pengguna dari Claude Sonnet 5 tidak terkalibrasi dengan baik untuk kasus penggunaan Anda, jelaskan secara eksplisit seperti apa pembaruan ini seharusnya dalam prompt dan berikan contoh.
+Claude Sonnet 5 memberikan pembaruan yang teratur dan berkualitas lebih tinggi kepada pengguna sepanjang jejak agentik yang panjang. Jika Anda telah menambahkan scaffolding untuk memaksa pesan status sementara ("Setelah setiap 3 pemanggilan alat, rangkum progres"), coba hapus. Jika Anda menemukan bahwa panjang atau isi pembaruan untuk pengguna dari Claude Sonnet 5 tidak terkalibrasi dengan baik untuk kasus penggunaan Anda, jelaskan secara eksplisit seperti apa seharusnya pembaruan ini dalam prompt dan berikan contoh.
 
 ## Mengikuti instruksi secara lebih literal
 
-Claude Sonnet 5 menafsirkan prompt secara literal dan eksplisit, terutama pada level effort yang lebih rendah. Model ini tidak secara diam-diam menggeneralisasi instruksi dari satu item ke item lainnya, dan tidak menyimpulkan permintaan yang tidak Anda buat. Keuntungan dari literalisme ini adalah presisi, dan model ini umumnya berkinerja lebih baik untuk kasus penggunaan API dengan prompt yang disetel dengan cermat, ekstraksi terstruktur, dan pipeline di mana Anda menginginkan perilaku yang dapat diprediksi. Jika Anda memerlukan Claude untuk menerapkan instruksi secara luas, nyatakan cakupannya secara eksplisit (misalnya, "Terapkan pemformatan ini ke setiap bagian, bukan hanya bagian pertama").
+Claude Sonnet 5 menafsirkan prompt secara literal dan eksplisit, terutama pada level effort yang lebih rendah. Model ini tidak secara diam-diam menggeneralisasi instruksi dari satu item ke item lainnya, dan tidak menyimpulkan permintaan yang tidak Anda buat. Keuntungan dari literalisme ini adalah presisi, dan model ini umumnya berkinerja lebih baik untuk kasus penggunaan API dengan prompt yang disetel dengan cermat, ekstraksi terstruktur, dan pipeline di mana Anda menginginkan perilaku yang dapat diprediksi. Jika Anda memerlukan Claude untuk menerapkan instruksi secara luas, nyatakan cakupannya secara eksplisit (misalnya, "Terapkan pemformatan ini ke setiap bagian, bukan hanya yang pertama").
 
 ## Nada dan gaya penulisan
 
-Seperti halnya model baru lainnya, gaya prosa pada penulisan bentuk panjang dapat berubah. Jika produk Anda bergantung pada suara tertentu, evaluasi ulang prompt gaya terhadap baseline yang baru.
+Seperti halnya model baru lainnya, gaya prosa pada penulisan bentuk panjang dapat berubah. Jika produk Anda bergantung pada suara tertentu, evaluasi ulang prompt gaya terhadap baseline baru.
 
-Misalnya, jika suara produk Anda lebih hangat atau lebih konversasional, tambahkan:
+Misalnya, jika suara produk Anda lebih hangat atau lebih percakapan, tambahkan:
 
 ```text wrap
 Use a warm, collaborative tone. Acknowledge the user's framing before answering.
@@ -95,7 +95,7 @@ Jika sebelumnya Anda mengandalkan `temperature` untuk variasi gaya, perhatikan b
 
 Claude Sonnet 5 mungkin menetap pada gaya visual default yang konsisten pada brief frontend dan desain yang terbuka. Gaya khas default dapat terlihat baik untuk beberapa brief tetapi terasa tidak cocok untuk dashboard, alat pengembang, fintech, layanan kesehatan, atau aplikasi enterprise.
 
-Instruksi generik ("jangan gunakan warna itu," "buat bersih dan minimal") cenderung menggeser model ke palet tetap yang berbeda alih-alih menghasilkan variasi. Dua pendekatan bekerja dengan andal:
+Instruksi generik ("jangan gunakan warna itu," "buat bersih dan minimal") cenderung menggeser model ke palet tetap yang berbeda alih-alih menghasilkan variasi. Dua pendekatan yang bekerja dengan andal:
 
 **1. Tentukan alternatif yang konkret.** Model mengikuti spesifikasi eksplisit dengan presisi:
 
@@ -144,7 +144,7 @@ Saat membatasi jumlah interaksi pengguna yang diperlukan, penting untuk menentuk
 
 ## Harness tinjauan kode
 
-Jika harness tinjauan kode Anda disetel untuk model sebelumnya, Anda mungkin awalnya melihat recall yang lebih rendah pada Claude Sonnet 5. Ini kemungkinan besar adalah efek harness, bukan regresi kemampuan. Ketika prompt tinjauan mengatakan hal-hal seperti "hanya laporkan masalah dengan tingkat keparahan tinggi," "bersikaplah konservatif," atau "jangan terlalu detail," Claude Sonnet 5 mungkin mengikuti instruksi tersebut dengan lebih setia daripada model sebelumnya: model mungkin menyelidiki kode dengan sama teliti, mengidentifikasi bug, dan kemudian tidak melaporkan temuan yang dinilainya berada di bawah standar yang Anda nyatakan. Ini dapat terlihat sebagai model yang melakukan kedalaman investigasi yang sama tetapi mengonversi lebih sedikit investigasi menjadi temuan yang dilaporkan, terutama pada bug dengan tingkat keparahan lebih rendah. Presisi biasanya meningkat, tetapi recall yang terukur dapat turun meskipun kemampuan dasar model dalam menemukan bug telah meningkat.
+Jika harness tinjauan kode Anda disetel untuk model sebelumnya, Anda mungkin awalnya melihat recall yang lebih rendah pada Claude Sonnet 5. Ini kemungkinan besar adalah efek harness, bukan regresi kemampuan. Ketika prompt tinjauan mengatakan hal-hal seperti "hanya laporkan masalah dengan tingkat keparahan tinggi," "bersikaplah konservatif," atau "jangan terlalu detail," Claude Sonnet 5 mungkin mengikuti instruksi tersebut dengan lebih setia daripada model sebelumnya: model mungkin menyelidiki kode dengan sama teliti, mengidentifikasi bug, dan kemudian tidak melaporkan temuan yang dinilainya berada di bawah standar yang Anda nyatakan. Ini dapat terlihat sebagai model melakukan kedalaman investigasi yang sama tetapi mengonversi lebih sedikit investigasi menjadi temuan yang dilaporkan, terutama pada bug dengan tingkat keparahan lebih rendah. Presisi biasanya meningkat, tetapi recall yang terukur dapat turun meskipun kemampuan dasar model dalam menemukan bug telah meningkat.
 
 Beberapa bahasa prompt yang direkomendasikan:
 
@@ -154,7 +154,7 @@ Report every issue you find, including ones you are uncertain about or consider 
 
 Prompt ini dapat digunakan tanpa memiliki langkah kedua yang sebenarnya, tetapi memindahkan penyaringan kepercayaan keluar dari langkah penemuan sering kali membantu. Jika harness Anda memiliki tahap verifikasi, deduplikasi, atau pemeringkatan terpisah, beri tahu model secara eksplisit bahwa tugasnya pada tahap penemuan adalah cakupan, bukan penyaringan.
 
-Jika Anda memang ingin model melakukan penyaringan mandiri dalam satu tahap, bersikaplah konkret tentang di mana standarnya alih-alih menggunakan istilah kualitatif seperti "penting": misalnya, "laporkan bug apa pun yang dapat menyebabkan perilaku yang salah, kegagalan pengujian, atau hasil yang menyesatkan; hanya abaikan hal-hal kecil seperti preferensi gaya atau penamaan murni."
+Jika Anda memang ingin model melakukan penyaringan mandiri dalam satu kali proses, jelaskan secara konkret di mana standarnya alih-alih menggunakan istilah kualitatif seperti "penting": misalnya, "laporkan bug apa pun yang dapat menyebabkan perilaku yang salah, kegagalan pengujian, atau hasil yang menyesatkan; hanya abaikan hal-hal kecil seperti preferensi gaya atau penamaan murni."
 
 Lakukan iterasi pada prompt terhadap subset dari eval atau kasus uji Anda untuk memvalidasi peningkatan recall atau skor F1.
 

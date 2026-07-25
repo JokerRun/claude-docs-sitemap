@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/memory
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: 8e9081bfbc5f73cf7d97c600a34b5e46456ef0d9022bd8364d0261b78e30359f
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: edbc164e2b516f67abf42382208b4eb5b6b52f4902be6597b138afe1a316db6c
 ---
 
 # Using agent memory
@@ -943,8 +943,9 @@ List version history for a store, newest first. The example filters to a single 
     --memory-store-id "$store_id" \
     --memory-id "$mem_id" \
     --format json)
-  jq -r '.data[] | "\(.id): \(.operation)"' <<< "$versions"
-  version_id=$(jq -r '.data[1].id' <<< "$versions")
+  # `list --format json` emits one JSON object per item.
+  jq -r '"\(.id): \(.operation)"' <<< "$versions"
+  version_id=$(jq -rs '.[1].id' <<< "$versions")
   ```
 
   ```python Python
@@ -1259,7 +1260,9 @@ List stores in the workspace. Archived stores are excluded by default; pass `inc
 
   ```php PHP
   foreach ($client->beta->memoryStores->list(includeArchived: true)->pagingEachItem() as $s) {
-      echo "{$s->id} {$s->name} {$s->archivedAt}\n";
+      // archivedAt is only set on archived stores.
+      $archivedAt = isset($s->archivedAt) ? $s->archivedAt->format(DATE_ATOM) : '';
+      echo "{$s->id} {$s->name} {$archivedAt}\n";
   }
   ```
 

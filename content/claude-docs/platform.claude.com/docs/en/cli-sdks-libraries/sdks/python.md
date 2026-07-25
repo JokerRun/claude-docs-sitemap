@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/python
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 4aef6a9653e2a65162792bdd476f5190d74dfe831918caeff8b28ab6fe51e7ab
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 51591f0757690cd579f95aea0b05e320f4f04ee693be46fec72eb1d0b6229fdb
 ---
 
 # Python SDK
@@ -64,7 +64,7 @@ message = client.messages.create(
             "content": "Hello, Claude",
         }
     ],
-    model="claude-opus-4-8",
+    model="claude-opus-5",
 )
 
 for block in message.content:
@@ -99,7 +99,7 @@ async def main() -> None:
                 "content": "Hello, Claude",
             }
         ],
-        model="claude-opus-4-8",
+        model="claude-opus-5",
     )
     print(message.content)
 
@@ -130,7 +130,7 @@ async def main() -> None:
                     "content": "Hello, Claude",
                 }
             ],
-            model="claude-opus-4-8",
+            model="claude-opus-5",
         )
         print(message.content)
 
@@ -153,7 +153,7 @@ stream = client.messages.create(
             "content": "Hello, Claude",
         }
     ],
-    model="claude-opus-4-8",
+    model="claude-opus-5",
     stream=True,
 )
 for event in stream:
@@ -173,7 +173,7 @@ stream = await client.messages.create(
             "content": "Hello, Claude",
         }
     ],
-    model="claude-opus-4-8",
+    model="claude-opus-5",
     stream=True,
 )
 async for event in stream:
@@ -194,7 +194,7 @@ async def main() -> None:
                 "content": "Say hello there!",
             }
         ],
-        model="claude-opus-4-8",
+        model="claude-opus-5",
     ) as stream:
         async for text in stream.text_stream:
             print(text, end="", flush=True)
@@ -225,7 +225,7 @@ You can also count tokens before making a request:
 
 ```python
 count = client.messages.count_tokens(
-    model="claude-opus-4-8", messages=[{"role": "user", "content": "Hello, world"}]
+    model="claude-opus-5", messages=[{"role": "user", "content": "Hello, world"}]
 )
 print(count.input_tokens)  # 10
 ```
@@ -266,7 +266,7 @@ def get_weather(location: str) -> str:
 # Use the tool_runner to automatically handle tool calls
 runner = client.beta.messages.tool_runner(
     max_tokens=1024,
-    model="claude-opus-4-8",
+    model="claude-opus-5",
     tools=[get_weather],
     messages=[
         {"role": "user", "content": "What is the weather in SF?"},
@@ -292,7 +292,7 @@ client.messages.batches.create(
         {
             "custom_id": "my-first-request",
             "params": {
-                "model": "claude-opus-4-8",
+                "model": "claude-opus-5",
                 "max_tokens": 1024,
                 "messages": [{"role": "user", "content": "Hello, world"}],
             },
@@ -300,7 +300,7 @@ client.messages.batches.create(
         {
             "custom_id": "my-second-request",
             "params": {
-                "model": "claude-opus-4-8",
+                "model": "claude-opus-5",
                 "max_tokens": 1024,
                 "messages": [{"role": "user", "content": "Hi again, friend"}],
             },
@@ -365,7 +365,7 @@ try:
                 "content": "Hello, Claude",
             }
         ],
-        model="claude-opus-4-8",
+        model="claude-opus-5",
     )
 except anthropic.APIConnectionError as e:
     print("The server could not be reached")
@@ -402,7 +402,7 @@ All object responses in the SDK provide a `_request_id` property which is added 
 message = client.messages.create(
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
-    model="claude-opus-4-8",
+    model="claude-opus-5",
 )
 print(message._request_id)  # e.g., req_018EeWyXxfu5pfWkrYcMdjWG
 ```
@@ -427,7 +427,7 @@ client = Anthropic(
 client.with_options(max_retries=5).messages.create(
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
-    model="claude-opus-4-8",
+    model="claude-opus-5",
 )
 ```
 
@@ -453,7 +453,7 @@ client = Anthropic(
 client.with_options(timeout=5.0).messages.create(
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
-    model="claude-opus-4-8",
+    model="claude-opus-5",
 )
 ```
 
@@ -547,7 +547,7 @@ client = Anthropic(
 client.messages.with_raw_response.create(
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
-    model="claude-opus-4-8",
+    model="claude-opus-5",
     extra_headers={"anthropic-version": "My-Custom-Value"},
 )
 ```
@@ -580,7 +580,7 @@ In responses, you can distinguish between fields that are explicitly `null` vers
 
 ```python
 response = client.messages.create(
-    model="claude-opus-4-8",
+    model="claude-opus-5",
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello"}],
 )
@@ -603,7 +603,7 @@ client = Anthropic()
 response = client.messages.with_raw_response.create(
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
-    model="claude-opus-4-8",
+    model="claude-opus-5",
 )
 
 print(response.headers.get("request-id"))
@@ -623,7 +623,7 @@ The `.with_raw_response` approach eagerly reads the full response body when you 
 with client.messages.with_streaming_response.create(
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
-    model="claude-opus-4-8",
+    model="claude-opus-5",
 ) as response:
     print(response.headers.get("request-id"))
 
@@ -726,7 +726,7 @@ For example, to use the [Files API](/docs/en/build-with-claude/files):
 client = Anthropic()
 
 response = client.beta.messages.create(
-    model="claude-opus-4-8",
+    model="claude-opus-5",
     max_tokens=1024,
     messages=[
         {

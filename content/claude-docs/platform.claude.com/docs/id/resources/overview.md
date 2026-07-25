@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/overview
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: b099669d88bf020a0b0e8057b6f2114bec819c98ae5525b7f75c1b07f1788e6b
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 11c4c212f41deb58afd71c62b325e332246c4c3dd87c12019dba7ef109c08ab7
 ---
 
 # Sumber Daya
@@ -14,6 +14,10 @@ Model card, sumber daya pembelajaran, dan format dokumentasi yang dioptimalkan u
 ## Model card
 
 <CardGroup cols={3}>
+  <Card title="System Card Claude Opus 5" icon="file" href="https://www.anthropic.com/claude-opus-5-system-card">
+    Dokumentasi terperinci tentang Claude Opus 5.
+  </Card>
+
   <Card title="System Card Claude Sonnet 5" icon="file" href="https://www.anthropic.com/claude-sonnet-5-system-card">
     Dokumentasi terperinci tentang Claude Sonnet 5.
   </Card>

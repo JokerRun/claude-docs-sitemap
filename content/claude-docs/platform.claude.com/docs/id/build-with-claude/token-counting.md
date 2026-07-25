@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 5bf2b620226a60c0c0e4af0d3ca904b936e764179ca514df0cae6c906eedce44
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 285921a9e312c46fc024086dd6ea42b664989a855fa086e1a9077221b2a0313b
 ---
 
 # Penghitungan token
@@ -35,10 +35,10 @@ Endpoint [penghitungan token](/docs/id/api/messages-count-tokens) menerima dafta
 
 ### Model yang didukung
 
-Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitungan token, termasuk Claude Sonnet 5.
+Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitungan token, termasuk Claude Opus 5 dan Claude Sonnet 5.
 
 <Note>
-  Claude Opus 4.7 dan model Opus yang lebih baru, Claude Fable 5, Claude Mythos 5, Claude Mythos Preview, dan Claude Sonnet 5 menggunakan tokenizer yang lebih baru. Teks input yang sama menghasilkan sekitar 30 persen lebih banyak token dibandingkan model sebelumnya. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Hitung ulang prompt terhadap model yang akan Anda gunakan alih-alih menggunakan kembali jumlah yang diukur terhadap model sebelumnya.
+  Claude 4.7 dan model yang lebih baru serta Claude Mythos Preview menggunakan tokenizer yang lebih baru. Teks input yang sama menghasilkan sekitar 30 persen lebih banyak token dibandingkan model sebelumnya. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Hitung ulang prompt terhadap model yang akan Anda gunakan daripada menggunakan kembali jumlah yang diukur terhadap model sebelumnya.
 </Note>
 
 ### Menghitung token dalam pesan dasar
@@ -50,7 +50,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
     -H "content-type: application/json" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "system": "You are a scientist",
       "messages": [{
         "role": "user",
@@ -61,7 +61,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
 
   ```bash CLI
   ant messages count-tokens \
-    --model claude-opus-4-8 \
+    --model claude-opus-5 \
     --system "You are a scientist" \
     --message '{role: user, content: "Hello, Claude"}'
   ```
@@ -70,7 +70,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   client = anthropic.Anthropic()
 
   response = client.messages.count_tokens(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       system="You are a scientist",
       messages=[{"role": "user", "content": "Hello, Claude"}],
   )
@@ -82,7 +82,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   const client = new Anthropic();
 
   const response = await client.messages.countTokens({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     system: "You are a scientist",
     messages: [
       {
@@ -105,7 +105,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
 
   var parameters = new MessageCountTokensParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       System = "You are a scientist",
       Messages = [new() { Role = Role.User, Content = "Hello, Claude" }]
   };
@@ -118,7 +118,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   client := anthropic.NewClient()
 
   response, err := client.Messages.CountTokens(context.TODO(), anthropic.MessageCountTokensParams{
-  	Model: anthropic.ModelClaudeOpus4_8,
+  	Model: anthropic.ModelClaudeOpus5,
   	System: anthropic.MessageCountTokensParamsSystemUnion{
   		OfString: anthropic.String("You are a scientist"),
   	},
@@ -144,7 +144,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCountTokensParams params = MessageCountTokensParams.builder()
-        .model(Model.CLAUDE_OPUS_4_8)
+        .model(Model.CLAUDE_OPUS_5)
         .system("You are a scientist")
         .addUserMessage("Hello, Claude")
         .build();
@@ -162,7 +162,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
       messages: [
           ['role' => 'user', 'content' => 'Hello, Claude']
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       system: 'You are a scientist',
   );
 
@@ -173,7 +173,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   client = Anthropic::Client.new
 
   response = client.messages.count_tokens(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     system: "You are a scientist",
     messages: [
       { role: "user", content: "Hello, Claude" }
@@ -201,7 +201,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
     -H "content-type: application/json" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "tools": [
         {
           "name": "get_weather",
@@ -229,7 +229,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
 
   ```bash CLI
   ant messages count-tokens <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   tools:
     - name: get_weather
       description: Get the current weather in a given location
@@ -251,7 +251,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   client = anthropic.Anthropic()
 
   response = client.messages.count_tokens(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       tools=[
           {
               "name": "get_weather",
@@ -278,7 +278,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   const client = new Anthropic();
 
   const response = await client.messages.countTokens({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     tools: [
       {
         name: "get_weather",
@@ -313,7 +313,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
 
   var parameters = new MessageCountTokensParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       Tools =
       [
           new MessageCountTokensTool(new Tool()
@@ -341,7 +341,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   client := anthropic.NewClient()
 
   response, err := client.Messages.CountTokens(context.TODO(), anthropic.MessageCountTokensParams{
-  	Model: anthropic.ModelClaudeOpus4_8,
+  	Model: anthropic.ModelClaudeOpus5,
   	Tools: []anthropic.MessageCountTokensToolUnionParam{
   		{OfTool: &anthropic.ToolParam{
   			Name:        "get_weather",
@@ -393,7 +393,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
         .build();
 
       MessageCountTokensParams params = MessageCountTokensParams.builder()
-        .model(Model.CLAUDE_OPUS_4_8)
+        .model(Model.CLAUDE_OPUS_5)
         .addTool(
           Tool.builder()
             .name("get_weather")
@@ -415,7 +415,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
       messages: [
           ['role' => 'user', 'content' => "What's the weather like in San Francisco?"]
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       tools: [
           [
               'name' => 'get_weather',
@@ -441,7 +441,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   client = Anthropic::Client.new
 
   response = client.messages.count_tokens(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     tools: [
       {
         name: "get_weather",
@@ -487,7 +487,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
     -H "content-type: application/json" \
     -d @- <<EOF
   {
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5",
     "messages": [
       {"role": "user", "content": [
         {"type": "image", "source": {
@@ -507,7 +507,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   curl -s "$IMAGE_URL" -o ./ant.jpg
 
   ant messages count-tokens <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   messages:
     - role: user
       content:
@@ -532,7 +532,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   client = anthropic.Anthropic()
 
   response = client.messages.count_tokens(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       messages=[
           {
               "role": "user",
@@ -563,7 +563,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   const imageData = Buffer.from(imageArrayBuffer).toString("base64");
 
   const response = await anthropic.messages.countTokens({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     messages: [
       {
         role: "user",
@@ -605,7 +605,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
 
   var parameters = new MessageCountTokensParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       Messages =
       [
           new()
@@ -654,7 +654,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   client := anthropic.NewClient()
 
   response, err := client.Messages.CountTokens(context.TODO(), anthropic.MessageCountTokensParams{
-  	Model: anthropic.ModelClaudeOpus4_8,
+  	Model: anthropic.ModelClaudeOpus5,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
   			anthropic.NewImageBlockBase64("image/jpeg", imageData),
@@ -704,7 +704,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
       );
 
       MessageCountTokensParams params = MessageCountTokensParams.builder()
-        .model(Model.CLAUDE_OPUS_4_8)
+        .model(Model.CLAUDE_OPUS_5)
         .addUserMessageOfBlockParams(List.of(imageBlock, textBlock))
         .build();
 
@@ -736,7 +736,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
               ]
           ]
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
   print_r($response);
   ```
@@ -754,7 +754,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   client = Anthropic::Client.new
 
   response = client.messages.count_tokens(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     messages: [
       {
         role: "user",
@@ -780,10 +780,10 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
 { "input_tokens": 1551 }
 ```
 
-### Menghitung token dalam pesan dengan pemikiran diperpanjang
+### Menghitung token dalam pesan dengan pemikiran
 
 <Note>
-  Lihat [bagaimana jendela konteks dihitung dengan pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking#how-context-window-is-calculated-with-extended-thinking) untuk detail lebih lanjut.
+  Lihat [Pemikiran dan jendela konteks](/docs/id/build-with-claude/thinking#thinking-and-the-context-window) untuk detail lebih lanjut.
 
   * Blok pemikiran dari giliran asisten **sebelumnya** diabaikan dan **tidak** dihitung dalam token input Anda
   * Pemikiran giliran asisten **saat ini** **dihitung** dalam token input Anda
@@ -1132,7 +1132,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
     -H "anthropic-version: 2023-06-01" \
     -d @- <<EOF
   {
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5",
     "messages": [{
       "role": "user",
       "content": [
@@ -1156,7 +1156,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
 
   ```bash CLI
   ant messages count-tokens <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   messages:
     - role: user
       content:
@@ -1180,7 +1180,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
       pdf_base64 = base64.standard_b64encode(pdf_file.read()).decode("utf-8")
 
   response = client.messages.count_tokens(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       messages=[
           {
               "role": "user",
@@ -1210,7 +1210,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   const pdfBase64 = await readFile("/path/to/document.pdf", { encoding: "base64" });
 
   const response = await client.messages.countTokens({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     messages: [
       {
         role: "user",
@@ -1250,7 +1250,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
 
   var parameters = new MessageCountTokensParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       Messages =
       [
           new()
@@ -1284,7 +1284,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   pdfBase64 := base64.StdEncoding.EncodeToString(pdfBytes)
 
   response, err := client.Messages.CountTokens(context.TODO(), anthropic.MessageCountTokensParams{
-  	Model: anthropic.ModelClaudeOpus4_8,
+  	Model: anthropic.ModelClaudeOpus5,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
   			anthropic.NewDocumentBlock(anthropic.Base64PDFSourceParam{
@@ -1324,7 +1324,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
       );
 
       MessageCountTokensParams params = MessageCountTokensParams.builder()
-        .model(Model.CLAUDE_OPUS_4_8)
+        .model(Model.CLAUDE_OPUS_5)
         .addUserMessageOfBlockParams(List.of(documentBlock, textBlock))
         .build();
 
@@ -1357,7 +1357,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
               ]
           ]
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
   echo json_encode($response);
@@ -1371,7 +1371,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   pdf_base64 = Base64.strict_encode64(File.binread("/path/to/document.pdf"))
 
   response = client.messages.count_tokens(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     messages: [
       {
         role: "user",

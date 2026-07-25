@@ -1,25 +1,25 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 1186dd84a048c460f4d7784e67d7af437c4ca42e517e3610fbcc24a9fd941fce
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: a09a8623075dcddd8059c6316e313f5197f2f86dcdbf73ae6c2b83349971bffc
 ---
 
-# Claude in Amazon Bedrock (Opus 4.7 dan yang lebih baru)
+# Claude di Amazon Bedrock (Opus 4.7 dan yang lebih baru)
 
 Akses model Claude melalui Amazon Bedrock dengan autentikasi, penagihan, dan batas keamanan native AWS.
 
 ---
 
-Panduan ini memandu Anda dalam menyiapkan dan melakukan panggilan API ke Claude in Amazon Bedrock. Claude in Amazon Bedrock berjalan pada infrastruktur yang dikelola AWS dengan nol akses operator (personel Anthropic tidak memiliki akses ke infrastruktur inferensi), memungkinkan Anda membangun aplikasi sensitif sepenuhnya di dalam batas keamanan AWS sambil menggunakan bentuk Messages API yang sama dengan yang Anda gunakan pada API pihak pertama Anthropic.
+Panduan ini memandu Anda dalam menyiapkan dan melakukan panggilan API ke Claude di Amazon Bedrock. Claude di Amazon Bedrock berjalan pada infrastruktur yang dikelola AWS dengan nol akses operator (personel Anthropic tidak memiliki akses ke infrastruktur inferensi), memungkinkan Anda membangun aplikasi sensitif sepenuhnya di dalam batas keamanan AWS sambil menggunakan bentuk Messages API yang sama dengan yang Anda gunakan pada API pihak pertama Anthropic.
 
 <Note>
-  Halaman ini membahas Claude in Amazon Bedrock, yang menyajikan Claude melalui Messages API di `/anthropic/v1/messages` pada infrastruktur yang dikelola AWS. Integrasi Amazon Bedrock sebelumnya (API `InvokeModel` dan `Converse` dengan pengidentifikasi model berversi ARN) tetap tersedia dan didokumentasikan di [Claude on Amazon Bedrock (Opus 4.6 dan yang lebih lama)](/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy). Untuk alternatif yang dioperasikan Anthropic di AWS dengan penagihan AWS Marketplace dan akses fitur yang biasanya tersedia di hari yang sama, lihat [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws).
+  Halaman ini membahas Claude di Amazon Bedrock, yang menyajikan Claude melalui Messages API di `/anthropic/v1/messages` pada infrastruktur yang dikelola AWS. Integrasi Amazon Bedrock sebelumnya (API `InvokeModel` dan `Converse` dengan pengidentifikasi model berversi ARN) tetap tersedia dan didokumentasikan di [Claude di Amazon Bedrock (Opus 4.6 dan yang lebih lama)](/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy). Untuk alternatif yang dioperasikan Anthropic di AWS dengan penagihan AWS Marketplace dan akses fitur yang biasanya tersedia di hari yang sama, lihat [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws).
 </Note>
 
 ## Akses
 
-Claude Fable 5, Claude Opus 4.8, Claude Sonnet 5, Claude Opus 4.7, dan Claude Haiku 4.5 terbuka untuk semua pelanggan Amazon Bedrock. Claude Mythos Preview memerlukan undangan; lihat [Project Glasswing](https://anthropic.com/glasswing). Untuk ketersediaan region, lihat [Region](#regions).
+Amazon Bedrock menetapkan kriteria akses untuk setiap model Claude secara individual. Claude Fable 5, Claude Opus 4.8, Claude Sonnet 5, Claude Opus 4.7, dan Claude Haiku 4.5 terbuka untuk semua pelanggan Amazon Bedrock; untuk kriteria terkini model lainnya, periksa [akses model Amazon Bedrock](https://console.aws.amazon.com/bedrock/home#/modelaccess) di konsol AWS. Claude Mythos Preview memerlukan undangan; lihat [Project Glasswing](https://anthropic.com/glasswing). Untuk ketersediaan region, lihat [Region](#regions).
 
 ## Prasyarat
 
@@ -32,7 +32,7 @@ Claude Mythos Preview juga memerlukan akun AWS khusus yang telah dimasukkan ke d
 
 ## Autentikasi
 
-Claude in Amazon Bedrock mendukung tiga jalur autentikasi. Pilih yang paling sesuai dengan persyaratan keamanan Anda.
+Claude di Amazon Bedrock mendukung tiga jalur autentikasi. Pilih yang paling sesuai dengan persyaratan keamanan Anda.
 
 ### Service role Bedrock (direkomendasikan)
 
@@ -50,11 +50,11 @@ Gunakan service role Bedrock dengan kunci yang dikelola AWS untuk akses jangka p
 
 ### IAM assumed role
 
-Untuk akses terfederasi identitas dengan sesi maksimum 12 jam:
+Untuk akses dengan federasi identitas dengan sesi maksimum 12 jam:
 
 <Steps>
   <Step title="Admin: konfigurasikan IAM role">
-    Buat IAM role yang dibatasi cakupannya pada model Claude Anda. Trust policy menyebutkan penyedia identitas Anda (SAML, OIDC, atau AWS Identity Center). Permissions policy hanya memberikan `bedrock-mantle:CreateInference` pada ARN model yang diizinkan.
+    Buat IAM role yang dibatasi pada model Claude Anda. Trust policy menyebutkan penyedia identitas Anda (SAML, OIDC, atau AWS Identity Center). Permissions policy hanya memberikan `bedrock-mantle:CreateInference` pada ARN model yang diizinkan.
   </Step>
 
   <Step title="Developer: autentikasi dan assume">
@@ -68,7 +68,7 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
 
 <Steps>
   <Step title="Admin: batasi jenis token">
-    Blokir kunci jangka panjang dengan melampirkan kebijakan yang menolak `bedrock:CallWithBearerToken` kecuali kondisi `bedrock:BearerTokenType` cocok dengan token jangka pendek.
+    Blokir kunci jangka panjang dengan melampirkan policy yang menolak `bedrock:CallWithBearerToken` kecuali kondisi `bedrock:BearerTokenType` cocok dengan token jangka pendek.
   </Step>
 
   <Step title="Developer: buat token">
@@ -78,7 +78,7 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
 
 ## Instal SDK
 
-[SDK klien](/docs/id/cli-sdks-libraries/overview) Anthropic mendukung Claude in Amazon Bedrock melalui paket atau modul khusus Bedrock.
+[SDK klien](/docs/id/cli-sdks-libraries/overview) Anthropic mendukung Claude di Amazon Bedrock melalui paket atau modul khusus Bedrock.
 
 <Tabs>
   <Tab title="Python">
@@ -109,7 +109,7 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java-bedrock:2.50.0")
+        implementation("com.anthropic:anthropic-java-bedrock:2.52.0")
         ```
       </Tab>
 
@@ -118,7 +118,7 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-bedrock</artifactId>
-            <version>2.50.0</version>
+            <version>2.52.0</version>
         </dependency>
         ```
       </Tab>
@@ -156,7 +156,7 @@ SDK menyelesaikan kredensial dan region menggunakan urutan prioritas AWS standar
       -H "content-type: application/json" \
       -H "anthropic-version: 2023-06-01" \
       -d '{
-        "model": "anthropic.claude-opus-4-8",
+        "model": "anthropic.claude-opus-5",
         "max_tokens": 1024,
         "messages": [
           {"role": "user", "content": "Hello, Claude"}
@@ -176,12 +176,12 @@ SDK menyelesaikan kredensial dan region menggunakan urutan prioritas AWS standar
     client = AnthropicBedrockMantle(aws_region="us-east-1")
 
     message = client.messages.create(
-        model="anthropic.claude-opus-4-8",
+        model="anthropic.claude-opus-5",
         max_tokens=1024,
         messages=[{"role": "user", "content": "Hello, Claude"}],
     )
 
-    print(message.content[0].text)
+    print(next(block.text for block in message.content if block.type == "text"))
     ```
   </Tab>
 
@@ -194,14 +194,14 @@ SDK menyelesaikan kredensial dan region menggunakan urutan prioritas AWS standar
     });
 
     const message = await client.messages.create({
-      model: "anthropic.claude-opus-4-8",
+      model: "anthropic.claude-opus-5",
       max_tokens: 1024,
       messages: [{ role: "user", content: "Hello, Claude" }]
     });
 
-    const block = message.content[0];
-    if (block.type === "text") {
-      console.log(block.text);
+    const textBlock = message.content.find((block) => block.type === "text");
+    if (textBlock) {
+      console.log(textBlock.text);
     }
     ```
   </Tab>
@@ -215,13 +215,19 @@ SDK menyelesaikan kredensial dan region menggunakan urutan prioritas AWS standar
 
     var message = await client.Messages.Create(new()
     {
-        Model = "anthropic.claude-opus-4-8",
+        Model = "anthropic.claude-opus-5",
         MaxTokens = 1024,
         Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
     });
 
-    if (message.Content[0].Value is TextBlock block)
-        Console.WriteLine(block.Text);
+    foreach (var item in message.Content)
+    {
+        if (item.Value is TextBlock block)
+        {
+            Console.WriteLine(block.Text);
+            break;
+        }
+    }
     ```
   </Tab>
 
@@ -235,7 +241,7 @@ SDK menyelesaikan kredensial dan region menggunakan urutan prioritas AWS standar
     }
 
     message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-    	Model:     "anthropic.claude-opus-4-8",
+    	Model:     "anthropic.claude-opus-5",
     	MaxTokens: 1024,
     	Messages: []anthropic.MessageParam{
     		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),
@@ -245,7 +251,12 @@ SDK menyelesaikan kredensial dan region menggunakan urutan prioritas AWS standar
     	panic(err)
     }
 
-    fmt.Println(message.Content[0].Text)
+    for _, block := range message.Content {
+    	if textBlock, ok := block.AsAny().(anthropic.TextBlock); ok {
+    		fmt.Println(textBlock.Text)
+    		break
+    	}
+    }
     ```
   </Tab>
 
@@ -254,6 +265,7 @@ SDK menyelesaikan kredensial dan region menggunakan urutan prioritas AWS standar
     import com.anthropic.bedrock.backends.BedrockMantleBackend;
     import com.anthropic.client.AnthropicClient;
     import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+    import com.anthropic.models.messages.ContentBlock;
     import com.anthropic.models.messages.Message;
     import com.anthropic.models.messages.MessageCreateParams;
 
@@ -264,13 +276,16 @@ SDK menyelesaikan kredensial dan region menggunakan urutan prioritas AWS standar
 
         Message message = client.messages().create(
             MessageCreateParams.builder()
-                .model("anthropic.claude-opus-4-8")
+                .model("anthropic.claude-opus-5")
                 .maxTokens(1024)
                 .addUserMessage("Hello, Claude")
                 .build()
         );
 
-        IO.println(message.content().getFirst().asText().text());
+        message.content().stream()
+                .filter(ContentBlock::isText)
+                .findFirst()
+                .ifPresent(block -> IO.println(block.asText().text()));
     }
     ```
   </Tab>
@@ -282,14 +297,14 @@ SDK menyelesaikan kredensial dan region menggunakan urutan prioritas AWS standar
     $client = new MantleClient(awsRegion: 'us-east-1');
 
     $message = $client->messages->create(
-        model: 'anthropic.claude-opus-4-8',
+        model: 'anthropic.claude-opus-5',
         maxTokens: 1024,
         messages: [
             ['role' => 'user', 'content' => 'Hello, Claude'],
         ],
     );
 
-    echo $message->content[0]->text;
+    echo array_find($message->content, fn ($block) => $block->type === 'text')->text;
     ```
   </Tab>
 
@@ -300,12 +315,12 @@ SDK menyelesaikan kredensial dan region menggunakan urutan prioritas AWS standar
     client = Anthropic::BedrockMantleClient.new(aws_region: "us-east-1")
 
     message = client.messages.create(
-      model: "anthropic.claude-opus-4-8",
+      model: "anthropic.claude-opus-5",
       max_tokens: 1024,
       messages: [{role: "user", content: "Hello, Claude"}]
     )
 
-    puts message.content[0].text
+    puts message.content.find { it.type == :text }.text
     ```
   </Tab>
 </Tabs>
@@ -316,11 +331,12 @@ SDK menyelesaikan kredensial dan region menggunakan urutan prioritas AWS standar
 
 ## Model yang didukung
 
-ID model di Claude in Amazon Bedrock memiliki prefiks penyedia `anthropic.`. Kemampuan dan perilaku model didokumentasikan di halaman [Ikhtisar model](/docs/id/about-claude/models/overview).
+ID model di Claude di Amazon Bedrock menggunakan prefiks penyedia `anthropic.`. Kemampuan dan perilaku model didokumentasikan di halaman [Ikhtisar model](/docs/id/about-claude/models/overview).
 
-| Model                 | Model ID                        | Akses                                                                        |
+| Model                 | ID Model                        | Akses                                                                        |
 | --------------------- | ------------------------------- | ---------------------------------------------------------------------------- |
 | Claude Fable 5        | anthropic.claude-fable-5        | Terbuka                                                                      |
+| Claude Opus 5         | anthropic.claude-opus-5         | Lihat [Akses](#access)                                                       |
 | Claude Opus 4.8       | anthropic.claude-opus-4-8       | Terbuka                                                                      |
 | Claude Opus 4.7       | anthropic.claude-opus-4-7       | Terbuka                                                                      |
 | Claude Sonnet 5       | `anthropic.claude-sonnet-5`     | Terbuka                                                                      |
@@ -339,10 +355,10 @@ Untuk daftar fitur lengkap beserta ketersediaannya di Amazon Bedrock, lihat [Ikh
 
 * [Messages API](/docs/id/api/messages/create) (`/anthropic/v1/messages`)
 * [Caching prompt](/docs/id/build-with-claude/prompt-caching)
-* [Pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking)
+* [Thinking](/docs/id/build-with-claude/thinking)
 * [Penggunaan alat](/docs/id/agents-and-tools/tool-use/overview), termasuk [alat Bash](/docs/id/agents-and-tools/tool-use/bash-tool), [alat Computer use](/docs/id/agents-and-tools/tool-use/computer-use-tool), [alat Memory](/docs/id/agents-and-tools/tool-use/memory-tool), dan [alat Text editor](/docs/id/agents-and-tools/tool-use/text-editor-tool)
-* [Sitasi](/docs/id/build-with-claude/citations)
-* [Output terstruktur](/docs/id/build-with-claude/structured-outputs)
+* [Citations](/docs/id/build-with-claude/citations)
+* [Structured outputs](/docs/id/build-with-claude/structured-outputs)
 
 ### Fitur yang tidak didukung
 
@@ -355,12 +371,12 @@ Untuk daftar fitur lengkap beserta ketersediaannya di Amazon Bedrock, lihat [Ikh
 
 ## Region
 
-Claude in Amazon Bedrock tersedia di region AWS berikut. Amazon Bedrock menawarkan dua jenis endpoint:
+Claude di Amazon Bedrock tersedia di region AWS berikut. Amazon Bedrock menawarkan dua jenis endpoint:
 
 * **Global:** perutean dinamis di semua region yang tersedia untuk ketersediaan maksimum. Tanpa premi harga.
-* **Regional:** endpoint diarahkan ke satu region AWS yang Anda tentukan, untuk persyaratan residensi data. Endpoint regional dikenakan premi harga 10% dibandingkan endpoint global. Untuk merutekan ke beberapa region dalam satu geografi, gunakan [inference profile](https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html) (US, EU, JP, atau AU). Region yang ditandai **Hanya dalam region** di tabel mendukung perutean satu region langsung tanpa inference profile.
+* **Regional:** endpoint diarahkan ke satu region AWS yang Anda tentukan, untuk persyaratan residensi data. Endpoint regional dikenakan premi harga 10% dibandingkan endpoint global. Untuk merutekan ke beberapa region dalam satu geografi, gunakan [inference profile](https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html) (US, EU, JP, atau AU). Region yang ditandai **Hanya dalam region** pada tabel mendukung perutean satu region langsung tanpa inference profile.
 
-Endpoint global tersedia untuk Claude Fable 5, Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5, dan Claude Haiku 4.5. Claude Mythos Preview hanya regional dan tersedia di `us-east-1`.
+Endpoint global tersedia untuk Claude Fable 5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5, dan Claude Haiku 4.5. Claude Mythos Preview hanya regional dan tersedia di `us-east-1`.
 
 | Region AWS       | Lokasi                      | Jenis endpoint                 |
 | ---------------- | --------------------------- | ------------------------------ |
@@ -402,7 +418,7 @@ Penanganan data untuk penawaran ini diatur oleh Amazon Bedrock. Untuk detailnya,
 
 ## Pemantauan dan pencatatan log
 
-Claude in Amazon Bedrock mengirimkan log ke CloudWatch dan CloudTrail. Anthropic merekomendasikan untuk menyimpan log aktivitas setidaknya secara bergulir selama 30 hari untuk memahami pola penggunaan dan menyelidiki potensi masalah.
+Claude di Amazon Bedrock mengirimkan log ke CloudWatch dan CloudTrail. Anthropic merekomendasikan untuk menyimpan log aktivitas setidaknya selama 30 hari secara bergulir untuk memahami pola penggunaan dan menyelidiki potensi masalah.
 
 ## Dukungan
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-api
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 9a6383225b50922f7227fc4adfa7d46287dccd41e012698001f5a2a9a07afbfc
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 6f82dcabf79b49d49f70beee73478bf6b2d6a1852587a39924f57fe60d2b3c81
 ---
 
 # Compliance API
@@ -14,18 +14,16 @@ Akses terprogram ke aktivitas Claude organisasi Anda, chat, file, proyek, dan pe
 Compliance API memberikan pelanggan Claude Enterprise akses terprogram ke Activity Feed organisasi mereka, direktori pengguna, peran, dan grup di setiap organisasi yang tertaut, pengaturan efektif yang berlaku untuk setiap organisasi, dan, untuk organisasi claude.ai, chat, file, dan proyek yang mendasarinya. Tim keamanan, hukum, dan kepatuhan menggunakannya untuk mengaudit aktivitas, mengambil atau menghapus konten, dan memasukkan peristiwa ke dalam perangkat hilir.
 
 <Note>
-  Dua jenis kunci membuka Compliance API. **Compliance Access Key** (dibuat di claude.ai) menjangkau setiap endpoint, dan **Admin API key** (dibuat di Claude Console) hanya menjangkau Activity Feed. Lihat [Kunci mana yang Anda butuhkan?](/docs/id/manage-claude/compliance-api-access#which-key-do-you-need) untuk perbandingan lengkap jenis kunci.
+  Dua jenis kunci membuka Compliance API. **Compliance Access Key** (dibuat di claude.ai) menjangkau setiap endpoint, dan **kunci Admin API** (dibuat di Claude Console) hanya menjangkau Activity Feed. Lihat [Kunci mana yang Anda butuhkan?](/docs/id/manage-claude/compliance-api-access#which-key-do-you-need) untuk perbandingan lengkap jenis kunci.
 </Note>
 
 Panggilan berikut mengembalikan peristiwa aktivitas terbaru di organisasi Anda. Kunci apa pun dengan cakupan `read:compliance_activities` dapat melakukannya. Untuk membuat kunci dan memberikan cakupan tersebut, lihat [Menyiapkan Compliance API](/docs/id/manage-claude/compliance-api-access).
 
-<CodeGroup>
-  ```bash cURL
-  curl --fail-with-body -sS \
-    "https://api.anthropic.com/v1/compliance/activities?limit=1" \
-    --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
-  ```
-</CodeGroup>
+```bash cURL
+curl --fail-with-body -sS \
+  "https://api.anthropic.com/v1/compliance/activities?limit=1" \
+  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
+```
 
 Respons yang berhasil mengembalikan objek JSON yang berisi `data` (array dari record `Activity`), `has_more`, `first_id`, dan `last_id`:
 
@@ -69,7 +67,7 @@ Semua endpoint `/v1/compliance/*` berbagi satu "rate limit" (batas laju) sebesar
 
 ***
 
-## Compliance API versus fitur terkait
+## Compliance API dibandingkan fitur terkait
 
 Dua fitur yang berdekatan tumpang tindih dengan Compliance API; berikut cara memilihnya.
 
@@ -79,7 +77,7 @@ Ekspor log audit adalah fitur terpisah di [claude.ai > Organization settings > D
 
 ### Analytics API
 
-Anthropic menyediakan dua API analitik: Claude Enterprise Analytics API dan [Claude Code Analytics API](/docs/id/manage-claude/claude-code-analytics-api). Keduanya mengembalikan angka penggunaan dan biaya teragregasi untuk tim IT, FinOps, dan platform, sedangkan Compliance API mengembalikan record per-peristiwa untuk tim keamanan, hukum, dan kepatuhan. Kedua keluarga API ini menjawab pertanyaan yang berbeda, menggunakan kunci yang berbeda, dan disediakan secara terpisah.
+Anthropic menyediakan dua API analitik: Claude Enterprise Analytics API dan [Claude Code Analytics API](/docs/id/manage-claude/claude-code-analytics-api). Keduanya mengembalikan angka penggunaan dan biaya teragregasi untuk tim IT, FinOps, dan platform, sedangkan Compliance API mengembalikan record per peristiwa untuk tim keamanan, hukum, dan kepatuhan. Kedua keluarga API ini menjawab pertanyaan yang berbeda, menggunakan kunci yang berbeda, dan disediakan secara terpisah.
 
 ***
 
@@ -87,11 +85,11 @@ Anthropic menyediakan dua API analitik: Claude Enterprise Analytics API dan [Cla
 
 <CardGroup>
   <Card href="/docs/id/manage-claude/compliance-api-access" title="Menyiapkan Compliance API">
-    Aktifkan Compliance API untuk organisasi Anda, lalu buat Compliance Access Key (dengan izin bercakupan) atau Admin API key, dan pelajari mana yang harus digunakan.
+    Aktifkan Compliance API untuk organisasi Anda, lalu buat Compliance Access Key (dengan izin bercakupan) atau kunci Admin API, dan pelajari mana yang harus digunakan.
   </Card>
 
   <Card href="/docs/id/manage-claude/compliance-activity-feed" title="Melakukan kueri Activity Feed">
-    Ambil, filter, dan lakukan paginasi pada Activity Feed bersama. Didukung oleh kedua jenis kunci.
+    Ambil, filter, dan paginasi Activity Feed bersama. Didukung oleh kedua jenis kunci.
   </Card>
 
   <Card href="/docs/id/manage-claude/compliance-content-data" title="Mengambil dan menghapus chat, file, dan proyek">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/java
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 81642df5140c90b53d6847933cae0f5ccfe6645d585e8361e69ba0199355d322
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 90cb2d8e11d2254cdb872a8cdeb631925f3ed8f70cb52e142161fecc4113fb31
 ---
 
 # Java SDK
@@ -22,7 +22,7 @@ The Anthropic Java SDK provides convenient access to the Anthropic REST API from
 <Tabs>
   <Tab title="Gradle">
     ```kotlin
-    implementation("com.anthropic:anthropic-java:2.50.0")
+    implementation("com.anthropic:anthropic-java:2.52.0")
     ```
   </Tab>
 
@@ -31,7 +31,7 @@ The Anthropic Java SDK provides convenient access to the Anthropic REST API from
     <dependency>
         <groupId>com.anthropic</groupId>
         <artifactId>anthropic-java</artifactId>
-        <version>2.50.0</version>
+        <version>2.52.0</version>
     </dependency>
     ```
   </Tab>
@@ -61,7 +61,7 @@ AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 MessageCreateParams params = MessageCreateParams.builder()
   .maxTokens(1024L)
   .addUserMessage("Hello, Claude")
-  .model(Model.CLAUDE_OPUS_4_8)
+  .model(Model.CLAUDE_OPUS_5)
   .build();
 
 Message message = client.messages().create(params);
@@ -153,7 +153,7 @@ AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 MessageCreateParams params = MessageCreateParams.builder()
   .maxTokens(1024L)
   .addUserMessage("Hello, Claude")
-  .model(Model.CLAUDE_OPUS_4_8)
+  .model(Model.CLAUDE_OPUS_5)
   .build();
 
 CompletableFuture<Message> message = client.async().messages().create(params);
@@ -173,7 +173,7 @@ AnthropicClientAsync client = AnthropicOkHttpClientAsync.fromEnv();
 MessageCreateParams params = MessageCreateParams.builder()
   .maxTokens(1024L)
   .addUserMessage("Hello, Claude")
-  .model(Model.CLAUDE_OPUS_4_8)
+  .model(Model.CLAUDE_OPUS_5)
   .build();
 
 CompletableFuture<Message> message = client.messages().create(params);
@@ -401,7 +401,7 @@ import com.anthropic.models.messages.Model;
 AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
 MessageCreateParams.Builder createParamsBuilder = MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_4_8)
+        .model(Model.CLAUDE_OPUS_5)
         .maxTokens(2048)
         .addTool(GetWeather.class)
         .addUserMessage("What's the temperature in New York?");
@@ -447,7 +447,7 @@ You can perform local validation to check that the JSON schema derived from your
 
 ```java
 MessageCreateParams.Builder createParamsBuilder = MessageCreateParams.builder()
-  .model(Model.CLAUDE_OPUS_4_8)
+  .model(Model.CLAUDE_OPUS_5)
   .maxTokens(2048)
   .addTool(GetWeather.class, JsonSchemaLocalValidation.NO)
   .addUserMessage("What's the temperature in New York?");
@@ -806,7 +806,7 @@ Each class in the SDK has an associated builder for constructing it. Each class 
 MessageCreateParams params = MessageCreateParams.builder()
   .maxTokens(1024L)
   .addUserMessage("Hello, Claude")
-  .model(Model.CLAUDE_OPUS_4_8)
+  .model(Model.CLAUDE_OPUS_5)
   .build();
 
 // Create a modified copy using toBuilder()
@@ -868,7 +868,7 @@ import com.anthropic.models.messages.Model;
 MessageCreateParams params = MessageCreateParams.builder()
   .maxTokens(JsonValue.from(3.14))
   .addUserMessage("Hello, Claude")
-  .model(Model.CLAUDE_OPUS_4_8)
+  .model(Model.CLAUDE_OPUS_5)
   .build();
 ```
 
@@ -910,7 +910,7 @@ import com.anthropic.models.messages.Model;
 
 MessageCreateParams params = MessageCreateParams.builder()
   .addUserMessage("Hello, world")
-  .model(Model.CLAUDE_OPUS_4_8)
+  .model(Model.CLAUDE_OPUS_5)
   .maxTokens(JsonMissing.of())
   .build();
 ```
@@ -1109,7 +1109,7 @@ import com.anthropic.models.messages.Model;
 MessageCreateParams params = MessageCreateParams.builder()
   .maxTokens(1024L)
   .addUserMessage("Hello, Claude")
-  .model(Model.CLAUDE_OPUS_4_8)
+  .model(Model.CLAUDE_OPUS_5)
   .build();
 
 HttpResponseFor<Message> message = client.messages().withRawResponse().create(params);
@@ -1199,7 +1199,7 @@ MessageCreateParams params = MessageCreateParams.builder()
   .build();
 ```
 
-Prefer the well-typed constants (for example, `Model.CLAUDE_OPUS_4_7`) so you get autocomplete and deprecation warnings. The `String` overloads and `of(...)` are primarily for setting the field to an undocumented or not yet supported value while waiting for an SDK release that includes it.
+Prefer the well-typed constants (for example, `Model.CLAUDE_OPUS_5`) so you get autocomplete and deprecation warnings. The `String` overloads and `of(...)` are primarily for setting the field to an undocumented or not yet supported value while waiting for an SDK release that includes it.
 
 ## Beta features
 
@@ -1222,7 +1222,7 @@ void main() {
 
     BetaMessage message = client.beta().messages().create(
         MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_8)
+            .model(Model.CLAUDE_OPUS_5)
             .maxTokens(1024L)
             .addBeta(AnthropicBeta.FILES_API_2025_04_14)
             .addUserMessageOfBetaContentBlockParams(List.of(

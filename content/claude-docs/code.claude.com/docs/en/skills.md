@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: cf4c683326de6c6748bcfdc15e78a6e821cf3eec46b7af9f28762cb59f7adb6a
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 868916e08681720a85c5643f1444dbb85b987772854e17d094775767939a30ad
 ---
 
 > ## Documentation Index
@@ -549,7 +549,7 @@ Add `context: fork` to your frontmatter when you want a skill to run in isolatio
 
 The forked subagent runs in the [background](/docs/en/sub-agents#run-subagents-in-foreground-or-background): you keep working while it runs, and its result arrives in your conversation when it completes. Set `background: false` in the frontmatter to instead wait for the result in the turn that invoked the skill. {/* min-version: 2.1.218 */}Before v2.1.218, forked skills always blocked the turn until they finished.
 
-Claude Code also waits for the result, even when the skill doesn't set `background: false`, in these cases:
+Claude Code also waits for the result, even when the skill doesn't set `background: false`, in cases like these:
 
 * In non-interactive mode, with the `-p` flag or the Agent SDK
 * When you set [`CLAUDE_CODE_DISABLE_BACKGROUND_TASKS`](/docs/en/env-vars) to `1`, which also turns off all other background task features

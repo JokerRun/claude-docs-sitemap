@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/statusline
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 813a29d86b487d9bcf3f8ffeda01dede78a1eb39c7d91d479b7a49cf9d034647
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: b91075f60f99d3da6a96296bf7ceb7c9fb8f27723adc143a212a3b4e60ae0f84
 ---
 
 > ## Documentation Index
@@ -225,7 +225,7 @@ Claude Code sends the following JSON fields to your script via stdin:
     "prompt_id": "550e8400-e29b-41d4-a716-446655440000",
     "transcript_path": "/path/to/transcript.jsonl",
     "model": {
-      "id": "claude-opus-4-8",
+      "id": "claude-opus-5",
       "display_name": "Opus"
     },
     "workspace": {

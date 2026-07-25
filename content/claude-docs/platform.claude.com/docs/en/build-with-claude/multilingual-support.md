@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/multilingual-support
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: f77ae824ba83455a3f9298b20271a775e87aaa6f8565cbedba0fa8f3e1b949b1
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: ef5546e1531f05292ddcb7103c33695644ae6c54dff256d27eb31d1da30101c9
 ---
 
 # Multilingual support
@@ -58,7 +58,7 @@ Claude infers the response language from the conversation, but for production ap
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "system": "Always respond in French, regardless of the language the user writes in.",
       "messages": [
@@ -69,7 +69,7 @@ Claude infers the response language from the conversation, but for production ap
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-4-8 \
+    --model claude-opus-5 \
     --max-tokens 1024 \
     --system "Always respond in French, regardless of the language the user writes in." \
     --message '{role: user, content: "How do I reset my password?"}'
@@ -79,7 +79,7 @@ Claude infers the response language from the conversation, but for production ap
   client = anthropic.Anthropic()
 
   message = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       system="Always respond in French, regardless of the language the user writes in.",
       messages=[{"role": "user", "content": "How do I reset my password?"}],
@@ -92,7 +92,7 @@ Claude infers the response language from the conversation, but for production ap
   const client = new Anthropic();
 
   const message = await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     system: "Always respond in French, regardless of the language the user writes in.",
     messages: [{ role: "user", content: "How do I reset my password?" }]
@@ -106,7 +106,7 @@ Claude infers the response language from the conversation, but for production ap
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       System = "Always respond in French, regardless of the language the user writes in.",
       Messages =
@@ -123,7 +123,7 @@ Claude infers the response language from the conversation, but for production ap
   client := anthropic.NewClient()
 
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	System: []anthropic.TextBlockParam{
   		{Text: "Always respond in French, regardless of the language the user writes in."},
@@ -142,7 +142,7 @@ Claude infers the response language from the conversation, but for production ap
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_8)
+      .model(Model.CLAUDE_OPUS_5)
       .maxTokens(1024)
       .system("Always respond in French, regardless of the language the user writes in.")
       .addUserMessage("How do I reset my password?")
@@ -160,18 +160,18 @@ Claude infers the response language from the conversation, but for production ap
       messages: [
           ['role' => 'user', 'content' => 'How do I reset my password?']
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       system: 'Always respond in French, regardless of the language the user writes in.',
   );
 
-  echo $message->content[0]->text;
+  echo json_encode($message->content, JSON_PRETTY_PRINT), PHP_EOL;
   ```
 
   ```ruby Ruby
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     system: "Always respond in French, regardless of the language the user writes in.",
     messages: [

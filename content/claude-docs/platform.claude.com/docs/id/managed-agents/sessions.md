@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/sessions
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: e8dc2618e6d6d1fdf568690506fafbd49d81788c254e0aaabef339e8cadb58f2
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: fc16986e1c2f890609301da3ce9a06ee32fe8f352921e61772a3c0140d2391fc
 ---
 
 # Memulai sesi
@@ -19,7 +19,7 @@ Sesi adalah instans agen di dalam sebuah environment. Setiap sesi mereferensikan
 
 ## Membuat sesi
 
-Sebuah sesi memerlukan ID `agent` dan ID `environment`. Agen adalah sumber daya berversi; memasukkan ID `agent` sebagai string akan memulai sesi dengan versi agen terbaru.
+Sebuah sesi memerlukan ID `agent` dan ID `environment`. Agen adalah sumber daya berversi; meneruskan ID `agent` sebagai string akan memulai sesi dengan versi agen terbaru.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -100,7 +100,7 @@ Sebuah sesi memerlukan ID `agent` dan ID `environment`. Agen adalah sumber daya 
   ```
 </CodeGroup>
 
-Untuk menyematkan sesi ke versi agen tertentu, masukkan sebuah objek. Ini memungkinkan Anda mengontrol secara tepat versi mana yang berjalan dan melakukan rollout bertahap versi baru secara independen.
+Untuk menyematkan sesi ke versi agen tertentu, teruskan sebuah objek. Ini memungkinkan Anda mengontrol secara tepat versi mana yang berjalan dan melakukan rollout bertahap versi baru secara independen.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -198,11 +198,11 @@ Untuk menyematkan sesi ke versi agen tertentu, masukkan sebuah objek. Ini memung
   ```
 </CodeGroup>
 
-### Mengisi sesi dengan initial events
+### Mengisi sesi dengan event awal
 
 Anda dapat membuat sesi dan memulai pekerjaannya dalam satu panggilan. `initial_events` adalah array opsional berisi [event](/docs/id/managed-agents/reference#event-types) awal yang dikirim ke sesi saat pembuatan, diproses secara berurutan. Array ini mendukung event `user.message` dan [`user.define_outcome`](/docs/id/managed-agents/define-outcomes), dan menerima maksimum 50 event. Daftar yang tidak kosong akan memulai loop agen dalam panggilan yang sama: sesi dibuat langsung dalam status `running`, tanpa permintaan lebih lanjut.
 
-Contoh berikut membuat sesi dengan satu `user.message` di dalam `initial_events`:
+Contoh berikut membuat sesi dengan satu `user.message` di `initial_events`:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -450,9 +450,9 @@ Contoh berikut membuat sesi dengan satu `user.message` di dalam `initial_events`
   ```
 </CodeGroup>
 
-Tidak ada tipe event lain yang diterima. Event yang merespons giliran agen (`user.tool_confirmation`, `user.tool_result`, dan `user.custom_tool_result`) tidak diterima karena belum ada giliran agen, dan `user.interrupt` tidak diterima karena tidak ada giliran yang perlu dihentikan. Berbeda dengan `initial_events` pada scheduled deployment, `initial_events` milik sesi tidak menerima `system.message`.
+Tidak ada tipe event lain yang diterima. Event yang merespons giliran agen (`user.tool_confirmation`, `user.tool_result`, dan `user.custom_tool_result`) tidak diterima karena belum ada giliran agen, dan `user.interrupt` tidak diterima karena tidak ada giliran yang perlu dihentikan. Berbeda dengan `initial_events` pada scheduled deployment, `initial_events` pada sesi tidak menerima `system.message`.
 
-Setiap event di dalam `initial_events` divalidasi dan disimpan sebelum respons pembuatan dikembalikan, sesuai urutan daftar, dengan ID yang ditetapkan oleh server, persis seolah-olah Anda mengirimkannya ke endpoint [kirim event](/docs/id/managed-agents/events-and-streaming) segera setelah pembuatan. Aturan konten per event juga sama dengan endpoint tersebut. Daftar kosong setara dengan menghilangkan field tersebut. Validasi bersifat semua-atau-tidak-sama-sekali: jika ada satu event yang gagal validasi, seluruh permintaan ditolak dan tidak ada sesi yang dibuat.
+Setiap event di `initial_events` divalidasi dan disimpan sebelum respons pembuatan dikembalikan, sesuai urutan daftar, dengan ID yang ditetapkan server, persis seperti jika Anda mengirimkannya ke endpoint [kirim event](/docs/id/managed-agents/events-and-streaming) segera setelah pembuatan. Aturan konten per-event juga sama dengan endpoint tersebut. Daftar kosong setara dengan menghilangkan field tersebut. Validasi bersifat semua-atau-tidak-sama-sekali: jika ada event yang gagal validasi, seluruh permintaan ditolak dan tidak ada sesi yang dibuat.
 
 Permintaan pembuatan ditolak dalam kasus-kasus berikut:
 
@@ -463,24 +463,24 @@ Permintaan pembuatan ditolak dalam kasus-kasus berikut:
 | Lebih dari 100 [blok konten `document`](/docs/id/build-with-claude/files#document-blocks) yang bersumber dari file di seluruh daftar | 400    |
 | Body permintaan lebih dari 32 MB                                                                                                     | 413    |
 
-Event `user.define_outcome` di dalam `initial_events` diterima dengan kondisi yang sama seperti mengirimkannya ke sesi yang sudah ada; lihat [Mendefinisikan outcome](/docs/id/managed-agents/define-outcomes).
+Event `user.define_outcome` di `initial_events` diterima dengan kondisi yang sama seperti mengirimkannya ke sesi yang sudah ada; lihat [Mendefinisikan outcome](/docs/id/managed-agents/define-outcomes).
 
 ### Menimpa konfigurasi agen untuk sebuah sesi
 
-Anda dapat memasukkan `agent` dalam tiga bentuk: string ID agen, objek versi tersemat (`type: "agent"`), atau objek override. Bentuk override mengubah sebagian konfigurasi agen untuk satu sesi saja. Gunakan ini untuk mencoba model yang berbeda atau memberikan alat tambahan dalam satu sesi tanpa membuat versi baru agen. Untuk bentuk override, atur `type` ke `agent_with_overrides` dan masukkan `id` agen serta secara opsional `version` (hilangkan `version` untuk menggunakan versi terbaru agen). Kemudian sertakan salah satu dari `model`, `system`, `tools`, `mcp_servers`, atau `skills` dengan nilai yang harus digunakan sesi.
+Anda dapat meneruskan `agent` dalam tiga bentuk: string ID agen, objek versi yang disematkan (`type: "agent"`), atau objek override. Bentuk override mengubah sebagian konfigurasi agen untuk satu sesi saja. Gunakan ini untuk mencoba model yang berbeda atau memberikan alat tambahan dalam satu sesi tanpa membuat versi baru agen. Untuk bentuk override, atur `type` ke `agent_with_overrides` dan teruskan `id` agen serta secara opsional `version` (hilangkan `version` untuk menggunakan versi terbaru agen). Kemudian sertakan salah satu dari `model`, `system`, `tools`, `mcp_servers`, atau `skills` dengan nilai yang harus digunakan sesi.
 
 Setiap field yang dapat ditimpa mengikuti tiga aturan yang sama:
 
 * **Hilangkan field:** Sesi mewarisi nilai dari versi agen yang direferensikannya.
 
-* **Atur field ke `null`, atau ke array kosong untuk field berbentuk daftar:** Sesi berjalan dengan field tersebut dikosongkan. Aturan ini berlaku sepenuhnya untuk `system` dan `skills`. Ada tiga pengecualian:
+* **Atur field ke `null`, atau ke array kosong untuk field bertipe daftar:** Sesi berjalan dengan field tersebut dikosongkan. Aturan ini berlaku sepenuhnya untuk `system` dan `skills`. Ada tiga pengecualian:
 
-  * `model` tidak pernah dapat dikosongkan. Sesi selalu memerlukan model, sehingga `model: null` mengembalikan error 400 `agent_model_required`.
-  * Mengosongkan `tools` mengembalikan error 400 ketika `skills` efektif milik sesi tidak kosong, karena skills memerlukan alat `read`. Jika tidak, `tools: null` dan `tools: []` akan mengosongkan field tersebut.
-  * Mengosongkan `mcp_servers` mengembalikan error 400 ketika `tools` efektif milik sesi masih berisi `mcp_toolset` yang mereferensikan salah satu server milik agen. Timpa `tools` dalam permintaan yang sama untuk menghapus entri `mcp_toolset` tersebut, lalu kosongkan `mcp_servers`.
+  * `model` tidak pernah dapat dikosongkan. Sesi selalu membutuhkan model, sehingga `model: null` mengembalikan error 400 `agent_model_required`.
+  * Mengosongkan `tools` mengembalikan error 400 ketika `skills` efektif sesi tidak kosong, karena skills memerlukan alat `read`. Jika tidak, `tools: null` dan `tools: []` akan mengosongkan field tersebut.
+  * Mengosongkan `mcp_servers` mengembalikan error 400 ketika `tools` efektif sesi masih berisi `mcp_toolset` yang mereferensikan salah satu server agen. Timpa `tools` dalam permintaan yang sama untuk menghapus entri `mcp_toolset` tersebut, lalu kosongkan `mcp_servers`.
 
 * **Atur field ke sebuah nilai:** Nilai tersebut menggantikan nilai agen sepenuhnya. Override tidak pernah digabungkan dengan konfigurasi agen, sehingga override `tools` harus mencantumkan setiap alat yang harus dimiliki sesi. Ada satu pengecualian:
-  * Level `effort` di dalam override `model` per sesi tidak diterapkan. Atur `effort` pada [agen](/docs/id/managed-agents/agent-setup#agent-configuration-fields) sebagai gantinya.
+  * Level `effort` di dalam override `model` per-sesi tidak diterapkan. Atur `effort` pada [agen](/docs/id/managed-agents/agent-setup#agent-configuration-fields) sebagai gantinya.
 
 Override hanya berlaku untuk sesi yang Anda buat. Override tidak memodifikasi sumber daya agen atau membuat versi agen baru, sehingga sesi lain yang mereferensikan agen yang sama tidak terpengaruh.
 
@@ -660,7 +660,7 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
 
 ## Autentikasi MCP melalui vault
 
-Jika agen Anda menggunakan alat MCP yang memerlukan autentikasi, masukkan `vault_ids` saat pembuatan sesi untuk mereferensikan vault yang berisi kredensial OAuth yang tersimpan. Anthropic mengelola pembaruan token atas nama Anda. Lihat [Autentikasi dengan vault](/docs/id/managed-agents/vaults) untuk cara membuat vault dan mendaftarkan kredensial.
+Jika agen Anda menggunakan alat MCP yang memerlukan autentikasi, teruskan `vault_ids` saat pembuatan sesi untuk mereferensikan vault yang berisi kredensial OAuth yang tersimpan. Anthropic mengelola pembaruan token atas nama Anda. Lihat [Autentikasi dengan vault](/docs/id/managed-agents/vaults) untuk cara membuat vault dan mendaftarkan kredensial.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -754,7 +754,7 @@ Jika agen Anda menggunakan alat MCP yang memerlukan autentikasi, masukkan `vault
 
 ## Memulai sesi
 
-Membuat sesi tanpa `initial_events` akan mendaftarkan sesi tetapi tidak memulai pekerjaan apa pun; sandbox milik environment disediakan ketika sesi pertama kali membutuhkannya. Untuk mendelegasikan tugas, kirim event ke sesi menggunakan [event pengguna](/docs/id/managed-agents/reference#event-types). Untuk menyediakan event pertama dalam permintaan pembuatan sebagai gantinya, lihat [Mengisi sesi dengan initial events](#seed-the-session-with-initial-events). Sesi bertindak sebagai state machine yang melacak kemajuan sementara event menggerakkan eksekusi yang sebenarnya.
+Membuat sesi tanpa `initial_events` akan mendaftarkan sesi tetapi tidak memulai pekerjaan apa pun; sandbox environment disediakan ketika sesi pertama kali membutuhkannya. Untuk mendelegasikan tugas, kirim event ke sesi menggunakan [event pengguna](/docs/id/managed-agents/reference#event-types). Untuk menyediakan event pertama dalam permintaan pembuatan sebagai gantinya, lihat [Mengisi sesi dengan event awal](#seed-the-session-with-initial-events). Sesi bertindak sebagai state machine yang melacak kemajuan sementara event menggerakkan eksekusi yang sebenarnya.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -894,7 +894,7 @@ Lihat [Status sesi](/docs/id/managed-agents/session-operations#session-statuses)
 
 <CardGroup cols={3}>
   <Card title="Operasi sesi" icon="settings" href="/docs/id/managed-agents/session-operations">
-    Ambil, daftarkan, perbarui, arsipkan, dan hapus sesi Claude Managed Agents.
+    Ambil, daftar, perbarui, arsipkan, dan hapus sesi Claude Managed Agents.
   </Card>
 
   <Card title="Stream event sesi" icon="lightning" href="/docs/id/managed-agents/events-and-streaming">

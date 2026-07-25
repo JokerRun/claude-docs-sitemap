@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 763bcfad45b9ae483dae7349318d7c41c528f44421f5d9e8fe01f9c61407f961
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 1460ea6ec6ba741b58add587d72bf832c06d448ba8c8f52824cf8a61b68b2a95
 ---
 
 # Penggunaan alat dengan Claude
@@ -22,7 +22,7 @@ Berikut adalah contoh minimal menggunakan alat server, yaitu [alat Web search](/
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "tools": [{"type": "web_search_20260209", "name": "web_search"}],
       "messages": [{"role": "user", "content": "What'\''s the latest on the Mars rover?"}]
@@ -31,7 +31,7 @@ Berikut adalah contoh minimal menggunakan alat server, yaitu [alat Web search](/
 
   ```bash CLI
   ant messages create --transform content --format yaml \
-    --model claude-opus-4-8 \
+    --model claude-opus-5 \
     --max-tokens 1024 \
     --tool '{type: web_search_20260209, name: web_search}' \
     --message '{role: user, content: "What is the latest on the Mars rover?"}'
@@ -40,7 +40,7 @@ Berikut adalah contoh minimal menggunakan alat server, yaitu [alat Web search](/
   ```python Python
   client = anthropic.Anthropic()
   response = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       tools=[{"type": "web_search_20260209", "name": "web_search"}],
       messages=[{"role": "user", "content": "What's the latest on the Mars rover?"}],
@@ -51,7 +51,7 @@ Berikut adalah contoh minimal menggunakan alat server, yaitu [alat Web search](/
   ```typescript TypeScript
   const client = new Anthropic();
   const response = await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     tools: [{ type: "web_search_20260209", name: "web_search" }],
     messages: [{ role: "user", content: "What's the latest on the Mars rover?" }]
@@ -64,7 +64,7 @@ Berikut adalah contoh minimal menggunakan alat server, yaitu [alat Web search](/
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Tools = [new ToolUnion(new WebSearchTool20260209())],
       Messages = [new() { Role = Role.User, Content = "What's the latest on the Mars rover?" }]
@@ -78,7 +78,7 @@ Berikut adalah contoh minimal menggunakan alat server, yaitu [alat Web search](/
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Tools: []anthropic.ToolUnionParam{
   		{OfWebSearchTool20260209: &anthropic.WebSearchTool20260209Param{}},
@@ -100,7 +100,7 @@ Berikut adalah contoh minimal menggunakan alat server, yaitu [alat Web search](/
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(1024L)
           .addTool(WebSearchTool20260209.builder().build())
           .addUserMessage("What's the latest on the Mars rover?")
@@ -115,7 +115,7 @@ Berikut adalah contoh minimal menggunakan alat server, yaitu [alat Web search](/
   $client = new Client();
 
   $message = $client->messages->create(
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       maxTokens: 1024,
       tools: [
           ['type' => 'web_search_20260209', 'name' => 'web_search'],
@@ -132,7 +132,7 @@ Berikut adalah contoh minimal menggunakan alat server, yaitu [alat Web search](/
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     tools: [{ type: "web_search_20260209", name: "web_search" }],
     messages: [{ role: "user", content: "What's the latest on the Mars rover?" }]
@@ -151,7 +151,7 @@ Berikut adalah perjalanan bolak-balik lengkap untuk alat klien. Permintaan perta
 
 <CodeGroup>
   ```bash cURL
-  # Claude membalas dengan blok tool_use yang menyebutkan nama alat dan argumennya.
+  # Claude membalas dengan blok tool_use yang menyebutkan nama alat beserta argumennya.
   TOOLS='[
     {
       "name": "get_weather",
@@ -171,7 +171,7 @@ Berikut adalah perjalanan bolak-balik lengkap untuk alat klien. Permintaan perta
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d "$(jq -n --argjson tools "$TOOLS" --arg msg "$USER_MSG" '{
-      model: "claude-opus-4-8",
+      model: "claude-opus-5",
       max_tokens: 1024,
       tools: $tools,
       # Minta paling banyak satu pemanggilan alat per giliran.
@@ -194,7 +194,7 @@ Berikut adalah perjalanan bolak-balik lengkap untuk alat klien. Permintaan perta
       --arg tool_use_id "$(echo "$TOOL_USE" | jq -r '.id')" \
       --arg weather "$WEATHER" \
       '{
-        model: "claude-opus-4-8",
+        model: "claude-opus-5",
         max_tokens: 1024,
         tools: $tools,
         tool_choice: {type: "auto", disable_parallel_tool_use: true},
@@ -213,15 +213,15 @@ Berikut adalah perjalanan bolak-balik lengkap untuk alat klien. Permintaan perta
 
   ```bash CLI
   # ant membaca body permintaan sebagai YAML dari stdin; jq membawa status
-  # percakapan ke dalam permintaan kedua.
+  # percakapan ke permintaan kedua.
   USER_MSG="What's the weather in San Francisco?"
   MESSAGES=$(jq -n --arg msg "$USER_MSG" '[{role: "user", content: $msg}]')
   call_api() {
     {
       cat <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1024
-  # Minta paling banyak satu panggilan alat per giliran.
+  # Minta maksimal satu pemanggilan alat per giliran.
   tool_choice: {type: auto, disable_parallel_tool_use: true}
   tools:
     - name: get_weather
@@ -282,7 +282,7 @@ Berikut adalah perjalanan bolak-balik lengkap untuk alat klien. Permintaan perta
 
   # Claude membalas dengan blok tool_use yang menyebutkan nama alat dan argumennya.
   response = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       tools=tools,
       # Minta paling banyak satu pemanggilan alat per giliran.
@@ -304,7 +304,7 @@ Berikut adalah perjalanan bolak-balik lengkap untuk alat klien. Permintaan perta
       },
   ]
   followup = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       tools=tools,
       tool_choice={"type": "auto", "disable_parallel_tool_use": True},
@@ -336,9 +336,9 @@ Berikut adalah perjalanan bolak-balik lengkap untuk alat klien. Permintaan perta
     { role: "user", content: "What's the weather in San Francisco?" }
   ];
 
-  // Claude membalas dengan blok tool_use yang menyebutkan nama alat beserta argumennya.
+  // Claude membalas dengan blok tool_use yang menyebutkan nama alat dan argumennya.
   const response = await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     tools,
     // Minta paling banyak satu pemanggilan alat per giliran.
@@ -360,7 +360,7 @@ Berikut adalah perjalanan bolak-balik lengkap untuk alat klien. Permintaan perta
     }
   );
   const followup = await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     tools,
     tool_choice: { type: "auto", disable_parallel_tool_use: true },
@@ -406,7 +406,7 @@ Berikut adalah perjalanan bolak-balik lengkap untuk alat klien. Permintaan perta
   // Claude membalas dengan blok tool_use yang menyebutkan nama alat beserta argumennya.
   var response = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Tools = tools,
       ToolChoice = toolChoice,
@@ -435,7 +435,7 @@ Berikut adalah perjalanan bolak-balik lengkap untuk alat klien. Permintaan perta
   ];
   var followup = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Tools = tools,
       ToolChoice = toolChoice,
@@ -486,7 +486,7 @@ Berikut adalah perjalanan bolak-balik lengkap untuk alat klien. Permintaan perta
 
   // Claude membalas dengan blok tool_use yang menyebutkan nama alat dan argumennya.
   response, err := client.Messages.New(ctx, anthropic.MessageNewParams{
-  	Model:      anthropic.ModelClaudeOpus4_8,
+  	Model:      anthropic.ModelClaudeOpus5,
   	MaxTokens:  1024,
   	Tools:      tools,
   	ToolChoice: toolChoice,
@@ -515,7 +515,7 @@ Berikut adalah perjalanan bolak-balik lengkap untuk alat klien. Permintaan perta
   	anthropic.NewUserMessage(anthropic.NewToolResultBlock(toolUse.ID, weather, false)),
   )
   followup, err := client.Messages.New(ctx, anthropic.MessageNewParams{
-  	Model:      anthropic.ModelClaudeOpus4_8,
+  	Model:      anthropic.ModelClaudeOpus5,
   	MaxTokens:  1024,
   	Tools:      tools,
   	ToolChoice: toolChoice,
@@ -561,16 +561,16 @@ Berikut adalah perjalanan bolak-balik lengkap untuk alat klien. Permintaan perta
               .build())
           .build();
 
-      // Minta paling banyak satu pemanggilan alat per giliran.
+      // Minta paling banyak satu panggilan alat per giliran.
       ToolChoiceAuto toolChoice = ToolChoiceAuto.builder()
           .disableParallelToolUse(true)
           .build();
 
       String userPrompt = "What's the weather in San Francisco?";
 
-      // Claude membalas dengan blok tool_use yang menyebutkan nama alat dan argumennya.
+      // Claude membalas dengan blok tool_use yang menyebutkan alat beserta argumennya.
       Message response = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(1024L)
           .addTool(weatherTool)
           .toolChoice(toolChoice)
@@ -585,7 +585,7 @@ Berikut adalah perjalanan bolak-balik lengkap untuk alat klien. Permintaan perta
       // Jalankan alat tersebut, lalu kirim kembali hasilnya dalam blok tool_result.
       String weather = "15 degrees Celsius, partly cloudy";
       Message followup = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(1024L)
           .addTool(weatherTool)
           .toolChoice(toolChoice)
@@ -628,12 +628,12 @@ Berikut adalah perjalanan bolak-balik lengkap untuk alat klien. Permintaan perta
   ];
   $userMessage = ['role' => 'user', 'content' => "What's the weather in San Francisco?"];
 
-  // Minta paling banyak satu panggilan alat per giliran.
+  // Minta paling banyak satu pemanggilan alat per giliran.
   $toolChoice = ToolChoiceAuto::with(disableParallelToolUse: true);
 
-  // Claude membalas dengan blok tool_use yang menyebutkan alat dan argumennya.
+  // Claude membalas dengan blok tool_use yang menyebutkan nama alat dan argumennya.
   $response = $client->messages->create(
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       maxTokens: 1024,
       tools: $tools,
       toolChoice: $toolChoice,
@@ -651,7 +651,7 @@ Berikut adalah perjalanan bolak-balik lengkap untuk alat klien. Permintaan perta
   // Jalankan alat tersebut, lalu kirim kembali hasilnya dalam blok tool_result.
   $weather = '15 degrees Celsius, partly cloudy';
   $followup = $client->messages->create(
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       maxTokens: 1024,
       tools: $tools,
       toolChoice: $toolChoice,
@@ -699,7 +699,7 @@ Berikut adalah perjalanan bolak-balik lengkap untuk alat klien. Permintaan perta
 
   # Claude membalas dengan blok tool_use yang menyebutkan nama alat dan argumennya.
   response = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     tools: tools,
     # Minta paling banyak satu pemanggilan alat per giliran.
@@ -721,7 +721,7 @@ Berikut adalah perjalanan bolak-balik lengkap untuk alat klien. Permintaan perta
     }
   ]
   followup = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     tools: tools,
     tool_choice: {type: "auto", disable_parallel_tool_use: true},
@@ -749,22 +749,22 @@ Untuk terhubung ke server Model Context Protocol (MCP), lihat [konektor MCP](/do
 
 Dengan `tool_choice` default `{"type": "auto"}`, Claude menentukan pada setiap giliran apakah akan memanggil alat atau merespons secara langsung. Claude memanggil alat ketika permintaan sesuai dengan kemampuan yang dideskripsikan alat tersebut dan jawabannya belum ada dalam konteks. Claude merespons secara langsung untuk pengetahuan yang stabil, tugas kreatif, dan giliran percakapan.
 
-Batasan ini dapat diarahkan melalui prompt sistem Anda. Jika Claude tidak memanggil alat ketika Anda mengharapkannya, instruksi ringan seperti `"Use the tools to investigate before responding."` akan meningkatkan penggunaan alat. Bentuk yang lebih kuat seperti `"Always call a tool first before responding."` mendorong lebih jauh. Sebaliknya, `"Use your judgment about whether to call a tool or respond directly."` menjaga perilaku pemicu tetap konservatif.
+Batasan ini dapat diarahkan melalui prompt sistem Anda. Jika Claude tidak memanggil alat saat Anda mengharapkannya, instruksi ringan seperti `"Use the tools to investigate before responding."` akan meningkatkan penggunaan alat. Bentuk yang lebih kuat seperti `"Always call a tool first before responding."` mendorong lebih jauh. Sebaliknya, `"Use your judgment about whether to call a tool or respond directly."` menjaga perilaku pemicuan tetap konservatif.
 
 Untuk mewajibkan panggilan alat alih-alih mengandalkan prompting, atur [`tool_choice`](/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use).
 
 <Tip>
-  **Jamin kesesuaian skema dengan strict tool use**
+  **Jamin kesesuaian skema dengan penggunaan alat strict**
 
-  Tambahkan `strict: true` ke definisi alat kustom Anda untuk memastikan panggilan alat Claude selalu cocok persis dengan skema Anda. Lihat [Strict tool use](/docs/id/agents-and-tools/tool-use/strict-tool-use).
+  Tambahkan `strict: true` ke definisi alat kustom Anda untuk memastikan panggilan alat Claude selalu cocok dengan skema Anda secara tepat. Lihat [Penggunaan alat strict](/docs/id/agents-and-tools/tool-use/strict-tool-use).
 </Tip>
 
 Halaman setiap alat server mendeskripsikan batasan pemicunya sendiri secara lebih rinci.
 
 <Accordion title="Ketika parameter yang diperlukan tidak ada">
-  Jika prompt pengguna tidak menyertakan informasi yang cukup untuk mengisi semua parameter yang diperlukan untuk sebuah alat, Claude Opus jauh lebih mungkin untuk mengenali bahwa ada parameter yang hilang dan menanyakannya. Claude Sonnet mungkin bertanya, terutama ketika diminta untuk berpikir sebelum mengeluarkan permintaan alat. Tetapi Claude Sonnet juga mungkin menyimpulkan nilai yang masuk akal.
+  Jika prompt pengguna tidak menyertakan informasi yang cukup untuk mengisi semua parameter yang diperlukan untuk sebuah alat, Claude Opus jauh lebih mungkin mengenali bahwa ada parameter yang hilang dan menanyakannya. Claude Sonnet mungkin bertanya, terutama ketika diminta untuk berpikir sebelum mengeluarkan permintaan alat. Tetapi Claude Sonnet juga mungkin menyimpulkan nilai yang masuk akal.
 
-  Misalnya, dengan alat `get_weather` yang memerlukan parameter `location`, jika Anda bertanya kepada Claude "Bagaimana cuacanya?" tanpa menentukan lokasi, Claude (khususnya Claude Sonnet) mungkin menebak nilai yang tidak Anda berikan:
+  Misalnya, dengan alat `get_weather` yang memerlukan parameter `location`, jika Anda bertanya kepada Claude "What's the weather?" tanpa menentukan lokasi, Claude (khususnya Claude Sonnet) mungkin menebak nilai yang tidak Anda berikan:
 
   ```json JSON
   {
@@ -801,19 +801,19 @@ Untuk alat yang Anda definisikan, Anda menulis skemanya dan aplikasi Anda mengek
 Anthropic menerbitkan skema dan melatih Claude dengannya. Aplikasi Anda tetap mengeksekusi setiap panggilan dan mengembalikan `tool_result`.
 
 <CardGroup cols={2}>
-  <Card title="Alat Memory" icon="brain" href="/docs/id/agents-and-tools/tool-use/memory-tool">
+  <Card title="Alat memory" icon="brain" href="/docs/id/agents-and-tools/tool-use/memory-tool">
     Simpan dan ambil informasi lintas percakapan dalam file yang Anda kendalikan.
   </Card>
 
-  <Card title="Alat Bash" icon="terminal" href="/docs/id/agents-and-tools/tool-use/bash-tool">
+  <Card title="Alat bash" icon="terminal" href="/docs/id/agents-and-tools/tool-use/bash-tool">
     Jalankan perintah shell dalam sesi persisten yang mempertahankan state.
   </Card>
 
-  <Card title="Alat Text editor" icon="edit" href="/docs/id/agents-and-tools/tool-use/text-editor-tool">
+  <Card title="Alat text editor" icon="edit" href="/docs/id/agents-and-tools/tool-use/text-editor-tool">
     Lihat dan modifikasi file teks untuk men-debug, memperbaiki, dan meningkatkan kode.
   </Card>
 
-  <Card title="Alat Computer use" icon="computer" href="/docs/id/agents-and-tools/tool-use/computer-use-tool">
+  <Card title="Alat computer use" icon="computer" href="/docs/id/agents-and-tools/tool-use/computer-use-tool">
     Ambil tangkapan layar dan kendalikan mouse serta keyboard di lingkungan desktop.
   </Card>
 </CardGroup>
@@ -823,24 +823,24 @@ Anthropic menerbitkan skema dan melatih Claude dengannya. Aplikasi Anda tetap me
 Alat server berjalan di infrastruktur Anthropic, tanpa kode handler di aplikasi Anda. Lihat [Alat server](/docs/id/agents-and-tools/tool-use/server-tools) untuk mekanisme yang mereka bagikan.
 
 <CardGroup cols={2}>
-  <Card title="Alat Web search" icon="browser" href="/docs/id/agents-and-tools/tool-use/web-search-tool">
+  <Card title="Alat web search" icon="browser" href="/docs/id/agents-and-tools/tool-use/web-search-tool">
     Cari informasi di web di luar batas pengetahuan, dengan sumber yang dikutip.
   </Card>
 
-  <Card title="Alat Web fetch" icon="download" href="/docs/id/agents-and-tools/tool-use/web-fetch-tool">
+  <Card title="Alat web fetch" icon="download" href="/docs/id/agents-and-tools/tool-use/web-fetch-tool">
     Ambil konten lengkap dari halaman web dan dokumen PDF yang ditentukan.
   </Card>
 
-  <Card title="Alat Code execution" icon="code" href="/docs/id/agents-and-tools/tool-use/code-execution-tool">
+  <Card title="Alat code execution" icon="code" href="/docs/id/agents-and-tools/tool-use/code-execution-tool">
     Jalankan kode Python dan bash dalam kontainer sandbox untuk menganalisis data dan menghasilkan file.
   </Card>
 
-  <Card title="Alat Advisor" icon="lightbulb" href="/docs/id/agents-and-tools/tool-use/advisor-tool">
-    Biarkan model eksekutor yang lebih cepat berkonsultasi dengan model penasihat berintelegensi lebih tinggi di tengah proses generasi.
+  <Card title="Alat advisor" icon="lightbulb" href="/docs/id/agents-and-tools/tool-use/advisor-tool">
+    Biarkan model eksekutor yang lebih cepat berkonsultasi dengan model advisor berintelegensi lebih tinggi di tengah proses generasi.
   </Card>
 
-  <Card title="Alat Tool search" icon="library" href="/docs/id/agents-and-tools/tool-use/tool-search-tool">
-    Bekerja dengan ribuan alat dengan menemukan dan memuatnya sesuai kebutuhan.
+  <Card title="Alat tool search" icon="library" href="/docs/id/agents-and-tools/tool-use/tool-search-tool">
+    Bekerja dengan ribuan alat dengan menemukan dan memuatnya sesuai permintaan.
   </Card>
 
   <Card title="Konektor MCP" icon="link" href="/docs/id/agents-and-tools/mcp-connector">
@@ -849,18 +849,18 @@ Alat server berjalan di infrastruktur Anthropic, tanpa kode handler di aplikasi 
 </CardGroup>
 
 <Note>
-  [Claude Managed Agents](/docs/id/managed-agents/overview) menyediakan kumpulan alat bawaan yang digunakan Claude secara otonom dalam sebuah sesi. Untuk kumpulan alat tersebut dan cara Managed Agents menambahkan alat kustom, lihat halaman [Tools](/docs/id/managed-agents/tools)-nya.
+  [Claude Managed Agents](/docs/id/managed-agents/overview) menyediakan toolset bawaan yang digunakan Claude secara otonom dalam sebuah sesi. Untuk toolset tersebut dan cara Managed Agents menambahkan alat kustom, lihat halaman [Tools](/docs/id/managed-agents/tools)-nya.
 </Note>
 
 ## Harga
 
-Permintaan penggunaan alat dikenakan biaya berdasarkan:
+Permintaan penggunaan alat dihargai berdasarkan:
 
 1. Jumlah total token input yang dikirim ke model (termasuk dalam parameter `tools`)
 2. Jumlah token output yang dihasilkan
-3. Untuk alat sisi server, biaya tambahan berbasis penggunaan (misalnya, pencarian web dikenakan biaya per pencarian yang dilakukan)
+3. Untuk alat sisi server, harga tambahan berbasis penggunaan (misalnya, web search dikenakan biaya per pencarian yang dilakukan)
 
-Alat sisi klien dikenakan biaya yang sama seperti permintaan API Claude lainnya, sedangkan alat sisi server dapat dikenakan biaya tambahan berdasarkan penggunaan spesifiknya.
+Alat sisi klien dihargai sama seperti permintaan Claude API lainnya, sementara alat sisi server dapat dikenakan biaya tambahan berdasarkan penggunaan spesifiknya.
 
 Token tambahan dari penggunaan alat berasal dari:
 
@@ -868,10 +868,11 @@ Token tambahan dari penggunaan alat berasal dari:
 * Blok konten `tool_use` dalam permintaan dan respons API
 * Blok konten `tool_result` dalam permintaan API
 
-Ketika Anda menggunakan `tools`, API juga secara otomatis menyertakan prompt sistem khusus untuk model yang mengaktifkan penggunaan alat. Jumlah token penggunaan alat yang diperlukan untuk setiap model tercantum di bawah ini (tidak termasuk token tambahan yang tercantum di atas). Perhatikan bahwa tabel ini mengasumsikan setidaknya 1 alat disediakan. Jika tidak ada `tools` yang disediakan, maka pilihan alat `none` menggunakan 0 token prompt sistem tambahan.
+Ketika Anda menggunakan `tools`, API juga secara otomatis menyertakan prompt sistem khusus untuk model yang memungkinkan penggunaan alat. Jumlah token penggunaan alat yang diperlukan untuk setiap model tercantum di bawah ini (tidak termasuk token tambahan yang tercantum di atas). Perhatikan bahwa tabel ini mengasumsikan setidaknya 1 alat disediakan. Jika tidak ada `tools` yang disediakan, maka pilihan alat `none` menggunakan 0 token prompt sistem tambahan.
 
 | Model                                                                                                          | Pilihan alat                   | Jumlah token prompt sistem penggunaan alat |
 | -------------------------------------------------------------------------------------------------------------- | ------------------------------ | ------------------------------------------ |
+| Claude Opus 5                                                                                                  | `auto`, `none`***`any`, `tool` | 286 token***406 token                      |
 | Claude Opus 4.8                                                                                                | `auto`, `none`***`any`, `tool` | 290 token***410 token                      |
 | Claude Opus 4.7                                                                                                | `auto`, `none`***`any`, `tool` | 675 token***804 token                      |
 | Claude Opus 4.6                                                                                                | `auto`, `none`***`any`, `tool` | 497 token***589 token                      |
@@ -887,7 +888,7 @@ Ketika Anda menggunakan `tools`, API juga secara otomatis menyertakan prompt sis
 
 Jumlah token ini ditambahkan ke token input dan output normal Anda untuk menghitung total biaya permintaan.
 
-Lihat tabel [Ikhtisar model](/docs/id/about-claude/models/overview#latest-models-comparison) untuk harga per model terkini.
+Lihat tabel [Ikhtisar model](/docs/id/about-claude/models/overview#latest-models-comparison) untuk harga per model saat ini.
 
 Ketika Anda mengirim prompt penggunaan alat, seperti permintaan API lainnya, respons menyertakan jumlah token input dan output dalam metrik `usage` yang dilaporkan.
 

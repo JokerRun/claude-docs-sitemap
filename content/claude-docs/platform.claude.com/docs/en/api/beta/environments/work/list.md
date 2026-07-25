@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/list
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: 79edb9792ff953c99f4a1f0b7b842ee68b18277cea577b88e5ec957dc09aa7f0
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 1a5a54049fcfcbd81c37e5096a4f752a68102c70dc93088a19c849768fa51e9d
 ---
 
 ## List Work Items
@@ -35,7 +35,7 @@ List work items in an environment.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 27 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -93,7 +93,11 @@ List work items in an environment.
 
     - `"server-side-fallback-2026-06-01"`
 
+    - `"server-side-fallback-2026-07-01"`
+
     - `"fallback-credit-2026-06-01"`
+
+    - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
 

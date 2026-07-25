@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/update
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: e9d489dd2264f41e6aeb8f45fa6ec3d37cebc86bd4d7f63a60ba7ac0570f4e70
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 6ed87d2fabff08bf27194b69c0ffd43fdab498b28fd93a1adfeccc06fbf899b8
 ---
 
 ## Update a memory store
@@ -23,7 +23,7 @@ Update a memory store
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 27 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -81,7 +81,11 @@ Update a memory store
 
     - `"server-side-fallback-2026-06-01"`
 
+    - `"server-side-fallback-2026-07-01"`
+
     - `"fallback-credit-2026-06-01"`
+
+    - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
 

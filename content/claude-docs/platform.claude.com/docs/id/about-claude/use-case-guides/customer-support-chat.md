@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 0d40bea249b4bf248b67c990c31015d11ae5f672a300f4ce9d654413ace49b91
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 815c1a64ea79705740d2c2c82aa2b249ff902e75774417d9f5b10bfa04bf0afc
 ---
 
 # Agen dukungan pelanggan
@@ -52,10 +52,10 @@ Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan LLM sep
   </Accordion>
 </AccordionGroup>
 
-Beberapa pertimbangan untuk memilih Claude dibandingkan LLM lain:
+Beberapa pertimbangan untuk memilih Claude dibandingkan LLM lainnya:
 
-* Anda memprioritaskan percakapan yang alami dan bernuansa: Pemahaman bahasa Claude yang canggih memungkinkan percakapan yang lebih alami dan sadar konteks yang terasa lebih mirip manusia dibandingkan chat dengan LLM lain.
-* Anda sering menerima pertanyaan yang kompleks dan terbuka: Claude dapat menangani berbagai topik dan pertanyaan tanpa menghasilkan respons kaku atau memerlukan pemrograman ekstensif untuk berbagai permutasi ucapan pengguna.
+* Anda memprioritaskan percakapan yang alami dan bernuansa: Pemahaman bahasa Claude yang canggih memungkinkan percakapan yang lebih alami dan sadar konteks yang terasa lebih mirip manusia dibandingkan chat dengan LLM lainnya.
+* Anda sering menerima pertanyaan yang kompleks dan terbuka: Claude dapat menangani berbagai topik dan pertanyaan tanpa menghasilkan respons kalengan atau memerlukan pemrograman ekstensif dari permutasi ucapan pengguna.
 * Anda memerlukan dukungan multibahasa yang dapat diskalakan: Kemampuan multibahasa Claude memungkinkannya terlibat dalam percakapan dalam lebih dari 200 bahasa tanpa perlu chatbot terpisah atau proses terjemahan ekstensif untuk setiap bahasa yang didukung.
 
 ### Definisikan interaksi chat ideal Anda
@@ -68,10 +68,10 @@ Berikut adalah contoh interaksi chat untuk dukungan pelanggan asuransi mobil:
   * **Claude:** Menyapa pelanggan dengan hangat dan memulai percakapan
 
 * **Pelanggan:** Bertanya tentang asuransi untuk mobil listrik baru mereka
-  * **Claude:** Memberikan informasi yang relevan tentang pertanggungan kendaraan listrik
+  * **Claude:** Memberikan informasi yang relevan tentang cakupan kendaraan listrik
 
 * **Pelanggan:** Mengajukan pertanyaan terkait kebutuhan unik untuk asuransi kendaraan listrik
-  * **Claude:** Merespons dengan jawaban yang akurat dan informatif serta memberikan tautan ke sumbernya
+  * **Claude:** Merespons dengan jawaban yang akurat dan informatif serta menyediakan tautan ke sumber-sumbernya
 
 * **Pelanggan:** Mengajukan pertanyaan di luar topik yang tidak terkait dengan asuransi atau mobil
   * **Claude:** Mengklarifikasi bahwa ia tidak membahas topik yang tidak terkait dan mengarahkan pengguna kembali ke asuransi mobil
@@ -85,10 +85,10 @@ Berikut adalah contoh interaksi chat untuk dukungan pelanggan asuransi mobil:
 * **Pelanggan:** Mengajukan pertanyaan lanjutan
 
   * **Claude:** Menjawab pertanyaan lanjutan sesuai kebutuhan
-  * **Claude:** Memandu pelanggan ke langkah berikutnya dalam proses asuransi dan menutup percakapan
+  * **Claude:** Memandu pelanggan ke langkah selanjutnya dalam proses asuransi dan menutup percakapan
 
 <Tip>
-  Dalam contoh nyata yang Anda tulis untuk kasus penggunaan Anda sendiri, Anda mungkin merasa berguna untuk menuliskan kata-kata sebenarnya dalam interaksi ini sehingga Anda juga dapat merasakan nada ideal, panjang respons, dan tingkat detail yang Anda inginkan dari Claude.
+  Dalam contoh nyata yang Anda tulis untuk kasus penggunaan Anda sendiri, Anda mungkin merasa berguna untuk menuliskan kata-kata sebenarnya dalam interaksi ini sehingga Anda juga dapat memperoleh gambaran tentang nada ideal, panjang respons, dan tingkat detail yang Anda inginkan dari Claude.
 </Tip>
 
 ### Pecah interaksi menjadi tugas-tugas unik
@@ -96,7 +96,7 @@ Berikut adalah contoh interaksi chat untuk dukungan pelanggan asuransi mobil:
 Chat dukungan pelanggan adalah kumpulan dari berbagai tugas yang berbeda, mulai dari menjawab pertanyaan hingga pengambilan informasi hingga mengambil tindakan atas permintaan, yang dibungkus dalam satu interaksi pelanggan. Sebelum Anda mulai membangun, pecah interaksi pelanggan ideal Anda menjadi setiap tugas yang Anda ingin Claude dapat lakukan. Ini memastikan Anda dapat membuat prompt dan mengevaluasi Claude untuk setiap tugas, dan memberi Anda gambaran yang baik tentang rentang interaksi yang perlu Anda perhitungkan saat menulis kasus uji.
 
 <Tip>
-  Pelanggan terkadang merasa terbantu dengan memvisualisasikan ini sebagai diagram alur interaksi dari titik-titik belok percakapan yang mungkin terjadi tergantung pada permintaan pengguna.
+  Pelanggan terkadang merasa terbantu dengan memvisualisasikan ini sebagai diagram alur interaksi dari titik-titik perubahan percakapan yang mungkin terjadi tergantung pada permintaan pengguna.
 </Tip>
 
 Berikut adalah tugas-tugas utama yang terkait dengan contoh interaksi asuransi:
@@ -108,7 +108,7 @@ Berikut adalah tugas-tugas utama yang terkait dengan contoh interaksi asuransi:
 
 2. Informasi produk
 
-   * Memberikan informasi tentang pertanggungan kendaraan listrik
+   * Memberikan informasi tentang cakupan kendaraan listrik
      <Note>
        Ini akan mengharuskan Claude memiliki informasi yang diperlukan dalam konteksnya, dan mungkin menyiratkan bahwa 
 
@@ -118,7 +118,7 @@ Berikut adalah tugas-tugas utama yang terkait dengan contoh interaksi asuransi:
      </Note>
    * Menjawab pertanyaan terkait kebutuhan unik asuransi kendaraan listrik
    * Menjawab pertanyaan lanjutan tentang penawaran harga atau detail asuransi
-   * Menawarkan tautan ke sumber bila sesuai
+   * Menawarkan tautan ke sumber-sumber bila sesuai
 
 3. Manajemen percakapan
 
@@ -136,7 +136,7 @@ Berikut adalah tugas-tugas utama yang terkait dengan contoh interaksi asuransi:
 
 Bekerja samalah dengan tim dukungan Anda untuk [mendefinisikan kriteria keberhasilan dan menulis evaluasi terperinci](/docs/id/test-and-evaluate/develop-tests) dengan tolok ukur dan tujuan yang dapat diukur.
 
-Berikut adalah kriteria dan tolok ukur yang dapat digunakan untuk mengevaluasi seberapa berhasil Claude melakukan tugas-tugas yang telah didefinisikan:
+Berikut adalah kriteria dan tolok ukur yang dapat digunakan untuk mengevaluasi seberapa berhasil Claude melakukan tugas-tugas yang telah ditentukan:
 
 <AccordionGroup>
   <Accordion title="Akurasi pemahaman pertanyaan">
@@ -164,7 +164,7 @@ Berikut adalah kriteria dan tolok ukur yang dapat digunakan untuk mengevaluasi s
   </Accordion>
 
   <Accordion title="Efisiensi eskalasi">
-    Ini mengukur kemampuan Claude untuk mengenali kapan sebuah pertanyaan memerlukan intervensi manusia dan mengeskalasi dengan tepat. Lacak persentase percakapan yang dieskalasi dengan benar dibandingkan dengan yang seharusnya dieskalasi tetapi tidak. Targetkan akurasi eskalasi 95% atau lebih tinggi.
+    Ini mengukur kemampuan Claude untuk mengenali kapan sebuah pertanyaan memerlukan intervensi manusia dan melakukan eskalasi dengan tepat. Lacak persentase percakapan yang dieskalasi dengan benar dibandingkan dengan yang seharusnya dieskalasi tetapi tidak. Targetkan akurasi eskalasi 95% atau lebih tinggi.
   </Accordion>
 </AccordionGroup>
 
@@ -194,7 +194,7 @@ Berikut adalah kriteria dan tolok ukur yang dapat digunakan untuk mengevaluasi d
 
 Pilihan model bergantung pada pertimbangan antara biaya, akurasi, dan waktu respons.
 
-Untuk chat dukungan pelanggan, Claude Opus 4.8 sangat cocok untuk menyeimbangkan kecerdasan, "latency" (latensi), dan biaya. Namun, untuk kasus di mana Anda memiliki alur percakapan dengan beberapa prompt termasuk RAG, penggunaan alat, atau prompt konteks panjang, Claude Haiku 4.5 mungkin lebih cocok untuk mengoptimalkan latensi.
+Untuk chat dukungan pelanggan, Claude Opus 5 sangat cocok untuk menyeimbangkan kecerdasan, latensi, dan biaya, termasuk skenario dukungan paling kompleks yang memerlukan penalaran mendalam di sepanjang percakapan panjang dan multi-langkah. Namun, untuk kasus di mana Anda memiliki alur percakapan dengan beberapa prompt termasuk RAG, penggunaan alat, atau prompt konteks panjang, Claude Haiku 4.5 mungkin lebih cocok untuk mengoptimalkan latensi.
 
 ### Bangun prompt yang kuat
 
@@ -221,7 +221,7 @@ insurance. You can also help customers get quotes for their insurance needs."""
   .
 </Tip>
 
-Sebaiknya pecah prompt yang kompleks menjadi subbagian dan tulis satu bagian pada satu waktu. Untuk setiap tugas, Anda mungkin menemukan keberhasilan yang lebih besar dengan mengikuti proses langkah demi langkah untuk mendefinisikan bagian-bagian prompt yang dibutuhkan Claude untuk melakukan tugas dengan baik. Untuk contoh dukungan pelanggan asuransi mobil ini, Anda akan menulis sedikit demi sedikit semua bagian untuk sebuah prompt dimulai dengan tugas "Sapaan dan panduan umum". Ini juga membuat debugging prompt Anda lebih mudah karena Anda dapat lebih cepat menyesuaikan bagian-bagian individual dari keseluruhan prompt.
+Sebaiknya pecah prompt yang kompleks menjadi subbagian dan tulis satu bagian pada satu waktu. Untuk setiap tugas, Anda mungkin menemukan keberhasilan yang lebih besar dengan mengikuti proses langkah demi langkah untuk mendefinisikan bagian-bagian prompt yang dibutuhkan Claude untuk melakukan tugas dengan baik. Untuk contoh dukungan pelanggan asuransi mobil ini, Anda akan menulis sedikit demi sedikit semua bagian untuk prompt yang dimulai dengan tugas "Sapaan dan panduan umum". Ini juga membuat debugging prompt Anda lebih mudah karena Anda dapat lebih cepat menyesuaikan bagian-bagian individual dari keseluruhan prompt.
 
 ```python
 STATIC_GREETINGS_AND_GENERAL = """
@@ -386,7 +386,7 @@ TASK_SPECIFIC_INSTRUCTIONS = " ".join(
 
 ### Tambahkan kemampuan dinamis dan agentik dengan penggunaan alat
 
-Claude mampu mengambil tindakan dan mengambil informasi secara dinamis menggunakan fungsionalitas "tool use" (penggunaan alat) sisi klien. Mulailah dengan mendaftar alat eksternal atau API apa pun yang harus digunakan oleh prompt.
+Claude mampu mengambil tindakan dan mengambil informasi secara dinamis menggunakan fungsionalitas penggunaan alat sisi klien. Mulailah dengan mendaftar alat eksternal atau API apa pun yang harus digunakan oleh prompt.
 
 Untuk contoh ini, mulailah dengan satu alat untuk menghitung penawaran harga.
 
@@ -399,7 +399,7 @@ Tambahkan nama model, definisi alat, dan implementasi stub ke `config.py`:
 ```python
 import time
 
-MODEL = "claude-opus-4-8"
+MODEL = "claude-opus-5"
 
 TOOLS = [
     {
@@ -432,7 +432,7 @@ TOOLS = [
 def get_quote(make, model, year, mileage, driver_age):
     """Returns the premium per month in USD"""
     # Anda dapat memanggil endpoint http atau database untuk mendapatkan penawaran harga.
-    # Di sini, kita mensimulasikan penundaan 1 detik dan mengembalikan penawaran harga tetap sebesar 100.
+    # Di sini, kami mensimulasikan penundaan 1 detik dan mengembalikan penawaran harga tetap sebesar 100.
     time.sleep(1)
     return 100
 ```
@@ -519,21 +519,28 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
               if "error" in follow_up_response:
                   return f"An error occurred: {follow_up_response['error']}"
 
-              response_text = follow_up_response.content[0].text
+              response_text = next(
+                  (block.text for block in follow_up_response.content if block.type == "text"),
+                  None,
+              )
+              if response_text is None:
+                  raise Exception("An error occurred: Unexpected response type")
               self.session_state.messages.append(
                   {"role": "assistant", "content": response_text}
               )
               return response_text
 
-          elif response_message.content[0].type == "text":
-              response_text = response_message.content[0].text
+          text_block = next(
+              (block for block in response_message.content if block.type == "text"), None
+          )
+          if text_block is not None:
+              response_text = text_block.text
               self.session_state.messages.append(
                   {"role": "assistant", "content": response_text}
               )
               return response_text
 
-          else:
-              raise Exception("An error occurred: Unexpected response type")
+          raise Exception("An error occurred: Unexpected response type")
 
       def handle_tool_use(self, func_name, func_params):
           if func_name == "get_quote":
@@ -582,16 +589,20 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
 
         const followUpResponse = await this.generateMessage(this.messages, 2048);
 
-        const followUpBlock = followUpResponse.content[0];
-        if (followUpBlock.type !== "text") {
+        const followUpBlock = followUpResponse.content.find(
+          (block): block is Anthropic.TextBlock => block.type === "text"
+        );
+        if (!followUpBlock) {
           throw new Error("An error occurred: Unexpected response type");
         }
         this.messages.push({ role: "assistant", content: followUpBlock.text });
         return followUpBlock.text;
       }
 
-      const firstBlock = responseMessage.content[0];
-      if (firstBlock.type === "text") {
+      const firstBlock = responseMessage.content.find(
+        (block): block is Anthropic.TextBlock => block.type === "text"
+      );
+      if (firstBlock) {
         this.messages.push({ role: "assistant", content: firstBlock.text });
         return firstBlock.text;
       }
@@ -601,7 +612,7 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
 
     handleToolUse(toolName: string, toolInput: unknown): string {
       if (toolName === "get_quote") {
-        // SDK mengetikkan tool_use.input sebagai unknown; persempit ke skema get_quote.
+        // SDK menetapkan tipe tool_use.input sebagai unknown; persempit ke skema get_quote.
         if (
           toolInput === null ||
           typeof toolInput !== "object" ||
@@ -630,7 +641,7 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
   using Anthropic.Models.Messages;
 
   // Config.Model, Config.Identity, Config.Tools, dan Config.GetQuote mencerminkan
-  // nilai config.py yang didefinisikan sebelumnya dalam panduan ini (ditampilkan dalam Python).
+  // nilai-nilai config.py yang didefinisikan sebelumnya dalam panduan ini (ditampilkan dalam Python).
   public class ChatBot
   {
       private readonly AnthropicClient _anthropic = new();
@@ -677,19 +688,25 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
 
               var followUpResponse = await GenerateMessage(Messages, maxTokens: 2048);
 
-              if (!followUpResponse.Content[0].TryPickText(out var followUpText))
+              foreach (var block in followUpResponse.Content)
               {
-                  throw new InvalidOperationException("An error occurred: Unexpected response type");
+                  if (block.TryPickText(out var followUpText))
+                  {
+                      Messages.Add(new() { Role = Role.Assistant, Content = followUpText.Text });
+                      return followUpText.Text;
+                  }
               }
 
-              Messages.Add(new() { Role = Role.Assistant, Content = followUpText.Text });
-              return followUpText.Text;
+              throw new InvalidOperationException("An error occurred: Unexpected response type");
           }
 
-          if (responseMessage.Content[0].TryPickText(out var textBlock))
+          foreach (var block in responseMessage.Content)
           {
-              Messages.Add(new() { Role = Role.Assistant, Content = textBlock.Text });
-              return textBlock.Text;
+              if (block.TryPickText(out var textBlock))
+              {
+                  Messages.Add(new() { Role = Role.Assistant, Content = textBlock.Text });
+                  return textBlock.Text;
+              }
           }
 
           throw new InvalidOperationException("An error occurred: Unexpected response type");
@@ -724,8 +741,8 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
   )
 
   // ChatBot membungkus klien Anthropic dan riwayat percakapan. Nilai
-  // identity, model, tools, dan getQuote yang digunakannya mencerminkan definisi config.py
-  // yang dibahas sebelumnya dalam panduan ini (ditampilkan dalam Python).
+  // identity, model, tools, dan getQuote yang digunakannya mencerminkan definisi
+  // config.py sebelumnya dalam panduan ini (ditampilkan dalam Python).
   type ChatBot struct {
   	client   anthropic.Client
   	messages []anthropic.MessageParam
@@ -770,20 +787,23 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
   			return "", err
   		}
 
-  		textBlock, ok := followUp.Content[0].AsAny().(anthropic.TextBlock)
-  		if !ok {
-  			return "", fmt.Errorf("unexpected response type: %s", followUp.Content[0].Type)
+  		for _, block := range followUp.Content {
+  			if textBlock, ok := block.AsAny().(anthropic.TextBlock); ok {
+  				bot.messages = append(bot.messages, anthropic.NewAssistantMessage(anthropic.NewTextBlock(textBlock.Text)))
+  				return textBlock.Text, nil
+  			}
   		}
-  		bot.messages = append(bot.messages, anthropic.NewAssistantMessage(anthropic.NewTextBlock(textBlock.Text)))
-  		return textBlock.Text, nil
+  		return "", fmt.Errorf("an error occurred: unexpected response type")
   	}
 
-  	if textBlock, ok := response.Content[0].AsAny().(anthropic.TextBlock); ok {
-  		bot.messages = append(bot.messages, anthropic.NewAssistantMessage(anthropic.NewTextBlock(textBlock.Text)))
-  		return textBlock.Text, nil
+  	for _, block := range response.Content {
+  		if textBlock, ok := block.AsAny().(anthropic.TextBlock); ok {
+  			bot.messages = append(bot.messages, anthropic.NewAssistantMessage(anthropic.NewTextBlock(textBlock.Text)))
+  			return textBlock.Text, nil
+  		}
   	}
 
-  	return "", fmt.Errorf("unexpected response type: %s", response.Content[0].Type)
+  	return "", fmt.Errorf("an error occurred: unexpected response type")
   }
 
   func (bot *ChatBot) HandleToolUse(toolName string, toolInput json.RawMessage) (string, error) {
@@ -872,25 +892,27 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
 
               Message followUpResponse = generateMessage(messages, 2048);
 
-              ContentBlock followUpBlock = followUpResponse.content().getFirst();
-              if (!followUpBlock.isText()) {
-                  throw new IllegalStateException("An error occurred: Unexpected response type");
-              }
+              ContentBlock followUpBlock = followUpResponse.content().stream()
+                      .filter(ContentBlock::isText)
+                      .findFirst()
+                      .orElseThrow(() -> new IllegalStateException("An error occurred: Unexpected response type"));
               String responseText = followUpBlock.asText().text();
               messages.add(MessageParam.builder()
                       .role(MessageParam.Role.ASSISTANT)
                       .content(responseText)
                       .build());
               return responseText;
-          } else if (content.getFirst().isText()) {
-              String responseText = content.getFirst().asText().text();
+          } else {
+              ContentBlock textBlock = content.stream()
+                      .filter(ContentBlock::isText)
+                      .findFirst()
+                      .orElseThrow(() -> new IllegalStateException("An error occurred: Unexpected response type"));
+              String responseText = textBlock.asText().text();
               messages.add(MessageParam.builder()
                       .role(MessageParam.Role.ASSISTANT)
                       .content(responseText)
                       .build());
               return responseText;
-          } else {
-              throw new IllegalStateException("An error occurred: Unexpected response type");
           }
       }
 
@@ -967,7 +989,10 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
 
               $followUpResponse = $this->generateMessage($this->messages, maxTokens: 2048);
 
-              $firstBlock = array_first($followUpResponse->content);
+              $firstBlock = array_find(
+                  $followUpResponse->content,
+                  static fn ($block): bool => $block instanceof TextBlock,
+              );
               if (!$firstBlock instanceof TextBlock) {
                   throw new RuntimeException('An error occurred: Unexpected response type');
               }
@@ -977,7 +1002,7 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
               return $firstBlock->text;
           }
 
-          $firstBlock = array_first($content);
+          $firstBlock = array_find($content, static fn ($block): bool => $block instanceof TextBlock);
           if ($firstBlock instanceof TextBlock) {
               $this->messages[] = MessageParam::with(role: 'assistant', content: $firstBlock->text);
 
@@ -1043,13 +1068,13 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
         follow_up_response = generate_message(@messages, 2048)
 
         case follow_up_response.content
-        in [Anthropic::TextBlock => text_block, *]
+        in [*, Anthropic::TextBlock => text_block, *]
           @messages << {role: "assistant", content: text_block.text}
           text_block.text
         else
           raise "An error occurred: Unexpected response type"
         end
-      in [Anthropic::TextBlock => text_block, *]
+      in [*, Anthropic::TextBlock => text_block, *]
         @messages << {role: "assistant", content: text_block.text}
         text_block.text
       else
@@ -1119,11 +1144,11 @@ streamlit run app.py
 
 ### Evaluasi prompt Anda
 
-Prompting sering kali memerlukan pengujian dan optimasi agar siap untuk produksi. Untuk menentukan kesiapan solusi Anda, evaluasi kinerja chatbot menggunakan proses sistematis yang menggabungkan metode kuantitatif dan kualitatif. Membuat [evaluasi empiris yang kuat](/docs/id/test-and-evaluate/develop-tests#building-evals-and-test-cases) berdasarkan kriteria keberhasilan yang Anda definisikan akan memungkinkan Anda mengoptimalkan prompt Anda.
+Prompting sering kali memerlukan pengujian dan optimisasi agar siap untuk produksi. Untuk menentukan kesiapan solusi Anda, evaluasi kinerja chatbot menggunakan proses sistematis yang menggabungkan metode kuantitatif dan kualitatif. Membuat [evaluasi empiris yang kuat](/docs/id/test-and-evaluate/develop-tests#building-evals-and-test-cases) berdasarkan kriteria keberhasilan yang telah Anda tentukan akan memungkinkan Anda mengoptimalkan prompt Anda.
 
 ### Tingkatkan kinerja
 
-Dalam skenario yang kompleks, mungkin berguna untuk mempertimbangkan strategi tambahan untuk meningkatkan kinerja di luar [teknik prompt engineering](/docs/id/build-with-claude/prompt-engineering/overview) standar & [strategi implementasi guardrail](/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations). Berikut adalah beberapa skenario umum:
+Dalam skenario yang kompleks, mungkin berguna untuk mempertimbangkan strategi tambahan untuk meningkatkan kinerja di luar [teknik rekayasa prompt](/docs/id/build-with-claude/prompt-engineering/overview) standar & [strategi implementasi guardrail](/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations). Berikut adalah beberapa skenario umum:
 
 #### Kurangi latensi konteks panjang dengan RAG
 
@@ -1131,7 +1156,7 @@ Saat menangani sejumlah besar konteks statis dan dinamis, menyertakan semua info
 
 Dengan menggunakan [model embedding seperti Voyage](/docs/id/build-with-claude/embeddings) untuk mengonversi informasi menjadi representasi vektor, Anda dapat membuat sistem yang lebih dapat diskalakan dan responsif. Pendekatan ini memungkinkan pengambilan dinamis informasi yang relevan berdasarkan kueri saat ini, alih-alih menyertakan semua konteks yang mungkin dalam setiap prompt.
 
-Mengimplementasikan RAG untuk kasus penggunaan dukungan telah terbukti meningkatkan akurasi, mengurangi waktu respons, dan mengurangi biaya API dalam sistem dengan persyaratan konteks yang luas. Lihat [resep RAG](https://platform.claude.com/cookbook/capabilities-retrieval-augmented-generation-guide) untuk contoh yang sudah dikerjakan.
+Mengimplementasikan RAG untuk kasus penggunaan dukungan telah terbukti meningkatkan akurasi, mengurangi waktu respons, dan mengurangi biaya API dalam sistem dengan kebutuhan konteks yang ekstensif. Lihat [resep RAG](https://platform.claude.com/cookbook/capabilities-retrieval-augmented-generation-guide) untuk contoh yang sudah dikerjakan.
 
 #### Integrasikan data real-time dengan penggunaan alat
 
@@ -1147,9 +1172,9 @@ Saat men-deploy chatbot, terutama dalam skenario layanan pelanggan, penting untu
 * Periksa silang informasi: Verifikasi bahwa respons agen selaras dengan kebijakan perusahaan Anda dan fakta yang diketahui.
 * Hindari komitmen kontraktual: Pastikan agen tidak membuat janji atau masuk ke dalam perjanjian yang tidak diizinkan untuk dibuatnya.
 * [Mitigasi jailbreak](/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks): Gunakan metode seperti penyaringan harmlessness dan validasi input untuk mencegah pengguna mengeksploitasi kerentanan model, yang bertujuan menghasilkan konten yang tidak pantas.
-* Hindari menyebut pesaing: Implementasikan filter penyebutan pesaing untuk mempertahankan fokus merek dan tidak menyebutkan produk atau layanan pesaing mana pun.
+* Hindari menyebutkan pesaing: Implementasikan filter penyebutan pesaing untuk mempertahankan fokus merek dan tidak menyebutkan produk atau layanan pesaing mana pun.
 * [Tingkatkan konsistensi output](/docs/id/test-and-evaluate/strengthen-guardrails/increase-consistency): Cegah Claude mengubah gaya atau keluar dari karakter, bahkan selama interaksi yang panjang dan kompleks.
-* Hapus Informasi Identitas Pribadi (PII): Kecuali secara eksplisit diperlukan dan diizinkan, hapus PII apa pun dari respons.
+* Hapus Informasi Identifikasi Pribadi (PII): Kecuali secara eksplisit diperlukan dan diizinkan, hapus PII apa pun dari respons.
 
 #### Kurangi waktu respons yang dirasakan dengan streaming
 
@@ -1166,9 +1191,9 @@ Dalam beberapa kasus, streaming memungkinkan penggunaan model yang lebih canggih
 
 #### Skalakan chatbot Anda
 
-Seiring bertambahnya kompleksitas chatbot Anda, arsitektur aplikasi Anda dapat berkembang untuk menyesuaikan. Sebelum Anda menambahkan lapisan lebih lanjut ke arsitektur Anda, pertimbangkan opsi-opsi berikut yang tidak lengkap:
+Seiring bertambahnya kompleksitas chatbot Anda, arsitektur aplikasi Anda dapat berkembang untuk menyesuaikannya. Sebelum Anda menambahkan lapisan lebih lanjut ke arsitektur Anda, pertimbangkan opsi-opsi yang tidak lengkap berikut:
 
-* Pastikan Anda memaksimalkan prompt Anda dan mengoptimalkan melalui prompt engineering. Gunakan [panduan prompt engineering](/docs/id/build-with-claude/prompt-engineering/overview) untuk menulis prompt yang paling efektif.
+* Pastikan Anda memanfaatkan prompt Anda secara maksimal dan mengoptimalkannya melalui rekayasa prompt. Gunakan [panduan rekayasa prompt](/docs/id/build-with-claude/prompt-engineering/overview) untuk menulis prompt yang paling efektif.
 * Tambahkan [alat](/docs/id/agents-and-tools/tool-use/overview) tambahan ke prompt (yang dapat mencakup [rantai prompt](/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#chain-complex-prompts)) dan lihat apakah Anda dapat mencapai fungsionalitas yang diperlukan.
 
 Jika chatbot Anda menangani tugas yang sangat bervariasi, Anda mungkin ingin mempertimbangkan untuk menambahkan [pengklasifikasi maksud terpisah](https://platform.claude.com/cookbook/capabilities-classification-guide) untuk merutekan kueri pelanggan awal. Untuk aplikasi yang ada, ini akan melibatkan pembuatan pohon keputusan yang akan merutekan kueri pelanggan melalui pengklasifikasi dan kemudian ke percakapan khusus (dengan set alat dan prompt sistem mereka sendiri). Perhatikan, metode ini memerlukan panggilan tambahan ke Claude yang dapat meningkatkan latensi.
@@ -1177,13 +1202,13 @@ Jika chatbot Anda menangani tugas yang sangat bervariasi, Anda mungkin ingin mem
 
 Meskipun contoh-contoh ini berfokus pada fungsi Python yang dapat dipanggil dalam lingkungan Streamlit, men-deploy Claude untuk chatbot dukungan real-time memerlukan layanan API.
 
-Berikut cara Anda dapat mendekati ini:
+Berikut cara Anda dapat mendekati hal ini:
 
 1. Buat pembungkus API: Kembangkan pembungkus API sederhana di sekitar fungsi klasifikasi Anda. Misalnya, Anda dapat menggunakan Flask API atau Fast API untuk membungkus kode Anda menjadi Layanan HTTP. Layanan HTTP Anda dapat menerima input pengguna dan mengembalikan respons Assistant secara keseluruhan. Dengan demikian, layanan Anda dapat memiliki karakteristik berikut:
 
    * Server-Sent Events (SSE): SSE memungkinkan streaming respons secara real-time dari server ke klien. Ini memberikan pengalaman yang mulus dan interaktif saat bekerja dengan LLM.
    * Caching: Mengimplementasikan caching dapat meningkatkan waktu respons dan mengurangi panggilan API yang tidak perlu.
-   * Retensi konteks: Mempertahankan konteks ketika pengguna berpindah halaman dan kembali penting untuk kesinambungan dalam percakapan.
+   * Retensi konteks: Mempertahankan konteks saat pengguna berpindah halaman dan kembali penting untuk kesinambungan dalam percakapan.
 
 2. Bangun antarmuka web: Implementasikan UI web yang ramah pengguna untuk berinteraksi dengan agen yang didukung Claude.
 
@@ -1195,14 +1220,14 @@ Berikut cara Anda dapat mendekati ini:
   </Card>
 
   <Card title="Kembangkan pengujian" icon="check" href="/docs/id/test-and-evaluate/develop-tests">
-    Bangun evaluasi untuk mengukur agen dukungan Anda terhadap kriteria keberhasilan yang Anda definisikan.
+    Bangun evaluasi untuk mengukur agen dukungan Anda terhadap kriteria keberhasilan yang telah Anda tentukan.
   </Card>
 
   <Card title="Streaming" icon="bolt" href="/docs/id/build-with-claude/streaming">
-    Streaming respons sehingga pelanggan melihat jawaban saat dihasilkan.
+    Lakukan streaming respons sehingga pelanggan melihat jawaban saat dihasilkan.
   </Card>
 
-  <Card title="Prompt engineering" icon="lightbulb" href="/docs/id/build-with-claude/prompt-engineering/overview">
-    Sempurnakan prompt sistem dan contoh Anda untuk kinerja tugas yang lebih baik.
+  <Card title="Rekayasa prompt" icon="lightbulb" href="/docs/id/build-with-claude/prompt-engineering/overview">
+    Sempurnakan prompt sistem dan contoh-contoh Anda untuk kinerja tugas yang lebih baik.
   </Card>
 </CardGroup>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 1f1804bfec1841cb494b009c6d9487797a9311b6d22e57b8554cb65b30e418fe
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 5a307b70e3790694d83f48935b7b038e4b518d0ea6646d5ac85d954a1b70cddb
 ---
 
 # Define tools
@@ -18,7 +18,7 @@ Specify tool schemas, write effective descriptions, and control when Claude call
 
 ## Choosing a model
 
-Use the latest Claude Opus (4.8) model for complex tools and ambiguous queries; it handles multiple tools better and seeks clarification when needed.
+Use the latest Claude Opus model, Claude Opus 5, for complex tools and ambiguous queries; it handles multiple tools better and seeks clarification when needed.
 
 Use Claude Haiku models for straightforward tools, but note they may infer missing parameters.
 
@@ -159,7 +159,7 @@ Add an optional `input_examples` field to your tool definition with an array of 
     -H "anthropic-version: 2023-06-01" \
     -d @- <<'EOF'
   {
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5",
     "max_tokens": 1024,
     "tools": [
       {
@@ -196,7 +196,7 @@ Add an optional `input_examples` field to your tool definition with an array of 
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1024
   tools:
     - name: get_weather
@@ -228,7 +228,7 @@ Add an optional `input_examples` field to your tool definition with an array of 
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       tools=[
           {
@@ -268,7 +268,7 @@ Add an optional `input_examples` field to your tool definition with an array of 
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     tools: [
       {
@@ -316,7 +316,7 @@ Add an optional `input_examples` field to your tool definition with an array of 
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Tools = [
           new ToolUnion(new Tool()
@@ -364,7 +364,7 @@ Add an optional `input_examples` field to your tool definition with an array of 
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Tools: []anthropic.ToolUnionParam{
   		{OfTool: &anthropic.ToolParam{
@@ -418,7 +418,7 @@ Add an optional `input_examples` field to your tool definition with an array of 
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(1024L)
           .addTool(Tool.builder()
               .name("get_weather")
@@ -467,7 +467,7 @@ Add an optional `input_examples` field to your tool definition with an array of 
       messages: [
           ['role' => 'user', 'content' => "What's the weather like in San Francisco?"]
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       tools: [
           [
               'name' => 'get_weather',
@@ -509,7 +509,7 @@ Add an optional `input_examples` field to your tool definition with an array of 
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     tools: [
       {
@@ -575,7 +575,7 @@ In some cases, you may want Claude to use a specific tool to answer the user's q
     -H "anthropic-version: 2023-06-01" \
     -d @- <<'EOF'
   {
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5",
     "max_tokens": 1024,
     "tools": [
       {
@@ -603,7 +603,7 @@ In some cases, you may want Claude to use a specific tool to answer the user's q
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1024
   tools:
     - name: get_weather
@@ -645,7 +645,7 @@ In some cases, you may want Claude to use a specific tool to answer the user's q
   ]
 
   response = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       tools=tools,
       tool_choice={"type": "tool", "name": "get_weather"},
@@ -659,7 +659,7 @@ In some cases, you may want Claude to use a specific tool to answer the user's q
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     tools: [
       {
@@ -689,7 +689,7 @@ In some cases, you may want Claude to use a specific tool to answer the user's q
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Tools = [
           new ToolUnion(new Tool()
@@ -720,7 +720,7 @@ In some cases, you may want Claude to use a specific tool to answer the user's q
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Tools: []anthropic.ToolUnionParam{
   		{OfTool: &anthropic.ToolParam{
@@ -758,7 +758,7 @@ In some cases, you may want Claude to use a specific tool to answer the user's q
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(1024L)
           .addTool(Tool.builder()
               .name("get_weather")
@@ -792,7 +792,7 @@ In some cases, you may want Claude to use a specific tool to answer the user's q
       messages: [
           ['role' => 'user', 'content' => "What's the weather like in San Francisco?"]
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       toolChoice: ['type' => 'tool', 'name' => 'get_weather'],
       tools: [
           [
@@ -817,7 +817,7 @@ In some cases, you may want Claude to use a specific tool to answer the user's q
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     tools: [
       {
@@ -864,7 +864,7 @@ This diagram illustrates how each option works:
 Note that when you have `tool_choice` as `any` or `tool`, the API prefills the assistant message to force a tool to be used. This means that the models will not emit a natural language response or explanation before `tool_use` content blocks, even if explicitly asked to do so.
 
 <Note>
-  When using [thinking](/docs/en/build-with-claude/thinking) with tool use, `tool_choice: {"type": "any"}` and `tool_choice: {"type": "tool", "name": "..."}` are not supported and result in an error. Only `tool_choice: {"type": "auto"}` (the default) and `tool_choice: {"type": "none"}` are compatible with thinking.
+  When using manual [extended thinking](/docs/en/build-with-claude/extended-thinking) (`thinking: {type: "enabled"}`) with tool use, `tool_choice: {"type": "any"}` and `tool_choice: {"type": "tool", "name": "..."}` are not supported and result in an error. Only `tool_choice: {"type": "auto"}` (the default) and `tool_choice: {"type": "none"}` are compatible with manual extended thinking. [Adaptive thinking](/docs/en/build-with-claude/thinking), including on models where thinking is on by default such as Claude Opus 5, supports forced tool use.
 </Note>
 
 <Note>

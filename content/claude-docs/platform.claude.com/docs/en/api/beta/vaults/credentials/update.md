@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/update
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: 432676623e28eb70934980878b3a647b2af4004d3ebaabc8a42a1eb05cd737a5
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 8bfaa9abab7491eddeca7564cb656db5e1fa9431bade5917c134cf97c3477d57
 ---
 
 ## Update Credential
@@ -25,7 +25,7 @@ Update Credential
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 27 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -83,7 +83,11 @@ Update Credential
 
     - `"server-side-fallback-2026-06-01"`
 
+    - `"server-side-fallback-2026-07-01"`
+
     - `"fallback-credit-2026-06-01"`
+
+    - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
 

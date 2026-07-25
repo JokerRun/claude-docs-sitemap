@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 376041cb8b28dd0f30516c63d5d94ca0ca15d6f44dec412829368a425bf87ec1
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: c0cf18ed7814ffd594b7c0887200137cafb8a04343904e69249498a2af9a1956
 ---
 
 # Tool search tool
@@ -50,6 +50,7 @@ Kedua varian tool search tersedia pada model-model berikut:
 | ---------------------------------------------- | ------------------------------------------------------------------- |
 | Claude Fable 5 (claude-fable-5)                | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 | Claude Mythos 5 (claude-mythos-5)              | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
+| Claude Opus 5 (claude-opus-5)                  | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 | Claude Opus 4.8 (claude-opus-4-8)              | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 | Claude Opus 4.7 (claude-opus-4-7)              | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 | Claude Opus 4.6 (claude-opus-4-6)              | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
@@ -58,7 +59,7 @@ Kedua varian tool search tersedia pada model-model berikut:
 | Claude Sonnet 4.5 (claude-sonnet-4-5-20250929) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 | Claude Haiku 4.5 (claude-haiku-4-5-20251001)   | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 
-Claude Opus 4.1 dan model yang lebih lama tidak mendukung tool search tool.
+Claude Opus 4.1 dan model-model sebelumnya tidak mendukung tool search tool.
 
 ## Cara kerja tool search
 
@@ -88,7 +89,7 @@ Contoh berikut menyertakan tool search tool dan dua alat yang ditangguhkan (defe
       --header "anthropic-version: 2023-06-01" \
       --header "content-type: application/json" \
       --data '{
-          "model": "claude-opus-4-8",
+          "model": "claude-opus-5",
           "max_tokens": 2048,
           "messages": [
               {
@@ -139,7 +140,7 @@ Contoh berikut menyertakan tool search tool dan dua alat yang ditangguhkan (defe
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 2048
   messages:
     - role: user
@@ -179,7 +180,7 @@ Contoh berikut menyertakan tool search tool dan dua alat yang ditangguhkan (defe
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=2048,
       messages=[{"role": "user", "content": "What is the weather in San Francisco?"}],
       tools=[
@@ -220,7 +221,7 @@ Contoh berikut menyertakan tool search tool dan dua alat yang ditangguhkan (defe
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 2048,
     messages: [
       {
@@ -276,7 +277,7 @@ Contoh berikut menyertakan tool search tool dan dua alat yang ditangguhkan (defe
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 2048,
       Messages = [
           new() {
@@ -330,7 +331,7 @@ Contoh berikut menyertakan tool search tool dan dua alat yang ditangguhkan (defe
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 2048,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("What is the weather in San Francisco?")),
@@ -403,7 +404,7 @@ Contoh berikut menyertakan tool search tool dan dua alat yang ditangguhkan (defe
           .build();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(2048L)
           .addUserMessage("What is the weather in San Francisco?")
           .addTool(ToolSearchToolRegex20251119.builder()
@@ -436,7 +437,7 @@ Contoh berikut menyertakan tool search tool dan dua alat yang ditangguhkan (defe
       messages: [
           ['role' => 'user', 'content' => 'What is the weather in San Francisco?'],
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       tools: [
           [
               'type' => 'tool_search_tool_regex_20251119',
@@ -484,7 +485,7 @@ Contoh berikut menyertakan tool search tool dan dua alat yang ditangguhkan (defe
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 2048,
     messages: [
       { role: "user", content: "What is the weather in San Francisco?" }
@@ -556,7 +557,7 @@ Tool search tool memiliki dua varian:
 <Warning>
   **Format kueri varian regex: regex Python, bukan bahasa alami**
 
-  Dengan `tool_search_tool_regex_20251119`, Claude menulis pola `re.search()` Python, bukan kueri bahasa alami. Pencocokan tidak peka huruf besar-kecil. Pola umum meliputi yang berikut:
+  Dengan `tool_search_tool_regex_20251119`, Claude menulis pola `re.search()` Python, bukan kueri bahasa alami. Pencocokan tidak peka huruf besar/kecil. Pola umum meliputi yang berikut:
 
   * `"weather"`: mencocokkan nama alat dan deskripsi yang mengandung "weather"
   * `"get_.*_data"`: mencocokkan alat seperti `get_user_data` dan `get_weather_data`
@@ -595,13 +596,13 @@ Tandai alat untuk pemuatan sesuai permintaan dengan menambahkan `defer_loading: 
 
 * Anda tetap mengirim definisi lengkap setiap alat dalam array `tools` pada setiap permintaan, termasuk yang ditangguhkan. API membutuhkannya di sisi server untuk menjalankan pencarian dan memperluas blok `tool_reference`.
 * Alat tanpa `defer_loading` dimuat ke dalam konteks segera.
-* Alat dengan `defer_loading: true` hanya dimuat ketika Claude menemukannya melalui pencarian.
+* Alat dengan `defer_loading: true` dimuat hanya ketika Claude menemukannya melalui pencarian.
 * Jangan pernah menyetel `defer_loading: true` pada tool search tool itu sendiri.
 * Pertahankan 3–5 alat yang paling sering Anda gunakan sebagai non-deferred sehingga Claude dapat memanggilnya tanpa mencari terlebih dahulu.
 
 Kedua varian tool search (`regex` dan `bm25`) mencari nama alat, deskripsi, nama argumen, dan deskripsi argumen.
 
-Secara internal, API mengecualikan alat yang ditangguhkan dari prefiks prompt sistem. Ketika Claude menemukan alat yang ditangguhkan melalui tool search, API menambahkan blok `tool_reference` secara inline dalam percakapan, lalu memperluasnya menjadi definisi alat lengkap sebelum meneruskannya ke Claude. Prefiks tidak tersentuh, sehingga caching prompt tetap terjaga. Grammar untuk [strict mode](/docs/id/agents-and-tools/tool-use/strict-tool-use) (aturan yang membatasi output panggilan alat agar sesuai dengan skema Anda) dibangun dari seluruh toolset, sehingga `defer_loading` dan strict mode dapat digabungkan tanpa kompilasi ulang grammar.
+Secara internal, API mengecualikan alat yang ditangguhkan dari prefiks prompt sistem. Ketika Claude menemukan alat yang ditangguhkan melalui tool search, API menambahkan blok `tool_reference` secara inline dalam percakapan, lalu memperluasnya menjadi definisi alat lengkap sebelum meneruskannya ke Claude. Prefiks tidak tersentuh, sehingga caching prompt tetap terjaga. Grammar untuk [strict mode](/docs/id/agents-and-tools/tool-use/strict-tool-use) (aturan yang membatasi output panggilan alat agar sesuai dengan skema Anda) dibangun dari toolset lengkap, sehingga `defer_loading` dan strict mode dapat digabungkan tanpa kompilasi ulang grammar.
 
 ## Format respons
 
@@ -657,15 +658,15 @@ API secara otomatis memperluas blok `tool_reference` menjadi definisi alat lengk
 
 ### Melanjutkan percakapan
 
-Pada permintaan berikutnya, teruskan kembali konten asisten tanpa perubahan, termasuk blok `server_tool_use` dan `tool_search_tool_result`. Tambahkan `tool_result` Anda untuk alat yang ditemukan dalam pesan pengguna, dan kirim array `tools` yang sama: alat pencarian ditambah setiap definisi yang ditangguhkan. Jangan mengembalikan `tool_result` untuk ID `srvtoolu_...`: API akan menolak permintaan tersebut. API memperluas blok `tool_reference` di seluruh riwayat percakapan, sehingga Claude dapat menggunakan kembali alat yang ditemukan di giliran berikutnya tanpa mencari ulang. Pencarian yang tidak menemukan apa pun mengembalikan `tool_search_tool_search_result` dengan array `tool_references` kosong, bukan error.
+Pada permintaan berikutnya, teruskan kembali konten asisten tanpa perubahan, termasuk blok `server_tool_use` dan `tool_search_tool_result`. Tambahkan `tool_result` Anda untuk alat yang ditemukan dalam pesan pengguna, dan kirim array `tools` yang sama: alat pencarian ditambah setiap definisi yang ditangguhkan. Jangan mengembalikan `tool_result` untuk ID `srvtoolu_...`: API menolak permintaan tersebut. API memperluas blok `tool_reference` di seluruh riwayat percakapan, sehingga Claude dapat menggunakan kembali alat yang ditemukan di giliran berikutnya tanpa mencari ulang. Pencarian yang tidak menemukan apa pun mengembalikan `tool_search_tool_search_result` dengan array `tool_references` kosong, bukan error.
 
 ## Integrasi MCP
 
-Jika alat Anda berasal dari server MCP melalui [konektor MCP](/docs/id/agents-and-tools/mcp-connector), Anda tidak menyetel `defer_loading` pada definisi alat individual. Sebagai gantinya, setel sekali pada `default_config` entri `mcp_toolset` untuk seluruh server, atau per alat dalam `configs`-nya. Lihat [Konfigurasi toolset MCP](/docs/id/agents-and-tools/mcp-connector#mcp-toolset-configuration).
+Jika alat Anda berasal dari server MCP melalui [MCP connector](/docs/id/agents-and-tools/mcp-connector), Anda tidak menyetel `defer_loading` pada definisi alat individual. Sebagai gantinya, setel sekali pada `default_config` entri `mcp_toolset` untuk seluruh server, atau per alat dalam `configs`-nya. Lihat [Konfigurasi toolset MCP](/docs/id/agents-and-tools/mcp-connector#mcp-toolset-configuration).
 
 ## Implementasi tool search kustom
 
-Anda dapat mengimplementasikan logika tool search Anda sendiri (misalnya, menggunakan embeddings atau pencarian semantik) dengan mengembalikan blok `tool_reference` dari alat kustom. Ketika Claude memanggil alat pencarian kustom Anda, kembalikan `tool_result` standar dengan blok `tool_reference` dalam array konten:
+Anda dapat mengimplementasikan logika tool search Anda sendiri (misalnya, menggunakan embedding atau pencarian semantik) dengan mengembalikan blok `tool_reference` dari alat kustom. Ketika Claude memanggil alat pencarian kustom Anda, kembalikan `tool_result` standar dengan blok `tool_reference` dalam array konten:
 
 ```json JSON
 {
@@ -681,7 +682,7 @@ Setiap alat yang direferensikan harus memiliki definisi alat yang sesuai dalam p
   Format `tool_search_tool_result` yang ditunjukkan di bagian [Format respons](#response-format) adalah format sisi server yang digunakan secara internal oleh tool search bawaan Anthropic. Untuk implementasi sisi klien kustom, selalu gunakan format `tool_result` standar dengan blok konten `tool_reference` seperti yang ditunjukkan pada contoh sebelumnya.
 </Note>
 
-Untuk contoh lengkap menggunakan embeddings, lihat resep [tool search dengan embeddings](https://platform.claude.com/cookbook/tool-use-tool-search-with-embeddings).
+Untuk contoh lengkap menggunakan embedding, lihat resep [tool search dengan embedding](https://platform.claude.com/cookbook/tool-use-tool-search-with-embeddings).
 
 ## Penanganan error
 
@@ -733,7 +734,7 @@ Ketika operasi tool search gagal selama eksekusi, API mengembalikan respons 200 
 }
 ```
 
-Field `error_code` memiliki empat kemungkinan nilai:
+Field `error_code` memiliki empat nilai yang mungkin:
 
 * `invalid_tool_input`: input pencarian tidak valid, misalnya pola regex yang salah bentuk atau pola yang melebihi batas 200 karakter
 * `unavailable`: pencarian tidak dapat berjalan, misalnya karena waktu habis atau layanan tidak tersedia
@@ -779,15 +780,15 @@ Field `error_code` memiliki empat kemungkinan nilai:
 
   1. Periksa nama alat, deskripsi, nama argumen, dan deskripsi argumen. Claude mencari di semua field ini.
   2. Uji pola Anda: `import re; re.search(r"your_pattern", "tool_name", re.IGNORECASE)`.
-  3. Pencocokan tidak peka huruf besar-kecil, jadi perbedaan huruf besar-kecil bukan masalahnya.
-  4. Claude menggunakan pola yang luas seperti `".*weather.*"`, bukan pencocokan persis.
+  3. Pencocokan tidak peka huruf besar/kecil, jadi perbedaan kapitalisasi bukan masalahnya.
+  4. Claude menggunakan pola luas seperti `".*weather.*"`, bukan pencocokan persis.
 
   **Tip:** Tambahkan kata kunci umum ke deskripsi alat untuk meningkatkan kemudahan penemuan.
 </Accordion>
 
 ## Caching prompt
 
-Untuk bagaimana `defer_loading` mempertahankan caching prompt, lihat [Penggunaan alat dengan caching prompt](/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching).
+Untuk cara `defer_loading` mempertahankan caching prompt, lihat [Penggunaan alat dengan caching prompt](/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching).
 
 Alat dengan `defer_loading: true` tidak dapat juga membawa `cache_control`: API mengembalikan 400. Letakkan breakpoint cache pada alat non-deferred.
 
@@ -861,7 +862,7 @@ Tool search tidak diukur sebagai alat server terpisah. Objek `usage.server_tool_
     Direktori alat yang disediakan Anthropic dan referensi untuk properti definisi alat opsional.
   </Card>
 
-  <Card title="Konektor MCP" icon="link" href="/docs/id/agents-and-tools/mcp-connector">
+  <Card title="MCP connector" icon="link" href="/docs/id/agents-and-tools/mcp-connector">
     Konfigurasikan toolset MCP dengan pemuatan yang ditangguhkan.
   </Card>
 

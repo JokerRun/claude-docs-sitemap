@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/quickstart
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: c910ed523086d4046fae28556b0b62b6033cb3825acbb3e7ecbd001863f067db
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: a1e1a5907778b9c69ea40026093abcb4a1b851a18c50a5047713415ef0f6b04c
 ---
 
 # CLI quickstart
@@ -36,7 +36,7 @@ Compared to `curl`, `ant` builds request bodies from typed flags or piped YAML i
     For Linux environments, download the release binary directly.
 
     ```bash
-    VERSION=1.19.0
+    VERSION=1.21.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -88,14 +88,14 @@ With the binary installed and authenticated, call the [Messages API](/docs/en/ap
 
 ```bash
 ant messages create \
-  --model claude-opus-4-8 \
+  --model claude-opus-5 \
   --max-tokens 1024 \
   --message '{role: user, content: "Hello, Claude"}'
 ```
 
 ```text Output wrap
 {
-  "model": "claude-opus-4-8",
+  "model": "claude-opus-5",
   "id": "msg_01YMmR5XodC5nTqMxLZMKaq6",
   "type": "message",
   "role": "assistant",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/reference
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: 131e2ed44a2528f44485d3d16d959291565369a568247bff634cf8af814e9cbb
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 518139faf947920f3bad79867f3034289a71c7ab6efcd3c46fba1a4402931a65
 ---
 
 # Reference
@@ -78,9 +78,9 @@ Persisted event type strings follow a `{domain}.{action}` naming convention; the
   </Tab>
 
   <Tab title="System events">
-    | Type             | Description                                                                                                                                                                                                                                                                                             |
-    | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | `system.message` | Append privileged system-level context that applies to the accompanying turn and all subsequent turns. Supported on Claude Opus 4.8, Claude Sonnet 5, Claude Fable 5, and Claude Mythos 5; on an unsupported primary model the event is rejected with `model_does_not_support_mid_conversation_system`. |
+    | Type             | Description                                                                                                                                                                                                                                                                                           |
+    | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `system.message` | Append privileged system-level context that applies to the accompanying turn and all subsequent turns. Supported on Claude Opus 4.8, Claude Fable 5, Claude Mythos 5, and Claude Opus 5; on an unsupported primary model the event is rejected with `model_does_not_support_mid_conversation_system`. |
   </Tab>
 
   <Tab title="Event deltas">

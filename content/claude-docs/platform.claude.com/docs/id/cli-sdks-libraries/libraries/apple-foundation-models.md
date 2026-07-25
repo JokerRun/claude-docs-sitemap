@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/apple-foundation-models
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 8f98a0e51686e95cbf4d60e9a705644a141e233a0be6a0939162331c9596e04a
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 8efd7d8d242f59800d7a97ecd65ee3b8cbb598e2f6050a0c2f71fc23426f033a
 ---
 
 # Apple Foundation Models
@@ -20,7 +20,7 @@ Permintaan dikirim langsung dari aplikasi Anda ke Claude API; Apple tidak berada
 </Note>
 
 <Info>
-  Claude for Foundation Models **bukan** klien Messages API untuk tujuan umum. Permukaan publiknya adalah kesesuaian penyedia Foundation Models ditambah tipe konfigurasi yang menjangkaunya (`ClaudeLanguageModel`, `ClaudeModel`, `AuthMode`, `ClaudeServerTool`). Untuk akses langsung ke Messages API dalam bahasa lain, lihat [Client SDKs](/docs/id/cli-sdks-libraries/overview#client-sdks).
+  Claude for Foundation Models **bukan** klien Messages API serbaguna. Permukaan publiknya adalah kesesuaian penyedia Foundation Models ditambah tipe konfigurasi yang menjangkaunya (`ClaudeLanguageModel`, `ClaudeModel`, `AuthMode`, `ClaudeServerTool`). Untuk akses langsung ke Messages API dalam bahasa lain, lihat [Client SDKs](/docs/id/cli-sdks-libraries/overview#client-sdks).
 </Info>
 
 ## Persyaratan
@@ -68,21 +68,21 @@ print(response.content)
 
 Initializer juga menerima `baseURL` (default `https://api.anthropic.com`), `timeout`, dan `serverTools` (lihat [Alat sisi server](#server-side-tools)).
 
-Untuk program lengkap yang berfungsi, repositori menyertakan [`Examples/ClaudeExample`](https://github.com/anthropics/ClaudeForFoundationModels/tree/main/Examples/ClaudeExample), target command-line yang dapat dijalankan yang melakukan streaming giliran percakapan ke terminal, dengan flag `--search` yang mengaktifkan pencarian web sisi server untuk giliran tersebut. Menjalankannya memerlukan host macOS 27.
+Untuk program lengkap yang berfungsi, repositori menyertakan [`Examples/ClaudeExample`](https://github.com/anthropics/ClaudeForFoundationModels/tree/main/Examples/ClaudeExample), target command-line yang dapat dijalankan yang melakukan streaming giliran obrolan ke terminal, dengan flag `--search` yang mengaktifkan pencarian web sisi server untuk giliran tersebut. Menjalankannya memerlukan host macOS 27.
 
 ## Memilih model
 
 Pengidentifikasi model adalah nilai dari `ClaudeModel`. Gunakan konstanta yang sudah dikompilasi, atau buat satu dengan kapabilitas eksplisit untuk ID yang belum dikompilasi (lihat [Kapabilitas](#capabilities)):
 
 ```swift
-ClaudeLanguageModel(name: .opus4_8, auth: auth)
+ClaudeLanguageModel(name: .opus5, auth: auth)
 ```
 
-Konstanta mencerminkan ID model API (`.opus4_8` adalah `claude-opus-4-8`) dan membawa kapabilitas setiap model. Model baru hadir sebagai konstanta baru dalam rilis paket; periksa `ClaudeModel` di Xcode untuk daftar terkini, dan [Ikhtisar model](/docs/id/about-claude/models/overview) untuk membandingkan model.
+Konstanta mencerminkan ID model API (`.opus5` adalah `claude-opus-5`) dan membawa kapabilitas setiap model. Model baru hadir sebagai konstanta baru dalam rilis paket; periksa `ClaudeModel` di Xcode untuk daftar terkini, dan [Ikhtisar model](/docs/id/about-claude/models/overview) untuk membandingkan model.
 
 ### Kapabilitas
 
-Setiap `ClaudeModel` mendeklarasikan apa yang diterimanya: parameter sampling, tingkat effort, adaptive thinking, output terstruktur, dan input gambar. Paket menggunakan ini untuk menentukan field permintaan mana yang akan dikirim, karena mengirim field yang ditolak model adalah kesalahan fatal. Konstanta membawa kapabilitas yang tepat. Untuk ID yang belum dikompilasi, deklarasikan apa yang diterima model (sengaja tidak ada cara singkat yang menebak):
+Setiap `ClaudeModel` mendeklarasikan apa yang diterimanya: parameter sampling, tingkat effort, adaptive thinking, structured output, dan input gambar. Paket menggunakan ini untuk menentukan field permintaan mana yang akan dikirim, karena mengirim field yang ditolak model adalah kesalahan fatal. Konstanta membawa kapabilitas yang tepat. Untuk ID yang belum dikompilasi, deklarasikan apa yang diterima model (sengaja tidak ada cara singkat yang menebak):
 
 ```swift
 let model = ClaudeModel(
@@ -94,17 +94,17 @@ ClaudeLanguageModel(name: model, auth: auth)
 
 ### Effort
 
-Tetapkan [tingkat effort](/docs/id/build-with-claude/effort) Claude untuk setiap permintaan dengan `fixedEffort:`. Ini lebih diutamakan daripada petunjuk reasoning per-permintaan dari framework, dan ini adalah satu-satunya cara untuk meminta `.xhigh` atau `.max`, karena tingkat reasoning framework berhenti di high. API secara default menggunakan `high` ketika tidak ada effort yang dikirim:
+Tetapkan [tingkat effort](/docs/id/build-with-claude/effort) Claude untuk setiap permintaan dengan `fixedEffort:`. Ini lebih diutamakan daripada petunjuk reasoning per-permintaan dari framework. Tingkat reasoning bernama dari framework berhenti di high; untuk meminta effort lebih tinggi untuk satu permintaan saja, berikan tingkat reasoning kustom yang menamai effort Claude (`.custom("xhigh")` atau `.custom("max")`), yang dipetakan secara langsung. API secara default menggunakan `high` ketika tidak ada effort yang dikirim:
 
 ```swift
-ClaudeLanguageModel(name: .opus4_8, auth: auth, fixedEffort: .xhigh)
+ClaudeLanguageModel(name: .opus5, auth: auth, fixedEffort: .xhigh)
 ```
 
 Tingkat tersebut harus yang diterima oleh model. Setiap `ClaudeModel` mendeklarasikan mana dari lima tingkat (`low`, `medium`, `high`, `xhigh`, `max`) yang diterima modelnya, jika ada: beberapa model tidak menerima effort sama sekali.
 
 ### Kapan menggunakan Claude versus model on-device
 
-Model on-device Apple cepat, privat, dan tersedia secara offline, tetapi ukurannya dirancang untuk tugas ringan. Eskalasikan ke Claude ketika Anda membutuhkan konteks yang lebih besar, reasoning tingkat frontier, atau alat sisi server seperti pencarian web dan eksekusi kode. Karena keduanya menggunakan API `LanguageModelSession` yang sama, Anda dapat beralih dengan menukar argumen `model:`.
+Model on-device Apple cepat, privat, dan tersedia secara offline, tetapi ukurannya dirancang untuk tugas ringan. Eskalasikan ke Claude ketika Anda memerlukan konteks yang lebih besar, reasoning tingkat frontier, atau alat sisi server seperti pencarian web dan eksekusi kode. Karena keduanya menggunakan API `LanguageModelSession` yang sama, Anda dapat beralih dengan menukar argumen `model:`.
 
 ## Autentikasi
 
@@ -119,7 +119,7 @@ ClaudeLanguageModel(name: .sonnet5, auth: .apiKey("YOUR_API_KEY"))
 ```
 
 <Warning>
-  Kunci yang dibundel ke dalam aplikasi dapat diekstrak dari binary yang dikirimkan, dan siapa pun yang mengekstraknya dapat membuat permintaan yang ditagihkan ke akun Anda. Gunakan `.apiKey` hanya untuk pengembangan, dan beralih ke proxy sebelum rilis.
+  Kunci yang dibundel ke dalam aplikasi dapat diekstrak dari binary yang dirilis, dan siapa pun yang mengekstraknya dapat membuat permintaan yang ditagihkan ke akun Anda. Gunakan `.apiKey` hanya untuk pengembangan, dan beralihlah ke proxy sebelum rilis.
 </Warning>
 
 ### Proxy (produksi)
@@ -147,7 +147,7 @@ for try await partial in stream {
 }
 ```
 
-## Output terstruktur
+## Structured output
 
 Anotasikan sebuah tipe dengan `@Generable` dan minta dengan `generating:`. Model mengembalikan nilai dari tipe tersebut melalui [structured outputs](/docs/id/build-with-claude/structured-outputs):
 
@@ -162,7 +162,7 @@ let response = try await session.respond(to: "Plan a trip to Tokyo.", generating
 print(response.content.destination)
 ```
 
-Output terstruktur memerlukan model yang kapabilitasnya menyertakannya (semua konstanta yang sudah dikompilasi menyertakannya). Jika model yang dipilih tidak menyertakannya, paket melempar `LanguageModelError.unsupportedGenerationGuide` alih-alih menurunkan kualitas secara diam-diam.
+Structured output memerlukan model yang kapabilitasnya mencakup fitur tersebut (semua konstanta yang sudah dikompilasi mendukungnya). Jika model yang dipilih tidak mendukung, paket akan melempar `LanguageModelError.unsupportedGenerationGuide` alih-alih menurunkan kualitas secara diam-diam.
 
 ## Penggunaan alat
 
@@ -192,16 +192,16 @@ let model = ClaudeLanguageModel(
 `.webSearch` dan `.webFetch` menerima `allowedDomains`, `blockedDomains`, dan `maxUses` opsional. Aktivitas alat server muncul dalam transkrip sebagai segmen kustom `ClaudeServerToolSegment`.
 
 <Note>
-  `serverTools` dikonfigurasi pada `ClaudeLanguageModel` alih-alih pada `LanguageModelSession` karena tipe sesi adalah milik Apple. Untuk menggunakan set alat server yang berbeda untuk setiap percakapan, buat beberapa instance `ClaudeLanguageModel`.
+  `serverTools` dikonfigurasi pada `ClaudeLanguageModel` alih-alih pada `LanguageModelSession` karena tipe sesi tersebut milik Apple. Untuk menggunakan set alat server yang berbeda untuk setiap percakapan, buat beberapa instance `ClaudeLanguageModel`.
 </Note>
 
 ## Gambar
 
-Model yang kapabilitasnya menyertakan input gambar mendeklarasikan kapabilitas vision dari framework. Berikan konten gambar melalui API sesi standar framework; paket mengonversinya ke format gambar Claude API. Lihat [Vision](/docs/id/build-with-claude/vision) untuk persyaratan gambar.
+Model yang kapabilitasnya mencakup input gambar mendeklarasikan kapabilitas vision dari framework. Berikan konten gambar melalui API sesi standar framework; paket mengonversinya ke format gambar Claude API. Lihat [Vision](/docs/id/build-with-claude/vision) untuk persyaratan gambar.
 
 ## Penanganan kesalahan
 
-Paket memetakan kesalahan Claude API ke case `LanguageModelError` dari Apple jika ada yang sesuai: overflow jendela konteks muncul sebagai `.contextSizeExceeded`, HTTP 429 sebagai `.rateLimited`, permintaan yang melewati timeout yang dikonfigurasi sebagai `.timeout`. Kesalahan penyedia yang tidak memiliki padanan framework muncul sebagai `ClaudeError`. Gunakan pattern-matching untuk mengarahkan alur produk:
+Paket memetakan kesalahan Claude API ke case `LanguageModelError` dari Apple jika ada yang sesuai: overflow jendela konteks muncul sebagai `.contextSizeExceeded`, HTTP 429 sebagai `.rateLimited`, permintaan yang melewati timeout yang dikonfigurasi sebagai `.timeout`. Kesalahan penyedia yang tidak memiliki padanan di framework muncul sebagai `ClaudeError`. Gunakan pattern-matching untuk mengarahkan alur produk:
 
 ```swift
 do {
@@ -234,7 +234,7 @@ Paket menampilkan kapabilitas Messages API yang dapat diekspresikan oleh protoko
 | Referensi                                                                                         | Mencakup                                                                                    |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | [Dokumentasi Apple Foundation Models](https://developer.apple.com/documentation/foundationmodels) | `LanguageModelSession`, `@Generable`, `Transcript`, `Tool`, dan permukaan framework lainnya |
-| [`ClaudeForFoundationModels` di GitHub](https://github.com/anthropics/ClaudeForFoundationModels)  | Kode sumber, contoh yang dapat dijalankan, dan pelacak isu                                  |
+| [`ClaudeForFoundationModels` di GitHub](https://github.com/anthropics/ClaudeForFoundationModels)  | Kode sumber, contoh yang dapat dijalankan, dan issue tracker                                |
 | [Referensi Claude API](/docs/id/api/overview)                                                     | Messages API yang mendasarinya                                                              |
 
 Paket ini dilisensikan di bawah Apache 2.0. Laporan bug diterima melalui GitHub issues. Pull request eksternal tidak diterima selama periode beta.

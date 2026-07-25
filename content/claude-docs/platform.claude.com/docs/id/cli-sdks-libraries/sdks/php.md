@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: abe58e0c2443280ff6ee4cade235ce8ef106e01e9336808eaa009485f8865a73
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: e587aa907d82faff01ac2b316614a9719b69d9920d355f51dc0c44215241c512
 ---
 
 # PHP SDK
@@ -11,7 +11,7 @@ Instal dan konfigurasikan Anthropic PHP SDK dengan value object dan pola builder
 
 ---
 
-Pustaka Anthropic PHP menyediakan akses yang mudah ke Anthropic REST API dari aplikasi PHP 8.1.0+ apa pun.
+Library PHP Anthropic menyediakan akses yang mudah ke REST API Anthropic dari aplikasi PHP 8.1.0+ apa pun.
 
 <Info>
   PHP SDK saat ini dalam tahap beta. API dapat berubah antar versi.
@@ -35,7 +35,7 @@ PHP 8.1.0 atau lebih tinggi.
 
 ## Penggunaan
 
-Pustaka ini menggunakan named parameter untuk menentukan argumen opsional. Parameter dengan nilai default harus diatur berdasarkan nama.
+Library ini menggunakan named parameter untuk menentukan argumen opsional. Parameter dengan nilai default harus diatur berdasarkan nama.
 
 ```php
 $client = new Client();
@@ -43,23 +43,24 @@ $client = new Client();
 $message = $client->messages->create(
   maxTokens: 1024,
   messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-  model: 'claude-opus-4-8',
+  model: 'claude-opus-5',
 );
 
-echo $message->content[0]->text;
+$textBlock = array_find($message->content, static fn ($block): bool => $block->type === 'text');
+echo $textBlock->text;
 ```
 
 Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](/docs/id/manage-claude/authentication).
 
 ## Value object
 
-Disarankan untuk menggunakan konstruktor statis `with` `Base64ImageSource::with(data: "U3RhaW5sZXNzIHJvY2tz", ...)` dan named parameter untuk menginisialisasi value object.
+Disarankan untuk menggunakan konstruktor statis `with` seperti `Base64ImageSource::with(data: "U3RhaW5sZXNzIHJvY2tz", ...)` dan named parameter untuk menginisialisasi value object.
 
 Namun, builder juga disediakan `(new Base64ImageSource)->withData("U3RhaW5sZXNzIHJvY2tz")`.
 
 ## Streaming
 
-SDK menyediakan dukungan untuk respons streaming menggunakan Server-Sent Events (SSE).
+SDK menyediakan dukungan untuk streaming respons menggunakan Server-Sent Events (SSE).
 
 ```php
 $client = new Client();
@@ -67,7 +68,7 @@ $client = new Client();
 $stream = $client->messages->createStream(
   maxTokens: 1024,
   messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-  model: 'claude-opus-4-8',
+  model: 'claude-opus-5',
 );
 
 foreach ($stream as $event) {
@@ -85,7 +86,7 @@ $client = new Anthropic\Client(
 
 ## Penanganan error
 
-Ketika pustaka tidak dapat terhubung ke API, atau jika API mengembalikan kode status non-sukses (yaitu, respons 4xx atau 5xx), subclass dari `Anthropic\Core\Exceptions\APIException` akan dilemparkan:
+Ketika library tidak dapat terhubung ke API, atau jika API mengembalikan kode status non-sukses (yaitu, respons 4xx atau 5xx), subclass dari `Anthropic\Core\Exceptions\APIException` akan dilempar:
 
 ```php
 <?php
@@ -98,7 +99,7 @@ try {
   $message = $client->messages->create(
     maxTokens: 1024,
     messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-    model: 'claude-opus-4-8',
+    model: 'claude-opus-5',
   );
 } catch (APIConnectionException $e) {
   echo "The server could not be reached", PHP_EOL;
@@ -145,7 +146,7 @@ $client = new Client(requestOptions: RequestOptions::with(maxRetries: 0));
 $result = $client->messages->create(
   maxTokens: 1024,
   messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-  model: 'claude-opus-4-8',
+  model: 'claude-opus-5',
   requestOptions: RequestOptions::with(maxRetries: 5),
 );
 ```
@@ -154,7 +155,7 @@ $result = $client->messages->create(
 
 Metode list di Claude API menggunakan paginasi.
 
-Pustaka ini menyediakan iterator dengan paginasi otomatis pada setiap respons list, sehingga Anda tidak perlu meminta halaman berikutnya secara manual:
+Library ini menyediakan iterator dengan paginasi otomatis pada setiap respons list, sehingga Anda tidak perlu meminta halaman berikutnya secara manual:
 
 ```php
 $client = new Client();
@@ -189,7 +190,7 @@ use Anthropic\RequestOptions;
 $message = $client->messages->create(
   maxTokens: 1024,
   messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-  model: 'claude-opus-4-8',
+  model: 'claude-opus-5',
   requestOptions: RequestOptions::with(
     extraQueryParams: ['my_query_parameter' => 'value'],
     extraBodyParams: ['my_body_parameter' => 'value'],
@@ -242,7 +243,7 @@ Gunakan `MantleClient` untuk proyek baru; `Anthropic\Bedrock\Client` tetap terse
 
 ## Semantic versioning
 
-Paket ini mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html). Karena pustaka ini masih dalam pengembangan awal dan memiliki versi mayor `0`, API dapat berubah kapan saja.
+Paket ini mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html). Karena library ini masih dalam pengembangan awal dan memiliki versi mayor `0`, API dapat berubah kapan saja.
 
 Paket ini menganggap perbaikan pada definisi tipe PHPDoc (non-runtime) sebagai perubahan yang tidak merusak kompatibilitas.
 

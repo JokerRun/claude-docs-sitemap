@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-operations
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 16450fe1a1c919b5bdc1dca316b66adc5897b58407eebb1ab8ace8c284d88329
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 6f6e8174dafc83af04054a9d9e208442de80fef33b9fb736fbfe718460ba2ead
 ---
 
 # Operasi sesi
 
-Mengambil, mencantumkan, memperbarui, mengarsipkan, dan menghapus sesi Claude Managed Agents.
+Mengambil, mendaftar, memperbarui, mengarsipkan, dan menghapus sesi Claude Managed Agents.
 
 ---
 
@@ -26,13 +26,13 @@ Sesi berkembang melalui status-status berikut. Lihat [Memulai sesi](/docs/id/man
 | `idle`         | Agen sedang menunggu input, termasuk pesan pengguna atau konfirmasi alat. Sesi yang dibuat tanpa `initial_events` dimulai dalam status `idle`. |
 | `running`      | Agen sedang aktif mengeksekusi.                                                                                                                |
 | `rescheduling` | Terjadi kesalahan sementara, mencoba ulang secara otomatis.                                                                                    |
-| `terminated`   | Sesi telah berakhir, baik karena kesalahan yang tidak dapat dipulihkan atau setelah selesai.                                                   |
+| `terminated`   | Sesi telah berakhir, baik karena kesalahan yang tidak dapat dipulihkan atau karena selesai.                                                    |
 
 ## Memperbarui konfigurasi agen
 
-Anda dapat memperbarui `agent.tools` dan `agent.mcp_servers` dari sebuah sesi, termasuk kebijakan izin, di tengah sesi tanpa membuat versi agen baru. Pembaruan bersifat lokal untuk sesi dan tidak disebarkan kembali ke agen yang mendasarinya.
+Anda dapat memperbarui `agent.tools` dan `agent.mcp_servers` sebuah sesi, termasuk kebijakan izin, di tengah sesi tanpa membuat versi agen baru. Pembaruan bersifat lokal untuk sesi dan tidak disebarkan kembali ke agen yang mendasarinya.
 
-Hanya `tools` dan `mcp_servers` dari agen yang dapat berubah setelah sesi dibuat. Untuk menjalankan sesi dengan nilai `model`, `system`, atau `skills` yang berbeda dari milik agen, gunakan [penggantian konfigurasi agen](/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) saat Anda membuat sesi. Bidang `system` yang dikonfigurasi pada agen bersifat tetap selama masa hidup sesi. Pada model yang mendukungnya, Anda masih dapat menambahkan panduan tingkat sistem di tengah sesi dengan mengirimkan [event `system.message`](/docs/id/managed-agents/events-and-streaming#sending-system-messages).
+Hanya `tools` dan `mcp_servers` agen yang dapat berubah setelah sesi dibuat. Untuk menjalankan sesi dengan nilai `model`, `system`, atau `skills` yang berbeda dari milik agen, gunakan [penggantian konfigurasi agen](/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) saat Anda membuat sesi. Bidang `system` yang dikonfigurasi pada agen bersifat tetap selama masa hidup sesi. Pada model yang mendukungnya, Anda masih dapat menambahkan panduan tingkat sistem di tengah sesi dengan mengirimkan [event `system.message`](/docs/id/managed-agents/events-and-streaming#sending-system-messages).
 
 Semantik dari pembaruan `tools` atau `mcp_servers` adalah penggantian penuh: array yang diberikan adalah nilai baru. Untuk mempertahankan entri yang sudah ada, lakukan `GET` pada sesi, modifikasi array-nya, dan `POST` kembali.
 
@@ -272,7 +272,7 @@ Sesi harus dalam status `idle` untuk memperbarui agen. [Interupsi](/docs/id/mana
   ```
 </CodeGroup>
 
-## Mencantumkan sesi
+## Mendaftar sesi
 
 Hasil dari `GET /v1/sessions` dipaginasi. Gunakan parameter kueri `limit` untuk mengontrol ukuran halaman. Setiap respons menyertakan kursor `next_page`; teruskan sebagai parameter `page` pada permintaan berikutnya untuk mengambil halaman selanjutnya. `next_page` bernilai `null` ketika tidak ada lagi hasil.
 
@@ -535,7 +535,7 @@ Kursor `page` bersifat opak dan mengodekan `order` dari permintaan yang menghasi
 
 ## Mengarsipkan sesi
 
-Arsipkan sesi untuk mencegah event baru dikirim sambil mempertahankan riwayatnya. Sesi yang berstatus `running` tidak dapat diarsipkan; kirim [event interupsi](/docs/id/managed-agents/events-and-streaming#integrating-events) jika Anda perlu mengarsipkannya segera.
+Arsipkan sesi untuk mencegah event baru dikirim sambil mempertahankan riwayatnya. Sesi dengan status `running` tidak dapat diarsipkan; kirim [event interupsi](/docs/id/managed-agents/events-and-streaming#integrating-events) jika Anda perlu mengarsipkannya segera.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -584,7 +584,7 @@ Arsipkan sesi untuk mencegah event baru dikirim sambil mempertahankan riwayatnya
 
 ## Menghapus sesi
 
-Hapus sesi untuk menghapus secara permanen catatan, event, dan sandbox yang terkait dengannya. Sesi yang berstatus `running` tidak dapat dihapus; kirim [event interupsi](/docs/id/managed-agents/events-and-streaming#integrating-events) jika Anda perlu menghapusnya segera.
+Hapus sesi untuk menghilangkan secara permanen catatan, event, dan sandbox yang terkait dengannya. Sesi dengan status `running` tidak dapat dihapus; kirim [event interupsi](/docs/id/managed-agents/events-and-streaming#integrating-events) jika Anda perlu menghapusnya segera.
 
 File, penyimpanan memori, vault, skill, environment, dan agen adalah sumber daya independen dan tidak terpengaruh oleh penghapusan sesi.
 

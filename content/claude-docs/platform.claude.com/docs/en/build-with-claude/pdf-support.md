@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/pdf-support
-fetched_at: 2026-07-18T03:07:08.309502Z
-sha256: 6f11a41932a493d85208fed020975406dde71bb34c0a2cf57132141a5d6e2a9a
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: d05f10e853a6d9c9caebe05a4b1d4dcd9a6a00925c7b5ba85c8d0a8dd473ab3b
 ---
 
 # PDF support
@@ -113,7 +113,7 @@ The simplest approach is to reference a PDF directly from a URL:
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "messages": [{
           "role": "user",
@@ -134,7 +134,7 @@ The simplest approach is to reference a PDF directly from a URL:
 
   ```bash CLI
   ant messages create --transform content --format yaml <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1024
   messages:
     - role: user
@@ -151,7 +151,7 @@ The simplest approach is to reference a PDF directly from a URL:
   ```python Python
   client = anthropic.Anthropic()
   message = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[
           {
@@ -177,7 +177,7 @@ The simplest approach is to reference a PDF directly from a URL:
   const anthropic = new Anthropic();
 
   const response = await anthropic.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -217,7 +217,7 @@ The simplest approach is to reference a PDF directly from a URL:
   // Create a message with document and text content blocks
   var message = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Messages =
       [
@@ -240,7 +240,7 @@ The simplest approach is to reference a PDF directly from a URL:
   client := anthropic.NewClient()
 
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -274,7 +274,7 @@ The simplest approach is to reference a PDF directly from a URL:
 
   // Create a message with document and text content blocks
   MessageCreateParams params = MessageCreateParams.builder()
-    .model(Model.CLAUDE_OPUS_4_8)
+    .model(Model.CLAUDE_OPUS_5)
     .maxTokens(1024)
     .addUserMessageOfBlockParams(
       List.of(
@@ -315,7 +315,7 @@ The simplest approach is to reference a PDF directly from a URL:
               ],
           ],
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
   echo $message;
@@ -325,7 +325,7 @@ The simplest approach is to reference a PDF directly from a URL:
   anthropic = Anthropic::Client.new
 
   message = anthropic.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -355,7 +355,7 @@ The response returns Claude's analysis as text blocks in `content`, with token c
   "id": "msg_01Hfp8YuFjQ55VgWbpdHDehB",
   "type": "message",
   "role": "assistant",
-  "model": "claude-opus-4-8",
+  "model": "claude-opus-5",
   "content": [
     {
       "type": "text",
@@ -384,7 +384,7 @@ If you need to send PDFs from your local system or when a URL isn't available:
 
   # Create a JSON request file using the pdf_base64.txt content
   jq -n --rawfile PDF_BASE64 pdf_base64.txt '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "messages": [{
           "role": "user",
@@ -413,7 +413,7 @@ If you need to send PDFs from your local system or when a URL isn't available:
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-4-8 \
+    --model claude-opus-5 \
     --max-tokens 1024 \
     --transform content \
     --format yaml <<'YAML'
@@ -447,7 +447,7 @@ If you need to send PDFs from your local system or when a URL isn't available:
   # Send to Claude using base64 encoding
   client = anthropic.Anthropic()
   message = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[
           {
@@ -485,7 +485,7 @@ If you need to send PDFs from your local system or when a URL isn't available:
   // Send the API request with base64-encoded PDF
   const anthropic = new Anthropic();
   const response = await anthropic.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -531,7 +531,7 @@ If you need to send PDFs from your local system or when a URL isn't available:
   // Create a message with document and text content blocks
   var message = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Messages =
       [
@@ -571,7 +571,7 @@ If you need to send PDFs from your local system or when a URL isn't available:
   // Send to Claude using base64 encoding
   client := anthropic.NewClient()
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -615,7 +615,7 @@ If you need to send PDFs from your local system or when a URL isn't available:
 
   // Create a message with document and text content blocks
   MessageCreateParams params = MessageCreateParams.builder()
-    .model(Model.CLAUDE_OPUS_4_8)
+    .model(Model.CLAUDE_OPUS_5)
     .maxTokens(1024)
     .addUserMessageOfBlockParams(
       List.of(
@@ -665,7 +665,7 @@ If you need to send PDFs from your local system or when a URL isn't available:
               ],
           ],
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
   echo $message;
@@ -685,7 +685,7 @@ If you need to send PDFs from your local system or when a URL isn't available:
   # Send to Claude using base64 encoding
   anthropic = Anthropic::Client.new
   message = anthropic.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -730,7 +730,7 @@ For PDFs you'll use repeatedly, or when you want to avoid encoding overhead, use
     -H "anthropic-beta: files-api-2025-04-14" \
     -d @- <<EOF
   {
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5",
     "max_tokens": 1024,
     "messages": [{
       "role": "user",
@@ -762,7 +762,7 @@ For PDFs you'll use repeatedly, or when you want to avoid encoding overhead, use
     --beta files-api-2025-04-14 \
     --transform content \
     --format yaml <<YAML
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1024
   messages:
     - role: user
@@ -785,7 +785,7 @@ For PDFs you'll use repeatedly, or when you want to avoid encoding overhead, use
 
   # Use the uploaded file in a message
   message = client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       betas=["files-api-2025-04-14"],
       messages=[
@@ -820,7 +820,7 @@ For PDFs you'll use repeatedly, or when you want to avoid encoding overhead, use
 
   // Use the uploaded file in a message
   const response = await anthropic.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     betas: ["files-api-2025-04-14"],
     messages: [
@@ -865,7 +865,7 @@ For PDFs you'll use repeatedly, or when you want to avoid encoding overhead, use
   // Use the uploaded file in a message
   var message = await client.Beta.Messages.Create(new MessageCreateParams
   {
-      Model = Messages::Model.ClaudeOpus4_8,
+      Model = Messages::Model.ClaudeOpus5,
       MaxTokens = 1024,
       Betas = [AnthropicBeta.FilesApi2025_04_14],
       Messages =
@@ -907,7 +907,7 @@ For PDFs you'll use repeatedly, or when you want to avoid encoding overhead, use
 
   // Use the uploaded file in a message
   message, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Betas:     []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
   	Messages: []anthropic.BetaMessageParam{
@@ -937,7 +937,7 @@ For PDFs you'll use repeatedly, or when you want to avoid encoding overhead, use
 
   // Use the uploaded file in a message
   MessageCreateParams params = MessageCreateParams.builder()
-    .model(Model.CLAUDE_OPUS_4_8)
+    .model(Model.CLAUDE_OPUS_5)
     .addBeta("files-api-2025-04-14")
     .maxTokens(1024)
     .addUserMessageOfBetaContentBlockParams(
@@ -996,7 +996,7 @@ For PDFs you'll use repeatedly, or when you want to avoid encoding overhead, use
               ],
           ],
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
   echo $message;
@@ -1014,7 +1014,7 @@ For PDFs you'll use repeatedly, or when you want to avoid encoding overhead, use
 
   # Use the uploaded file in a message
   message = anthropic.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     betas: ["files-api-2025-04-14"],
     messages: [
@@ -1095,7 +1095,7 @@ Cache PDFs with [prompt caching](/docs/en/build-with-claude/prompt-caching) to i
   curl -sL "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf" | base64 | tr -d '\n' > pdf_base64.txt
   # Create a JSON request file using the pdf_base64.txt content
   jq -n --rawfile PDF_BASE64 pdf_base64.txt '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "messages": [{
           "role": "user",
@@ -1127,7 +1127,7 @@ Cache PDFs with [prompt caching](/docs/en/build-with-claude/prompt-caching) to i
 
   ```bash CLI
   ant messages create --transform content --format yaml <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1024
   messages:
     - role: user
@@ -1157,7 +1157,7 @@ Cache PDFs with [prompt caching](/docs/en/build-with-claude/prompt-caching) to i
   # Create a message with the cached document
   client = anthropic.Anthropic()
   message = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[
           {
@@ -1195,7 +1195,7 @@ Cache PDFs with [prompt caching](/docs/en/build-with-claude/prompt-caching) to i
   // Create a message with the cached document
   const anthropic = new Anthropic();
   const response = await anthropic.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -1232,7 +1232,7 @@ Cache PDFs with [prompt caching](/docs/en/build-with-claude/prompt-caching) to i
 
   var message = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Messages =
       [
@@ -1272,7 +1272,7 @@ Cache PDFs with [prompt caching](/docs/en/build-with-claude/prompt-caching) to i
   // Create a document block with cache control
   client := anthropic.NewClient()
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -1313,7 +1313,7 @@ Cache PDFs with [prompt caching](/docs/en/build-with-claude/prompt-caching) to i
   String pdfBase64 = Base64.getEncoder().encodeToString(response.body());
 
   MessageCreateParams params = MessageCreateParams.builder()
-    .model(Model.CLAUDE_OPUS_4_8)
+    .model(Model.CLAUDE_OPUS_5)
     .maxTokens(1024)
     .addUserMessageOfBlockParams(
       List.of(
@@ -1367,7 +1367,7 @@ Cache PDFs with [prompt caching](/docs/en/build-with-claude/prompt-caching) to i
               ],
           ],
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
   echo $message;
@@ -1384,7 +1384,7 @@ Cache PDFs with [prompt caching](/docs/en/build-with-claude/prompt-caching) to i
   anthropic = Anthropic::Client.new
 
   message = anthropic.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -1425,7 +1425,7 @@ Use the [Message Batches API](/docs/en/build-with-claude/batch-processing) to pr
       {
           "custom_id": "my-first-request",
           "params": {
-              "model": "claude-opus-4-8",
+              "model": "claude-opus-5",
               "max_tokens": 1024,
               "messages": [{
                   "role": "user",
@@ -1447,7 +1447,7 @@ Use the [Message Batches API](/docs/en/build-with-claude/batch-processing) to pr
       {
           "custom_id": "my-second-request",
           "params": {
-              "model": "claude-opus-4-8",
+              "model": "claude-opus-5",
               "max_tokens": 1024,
               "messages": [{
                   "role": "user",
@@ -1481,7 +1481,7 @@ Use the [Message Batches API](/docs/en/build-with-claude/batch-processing) to pr
   requests:
     - custom_id: my-first-request
       params:
-        model: claude-opus-4-8
+        model: claude-opus-5
         max_tokens: 1024
         messages:
           - role: user
@@ -1497,7 +1497,7 @@ Use the [Message Batches API](/docs/en/build-with-claude/batch-processing) to pr
                   across each use-case?
     - custom_id: my-second-request
       params:
-        model: claude-opus-4-8
+        model: claude-opus-5
         max_tokens: 1024
         messages:
           - role: user
@@ -1529,7 +1529,7 @@ Use the [Message Batches API](/docs/en/build-with-claude/batch-processing) to pr
           {
               "custom_id": "my-first-request",
               "params": {
-                  "model": "claude-opus-4-8",
+                  "model": "claude-opus-5",
                   "max_tokens": 1024,
                   "messages": [
                       {
@@ -1555,7 +1555,7 @@ Use the [Message Batches API](/docs/en/build-with-claude/batch-processing) to pr
           {
               "custom_id": "my-second-request",
               "params": {
-                  "model": "claude-opus-4-8",
+                  "model": "claude-opus-5",
                   "max_tokens": 1024,
                   "messages": [
                       {
@@ -1599,7 +1599,7 @@ Use the [Message Batches API](/docs/en/build-with-claude/batch-processing) to pr
       {
         custom_id: "my-first-request",
         params: {
-          model: "claude-opus-4-8",
+          model: "claude-opus-5",
           max_tokens: 1024,
           messages: [
             {
@@ -1625,7 +1625,7 @@ Use the [Message Batches API](/docs/en/build-with-claude/batch-processing) to pr
       {
         custom_id: "my-second-request",
         params: {
-          model: "claude-opus-4-8",
+          model: "claude-opus-5",
           max_tokens: 1024,
           messages: [
             {
@@ -1671,7 +1671,7 @@ Use the [Message Batches API](/docs/en/build-with-claude/batch-processing) to pr
               CustomID = "my-first-request",
               Params = new()
               {
-                  Model = Model.ClaudeOpus4_8,
+                  Model = Model.ClaudeOpus5,
                   MaxTokens = 1024,
                   Messages =
                   [
@@ -1695,7 +1695,7 @@ Use the [Message Batches API](/docs/en/build-with-claude/batch-processing) to pr
               CustomID = "my-second-request",
               Params = new()
               {
-                  Model = Model.ClaudeOpus4_8,
+                  Model = Model.ClaudeOpus5,
                   MaxTokens = 1024,
                   Messages =
                   [
@@ -1741,7 +1741,7 @@ Use the [Message Batches API](/docs/en/build-with-claude/batch-processing) to pr
   		{
   			CustomID: "my-first-request",
   			Params: anthropic.MessageBatchNewParamsRequestParams{
-  				Model:     anthropic.ModelClaudeOpus4_8,
+  				Model:     anthropic.ModelClaudeOpus5,
   				MaxTokens: 1024,
   				Messages: []anthropic.MessageParam{
   					anthropic.NewUserMessage(
@@ -1756,7 +1756,7 @@ Use the [Message Batches API](/docs/en/build-with-claude/batch-processing) to pr
   		{
   			CustomID: "my-second-request",
   			Params: anthropic.MessageBatchNewParamsRequestParams{
-  				Model:     anthropic.ModelClaudeOpus4_8,
+  				Model:     anthropic.ModelClaudeOpus5,
   				MaxTokens: 1024,
   				Messages: []anthropic.MessageParam{
   					anthropic.NewUserMessage(
@@ -1798,7 +1798,7 @@ Use the [Message Batches API](/docs/en/build-with-claude/batch-processing) to pr
         .customId("my-first-request")
         .params(
           BatchCreateParams.Request.Params.builder()
-            .model(Model.CLAUDE_OPUS_4_8)
+            .model(Model.CLAUDE_OPUS_5)
             .maxTokens(1024)
             .addUserMessageOfBlockParams(
               List.of(
@@ -1825,7 +1825,7 @@ Use the [Message Batches API](/docs/en/build-with-claude/batch-processing) to pr
         .customId("my-second-request")
         .params(
           BatchCreateParams.Request.Params.builder()
-            .model(Model.CLAUDE_OPUS_4_8)
+            .model(Model.CLAUDE_OPUS_5)
             .maxTokens(1024)
             .addUserMessageOfBlockParams(
               List.of(
@@ -1863,7 +1863,7 @@ Use the [Message Batches API](/docs/en/build-with-claude/batch-processing) to pr
           [
               'custom_id' => 'my-first-request',
               'params' => [
-                  'model' => 'claude-opus-4-8',
+                  'model' => 'claude-opus-5',
                   'max_tokens' => 1024,
                   'messages' => [
                       [
@@ -1889,7 +1889,7 @@ Use the [Message Batches API](/docs/en/build-with-claude/batch-processing) to pr
           [
               'custom_id' => 'my-second-request',
               'params' => [
-                  'model' => 'claude-opus-4-8',
+                  'model' => 'claude-opus-5',
                   'max_tokens' => 1024,
                   'messages' => [
                       [
@@ -1933,7 +1933,7 @@ Use the [Message Batches API](/docs/en/build-with-claude/batch-processing) to pr
       {
         custom_id: "my-first-request",
         params: {
-          model: "claude-opus-4-8",
+          model: "claude-opus-5",
           max_tokens: 1024,
           messages: [
             {
@@ -1959,7 +1959,7 @@ Use the [Message Batches API](/docs/en/build-with-claude/batch-processing) to pr
       {
         custom_id: "my-second-request",
         params: {
-          model: "claude-opus-4-8",
+          model: "claude-opus-5",
           max_tokens: 1024,
           messages: [
             {

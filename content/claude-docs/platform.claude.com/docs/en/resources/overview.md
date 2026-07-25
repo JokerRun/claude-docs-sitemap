@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/overview
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 68cdf54414b07f31800901f267c942a8560dcadaae75f8aeda015faa14a89884
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 42c3b7524301d59ac480ddd82a771327c6901d2bfe95b150238d1bda0c090b52
 ---
 
 # Resources
@@ -14,6 +14,10 @@ Model cards, learning resources, and documentation formats optimized for AI inge
 ## Model cards
 
 <CardGroup cols={3}>
+  <Card title="Claude Opus 5 System Card" icon="file" href="https://www.anthropic.com/claude-opus-5-system-card">
+    Detailed documentation of Claude Opus 5.
+  </Card>
+
   <Card title="Claude Sonnet 5 System Card" icon="file" href="https://www.anthropic.com/claude-sonnet-5-system-card">
     Detailed documentation of Claude Sonnet 5.
   </Card>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: baff221aff588fc3607ebb466ef627e3290299ae2da7359bb8b9c36bc9f99774
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 028479a04f301872514bbab28f9e701758fcfc8c983bb891edcb9db4035d8b30
 ---
 
 # Orkestrasi multiagen
@@ -51,7 +51,7 @@ Saat [mendefinisikan agen Anda](/docs/id/managed-agents/agent-setup), atur `mult
     -d @- <<EOF
   {
     "name": "Engineering Lead",
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5",
     "system": "You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.",
     "tools": [
       {
@@ -73,7 +73,7 @@ Saat [mendefinisikan agen Anda](/docs/id/managed-agents/agent-setup), atur `mult
   ```bash CLI
   ant beta:agents create <<YAML
   name: Engineering Lead
-  model: claude-opus-4-8
+  model: claude-opus-5
   system: You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.
   tools:
     - type: agent_toolset_20260401
@@ -90,7 +90,7 @@ Saat [mendefinisikan agen Anda](/docs/id/managed-agents/agent-setup), atur `mult
   ```python Python
   coordinator = client.beta.agents.create(
       name="Engineering Lead",
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       system="You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.",
       tools=[
           {"type": "agent_toolset_20260401"},
@@ -108,7 +108,7 @@ Saat [mendefinisikan agen Anda](/docs/id/managed-agents/agent-setup), atur `mult
   ```typescript TypeScript
   const coordinator = await client.beta.agents.create({
     name: "Engineering Lead",
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     system:
       "You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.",
     tools: [{ type: "agent_toolset_20260401" }],
@@ -126,7 +126,7 @@ Saat [mendefinisikan agen Anda](/docs/id/managed-agents/agent-setup), atur `mult
   var coordinator = await client.Beta.Agents.Create(new()
   {
       Name = "Engineering Lead",
-      Model = BetaManagedAgentsModel.ClaudeOpus4_8,
+      Model = BetaManagedAgentsModel.ClaudeOpus5,
       System = "You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.",
       Tools =
       [
@@ -146,7 +146,7 @@ Saat [mendefinisikan agen Anda](/docs/id/managed-agents/agent-setup), atur `mult
   ```go Go
   coordinator, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name:   "Engineering Lead",
-  	Model:  anthropic.BetaManagedAgentsModelConfigParams{ID: anthropic.BetaManagedAgentsModelClaudeOpus4_8},
+  	Model:  anthropic.BetaManagedAgentsModelConfigParams{ID: anthropic.BetaManagedAgentsModelClaudeOpus5},
   	System: anthropic.String("You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent."),
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
   		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
@@ -170,7 +170,7 @@ Saat [mendefinisikan agen Anda](/docs/id/managed-agents/agent-setup), atur `mult
   var coordinator = client.beta().agents().create(
       AgentCreateParams.builder()
           .name("Engineering Lead")
-          .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_8)
+          .model(BetaManagedAgentsModel.CLAUDE_OPUS_5)
           .system("You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.")
           .addTool(
               BetaManagedAgentsAgentToolset20260401Params.builder()
@@ -195,7 +195,7 @@ Saat [mendefinisikan agen Anda](/docs/id/managed-agents/agent-setup), atur `mult
   ```php PHP
   $coordinator = $client->beta->agents->create(
       name: 'Engineering Lead',
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       system: 'You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.',
       tools: [
           ['type' => 'agent_toolset_20260401'],
@@ -213,7 +213,7 @@ Saat [mendefinisikan agen Anda](/docs/id/managed-agents/agent-setup), atur `mult
   ```ruby Ruby
   coordinator = client.beta.agents.create(
     name: "Engineering Lead",
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     system: "You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.",
     tools: [
       {type: "agent_toolset_20260401"}
@@ -346,7 +346,7 @@ Server MCP bercakupan agen (setiap definisi agen mendeklarasikan server dan alat
   coordinator_id=$(curl --fail-with-body -sS "$BASE/v1/agents" "${H[@]}" --data @- <<EOF | jq -er '.id'
   {
     "name": "coordinator",
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5",
     "tools": [{"type": "agent_toolset_20260401"}],
     "multiagent": {
       "type": "coordinator",
@@ -383,7 +383,7 @@ Server MCP bercakupan agen (setiap definisi agen mendeklarasikan server dan alat
 
   coordinator_id=$(ant beta:agents create --transform id --raw-output <<YAML
   name: coordinator
-  model: claude-opus-4-8
+  model: claude-opus-5
   tools:
     - type: agent_toolset_20260401
   multiagent:
@@ -414,7 +414,7 @@ Server MCP bercakupan agen (setiap definisi agen mendeklarasikan server dan alat
 
   coordinator = client.beta.agents.create(
       name="coordinator",
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       tools=[{"type": "agent_toolset_20260401"}],
       multiagent={
           "type": "coordinator",
@@ -442,7 +442,7 @@ Server MCP bercakupan agen (setiap definisi agen mendeklarasikan server dan alat
 
   const coordinator = await client.beta.agents.create({
     name: "coordinator",
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     tools: [{ type: "agent_toolset_20260401" }],
     multiagent: {
       type: "coordinator",
@@ -485,7 +485,7 @@ Server MCP bercakupan agen (setiap definisi agen mendeklarasikan server dan alat
   var coordinator = await client.Beta.Agents.Create(new()
   {
       Name = "coordinator",
-      Model = BetaManagedAgentsModel.ClaudeOpus4_8,
+      Model = BetaManagedAgentsModel.ClaudeOpus5,
       Tools =
       [
           new BetaManagedAgentsAgentToolset20260401Params
@@ -500,7 +500,7 @@ Server MCP bercakupan agen (setiap definisi agen mendeklarasikan server dan alat
           [
               new BetaManagedAgentsAgentParams
               {
-                  Type = Anthropic.Models.Beta.Sessions.Type.Agent,
+                  Type = BetaManagedAgentsAgentParamsType.Agent,
                   ID = researchAgent.ID,
               },
           ],
@@ -538,7 +538,7 @@ Server MCP bercakupan agen (setiap definisi agen mendeklarasikan server dan alat
 
   coordinator, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name:  "coordinator",
-  	Model: anthropic.BetaManagedAgentsModelConfigParams{ID: anthropic.BetaManagedAgentsModelClaudeOpus4_8},
+  	Model: anthropic.BetaManagedAgentsModelConfigParams{ID: anthropic.BetaManagedAgentsModelClaudeOpus5},
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
   		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
   			Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
@@ -591,7 +591,7 @@ Server MCP bercakupan agen (setiap definisi agen mendeklarasikan server dan alat
   var coordinator = client.beta().agents().create(
       AgentCreateParams.builder()
           .name("coordinator")
-          .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_8)
+          .model(BetaManagedAgentsModel.CLAUDE_OPUS_5)
           .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
               .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
               .build())
@@ -627,7 +627,7 @@ Server MCP bercakupan agen (setiap definisi agen mendeklarasikan server dan alat
 
   $coordinator = $client->beta->agents->create(
       name: 'coordinator',
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       tools: [
           ['type' => 'agent_toolset_20260401'],
       ],
@@ -661,7 +661,7 @@ Server MCP bercakupan agen (setiap definisi agen mendeklarasikan server dan alat
 
   coordinator = client.beta.agents.create(
     name: "coordinator",
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     tools: [
       {type: "agent_toolset_20260401"}
     ],

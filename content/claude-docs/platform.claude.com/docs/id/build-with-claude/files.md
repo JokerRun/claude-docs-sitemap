@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 38177e60b05f004eca0928391737ae188a7999fcecdd23e3a56055901b462efa
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: d1c0e6a93ea797350ccc252d38049402a242b2903e82a73bf8dcb5b69f737071
 ---
 
 # Files API
@@ -23,7 +23,7 @@ Files API memungkinkan Anda mengunggah dan mengelola file untuk digunakan dengan
 
 ## Model yang didukung
 
-Mereferensikan `file_id` dalam permintaan Messages didukung pada semua model yang mendukung tipe file yang diberikan. [Gambar](/docs/id/build-with-claude/vision) didukung pada semua model Claude saat ini. Untuk [PDF](/docs/id/build-with-claude/pdf-support) dan [tipe file lainnya dengan alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool#model-compatibility), lihat halaman yang ditautkan untuk dukungan model.
+Mereferensikan `file_id` dalam permintaan Messages didukung pada semua model yang mendukung tipe file yang diberikan. [Gambar](/docs/id/build-with-claude/vision) didukung pada semua model Claude saat ini. Untuk [PDF](/docs/id/build-with-claude/pdf-support) dan [tipe file lainnya dengan alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool#model-compatibility), lihat halaman tertaut untuk dukungan model.
 
 Files API tersedia di Claude API, [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Di Microsoft Foundry, Files API memerlukan [deployment Hosted on Anthropic](/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure). Saat ini belum tersedia di Amazon Bedrock atau Google Cloud.
 
@@ -155,7 +155,7 @@ Unggah file untuk direferensikan dalam panggilan API di masa mendatang:
   ```
 </CodeGroup>
 
-Respons dari mengunggah file mencakup:
+Respons dari pengunggahan file mencakup:
 
 ```json Response
 {
@@ -184,7 +184,7 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
     -H "content-type: application/json" \
     -d @- <<EOF
   {
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5",
     "max_tokens": 1024,
     "messages": [
       {
@@ -210,7 +210,7 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
 
   ```bash CLI
   ant beta:messages create --beta files-api-2025-04-14 <<YAML
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1024
   messages:
     - role: user
@@ -226,7 +226,7 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
 
   ```python Python
   response = client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[
           {
@@ -250,7 +250,7 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
 
   ```typescript TypeScript
   const response = await client.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -280,7 +280,7 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
   var response = await client.Beta.Messages.Create(
       new MessageCreateParams
       {
-          Model = Messages::Model.ClaudeOpus4_8,
+          Model = Messages::Model.ClaudeOpus5,
           MaxTokens = 1024,
           Betas = [AnthropicBeta.FilesApi2025_04_14],
           Messages =
@@ -306,7 +306,7 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
   ```go Go
   msg, err := client.Beta.Messages.New(context.Background(),
   	anthropic.BetaMessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus4_8,
+  		Model:     anthropic.ModelClaudeOpus5,
   		MaxTokens: 1024,
   		Betas:     []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
   		Messages: []anthropic.BetaMessageParam{
@@ -327,7 +327,7 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
 
   ```java Java
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_8)
+      .model(Model.CLAUDE_OPUS_5)
       .addBeta("files-api-2025-04-14")
       .maxTokens(1024)
       .addUserMessageOfBetaContentBlockParams(List.of(
@@ -364,7 +364,7 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
               ]
           ]
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       betas: ['files-api-2025-04-14'],
   );
 
@@ -373,7 +373,7 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
 
   ```ruby Ruby
   response = client.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     betas: ["files-api-2025-04-14"],
     messages: [
@@ -454,7 +454,7 @@ Untuk mengirim file ke [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/c
 
 Untuk tipe file yang tidak didukung oleh blok `document` (misalnya, .docx dan .xlsx), konversikan file tersebut ke teks biasa dan sertakan kontennya langsung dalam pesan Anda. File yang sudah berupa teks biasa, seperti file .csv dan .md, dapat dibaca dengan cara ini atau diunggah melalui Files API dengan tipe konten `text/plain` secara eksplisit. Untuk menganalisis dataset alih-alih membacanya sebagai teks, unggah dataset tersebut untuk [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool#upload-and-analyze-your-own-files) menggunakan blok `container_upload`.
 
-Contoh berikut membaca file teks dan mengirim isinya sebagai teks biasa:
+Contoh berikut membaca file teks dan mengirimkan isinya sebagai teks biasa:
 
 <CodeGroup>
   ```bash cURL
@@ -468,7 +468,7 @@ Contoh berikut membaca file teks dan mengirim isinya sebagai teks biasa:
     -H "anthropic-version: 2023-06-01" \
     -d @- <<EOF
   {
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5",
     "max_tokens": 1024,
     "messages": [
       {
@@ -488,9 +488,9 @@ Contoh berikut membaca file teks dan mengirim isinya sebagai teks biasa:
   ```bash CLI
   # Referensi "@./path" menyisipkan isi file secara langsung ke dalam field tersebut.
   ant messages create \
-    --model claude-opus-4-8 \
+    --model claude-opus-5 \
     --max-tokens 1024 \
-    --transform 'content.0.text' \
+    --transform 'content.#(type=="text").text' \
     --raw-output <<'YAML'
   messages:
     - role: user
@@ -512,7 +512,7 @@ Contoh berikut membaca file teks dan mengirim isinya sebagai teks biasa:
       text_content = f.read()
 
   response = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[
           {
@@ -527,7 +527,9 @@ Contoh berikut membaca file teks dan mengirim isinya sebagai teks biasa:
       ],
   )
 
-  print(response.content[0].text)
+  for block in response.content:
+      if block.type == "text":
+          print(block.text)
   ```
 
   ```typescript TypeScript
@@ -539,7 +541,7 @@ Contoh berikut membaca file teks dan mengirim isinya sebagai teks biasa:
   const textContent = await fs.readFile("document.txt", "utf-8");
 
   const response = await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -554,10 +556,10 @@ Contoh berikut membaca file teks dan mengirim isinya sebagai teks biasa:
     ]
   });
 
-  const block = response.content[0];
-  if (block.type === "text") {
-    console.log(block.text);
-  }
+  const textBlock = response.content.find(
+    (block): block is Anthropic.TextBlock => block.type === "text"
+  );
+  console.log(textBlock?.text);
   ```
 
   ```csharp C#
@@ -568,7 +570,7 @@ Contoh berikut membaca file teks dan mengirim isinya sebagai teks biasa:
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Messages = [new()
       {
@@ -591,7 +593,7 @@ Contoh berikut membaca file teks dan mengirim isinya sebagai teks biasa:
   }
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock(
@@ -603,7 +605,11 @@ Contoh berikut membaca file teks dan mengirim isinya sebagai teks biasa:
   	log.Fatal(err)
   }
 
-  fmt.Println(response.Content[0].Text)
+  for _, block := range response.Content {
+  	if textBlock, ok := block.AsAny().(anthropic.TextBlock); ok {
+  		fmt.Println(textBlock.Text)
+  	}
+  }
   ```
 
   ```java Java
@@ -613,7 +619,7 @@ Contoh berikut membaca file teks dan mengirim isinya sebagai teks biasa:
   String textContent = Files.readString(Path.of("document.txt"));
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_8)
+      .model(Model.CLAUDE_OPUS_5)
       .maxTokens(1024L)
       .addUserMessage("Here's the document content:\n\n" + textContent + "\n\nPlease summarize this document.")
       .build();
@@ -643,10 +649,14 @@ Contoh berikut membaca file teks dan mengirim isinya sebagai teks biasa:
               ]
           ]
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
-  echo $message->content[0]->text;
+  foreach ($message->content as $block) {
+      if ($block->type === 'text') {
+          echo $block->text, PHP_EOL;
+      }
+  }
   ```
 
   ```ruby Ruby
@@ -656,7 +666,7 @@ Contoh berikut membaca file teks dan mengirim isinya sebagai teks biasa:
   text_content = File.read("document.txt")
 
   message = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -671,7 +681,9 @@ Contoh berikut membaca file teks dan mengirim isinya sebagai teks biasa:
     ]
   )
 
-  puts message.content.first.text
+  message.content.each do |block|
+    puts block.text if block.type == :text
+  end
   ```
 </CodeGroup>
 
@@ -681,9 +693,9 @@ Contoh berikut membaca file teks dan mengirim isinya sebagai teks biasa:
 
 ### Mengelola file
 
-#### Menampilkan daftar file
+#### Daftar file
 
-Ambil daftar file yang telah Anda unggah. Endpoint ini menggunakan paginasi: setiap permintaan mengembalikan hingga `limit` file (20 secara default), dan parameter `before_id` serta `after_id` mengambil halaman yang berdekatan. Lihat [referensi List Files API](/docs/id/api/beta/files/list). SDK mengembalikan halaman pertama dan menyediakan helper paginasi otomatis. Contoh CLI membatasi total dengan `--max-items`:
+Ambil daftar file yang telah Anda unggah. Endpoint ini dipaginasi: setiap permintaan mengembalikan hingga `limit` file (20 secara default), dan parameter `before_id` serta `after_id` mengambil halaman yang berdekatan. Lihat [referensi List Files API](/docs/id/api/beta/files/list). SDK mengembalikan halaman pertama dan menyediakan helper paginasi otomatis. Contoh CLI membatasi total dengan `--max-items`:
 
 <CodeGroup>
   ```bash cURL
@@ -966,11 +978,11 @@ Unduh file yang dibuat oleh [skills](/docs/id/build-with-claude/skills-guide) at
 
 ### Siklus hidup file
 
-* File dibatasi pada workspace dari kunci API yang mengunggahnya. Kunci API mana pun dalam workspace yang sama dapat mereferensikannya
+* File dibatasi pada workspace dari kunci API yang mengunggahnya. Kunci API apa pun dalam workspace yang sama dapat mereferensikannya
 * File tidak dapat dimodifikasi atau diganti namanya setelah diunggah. Untuk mengubah konten file, unggah file baru dan hapus file lama
 * File tetap ada sampai Anda menghapusnya dengan endpoint `DELETE /v1/files/{file_id}`
 * File yang dihapus tidak dapat dipulihkan
-* File tidak dapat diakses melalui API segera setelah penghapusan, tetapi file tersebut mungkin tetap ada dalam panggilan Messages API yang aktif dan penggunaan alat terkait
+* File tidak dapat diakses melalui API segera setelah penghapusan, tetapi mungkin tetap ada dalam panggilan Messages API yang aktif dan penggunaan alat terkait
 * File yang dihapus pengguna akan dihapus sesuai dengan [kebijakan retensi data](https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data) Anthropic. Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention)
 
 ## Penanganan error
@@ -1002,7 +1014,7 @@ Operasi Files API gratis:
 
 * Mengunggah file
 * Mengunduh file
-* Menampilkan daftar file
+* Mendaftar file
 * Mendapatkan metadata file
 * Menghapus file
 

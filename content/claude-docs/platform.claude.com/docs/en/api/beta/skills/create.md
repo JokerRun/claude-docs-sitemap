@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/create
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: 0c0755f354b4a139ed42279a505ba14b24e7033657b0589ce2e08d405811b216
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: d3c75803568b949c7510a6a901949918a7051f9dfff84e665439cecdb171c9c4
 ---
 
 ## Create Skill
@@ -19,7 +19,7 @@ Create Skill
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 27 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -77,7 +77,11 @@ Create Skill
 
     - `"server-side-fallback-2026-06-01"`
 
+    - `"server-side-fallback-2026-07-01"`
+
     - `"fallback-credit-2026-06-01"`
+
+    - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
 

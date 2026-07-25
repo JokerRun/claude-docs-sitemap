@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/errors
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 8359a1925f51963a7608ad0d0ec3bfa2034a7d7acfd91cc77fb960340011ddae
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 51315d9dd86b61190663984e5cefe4e58abb5131d4d51f8f3d0216bb08f36f38
 ---
 
 # Error API Claude
@@ -29,9 +29,9 @@ API mengikuti format kode error HTTP yang dapat diprediksi:
 
 * 413 - `request_too_large`: Permintaan melebihi jumlah byte maksimum yang diizinkan. Lihat [Batas ukuran permintaan](#request-size-limits) untuk maksimum per endpoint.
 
-* 429 - `rate_limit_error`: Akun Anda telah mencapai "rate limit" (batas laju).
+* 429 - `rate_limit_error`: Akun Anda telah mencapai batas laju (rate limit).
 
-* 500 - `api_error`: Terjadi error tak terduga di dalam sistem internal Anthropic. Coba lagi permintaan dengan exponential backoff; jika error tetap terjadi, hubungi dukungan dengan menyertakan [ID permintaan](#request-id).
+* 500 - `api_error`: Terjadi error tak terduga di dalam sistem internal Anthropic. Coba lagi permintaan dengan exponential backoff; jika error berlanjut, hubungi dukungan dengan menyertakan [ID permintaan](#request-id).
 
 * 504 - `timeout_error`: Permintaan kehabisan waktu saat diproses. Pertimbangkan untuk menggunakan [streaming Messages API](/docs/id/build-with-claude/streaming) untuk permintaan yang berjalan lama. Lihat [Permintaan panjang](#long-requests) untuk opsi lainnya.
 
@@ -79,7 +79,7 @@ Sesuai dengan kebijakan [versioning](/docs/id/api/versioning), nilai-nilai di da
 
 ## Tipe error SDK
 
-SDK resmi memunculkan exception bertipe untuk error ini alih-alih mengembalikan JSON mentah, dan nama kelas serta namespace berbeda menurut bahasa. Misalnya, 404 muncul sebagai `anthropic.NotFoundError` di Python, `Anthropic::Errors::NotFoundError` di Ruby, `com.anthropic.errors.NotFoundException` di Java, dan sebagai satu nilai `*anthropic.Error` (bercabang pada `StatusCode`) di Go. Tangkap kelas bertipe dari SDK alih-alih mencocokkan string pesan error, dengan menangani kelas yang paling spesifik terlebih dahulu. Setiap halaman SDK mendokumentasikan hierarki exception lengkapnya:
+SDK resmi memunculkan exception bertipe untuk error-error ini alih-alih mengembalikan JSON mentah, dan nama kelas serta namespace-nya berbeda menurut bahasa. Misalnya, 404 muncul sebagai `anthropic.NotFoundError` di Python, `Anthropic::Errors::NotFoundError` di Ruby, `com.anthropic.errors.NotFoundException` di Java, dan sebagai nilai tunggal `*anthropic.Error` (bercabang berdasarkan `StatusCode`) di Go. Tangkap kelas bertipe dari SDK alih-alih mencocokkan string pesan error, dengan menangani kelas yang paling spesifik terlebih dahulu. Setiap halaman SDK mendokumentasikan hierarki exception lengkapnya:
 
 * [Python](/docs/id/cli-sdks-libraries/sdks/python#handling-errors) · [TypeScript](/docs/id/cli-sdks-libraries/sdks/typescript#handling-errors) · [C#](/docs/id/cli-sdks-libraries/sdks/csharp#error-handling) · [Go](/docs/id/cli-sdks-libraries/sdks/go#error-handling) · [Java](/docs/id/cli-sdks-libraries/sdks/java#error-handling) · [PHP](/docs/id/cli-sdks-libraries/sdks/php#error-handling) · [Ruby](/docs/id/cli-sdks-libraries/sdks/ruby#handling-errors)
 
@@ -167,7 +167,12 @@ SDK Python dan TypeScript mengekspos ID permintaan sebagai properti `_request_id
   }
 
   fmt.Println("Request ID:", response.Header.Get("request-id"))
-  fmt.Println(message.Content[0].Text)
+  for _, block := range message.Content {
+  	if textBlock, ok := block.AsAny().(anthropic.TextBlock); ok {
+  		fmt.Println(textBlock.Text)
+  		break
+  	}
+  }
   ```
 
   ```java Java
@@ -251,18 +256,18 @@ Untuk contoh request-ID Claude Platform di AWS dalam bahasa lain, lihat [ID Perm
 
 Hindari menetapkan nilai `max_tokens` yang besar tanpa menggunakan [streaming Messages API](/docs/id/build-with-claude/streaming) atau [Message Batches API](/docs/id/api/messages/batches/create):
 
-* Beberapa jaringan mungkin memutus koneksi yang menganggur setelah periode waktu yang bervariasi, yang dapat menyebabkan permintaan gagal atau kehabisan waktu tanpa menerima respons dari Anthropic.
+* Beberapa jaringan mungkin memutuskan koneksi yang idle setelah periode waktu yang bervariasi, yang dapat menyebabkan permintaan gagal atau kehabisan waktu tanpa menerima respons dari Anthropic.
 * Keandalan jaringan berbeda-beda. [Message Batches API](/docs/id/api/messages/batches/create) dapat membantu Anda mengelola risiko masalah jaringan dengan memungkinkan Anda melakukan polling untuk hasil alih-alih memerlukan koneksi jaringan yang tidak terputus.
 
-Jika Anda membangun integrasi API langsung, menetapkan [TCP socket keep-alive](https://tldp.org/HOWTO/TCP-Keepalive-HOWTO/programming.html) dapat mengurangi dampak timeout koneksi menganggur pada beberapa jaringan.
+Jika Anda membangun integrasi API langsung, menetapkan [TCP socket keep-alive](https://tldp.org/HOWTO/TCP-Keepalive-HOWTO/programming.html) dapat mengurangi dampak timeout koneksi idle pada beberapa jaringan.
 
 [SDK](/docs/id/cli-sdks-libraries/overview) memvalidasi bahwa permintaan Messages API non-streaming Anda tidak diperkirakan melebihi timeout 10 menit. SDK juga menetapkan opsi socket untuk TCP keep-alive.
 
-Jika Anda tidak perlu memproses event secara bertahap, SDK dapat mengonsumsi stream untuk Anda dan mengembalikan objek `Message` lengkap, identik dengan yang dikembalikan oleh panggilan non-streaming:
+Jika Anda tidak perlu memproses event secara bertahap, SDK dapat mengonsumsi stream untuk Anda dan mengembalikan objek `Message` lengkap, identik dengan apa yang dikembalikan oleh panggilan non-streaming:
 
 <CodeGroup>
   ```bash cURL
-  # Output SSE mentah memerlukan penanganan event; tidak ada cara dengan satu perintah
+  # Output SSE mentah mengharuskan penanganan event; tidak ada cara satu perintah
   # untuk mengakumulasi pesan akhir dengan curl. Gunakan contoh SDK sebagai gantinya.
   ```
 
@@ -287,7 +292,7 @@ Jika Anda tidak perlu memproses event secara bertahap, SDK dapat mengonsumsi str
   ) as stream:
       message = stream.get_final_message()
 
-  print(message.content[0].text)
+  print(next(block.text for block in message.content if block.type == "text"))
   ```
 
   ```typescript TypeScript
@@ -342,13 +347,19 @@ Jika Anda tidak perlu memproses event secara bertahap, SDK dapat mengonsumsi str
   	log.Fatal(err)
   }
 
-  fmt.Println(message.Content[0].Text)
+  for _, block := range message.Content {
+  	if textBlock, ok := block.AsAny().(anthropic.TextBlock); ok {
+  		fmt.Println(textBlock.Text)
+  		break
+  	}
+  }
   ```
 
   ```java Java
   import com.anthropic.client.AnthropicClient;
   import com.anthropic.client.okhttp.AnthropicOkHttpClient;
   import com.anthropic.helpers.MessageAccumulator;
+  import com.anthropic.models.messages.ContentBlock;
   import com.anthropic.models.messages.Message;
   import com.anthropic.models.messages.MessageCreateParams;
   import com.anthropic.models.messages.Model;
@@ -368,7 +379,11 @@ Jika Anda tidak perlu memproses event secara bertahap, SDK dapat mengonsumsi str
       }
 
       Message message = accumulator.message();
-      message.content().get(0).text().ifPresent(textBlock -> IO.println(textBlock.text()));
+      message.content().stream()
+              .filter(ContentBlock::isText)
+              .findFirst()
+              .flatMap(ContentBlock::text)
+              .ifPresent(textBlock -> IO.println(textBlock.text()));
   }
   ```
 
@@ -388,7 +403,7 @@ Jika Anda tidak perlu memproses event secara bertahap, SDK dapat mengonsumsi str
       $accumulator->accumulate($event);
   }
 
-  echo $accumulator->message()->content[0]->text;
+  echo array_find($accumulator->message()->content, static fn ($block): bool => $block->type === 'text')->text;
   ```
 
   ```ruby Ruby
@@ -400,7 +415,7 @@ Jika Anda tidak perlu memproses event secara bertahap, SDK dapat mengonsumsi str
     messages: [{ role: "user", content: "Write a detailed analysis..." }]
   ).accumulated_message
 
-  puts message.content.first.text
+  puts message.content.find { it.type == :text }.text
   ```
 </CodeGroup>
 
@@ -410,29 +425,59 @@ Lihat [Streaming Messages](/docs/id/build-with-claude/streaming#get-the-final-me
 
 ### Prefill tidak didukung
 
-Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6 tidak mendukung prefilling pesan assistant. Mengirim permintaan dengan pesan assistant terakhir yang sudah diisi sebelumnya ke salah satu model ini mengembalikan error 400 `invalid_request_error`:
+Model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing) tidak mendukung prefilling pesan assistant. Mengirim permintaan dengan pesan assistant terakhir yang sudah di-prefill ke salah satu model ini mengembalikan error 400 `invalid_request_error`:
 
 ```json
 {
   "type": "error",
   "error": {
     "type": "invalid_request_error",
-    "message": "Prefilling assistant messages is not supported for this model."
+    "message": "This model does not support assistant message prefill. The conversation must end with a user message."
   }
 }
 ```
 
-Sebagai gantinya, gunakan [structured outputs](/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, instruksi "system prompt" (prompt sistem), atau [`output_config.format`](/docs/id/build-with-claude/structured-outputs#json-outputs).
+Sebagai gantinya, gunakan [structured outputs](/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, instruksi prompt sistem, atau [`output_config.format`](/docs/id/build-with-claude/structured-outputs#json-outputs).
 
 ### Blok thinking tidak dapat dimodifikasi
 
-Jika pesan assistant terbaru berisi blok `thinking` atau `redacted_thinking` yang diedit, diurutkan ulang, difilter, atau direkonstruksi sebelum dikirim kembali ke API, permintaan mengembalikan error 400 `invalid_request_error`. Pesan error dimulai dengan posisi blok yang bermasalah (misalnya, `messages.1.content.0`) dan berisi:
+Jika pesan assistant terbaru berisi blok `thinking` atau `redacted_thinking` yang diedit, diurutkan ulang, disaring, atau direkonstruksi sebelum dikirim kembali ke API, permintaan mengembalikan error 400 `invalid_request_error`. Pesan error dimulai dengan posisi blok yang bermasalah (misalnya, `messages.1.content.0`) dan berisi:
 
 ```text wrap
 `thinking` or `redacted_thinking` blocks in the latest assistant message cannot be modified. These blocks must remain as they were in the original response.
 ```
 
-Dengan "tool use" (penggunaan alat), setiap blok `thinking` dan `redacted_thinking` dari giliran assistant harus dikirim kembali persis seperti yang diterima, termasuk blok yang field `thinking`-nya kosong. Kirim kembali blok thinking tanpa perubahan, dan jika aplikasi Anda memfilter blok konten berdasarkan tipe sebelum mengirim ulang, sertakan baik `thinking` maupun `redacted_thinking`. Lihat [Mempertahankan blok thinking](/docs/id/build-with-claude/extended-thinking#preserving-thinking-blocks) dan [Output thinking pada Claude Fable 5 dan Claude Mythos 5](/docs/id/build-with-claude/adaptive-thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5).
+Dengan penggunaan alat (tool use), setiap blok `thinking` dan `redacted_thinking` dari giliran assistant harus dikirim kembali persis seperti yang diterima, termasuk blok yang field `thinking`-nya kosong. Kirim kembali blok thinking tanpa perubahan, dan jika aplikasi Anda menyaring blok konten berdasarkan tipe sebelum mengirim ulang, sertakan baik `thinking` maupun `redacted_thinking`. Lihat [Pemecahan masalah thinking](/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-blocks-modified), [Mempertahankan blok thinking](/docs/id/build-with-claude/thinking#preserving-thinking-blocks), dan [Output thinking pada Claude Fable 5 dan Claude Mythos 5](/docs/id/build-with-claude/thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5).
+
+### Extended thinking tidak didukung
+
+Model Claude 4.7 dan yang lebih baru telah menghapus "extended thinking" (pemikiran diperpanjang). Mengirim `thinking: {"type": "enabled"}` ke salah satu model ini mengembalikan error 400 `invalid_request_error`:
+
+```text wrap
+"thinking.type.enabled" is not supported for this model. Use "thinking.type.adaptive" and "output_config.effort" to control thinking behavior.
+```
+
+Sebagai gantinya, gunakan [adaptive thinking](/docs/id/build-with-claude/thinking). [Migrasi ke adaptive thinking](/docs/id/build-with-claude/extended-thinking#migrating-to-adaptive-thinking) menunjukkan pemetaan parameter, dan [Pemecahan masalah thinking](/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-type-enabled) membahas perbaikan berdasarkan gejala.
+
+### Adaptive thinking tidak didukung
+
+Model yang hanya mendukung pemikiran diperpanjang (model Claude 4.5 dan yang lebih lama) menolak `thinking: {"type": "adaptive"}` dengan error 400 `invalid_request_error`:
+
+```text wrap
+adaptive thinking is not supported on this model
+```
+
+Gunakan `thinking: {"type": "enabled", "budget_tokens": N}` pada model-model ini; lihat [Extended thinking](/docs/id/build-with-claude/extended-thinking) untuk konfigurasinya dan [Pemecahan masalah thinking](/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-type-adaptive) untuk perbaikan berdasarkan gejala.
+
+### Thinking tidak dapat dinonaktifkan
+
+Pada Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), dan [Claude Mythos Preview](https://anthropic.com/glasswing), thinking selalu aktif. Mengirim `thinking: {"type": "disabled"}` ke salah satu model ini mengembalikan error 400 `invalid_request_error`:
+
+```text wrap
+"thinking.type.disabled" is not supported for this model. Thinking defaults to adaptive mode when not specified; use "thinking.type.enabled" with "budget_tokens" for extended thinking.
+```
+
+Pada Claude Fable 5 dan Claude Mythos 5, saran dari pesan error itu sendiri yaitu `"thinking.type.enabled"` juga ditolak. Hilangkan parameter `thinking` dan permintaan akan berjalan dengan adaptive thinking. Untuk menjaga konten thinking tidak muncul di respons tanpa mematikan thinking, tetapkan `display: "omitted"` pada konfigurasi thinking. Lihat [Pemecahan masalah thinking](/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-type-disabled).
 
 ### Outbound web identity federation dinonaktifkan (Claude Platform di AWS)
 
@@ -446,10 +491,10 @@ Jika setiap permintaan ke [Claude Platform di AWS](/docs/id/build-with-claude/cl
   </Card>
 
   <Card title="Batas laju" icon="gauge" href="/docs/id/api/rate-limits">
-    Untuk mengurangi penyalahgunaan dan mengelola kapasitas pada API, terdapat batasan seberapa banyak sebuah organisasi dapat menggunakan Claude API.
+    Untuk mengurangi penyalahgunaan dan mengelola kapasitas pada API, terdapat batasan pada seberapa banyak sebuah organisasi dapat menggunakan Claude API.
   </Card>
 
   <Card title="Streaming pesan" icon="lightning" href="/docs/id/build-with-claude/streaming">
-    Streaming respons Messages API secara bertahap dengan server-sent events, termasuk delta teks, penggunaan alat, dan pemikiran diperpanjang.
+    Lakukan streaming respons Messages API secara bertahap dengan server-sent events, termasuk delta teks, penggunaan alat, dan pemikiran diperpanjang.
   </Card>
 </CardGroup>

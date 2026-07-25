@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 9436495f5dd563f7359edf5ec0823142c20ae80075e95f1819ddbeb9b8026808
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: dc39f0cf4e49d5feaa3dd593af68af7f402d6496daccecbaac9b51db9dc9939b
 ---
 
 # Claude Platform di AWS
 
-Akses kemampuan platform lengkap Claude melalui AWS dengan infrastruktur yang dikelola Anthropic.
+Akses kemampuan platform Claude secara penuh melalui AWS dengan infrastruktur yang dikelola Anthropic.
 
 ---
 
-Claude Platform di AWS memberi Anda pengalaman platform Anthropic secara lengkap, termasuk Messages API, Agent Skills, eksekusi kode, dan fitur beta, yang dapat diakses melalui akun AWS Anda. Berbeda dengan [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock), di mana AWS mengoperasikan tumpukan inferensi, Anthropic mengoperasikan Claude Platform di AWS. AWS menyediakan lapisan autentikasi (SigV4 atau kunci API), kontrol akses berbasis IAM, dan integrasi penagihan melalui AWS Marketplace.
+Claude Platform di AWS memberi Anda pengalaman platform Anthropic secara penuh, termasuk Messages API, Agent Skills, eksekusi kode, dan fitur beta, yang dapat diakses melalui akun AWS Anda. Berbeda dengan [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock), di mana AWS mengoperasikan stack inferensi, Anthropic mengoperasikan Claude Platform di AWS. AWS menyediakan lapisan autentikasi (SigV4 atau kunci API), kontrol akses berbasis IAM, dan integrasi penagihan melalui AWS Marketplace.
 
 <Note>
   SDK Anthropic mendukung Claude Platform di AWS.
@@ -27,28 +27,28 @@ Claude Platform di AWS mengikuti kebijakan retensi data yang sama dengan Claude 
 
 ## Claude Platform di AWS vs Amazon Bedrock
 
-Kedua penawaran memungkinkan Anda menggunakan Claude melalui AWS, tetapi keduanya berbeda dalam arsitektur, permukaan API, dan ketersediaan fitur.
+Kedua penawaran ini memungkinkan Anda menggunakan Claude melalui AWS, tetapi keduanya berbeda dalam arsitektur, permukaan API, dan ketersediaan fitur.
 
-| Aspek                                  | Claude Platform di AWS                                                                               | [Claude di Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock) | [Amazon Bedrock (Opus 4.6 dan sebelumnya)](/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) |
-| -------------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| **Siapa yang mengoperasikan tumpukan** | Anthropic                                                                                            | AWS                                                                             | AWS                                                                                                    |
-| **Permukaan API**                      | Claude API (`/v1/{endpoint}`)                                                                        | Messages API di `/anthropic/v1/messages`                                        | Bedrock Converse / InvokeModel                                                                         |
-| **Ketersediaan fitur**                 | Biasanya pada hari yang sama dengan Claude API (lihat [keterbatasan fitur](#features-not-supported)) | Sesuai jadwal rilis Amazon Bedrock                                              | Sesuai jadwal rilis Amazon Bedrock                                                                     |
-| **Agent Skills**                       | Tersedia (beta)                                                                                      | Tidak tersedia (memerlukan eksekusi kode)                                       | Tidak tersedia                                                                                         |
-| **Fitur beta**                         | Diteruskan dengan header `anthropic-beta` (lihat [keterbatasan fitur](#features-not-supported))      | Header `anthropic-beta` tidak didukung                                          | Header `anthropic-beta` tidak didukung                                                                 |
-| **Autentikasi**                        | AWS IAM / SigV4 atau kunci API                                                                       | AWS IAM / SigV4                                                                 | AWS IAM / SigV4 atau bearer token                                                                      |
-| **Penagihan**                          | AWS Marketplace                                                                                      | AWS (layanan native)                                                            | AWS (layanan native)                                                                                   |
-| **Base URL**                           | `aws-external-anthropic.{region}.api.aws`                                                            | `bedrock-mantle.{region}.api.aws`                                               | `bedrock-runtime.{region}.amazonaws.com`                                                               |
-| **Klien SDK**                          | Kelas klien khusus platform (misalnya, `AnthropicAWS` di Python), dalam beta                         | `AnthropicBedrockMantle`                                                        | `AnthropicBedrock` / Bedrock SDK                                                                       |
-| **Console**                            | Claude Console (`platform.claude.com`, akses melalui AWS Console)                                    | Bedrock Console                                                                 | Bedrock Console                                                                                        |
-| **Batas laju dan kuota**               | Dikelola oleh Anthropic                                                                              | Dikelola oleh AWS                                                               | Dikelola oleh AWS                                                                                      |
-| **Pemroses data inferensi**            | Anthropic                                                                                            | AWS                                                                             | AWS                                                                                                    |
+| Aspek                               | Claude Platform di AWS                                                                               | [Claude di Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock) | [Amazon Bedrock (Opus 4.6 dan sebelumnya)](/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) |
+| ----------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| **Siapa yang mengoperasikan stack** | Anthropic                                                                                            | AWS                                                                             | AWS                                                                                                    |
+| **Permukaan API**                   | Claude API (`/v1/{endpoint}`)                                                                        | Messages API di `/anthropic/v1/messages`                                        | Bedrock Converse / InvokeModel                                                                         |
+| **Ketersediaan fitur**              | Biasanya pada hari yang sama dengan Claude API (lihat [keterbatasan fitur](#features-not-supported)) | Sesuai jadwal rilis Amazon Bedrock                                              | Sesuai jadwal rilis Amazon Bedrock                                                                     |
+| **Agent Skills**                    | Tersedia (beta)                                                                                      | Tidak tersedia (memerlukan eksekusi kode)                                       | Tidak tersedia                                                                                         |
+| **Fitur beta**                      | Diteruskan dengan header `anthropic-beta` (lihat [keterbatasan fitur](#features-not-supported))      | Header `anthropic-beta` tidak didukung                                          | Header `anthropic-beta` tidak didukung                                                                 |
+| **Autentikasi**                     | AWS IAM / SigV4 atau kunci API                                                                       | AWS IAM / SigV4                                                                 | AWS IAM / SigV4 atau bearer token                                                                      |
+| **Penagihan**                       | AWS Marketplace                                                                                      | AWS (layanan native)                                                            | AWS (layanan native)                                                                                   |
+| **Base URL**                        | `aws-external-anthropic.{region}.api.aws`                                                            | `bedrock-mantle.{region}.api.aws`                                               | `bedrock-runtime.{region}.amazonaws.com`                                                               |
+| **Klien SDK**                       | Kelas klien khusus platform (misalnya, `AnthropicAWS` di Python), dalam beta                         | `AnthropicBedrockMantle`                                                        | `AnthropicBedrock` / Bedrock SDK                                                                       |
+| **Console**                         | Claude Console (`platform.claude.com`, akses melalui AWS Console)                                    | Bedrock Console                                                                 | Bedrock Console                                                                                        |
+| **Batas laju dan kuota**            | Dikelola oleh Anthropic                                                                              | Dikelola oleh AWS                                                               | Dikelola oleh AWS                                                                                      |
+| **Pemroses data inferensi**         | Anthropic                                                                                            | AWS                                                                             | AWS                                                                                                    |
 
 Jika Anda memerlukan Claude yang dioperasikan AWS, lihat [Claude di Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock). Claude Platform di AWS menggunakan pool kapasitas yang terpisah dari Claude API pihak pertama maupun Amazon Bedrock. Anda dapat menjalankan beban kerja di lebih dari satu platform dan melakukan failover di antara keduanya.
 
 [AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/what-is-privatelink.html) didukung untuk menghubungkan VPC Anda ke endpoint Claude Platform di AWS.
 
-**Kapan memilih Bedrock:** Organisasi di industri yang diregulasi yang memerlukan kepatuhan FedRAMP High, IL4, IL5, atau HIPAA-ready, atau yang memerlukan AWS sebagai satu-satunya pemroses data, sebaiknya menggunakan [Claude di Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock). Bedrock berjalan sepenuhnya pada infrastruktur yang dikendalikan AWS dengan AWS sebagai pihak yang mengoperasikan.
+**Kapan memilih Bedrock:** Organisasi di industri yang diregulasi yang memerlukan kepatuhan FedRAMP High, IL4, IL5, atau HIPAA-ready, atau yang memerlukan AWS sebagai satu-satunya pemroses data, harus menggunakan [Claude di Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock). Bedrock berjalan sepenuhnya pada infrastruktur yang dikendalikan AWS dengan AWS sebagai pihak yang mengoperasikan.
 
 **Penawaran mana yang Anda gunakan?** Claude tersedia melalui beberapa produk yang berbeda:
 
@@ -59,10 +59,10 @@ Jika Anda memerlukan Claude yang dioperasikan AWS, lihat [Claude di Amazon Bedro
 
 ## Siapkan akun Anda
 
-Penyiapan Claude Platform di AWS terjadi dalam empat fase: mendaftar di halaman layanan AWS Console, menyelesaikan penyiapan organisasi Anthropic Anda, mencatat ID workspace Anda, dan masuk ke Claude Console.
+Penyiapan Claude Platform di AWS terjadi dalam empat fase: daftar di halaman layanan AWS Console, selesaikan penyiapan organisasi Anthropic Anda, catat ID workspace Anda, dan masuk ke Claude Console.
 
 <Note>
-  Mendaftar melalui AWS Console akan menyediakan organisasi Anthropic baru yang terikat dengan akun AWS Anda. Organisasi ini terpisah dari organisasi yang sudah dimiliki perusahaan Anda dengan Anthropic, termasuk organisasi Claude Enterprise yang diperoleh melalui AWS Marketplace. Kunci API, workspace, dan pengaturan Claude Console dari organisasi Anthropic pihak pertama tidak terbawa.
+  Mendaftar melalui AWS Console akan menyediakan organisasi Anthropic baru yang terikat dengan akun AWS Anda. Organisasi ini terpisah dari organisasi yang sudah ada yang dimiliki perusahaan Anda dengan Anthropic, termasuk organisasi Claude Enterprise yang diperoleh melalui AWS Marketplace. Kunci API, workspace, dan pengaturan Claude Console dari organisasi Anthropic pihak pertama tidak terbawa.
 
   Jika Anda memiliki private offer Amazon Bedrock yang sudah ada, hubungi perwakilan akun Anthropic atau AWS Anda sebelum mendaftar agar diskon Anda berlaku sejak permintaan pertama Anda. Diskon tidak dapat diterapkan secara retroaktif pada penggunaan yang terjadi sebelum private offer Anda diterima. Lihat [Private offers](/docs/id/about-claude/pricing#private-offers).
 </Note>
@@ -87,7 +87,7 @@ Penyiapan Claude Platform di AWS terjadi dalam empat fase: mendaftar di halaman 
     Setelah pendaftaran selesai, Anda dialihkan ke `platform.claude.com/partner-signup`.
 
     1. Masukkan alamat email pemilik organisasi Anda dan pilih **Get started**.
-    2. Periksa kotak masuk email tersebut untuk tautan penyiapan dan ikuti tautannya. Jika browser Anda menampilkan halaman **Signed in as a different account**, pilih **Log out and continue**.
+    2. Periksa kotak masuk email tersebut untuk tautan penyiapan dan ikuti tautan tersebut. Jika browser Anda menampilkan halaman **Signed in as a different account**, pilih **Log out and continue**.
     3. Lengkapi formulir detail organisasi (nama organisasi, jenis entitas, negara, tujuan penggunaan) dan pilih **Complete setup**.
 
     Menyelesaikan penyiapan akan membuat organisasi Anthropic Anda dan menerima Commercial Terms of Service dan Usage Policy Anthropic. Halaman layanan AWS Console sekarang menampilkan navigasi kiri dengan **Home**, **API keys**, **Quickstart**, dan **Workspaces**.
@@ -102,11 +102,11 @@ Penyiapan Claude Platform di AWS terjadi dalam empat fase: mendaftar di halaman 
   <Step title="Masuk ke Claude Console">
     Akses ke Claude Console difederasikan melalui AWS IAM:
 
-    1. Asumsikan peran IAM dengan izin `aws-external-anthropic:AssumeConsole`. Lihat [Tindakan IAM untuk Claude Platform di AWS](/docs/id/api/claude-platform-on-aws-iam-actions#console-access).
+    1. Asumsikan peran IAM dengan izin `aws-external-anthropic:AssumeConsole`. Lihat [Aksi IAM untuk Claude Platform di AWS](/docs/id/api/claude-platform-on-aws-iam-actions#console-access).
     2. Dari halaman layanan **Claude Platform on AWS**, pilih **Open Claude Console**. AWS Console menerbitkan JWT dan mengalihkan Anda ke `platform.claude.com`.
     3. Pada masuk pertama, Anda diminta memasukkan alamat email. Masukkan email kerja Anda. Platform menyediakan pengguna Claude Console Anda secara just-in-time.
 
-    Ketika Anda masuk melalui AWS Console, Claude Console dibatasi cakupannya ke organisasi Claude Platform di AWS Anda. Indikator **Account managed by AWS** muncul di kiri bawah sidebar Claude Console.
+    Saat Anda masuk melalui AWS Console, Claude Console dibatasi cakupannya ke organisasi Claude Platform di AWS Anda. Indikator **Account managed by AWS** muncul di kiri bawah sidebar Claude Console.
   </Step>
 </Steps>
 
@@ -116,7 +116,7 @@ Mendaftar untuk Claude Platform di AWS selalu menyediakan organisasi Anthropic b
 
 Rencanakan perpindahan dari organisasi yang sudah ada sebagai cutover ke organisasi baru:
 
-* **Buat organisasi baru terlebih dahulu.** Daftar melalui AWS Console (lihat [Siapkan akun Anda](#set-up-your-account)). Jika perpindahan Anda melibatkan private offer, selesaikan pendaftaran sebelum penawaran diterima: diskon berlaku sejak penerimaan, bukan secara retroaktif. Lihat [Private offers](/docs/id/about-claude/pricing#private-offers).
+* **Buat organisasi baru terlebih dahulu.** Daftar melalui AWS Console (lihat [Siapkan akun Anda](#set-up-your-account)). Jika perpindahan Anda melibatkan private offer, selesaikan pendaftaran sebelum offer diterima: diskon berlaku sejak penerimaan, bukan secara retroaktif. Lihat [Private offers](/docs/id/about-claude/pricing#private-offers).
 * **Buat ulang akses dan konfigurasi.** Kunci API, workspace, dan pengaturan Claude Console tidak terbawa dari organisasi yang sudah ada. Buat workspace di organisasi baru dan alihkan aplikasi Anda ke [autentikasi Claude Platform di AWS](#authentication).
 * **Perbarui integrasi Anda.** Claude Platform di AWS melayani Claude API (`/v1/{endpoint}`), sehingga bentuk permintaan dan respons tidak berubah dari Claude API pihak pertama. Yang berubah adalah base URL, metode autentikasi, dan header `anthropic-workspace-id` yang diperlukan; lihat [Membuat permintaan](#making-requests). Beberapa fitur platform berbeda; lihat [Fitur yang tidak didukung](#features-not-supported).
 * **Lakukan cutover sesuai jadwal Anda sendiri.** Organisasi baru independen dari organisasi yang sudah ada, dan keduanya dapat melayani lalu lintas secara paralel. Tidak perlu cutover keras: alihkan beban kerja secara bertahap hingga semua lalu lintas Anda berada di organisasi baru.
@@ -134,7 +134,7 @@ Untuk organisasi Claude Enterprise (claude.ai), yang berperilaku berbeda, lihat 
 * **"Sign-up failed: Failed to enable OutboundWebIdentityFederation":** Jika Anda melihat banner ini pada pengiriman pertama, pilih **Continue** lagi. Pengaktifan IAM dapat memerlukan waktu sejenak untuk berlaku.
 * **Tidak ada indikator kemajuan selama pendaftaran:** Pendaftaran memerlukan beberapa menit. Halaman menampilkan banner statis **Sign-up in progress** tanpa progress bar sementara AWS menyediakan akun Anda.
 * **"Signed in as a different account" setelah mengikuti tautan penyiapan:** Pilih **Log out and continue**. Halaman mengautentikasi ulang Anda dengan alamat email yang Anda masukkan.
-* **Pesan "Not found" selama masuk:** Pesan ini mungkin muncul sebentar selama pengalihan. Anda dapat menutupnya.
+* **Pesan "Not found" selama masuk:** Pesan ini mungkin muncul sebentar selama pengalihan. Anda dapat mengabaikannya.
 * **Halaman Usage tidak menampilkan data setelah panggilan API pertama Anda:** Data penggunaan dapat memerlukan beberapa menit untuk muncul di Claude Console.
 * **"Outbound web identity federation is disabled" pada panggilan API pertama Anda:** Aktifkan federasi sekali per akun. Lihat [Aktifkan outbound web identity federation](#enable-outbound-web-identity-federation).
 
@@ -142,11 +142,11 @@ Untuk organisasi Claude Enterprise (claude.ai), yang berperilaku berbeda, lihat 
 
 Pastikan Anda memiliki:
 
-1. Akun AWS aktif dengan langganan ke Claude Platform di AWS (lihat [Siapkan akun Anda](#set-up-your-account))
+1. Akun AWS aktif dengan langganan Claude Platform di AWS (lihat [Siapkan akun Anda](#set-up-your-account))
 2. [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html) terinstal dan terkonfigurasi
 3. **Outbound web identity federation diaktifkan** pada akun AWS Anda, langkah penyiapan satu kali (lihat [Aktifkan outbound web identity federation](#enable-outbound-web-identity-federation))
 4. ID workspace Anda (lihat [Dapatkan ID workspace Anda](#obtain-your-workspace-id))
-5. Izin IAM untuk memanggil API: tindakan `aws-external-anthropic:CreateInference` pada workspace Anda, ditambah `aws-external-anthropic:CallWithBearerToken` jika Anda mengautentikasi dengan kunci API (lihat [Kebijakan IAM](#iam-policies))
+5. Izin IAM untuk memanggil API: aksi `aws-external-anthropic:CreateInference` pada workspace Anda, ditambah `aws-external-anthropic:CallWithBearerToken` jika Anda mengautentikasi dengan kunci API (lihat [Kebijakan IAM](#iam-policies))
 
 ### Aktifkan outbound web identity federation
 
@@ -177,7 +177,7 @@ export ANTHROPIC_AWS_WORKSPACE_ID='wrkspc_01AbCdEf23GhIj'
 export AWS_REGION='us-west-2'  # Your workspace's AWS region
 ```
 
-Region wajib diisi. Klien SDK memunculkan error jika tidak ada region yang diatur. Berikan `aws_region`/`awsRegion` ke konstruktor, atau atur `AWS_REGION` (atau `AWS_DEFAULT_REGION`). Semua region komersial AWS didukung.
+Region wajib diisi. Klien SDK memunculkan error jika tidak ada region yang diatur. Teruskan `aws_region`/`awsRegion` ke konstruktor, atau atur `AWS_REGION` (atau `AWS_DEFAULT_REGION`). Semua region komersial AWS didukung.
 
 ## Autentikasi
 
@@ -185,7 +185,7 @@ Claude Platform di AWS mendukung dua metode autentikasi: AWS IAM dengan penandat
 
 ### Autentikasi SigV4
 
-SigV4 adalah jalur native perusahaan dan terintegrasi dengan kebijakan, peran, dan audit AWS IAM Anda yang sudah ada. Konfigurasikan kredensial AWS menggunakan metode apa pun yang didukung oleh [rantai penyedia kredensial default AWS](https://docs.aws.amazon.com/sdkref/latest/guide/standardized-credentials.html):
+SigV4 adalah jalur native enterprise dan terintegrasi dengan kebijakan, peran, dan audit AWS IAM Anda yang sudah ada. Konfigurasikan kredensial AWS menggunakan metode apa pun yang didukung oleh [rantai penyedia kredensial default AWS](https://docs.aws.amazon.com/sdkref/latest/guide/standardized-credentials.html):
 
 * Variabel lingkungan (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_SESSION_TOKEN`)
 * File kredensial bersama (`~/.aws/credentials`)
@@ -202,9 +202,9 @@ aws sts get-caller-identity
 
 ### Autentikasi kunci API
 
-Untuk jalur integrasi yang lebih sederhana (pengembangan lokal dan skrip), Anda dapat mengautentikasi dengan kunci API alih-alih SigV4. Atur variabel lingkungan `ANTHROPIC_AWS_API_KEY` atau berikan `apiKey` ke konstruktor SDK.
+Untuk jalur integrasi yang lebih sederhana (pengembangan lokal dan skrip), Anda dapat mengautentikasi dengan kunci API alih-alih SigV4. Atur variabel lingkungan `ANTHROPIC_AWS_API_KEY` atau teruskan `apiKey` ke konstruktor SDK.
 
-Hasilkan kunci API di **AWS Console** di bawah **Claude Platform on AWS → API keys**. Pilih **Generate a key**, lalu salin nilai kuncinya. Berikan tindakan IAM `aws-external-anthropic:CallWithBearerToken` kepada principal yang diizinkan menggunakan autentikasi kunci API.
+Hasilkan kunci API di **AWS Console** di bawah **Claude Platform on AWS → API keys**. Pilih **Generate a key**, lalu salin nilai kuncinya. Berikan aksi IAM `aws-external-anthropic:CallWithBearerToken` kepada principal yang diizinkan menggunakan autentikasi kunci API.
 
 <Note>
   Kunci API untuk Claude Platform di AWS dikelola di AWS Console, bukan Claude Console. Kunci yang dibuat di [Claude Console](https://platform.claude.com/) standar (untuk akses API pihak pertama) tidak berfungsi dengan endpoint Claude Platform di AWS.
@@ -212,11 +212,11 @@ Hasilkan kunci API di **AWS Console** di bawah **Claude Platform on AWS → API 
 
 #### Kunci API jangka pendek
 
-Untuk beban kerja yang perlu menyerahkan kredensial ke proses terpisah (seperti gateway LLM, fungsi serverless, atau alat yang mendukung autentikasi bearer-token tetapi tidak SigV4), hasilkan kunci API jangka pendek dari kredensial AWS Anda alih-alih menyediakan kunci berumur panjang di AWS Console.
+Untuk beban kerja yang perlu menyerahkan kredensial ke proses terpisah (seperti gateway LLM, fungsi serverless, atau alat yang mendukung autentikasi bearer-token tetapi bukan SigV4), hasilkan kunci API jangka pendek dari kredensial AWS Anda alih-alih menyediakan kunci berumur panjang di AWS Console.
 
 AWS menerbitkan pustaka token-generator untuk [JavaScript](https://github.com/aws/token-generator-for-aws-external-anthropic-js), [Python](https://github.com/aws/token-generator-for-aws-external-anthropic-python), dan [Java](https://github.com/aws/token-generator-for-aws-external-anthropic-java). Setiap pustaka membaca kredensial AWS Anda melalui rantai penyedia standar dan mengembalikan token berbatas waktu yang berfungsi dengan header `x-api-key`. Masa berlaku token secara default adalah 12 jam dan dibatasi pada nilai terkecil dari durasi yang Anda minta, masa kedaluwarsa kredensial AWS Anda, dan 12 jam. Lihat README repositori yang ditautkan untuk instalasi dan opsi konfigurasi lengkap.
 
-Berikan token yang dihasilkan ke SDK dengan cara yang sama seperti Anda memberikan kunci API yang dihasilkan AWS Console:
+Teruskan token yang dihasilkan ke SDK dengan cara yang sama seperti Anda meneruskan kunci API yang dihasilkan AWS Console:
 
 <CodeGroup exclude="shell, csharp, go, php, ruby">
   ```python Python
@@ -261,7 +261,7 @@ Berikan token yang dihasilkan ke SDK dengan cara yang sama seperti Anda memberik
 
 Jika Anda dapat menghasilkan token secara lokal, proses Anda sudah memiliki kredensial SigV4, dan autentikasi SigV4 biasanya merupakan pilihan yang lebih sederhana. Gunakan kunci jangka pendek ketika proses yang melakukan panggilan API terpisah dari proses yang memegang kredensial AWS.
 
-SDK tidak menyegarkan kunci jangka pendek secara otomatis. Ketika token kedaluwarsa, hasilkan yang baru dan buat klien baru. Principal yang menggunakan token tetap memerlukan tindakan IAM `aws-external-anthropic:CallWithBearerToken`.
+SDK tidak menyegarkan kunci jangka pendek secara otomatis. Ketika token kedaluwarsa, hasilkan yang baru dan buat klien baru. Principal yang menggunakan token tetap memerlukan aksi IAM `aws-external-anthropic:CallWithBearerToken`.
 
 ### Prioritas kredensial
 
@@ -275,7 +275,7 @@ Klien khusus platform menyelesaikan autentikasi dalam urutan berikut. Nama argum
 
 ### Resolusi region
 
-Klien membaca `AWS_REGION` dari lingkungan jika `aws_region`/`awsRegion` tidak diberikan ke konstruktor, dengan fallback ke `AWS_DEFAULT_REGION` untuk kompatibilitas dengan SDK AWS standar. Region wajib diisi. Tidak ada default fallback. Berbeda dengan `AnthropicBedrock`, yang melakukan fallback ke `us-east-1`, klien `AnthropicAWS`/`AnthropicAws` memunculkan error jika baik argumen konstruktor maupun variabel lingkungan tidak diatur.
+Klien membaca `AWS_REGION` dari lingkungan jika `aws_region`/`awsRegion` tidak diteruskan ke konstruktor, dengan fallback ke `AWS_DEFAULT_REGION` untuk kompatibilitas dengan SDK AWS standar. Region wajib diisi. Tidak ada default fallback. Berbeda dengan `AnthropicBedrock`, yang fallback ke `us-east-1`, klien `AnthropicAWS`/`AnthropicAws` memunculkan error jika baik argumen konstruktor maupun variabel lingkungan tidak diatur.
 
 ## Instal SDK
 
@@ -312,14 +312,14 @@ Klien membaca `AWS_REGION` dari lingkungan jika `aws_region`/`awsRegion` tidak d
 
   <Tab title="Java">
     ```kotlin Gradle
-    implementation("com.anthropic:anthropic-java-aws:2.50.0")
+    implementation("com.anthropic:anthropic-java-aws:2.52.0")
     ```
 
     ```xml Maven
     <dependency>
       <groupId>com.anthropic</groupId>
       <artifactId>anthropic-java-aws</artifactId>
-      <version>2.50.0</version>
+      <version>2.52.0</version>
     </dependency>
     ```
   </Tab>
@@ -338,14 +338,14 @@ Klien membaca `AWS_REGION` dari lingkungan jika `aws_region`/`awsRegion` tidak d
 </Tabs>
 
 <Note>
-  Klien SDK untuk Claude Platform di AWS dalam tahap beta.
+  Klien SDK untuk Claude Platform di AWS dalam status beta.
 </Note>
 
 ## Model yang tersedia
 
 Model berikut tersedia di Claude Platform di AWS:
 
-| Model             | ID Model          |
+| Model             | Model ID          |
 | ----------------- | ----------------- |
 | Claude Fable 5    | claude-fable-5    |
 | Claude Opus 4.8   | claude-opus-4-8   |
@@ -357,7 +357,7 @@ Model berikut tersedia di Claude Platform di AWS:
 | Claude Sonnet 4.5 | claude-sonnet-4-5 |
 | Claude Haiku 4.5  | claude-haiku-4-5  |
 
-ID model identik dengan Claude API pihak pertama. Tidak ada ARN gaya Bedrock atau prefiks `anthropic.`.
+ID model identik dengan Claude API pihak pertama. Tidak ada ARN bergaya Bedrock atau prefiks `anthropic.`.
 
 Model baru biasanya diluncurkan di Claude Platform di AWS pada hari yang sama dengan Claude API pihak pertama.
 
@@ -373,7 +373,7 @@ Sebelum menjalankan contoh-contoh ini, selesaikan langkah-langkah di [Sebelum me
 
 <CodeGroup>
   ```bash cURL
-  # Ganti us-west-2 dengan region AWS Anda di URL dan --aws-sigv4
+  # Ganti us-west-2 dengan region AWS Anda di URL maupun --aws-sigv4
   # Hilangkan header x-amz-security-token jika Anda menggunakan kredensial pengguna IAM jangka panjang
   curl "https://aws-external-anthropic.us-west-2.api.aws/v1/messages" \
     --aws-sigv4 "aws:amz:us-west-2:aws-external-anthropic" \
@@ -522,7 +522,7 @@ Sebelum menjalankan contoh-contoh ini, selesaikan langkah-langkah di [Sebelum me
   ```
 </CodeGroup>
 
-Klien membaca `AWS_REGION` (atau `AWS_DEFAULT_REGION`) dan `ANTHROPIC_AWS_WORKSPACE_ID` dari lingkungan. Anda dapat menimpa salah satunya dengan memberikan `aws_region` / `awsRegion` atau `workspace_id` / `workspaceId` ke konstruktor. Baik region maupun ID workspace wajib diisi. Konstruktor memunculkan error jika salah satunya tidak dapat diselesaikan.
+Klien membaca `AWS_REGION` (atau `AWS_DEFAULT_REGION`) dan `ANTHROPIC_AWS_WORKSPACE_ID` dari lingkungan. Anda dapat menimpa salah satunya dengan meneruskan `aws_region` / `awsRegion` atau `workspace_id` / `workspaceId` ke konstruktor. Baik region maupun ID workspace wajib diisi. Konstruktor memunculkan error jika salah satunya tidak dapat diselesaikan.
 
 <Note>
   Header `x-amz-security-token` (cURL) hanya diperlukan untuk kredensial sementara seperti peran IAM, SSO, atau STS. Hilangkan saat menggunakan kredensial pengguna IAM jangka panjang. Klien SDK menangani ini secara otomatis berdasarkan sumber kredensial.
@@ -538,15 +538,15 @@ Ukuran "context window" (jendela konteks) di Claude Platform di AWS identik deng
 
 Claude Platform di AWS menggunakan endpoint Claude API secara langsung, yang berarti Anda mendapatkan paritas fitur penuh dengan Claude API pihak pertama (kecuali yang dicatat dalam [keterbatasan fitur](#features-not-supported)):
 
-* **Akses fitur:** Karena Anthropic mengoperasikan kedua platform, sebagian besar fitur baru dan header beta tersedia di Claude Platform di AWS tanpa langkah integrasi terpisah. Lihat [keterbatasan fitur](#features-not-supported) untuk pengecualian.
-* **Fitur beta:** Berikan header `anthropic-beta` standar untuk mengakses fitur beta, sama seperti yang Anda lakukan dengan Claude API.
+* **Akses fitur:** Karena Anthropic mengoperasikan kedua platform, sebagian besar fitur baru dan header beta menjadi tersedia di Claude Platform di AWS tanpa langkah integrasi terpisah. Lihat [keterbatasan fitur](#features-not-supported) untuk pengecualian.
+* **Fitur beta:** Teruskan header `anthropic-beta` standar untuk mengakses fitur beta, sama seperti yang Anda lakukan dengan Claude API.
 * **Agent Skills:** Gunakan [Agent Skills](/docs/id/agents-and-tools/agent-skills/overview) bawaan dan kustom dengan parameter `container.skills` dan header beta yang sama dengan Claude API. Semua Skills bawaan (PowerPoint, Excel, Word, PDF) berfungsi langsung.
 * **Eksekusi kode:** Jalankan kode di sandbox terkelola Anthropic menggunakan [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool).
 * **Penggunaan alat:** Computer use dan semua [kemampuan penggunaan alat](/docs/id/agents-and-tools/tool-use/overview) lainnya tersedia.
-* **Pemikiran diperpanjang:** Aktifkan pemikiran diperpanjang dengan parameter yang sama dengan Claude API.
+* **Pemikiran diperpanjang:** Aktifkan "extended thinking" (pemikiran diperpanjang) dengan parameter yang sama dengan Claude API.
 * **Streaming:** Dukungan streaming SSE penuh untuk respons real-time.
 * **Pemrosesan batch:** Kirim permintaan batch untuk beban kerja throughput tinggi.
-* **Caching prompt:** Cache alat, prompt sistem, dan riwayat pesan untuk mengurangi latensi dan biaya. Semua kemampuan caching prompt (TTL 5 menit, TTL 1 jam, dan caching otomatis) tersedia.
+* **Caching prompt:** Cache alat, prompt sistem, dan riwayat pesan untuk mengurangi latensi dan biaya. Semua kemampuan "prompt caching" (caching prompt) (TTL 5 menit, TTL 1 jam, dan caching otomatis) tersedia.
 * **Files API:** Unggah dan referensikan file di seluruh permintaan.
 * **Customer-managed encryption keys (CMEK):** [CMEK](/docs/id/manage-claude/cmek) tersedia hanya dengan kunci [AWS KMS](/docs/id/manage-claude/cmek-aws-kms). Kunci Google Cloud KMS dan Azure Key Vault tidak dapat didaftarkan. Buat, validasi, dan lampirkan kunci di [Claude Console](#using-the-claude-console). Endpoint Admin API `external_keys` saat ini tidak tersedia. Kunci harus berada di region AWS yang sama dengan workspace tempat kunci tersebut dilampirkan.
 * **Compliance API:** [Compliance API](/docs/id/manage-claude/compliance-api) tersedia. Akses diotorisasi melalui AWS IAM.
@@ -559,7 +559,7 @@ Lihat [tabel perbandingan](#claude-platform-on-aws-vs-amazon-bedrock) untuk perb
 
 Perilaku sesi di Claude Platform di AWS berbeda dari Claude Managed Agents pihak pertama dalam satu hal:
 
-* **Reautentikasi sesi otonom:** Sebuah sesi dapat berjalan secara otonom, tanpa [event pengguna](/docs/id/managed-agents/reference#event-types) apa pun, hingga 6 jam. Setelah 6 jam, sesi memerlukan reautentikasi sebelum dilanjutkan. Untuk melakukan reautentikasi, kirim event dengan peran pengguna apa pun ke sesi tersebut (lihat [Event dan streaming](/docs/id/managed-agents/events-and-streaming)). Claude Managed Agents pihak pertama tidak memiliki batas runtime sesi otonom.
+* **Reautentikasi sesi otonom:** Sebuah sesi dapat berjalan secara otonom, tanpa [event pengguna](/docs/id/managed-agents/reference#event-types) apa pun, hingga 6 jam. Setelah 6 jam, sesi memerlukan reautentikasi sebelum dapat dilanjutkan. Untuk reautentikasi, kirim event dengan peran pengguna apa pun ke sesi tersebut (lihat [Event dan streaming](/docs/id/managed-agents/events-and-streaming)). Claude Managed Agents pihak pertama tidak memiliki batas waktu berjalan sesi otonom.
 
 ### Fitur yang tidak didukung
 
@@ -567,7 +567,7 @@ Kemampuan berikut saat ini tidak tersedia di Claude Platform di AWS:
 
 * **Kesiapan HIPAA:** Program HIPAA-ready Anthropic tidak tersedia. Lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
 
-- **Admin API:** Endpoint workspace (create, get, list, update, dan archive pada `/v1/organizations/workspaces`) tersedia. Endpoint Admin API lainnya (anggota organisasi, anggota workspace, undangan, kunci API, laporan penggunaan, laporan biaya, laporan batas laju, dan external keys) saat ini tidak tersedia. Kelola kunci [CMEK](/docs/id/manage-claude/cmek) di Claude Console sebagai gantinya. Lihat data penggunaan dan biaya di [Claude Console](#using-the-claude-console) sebagai gantinya. AWS IAM mengelola keanggotaan organisasi.
+- **Admin API:** Endpoint workspace (create, get, list, update, dan archive pada `/v1/organizations/workspaces`) tersedia. Endpoint Admin API lainnya (anggota organisasi, anggota workspace, undangan, kunci API, laporan penggunaan, laporan biaya, laporan batas laju, dan kunci eksternal) saat ini tidak tersedia. Kelola kunci [CMEK](/docs/id/manage-claude/cmek) di Claude Console sebagai gantinya. Lihat data penggunaan dan biaya di [Claude Console](#using-the-claude-console) sebagai gantinya. AWS IAM mengelola keanggotaan organisasi.
 - **Manajemen anggota workspace:** Menambah atau menghapus pengguna dari workspace individual tidak tersedia. Kebijakan AWS IAM pada ARN workspace mengontrol akses.
 - **Workspace Claude Code dan Analytics API:** Workspace Claude Code dengan batas laju otomatis tidak tersedia. Penggunaan Claude Code muncul di tampilan penggunaan umum alih-alih layar khusus.
 - **Autentikasi OAuth:** Tidak didukung. Gunakan autentikasi SigV4 atau kunci API.
@@ -589,12 +589,12 @@ Claude Platform di AWS mendukung geografi inferensi berikut:
 Atur geografi inferensi per permintaan dengan parameter `inference_geo`:
 
 <Note>
-  Parameter `inference_geo` didukung pada Claude Opus 4.6, Claude Sonnet 4.6, dan model yang lebih baru. Permintaan dengan `inference_geo` pada Claude Opus 4.5, Claude Sonnet 4.5, atau Claude Haiku 4.5 mengembalikan error 400. Lihat [Residensi data](/docs/id/manage-claude/data-residency) untuk detail ketersediaan model.
+  Parameter `inference_geo` didukung pada model Claude 4.6 dan yang lebih baru. Permintaan dengan `inference_geo` pada Claude Opus 4.5, Claude Sonnet 4.5, atau Claude Haiku 4.5 mengembalikan error 400. Lihat [Residensi data](/docs/id/manage-claude/data-residency) untuk detail ketersediaan model.
 </Note>
 
 <CodeGroup>
   ```bash cURL
-  # Ganti us-west-2 dengan region AWS Anda di URL maupun --aws-sigv4
+  # Ganti us-west-2 dengan region AWS Anda di URL dan --aws-sigv4
   # Hilangkan header x-amz-security-token jika Anda menggunakan kredensial pengguna IAM jangka panjang
   curl "https://aws-external-anthropic.us-west-2.api.aws/v1/messages" \
     --aws-sigv4 "aws:amz:us-west-2:aws-external-anthropic" \
@@ -755,13 +755,13 @@ Kontrol geografi inferensi tingkat workspace (`allowed_inference_geos` dan `defa
 
 ## Workspaces
 
-Permintaan inferensi dan sumber daya pada Claude Platform on AWS menargetkan sebuah workspace. Anda meneruskan ID workspace di header `anthropic-workspace-id` pada panggilan API ini. ID workspace menggunakan format bertanda `wrkspc_` diikuti oleh pengidentifikasi alfanumerik (misalnya, `wrkspc_01AbCdEf23GhIj`). Lihat [Dapatkan ID workspace Anda](#obtain-your-workspace-id) jika Anda belum memilikinya.
+Permintaan inferensi dan sumber daya pada Claude Platform on AWS menargetkan sebuah workspace. Anda meneruskan ID workspace dalam header `anthropic-workspace-id` pada panggilan API ini. ID workspace menggunakan format bertanda `wrkspc_` diikuti oleh pengenal alfanumerik (misalnya, `wrkspc_01AbCdEf23GhIj`). Lihat [Dapatkan ID workspace Anda](#obtain-your-workspace-id) jika Anda belum memilikinya.
 
 ### Cakupan workspace
 
-Workspace terikat pada satu region AWS. Workspace yang dibuat di `us-west-2` hanya dapat diakses melalui endpoint `us-west-2`. Penggunaan, kuota, biaya, file, batch, dan Skills semuanya terakumulasi per workspace, memberi Anda rincian per-region di Claude Console.
+Workspace terikat pada satu region AWS. Workspace yang dibuat di `us-west-2` hanya dapat diakses melalui endpoint `us-west-2`. Penggunaan, kuota, biaya, file, batch, dan Skills semuanya terakumulasi per workspace, memberikan Anda rincian per-region di Claude Console.
 
-Workspace juga berfungsi sebagai sumber daya IAM utama untuk Claude Platform on AWS. Anda memberikan atau menolak akses ke workspace tertentu melalui kebijakan AWS IAM menggunakan ARN workspace. Segmen sumber daya ARN adalah ID berawalan `wrkspc_` yang sama dengan yang Anda teruskan di header `anthropic-workspace-id`:
+Workspace juga berfungsi sebagai sumber daya IAM utama untuk Claude Platform on AWS. Anda memberikan atau menolak akses ke workspace tertentu melalui kebijakan AWS IAM menggunakan ARN workspace. Segmen sumber daya pada ARN adalah ID berawalan `wrkspc_` yang sama dengan yang Anda teruskan dalam header `anthropic-workspace-id`:
 
 ```text wrap
 arn:aws:aws-external-anthropic:{region}:{account-id}:workspace/{workspace-id}
@@ -781,7 +781,7 @@ Buat workspace tambahan, ganti nama workspace, atau arsipkan workspace dari hala
 
 ## Menggunakan Claude Console
 
-Claude Platform on AWS menggunakan Claude Console standar di [platform.claude.com](https://platform.claude.com). Saat Anda masuk dari AWS Console, indikator **Account managed by AWS** muncul di kiri bawah sidebar Claude Console dan Console dibatasi cakupannya ke organisasi Claude Platform on AWS Anda. Console ini menyediakan analitik penggunaan, rincian biaya, visibilitas batas laju, visibilitas workspace, dan halaman untuk mengelola file, Agent Skills, pekerjaan batch, dan sumber daya Claude Managed Agents (agen, sesi, lingkungan, credential vault, memory store, dan webhook).
+Claude Platform on AWS menggunakan Claude Console standar di [platform.claude.com](https://platform.claude.com). Saat Anda masuk dari AWS Console, indikator **Account managed by AWS** muncul di kiri bawah sidebar Claude Console dan Console dibatasi cakupannya ke organisasi Claude Platform on AWS Anda. Console menyediakan analitik penggunaan, rincian biaya, visibilitas batas laju, visibilitas workspace, dan halaman untuk mengelola file, Agent Skills, pekerjaan batch, dan sumber daya Claude Managed Agents (agen, sesi, lingkungan, vault kredensial, penyimpanan memori, dan webhook).
 
 ### Masuk
 
@@ -796,12 +796,12 @@ Dua peran Claude Console tersedia: **Admin** dan **Developer**. Peran Admin memb
 
 ### Halaman yang tersedia
 
-Kolom **Melalui gateway AWS** menunjukkan apakah halaman tersebut membaca dan menulis data melalui gateway AWS (dan karenanya diatur oleh [aksi IAM](/docs/id/api/claude-platform-on-aws-iam-actions)). Halaman yang ditandai **Tidak** membaca metadata tingkat organisasi langsung dari Anthropic dan melewati pemeriksaan aksi IAM.
+Kolom **Melalui gateway AWS** menunjukkan apakah halaman tersebut membaca dan menulis data melalui gateway AWS (dan oleh karena itu diatur oleh [aksi IAM](/docs/id/api/claude-platform-on-aws-iam-actions)). Halaman yang ditandai **Tidak** membaca metadata tingkat organisasi langsung dari Anthropic dan melewati pemeriksaan aksi IAM.
 
 | Halaman               | Tersedia      | Melalui gateway AWS | Catatan                                                                                                                                                            |
 | --------------------- | ------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **Usage**             | Ya            | Tidak               | Lihat penggunaan token berdasarkan model, workspace, dan dimensi. Data dapat memerlukan beberapa menit untuk muncul setelah sebuah permintaan.                     |
-| **Cost**              | Ya            | Tidak               | Lihat rincian biaya berdasarkan model dan workspace. AWS Cost Explorer menampilkan item baris [Claude Consumption Unit (CCU)](#billing) yang teragregasi.          |
+| **Cost**              | Ya            | Tidak               | Lihat rincian biaya berdasarkan model dan workspace. AWS Cost Explorer menampilkan item baris [Claude Consumption Unit (CCU)](#billing) yang diagregasi.           |
 | **Limits**            | Ya            | Tidak               | Lihat batas laju (hanya-baca). Kenaikan tier dilakukan melalui perwakilan akun Anthropic Anda; lihat [Batas laju dan kuota](#rate-limits-and-quotas).              |
 | **Workspaces**        | Ya            | Tidak               | Lihat workspace per-region (hanya-baca).                                                                                                                           |
 | **Files**             | Ya            | Ya                  | Lihat dan kelola file yang diunggah.                                                                                                                               |
@@ -809,8 +809,8 @@ Kolom **Melalui gateway AWS** menunjukkan apakah halaman tersebut membaca dan me
 | **Batches**           | Ya            | Ya                  | Lihat dan kelola pekerjaan pemrosesan batch.                                                                                                                       |
 | **Agents**            | Ya            | Ya                  | Lihat dan kelola definisi agen.                                                                                                                                    |
 | **Sessions**          | Ya            | Ya                  | Lihat sesi agen dan riwayat peristiwa.                                                                                                                             |
-| **Environments**      | Ya            | Ya                  | Lihat dan kelola konfigurasi cloud sandbox untuk sesi.                                                                                                             |
-| **Credential vaults** | Ya            | Ya                  | Lihat dan kelola credential vault untuk autentikasi sesi.                                                                                                          |
+| **Environments**      | Ya            | Ya                  | Lihat dan kelola konfigurasi sandbox cloud untuk sesi.                                                                                                             |
+| **Credential vaults** | Ya            | Ya                  | Lihat dan kelola vault kredensial untuk autentikasi sesi.                                                                                                          |
 | **Memory stores**     | Ya            | Ya                  | Lihat dan kelola memori agen persisten.                                                                                                                            |
 | **Webhooks**          | Ya            | Ya                  | Lihat dan kelola endpoint webhook di bawah **Settings → Webhooks**.                                                                                                |
 | **API keys**          | Tidak         | N/A                 | Kelola kunci API di AWS Console (**Claude Platform on AWS → API keys**). Lihat [Autentikasi kunci API](#api-key-authentication).                                   |
@@ -830,11 +830,11 @@ Organisasi pada Claude Platform on AWS tidak berpindah antar tier penggunaan sec
 
 Untuk meminta batas yang lebih tinggi, hubungi perwakilan akun Anthropic Anda atau [dukungan](https://support.claude.com). Sertakan hal berikut dalam permintaan Anda:
 
-* Model yang perlu dinaikkan
+* Model yang perlu Anda naikkan
 * Puncak token input per menit dan token output per menit untuk setiap model (bukan total harian)
 * Perkiraan porsi input Anda yang merupakan konteks yang di-cache atau berulang (pembacaan cache tidak dihitung terhadap batas token input untuk sebagian besar model; lihat [ITPM sadar-cache](/docs/id/api/rate-limits#cache-aware-itpm))
 
-Tier penggunaan adalah tahapan tetap: setiap tier memasangkan batas laju dengan [batas pengeluaran bulanan](#spend-limits), dan berpindah ke tier yang lebih tinggi menaikkan keduanya. Untuk detail tier dan batas per-model, lihat [Batas laju](/docs/id/api/rate-limits).
+Tier penggunaan adalah langkah-langkah tetap: setiap tier memasangkan batas laju dengan [batas pengeluaran bulanan](#spend-limits), dan berpindah ke tier yang lebih tinggi menaikkan keduanya. Untuk detail tier dan batas per-model, lihat [Batas laju](/docs/id/api/rate-limits).
 
 ## Penagihan
 
@@ -844,7 +844,7 @@ Untuk harga CCU, mekanisme konversi, penerapan diskon, dan tarif token per-model
 
 ### Batas pengeluaran
 
-Tier penggunaan Start, Build, dan Scale masing-masing memiliki batas pengeluaran bulanan; lihat [batas pengeluaran per-tier](/docs/id/api/rate-limits#spend-limits) untuk nilai terkini. Batas pengeluaran dan batas laju termasuk dalam tier yang sama, jadi untuk menaikkan batas tersebut, ajukan kenaikan tier melalui perwakilan akun Anthropic Anda atau [dukungan](https://support.claude.com) (lihat [Batas laju dan kuota](#rate-limits-and-quotas)).
+Tier penggunaan Start, Build, dan Scale masing-masing memiliki batas pengeluaran bulanan; lihat [batas pengeluaran per-tier](/docs/id/api/rate-limits#spend-limits) untuk nilai saat ini. Batas pengeluaran dan batas laju termasuk dalam tier yang sama, jadi untuk menaikkan batas tersebut, ajukan kenaikan tier melalui perwakilan akun Anthropic Anda atau [dukungan](https://support.claude.com) (lihat [Batas laju dan kuota](#rate-limits-and-quotas)).
 
 Anda juga dapat menetapkan batas pengeluaran bulanan Anda sendiri untuk membatasi pengeluaran organisasi Anda:
 
@@ -861,12 +861,12 @@ AWS CloudTrail dapat menangkap semua permintaan ke Claude Platform on AWS. Opera
 
 Setiap respons menyertakan dua ID permintaan di header respons:
 
-* **ID permintaan AWS (`x-amzn-requestid`):** ID utama, terindeks di CloudTrail. Gunakan ini saat menyelidiki permintaan melalui perangkat AWS atau saat menghubungi dukungan AWS.
+* **ID permintaan AWS (`x-amzn-requestid`):** ID utama, diindeks di CloudTrail. Gunakan ini saat menyelidiki permintaan melalui perkakas AWS atau saat menghubungi dukungan AWS.
 * **ID permintaan Anthropic (`request-id`):** ID sekunder. Gunakan ini saat menghubungi dukungan Anthropic.
 
 <CodeGroup>
   ```bash cURL
-  # Ganti us-west-2 dengan region AWS Anda di URL maupun --aws-sigv4
+  # Ganti us-west-2 dengan region AWS Anda di URL dan --aws-sigv4
   # -i menyertakan header respons dalam output
   # Hilangkan header x-amz-security-token jika Anda menggunakan kredensial pengguna IAM jangka panjang
   curl -i "https://aws-external-anthropic.us-west-2.api.aws/v1/messages" \
@@ -1069,7 +1069,7 @@ Jika Anda menggunakan integrasi Bedrock saat ini, format body permintaan sudah m
 ### Jebakan migrasi
 
 <Warning>
-  **Aktifkan outbound web identity federation terlebih dahulu.** Jika akun AWS Anda belum pernah menggunakan Claude Platform on AWS sebelumnya, Anda harus [mengaktifkan outbound web identity federation](#enable-outbound-web-identity-federation) sekali per akun sebelum membuat permintaan. Tanpa langkah ini, semua permintaan gagal dengan kesalahan federasi (lihat [Aktifkan outbound web identity federation](#enable-outbound-web-identity-federation) untuk kesalahan yang tepat dan perbaikannya). Langkah ini tidak diperlukan untuk Bedrock.
+  **Aktifkan federasi identitas web keluar terlebih dahulu.** Jika akun AWS Anda belum pernah menggunakan Claude Platform on AWS sebelumnya, Anda harus [mengaktifkan federasi identitas web keluar](#enable-outbound-web-identity-federation) satu kali per akun sebelum membuat permintaan. Tanpa langkah ini, semua permintaan gagal dengan kesalahan federasi (lihat [Aktifkan federasi identitas web keluar](#enable-outbound-web-identity-federation) untuk kesalahan yang tepat dan perbaikannya). Langkah ini tidak diperlukan untuk Bedrock.
 </Warning>
 
 <Warning>
@@ -1078,7 +1078,7 @@ Jika Anda menggunakan integrasi Bedrock saat ini, format body permintaan sudah m
 
 ### Pertimbangan komersial
 
-* **Ketentuan layanan Anthropic:** Menggunakan Claude Platform on AWS memerlukan penerimaan Commercial Terms of Service dan Usage Policy Anthropic. Jika organisasi Anda belum menerimanya (misalnya, jika Anda hanya menggunakan Claude melalui Bedrock), Anda akan diminta selama penyiapan akun. Lihat [Siapkan akun Anda](#set-up-your-account).
+* **Ketentuan layanan Anthropic:** Menggunakan Claude Platform on AWS memerlukan penerimaan Commercial Terms of Service dan Usage Policy Anthropic. Jika organisasi Anda belum menerimanya (misalnya, jika Anda hanya pernah menggunakan Claude melalui Bedrock), Anda akan diminta selama penyiapan akun. Lihat [Siapkan akun Anda](#set-up-your-account).
 * **Diskon dan penawaran privat:** Diskon yang dinegosiasikan dan penawaran privat AWS Marketplace tidak berpindah secara otomatis antara Bedrock dan Claude Platform on AWS. Bekerja samalah dengan perwakilan akun Anthropic Anda untuk menyiapkan ketentuan komersial untuk Claude Platform on AWS.
 
 ## Kebijakan IAM

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 5f80f16e22e143c870b358f609bfd0bd455905c38615b68ce449d29cb57cc3bc
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 88953ff4a2c926454fba86a43bb5c9cc89881c0dc292eb9665840ab3d8d52e3e
 ---
 
 # MCP connector
@@ -65,7 +65,7 @@ This example enables all tools from an MCP server with default configuration:
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: mcp-client-2025-11-20" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1000,
       "messages": [{"role": "user", "content": "What tools do you have available?"}],
       "mcp_servers": [
@@ -87,7 +87,7 @@ This example enables all tools from an MCP server with default configuration:
 
   ```bash CLI
   ant beta:messages create --beta mcp-client-2025-11-20 <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1000
   messages:
     - role: user
@@ -107,7 +107,7 @@ This example enables all tools from an MCP server with default configuration:
   client = anthropic.Anthropic()
 
   response = client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1000,
       messages=[{"role": "user", "content": "What tools do you have available?"}],
       mcp_servers=[
@@ -129,7 +129,7 @@ This example enables all tools from an MCP server with default configuration:
   const anthropic = new Anthropic();
 
   const response = await anthropic.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1000,
     messages: [
       {
@@ -162,7 +162,7 @@ This example enables all tools from an MCP server with default configuration:
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1000,
       Messages = new List<BetaMessageParam>
       {
@@ -192,7 +192,7 @@ This example enables all tools from an MCP server with default configuration:
   client := anthropic.NewClient()
 
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1000,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("What tools do you have available?")),
@@ -229,7 +229,7 @@ This example enables all tools from an MCP server with default configuration:
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(1000L)
           .addUserMessage("What tools do you have available?")
           .addMcpServer(BetaRequestMcpServerUrlDefinition.builder()
@@ -256,7 +256,7 @@ This example enables all tools from an MCP server with default configuration:
       messages: [
           ['role' => 'user', 'content' => 'What tools do you have available?']
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       mcpServers: [
           [
               'type' => 'url',
@@ -281,7 +281,7 @@ This example enables all tools from an MCP server with default configuration:
   client = Anthropic::Client.new
 
   response = client.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1000,
     messages: [
       { role: "user", content: "What tools do you have available?" }
@@ -534,7 +534,7 @@ You can connect to multiple MCP servers by including multiple server definitions
 
 ```json
 {
-  "model": "claude-opus-4-8",
+  "model": "claude-opus-5",
   "max_tokens": 1000,
   "messages": [
     {
@@ -671,7 +671,7 @@ Install both the Anthropic SDK and the MCP SDK:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java-mcp:2.50.0")
+        implementation("com.anthropic:anthropic-java-mcp:2.52.0")
         ```
       </Tab>
 
@@ -680,7 +680,7 @@ Install both the Anthropic SDK and the MCP SDK:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-mcp</artifactId>
-            <version>2.50.0</version>
+            <version>2.52.0</version>
         </dependency>
         ```
       </Tab>
@@ -787,7 +787,7 @@ Convert MCP tools for use with the SDK's [tool runner](/docs/en/agents-and-tools
               # List tools and convert them for the Claude API
               tools_result = await mcp_client.list_tools()
               runner = client.beta.messages.tool_runner(
-                  model="claude-opus-4-8",
+                  model="claude-opus-5",
                   max_tokens=1024,
                   messages=[
                       {"role": "user", "content": "What tools do you have available?"},
@@ -828,7 +828,7 @@ Convert MCP tools for use with the SDK's [tool runner](/docs/en/agents-and-tools
   };
 
   const finalMessage = await anthropic.beta.messages.toolRunner({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "What tools do you have available?" }],
     tools: mcpTools(tools, mcpClientForTools)
@@ -856,7 +856,7 @@ Convert MCP tools for use with the SDK's [tool runner](/docs/en/agents-and-tools
   var runner = anthropic.Beta.Messages.ToolRunner(
       new MessageCreateParams
       {
-          Model = Messages::Model.ClaudeOpus4_8,
+          Model = Messages::Model.ClaudeOpus5,
           MaxTokens = 1024,
           Messages =
           [
@@ -907,7 +907,7 @@ Convert MCP tools for use with the SDK's [tool runner](/docs/en/agents-and-tools
 
   	runner := client.Beta.Messages.NewToolRunner(betaTools, anthropic.BetaToolRunnerParams{
   		BetaMessageNewParams: anthropic.BetaMessageNewParams{
-  			Model:     anthropic.ModelClaudeOpus4_8,
+  			Model:     anthropic.ModelClaudeOpus5,
   			MaxTokens: 1024,
   			Messages: []anthropic.BetaMessageParam{
   				anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("What tools do you have available?")),
@@ -956,7 +956,7 @@ Convert MCP tools for use with the SDK's [tool runner](/docs/en/agents-and-tools
           List<McpBetaTool> betaTools = BetaMcp.mcpTools(mcpClient.listTools().tools(), mcpClient);
 
           MessageCreateParams params = MessageCreateParams.builder()
-                  .model(Model.CLAUDE_OPUS_4_8)
+                  .model(Model.CLAUDE_OPUS_5)
                   .maxTokens(1024L)
                   .addUserMessage("What tools do you have available?")
                   .addTools(betaTools)
@@ -989,7 +989,7 @@ Convert MCP tools for use with the SDK's [tool runner](/docs/en/agents-and-tools
   $runner = $anthropic->beta->messages->toolRunner(
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'What tools do you have available?']],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       tools: BetaMcp::tools($mcp->listTools()->tools, $mcp),
   );
 
@@ -1008,7 +1008,7 @@ Convert MCP tools for use with the SDK's [tool runner](/docs/en/agents-and-tools
 
   # List tools and convert them for the Claude API
   runner = anthropic.beta.messages.tool_runner(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "What tools do you have available?" }],
     tools: Anthropic::Mcp.tools(mcp_client.tools, mcp_client)
@@ -1029,7 +1029,7 @@ Convert MCP prompt messages into Claude API message format:
 
   prompt = await mcp_client.get_prompt(name="my-prompt")
   response = await client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[mcp_message(message) for message in prompt.messages],
   )
@@ -1042,7 +1042,7 @@ Convert MCP prompt messages into Claude API message format:
 
   const { messages } = await mcpClient.getPrompt({ name: "my-prompt" });
   const response = await anthropic.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: mcpMessages(messages)
   });
@@ -1055,7 +1055,7 @@ Convert MCP prompt messages into Claude API message format:
   var response = await anthropic.Beta.Messages.Create(
       new MessageCreateParams
       {
-          Model = Messages::Model.ClaudeOpus4_8,
+          Model = Messages::Model.ClaudeOpus5,
           MaxTokens = 1024,
           Messages = BetaMcp.Messages(prompt.Messages),
       }
@@ -1080,7 +1080,7 @@ Convert MCP prompt messages into Claude API message format:
   }
 
   response, err := client.Beta.Messages.New(ctx, anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages:  messages,
   })
@@ -1095,7 +1095,7 @@ Convert MCP prompt messages into Claude API message format:
           new McpSchema.GetPromptRequest("my-prompt", Map.of()));
 
   BetaMessage response = anthropic.beta().messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(1024L)
           .messages(BetaMcp.mcpMessages(prompt.messages()))
           .build());
@@ -1109,7 +1109,7 @@ Convert MCP prompt messages into Claude API message format:
   $response = $anthropic->beta->messages->create(
       maxTokens: 1024,
       messages: array_map(BetaMcp::message(...), $prompt->messages),
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
   echo $response, "\n";
@@ -1119,7 +1119,7 @@ Convert MCP prompt messages into Claude API message format:
   prompt = mcp_client.get_prompt(name: "my-prompt")
 
   response = anthropic.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: prompt["messages"].map { |message| Anthropic::Mcp.message(message) }
   )
@@ -1142,7 +1142,7 @@ Convert MCP resources into content blocks to include in messages, or into file o
   # As a content block in a message
   resource = await mcp_client.read_resource(uri="file:///path/to/doc.txt")
   response = await client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[
           {
@@ -1172,7 +1172,7 @@ Convert MCP resources into content blocks to include in messages, or into file o
   // As a content block in a message
   const resource = await mcpClient.readResource({ uri: "file:///path/to/doc.txt" });
   const response = await anthropic.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -1198,7 +1198,7 @@ Convert MCP resources into content blocks to include in messages, or into file o
   var response = await anthropic.Beta.Messages.Create(
       new MessageCreateParams
       {
-          Model = Messages::Model.ClaudeOpus4_8,
+          Model = Messages::Model.ClaudeOpus5,
           MaxTokens = 1024,
           Messages =
           [
@@ -1246,7 +1246,7 @@ Convert MCP resources into content blocks to include in messages, or into file o
   }
 
   response, err := client.Beta.Messages.New(ctx, anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(
@@ -1294,7 +1294,7 @@ Convert MCP resources into content blocks to include in messages, or into file o
           BetaTextBlockParam.builder().text("Summarize this document").build()));
 
   BetaMessage response = anthropic.beta().messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(1024L)
           .addUserMessageOfBetaContentBlockParams(content)
           .build());
@@ -1338,7 +1338,7 @@ Convert MCP resources into content blocks to include in messages, or into file o
               ],
           ],
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
   echo $response, "\n";
@@ -1354,7 +1354,7 @@ Convert MCP resources into content blocks to include in messages, or into file o
   resource = mcp_client.read_resource(uri: "file:///path/to/doc.txt")
 
   response = anthropic.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -1407,7 +1407,7 @@ If you're using the deprecated `mcp-client-2025-04-04` beta header, follow this 
 
 ```json
 {
-  "model": "claude-opus-4-8",
+  "model": "claude-opus-5",
   "max_tokens": 1000,
   "messages": [
     // ...
@@ -1431,7 +1431,7 @@ If you're using the deprecated `mcp-client-2025-04-04` beta header, follow this 
 
 ```json
 {
-  "model": "claude-opus-4-8",
+  "model": "claude-opus-5",
   "max_tokens": 1000,
   "messages": [
     // ...

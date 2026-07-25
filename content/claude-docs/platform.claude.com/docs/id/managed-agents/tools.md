@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 977749e298f98d5cf35d7b85e6655c248c6c465c57cf1e0f98084ace95dfbd32
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 5121515da5e878dd6201722966be3b20488e82d1cc6991b55fc5874d4d5a580d
 ---
 
 # Alat
@@ -50,7 +50,7 @@ Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Guna
     -d @- <<'EOF'
   {
     "name": "Coding Assistant",
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5",
     "tools": [
       {
         "type": "agent_toolset_20260401",
@@ -67,7 +67,7 @@ Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Guna
   ```bash CLI
   ant beta:agents create <<'YAML'
   name: Coding Assistant
-  model: claude-opus-4-8
+  model: claude-opus-5
   tools:
     - type: agent_toolset_20260401
       configs:
@@ -79,7 +79,7 @@ Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Guna
   ```python Python
   agent = client.beta.agents.create(
       name="Coding Assistant",
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       tools=[
           {
               "type": "agent_toolset_20260401",
@@ -94,7 +94,7 @@ Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Guna
   ```typescript TypeScript
   const agent = await client.beta.agents.create({
     name: "Coding Assistant",
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     tools: [
       {
         type: "agent_toolset_20260401",
@@ -105,10 +105,12 @@ Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Guna
   ```
 
   ```csharp C#
+  using Anthropic.Models.Beta.Agents;
+
   var agent = await client.Beta.Agents.Create(new()
   {
       Name = "Coding Assistant",
-      Model = new("claude-opus-4-8"),
+      Model = new("claude-opus-5"),
       Tools =
       [
           new BetaManagedAgentsAgentToolset20260401Params
@@ -127,7 +129,7 @@ Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Guna
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "Coding Assistant",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: "claude-opus-4-8",
+  		ID: "claude-opus-5",
   	},
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
   		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
@@ -146,9 +148,11 @@ Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Guna
   ```
 
   ```java Java
+  import com.anthropic.models.beta.agents.*;
+
   var agent = client.beta().agents().create(AgentCreateParams.builder()
       .name("Coding Assistant")
-      .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_8)
+      .model(BetaManagedAgentsModel.CLAUDE_OPUS_5)
       .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
           .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
           .addConfig(BetaManagedAgentsAgentToolConfigParams.builder()
@@ -165,7 +169,7 @@ Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Guna
 
   $agent = $client->beta->agents->create(
       name: 'Coding Assistant',
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       tools: [
           BetaManagedAgentsAgentToolset20260401Params::with(
               type: 'agent_toolset_20260401',
@@ -180,7 +184,7 @@ Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Guna
   ```ruby Ruby
   agent = client.beta.agents.create(
     name: "Coding Assistant",
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     tools: [
       {
         type: :agent_toolset_20260401,
@@ -241,7 +245,7 @@ Jika sesi Anda berjalan di sandbox yang di-hosting sendiri, environment worker d
     -d @- <<'EOF'
   {
     "name": "Weather Agent",
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5",
     "tools": [
       {
         "type": "agent_toolset_20260401"
@@ -267,7 +271,7 @@ Jika sesi Anda berjalan di sandbox yang di-hosting sendiri, environment worker d
   ```bash CLI
   ant beta:agents create <<'YAML'
   name: Weather Agent
-  model: claude-opus-4-8
+  model: claude-opus-5
   tools:
     - type: agent_toolset_20260401
     - type: custom
@@ -287,7 +291,7 @@ Jika sesi Anda berjalan di sandbox yang di-hosting sendiri, environment worker d
   ```python Python
   agent = client.beta.agents.create(
       name="Weather Agent",
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       tools=[
           {
               "type": "agent_toolset_20260401",
@@ -311,7 +315,7 @@ Jika sesi Anda berjalan di sandbox yang di-hosting sendiri, environment worker d
   ```typescript TypeScript
   const agent = await client.beta.agents.create({
     name: "Weather Agent",
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     tools: [
       { type: "agent_toolset_20260401" },
       {
@@ -329,10 +333,13 @@ Jika sesi Anda berjalan di sandbox yang di-hosting sendiri, environment worker d
   ```
 
   ```csharp C#
+  using System.Text.Json;
+  using Anthropic.Models.Beta.Agents;
+
   var agent = await client.Beta.Agents.Create(new()
   {
       Name = "Weather Agent",
-      Model = new("claude-opus-4-8"),
+      Model = new("claude-opus-5"),
       Tools =
       [
           new BetaManagedAgentsAgentToolset20260401Params
@@ -363,7 +370,7 @@ Jika sesi Anda berjalan di sandbox yang di-hosting sendiri, environment worker d
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "Weather Agent",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: "claude-opus-4-8",
+  		ID: "claude-opus-5",
   	},
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
   		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
@@ -393,9 +400,12 @@ Jika sesi Anda berjalan di sandbox yang di-hosting sendiri, environment worker d
   ```
 
   ```java Java
+  import com.anthropic.models.beta.agents.*;
+  import java.util.Map;
+
   var agent = client.beta().agents().create(AgentCreateParams.builder()
       .name("Weather Agent")
-      .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_8)
+      .model(BetaManagedAgentsModel.CLAUDE_OPUS_5)
       .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
           .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
           .build())
@@ -422,7 +432,7 @@ Jika sesi Anda berjalan di sandbox yang di-hosting sendiri, environment worker d
 
   $agent = $client->beta->agents->create(
       name: 'Weather Agent',
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       tools: [
           BetaManagedAgentsAgentToolset20260401Params::with(
               type: 'agent_toolset_20260401',
@@ -443,7 +453,7 @@ Jika sesi Anda berjalan di sandbox yang di-hosting sendiri, environment worker d
   ```ruby Ruby
   agent = client.beta.agents.create(
     name: "Weather Agent",
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     tools: [
       {type: :agent_toolset_20260401},
       {
@@ -468,7 +478,7 @@ Setelah Anda mendefinisikan alat kustom pada agen, agen akan memanggilnya selama
 * **Berikan deskripsi yang sangat detail.** Ini sejauh ini merupakan faktor terpenting dalam kinerja alat. Deskripsi Anda harus menjelaskan apa yang dilakukan alat tersebut dan kapan menggunakannya (dan kapan tidak). Jelaskan arti setiap parameter dan bagaimana parameter tersebut memengaruhi perilaku alat. Sebutkan setiap peringatan atau batasan penting. Semakin banyak konteks yang dapat Anda berikan kepada Claude tentang alat Anda, semakin baik Claude dalam menentukan kapan dan bagaimana menggunakannya. Usahakan tiga hingga empat kalimat untuk setiap deskripsi alat, lebih banyak jika alatnya kompleks.
 * **Konsolidasikan operasi terkait ke dalam lebih sedikit alat.** Daripada membuat alat terpisah untuk setiap aksi (`create_pr`, `review_pr`, `merge_pr`), kelompokkan menjadi satu alat dengan parameter `action`. Alat yang lebih sedikit namun lebih mumpuni mengurangi ambiguitas pemilihan dan membuat permukaan alat Anda lebih mudah dinavigasi oleh Claude.
 * **Gunakan namespacing yang bermakna dalam nama alat.** Ketika alat Anda mencakup beberapa layanan atau sumber daya, awali nama dengan sumber dayanya (misalnya, `db_query` atau `storage_read`). Ini membuat pemilihan alat menjadi tidak ambigu seiring bertambahnya pustaka Anda.
-* **Rancang respons alat agar hanya mengembalikan informasi bernilai tinggi.** Kembalikan pengidentifikasi yang semantik dan stabil (misalnya, slug atau UUID) daripada referensi internal yang tidak jelas, dan sertakan hanya field yang dibutuhkan Claude untuk menentukan langkah berikutnya. Respons yang membengkak memboroskan konteks dan mempersulit Claude untuk mengekstrak hal yang penting.
+* **Rancang respons alat agar hanya mengembalikan informasi bernilai tinggi.** Kembalikan pengidentifikasi semantik yang stabil (misalnya, slug atau UUID) daripada referensi internal yang tidak jelas, dan sertakan hanya field yang dibutuhkan Claude untuk menentukan langkah berikutnya. Respons yang membengkak memboroskan konteks dan mempersulit Claude untuk mengekstrak hal yang penting.
 
 ## Langkah selanjutnya
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 4586edd8efb387488e0b947eca000f8b46f1b89cc71eba9f4aa713387c61b791
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 1aa342ea7b786f7c686640a2c2f9f4b17fb1f35d6753cb8234575fd2972a866f
 ---
 
 # Kompatibilitas OpenAI SDK
@@ -12,15 +12,15 @@ Anthropic menyediakan lapisan kompatibilitas yang memungkinkan Anda menggunakan 
 ---
 
 <Note>
-  Lapisan kompatibilitas ini terutama ditujukan untuk menguji dan membandingkan kemampuan model, dan tidak dianggap sebagai solusi jangka panjang atau siap produksi untuk sebagian besar kasus penggunaan. Meskipun lapisan ini dimaksudkan untuk tetap berfungsi penuh dan tidak memiliki perubahan yang merusak, prioritasnya adalah keandalan dan efektivitas [Claude API](/docs/id/api/overview).
+  Lapisan kompatibilitas ini terutama ditujukan untuk menguji dan membandingkan kemampuan model, dan tidak dianggap sebagai solusi jangka panjang atau siap produksi untuk sebagian besar kasus penggunaan. Meskipun dimaksudkan untuk tetap berfungsi penuh dan tidak memiliki perubahan yang merusak, prioritasnya adalah keandalan dan efektivitas [Claude API](/docs/id/api/overview).
 
-  Untuk informasi lebih lanjut tentang keterbatasan kompatibilitas yang diketahui, lihat [Keterbatasan penting kompatibilitas OpenAI](#important-openai-compatibility-limitations).
+  Untuk informasi lebih lanjut tentang keterbatasan kompatibilitas yang diketahui, lihat [Keterbatasan penting kompatibilitas OpenAI](#important-open-ai-compatibility-limitations).
 
   Jika Anda mengalami masalah dengan fitur kompatibilitas OpenAI SDK, silakan bagikan umpan balik Anda melalui [formulir umpan balik kompatibilitas](https://forms.gle/oQV4McQNiuuNbz9n8) ini.
 </Note>
 
 <Tip>
-  Untuk pengalaman terbaik dan akses ke rangkaian fitur lengkap Claude API ([pemrosesan PDF](/docs/id/build-with-claude/pdf-support), [sitasi](/docs/id/build-with-claude/citations), [pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking), dan [caching prompt](/docs/id/build-with-claude/prompt-caching)), gunakan [Claude API](/docs/id/api/overview) native.
+  Untuk pengalaman terbaik dan akses ke rangkaian fitur lengkap Claude API ([pemrosesan PDF](/docs/id/build-with-claude/pdf-support), [sitasi](/docs/id/build-with-claude/citations), [pemikiran](/docs/id/build-with-claude/thinking), dan [caching prompt](/docs/id/build-with-claude/prompt-caching)), gunakan [Claude API](/docs/id/api/overview) native.
 </Tip>
 
 ## Memulai dengan OpenAI SDK
@@ -35,9 +35,9 @@ Untuk menggunakan fitur kompatibilitas OpenAI SDK, Anda perlu:
    * Ganti kunci API Anda dengan [kunci Claude API](/settings/keys)
    * Perbarui nama model Anda untuk menggunakan [model Claude](/docs/id/about-claude/models/overview)
 
-3. Tinjau dokumentasi di bawah ini untuk mengetahui fitur apa saja yang didukung
+3. Tinjau bagian-bagian berikut untuk mengetahui fitur apa saja yang didukung
 
-### Contoh mulai cepat
+### Contoh memulai cepat
 
 <CodeGroup>
   ```python Python
@@ -51,7 +51,7 @@ Untuk menggunakan fitur kompatibilitas OpenAI SDK, Anda perlu:
   )
 
   response = client.chat.completions.create(
-      model="claude-opus-4-8",  # Claude model name
+      model="claude-opus-5",  # Claude model name
       messages=[
           {"role": "system", "content": "You are a helpful assistant."},
           {"role": "user", "content": "Who are you?"},
@@ -71,7 +71,7 @@ Untuk menggunakan fitur kompatibilitas OpenAI SDK, Anda perlu:
 
   const response = await openai.chat.completions.create({
     messages: [{ role: "user", content: "Who are you?" }],
-    model: "claude-opus-4-8" // Claude model name
+    model: "claude-opus-5" // Claude model name
   });
 
   console.log(response.choices[0].message.content);
@@ -84,24 +84,24 @@ Untuk menggunakan fitur kompatibilitas OpenAI SDK, Anda perlu:
 
 Berikut adalah perbedaan paling substansial dibandingkan menggunakan OpenAI:
 
-* Parameter `strict` untuk pemanggilan fungsi diabaikan, yang berarti JSON tool\_use tidak dijamin mengikuti skema yang diberikan. Untuk kesesuaian skema yang terjamin, gunakan [Claude API native dengan Structured Outputs](/docs/id/build-with-claude/structured-outputs).
+* Parameter `strict` untuk pemanggilan fungsi diabaikan, yang berarti JSON tool\_use tidak dijamin mengikuti skema yang diberikan. Untuk jaminan kesesuaian skema, gunakan [Claude API native dengan Structured Outputs](/docs/id/build-with-claude/structured-outputs).
 * Input audio tidak didukung; input tersebut akan diabaikan dan dihapus dari input
 * Caching prompt tidak didukung, tetapi didukung di [Anthropic SDK](/docs/id/cli-sdks-libraries/overview)
 * Pesan system/developer diangkat dan digabungkan ke awal percakapan, karena Anthropic hanya mendukung satu pesan sistem awal.
 
-Sebagian besar field yang tidak didukung diabaikan secara diam-diam alih-alih menghasilkan error. Semuanya didokumentasikan di bawah ini.
+Sebagian besar field yang tidak didukung diabaikan secara diam-diam alih-alih menghasilkan error. Semuanya didokumentasikan di bagian-bagian berikut.
 
 ### Pertimbangan kualitas output
 
-Jika Anda telah melakukan banyak penyesuaian pada prompt Anda, kemungkinan besar prompt tersebut telah disetel dengan baik khusus untuk OpenAI. Pertimbangkan untuk mengerjakan ulang prompt tersebut untuk Claude menggunakan [panduan praktik terbaik prompting](/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
+Jika Anda telah melakukan banyak penyesuaian pada prompt Anda, kemungkinan besar prompt tersebut telah disetel dengan baik khusus untuk OpenAI. Pertimbangkan untuk mengerjakannya ulang untuk Claude menggunakan [panduan praktik terbaik prompting](/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
 
 ### Pengangkatan pesan system / developer
 
 Sebagian besar input ke OpenAI SDK jelas dipetakan langsung ke parameter API Anthropic, tetapi satu perbedaan yang mencolok adalah penanganan prompt system / developer. Kedua prompt ini dapat ditempatkan di sepanjang percakapan chat melalui OpenAI. Karena Anthropic hanya mendukung pesan sistem awal, API mengambil semua pesan system/developer dan menggabungkannya bersama dengan satu baris baru (`\n`) di antaranya. String lengkap ini kemudian diberikan sebagai satu pesan sistem di awal pesan.
 
-### Dukungan pemikiran diperpanjang
+### Dukungan pemikiran
 
-Anda dapat mengaktifkan kemampuan [pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking) dengan menambahkan parameter `thinking`. Meskipun ini meningkatkan penalaran Claude untuk tugas-tugas kompleks, OpenAI SDK tidak mengembalikan proses berpikir Claude secara terperinci. Untuk fitur pemikiran diperpanjang lengkap, termasuk akses ke output penalaran langkah demi langkah Claude, gunakan Claude API native.
+Anda dapat mengaktifkan [pemikiran](/docs/id/build-with-claude/thinking) dengan menambahkan parameter `thinking`. Pada model saat ini, pemikiran bersifat adaptif, dengan Claude yang memutuskan kapan dan seberapa dalam untuk berpikir, dan pada model Claude 5 fitur ini aktif secara default; pemikiran diperpanjang yang dikonfigurasi secara manual adalah mode lama. Meskipun pemikiran meningkatkan penalaran Claude untuk tugas-tugas kompleks, OpenAI SDK tidak mengembalikan proses berpikir Claude secara terperinci. Untuk fitur pemikiran lengkap, termasuk akses ke output penalaran langkah demi langkah Claude, gunakan Claude API native.
 
 <CodeGroup>
   ```python Python
@@ -124,7 +124,7 @@ Anda dapat mengaktifkan kemampuan [pemikiran diperpanjang](/docs/id/build-with-c
 
 ## Batas laju
 
-Batas laju mengikuti [batas standar](/docs/id/api/rate-limits) Anthropic untuk endpoint `/v1/messages`.
+"Rate limit" (batas laju) mengikuti [batas standar](/docs/id/api/rate-limits) Anthropic untuk endpoint `/v1/messages`.
 
 ## Dukungan API kompatibel OpenAI secara terperinci
 
@@ -162,7 +162,7 @@ Batas laju mengikuti [batas standar](/docs/id/api/rate-limits) Anthropic untuk e
 
 #### Field `tools` / `functions`
 
-<Accordion title="Show fields">
+<Accordion title="Tampilkan field">
   <Tabs>
     <Tab title="Tools">
       Field `tools[n].function`
@@ -194,7 +194,7 @@ Batas laju mengikuti [batas standar](/docs/id/api/rate-limits) Anthropic untuk e
 
 #### Field array `messages`
 
-<Accordion title="Show fields">
+<Accordion title="Tampilkan field">
   <Tabs>
     <Tab title="Developer role">
       Field untuk `messages[n].role == "developer"`
@@ -308,7 +308,7 @@ Lapisan kompatibilitas mempertahankan format error yang konsisten dengan OpenAI 
 
 ### Kompatibilitas header
 
-Meskipun OpenAI SDK secara otomatis mengelola header, berikut adalah daftar lengkap header yang didukung oleh Claude API untuk pengembang yang perlu bekerja dengannya secara langsung.
+Meskipun OpenAI SDK secara otomatis mengelola header, berikut adalah daftar lengkap header yang didukung oleh Claude API bagi pengembang yang perlu bekerja dengannya secara langsung.
 
 | Header                           | Status Dukungan     |
 | -------------------------------- | ------------------- |

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/code-review
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 0441a0c97efbc7ae01e9284cf5dade7f4eff085abb9de891f423f9f25abaa1a7
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: f2d1e4c8d3ab8eee478cfbc59fa07524318935558e1e47bead44dd6aed2572b0
 ---
 
 > ## Documentation Index
@@ -331,7 +331,7 @@ After the effort level and flags, Claude Code reads the rest of the line in one 
 
 ### Run in the foreground
 
-{/* min-version: 2.1.218 */}The review runs in the background by default; before v2.1.218, it ran inside your conversation. Three cases run it in the foreground instead:
+{/* min-version: 2.1.218 */}The review runs in the background by default; before v2.1.218, it ran inside your conversation. It runs in the foreground instead in cases like these:
 
 * You run `/code-review` again while an earlier review is still in progress
 * You run it in non-interactive mode, with the `-p` flag or the Agent SDK; Claude Code waits for the review and includes the findings in the response, except for `ultra`, which [launches the cloud review without waiting](#escalate-to-ultrareview)

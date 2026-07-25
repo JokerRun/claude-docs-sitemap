@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/create
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: d5739afee223337faf53e50a3d8052ab76430831ad818f141bb837e75ec1fdc6
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 871fe15bf399acb62003d9b951386912f4213b7962a5b9844dc8527e2a32a084
 ---
 
 ## Create Deployment
@@ -19,7 +19,7 @@ Create Deployment
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 27 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -77,7 +77,11 @@ Create Deployment
 
     - `"server-side-fallback-2026-06-01"`
 
+    - `"server-side-fallback-2026-07-01"`
+
     - `"fallback-credit-2026-06-01"`
+
+    - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
 

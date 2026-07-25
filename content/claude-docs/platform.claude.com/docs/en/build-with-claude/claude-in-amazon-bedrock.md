@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 6816ee4dc1e8a5fee71ddaf651f56b14ddcc16ee44ec266da83141ba339b7e14
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: b92c583d95ac987fd21d3211680d9d6350658cdad1896fcb61c47a9ce7b6cb17
 ---
 
 # Claude in Amazon Bedrock (Opus 4.7 and later)
@@ -19,7 +19,7 @@ This guide walks you through setting up and making API calls to Claude in Amazon
 
 ## Access
 
-Claude Fable 5, Claude Opus 4.8, Claude Sonnet 5, Claude Opus 4.7, and Claude Haiku 4.5 are open to all Amazon Bedrock customers. Claude Mythos Preview requires an invitation; see [Project Glasswing](https://anthropic.com/glasswing). For region availability, see [Regions](#regions).
+Amazon Bedrock sets access criteria for each Claude model individually. Claude Fable 5, Claude Opus 4.8, Claude Sonnet 5, Claude Opus 4.7, and Claude Haiku 4.5 are open to all Amazon Bedrock customers; for any other model's current criteria, check [Amazon Bedrock model access](https://console.aws.amazon.com/bedrock/home#/modelaccess) in the AWS console. Claude Mythos Preview requires an invitation; see [Project Glasswing](https://anthropic.com/glasswing). For region availability, see [Regions](#regions).
 
 ## Prerequisites
 
@@ -109,7 +109,7 @@ Anthropic's [client SDKs](/docs/en/cli-sdks-libraries/overview) support Claude i
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java-bedrock:2.50.0")
+        implementation("com.anthropic:anthropic-java-bedrock:2.52.0")
         ```
       </Tab>
 
@@ -118,7 +118,7 @@ Anthropic's [client SDKs](/docs/en/cli-sdks-libraries/overview) support Claude i
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-bedrock</artifactId>
-            <version>2.50.0</version>
+            <version>2.52.0</version>
         </dependency>
         ```
       </Tab>
@@ -156,7 +156,7 @@ The SDK resolves credentials and region using the standard AWS precedence: const
       -H "content-type: application/json" \
       -H "anthropic-version: 2023-06-01" \
       -d '{
-        "model": "anthropic.claude-opus-4-8",
+        "model": "anthropic.claude-opus-5",
         "max_tokens": 1024,
         "messages": [
           {"role": "user", "content": "Hello, Claude"}
@@ -176,12 +176,12 @@ The SDK resolves credentials and region using the standard AWS precedence: const
     client = AnthropicBedrockMantle(aws_region="us-east-1")
 
     message = client.messages.create(
-        model="anthropic.claude-opus-4-8",
+        model="anthropic.claude-opus-5",
         max_tokens=1024,
         messages=[{"role": "user", "content": "Hello, Claude"}],
     )
 
-    print(message.content[0].text)
+    print(next(block.text for block in message.content if block.type == "text"))
     ```
   </Tab>
 
@@ -194,14 +194,14 @@ The SDK resolves credentials and region using the standard AWS precedence: const
     });
 
     const message = await client.messages.create({
-      model: "anthropic.claude-opus-4-8",
+      model: "anthropic.claude-opus-5",
       max_tokens: 1024,
       messages: [{ role: "user", content: "Hello, Claude" }]
     });
 
-    const block = message.content[0];
-    if (block.type === "text") {
-      console.log(block.text);
+    const textBlock = message.content.find((block) => block.type === "text");
+    if (textBlock) {
+      console.log(textBlock.text);
     }
     ```
   </Tab>
@@ -215,13 +215,19 @@ The SDK resolves credentials and region using the standard AWS precedence: const
 
     var message = await client.Messages.Create(new()
     {
-        Model = "anthropic.claude-opus-4-8",
+        Model = "anthropic.claude-opus-5",
         MaxTokens = 1024,
         Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
     });
 
-    if (message.Content[0].Value is TextBlock block)
-        Console.WriteLine(block.Text);
+    foreach (var item in message.Content)
+    {
+        if (item.Value is TextBlock block)
+        {
+            Console.WriteLine(block.Text);
+            break;
+        }
+    }
     ```
   </Tab>
 
@@ -235,7 +241,7 @@ The SDK resolves credentials and region using the standard AWS precedence: const
     }
 
     message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-    	Model:     "anthropic.claude-opus-4-8",
+    	Model:     "anthropic.claude-opus-5",
     	MaxTokens: 1024,
     	Messages: []anthropic.MessageParam{
     		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),
@@ -245,7 +251,12 @@ The SDK resolves credentials and region using the standard AWS precedence: const
     	panic(err)
     }
 
-    fmt.Println(message.Content[0].Text)
+    for _, block := range message.Content {
+    	if textBlock, ok := block.AsAny().(anthropic.TextBlock); ok {
+    		fmt.Println(textBlock.Text)
+    		break
+    	}
+    }
     ```
   </Tab>
 
@@ -254,6 +265,7 @@ The SDK resolves credentials and region using the standard AWS precedence: const
     import com.anthropic.bedrock.backends.BedrockMantleBackend;
     import com.anthropic.client.AnthropicClient;
     import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+    import com.anthropic.models.messages.ContentBlock;
     import com.anthropic.models.messages.Message;
     import com.anthropic.models.messages.MessageCreateParams;
 
@@ -264,13 +276,16 @@ The SDK resolves credentials and region using the standard AWS precedence: const
 
         Message message = client.messages().create(
             MessageCreateParams.builder()
-                .model("anthropic.claude-opus-4-8")
+                .model("anthropic.claude-opus-5")
                 .maxTokens(1024)
                 .addUserMessage("Hello, Claude")
                 .build()
         );
 
-        IO.println(message.content().getFirst().asText().text());
+        message.content().stream()
+                .filter(ContentBlock::isText)
+                .findFirst()
+                .ifPresent(block -> IO.println(block.asText().text()));
     }
     ```
   </Tab>
@@ -282,14 +297,14 @@ The SDK resolves credentials and region using the standard AWS precedence: const
     $client = new MantleClient(awsRegion: 'us-east-1');
 
     $message = $client->messages->create(
-        model: 'anthropic.claude-opus-4-8',
+        model: 'anthropic.claude-opus-5',
         maxTokens: 1024,
         messages: [
             ['role' => 'user', 'content' => 'Hello, Claude'],
         ],
     );
 
-    echo $message->content[0]->text;
+    echo array_find($message->content, fn ($block) => $block->type === 'text')->text;
     ```
   </Tab>
 
@@ -300,12 +315,12 @@ The SDK resolves credentials and region using the standard AWS precedence: const
     client = Anthropic::BedrockMantleClient.new(aws_region: "us-east-1")
 
     message = client.messages.create(
-      model: "anthropic.claude-opus-4-8",
+      model: "anthropic.claude-opus-5",
       max_tokens: 1024,
       messages: [{role: "user", content: "Hello, Claude"}]
     )
 
-    puts message.content[0].text
+    puts message.content.find { it.type == :text }.text
     ```
   </Tab>
 </Tabs>
@@ -321,6 +336,7 @@ Model IDs in Claude in Amazon Bedrock carry an `anthropic.` provider prefix. Mod
 | Model                 | Model ID                        | Access                                                                 |
 | --------------------- | ------------------------------- | ---------------------------------------------------------------------- |
 | Claude Fable 5        | anthropic.claude-fable-5        | Open                                                                   |
+| Claude Opus 5         | anthropic.claude-opus-5         | See [Access](#access)                                                  |
 | Claude Opus 4.8       | anthropic.claude-opus-4-8       | Open                                                                   |
 | Claude Opus 4.7       | anthropic.claude-opus-4-7       | Open                                                                   |
 | Claude Sonnet 5       | `anthropic.claude-sonnet-5`     | Open                                                                   |
@@ -360,7 +376,7 @@ Claude in Amazon Bedrock is available in the following AWS regions. Amazon Bedro
 * **Global:** dynamic routing across all available regions for maximum availability. No pricing premium.
 * **Regional:** the endpoint resolves to the single AWS region you specify, for data-residency requirements. Regional endpoints carry a 10% pricing premium over global endpoints. To route across multiple regions within a geography, use an [inference profile](https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html) (US, EU, JP, or AU). Regions marked **In-region only** in the table support direct single-region routing without an inference profile.
 
-The global endpoint is available for Claude Fable 5, Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5, and Claude Haiku 4.5. Claude Mythos Preview is regional only and is available in `us-east-1`.
+The global endpoint is available for Claude Fable 5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5, and Claude Haiku 4.5. Claude Mythos Preview is regional only and is available in `us-east-1`.
 
 | AWS region       | Location                  | Endpoint types             |
 | ---------------- | ------------------------- | -------------------------- |

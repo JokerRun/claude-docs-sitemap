@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/github
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: e59a147a5b86a00a8fc2e6f89b853915359b4d99578ef4f6054a6b6835965ce2
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: f5e9b568b742500936b1dc65a1ff824b159bee999005e035f61c72494c1bd6af
 ---
 
 # Mengakses GitHub
@@ -33,7 +33,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
     --data @- <<JSON | jq -r '.id'
   {
     "name": "Code Reviewer",
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5",
     "system": "You are a code review assistant with access to GitHub.",
     "mcp_servers": [
       {
@@ -57,7 +57,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
   ```bash CLI
   AGENT_ID=$(ant beta:agents create \
     --name "Code Reviewer" \
-    --model '{id: claude-opus-4-8}' \
+    --model '{id: claude-opus-5}' \
     --system "You are a code review assistant with access to GitHub." \
     --mcp-server '{type: url, name: github, url: https://api.githubcopilot.com/mcp/}' \
     --tool '{type: agent_toolset_20260401}' \
@@ -68,7 +68,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
   ```python Python
   agent = client.beta.agents.create(
       name="Code Reviewer",
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       system="You are a code review assistant with access to GitHub.",
       mcp_servers=[
           {
@@ -90,7 +90,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
   ```typescript TypeScript
   const agent = await client.beta.agents.create({
     name: "Code Reviewer",
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     system: "You are a code review assistant with access to GitHub.",
     mcp_servers: [
       {
@@ -113,7 +113,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
   var agent = await client.Beta.Agents.Create(new()
   {
       Name = "Code Reviewer",
-      Model = new("claude-opus-4-8"),
+      Model = new("claude-opus-5"),
       System = "You are a code review assistant with access to GitHub.",
       McpServers =
       [
@@ -138,7 +138,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "Code Reviewer",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: "claude-opus-4-8",
+  		ID: "claude-opus-5",
   	},
   	System: anthropic.String("You are a code review assistant with access to GitHub."),
   	MCPServers: []anthropic.BetaManagedAgentsURLMCPServerParams{
@@ -170,7 +170,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
   ```java Java
   var agent = client.beta().agents().create(AgentCreateParams.builder()
       .name("Code Reviewer")
-      .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_8)
+      .model(BetaManagedAgentsModel.CLAUDE_OPUS_5)
       .system("You are a code review assistant with access to GitHub.")
       .addMcpServer(BetaManagedAgentsUrlMcpServerParams.builder()
           .type(BetaManagedAgentsUrlMcpServerParams.Type.URL)
@@ -190,7 +190,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
   ```php PHP
   $agent = $client->beta->agents->create(
       name: 'Code Reviewer',
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       system: 'You are a code review assistant with access to GitHub.',
       mcpServers: [
           [
@@ -212,7 +212,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
   ```ruby Ruby
   agent = client.beta.agents.create(
     name: "Code Reviewer",
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     system_: "You are a code review assistant with access to GitHub.",
     mcp_servers: [
       {
@@ -617,7 +617,13 @@ Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan
   ```typescript TypeScript
   // Daftar resource pada session
   const listed = await client.beta.sessions.resources.list(session.id);
-  const repoResourceId = listed.data[0].id;
+  const repoResource = listed.data.find(
+    (entry) => entry.type === "github_repository",
+  );
+  if (!repoResource) {
+    throw new Error("No GitHub repository resource on the session");
+  }
+  const repoResourceId = repoResource.id;
   console.log(repoResourceId); // "sesrsc_01ABC..."
 
   // Rotasi token otorisasi

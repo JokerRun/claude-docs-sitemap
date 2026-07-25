@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/legal-summarization
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: b29edbe93a9beb37e646cfe04dd6f53c289513859d02f75a8130e73f7d6b6944
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: e49a1b80ae43e53224d05208bb98c411825c3f596b78603b68cd414c2b515c42
 ---
 
 # Ringkasan dokumen hukum
 
-Panduan ini membahas cara memanfaatkan kemampuan pemrosesan bahasa alami tingkat lanjut dari Claude untuk meringkas dokumen hukum secara efisien, mengekstrak informasi kunci, dan mempercepat riset hukum. Dengan Claude, Anda dapat menyederhanakan peninjauan kontrak, persiapan litigasi, dan pekerjaan regulasi, menghemat waktu dan memastikan akurasi dalam proses hukum Anda.
+Panduan ini membahas cara memanfaatkan kemampuan pemrosesan bahasa alami canggih Claude untuk meringkas dokumen hukum secara efisien, mengekstrak informasi kunci, dan mempercepat riset hukum. Dengan Claude, Anda dapat menyederhanakan peninjauan kontrak, persiapan litigasi, dan pekerjaan regulasi, menghemat waktu dan memastikan akurasi dalam proses hukum Anda.
 
 ---
 
-> Kunjungi [summarization cookbook](https://platform.claude.com/cookbook/capabilities-summarization-guide) untuk melihat contoh implementasi ringkasan dokumen hukum menggunakan Claude.
+> Kunjungi [cookbook ringkasan](https://platform.claude.com/cookbook/capabilities-summarization-guide) untuk melihat contoh implementasi ringkasan dokumen hukum menggunakan Claude.
 
 ## Sebelum membangun dengan Claude
 
@@ -25,7 +25,7 @@ Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan LLM sep
   </Accordion>
 
   <Accordion title="Anda memerlukan ekstraksi otomatis metadata kunci">
-    Claude dapat secara efisien mengekstrak dan mengkategorikan metadata penting dari dokumen hukum, seperti pihak-pihak yang terlibat, tanggal, ketentuan kontrak, atau klausul tertentu. Ekstraksi otomatis ini dapat membantu mengorganisir informasi, membuatnya lebih mudah untuk dicari, dianalisis, dan mengelola kumpulan dokumen yang besar. Ini sangat berguna untuk manajemen kontrak, pemeriksaan kepatuhan, atau membuat basis data informasi hukum yang dapat dicari. 
+    Claude dapat secara efisien mengekstrak dan mengkategorikan metadata penting dari dokumen hukum, seperti pihak-pihak yang terlibat, tanggal, ketentuan kontrak, atau klausul tertentu. Ekstraksi otomatis ini dapat membantu mengorganisir informasi, membuatnya lebih mudah untuk dicari, dianalisis, dan dikelola dalam kumpulan dokumen yang besar. Ini sangat berguna untuk manajemen kontrak, pemeriksaan kepatuhan, atau membuat basis data informasi hukum yang dapat dicari. 
   </Accordion>
 
   <Accordion title="Anda ingin menghasilkan ringkasan yang jelas, ringkas, dan terstandarisasi">
@@ -96,9 +96,9 @@ Lihat panduan tentang [menetapkan kriteria keberhasilan](/docs/id/test-and-evalu
 
 ### Pilih model Claude yang tepat
 
-Akurasi model sangat penting saat meringkas dokumen hukum. Claude Opus 4.8 adalah pilihan yang sangat baik untuk kasus penggunaan seperti ini di mana akurasi tinggi diperlukan. Jika ukuran dan jumlah dokumen Anda besar sehingga biaya mulai menjadi perhatian, Anda juga dapat mencoba menggunakan model yang lebih kecil seperti Claude Haiku 4.5.
+Akurasi model sangat penting saat meringkas dokumen hukum. Claude Opus 5 adalah pilihan yang sangat baik untuk kasus penggunaan seperti ini di mana akurasi tinggi diperlukan. Jika ukuran dan jumlah dokumen Anda besar sehingga biaya mulai menjadi perhatian, Anda juga dapat mencoba menggunakan model yang lebih kecil seperti Claude Haiku 4.5.
 
-Untuk membantu memperkirakan biaya ini, berikut adalah perbandingan biaya untuk meringkas 1.000 perjanjian sewa-menyewa ulang menggunakan Opus dan Haiku:
+Untuk membantu memperkirakan biaya ini, berikut adalah perbandingan biaya untuk meringkas 1.000 perjanjian sewa-menyewa ulang menggunakan model Opus dan Haiku:
 
 * **Ukuran konten**
 
@@ -111,6 +111,12 @@ Untuk membantu memperkirakan biaya ini, berikut adalah perbandingan biaya untuk 
   * Token input: 86M (dengan asumsi 1 token per 3,5 karakter)
   * Token output per ringkasan: 350
   * Total token output: 350.000
+
+* **Estimasi biaya Claude Opus 5**
+
+  * Biaya token input: 86 MTok \* $5.00/MTok = $430.00 USD
+  * Biaya token output: 0.35 MTok \* $25.00/MTok = $8.75 USD
+  * Total biaya: $430.00 + $8.75 = $438.75 USD
 
 * **Estimasi biaya Claude Opus 4.8**
 
@@ -132,7 +138,7 @@ Untuk membantu memperkirakan biaya ini, berikut adalah perbandingan biaya untuk 
   .
 </Tip>
 
-### Ubah dokumen menjadi format yang dapat diproses oleh Claude
+### Ubah dokumen menjadi format yang dapat diproses Claude
 
 Sebelum Anda mulai meringkas dokumen, Anda perlu menyiapkan data Anda. Ini melibatkan ekstraksi teks dari PDF, membersihkan teks, dan memastikan teks siap diproses oleh Claude.
 
@@ -173,9 +179,9 @@ document_text = get_llm_text(pdf_file)
 print(document_text[:50000])
 ```
 
-Dalam contoh ini, Anda pertama-tama mengunduh PDF dari contoh perjanjian sewa-menyewa ulang yang digunakan dalam [summarization cookbook](https://platform.claude.com/cookbook/capabilities-summarization-guide). Perjanjian ini bersumber dari perjanjian sewa-menyewa ulang yang tersedia untuk umum dari [situs web sec.gov](https://www.sec.gov/Archives/edgar/data/1045425/000119312507044370/dex1032.htm).
+Dalam contoh ini, Anda terlebih dahulu mengunduh PDF dari contoh perjanjian sewa-menyewa ulang yang digunakan dalam [cookbook ringkasan](https://platform.claude.com/cookbook/capabilities-summarization-guide). Perjanjian ini bersumber dari perjanjian sewa-menyewa ulang yang tersedia untuk publik dari [situs web sec.gov](https://www.sec.gov/Archives/edgar/data/1045425/000119312507044370/dex1032.htm).
 
-Contoh ini menggunakan pustaka pypdf untuk mengekstrak konten PDF dan mengonversinya menjadi teks. Data teks kemudian dibersihkan dengan menghapus nomor halaman dan spasi berlebih.
+Contoh ini menggunakan pustaka pypdf untuk mengekstrak isi PDF dan mengonversinya menjadi teks. Data teks kemudian dibersihkan dengan menghapus nomor halaman dan spasi berlebih.
 
 ### Bangun prompt yang kuat
 
@@ -189,7 +195,7 @@ client = anthropic.Anthropic()
 
 
 def summarize_document(
-    text, details_to_extract, model="claude-opus-4-8", max_tokens=1000
+    text, details_to_extract, model="claude-opus-5", max_tokens=1000
 ):
     # Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt
     details_to_extract_str = "\n".join(details_to_extract)
@@ -221,7 +227,7 @@ def summarize_document(
         ],
     )
 
-    return response.content[0].text
+    return next(block.text for block in response.content if block.type == "text")
 
 
 sublease_summary = summarize_document(document_text, details_to_extract)
@@ -236,7 +242,7 @@ Karena kode mengeluarkan setiap bagian ringkasan di dalam tag, setiap bagian dap
 
 ### Evaluasi prompt Anda
 
-Prompting sering kali memerlukan pengujian dan optimasi agar siap untuk produksi. Untuk menentukan kesiapan solusi Anda, evaluasi kualitas ringkasan Anda menggunakan proses sistematis yang menggabungkan metode kuantitatif dan kualitatif. Membuat [evaluasi empiris yang kuat](/docs/id/test-and-evaluate/develop-tests#building-evals-and-test-cases) berdasarkan kriteria keberhasilan yang Anda tetapkan memungkinkan Anda untuk mengoptimalkan prompt Anda. Berikut adalah beberapa metrik yang mungkin ingin Anda sertakan dalam evaluasi empiris Anda:
+Prompting sering kali memerlukan pengujian dan optimasi agar siap untuk produksi. Untuk menentukan kesiapan solusi Anda, evaluasi kualitas ringkasan Anda menggunakan proses sistematis yang menggabungkan metode kuantitatif dan kualitatif. Membuat [evaluasi empiris yang kuat](/docs/id/test-and-evaluate/develop-tests#building-evals-and-test-cases) berdasarkan kriteria keberhasilan yang Anda tetapkan memungkinkan Anda mengoptimalkan prompt Anda. Berikut adalah beberapa metrik yang mungkin ingin Anda sertakan dalam evaluasi empiris Anda:
 
 <AccordionGroup>
   <Accordion title="Skor ROUGE">
@@ -247,8 +253,8 @@ Prompting sering kali memerlukan pengujian dan optimasi agar siap untuk produksi
     Meskipun awalnya dikembangkan untuk terjemahan mesin, metrik ini dapat diadaptasi untuk tugas ringkasan. Skor BLEU mengukur presisi kecocokan n-gram antara ringkasan yang dihasilkan dan ringkasan referensi. Skor yang lebih tinggi menunjukkan bahwa ringkasan yang dihasilkan mengandung frasa dan terminologi yang serupa dengan ringkasan referensi. 
   </Accordion>
 
-  <Accordion title="Kemiripan embedding kontekstual">
-    Metrik ini melibatkan pembuatan representasi vektor (embedding) dari ringkasan yang dihasilkan dan ringkasan referensi. Kemiripan antara embedding ini kemudian dihitung, sering kali menggunakan cosine similarity. Skor kemiripan yang lebih tinggi menunjukkan bahwa ringkasan yang dihasilkan menangkap makna semantik dan konteks dari ringkasan referensi, bahkan jika kata-kata yang tepat berbeda.
+  <Accordion title="Kesamaan embedding kontekstual">
+    Metrik ini melibatkan pembuatan representasi vektor (embedding) dari ringkasan yang dihasilkan dan ringkasan referensi. Kesamaan antara embedding ini kemudian dihitung, sering kali menggunakan cosine similarity. Skor kesamaan yang lebih tinggi menunjukkan bahwa ringkasan yang dihasilkan menangkap makna semantik dan konteks dari ringkasan referensi, bahkan jika kata-kata yang tepat berbeda.
   </Accordion>
 
   <Accordion title="Penilaian berbasis LLM">
@@ -280,11 +286,11 @@ Berikut adalah beberapa pertimbangan tambahan yang perlu diingat saat Anda mener
 
 Dalam skenario yang kompleks, mungkin berguna untuk mempertimbangkan strategi tambahan untuk meningkatkan kinerja di luar [teknik rekayasa prompt](/docs/id/build-with-claude/prompt-engineering/overview) standar. Berikut adalah beberapa strategi lanjutan:
 
-### Lakukan meta-summarization untuk meringkas dokumen panjang
+### Lakukan meta-ringkasan untuk meringkas dokumen panjang
 
-Ringkasan dokumen hukum sering kali melibatkan penanganan dokumen panjang atau banyak dokumen terkait sekaligus, sehingga Anda melampaui jendela konteks Claude. Anda dapat menggunakan metode chunking yang dikenal sebagai meta-summarization untuk menangani kasus penggunaan ini. Teknik ini melibatkan pemecahan dokumen menjadi potongan-potongan yang lebih kecil dan dapat dikelola, kemudian memproses setiap potongan secara terpisah. Anda kemudian dapat menggabungkan ringkasan dari setiap potongan untuk membuat meta-summary dari seluruh dokumen.
+Ringkasan dokumen hukum sering kali melibatkan penanganan dokumen panjang atau banyak dokumen terkait sekaligus, sehingga Anda melampaui "context window" (jendela konteks) Claude. Anda dapat menggunakan metode chunking yang dikenal sebagai meta-ringkasan untuk menangani kasus penggunaan ini. Teknik ini melibatkan pemecahan dokumen menjadi potongan-potongan yang lebih kecil dan dapat dikelola, lalu memproses setiap potongan secara terpisah. Anda kemudian dapat menggabungkan ringkasan dari setiap potongan untuk membuat meta-ringkasan dari seluruh dokumen.
 
-Berikut adalah contoh cara melakukan meta-summarization:
+Berikut adalah contoh cara melakukan meta-ringkasan:
 
 ```python Python
 # Inisialisasi klien Anthropic
@@ -296,12 +302,12 @@ def chunk_text(text, chunk_size=20000):
 
 
 def summarize_long_document(
-    text, details_to_extract, model="claude-opus-4-8", max_tokens=1000
+    text, details_to_extract, model="claude-opus-5", max_tokens=1000
 ):
     # Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt
     details_to_extract_str = "\n".join(details_to_extract)
 
-    # Iterasi setiap chunk dan ringkas satu per satu
+    # Iterasi setiap chunk dan ringkas masing-masing
     chunk_summaries = [
         summarize_document(
             chunk, details_to_extract, model=model, max_tokens=max_tokens
@@ -340,7 +346,7 @@ def summarize_long_document(
         ],
     )
 
-    return response.content[0].text
+    return next(block.text for block in response.content if block.type == "text")
 
 
 long_summary = summarize_long_document(document_text, details_to_extract)
@@ -351,17 +357,17 @@ Fungsi `summarize_long_document` dibangun di atas fungsi `summarize_document` se
 
 Kode ini mencapai hal tersebut dengan menerapkan fungsi `summarize_document` ke setiap potongan 20.000 karakter dalam dokumen asli. Ringkasan individual kemudian digabungkan, dan ringkasan akhir dibuat dari ringkasan potongan-potongan ini.
 
-Perhatikan bahwa fungsi `summarize_long_document` tidak sepenuhnya diperlukan untuk contoh PDF, karena seluruh dokumen muat dalam jendela konteks Claude. Namun, fungsi ini menjadi penting untuk dokumen yang melebihi jendela konteks Claude atau saat meringkas beberapa dokumen terkait secara bersamaan. Terlepas dari itu, teknik meta-summarization ini sering kali menangkap detail penting tambahan dalam ringkasan akhir yang terlewatkan dalam pendekatan ringkasan tunggal sebelumnya.
+Perhatikan bahwa fungsi `summarize_long_document` tidak sepenuhnya diperlukan untuk contoh PDF, karena seluruh dokumen muat dalam jendela konteks Claude. Namun, fungsi ini menjadi penting untuk dokumen yang melebihi jendela konteks Claude atau saat meringkas beberapa dokumen terkait secara bersamaan. Terlepas dari itu, teknik meta-ringkasan ini sering kali menangkap detail penting tambahan dalam ringkasan akhir yang terlewatkan dalam pendekatan ringkasan tunggal sebelumnya.
 
-### Gunakan summary indexed documents untuk menjelajahi koleksi dokumen yang besar
+### Gunakan dokumen terindeks ringkasan untuk menjelajahi koleksi dokumen yang besar
 
-Mencari koleksi dokumen dengan LLM biasanya melibatkan "retrieval-augmented generation" (generasi yang ditingkatkan dengan pengambilan), atau RAG. Namun, dalam skenario yang melibatkan dokumen besar atau ketika pengambilan informasi yang tepat sangat penting, pendekatan RAG dasar mungkin tidak cukup. Summary indexed documents adalah pendekatan RAG lanjutan yang menyediakan cara yang lebih efisien untuk memeringkat dokumen untuk pengambilan, menggunakan lebih sedikit konteks daripada metode RAG tradisional. Dalam pendekatan ini, Anda pertama-tama menggunakan Claude untuk menghasilkan ringkasan singkat untuk setiap dokumen dalam corpus Anda, dan kemudian menggunakan Claude untuk memeringkat relevansi setiap ringkasan terhadap kueri yang diajukan. Untuk detail lebih lanjut tentang pendekatan ini, termasuk contoh berbasis kode, lihat bagian summary indexed documents di [summarization cookbook](https://platform.claude.com/cookbook/capabilities-summarization-guide).
+Mencari koleksi dokumen dengan LLM biasanya melibatkan "retrieval-augmented generation" (generasi yang diperkaya pengambilan), atau RAG. Namun, dalam skenario yang melibatkan dokumen besar atau ketika pengambilan informasi yang tepat sangat penting, pendekatan RAG dasar mungkin tidak cukup. Dokumen terindeks ringkasan adalah pendekatan RAG lanjutan yang menyediakan cara yang lebih efisien untuk memeringkat dokumen untuk pengambilan, menggunakan lebih sedikit konteks daripada metode RAG tradisional. Dalam pendekatan ini, Anda terlebih dahulu menggunakan Claude untuk menghasilkan ringkasan singkat untuk setiap dokumen dalam corpus Anda, lalu menggunakan Claude untuk memeringkat relevansi setiap ringkasan terhadap kueri yang diajukan. Untuk detail lebih lanjut tentang pendekatan ini, termasuk contoh berbasis kode, lihat bagian dokumen terindeks ringkasan di [cookbook ringkasan](https://platform.claude.com/cookbook/capabilities-summarization-guide).
 
 ### Lakukan fine-tuning pada Claude untuk belajar dari dataset Anda
 
-Teknik lanjutan lainnya untuk meningkatkan kemampuan Claude dalam menghasilkan ringkasan adalah "fine-tuning" (penyetelan halus). Fine-tuning melibatkan pelatihan Claude pada dataset kustom yang secara khusus selaras dengan kebutuhan ringkasan dokumen hukum Anda, memastikan bahwa Claude beradaptasi dengan kasus penggunaan Anda. Berikut adalah gambaran umum tentang cara melakukan fine-tuning:
+Teknik lanjutan lainnya untuk meningkatkan kemampuan Claude dalam menghasilkan ringkasan adalah "fine-tuning" (penyetelan halus). Fine-tuning melibatkan pelatihan Claude pada dataset khusus yang secara spesifik selaras dengan kebutuhan ringkasan dokumen hukum Anda, memastikan bahwa Claude beradaptasi dengan kasus penggunaan Anda. Berikut adalah gambaran umum tentang cara melakukan fine-tuning:
 
-1. **Identifikasi kesalahan:** Mulailah dengan mengumpulkan contoh-contoh di mana ringkasan Claude kurang memadai - ini bisa termasuk detail hukum penting yang terlewat, kesalahpahaman konteks, atau penggunaan terminologi hukum yang tidak tepat.
+1. **Identifikasi kesalahan:** Mulailah dengan mengumpulkan contoh di mana ringkasan Claude kurang memadai - ini bisa mencakup detail hukum penting yang terlewat, kesalahpahaman konteks, atau penggunaan terminologi hukum yang tidak tepat.
 
 2. **Kurasi dataset:** Setelah Anda mengidentifikasi masalah-masalah ini, kompilasi dataset dari contoh-contoh bermasalah ini. Dataset ini harus mencakup dokumen hukum asli beserta ringkasan yang telah Anda koreksi, memastikan bahwa Claude mempelajari perilaku yang diinginkan.
 
@@ -378,11 +384,11 @@ Teknik lanjutan lainnya untuk meningkatkan kemampuan Claude dalam menghasilkan r
 </Tip>
 
 <CardGroup cols={2}>
-  <Card title="Summarization cookbook" icon="link" href="https://platform.claude.com/cookbook/capabilities-summarization-guide">
+  <Card title="Cookbook ringkasan" icon="link" href="https://platform.claude.com/cookbook/capabilities-summarization-guide">
     Lihat contoh berbasis kode yang diimplementasikan sepenuhnya tentang cara menggunakan Claude untuk meringkas kontrak.
   </Card>
 
-  <Card title="Citations cookbook" icon="link" href="https://platform.claude.com/cookbook/misc-using-citations">
-    Jelajahi resep Citations cookbook untuk panduan tentang cara memastikan akurasi dan keterjelasan informasi.
+  <Card title="Cookbook sitasi" icon="link" href="https://platform.claude.com/cookbook/misc-using-citations">
+    Jelajahi resep cookbook Sitasi untuk panduan tentang cara memastikan akurasi dan keterjelasan informasi.
   </Card>
 </CardGroup>

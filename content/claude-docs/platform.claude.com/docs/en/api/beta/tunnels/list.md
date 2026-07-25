@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/list
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: 7524e6fbdb638ca8479d09518bb9900c2b16309b53c4117845132c89c31b1089
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 18872b16a13a45f17556b1135207357687862cb883f9f9f43b4373350314b3fb
 ---
 
 ## List Tunnels
@@ -35,7 +35,7 @@ Lists tunnels. Results are ordered by creation time, newest first; archived tunn
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 27 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -93,7 +93,11 @@ Lists tunnels. Results are ordered by creation time, newest first; archived tunn
 
     - `"server-side-fallback-2026-06-01"`
 
+    - `"server-side-fallback-2026-07-01"`
+
     - `"fallback-credit-2026-06-01"`
+
+    - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
 

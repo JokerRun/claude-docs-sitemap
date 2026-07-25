@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-07-18T03:07:08.309502Z
-sha256: 561896b206d1e0b6d064fc7aa7758f655a528c3415d7be7d230ac48750f2b36c
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 7f75a0cf7bfae08b6a96b378fcc9764aa747170198696e83e7801de5846975fe
 ---
 
 # Files API
@@ -184,7 +184,7 @@ Once uploaded, reference the file by passing the `id` from the upload response a
     -H "content-type: application/json" \
     -d @- <<EOF
   {
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5",
     "max_tokens": 1024,
     "messages": [
       {
@@ -210,7 +210,7 @@ Once uploaded, reference the file by passing the `id` from the upload response a
 
   ```bash CLI
   ant beta:messages create --beta files-api-2025-04-14 <<YAML
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1024
   messages:
     - role: user
@@ -226,7 +226,7 @@ Once uploaded, reference the file by passing the `id` from the upload response a
 
   ```python Python
   response = client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[
           {
@@ -250,7 +250,7 @@ Once uploaded, reference the file by passing the `id` from the upload response a
 
   ```typescript TypeScript
   const response = await client.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -280,7 +280,7 @@ Once uploaded, reference the file by passing the `id` from the upload response a
   var response = await client.Beta.Messages.Create(
       new MessageCreateParams
       {
-          Model = Messages::Model.ClaudeOpus4_8,
+          Model = Messages::Model.ClaudeOpus5,
           MaxTokens = 1024,
           Betas = [AnthropicBeta.FilesApi2025_04_14],
           Messages =
@@ -306,7 +306,7 @@ Once uploaded, reference the file by passing the `id` from the upload response a
   ```go Go
   msg, err := client.Beta.Messages.New(context.Background(),
   	anthropic.BetaMessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus4_8,
+  		Model:     anthropic.ModelClaudeOpus5,
   		MaxTokens: 1024,
   		Betas:     []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
   		Messages: []anthropic.BetaMessageParam{
@@ -327,7 +327,7 @@ Once uploaded, reference the file by passing the `id` from the upload response a
 
   ```java Java
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_8)
+      .model(Model.CLAUDE_OPUS_5)
       .addBeta("files-api-2025-04-14")
       .maxTokens(1024)
       .addUserMessageOfBetaContentBlockParams(List.of(
@@ -364,7 +364,7 @@ Once uploaded, reference the file by passing the `id` from the upload response a
               ]
           ]
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       betas: ['files-api-2025-04-14'],
   );
 
@@ -373,7 +373,7 @@ Once uploaded, reference the file by passing the `id` from the upload response a
 
   ```ruby Ruby
   response = client.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     betas: ["files-api-2025-04-14"],
     messages: [
@@ -468,7 +468,7 @@ The following examples read a text file and send its contents as plain text:
     -H "anthropic-version: 2023-06-01" \
     -d @- <<EOF
   {
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5",
     "max_tokens": 1024,
     "messages": [
       {
@@ -488,9 +488,9 @@ The following examples read a text file and send its contents as plain text:
   ```bash CLI
   # The "@./path" reference inlines the file contents directly into the field.
   ant messages create \
-    --model claude-opus-4-8 \
+    --model claude-opus-5 \
     --max-tokens 1024 \
-    --transform 'content.0.text' \
+    --transform 'content.#(type=="text").text' \
     --raw-output <<'YAML'
   messages:
     - role: user
@@ -512,7 +512,7 @@ The following examples read a text file and send its contents as plain text:
       text_content = f.read()
 
   response = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[
           {
@@ -527,7 +527,9 @@ The following examples read a text file and send its contents as plain text:
       ],
   )
 
-  print(response.content[0].text)
+  for block in response.content:
+      if block.type == "text":
+          print(block.text)
   ```
 
   ```typescript TypeScript
@@ -539,7 +541,7 @@ The following examples read a text file and send its contents as plain text:
   const textContent = await fs.readFile("document.txt", "utf-8");
 
   const response = await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -554,10 +556,10 @@ The following examples read a text file and send its contents as plain text:
     ]
   });
 
-  const block = response.content[0];
-  if (block.type === "text") {
-    console.log(block.text);
-  }
+  const textBlock = response.content.find(
+    (block): block is Anthropic.TextBlock => block.type === "text"
+  );
+  console.log(textBlock?.text);
   ```
 
   ```csharp C#
@@ -568,7 +570,7 @@ The following examples read a text file and send its contents as plain text:
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Messages = [new()
       {
@@ -591,7 +593,7 @@ The following examples read a text file and send its contents as plain text:
   }
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock(
@@ -603,7 +605,11 @@ The following examples read a text file and send its contents as plain text:
   	log.Fatal(err)
   }
 
-  fmt.Println(response.Content[0].Text)
+  for _, block := range response.Content {
+  	if textBlock, ok := block.AsAny().(anthropic.TextBlock); ok {
+  		fmt.Println(textBlock.Text)
+  	}
+  }
   ```
 
   ```java Java
@@ -613,7 +619,7 @@ The following examples read a text file and send its contents as plain text:
   String textContent = Files.readString(Path.of("document.txt"));
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_8)
+      .model(Model.CLAUDE_OPUS_5)
       .maxTokens(1024L)
       .addUserMessage("Here's the document content:\n\n" + textContent + "\n\nPlease summarize this document.")
       .build();
@@ -643,10 +649,14 @@ The following examples read a text file and send its contents as plain text:
               ]
           ]
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
-  echo $message->content[0]->text;
+  foreach ($message->content as $block) {
+      if ($block->type === 'text') {
+          echo $block->text, PHP_EOL;
+      }
+  }
   ```
 
   ```ruby Ruby
@@ -656,7 +666,7 @@ The following examples read a text file and send its contents as plain text:
   text_content = File.read("document.txt")
 
   message = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -671,7 +681,9 @@ The following examples read a text file and send its contents as plain text:
     ]
   )
 
-  puts message.content.first.text
+  message.content.each do |block|
+    puts block.text if block.type == :text
+  end
   ```
 </CodeGroup>
 

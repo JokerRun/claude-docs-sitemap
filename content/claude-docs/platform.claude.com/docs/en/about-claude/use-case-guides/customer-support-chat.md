@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: 0aee50a054f1b5b4ee6dc40c7a393c9875094f876bb259123f4b2300ec682244
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: da8a41acb0fa8c951e815084d685e30c3f67badf9015b71144d3e53053d30341
 ---
 
 # Customer support agent
@@ -194,7 +194,7 @@ Here are criteria and benchmarks that can be used to evaluate the business impac
 
 The choice of model depends on the trade-offs between cost, accuracy, and response time.
 
-For customer support chat, Claude Opus 4.8 is well suited to balance intelligence, latency, and cost. However, for instances where you have conversation flow with multiple prompts including RAG, tool use, or long-context prompts, Claude Haiku 4.5 may be more suitable to optimize for latency.
+For customer support chat, Claude Opus 5 is well suited to balance intelligence, latency, and cost, including the most complex support scenarios that require deep reasoning across long, multi-step conversations. However, for instances where you have conversation flow with multiple prompts including RAG, tool use, or long-context prompts, Claude Haiku 4.5 may be more suitable to optimize for latency.
 
 ### Build a strong prompt
 
@@ -399,7 +399,7 @@ Add the model name, the tool definition, and a stub implementation to `config.py
 ```python
 import time
 
-MODEL = "claude-opus-4-8"
+MODEL = "claude-opus-5"
 
 TOOLS = [
     {
@@ -519,21 +519,28 @@ The class should have two main methods: one that calls the API to generate a mes
               if "error" in follow_up_response:
                   return f"An error occurred: {follow_up_response['error']}"
 
-              response_text = follow_up_response.content[0].text
+              response_text = next(
+                  (block.text for block in follow_up_response.content if block.type == "text"),
+                  None,
+              )
+              if response_text is None:
+                  raise Exception("An error occurred: Unexpected response type")
               self.session_state.messages.append(
                   {"role": "assistant", "content": response_text}
               )
               return response_text
 
-          elif response_message.content[0].type == "text":
-              response_text = response_message.content[0].text
+          text_block = next(
+              (block for block in response_message.content if block.type == "text"), None
+          )
+          if text_block is not None:
+              response_text = text_block.text
               self.session_state.messages.append(
                   {"role": "assistant", "content": response_text}
               )
               return response_text
 
-          else:
-              raise Exception("An error occurred: Unexpected response type")
+          raise Exception("An error occurred: Unexpected response type")
 
       def handle_tool_use(self, func_name, func_params):
           if func_name == "get_quote":
@@ -582,16 +589,20 @@ The class should have two main methods: one that calls the API to generate a mes
 
         const followUpResponse = await this.generateMessage(this.messages, 2048);
 
-        const followUpBlock = followUpResponse.content[0];
-        if (followUpBlock.type !== "text") {
+        const followUpBlock = followUpResponse.content.find(
+          (block): block is Anthropic.TextBlock => block.type === "text"
+        );
+        if (!followUpBlock) {
           throw new Error("An error occurred: Unexpected response type");
         }
         this.messages.push({ role: "assistant", content: followUpBlock.text });
         return followUpBlock.text;
       }
 
-      const firstBlock = responseMessage.content[0];
-      if (firstBlock.type === "text") {
+      const firstBlock = responseMessage.content.find(
+        (block): block is Anthropic.TextBlock => block.type === "text"
+      );
+      if (firstBlock) {
         this.messages.push({ role: "assistant", content: firstBlock.text });
         return firstBlock.text;
       }
@@ -677,19 +688,25 @@ The class should have two main methods: one that calls the API to generate a mes
 
               var followUpResponse = await GenerateMessage(Messages, maxTokens: 2048);
 
-              if (!followUpResponse.Content[0].TryPickText(out var followUpText))
+              foreach (var block in followUpResponse.Content)
               {
-                  throw new InvalidOperationException("An error occurred: Unexpected response type");
+                  if (block.TryPickText(out var followUpText))
+                  {
+                      Messages.Add(new() { Role = Role.Assistant, Content = followUpText.Text });
+                      return followUpText.Text;
+                  }
               }
 
-              Messages.Add(new() { Role = Role.Assistant, Content = followUpText.Text });
-              return followUpText.Text;
+              throw new InvalidOperationException("An error occurred: Unexpected response type");
           }
 
-          if (responseMessage.Content[0].TryPickText(out var textBlock))
+          foreach (var block in responseMessage.Content)
           {
-              Messages.Add(new() { Role = Role.Assistant, Content = textBlock.Text });
-              return textBlock.Text;
+              if (block.TryPickText(out var textBlock))
+              {
+                  Messages.Add(new() { Role = Role.Assistant, Content = textBlock.Text });
+                  return textBlock.Text;
+              }
           }
 
           throw new InvalidOperationException("An error occurred: Unexpected response type");
@@ -770,20 +787,23 @@ The class should have two main methods: one that calls the API to generate a mes
   			return "", err
   		}
 
-  		textBlock, ok := followUp.Content[0].AsAny().(anthropic.TextBlock)
-  		if !ok {
-  			return "", fmt.Errorf("unexpected response type: %s", followUp.Content[0].Type)
+  		for _, block := range followUp.Content {
+  			if textBlock, ok := block.AsAny().(anthropic.TextBlock); ok {
+  				bot.messages = append(bot.messages, anthropic.NewAssistantMessage(anthropic.NewTextBlock(textBlock.Text)))
+  				return textBlock.Text, nil
+  			}
   		}
-  		bot.messages = append(bot.messages, anthropic.NewAssistantMessage(anthropic.NewTextBlock(textBlock.Text)))
-  		return textBlock.Text, nil
+  		return "", fmt.Errorf("an error occurred: unexpected response type")
   	}
 
-  	if textBlock, ok := response.Content[0].AsAny().(anthropic.TextBlock); ok {
-  		bot.messages = append(bot.messages, anthropic.NewAssistantMessage(anthropic.NewTextBlock(textBlock.Text)))
-  		return textBlock.Text, nil
+  	for _, block := range response.Content {
+  		if textBlock, ok := block.AsAny().(anthropic.TextBlock); ok {
+  			bot.messages = append(bot.messages, anthropic.NewAssistantMessage(anthropic.NewTextBlock(textBlock.Text)))
+  			return textBlock.Text, nil
+  		}
   	}
 
-  	return "", fmt.Errorf("unexpected response type: %s", response.Content[0].Type)
+  	return "", fmt.Errorf("an error occurred: unexpected response type")
   }
 
   func (bot *ChatBot) HandleToolUse(toolName string, toolInput json.RawMessage) (string, error) {
@@ -872,25 +892,27 @@ The class should have two main methods: one that calls the API to generate a mes
 
               Message followUpResponse = generateMessage(messages, 2048);
 
-              ContentBlock followUpBlock = followUpResponse.content().getFirst();
-              if (!followUpBlock.isText()) {
-                  throw new IllegalStateException("An error occurred: Unexpected response type");
-              }
+              ContentBlock followUpBlock = followUpResponse.content().stream()
+                      .filter(ContentBlock::isText)
+                      .findFirst()
+                      .orElseThrow(() -> new IllegalStateException("An error occurred: Unexpected response type"));
               String responseText = followUpBlock.asText().text();
               messages.add(MessageParam.builder()
                       .role(MessageParam.Role.ASSISTANT)
                       .content(responseText)
                       .build());
               return responseText;
-          } else if (content.getFirst().isText()) {
-              String responseText = content.getFirst().asText().text();
+          } else {
+              ContentBlock textBlock = content.stream()
+                      .filter(ContentBlock::isText)
+                      .findFirst()
+                      .orElseThrow(() -> new IllegalStateException("An error occurred: Unexpected response type"));
+              String responseText = textBlock.asText().text();
               messages.add(MessageParam.builder()
                       .role(MessageParam.Role.ASSISTANT)
                       .content(responseText)
                       .build());
               return responseText;
-          } else {
-              throw new IllegalStateException("An error occurred: Unexpected response type");
           }
       }
 
@@ -967,7 +989,10 @@ The class should have two main methods: one that calls the API to generate a mes
 
               $followUpResponse = $this->generateMessage($this->messages, maxTokens: 2048);
 
-              $firstBlock = array_first($followUpResponse->content);
+              $firstBlock = array_find(
+                  $followUpResponse->content,
+                  static fn ($block): bool => $block instanceof TextBlock,
+              );
               if (!$firstBlock instanceof TextBlock) {
                   throw new RuntimeException('An error occurred: Unexpected response type');
               }
@@ -977,7 +1002,7 @@ The class should have two main methods: one that calls the API to generate a mes
               return $firstBlock->text;
           }
 
-          $firstBlock = array_first($content);
+          $firstBlock = array_find($content, static fn ($block): bool => $block instanceof TextBlock);
           if ($firstBlock instanceof TextBlock) {
               $this->messages[] = MessageParam::with(role: 'assistant', content: $firstBlock->text);
 
@@ -1043,13 +1068,13 @@ The class should have two main methods: one that calls the API to generate a mes
         follow_up_response = generate_message(@messages, 2048)
 
         case follow_up_response.content
-        in [Anthropic::TextBlock => text_block, *]
+        in [*, Anthropic::TextBlock => text_block, *]
           @messages << {role: "assistant", content: text_block.text}
           text_block.text
         else
           raise "An error occurred: Unexpected response type"
         end
-      in [Anthropic::TextBlock => text_block, *]
+      in [*, Anthropic::TextBlock => text_block, *]
         @messages << {role: "assistant", content: text_block.text}
         text_block.text
       else

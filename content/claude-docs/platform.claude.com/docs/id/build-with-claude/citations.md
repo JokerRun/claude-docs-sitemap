@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/citations
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 613668c6664d8518ad31adc821452f81a27fdc49d08355e2758e87b2cb316cd4
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 418aa7d2dad2d9a6962b34c0ec78d12cc493324244e9b64ed118fc6df4acdf09
 ---
 
 # Citations
@@ -15,7 +15,7 @@ Landaskan respons Claude pada dokumen sumber Anda. Citations mengembalikan bagia
   Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
-Claude dapat memberikan sitasi yang terperinci saat menjawab pertanyaan tentang dokumen, membantu Anda melacak dan memverifikasi sumber di balik setiap respons.
+Claude dapat memberikan sitasi (citations) yang terperinci saat menjawab pertanyaan tentang dokumen, membantu Anda melacak dan memverifikasi sumber di balik setiap respons.
 
 Semua [model aktif](/docs/id/about-claude/models/overview) mendukung citations.
 
@@ -32,7 +32,7 @@ Contoh berikut menunjukkan cara mengaktifkan citations pada dokumen teks biasa d
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "messages": [
         {
@@ -61,7 +61,7 @@ Contoh berikut menunjukkan cara mengaktifkan citations pada dokumen teks biasa d
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1024
   messages:
     - role: user
@@ -84,7 +84,7 @@ Contoh berikut menunjukkan cara mengaktifkan citations pada dokumen teks biasa d
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[
           {
@@ -113,7 +113,7 @@ Contoh berikut menunjukkan cara mengaktifkan citations pada dokumen teks biasa d
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -147,7 +147,7 @@ Contoh berikut menunjukkan cara mengaktifkan citations pada dokumen teks biasa d
   var response = await client.Messages.Create(
       new()
       {
-          Model = Model.ClaudeOpus4_8,
+          Model = Model.ClaudeOpus5,
           MaxTokens = 1024,
           Messages =
           [
@@ -181,7 +181,7 @@ Contoh berikut menunjukkan cara mengaktifkan citations pada dokumen teks biasa d
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -226,7 +226,7 @@ Contoh berikut menunjukkan cara mengaktifkan citations pada dokumen teks biasa d
       .build();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_8)
+      .model(Model.CLAUDE_OPUS_5)
       .maxTokens(1024)
       .addUserMessageOfBlockParams(
           List.of(
@@ -267,7 +267,7 @@ Contoh berikut menunjukkan cara mengaktifkan citations pada dokumen teks biasa d
               ],
           ],
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
   echo json_encode($response, JSON_PRETTY_PRINT);
@@ -277,7 +277,7 @@ Contoh berikut menunjukkan cara mengaktifkan citations pada dokumen teks biasa d
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -310,10 +310,10 @@ Contoh berikut menunjukkan cara mengaktifkan citations pada dokumen teks biasa d
 <Tip>
   **Perbandingan dengan pendekatan berbasis prompt**
 
-  Dibandingkan dengan meminta Claude untuk mengutip sumber melalui prompt, fitur citations menawarkan keuntungan berikut:
+  Dibandingkan dengan meminta Claude mengutip sumber melalui prompt, fitur citations menawarkan keunggulan berikut:
 
   * **Penghematan biaya:** Jika pendekatan berbasis prompt Anda meminta Claude untuk menghasilkan kutipan langsung, Anda mungkin melihat penghematan biaya karena `cited_text` tidak dihitung dalam token output Anda.
-  * **Keandalan sitasi yang lebih baik:** Karena API mengurai sitasi ke dalam format respons yang dijelaskan di bagian berikut dan mengekstrak `cited_text` secara langsung, sitasi dijamin berisi penunjuk yang valid ke dokumen yang disediakan.
+  * **Keandalan sitasi yang lebih baik:** Karena API mengurai citations ke dalam format respons yang dijelaskan di bagian berikut dan mengekstrak `cited_text` secara langsung, citations dijamin berisi penunjuk yang valid ke dokumen yang disediakan.
   * **Kualitas sitasi yang lebih baik:** Dalam evaluasi Anthropic, fitur citations secara signifikan lebih mungkin mengutip kutipan yang paling relevan dari dokumen dibandingkan pendekatan yang murni berbasis prompt.
 </Tip>
 
@@ -326,28 +326,28 @@ Integrasikan citations dengan Claude dalam langkah-langkah berikut:
 <Steps>
   <Step title="Sediakan dokumen dan aktifkan citations">
     * Sertakan dokumen dalam salah satu format yang didukung: dokumen [PDF](#pdf-documents), [teks biasa](#plain-text-documents), atau [konten kustom](#custom-content-documents).
-    * Atur `citations.enabled=true` pada setiap dokumen Anda. Saat ini, citations harus diaktifkan pada semua atau tidak sama sekali dari dokumen dalam sebuah permintaan.
+    * Atur `citations.enabled=true` pada setiap dokumen Anda. Saat ini, citations harus diaktifkan pada semua dokumen atau tidak sama sekali dalam satu permintaan.
     * Hanya sitasi teks yang saat ini didukung. Sitasi gambar belum dimungkinkan.
   </Step>
 
   <Step title="Dokumen diproses">
-    * Konten dokumen "dipecah" (chunked) untuk menentukan granularitas minimum dari sitasi yang mungkin. Misalnya, pemecahan per kalimat memungkinkan Claude mengutip satu kalimat atau merangkai beberapa kalimat berurutan untuk mengutip paragraf atau bagian yang lebih panjang.
+    * Konten dokumen "dipecah" (chunked) untuk menentukan granularitas minimum dari citations yang mungkin. Misalnya, pemecahan per kalimat memungkinkan Claude mengutip satu kalimat atau merangkai beberapa kalimat berurutan untuk mengutip paragraf atau bagian yang lebih panjang.
 
       * **Untuk PDF:** Teks diekstrak seperti yang dijelaskan dalam [dukungan PDF](/docs/id/build-with-claude/pdf-support) dan konten dipecah menjadi kalimat. Mengutip gambar dari PDF saat ini tidak didukung.
-      * **Untuk dokumen teks biasa:** Konten dipecah menjadi kalimat yang dapat dikutip.
+      * **Untuk dokumen teks biasa:** Konten dipecah menjadi kalimat-kalimat yang dapat dikutip.
       * **Untuk dokumen konten kustom:** Blok konten yang Anda sediakan digunakan apa adanya dan tidak ada pemecahan lebih lanjut yang dilakukan.
   </Step>
 
   <Step title="Claude memberikan respons dengan sitasi">
-    * Respons sekarang dapat mencakup beberapa blok teks di mana setiap blok teks dapat berisi klaim yang dibuat Claude dan daftar sitasi yang mendukung klaim tersebut.
+    * Respons sekarang dapat mencakup beberapa blok teks di mana setiap blok teks dapat berisi klaim yang dibuat Claude dan daftar citations yang mendukung klaim tersebut.
 
-    * Sitasi merujuk pada lokasi spesifik dalam dokumen sumber. Format sitasi ini bergantung pada jenis dokumen yang dikutip.
+    * Citations merujuk pada lokasi spesifik dalam dokumen sumber. Format citations ini bergantung pada jenis dokumen yang dikutip.
 
-      * **Untuk PDF:** Sitasi mencakup rentang nomor halaman (diindeks dari 1).
-      * **Untuk dokumen teks biasa:** Sitasi mencakup rentang indeks karakter (diindeks dari 0).
-      * **Untuk dokumen konten kustom:** Sitasi mencakup rentang indeks blok konten (diindeks dari 0) yang sesuai dengan daftar konten asli yang disediakan.
+      * **Untuk PDF:** Citations mencakup rentang nomor halaman (diindeks mulai dari 1).
+      * **Untuk dokumen teks biasa:** Citations mencakup rentang indeks karakter (diindeks mulai dari 0).
+      * **Untuk dokumen konten kustom:** Citations mencakup rentang indeks blok konten (diindeks mulai dari 0) yang sesuai dengan daftar konten asli yang disediakan.
 
-    * Indeks dokumen disediakan untuk menunjukkan sumber referensi dan diindeks dari 0 sesuai dengan daftar semua dokumen dalam permintaan asli Anda.
+    * Indeks dokumen disediakan untuk menunjukkan sumber referensi dan diindeks mulai dari 0 sesuai dengan daftar semua dokumen dalam permintaan asli Anda.
   </Step>
 </Steps>
 
@@ -356,26 +356,26 @@ Integrasikan citations dengan Claude dalam langkah-langkah berikut:
 
   Secara default, dokumen teks biasa dan PDF secara otomatis dipecah menjadi kalimat. Jika Anda memerlukan kontrol lebih atas granularitas sitasi (misalnya, untuk poin-poin atau transkrip), gunakan dokumen konten kustom sebagai gantinya. Lihat [Jenis dokumen](#document-types) untuk detail lebih lanjut.
 
-  Misalnya, jika Anda ingin Claude dapat mengutip kalimat tertentu dari chunk RAG Anda, Anda harus memasukkan setiap chunk RAG ke dalam dokumen teks biasa. Sebaliknya, jika Anda tidak ingin ada pemecahan lebih lanjut, atau jika Anda ingin menyesuaikan pemecahan tambahan apa pun, Anda dapat memasukkan chunk RAG ke dalam dokumen konten kustom.
+  Misalnya, jika Anda ingin Claude dapat mengutip kalimat tertentu dari chunk RAG Anda, Anda harus memasukkan setiap chunk RAG ke dalam dokumen teks biasa. Sebaliknya, jika Anda tidak ingin ada pemecahan lebih lanjut, atau jika Anda ingin menyesuaikan pemecahan tambahan, Anda dapat memasukkan chunk RAG ke dalam dokumen konten kustom.
 </Tip>
 
 ### Konten yang dapat dikutip versus yang tidak dapat dikutip
 
 * Teks yang ditemukan dalam konten `source` dokumen dapat dikutip.
-* `title` dan `context` adalah bidang opsional yang diteruskan ke model tetapi tidak digunakan untuk konten yang dikutip.
-* `title` dibatasi panjangnya, sehingga bidang `context` berguna untuk menyimpan metadata dokumen sebagai teks atau JSON yang di-string-kan.
+* `title` dan `context` adalah field opsional yang diteruskan ke model tetapi tidak digunakan untuk konten yang dikutip.
+* `title` memiliki batasan panjang, sehingga field `context` berguna untuk menyimpan metadata dokumen sebagai teks atau JSON yang di-string-kan.
 
 ### Indeks sitasi
 
-* Indeks dokumen diindeks dari 0 berdasarkan daftar semua blok konten dokumen dalam permintaan (mencakup semua pesan).
-* Indeks karakter diindeks dari 0 dengan indeks akhir eksklusif.
-* Nomor halaman diindeks dari 1 dengan nomor halaman akhir eksklusif.
-* Indeks blok konten diindeks dari 0 dengan indeks akhir eksklusif dari daftar `content` yang disediakan dalam dokumen konten kustom.
+* Indeks dokumen diindeks mulai dari 0 berdasarkan daftar semua blok konten dokumen dalam permintaan (mencakup semua pesan).
+* Indeks karakter diindeks mulai dari 0 dengan indeks akhir eksklusif.
+* Nomor halaman diindeks mulai dari 1 dengan nomor halaman akhir eksklusif.
+* Indeks blok konten diindeks mulai dari 0 dengan indeks akhir eksklusif dari daftar `content` yang disediakan dalam dokumen konten kustom.
 
 ### Biaya token
 
 * Mengaktifkan citations menyebabkan sedikit peningkatan token input karena penambahan prompt sistem dan pemecahan dokumen.
-* Namun, fitur citations sangat efisien dengan token output. Secara internal, model menghasilkan sitasi dalam format terstandar yang kemudian diurai menjadi teks yang dikutip dan indeks lokasi dokumen. Bidang `cited_text` disediakan untuk kenyamanan dan tidak dihitung dalam token output.
+* Namun, fitur citations sangat efisien dalam hal token output. Secara internal, model menghasilkan citations dalam format terstandar yang kemudian diurai menjadi teks yang dikutip dan indeks lokasi dokumen. Field `cited_text` disediakan untuk kenyamanan dan tidak dihitung dalam token output.
 * Ketika diteruskan kembali dalam giliran percakapan berikutnya, `cited_text` juga tidak dihitung dalam token input.
 
 ### Kompatibilitas fitur
@@ -387,7 +387,7 @@ Citations bekerja bersama dengan fitur API lainnya termasuk [caching prompt](/do
 
   Citations tidak dapat digunakan bersama dengan [structured outputs](/docs/id/build-with-claude/structured-outputs). Jika Anda mengaktifkan citations pada dokumen apa pun yang disediakan pengguna (blok `document` atau blok `search_result`) dan juga menyertakan parameter `output_config.format` (atau parameter `output_format` yang sudah usang), API mengembalikan error 400.
 
-  Ini karena citations memerlukan penyisipan blok sitasi di antara output teks, yang tidak kompatibel dengan batasan skema JSON yang ketat dari structured outputs.
+  Hal ini karena citations memerlukan penyisipan blok sitasi di antara output teks, yang tidak kompatibel dengan batasan skema JSON yang ketat dari structured outputs.
 </Warning>
 
 #### Menggunakan caching prompt dengan citations
@@ -403,7 +403,7 @@ Blok sitasi yang dihasilkan dalam respons tidak dapat di-cache secara langsung, 
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "messages": [
         {
@@ -431,7 +431,7 @@ Blok sitasi yang dihasilkan dalam respons tidak dapat di-cache secara langsung, 
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-4-8 \
+    --model claude-opus-5 \
     --max-tokens 1024 <<'YAML'
   messages:
     - role: user
@@ -459,7 +459,7 @@ Blok sitasi yang dihasilkan dalam respons tidak dapat di-cache secara langsung, 
   )  # Minimum cacheable length
 
   response = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[
           {
@@ -496,7 +496,7 @@ Blok sitasi yang dihasilkan dalam respons tidak dapat di-cache secara langsung, 
     "This is a very long document with thousands of words..." + " ... ".repeat(1000); // Minimum cacheable length
 
   const response = await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -534,7 +534,7 @@ Blok sitasi yang dihasilkan dalam respons tidak dapat di-cache secara langsung, 
   var response = await client.Messages.Create(
       new()
       {
-          Model = Model.ClaudeOpus4_8,
+          Model = Model.ClaudeOpus5,
           MaxTokens = 1024,
           Messages =
           [
@@ -568,7 +568,7 @@ Blok sitasi yang dihasilkan dalam respons tidak dapat di-cache secara langsung, 
   	strings.Repeat(" ... ", 1000) // Minimum cacheable length
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -610,7 +610,7 @@ Blok sitasi yang dihasilkan dalam respons tidak dapat di-cache secara langsung, 
       .build();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_8)
+      .model(Model.CLAUDE_OPUS_5)
       .maxTokens(1024)
       .addUserMessageOfBlockParams(
           List.of(
@@ -655,7 +655,7 @@ Blok sitasi yang dihasilkan dalam respons tidak dapat di-cache secara langsung, 
               ],
           ],
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
   echo json_encode($response, JSON_PRETTY_PRINT);
@@ -670,7 +670,7 @@ Blok sitasi yang dihasilkan dalam respons tidak dapat di-cache secara langsung, 
     " ... " * 1000 # Minimum cacheable length
 
   response = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -703,7 +703,7 @@ Dalam contoh ini:
 
 * Konten dokumen di-cache menggunakan `cache_control` pada blok dokumen.
 * Citations diaktifkan pada dokumen.
-* Claude dapat menghasilkan respons dengan sitasi sambil mendapatkan manfaat dari konten dokumen yang di-cache.
+* Claude dapat menghasilkan respons dengan citations sambil mendapatkan manfaat dari konten dokumen yang di-cache.
 * Permintaan berikutnya yang menggunakan dokumen yang sama mendapatkan manfaat dari konten yang di-cache.
 
 ## Jenis dokumen
@@ -712,14 +712,14 @@ Dalam contoh ini:
 
 Tiga jenis dokumen didukung untuk citations. Dokumen dapat disediakan langsung dalam pesan (base64, teks, atau URL) atau diunggah melalui [Files API](/docs/id/build-with-claude/files) dan dirujuk dengan `file_id`:
 
-| Jenis         | Terbaik untuk                                                | Pemecahan                    | Format sitasi                     |
-| ------------- | ------------------------------------------------------------ | ---------------------------- | --------------------------------- |
-| Teks biasa    | Dokumen teks sederhana, prosa                                | Kalimat                      | Indeks karakter (diindeks dari 0) |
-| PDF           | File PDF dengan konten teks                                  | Kalimat                      | Nomor halaman (diindeks dari 1)   |
-| Konten kustom | Daftar, transkrip, format khusus, sitasi yang lebih granular | Tidak ada pemecahan tambahan | Indeks blok (diindeks dari 0)     |
+| Jenis         | Paling cocok untuk                                                   | Pemecahan                    | Format sitasi                           |
+| ------------- | -------------------------------------------------------------------- | ---------------------------- | --------------------------------------- |
+| Teks biasa    | Dokumen teks sederhana, prosa                                        | Kalimat                      | Indeks karakter (diindeks mulai dari 0) |
+| PDF           | File PDF dengan konten teks                                          | Kalimat                      | Nomor halaman (diindeks mulai dari 1)   |
+| Konten kustom | Daftar, transkrip, pemformatan khusus, citations yang lebih granular | Tidak ada pemecahan tambahan | Indeks blok (diindeks mulai dari 0)     |
 
 <Note>
-  Untuk jenis file yang tidak didukung oleh blok `document` (misalnya, .docx dan .xlsx), konversikan file ke teks biasa dan sertakan kontennya langsung dalam konten pesan. File yang sudah berupa teks biasa, seperti file .csv dan .md, juga dapat diunggah dengan tipe konten `text/plain` secara eksplisit. Lihat [Bekerja dengan format file lain](/docs/id/build-with-claude/files#working-with-other-file-formats).
+  Untuk jenis file yang tidak didukung oleh blok `document` (misalnya, .docx dan .xlsx), konversikan file tersebut ke teks biasa dan sertakan kontennya langsung dalam konten pesan. File yang sudah berupa teks biasa, seperti file .csv dan .md, juga dapat diunggah dengan tipe konten `text/plain` secara eksplisit. Lihat [Bekerja dengan format file lain](/docs/id/build-with-claude/files#working-with-other-file-formats).
 </Note>
 
 ### Dokumen teks biasa
@@ -759,7 +759,7 @@ Dokumen teks biasa secara otomatis dipecah menjadi kalimat. Anda dapat menyediak
         -H "content-type: application/json" \
         -d @- <<EOF
       {
-        "model": "claude-opus-4-8",
+        "model": "claude-opus-5",
         "max_tokens": 1024,
         "messages": [
           {
@@ -785,7 +785,7 @@ Dokumen teks biasa secara otomatis dipecah menjadi kalimat. Anda dapat menyediak
 
       ```bash CLI
       ant beta:messages create --beta files-api-2025-04-14 <<YAML
-      model: claude-opus-4-8
+      model: claude-opus-5
       max_tokens: 1024
       messages:
         - role: user
@@ -805,7 +805,7 @@ Dokumen teks biasa secara otomatis dipecah menjadi kalimat. Anda dapat menyediak
 
       ```python Python
       cited_response = client.beta.messages.create(
-          model="claude-opus-4-8",
+          model="claude-opus-5",
           max_tokens=1024,
           messages=[
               {
@@ -829,7 +829,7 @@ Dokumen teks biasa secara otomatis dipecah menjadi kalimat. Anda dapat menyediak
 
       ```typescript TypeScript
       const citedResponse = await client.beta.messages.create({
-        model: "claude-opus-4-8",
+        model: "claude-opus-5",
         max_tokens: 1024,
         messages: [
           {
@@ -858,7 +858,7 @@ Dokumen teks biasa secara otomatis dipecah menjadi kalimat. Anda dapat menyediak
       var citedResponse = await client.Beta.Messages.Create(
           new MessageCreateParams
           {
-              Model = Messages::Model.ClaudeOpus4_8,
+              Model = Messages::Model.ClaudeOpus5,
               MaxTokens = 1024,
               Betas = [AnthropicBeta.FilesApi2025_04_14],
               Messages =
@@ -887,7 +887,7 @@ Dokumen teks biasa secara otomatis dipecah menjadi kalimat. Anda dapat menyediak
       ```go Go
       citedMsg, err := client.Beta.Messages.New(context.Background(),
       	anthropic.BetaMessageNewParams{
-      		Model:     anthropic.ModelClaudeOpus4_8,
+      		Model:     anthropic.ModelClaudeOpus5,
       		MaxTokens: 1024,
       		Betas:     []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
       		Messages: []anthropic.BetaMessageParam{
@@ -914,7 +914,7 @@ Dokumen teks biasa secara otomatis dipecah menjadi kalimat. Anda dapat menyediak
 
       ```java Java
       MessageCreateParams citedParams = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .addBeta("files-api-2025-04-14")
           .maxTokens(1024)
           .addUserMessageOfBetaContentBlockParams(List.of(
@@ -952,7 +952,7 @@ Dokumen teks biasa secara otomatis dipecah menjadi kalimat. Anda dapat menyediak
                   ],
               ],
           ],
-          model: 'claude-opus-4-8',
+          model: 'claude-opus-5',
           betas: ['files-api-2025-04-14'],
       );
 
@@ -961,7 +961,7 @@ Dokumen teks biasa secara otomatis dipecah menjadi kalimat. Anda dapat menyediak
 
       ```ruby Ruby
       cited_response = client.beta.messages.create(
-        model: "claude-opus-4-8",
+        model: "claude-opus-5",
         max_tokens: 1024,
         betas: ["files-api-2025-04-14"],
         messages: [
@@ -1005,7 +1005,7 @@ Dokumen teks biasa secara otomatis dipecah menjadi kalimat. Anda dapat menyediak
 
 ### Dokumen PDF
 
-Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau dengan `file_id`. Teks PDF diekstrak dan dipecah menjadi kalimat. Karena sitasi gambar belum didukung, PDF yang merupakan hasil pemindaian dokumen dan tidak berisi teks yang dapat diekstrak tidak dapat dikutip.
+Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau dengan `file_id`. Teks PDF diekstrak dan dipecah menjadi kalimat. Karena sitasi gambar belum didukung, PDF yang merupakan hasil pindaian dokumen dan tidak berisi teks yang dapat diekstrak tidak dapat dikutip.
 
 <Tabs>
   <Tab title="Base64">
@@ -1018,7 +1018,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
         -d '{
-          "model": "claude-opus-4-8",
+          "model": "claude-opus-5",
           "max_tokens": 1024,
           "messages": [
             {
@@ -1047,7 +1047,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
 
       ```bash CLI
       ant messages create <<'YAML'
-      model: claude-opus-4-8
+      model: claude-opus-5
       max_tokens: 1024
       messages:
         - role: user
@@ -1074,7 +1074,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       ).decode()
 
       response = client.messages.create(
-          model="claude-opus-4-8",
+          model="claude-opus-5",
           max_tokens=1024,
           messages=[
               {
@@ -1105,7 +1105,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       const pdfBase64 = Buffer.from(await readFile("/path/to/document.pdf")).toString("base64");
 
       const response = await client.messages.create({
-        model: "claude-opus-4-8",
+        model: "claude-opus-5",
         max_tokens: 1024,
         messages: [
           {
@@ -1141,7 +1141,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       var response = await client.Messages.Create(
           new()
           {
-              Model = Model.ClaudeOpus4_8,
+              Model = Model.ClaudeOpus5,
               MaxTokens = 1024,
               Messages =
               [
@@ -1178,7 +1178,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       pdfBase64 := base64.StdEncoding.EncodeToString(pdfBytes)
 
       response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus4_8,
+      	Model:     anthropic.ModelClaudeOpus5,
       	MaxTokens: 1024,
       	Messages: []anthropic.MessageParam{
       		anthropic.NewUserMessage(
@@ -1218,7 +1218,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
           .build();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(1024)
           .addUserMessageOfBlockParams(
               List.of(
@@ -1261,7 +1261,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
                   ],
               ],
           ],
-          model: 'claude-opus-4-8',
+          model: 'claude-opus-5',
       );
 
       echo json_encode($response, JSON_PRETTY_PRINT);
@@ -1273,7 +1273,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       pdf_base64 = Base64.strict_encode64(File.binread("/path/to/document.pdf"))
 
       response = client.messages.create(
-        model: "claude-opus-4-8",
+        model: "claude-opus-5",
         max_tokens: 1024,
         messages: [
           {
@@ -1312,7 +1312,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
         -d '{
-          "model": "claude-opus-4-8",
+          "model": "claude-opus-5",
           "max_tokens": 1024,
           "messages": [
             {
@@ -1340,7 +1340,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
 
       ```bash CLI
       ant messages create <<'YAML'
-      model: claude-opus-4-8
+      model: claude-opus-5
       max_tokens: 1024
       messages:
         - role: user
@@ -1362,7 +1362,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       client = anthropic.Anthropic()
 
       response = client.messages.create(
-          model="claude-opus-4-8",
+          model="claude-opus-5",
           max_tokens=1024,
           messages=[
               {
@@ -1390,7 +1390,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       const client = new Anthropic();
 
       const response = await client.messages.create({
-        model: "claude-opus-4-8",
+        model: "claude-opus-5",
         max_tokens: 1024,
         messages: [
           {
@@ -1423,7 +1423,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       var response = await client.Messages.Create(
           new()
           {
-              Model = Model.ClaudeOpus4_8,
+              Model = Model.ClaudeOpus5,
               MaxTokens = 1024,
               Messages =
               [
@@ -1457,7 +1457,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       client := anthropic.NewClient()
 
       response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus4_8,
+      	Model:     anthropic.ModelClaudeOpus5,
       	MaxTokens: 1024,
       	Messages: []anthropic.MessageParam{
       		anthropic.NewUserMessage(
@@ -1496,7 +1496,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
           .build();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(1024)
           .addUserMessageOfBlockParams(
               List.of(
@@ -1536,7 +1536,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
                   ],
               ],
           ],
-          model: 'claude-opus-4-8',
+          model: 'claude-opus-5',
       );
 
       echo json_encode($response, JSON_PRETTY_PRINT);
@@ -1546,7 +1546,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       client = Anthropic::Client.new
 
       response = client.messages.create(
-        model: "claude-opus-4-8",
+        model: "claude-opus-5",
         max_tokens: 1024,
         messages: [
           {
@@ -1590,7 +1590,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
         -H "content-type: application/json" \
         -d @- <<EOF
       {
-        "model": "claude-opus-4-8",
+        "model": "claude-opus-5",
         "max_tokens": 1024,
         "messages": [
           {
@@ -1616,7 +1616,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
 
       ```bash CLI
       ant beta:messages create --beta files-api-2025-04-14 <<YAML
-      model: claude-opus-4-8
+      model: claude-opus-5
       max_tokens: 1024
       messages:
         - role: user
@@ -1636,7 +1636,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
 
       ```python Python
       cited_response = client.beta.messages.create(
-          model="claude-opus-4-8",
+          model="claude-opus-5",
           max_tokens=1024,
           messages=[
               {
@@ -1660,7 +1660,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
 
       ```typescript TypeScript
       const citedResponse = await client.beta.messages.create({
-        model: "claude-opus-4-8",
+        model: "claude-opus-5",
         max_tokens: 1024,
         messages: [
           {
@@ -1689,7 +1689,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       var citedResponse = await client.Beta.Messages.Create(
           new MessageCreateParams
           {
-              Model = Messages::Model.ClaudeOpus4_8,
+              Model = Messages::Model.ClaudeOpus5,
               MaxTokens = 1024,
               Betas = [AnthropicBeta.FilesApi2025_04_14],
               Messages =
@@ -1718,7 +1718,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       ```go Go
       citedMsg, err := client.Beta.Messages.New(context.Background(),
       	anthropic.BetaMessageNewParams{
-      		Model:     anthropic.ModelClaudeOpus4_8,
+      		Model:     anthropic.ModelClaudeOpus5,
       		MaxTokens: 1024,
       		Betas:     []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
       		Messages: []anthropic.BetaMessageParam{
@@ -1745,7 +1745,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
 
       ```java Java
       MessageCreateParams citedParams = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .addBeta("files-api-2025-04-14")
           .maxTokens(1024)
           .addUserMessageOfBetaContentBlockParams(List.of(
@@ -1783,7 +1783,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
                   ],
               ],
           ],
-          model: 'claude-opus-4-8',
+          model: 'claude-opus-5',
           betas: ['files-api-2025-04-14'],
       );
 
@@ -1792,7 +1792,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
 
       ```ruby Ruby
       cited_response = client.beta.messages.create(
-        model: "claude-opus-4-8",
+        model: "claude-opus-5",
         max_tokens: 1024,
         betas: ["files-api-2025-04-14"],
         messages: [
@@ -1836,7 +1836,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
 
 ### Dokumen konten kustom
 
-Dokumen konten kustom memberi Anda kontrol atas granularitas sitasi. Tidak ada pemecahan tambahan yang dilakukan dan chunk disediakan ke model sesuai dengan blok konten yang disediakan.
+Dokumen konten kustom memberi Anda kontrol atas granularitas sitasi. Tidak ada pemecahan tambahan yang dilakukan dan chunk disediakan ke model sesuai dengan blok konten yang diberikan.
 
 <CodeGroup>
   ```bash cURL
@@ -1845,7 +1845,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas sitasi. Tidak ada p
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "messages": [
         {
@@ -1876,7 +1876,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas sitasi. Tidak ada p
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1024
   messages:
     - role: user
@@ -1902,7 +1902,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas sitasi. Tidak ada p
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[
           {
@@ -1933,7 +1933,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas sitasi. Tidak ada p
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -1969,7 +1969,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas sitasi. Tidak ada p
   var response = await client.Messages.Create(
       new()
       {
-          Model = Model.ClaudeOpus4_8,
+          Model = Model.ClaudeOpus5,
           MaxTokens = 1024,
           Messages =
           [
@@ -2007,7 +2007,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas sitasi. Tidak ada p
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -2056,7 +2056,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas sitasi. Tidak ada p
       .build();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_8)
+      .model(Model.CLAUDE_OPUS_5)
       .maxTokens(1024)
       .addUserMessageOfBlockParams(
           List.of(
@@ -2099,7 +2099,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas sitasi. Tidak ada p
               ],
           ],
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
   echo json_encode($response, JSON_PRETTY_PRINT);
@@ -2109,7 +2109,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas sitasi. Tidak ada p
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -2158,7 +2158,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas sitasi. Tidak ada p
 
 ## Struktur respons
 
-Ketika citations diaktifkan, respons mencakup beberapa blok teks dengan sitasi:
+Ketika citations diaktifkan, respons mencakup beberapa blok teks dengan citations:
 
 ```python
 {
@@ -2235,7 +2235,7 @@ Ketika citations diaktifkan, respons mencakup beberapa blok teks dengan sitasi:
 
 ### Dukungan streaming
 
-Untuk respons streaming, sitasi tiba sebagai tipe delta `citations_delta` di dalam event `content_block_delta`. Setiap delta berisi satu sitasi untuk ditambahkan ke daftar `citations` pada blok konten `text` saat ini.
+Untuk respons streaming, citations tiba sebagai tipe delta `citations_delta` di dalam event `content_block_delta`. Setiap delta berisi satu sitasi untuk ditambahkan ke daftar `citations` pada blok konten `text` saat ini.
 
 <AccordionGroup>
   <Accordion title="Contoh event streaming">
@@ -2273,7 +2273,7 @@ Untuk respons streaming, sitasi tiba sebagai tipe delta `citations_delta` di dal
 
 <CardGroup cols={2}>
   <Card title="Streaming pesan" icon="wifi-high" href="/docs/id/build-with-claude/streaming">
-    Tangani tipe delta `citations_delta` bersama dengan delta teks untuk merender respons dengan sitasi saat di-streaming.
+    Tangani tipe delta `citations_delta` bersama dengan delta teks untuk merender respons yang dikutip saat di-streaming.
   </Card>
 
   <Card title="Hasil pencarian" icon="book-bookmark" href="/docs/id/build-with-claude/search-results">
@@ -2281,10 +2281,10 @@ Untuk respons streaming, sitasi tiba sebagai tipe delta `citations_delta` di dal
   </Card>
 
   <Card title="Dukungan PDF" icon="file" href="/docs/id/build-with-claude/pdf-support">
-    Pelajari bagaimana Claude mengekstrak teks dari PDF dan bagaimana sitasi berbasis halaman dipetakan kembali ke file sumber Anda.
+    Pelajari bagaimana Claude mengekstrak teks dari PDF dan bagaimana citations berbasis halaman dipetakan kembali ke file sumber Anda.
   </Card>
 
   <Card title="Files API" icon="hard-drives" href="/docs/id/build-with-claude/files">
-    Unggah dokumen sekali dan rujuk dengan `file_id` di beberapa permintaan sitasi.
+    Unggah dokumen sekali dan rujuk dengan `file_id` di beberapa permintaan citations.
   </Card>
 </CardGroup>

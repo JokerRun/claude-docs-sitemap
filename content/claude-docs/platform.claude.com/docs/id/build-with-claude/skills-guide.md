@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/skills-guide
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 5ea44392a129f159b516b3ee81c58fbae8d73e320c9790bab3d0e6347489834f
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: cadc5f32c217a30cde23c471d9df9cf2baef722f47314c98bda0c4843736e30a
 ---
 
 # Menggunakan Agent Skills dengan API
@@ -58,7 +58,7 @@ Skills terintegrasi secara identik di Messages API terlepas dari sumbernya. Anda
 | **Manajemen**    | Bawaan dan dikelola oleh Anthropic         | Unggah dan kelola melalui [Skills API](/docs/id/api/beta/skills/create) |
 | **Ketersediaan** | Tersedia untuk semua pengguna              | Privat untuk workspace Anda                                             |
 
-Kedua sumber skill dikembalikan oleh [endpoint List Skills](/docs/id/api/beta/skills/list) (gunakan parameter `source` untuk memfilter). Bentuk integrasi dan lingkungan eksekusinya identik. Satu-satunya perbedaan adalah dari mana Skills berasal dan bagaimana Skills dikelola.
+Kedua sumber skill dikembalikan oleh [endpoint List Skills](/docs/id/api/beta/skills/list) (gunakan parameter `source` untuk memfilter). Bentuk integrasi dan lingkungan eksekusinya identik. Satu-satunya perbedaan adalah dari mana Skills berasal dan bagaimana Skills tersebut dikelola.
 
 ### Prasyarat
 
@@ -92,7 +92,7 @@ Strukturnya identik untuk Skills Anthropic maupun kustom. Tentukan `type` dan `s
     -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 4096,
       "container": {
         "skills": [
@@ -117,7 +117,7 @@ Strukturnya identik untuk Skills Anthropic maupun kustom. Tentukan `type` dan `s
   ```bash CLI
   ant beta:messages create \
     --beta code-execution-2025-08-25,skills-2025-10-02 <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 4096
   container:
     skills:
@@ -137,7 +137,7 @@ Strukturnya identik untuk Skills Anthropic maupun kustom. Tentukan `type` dan `s
   client = anthropic.Anthropic()
 
   response = client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=4096,
       betas=["code-execution-2025-08-25", "skills-2025-10-02"],
       container={
@@ -154,7 +154,7 @@ Strukturnya identik untuk Skills Anthropic maupun kustom. Tentukan `type` dan `s
   const client = new Anthropic();
 
   const response = await client.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 4096,
     betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
     container: {
@@ -186,7 +186,7 @@ Strukturnya identik untuk Skills Anthropic maupun kustom. Tentukan `type` dan `s
 
   var parameters = new MessageCreateParams
   {
-      Model = "claude-opus-4-8",
+      Model = "claude-opus-5",
       MaxTokens = 4096,
       Betas = ["code-execution-2025-08-25", "skills-2025-10-02"],
       Container = new BetaContainerParams
@@ -213,7 +213,7 @@ Strukturnya identik untuk Skills Anthropic maupun kustom. Tentukan `type` dan `s
   client := anthropic.NewClient()
 
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     "claude-opus-4-8",
+  	Model:     "claude-opus-5",
   	MaxTokens: 4096,
   	Betas: []anthropic.AnthropicBeta{
   		"code-execution-2025-08-25",
@@ -252,7 +252,7 @@ Strukturnya identik untuk Skills Anthropic maupun kustom. Tentukan `type` dan `s
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(4096L)
           .addBeta("code-execution-2025-08-25")
           .addBeta("skills-2025-10-02")
@@ -280,7 +280,7 @@ Strukturnya identik untuk Skills Anthropic maupun kustom. Tentukan `type` dan `s
       messages: [
           ['role' => 'user', 'content' => 'Create a presentation about renewable energy']
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
       container: [
           'skills' => [
@@ -303,7 +303,7 @@ Strukturnya identik untuk Skills Anthropic maupun kustom. Tentukan `type` dan `s
   client = Anthropic::Client.new
 
   message = client.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 4096,
     betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
     container: {
@@ -348,7 +348,7 @@ Ketika Skills membuat dokumen (Excel, PowerPoint, PDF, Word), Skills mengembalik
     -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 4096,
       "container": {
         "skills": [
@@ -391,7 +391,7 @@ Ketika Skills membuat dokumen (Excel, PowerPoint, PDF, Word), Skills mengembalik
     --beta code-execution-2025-08-25,skills-2025-10-02 \
     --transform 'content.#.content.content.#.file_id|@flatten|0' \
     --raw-output <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 4096
   container:
     skills:
@@ -425,7 +425,7 @@ Ketika Skills membuat dokumen (Excel, PowerPoint, PDF, Word), Skills mengembalik
 
   # Langkah 1: Gunakan Skill untuk membuat file
   response = client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=4096,
       betas=["code-execution-2025-08-25", "skills-2025-10-02"],
       container={
@@ -471,7 +471,7 @@ Ketika Skills membuat dokumen (Excel, PowerPoint, PDF, Word), Skills mengembalik
 
   // Langkah 1: Gunakan Skill untuk membuat file
   const response = await client.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 4096,
     betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
     container: {
@@ -515,7 +515,7 @@ Ketika Skills membuat dokumen (Excel, PowerPoint, PDF, Word), Skills mengembalik
   // Langkah 1: Gunakan Skill untuk membuat file
   var parameters = new MessageCreateParams
   {
-      Model = "claude-opus-4-8",
+      Model = "claude-opus-5",
       MaxTokens = 4096,
       Betas = ["code-execution-2025-08-25", "skills-2025-10-02"],
       Container = new BetaContainerParams
@@ -568,7 +568,7 @@ Ketika Skills membuat dokumen (Excel, PowerPoint, PDF, Word), Skills mengembalik
 
   	// Langkah 1: Gunakan Skill untuk membuat file
   	response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  		Model:     "claude-opus-4-8",
+  		Model:     "claude-opus-5",
   		MaxTokens: 4096,
   		Betas:     []anthropic.AnthropicBeta{"code-execution-2025-08-25", anthropic.AnthropicBetaSkills2025_10_02},
   		Container: anthropic.BetaMessageNewParamsContainerUnion{
@@ -651,7 +651,7 @@ Ketika Skills membuat dokumen (Excel, PowerPoint, PDF, Word), Skills mengembalik
 
       // Langkah 1: Gunakan Skill untuk membuat file
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(4096L)
           .addBeta("code-execution-2025-08-25")
           .addBeta("skills-2025-10-02")
@@ -705,7 +705,7 @@ Ketika Skills membuat dokumen (Excel, PowerPoint, PDF, Word), Skills mengembalik
       messages: [
           ['role' => 'user', 'content' => 'Create an Excel file with a simple budget spreadsheet']
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
       container: [
           'skills' => [
@@ -749,7 +749,7 @@ Ketika Skills membuat dokumen (Excel, PowerPoint, PDF, Word), Skills mengembalik
 
   # Langkah 1: Gunakan Skill untuk membuat file
   response = client.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 4096,
     betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
     container: {
@@ -832,15 +832,15 @@ Ketika Skills membuat dokumen (Excel, PowerPoint, PDF, Word), Skills mengembalik
   ```python Python
   client = anthropic.Anthropic()
   file_id = "file_011CNha8iCJcU1wXNR6q4V8w"
-  # Dapatkan metadata file
+  # Mendapatkan metadata file
   file_info = client.beta.files.retrieve_metadata(file_id=file_id)
   print(f"Filename: {file_info.filename}, Size: {file_info.size_bytes} bytes")
 
-  # Daftar semua file
+  # Menampilkan daftar semua file
   for file in client.beta.files.list():
       print(f"{file.filename} - {file.created_at}")
 
-  # Hapus file
+  # Menghapus file
   client.beta.files.delete(file_id=file_id)
   ```
 
@@ -848,16 +848,16 @@ Ketika Skills membuat dokumen (Excel, PowerPoint, PDF, Word), Skills mengembalik
   const client = new Anthropic();
   const fileId = "file_011CNha8iCJcU1wXNR6q4V8w";
 
-  // Mendapatkan metadata file
+  // Dapatkan metadata file
   const fileInfo = await client.beta.files.retrieveMetadata(fileId);
   console.log(`Filename: ${fileInfo.filename}, Size: ${fileInfo.size_bytes} bytes`);
 
-  // Menampilkan daftar semua file
+  // Daftar semua file
   for await (const file of client.beta.files.list()) {
     console.log(`${file.filename} - ${file.created_at}`);
   }
 
-  // Menghapus file
+  // Hapus file
   await client.beta.files.delete(fileId);
   ```
 
@@ -935,17 +935,17 @@ Ketika Skills membuat dokumen (Excel, PowerPoint, PDF, Word), Skills mengembalik
   $client = new Client();
   $fileId = 'file_011CNha8iCJcU1wXNR6q4V8w';
 
-  // Dapatkan metadata file
+  // Mendapatkan metadata file
   $fileInfo = $client->beta->files->retrieveMetadata($fileId);
   echo "Filename: {$fileInfo->filename}, Size: {$fileInfo->sizeBytes} bytes\n";
 
-  // Daftar file (halaman pertama)
+  // Menampilkan daftar file (halaman pertama)
   $files = $client->beta->files->list();
   foreach ($files->data as $file) {
       echo "{$file->filename} - {$file->createdAt->format(DATE_ATOM)}\n";
   }
 
-  // Hapus file
+  // Menghapus file
   $client->beta->files->delete($fileId);
   ```
 
@@ -977,7 +977,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
 
 <CodeGroup>
   ```bash cURL
-  # Penggunaan ulang container multi-turn tidak cocok untuk perintah shell
+  # Penggunaan ulang container multi-giliran tidak cocok untuk perintah shell
   # sekali pakai; salah satu opsi SDK akan lebih sesuai. Ambil
   # container.id dari respons pertama, lalu teruskan pada permintaan berikutnya sebagai
   # "container": {"id": "...", "skills": [...]} bersama riwayat percakapan.
@@ -988,7 +988,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
   CONTAINER_ID=$(ant beta:messages create \
     --beta code-execution-2025-08-25,skills-2025-10-02 \
     --transform container.id --raw-output <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 4096
   container:
     skills:
@@ -1004,7 +1004,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
   # Lanjutkan percakapan dengan container yang sama
   ant beta:messages create \
     --beta code-execution-2025-08-25,skills-2025-10-02 <<YAML
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 4096
   container:
     id: $CONTAINER_ID  # Reuse container
@@ -1027,7 +1027,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
 
   # Permintaan pertama membuat container
   response1 = client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=4096,
       betas=["code-execution-2025-08-25", "skills-2025-10-02"],
       container={
@@ -1043,7 +1043,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
   messages = [
       {"role": "user", "content": "Create a sample sales dataset and analyze it"},
       {
-          # Teruskan teks asisten; container.id membawa status eksekusi
+          # Bawa teks asisten ke permintaan berikutnya; container.id membawa status eksekusi
           "role": "assistant",
           "content": "\n".join(
               block.text for block in response1.content if block.type == "text"
@@ -1053,7 +1053,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
   ]
 
   response2 = client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=4096,
       betas=["code-execution-2025-08-25", "skills-2025-10-02"],
       container={
@@ -1070,7 +1070,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
 
   // Permintaan pertama membuat container
   const response1 = await client.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 4096,
     betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
     container: {
@@ -1095,7 +1095,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
   ];
 
   const response2 = await client.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 4096,
     betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
     container: {
@@ -1110,10 +1110,10 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
   ```csharp C#
   AnthropicClient client = new();
 
-  // Permintaan pertama dengan Skill
+  // Permintaan pertama dengan sebuah Skill
   var parameters1 = new MessageCreateParams
   {
-      Model = "claude-opus-4-8",
+      Model = "claude-opus-5",
       MaxTokens = 4096,
       Betas = ["code-execution-2025-08-25", "skills-2025-10-02"],
       Container = new BetaContainerParams
@@ -1135,7 +1135,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
   var response1 = await client.Beta.Messages.Create(parameters1);
 
   // Lanjutkan percakapan dalam container yang sama
-  // Teruskan teks asisten ke permintaan berikutnya; container.id membawa status eksekusi
+  // Teruskan teks asisten; container.id membawa status eksekusi
   var assistantText = string.Join(
       "\n",
       response1.Content.Select(block => block.TryPickText(out var text) ? text.Text : null).Where(text => text is not null)
@@ -1143,7 +1143,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
 
   var parameters2 = new MessageCreateParams
   {
-      Model = "claude-opus-4-8",
+      Model = "claude-opus-5",
       MaxTokens = 4096,
       Betas = ["code-execution-2025-08-25", "skills-2025-10-02"],
       Container = new BetaContainerParams
@@ -1176,7 +1176,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
   client := anthropic.NewClient()
 
   response1, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     "claude-opus-4-8",
+  	Model:     "claude-opus-5",
   	MaxTokens: 4096,
   	Betas:     []anthropic.AnthropicBeta{"code-execution-2025-08-25", anthropic.AnthropicBetaSkills2025_10_02},
   	Container: anthropic.BetaMessageNewParamsContainerUnion{
@@ -1201,7 +1201,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
   	log.Fatal(err)
   }
 
-  // Teruskan teks asisten ke permintaan berikutnya; container.id membawa status eksekusi
+  // Teruskan teks asisten; container.id membawa status eksekusi
   var textParts []string
   for _, block := range response1.Content {
   	if block.Type == "text" {
@@ -1211,7 +1211,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
   assistantText := strings.Join(textParts, "\n")
 
   response2, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     "claude-opus-4-8",
+  	Model:     "claude-opus-5",
   	MaxTokens: 4096,
   	Betas:     []anthropic.AnthropicBeta{"code-execution-2025-08-25", anthropic.AnthropicBetaSkills2025_10_02},
   	Container: anthropic.BetaMessageNewParamsContainerUnion{
@@ -1255,7 +1255,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params1 = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(4096L)
           .addBeta("code-execution-2025-08-25")
           .addBeta("skills-2025-10-02")
@@ -1273,7 +1273,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
       BetaMessage response1 = client.beta().messages().create(params1);
 
       MessageCreateParams params2 = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(4096L)
           .addBeta("code-execution-2025-08-25")
           .addBeta("skills-2025-10-02")
@@ -1308,7 +1308,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
       messages: [
           ['role' => 'user', 'content' => 'Create a sample sales dataset and analyze it']
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
       container: [
           'skills' => [
@@ -1322,7 +1322,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
 
   $messages = [
       ['role' => 'user', 'content' => 'Create a sample sales dataset and analyze it'],
-      // Teruskan teks asisten ke permintaan berikutnya; container.id membawa status eksekusi
+      // Teruskan teks asisten; container.id membawa status eksekusi
       ['role' => 'assistant', 'content' => implode("\n", array_map(
           fn ($block) => $block->text,
           array_filter($response1->content, fn ($block) => $block->type === 'text'),
@@ -1333,7 +1333,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
   $response2 = $client->beta->messages->create(
       maxTokens: 4096,
       messages: $messages,
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
       container: [
           'id' => $response1->container->id,
@@ -1353,7 +1353,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
   client = Anthropic::Client.new
 
   response1 = client.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 4096,
     betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
     container: {
@@ -1370,7 +1370,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
   messages = [
     { role: "user", content: "Create a sample sales dataset and analyze it" },
     {
-      # Teruskan teks asisten; container.id membawa status eksekusi
+      # Teruskan teks asisten ke permintaan berikutnya; container.id membawa status eksekusi
       role: "assistant",
       content: response1.content.filter_map { |block| block.text if block.type == :text }.join("\n")
     },
@@ -1378,7 +1378,7 @@ Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID conta
   ]
 
   response2 = client.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 4096,
     betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
     container: {
@@ -1410,7 +1410,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani alasan 
     -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 4096,
       "container": {
         "skills": [
@@ -1443,7 +1443,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani alasan 
     -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
     -H "content-type: application/json" \
     -d "{
-      \"model\": \"claude-opus-4-8\",
+      \"model\": \"claude-opus-5\",
       \"max_tokens\": 4096,
       \"container\": {
         \"id\": \"$CONTAINER_ID\",
@@ -1468,7 +1468,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani alasan 
   ant beta:messages create \
     --beta code-execution-2025-08-25,skills-2025-10-02 \
     > "$RESP" <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 4096
   container:
     skills:
@@ -1485,13 +1485,13 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani alasan 
 
   # Jika stop_reason adalah "pause_turn", lanjutkan di container yang sama,
   # dengan menambahkan array content dari respons sebelumnya ke messages sebagai
-  # giliran asisten. Ulangi hingga stop_reason bukan lagi "pause_turn".
+  # giliran asisten. Ulangi sampai stop_reason bukan lagi "pause_turn".
   CONTAINER_ID=$(jq -r '.container.id' "$RESP")
 
   ant beta:messages create \
     --beta code-execution-2025-08-25,skills-2025-10-02 \
     > "$RESP" <<YAML
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 4096
   container:
     id: $CONTAINER_ID
@@ -1513,7 +1513,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani alasan 
   max_retries = 10
 
   response = client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=4096,
       betas=["code-execution-2025-08-25", "skills-2025-10-02"],
       container={
@@ -1529,14 +1529,14 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani alasan 
       tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
   )
 
-  # Menangani pause_turn untuk operasi yang lama
+  # Menangani pause_turn untuk operasi yang panjang
   for _ in range(max_retries):
       if response.stop_reason != "pause_turn":
           break
 
       messages.append({"role": "assistant", "content": response.content})
       response = client.beta.messages.create(
-          model="claude-opus-4-8",
+          model="claude-opus-5",
           max_tokens=4096,
           betas=["code-execution-2025-08-25", "skills-2025-10-02"],
           container={
@@ -1562,7 +1562,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani alasan 
   const maxRetries = 10;
 
   let response = await client.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 4096,
     betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
     container: {
@@ -1572,7 +1572,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani alasan 
     tools: [{ type: "code_execution_20250825", name: "code_execution" }]
   });
 
-  // Menangani pause_turn untuk operasi yang lama
+  // Tangani pause_turn untuk operasi yang lama
   for (let i = 0; i < maxRetries; i++) {
     if (response.stop_reason !== "pause_turn") {
       break;
@@ -1583,7 +1583,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani alasan 
       content: response.content as Anthropic.Beta.Messages.BetaContentBlockParam[]
     });
     response = await client.beta.messages.create({
-      model: "claude-opus-4-8",
+      model: "claude-opus-5",
       max_tokens: 4096,
       betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
       container: {
@@ -1616,7 +1616,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani alasan 
   {
       var parameters = new MessageCreateParams
       {
-          Model = "claude-opus-4-8",
+          Model = "claude-opus-5",
           MaxTokens = 4096,
           Betas = ["code-execution-2025-08-25", "skills-2025-10-02"],
           Container = containerId is null
@@ -1674,7 +1674,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani alasan 
   maxRetries := 10
 
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     "claude-opus-4-8",
+  	Model:     "claude-opus-5",
   	MaxTokens: 4096,
   	Betas:     []anthropic.AnthropicBeta{"code-execution-2025-08-25", anthropic.AnthropicBetaSkills2025_10_02},
   	Container: anthropic.BetaMessageNewParamsContainerUnion{
@@ -1705,7 +1705,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani alasan 
   	messages = append(messages, response.ToParam())
 
   	response, err = client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  		Model:     "claude-opus-4-8",
+  		Model:     "claude-opus-5",
   		MaxTokens: 4096,
   		Betas:     []anthropic.AnthropicBeta{"code-execution-2025-08-25", anthropic.AnthropicBetaSkills2025_10_02},
   		Container: anthropic.BetaMessageNewParamsContainerUnion{
@@ -1753,7 +1753,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani alasan 
 
       BetaMessage response = client.beta().messages().create(
           MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_4_8)
+              .model(Model.CLAUDE_OPUS_5)
               .maxTokens(4096L)
               .addBeta("code-execution-2025-08-25")
               .addBeta("skills-2025-10-02")
@@ -1778,7 +1778,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani alasan 
 
           response = client.beta().messages().create(
               MessageCreateParams.builder()
-                  .model(Model.CLAUDE_OPUS_4_8)
+                  .model(Model.CLAUDE_OPUS_5)
                   .maxTokens(4096L)
                   .addBeta("code-execution-2025-08-25")
                   .addBeta("skills-2025-10-02")
@@ -1808,7 +1808,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani alasan 
   $response = $client->beta->messages->create(
       maxTokens: 4096,
       messages: $messages,
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
       container: [
           'skills' => [
@@ -1832,7 +1832,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani alasan 
       $response = $client->beta->messages->create(
           maxTokens: 4096,
           messages: $messages,
-          model: 'claude-opus-4-8',
+          model: 'claude-opus-5',
           betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
           container: [
               'id' => $response->container->id,
@@ -1858,7 +1858,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani alasan 
   max_retries = 10
 
   response = client.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 4096,
     betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
     container: {
@@ -1880,7 +1880,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani alasan 
     messages << { role: "assistant", content: response.content }
 
     response = client.beta.messages.create(
-      model: "claude-opus-4-8",
+      model: "claude-opus-5",
       max_tokens: 4096,
       betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
       container: {
@@ -1916,7 +1916,7 @@ Gabungkan beberapa Skills dalam satu request untuk menangani alur kerja yang kom
     -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 4096,
       "container": {
         "skills": [
@@ -1951,7 +1951,7 @@ Gabungkan beberapa Skills dalam satu request untuk menangani alur kerja yang kom
   ```bash CLI
   ant beta:messages create \
     --beta code-execution-2025-08-25,skills-2025-10-02 <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 4096
   container:
     skills:
@@ -1977,7 +1977,7 @@ Gabungkan beberapa Skills dalam satu request untuk menangani alur kerja yang kom
   client = anthropic.Anthropic()
 
   response = client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=4096,
       betas=["code-execution-2025-08-25", "skills-2025-10-02"],
       container={
@@ -2002,7 +2002,7 @@ Gabungkan beberapa Skills dalam satu request untuk menangani alur kerja yang kom
   const client = new Anthropic();
 
   const response = await client.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 4096,
     betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
     container: {
@@ -2044,7 +2044,7 @@ Gabungkan beberapa Skills dalam satu request untuk menangani alur kerja yang kom
 
   var parameters = new MessageCreateParams
   {
-      Model = "claude-opus-4-8",
+      Model = "claude-opus-5",
       MaxTokens = 4096,
       Betas = ["code-execution-2025-08-25", "skills-2025-10-02"],
       Container = new BetaContainerParams
@@ -2083,7 +2083,7 @@ Gabungkan beberapa Skills dalam satu request untuk menangani alur kerja yang kom
   client := anthropic.NewClient()
 
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     "claude-opus-4-8",
+  	Model:     "claude-opus-5",
   	MaxTokens: 4096,
   	Betas: []anthropic.AnthropicBeta{
   		"code-execution-2025-08-25",
@@ -2132,7 +2132,7 @@ Gabungkan beberapa Skills dalam satu request untuk menangani alur kerja yang kom
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(4096L)
           .addBeta("code-execution-2025-08-25")
           .addBeta("skills-2025-10-02")
@@ -2172,7 +2172,7 @@ Gabungkan beberapa Skills dalam satu request untuk menangani alur kerja yang kom
       messages: [
           ['role' => 'user', 'content' => 'Analyze sales data and create a presentation']
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
       container: [
           'skills' => [
@@ -2205,7 +2205,7 @@ Gabungkan beberapa Skills dalam satu request untuk menangani alur kerja yang kom
   client = Anthropic::Client.new
 
   message = client.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 4096,
     betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
     container: {
@@ -2244,9 +2244,9 @@ Gabungkan beberapa Skills dalam satu request untuk menangani alur kerja yang kom
 
 ### Membuat Skill
 
-Bundel Skill adalah direktori yang berisi file `SKILL.md` di tingkat teratas dengan frontmatter YAML `name` dan `description`, ditambah skrip atau sumber daya pendukung apa pun. Lihat [Mulai dengan Agent Skills di API](/docs/id/agents-and-tools/agent-skills/quickstart) untuk membuatnya, dan daftar **Persyaratan** setelah contoh-contoh untuk batasan lengkapnya.
+Bundel Skill adalah direktori yang berisi file `SKILL.md` di tingkat teratas dengan frontmatter YAML `name` dan `description`, ditambah skrip atau sumber daya pendukung apa pun. Lihat [Mulai dengan Agent Skills di API](/docs/id/agents-and-tools/agent-skills/quickstart) untuk menulisnya, dan daftar **Persyaratan** setelah contoh-contoh untuk batasan lengkapnya.
 
-Unggah Skill kustom Anda agar tersedia di workspace Anda. Anda dapat mengunggah arsip zip atau objek file individual; SDK Python juga menyediakan helper `files_from_dir` yang menerima path direktori.
+Unggah Skill kustom Anda agar tersedia di workspace Anda. Anda dapat mengunggah arsip zip atau objek file individual; Python SDK juga menyediakan helper `files_from_dir` yang menerima path direktori.
 
 File diidentifikasi berdasarkan nama file yang Anda lampirkan. Unggahan per-file harus mempertahankan direktori tingkat teratas yang sama dalam path-nya (sufiks `;filename=` dalam contoh cURL dan argumen nama file dalam contoh SDK), dan arsip zip harus berisi direktori skill sebagai satu-satunya entri tingkat teratas.
 
@@ -2265,7 +2265,7 @@ File diidentifikasi berdasarkan nama file yang Anda lampirkan. Unggahan per-file
     --file example_skill.zip \
     --beta skills-2025-10-02
 
-  # Unggah per file memerlukan nama file dengan kualifikasi path, yang saat ini
+  # Unggahan per file memerlukan nama file yang memuat path, yang saat ini
   # tidak dapat diatur oleh CLI. Sebagai gantinya, unggah arsip zip.
   ```
 
@@ -2348,7 +2348,7 @@ File diidentifikasi berdasarkan nama file yang Anda lampirkan. Unggahan per-file
 
   var skill = await client.Beta.Skills.Create(parameters);
 
-  // Opsi 2: Menggunakan file individual (nama file dengan path mempertahankan tata letak direktori Skill)
+  // Opsi 2: Menggunakan file individual (nama file dengan path lengkap mempertahankan tata letak direktori Skill)
   var parameters2 = new SkillCreateParams
   {
       Files =
@@ -2438,7 +2438,7 @@ File diidentifikasi berdasarkan nama file yang Anda lampirkan. Unggahan per-file
 
       SkillCreateResponse skill = client.beta().skills().create(params);
 
-      // Opsi 2: Menggunakan file individual (nama file dengan path mempertahankan tata letak direktori Skill)
+      // Opsi 2: Menggunakan file individual (nama file dengan path lengkap mempertahankan tata letak direktori Skill)
       SkillCreateParams params2 = SkillCreateParams.builder()
           .addFile(MultipartField.<InputStream>builder()
               .value(Files.newInputStream(Path.of("financial_skill/SKILL.md")))
@@ -2565,23 +2565,23 @@ Ambil semua Skills yang tersedia untuk workspace Anda, termasuk Skills bawaan An
   ```python Python
   client = anthropic.Anthropic()
 
-  # Daftar semua Skills
+  # Daftar semua Skill
   for skill in client.beta.skills.list():
       print(f"{skill.id}: {skill.display_title} (source: {skill.source})")
 
-  # Daftar hanya Skills kustom
+  # Daftar hanya Skill kustom
   custom_skills = client.beta.skills.list(source="custom")
   ```
 
   ```typescript TypeScript
   const client = new Anthropic();
 
-  // Daftar semua Skill
+  // Mencantumkan semua Skill
   for await (const skill of client.beta.skills.list()) {
     console.log(`${skill.id}: ${skill.display_title} (source: ${skill.source})`);
   }
 
-  // Daftar hanya Skill kustom
+  // Mencantumkan hanya Skill kustom
   const customSkills = await client.beta.skills.list({
     source: "custom"
   });
@@ -2636,14 +2636,14 @@ Ambil semua Skills yang tersedia untuk workspace Anda, termasuk Skills bawaan An
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-      // Menampilkan daftar Skill (halaman pertama)
+      // Menampilkan daftar Skills (halaman pertama)
       SkillListPage skills = client.beta().skills().list();
 
       for (SkillListResponse skill : skills.data()) {
           System.out.println(skill.id() + ": " + skill.displayTitle().orElseThrow() + " (source: " + skill.source() + ")");
       }
 
-      // Menampilkan daftar Skill kustom saja
+      // Menampilkan daftar Skills kustom saja
       SkillListParams customParams = SkillListParams.builder()
           .source("custom")
           .build();
@@ -2655,14 +2655,14 @@ Ambil semua Skills yang tersedia untuk workspace Anda, termasuk Skills bawaan An
   ```php PHP
   $client = new Client();
 
-  // Menampilkan daftar Skill (halaman pertama)
+  // Daftar Skill (halaman pertama)
   $skills = $client->beta->skills->list();
 
   foreach ($skills->data as $skill) {
       echo "{$skill->id}: {$skill->displayTitle} (source: {$skill->source})\n";
   }
 
-  // Menampilkan daftar Skill kustom saja
+  // Daftar hanya Skill kustom
   $customSkills = $client->beta->skills->list(
       source: 'custom',
   );
@@ -2671,12 +2671,12 @@ Ambil semua Skills yang tersedia untuk workspace Anda, termasuk Skills bawaan An
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  # Mencantumkan semua Skill
+  # Daftar semua Skill
   client.beta.skills.list.auto_paging_each do |skill|
     puts "#{skill.id}: #{skill.display_title} (source: #{skill.source})"
   end
 
-  # Mencantumkan hanya Skill kustom
+  # Daftar hanya Skill kustom
   custom_skills = client.beta.skills.list(
     source: "custom"
   )
@@ -2792,13 +2792,13 @@ Untuk menghapus Skill, Anda harus terlebih dahulu menghapus semua versinya:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  # Langkah 1: Daftarkan versi-versinya, lalu hapus satu per satu
+  # Langkah 1: Daftar versinya, lalu hapus satu per satu
   curl "https://api.anthropic.com/v1/skills/skill_01AbCdEfGhIjKlMnOpQrStUv/versions" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: skills-2025-10-02"
 
-  # Ulangi untuk setiap versi yang dikembalikan oleh daftar
+  # Ulangi untuk setiap versi yang dikembalikan daftar tersebut
   curl -X DELETE "https://api.anthropic.com/v1/skills/skill_01AbCdEfGhIjKlMnOpQrStUv/versions/1759178010641129" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -3005,14 +3005,14 @@ Skills mendukung pembuatan versi untuk mengelola pembaruan dengan aman:
 
   VERSION_NUMBER=$(echo "$NEW_VERSION" | jq -r '.version')
 
-  # Menggunakan versi tertentu
+  # Menggunakan versi spesifik
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
     -H "content-type: application/json" \
     -d "{
-      \"model\": \"claude-opus-4-8\",
+      \"model\": \"claude-opus-5\",
       \"max_tokens\": 4096,
       \"container\": {
         \"skills\": [{
@@ -3032,7 +3032,7 @@ Skills mendukung pembuatan versi untuk mengelola pembaruan dengan aman:
     -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 4096,
       "container": {
         "skills": [{
@@ -3053,10 +3053,10 @@ Skills mendukung pembuatan versi untuk mengelola pembaruan dengan aman:
     --file updated_skill.zip \
     --transform version --raw-output)
 
-  # Gunakan versi spesifik
+  # Menggunakan versi spesifik
   ant beta:messages create \
     --beta code-execution-2025-08-25,skills-2025-10-02 <<YAML
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 4096
   container:
     skills:
@@ -3071,10 +3071,10 @@ Skills mendukung pembuatan versi untuk mengelola pembaruan dengan aman:
       name: code_execution
   YAML
 
-  # Gunakan versi terbaru
+  # Menggunakan versi terbaru
   ant beta:messages create \
     --beta code-execution-2025-08-25,skills-2025-10-02 <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 4096
   container:
     skills:
@@ -3102,9 +3102,9 @@ Skills mendukung pembuatan versi untuk mengelola pembaruan dengan aman:
       files=files_from_dir("/path/to/updated_skill"),
   )
 
-  # Menggunakan versi spesifik
+  # Gunakan versi tertentu
   response = client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=4096,
       betas=["code-execution-2025-08-25", "skills-2025-10-02"],
       container={
@@ -3120,9 +3120,9 @@ Skills mendukung pembuatan versi untuk mengelola pembaruan dengan aman:
       tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
   )
 
-  # Menggunakan versi terbaru
+  # Gunakan versi terbaru
   response = client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=4096,
       betas=["code-execution-2025-08-25", "skills-2025-10-02"],
       container={
@@ -3151,7 +3151,7 @@ Skills mendukung pembuatan versi untuk mengelola pembaruan dengan aman:
 
   // Menggunakan versi tertentu
   const specificVersionResponse = await client.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 4096,
     betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
     container: {
@@ -3169,7 +3169,7 @@ Skills mendukung pembuatan versi untuk mengelola pembaruan dengan aman:
 
   // Menggunakan versi terbaru
   const latestVersionResponse = await client.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 4096,
     betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
     container: {
@@ -3210,7 +3210,7 @@ Skills mendukung pembuatan versi untuk mengelola pembaruan dengan aman:
   // Menggunakan versi tertentu
   var specificVersionParams = new MessageCreateParams
   {
-      Model = "claude-opus-4-8",
+      Model = "claude-opus-5",
       MaxTokens = 4096,
       Betas = ["code-execution-2025-08-25", "skills-2025-10-02"],
       Container = new BetaContainerParams
@@ -3235,7 +3235,7 @@ Skills mendukung pembuatan versi untuk mengelola pembaruan dengan aman:
   // Menggunakan versi terbaru
   var latestVersionParams = new MessageCreateParams
   {
-      Model = "claude-opus-4-8",
+      Model = "claude-opus-5",
       MaxTokens = 4096,
       Betas = ["code-execution-2025-08-25", "skills-2025-10-02"],
       Container = new BetaContainerParams
@@ -3277,9 +3277,9 @@ Skills mendukung pembuatan versi untuk mengelola pembaruan dengan aman:
   		log.Fatal(err)
   	}
 
-  	// Menggunakan versi tertentu
+  	// Menggunakan versi spesifik
   	response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  		Model:     "claude-opus-4-8",
+  		Model:     "claude-opus-5",
   		MaxTokens: 4096,
   		Betas:     []anthropic.AnthropicBeta{"code-execution-2025-08-25", anthropic.AnthropicBetaSkills2025_10_02},
   		Container: anthropic.BetaMessageNewParamsContainerUnion{
@@ -3307,7 +3307,7 @@ Skills mendukung pembuatan versi untuk mengelola pembaruan dengan aman:
 
   	// Menggunakan versi terbaru
   	latestResponse, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  		Model:     "claude-opus-4-8",
+  		Model:     "claude-opus-5",
   		MaxTokens: 4096,
   		Betas:     []anthropic.AnthropicBeta{"code-execution-2025-08-25", anthropic.AnthropicBetaSkills2025_10_02},
   		Container: anthropic.BetaMessageNewParamsContainerUnion{
@@ -3366,9 +3366,9 @@ Skills mendukung pembuatan versi untuk mengelola pembaruan dengan aman:
       VersionCreateResponse newVersion = client.beta().skills().versions()
           .create("skill_01AbCdEfGhIjKlMnOpQrStUv", versionParams);
 
-      // Menggunakan versi tertentu
+      // Menggunakan versi spesifik
       MessageCreateParams specificVersionParams = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(4096L)
           .addBeta("code-execution-2025-08-25")
           .addBeta("skills-2025-10-02")
@@ -3388,7 +3388,7 @@ Skills mendukung pembuatan versi untuk mengelola pembaruan dengan aman:
 
       // Menggunakan versi terbaru
       MessageCreateParams latestVersionParams = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(4096L)
           .addBeta("code-execution-2025-08-25")
           .addBeta("skills-2025-10-02")
@@ -3423,7 +3423,7 @@ Skills mendukung pembuatan versi untuk mengelola pembaruan dengan aman:
   $response = $client->beta->messages->create(
       maxTokens: 4096,
       messages: [['role' => 'user', 'content' => 'Use updated Skill']],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
       container: [
           'skills' => [[
@@ -3440,7 +3440,7 @@ Skills mendukung pembuatan versi untuk mengelola pembaruan dengan aman:
   $latestResponse = $client->beta->messages->create(
       maxTokens: 4096,
       messages: [['role' => 'user', 'content' => 'Use latest Skill version']],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
       container: [
           'skills' => [[
@@ -3469,9 +3469,9 @@ Skills mendukung pembuatan versi untuk mengelola pembaruan dengan aman:
     ]
   )
 
-  # Menggunakan versi tertentu
+  # Menggunakan versi spesifik
   response = client.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 4096,
     betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
     container: {
@@ -3488,7 +3488,7 @@ Skills mendukung pembuatan versi untuk mengelola pembaruan dengan aman:
 
   # Menggunakan versi terbaru
   latest_response = client.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 4096,
     betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
     container: {
@@ -3513,9 +3513,9 @@ Lihat [referensi API Create Skill Version](/docs/id/api/beta/skills/versions/cre
 
 Ketika Anda menentukan Skills dalam sebuah container:
 
-1. **Penemuan metadata:** Claude melihat metadata untuk setiap Skill (nama, deskripsi) dalam prompt sistem.
+1. **Penemuan metadata:** Claude melihat metadata untuk setiap Skill (name, description) di prompt sistem.
 2. **Pemuatan file:** File Skill disalin ke dalam container di `/skills/{directory}/`.
-3. **Penggunaan otomatis:** Claude secara otomatis memuat dan menggunakan Skills ketika relevan dengan request Anda.
+3. **Penggunaan otomatis:** Claude secara otomatis memuat dan menggunakan Skills saat relevan dengan request Anda.
 4. **Komposisi:** Beberapa Skills dapat digabungkan untuk alur kerja yang kompleks.
 
 Arsitektur "progressive disclosure" (pengungkapan bertahap) memastikan penggunaan konteks yang efisien: Claude hanya memuat instruksi Skill lengkap saat diperlukan.
@@ -3561,7 +3561,7 @@ Arsitektur "progressive disclosure" (pengungkapan bertahap) memastikan penggunaa
 **Pengembangan & Otomatisasi**
 
 * Templat pembuatan kode
-* Kerangka kerja pengujian
+* Framework pengujian
 * Alur kerja deployment
 
 ### Contoh: pemodelan keuangan
@@ -3586,7 +3586,7 @@ Gabungkan Skills Excel dan analisis DCF kustom:
     -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
     -H "content-type: application/json" \
     -d "{
-      \"model\": \"claude-opus-4-8\",
+      \"model\": \"claude-opus-5\",
       \"max_tokens\": 4096,
       \"container\": {
         \"skills\": [
@@ -3622,7 +3622,7 @@ Gabungkan Skills Excel dan analisis DCF kustom:
   # Gunakan dengan Excel untuk membuat model keuangan
   ant beta:messages create \
     --beta code-execution-2025-08-25,skills-2025-10-02 <<YAML
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 4096
   container:
     skills:
@@ -3654,7 +3654,7 @@ Gabungkan Skills Excel dan analisis DCF kustom:
 
   # Gunakan dengan Excel untuk membuat model keuangan
   response = client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=4096,
       betas=["code-execution-2025-08-25", "skills-2025-10-02"],
       container={
@@ -3687,7 +3687,7 @@ Gabungkan Skills Excel dan analisis DCF kustom:
 
   // Gunakan dengan Excel untuk membuat model keuangan
   const response = await client.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 4096,
     betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
     container: {
@@ -3728,7 +3728,7 @@ Gabungkan Skills Excel dan analisis DCF kustom:
   // Gunakan dengan Excel untuk membuat model keuangan
   var parameters = new MessageCreateParams
   {
-      Model = "claude-opus-4-8",
+      Model = "claude-opus-5",
       MaxTokens = 4096,
       Betas = ["code-execution-2025-08-25", "skills-2025-10-02"],
       Container = new BetaContainerParams
@@ -3765,7 +3765,7 @@ Gabungkan Skills Excel dan analisis DCF kustom:
 
   // Gunakan dengan Excel untuk membuat model keuangan
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     "claude-opus-4-8",
+  	Model:     "claude-opus-5",
   	MaxTokens: 4096,
   	Betas: []anthropic.AnthropicBeta{
   		"code-execution-2025-08-25",
@@ -3813,7 +3813,7 @@ Gabungkan Skills Excel dan analisis DCF kustom:
 
       // Gunakan bersama Skill Excel untuk membuat model keuangan
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(4096L)
           .addBeta("code-execution-2025-08-25")
           .addBeta("skills-2025-10-02")
@@ -3852,7 +3852,7 @@ Gabungkan Skills Excel dan analisis DCF kustom:
       messages: [
           ['role' => 'user', 'content' => 'Build a DCF valuation model for a SaaS company']
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
       container: [
           'skills' => [
@@ -3883,7 +3883,7 @@ Gabungkan Skills Excel dan analisis DCF kustom:
 
   # Gunakan dengan Excel untuk membuat model keuangan
   response = client.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 4096,
     betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
     container: {
@@ -3989,7 +3989,7 @@ Saat menggunakan caching prompt, perhatikan bahwa mengubah daftar Skills di cont
     -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 4096,
       "container": {
         "skills": [
@@ -4007,7 +4007,7 @@ Saat menggunakan caching prompt, perhatikan bahwa mengubah daftar Skills di cont
     -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 4096,
       "container": {
         "skills": [
@@ -4024,7 +4024,7 @@ Saat menggunakan caching prompt, perhatikan bahwa mengubah daftar Skills di cont
   # Permintaan pertama membuat cache
   ant beta:messages create \
     --beta code-execution-2025-08-25,skills-2025-10-02 <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 4096
   container:
     skills:
@@ -4042,7 +4042,7 @@ Saat menggunakan caching prompt, perhatikan bahwa mengubah daftar Skills di cont
   # Menambah/menghapus Skills merusak cache
   ant beta:messages create \
     --beta code-execution-2025-08-25,skills-2025-10-02 <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 4096
   container:
     skills:
@@ -4066,7 +4066,7 @@ Saat menggunakan caching prompt, perhatikan bahwa mengubah daftar Skills di cont
 
   # Permintaan pertama membuat cache
   response1 = client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=4096,
       betas=[
           "code-execution-2025-08-25",
@@ -4081,7 +4081,7 @@ Saat menggunakan caching prompt, perhatikan bahwa mengubah daftar Skills di cont
 
   # Menambah/menghapus Skills merusak cache
   response2 = client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=4096,
       betas=[
           "code-execution-2025-08-25",
@@ -4107,7 +4107,7 @@ Saat menggunakan caching prompt, perhatikan bahwa mengubah daftar Skills di cont
 
   // Permintaan pertama membuat cache
   const response1 = await client.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 4096,
     betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
     container: {
@@ -4119,7 +4119,7 @@ Saat menggunakan caching prompt, perhatikan bahwa mengubah daftar Skills di cont
 
   // Menambah/menghapus Skills merusak cache
   const response2 = await client.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 4096,
     betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
     container: {
@@ -4139,7 +4139,7 @@ Saat menggunakan caching prompt, perhatikan bahwa mengubah daftar Skills di cont
   // Permintaan pertama membuat cache
   var parameters1 = new MessageCreateParams
   {
-      Model = "claude-opus-4-8",
+      Model = "claude-opus-5",
       MaxTokens = 4096,
       Betas = ["code-execution-2025-08-25", "skills-2025-10-02"],
       Container = new BetaContainerParams
@@ -4164,7 +4164,7 @@ Saat menggunakan caching prompt, perhatikan bahwa mengubah daftar Skills di cont
   // Set Skill yang berbeda = cache miss
   var parameters2 = new MessageCreateParams
   {
-      Model = "claude-opus-4-8",
+      Model = "claude-opus-5",
       MaxTokens = 4096,
       Betas = ["code-execution-2025-08-25", "skills-2025-10-02"],
       Container = new BetaContainerParams
@@ -4198,7 +4198,7 @@ Saat menggunakan caching prompt, perhatikan bahwa mengubah daftar Skills di cont
 
   // Permintaan pertama membuat cache
   response1, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     "claude-opus-4-8",
+  	Model:     "claude-opus-5",
   	MaxTokens: 4096,
   	Betas: []anthropic.AnthropicBeta{
   		"code-execution-2025-08-25",
@@ -4229,7 +4229,7 @@ Saat menggunakan caching prompt, perhatikan bahwa mengubah daftar Skills di cont
 
   // Menambah/menghapus Skills merusak cache
   response2, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     "claude-opus-4-8",
+  	Model:     "claude-opus-5",
   	MaxTokens: 4096,
   	Betas: []anthropic.AnthropicBeta{
   		"code-execution-2025-08-25",
@@ -4274,7 +4274,7 @@ Saat menggunakan caching prompt, perhatikan bahwa mengubah daftar Skills di cont
 
       // Permintaan pertama membuat cache
       MessageCreateParams params1 = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(4096L)
           .addBeta("code-execution-2025-08-25")
           .addBeta("skills-2025-10-02")
@@ -4296,7 +4296,7 @@ Saat menggunakan caching prompt, perhatikan bahwa mengubah daftar Skills di cont
 
       // Menambah/menghapus Skills merusak cache
       MessageCreateParams params2 = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(4096L)
           .addBeta("code-execution-2025-08-25")
           .addBeta("skills-2025-10-02")
@@ -4332,7 +4332,7 @@ Saat menggunakan caching prompt, perhatikan bahwa mengubah daftar Skills di cont
       messages: [
           ['role' => 'user', 'content' => 'Analyze sales data']
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       betas: [
           'code-execution-2025-08-25',
           'skills-2025-10-02',
@@ -4354,7 +4354,7 @@ Saat menggunakan caching prompt, perhatikan bahwa mengubah daftar Skills di cont
       messages: [
           ['role' => 'user', 'content' => 'Create a presentation']
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       betas: [
           'code-execution-2025-08-25',
           'skills-2025-10-02',
@@ -4377,7 +4377,7 @@ Saat menggunakan caching prompt, perhatikan bahwa mengubah daftar Skills di cont
 
   # Permintaan pertama membuat cache
   response1 = client.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 4096,
     betas: [
       "code-execution-2025-08-25",
@@ -4393,7 +4393,7 @@ Saat menggunakan caching prompt, perhatikan bahwa mengubah daftar Skills di cont
 
   # Menambah/menghapus Skills merusak cache
   response2 = client.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 4096,
     betas: [
       "code-execution-2025-08-25",
@@ -4430,7 +4430,7 @@ Tangani error terkait Skill dengan baik:
   if ! RESULT=$(ant beta:messages create \
     --beta code-execution-2025-08-25,skills-2025-10-02 \
     --transform-error error.message --format-error yaml 2>&1 <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 4096
   container:
     skills:
@@ -4463,7 +4463,7 @@ Tangani error terkait Skill dengan baik:
 
   try:
       response = client.beta.messages.create(
-          model="claude-opus-4-8",
+          model="claude-opus-5",
           max_tokens=4096,
           betas=["code-execution-2025-08-25", "skills-2025-10-02"],
           container={
@@ -4491,7 +4491,7 @@ Tangani error terkait Skill dengan baik:
 
   try {
     const response = await client.beta.messages.create({
-      model: "claude-opus-4-8",
+      model: "claude-opus-5",
       max_tokens: 4096,
       betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
       container: {
@@ -4522,7 +4522,7 @@ Tangani error terkait Skill dengan baik:
   {
       var parameters = new MessageCreateParams
       {
-          Model = "claude-opus-4-8",
+          Model = "claude-opus-5",
           MaxTokens = 4096,
           Betas = ["code-execution-2025-08-25", "skills-2025-10-02"],
           Container = new BetaContainerParams
@@ -4554,7 +4554,7 @@ Tangani error terkait Skill dengan baik:
   client := anthropic.NewClient()
 
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     "claude-opus-4-8",
+  	Model:     "claude-opus-5",
   	MaxTokens: 4096,
   	Betas:     []anthropic.AnthropicBeta{"code-execution-2025-08-25", anthropic.AnthropicBetaSkills2025_10_02},
   	Container: anthropic.BetaMessageNewParamsContainerUnion{
@@ -4600,7 +4600,7 @@ Tangani error terkait Skill dengan baik:
 
       try {
           MessageCreateParams params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_4_8)
+              .model(Model.CLAUDE_OPUS_5)
               .maxTokens(4096L)
               .addBeta("code-execution-2025-08-25")
               .addBeta("skills-2025-10-02")
@@ -4638,7 +4638,7 @@ Tangani error terkait Skill dengan baik:
           messages: [
               ['role' => 'user', 'content' => 'Process data']
           ],
-          model: 'claude-opus-4-8',
+          model: 'claude-opus-5',
           betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
           container: [
               'skills' => [
@@ -4668,7 +4668,7 @@ Tangani error terkait Skill dengan baik:
 
   begin
     response = client.beta.messages.create(
-      model: "claude-opus-4-8",
+      model: "claude-opus-5",
       max_tokens: 4096,
       betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
       container: {

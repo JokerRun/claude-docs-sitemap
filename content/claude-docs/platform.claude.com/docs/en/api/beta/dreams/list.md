@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/list
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: 59cdc6e3456c6a87a9a41f17150785e7651ce897727fe6b8dc8845ae1fb396f3
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 095bf12414f7bd1483d30478a4fe2d3c3377d38b52cd9e4e08814b3b6550a412
 ---
 
 ## List Dreams
@@ -55,7 +55,7 @@ List Dreams
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 27 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -113,7 +113,11 @@ List Dreams
 
     - `"server-side-fallback-2026-06-01"`
 
+    - `"server-side-fallback-2026-07-01"`
+
     - `"fallback-credit-2026-06-01"`
+
+    - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: db8f712dddb33284bf1db3dd8b7a3ea932f254844387ac7c078291a63f2c7681
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 502296ed894e2cb25ee1b4ecb065dc5c6a80ef7198f201ad7ce57e37118739ec
 ---
 
 # Memulai dengan Claude Managed Agents
@@ -11,7 +11,7 @@ Buat agen otonom pertama Anda.
 
 ---
 
-Panduan ini memandu Anda melalui pembuatan agen, menyiapkan environment, memulai sesi, dan melakukan streaming respons agen.
+Panduan ini memandu Anda membuat agen, menyiapkan environment, memulai sesi, dan melakukan streaming respons agen.
 
 <Tip>
   **Lebih suka panduan interaktif?** Jalankan `/claude-api managed-agents-onboard` di versi terbaru [Claude Code](https://claude.com/product/claude-code) untuk penyiapan terpandu dan tanya jawab interaktif.
@@ -44,7 +44,7 @@ Panduan ini memandu Anda melalui pembuatan agen, menyiapkan environment, memulai
     Untuk lingkungan Linux, unduh binary rilis secara langsung.
 
     ```bash
-    VERSION=1.19.0
+    VERSION=1.21.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -95,7 +95,7 @@ ant --version
 
   <Tab title="Java">
     ```groovy Gradle
-    implementation("com.anthropic:anthropic-java:2.50.0")
+    implementation("com.anthropic:anthropic-java:2.52.0")
     ```
   </Tab>
 
@@ -153,7 +153,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
           -d @- <<'EOF'
       {
         "name": "Coding Assistant",
-        "model": "claude-opus-4-8",
+        "model": "claude-opus-5",
         "system": "You are a helpful coding assistant. Write clean, well-documented code.",
         "tools": [
           {"type": "agent_toolset_20260401"}
@@ -171,7 +171,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       ```bash CLI
       ant beta:agents create \
         --name "Coding Assistant" \
-        --model '{id: claude-opus-4-8}' \
+        --model '{id: claude-opus-5}' \
         --system "You are a helpful coding assistant. Write clean, well-documented code." \
         --tool '{type: agent_toolset_20260401}'
       ```
@@ -183,7 +183,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 
       agent = client.beta.agents.create(
           name="Coding Assistant",
-          model="claude-opus-4-8",
+          model="claude-opus-5",
           system="You are a helpful coding assistant. Write clean, well-documented code.",
           tools=[
               {"type": "agent_toolset_20260401"},
@@ -200,7 +200,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 
       const agent = await client.beta.agents.create({
         name: "Coding Assistant",
-        model: "claude-opus-4-8",
+        model: "claude-opus-5",
         system: "You are a helpful coding assistant. Write clean, well-documented code.",
         tools: [
           { type: "agent_toolset_20260401" },
@@ -222,7 +222,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       var agent = await client.Beta.Agents.Create(new()
       {
           Name = "Coding Assistant",
-          Model = BetaManagedAgentsModel.ClaudeOpus4_8,
+          Model = BetaManagedAgentsModel.ClaudeOpus5,
           System = "You are a helpful coding assistant. Write clean, well-documented code.",
           Tools =
           [
@@ -253,7 +253,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       	agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
       		Name: "Coding Assistant",
       		Model: anthropic.BetaManagedAgentsModelConfigParams{
-      			ID: anthropic.BetaManagedAgentsModelClaudeOpus4_8,
+      			ID: anthropic.BetaManagedAgentsModelClaudeOpus5,
       		},
       		System: anthropic.String("You are a helpful coding assistant. Write clean, well-documented code."),
       		Tools: []anthropic.BetaAgentNewParamsToolUnion{{
@@ -287,7 +287,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 
           var agent = client.beta().agents().create(AgentCreateParams.builder()
               .name("Coding Assistant")
-              .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_8)
+              .model(BetaManagedAgentsModel.CLAUDE_OPUS_5)
               .system("You are a helpful coding assistant. Write clean, well-documented code.")
               .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
                   .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
@@ -304,7 +304,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 
       $agent = $client->beta->agents->create(
           name: 'Coding Assistant',
-          model: 'claude-opus-4-8',
+          model: 'claude-opus-5',
           system: 'You are a helpful coding assistant. Write clean, well-documented code.',
           tools: [
               ['type' => 'agent_toolset_20260401'],
@@ -321,7 +321,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 
       agent = client.beta.agents.create(
         name: "Coding Assistant",
-        model: "claude-opus-4-8",
+        model: "claude-opus-5",
         system_: "You are a helpful coding assistant. Write clean, well-documented code.",
         tools: [{type: "agent_toolset_20260401"}]
       )
@@ -330,7 +330,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       ```
     </CodeGroup>
 
-    Tipe alat `agent_toolset_20260401` mengaktifkan rangkaian lengkap alat agen bawaan (bash, operasi file, pencarian web, dan lainnya). Lihat [Alat](/docs/id/managed-agents/tools) untuk daftar lengkap dan opsi konfigurasi per alat.
+    Tipe alat `agent_toolset_20260401` mengaktifkan set lengkap alat agen bawaan (bash, operasi file, pencarian web, dan lainnya). Lihat [Alat](/docs/id/managed-agents/tools) untuk daftar lengkap dan opsi konfigurasi per alat.
 
     Simpan `agent.id` yang dikembalikan. Anda akan mereferensikannya di setiap sesi yang Anda buat.
   </Step>
@@ -562,7 +562,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
     </CodeGroup>
   </Step>
 
-  <Step title="Kirim pesan dan streaming respons">
+  <Step title="Kirim pesan dan streaming responsnya">
     Buka stream, kirim event pengguna, lalu proses event saat tiba:
 
     <CodeGroup>

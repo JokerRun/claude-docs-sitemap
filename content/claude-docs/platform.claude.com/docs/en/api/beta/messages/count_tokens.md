@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/count_tokens
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: 8e4003cb01b1aea88ca1985680b77090a742f1fef7766655100761ab1db23f4c
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 43fea388da0608c32464442c633374346bd4272bf51dc4cac1072d35f92c1480
 ---
 
 ## Count tokens in a Message
@@ -23,7 +23,7 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 27 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -81,7 +81,11 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
     - `"server-side-fallback-2026-06-01"`
 
+    - `"server-side-fallback-2026-07-01"`
+
     - `"fallback-credit-2026-06-01"`
+
+    - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
 
@@ -1127,19 +1131,109 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
         Use this block to provide or update system-level instructions at a specific
         point in the conversation, rather than only via the top-level `system` parameter.
 
-        - `content: array of BetaTextBlockParam`
+        - `content: array of BetaTextBlockParam or BetaRequestToolAdditionBlock or BetaRequestToolRemovalBlock`
 
           System instruction text blocks.
 
-          - `text: string`
+          - `BetaTextBlockParam object { text, type, cache_control, citations }`
 
-          - `type: "text"`
+          - `BetaRequestToolAdditionBlock object { tool, type, cache_control }`
 
-          - `cache_control: optional BetaCacheControlEphemeral`
+            Mid-conversation directive to surface a declared tool.
 
-            Create a cache control breakpoint at this content block.
+            `tool` references a tool (or MCP toolset) by name from the request's
+            `tools`; it is offered to the model from this point in the
+            conversation onward.
 
-          - `citations: optional array of BetaTextCitationParam`
+            - `tool: BetaToolChangeToolReference or BetaToolChangeMCPToolReference or BetaToolChangeMCPToolsetReference`
+
+              Reference to a single tool the caller declared directly in
+              `tools[]`. Does not accept the composed `{server}_{name}` form the
+              server assigns to MCP-resolved tools — use `mcp_tool_reference` or
+              `mcp_toolset_reference` for those.
+
+              - `BetaToolChangeToolReference object { name, type }`
+
+                Reference to a single tool the caller declared directly in
+                `tools[]`. Does not accept the composed `{server}_{name}` form the
+                server assigns to MCP-resolved tools — use `mcp_tool_reference` or
+                `mcp_toolset_reference` for those.
+
+                - `name: string`
+
+                - `type: "tool_reference"`
+
+                  - `"tool_reference"`
+
+              - `BetaToolChangeMCPToolReference object { name, server_name, type }`
+
+                Reference to a single MCP tool by its server and remote name — the
+                same `server_name`/`name` pair `mcp_tool_use` carries.
+
+                - `name: string`
+
+                - `server_name: string`
+
+                - `type: "mcp_tool_reference"`
+
+                  - `"mcp_tool_reference"`
+
+              - `BetaToolChangeMCPToolsetReference object { server_name, type }`
+
+                Reference to every tool in the named MCP server's toolset.
+
+                - `server_name: string`
+
+                - `type: "mcp_toolset_reference"`
+
+                  - `"mcp_toolset_reference"`
+
+            - `type: "tool_addition"`
+
+              - `"tool_addition"`
+
+            - `cache_control: optional BetaCacheControlEphemeral`
+
+              Create a cache control breakpoint at this content block.
+
+          - `BetaRequestToolRemovalBlock object { tool, type, cache_control }`
+
+            Mid-conversation directive to withdraw a tool.
+
+            `tool` references a tool (or MCP toolset) by name from the request's
+            `tools`; it is no longer offered to the model from this point in the
+            conversation onward.
+
+            - `tool: BetaToolChangeToolReference or BetaToolChangeMCPToolReference or BetaToolChangeMCPToolsetReference`
+
+              Reference to a single tool the caller declared directly in
+              `tools[]`. Does not accept the composed `{server}_{name}` form the
+              server assigns to MCP-resolved tools — use `mcp_tool_reference` or
+              `mcp_toolset_reference` for those.
+
+              - `BetaToolChangeToolReference object { name, type }`
+
+                Reference to a single tool the caller declared directly in
+                `tools[]`. Does not accept the composed `{server}_{name}` form the
+                server assigns to MCP-resolved tools — use `mcp_tool_reference` or
+                `mcp_toolset_reference` for those.
+
+              - `BetaToolChangeMCPToolReference object { name, server_name, type }`
+
+                Reference to a single MCP tool by its server and remote name — the
+                same `server_name`/`name` pair `mcp_tool_use` carries.
+
+              - `BetaToolChangeMCPToolsetReference object { server_name, type }`
+
+                Reference to every tool in the named MCP server's toolset.
+
+            - `type: "tool_removal"`
+
+              - `"tool_removal"`
+
+            - `cache_control: optional BetaCacheControlEphemeral`
+
+              Create a cache control breakpoint at this content block.
 
         - `type: "mid_conv_system"`
 
@@ -1148,6 +1242,22 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
         - `cache_control: optional BetaCacheControlEphemeral`
 
           Create a cache control breakpoint at this content block.
+
+      - `BetaRequestToolAdditionBlock object { tool, type, cache_control }`
+
+        Mid-conversation directive to surface a declared tool.
+
+        `tool` references a tool (or MCP toolset) by name from the request's
+        `tools`; it is offered to the model from this point in the
+        conversation onward.
+
+      - `BetaRequestToolRemovalBlock object { tool, type, cache_control }`
+
+        Mid-conversation directive to withdraw a tool.
+
+        `tool` references a tool (or MCP toolset) by name from the request's
+        `tools`; it is no longer offered to the model from this point in the
+        conversation onward.
 
       - `BetaFallbackBlockParam object { from, to, type, trigger }`
 
@@ -1175,7 +1285,7 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-            - `"claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more`
+            - `"claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 14 more`
 
               The model that will complete your prompt.
 
@@ -1193,13 +1303,17 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
                 Most capable model for cybersecurity and biology research
 
+              - `"claude-opus-5"`
+
+                Powerful intelligence for long-running agents and coding
+
               - `"claude-opus-4-8"`
 
-                Frontier intelligence for long-running agents and coding
+                Powerful intelligence for long-running agents and coding
 
               - `"claude-opus-4-7"`
 
-                Frontier intelligence for long-running agents and coding
+                Powerful intelligence for long-running agents and coding
 
               - `"claude-mythos-preview"`
 
@@ -1207,7 +1321,7 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
               - `"claude-opus-4-6"`
 
-                Frontier intelligence for long-running agents and coding
+                Powerful intelligence for long-running agents and coding
 
               - `"claude-sonnet-4-6"`
 
@@ -1223,11 +1337,11 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
               - `"claude-opus-4-5"`
 
-                Premium model combining maximum intelligence with practical performance
+                Powerful intelligence for long-running agents and coding
 
               - `"claude-opus-4-5-20251101"`
 
-                Premium model combining maximum intelligence with practical performance
+                Powerful intelligence for long-running agents and coding
 
               - `"claude-sonnet-4-5"`
 
@@ -1239,11 +1353,11 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
               - `"claude-opus-4-1"`
 
-                Exceptional model for specialized complex tasks
+                Powerful intelligence for long-running agents and coding
 
               - `"claude-opus-4-1-20250805"`
 
-                Exceptional model for specialized complex tasks
+                Powerful intelligence for long-running agents and coding
 
             - `string`
 

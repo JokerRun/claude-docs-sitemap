@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/increase-consistency
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 77943d1e35eee93dbd41773811fd5814a0552e8f0e747d7483c5d6698b0e0187
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: dc1867f3ec19f1c2736462692fecd6cd5c071bcb8261f76c4521233e9a969604
 ---
 
 # Increase output consistency
@@ -35,15 +35,11 @@ Precisely define your desired output format using JSON, XML, or custom templates
 ## Prefill Claude's response
 
 <Note>
-  Prefilling is not supported on Claude Fable 5, 
-
-  [Claude Mythos 5](https://anthropic.com/glasswing)
-
-  , 
+  Prefilling is not supported on Claude 4.6 and later models and 
 
   [Claude Mythos Preview](https://anthropic.com/glasswing)
 
-  , Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6. Use 
+  . Use 
 
   [structured outputs](/docs/en/build-with-claude/structured-outputs)
 

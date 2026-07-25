@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/libraries/apple-foundation-models
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: 03e84d1f3681fd7c3736f689ad8a8c4df865e86ccb268becc66b96042cc4b921
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 657bd68e7d76d31fa0012c14efcbb7e3775c77a815b33a0334758ed44d0fb1d5
 ---
 
 # Apple Foundation Models
@@ -75,10 +75,10 @@ For a complete working program, the repository includes [`Examples/ClaudeExample
 Model identifiers are values of `ClaudeModel`. Use a compiled-in constant, or construct one with explicit capabilities for an ID that isn't compiled in yet (see [Capabilities](#capabilities)):
 
 ```swift
-ClaudeLanguageModel(name: .opus4_8, auth: auth)
+ClaudeLanguageModel(name: .opus5, auth: auth)
 ```
 
-Constants mirror API model IDs (`.opus4_8` is `claude-opus-4-8`) and carry each model's capabilities. New models ship as new constants in package releases; check `ClaudeModel` in Xcode for the current list, and the [Models overview](/docs/en/about-claude/models/overview) to compare models.
+Constants mirror API model IDs (`.opus5` is `claude-opus-5`) and carry each model's capabilities. New models ship as new constants in package releases; check `ClaudeModel` in Xcode for the current list, and the [Models overview](/docs/en/about-claude/models/overview) to compare models.
 
 ### Capabilities
 
@@ -94,10 +94,10 @@ ClaudeLanguageModel(name: model, auth: auth)
 
 ### Effort
 
-Pin a Claude [effort level](/docs/en/build-with-claude/effort) for every request with `fixedEffort:`. It takes precedence over the framework's per-request reasoning hints, and it's the only way to request `.xhigh` or `.max`, because the framework's reasoning levels stop at high. The API defaults to `high` when no effort is sent:
+Pin a Claude [effort level](/docs/en/build-with-claude/effort) for every request with `fixedEffort:`. It takes precedence over the framework's per-request reasoning hints. The framework's named reasoning levels stop at high; to request more effort for a single request instead, pass a custom reasoning level naming the Claude effort (`.custom("xhigh")` or `.custom("max")`), which maps directly. The API defaults to `high` when no effort is sent:
 
 ```swift
-ClaudeLanguageModel(name: .opus4_8, auth: auth, fixedEffort: .xhigh)
+ClaudeLanguageModel(name: .opus5, auth: auth, fixedEffort: .xhigh)
 ```
 
 The level must be one the model accepts. Each `ClaudeModel` declares which of the five levels (`low`, `medium`, `high`, `xhigh`, `max`) its model takes, if any: some models don't accept effort at all.

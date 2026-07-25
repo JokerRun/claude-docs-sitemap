@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 5d52d835c7c5cc03e9c70f4758a900ec7c5d9b38de52068dd909ac95764d75f6
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: abc04d55472a407da2094d1fda2a5227b0ef56e61f9e51810a26d5d318e6b982
 ---
 
 # Vision
@@ -47,7 +47,7 @@ Pada API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah
     -H "content-type: application/json" \
     -d @- <<EOF
   {
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5",
     "max_tokens": 1024,
     "messages": [
       {
@@ -77,7 +77,7 @@ Pada API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah
     https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg
 
   ant messages create <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1024
   messages:
     - role: user
@@ -98,7 +98,7 @@ Pada API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah
 
   client = anthropic.Anthropic()
   message = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[
           {
@@ -126,7 +126,7 @@ Pada API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah
   });
 
   const message = await anthropic.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -163,7 +163,7 @@ Pada API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah
 
   var message = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Messages =
       [
@@ -194,7 +194,7 @@ Pada API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah
   imageData := "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4z8AAAAMBAQDJ/pLvAAAAAElFTkSuQmCC"
 
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -231,7 +231,7 @@ Pada API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah
     .messages()
     .create(
       MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_4_8)
+        .model(Model.CLAUDE_OPUS_5)
         .maxTokens(1024)
         .addUserMessageOfBlockParams(contentBlockParams)
         .build()
@@ -263,10 +263,10 @@ Pada API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah
               ],
           ],
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
-  echo $message->content[0]->text;
+  echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
   ```
 
   ```ruby Ruby
@@ -275,7 +275,7 @@ Pada API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah
   image_data = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4z8AAAAMBAQDJ/pLvAAAAAElFTkSuQmCC"
 
   message = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -308,7 +308,7 @@ Pada API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "messages": [
         {
@@ -333,7 +333,7 @@ Pada API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1024
   messages:
     - role: user
@@ -350,7 +350,7 @@ Pada API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah
   ```python Python
   client = anthropic.Anthropic()
   message = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[
           {
@@ -377,7 +377,7 @@ Pada API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah
   });
 
   const message = await anthropic.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -411,7 +411,7 @@ Pada API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah
 
   var message = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Messages =
       [
@@ -439,7 +439,7 @@ Pada API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah
   client := anthropic.NewClient()
 
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -478,7 +478,7 @@ Pada API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah
     .messages()
     .create(
       MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_4_8)
+        .model(Model.CLAUDE_OPUS_5)
         .maxTokens(1024)
         .addUserMessageOfBlockParams(contentBlockParams)
         .build()
@@ -506,17 +506,17 @@ Pada API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah
               ],
           ],
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
-  echo $message->content[0]->text;
+  echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
   ```
 
   ```ruby Ruby
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -544,7 +544,7 @@ Pada API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah
 Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghindari overhead pengkodean, gunakan [Files API](/docs/id/build-with-claude/files). Unggah gambar sekali, lalu referensikan `file_id` yang dikembalikan dalam pesan-pesan berikutnya alih-alih mengirim ulang data base64.
 
 <Tip>
-  Dalam percakapan multi-giliran dan alur kerja agentik, setiap permintaan mengirim ulang seluruh riwayat percakapan. Jika gambar dikodekan base64, seluruh byte gambar disertakan dalam payload pada setiap giliran, yang dapat secara signifikan meningkatkan ukuran permintaan dan latensi seiring percakapan bertambah panjang. Mengunggah gambar ke Files API dan mereferensikannya dengan `file_id` menjaga payload permintaan tetap kecil terlepas dari berapa banyak gambar yang terakumulasi dalam riwayat percakapan.
+  Dalam percakapan multi-giliran dan alur kerja agentik, setiap permintaan mengirim ulang seluruh riwayat percakapan. Jika gambar dikodekan base64, seluruh byte gambar disertakan dalam payload pada setiap giliran, yang dapat secara signifikan meningkatkan ukuran permintaan dan latensi seiring bertambahnya percakapan. Mengunggah gambar ke Files API dan mereferensikannya dengan `file_id` menjaga payload permintaan tetap kecil terlepas dari berapa banyak gambar yang terakumulasi dalam riwayat percakapan.
 </Tip>
 
 <CodeGroup>
@@ -563,7 +563,7 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
     -H "anthropic-beta: files-api-2025-04-14" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "messages": [
         {
@@ -599,7 +599,7 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
   ant beta:messages create \
     --beta files-api-2025-04-14 \
     --transform content --format yaml <<YAML
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1024
   messages:
     - role: user
@@ -622,7 +622,7 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
 
   # Gunakan file yang diunggah dalam pesan
   message = client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       betas=["files-api-2025-04-14"],
       messages=[
@@ -653,9 +653,9 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
     file: await toFile(fs.createReadStream("image.jpg"), undefined, { type: "image/jpeg" })
   });
 
-  // Gunakan file yang diunggah dalam pesan
+  // Gunakan file yang diunggah dalam sebuah pesan
   const response = await anthropic.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     betas: ["files-api-2025-04-14"],
     messages: [
@@ -690,11 +690,11 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
   var fileUpload = await client.Beta.Files.Upload(
       new FileUploadParams { File = File.OpenRead("image.jpg") });
 
-  // Gunakan file yang diunggah dalam sebuah pesan
+  // Gunakan file yang diunggah dalam pesan
   var response = await client.Beta.Messages.Create(
       new MessageCreateParams
       {
-          Model = "claude-opus-4-8",
+          Model = "claude-opus-5",
           MaxTokens = 1024,
           Betas = new[] { "files-api-2025-04-14" },
           Messages = new[]
@@ -739,7 +739,7 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
   // Gunakan file yang diunggah dalam pesan
   message, err := client.Beta.Messages.New(context.Background(),
   	anthropic.BetaMessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus4_8,
+  		Model:     anthropic.ModelClaudeOpus5,
   		MaxTokens: 1024,
   		Betas:     []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
   		Messages: []anthropic.BetaMessageParam{
@@ -772,11 +772,11 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
           FileUploadParams.builder().file(Files.newInputStream(Path.of("image.jpg"))).build()
         );
 
-      // Gunakan file yang diunggah dalam pesan
+      // Gunakan file yang diunggah dalam sebuah pesan
       ImageBlockParam imageParam = ImageBlockParam.builder().fileSource(file.id()).build();
 
       MessageCreateParams params = MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_4_8)
+        .model(Model.CLAUDE_OPUS_5)
         .maxTokens(1024)
         .addUserMessageOfBlockParams(
           List.of(
@@ -815,11 +815,11 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
               ],
           ],
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       betas: ['files-api-2025-04-14'],
   );
 
-  echo $message->content[0]->text;
+  echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
   ```
 
   ```ruby Ruby
@@ -830,9 +830,9 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
     file: File.open("image.jpg", "rb")
   )
 
-  # Gunakan file yang diunggah dalam sebuah pesan
+  # Gunakan file yang diunggah dalam pesan
   message = client.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     betas: ["files-api-2025-04-14"],
     messages: [
@@ -857,7 +857,7 @@ Lihat [contoh Messages API](/docs/id/api/messages/create) untuk contoh kode dan 
 
 ### Beberapa gambar
 
-Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude menganalisisnya secara bersamaan. Ini berguna untuk membandingkan gambar, menanyakan perbedaan, atau bekerja dengan urutan seperti halaman-halaman dokumen. Saat mengirim beberapa gambar, perkenalkan masing-masing dengan label teks singkat (`Image 1:`, `Image 2:`, dan seterusnya) sehingga Anda dapat merujuknya berdasarkan nama dalam prompt Anda dan dalam giliran-giliran lanjutan.
+Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude menganalisisnya secara bersamaan. Ini berguna untuk membandingkan gambar, menanyakan perbedaan, atau bekerja dengan urutan seperti halaman-halaman dokumen. Saat mengirim beberapa gambar, perkenalkan masing-masing dengan label teks singkat (`Image 1:`, `Image 2:`, dan seterusnya) sehingga Anda dapat merujuknya berdasarkan nama dalam prompt Anda dan dalam giliran lanjutan.
 
 <CodeGroup>
   ```bash cURL
@@ -866,7 +866,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "messages": [
         {
@@ -908,7 +908,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1024
   messages:
     - role: user
@@ -938,7 +938,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
 
   client = anthropic.Anthropic()
   message = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[
           {
@@ -981,7 +981,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
     "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGNgYPgPAAEDAQAIicLsAAAAAElFTkSuQmCC";
 
   const message = await anthropic.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -1031,7 +1031,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
 
   var message = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Messages =
       [
@@ -1072,7 +1072,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
   image2Data := "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGNgYPgPAAEDAQAIicLsAAAAAElFTkSuQmCC"
 
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -1129,7 +1129,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
       .messages()
       .create(
           MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_4_8)
+              .model(Model.CLAUDE_OPUS_5)
               .maxTokens(1024)
               .addUserMessageOfBlockParams(contentBlockParams)
               .build()
@@ -1172,7 +1172,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
               ],
           ],
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
   echo $message;
@@ -1185,7 +1185,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
   image2_data = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGNgYPgPAAEDAQAIicLsAAAAAElFTkSuQmCC"
 
   message = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -1219,7 +1219,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
   ```
 </CodeGroup>
 
-Dalam percakapan multi-giliran, tambahkan gambar baru di giliran `user` berikutnya dengan cara yang sama. Claude memiliki akses ke setiap gambar dari giliran-giliran sebelumnya, sehingga pertanyaan lanjutan seperti "Apakah ini mirip dengan dua yang pertama?" berfungsi tanpa menyertakan kembali gambar-gambar sebelumnya dalam konten giliran baru.
+Dalam percakapan multi-giliran, tambahkan gambar baru di giliran `user` berikutnya dengan cara yang sama. Claude memiliki akses ke setiap gambar dari giliran sebelumnya, sehingga pertanyaan lanjutan seperti "Apakah ini mirip dengan dua yang pertama?" berfungsi tanpa menyertakan kembali gambar sebelumnya dalam konten giliran baru.
 
 ***
 
@@ -1235,7 +1235,7 @@ Jumlah maksimum gambar per pesan atau permintaan adalah:
 
 Dimensi maksimum per gambar adalah 8000x8000 px.
 
-Jika satu permintaan API berisi lebih dari 20 gambar, batas dimensi per gambar yang lebih ketat berlaku. Pada Amazon Bedrock dan Google Cloud, blok dokumen seperti PDF juga dihitung terhadap ambang batas ini. Gambar yang melebihi batas yang lebih ketat akan ditolak dengan `invalid_request_error` yang pesannya merujuk pada "many-image requests" dan menyatakan batas saat ini dalam piksel. Agar tetap di bawah batas pada semua platform, ubah ukuran setiap gambar sehingga tidak ada dimensi yang melebihi 2000 px, atau batasi permintaan hingga 20 atau lebih sedikit blok gambar dan dokumen.
+Jika satu permintaan API berisi lebih dari 20 gambar, batas dimensi per gambar yang lebih ketat berlaku. Pada Amazon Bedrock dan Google Cloud, blok dokumen seperti PDF juga dihitung terhadap ambang batas ini. Gambar yang melebihi batas yang lebih ketat akan ditolak dengan `invalid_request_error` yang pesannya merujuk pada "many-image requests" dan menyatakan batas saat ini dalam piksel. Untuk tetap di bawah batas di semua platform, ubah ukuran setiap gambar sehingga tidak ada dimensi yang melebihi 2000 px, atau batasi permintaan hingga 20 atau lebih sedikit blok gambar dan dokumen.
 
 Ukuran maksimum per gambar adalah:
 
@@ -1244,7 +1244,7 @@ Ukuran maksimum per gambar adalah:
 * 10 MB di [claude.ai](https://claude.ai/).
 
 <Note>
-  Meskipun API mendukung hingga 600 gambar per permintaan, [batas ukuran permintaan](/docs/id/api/overview#request-size-limits) (32 MB untuk endpoint standar; lebih rendah pada beberapa platform yang dioperasikan mitra, misalnya, Amazon Bedrock dan Google Cloud) dapat tercapai lebih dulu. Untuk banyak gambar, pertimbangkan mengunggah dengan [Files API](#files-api-image-example) dan mereferensikan dengan `file_id` untuk menjaga payload permintaan tetap kecil.
+  Meskipun API mendukung hingga 600 gambar per permintaan, [batas ukuran permintaan](/docs/id/api/overview#request-size-limits) (32 MB untuk endpoint standar; lebih rendah pada beberapa platform yang dioperasikan mitra, misalnya, Amazon Bedrock dan Google Cloud) dapat tercapai lebih dulu. Untuk banyak gambar, pertimbangkan untuk mengunggah dengan [Files API](#files-api-image-example) dan mereferensikan dengan `file_id` agar payload permintaan tetap kecil.
 
   Bahkan saat menggunakan Files API, permintaan dengan banyak gambar besar dapat gagal sebelum mencapai jumlah 600 gambar. Kurangi dimensi gambar atau ukuran file (misalnya, dengan downsampling) sebelum mengunggah (lihat [Resolusi dan biaya token](#evaluate-image-size)).
 </Note>
@@ -1255,16 +1255,16 @@ Claude mendukung gambar JPEG, PNG, GIF, dan WebP (`image/jpeg`, `image/png`, `im
 
 ### Resolusi dan biaya token
 
-Claude melihat gambar dalam bentuk patch, bukan piksel. Setiap patch adalah blok gambar berukuran 28×28 piksel, yang disebut sebagai token visual. Oleh karena itu, sebuah gambar berbiaya `⌈width / 28⌉ × ⌈height / 28⌉` token visual.
+Claude melihat gambar dalam bentuk patch, bukan piksel. Setiap patch adalah blok gambar berukuran 28×28 piksel, yang disebut sebagai token visual. Oleh karena itu, sebuah gambar membutuhkan `⌈width / 28⌉ × ⌈height / 28⌉` token visual.
 
-Setiap model memiliki resolusi gambar native maksimum, yang dinyatakan sebagai batas sisi terpanjang dan batas token visual. Gambar yang lebih besar dari salah satu batas tersebut akan diperkecil sebelum diproses; lihat [Bagaimana Claude mengubah ukuran dan menambahkan padding pada gambar](/docs/id/build-with-claude/vision-coordinates#how-claude-resizes-and-pads-images) untuk aturan pastinya.
+Setiap model memiliki resolusi gambar native maksimum, yang dinyatakan sebagai batas sisi terpanjang dan batas token visual. Gambar yang lebih besar dari salah satu batas tersebut akan diperkecil sebelum diproses; lihat [Bagaimana Claude mengubah ukuran dan menambahkan padding pada gambar](/docs/id/build-with-claude/vision-coordinates#how-claude-resizes-and-pads-images) untuk aturan yang tepat.
 
-| Tingkat resolusi | Model                                                                              | Sisi terpanjang maks | Token visual maks |
-| ---------------- | ---------------------------------------------------------------------------------- | -------------------- | ----------------- |
-| Resolusi tinggi  | Claude Fable 5, Claude Mythos 5, Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5 | 2576 px              | 4784              |
-| Standar          | Semua model lainnya                                                                | 1568 px              | 1568              |
+| Tingkat resolusi | Model                                | Sisi terpanjang maks | Token visual maks |
+| ---------------- | ------------------------------------ | -------------------- | ----------------- |
+| Resolusi tinggi  | Claude 4.7 dan model yang lebih baru | 2576 px              | 4784              |
+| Standar          | Semua model lainnya                  | 1568 px              | 1568              |
 
-Dukungan resolusi tinggi bersifat otomatis pada model-model yang tercantum dan tidak memerlukan header beta atau opt-in dari sisi klien.
+Dukungan resolusi tinggi bersifat otomatis pada model yang tercantum dan tidak memerlukan header beta atau opt-in dari sisi klien.
 
 Tabel berikut menunjukkan resolusi yang diperkecil dan biaya token visual untuk beberapa ukuran gambar pada setiap tingkat:
 
@@ -1279,15 +1279,15 @@ Tabel berikut menunjukkan resolusi yang diperkecil dan biaya token visual untuk 
 
 Ketika sebuah gambar diperkecil, Claude menskalakannya ke ukuran terbesar yang sesuai dengan batas tingkat tersebut sambil mempertahankan rasio aspeknya. Ini membatasi biaya token. Untuk aturan yang tepat dan implementasi referensi, lihat [Bagaimana Claude mengubah ukuran dan menambahkan padding pada gambar](/docs/id/build-with-claude/vision-coordinates#how-claude-resizes-and-pads-images).
 
-Untuk memperkirakan biaya, kalikan jumlah token dengan [harga per token dari model](https://claude.com/pricing) yang Anda gunakan. Misalnya, dengan harga Claude Haiku 4.5 sebesar $1 per juta token input (tingkat standar), gambar 1000×1000 berbiaya sekitar $1,30 per seribu gambar. Dengan harga Claude Opus 4.8 sebesar $5 per juta (tingkat resolusi tinggi), gambar yang sama berbiaya sekitar $6,48 per seribu dan gambar 4K sekitar $23,92 per seribu.
+Untuk memperkirakan biaya, kalikan jumlah token dengan [harga per token dari model](https://claude.com/pricing) yang Anda gunakan. Misalnya, dengan harga Claude Haiku 4.5 sebesar $1 per juta token input (tingkat standar), gambar 1000×1000 berbiaya sekitar $1,30 per seribu gambar. Dengan harga Claude Opus 5 sebesar $5 per juta (tingkat resolusi tinggi), gambar yang sama berbiaya sekitar $6,48 per seribu dan gambar 4K sekitar $23,92 per seribu.
 
-Gambar resolusi tinggi dapat menggunakan hingga sekitar tiga kali lebih banyak token visual dibandingkan gambar yang sama pada model tingkat standar. Jika Anda tidak memerlukan fidelitas tambahan yang diberikan resolusi tinggi untuk penggunaan komputer, pemahaman tangkapan layar, dan dokumen yang padat, lakukan downsampling pada gambar sebelum mengirim untuk mengendalikan biaya token. Untuk meminimalkan latensi dan menyederhanakan [alur kerja berbasis koordinat](/docs/id/build-with-claude/vision-coordinates), utamakan mengubah ukuran gambar sebelum mengunggahnya.
+Gambar resolusi tinggi dapat menggunakan hingga sekitar tiga kali lebih banyak token visual dibandingkan gambar yang sama pada model tingkat standar. Jika Anda tidak memerlukan fidelitas tambahan yang disediakan resolusi tinggi untuk penggunaan komputer, pemahaman tangkapan layar, dan dokumen yang padat, lakukan downsampling pada gambar sebelum mengirim untuk mengendalikan biaya token. Untuk meminimalkan latensi dan menyederhanakan [alur kerja berbasis koordinat](/docs/id/build-with-claude/vision-coordinates), utamakan mengubah ukuran gambar sebelum mengunggahnya.
 
 ### Panduan kualitas gambar
 
 Saat memberikan gambar ke Claude, perhatikan hal-hal berikut untuk hasil terbaik:
 
-* **Kejernihan gambar:** Pastikan gambar jelas dan tidak terlalu buram atau terpikselasi.
+* **Kejelasan gambar:** Pastikan gambar jelas dan tidak terlalu buram atau terpikselasi.
 * **Teks:** Jika gambar berisi teks penting, pastikan teks tersebut terbaca dan tidak terlalu kecil. Hindari memotong konteks visual penting hanya untuk memperbesar teks.
 * **Pengubahan ukuran:** Perhatikan bahwa gambar Anda mungkin diubah ukurannya jika terlalu besar (lihat [Resolusi dan biaya token](#evaluate-image-size)); ini mungkin, misalnya, membuat teks kurang terbaca. Pertimbangkan untuk mengubah ukuran gambar Anda terlebih dahulu, memotongnya, atau keduanya.
 * **Kompresi gambar:** Mengompresi gambar sebelum mengirimnya, menggunakan format lossy seperti JPEG atau WebP (mode lossy), dapat mengurangi latensi dengan mengurangi ukuran permintaan. Namun, ini dapat menimbulkan artefak yang merugikan kinerja model, terutama ketika beberapa tahap kompresi diterapkan. Misalnya, kompresi JPEG yang berat dapat membuat teks sulit dibaca. Pastikan pengaturan kompresi Anda sesuai untuk tugas tersebut dengan memeriksa gambar aktual yang dikirim ke API.
@@ -1323,12 +1323,12 @@ Selalu tinjau dan verifikasi interpretasi gambar Claude dengan cermat, terutama 
     JPEG, PNG, GIF, dan WebP. Lihat [Format yang didukung](#supported-formats).
   </Accordion>
 
-  <Accordion title="Dapatkah Claude membaca URL gambar?">
+  <Accordion title="Bisakah Claude membaca URL gambar?">
     Ya. Gunakan tipe sumber `url` alih-alih `base64` dalam blok konten `image`. Lihat [contoh gambar berbasis URL](#url-based-image-example).
   </Accordion>
 
   <Accordion title="Apakah ada batasan ukuran file gambar yang dapat saya unggah?">
-    Ya. Lihat [Batasan permintaan](#request-limits) untuk batas per gambar dan batas ukuran permintaan keseluruhan di Claude API, Amazon Bedrock, Google Cloud, dan claude.ai.
+    Ya. Lihat [Batasan permintaan](#request-limits) untuk batas ukuran per gambar dan keseluruhan permintaan di Claude API, Amazon Bedrock, Google Cloud, dan claude.ai.
   </Accordion>
 
   <Accordion title="Berapa banyak gambar yang dapat saya sertakan dalam satu permintaan?">
@@ -1339,7 +1339,7 @@ Selalu tinjau dan verifikasi interpretasi gambar Claude dengan cermat, terutama 
     Tidak, Claude tidak mengurai atau menerima metadata apa pun dari gambar yang diberikan kepadanya.
   </Accordion>
 
-  <Accordion title="Dapatkah saya menghapus gambar yang telah saya unggah?">
+  <Accordion title="Bisakah saya menghapus gambar yang telah saya unggah?">
     Tidak. Unggahan gambar bersifat sementara dan tidak disimpan melebihi durasi permintaan API. Gambar yang diunggah akan dihapus secara otomatis setelah diproses.
   </Accordion>
 
@@ -1357,7 +1357,7 @@ Selalu tinjau dan verifikasi interpretasi gambar Claude dengan cermat, terutama 
     Umpan balik Anda membantu meningkatkan Claude!
   </Accordion>
 
-  <Accordion title="Dapatkah Claude menghasilkan atau mengedit gambar?">
+  <Accordion title="Bisakah Claude menghasilkan atau mengedit gambar?">
     Tidak, Claude hanyalah model pemahaman gambar. Claude dapat menafsirkan dan menganalisis gambar, tetapi tidak dapat menghasilkan, memproduksi, mengedit, memanipulasi, atau membuat gambar.
   </Accordion>
 </AccordionGroup>

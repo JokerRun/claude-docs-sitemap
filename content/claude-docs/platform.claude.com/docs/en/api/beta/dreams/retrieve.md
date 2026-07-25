@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/retrieve
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: be83fc836701b45281ed1ed623cb0c27b23d557db9d662cbc975f1a568bcdb88
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 55884cf70d57a3a02d7dbe122fd92d5a2c4284e392c61c2d5c3f541d442960ab
 ---
 
 ## Get a Dream
@@ -23,7 +23,7 @@ Get a Dream
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 27 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -81,7 +81,11 @@ Get a Dream
 
     - `"server-side-fallback-2026-06-01"`
 
+    - `"server-side-fallback-2026-07-01"`
+
     - `"fallback-credit-2026-06-01"`
+
+    - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
 

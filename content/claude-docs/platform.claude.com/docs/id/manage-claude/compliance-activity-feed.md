@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: f32842296c2ff43eb65ed705806ee5bf7787cd03525f4903e71af54ab5623994
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 31a41379c7fcd229765c1d93c3c9755dc9180fa2305c8098cd4e6789ed3af6b0
 ---
 
 # Melakukan kueri pada Activity Feed
 
-Mengambil, memfilter, dan melakukan paginasi pada Activity Feed Compliance API organisasi Anda.
+Mengambil, memfilter, dan melakukan paginasi Activity Feed Compliance API organisasi Anda.
 
 ---
 
@@ -23,13 +23,11 @@ Mengambil, memfilter, dan melakukan paginasi pada Activity Feed Compliance API o
 
 Activity Feed mencatat setiap tindakan autentikasi, chat, file, proyek, administratif, dan platform yang terjadi di organisasi Anda, dalam urutan kronologis terbalik. Aktivitas dapat dikueri dalam waktu 1 menit setelah terjadi dan disimpan selama 6 tahun.
 
-<CodeGroup>
-  ```bash cURL
-  curl --fail-with-body -sS \
-    "https://api.anthropic.com/v1/compliance/activities?limit=1" \
-    --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
-  ```
-</CodeGroup>
+```bash cURL
+curl --fail-with-body -sS \
+  "https://api.anthropic.com/v1/compliance/activities?limit=1" \
+  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
+```
 
 ```json Response
 {
@@ -59,20 +57,18 @@ Activity Feed mencatat setiap tindakan autentikasi, chat, file, proyek, administ
 
 ## Memfilter aktivitas
 
-Filter berdasarkan organisasi, aktor, jenis aktivitas, atau jendela waktu `created_at` menggunakan sub-parameter bertitik `created_at.gte`, `.gt`, `.lte`, dan `.lt`. Lihat [referensi API](/docs/id/api/compliance/activities/list) untuk jenis dan nilai yang diterima dari setiap parameter.
+Filter berdasarkan organisasi, aktor, jenis aktivitas, atau jendela waktu `created_at` menggunakan sub-parameter bertitik `created_at.gte`, `.gt`, `.lte`, dan `.lt`. Lihat [referensi API](/docs/id/api/compliance/activities/list) untuk jenis dan nilai yang diterima setiap parameter.
 
-Parameter yang dapat diulang menggunakan sintaks kueri array-bracket: kirimkan `activity_types[]=...`, `actor_ids[]=...`, atau `organization_ids[]=...` satu kali untuk setiap nilai.
+Parameter yang dapat diulang menggunakan sintaks kueri array-bracket: berikan `activity_types[]=...`, `actor_ids[]=...`, atau `organization_ids[]=...` satu kali untuk setiap nilai.
 
-<CodeGroup>
-  ```bash cURL
-  curl --fail-with-body -sS -G \
-    "https://api.anthropic.com/v1/compliance/activities" \
-    --data-urlencode "activity_types[]=claude_file_uploaded" \
-    --data-urlencode "activity_types[]=claude_chat_created" \
-    --data-urlencode "created_at.gte=2026-04-01T00:00:00Z" \
-    --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
-  ```
-</CodeGroup>
+```bash cURL
+curl --fail-with-body -sS -G \
+  "https://api.anthropic.com/v1/compliance/activities" \
+  --data-urlencode "activity_types[]=claude_file_uploaded" \
+  --data-urlencode "activity_types[]=claude_chat_created" \
+  --data-urlencode "created_at.gte=2026-04-01T00:00:00Z" \
+  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
+```
 
 Activity Feed menghasilkan ratusan jenis aktivitas yang berbeda. Lihat [Melakukan kueri aktivitas kepatuhan](/docs/id/api/compliance/activities/list) di referensi API untuk daftar lengkap nilai yang diterima oleh `activity_types[]`.
 
@@ -90,35 +86,33 @@ Compliance API menggunakan dua skema paginasi tergantung pada keluarga endpoint:
 
 File tidak dipaginasi: file diambil satu per satu berdasarkan ID.
 
-Cursor paginasi dan token halaman adalah string opaque: kirimkan kembali tanpa perubahan. Format internalnya tidak stabil, dan mem-parsing-nya akan rusak tanpa pemberitahuan. Hanya salah satu dari `after_id` atau `before_id` yang boleh diatur dalam setiap permintaan, dan kedua skema mengembalikan `has_more` sehingga Anda tahu kapan harus berhenti.
+Cursor paginasi dan token halaman adalah string opak: kembalikan tanpa diubah. Format internalnya tidak stabil, dan mem-parsing-nya akan rusak tanpa pemberitahuan. Hanya salah satu dari `after_id` atau `before_id` yang boleh diatur di setiap permintaan, dan kedua skema mengembalikan `has_more` sehingga Anda tahu kapan harus berhenti.
 
 Untuk menelusuri halaman aktivitas:
 
-* Kirimkan `last_id` dari respons sebagai `after_id` untuk maju ke halaman berikutnya dalam urutan hasil. Dengan aktivitas yang diurutkan dari yang terbaru terlebih dahulu, halaman berikutnya berisi entri yang lebih lama.
-* Kirimkan `first_id` sebagai `before_id` untuk kembali ke halaman sebelumnya.
+* Berikan `last_id` dari respons sebagai `after_id` untuk maju ke halaman berikutnya dalam urutan hasil. Dengan aktivitas yang diurutkan dari yang terbaru terlebih dahulu, halaman berikutnya berisi entri yang lebih lama.
+* Berikan `first_id` sebagai `before_id` untuk kembali ke halaman sebelumnya.
 * Berhenti ketika `has_more` bernilai `false`.
 
-Parameter cursor menentukan arah halaman; urutan pengurutan endpoint menentukan arah waktu. Parameter `after_id` yang sama menjangkau aktivitas yang lebih lama di sini. Chat diurutkan dari yang terlama terlebih dahulu; lihat [Mengambil dan menghapus chat, file, dan proyek](/docs/id/manage-claude/compliance-content-data) untuk semantik cursor di sana.
+Parameter cursor menentukan arah halaman; urutan pengurutan endpoint menentukan arah waktu. Parameter `after_id` yang sama mencapai aktivitas yang lebih lama di sini. Chat diurutkan dari yang terlama terlebih dahulu; lihat [Mengambil dan menghapus chat, file, dan proyek](/docs/id/manage-claude/compliance-content-data) untuk semantik cursor di sana.
 
 <Note>
   **Cursor aman untuk digunakan kembali saat mencoba ulang.** Cursor atau token halaman dari halaman yang berhasil dikembalikan tetap valid; permintaan yang gagal (5xx, timeout, kesalahan jaringan) tidak memajukan posisi Anda. Coba ulang permintaan yang sama dengan cursor yang sama. Hanya pindah ke cursor berikutnya setelah Anda menyimpan halaman yang dilewatinya.
 </Note>
 
-<CodeGroup>
-  ```bash cURL
-  # Ambil halaman pertama (aktivitas terbaru lebih dulu) dan simpan cursor di bagian akhirnya.
-  last_id=$(curl --fail-with-body -sS \
-    "https://api.anthropic.com/v1/compliance/activities?limit=2" \
-    --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" | jq -er '.last_id')
+```bash cURL
+# Ambil halaman pertama (aktivitas terbaru lebih dulu) dan simpan cursor di bagian akhirnya.
+last_id=$(curl --fail-with-body -sS \
+  "https://api.anthropic.com/v1/compliance/activities?limit=2" \
+  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" | jq -er '.last_id')
 
-  # Kirimkan kembali cursor tersebut tanpa diubah untuk mengambil halaman berikutnya (yang lebih lama).
-  curl --fail-with-body -sS -G \
-    "https://api.anthropic.com/v1/compliance/activities" \
-    --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-    --data-urlencode "limit=2" \
-    --data-urlencode "after_id=${last_id}"
-  ```
-</CodeGroup>
+# Kirim kembali cursor tersebut tanpa diubah untuk mengambil halaman berikutnya (yang lebih lama).
+curl --fail-with-body -sS -G \
+  "https://api.anthropic.com/v1/compliance/activities" \
+  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+  --data-urlencode "limit=2" \
+  --data-urlencode "after_id=${last_id}"
+```
 
 Loop **backfill** produksi menelusuri aktivitas yang lebih lama dengan menggerakkan iterasi berdasarkan `has_more` dan `last_id`:
 
@@ -148,13 +142,13 @@ Setiap entri dalam `data` adalah Activity dengan bentuk tingkat atas berikut:
 | ------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `id`                | string           | Pengidentifikasi unik untuk aktivitas.                                                                                                                                                                                                           |
 | `created_at`        | string RFC 3339  | Kapan aktivitas terjadi.                                                                                                                                                                                                                         |
-| `organization_id`   | string atau null | Organisasi tempat aktivitas terjadi, atau `null` untuk peristiwa yang tidak terkait dengan organisasi (sign-in, sign-out, panggilan Compliance API).                                                                                             |
+| `organization_id`   | string atau null | Organisasi tempat aktivitas terjadi, atau `null` untuk peristiwa yang tidak terkait dengan organisasi (masuk, keluar, panggilan Compliance API).                                                                                                 |
 | `organization_uuid` | string atau null | Cakupan yang sama dengan `organization_id`, dinyatakan sebagai UUID.                                                                                                                                                                             |
 | `actor`             | Union Actor      | Siapa atau apa yang melakukan aktivitas. Lihat tabel aktor berikut.                                                                                                                                                                              |
 | `type`              | string           | Jenis aktivitas, misalnya `claude_chat_created`.                                                                                                                                                                                                 |
 | *field tambahan*    | bervariasi       | Field spesifik per jenis, misalnya `claude_chat_id` pada peristiwa chat atau `filename` pada peristiwa file. Lihat [Melakukan kueri aktivitas kepatuhan](/docs/id/api/compliance/activities/list) di referensi API untuk daftar field per jenis. |
 
-Field `actor` adalah discriminated union. Discriminator `type` memberi tahu Anda field lain mana yang ada:
+Field `actor` adalah discriminated union. Diskriminator `type` memberi tahu Anda field lain mana yang ada:
 
 | `actor.type`                 | Kapan muncul                                                                                                                                                                                                           | Field kunci                                                                                                                                                |
 | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |

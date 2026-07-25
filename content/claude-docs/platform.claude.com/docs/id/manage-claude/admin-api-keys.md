@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/admin-api-keys
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 05073d46bdee094346d169b518a2b4583b33f9e5b5b4516888c1122997767eb7
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 5361430a3b2a0ba7a7a89f4fe8bc331737fd326cc7501a3613b206b5c8bbea74
 ---
 
 # Membuat kunci API Admin
@@ -17,7 +17,7 @@ Tempat Anda membuat kunci bergantung pada produk Claude mana yang digunakan orga
 
 ## Kunci mana yang Anda butuhkan?
 
-| Organisasi Anda                                             | Buat kunci di                                                                             | Awalan kunci         | Siapa yang dapat membuatnya                                                                                                                                                                                | Berfungsi dengan                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Organisasi Anda                                             | Buat kunci di                                                                             | Prefiks kunci        | Siapa yang dapat membuatnya                                                                                                                                                                                | Berfungsi dengan                                                                                                                                                                                                                                                                                                                                                                                                           |
 | ----------------------------------------------------------- | ----------------------------------------------------------------------------------------- | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Claude Console** (Claude Platform, `platform.claude.com`) | [Claude Console > Settings > Admin keys](https://platform.claude.com/settings/admin-keys) | `sk-ant-admin01-...` | Anggota organisasi dengan peran **admin**                                                                                                                                                                  | [Admin API](/docs/id/manage-claude/admin-api), [Usage and Cost API](/docs/id/manage-claude/usage-cost-api), [Rate Limits API](/docs/id/manage-claude/rate-limits-api), [Claude Code Analytics API](/docs/id/manage-claude/claude-code-analytics-api), dan [Activity Feed](/docs/id/manage-claude/compliance-activity-feed) pada Compliance API                                                                             |
 | **Claude Enterprise** (`claude.ai`)                         | [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access)    | `sk-ant-api01-...`   | **Primary owner** dari organisasi induk (semua organisasi yang tertaut). Seorang **organization owner** dapat membuat kunci yang hanya membawa cakupan Compliance API, terbatas pada organisasinya sendiri | [Manajemen pengguna](/docs/id/manage-claude/user-management) (endpoint member, invite, dan group pada Admin API, dalam versi beta), [Compliance API](/docs/id/manage-claude/compliance-api), [Claude Enterprise Analytics API](/docs/id/manage-claude/analytics-api), dan [Spend Limits API](/docs/id/manage-claude/spend-limits-api), sesuai dengan [cakupan](#choose-scopes-for-a-claude-enterprise-key) yang Anda pilih |
@@ -36,7 +36,7 @@ Kunci yang dibuat di satu organisasi tidak dapat digunakan untuk mengelola organ
   </Step>
 
   <Step title="Buat kunci">
-    Klik **Create key**, beri nama, pilih [masa berlaku kunci](/docs/id/manage-claude/authentication#key-expiration), lalu klik **Create**. Kunci Claude Console tidak memiliki cakupan yang dapat dipilih; setiap kunci membawa akses penuh ke semua endpoint yang menerima kunci API Admin (endpoint service-account dan federation yang disebutkan di bagian atas halaman ini tidak menerima kunci API Admin).
+    Klik **Create key**, beri nama, pilih [masa berlaku kunci](/docs/id/manage-claude/authentication#key-expiration), dan klik **Create**. Kunci Claude Console tidak memiliki cakupan yang dapat dipilih; setiap kunci membawa akses penuh ke semua endpoint yang menerima kunci API Admin (endpoint service-account dan federation yang disebutkan di bagian atas halaman ini tidak menerima kunci API Admin).
   </Step>
 
   <Step title="Salin dan simpan secret">
@@ -66,11 +66,11 @@ Kunci yang dibuat di satu organisasi tidak dapat digunakan untuk mengelola organ
 
 ## Memilih cakupan untuk kunci Claude Enterprise
 
-Saat Anda membuat kunci Claude Enterprise, pilih setiap cakupan yang dibutuhkan oleh API yang akan Anda panggil. Cakupan bersifat tetap saat pembuatan; untuk menambahkan cakupan di kemudian hari, buat kunci baru.
+Saat Anda membuat kunci Claude Enterprise, pilih setiap cakupan yang diperlukan oleh API yang akan Anda panggil. Cakupan bersifat tetap saat pembuatan; untuk menambahkan cakupan nanti, buat kunci baru.
 
 | Untuk memanggil...                                                                                                                                                                                                                            | Pilih cakupan ini             |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| [Manajemen pengguna](/docs/id/manage-claude/user-management) Admin API: menampilkan daftar dan mencari anggota serta undangan; membaca peran kustom dan izinnya                                                                               | `read:members`                |
+| [Manajemen pengguna](/docs/id/manage-claude/user-management) Admin API: mencantumkan dan mencari anggota dan undangan; membaca peran kustom dan izinnya                                                                                       | `read:members`                |
 | [Manajemen pengguna](/docs/id/manage-claude/user-management) Admin API: mengubah peran anggota, menghapus anggota, membuat dan menarik undangan                                                                                               | `write:members`               |
 | [Manajemen pengguna](/docs/id/manage-claude/user-management) Admin API: membaca grup dan anggotanya                                                                                                                                           | `read:rbac_groups`            |
 | [Manajemen pengguna](/docs/id/manage-claude/user-management) Admin API: membuat, mengganti nama, dan menghapus grup; menambah dan menghapus anggota grup; menetapkan grup saat pembuatan undangan                                             | `write:rbac_groups`           |
@@ -107,6 +107,6 @@ Panggilan yang melebihi cakupan kunci akan mengembalikan `403 Forbidden` dengan 
   </Card>
 
   <Card title="Compliance API" href="/docs/id/manage-claude/compliance-api">
-    Audit aktivitas serta ambil atau hapus konten pengguna di seluruh organisasi Anda.
+    Audit aktivitas dan ambil atau hapus konten pengguna di seluruh organisasi Anda.
   </Card>
 </CardGroup>

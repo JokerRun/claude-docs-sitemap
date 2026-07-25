@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-connector
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: de32e3d43a2786e7ddacdc863663bb1ce342c2108de7a7c9aec18aca73da0cec
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 3c685a1d393b5dae061bb6f78f768f050eef3cf7e3136116593c7bb5bc7fcebd
 ---
 
 # Konektor MCP
 
-Hubungkan ke server MCP jarak jauh langsung dari Messages API tanpa klien MCP, dan lakukan allowlist, denylist, atau konfigurasi alat individual.
+Hubungkan ke server MCP jarak jauh langsung dari Messages API tanpa klien MCP, dan buat allowlist, denylist, atau konfigurasikan alat individual.
 
 ---
 
-Fitur konektor Model Context Protocol (MCP) Claude memungkinkan Anda terhubung ke server MCP jarak jauh langsung dari Messages API tanpa klien MCP terpisah.
+Fitur konektor Model Context Protocol (MCP) dari Claude memungkinkan Anda terhubung ke server MCP jarak jauh langsung dari Messages API tanpa klien MCP terpisah.
 
 <Note>
   **Versi saat ini:** Fitur ini memerlukan header beta: `"anthropic-beta": "mcp-client-2025-11-20"`
@@ -27,7 +27,7 @@ Fitur konektor Model Context Protocol (MCP) Claude memungkinkan Anda terhubung k
 
 * **Integrasi API langsung**: Hubungkan ke server MCP tanpa mengimplementasikan klien MCP
 * **Dukungan pemanggilan alat**: Akses alat MCP melalui Messages API
-* **Konfigurasi alat yang fleksibel**: Aktifkan semua alat, allowlist alat tertentu, atau denylist alat yang tidak diinginkan
+* **Konfigurasi alat yang fleksibel**: Aktifkan semua alat, buat allowlist untuk alat tertentu, atau buat denylist untuk alat yang tidak diinginkan
 * **Konfigurasi per-alat**: Konfigurasikan alat individual dengan pengaturan kustom
 * **Autentikasi OAuth**: Dukungan untuk token OAuth Bearer untuk server yang terautentikasi
 * **Beberapa server**: Hubungkan ke beberapa server MCP dalam satu permintaan
@@ -36,13 +36,13 @@ Fitur konektor Model Context Protocol (MCP) Claude memungkinkan Anda terhubung k
 
 Setelah server MCP terhubung, Claude memanggil alat-alatnya ketika permintaan pengguna sesuai dengan kemampuan yang dideskripsikan oleh alat tersebut, baik secara eksplisit ("cari bug yang masih terbuka di Jira") maupun secara implisit ("apa yang menghambat rilis?" dengan server Jira terpasang).
 
-Claude **tidak** memanggil alat MCP untuk pertanyaan pengetahuan umum tentang layanan yang terhubung. Bertanya "bagaimana cara kerja database Notion?" dengan server Notion terpasang akan dijawab langsung; bertanya "apa isi database Projects saya?" akan memicu alat tersebut.
+Claude **tidak** memanggil alat MCP untuk pertanyaan pengetahuan umum tentang layanan yang terhubung. Pertanyaan "bagaimana cara kerja database Notion?" dengan server Notion terpasang akan dijawab langsung; pertanyaan "apa isi database Projects saya?" akan memicu alat tersebut.
 
 Anda dapat mengarahkan seberapa mudah Claude memanggil alat MCP melalui prompt sistem Anda. Lihat [Kapan Claude menggunakan alat](/docs/id/agents-and-tools/tool-use/overview#when-claude-uses-tools) untuk panduan umum dan contoh frasa.
 
 ## Keterbatasan
 
-* Dari rangkaian fitur [spesifikasi MCP](https://modelcontextprotocol.io/introduction#explore-mcp), saat ini hanya [pemanggilan alat](https://modelcontextprotocol.io/docs/concepts/tools) yang didukung.
+* Dari kumpulan fitur [spesifikasi MCP](https://modelcontextprotocol.io/introduction#explore-mcp), saat ini hanya [pemanggilan alat](https://modelcontextprotocol.io/docs/concepts/tools) yang didukung.
 * Server harus diekspos secara publik melalui HTTP (mendukung transport Streamable HTTP dan SSE). Server STDIO lokal tidak dapat dihubungkan secara langsung.
 * Konektor MCP tersedia di Claude API, [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Di Microsoft Foundry, konektor MCP memerlukan [deployment Hosted on Anthropic](/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure). Saat ini tidak tersedia di Amazon Bedrock atau Google Cloud.
 
@@ -65,7 +65,7 @@ Contoh ini mengaktifkan semua alat dari server MCP dengan konfigurasi default:
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: mcp-client-2025-11-20" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1000,
       "messages": [{"role": "user", "content": "What tools do you have available?"}],
       "mcp_servers": [
@@ -87,7 +87,7 @@ Contoh ini mengaktifkan semua alat dari server MCP dengan konfigurasi default:
 
   ```bash CLI
   ant beta:messages create --beta mcp-client-2025-11-20 <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1000
   messages:
     - role: user
@@ -107,7 +107,7 @@ Contoh ini mengaktifkan semua alat dari server MCP dengan konfigurasi default:
   client = anthropic.Anthropic()
 
   response = client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1000,
       messages=[{"role": "user", "content": "What tools do you have available?"}],
       mcp_servers=[
@@ -129,7 +129,7 @@ Contoh ini mengaktifkan semua alat dari server MCP dengan konfigurasi default:
   const anthropic = new Anthropic();
 
   const response = await anthropic.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1000,
     messages: [
       {
@@ -162,7 +162,7 @@ Contoh ini mengaktifkan semua alat dari server MCP dengan konfigurasi default:
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1000,
       Messages = new List<BetaMessageParam>
       {
@@ -192,7 +192,7 @@ Contoh ini mengaktifkan semua alat dari server MCP dengan konfigurasi default:
   client := anthropic.NewClient()
 
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1000,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("What tools do you have available?")),
@@ -229,7 +229,7 @@ Contoh ini mengaktifkan semua alat dari server MCP dengan konfigurasi default:
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(1000L)
           .addUserMessage("What tools do you have available?")
           .addMcpServer(BetaRequestMcpServerUrlDefinition.builder()
@@ -256,7 +256,7 @@ Contoh ini mengaktifkan semua alat dari server MCP dengan konfigurasi default:
       messages: [
           ['role' => 'user', 'content' => 'What tools do you have available?']
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       mcpServers: [
           [
               'type' => 'url',
@@ -281,7 +281,7 @@ Contoh ini mengaktifkan semua alat dari server MCP dengan konfigurasi default:
   client = Anthropic::Client.new
 
   response = client.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1000,
     messages: [
       { role: "user", content: "What tools do you have available?" }
@@ -371,11 +371,11 @@ Setiap alat (baik yang dikonfigurasi dalam `default_config` maupun dalam `config
 | `enabled`       | boolean | `true`  | Apakah alat ini diaktifkan.                                                                                                                              |
 | `defer_loading` | boolean | `false` | Jika true, deskripsi alat tidak dikirim ke model pada awalnya. Digunakan dengan [Tool search tool](/docs/id/agents-and-tools/tool-use/tool-search-tool). |
 
-Untuk direktori lengkap alat yang disediakan Anthropic dan properti opsional seperti `defer_loading`, lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference). Untuk pencarian di seluruh set alat yang besar, lihat [Tool search tool](/docs/id/agents-and-tools/tool-use/tool-search-tool).
+Untuk direktori lengkap alat yang disediakan Anthropic dan properti opsional seperti `defer_loading`, lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference). Untuk pencarian di seluruh kumpulan alat yang besar, lihat [Tool search tool](/docs/id/agents-and-tools/tool-use/tool-search-tool).
 
 ### Penggabungan konfigurasi
 
-Nilai konfigurasi digabungkan dengan urutan prioritas berikut (tertinggi ke terendah):
+Nilai konfigurasi digabungkan dengan prioritas berikut (tertinggi ke terendah):
 
 1. Pengaturan spesifik alat dalam `configs`
 2. `default_config` tingkat set
@@ -440,7 +440,7 @@ Atur `enabled: false` sebagai default, lalu aktifkan alat tertentu secara ekspli
 
 ### Denylist: nonaktifkan alat tertentu
 
-Aktifkan semua alat secara default, lalu nonaktifkan alat yang tidak diinginkan secara eksplisit. Melakukan denylist pada alat tulis atau alat destruktif direkomendasikan saat membangun asisten baca-saja, atau saat Anda menginginkan langkah konfirmasi manusia sebelum perubahan state:
+Aktifkan semua alat secara default, lalu nonaktifkan alat yang tidak diinginkan secara eksplisit. Membuat denylist untuk alat yang bersifat menulis atau destruktif direkomendasikan saat membangun asisten yang hanya-baca, atau ketika Anda menginginkan langkah konfirmasi manusia sebelum perubahan state:
 
 ```json
 {
@@ -500,7 +500,7 @@ API menerapkan aturan validasi berikut:
 
 Ketika Claude menggunakan alat MCP, respons menyertakan dua tipe blok konten baru:
 
-### Blok penggunaan alat MCP
+### Blok MCP tool use
 
 ```json
 {
@@ -512,7 +512,7 @@ Ketika Claude menggunakan alat MCP, respons menyertakan dua tipe blok konten bar
 }
 ```
 
-### Blok hasil alat MCP
+### Blok MCP tool result
 
 ```json
 {
@@ -534,7 +534,7 @@ Anda dapat terhubung ke beberapa server MCP dengan menyertakan beberapa definisi
 
 ```json
 {
-  "model": "claude-opus-4-8",
+  "model": "claude-opus-5",
   "max_tokens": 1000,
   "messages": [
     {
@@ -572,11 +572,11 @@ Anda dapat terhubung ke beberapa server MCP dengan menyertakan beberapa definisi
 }
 ```
 
-Dengan banyak alat yang tersedia, Claude memilih berdasarkan nama dan deskripsi alat. Deskripsi alat yang jelas dan spesifik meningkatkan akurasi pemilihan. Untuk set alat yang besar (puluhan alat di beberapa server), pertimbangkan untuk mengaktifkan [`defer_loading`](#tool-configuration-options) dengan [Tool search tool](/docs/id/agents-and-tools/tool-use/tool-search-tool) sehingga hanya alat yang relevan yang dimunculkan per kueri.
+Dengan banyak alat yang tersedia, Claude memilih berdasarkan nama dan deskripsi alat. Deskripsi alat yang jelas dan spesifik meningkatkan akurasi pemilihan. Untuk kumpulan alat yang besar (puluhan alat di beberapa server), pertimbangkan untuk mengaktifkan [`defer_loading`](#tool-configuration-options) dengan [Tool search tool](/docs/id/agents-and-tools/tool-use/tool-search-tool) sehingga hanya alat yang relevan yang dimunculkan per kueri.
 
 ## Autentikasi
 
-Untuk server MCP yang memerlukan autentikasi OAuth, Anda perlu mendapatkan access token. Beta konektor MCP mendukung pengiriman parameter `authorization_token` dalam definisi server MCP. Konsumen API diharapkan menangani alur OAuth dan mendapatkan access token sebelum melakukan panggilan API, serta memperbarui token sesuai kebutuhan.
+Untuk server MCP yang memerlukan autentikasi OAuth, Anda perlu mendapatkan access token. Beta konektor MCP mendukung pengiriman parameter `authorization_token` dalam definisi server MCP. Konsumen API diharapkan menangani alur OAuth dan mendapatkan access token sebelum melakukan panggilan API, serta menyegarkan token sesuai kebutuhan.
 
 ### Mendapatkan access token untuk pengujian
 
@@ -592,7 +592,7 @@ MCP inspector dapat memandu Anda melalui proses mendapatkan access token untuk t
 
 3. Masukkan URL server MCP.
 
-4. Di area kanan, klik tombol "Open Auth Settings" setelah "Need to configure authentication?".
+4. Di area sebelah kanan, klik tombol "Open Auth Settings" setelah "Need to configure authentication?".
 
 5. Klik "Quick OAuth Flow" dan berikan otorisasi pada layar OAuth.
 
@@ -604,7 +604,7 @@ MCP inspector dapat memandu Anda melalui proses mendapatkan access token untuk t
 
 ### Menggunakan access token
 
-Setelah Anda mendapatkan access token menggunakan salah satu alur OAuth sebelumnya, Anda dapat menggunakannya dalam konfigurasi server MCP Anda:
+Setelah Anda mendapatkan access token menggunakan salah satu alur OAuth di atas, Anda dapat menggunakannya dalam konfigurasi server MCP Anda:
 
 ```json
 {
@@ -619,7 +619,7 @@ Setelah Anda mendapatkan access token menggunakan salah satu alur OAuth sebelumn
 }
 ```
 
-Untuk penjelasan rinci tentang alur OAuth, lihat [bagian Authorization](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization) dalam spesifikasi MCP.
+Untuk penjelasan terperinci tentang alur OAuth, lihat [bagian Authorization](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization) dalam spesifikasi MCP.
 
 ## Helper MCP sisi klien
 
@@ -671,7 +671,7 @@ Instal Anthropic SDK dan MCP SDK:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java-mcp:2.50.0")
+        implementation("com.anthropic:anthropic-java-mcp:2.52.0")
         ```
       </Tab>
 
@@ -680,7 +680,7 @@ Instal Anthropic SDK dan MCP SDK:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-mcp</artifactId>
-            <version>2.50.0</version>
+            <version>2.52.0</version>
         </dependency>
         ```
       </Tab>
@@ -787,7 +787,7 @@ Konversikan alat MCP untuk digunakan dengan [tool runner](/docs/id/agents-and-to
               # Mendaftar alat dan mengonversinya untuk Claude API
               tools_result = await mcp_client.list_tools()
               runner = client.beta.messages.tool_runner(
-                  model="claude-opus-4-8",
+                  model="claude-opus-5",
                   max_tokens=1024,
                   messages=[
                       {"role": "user", "content": "What tools do you have available?"},
@@ -828,7 +828,7 @@ Konversikan alat MCP untuk digunakan dengan [tool runner](/docs/id/agents-and-to
   };
 
   const finalMessage = await anthropic.beta.messages.toolRunner({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "What tools do you have available?" }],
     tools: mcpTools(tools, mcpClientForTools)
@@ -856,7 +856,7 @@ Konversikan alat MCP untuk digunakan dengan [tool runner](/docs/id/agents-and-to
   var runner = anthropic.Beta.Messages.ToolRunner(
       new MessageCreateParams
       {
-          Model = Messages::Model.ClaudeOpus4_8,
+          Model = Messages::Model.ClaudeOpus5,
           MaxTokens = 1024,
           Messages =
           [
@@ -907,7 +907,7 @@ Konversikan alat MCP untuk digunakan dengan [tool runner](/docs/id/agents-and-to
 
   	runner := client.Beta.Messages.NewToolRunner(betaTools, anthropic.BetaToolRunnerParams{
   		BetaMessageNewParams: anthropic.BetaMessageNewParams{
-  			Model:     anthropic.ModelClaudeOpus4_8,
+  			Model:     anthropic.ModelClaudeOpus5,
   			MaxTokens: 1024,
   			Messages: []anthropic.BetaMessageParam{
   				anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("What tools do you have available?")),
@@ -956,7 +956,7 @@ Konversikan alat MCP untuk digunakan dengan [tool runner](/docs/id/agents-and-to
           List<McpBetaTool> betaTools = BetaMcp.mcpTools(mcpClient.listTools().tools(), mcpClient);
 
           MessageCreateParams params = MessageCreateParams.builder()
-                  .model(Model.CLAUDE_OPUS_4_8)
+                  .model(Model.CLAUDE_OPUS_5)
                   .maxTokens(1024L)
                   .addUserMessage("What tools do you have available?")
                   .addTools(betaTools)
@@ -989,7 +989,7 @@ Konversikan alat MCP untuk digunakan dengan [tool runner](/docs/id/agents-and-to
   $runner = $anthropic->beta->messages->toolRunner(
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'What tools do you have available?']],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       tools: BetaMcp::tools($mcp->listTools()->tools, $mcp),
   );
 
@@ -1008,7 +1008,7 @@ Konversikan alat MCP untuk digunakan dengan [tool runner](/docs/id/agents-and-to
 
   # Mendaftar alat dan mengonversinya untuk Claude API
   runner = anthropic.beta.messages.tool_runner(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "What tools do you have available?" }],
     tools: Anthropic::Mcp.tools(mcp_client.tools, mcp_client)
@@ -1029,7 +1029,7 @@ Konversikan pesan prompt MCP ke format pesan Claude API:
 
   prompt = await mcp_client.get_prompt(name="my-prompt")
   response = await client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[mcp_message(message) for message in prompt.messages],
   )
@@ -1042,7 +1042,7 @@ Konversikan pesan prompt MCP ke format pesan Claude API:
 
   const { messages } = await mcpClient.getPrompt({ name: "my-prompt" });
   const response = await anthropic.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: mcpMessages(messages)
   });
@@ -1055,7 +1055,7 @@ Konversikan pesan prompt MCP ke format pesan Claude API:
   var response = await anthropic.Beta.Messages.Create(
       new MessageCreateParams
       {
-          Model = Messages::Model.ClaudeOpus4_8,
+          Model = Messages::Model.ClaudeOpus5,
           MaxTokens = 1024,
           Messages = BetaMcp.Messages(prompt.Messages),
       }
@@ -1080,7 +1080,7 @@ Konversikan pesan prompt MCP ke format pesan Claude API:
   }
 
   response, err := client.Beta.Messages.New(ctx, anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages:  messages,
   })
@@ -1095,7 +1095,7 @@ Konversikan pesan prompt MCP ke format pesan Claude API:
           new McpSchema.GetPromptRequest("my-prompt", Map.of()));
 
   BetaMessage response = anthropic.beta().messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(1024L)
           .messages(BetaMcp.mcpMessages(prompt.messages()))
           .build());
@@ -1109,7 +1109,7 @@ Konversikan pesan prompt MCP ke format pesan Claude API:
   $response = $anthropic->beta->messages->create(
       maxTokens: 1024,
       messages: array_map(BetaMcp::message(...), $prompt->messages),
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
   echo $response, "\n";
@@ -1119,7 +1119,7 @@ Konversikan pesan prompt MCP ke format pesan Claude API:
   prompt = mcp_client.get_prompt(name: "my-prompt")
 
   response = anthropic.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: prompt["messages"].map { |message| Anthropic::Mcp.message(message) }
   )
@@ -1142,7 +1142,7 @@ Konversikan resource MCP menjadi blok konten untuk disertakan dalam pesan, atau 
   # Sebagai blok konten dalam sebuah pesan
   resource = await mcp_client.read_resource(uri="file:///path/to/doc.txt")
   response = await client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[
           {
@@ -1172,7 +1172,7 @@ Konversikan resource MCP menjadi blok konten untuk disertakan dalam pesan, atau 
   // Sebagai blok konten dalam sebuah pesan
   const resource = await mcpClient.readResource({ uri: "file:///path/to/doc.txt" });
   const response = await anthropic.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -1198,7 +1198,7 @@ Konversikan resource MCP menjadi blok konten untuk disertakan dalam pesan, atau 
   var response = await anthropic.Beta.Messages.Create(
       new MessageCreateParams
       {
-          Model = Messages::Model.ClaudeOpus4_8,
+          Model = Messages::Model.ClaudeOpus5,
           MaxTokens = 1024,
           Messages =
           [
@@ -1246,7 +1246,7 @@ Konversikan resource MCP menjadi blok konten untuk disertakan dalam pesan, atau 
   }
 
   response, err := client.Beta.Messages.New(ctx, anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(
@@ -1294,7 +1294,7 @@ Konversikan resource MCP menjadi blok konten untuk disertakan dalam pesan, atau 
           BetaTextBlockParam.builder().text("Summarize this document").build()));
 
   BetaMessage response = anthropic.beta().messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(1024L)
           .addUserMessageOfBetaContentBlockParams(content)
           .build());
@@ -1338,7 +1338,7 @@ Konversikan resource MCP menjadi blok konten untuk disertakan dalam pesan, atau 
               ],
           ],
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
   echo $response, "\n";
@@ -1354,7 +1354,7 @@ Konversikan resource MCP menjadi blok konten untuk disertakan dalam pesan, atau 
   resource = mcp_client.read_resource(uri: "file:///path/to/doc.txt")
 
   response = anthropic.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -1379,7 +1379,7 @@ Konversikan resource MCP menjadi blok konten untuk disertakan dalam pesan, atau 
 
 ### Penanganan error
 
-Fungsi konversi melempar `UnsupportedMCPValueError` jika nilai MCP tidak didukung oleh Claude API (di Go, helper mengembalikan `UnsupportedValueError`; di Java dan C#, helper melempar `AnthropicInvalidDataException`). Ini dapat terjadi dengan tipe konten yang tidak didukung, tipe MIME, atau tautan resource (selesaikan tautan resource dengan klien MCP Anda sebelum mengonversi).
+Fungsi konversi melempar `UnsupportedMCPValueError` jika nilai MCP tidak didukung oleh Claude API (di Go, helper mengembalikan `UnsupportedValueError`; di Java dan C#, helper melempar `AnthropicInvalidDataException`). Ini dapat terjadi dengan tipe konten, tipe MIME, atau tautan resource yang tidak didukung (selesaikan tautan resource dengan klien MCP Anda sebelum mengonversi).
 
 ## Permintaan batch
 
@@ -1407,7 +1407,7 @@ Jika Anda menggunakan header beta `mcp-client-2025-04-04` yang sudah tidak digun
 
 ```json
 {
-  "model": "claude-opus-4-8",
+  "model": "claude-opus-5",
   "max_tokens": 1000,
   "messages": [
     // ...
@@ -1431,7 +1431,7 @@ Jika Anda menggunakan header beta `mcp-client-2025-04-04` yang sudah tidak digun
 
 ```json
 {
-  "model": "claude-opus-4-8",
+  "model": "claude-opus-5",
   "max_tokens": 1000,
   "messages": [
     // ...
@@ -1475,7 +1475,7 @@ Jika Anda menggunakan header beta `mcp-client-2025-04-04` yang sudah tidak digun
 ## Versi yang tidak digunakan lagi: mcp-client-2025-04-04
 
 <Note type="warning">
-  Versi ini sudah tidak digunakan lagi. Bermigrasilah ke `mcp-client-2025-11-20` menggunakan [panduan migrasi](#migration-guide) sebelumnya.
+  Versi ini sudah tidak digunakan lagi. Bermigrasilah ke `mcp-client-2025-11-20` menggunakan [panduan migrasi](#migration-guide) di atas.
 </Note>
 
 Versi sebelumnya dari konektor MCP menyertakan konfigurasi alat langsung dalam definisi server MCP:

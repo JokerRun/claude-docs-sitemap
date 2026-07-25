@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: 15c72c14e5fa7d5789e184baa9d2487363101adae9adbfbec0fb31e09a5451bb
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 5192e5314a779efc48329fb1547001b33fec821203ca5cf1e1bd33c2cfc931f0
 ---
 
 > ## Documentation Index
@@ -96,7 +96,7 @@ The `dontAsk` permission mode is available only in the [CLI](/docs/en/permission
 
 Auto mode is available to all users on the Anthropic API and requires Claude Opus 4.6 or later, Sonnet 4.6 or later, or Fable 5. Organization administrators can turn auto mode off with the `disableAutoMode` key in [managed settings](#managed-settings).
 
-In Enterprise deployments that route Desktop to Google Cloud's Agent Platform, auto mode is [available by default](/docs/en/permission-modes#enable-auto-mode-on-bedrock-agent-platform-or-foundry), and only Claude Sonnet 5, Opus 4.7, Opus 4.8, and Fable 5 are supported there. {/* min-version: 2.1.207 */}Before Claude Code v2.1.207, Enterprise deployments on Google Cloud's Agent Platform had to set `CLAUDE_CODE_ENABLE_AUTO_MODE` to enable auto mode.
+In Enterprise deployments that route Desktop to Google Cloud's Agent Platform, auto mode is [available by default](/docs/en/permission-modes#enable-auto-mode-on-bedrock-agent-platform-or-foundry), and only Claude Sonnet 5, Opus 4.7 or later, and Fable 5 are supported there. {/* min-version: 2.1.207 */}Before Claude Code v2.1.207, Enterprise deployments on Google Cloud's Agent Platform had to set `CLAUDE_CODE_ENABLE_AUTO_MODE` to enable auto mode.
 
 <Tip title="Best practice">
   Start complex tasks in Plan so Claude maps out an approach before making changes. Once you approve the plan, switch to Accept edits or Manual to execute it. See [explore first, then plan, then code](/docs/en/best-practices#explore-first-then-plan-then-code) for more on this workflow.

@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: df7b14d413f837a84eccbc4493b9f167536979b9b627cb580c1cf0a7d0bf03e8
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 3b597b5999d5b8e4b910503db62ba33d2fa988876518f8fc9298850b79476dc1
 ---
 
 # Alat eksekusi kode
 
-Jalankan kode Python dan bash dalam kontainer sandbox untuk menganalisis data, menghasilkan file, dan melakukan iterasi pada solusi.
+Jalankan kode Python dan bash dalam container yang di-sandbox untuk menganalisis data, menghasilkan file, dan mengiterasi solusi.
 
 ---
 
-Claude dapat menganalisis data, membuat visualisasi, melakukan perhitungan kompleks, menjalankan perintah sistem, membuat dan mengedit file, serta memproses file yang diunggah langsung dalam percakapan API. Alat eksekusi kode memungkinkan Claude menjalankan perintah Bash dan memanipulasi file, termasuk menulis kode, dalam lingkungan yang aman dan ter-sandbox.
+Claude dapat menganalisis data, membuat visualisasi, melakukan perhitungan kompleks, menjalankan perintah sistem, membuat dan mengedit file, serta memproses file yang diunggah langsung dalam percakapan API. Alat eksekusi kode memungkinkan Claude menjalankan perintah Bash dan memanipulasi file, termasuk menulis kode, dalam lingkungan yang aman dan di-sandbox.
 
 **Eksekusi kode gratis saat digunakan dengan web search atau web fetch (`web_search_20260209`, `web_fetch_20260209`, atau yang lebih baru).** Ketika salah satu alat tersebut ada dalam permintaan Anda, tidak ada biaya tambahan untuk eksekusi kode dalam permintaan tersebut di luar biaya token standar. Ini mencakup eksekusi kode di balik pemfilteran dinamis maupun kode apa pun yang dijalankan Claude secara langsung. Harga eksekusi kode standar berlaku ketika alat-alat tersebut tidak disertakan.
 
@@ -31,6 +31,7 @@ Alat eksekusi kode tersedia pada model-model berikut:
 
 | Model                                                                                                                                  | Versi alat                                                                      |
 | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Claude Opus 5 (claude-opus-5)                                                                                                          | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
 | Claude Fable 5 (claude-fable-5)                                                                                                        | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
 | Claude Mythos 5 (claude-mythos-5)                                                                                                      | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
 | Claude Sonnet 5 (claude-sonnet-5)                                                                                                      | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
@@ -47,9 +48,9 @@ Setiap versi alat dibangun di atas versi sebelumnya:
 
 * `code_execution_20250825` mendukung perintah Bash dan operasi file serta tersedia pada setiap model dalam tabel.
 * `code_execution_20260120` menambahkan persistensi state REPL dan [pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling) dari dalam sandbox. Claude Haiku 4.5 menerima tipe alat `code_execution_20260120` dan `code_execution_20260521`, tetapi pemanggilan alat terprogram dan persistensi state REPL yang bergantung padanya tidak tersedia di model tersebut, sehingga versi yang lebih baru berperilaku seperti `code_execution_20250825` di sana.
-* `code_execution_20260521` adalah runtime yang sama dengan `code_execution_20260120`. Perbedaannya adalah deskripsi alat memberi tahu Claude tentang batas waktu nyata (wall-clock) 90 detik pada setiap sel Python dalam pemanggilan alat terprogram, sehingga Claude dapat mengatur anggaran untuk sel yang berjalan lama. Sel yang melebihi batas mengembalikan hasil eksekusi kode normal dengan `return_code` bukan nol dan pesan status `detection_timeout` dalam outputnya. Ini terpisah dari [kode kesalahan](#errors) `execution_time_exceeded`, yang dikembalikan API ketika seluruh pemanggilan alat melebihi waktu eksekusi maksimum.
+* `code_execution_20260521` adalah runtime yang sama dengan `code_execution_20260120`. Perbedaannya adalah deskripsi alat memberi tahu Claude tentang batas wall-clock 90 detik pada setiap sel Python dalam pemanggilan alat terprogram, sehingga Claude dapat mengatur anggaran untuk sel yang berjalan lama. Sel yang melebihi batas mengembalikan hasil eksekusi kode normal dengan `return_code` bukan nol dan pesan status `detection_timeout` dalam outputnya. Ini terpisah dari [kode error](#errors) `execution_time_exceeded`, yang dikembalikan API ketika seluruh pemanggilan alat melebihi waktu eksekusi maksimum.
 
-Ketiga versi alat tersedia secara umum dan tidak memerlukan header `anthropic-beta`. Header beta eksekusi kode lama tetap merupakan opt-in yang valid.
+Ketiga versi alat tersedia secara umum dan tidak memerlukan header `anthropic-beta`. Header beta eksekusi kode lama tetap menjadi opt-in yang valid.
 
 Contoh-contoh di halaman ini menggunakan `code_execution_20250825` karena setiap model dalam tabel mendukungnya. Alat [web search](/docs/id/agents-and-tools/tool-use/web-search-tool) dan [web fetch](/docs/id/agents-and-tools/tool-use/web-fetch-tool) saat ini (`web_search_20260209`, `web_fetch_20260209`, dan yang lebih baru) memerlukan `code_execution_20260120` atau yang lebih baru sebagai versi eksekusi kodenya.
 
@@ -66,13 +67,13 @@ Contoh-contoh di halaman ini menggunakan `code_execution_20250825` karena setiap
 Eksekusi kode tersedia di:
 
 * **Claude API** (Anthropic)
-* **[Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws)**
+* **[Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws)**
 * **[Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry)** (memerlukan [deployment Hosted on Anthropic](/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure))
 
 Eksekusi kode saat ini tidak tersedia di Amazon Bedrock atau Google Cloud.
 
 <Note>
-  Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), eksekusi kode hanya didukung di Claude API dan Microsoft Foundry. Fitur ini tidak tersedia untuk Mythos Preview di Amazon Bedrock, Claude Platform on AWS, atau Google Cloud.
+  Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), eksekusi kode hanya didukung di Claude API dan Microsoft Foundry. Fitur ini tidak tersedia untuk Mythos Preview di Amazon Bedrock, Claude Platform di AWS, atau Google Cloud.
 </Note>
 
 ## Mulai cepat
@@ -86,7 +87,7 @@ Berikut adalah contoh yang meminta Claude melakukan perhitungan:
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 4096,
       "messages": [
         {
@@ -105,7 +106,7 @@ Berikut adalah contoh yang meminta Claude melakukan perhitungan:
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-4-8 \
+    --model claude-opus-5 \
     --max-tokens 4096 \
     --message '{
       role: user,
@@ -119,7 +120,7 @@ Berikut adalah contoh yang meminta Claude melakukan perhitungan:
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=4096,
       messages=[
           {
@@ -137,7 +138,7 @@ Berikut adalah contoh yang meminta Claude melakukan perhitungan:
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 4096,
     messages: [
       {
@@ -157,7 +158,7 @@ Berikut adalah contoh yang meminta Claude melakukan perhitungan:
 
   var message = await client.Messages.Create(new()
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 4096,
       Messages = [new() { Role = Role.User, Content = "Use the code execution tool to calculate the mean and standard deviation of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" }],
       Tools = [new CodeExecutionTool20250825()]
@@ -170,7 +171,7 @@ Berikut adalah contoh yang meminta Claude melakukan perhitungan:
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 4096,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Use the code execution tool to calculate the mean and standard deviation of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]")),
@@ -189,7 +190,7 @@ Berikut adalah contoh yang meminta Claude melakukan perhitungan:
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_8)
+      .model(Model.CLAUDE_OPUS_5)
       .maxTokens(4096L)
       .addUserMessage("Use the code execution tool to calculate the mean and standard deviation of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]")
       .addTool(CodeExecutionTool20250825.builder().build())
@@ -210,7 +211,7 @@ Berikut adalah contoh yang meminta Claude melakukan perhitungan:
               'content' => 'Use the code execution tool to calculate the mean and standard deviation of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]',
           ],
       ],
-      model: Model::CLAUDE_OPUS_4_8,
+      model: Model::CLAUDE_OPUS_5,
       tools: [new CodeExecutionTool20250825()],
   );
 
@@ -221,7 +222,7 @@ Berikut adalah contoh yang meminta Claude melakukan perhitungan:
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: Anthropic::Model::CLAUDE_OPUS_4_8,
+    model: Anthropic::Model::CLAUDE_OPUS_5,
     max_tokens: 4096,
     messages: [
       {
@@ -236,7 +237,7 @@ Berikut adalah contoh yang meminta Claude melakukan perhitungan:
   ```
 </CodeGroup>
 
-Respons menyisipkan blok `server_tool_use` (perintah yang dijalankan Claude) secara bergantian dengan blok hasil alatnya, diikuti oleh teks Claude. Tingkat teratas juga menyertakan objek `container` yang `id`-nya dapat Anda [gunakan kembali di berbagai permintaan](#container-reuse). Lihat [Format respons](#response-format) untuk bentuk bloknya.
+Respons menyisipkan blok `server_tool_use` (perintah yang dijalankan Claude) secara bergantian dengan blok hasil alatnya, diikuti oleh teks Claude. Tingkat teratas juga menyertakan objek `container` yang `id`-nya dapat Anda [gunakan kembali di seluruh permintaan](#container-reuse). Lihat [Format respons](#response-format) untuk bentuk bloknya.
 
 ## Cara kerja eksekusi kode
 
@@ -244,28 +245,28 @@ Ketika Anda menambahkan alat eksekusi kode ke permintaan API Anda:
 
 1. Claude mengevaluasi apakah eksekusi kode akan membantu menjawab pertanyaan Anda
 
-2. Alat ini secara otomatis memberi Claude kemampuan berikut:
+2. Alat ini secara otomatis memberikan Claude kemampuan berikut:
 
    * **Perintah Bash:** Menjalankan perintah shell untuk operasi sistem
    * **Operasi file:** Membuat, melihat, dan mengedit file secara langsung, termasuk menulis kode
 
 3. Claude dapat menggunakan kombinasi apa pun dari kemampuan ini dalam satu permintaan
 
-4. Semua operasi berjalan dalam kontainer yang aman dan ter-sandbox. Kontainer tidak memiliki akses internet, sehingga Claude tidak dapat mengunduh paket saat runtime: hanya [pustaka yang sudah terpasang](#pre-installed-libraries) yang tersedia
+4. Semua operasi berjalan dalam container yang aman dan di-sandbox. Container tidak memiliki akses internet, sehingga Claude tidak dapat mengunduh paket saat runtime: hanya [pustaka yang sudah terpasang](#pre-installed-libraries) yang tersedia
 
 5. API menjalankan setiap perintah di sisi server dan mengembalikan hasilnya ke Claude dalam permintaan yang sama, sehingga Anda tidak pernah mengeksekusi kode atau mengirim kembali blok `tool_result` sendiri. Satu pengecualian adalah ketika Claude memanggil salah satu alat klien Anda bersamaan dengan eksekusi kode: API mengembalikan panggilan eksekusi kode tanpa hasilnya. Hasilnya tiba dalam respons berikutnya, setelah Anda mengirim kembali blok `tool_result` untuk alat klien Anda
 
-6. Setiap permintaan berjalan dalam kontainer baru kecuali Anda mengirimkan kembali ID kontainer dari respons sebelumnya (lihat [Penggunaan kembali kontainer](#container-reuse))
+6. Setiap permintaan berjalan dalam container baru kecuali Anda mengirimkan kembali ID container dari respons sebelumnya (lihat [Penggunaan kembali container](#container-reuse))
 
 7. Claude memberikan hasil beserta grafik, perhitungan, atau analisis yang dihasilkan
 
-Kontainer sudah memiliki Python terpasang. Claude menulis Python dengan sub-alat operasi file dan menjalankannya dengan perintah Bash. Dengan `code_execution_20260120` atau yang lebih baru dan [pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), state interpreter Python (seperti binding variabel) juga bertahan di seluruh permintaan yang menggunakan kembali kontainer tersebut.
+Container sudah memiliki Python terpasang. Claude menulis Python dengan sub-alat operasi file dan menjalankannya dengan perintah Bash. Dengan `code_execution_20260120` atau yang lebih baru dan [pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), state interpreter Python (seperti binding variabel) juga bertahan di seluruh permintaan yang menggunakan kembali container tersebut.
 
 ### Kapan Claude menjalankan kode
 
 Claude menjalankan kode ketika permintaan mendapat manfaat dari komputasi atau penanganan file:
 
-* Matematika yang tidak sepele (angka besar, banyak langkah, hasil yang sensitif terhadap presisi)
+* Matematika non-trivial (angka besar, banyak langkah, hasil yang sensitif terhadap presisi)
 * Analisis data, parsing file, atau visualisasi
 * Eksekusi algoritma atau simulasi
 * Permintaan eksplisit untuk "run", "compute", atau "execute"
@@ -276,7 +277,7 @@ Claude menjawab langsung tanpa menjalankan kode untuk:
 * Permintaan faktual, percakapan, atau kreatif
 * Konversi satuan atau terjemahan sederhana
 
-Jika Anda ingin Claude menjalankan kode untuk permintaan yang ambigu, mintalah secara eksplisit (misalnya, "jalankan kode untuk memverifikasi ini").
+Jika Anda ingin Claude menjalankan kode untuk permintaan yang ambigu, minta secara eksplisit (misalnya, "jalankan kode untuk memverifikasi ini").
 
 ## Bekerja dengan file
 
@@ -305,21 +306,21 @@ Lingkungan Python dapat memproses berbagai tipe file yang diunggah melalui Files
 
 <CodeGroup>
   ```bash cURL
-  # Pertama, unggah file dan ambil ID file-nya (menggunakan jq)
+  # Pertama, unggah file dan tangkap ID file-nya (menggunakan jq)
   FILE_ID=$(curl --fail-with-body -sS https://api.anthropic.com/v1/files \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: files-api-2025-04-14" \
     -F "file=@data.csv" | jq -r '.id')
 
-  # Kemudian gunakan file_id dengan eksekusi kode
+  # Kemudian gunakan file_id tersebut dengan eksekusi kode
   curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: files-api-2025-04-14" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 4096,
       "messages": [{
         "role": "user",
@@ -344,7 +345,7 @@ Lingkungan Python dapat memproses berbagai tipe file yang diunggah melalui Files
   # Kemudian gunakan file_id dengan eksekusi kode
   ant beta:messages create \
     --beta files-api-2025-04-14 <<YAML
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 4096
   messages:
     - role: user
@@ -367,7 +368,7 @@ Lingkungan Python dapat memproses berbagai tipe file yang diunggah melalui Files
 
   # Gunakan file_id dengan eksekusi kode
   response = client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       betas=["files-api-2025-04-14"],
       max_tokens=4096,
       messages=[
@@ -397,7 +398,7 @@ Lingkungan Python dapat memproses berbagai tipe file yang diunggah melalui Files
 
   // Gunakan file_id dengan eksekusi kode
   const response = await client.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     betas: ["files-api-2025-04-14"],
     max_tokens: 4096,
     messages: [
@@ -423,7 +424,7 @@ Lingkungan Python dapat memproses berbagai tipe file yang diunggah melalui Files
   ```csharp C#
   AnthropicClient client = new();
 
-  // Mengunggah file
+  // Unggah file
   var fileObject = await client.Beta.Files.Upload(new FileUploadParams
   {
       File = File.OpenRead("data.csv")
@@ -432,7 +433,7 @@ Lingkungan Python dapat memproses berbagai tipe file yang diunggah melalui Files
   // Gunakan file_id dengan eksekusi kode
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 4096,
       Betas = [AnthropicBeta.FilesApi2025_04_14],
       Messages = [
@@ -472,7 +473,7 @@ Lingkungan Python dapat memproses berbagai tipe file yang diunggah melalui Files
 
   // Gunakan file_id dengan eksekusi kode
   response, err := client.Beta.Messages.New(ctx, anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 4096,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(
@@ -507,7 +508,7 @@ Lingkungan Python dapat memproses berbagai tipe file yang diunggah melalui Files
   // Gunakan file_id dengan eksekusi kode
   BetaMessage response = client.beta().messages().create(
       MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .addBeta(AnthropicBeta.FILES_API_2025_04_14)
           .maxTokens(4096L)
           .addUserMessageOfBetaContentBlockParams(List.of(
@@ -535,7 +536,7 @@ Lingkungan Python dapat memproses berbagai tipe file yang diunggah melalui Files
 
   // Gunakan file_id dengan eksekusi kode
   $response = $client->beta->messages->create(
-      model: Model::CLAUDE_OPUS_4_8,
+      model: Model::CLAUDE_OPUS_5,
       maxTokens: 4096,
       betas: [AnthropicBeta::FILES_API_2025_04_14],
       messages: [
@@ -563,7 +564,7 @@ Lingkungan Python dapat memproses berbagai tipe file yang diunggah melalui Files
 
   # Gunakan file_id dengan eksekusi kode
   response = client.beta.messages.create(
-    model: Anthropic::Model::CLAUDE_OPUS_4_8,
+    model: Anthropic::Model::CLAUDE_OPUS_5,
     betas: [Anthropic::AnthropicBeta::FILES_API_2025_04_14],
     max_tokens: 4096,
     messages: [
@@ -584,21 +585,21 @@ Lingkungan Python dapat memproses berbagai tipe file yang diunggah melalui Files
   ```
 </CodeGroup>
 
-### Mengambil file yang dihasilkan
+### Ambil file yang dihasilkan
 
 Ketika Claude membuat file selama eksekusi kode, ID setiap file yang dibuat muncul dalam hasil alat eksekusi kode, dan Anda dapat mengunduhnya dengan [Files API](/docs/id/build-with-claude/files):
 
 <CodeGroup>
   ```bash cURL
   # Mengunduh setiap file yang dihasilkan berarti melakukan loop atas ID file dalam hasil
-  # alat, yang tidak dapat diubah menjadi satu perintah shell sekali jalan. Gunakan
-  # salah satu contoh SDK sebagai gantinya.
+  # alat (tool result), yang tidak bisa dijadikan perintah shell sekali jalan. Gunakan salah satu
+  # contoh SDK sebagai gantinya.
   ```
 
   ```bash CLI
-  # Mengekstrak setiap ID file dari hasil alat dan mengunduh masing-masing
+  # Mengekstrak setiap ID file dari hasil alat dan mengunduh masing-masing file
   # memerlukan loop, yang tidak cocok diterjemahkan menjadi perintah CLI sekali jalan.
-  # Gunakan salah satu contoh SDK sebagai gantinya.
+  # Sebagai gantinya, gunakan salah satu contoh SDK.
   ```
 
   ```python Python
@@ -606,7 +607,7 @@ Ketika Claude membuat file selama eksekusi kode, ID setiap file yang dibuat munc
 
   # Minta eksekusi kode yang membuat file
   response = client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       betas=["files-api-2025-04-14"],
       max_tokens=4096,
       messages=[
@@ -646,7 +647,7 @@ Ketika Claude membuat file selama eksekusi kode, ID setiap file yang dibuat munc
 
   // Minta eksekusi kode yang membuat file
   const response = await client.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     betas: ["files-api-2025-04-14"],
     max_tokens: 4096,
     messages: [
@@ -686,7 +687,7 @@ Ketika Claude membuat file selama eksekusi kode, ID setiap file yang dibuat munc
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 4096,
       Betas = [AnthropicBeta.FilesApi2025_04_14],
       Messages = [new() { Role = Role.User, Content = "Create a matplotlib visualization and save it as output.png" }],
@@ -726,7 +727,7 @@ Ketika Claude membuat file selama eksekusi kode, ID setiap file yang dibuat munc
   	ctx := context.Background()
 
   	response, err := client.Beta.Messages.New(ctx, anthropic.BetaMessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus4_8,
+  		Model:     anthropic.ModelClaudeOpus5,
   		MaxTokens: 4096,
   		Messages: []anthropic.BetaMessageParam{
   			anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Create a matplotlib visualization and save it as output.png")),
@@ -793,7 +794,7 @@ Ketika Claude membuat file selama eksekusi kode, ID setiap file yang dibuat munc
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .addBeta(AnthropicBeta.FILES_API_2025_04_14)
           .maxTokens(4096L)
           .addUserMessage("Create a matplotlib visualization and save it as output.png")
@@ -846,7 +847,7 @@ Ketika Claude membuat file selama eksekusi kode, ID setiap file yang dibuat munc
               'content' => 'Create a matplotlib visualization and save it as output.png',
           ],
       ],
-      model: Model::CLAUDE_OPUS_4_8,
+      model: Model::CLAUDE_OPUS_5,
       betas: [AnthropicBeta::FILES_API_2025_04_14],
       tools: [new BetaCodeExecutionTool20250825()],
   );
@@ -888,7 +889,7 @@ Ketika Claude membuat file selama eksekusi kode, ID setiap file yang dibuat munc
   client = Anthropic::Client.new
 
   response = client.beta.messages.create(
-    model: Anthropic::Model::CLAUDE_OPUS_4_8,
+    model: Anthropic::Model::CLAUDE_OPUS_5,
     betas: ["files-api-2025-04-14"],
     max_tokens: 4096,
     messages: [
@@ -909,7 +910,7 @@ Ketika Claude membuat file selama eksekusi kode, ID setiap file yang dibuat munc
     file_ids = []
     response.content.each do |item|
       if item.type == :bash_code_execution_tool_result
-        # SOLUSI SEMENTARA untuk bug coercion union anthropic-sdk-ruby (SDK-636): item.content adalah
+        # SOLUSI SEMENTARA untuk bug koersi union anthropic-sdk-ruby (SDK-636): item.content adalah
         # union konten bersarang, sehingga accessor bertipe pada `item.content` tidak dapat diandalkan.
         # Sebagai gantinya, baca data respons mentah melalui API publik `BaseModel#[]`.
         content_item = item.content
@@ -954,7 +955,7 @@ Ketika Anda menyediakan alat ini, Claude secara otomatis mendapatkan akses ke du
 * `bash_code_execution`: Menjalankan perintah shell
 * `text_editor_code_execution`: Melihat, membuat, dan mengedit file, termasuk menulis kode
 
-Ketika Claude menjalankan kode, respons juga menyertakan objek `container` tingkat atas dengan `id` kontainer dan timestamp `expires_at`. Kirimkan kembali ID tersebut dalam parameter permintaan `container` tingkat atas untuk terus menggunakan kontainer yang sama. Lihat [Penggunaan kembali kontainer](#container-reuse).
+Ketika Claude menjalankan kode, respons juga menyertakan objek `container` tingkat atas dengan `id` container dan timestamp `expires_at`. Kirimkan kembali ID tersebut dalam parameter permintaan `container` tingkat atas untuk terus menggunakan container yang sama. Lihat [Penggunaan kembali container](#container-reuse).
 
 ## Format respons
 
@@ -986,7 +987,7 @@ Alat eksekusi kode dapat mengembalikan dua tipe hasil tergantung pada operasinya
 
 ### Respons operasi file
 
-**Melihat file:**
+**Lihat file:**
 
 ```json Output
 {
@@ -1012,7 +1013,7 @@ Alat eksekusi kode dapat mengembalikan dua tipe hasil tergantung pada operasinya
 }
 ```
 
-**Membuat file:**
+**Buat file:**
 
 ```json Output
 {
@@ -1035,7 +1036,7 @@ Alat eksekusi kode dapat mengembalikan dua tipe hasil tergantung pada operasinya
 }
 ```
 
-**Mengedit file (str\_replace):**
+**Edit file (str\_replace):**
 
 ```json Output
 {
@@ -1068,7 +1069,7 @@ Alat eksekusi kode dapat mengembalikan dua tipe hasil tergantung pada operasinya
 Hasil perintah Bash (`bash_code_execution_result`) mencakup:
 
 * `stdout`: Output dari eksekusi yang berhasil
-* `stderr`: Pesan kesalahan jika eksekusi gagal
+* `stderr`: Pesan error jika eksekusi gagal
 * `return_code`: 0 untuk berhasil, bukan nol untuk gagal
 * `content`: Daftar dengan entri untuk setiap file yang dibuat oleh perintah. Setiap entri membawa `file_id` untuk [mengambil file](#retrieve-generated-files) dengan Files API
 
@@ -1078,11 +1079,11 @@ Hasil operasi file memiliki field-nya sendiri:
 * **Create** (`text_editor_code_execution_create_result`): `is_file_update` (apakah file sudah ada sebelumnya)
 * **Edit** (`text_editor_code_execution_str_replace_result`): `old_start`, `old_lines`, `new_start`, `new_lines`, `lines` (format diff)
 
-### Kesalahan
+### Error
 
-Setiap tipe alat dapat mengembalikan kesalahan tertentu:
+Setiap tipe alat dapat mengembalikan error spesifik:
 
-**Kesalahan umum (semua alat):**
+**Error umum (semua alat):**
 
 ```json Output
 {
@@ -1095,9 +1096,9 @@ Setiap tipe alat dapat mengembalikan kesalahan tertentu:
 }
 ```
 
-**Kode kesalahan berdasarkan tipe alat:**
+**Kode error berdasarkan tipe alat:**
 
-| Alat         | Kode kesalahan            | Deskripsi                                         |
+| Alat         | Kode error                | Deskripsi                                         |
 | ------------ | ------------------------- | ------------------------------------------------- |
 | Semua alat   | `unavailable`             | Alat sementara tidak tersedia                     |
 | Semua alat   | `execution_time_exceeded` | Pemanggilan alat melebihi waktu eksekusi maksimum |
@@ -1106,20 +1107,20 @@ Setiap tipe alat dapat mengembalikan kesalahan tertentu:
 | bash         | `output_file_too_large`   | Output perintah melebihi ukuran maksimum          |
 | text\_editor | `file_not_found`          | File tidak ada (untuk operasi view/edit)          |
 
-Kontainer yang kedaluwarsa tidak dapat digunakan kembali: permintaan yang mereferensikannya mengembalikan kesalahan alih-alih memulihkannya. Kirim permintaan lagi tanpa parameter `container` untuk mendapatkan kontainer baru.
+Container yang sudah kedaluwarsa tidak dapat digunakan kembali: permintaan yang mereferensikannya mengembalikan error alih-alih memulihkannya. Kirim permintaan lagi tanpa parameter `container` untuk mendapatkan container baru.
 
 ### Alasan berhenti `pause_turn`
 
-Respons mungkin menyertakan alasan berhenti `pause_turn`, yang menunjukkan bahwa API menjeda giliran yang berjalan lama. Anda dapat memberikan respons kembali apa adanya dalam permintaan berikutnya agar Claude melanjutkan gilirannya, atau memodifikasi kontennya jika Anda ingin menginterupsi percakapan.
+Respons mungkin menyertakan alasan berhenti `pause_turn`, yang menunjukkan bahwa API menjeda giliran yang berjalan lama. Anda dapat memberikan respons kembali apa adanya dalam permintaan berikutnya untuk membiarkan Claude melanjutkan gilirannya, atau memodifikasi kontennya jika Anda ingin menginterupsi percakapan.
 
-## Kontainer
+## Container
 
 Alat eksekusi kode berjalan dalam lingkungan terkontainerisasi yang aman dan dirancang khusus untuk eksekusi kode, dengan fokus lebih tinggi pada Python.
 
 ### Lingkungan runtime
 
 * **Versi Python:** 3.11
-* **Sistem operasi:** Kontainer berbasis Linux
+* **Sistem operasi:** Container berbasis Linux
 * **Arsitektur:** x86\_64 (AMD64)
 
 ### Batas sumber daya
@@ -1127,48 +1128,48 @@ Alat eksekusi kode berjalan dalam lingkungan terkontainerisasi yang aman dan dir
 * **Memori:** 5 GiB RAM
 * **Ruang disk:** 5 GiB penyimpanan workspace
 * **CPU:** 1 CPU
-* **Waktu eksekusi:** Pemanggilan alat yang berjalan melewati waktu eksekusi maksimum mengembalikan [kesalahan](#errors) `execution_time_exceeded`. Dengan [pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), setiap sel REPL juga memiliki batas waktu nyata (wall-clock) 90 detik
+* **Waktu eksekusi:** Pemanggilan alat yang berjalan melewati waktu eksekusi maksimum mengembalikan [error](#errors) `execution_time_exceeded`. Dengan [pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), setiap sel REPL juga memiliki batas wall-clock 90 detik
 
 ### Jaringan dan keamanan
 
-* **Akses internet:** Sepenuhnya dinonaktifkan demi keamanan
+* **Akses internet:** Sepenuhnya dinonaktifkan untuk keamanan
 * **Koneksi eksternal:** Tidak ada permintaan jaringan keluar yang diizinkan
-* **Isolasi sandbox:** Isolasi penuh dari sistem host dan kontainer lain
+* **Isolasi sandbox:** Isolasi penuh dari sistem host dan container lain
 * **Akses file:** Terbatas hanya pada direktori workspace
-* **Cakupan workspace:** Seperti [Files API](/docs/id/build-with-claude/files), kontainer dicakup ke workspace dari kunci API
-* **Kedaluwarsa:** Kontainer kedaluwarsa 30 hari setelah dibuat
+* **Cakupan workspace:** Seperti [Files API](/docs/id/build-with-claude/files), container dicakup ke workspace dari kunci API
+* **Kedaluwarsa:** Container kedaluwarsa 30 hari setelah dibuat
 
 ### Pustaka yang sudah terpasang
 
-Lingkungan Python yang ter-sandbox mencakup pustaka-pustaka yang umum digunakan berikut:
+Lingkungan Python yang di-sandbox mencakup pustaka-pustaka yang umum digunakan berikut:
 
-* **Ilmu data:** pandas, numpy, scipy, scikit-learn, statsmodels
+* **Data science:** pandas, numpy, scipy, scikit-learn, statsmodels
 * **Visualisasi:** matplotlib, seaborn
 * **Pemrosesan file:** pyarrow, openpyxl, xlsxwriter, xlrd, pillow, python-pptx, python-docx, pypdf, pdfplumber, pypdfium2, pdf2image, pdfkit, tabula-py, reportlab\[pycairo], Img2pdf
 * **Matematika dan komputasi:** sympy, mpmath
 * **Utilitas:** tqdm, python-dateutil, pytz, joblib
 
-Kontainer juga mencakup alat baris perintah seperti unzip, unrar, 7zip, bc, rg (ripgrep), fd, dan sqlite.
+Container juga mencakup alat baris perintah seperti unzip, unrar, 7zip, bc, rg (ripgrep), fd, dan sqlite.
 
-Kontainer tidak memiliki akses internet, sehingga Claude tidak dapat mengunduh atau memasang paket tambahan saat runtime: hanya pustaka yang sudah terpasang yang tersedia.
+Container tidak memiliki akses internet, sehingga Claude tidak dapat mengunduh atau memasang paket tambahan saat runtime: hanya pustaka yang sudah terpasang yang tersedia.
 
-## Penggunaan kembali kontainer
+## Penggunaan kembali container
 
-Anda dapat menggunakan kembali kontainer yang sudah ada di beberapa permintaan API dengan memberikan ID kontainer dari respons sebelumnya. Ini memungkinkan Anda mempertahankan file yang dibuat di antara permintaan. Dengan `code_execution_20260120` atau yang lebih baru dan [pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), state interpreter Python juga bertahan.
+Anda dapat menggunakan kembali container yang ada di beberapa permintaan API dengan memberikan ID container dari respons sebelumnya. Ini memungkinkan Anda mempertahankan file yang dibuat di antara permintaan. Dengan `code_execution_20260120` atau yang lebih baru dan [pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), state interpreter Python juga bertahan.
 
-Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak aktif, kontainer di-checkpoint, dan mengirim permintaan dengan ID-nya dalam jendela 30 hari akan memulihkannya. Timestamp `expires_at` dalam objek `container` pada respons adalah nilai bergulir yang lebih pendek dan tidak melaporkan batas 30 hari. Kontainer yang telah kedaluwarsa tidak dapat digunakan kembali. Kirim permintaan lagi tanpa parameter `container` untuk mendapatkan kontainer baru.
+Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak aktif, container di-checkpoint, dan mengirim permintaan dengan ID-nya dalam jendela 30 hari akan memulihkannya. Timestamp `expires_at` dalam objek `container` respons adalah nilai bergulir yang lebih pendek dan tidak melaporkan batas 30 hari. Container yang sudah kedaluwarsa tidak dapat digunakan kembali. Kirim permintaan lagi tanpa parameter `container` untuk mendapatkan container baru.
 
 ### Contoh
 
 <CodeGroup>
   ```bash cURL
-  # Permintaan pertama: Buat file berisi angka acak, sambil menangkap ID container (menggunakan jq)
+  # Permintaan pertama: Buat file dengan angka acak, sambil menangkap ID container (menggunakan jq)
   CONTAINER_ID=$(curl -s https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 4096,
       "messages": [{
         "role": "user",
@@ -1187,7 +1188,7 @@ Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
     -H "content-type: application/json" \
     -d '{
       "container": "'"$CONTAINER_ID"'",
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 4096,
       "messages": [{
         "role": "user",
@@ -1203,7 +1204,7 @@ Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
   ```bash CLI
   # Permintaan pertama: Buat file dengan angka acak
   CONTAINER_ID=$(ant messages create \
-    --model claude-opus-4-8 \
+    --model claude-opus-5 \
     --max-tokens 4096 \
     --message '{role: user, content: Write a file with a random number and save it to "/tmp/number.txt"}' \
     --tool '{type: code_execution_20250825, name: code_execution}' \
@@ -1212,7 +1213,7 @@ Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
   # Permintaan kedua: Gunakan kembali container untuk membaca file
   ant messages create \
     --container "$CONTAINER_ID" \
-    --model claude-opus-4-8 \
+    --model claude-opus-5 \
     --max-tokens 4096 \
     --message '{role: user, content: Read the number from "/tmp/number.txt" and calculate its square}' \
     --tool '{type: code_execution_20250825, name: code_execution}'
@@ -1223,7 +1224,7 @@ Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
 
   # Permintaan pertama: buat file berisi angka acak di container baru
   response1 = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=4096,
       messages=[
           {
@@ -1237,7 +1238,7 @@ Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
   # Permintaan kedua: kirimkan kembali ID container agar Claude menggunakan kembali container yang sama
   response2 = client.messages.create(
       container=response1.container.id,
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=4096,
       messages=[
           {
@@ -1256,7 +1257,7 @@ Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
 
   // Permintaan pertama: Claude membuat file di dalam container eksekusi kode yang baru
   const response1 = await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 4096,
     messages: [
       {
@@ -1275,7 +1276,7 @@ Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
   // Permintaan kedua: kirimkan kembali ID container agar container yang sama digunakan kembali
   const response2 = await client.messages.create({
     container: response1.container.id,
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 4096,
     messages: [
       { role: "user", content: "Read the number from /tmp/number.txt and calculate its square" }
@@ -1292,7 +1293,7 @@ Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
   // Permintaan pertama: Claude membuat file di dalam container eksekusi kode yang baru
   var response1 = await client.Messages.Create(new()
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 4096,
       Messages = [new() { Role = Role.User, Content = "Write a file with a random number and save it to '/tmp/number.txt'" }],
       Tools = [new CodeExecutionTool20250825()]
@@ -1302,7 +1303,7 @@ Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
   var response2 = await client.Messages.Create(new()
   {
       Container = response1.Container!.ID,
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 4096,
       Messages = [new() { Role = Role.User, Content = "Read the number from '/tmp/number.txt' and calculate its square" }],
       Tools = [new CodeExecutionTool20250825()]
@@ -1321,7 +1322,7 @@ Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
 
   // Permintaan pertama: buat file berisi angka acak di container baru
   response1, err := client.Messages.New(ctx, anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 4096,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Write a file with a random number and save it to '/tmp/number.txt'")),
@@ -1335,7 +1336,7 @@ Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
   // Gunakan kembali container dari permintaan pertama agar file tersebut masih ada.
   response2, err := client.Messages.New(ctx, anthropic.MessageNewParams{
   	Container: anthropic.String(response1.Container.ID),
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 4096,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Read the number from '/tmp/number.txt' and calculate its square")),
@@ -1354,7 +1355,7 @@ Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
 
   // Permintaan pertama: buat file berisi angka acak di container baru
   MessageCreateParams params1 = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_8)
+      .model(Model.CLAUDE_OPUS_5)
       .maxTokens(4096L)
       .addUserMessage("Write a file with a random number and save it to '/tmp/number.txt'")
       .addTool(CodeExecutionTool20250825.builder().build())
@@ -1362,10 +1363,10 @@ Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
 
   Message response1 = client.messages().create(params1);
 
-  // Permintaan kedua: kirimkan kembali ID container agar container yang sama digunakan ulang
+  // Permintaan kedua: kirimkan kembali ID container agar container yang sama digunakan lagi
   MessageCreateParams params2 = MessageCreateParams.builder()
       .container(response1.container().orElseThrow().id())
-      .model(Model.CLAUDE_OPUS_4_8)
+      .model(Model.CLAUDE_OPUS_5)
       .maxTokens(4096L)
       .addUserMessage("Read the number from '/tmp/number.txt' and calculate its square")
       .addTool(CodeExecutionTool20250825.builder().build())
@@ -1387,7 +1388,7 @@ Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
               'content' => "Write a file with a random number and save it to '/tmp/number.txt'",
           ],
       ],
-      model: Model::CLAUDE_OPUS_4_8,
+      model: Model::CLAUDE_OPUS_5,
       tools: [new CodeExecutionTool20250825()],
   );
 
@@ -1401,7 +1402,7 @@ Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
               'content' => "Read the number from '/tmp/number.txt' and calculate its square",
           ],
       ],
-      model: Model::CLAUDE_OPUS_4_8,
+      model: Model::CLAUDE_OPUS_5,
       tools: [new CodeExecutionTool20250825()],
   );
 
@@ -1413,7 +1414,7 @@ Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
 
   # Permintaan pertama: Claude membuat file di dalam container eksekusi kode yang baru
   response1 = client.messages.create(
-    model: Anthropic::Model::CLAUDE_OPUS_4_8,
+    model: Anthropic::Model::CLAUDE_OPUS_5,
     max_tokens: 4096,
     messages: [
       {
@@ -1427,7 +1428,7 @@ Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
   # Permintaan kedua: kirimkan kembali ID container agar Claude menggunakan kembali container yang sama
   response2 = client.messages.create(
     container: response1.container.id,
-    model: Anthropic::Model::CLAUDE_OPUS_4_8,
+    model: Anthropic::Model::CLAUDE_OPUS_5,
     max_tokens: 4096,
     messages: [
       {
@@ -1444,7 +1445,7 @@ Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
 
 ## Menggunakan eksekusi kode dengan alat eksekusi lainnya
 
-Ketika Anda menyediakan eksekusi kode bersamaan dengan alat yang disediakan klien yang juga menjalankan kode (seperti [alat Bash](/docs/id/agents-and-tools/tool-use/bash-tool) atau REPL kustom), Claude beroperasi dalam lingkungan multikomputer. Alat eksekusi kode berjalan dalam kontainer sandbox Anthropic, sementara alat yang disediakan klien Anda berjalan di lingkungan terpisah yang Anda kendalikan. Claude terkadang dapat bingung membedakan lingkungan-lingkungan ini, mencoba menggunakan alat yang salah atau mengasumsikan state dibagikan di antara keduanya.
+Ketika Anda menyediakan eksekusi kode bersama alat yang disediakan klien yang juga menjalankan kode (seperti [alat Bash](/docs/id/agents-and-tools/tool-use/bash-tool) atau REPL kustom), Claude beroperasi dalam lingkungan multikomputer. Alat eksekusi kode berjalan dalam container yang di-sandbox milik Anthropic, sementara alat yang disediakan klien Anda berjalan di lingkungan terpisah yang Anda kendalikan. Claude terkadang dapat mengacaukan lingkungan-lingkungan ini, mencoba menggunakan alat yang salah atau mengasumsikan state dibagikan di antara keduanya.
 
 Untuk menghindari hal ini, tambahkan instruksi ke prompt sistem Anda yang memperjelas perbedaannya:
 
@@ -1481,7 +1482,7 @@ data: {"type": "content_block_start", "index": 2, "content_block": {"type": "bas
 
 ## Permintaan batch
 
-Anda dapat menyertakan alat eksekusi kode dalam [Messages Batches API](/docs/id/build-with-claude/batch-processing). Panggilan alat eksekusi kode melalui Messages Batches API dikenakan harga yang sama dengan yang ada dalam permintaan Messages API reguler.
+Anda dapat menyertakan alat eksekusi kode dalam [Messages Batches API](/docs/id/build-with-claude/batch-processing). Panggilan alat eksekusi kode melalui Messages Batches API dikenakan harga yang sama dengan yang ada di permintaan Messages API reguler.
 
 ## Penggunaan dan harga
 
@@ -1510,9 +1511,9 @@ Penggunaan eksekusi kode dilacak dalam respons:
 
 ## Tingkatkan ke versi alat terbaru
 
-Versi alat terbaru adalah `code_execution_20260521`. Untuk berpindah di antara ketiga versi saat ini, perbarui string `type` dalam permintaan Anda: ketiganya mengembalikan blok respons yang didokumentasikan dalam [Format respons](#response-format). Lihat [Kompatibilitas model](#model-compatibility) untuk mengetahui apa yang ditambahkan setiap versi dan model mana yang mendukungnya.
+Versi alat terbaru adalah `code_execution_20260521`. Untuk berpindah di antara ketiga versi saat ini, perbarui string `type` dalam permintaan Anda: ketiganya mengembalikan blok respons yang didokumentasikan di [Format respons](#response-format). Lihat [Kompatibilitas model](#model-compatibility) untuk apa yang ditambahkan setiap versi dan model mana yang mendukungnya.
 
-Sisa bagian ini membahas migrasi dari `code_execution_20250522` lama yang hanya mendukung Python ke versi alat saat ini.
+Sisa bagian ini membahas migrasi dari `code_execution_20250522` lama yang hanya Python ke versi alat saat ini.
 
 ### Apa yang berubah
 
@@ -1526,7 +1527,7 @@ Sisa bagian ini membahas migrasi dari `code_execution_20250522` lama yang hanya 
 ### Kompatibilitas mundur
 
 * Semua eksekusi kode Python yang ada terus bekerja persis seperti sebelumnya
-* Tidak ada perubahan yang diperlukan untuk alur kerja yang hanya menggunakan Python
+* Tidak ada perubahan yang diperlukan untuk alur kerja yang hanya Python yang sudah ada
 
 ### Langkah-langkah peningkatan
 
@@ -1544,7 +1545,7 @@ Untuk meningkatkan, perbarui tipe alat dalam permintaan API Anda:
 
 ## Retensi data
 
-Eksekusi kode berjalan dalam kontainer sandbox sisi server. Data kontainer, termasuk artefak eksekusi, file yang diunggah, dan output, disimpan hingga 30 hari. Retensi ini berlaku untuk semua data yang diproses dalam lingkungan kontainer. File yang dibuat eksekusi kode di [Files API](/docs/id/build-with-claude/files) (dapat diambil dengan `client.beta.files.download()`) bertahan hingga dihapus secara eksplisit.
+Eksekusi kode berjalan dalam container sandbox sisi server. Data container, termasuk artefak eksekusi, file yang diunggah, dan output, disimpan hingga 30 hari. Retensi ini berlaku untuk semua data yang diproses dalam lingkungan container. File yang dibuat eksekusi kode di [Files API](/docs/id/build-with-claude/files) (dapat diambil dengan `client.beta.files.download()`) bertahan hingga dihapus secara eksplisit.
 
 Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
 
@@ -1552,15 +1553,15 @@ Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](/docs/id/manage
 
 <CardGroup cols={2}>
   <Card title="Alat advisor" icon="compass" href="/docs/id/agents-and-tools/tool-use/advisor-tool">
-    Pasangkan model eksekutor yang lebih cepat dengan model advisor berintelegensi lebih tinggi yang memberikan panduan strategis di tengah proses generasi.
+    Pasangkan model eksekutor yang lebih cepat dengan model advisor berintelegensi lebih tinggi yang memberikan panduan strategis di tengah generasi.
   </Card>
 
   <Card title="Pemanggilan alat terprogram" icon="code" href="/docs/id/agents-and-tools/tool-use/programmatic-tool-calling">
-    Panggil alat Anda sendiri dari kode yang berjalan di dalam kontainer eksekusi kode.
+    Panggil alat Anda sendiri dari kode yang berjalan di dalam container eksekusi kode.
   </Card>
 
   <Card title="Files API" icon="file" href="/docs/id/build-with-claude/files">
-    Unggah file untuk dianalisis dan unduh file yang dibuat oleh eksekusi kode.
+    Unggah file untuk analisis dan unduh file yang dibuat oleh eksekusi kode.
   </Card>
 
   <Card title="Menggunakan Agent Skills dengan API" icon="book" href="/docs/id/build-with-claude/skills-guide">

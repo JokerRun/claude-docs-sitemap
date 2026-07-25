@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/authentication
-fetched_at: 2026-07-22T03:08:36.547264Z
-sha256: 6ac299f8cd0e80bb71757d3adfc3379a1550e30ad72d6bde54e285caa2df6de1
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 648307931ad06a65e03bf83484d344549537e7ca0f57fa8e922c752bdc92e105
 ---
 
 # Authentication
@@ -43,7 +43,7 @@ Store API keys in a secrets manager, rotate them periodically, and revoke any ke
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello, Claude"}]
     }'

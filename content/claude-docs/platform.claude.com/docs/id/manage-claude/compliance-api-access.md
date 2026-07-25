@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-api-access
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 446bdc7edafa0ecc09f858fb7e5f926fafc72802ea299dc58267c9cb67c131de
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 8a53c082ca7f9487304ea5c5a3477e1b4c6008e777ae7898214d67db3d5c260a
 ---
 
 # Menyiapkan Compliance API
@@ -12,25 +12,25 @@ Aktifkan Compliance API untuk organisasi Anda, lalu buat Compliance Access Key (
 ---
 
 <Note>
-  Organisasi Claude Enterprise memiliki akses mandiri ke API lengkap. Organisasi Claude Console diaktifkan berdasarkan permintaan; hubungi tim akun Anda. Halaman ini menjelaskan cara mengaktifkan Compliance API dan membuat kunci API.
+  Organisasi Claude Enterprise memiliki akses layanan mandiri ke API lengkap. Organisasi Claude Console diaktifkan berdasarkan permintaan; hubungi tim akun Anda. Halaman ini menjelaskan cara mengaktifkan Compliance API dan membuat kunci API.
 </Note>
 
 <Check>
   **Peran yang diperlukan:** admin organisasi (Claude Console), atau pemilik utama atau pemilik organisasi (claude.ai).
 </Check>
 
-Compliance API menggunakan dua jenis kunci, dan kunci mana yang Anda buat bergantung pada produk Claude mana yang digunakan organisasi Anda. Pemilik utama dan pemilik organisasi membuat Compliance Access Key di claude.ai; kunci ini membuka akses ke seluruh Compliance API. Kunci milik pemilik utama dapat mencakup setiap organisasi di bawah organisasi induk; kunci milik pemilik organisasi hanya mencakup organisasinya sendiri. Admin organisasi membuat kunci Admin API di Claude Console; kunci ini hanya membuka akses ke [Activity Feed](/docs/id/manage-claude/compliance-activity-feed).
+Compliance API menggunakan dua jenis kunci, dan kunci mana yang Anda buat bergantung pada produk Claude mana yang digunakan organisasi Anda. Pemilik utama dan pemilik organisasi membuat Compliance Access Key di claude.ai; kunci ini membuka akses ke Compliance API secara penuh. Kunci milik pemilik utama dapat mencakup setiap organisasi di bawah organisasi induk; kunci milik pemilik organisasi hanya mencakup organisasinya sendiri. Admin organisasi membuat kunci Admin API di Claude Console; kunci ini hanya membuka akses ke [Activity Feed](/docs/id/manage-claude/compliance-activity-feed).
 
 ## Kunci mana yang Anda butuhkan?
 
-| Jenis kunci                                    | Dibuat di                                                                                 | Digunakan untuk                                                                                   | Berfungsi dengan Compliance API? |
-| ---------------------------------------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | -------------------------------- |
-| **Compliance Access Key** (`sk-ant-api01-...`) | [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access)    | Activity Feed, percakapan, file, proyek, pengguna, metadata organisasi, dan pengaturan organisasi | Ya (semua endpoint)              |
-| **Kunci Admin API** (`sk-ant-admin01-...`)     | [Claude Console > Settings > Admin keys](https://platform.claude.com/settings/admin-keys) | [Admin API](/docs/id/manage-claude/admin-api) dan Activity Feed Compliance API                    | Hanya Activity Feed              |
-| **Kunci Analytics API**                        | [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access)    | Claude Enterprise Analytics API (lihat [Analytics APIs](/docs/id/manage-claude/analytics-api))    | Tidak                            |
-| **Kunci Claude API** (`sk-ant-api03-...`)      | [Claude Console > Settings > API keys](https://platform.claude.com/settings/keys)         | Memanggil model Claude melalui [Claude API](/docs/id/api/overview)                                | Tidak                            |
+| Jenis kunci                                    | Dibuat di                                                                                 | Digunakan untuk                                                                               | Berfungsi dengan Compliance API? |
+| ---------------------------------------------- | ----------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | -------------------------------- |
+| **Compliance Access Key** (`sk-ant-api01-...`) | [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access)    | Activity Feed, chat, file, proyek, pengguna, metadata organisasi, dan pengaturan organisasi   | Ya (semua endpoint)              |
+| **Kunci Admin API** (`sk-ant-admin01-...`)     | [Claude Console > Settings > Admin keys](https://platform.claude.com/settings/admin-keys) | [Admin API](/docs/id/manage-claude/admin-api) dan Activity Feed Compliance API                | Hanya Activity Feed              |
+| **Kunci Analytics API**                        | [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access)    | Claude Enterprise Analytics API (lihat [Analytics API](/docs/id/manage-claude/analytics-api)) | Tidak                            |
+| **Kunci Claude API** (`sk-ant-api03-...`)      | [Claude Console > Settings > API keys](https://platform.claude.com/settings/keys)         | Memanggil model Claude melalui [Claude API](/docs/id/api/overview)                            | Tidak                            |
 
-Sebuah tenant Claude Enterprise memiliki satu **organisasi induk** yang memusatkan identitas, SSO, dan SCIM untuk setiap organisasi beban kerja di bawahnya. Organisasi beban kerja ini adalah **organisasi tertaut** dari organisasi induk.
+Tenant Claude Enterprise memiliki satu **organisasi induk** yang memusatkan identitas, SSO, dan SCIM untuk setiap organisasi beban kerja di bawahnya. Organisasi beban kerja ini adalah **organisasi tertaut** dari organisasi induk.
 
 <Warning>
   **Organisasi induk Claude Enterprise tidak muncul di Claude Console (`platform.claude.com`).** Organisasi induk tidak membawa beban kerja, tidak memiliki kunci Claude API, dan tidak memiliki kunci Admin API. Buat Compliance Access Key di **Organization settings** claude.ai, bukan di Claude Console.
@@ -41,14 +41,14 @@ Sebuah tenant Claude Enterprise memiliki satu **organisasi induk** yang memusatk
 Penyiapan adalah satu alur: aktifkan Compliance API untuk organisasi Anda, lalu buat Compliance Access Key di claude.ai. Organisasi Claude Console sebagai gantinya [membuat kunci Admin API](#create-an-admin-api-key) setelah pengaktifan; kunci Admin API hanya dapat menjangkau [Activity Feed](/docs/id/manage-claude/compliance-activity-feed).
 
 <Warning>
-  Compliance Access Key dengan `read:compliance_user_data` dapat membaca setiap percakapan, file, dan proyek di setiap organisasi tertaut, termasuk konten yang belum pernah dilihat oleh pemilik utama. Kunci dengan `delete:compliance_user_data` dapat menghapus konten tersebut secara permanen. Perlakukan Compliance Access Key seperti kredensial basis data produksi: simpan di secrets manager, jangan pernah di source control atau konfigurasi forwarder SIEM.
+  Compliance Access Key dengan `read:compliance_user_data` dapat membaca setiap chat, file, dan proyek di setiap organisasi tertaut, termasuk konten yang belum pernah dilihat oleh pemilik utama. Kunci dengan `delete:compliance_user_data` dapat menghapus konten tersebut secara permanen. Perlakukan Compliance Access Key seperti kredensial database produksi: simpan di secrets manager, jangan pernah di source control atau konfigurasi forwarder SIEM.
 </Warning>
 
 <Steps>
   <Step title="Aktifkan Compliance API">
-    Cara Anda mengaktifkan Compliance API bergantung pada produk Claude mana yang digunakan organisasi Anda. Dalam kedua kasus, pengaktifan terjadi di tingkat organisasi induk dan berlaku secara berjenjang ke setiap organisasi tertaut.
+    Cara Anda mengaktifkan Compliance API bergantung pada produk Claude mana yang digunakan organisasi Anda. Dalam kedua kasus, pengaktifan terjadi di tingkat organisasi induk dan berlaku berjenjang ke setiap organisasi tertaut.
 
-    * **Claude Enterprise (`claude.ai`):** Pengaktifan dilakukan secara mandiri.
+    * **Claude Enterprise (`claude.ai`):** Pengaktifan bersifat layanan mandiri.
     * **Claude Console (`platform.claude.com`):** Pengaktifan berdasarkan permintaan: hubungi tim akun Anthropic Anda.
   </Step>
 
@@ -75,24 +75,24 @@ Penyiapan adalah satu alur: aktifkan Compliance API untuk organisasi Anda, lalu 
     | Cakupan                       | Memberikan                                                                                                                                                                                                                |
     | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
     | `read:compliance_activities`  | Membaca Activity Feed. Kunci yang mencakup organisasi induk membaca peristiwa untuk organisasi induk dan semua organisasi tertaut.                                                                                        |
-    | `read:compliance_user_data`   | Membaca percakapan pengguna, pesan, file, proyek, pengguna organisasi, dan anggota grup                                                                                                                                   |
-    | `delete:compliance_user_data` | Menghapus percakapan, file, dan proyek pengguna                                                                                                                                                                           |
+    | `read:compliance_user_data`   | Membaca chat pengguna, pesan, file, proyek, pengguna organisasi, dan anggota grup                                                                                                                                         |
+    | `delete:compliance_user_data` | Menghapus chat, file, dan proyek pengguna                                                                                                                                                                                 |
     | `read:compliance_org_data`    | Membaca metadata organisasi (nama, jenis, peran, dan grup) serta pengaturan efektif yang berlaku untuk organisasi di bawah organisasi induk. Daftar pengguna dan keanggotaan grup memerlukan `read:compliance_user_data`. |
 
     Pilih kumpulan cakupan terkecil yang dibutuhkan integrasi Anda:
 
-    * Pipeline audit yang hanya membaca Activity Feed hanya membutuhkan `read:compliance_activities`.
-    * Alat eDiscovery yang membaca percakapan dan file tetapi tidak pernah menghapusnya tidak membutuhkan `delete:compliance_user_data`.
+    * Pipeline audit yang hanya membaca Activity Feed hanya memerlukan `read:compliance_activities`.
+    * Alat eDiscovery yang membaca chat dan file tetapi tidak pernah menghapusnya tidak memerlukan `delete:compliance_user_data`.
     * Jika alur kerja Anda membaca sekaligus menghapus, gunakan **dua kunci** dengan cakupan terpisah sehingga kunci baca yang bocor tidak dapat menghapus data.
 
-    Cakupan Compliance Access Key tidak dapat diubah setelah pembuatan. Untuk mengubah cakupan, buat kunci baru dengan cakupan yang Anda inginkan, lalu hapus kunci lama.
+    Cakupan Compliance Access Key tidak dapat diubah setelah pembuatan. Untuk mengubah cakupan, buat kunci baru dengan cakupan yang Anda inginkan, lalu hapus kunci yang lama.
   </Step>
 
   <Step title="Salin dan simpan secret">
-    Salin kunci rahasia yang ditampilkan (dimulai dengan `sk-ant-api01-`) dan simpan di secrets manager Anda. Secret lengkap hanya ditampilkan satu kali.
+    Salin kunci secret yang ditampilkan (dimulai dengan `sk-ant-api01-`) dan simpan di secrets manager Anda. Secret lengkap hanya ditampilkan satu kali.
   </Step>
 
-  <Step title="Ekspor kunci untuk contoh-contoh dalam panduan ini">
+  <Step title="Ekspor kunci untuk contoh dalam panduan ini">
     Tetapkan kunci sebagai variabel lingkungan agar contoh shell dalam panduan ini dapat membacanya:
 
     ```bash
@@ -113,9 +113,9 @@ Ikuti langkah-langkah di [Membuat kunci Admin API](/docs/id/manage-claude/admin-
 export ANTHROPIC_ADMIN_KEY=sk-ant-admin01-...
 ```
 
-Nama variabel yang berbeda mencegah kunci Admin API menimpa Compliance Access Key jika Anda menyediakan keduanya. Contoh cURL dalam panduan ini membaca kunci dari `$ANTHROPIC_COMPLIANCE_ACCESS_KEY`; gantikan dengan `$ANTHROPIC_ADMIN_KEY` saat memanggil [Activity Feed](/docs/id/manage-claude/compliance-activity-feed) dengan kunci Admin API.
+Nama variabel yang berbeda mencegah kunci Admin API menimpa Compliance Access Key jika Anda menyediakan keduanya. Contoh cURL dalam panduan ini membaca kunci dari `$ANTHROPIC_COMPLIANCE_ACCESS_KEY`; ganti dengan `$ANTHROPIC_ADMIN_KEY` saat memanggil [Activity Feed](/docs/id/manage-claude/compliance-activity-feed) dengan kunci Admin API.
 
-Kunci Admin API hanya membawa cakupan `read:compliance_activities` jika Compliance API telah diaktifkan untuk organisasi sebelum kunci dibuat; lihat [Menyiapkan Compliance API](#set-up-the-compliance-api). Kunci tersebut tidak dapat diberikan cakupan Compliance API lainnya, sehingga panggilan ke endpoint mana pun selain Activity Feed mengembalikan [403 Forbidden](/docs/id/manage-claude/compliance-errors#403-forbidden).
+Kunci Admin API hanya membawa cakupan `read:compliance_activities` jika Compliance API diaktifkan untuk organisasi sebelum kunci dibuat; lihat [Menyiapkan Compliance API](#set-up-the-compliance-api). Kunci tersebut tidak dapat diberikan cakupan Compliance API lainnya, sehingga panggilan ke endpoint apa pun selain Activity Feed mengembalikan [403 Forbidden](/docs/id/manage-claude/compliance-errors#403-forbidden).
 
 Untuk peran kunci yang sama dalam mengelola organisasi Claude Console Anda, lihat [Admin API](/docs/id/manage-claude/admin-api).
 
@@ -142,7 +142,7 @@ Hapus Compliance Access Key dari tabel **Keys** yang sama tempat Anda membuatnya
 
 Penghapusan kunci berlaku pada permintaan berikutnya: tidak ada masa tenggang. Compliance Access Key tidak kedaluwarsa dengan sendirinya.
 
-Untuk merotasi kunci tanpa gangguan layanan:
+Untuk merotasi kunci tanpa gangguan:
 
 1. Buat kunci baru dengan cakupan yang sama.
 2. Perbarui integrasi Anda untuk menggunakan kunci baru.
@@ -151,7 +151,7 @@ Untuk merotasi kunci tanpa gangguan layanan:
 
 Kursor paginasi yang disimpan sebelum rotasi tetap valid: kursor dicakup ke organisasi, bukan ke kunci.
 
-Jika Compliance Access Key bocor, segera hapus, audit [Activity Feed](/docs/id/manage-claude/compliance-activity-feed) untuk aktivitas `compliance_api_accessed` oleh kunci yang terkompromi, dan rotasi semua kredensial hilir yang dapat dijangkau oleh kunci yang bocor. Berikan `activity_types[]=compliance_api_accessed` untuk membatasi kueri, lalu di klien Anda, simpan aktivitas yang `actor.type`-nya adalah `api_actor` dan yang `actor.api_key_id`-nya cocok dengan kunci yang terkompromi; lihat [Memahami objek Activity](/docs/id/manage-claude/compliance-activity-feed#understand-the-activity-object) untuk skema actor.
+Jika Compliance Access Key bocor, segera hapus, audit [Activity Feed](/docs/id/manage-claude/compliance-activity-feed) untuk aktivitas `compliance_api_accessed` oleh kunci yang disusupi, dan rotasi semua kredensial hilir yang dapat dijangkau oleh kunci yang bocor. Berikan `activity_types[]=compliance_api_accessed` untuk membatasi kueri, lalu di klien Anda, simpan aktivitas yang `actor.type`-nya adalah `api_actor` dan yang `actor.api_key_id`-nya cocok dengan kunci yang disusupi; lihat [Memahami objek Activity](/docs/id/manage-claude/compliance-activity-feed#understand-the-activity-object) untuk skema actor.
 
 ## Langkah selanjutnya
 
@@ -160,7 +160,7 @@ Jika Compliance Access Key bocor, segera hapus, audit [Activity Feed](/docs/id/m
     Baca peristiwa aktivitas di seluruh organisasi dengan kunci apa pun yang memiliki `read:compliance_activities`.
   </Card>
 
-  <Card title="Mengambil dan menghapus percakapan, file, dan proyek" href="/docs/id/manage-claude/compliance-content-data">
+  <Card title="Ambil dan hapus chat, file, dan proyek" href="/docs/id/manage-claude/compliance-content-data">
     Gunakan Compliance Access Key dengan `read:compliance_user_data` untuk mengambil konten claude.ai, dan `delete:compliance_user_data` untuk menghapusnya.
   </Card>
 </CardGroup>

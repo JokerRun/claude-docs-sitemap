@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/aws
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: e3489c5271ef03fcbdb67ea640b2724d95ce8ee097d7764f67c1e97ae9b45c0c
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 88aae34c408f45ef989c13551fd7324711d2ccb619eee42696ad23e4b3579b3e
 ---
 
 # Menggunakan WIF dengan AWS
@@ -11,7 +11,7 @@ Autentikasi workload AWS di Lambda, EC2, ECS, atau EKS ke Claude API dengan Work
 
 ---
 
-Workload AWS dapat melakukan autentikasi ke Claude API tanpa kunci API statis dengan menukarkan token identitas OIDC yang ditandatangani AWS. Jalur yang direkomendasikan memanggil API AWS STS [`GetWebIdentityToken`](https://docs.aws.amazon.com/STS/latest/APIReference/API_GetWebIdentityToken.html), yang berfungsi di mana pun workload memiliki kredensial AWS: Lambda, EC2, ECS, dan EKS. Workload EKS dapat secara alternatif menggunakan [jalur projected-token Kubernetes](#use-eks-projected-service-account-tokens), yang memiliki lebih sedikit langkah konfigurasi tetapi hanya berfungsi di dalam pod.
+Workload AWS dapat melakukan autentikasi ke Claude API tanpa kunci API statis dengan menukarkan token identitas OIDC yang ditandatangani AWS. Jalur yang direkomendasikan memanggil API AWS STS [`GetWebIdentityToken`](https://docs.aws.amazon.com/STS/latest/APIReference/API_GetWebIdentityToken.html), yang berfungsi di mana pun workload memiliki kredensial AWS: Lambda, EC2, ECS, dan EKS. Workload EKS dapat sebagai alternatif menggunakan [jalur projected-token Kubernetes](#use-eks-projected-service-account-tokens), yang memiliki lebih sedikit langkah konfigurasi tetapi hanya berfungsi di dalam pod.
 
 Panduan ini menunjukkan kedua jalur tersebut. Untuk konsep yang mendasarinya (service account, federation issuer, dan federation rule), lihat [Workload Identity Federation](/docs/id/manage-claude/workload-identity-federation).
 
@@ -24,7 +24,7 @@ Panduan ini menunjukkan kedua jalur tersebut. Untuk konsep yang mendasarinya (se
 
 ## Menggunakan token web identity STS (direkomendasikan)
 
-API AWS STS `GetWebIdentityToken` mengembalikan token OIDC yang ditandatangani oleh AWS yang menyatakan identitas IAM pemanggil. Karena menggunakan kredensial AWS ambient milik workload, integrasi yang sama mencakup Lambda, EC2, ECS, dan EKS.
+API AWS STS `GetWebIdentityToken` mengembalikan token OIDC yang ditandatangani oleh AWS yang menegaskan identitas IAM pemanggil. Karena menggunakan kredensial AWS ambient milik workload, integrasi yang sama mencakup Lambda, EC2, ECS, dan EKS.
 
 ### Konfigurasi AWS
 
@@ -81,7 +81,7 @@ Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut 
 }
 ```
 
-**Federation rule:** Cocokkan audience yang Anda berikan ke `GetWebIdentityToken` dan ARN IAM role dari role pemanggil dalam klaim `sub`. Nilai `sub` adalah ARN IAM role dari workload yang memanggil API, dalam bentuk `arn:aws:iam::<account>:role/<role-name>`. Token juga membawa klaim `https://sts.amazonaws.com/` dengan `aws_account`, `org_id`, `principal_id`, dan `request_tags` apa pun yang Anda berikan; Anda dapat mencocokkan nilai-nilai tersebut dengan map `claims` pada rule atau `condition` CEL untuk kontrol yang lebih halus.
+**Federation rule:** Cocokkan audience yang Anda berikan ke `GetWebIdentityToken` dan ARN IAM role dari role pemanggil dalam klaim `sub`. Nilai `sub` adalah ARN IAM role dari workload yang memanggil API, dalam bentuk `arn:aws:iam::<account>:role/<role-name>`. Token juga membawa klaim `https://sts.amazonaws.com/` dengan `aws_account`, `org_id`, `principal_id`, dan `request_tags` apa pun yang Anda berikan; Anda dapat mencocokkannya dengan map `claims` pada rule atau `condition` CEL untuk kontrol yang lebih halus.
 
 ```json
 {
@@ -98,14 +98,14 @@ Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut 
 }
 ```
 
-Buat sespesifik mungkin sesuai yang dimungkinkan oleh workload. Cocokkan ARN role secara persis, dan hanya perluas `subject_prefix` (misalnya, menjadi `arn:aws:iam::123456789012:role/*`) jika beberapa IAM role harus dipetakan ke service account Anthropic yang sama.
+Buat sespesifik mungkin sesuai yang dimungkinkan oleh workload. Cocokkan ARN role yang tepat, dan hanya perluas `subject_prefix` (misalnya, menjadi `arn:aws:iam::123456789012:role/*`) jika beberapa IAM role harus dipetakan ke service account Anthropic yang sama.
 
 ### Memperoleh dan menggunakan token
 
 Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audience, lalu berikan hasilnya ke kredensial federasi SDK. Token provider adalah sebuah callable, sehingga SDK memanggil ulang STS pada setiap refresh.
 
 <Note>
-  `GetWebIdentityToken` hanya tersedia pada endpoint STS regional. Jika Anda menerima `'STS' object has no attribute 'get_web_identity_token'` atau error serupa, tetapkan klien STS Anda ke sebuah region (misalnya, `boto3.client("sts", region_name="us-east-1")`) dan pastikan AWS SDK Anda cukup baru untuk menyertakan API tersebut.
+  `GetWebIdentityToken` hanya tersedia pada endpoint STS regional. Jika Anda menerima `'STS' object has no attribute 'get_web_identity_token'` atau kesalahan serupa, tetapkan klien STS Anda ke sebuah region (misalnya, `boto3.client("sts", region_name="us-east-1")`) dan pastikan AWS SDK Anda cukup baru untuk menyertakan API tersebut.
 </Note>
 
 <CodeGroup>
@@ -138,10 +138,10 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello from AWS"}]
-    }' | jq -r '.content[0].text'
+    }' | jq -r '.content[] | select(.type == "text") | .text'
   ```
 
   ```python Python
@@ -173,11 +173,11 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
   )
 
   message = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello from AWS"}],
   )
-  print(message.content[0].text)
+  print(next(block.text for block in message.content if block.type == "text"))
   ```
 
   ```typescript TypeScript
@@ -211,7 +211,7 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
   });
 
   const message = await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello from AWS" }]
   });
@@ -252,7 +252,7 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
   )
 
   message, err := client.Messages.New(ctx, anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello from AWS")),
@@ -261,7 +261,12 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
   if err != nil {
   	panic(err)
   }
-  fmt.Println(message.Content[0].Text)
+  for _, block := range message.Content {
+  	if textBlock, ok := block.AsAny().(anthropic.TextBlock); ok {
+  		fmt.Println(textBlock.Text)
+  		break
+  	}
+  }
   ```
 
   ```java Java
@@ -284,7 +289,7 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
           .build();
 
   var message = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(1024)
           .addUserMessage("Hello from AWS")
           .build());
@@ -305,7 +310,7 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
 
   var message = await client.Messages.Create(new()
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello from AWS" }],
   });
@@ -347,7 +352,7 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
   # ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID, dan
   # ANTHROPIC_SERVICE_ACCOUNT_ID, dan ANTHROPIC_WORKSPACE_ID dibaca dari environment
   ant messages create \
-    --model claude-opus-4-8 \
+    --model claude-opus-5 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello from AWS"}'
   ```
@@ -371,11 +376,12 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
   ));
 
   $message = $client->messages->create(
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello from AWS']],
   );
-  echo $message->content[0]->text, PHP_EOL;
+  $textBlock = array_find($message->content, static fn ($block): bool => $block->type === 'text');
+  echo $textBlock->text, PHP_EOL;
   ```
 
   ```ruby Ruby
@@ -400,11 +406,11 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
   )
 
   message = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello from AWS"}]
   )
-  puts message.content.first.text
+  puts message.content.find { it.type == :text }.text
   ```
 </CodeGroup>
 
@@ -438,7 +444,7 @@ Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-an
 
 Jika workload Anda berjalan di pod EKS, Anda dapat melewati panggilan STS dan membaca token service-account yang diproyeksikan Kubernetes langsung dari disk. Kubernetes secara native memproyeksikan token yang kompatibel dengan OIDC ke dalam pod, dan SDK dapat membacanya dari path file, sehingga tidak diperlukan callable token-provider. Jalur ini memiliki dua langkah konfigurasi AWS lebih sedikit dibandingkan jalur STS tetapi hanya berfungsi di dalam pod; mekanisme yang mendasarinya sama dengan [integrasi Kubernetes generik](/docs/id/manage-claude/wif-providers/kubernetes).
 
-Jalur ini juga memerlukan klaster EKS dengan [IAM OIDC provider yang diaktifkan](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html) dan akses `kubectl` ke klaster tersebut.
+Jalur ini juga memerlukan klaster EKS dengan [IAM OIDC provider yang diaktifkan](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html) dan akses `kubectl` ke klaster.
 
 ### Konfigurasi klaster EKS Anda
 
@@ -457,7 +463,7 @@ Jalur ini juga memerlukan klaster EKS dengan [IAM OIDC provider yang diaktifkan]
   </Step>
 
   <Step title="Buat service account dan proyeksikan token dengan audience Anthropic">
-    Webhook pod identity EKS mendeteksi anotasi `eks.amazonaws.com/role-arn` dan secara otomatis memproyeksikan token dengan `aud: sts.amazonaws.com`, mengekspos path-nya sebagai `AWS_WEB_IDENTITY_TOKEN_FILE`. Token tersebut digunakan untuk asumsi role AWS. Untuk pertukaran Anthropic, proyeksikan token kedua dengan `audience: https://api.anthropic.com` dan pasang di path khusus.
+    Webhook pod identity EKS mendeteksi anotasi `eks.amazonaws.com/role-arn` dan secara otomatis memproyeksikan token dengan `aud: sts.amazonaws.com`, mengekspos path-nya sebagai `AWS_WEB_IDENTITY_TOKEN_FILE`. Token tersebut untuk asumsi role AWS. Untuk pertukaran Anthropic, proyeksikan token kedua dengan `audience: https://api.anthropic.com` dan mount di path khusus.
 
     ```yaml
     apiVersion: v1
@@ -507,7 +513,7 @@ Jalur ini juga memerlukan klaster EKS dengan [IAM OIDC provider yang diaktifkan]
   </Step>
 
   <Step title="Perhatikan bentuk klaim token">
-    Token yang diproyeksikan adalah JSON Web Token (JWT) yang ditandatangani oleh issuer OIDC klaster Anda. Klaim `sub`-nya mengikuti konvensi Kubernetes `system:serviceaccount:<namespace>:<service-account-name>`:
+    Token yang diproyeksikan adalah "JSON Web Token" (token web JSON), atau JWT, yang ditandatangani oleh issuer OIDC klaster Anda. Klaim `sub`-nya mengikuti konvensi Kubernetes `system:serviceaccount:<namespace>:<service-account-name>`:
 
     ```json
     {
@@ -591,10 +597,10 @@ Di dalam pod, token yang diproyeksikan berada di `/var/run/secrets/anthropic.com
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello from EKS"}]
-    }' | jq -r '.content[0].text'
+    }' | jq -r '.content[] | select(.type == "text") | .text'
   ```
 
   ```python Python
@@ -616,11 +622,11 @@ Di dalam pod, token yang diproyeksikan berada di `/var/run/secrets/anthropic.com
   )
 
   message = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello from EKS"}],
   )
-  print(message.content[0].text)
+  print(next(block.text for block in message.content if block.type == "text"))
   ```
 
   ```typescript TypeScript
@@ -641,7 +647,7 @@ Di dalam pod, token yang diproyeksikan berada di `/var/run/secrets/anthropic.com
   });
 
   const message = await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello from EKS" }]
   });
@@ -673,7 +679,7 @@ Di dalam pod, token yang diproyeksikan berada di `/var/run/secrets/anthropic.com
   )
 
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello from EKS")),
@@ -682,14 +688,19 @@ Di dalam pod, token yang diproyeksikan berada di `/var/run/secrets/anthropic.com
   if err != nil {
   	panic(err)
   }
-  fmt.Println(message.Content[0].Text)
+  for _, block := range message.Content {
+  	if textBlock, ok := block.AsAny().(anthropic.TextBlock); ok {
+  		fmt.Println(textBlock.Text)
+  		break
+  	}
+  }
   ```
 
   ```java Java
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   var message = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(1024)
           .addUserMessage("Hello from EKS")
           .build());
@@ -704,7 +715,7 @@ Di dalam pod, token yang diproyeksikan berada di `/var/run/secrets/anthropic.com
 
   var message = await client.Messages.Create(new()
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello from EKS" }],
   });
@@ -721,7 +732,7 @@ Di dalam pod, token yang diproyeksikan berada di `/var/run/secrets/anthropic.com
   # Membaca ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
   # ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan ANTHROPIC_IDENTITY_TOKEN_FILE
   ant messages create \
-    --model claude-opus-4-8 \
+    --model claude-opus-5 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello from EKS"}'
   ```
@@ -734,11 +745,12 @@ Di dalam pod, token yang diproyeksikan berada di `/var/run/secrets/anthropic.com
   $client = new Client();
 
   $message = $client->messages->create(
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello from EKS']],
   );
-  echo $message->content[0]->text, PHP_EOL;
+  $textBlock = array_find($message->content, static fn ($block): bool => $block->type === 'text');
+  echo $textBlock->text, PHP_EOL;
   ```
 
   ```ruby Ruby
@@ -749,11 +761,11 @@ Di dalam pod, token yang diproyeksikan berada di `/var/run/secrets/anthropic.com
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello from EKS"}]
   )
-  puts message.content.first.text
+  puts message.content.find { it.type == :text }.text
   ```
 </CodeGroup>
 
@@ -785,14 +797,14 @@ Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-an
 ## Batasi cakupan rule Anda
 
 <Warning>
-  `subject_prefix` dengan nilai `arn:aws:iam::123456789012:role/*` cocok dengan setiap IAM role di akun tersebut. Principal mana pun yang dapat mengasumsikan role yang cocok dapat memperoleh token Anthropic terfederasi.
+  `subject_prefix` berupa `arn:aws:iam::123456789012:role/*` cocok dengan setiap IAM role di akun tersebut. Setiap principal yang dapat mengasumsikan role apa pun yang cocok dapat memperoleh token Anthropic terfederasi.
 </Warning>
 
 Kunci blok `match` pada rule ke cakupan tersempit yang sesuai dengan kasus penggunaan Anda:
 
 * **Tetapkan ARN role lengkap:** Gunakan `subject_prefix: "arn:aws:iam::<account>:role/<role-name>"` tanpa `*` di akhir sehingga role lain di akun tersebut tidak cocok.
 * **Tetapkan ID akun:** Cocokkan bidang `aws_account` dari klaim `https://sts.amazonaws.com/` pada token dengan map `claims` atau `condition` CEL sebagai pemeriksaan defense-in-depth terhadap prefix yang salah konfigurasi.
-* **Tetapkan namespace dan service account di EKS:** Gunakan nilai `system:serviceaccount:<namespace>:<name>` yang persis tanpa `*` setelah prefix `system:serviceaccount:`.
+* **Tetapkan namespace dan service account di EKS:** Gunakan nilai `system:serviceaccount:<namespace>:<name>` yang tepat tanpa `*` setelah prefix `system:serviceaccount:`.
 * **Gunakan rule terpisah per lingkungan:** Buat rule yang berbeda untuk workload produksi, staging, dan pengembangan alih-alih memperluas satu prefix untuk mencakup semuanya.
 
 ## Langkah selanjutnya

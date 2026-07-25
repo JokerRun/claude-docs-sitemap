@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/memory
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: e451fa552452354ca908a78fd92d739fd5c5e3d2d2a7ff7535d3884dcedc5260
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 1222f5b3b5a68eb7753f882606e416edd90e5cbf3f521e379b06cdff20506f05
 ---
 
 # Menggunakan memori agen
@@ -943,8 +943,9 @@ Daftarkan riwayat versi untuk sebuah store, yang terbaru lebih dulu. Contoh ini 
     --memory-store-id "$store_id" \
     --memory-id "$mem_id" \
     --format json)
-  jq -r '.data[] | "\(.id): \(.operation)"' <<< "$versions"
-  version_id=$(jq -r '.data[1].id' <<< "$versions")
+  # `list --format json` menghasilkan satu objek JSON per item.
+  jq -r '"\(.id): \(.operation)"' <<< "$versions"
+  version_id=$(jq -rs '.[1].id' <<< "$versions")
   ```
 
   ```python Python
@@ -1259,7 +1260,9 @@ Daftarkan store dalam workspace. Store yang diarsipkan dikecualikan secara defau
 
   ```php PHP
   foreach ($client->beta->memoryStores->list(includeArchived: true)->pagingEachItem() as $s) {
-      echo "{$s->id} {$s->name} {$s->archivedAt}\n";
+      // archivedAt hanya diatur pada penyimpanan yang diarsipkan.
+      $archivedAt = isset($s->archivedAt) ? $s->archivedAt->format(DATE_ATOM) : '';
+      echo "{$s->id} {$s->name} {$archivedAt}\n";
   }
   ```
 

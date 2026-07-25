@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/archive
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: 32065a81c48bb59cfbb937be6b68d7d6bcb2ff9edef8c9ccf5a1c61af329b9bb
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 4f60db9cd455f2fae33a031318f0f068dd3afd36452f56486bbc911664187c9e
 ---
 
 ## Archive Deployment
@@ -23,7 +23,7 @@ Archive Deployment
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 27 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -81,7 +81,11 @@ Archive Deployment
 
     - `"server-side-fallback-2026-06-01"`
 
+    - `"server-side-fallback-2026-07-01"`
+
     - `"fallback-credit-2026-06-01"`
+
+    - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
 

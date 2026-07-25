@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: c7931cfc75833f66c71c76f08ca5fc44bb1db444c2df0f6eb661f182c631c971
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: c15413e8a5ca7d08b07081812bd7c98eb546403a729801adb510d59137a54083
 ---
 
 # Streaming alat berbutir halus
 
-Streaming input alat tanpa buffering JSON sisi server untuk aplikasi yang sensitif terhadap latensi.
+Streaming input alat tanpa buffering JSON di sisi server untuk aplikasi yang sensitif terhadap latensi.
 
 ---
 
@@ -15,7 +15,7 @@ Streaming input alat tanpa buffering JSON sisi server untuk aplikasi yang sensit
   Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
-"Fine-grained tool streaming" (streaming alat berbutir halus) mengirimkan input alat ke klien Anda saat Claude menghasilkannya, tanpa buffering sisi server atau validasi JSON. Melewati langkah buffering mengurangi waktu hingga fragmen pertama dari parameter besar, seperti dokumen atau blok kode, dan fragmen-fragmen tersebut tiba melalui event [Streaming messages](/docs/id/build-with-claude/streaming) yang sama seperti penggunaan alat standar.
+"Fine-grained tool streaming" (streaming alat berbutir halus) mengirimkan input alat ke klien Anda saat Claude menghasilkannya, tanpa buffering di sisi server atau validasi JSON. Melewati langkah buffering mengurangi waktu hingga fragmen pertama dari parameter besar, seperti dokumen atau blok kode, dan fragmen-fragmen tersebut tiba melalui event [Streaming messages](/docs/id/build-with-claude/streaming) yang sama seperti penggunaan alat standar.
 
 <Warning>
   Karena API tidak melakukan buffering atau memvalidasi input alat sebelum melakukan streaming, Anda mungkin menerima JSON yang parsial atau tidak valid. Respons yang berakhir dengan [stop reason](/docs/id/build-with-claude/handling-stop-reasons) `max_tokens` juga dapat memotong parameter di tengah jalan. Akumulasikan fragmen-fragmennya, lindungi proses parsing, dan lihat [Menangani JSON tidak valid dalam respons alat](#handling-invalid-json-in-tool-responses) untuk cara mengembalikan input yang tidak dapat di-parse ke Claude.
@@ -25,9 +25,9 @@ Streaming input alat tanpa buffering JSON sisi server untuk aplikasi yang sensit
 
 Semua model mendukung streaming alat berbutir halus di Claude API, [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws), [Google Cloud](/docs/id/build-with-claude/claude-on-vertex-ai), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Untuk menggunakannya, atur `eager_input_streaming` ke `true` pada alat yang didefinisikan pengguna di mana Anda ingin streaming berbutir halus diaktifkan, dan aktifkan streaming pada permintaan Anda.
 
-Field `eager_input_streaming` bersifat opsional. Mengaturnya ke `true` mengaktifkan streaming berbutir halus untuk alat tersebut, dan menghilangkannya memberi Anda streaming buffered standar, di mana API melakukan buffering dan memvalidasi setiap nilai parameter sebelum melakukan streaming kembali. Pengecualiannya adalah permintaan yang masih mengirimkan header beta lama `fine-grained-tool-streaming-2025-05-14`, yang mengaktifkan streaming berbutir halus untuk alat yang tidak mengatur field tersebut. Field per-alat menggantikan header tersebut, dan nilai `false` yang eksplisit mempertahankan streaming buffered untuk sebuah alat bahkan ketika permintaan masih mengirimkannya. Lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference) untuk definisi field.
+Field `eager_input_streaming` bersifat opsional. Mengaturnya ke `true` mengaktifkan streaming berbutir halus untuk alat tersebut, dan menghilangkannya memberi Anda streaming buffered standar, di mana API melakukan buffering dan memvalidasi setiap nilai parameter sebelum melakukan streaming kembali. Pengecualiannya adalah permintaan yang masih mengirimkan header beta lama `fine-grained-tool-streaming-2025-05-14`, yang mengaktifkan streaming berbutir halus untuk alat yang membiarkan field tersebut tidak diatur. Field per-alat menggantikan header tersebut, dan `false` eksplisit mempertahankan streaming buffered untuk sebuah alat bahkan ketika permintaan masih mengirimkannya. Lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference) untuk definisi field.
 
-Contoh berikut mengaktifkan streaming berbutir halus untuk alat `make_file` dan meminta Claude membuat puisi panjang, sehingga input alat cukup besar untuk diamati saat streaming masuk:
+Contoh berikut mengaktifkan streaming berbutir halus untuk alat `make_file` dan meminta Claude membuat puisi panjang, sehingga input alat cukup besar untuk melihatnya melakukan streaming:
 
 <CodeGroup>
   ```bash cURL
@@ -36,7 +36,7 @@ Contoh berikut mengaktifkan streaming berbutir halus untuk alat `make_file` dan 
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 65536,
       "tools": [
         {
@@ -71,7 +71,7 @@ Contoh berikut mengaktifkan streaming berbutir halus untuk alat `make_file` dan 
 
   ```bash CLI
   ant messages create --stream --format jsonl <<'YAML' |
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 65536
   tools:
     - name: make_file
@@ -101,7 +101,7 @@ Contoh berikut mengaktifkan streaming berbutir halus untuk alat `make_file` dan 
 
   with client.messages.stream(
       max_tokens=65536,
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       tools=[
           {
               "name": "make_file",
@@ -145,7 +145,7 @@ Contoh berikut mengaktifkan streaming berbutir halus untuk alat `make_file` dan 
   const client = new Anthropic();
 
   const stream = client.messages.stream({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 65536,
     tools: [
       {
@@ -194,7 +194,7 @@ Contoh berikut mengaktifkan streaming berbutir halus untuk alat `make_file` dan 
 
   MessageCreateParams parameters = new()
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 65536,
       Tools =
       [
@@ -228,7 +228,7 @@ Contoh berikut mengaktifkan streaming berbutir halus untuk alat `make_file` dan 
       ],
   };
 
-  // Contoh C# merakit input-nya sendiri: indeks blok konten -> JSON yang terakumulasi
+  // Contoh C# merakit sendiri inputnya: indeks blok konten -> JSON yang terakumulasi
   var toolInputs = new Dictionary<long, StringBuilder>();
 
   await foreach (var streamEvent in client.Messages.CreateStreaming(parameters))
@@ -280,7 +280,7 @@ Contoh berikut mengaktifkan streaming berbutir halus untuk alat `make_file` dan 
   }
 
   stream := client.Messages.NewStreaming(context.Background(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 65536,
   	Tools:     []anthropic.ToolUnionParam{{OfTool: &makeFileTool}},
   	Messages: []anthropic.MessageParam{
@@ -336,7 +336,7 @@ Contoh berikut mengaktifkan streaming berbutir halus untuk alat `make_file` dan 
       .build();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_8)
+      .model(Model.CLAUDE_OPUS_5)
       .maxTokens(65536L)
       .addTool(makeFileTool)
       .addUserMessage("Can you write a long poem and make a file called poem.txt?")
@@ -375,7 +375,7 @@ Contoh berikut mengaktifkan streaming berbutir halus untuk alat `make_file` dan 
 
   $stream = $client->messages->createStream(
       maxTokens: 65536,
-      model: Model::CLAUDE_OPUS_4_8,
+      model: Model::CLAUDE_OPUS_5,
       tools: [
           [
               'name' => 'make_file',
@@ -433,7 +433,7 @@ Contoh berikut mengaktifkan streaming berbutir halus untuk alat `make_file` dan 
   client = Anthropic::Client.new
 
   stream = client.messages.stream(
-    model: Anthropic::Models::Model::CLAUDE_OPUS_4_8,
+    model: Anthropic::Models::Model::CLAUDE_OPUS_5,
     max_tokens: 65_536,
     tools: [
       {
@@ -475,14 +475,14 @@ Contoh berikut mengaktifkan streaming berbutir halus untuk alat `make_file` dan 
   ```
 </CodeGroup>
 
-Setiap tab mengaktifkan streaming berbutir halus untuk alat `make_file`. Tab SDK mencetak setiap fragmen input saat tiba, lalu mencetak input terakumulasi lengkap setelah stream berakhir. Tab cURL menampilkan stream event mentah, dan tab CLI menggunakan `jq` untuk mencetak hanya fragmen-fragmennya. Karena fragmen yang dicetak bergabung menjadi input alat lengkap, puisi tersebut memenuhi terminal Anda saat Claude menulisnya:
+Setiap tab mengaktifkan streaming berbutir halus untuk alat `make_file`. Tab SDK mencetak setiap fragmen input saat tiba, lalu mencetak input terakumulasi lengkap setelah stream berakhir. Tab cURL menunjukkan event stream mentah, dan tab CLI menggunakan `jq` untuk mencetak hanya fragmen-fragmennya. Karena fragmen yang dicetak bergabung menjadi input alat lengkap, puisi tersebut memenuhi terminal Anda saat Claude menulisnya:
 
 ```text wrap
 {"filename": "poem.txt", "lines_of_text": ["The Wanderer's Journey", "", "I.", "", "Beneath the vast and star-strewn sky,", "Where silver moonbeams softly lie,", ...
 Complete tool input: {"filename": "poem.txt", "lines_of_text": ["The Wanderer's Journey", ...]}
 ```
 
-Tanpa `eager_input_streaming`, API melakukan buffering dan memvalidasi setiap nilai parameter sebelum melakukan streaming kembali, sehingga tidak ada yang dicetak untuk parameter besar sampai Claude selesai menghasilkannya. Dengannya, fragmen mulai tiba segera setelah Claude memulai parameter tersebut, dan biasanya lebih panjang, dengan lebih sedikit pemotongan di tengah kata.
+Tanpa `eager_input_streaming`, API melakukan buffering dan memvalidasi setiap nilai parameter sebelum melakukan streaming kembali, sehingga tidak ada yang dicetak untuk parameter besar sampai Claude selesai menghasilkannya. Dengannya, fragmen mulai tiba segera setelah Claude memulai parameter, dan biasanya lebih panjang, dengan lebih sedikit pemotongan di tengah kata.
 
 ## Mengakumulasi delta input alat
 
@@ -504,12 +504,12 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
 
 <CodeGroup>
   ```bash cURL
-  # Mengakumulasi delta input per blok memerlukan bahasa pemrograman; tab CLI pada
-  # contoh pertama menampilkan fragmen mentah dengan jq. Lihat tab SDK.
+  # Mengakumulasi delta input per blok memerlukan bahasa pemrograman; tab CLI
+  # pada contoh pertama menampilkan fragmen mentah dengan jq. Lihat tab SDK.
   ```
 
   ```bash CLI
-  # Mengakumulasi delta input per-blok memerlukan bahasa pemrograman; tab CLI pada
+  # Mengakumulasi delta input per blok memerlukan bahasa pemrograman; tab CLI pada
   # contoh pertama menampilkan fragmen mentah dengan jq. Lihat tab SDK.
   ```
 
@@ -519,7 +519,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
   tool_inputs: dict[int, str] = {}  # index -> accumulated JSON string
 
   with client.messages.stream(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       tools=[
           {
@@ -547,7 +547,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
                       parsed = json.loads(raw_input)
                   except json.JSONDecodeError:
                       # String yang terakumulasi tidak dijamin merupakan JSON yang valid.
-                      # Lihat "Menangani JSON yang tidak valid dalam respons alat" di halaman ini.
+                      # Lihat "Menangani JSON tidak valid dalam respons alat" di halaman ini.
                       print(f"Invalid tool input: {raw_input}")
                   else:
                       print(f"Tool input: {parsed}")
@@ -559,7 +559,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
   const toolInputs = new Map<number, string>();
 
   const stream = client.messages.stream({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     tools: [
       {
@@ -590,7 +590,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
         console.log("Tool input:", JSON.parse(rawInput));
       } catch {
         // String yang terakumulasi tidak dijamin merupakan JSON yang valid.
-        // Lihat "Menangani JSON tidak valid dalam respons alat" di halaman ini.
+        // Lihat "Menangani JSON yang tidak valid dalam respons alat" di halaman ini.
         console.log("Invalid tool input:", rawInput);
       }
     }
@@ -602,7 +602,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
 
   MessageCreateParams parameters = new()
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Tools =
       [
@@ -671,7 +671,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
   toolInputs := map[int64]string{} // content block index -> accumulated JSON
 
   stream := client.Messages.NewStreaming(context.Background(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Tools: []anthropic.ToolUnionParam{{
   		OfTool: &anthropic.ToolParam{
@@ -736,7 +736,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
           .build();
 
   MessageCreateParams createParams = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(1024)
           .addTool(weatherTool)
           .addUserMessage("Weather in Paris?")
@@ -793,7 +793,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
 
   $stream = $client->messages->createStream(
       maxTokens: 1024,
-      model: Model::CLAUDE_OPUS_4_8,
+      model: Model::CLAUDE_OPUS_5,
       tools: [
           [
               'name' => 'get_weather',
@@ -843,7 +843,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
   tool_inputs = {} # index -> accumulated JSON string
 
   stream = client.messages.stream_raw(
-    model: Anthropic::Models::Model::CLAUDE_OPUS_4_8,
+    model: Anthropic::Models::Model::CLAUDE_OPUS_5,
     max_tokens: 1024,
     tools: [
       {
@@ -891,7 +891,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
 
 ## Menangani JSON tidak valid dalam respons alat
 
-Dengan streaming alat berbutir halus, input terakumulasi untuk pemanggilan alat mungkin berupa JSON yang tidak valid atau tidak lengkap. Ketika itu terjadi, Anda tidak dapat menjalankan alat tersebut, jadi laporkan kegagalan tersebut kembali ke Claude. `content` dari hasil alat tidak harus berupa JSON, tetapi membungkus string mentah dalam objek JSON di bawah satu kunci membuatnya jelas bagi Claude bahwa Anda menerima JSON yang tidak valid, dan mempertahankan input asli untuk debugging:
+Dengan streaming alat berbutir halus, input terakumulasi untuk pemanggilan alat mungkin berupa JSON yang tidak valid atau tidak lengkap. Ketika itu terjadi, Anda tidak dapat menjalankan alat tersebut, jadi laporkan kegagalannya kembali ke Claude. `content` dari hasil alat tidak harus berupa JSON, tetapi membungkus string mentah dalam objek JSON di bawah satu kunci membuatnya tidak ambigu bagi Claude bahwa Anda menerima JSON yang tidak valid, dan mempertahankan input asli untuk debugging:
 
 ```json
 {
@@ -899,7 +899,7 @@ Dengan streaming alat berbutir halus, input terakumulasi untuk pemanggilan alat 
 }
 ```
 
-Kembalikan wrapper tersebut, yang diserialisasi menjadi string, sebagai `content` dari blok konten [tool result](/docs/id/agents-and-tools/tool-use/handle-tool-calls#handling-errors-with-is-error) dengan `is_error` diatur ke `true`:
+Kembalikan pembungkus tersebut, yang diserialisasi menjadi string, sebagai `content` dari blok konten [tool result](/docs/id/agents-and-tools/tool-use/handle-tool-calls#handling-errors-with-is-error) dengan `is_error` diatur ke `true`:
 
 ```json
 {
@@ -911,7 +911,7 @@ Kembalikan wrapper tersebut, yang diserialisasi menjadi string, sebagai `content
 ```
 
 <Note>
-  Bangun wrapper dengan pustaka JSON Anda alih-alih dengan menggabungkan string, sehingga tanda kutip dan karakter khusus lainnya dalam input yang tidak valid di-escape dengan benar.
+  Bangun pembungkus dengan pustaka JSON Anda daripada dengan menggabungkan string, sehingga tanda kutip dan karakter khusus lainnya dalam input yang tidak valid di-escape dengan benar.
 </Note>
 
 ## Langkah selanjutnya

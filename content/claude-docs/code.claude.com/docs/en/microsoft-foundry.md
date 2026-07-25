@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/microsoft-foundry
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 07478cd337fe7050bc746e2424dd796b1ad90d8cb23b2ec6dce93ef97d5f4605
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: fde63c7d7879b0b4f18bdae406f6d826bafcc4333eae07fac548a05800497749
 ---
 
 > ## Documentation Index
@@ -177,7 +177,7 @@ export ANTHROPIC_FOUNDRY_RESOURCE={resource}
 
 Set the model variables to match the deployment names you created in step 1.
 
-Without `ANTHROPIC_DEFAULT_OPUS_MODEL`, the `opus` alias on Microsoft Foundry resolves to Opus 4.6. Set it to the Opus 4.8 ID to use the latest model:
+Without `ANTHROPIC_DEFAULT_OPUS_MODEL`, the `opus` alias on Microsoft Foundry resolves to Opus 4.6. Set it to the ID of a newer Opus model, such as Opus 4.8:
 
 ```bash theme={null}
 export ANTHROPIC_DEFAULT_OPUS_MODEL='claude-opus-4-8'

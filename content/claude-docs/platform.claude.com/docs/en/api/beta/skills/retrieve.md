@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/retrieve
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: 25985768bb9f7f756b1d3ad8f231d06d3f130e037ab2eefd91123430c6a1e609
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 62d03e51810732e07447923560d4c36a1dc6bf32ba001d367f8ea94ec5ef579c
 ---
 
 ## Get Skill
@@ -27,7 +27,7 @@ Get Skill
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 27 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -85,7 +85,11 @@ Get Skill
 
     - `"server-side-fallback-2026-06-01"`
 
+    - `"server-side-fallback-2026-07-01"`
+
     - `"fallback-credit-2026-06-01"`
+
+    - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
 

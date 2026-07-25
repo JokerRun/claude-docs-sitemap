@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/files
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 23e0724aed9de36d63528722d4aa15eff690647c1fcda3a7541dc9c325862c2b
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 7f5258f6747a7b0e81059a43f73fd09d83d528215ed66b3d0c062da586752717
 ---
 
 # Menambahkan file
 
-Unggah file dan pasang (mount) file tersebut di sandbox Anda untuk dibaca dan diproses.
+Unggah file dan pasang di sandbox Anda untuk dibaca dan diproses.
 
 ---
 
-Anda dapat menyediakan file untuk agen Anda dengan mengunggahnya melalui Files API dan memasangnya (mounting) di sandbox sesi.
+Anda dapat menyediakan file untuk agen Anda dengan mengunggahnya melalui Files API dan memasangnya di sandbox sesi.
 
 <Note>
   Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](/docs/id/api/beta-headers#endpoint-specific-headers).
@@ -244,7 +244,7 @@ Pasang file yang telah diunggah ke dalam sandbox dengan menambahkannya ke array 
 
 Dengan `mount_path` di atas, agen membaca file di `/mnt/session/uploads/data.csv` (lihat [Jalur file](#file-paths)).
 
-Sebuah `file_id` baru dibuat yang merujuk pada instans file dalam sesi tersebut. Salinan ini tidak dihitung terhadap [batas penyimpanan](/docs/id/build-with-claude/files) Anda.
+Sebuah `file_id` baru dibuat yang mereferensikan instans file dalam sesi tersebut. Salinan ini tidak dihitung terhadap [batas penyimpanan](/docs/id/build-with-claude/files) Anda.
 
 ## Beberapa file
 
@@ -289,6 +289,8 @@ Pasang beberapa file dengan menambahkan entri ke array `resources`:
   ```
 
   ```csharp C#
+  using Anthropic.Models.Beta.Sessions;
+
   var resources = new[]
   {
       new BetaManagedAgentsFileResourceParams { Type = BetaManagedAgentsFileResourceParamsType.File, FileID = "file_abc123", MountPath = "/data.csv" },
@@ -306,6 +308,9 @@ Pasang beberapa file dengan menambahkan entri ke array `resources`:
   ```
 
   ```java Java
+  import com.anthropic.models.beta.sessions.*;
+  import java.util.List;
+
   var resources = List.of(
       BetaManagedAgentsFileResourceParams.builder()
           .type(BetaManagedAgentsFileResourceParams.Type.FILE).fileId("file_abc123").mountPath("/data.csv").build(),
@@ -372,6 +377,9 @@ Anda dapat menambahkan atau menghapus file dari sesi setelah pembuatan menggunak
     type: "file",
     file_id: file.id,
   });
+  if (resource.type !== "file") {
+    throw new Error(`Unexpected resource type: ${resource.type}`);
+  }
   console.log(resource.id); // "sesrsc_01ABC..."
   ```
 
@@ -431,7 +439,7 @@ Anda dapat menambahkan atau menghapus file dari sesi setelah pembuatan menggunak
   ```
 </CodeGroup>
 
-Daftarkan semua sumber daya pada sesi dengan `resources.list`. Untuk menghapus file, panggil `resources.delete` dengan ID sumber daya:
+Daftar semua sumber daya pada sesi dengan `resources.list`. Untuk menghapus file, panggil `resources.delete` dengan ID sumber daya:
 
 <CodeGroup>
   ```bash curl
@@ -462,7 +470,9 @@ Daftarkan semua sumber daya pada sesi dengan `resources.list`. Untuk menghapus f
   ```typescript TypeScript
   const listed = await client.beta.sessions.resources.list(session.id);
   for (const entry of listed.data) {
-    console.log(entry.id, entry.type);
+    if (entry.type !== "memory_store") {
+      console.log(entry.id, entry.type);
+    }
   }
 
   await client.beta.sessions.resources.delete(resource.id, {
@@ -534,7 +544,7 @@ Daftarkan semua sumber daya pada sesi dengan `resources.list`. Untuk menghapus f
 
 ## Mendaftar dan mengunduh file sesi
 
-Gunakan [Files API](/docs/id/build-with-claude/files) untuk mendaftar file yang tercakup dalam sebuah sesi dan mengunduhnya.
+Gunakan [Files API](/docs/id/build-with-claude/files) untuk mendaftar file yang tercakup dalam sesi dan mengunduhnya.
 
 <CodeGroup>
   ```bash curl
@@ -553,7 +563,7 @@ Gunakan [Files API](/docs/id/build-with-claude/files) untuk mendaftar file yang 
   ```
 
   ```bash CLI
-  # Menampilkan daftar file yang terkait dengan sebuah sesi
+  # Mencantumkan file yang terkait dengan sebuah sesi
   ant beta:files list --scope-id sesn_abc123 \
     --beta managed-agents-2026-04-01
 
@@ -591,7 +601,7 @@ Gunakan [Files API](/docs/id/build-with-claude/files) untuk mendaftar file yang 
   ```
 
   ```csharp C#
-  // Mencantumkan file yang terkait dengan sebuah sesi
+  // Menampilkan daftar file yang terkait dengan sebuah sesi
   var files = await client.Beta.Files.List(new FileListParams
   {
       ScopeID = "sesn_abc123",
@@ -645,7 +655,7 @@ Gunakan [Files API](/docs/id/build-with-claude/files) untuk mendaftar file yang 
   ```
 
   ```php PHP
-  // Menampilkan daftar file yang terkait dengan sebuah sesi
+  // Mencantumkan file yang terkait dengan sebuah sesi
   $files = $client->beta->files->list(
       scopeID: 'sesn_abc123',
       betas: ['managed-agents-2026-04-01'],
@@ -657,7 +667,7 @@ Gunakan [Files API](/docs/id/build-with-claude/files) untuk mendaftar file yang 
   ```
 
   ```ruby Ruby
-  # Mencantumkan file yang terkait dengan sebuah sesi
+  # Menampilkan daftar file yang terkait dengan sebuah sesi
   files = client.beta.files.list(
     scope_id: "sesn_abc123",
     betas: ["managed-agents-2026-04-01"]
@@ -685,7 +695,7 @@ Agen dapat bekerja dengan tipe file apa pun, termasuk:
   File yang dipasang di sandbox adalah salinan hanya-baca. Agen dapat membacanya tetapi tidak dapat memodifikasi file asli yang diunggah. Untuk bekerja dengan versi yang dimodifikasi, agen menulis ke jalur baru di dalam sandbox.
 </Note>
 
-* Jalur yang Anda tentukan berakar di bawah direktori uploads milik sesi: `mount_path` berupa `/data.csv` menempatkan file di `/mnt/session/uploads/data.csv` dalam sandbox
+* Jalur yang Anda tentukan berakar di bawah direktori uploads sesi: `mount_path` berupa `/data.csv` menempatkan file di `/mnt/session/uploads/data.csv` dalam sandbox
 * Jika Anda menghilangkan `mount_path`, file ditempatkan di `/mnt/session/uploads/<file_id>`
 * Direktori induk dibuat secara otomatis
 * Jalur harus absolut (dimulai dengan `/`)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/count_tokens
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 60764e13461f7461f61c9989333111b3e073364e9cb7950fe8f21fb63cfeb22e
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 4e8aba53d6a5bbb42d9ffcd1d9fc2c1d7f4256b99f71007be7900c93c4f03e6e
 ---
 
 ## Count tokens in a Message
@@ -943,7 +943,7 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `"claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more`
+  - `"claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 14 more`
 
     The model that will complete your prompt.
 
@@ -961,13 +961,17 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
       Most capable model for cybersecurity and biology research
 
+    - `"claude-opus-5"`
+
+      Powerful intelligence for long-running agents and coding
+
     - `"claude-opus-4-8"`
 
-      Frontier intelligence for long-running agents and coding
+      Powerful intelligence for long-running agents and coding
 
     - `"claude-opus-4-7"`
 
-      Frontier intelligence for long-running agents and coding
+      Powerful intelligence for long-running agents and coding
 
     - `"claude-mythos-preview"`
 
@@ -975,7 +979,7 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
     - `"claude-opus-4-6"`
 
-      Frontier intelligence for long-running agents and coding
+      Powerful intelligence for long-running agents and coding
 
     - `"claude-sonnet-4-6"`
 
@@ -991,11 +995,11 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
     - `"claude-opus-4-5"`
 
-      Premium model combining maximum intelligence with practical performance
+      Powerful intelligence for long-running agents and coding
 
     - `"claude-opus-4-5-20251101"`
 
-      Premium model combining maximum intelligence with practical performance
+      Powerful intelligence for long-running agents and coding
 
     - `"claude-sonnet-4-5"`
 
@@ -1007,11 +1011,11 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
     - `"claude-opus-4-1"`
 
-      Exceptional model for specialized complex tasks
+      Powerful intelligence for long-running agents and coding
 
     - `"claude-opus-4-1-20250805"`
 
-      Exceptional model for specialized complex tasks
+      Powerful intelligence for long-running agents and coding
 
   - `string`
 

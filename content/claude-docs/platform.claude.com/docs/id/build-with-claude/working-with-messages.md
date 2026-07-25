@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 4d25791620fabbcfd333e68913de8f83c779c76da4157d2195fd93730439eca1
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 3987ee0449747e784b475814abe37fe81adf9b77ca69917a315d15fce2f874d0
 ---
 
 # Menggunakan Messages API
@@ -28,7 +28,7 @@ Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permi
 ## Permintaan dan respons dasar
 
 <Note>
-  Parameter sampling `temperature`, `top_p`, dan `top_k` tidak didukung pada Claude Opus 4.7 dan model yang lebih baru, termasuk Claude Opus 4.8. Mengaturnya ke nilai non-default akan mengembalikan error 400. Hilangkan parameter tersebut dari payload permintaan dan gunakan prompting untuk memandu perilaku model sebagai gantinya. Lihat [panduan migrasi](/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-47).
+  Parameter sampling `temperature`, `top_p`, dan `top_k` tidak didukung pada model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview. Mengaturnya ke nilai non-default akan mengembalikan error 400. Hilangkan parameter tersebut dari payload permintaan dan gunakan prompting untuk memandu perilaku model sebagai gantinya. Lihat [panduan migrasi](/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-47).
 </Note>
 
 <CodeGroup>
@@ -39,7 +39,7 @@ Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permi
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "messages": [
         {"role": "user", "content": "Hello, Claude"}
@@ -49,14 +49,14 @@ Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permi
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-4-8 \
+    --model claude-opus-5 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello, Claude"}'
   ```
 
   ```python Python
   message = anthropic.Anthropic().messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello, Claude"}],
   )
@@ -67,7 +67,7 @@ Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permi
   const anthropic = new Anthropic();
 
   const message = await anthropic.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello, Claude" }]
   });
@@ -79,7 +79,7 @@ Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permi
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello, Claude" }]
   };
@@ -91,7 +91,7 @@ Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permi
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),
@@ -107,7 +107,7 @@ Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permi
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_8)
+      .model(Model.CLAUDE_OPUS_5)
       .maxTokens(1024L)
       .addUserMessage("Hello, Claude")
       .build();
@@ -122,16 +122,16 @@ Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permi
   $message = $client->messages->create(
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
-  echo $message->content[0]->text;
+  echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
   ```
 
   ```ruby Ruby
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       { role: "user", content: "Hello, Claude" }
@@ -152,7 +152,7 @@ Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permi
       "text": "Hello!"
     }
   ],
-  "model": "claude-opus-4-8",
+  "model": "claude-opus-5",
   "stop_reason": "end_turn",
   "stop_sequence": null,
   "usage": {
@@ -162,11 +162,11 @@ Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permi
 }
 ```
 
-Pada Claude Opus 4.7 dan model yang lebih baru, respons penolakan (`stop_reason: "refusal"`) juga menyertakan objek `stop_details` yang mengidentifikasi kategori kebijakan yang memicu penolakan tersebut. Lihat [Menangani stop reasons](/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk referensi field dan contoh kode penanganannya.
+Respons penolakan (`stop_reason: "refusal"`) juga menyertakan objek `stop_details` yang mengidentifikasi kategori kebijakan yang memicu penolakan tersebut, pada setiap model. Lihat [Menangani stop reason](/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk referensi field dan contoh kode penanganannya.
 
 ## Beberapa giliran percakapan
 
-Messages API bersifat stateless, yang berarti Anda selalu mengirimkan seluruh riwayat percakapan ke API. Anda dapat menggunakan pola ini untuk membangun percakapan dari waktu ke waktu. Giliran percakapan sebelumnya tidak harus benar-benar berasal dari Claude. Anda dapat menggunakan pesan `assistant` sintetis.
+Messages API bersifat stateless, yang berarti Anda selalu mengirimkan riwayat percakapan lengkap ke API. Anda dapat menggunakan pola ini untuk membangun percakapan dari waktu ke waktu. Giliran percakapan sebelumnya tidak harus benar-benar berasal dari Claude. Anda dapat menggunakan pesan `assistant` sintetis.
 
 <CodeGroup>
   ```bash cURL
@@ -176,7 +176,7 @@ Messages API bersifat stateless, yang berarti Anda selalu mengirimkan seluruh ri
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "messages": [
         {"role": "user", "content": "Hello, Claude"},
@@ -189,7 +189,7 @@ Messages API bersifat stateless, yang berarti Anda selalu mengirimkan seluruh ri
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-4-8 \
+    --model claude-opus-5 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello, Claude"}' \
     --message '{role: assistant, content: "Hello!"}' \
@@ -198,7 +198,7 @@ Messages API bersifat stateless, yang berarti Anda selalu mengirimkan seluruh ri
 
   ```python Python
   message = anthropic.Anthropic().messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[
           {"role": "user", "content": "Hello, Claude"},
@@ -213,7 +213,7 @@ Messages API bersifat stateless, yang berarti Anda selalu mengirimkan seluruh ri
   const anthropic = new Anthropic();
 
   const message = await anthropic.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       { role: "user", content: "Hello, Claude" },
@@ -229,7 +229,7 @@ Messages API bersifat stateless, yang berarti Anda selalu mengirimkan seluruh ri
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Messages =
       [
@@ -247,7 +247,7 @@ Messages API bersifat stateless, yang berarti Anda selalu mengirimkan seluruh ri
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),
@@ -265,7 +265,7 @@ Messages API bersifat stateless, yang berarti Anda selalu mengirimkan seluruh ri
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_8)
+      .model(Model.CLAUDE_OPUS_5)
       .maxTokens(1024L)
       .addUserMessage("Hello, Claude")
       .addAssistantMessage("Hello!")
@@ -286,17 +286,17 @@ Messages API bersifat stateless, yang berarti Anda selalu mengirimkan seluruh ri
           ['role' => 'assistant', 'content' => 'Hello!'],
           ['role' => 'user', 'content' => 'Can you describe LLMs to me?'],
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
-  echo $message->content[0]->text;
+  echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
   ```
 
   ```ruby Ruby
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       { role: "user", content: "Hello, Claude" },
@@ -319,7 +319,7 @@ Messages API bersifat stateless, yang berarti Anda selalu mengirimkan seluruh ri
       "text": "Sure, I'd be happy to provide..."
     }
   ],
-  "model": "claude-opus-4-8",
+  "model": "claude-opus-5",
   "stop_reason": "end_turn",
   "stop_sequence": null,
   "usage": {
@@ -331,7 +331,7 @@ Messages API bersifat stateless, yang berarti Anda selalu mengirimkan seluruh ri
 
 ### Peran system dalam pesan
 
-Pada Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), dan Claude Opus 4.8, Anda dapat menyertakan pesan dengan `"role": "system"` setelah giliran user (tunduk pada [aturan penempatan](/docs/id/build-with-claude/mid-conversation-system-messages#limitations)) untuk menambahkan instruksi sistem baru di tengah percakapan. Pesan `system` tidak dapat menjadi entri pertama dalam `messages`; gunakan field `system` tingkat atas untuk instruksi yang berlaku sejak awal.
+Pada Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), Claude Opus 4.8, dan Claude Opus 5, Anda dapat menyertakan pesan dengan `"role": "system"` setelah giliran user (tunduk pada [aturan penempatan](/docs/id/build-with-claude/mid-conversation-system-messages#limitations)) untuk menambahkan instruksi sistem baru di tengah percakapan. Pesan `system` tidak dapat menjadi entri pertama dalam `messages`; gunakan field `system` tingkat atas untuk instruksi yang berlaku sejak awal.
 
 Pesan sistem di tengah percakapan memiliki otoritas yang sama dengan field `system` tingkat atas, tetapi karena ditambahkan di akhir riwayat pesan, pesan tersebut tidak membatalkan prefix yang telah di-cache sebelumnya. Gunakan field `system` tingkat atas untuk instruksi yang harus berlaku sejak giliran pertama, dan pesan sistem di tengah percakapan untuk instruksi yang baru menjadi relevan kemudian.
 
@@ -339,10 +339,10 @@ Lihat [Pesan sistem di tengah percakapan](/docs/id/build-with-claude/mid-convers
 
 ## Mengisi awal respons Claude
 
-Anda dapat mengisi sebagian awal respons Claude pada posisi terakhir dari daftar pesan input. Gunakan teknik ini untuk membentuk respons Claude. Contoh berikut menggunakan `"max_tokens": 1` untuk mendapatkan satu jawaban pilihan ganda dari Claude.
+Anda dapat mengisi terlebih dahulu sebagian respons Claude pada posisi terakhir dalam daftar pesan input. Gunakan teknik ini untuk membentuk respons Claude. Contoh berikut menggunakan `"max_tokens": 1` untuk mendapatkan satu jawaban pilihan ganda dari Claude.
 
 <Warning>
-  Prefilling tidak didukung pada Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, dan Claude Sonnet 4.6. Permintaan yang menggunakan prefill dengan model-model ini akan mengembalikan error 400. Sebagai gantinya, gunakan [structured outputs](/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, atau instruksi prompt sistem. Lihat [panduan migrasi](/docs/id/about-claude/models/migration-guide) untuk pola migrasi.
+  Prefilling tidak didukung pada model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing). Permintaan yang menggunakan prefill dengan model-model ini akan mengembalikan error 400. Sebagai gantinya, gunakan [structured outputs](/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, atau instruksi prompt sistem. Lihat [panduan migrasi](/docs/id/about-claude/models/migration-guide) untuk pola migrasi.
 </Warning>
 
 <CodeGroup>
@@ -515,7 +515,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
   ```bash cURL
   #!/bin/sh
 
-  # Opsi 1: Gambar yang dienkode Base64
+  # Opsi 1: Gambar yang dikodekan dengan Base64
   IMAGE_URL="https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
   IMAGE_MEDIA_TYPE="image/jpeg"
   IMAGE_BASE64=$(curl "$IMAGE_URL" | base64 | tr -d '\n')
@@ -524,20 +524,22 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
-    -d '{
-      "model": "claude-opus-4-8",
-      "max_tokens": 1024,
-      "messages": [
-        {"role": "user", "content": [
-          {"type": "image", "source": {
-            "type": "base64",
-            "media_type": "'$IMAGE_MEDIA_TYPE'",
-            "data": "'$IMAGE_BASE64'"
-          }},
-          {"type": "text", "text": "What is in the above image?"}
-        ]}
-      ]
-    }'
+    -d @- <<EOF
+  {
+    "model": "claude-opus-5",
+    "max_tokens": 1024,
+    "messages": [
+      {"role": "user", "content": [
+        {"type": "image", "source": {
+          "type": "base64",
+          "media_type": "$IMAGE_MEDIA_TYPE",
+          "data": "$IMAGE_BASE64"
+        }},
+        {"type": "text", "text": "What is in the above image?"}
+      ]}
+    ]
+  }
+  EOF
 
   # Opsi 2: Gambar yang dirujuk melalui URL
   curl https://api.anthropic.com/v1/messages \
@@ -545,7 +547,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "messages": [
         {"role": "user", "content": [
@@ -566,7 +568,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
   curl -s "$IMAGE_URL" -o ./ant.jpg
 
   ant messages create <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1024
   messages:
     - role: user
@@ -582,7 +584,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
 
   # Opsi 2: Gambar yang direferensikan melalui URL
   ant messages create <<YAML
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1024
   messages:
     - role: user
@@ -600,13 +602,13 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
   import base64
   import httpx
 
-  # Opsi 1: Gambar yang dienkode Base64
+  # Opsi 1: Gambar yang dikodekan Base64
   image_url = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
   image_media_type = "image/jpeg"
   image_data = base64.standard_b64encode(httpx.get(image_url).content).decode("utf-8")
 
   message = anthropic.Anthropic().messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[
           {
@@ -629,7 +631,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
 
   # Opsi 2: Gambar yang direferensikan melalui URL
   message_from_url = anthropic.Anthropic().messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[
           {
@@ -653,7 +655,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
   ```typescript TypeScript
   const anthropic = new Anthropic();
 
-  // Opsi 1: Gambar yang dienkode Base64
+  // Opsi 1: Gambar yang dikodekan dalam Base64
   const imageUrl =
     "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
   const imageMediaType = "image/jpeg";
@@ -661,7 +663,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
   const imageData = Buffer.from(imageArrayBuffer).toString("base64");
 
   const message = await anthropic.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -685,9 +687,9 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
   });
   console.log(message);
 
-  // Opsi 2: Gambar yang direferensikan melalui URL
+  // Opsi 2: Gambar yang dirujuk melalui URL
   const messageFromUrl = await anthropic.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -728,7 +730,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Messages =
       [
@@ -753,10 +755,10 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
   var message = await client.Messages.Create(parameters);
   Console.WriteLine(message);
 
-  // Opsi 2: Gambar yang dirujuk melalui URL
+  // Opsi 2: Gambar yang direferensikan melalui URL
   var parametersFromUrl = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Messages =
       [
@@ -806,7 +808,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
   imageData := base64.StdEncoding.EncodeToString(imageBytes)
 
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -820,9 +822,9 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
   }
   fmt.Println(message)
 
-  // Opsi 2: Gambar yang direferensikan melalui URL
+  // Opsi 2: Gambar yang dirujuk melalui URL
   messageFromURL, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -866,7 +868,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
 
   Message message = client.messages().create(
       MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(1024L)
           .addUserMessageOfBlockParams(base64Content)
           .build());
@@ -888,7 +890,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
 
   Message messageFromUrl = client.messages().create(
       MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(1024L)
           .addUserMessageOfBlockParams(urlContent)
           .build());
@@ -924,7 +926,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
               ],
           ],
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
   echo $message;
 
@@ -949,7 +951,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
               ],
           ],
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
   echo $message_from_url;
   ```
@@ -966,7 +968,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
   image_data = Base64.strict_encode64(Net::HTTP.get(URI(image_url)))
 
   message = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -992,7 +994,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
 
   # Opsi 2: Gambar yang direferensikan melalui URL
   message_from_url = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -1028,7 +1030,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
       "text": "This image shows an ant, specifically a close-up view of an ant. The ant is shown in detail, with its distinct head, antennae, and legs clearly visible. The image is focused on capturing the intricate details and features of the ant, likely taken with a macro lens to get an extreme close-up perspective."
     }
   ],
-  "model": "claude-opus-4-8",
+  "model": "claude-opus-5",
   "stop_reason": "end_turn",
   "stop_sequence": null,
   "usage": {
@@ -1041,8 +1043,8 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Stop reasons dan fallback" icon="list" href="/docs/id/build-with-claude/handling-stop-reasons">
-    Tangani setiap nilai `stop_reason` dan tentukan apa yang harus dilakukan ketika sebuah respons berakhir.
+  <Card title="Stop reason dan fallback" icon="list" href="/docs/id/build-with-claude/handling-stop-reasons">
+    Tangani setiap nilai `stop_reason` dan tentukan apa yang harus dilakukan ketika respons berakhir.
   </Card>
 
   <Card title="Penggunaan alat dengan Claude" icon="wrench" href="/docs/id/agents-and-tools/tool-use/overview">
@@ -1057,7 +1059,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
     Dapatkan output JSON yang terjamin dan tervalidasi skema dari Claude.
   </Card>
 
-  <Card title="Task budgets" icon="gauge" href="/docs/id/build-with-claude/task-budgets">
-    Tetapkan anggaran token advisory di seluruh loop agentik penuh dengan `output_config.task_budget`.
+  <Card title="Anggaran tugas" icon="gauge" href="/docs/id/build-with-claude/task-budgets">
+    Tetapkan anggaran token yang bersifat anjuran di seluruh loop agentik penuh dengan `output_config.task_budget`.
   </Card>
 </CardGroup>

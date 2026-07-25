@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/search-results
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: e68e484c459faa61ff95198a95d9b879e5c9dbdcdd32e76ac7e7e91a949bd134
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 4561e38f85b3d478e222ea5746f6e60677aecd8ba126aedbc15dbb85d6b27489
 ---
 
 # Hasil pencarian
@@ -24,7 +24,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung hasil penca
 Hasil pencarian dapat disediakan dengan dua cara:
 
 1. **Dari pemanggilan alat:** Alat kustom Anda mengembalikan hasil pencarian, memungkinkan aplikasi RAG dinamis
-2. **Sebagai konten tingkat atas:** Anda menyediakan hasil pencarian langsung dalam pesan pengguna untuk konten yang telah diambil sebelumnya atau di-cache
+2. **Sebagai konten tingkat atas:** Anda menyediakan hasil pencarian langsung dalam pesan pengguna untuk konten yang sudah diambil sebelumnya atau di-cache
 
 Dalam kedua kasus tersebut, Claude mengutip hasil pencarian secara otomatis ketika sitasi diaktifkan. Tidak diperlukan prompting khusus: ajukan pertanyaan Anda, dan sitasi akan muncul pada blok teks yang mengambil dari konten Anda.
 
@@ -83,16 +83,16 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG di
 <CodeGroup>
   ```bash cURL
   # Alur pemanggilan alat memerlukan logika pencarian di sisi aplikasi yang tidak
-  # dapat diubah menjadi satu perintah shell sekali jalan. Lihat tab SDK untuk alur lengkapnya.
-  # Bentuk mentah dari percakapan alat dengan hasil pencarian ditampilkan di tab
-  # cURL Menggabungkan kedua metode; Metode 2 menunjukkan bentuk tingkat atasnya.
+  # dapat diterjemahkan menjadi satu perintah shell sekali jalan. Lihat tab SDK untuk alur lengkapnya.
+  # Bentuk mentah percakapan alat dengan hasil pencarian ditampilkan di tab
+  # cURL Combining both methods; Method 2 menunjukkan bentuk tingkat atasnya.
   ```
 
   ```bash CLI
   # Alur pemanggilan alat memerlukan logika pencarian di sisi aplikasi yang tidak
   # dapat diubah menjadi satu perintah shell sekali jalan. Lihat tab SDK untuk alur lengkapnya.
-  # Bentuk mentah percakapan alat dengan hasil pencarian ditampilkan di tab cURL
-  # Combining both methods; Method 2 menunjukkan bentuk tingkat atasnya.
+  # Bentuk mentah dari percakapan alat dengan hasil pencarian ditampilkan di
+  # tab cURL Menggabungkan kedua metode; Metode 2 menunjukkan bentuk tingkat atasnya.
   ```
 
   ```python Python
@@ -149,14 +149,14 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG di
       ]
 
 
-  # Bangun percakapan dalam sebuah list, dimulai dari pertanyaan pengguna
+  # Bangun percakapan dalam sebuah list, dimulai dengan pertanyaan pengguna
   messages = [
       MessageParam(role="user", content="How do I configure the timeout settings?")
   ]
 
   # Buat pesan dengan alat tersebut
   response = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       tools=[knowledge_base_tool],
       tool_choice={"type": "tool", "name": "search_knowledge_base"},
@@ -186,7 +186,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG di
 
       # Kirim kembali hasil alat
       final_response = client.messages.create(
-          model="claude-opus-4-8",
+          model="claude-opus-5",
           max_tokens=1024,
           messages=messages,
       )
@@ -251,7 +251,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG di
 
   // Buat pesan dengan alat tersebut
   const response = await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     tools: [knowledgeBaseTool],
     tool_choice: { type: "tool", name: "search_knowledge_base" },
@@ -282,7 +282,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG di
 
     // Kirim kembali hasil alat
     const finalResponse = await client.messages.create({
-      model: "claude-opus-4-8",
+      model: "claude-opus-5",
       max_tokens: 1024,
       messages
     });
@@ -340,14 +340,14 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG di
   // Buat pesan dengan alat tersebut
   var response = await client.Messages.Create(new()
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Tools = tools,
       ToolChoice = new ToolChoiceTool { Name = "search_knowledge_base" },
       Messages = messages,
   });
 
-  // Saat Claude memanggil alat, berikan hasil pencariannya.
+  // Ketika Claude memanggil alat, berikan hasil pencariannya.
   // Blok tool_use tidak selalu berada di urutan pertama: cari yang pertama.
   foreach (var block in response.Content)
   {
@@ -369,7 +369,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG di
           // Kirim kembali hasil alat
           var finalResponse = await client.Messages.Create(new()
           {
-              Model = Model.ClaudeOpus4_8,
+              Model = Model.ClaudeOpus5,
               MaxTokens = 1024,
               Messages = messages,
           });
@@ -404,7 +404,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG di
   	}
 
   	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  		Model:      anthropic.ModelClaudeOpus4_8,
+  		Model:      anthropic.ModelClaudeOpus5,
   		MaxTokens:  1024,
   		Tools:      []anthropic.ToolUnionParam{knowledgeBaseTool},
   		ToolChoice: anthropic.ToolChoiceUnionParam{OfTool: &anthropic.ToolChoiceToolParam{Name: "search_knowledge_base"}},
@@ -414,7 +414,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG di
   		log.Fatal(err)
   	}
 
-  	// Blok tool_use tidak selalu berada di urutan pertama: cari di daftar konten
+  	// Blok tool_use tidak selalu berada di urutan pertama: cari di dalam daftar konten
   	var toolUse *anthropic.ToolUseBlock
   	for _, block := range response.Content {
   		if variant, ok := block.AsAny().(anthropic.ToolUseBlock); ok {
@@ -443,7 +443,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG di
 
   		// Kirim kembali hasil alat
   		finalResponse, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  			Model:     anthropic.ModelClaudeOpus4_8,
+  			Model:     anthropic.ModelClaudeOpus5,
   			MaxTokens: 1024,
   			Messages:  messages,
   		})
@@ -515,7 +515,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG di
           .build());
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(1024L)
           .addTool(knowledgeBaseTool)
           .toolChoice(ToolChoice.ofTool(ToolChoiceTool.builder()
@@ -538,9 +538,9 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG di
               );
 
               // Tambahkan seluruh giliran Claude ke percakapan yang sedang berjalan, lalu hasil alatnya.
-              // Membangun ulang hanya blok tool_use akan menghilangkan blok konten lain yang Claude
-              // kembalikan (mis. teks pembuka saat pemanggilan alat tidak dipaksa) — tambahkan
-              // giliran lengkapnya, seperti pada tab bahasa lainnya.
+              // Membangun ulang hanya blok tool_use akan menghilangkan blok konten lain yang
+              // dikembalikan Claude (mis. teks pembuka saat pemanggilan alat tidak dipaksa) —
+              // tambahkan giliran penuh, seperti pada tab bahasa lainnya.
               messages.add(MessageParam.builder()
                   .role(MessageParam.Role.ASSISTANT)
                   .contentOfBlockParams(
@@ -563,7 +563,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG di
 
               // Kirim kembali hasil alat
               MessageCreateParams finalParams = MessageCreateParams.builder()
-                  .model(Model.CLAUDE_OPUS_4_8)
+                  .model(Model.CLAUDE_OPUS_5)
                   .maxTokens(1024L)
                   .messages(messages)
                   .build();
@@ -658,7 +658,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG di
   $response = $client->messages->create(
       maxTokens: 1024,
       messages: $messages,
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       toolChoice: ['type' => 'tool', 'name' => 'search_knowledge_base'],
       tools: [$knowledgeBaseTool],
   );
@@ -691,7 +691,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG di
       $finalResponse = $client->messages->create(
           maxTokens: 1024,
           messages: $messages,
-          model: 'claude-opus-4-8',
+          model: 'claude-opus-5',
       );
       echo $finalResponse;
   } else {
@@ -749,7 +749,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG di
   ]
 
   response = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     tools: [knowledge_base_tool],
     tool_choice: { type: "tool", name: "search_knowledge_base" },
@@ -777,7 +777,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG di
 
     # Kirim kembali hasil alat
     final_response = client.messages.create(
-      model: "claude-opus-4-8",
+      model: "claude-opus-5",
       max_tokens: 1024,
       messages: messages
     )
@@ -790,7 +790,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG di
 
 Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini berguna untuk:
 
-* Konten yang telah diambil sebelumnya dari infrastruktur pencarian Anda
+* Konten yang sudah diambil sebelumnya dari infrastruktur pencarian Anda
 * Hasil pencarian yang di-cache dari kueri sebelumnya
 * Konten dari layanan pencarian eksternal
 * Pengujian dan pengembangan
@@ -804,7 +804,7 @@ Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini b
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "messages": [
         {
@@ -850,7 +850,7 @@ Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini b
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1024
   messages:
     - role: user
@@ -891,7 +891,7 @@ Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini b
 
   # Berikan hasil pencarian langsung di dalam pesan pengguna
   response = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[
           MessageParam(
@@ -936,9 +936,9 @@ Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini b
   ```typescript TypeScript
   const client = new Anthropic();
 
-  // Berikan hasil pencarian langsung di pesan pengguna
+  // Berikan hasil pencarian langsung di dalam pesan pengguna
   const response = await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -983,10 +983,10 @@ Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini b
   ```csharp C#
   AnthropicClient client = new();
 
-  // Sediakan hasil pencarian langsung di dalam pesan pengguna
+  // Menyediakan hasil pencarian langsung di dalam pesan pengguna
   var response = await client.Messages.Create(new()
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Messages =
       [
@@ -1022,7 +1022,7 @@ Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini b
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -1064,7 +1064,7 @@ Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini b
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(1024L)
           .addUserMessageOfBlockParams(List.of(
               ContentBlockParam.ofSearchResult(
@@ -1144,7 +1144,7 @@ Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini b
               ]
           ]
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
   echo json_encode($message, JSON_PRETTY_PRINT);
@@ -1154,7 +1154,7 @@ Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini b
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -1247,15 +1247,15 @@ Terlepas dari bagaimana hasil pencarian disediakan, Claude secara otomatis menye
 
 Setiap sitasi mencakup:
 
-| Field                 | Tipe             | Deskripsi                                                                                                                                                               |
-| --------------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`                | string           | Selalu `"search_result_location"` untuk sitasi hasil pencarian                                                                                                          |
-| `source`              | string           | Sumber dari hasil pencarian asli                                                                                                                                        |
-| `title`               | string atau null | Judul dari hasil pencarian asli                                                                                                                                         |
-| `cited_text`          | string           | Teks lengkap dari blok yang dikutip, digabungkan. Sama dengan isi `content[start_block_index:end_block_index]` yang digabungkan. Tidak dihitung sebagai output tokens.  |
-| `search_result_index` | integer          | Indeks berbasis 0 dari hasil pencarian yang dikutip di antara semua blok `search_result` dalam permintaan, sesuai urutan kemunculannya (di semua pesan dan hasil alat). |
-| `start_block_index`   | integer          | Indeks berbasis 0 dari blok pertama yang dikutip dalam array `content` hasil pencarian.                                                                                 |
-| `end_block_index`     | integer          | Indeks akhir eksklusif dari rentang blok yang dikutip dalam array `content` hasil pencarian. Selalu lebih besar dari `start_block_index`.                               |
+| Field                 | Tipe             | Deskripsi                                                                                                                                                                     |
+| --------------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`                | string           | Selalu `"search_result_location"` untuk sitasi hasil pencarian                                                                                                                |
+| `source`              | string           | Sumber dari hasil pencarian asli                                                                                                                                              |
+| `title`               | string atau null | Judul dari hasil pencarian asli                                                                                                                                               |
+| `cited_text`          | string           | Teks lengkap dari blok yang dikutip, digabungkan. Sama dengan isi `content[start_block_index:end_block_index]` yang digabungkan bersama. Tidak dihitung sebagai token output. |
+| `search_result_index` | integer          | Indeks berbasis 0 dari hasil pencarian yang dikutip di antara semua blok `search_result` dalam permintaan, sesuai urutan kemunculannya (di seluruh pesan dan hasil alat).     |
+| `start_block_index`   | integer          | Indeks berbasis 0 dari blok pertama yang dikutip dalam array `content` hasil pencarian.                                                                                       |
+| `end_block_index`     | integer          | Indeks akhir eksklusif dari rentang blok yang dikutip dalam array `content` hasil pencarian. Selalu lebih besar dari `start_block_index`.                                     |
 
 Indeks blok mengidentifikasi irisan dari array `content` hasil pencarian, dan `cited_text` adalah teks lengkap dari irisan tersebut. Blok teks adalah unit terkecil yang dapat dikutip: Claude mengutip blok secara utuh, bukan substring di dalam sebuah blok. Untuk mendapatkan sitasi yang lebih terperinci, pecah konten hasil pencarian Anda menjadi blok-blok yang lebih kecil (lihat [Beberapa blok konten](#multiple-content-blocks)).
 
@@ -1308,7 +1308,7 @@ Ketika hasil pencarian ini dikutip, `start_block_index` dan `end_block_index` me
 
 Anda dapat mencampur kedua metode dalam percakapan yang sama. Claude mengutip dari salah satu sumber, dan `search_result_index` menghitung semua blok `search_result` sesuai urutan permintaan, terlepas dari sumbernya.
 
-Contoh berikut memutar ulang percakapan lengkap. Pesan pengguna pertama membawa hasil pencarian yang telah diambil sebelumnya, giliran asisten memanggil alat basis pengetahuan, dan hasil alat mengembalikan hasil pencarian kedua. Jawaban Claude mengutip kedua sumber:
+Contoh berikut memutar ulang percakapan lengkap. Pesan pengguna pertama membawa hasil pencarian yang sudah diambil sebelumnya, giliran asisten memanggil alat basis pengetahuan, dan hasil alat mengembalikan hasil pencarian kedua. Jawaban Claude mengutip kedua sumber:
 
 <CodeGroup>
   ```bash cURL
@@ -1317,7 +1317,7 @@ Contoh berikut memutar ulang percakapan lengkap. Pesan pengguna pertama membawa 
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "tools": [
         {
@@ -1398,7 +1398,7 @@ Contoh berikut memutar ulang percakapan lengkap. Pesan pengguna pertama membawa 
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1024
   tools:
     - name: search_knowledge_base
@@ -1474,9 +1474,9 @@ Contoh berikut memutar ulang percakapan lengkap. Pesan pengguna pertama membawa 
   }
 
   # Memutar ulang percakapan yang menyediakan hasil pencarian dengan dua cara: pesan pengguna
-  # pertama membawa hasil yang sudah diambil sebelumnya, tool result mengembalikan hasil lainnya
+  # pertama membawa hasil yang telah diambil sebelumnya, tool result mengembalikan hasil lainnya
   response = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       tools=[knowledge_base_tool],
       messages=[
@@ -1562,7 +1562,7 @@ Contoh berikut memutar ulang percakapan lengkap. Pesan pengguna pertama membawa 
   // Memutar ulang percakapan yang menyediakan hasil pencarian dengan dua cara: pesan pengguna
   // pertama membawa hasil yang sudah diambil sebelumnya, tool result mengembalikan hasil lainnya
   const response = await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     tools: [knowledgeBaseTool],
     messages: [
@@ -1631,11 +1631,11 @@ Contoh berikut memutar ulang percakapan lengkap. Pesan pengguna pertama membawa 
   ```csharp C#
   AnthropicClient client = new();
 
-  // Memutar ulang percakapan yang menyediakan hasil pencarian dengan dua cara: pesan pengguna
-  // pertama membawa hasil yang sudah diambil sebelumnya, tool result mengembalikan hasil lainnya
+  // Memutar ulang percakapan yang menyediakan hasil pencarian dengan dua cara: pesan
+  // pengguna pertama membawa hasil yang sudah diambil sebelumnya, tool result mengembalikan yang lain
   var response = await client.Messages.Create(new()
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Tools =
       [
@@ -1731,9 +1731,9 @@ Contoh berikut memutar ulang percakapan lengkap. Pesan pengguna pertama membawa 
   }
 
   // Memutar ulang percakapan yang menyediakan hasil pencarian dengan dua cara: pesan pengguna
-  // pertama membawa hasil yang telah diambil sebelumnya, tool result mengembalikan hasil lainnya
+  // pertama membawa hasil yang sudah diambil sebelumnya, tool result mengembalikan hasil lainnya
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Tools:     []anthropic.ToolUnionParam{knowledgeBaseTool},
   	Messages: []anthropic.MessageParam{
@@ -1805,10 +1805,10 @@ Contoh berikut memutar ulang percakapan lengkap. Pesan pengguna pertama membawa 
               .build())
           .build();
 
-      // Memutar ulang percakapan yang menyediakan hasil pencarian dengan dua cara: pesan
-      // pengguna pertama membawa hasil yang sudah diambil sebelumnya, hasil alat mengembalikan hasil lainnya
+      // Memutar ulang percakapan yang menyediakan hasil pencarian dengan dua cara: pesan pengguna
+      // pertama membawa hasil yang telah diambil sebelumnya, tool result mengembalikan hasil lainnya
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(1024L)
           .addTool(knowledgeBaseTool)
           .addUserMessageOfBlockParams(List.of(
@@ -1871,8 +1871,8 @@ Contoh berikut memutar ulang percakapan lengkap. Pesan pengguna pertama membawa 
       ]
   ];
 
-  // Memutar ulang percakapan yang menyediakan hasil pencarian dengan dua cara: pesan pengguna
-  // pertama membawa hasil yang telah diambil sebelumnya, tool result mengembalikan hasil lainnya
+  // Memutar ulang percakapan yang menyediakan hasil pencarian dengan dua cara: pesan
+  // pengguna pertama membawa hasil yang sudah diambil sebelumnya, tool result mengembalikan hasil lainnya
   $response = $client->messages->create(
       maxTokens: 1024,
       tools: [$knowledgeBaseTool],
@@ -1934,7 +1934,7 @@ Contoh berikut memutar ulang percakapan lengkap. Pesan pengguna pertama membawa 
               ]
           ]
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
   echo json_encode($response, JSON_PRETTY_PRINT);
@@ -1956,9 +1956,9 @@ Contoh berikut memutar ulang percakapan lengkap. Pesan pengguna pertama membawa 
   }
 
   # Memutar ulang percakapan yang menyediakan hasil pencarian dengan dua cara: pesan pengguna
-  # pertama membawa hasil yang sudah diambil sebelumnya, tool result mengembalikan hasil lainnya
+  # pertama membawa hasil yang sudah diambil sebelumnya, hasil alat mengembalikan hasil lainnya
   response = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     tools: [knowledge_base_tool],
     messages: [
@@ -2025,7 +2025,7 @@ Contoh berikut memutar ulang percakapan lengkap. Pesan pengguna pertama membawa 
   ```
 </CodeGroup>
 
-Respons mengutip kedua sumber. Hasil yang telah diambil sebelumnya adalah `search_result_index: 0` dan hasil yang dikembalikan alat adalah `search_result_index: 1`, sesuai dengan urutan kemunculan blok `search_result` dalam percakapan:
+Respons mengutip kedua sumber. Hasil yang sudah diambil sebelumnya adalah `search_result_index: 0` dan hasil yang dikembalikan alat adalah `search_result_index: 1`, sesuai dengan urutan kemunculan blok `search_result` dalam percakapan:
 
 ```json
 {
@@ -2128,13 +2128,13 @@ Ketika `citations.enabled` disetel ke `true`, Claude melampirkan referensi sitas
 
 ### Untuk pencarian tingkat atas (Metode 2)
 
-* **Konten yang telah diambil sebelumnya:** Gunakan ketika Anda sudah memiliki hasil pencarian
+* **Konten yang sudah diambil sebelumnya:** Gunakan ketika Anda sudah memiliki hasil pencarian
 * **Pemrosesan batch:** Ideal untuk memproses beberapa hasil pencarian sekaligus
-* **Pengujian:** Sangat baik untuk menguji perilaku sitasi dengan konten yang sudah diketahui
+* **Pengujian:** Bagus untuk menguji perilaku sitasi dengan konten yang sudah diketahui
 
 ### Praktik terbaik umum
 
-1. **Susun hasil secara efektif:**
+1. **Strukturkan hasil secara efektif:**
 
    * Gunakan URL sumber yang jelas dan permanen
    * Berikan judul yang deskriptif
@@ -2159,7 +2159,7 @@ Ketika `citations.enabled` disetel ke `true`, Claude melampirkan referensi sitas
 
 <CardGroup cols={2}>
   <Card title="Penolakan streaming" icon="lock" href="/docs/id/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals">
-    Deteksi dan tangani alasan berhenti karena penolakan dalam respons streaming, dan coba ulang permintaan yang ditolak pada model cadangan.
+    Deteksi dan tangani alasan berhenti berupa penolakan dalam respons streaming, dan coba ulang permintaan yang ditolak pada model cadangan.
   </Card>
 
   <Card title="Sitasi" icon="book" href="/docs/id/build-with-claude/citations">

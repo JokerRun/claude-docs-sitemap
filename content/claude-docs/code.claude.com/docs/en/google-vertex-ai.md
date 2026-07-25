@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/google-vertex-ai
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: f091b073b283884bcc772fa881681b1b9f9239a89c1b9dd852913bd4ec0241a5
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: d5b6d3d622f123526dddf14c983885714163bf530e806d427c9e72dc56c86e1c
 ---
 
 > ## Documentation Index
@@ -215,7 +215,7 @@ Claude Code disables [MCP tool search](/docs/en/mcp#scale-with-mcp-tool-search) 
 
 Set these environment variables to specific Google Cloud's Agent Platform model IDs.
 
-Without `ANTHROPIC_DEFAULT_OPUS_MODEL`, the `opus` alias on Google Cloud's Agent Platform resolves to Opus 4.8, and without `ANTHROPIC_DEFAULT_SONNET_MODEL`, the `sonnet` alias resolves to Sonnet 4.5. This example pins each alias to a specific version:
+Without `ANTHROPIC_DEFAULT_OPUS_MODEL`, the `opus` alias on Google Cloud's Agent Platform resolves to Opus 5, and without `ANTHROPIC_DEFAULT_SONNET_MODEL`, the `sonnet` alias resolves to Sonnet 4.5. This example pins each alias to a specific version:
 
 ```bash theme={null}
 export ANTHROPIC_DEFAULT_OPUS_MODEL='claude-opus-4-8'
@@ -229,7 +229,7 @@ Claude Code uses these default models when no pinning variables are set:
 
 | Model type       | Default value                |
 | :--------------- | :--------------------------- |
-| Primary model    | `claude-opus-4-8`            |
+| Primary model    | `claude-opus-5`              |
 | Small/fast model | `claude-sonnet-4-5@20250929` |
 
 Background tasks such as session title generation use the small/fast model, normally a Haiku-class model. On Google Cloud's Agent Platform, Claude Code uses the default Sonnet model for background tasks because Haiku may not be enabled in every project or region. Two selections change which model carries them:
@@ -241,7 +241,7 @@ Background tasks such as session title generation use the small/fast model, norm
   Opus models have a higher per-token price than Sonnet models, so a deployment that doesn't pin a primary model is billed at the Opus rate once it updates to v2.1.207 or later. To keep Sonnet 4.5 as the primary model, set `ANTHROPIC_MODEL` to its full model ID. A deployment that steers the default with `ANTHROPIC_DEFAULT_SONNET_MODEL` and doesn't set `ANTHROPIC_DEFAULT_OPUS_MODEL` keeps its steered Sonnet model as the default.
 </Warning>
 
-{/* min-version: 2.1.207 */}Before v2.1.207, the primary model on Google Cloud's Agent Platform defaulted to Sonnet 4.5, the `opus` alias resolved to Opus 4.6, and background tasks always used the primary model.
+{/* min-version: 2.1.219 */}On v2.1.207 through v2.1.218, the primary model on Google Cloud's Agent Platform defaulted to Opus 4.8 and the `opus` alias resolved to Opus 4.8. {/* min-version: 2.1.207 */}Before v2.1.207, the primary model defaulted to Sonnet 4.5, the `opus` alias resolved to Opus 4.6, and background tasks always used the primary model.
 
 To customize models further:
 

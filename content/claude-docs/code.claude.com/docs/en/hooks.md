@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: 21ee7174a0d2e211871009ba9eff4965804cefe635fd977e26f7c67cf0646d61
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 038cad460d95b777f4a08dae02dbff2606aba557ed47faeb2a0d85aea3f53019
 ---
 
 > ## Documentation Index
@@ -648,12 +648,16 @@ For example, a `PreToolUse` hook for a Bash command receives this on stdin:
   "hook_event_name": "PreToolUse",
   "tool_name": "Bash",
   "tool_input": {
-    "command": "npm test"
-  }
+    "command": "npm test",
+    "description": "Run test suite",
+    "timeout": 120000,
+    "run_in_background": false
+  },
+  "tool_use_id": "toolu_01ABC123..."
 }
 ```
 
-The `tool_name` and `tool_input` fields are event-specific. Each [hook event](#hook-events) section documents the additional fields for that event.
+The `tool_name`, `tool_input`, and `tool_use_id` fields are event-specific. Each [hook event](#hook-events) section documents the additional fields for that event.
 
 ### Exit code output
 
@@ -1899,13 +1903,13 @@ In addition to the [common input fields](#common-input-fields), PermissionDenied
     "description": "Clean build directory"
   },
   "tool_use_id": "toolu_01ABC123...",
-  "reason": "Auto mode denied: command targets a path outside the project"
+  "reason": "Blocked by classifier"
 }
 ```
 
-| Field    | Description                                                   |
-| :------- | :------------------------------------------------------------ |
-| `reason` | The classifier's explanation for why the tool call was denied |
+| Field    | Description                                                                                                                                                                                                                     |
+| :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `reason` | The denial reason: the fixed text `Blocked by classifier` in most sessions, or the classifier's written explanation when the session's classifier model provides one. See [Review denials](/docs/en/auto-mode-config#review-denials) |
 
 #### PermissionDenied decision control
 

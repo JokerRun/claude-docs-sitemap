@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/authentication
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 77dc6ce9c9e665eda17162306af05f72f2f3d1b7de391e90a2214d1ba202f0bb
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 8ac31278680b5cef14991039e863bb2b1a22727772852639595fc8b5128fbced
 ---
 
 # Autentikasi
@@ -43,7 +43,7 @@ Simpan kunci API di secrets manager, rotasi secara berkala, dan cabut kunci apa 
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello, Claude"}]
     }'
@@ -109,7 +109,7 @@ Simpan kunci API di secrets manager, rotasi secara berkala, dan cabut kunci apa 
 
 ### Masa berlaku kunci
 
-Saat Anda membuat kunci API dari [halaman API keys](https://platform.claude.com/settings/keys) di Claude Console, Anda memilih masa berlaku: preset (3 jam, 1 hari, 7 hari, atau 30 hari), durasi kustom, atau **Never** untuk kunci yang Anda simpan di secrets manager dan rotasi sendiri. Jika organisasi Anda memiliki kebijakan masa berlaku maksimum, Console membatasi preset dan durasi kustom hingga maksimum kebijakan, dan **Never** tidak tersedia. Kunci yang sudah ada mempertahankan perilaku saat ini; masa berlaku ditetapkan pada saat pembuatan dan tidak dapat diubah setelahnya. Pilihan masa berlaku yang sama berlaku saat Anda [membuat kunci Admin API](/docs/id/manage-claude/admin-api-keys) di Claude Console.
+Ketika Anda membuat kunci API dari [halaman API keys](https://platform.claude.com/settings/keys) di Claude Console, Anda memilih masa berlaku: preset (3 jam, 1 hari, 7 hari, atau 30 hari), durasi kustom, atau **Never** untuk kunci yang Anda simpan di secrets manager dan rotasi sendiri. Jika organisasi Anda memiliki kebijakan masa berlaku maksimum, Console membatasi preset dan durasi kustom hingga maksimum kebijakan, dan **Never** tidak tersedia. Kunci yang sudah ada mempertahankan perilaku saat ini; masa berlaku ditetapkan pada saat pembuatan dan tidak dapat diubah setelahnya. Pilihan masa berlaku yang sama berlaku ketika Anda [membuat kunci Admin API](/docs/id/manage-claude/admin-api-keys) di Claude Console.
 
 Anthropic mengirim email kepada pembuat kunci saat masa berlaku mendekati: 7 hari sebelum kedaluwarsa untuk kunci yang dibuat dengan masa pakai setidaknya 14 hari, dan 1 hari sebelumnya untuk kunci dengan masa pakai setidaknya 7 hari. Kunci dengan masa pakai yang lebih pendek kedaluwarsa tanpa email peringatan.
 
@@ -117,11 +117,11 @@ Setelah kunci kedaluwarsa, permintaan yang dibuat dengannya mengembalikan `401 a
 
 Tabel kunci API di Console menampilkan masa berlaku setiap kunci, dan Admin API melaporkan timestamp `expires_at` setiap kunci pada endpoint [List API Keys](/docs/id/api/admin/api_keys/list) dan [Retrieve API Key](/docs/id/api/admin/api_keys/retrieve), sehingga Anda dapat mengaudit dan merotasi kunci sebelum kedaluwarsa. Field tersebut bernilai `null` untuk kunci tanpa masa berlaku.
 
-Masa berlaku membatasi masa pakai kredensial yang bocor, tetapi bukan pengganti kebersihan rahasia. Terlepas dari masa berlaku, simpan kunci di secrets manager dan cabut kunci apa pun yang Anda curigai telah bocor.
+Masa berlaku membatasi umur kredensial yang bocor, tetapi bukan pengganti kebersihan rahasia. Terlepas dari masa berlaku, simpan kunci di secrets manager dan cabut kunci apa pun yang Anda curigai telah bocor.
 
 ## Workload Identity Federation
 
-"Workload Identity Federation" (federasi identitas beban kerja), atau WIF, memungkinkan beban kerja mengautentikasi dengan token identitas berumur pendek yang diterbitkan oleh "identity provider" (penyedia identitas), atau IdP, yang sudah Anda percayai, seperti AWS IAM, Google Cloud, atau penerbit OIDC apa pun yang sesuai standar (seperti GitHub Actions, service account Kubernetes, SPIFFE, Microsoft Entra ID, atau Okta). Beban kerja menukar JWT yang diterbitkan IdP di `POST /v1/oauth/token` dengan token akses Claude API berumur pendek, dan SDK menyegarkan token tersebut secara otomatis sebelum kedaluwarsa. Tidak ada string `sk-ant-api...` yang perlu dibuat, didistribusikan, atau dirotasi.
+Workload Identity Federation (WIF) memungkinkan beban kerja mengautentikasi dengan token identitas berumur pendek yang diterbitkan oleh "identity provider" (penyedia identitas), atau IdP, yang sudah Anda percayai, seperti AWS IAM, Google Cloud, atau penerbit OIDC apa pun yang sesuai standar (seperti GitHub Actions, service account Kubernetes, SPIFFE, Microsoft Entra ID, atau Okta). Beban kerja menukar JWT yang diterbitkan IdP-nya di `POST /v1/oauth/token` dengan token akses Claude API berumur pendek, dan SDK menyegarkan token tersebut secara otomatis sebelum kedaluwarsa. Tidak ada string `sk-ant-api...` yang perlu dibuat, didistribusikan, atau dirotasi.
 
 Federasi menghilangkan kunci Claude API berumur panjang dari lingkungan Anda, yang memperkecil dampak dari kredensial yang bocor dan memungkinkan Anda mengelola akses dengan kontrol IdP yang sama yang sudah Anda gunakan untuk sumber daya cloud. Ini tidak, dengan sendirinya, menjamin keamanan end-to-end: rantai kepercayaan hanya sekuat konfigurasi penyedia identitas Anda, dan rahasia berumur panjang satu langkah di hulu (misalnya, kredensial cloud statis yang dapat membuat token IdP) masih dapat melemahkannya. Padukan federasi dengan kontrol penyedia Anda, seperti daftar IP yang diizinkan, MFA, dan pencatatan audit.
 

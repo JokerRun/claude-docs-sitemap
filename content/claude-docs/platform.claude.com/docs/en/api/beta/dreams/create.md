@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/create
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: 435595f7203ac80dbaeff19790fb141ceeb16bdb4c1ecc76386042bcd739e853
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 4c5fe7941b3aa37775d0b4558d9f146a249a29b3fc379a11ff549274982bacfd
 ---
 
 ## Create a Dream
@@ -19,7 +19,7 @@ Create a Dream
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 27 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -77,7 +77,11 @@ Create a Dream
 
     - `"server-side-fallback-2026-06-01"`
 
+    - `"server-side-fallback-2026-07-01"`
+
     - `"fallback-credit-2026-06-01"`
+
+    - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
 

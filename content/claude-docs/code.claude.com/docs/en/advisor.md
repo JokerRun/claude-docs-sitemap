@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/advisor
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 3f6239560bfa1e62b0944cf2f6f16e933d43f6c10030ad48614263291d693f80
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: ff20de2bfe61f9fff5df0c6b8b4bd66fb7622733bdfe7b236a021cf188117f62
 ---
 
 > ## Documentation Index
@@ -81,18 +81,18 @@ The flag takes precedence over the `advisorModel` setting for that session, and 
 
 The advisor must be at least as capable as the main model. Fable 5 satisfies the capability check but [isn't offered as the advisor](#enable-the-advisor), so the Fable entries in the following table apply once the rollout returns it as an option. The accepted advisors for each main model are:
 
-| Main model                                      | Accepted advisors         | Notes                                                                                                                                                             |
-| ----------------------------------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Haiku 4.5                                       | Fable, Opus, Sonnet       | Haiku can call the advisor but cannot act as one                                                                                                                  |
-| Sonnet 4.6                                      | Fable, Opus, Sonnet       |                                                                                                                                                                   |
-| Sonnet 5                                        | Fable, Opus, Sonnet 5     | A Sonnet 4.6 advisor is rejected                                                                                                                                  |
-| Opus 4.6                                        | Fable, Opus, Sonnet 5     | Sonnet 5 and Opus 4.6 are ranked as equally capable, so an Opus 4.6 main accepts a Sonnet 5 advisor                                                               |
-| Opus 4.7 or later                               | Fable, Opus 4.7, Opus 4.8 | Opus 4.7 and Opus 4.8 are ranked as equally capable, so either accepts the other as an advisor. An Opus 4.7 main with an Opus 4.6 or Sonnet 5 advisor is rejected |
-| Fable 5 ({/* min-version: 2.1.170 */}v2.1.170+) | Fable                     | An Opus or Sonnet advisor is rejected. Fable isn't offered as the advisor, so a Fable 5 main model runs without one                                               |
+| Main model                                      | Accepted advisors            | Notes                                                                                                                                                                         |
+| ----------------------------------------------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Haiku 4.5                                       | Fable, Opus, Sonnet          | Haiku can call the advisor but cannot act as one                                                                                                                              |
+| Sonnet 4.6                                      | Fable, Opus, Sonnet          |                                                                                                                                                                               |
+| Sonnet 5                                        | Fable, Opus, Sonnet 5        | A Sonnet 4.6 advisor is rejected                                                                                                                                              |
+| Opus 4.6                                        | Fable, Opus, Sonnet 5        | Sonnet 5 and Opus 4.6 are ranked as equally capable, so an Opus 4.6 main accepts a Sonnet 5 advisor                                                                           |
+| Opus 4.7 or later                               | Fable, and Opus 4.7 or later | Opus 4.7 and later Opus models are ranked as equally capable, so any of them accepts another as an advisor. An Opus 4.7 main with an Opus 4.6 or Sonnet 5 advisor is rejected |
+| Fable 5 ({/* min-version: 2.1.170 */}v2.1.170+) | Fable                        | An Opus or Sonnet advisor is rejected. Fable isn't offered as the advisor, so a Fable 5 main model runs without one                                                           |
 
 Fable 5 requires Claude Code v2.1.170 or later and Fable 5 access, whether it acts as the main model or the advisor.
 
-Set the advisor as `opus` or `sonnet`, or as `fable` once the rollout returns it as an option. These aliases resolve to the latest version of each model. You can also pass a full model ID such as `claude-opus-4-8`.
+Set the advisor as `opus` or `sonnet`, or as `fable` once the rollout returns it as an option. These aliases resolve to the latest version of each model. You can also pass a full model ID such as `claude-opus-5`.
 
 Subagents inherit the configured advisor and apply the same pairing check against their own model.
 

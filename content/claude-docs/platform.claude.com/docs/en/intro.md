@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/intro
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: 5218bd25b0e3b2ef5939ac98ae99ae449cc570f7e8f79a83e2b963c8b1bcbda5
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 38b2b9cf203381fc82a2dc7bd3e3de9b828ba583a18353a401d5f05159c39eee
 ---
 
 # Intro to Claude
@@ -18,7 +18,7 @@ Claude is a highly performant, trustworthy, and intelligent AI platform built by
 
   **Claude Mythos 5** - Shares Claude Fable 5's capabilities without the safety classifiers. Available in limited release through [Project Glasswing](https://anthropic.com/glasswing).
 
-  **Claude Opus 4.8** - For complex agentic coding and enterprise work. Read the [Claude Opus 4.8 announcement](https://www.anthropic.com/news/claude-opus-4-8).
+  **Claude Opus 5** - For complex agentic coding and enterprise work. Read the [Claude Opus 5 announcement](https://www.anthropic.com/news/claude-opus-5).
 
   **Claude Sonnet 5** - Frontier intelligence at scale, built for coding, agents, and enterprise workflows. Read the [Claude Sonnet 5 announcement](https://www.anthropic.com/news/claude-sonnet-5).
 

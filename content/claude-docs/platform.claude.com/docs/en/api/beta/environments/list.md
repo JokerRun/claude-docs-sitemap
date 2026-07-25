@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/list
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: b12f4a967a5a3a2ef8c8af049d7ab1d79356d27a0ba66f801fadb0326a969c58
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: aa8fd98c894aa6eeaacaa909e83ea4204c13d9fdf06a7a788470918410776690
 ---
 
 ## List Environments
@@ -33,7 +33,7 @@ List environments with pagination support.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 27 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -91,7 +91,11 @@ List environments with pagination support.
 
     - `"server-side-fallback-2026-06-01"`
 
+    - `"server-side-fallback-2026-07-01"`
+
     - `"fallback-credit-2026-06-01"`
+
+    - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
 

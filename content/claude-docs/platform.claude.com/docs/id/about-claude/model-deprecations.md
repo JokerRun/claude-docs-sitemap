@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/model-deprecations
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: cfc392ae38c79409b29ac1abd79b73daf1eee8cc4299e58d9a7a3ba98de74776
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: cb4b9e4b232f4d1211270b35d5fdc729c86417f4190ac85d38de336d0db83f25
 ---
 
 # Penghentian model
@@ -13,7 +13,7 @@ Lihat model Claude mana yang aktif, usang, atau dihentikan, dan temukan tanggal 
 
 Seiring diluncurkannya model yang lebih aman dan lebih mumpuni, Anthropic secara berkala menghentikan model yang lebih lama. Aplikasi yang bergantung pada model Anthropic mungkin memerlukan pembaruan sesekali agar tetap berfungsi. Pelanggan yang terdampak akan selalu diberi tahu melalui email dan di dokumentasi.
 
-Halaman ini mencantumkan semua penghentian API, beserta pengganti yang direkomendasikan.
+Halaman ini mencantumkan semua penghentian (deprecation) API, beserta pengganti yang direkomendasikan.
 
 ## Ikhtisar
 
@@ -28,13 +28,13 @@ Anthropic menggunakan istilah berikut untuk menggambarkan siklus hidup model:
   Model yang usang (deprecated) kemungkinan kurang andal dibandingkan model aktif. Pindahkan beban kerja ke model aktif untuk mempertahankan tingkat dukungan dan keandalan tertinggi.
 </Warning>
 
-Tanggal-tanggal di halaman ini berlaku untuk platform yang dioperasikan Anthropic: Claude API, [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Platform yang dioperasikan mitra (Amazon Bedrock dan Google Cloud) menetapkan jadwal penghentian mereka sendiri, sehingga status siklus hidup dan tanggal suatu model dapat berbeda. Lihat tabel model [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock#supported-models), [Amazon Bedrock (Opus 4.6 dan sebelumnya)](/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#api-model-ids), dan [Google Cloud](/docs/id/build-with-claude/claude-on-vertex-ai#api-model-ids).
+Tanggal di halaman ini berlaku untuk platform yang dioperasikan Anthropic: Claude API, [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Platform yang dioperasikan mitra (Amazon Bedrock dan Google Cloud) menetapkan jadwal penghentian mereka sendiri, sehingga status siklus hidup dan tanggal sebuah model dapat berbeda. Lihat tabel model [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock#supported-models), [Amazon Bedrock (Opus 4.6 dan sebelumnya)](/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#api-model-ids), dan [Google Cloud](/docs/id/build-with-claude/claude-on-vertex-ai#api-model-ids).
 
 ## Bermigrasi ke pengganti
 
 Setelah sebuah model diusangkan, migrasikan semua penggunaan ke pengganti yang sesuai sebelum tanggal penghentian. Permintaan ke model yang telah melewati tanggal penghentian akan gagal.
 
-Untuk membantu mengukur kinerja model pengganti pada tugas-tugas Anda, pertimbangkan untuk melakukan pengujian menyeluruh terhadap aplikasi Anda dengan model baru jauh sebelum tanggal penghentian.
+Untuk membantu mengukur kinerja model pengganti pada tugas-tugas Anda, pertimbangkan pengujian menyeluruh terhadap aplikasi Anda dengan model baru jauh sebelum tanggal penghentian.
 
 Untuk instruksi spesifik tentang migrasi ke model Claude terbaru, lihat [Panduan migrasi](/docs/id/about-claude/models/migration-guide).
 
@@ -72,7 +72,7 @@ Pada suatu saat, Anthropic berharap dapat membuat model-model lama tersedia kemb
 ## Status model
 
 <Note>
-  [Claude Mythos Preview](https://anthropic.com/glasswing) (`claude-mythos-preview`) akan dihentikan pada 21 Juli 2026. Untuk bermigrasi ke [Claude Mythos 5](https://anthropic.com/glasswing) (`claude-mythos-5`), lihat [panduan migrasi](/docs/id/about-claude/models/migration-guide#migrating-from-claude-mythos-preview).
+  [Claude Mythos Preview](https://anthropic.com/glasswing) (`claude-mythos-preview`) telah diusangkan. Untuk bermigrasi ke [Claude Mythos 5](https://anthropic.com/glasswing) (`claude-mythos-5`), lihat [panduan migrasi](/docs/id/about-claude/models/migration-guide#migrating-from-claude-mythos-preview).
 </Note>
 
 Model saat ini dan yang baru saja dihentikan tercantum dalam tabel berikut beserta statusnya:
@@ -80,6 +80,7 @@ Model saat ini dan yang baru saja dihentikan tercantum dalam tabel berikut beser
 | Nama model API             | Status saat ini | Diusangkan       | Tanggal penghentian tentatif             |
 | -------------------------- | --------------- | ---------------- | ---------------------------------------- |
 | claude-fable-5             | Active          | N/A              | Tidak lebih cepat dari 9 Juni 2027       |
+| claude-opus-5              | Active          | N/A              | Tidak lebih cepat dari 24 Juli 2027      |
 | claude-opus-4-8            | Active          | N/A              | Tidak lebih cepat dari 28 Mei 2027       |
 | claude-opus-4-7            | Active          | N/A              | Tidak lebih cepat dari 16 April 2027     |
 | claude-opus-4-6            | Active          | N/A              | Tidak lebih cepat dari 5 Februari 2027   |
@@ -217,8 +218,8 @@ Pada 4 September 2024, Anthropic memberi tahu pengembang yang menggunakan model 
 
 Anthropic sesekali mengusangkan parameter permintaan yang tidak lagi berlaku untuk model saat ini. Parameter yang usang tetap ada dalam tipe permintaan SDK sehingga kode yang ada tetap lolos pemeriksaan tipe, tetapi perilakunya berubah per model.
 
-| Parameter                       | Status                                           | Perilaku                                                                                                                                                 | Pengganti yang direkomendasikan                                                                                                                |
-| ------------------------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| `temperature`, `top_p`, `top_k` | Deprecated (Claude Opus 4.7 dan yang lebih baru) | Mengembalikan error 400 ketika diatur ke nilai non-default pada Claude Opus 4.7 dan yang lebih baru, termasuk Claude Opus 4.8, dan pada Claude Sonnet 5. | Hilangkan dan gunakan [prompting](/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices) untuk memandu perilaku model. |
+| Parameter                       | Status                                           | Perilaku                                                                                                                                                             | Pengganti yang direkomendasikan                                                                                                                |
+| ------------------------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `temperature`, `top_p`, `top_k` | Deprecated (Claude Opus 4.7 dan yang lebih baru) | Mengembalikan error 400 ketika diatur ke nilai non-default pada model Claude 4.7 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing). | Hilangkan dan gunakan [prompting](/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices) untuk memandu perilaku model. |
 
 Untuk langkah-langkah migrasi, lihat [panduan migrasi](/docs/id/about-claude/models/migration-guide).

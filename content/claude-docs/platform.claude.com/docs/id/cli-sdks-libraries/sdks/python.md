@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: b7ece5e43b228339d45549883e4b7d80887d0e922f3bfef6ecfe2ea6e86c9b3b
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 0986ed0694097829b7c96369ed8b37e0a79690e89a9be4a36044106386538a83
 ---
 
 # Python SDK
@@ -14,7 +14,7 @@ Instal dan konfigurasikan Anthropic Python SDK dengan dukungan klien sync dan as
 Anthropic Python SDK menyediakan akses yang mudah ke Anthropic REST API dari aplikasi Python. SDK ini mendukung operasi sinkron dan asinkron, streaming, serta integrasi dengan Amazon Bedrock, Claude Platform di AWS, Google Cloud, dan Microsoft Foundry.
 
 <Info>
-  Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK yang khusus untuk Python.
+  Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK yang spesifik untuk Python.
 </Info>
 
 ## Instalasi
@@ -23,7 +23,7 @@ Anthropic Python SDK menyediakan akses yang mudah ke Anthropic REST API dari apl
 pip install anthropic
 ```
 
-Untuk integrasi khusus platform atau peningkatan performa async, instal dengan extras:
+Untuk integrasi spesifik platform atau peningkatan performa async, instal dengan extras:
 
 ```bash
 # Untuk dukungan Amazon Bedrock
@@ -52,7 +52,7 @@ import os
 from anthropic import Anthropic
 
 client = Anthropic(
-    # Ini adalah default dan dapat dihilangkan
+    # Ini adalah nilai default dan dapat dihilangkan
     api_key=os.environ.get("ANTHROPIC_API_KEY"),
 )
 
@@ -64,7 +64,7 @@ message = client.messages.create(
             "content": "Hello, Claude",
         }
     ],
-    model="claude-opus-4-8",
+    model="claude-opus-5",
 )
 
 for block in message.content:
@@ -73,7 +73,7 @@ for block in message.content:
 ```
 
 <Tip>
-  Pertimbangkan untuk menggunakan [python-dotenv](https://pypi.org/project/python-dotenv/) untuk menambahkan `ANTHROPIC_API_KEY="my-anthropic-api-key"` ke file `.env` Anda agar kunci API Anda tidak tersimpan dalam source control.
+  Pertimbangkan untuk menggunakan [python-dotenv](https://pypi.org/project/python-dotenv/) untuk menambahkan `ANTHROPIC_API_KEY="my-anthropic-api-key"` ke file `.env` Anda sehingga kunci API Anda tidak tersimpan di source control.
 </Tip>
 
 Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](/docs/id/manage-claude/authentication).
@@ -99,7 +99,7 @@ async def main() -> None:
                 "content": "Hello, Claude",
             }
         ],
-        model="claude-opus-4-8",
+        model="claude-opus-5",
     )
     print(message.content)
 
@@ -130,7 +130,7 @@ async def main() -> None:
                     "content": "Hello, Claude",
                 }
             ],
-            model="claude-opus-4-8",
+            model="claude-opus-5",
         )
         print(message.content)
 
@@ -153,7 +153,7 @@ stream = client.messages.create(
             "content": "Hello, Claude",
         }
     ],
-    model="claude-opus-4-8",
+    model="claude-opus-5",
     stream=True,
 )
 for event in stream:
@@ -173,7 +173,7 @@ stream = await client.messages.create(
             "content": "Hello, Claude",
         }
     ],
-    model="claude-opus-4-8",
+    model="claude-opus-5",
     stream=True,
 )
 async for event in stream:
@@ -194,7 +194,7 @@ async def main() -> None:
                 "content": "Say hello there!",
             }
         ],
-        model="claude-opus-4-8",
+        model="claude-opus-5",
     ) as stream:
         async for text in stream.text_stream:
             print(text, end="", flush=True)
@@ -225,14 +225,14 @@ Anda juga dapat menghitung token sebelum membuat permintaan:
 
 ```python
 count = client.messages.count_tokens(
-    model="claude-opus-4-8", messages=[{"role": "user", "content": "Hello, world"}]
+    model="claude-opus-5", messages=[{"role": "user", "content": "Hello, world"}]
 )
 print(count.input_tokens)  # 10
 ```
 
 ## Penggunaan alat
 
-SDK ini menyediakan dukungan untuk "tool use" (penggunaan alat), yang juga dikenal sebagai function calling. Untuk detail lebih lanjut, lihat [Penggunaan alat dengan Claude](/docs/id/agents-and-tools/tool-use/overview).
+SDK ini menyediakan dukungan untuk penggunaan alat, yang juga dikenal sebagai function calling. Untuk detail lebih lanjut, lihat [Penggunaan alat dengan Claude](/docs/id/agents-and-tools/tool-use/overview).
 
 ### Helper alat
 
@@ -266,7 +266,7 @@ def get_weather(location: str) -> str:
 # Gunakan tool_runner untuk menangani pemanggilan alat secara otomatis
 runner = client.beta.messages.tool_runner(
     max_tokens=1024,
-    model="claude-opus-4-8",
+    model="claude-opus-5",
     tools=[get_weather],
     messages=[
         {"role": "user", "content": "What is the weather in SF?"},
@@ -292,7 +292,7 @@ client.messages.batches.create(
         {
             "custom_id": "my-first-request",
             "params": {
-                "model": "claude-opus-4-8",
+                "model": "claude-opus-5",
                 "max_tokens": 1024,
                 "messages": [{"role": "user", "content": "Hello, world"}],
             },
@@ -300,7 +300,7 @@ client.messages.batches.create(
         {
             "custom_id": "my-second-request",
             "params": {
-                "model": "claude-opus-4-8",
+                "model": "claude-opus-5",
                 "max_tokens": 1024,
                 "messages": [{"role": "user", "content": "Hi again, friend"}],
             },
@@ -328,7 +328,7 @@ Parameter permintaan yang berkaitan dengan unggahan file dapat diberikan dalam b
 
 * Objek `PathLike` (misalnya, `pathlib.Path`)
 * Tuple berupa `(filename, content, content_type)`
-* Objek file-like `BinaryIO`
+* Objek mirip file `BinaryIO`
 
 ```python
 from pathlib import Path
@@ -351,7 +351,7 @@ Klien async menggunakan antarmuka yang sama persis. Jika Anda memberikan instanc
 
 ## Menangani error
 
-Ketika library tidak dapat terhubung ke API, atau jika API mengembalikan kode status non-sukses (yaitu, respons 4xx atau 5xx), subclass dari `APIError` akan dilempar:
+Ketika library tidak dapat terhubung ke API, atau jika API mengembalikan kode status non-sukses (yaitu, respons 4xx atau 5xx), subclass dari `APIError` akan dilemparkan:
 
 ```python
 import anthropic
@@ -365,7 +365,7 @@ try:
                 "content": "Hello, Claude",
             }
         ],
-        model="claude-opus-4-8",
+        model="claude-opus-5",
     )
 except anthropic.APIConnectionError as e:
     print("The server could not be reached")
@@ -402,7 +402,7 @@ Semua respons objek dalam SDK menyediakan properti `_request_id` yang ditambahka
 message = client.messages.create(
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
-    model="claude-opus-4-8",
+    model="claude-opus-5",
 )
 print(message._request_id)  # e.g., req_018EeWyXxfu5pfWkrYcMdjWG
 ```
@@ -427,7 +427,7 @@ client = Anthropic(
 client.with_options(max_retries=5).messages.create(
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
-    model="claude-opus-4-8",
+    model="claude-opus-5",
 )
 ```
 
@@ -453,11 +453,11 @@ client = Anthropic(
 client.with_options(timeout=5.0).messages.create(
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
-    model="claude-opus-4-8",
+    model="claude-opus-5",
 )
 ```
 
-Saat timeout, SDK melempar `APITimeoutError`.
+Saat timeout, SDK melemparkan `APITimeoutError`.
 
 Perhatikan bahwa permintaan yang timeout akan [dicoba ulang dua kali secara default](#retries).
 
@@ -469,7 +469,7 @@ Perhatikan bahwa permintaan yang timeout akan [dicoba ulang dua kali secara defa
 
 Hindari menetapkan nilai `max_tokens` yang besar tanpa menggunakan streaming. Beberapa jaringan mungkin memutus koneksi yang idle setelah jangka waktu tertentu, yang dapat menyebabkan permintaan gagal atau [timeout](#timeouts) tanpa menerima respons dari Anthropic.
 
-SDK akan melempar `ValueError` jika permintaan non-streaming diperkirakan memakan waktu lebih dari sekitar 10 menit. Memberikan `stream=True` atau menimpa opsi `timeout` pada level klien atau permintaan akan menonaktifkan error ini.
+SDK akan melemparkan `ValueError` jika permintaan non-streaming diperkirakan memakan waktu lebih dari sekitar 10 menit. Memberikan `stream=True` atau menimpa opsi `timeout` pada level klien atau permintaan akan menonaktifkan error ini.
 
 Latensi permintaan yang diperkirakan lebih lama dari [timeout](#timeouts) untuk permintaan non-streaming akan mengakibatkan klien memutus koneksi dan mencoba ulang tanpa menerima respons.
 
@@ -477,7 +477,7 @@ SDK menetapkan opsi [TCP socket keep-alive](https://tldp.org/HOWTO/TCP-Keepalive
 
 ## Paginasi otomatis
 
-Metode list dalam Claude API dipaginasi. Anda dapat menggunakan sintaks `for` untuk melakukan iterasi pada item di semua halaman:
+Metode list dalam Claude API dipaginasi. Anda dapat menggunakan sintaks `for` untuk melakukan iterasi melalui item di semua halaman:
 
 ```python
 client = Anthropic()
@@ -547,7 +547,7 @@ client = Anthropic(
 client.messages.with_raw_response.create(
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
-    model="claude-opus-4-8",
+    model="claude-opus-5",
     extra_headers={"anthropic-version": "My-Custom-Value"},
 )
 ```
@@ -580,7 +580,7 @@ Dalam respons, Anda dapat membedakan antara field yang secara eksplisit `null` d
 
 ```python
 response = client.messages.create(
-    model="claude-opus-4-8",
+    model="claude-opus-5",
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello"}],
 )
@@ -603,7 +603,7 @@ client = Anthropic()
 response = client.messages.with_raw_response.create(
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
-    model="claude-opus-4-8",
+    model="claude-opus-5",
 )
 
 print(response.headers.get("request-id"))
@@ -623,7 +623,7 @@ Pendekatan `.with_raw_response` membaca seluruh body respons secara langsung saa
 with client.messages.with_streaming_response.create(
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
-    model="claude-opus-4-8",
+    model="claude-opus-5",
 ) as response:
     print(response.headers.get("request-id"))
 
@@ -726,7 +726,7 @@ Misalnya, untuk menggunakan [Files API](/docs/id/build-with-claude/files):
 client = Anthropic()
 
 response = client.beta.messages.create(
-    model="claude-opus-4-8",
+    model="claude-opus-5",
     max_tokens=1024,
     messages=[
         {
@@ -779,7 +779,7 @@ Paket ini secara umum mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0
 
 1. Perubahan yang hanya memengaruhi tipe statis, tanpa merusak perilaku runtime.
 2. Perubahan pada internal library yang secara teknis publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal.
-3. Perubahan yang tidak diperkirakan akan berdampak pada sebagian besar pengguna dalam praktiknya.
+3. Perubahan yang diperkirakan tidak akan berdampak pada sebagian besar pengguna dalam praktiknya.
 
 ### Menentukan versi yang terinstal
 

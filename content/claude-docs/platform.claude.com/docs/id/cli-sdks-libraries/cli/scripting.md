@@ -1,21 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 4727bbda13c4f4b9ae9ce7f4930e06891171adb286a5193c83ee9df53e052d22
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 67062df304c3701ca9e8333f23572e10f0d00a8c96082d3240f94f1459d72dd2
 ---
 
 # Scripting dan otomatisasi CLI
 
-Kontrol versi sumber daya API sebagai YAML, rangkai perintah CLI ant dalam skrip, operasikan sumber daya dari Claude Code, dan autentikasi panggilan curl dengan kredensial CLI.
+Kelola versi sumber daya API sebagai YAML, rangkai perintah CLI ant dalam skrip, operasikan sumber daya dari Claude Code, dan autentikasi panggilan curl dengan kredensial CLI.
 
 ---
 
 Halaman ini membahas alur kerja berorientasi tugas yang dibangun di atas CLI `ant`. Untuk flag dan opsi output yang mendasarinya, lihat [Menggunakan CLI](/docs/id/cli-sdks-libraries/cli/using).
 
-## Kontrol versi sumber daya API
+## Mengelola versi sumber daya API
 
-Anda dapat menggunakan CLI untuk mengontrol versi sumber daya API seperti skill, agen, environment, atau deployment sebagai file YAML di repositori Anda dan menjaganya tetap sinkron dengan Claude API.
+Anda dapat menggunakan CLI untuk mengelola versi sumber daya API seperti skill, agen, environment, atau deployment sebagai file YAML di repositori Anda dan menjaganya tetap sinkron dengan Claude API.
 
 <Note>
   Untuk informasi lebih lanjut tentang sumber daya ini, lihat [Managed Agents](/docs/id/managed-agents/overview).
@@ -27,7 +27,7 @@ Anda dapat menggunakan CLI untuk mengontrol versi sumber daya API seperti skill,
 
     ```yaml summarizer.agent.yaml
     name: Summarizer
-    model: claude-opus-4-8
+    model: claude-opus-5
     system: |
       You are a helpful assistant that writes concise summaries.
     tools:
@@ -45,15 +45,15 @@ Anda dapat menggunakan CLI untuk mengontrol versi sumber daya API seperti skill,
       "id": "agent_011CYm1BLqPXpQRk5khsSXrs",
       "version": 1,
       "name": "Summarizer",
-      "model": "claude-opus-4-8"
+      "model": "claude-opus-5"
       /* ... */
     }
     ```
 
-    Catat `id` dari respons. Anda akan meneruskannya ke perintah pembuatan sesi pada langkah berikutnya.
+    Catat `id` dari respons. Anda akan meneruskannya ke perintah pembuatan sesi pada langkah selanjutnya.
 
     <Tip>
-      Masukkan `summarizer.agent.yaml` ke dalam repositori Anda dan jaga agar tetap sinkron dengan API di pipeline CI Anda. Perintah update memerlukan ID agen dan versi saat ini sebagai flag:
+      Masukkan `summarizer.agent.yaml` ke repositori Anda dan jaga agar tetap sinkron dengan API di pipeline CI Anda. Perintah update memerlukan ID agen dan versi saat ini sebagai flag:
 
       ```bash CLI
       ant beta:agents update --agent-id agent_011CYm1BLqPXpQRk5khsSXrs --version 1 < summarizer.agent.yaml
@@ -86,10 +86,10 @@ Anda dapat menggunakan CLI untuk mengontrol versi sumber daya API seperti skill,
     }
     ```
 
-    Catat `id` dari respons. Anda akan meneruskannya ke perintah pembuatan sesi pada langkah berikutnya.
+    Catat `id` dari respons. Anda akan meneruskannya ke perintah pembuatan sesi pada langkah selanjutnya.
 
     <Tip>
-      Masukkan `summarizer.environment.yaml` ke dalam repositori Anda dan jaga agar tetap sinkron dengan API di pipeline CI Anda. Perintah update memerlukan ID environment sebagai flag:
+      Masukkan `summarizer.environment.yaml` ke repositori Anda dan jaga agar tetap sinkron dengan API di pipeline CI Anda. Perintah update memerlukan ID environment sebagai flag:
 
       ```bash CLI
       ant beta:environments update --environment-id env_01595EKxaaTTGwwY3kyXdtbs < summarizer.environment.yaml
@@ -165,7 +165,7 @@ ant beta:agents:versions list \
 
 ### Memeriksa error
 
-Flag `--transform-error` dan `--format-error` menerapkan penyaringan yang sama pada respons error. `--raw-output` tidak berlaku untuk error, jadi gunakan `--format-error yaml` untuk skalar tanpa tanda kutip. Ekstrak hanya pesan error:
+Flag `--transform-error` dan `--format-error` menerapkan pemfilteran yang sama pada respons error. `--raw-output` tidak berlaku untuk error, jadi gunakan `--format-error yaml` untuk skalar tanpa tanda kutip. Ekstrak hanya pesan error:
 
 ```bash
 ant beta:agents retrieve --agent-id bogus \
@@ -179,13 +179,13 @@ Agent not found.
 
 ## Menggunakan CLI dari Claude Code
 
-[Claude Code](https://code.claude.com/docs/id/overview) dapat menggunakan CLI `ant` secara langsung. Dengan CLI yang terpasang dan terautentikasi, Anda dapat meminta Claude Code untuk mengoperasikan sumber daya API Anda secara langsung. Sebagai contoh:
+[Claude Code](https://code.claude.com/docs/id/overview) dapat menggunakan CLI `ant` secara langsung. Dengan CLI terpasang dan terautentikasi, Anda dapat meminta Claude Code untuk mengoperasikan sumber daya API Anda secara langsung. Sebagai contoh:
 
-* "Daftarkan sesi agen terbaru saya dan rangkum mana saja yang mengalami error."
+* "Daftar sesi agen terbaru saya dan rangkum mana yang mengalami error."
 * "Unggah setiap PDF di `./reports` ke Files API dan cetak ID yang dihasilkan."
 * "Ambil event untuk sesi `session_01...` dan beri tahu saya di mana agen mengalami kebuntuan."
 
-Claude Code menjalankan `ant` melalui shell, mengurai output terstruktur, dan melakukan penalaran atas hasilnya (tidak memerlukan kode integrasi khusus).
+Claude Code menjalankan `ant` melalui shell, mem-parsing output terstruktur, dan melakukan penalaran atas hasilnya (tanpa memerlukan kode integrasi khusus).
 
 ## Autentikasi permintaan curl dengan kredensial CLI
 
@@ -199,7 +199,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-version: 2023-06-01" \
   -H "content-type: application/json" \
   -d '{
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5",
     "max_tokens": 256,
     "messages": [{"role": "user", "content": "hi"}]
   }'
@@ -209,4 +209,4 @@ curl https://api.anthropic.com/v1/messages \
   Biarkan `ANTHROPIC_API_KEY` dan `ANTHROPIC_AUTH_TOKEN` tidak diatur saat bekerja dari login CLI. Salah satu variabel tersebut akan diprioritaskan di atas login untuk perintah `ant` (lihat [Prioritas kredensial](/docs/id/manage-claude/wif-reference#credential-precedence)) dan dapat secara diam-diam mengarahkannya ke organisasi atau workspace yang berbeda.
 </Note>
 
-Jalankan [`ant auth status`](/docs/id/cli-sdks-libraries/cli/authentication#check-authentication-status) untuk mengonfirmasi organisasi dan workspace mana yang sedang Anda gunakan untuk login; perintah ini akan memberi peringatan ketika sebuah variabel lingkungan menimpa login Anda.
+Jalankan [`ant auth status`](/docs/id/cli-sdks-libraries/cli/authentication#check-authentication-status) untuk mengonfirmasi organisasi dan workspace mana yang sedang Anda gunakan untuk login; perintah ini memberi peringatan ketika sebuah variabel lingkungan menimpa login Anda.

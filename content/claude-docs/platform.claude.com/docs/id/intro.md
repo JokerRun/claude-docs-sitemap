@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/intro
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 1ca8e1f4673159e8d9aadf73f6acd2aca9fe000fd987678f162c28c2cc0f8563
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: d158bac43c53f45966f92171607c954bb67af37c662bc0eaede7c29904a51a34
 ---
 
 # Pengenalan Claude
@@ -18,9 +18,9 @@ Claude adalah platform AI yang sangat berkinerja tinggi, tepercaya, dan cerdas y
 
   **Claude Mythos 5** - Memiliki kemampuan yang sama dengan Claude Fable 5 tanpa pengklasifikasi keamanan. Tersedia dalam rilis terbatas melalui [Project Glasswing](https://anthropic.com/glasswing).
 
-  **Claude Opus 4.8** - Untuk pengodean agentik yang kompleks dan pekerjaan enterprise. Baca [pengumuman Claude Opus 4.8](https://www.anthropic.com/news/claude-opus-4-8).
+  **Claude Opus 5** - Untuk pengkodean agentik yang kompleks dan pekerjaan enterprise. Baca [pengumuman Claude Opus 5](https://www.anthropic.com/news/claude-opus-5).
 
-  **Claude Sonnet 5** - Kecerdasan terdepan dalam skala besar, dibangun untuk pengodean, agen, dan alur kerja enterprise. Baca [pengumuman Claude Sonnet 5](https://www.anthropic.com/news/claude-sonnet-5).
+  **Claude Sonnet 5** - Kecerdasan terdepan dalam skala besar, dibangun untuk pengkodean, agen, dan alur kerja enterprise. Baca [pengumuman Claude Sonnet 5](https://www.anthropic.com/news/claude-sonnet-5).
 
   **Claude Haiku 4.5** - Model tercepat dengan kecerdasan mendekati terdepan. Baca [pengumuman Claude Haiku 4.5](https://www.anthropic.com/news/claude-haiku-4-5).
 </Tip>

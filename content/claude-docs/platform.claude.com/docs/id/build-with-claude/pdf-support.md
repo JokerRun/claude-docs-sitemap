@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/pdf-support
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: c7b1e4cd42344f9b552aa8e6f37bb5f39c2d3c1585f4640a62305a40b47ffd45
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: c5ef1dd0796347ee19d4f19fd75327893158c212982fe1e1b9152ab9e8457bdb
 ---
 
 # Dukungan PDF
@@ -51,7 +51,7 @@ Dukungan PDF tersedia di Claude API, [Amazon Bedrock](/docs/id/build-with-claude
 Saat menggunakan dukungan PDF melalui Converse API, bagian dari [Claude on Amazon Bedrock (Opus 4.6 dan sebelumnya)](/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), terdapat dua mode pemrosesan dokumen yang berbeda:
 
 <Note>
-  **Penting:** Untuk mengakses kemampuan pemahaman visual PDF Claude secara penuh di Converse API, Anda harus mengaktifkan sitasi. Tanpa sitasi yang diaktifkan, API hanya akan kembali ke ekstraksi teks dasar. Pelajari lebih lanjut tentang [bekerja dengan sitasi](/docs/id/build-with-claude/citations).
+  **Penting:** Untuk mengakses kemampuan pemahaman visual PDF Claude secara penuh di Converse API, Anda harus mengaktifkan sitasi. Tanpa sitasi diaktifkan, API hanya akan kembali ke ekstraksi teks dasar. Pelajari lebih lanjut tentang [bekerja dengan sitasi](/docs/id/build-with-claude/citations).
 </Note>
 
 #### Mode pemrosesan dokumen
@@ -113,7 +113,7 @@ Pendekatan paling sederhana adalah mereferensikan PDF langsung dari URL:
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "messages": [{
           "role": "user",
@@ -134,7 +134,7 @@ Pendekatan paling sederhana adalah mereferensikan PDF langsung dari URL:
 
   ```bash CLI
   ant messages create --transform content --format yaml <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1024
   messages:
     - role: user
@@ -151,7 +151,7 @@ Pendekatan paling sederhana adalah mereferensikan PDF langsung dari URL:
   ```python Python
   client = anthropic.Anthropic()
   message = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[
           {
@@ -177,7 +177,7 @@ Pendekatan paling sederhana adalah mereferensikan PDF langsung dari URL:
   const anthropic = new Anthropic();
 
   const response = await anthropic.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -217,7 +217,7 @@ Pendekatan paling sederhana adalah mereferensikan PDF langsung dari URL:
   // Membuat pesan dengan blok konten dokumen dan teks
   var message = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Messages =
       [
@@ -240,7 +240,7 @@ Pendekatan paling sederhana adalah mereferensikan PDF langsung dari URL:
   client := anthropic.NewClient()
 
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -274,7 +274,7 @@ Pendekatan paling sederhana adalah mereferensikan PDF langsung dari URL:
 
   // Membuat pesan dengan blok konten dokumen dan teks
   MessageCreateParams params = MessageCreateParams.builder()
-    .model(Model.CLAUDE_OPUS_4_8)
+    .model(Model.CLAUDE_OPUS_5)
     .maxTokens(1024)
     .addUserMessageOfBlockParams(
       List.of(
@@ -315,7 +315,7 @@ Pendekatan paling sederhana adalah mereferensikan PDF langsung dari URL:
               ],
           ],
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
   echo $message;
@@ -325,7 +325,7 @@ Pendekatan paling sederhana adalah mereferensikan PDF langsung dari URL:
   anthropic = Anthropic::Client.new
 
   message = anthropic.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -355,7 +355,7 @@ Respons mengembalikan analisis Claude sebagai blok teks dalam `content`, dengan 
   "id": "msg_01Hfp8YuFjQ55VgWbpdHDehB",
   "type": "message",
   "role": "assistant",
-  "model": "claude-opus-4-8",
+  "model": "claude-opus-5",
   "content": [
     {
       "type": "text",
@@ -376,15 +376,15 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
 
 <CodeGroup>
   ```bash cURL
-  # Metode 1: Ambil dan enkode PDF dari jarak jauh
+  # Metode 1: Mengambil dan meng-encode PDF dari remote
   curl -sL "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf" | base64 | tr -d '\n' > pdf_base64.txt
 
-  # Metode 2: Enkode file PDF lokal
+  # Metode 2: Meng-encode file PDF lokal
   # base64 document.pdf | tr -d '\n' > pdf_base64.txt
 
   # Buat file permintaan JSON menggunakan konten pdf_base64.txt
   jq -n --rawfile PDF_BASE64 pdf_base64.txt '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "messages": [{
           "role": "user",
@@ -413,7 +413,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-4-8 \
+    --model claude-opus-5 \
     --max-tokens 1024 \
     --transform content \
     --format yaml <<'YAML'
@@ -447,7 +447,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
   # Kirim ke Claude menggunakan enkode base64
   client = anthropic.Anthropic()
   message = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[
           {
@@ -471,7 +471,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
   ```
 
   ```typescript TypeScript
-  // Metode 1: Ambil dan enkode PDF dari jarak jauh
+  // Metode 1: Ambil dan enkode PDF dari remote
   const pdfURL =
     "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf";
   const pdfResponse = await fetch(pdfURL);
@@ -485,7 +485,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
   // Kirim permintaan API dengan PDF yang dienkode base64
   const anthropic = new Anthropic();
   const response = await anthropic.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -531,7 +531,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
   // Buat pesan dengan blok konten dokumen dan teks
   var message = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Messages =
       [
@@ -571,7 +571,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
   // Kirim ke Claude menggunakan enkode base64
   client := anthropic.NewClient()
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -592,7 +592,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
   ```java Java
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-  // Metode 1: Unduh dan enkode PDF jarak jauh
+  // Metode 1: Unduh dan enkode PDF dari jarak jauh
   String pdfUrl =
     "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf";
   HttpClient httpClient = HttpClient.newBuilder().followRedirects(HttpClient.Redirect.NORMAL).build();
@@ -615,7 +615,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
 
   // Buat pesan dengan blok konten dokumen dan teks
   MessageCreateParams params = MessageCreateParams.builder()
-    .model(Model.CLAUDE_OPUS_4_8)
+    .model(Model.CLAUDE_OPUS_5)
     .maxTokens(1024)
     .addUserMessageOfBlockParams(
       List.of(
@@ -665,7 +665,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
               ],
           ],
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
   echo $message;
@@ -685,7 +685,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
   # Kirim ke Claude menggunakan enkode base64
   anthropic = Anthropic::Client.new
   message = anthropic.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -711,7 +711,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
 
 #### Opsi 3: Files API
 
-Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghindari overhead enkoding, gunakan [Files API](/docs/id/build-with-claude/files) (beta):
+Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghindari overhead enkode, gunakan [Files API](/docs/id/build-with-claude/files) (beta):
 
 <CodeGroup>
   ```bash cURL
@@ -730,7 +730,7 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
     -H "anthropic-beta: files-api-2025-04-14" \
     -d @- <<EOF
   {
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5",
     "max_tokens": 1024,
     "messages": [{
       "role": "user",
@@ -762,7 +762,7 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
     --beta files-api-2025-04-14 \
     --transform content \
     --format yaml <<YAML
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1024
   messages:
     - role: user
@@ -785,7 +785,7 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
 
   # Gunakan file yang diunggah dalam sebuah pesan
   message = client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       betas=["files-api-2025-04-14"],
       messages=[
@@ -818,9 +818,9 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
     })
   });
 
-  // Gunakan file yang diunggah dalam pesan
+  // Gunakan file yang diunggah dalam sebuah pesan
   const response = await anthropic.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     betas: ["files-api-2025-04-14"],
     messages: [
@@ -865,7 +865,7 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
   // Gunakan file yang diunggah dalam sebuah pesan
   var message = await client.Beta.Messages.Create(new MessageCreateParams
   {
-      Model = Messages::Model.ClaudeOpus4_8,
+      Model = Messages::Model.ClaudeOpus5,
       MaxTokens = 1024,
       Betas = [AnthropicBeta.FilesApi2025_04_14],
       Messages =
@@ -907,7 +907,7 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
 
   // Gunakan file yang diunggah dalam sebuah pesan
   message, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Betas:     []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
   	Messages: []anthropic.BetaMessageParam{
@@ -937,7 +937,7 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
 
   // Gunakan file yang diunggah dalam sebuah pesan
   MessageCreateParams params = MessageCreateParams.builder()
-    .model(Model.CLAUDE_OPUS_4_8)
+    .model(Model.CLAUDE_OPUS_5)
     .addBeta("files-api-2025-04-14")
     .maxTokens(1024)
     .addUserMessageOfBetaContentBlockParams(
@@ -996,7 +996,7 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
               ],
           ],
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
   echo $message;
@@ -1014,7 +1014,7 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
 
   # Gunakan file yang diunggah dalam sebuah pesan
   message = anthropic.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     betas: ["files-api-2025-04-14"],
     messages: [
@@ -1040,7 +1040,7 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
 Ketika Anda mengirim PDF ke Claude, langkah-langkah berikut terjadi:
 
 <Steps>
-  <Step title="Sistem mengekstrak konten dokumen.">
+  <Step title="Sistem mengekstrak isi dokumen.">
     * Sistem mengonversi setiap halaman dokumen menjadi gambar.
     * Teks dari setiap halaman diekstrak dan diberikan bersama gambar setiap halaman.
   </Step>
@@ -1050,8 +1050,8 @@ Ketika Anda mengirim PDF ke Claude, langkah-langkah berikut terjadi:
     * Ini memungkinkan pengguna untuk meminta wawasan tentang elemen visual dari PDF, seperti bagan, diagram, dan konten non-tekstual lainnya.
   </Step>
 
-  <Step title="Claude merespons, mereferensikan konten PDF jika relevan.">
-    Claude dapat mereferensikan konten tekstual dan visual saat merespons. Anda dapat lebih meningkatkan kinerja dengan mengintegrasikan dukungan PDF dengan:
+  <Step title="Claude merespons, mereferensikan isi PDF jika relevan.">
+    Claude dapat mereferensikan konten tekstual maupun visual saat merespons. Anda dapat lebih meningkatkan kinerja dengan mengintegrasikan dukungan PDF dengan:
 
     * [Gunakan caching prompt](#use-prompt-caching): Untuk meningkatkan kinerja pada analisis berulang.
     * [Proses batch dokumen](#process-document-batches): Untuk pemrosesan dokumen bervolume tinggi.
@@ -1076,7 +1076,7 @@ Ikuti praktik terbaik berikut untuk hasil yang optimal:
 
 * Tempatkan PDF sebelum teks dalam permintaan Anda
 * Gunakan font standar
-* Pastikan teks jelas dan terbaca
+* Pastikan teks jelas dan mudah dibaca
 * Putar halaman ke orientasi tegak yang benar
 * Gunakan nomor halaman logis (dari penampil PDF) dalam prompt
 * Pisahkan PDF besar menjadi beberapa bagian jika diperlukan
@@ -1095,7 +1095,7 @@ Lakukan cache pada PDF dengan [caching prompt](/docs/id/build-with-claude/prompt
   curl -sL "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf" | base64 | tr -d '\n' > pdf_base64.txt
   # Buat file permintaan JSON menggunakan konten pdf_base64.txt
   jq -n --rawfile PDF_BASE64 pdf_base64.txt '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "messages": [{
           "role": "user",
@@ -1127,7 +1127,7 @@ Lakukan cache pada PDF dengan [caching prompt](/docs/id/build-with-claude/prompt
 
   ```bash CLI
   ant messages create --transform content --format yaml <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1024
   messages:
     - role: user
@@ -1157,7 +1157,7 @@ Lakukan cache pada PDF dengan [caching prompt](/docs/id/build-with-claude/prompt
   # Buat pesan dengan dokumen yang di-cache
   client = anthropic.Anthropic()
   message = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[
           {
@@ -1195,7 +1195,7 @@ Lakukan cache pada PDF dengan [caching prompt](/docs/id/build-with-claude/prompt
   // Buat pesan dengan dokumen yang di-cache
   const anthropic = new Anthropic();
   const response = await anthropic.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -1232,7 +1232,7 @@ Lakukan cache pada PDF dengan [caching prompt](/docs/id/build-with-claude/prompt
 
   var message = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Messages =
       [
@@ -1272,7 +1272,7 @@ Lakukan cache pada PDF dengan [caching prompt](/docs/id/build-with-claude/prompt
   // Buat blok dokumen dengan kontrol cache
   client := anthropic.NewClient()
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -1313,7 +1313,7 @@ Lakukan cache pada PDF dengan [caching prompt](/docs/id/build-with-claude/prompt
   String pdfBase64 = Base64.getEncoder().encodeToString(response.body());
 
   MessageCreateParams params = MessageCreateParams.builder()
-    .model(Model.CLAUDE_OPUS_4_8)
+    .model(Model.CLAUDE_OPUS_5)
     .maxTokens(1024)
     .addUserMessageOfBlockParams(
       List.of(
@@ -1367,7 +1367,7 @@ Lakukan cache pada PDF dengan [caching prompt](/docs/id/build-with-claude/prompt
               ],
           ],
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
   echo $message;
@@ -1384,7 +1384,7 @@ Lakukan cache pada PDF dengan [caching prompt](/docs/id/build-with-claude/prompt
   anthropic = Anthropic::Client.new
 
   message = anthropic.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -1425,7 +1425,7 @@ Gunakan [Message Batches API](/docs/id/build-with-claude/batch-processing) untuk
       {
           "custom_id": "my-first-request",
           "params": {
-              "model": "claude-opus-4-8",
+              "model": "claude-opus-5",
               "max_tokens": 1024,
               "messages": [{
                   "role": "user",
@@ -1447,7 +1447,7 @@ Gunakan [Message Batches API](/docs/id/build-with-claude/batch-processing) untuk
       {
           "custom_id": "my-second-request",
           "params": {
-              "model": "claude-opus-4-8",
+              "model": "claude-opus-5",
               "max_tokens": 1024,
               "messages": [{
                   "role": "user",
@@ -1481,7 +1481,7 @@ Gunakan [Message Batches API](/docs/id/build-with-claude/batch-processing) untuk
   requests:
     - custom_id: my-first-request
       params:
-        model: claude-opus-4-8
+        model: claude-opus-5
         max_tokens: 1024
         messages:
           - role: user
@@ -1497,7 +1497,7 @@ Gunakan [Message Batches API](/docs/id/build-with-claude/batch-processing) untuk
                   across each use-case?
     - custom_id: my-second-request
       params:
-        model: claude-opus-4-8
+        model: claude-opus-5
         max_tokens: 1024
         messages:
           - role: user
@@ -1529,7 +1529,7 @@ Gunakan [Message Batches API](/docs/id/build-with-claude/batch-processing) untuk
           {
               "custom_id": "my-first-request",
               "params": {
-                  "model": "claude-opus-4-8",
+                  "model": "claude-opus-5",
                   "max_tokens": 1024,
                   "messages": [
                       {
@@ -1555,7 +1555,7 @@ Gunakan [Message Batches API](/docs/id/build-with-claude/batch-processing) untuk
           {
               "custom_id": "my-second-request",
               "params": {
-                  "model": "claude-opus-4-8",
+                  "model": "claude-opus-5",
                   "max_tokens": 1024,
                   "messages": [
                       {
@@ -1599,7 +1599,7 @@ Gunakan [Message Batches API](/docs/id/build-with-claude/batch-processing) untuk
       {
         custom_id: "my-first-request",
         params: {
-          model: "claude-opus-4-8",
+          model: "claude-opus-5",
           max_tokens: 1024,
           messages: [
             {
@@ -1625,7 +1625,7 @@ Gunakan [Message Batches API](/docs/id/build-with-claude/batch-processing) untuk
       {
         custom_id: "my-second-request",
         params: {
-          model: "claude-opus-4-8",
+          model: "claude-opus-5",
           max_tokens: 1024,
           messages: [
             {
@@ -1671,7 +1671,7 @@ Gunakan [Message Batches API](/docs/id/build-with-claude/batch-processing) untuk
               CustomID = "my-first-request",
               Params = new()
               {
-                  Model = Model.ClaudeOpus4_8,
+                  Model = Model.ClaudeOpus5,
                   MaxTokens = 1024,
                   Messages =
                   [
@@ -1695,7 +1695,7 @@ Gunakan [Message Batches API](/docs/id/build-with-claude/batch-processing) untuk
               CustomID = "my-second-request",
               Params = new()
               {
-                  Model = Model.ClaudeOpus4_8,
+                  Model = Model.ClaudeOpus5,
                   MaxTokens = 1024,
                   Messages =
                   [
@@ -1741,7 +1741,7 @@ Gunakan [Message Batches API](/docs/id/build-with-claude/batch-processing) untuk
   		{
   			CustomID: "my-first-request",
   			Params: anthropic.MessageBatchNewParamsRequestParams{
-  				Model:     anthropic.ModelClaudeOpus4_8,
+  				Model:     anthropic.ModelClaudeOpus5,
   				MaxTokens: 1024,
   				Messages: []anthropic.MessageParam{
   					anthropic.NewUserMessage(
@@ -1756,7 +1756,7 @@ Gunakan [Message Batches API](/docs/id/build-with-claude/batch-processing) untuk
   		{
   			CustomID: "my-second-request",
   			Params: anthropic.MessageBatchNewParamsRequestParams{
-  				Model:     anthropic.ModelClaudeOpus4_8,
+  				Model:     anthropic.ModelClaudeOpus5,
   				MaxTokens: 1024,
   				Messages: []anthropic.MessageParam{
   					anthropic.NewUserMessage(
@@ -1798,7 +1798,7 @@ Gunakan [Message Batches API](/docs/id/build-with-claude/batch-processing) untuk
         .customId("my-first-request")
         .params(
           BatchCreateParams.Request.Params.builder()
-            .model(Model.CLAUDE_OPUS_4_8)
+            .model(Model.CLAUDE_OPUS_5)
             .maxTokens(1024)
             .addUserMessageOfBlockParams(
               List.of(
@@ -1825,7 +1825,7 @@ Gunakan [Message Batches API](/docs/id/build-with-claude/batch-processing) untuk
         .customId("my-second-request")
         .params(
           BatchCreateParams.Request.Params.builder()
-            .model(Model.CLAUDE_OPUS_4_8)
+            .model(Model.CLAUDE_OPUS_5)
             .maxTokens(1024)
             .addUserMessageOfBlockParams(
               List.of(
@@ -1863,7 +1863,7 @@ Gunakan [Message Batches API](/docs/id/build-with-claude/batch-processing) untuk
           [
               'custom_id' => 'my-first-request',
               'params' => [
-                  'model' => 'claude-opus-4-8',
+                  'model' => 'claude-opus-5',
                   'max_tokens' => 1024,
                   'messages' => [
                       [
@@ -1889,7 +1889,7 @@ Gunakan [Message Batches API](/docs/id/build-with-claude/batch-processing) untuk
           [
               'custom_id' => 'my-second-request',
               'params' => [
-                  'model' => 'claude-opus-4-8',
+                  'model' => 'claude-opus-5',
                   'max_tokens' => 1024,
                   'messages' => [
                       [
@@ -1933,7 +1933,7 @@ Gunakan [Message Batches API](/docs/id/build-with-claude/batch-processing) untuk
       {
         custom_id: "my-first-request",
         params: {
-          model: "claude-opus-4-8",
+          model: "claude-opus-5",
           max_tokens: 1024,
           messages: [
             {
@@ -1959,7 +1959,7 @@ Gunakan [Message Batches API](/docs/id/build-with-claude/batch-processing) untuk
       {
         custom_id: "my-second-request",
         params: {
-          model: "claude-opus-4-8",
+          model: "claude-opus-5",
           max_tokens: 1024,
           messages: [
             {
@@ -1995,7 +1995,7 @@ Batch diproses secara asinkron. Untuk memeriksa kemajuan dan mengambil hasil set
 
 <CardGroup cols={2}>
   <Card title="Visi" icon="image" href="/docs/id/build-with-claude/vision">
-    Kemampuan visi Claude memungkinkannya untuk memahami dan menganalisis gambar, membuka kemungkinan menarik untuk interaksi multimodal.
+    Kemampuan visi Claude memungkinkannya memahami dan menganalisis gambar, membuka kemungkinan menarik untuk interaksi multimodal.
   </Card>
 
   <Card title="Coba contoh PDF" icon="file" href="https://platform.claude.com/cookbook/multimodal-getting-started-with-vision">

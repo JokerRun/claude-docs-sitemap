@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-effort-example
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: c72a30f5ee18f8b76428b32f8bac2061e918b728c88f6514fa5e17ac78e2b2cf
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 8fb5e7176fe5ee26ac9e1876421de53b222fdf7e0690672a08983e3cdc01b6a4
 ---
 
 # Membangun mode orkestrasi
@@ -13,9 +13,9 @@ Bangun mode tingkat sesi yang memberikan persetujuan tetap untuk fan-out multiag
 
 Mode orkestrasi adalah sakelar tingkat sesi: ketika aktif, model mengerahkan ketelitian maksimum pada setiap permintaan substantif, menjajaki tugas itu sendiri lalu menyebarkan pekerjaan ke subagen paralel secara default. Ketika nonaktif, alat orkestrasi yang sama kembali ke opt-in per permintaan.
 
-Mode ini bukan parameter API. Mode ini dibangun sepenuhnya dari komponen yang terdokumentasi:
+Mode ini bukan parameter API. Mode ini dibangun sepenuhnya dari bagian-bagian yang terdokumentasi:
 
-1. **Tingkat effort:** permintaan berjalan pada nilai [Effort](/docs/id/build-with-claude/effort) yang terdokumentasi seperti `xhigh`. Tidak ada tingkat tersembunyi di atas yang tercantum pada halaman tersebut.
+1. **Tingkat effort:** permintaan berjalan pada nilai [Effort](/docs/id/build-with-claude/effort) yang terdokumentasi seperti `xhigh`. Tidak ada tingkat tersembunyi di atas yang ada di halaman tersebut. Contoh ini menetapkan effort di tingkat atas setiap permintaan, yang tidak memerlukan header beta.
 2. **Pengingat mode:** sebuah [pesan sistem di tengah percakapan](/docs/id/build-with-claude/mid-conversation-system-messages) memberi tahu model bahwa mode sedang aktif, dengan penyegar satu baris setiap beberapa giliran dan pemberitahuan keluar ketika mode dimatikan. Field `system` tingkat atas tidak pernah berubah, sehingga prefiks yang di-cache tetap utuh.
 3. **Persetujuan tetap dalam deskripsi alat:** deskripsi alat orkestrasi menyatakan bahwa selama mode aktif, model harus menyusun dan menjalankan workflow untuk setiap tugas substantif tanpa bertanya terlebih dahulu.
 
@@ -25,7 +25,7 @@ Mode ini bukan parameter API. Mode ini dibangun sepenuhnya dari komponen yang te
 
 ## Menyiapkan loop
 
-Contoh ini adalah satu file. Konstanta-konstanta mengontrol tingkat effort, bentuk fan-out, dan seberapa sering penyegar mode dikirim ulang. `MAX_CONCURRENT` membatasi berapa banyak subagen yang berjalan pada saat yang sama (port PHP bersifat sekuensial dan mengabaikannya); `MAX_TOTAL_SUBTASKS` membatasi berapa banyak yang boleh diantrekan model dalam satu panggilan Workflow. Memisahkan keduanya memungkinkan model merencanakan backlog besar tanpa meluncurkan semuanya sekaligus. Pemeriksaan `DOC_TEST_MODE` membatasi loop menjadi satu giliran saja ketika variabel lingkungan tersebut diatur, sehingga harness dokumentasi otomatis dapat memvalidasi bahwa file dapat dikompilasi dan selesai dengan cepat tanpa menjalankan orkestrasi penuh; biarkan tidak diatur saat Anda menjalankan contoh ini sendiri.
+Contoh ini adalah satu file. Konstanta-konstanta mengontrol tingkat effort, bentuk fan-out, dan seberapa sering penyegar mode dikirim ulang. `MAX_CONCURRENT` membatasi berapa banyak subagen yang berjalan pada saat yang sama (port PHP bersifat sekuensial dan mengabaikannya); `MAX_TOTAL_SUBTASKS` membatasi berapa banyak yang boleh diantrekan model dalam satu panggilan Workflow. Memisahkan keduanya memungkinkan model merencanakan backlog besar tanpa meluncurkan semuanya sekaligus. Pemeriksaan `DOC_TEST_MODE` membatasi loop ke satu giliran ketika variabel lingkungan tersebut ditetapkan, sehingga harness dokumentasi otomatis dapat memvalidasi bahwa file dapat dikompilasi dan selesai dengan cepat tanpa menjalankan orkestrasi penuh; biarkan tidak ditetapkan saat Anda menjalankan contoh ini sendiri.
 
 <CodeGroup>
   ```python Python
@@ -44,7 +44,7 @@ Contoh ini adalah satu file. Konstanta-konstanta mengontrol tingkat effort, bent
 
   client = anthropic.Anthropic()
 
-  MODEL = "claude-opus-4-8"
+  MODEL = "claude-opus-5"
   EFFORT = "xhigh"
 
   SYSTEM_PROMPT = "You are a helpful general-purpose agent. Answer the user's request directly."
@@ -74,7 +74,7 @@ Contoh ini adalah satu file. Konstanta-konstanta mengontrol tingkat effort, bent
 
   const client = new Anthropic();
 
-  const MODEL = "claude-opus-4-8";
+  const MODEL = "claude-opus-5";
   const EFFORT = "xhigh";
 
   const SYSTEM_PROMPT =
@@ -102,7 +102,7 @@ Contoh ini adalah satu file. Konstanta-konstanta mengontrol tingkat effort, bent
 
   AnthropicClient client = new();
 
-  const string model = "claude-opus-4-8";
+  const string model = "claude-opus-5";
   var effort = Effort.Xhigh;
 
   const string systemPrompt = "You are a helpful general-purpose agent. Answer the user's request directly.";
@@ -148,7 +148,7 @@ Contoh ini adalah satu file. Konstanta-konstanta mengontrol tingkat effort, bent
   var client = anthropic.NewClient()
 
   const (
-  	modelID = "claude-opus-4-8"
+  	modelID = "claude-opus-5"
   	effort  = anthropic.OutputConfigEffortXhigh
 
   	systemPrompt = "You are a helpful general-purpose agent. Answer the user's request directly."
@@ -191,7 +191,6 @@ Contoh ini adalah satu file. Konstanta-konstanta mengontrol tingkat effort, bent
   import com.anthropic.models.messages.OutputConfig;
   import com.anthropic.models.messages.StopReason;
   import com.anthropic.models.messages.TextBlock;
-  import com.anthropic.models.messages.ThinkingConfigAdaptive;
   import com.anthropic.models.messages.Tool;
   import com.anthropic.models.messages.ToolBash20250124;
   import com.anthropic.models.messages.ToolResultBlockParam;
@@ -230,7 +229,7 @@ Contoh ini adalah satu file. Konstanta-konstanta mengontrol tingkat effort, bent
 
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-  static final String MODEL = "claude-opus-4-8";
+  static final String MODEL = "claude-opus-5";
   static final boolean DOC_TEST_MODE =
           !Objects.requireNonNullElse(System.getenv("DOC_TEST_MODE"), "").isEmpty();
   static final OutputConfig.Effort EFFORT = OutputConfig.Effort.XHIGH;
@@ -259,7 +258,7 @@ Contoh ini adalah satu file. Konstanta-konstanta mengontrol tingkat effort, bent
 
   $client = new Client();
 
-  const MODEL = 'claude-opus-4-8';
+  const MODEL = 'claude-opus-5';
   define('DOC_TEST_MODE', (string) getenv('DOC_TEST_MODE') !== '');
   const EFFORT = 'xhigh';
 
@@ -286,7 +285,7 @@ Contoh ini adalah satu file. Konstanta-konstanta mengontrol tingkat effort, bent
 
   CLIENT = Anthropic::Client.new
 
-  MODEL = "claude-opus-4-8"
+  MODEL = "claude-opus-5"
   EFFORT = :xhigh
 
   SYSTEM_PROMPT = "You are a helpful general-purpose agent. Answer the user's request directly."
@@ -306,7 +305,7 @@ Contoh ini adalah satu file. Konstanta-konstanta mengontrol tingkat effort, bent
 
 ## Mendefinisikan pengingat mode
 
-Pengingat sengaja dibuat singkat. Pengingat ini mengalihkan mode dan menunjuk ke deskripsi alat, tempat instruksi yang lebih berat berada. Teks lengkap dikirim sekali ketika mode dinyalakan, penyegar dikirim ulang hanya setelah beberapa giliran pengguna, dan pemberitahuan keluar dikirim sekali ketika mode dimatikan.
+Pengingat sengaja dibuat singkat. Pengingat ini mengubah status mode dan menunjuk ke deskripsi alat, tempat instruksi yang lebih berat berada. Teks lengkap dikirim sekali ketika mode dinyalakan, penyegar dikirim ulang hanya setelah beberapa giliran pengguna, dan pemberitahuan keluar dikirim sekali ketika mode dimatikan.
 
 <CodeGroup>
   ```python Python
@@ -406,7 +405,7 @@ Pengingat sengaja dibuat singkat. Pengingat ini mengalihkan mode dan menunjuk ke
 
 ## Memberikan persetujuan tetap dalam deskripsi alat
 
-Alat Workflow membawa kontrak perilaku yang sesungguhnya: aturan opt-in, persetujuan tetap yang berlaku selama mode aktif, panduan granularitas untuk menentukan ukuran fan-out, dan pola kualitas yang dapat digunakan model (gelombang verifikasi, kritikus kelengkapan, pengurutan multifase). Subagen juga mendapatkan alat `report_findings` sehingga hasil mereka kembali sebagai JSON terstruktur alih-alih prosa, dan alat bash adalah alat `bash_20250124` yang didefinisikan Anthropic dan dijalankan secara lokal.
+Alat Workflow membawa kontrak perilaku yang sebenarnya: aturan opt-in, persetujuan tetap yang berlaku selama mode aktif, panduan granularitas untuk menentukan ukuran fan-out, dan pola kualitas yang dapat digunakan model (gelombang verifikasi, kritikus kelengkapan, pengurutan multifase). Subagen juga mendapatkan alat `report_findings` sehingga hasil mereka kembali sebagai JSON terstruktur alih-alih prosa, dan alat bash adalah alat `bash_20250124` yang didefinisikan Anthropic dan dijalankan secara lokal.
 
 <CodeGroup>
   ```python Python
@@ -892,7 +891,7 @@ Alat Workflow membawa kontrak perilaku yang sesungguhnya: aturan opt-in, persetu
 
 ## Menjalankan alat bash secara lokal
 
-Handler bash menjalankan perintah yang diminta dengan timeout, menangkap gabungan stdout dan stderr, dan memotong hasilnya sehingga perintah yang tidak terkendali tidak dapat membanjiri "context window" (jendela konteks). Perintah berjalan di direktori tempat Anda meluncurkan contoh, jadi mengarahkannya ke sebuah proyek berarti memulainya di sana; ketika `DOC_TEST_MODE` diatur, harness sebagai gantinya memberi bash direktori fixture sekali pakai kecil yang dihapus saat keluar. Tidak ada sandbox di sini: perintah berjalan dengan izin dari proses yang meluncurkan contoh. Demi kejelasan, contoh ini menjalankan setiap panggilan dalam subshell baru alih-alih mempertahankan sesi persisten yang dijelaskan kontrak `bash_20250124`; agen produksi harus mendukung alat ini dengan shell yang berumur panjang sehingga direktori kerja, lingkungan, dan aksi `restart` berperilaku seperti yang didokumentasikan.
+Handler bash menjalankan perintah yang diminta dengan timeout, menangkap gabungan stdout dan stderr, dan memotong hasilnya sehingga perintah yang tak terkendali tidak dapat membanjiri jendela konteks. Perintah berjalan di direktori tempat Anda meluncurkan contoh, jadi mengarahkannya ke sebuah proyek berarti memulainya di sana; ketika `DOC_TEST_MODE` ditetapkan, harness sebagai gantinya memberi bash direktori fixture sekali pakai kecil yang dihapus saat keluar. Tidak ada sandbox di sini: perintah berjalan dengan izin dari proses yang meluncurkan contoh. Demi kejelasan, contoh ini menjalankan setiap panggilan dalam subshell baru alih-alih mempertahankan sesi persisten yang dijelaskan kontrak `bash_20250124`; agen produksi harus mendukung alat ini dengan shell berumur panjang sehingga direktori kerja, lingkungan, dan aksi `restart` berperilaku seperti yang didokumentasikan.
 
 <CodeGroup>
   ```python Python
@@ -1457,7 +1456,6 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
               model=model,
               max_tokens=64000,
               system=subagent_system,
-              thinking={"type": "adaptive"},
               output_config={"effort": EFFORT},
               tools=[BASH_TOOL, REPORT_TOOL],
               messages=messages,
@@ -1514,7 +1512,6 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
             model,
             max_tokens: 64000,
             system: subagentSystem,
-            thinking: { type: "adaptive" },
             output_config: { effort: EFFORT },
             tools: [BASH_TOOL, REPORT_TOOL],
             messages,
@@ -1588,7 +1585,6 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
               Model = model,
               MaxTokens = requestMaxTokens,
               System = subagentSystem,
-              Thinking = new ThinkingConfigAdaptive(),
               OutputConfig = new OutputConfig { Effort = effort },
               Tools = [bashTool, reportTool],
               Messages = messages,
@@ -1667,7 +1663,6 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
   				Model:        model,
   				MaxTokens:    64000,
   				System:       []anthropic.TextBlockParam{{Text: subagentSystem}},
-  				Thinking:     anthropic.ThinkingConfigParamUnion{OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{}},
   				OutputConfig: anthropic.OutputConfigParam{Effort: effort},
   				Tools:        []anthropic.ToolUnionParam{bashTool, reportTool},
   				Messages:     messages,
@@ -1749,7 +1744,6 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
                   .model(model)
                   .maxTokens(64000L)
                   .system(subagentSystem)
-                  .thinking(ThinkingConfigAdaptive.builder().build())
                   .outputConfig(OutputConfig.builder().effort(EFFORT).build())
                   .addTool(BASH_TOOL)
                   .addTool(REPORT_TOOL)
@@ -1868,7 +1862,6 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
               model: $model,
               maxTokens: 64000,
               system: $subagentSystem,
-              thinking: ['type' => 'adaptive'],
               outputConfig: ['effort' => EFFORT],
               tools: [BASH_TOOL, REPORT_TOOL],
               messages: $messages,
@@ -1937,7 +1930,6 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
         model: model,
         max_tokens: 64_000,
         system_: subagent_system,
-        thinking: {type: :adaptive},
         output_config: {effort: EFFORT},
         tools: [BASH_TOOL, REPORT_TOOL],
         messages: messages,
@@ -1984,9 +1976,9 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
   ```
 </CodeGroup>
 
-## Mencatat hasil ke jurnal agar proses ulang dapat dilanjutkan
+## Mencatat hasil dalam jurnal agar proses ulang dapat dilanjutkan
 
-Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Jurnal kecil beralamat konten membuatnya idempoten: sebelum mengirim subagen, cari SHA-256 dari prompt-nya dalam file JSON lokal, dan kembalikan hasil yang tercatat jika ada. Hentikan proses, jalankan ulang, dan hanya subtugas yang belum pernah selesai yang dihitung ulang. Jurnal melakukan deduplikasi antar proses, bukan dalam satu gelombang fan-out; hapus file jurnal untuk memulai dari awal.
+Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Jurnal kecil beralamat konten (content-addressed) membuatnya idempoten: sebelum mengirim subagen, cari SHA-256 dari prompt-nya dalam file JSON lokal, dan kembalikan hasil yang tercatat jika ada. Interupsi prosesnya, jalankan ulang, dan hanya subtugas yang belum pernah selesai yang dihitung ulang. Jurnal melakukan deduplikasi antar proses, bukan dalam satu gelombang fan-out; hapus file jurnal untuk memulai dari awal.
 
 <CodeGroup>
   ```python Python
@@ -2861,9 +2853,9 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
   ```
 </CodeGroup>
 
-## Mengalihkan mode dengan pesan sistem di tengah percakapan
+## Mengaktifkan dan menonaktifkan mode dengan pesan sistem di tengah percakapan
 
-Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang sudah waktunya: pemberitahuan keluar, teks mode lengkap saat masuk, atau penyegar berkala. Menempatkan pesan sistem setelah giliran pengguna menjaga setiap byte yang di-cache di depannya tetap tidak tersentuh, dan memenuhi aturan penempatan bahwa pesan sistem mengikuti giliran pengguna.
+Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang sudah waktunya: pemberitahuan keluar, teks mode lengkap saat masuk, atau penyegar berkala. Menempatkan pesan sistem setelah giliran pengguna menjaga setiap byte yang di-cache sebelumnya tetap tidak tersentuh, dan memenuhi aturan penempatan bahwa pesan sistem mengikuti giliran pengguna.
 
 <CodeGroup>
   ```bash cURL
@@ -2878,10 +2870,9 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
     -H "content-type: application/json" \
     -d @- <<'EOF'
   {
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5",
     "max_tokens": 64000,
     "system": "You are a helpful general-purpose agent. Answer the user's request directly.",
-    "thinking": {"type": "adaptive"},
     "output_config": {"effort": "xhigh"},
     "tools": [
       {
@@ -2922,10 +2913,9 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   # subagen ditunjukkan di tab SDK; deskripsi Workflow diringkas di sini,
   # contoh SDK memuat teks persetujuan tetap (standing consent) selengkapnya.
   ant messages create <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 64000
   system: You are a helpful general-purpose agent. Answer the user's request directly.
-  thinking: {type: adaptive}
   output_config: {effort: xhigh}
   tools:
     - name: Workflow
@@ -3018,7 +3008,6 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
                   model=self.model,
                   max_tokens=64000,
                   system=SYSTEM_PROMPT,  # static for the whole session
-                  thinking={"type": "adaptive"},
                   output_config={"effort": EFFORT},
                   tools=[WORKFLOW_TOOL, BASH_TOOL],
                   messages=self.messages,
@@ -3127,7 +3116,6 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
               model: this.model,
               max_tokens: 64000,
               system: SYSTEM_PROMPT, // static for the whole session
-              thinking: { type: "adaptive" },
               output_config: { effort: EFFORT },
               tools: [WORKFLOW_TOOL, BASH_TOOL],
               messages: this.messages,
@@ -3261,7 +3249,6 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
               Model = model,
               MaxTokens = requestMaxTokens,
               System = systemPrompt, // static for the whole session
-              Thinking = new ThinkingConfigAdaptive(),
               OutputConfig = new OutputConfig { Effort = effort },
               Tools = [workflowTool, bashTool],
               Messages = messages,
@@ -3398,7 +3385,6 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   				Model:        agent.model,
   				MaxTokens:    64000,
   				System:       []anthropic.TextBlockParam{{Text: systemPrompt}}, // static for the whole session
-  				Thinking:     anthropic.ThinkingConfigParamUnion{OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{}},
   				OutputConfig: anthropic.OutputConfigParam{Effort: effort},
   				Tools:        []anthropic.ToolUnionParam{workflowTool, bashTool},
   				Messages:     agent.messages,
@@ -3544,7 +3530,6 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
                       .model(model)
                       .maxTokens(64000L)
                       .system(SYSTEM_PROMPT) // static for the whole session
-                      .thinking(ThinkingConfigAdaptive.builder().build())
                       .outputConfig(OutputConfig.builder().effort(EFFORT).build())
                       .addTool(WORKFLOW_TOOL)
                       .addTool(BASH_TOOL)
@@ -3649,7 +3634,6 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
                   model: $this->model,
                   maxTokens: 64000,
                   system: SYSTEM_PROMPT, // static for the whole session
-                  thinking: ['type' => 'adaptive'],
                   outputConfig: ['effort' => EFFORT],
                   tools: [WORKFLOW_TOOL, BASH_TOOL],
                   messages: $this->messages,
@@ -3765,7 +3749,6 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
           model: @model,
           max_tokens: 64_000,
           system_: SYSTEM_PROMPT, # static for the whole session
-          thinking: {type: :adaptive},
           output_config: {effort: EFFORT},
           tools: [WORKFLOW_TOOL, BASH_TOOL],
           messages: @messages,
@@ -3953,15 +3936,15 @@ Mulai contoh dari direktori tempat Anda ingin agen bekerja, misalnya root dari r
 python orchestration_mode.py "Review this repository for flaky tests and propose fixes."
 ```
 
-Dengan mode aktif, harapkan model untuk menjajaki dengan beberapa perintah bash, mengirim alat Workflow tanpa diminta, dan menyintesis laporan subagen menjadi jawaban akhir. Permintaan yang sepele atau bersifat percakapan tetap ditangani sendiri, seperti yang diinstruksikan pengingat.
+Dengan mode aktif, harapkan model untuk menjajaki dengan beberapa perintah bash, mengirim alat Workflow tanpa diminta, dan menyintesis laporan subagen menjadi jawaban akhir. Permintaan yang sepele atau bersifat percakapan tetap dikerjakan sendiri, seperti yang diinstruksikan pengingat.
 
 ## Menuju harness produksi
 
 Contoh ini sengaja dibuat kecil. Harness yang dimaksudkan untuk beban kerja nyata biasanya akan menambahkan:
 
 * **Skrip orkestrasi dalam sandbox:** biarkan model menghasilkan program orkestrasi singkat (percabangan, loop, dan langkah reduce) dan menjalankannya di dalam interpreter terisolasi, alih-alih hanya menerima daftar datar string subtugas.
-* **Penjurnalan yang tahan lama:** ganti file JSON lokal dengan penyimpanan yang bertahan saat proses dimulai ulang dan aman di bawah penulis konkuren lintas mesin.
-* **Penegakan anggaran:** lacak total subagen yang diluncurkan di seluruh sesi, bukan hanya per panggilan Workflow, dan tolak untuk melampaui batas keras sehingga rencana yang tidak terkendali tidak dapat menghabiskan kuota Anda.
+* **Penjurnalan yang tahan lama:** ganti file JSON lokal dengan penyimpanan yang bertahan saat proses dimulai ulang dan aman di bawah penulis bersamaan di berbagai mesin.
+* **Penegakan anggaran:** lacak total subagen yang diluncurkan di seluruh sesi, bukan hanya per panggilan Workflow, dan tolak untuk melampaui batas keras sehingga rencana yang tak terkendali tidak dapat menghabiskan kuota Anda.
 
 Pola-pola dalam contoh ini (pengingat mode, persetujuan tetap dalam deskripsi alat, penjurnalan, dan gelombang verifikasi) tetap berlaku tanpa perubahan; hanya substrat eksekusi di sekitarnya yang menjadi lebih tangguh.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/content-moderation
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: ca1485415ca24feea5d4b09782dc81b064ac0553c851977220d84b0cfee60cf7
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 204ccb0ca8e17360fbd47627d9a12ccdc0a41b09847b2318bddcd6501fc96849
 ---
 
 # Content moderation
@@ -348,6 +348,12 @@ When selecting a model, it’s important to consider the size of your data. If c
   * Input token cost: 28,600 MTok \* $1.00/MTok = $28,600 USD
   * Output token cost: 1,500 MTok \* $5.00/MTok = $7,500 USD
   * Monthly cost: $28,600 + $7,500 = $36,100 USD
+
+* **Claude Opus 5 estimated cost**
+
+  * Input token cost: 28,600 MTok \* $5.00/MTok = $143,000 USD
+  * Output token cost: 1,500 MTok \* $25.00/MTok = $37,500 USD
+  * Monthly cost: $143,000 + $37,500 = $180,500 USD
 
 * **Claude Opus 4.8 estimated cost**
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/php
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: d16f8c5722be5af1f87e632021469e8ea85feba2e367c072ad5a94e72546dc62
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 2763db475b8a693310aec0e08a7d356e4d5ac190106b0202a5bd3d9da987fc10
 ---
 
 # PHP SDK
@@ -43,10 +43,11 @@ $client = new Client();
 $message = $client->messages->create(
   maxTokens: 1024,
   messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-  model: 'claude-opus-4-8',
+  model: 'claude-opus-5',
 );
 
-echo $message->content[0]->text;
+$textBlock = array_find($message->content, static fn ($block): bool => $block->type === 'text');
+echo $textBlock->text;
 ```
 
 For authentication options including Workload Identity Federation, see [Authentication](/docs/en/manage-claude/authentication).
@@ -67,7 +68,7 @@ $client = new Client();
 $stream = $client->messages->createStream(
   maxTokens: 1024,
   messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-  model: 'claude-opus-4-8',
+  model: 'claude-opus-5',
 );
 
 foreach ($stream as $event) {
@@ -98,7 +99,7 @@ try {
   $message = $client->messages->create(
     maxTokens: 1024,
     messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-    model: 'claude-opus-4-8',
+    model: 'claude-opus-5',
   );
 } catch (APIConnectionException $e) {
   echo "The server could not be reached", PHP_EOL;
@@ -145,7 +146,7 @@ $client = new Client(requestOptions: RequestOptions::with(maxRetries: 0));
 $result = $client->messages->create(
   maxTokens: 1024,
   messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-  model: 'claude-opus-4-8',
+  model: 'claude-opus-5',
   requestOptions: RequestOptions::with(maxRetries: 5),
 );
 ```
@@ -189,7 +190,7 @@ use Anthropic\RequestOptions;
 $message = $client->messages->create(
   maxTokens: 1024,
   messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-  model: 'claude-opus-4-8',
+  model: 'claude-opus-5',
   requestOptions: RequestOptions::with(
     extraQueryParams: ['my_query_parameter' => 'value'],
     extraBodyParams: ['my_body_parameter' => 'value'],

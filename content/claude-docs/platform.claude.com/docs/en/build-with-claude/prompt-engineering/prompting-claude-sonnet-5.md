@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: cdedcdf1ed1034465d1861cba347e1d316773733a3f2effbd1858ca0ab9263ac
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: e0bb46d295279f5cda448a475e6fca4b4030d86e690d9b88166534514c8237d1
 ---
 
 # Prompting Claude Sonnet 5
@@ -51,7 +51,7 @@ If you observe shallow reasoning on complex problems, raise effort to `high` or 
 This task involves multistep reasoning. Think carefully through the problem before responding.
 ```
 
-On Claude Sonnet 5, [adaptive thinking](/docs/en/build-with-claude/thinking-steering-and-cost) is on by default. Requests without a `thinking` field run with adaptive thinking. This is a change from Claude Sonnet 4.6, where the same requests ran without thinking. To turn thinking off entirely, pass `thinking: {type: "disabled"}`. Because `max_tokens` is a hard limit on total output (thinking plus response text), revisit it for workloads that ran without thinking on Claude Sonnet 4.6. If you were previously using thinking off with Claude Sonnet 4.6, try thinking on with lower effort levels for Claude Sonnet 5.
+On Claude Sonnet 5, [adaptive thinking](/docs/en/build-with-claude/thinking) is on by default. Requests without a `thinking` field run with adaptive thinking. This is a change from Claude Sonnet 4.6, where the same requests ran without thinking. To turn thinking off entirely, pass `thinking: {type: "disabled"}`. Because `max_tokens` is a hard limit on total output (thinking plus response text), revisit it for workloads that ran without thinking on Claude Sonnet 4.6. If you were previously using thinking off with Claude Sonnet 4.6, try thinking on with lower effort levels for Claude Sonnet 5.
 
 The triggering behavior for adaptive thinking is steerable. If you find the model emitting thinking blocks more often than you'd like, which can happen with large or complex system prompts, add guidance to steer it. As always, measure the effect of any prompting changes on performance. Example:
 

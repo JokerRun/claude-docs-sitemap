@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/files
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: 786012c3b453e98f61556dd3e7c94d8a3e6174b2bd586565c4eb2c5197e403b2
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 57e28c6c4d234bf2b71a57373c7ef90595d5e2931d010a8466ce662e933628f9
 ---
 
 # Adding files
@@ -289,6 +289,8 @@ Mount multiple files by adding entries to the `resources` array:
   ```
 
   ```csharp C#
+  using Anthropic.Models.Beta.Sessions;
+
   var resources = new[]
   {
       new BetaManagedAgentsFileResourceParams { Type = BetaManagedAgentsFileResourceParamsType.File, FileID = "file_abc123", MountPath = "/data.csv" },
@@ -306,6 +308,9 @@ Mount multiple files by adding entries to the `resources` array:
   ```
 
   ```java Java
+  import com.anthropic.models.beta.sessions.*;
+  import java.util.List;
+
   var resources = List.of(
       BetaManagedAgentsFileResourceParams.builder()
           .type(BetaManagedAgentsFileResourceParams.Type.FILE).fileId("file_abc123").mountPath("/data.csv").build(),
@@ -372,6 +377,9 @@ You can add or remove files from a session after creation using the session reso
     type: "file",
     file_id: file.id,
   });
+  if (resource.type !== "file") {
+    throw new Error(`Unexpected resource type: ${resource.type}`);
+  }
   console.log(resource.id); // "sesrsc_01ABC..."
   ```
 
@@ -462,7 +470,9 @@ List all resources on a session with `resources.list`. To remove a file, call `r
   ```typescript TypeScript
   const listed = await client.beta.sessions.resources.list(session.id);
   for (const entry of listed.data) {
-    console.log(entry.id, entry.type);
+    if (entry.type !== "memory_store") {
+      console.log(entry.id, entry.type);
+    }
   }
 
   await client.beta.sessions.resources.delete(resource.id, {

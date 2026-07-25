@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 3f5cdd986ecd8805881efe15332d96884430cf8a5c69b3dfb2ec8ea7b88b3d8e
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 6baedf21180ead7e1277f909e4d209a3cc38c0d02fa31ede3dce73dc4a26bf11
 ---
 
 # Menangani penolakan streaming
@@ -42,9 +42,9 @@ Ketika classifier streaming mendeteksi konten yang melanggar kebijakan Anthropic
 Dalam event stream, `stop_details` tiba pada event `message_delta` bersama dengan `stop_reason`.
 
 <Note>
-  Respons `refusal` dari classifier streaming dapat menyertakan objek `stop_details` dengan `category` dan `explanation` yang dapat dibaca manusia yang dapat Anda tampilkan kepada pengguna. Lihat [Penolakan dan fallback](/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk bentuk respons lengkap dan kategori yang tersedia.
+  Respons `refusal` dari classifier streaming menyertakan objek `stop_details` dengan `category` dan `explanation` yang dapat dibaca manusia yang dapat Anda tampilkan kepada pengguna. Lihat [Penolakan dan fallback](/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk bentuk respons lengkap dan kategori yang tersedia.
 
-  `stop_details` (dan `category` / `explanation`-nya) dapat bernilai `null`, misalnya ketika penolakan tidak terpetakan ke kategori bernama mana pun, atau pada model yang lebih lama. Lakukan percabangan pada `stop_reason` alih-alih mengasumsikan `stop_details` terisi, dan sediakan pesan Anda sendiri untuk pengguna ketika nilainya `null`.
+  Pada penolakan, objek `stop_details` selalu ada, tetapi field `category` dan `explanation`-nya dapat bernilai `null`, misalnya ketika penolakan tidak terpetakan ke kategori bernama mana pun. Lakukan percabangan pada `stop_reason` atau `stop_details.type` alih-alih mengasumsikan `category` dan `explanation` terisi, dan sediakan pesan Anda sendiri untuk pengguna ketika nilainya `null`.
 </Note>
 
 ## Reset konteks setelah penolakan
@@ -73,7 +73,7 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "messages": [{"role": "user", "content": "Hello"}],
       "max_tokens": 1024,
       "stream": true
@@ -102,7 +102,7 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
       with client.messages.stream(
           max_tokens=1024,
           messages=messages + [{"role": "user", "content": "Hello"}],
-          model="claude-opus-4-8",
+          model="claude-opus-5",
       ) as stream:
           for event in stream:
               # Periksa penolakan dalam delta pesan
@@ -127,7 +127,7 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
   try {
     const stream = await client.messages.stream({
       messages: [...messages, { role: "user", content: "Hello" }],
-      model: "claude-opus-4-8",
+      model: "claude-opus-5",
       max_tokens: 1024
     });
 
@@ -149,7 +149,7 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello" }]
   };
@@ -188,7 +188,7 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
   	client := anthropic.NewClient()
 
   	stream := client.Messages.NewStreaming(context.TODO(), anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus4_8,
+  		Model:     anthropic.ModelClaudeOpus5,
   		MaxTokens: 1024,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(anthropic.NewTextBlock("Hello")),
@@ -224,7 +224,7 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(1024L)
           .addUserMessage("Hello")
           .build();
@@ -265,7 +265,7 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
           messages: [
               ['role' => 'user', 'content' => 'Hello']
           ],
-          model: 'claude-opus-4-8',
+          model: 'claude-opus-5',
       );
 
       foreach ($stream as $event) {
@@ -292,7 +292,7 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
 
   begin
     stream = client.messages.stream(
-      model: :"claude-opus-4-8",
+      model: :"claude-opus-5",
       max_tokens: 1024,
       messages: [{ role: "user", content: "Hello" }]
     )
@@ -319,10 +319,6 @@ API saat ini menangani penolakan dengan tiga cara berbeda:
 | Validasi input API dan hak cipta | Kode error 400               | Ketika input gagal dalam pemeriksaan validasi      |
 | Penolakan yang dihasilkan model  | Respons teks standar         | Ketika model itu sendiri menolak                   |
 
-<Note>
-  Versi API mendatang akan memperluas pola **`stop_reason`: `refusal`** untuk menyatukan penanganan penolakan di semua jenis.
-</Note>
-
 ## Praktik terbaik
 
 * **Pantau penolakan:** Sertakan pemeriksaan **`stop_reason`: `refusal`** dalam penanganan error Anda
@@ -337,7 +333,7 @@ API saat ini menangani penolakan dengan tiga cara berbeda:
 Jika Anda membangun penanganan penolakan ketika fitur ini pertama kali dirilis, atau Anda menambahkannya ke integrasi yang sudah ada, periksa hal-hal berikut:
 
 * **Penolakan adalah respons, bukan error.** Penolakan tiba sebagai respons HTTP 200 yang berhasil dengan `stop_reason`: `"refusal"`, sehingga pemantauan yang hanya dibangun berdasarkan tingkat error tidak akan menampilkannya. Lacak penolakan sebagai sinyal tersendiri.
-* **Model yang lebih baru mengembalikan detail lebih banyak.** Pada Claude Fable 5, penolakan juga menyertakan objek `stop_details` yang mengidentifikasi kategori kebijakan di balik penolakan tersebut. Lihat [Penolakan dan fallback](/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk bentuk respons lengkap.
+* **Penolakan menyertakan detail terstruktur.** Pada setiap model, penolakan juga menyertakan objek `stop_details` yang mengidentifikasi kategori kebijakan di balik penolakan tersebut. Lihat [Penolakan dan fallback](/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk bentuk respons lengkap.
 * **Coba ulang pada model yang berbeda.** Mengirim ulang permintaan yang ditolak ke model yang sama biasanya menghasilkan penolakan lain. Alih-alih hanya mereset konteks, coba ulang pada model fallback dengan [fallback sisi server, middleware SDK, atau percobaan ulang manual](/docs/id/build-with-claude/refusals-and-fallback), dan tukarkan [fallback credit](/docs/id/build-with-claude/fallback-credit) ketika Anda membangun percobaan ulang sendiri.
 * **Periksa hasil batch untuk penolakan.** Permintaan yang ditolak dalam [Message Batch](/docs/id/build-with-claude/batch-processing) dikembalikan sebagai hasil yang berhasil dengan `stop_reason`: `"refusal"`, bukan sebagai hasil yang error.
 * **Pusatkan penanganan pada `stop_reason`.** API terus mengonsolidasikan penanganan penolakan di sekitar `stop_reason`: `"refusal"`, jadi lakukan percabangan pada stop reason alih-alih pada perilaku spesifik model.

@@ -7,10 +7,10 @@
   lastmod: '2026-07-21T01:14:37.555Z'
 - source: code
   loc: https://code.claude.com/docs/en/advisor
-  lastmod: '2026-07-16T22:59:36.925Z'
+  lastmod: '2026-07-24T17:01:55.244Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/agent-loop
-  lastmod: '2026-07-20T22:43:56.906Z'
+  lastmod: '2026-07-24T19:11:14.323Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/claude-code-features
   lastmod: '2026-07-17T19:47:18.866Z'
@@ -103,13 +103,13 @@
   lastmod: '2026-07-16T22:17:37.004Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-view
-  lastmod: '2026-07-23T15:05:38.947Z'
+  lastmod: '2026-07-24T22:13:21.739Z'
 - source: code
   loc: https://code.claude.com/docs/en/agents
   lastmod: '2026-07-18T01:56:45.625Z'
 - source: code
   loc: https://code.claude.com/docs/en/amazon-bedrock
-  lastmod: '2026-07-16T23:53:57.987Z'
+  lastmod: '2026-07-24T17:01:55.244Z'
 - source: code
   loc: https://code.claude.com/docs/en/analytics
   lastmod: '2026-07-14T01:11:53.015Z'
@@ -121,7 +121,7 @@
   lastmod: '2026-07-22T19:58:01.140Z'
 - source: code
   loc: https://code.claude.com/docs/en/auto-mode-config
-  lastmod: '2026-07-18T01:47:36.014Z'
+  lastmod: '2026-07-24T22:08:07.116Z'
 - source: code
   loc: https://code.claude.com/docs/en/best-practices
   lastmod: '2026-07-17T22:01:54.676Z'
@@ -130,7 +130,7 @@
   lastmod: '2026-04-28T15:54:10.733Z'
 - source: code
   loc: https://code.claude.com/docs/en/changelog
-  lastmod: '2026-07-22T21:35:37.247Z'
+  lastmod: '2026-07-25T01:40:54.051Z'
 - source: code
   loc: https://code.claude.com/docs/en/channels
   lastmod: '2026-07-21T17:46:11.870Z'
@@ -160,31 +160,31 @@
   lastmod: '2026-07-04T02:33:59.456Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-code-on-the-web
-  lastmod: '2026-07-22T19:09:49.125Z'
+  lastmod: '2026-07-24T21:30:41.276Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-directory
   lastmod: '2026-07-20T22:05:06.991Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-platform-on-aws
-  lastmod: '2026-07-18T00:46:00.699Z'
+  lastmod: '2026-07-24T17:01:55.234Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-security
   lastmod: '2026-07-23T17:56:11.252Z'
 - source: code
   loc: https://code.claude.com/docs/en/cli-reference
-  lastmod: '2026-07-24T00:10:00.835Z'
+  lastmod: '2026-07-24T17:01:55.245Z'
 - source: code
   loc: https://code.claude.com/docs/en/code-review
-  lastmod: '2026-07-24T00:00:56.838Z'
+  lastmod: '2026-07-24T20:48:51.091Z'
 - source: code
   loc: https://code.claude.com/docs/en/commands
-  lastmod: '2026-07-21T22:56:57.680Z'
+  lastmod: '2026-07-24T17:01:55.252Z'
 - source: code
   loc: https://code.claude.com/docs/en/common-workflows
   lastmod: '2026-07-16T22:10:51.692Z'
 - source: code
   loc: https://code.claude.com/docs/en/communications-kit
-  lastmod: '2026-07-13T16:59:43.433Z'
+  lastmod: '2026-07-24T17:01:55.233Z'
 - source: code
   loc: https://code.claude.com/docs/en/computer-use
   lastmod: '2026-07-21T20:43:38.211Z'
@@ -196,7 +196,7 @@
   lastmod: '2026-07-16T15:09:11.334Z'
 - source: code
   loc: https://code.claude.com/docs/en/costs
-  lastmod: '2026-07-22T21:11:01.578Z'
+  lastmod: '2026-07-24T20:10:53.198Z'
 - source: code
   loc: https://code.claude.com/docs/en/data-usage
   lastmod: '2026-07-18T01:47:35.949Z'
@@ -208,7 +208,7 @@
   lastmod: '2026-07-16T22:13:39.906Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop
-  lastmod: '2026-07-22T20:21:58.036Z'
+  lastmod: '2026-07-24T17:01:55.251Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop-ios-simulator
   lastmod: '2026-07-23T14:10:42.388Z'
@@ -220,7 +220,7 @@
   lastmod: '2026-07-22T20:21:58.018Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop-scheduled-tasks
-  lastmod: '2026-07-15T21:21:28.549Z'
+  lastmod: '2026-07-24T20:37:53.837Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop-wsl
   lastmod: '2026-07-13T13:43:27.161Z'
@@ -232,16 +232,16 @@
   lastmod: '2026-07-21T17:24:42.790Z'
 - source: code
   loc: https://code.claude.com/docs/en/env-vars
-  lastmod: '2026-07-23T01:25:20.293Z'
+  lastmod: '2026-07-24T17:01:55.255Z'
 - source: code
   loc: https://code.claude.com/docs/en/errors
-  lastmod: '2026-07-24T00:04:05.698Z'
+  lastmod: '2026-07-24T17:01:55.246Z'
 - source: code
   loc: https://code.claude.com/docs/en/fast-mode
-  lastmod: '2026-07-23T23:58:51.519Z'
+  lastmod: '2026-07-24T20:48:51.093Z'
 - source: code
   loc: https://code.claude.com/docs/en/feature-availability
-  lastmod: '2026-07-16T15:09:11.275Z'
+  lastmod: '2026-07-24T17:01:55.232Z'
 - source: code
   loc: https://code.claude.com/docs/en/features-overview
   lastmod: '2026-07-14T17:32:58.172Z'
@@ -268,13 +268,13 @@
   lastmod: '2026-07-13T23:43:47.889Z'
 - source: code
   loc: https://code.claude.com/docs/en/google-vertex-ai
-  lastmod: '2026-07-16T22:14:58.414Z'
+  lastmod: '2026-07-24T17:01:55.232Z'
 - source: code
   loc: https://code.claude.com/docs/en/headless
   lastmod: '2026-07-21T16:37:57.333Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks
-  lastmod: '2026-07-23T02:05:45.532Z'
+  lastmod: '2026-07-24T22:08:07.130Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks-guide
   lastmod: '2026-07-21T16:35:23.240Z'
@@ -313,7 +313,7 @@
   lastmod: '2026-07-15T16:24:44.473Z'
 - source: code
   loc: https://code.claude.com/docs/en/mcp
-  lastmod: '2026-07-22T22:45:10.824Z'
+  lastmod: '2026-07-24T22:13:21.731Z'
 - source: code
   loc: https://code.claude.com/docs/en/mcp-quickstart
   lastmod: '2026-07-16T20:39:18.058Z'
@@ -322,13 +322,13 @@
   lastmod: '2026-07-22T19:58:01.142Z'
 - source: code
   loc: https://code.claude.com/docs/en/microsoft-foundry
-  lastmod: '2026-07-16T22:09:58.952Z'
+  lastmod: '2026-07-24T17:01:55.230Z'
 - source: code
   loc: https://code.claude.com/docs/en/mobile
   lastmod: '2026-07-17T20:05:15.632Z'
 - source: code
   loc: https://code.claude.com/docs/en/model-config
-  lastmod: '2026-07-21T21:04:21.569Z'
+  lastmod: '2026-07-24T17:01:55.235Z'
 - source: code
   loc: https://code.claude.com/docs/en/monitoring-usage
   lastmod: '2026-07-22T21:48:50.170Z'
@@ -343,10 +343,10 @@
   lastmod: '2026-07-21T01:11:25.894Z'
 - source: code
   loc: https://code.claude.com/docs/en/permission-modes
-  lastmod: '2026-07-23T14:22:02.841Z'
+  lastmod: '2026-07-25T01:47:24.815Z'
 - source: code
   loc: https://code.claude.com/docs/en/permissions
-  lastmod: '2026-07-23T14:30:28.072Z'
+  lastmod: '2026-07-25T01:47:24.812Z'
 - source: code
   loc: https://code.claude.com/docs/en/platforms
   lastmod: '2026-07-17T20:05:15.519Z'
@@ -367,10 +367,10 @@
   lastmod: '2026-07-16T21:39:11.957Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugins-reference
-  lastmod: '2026-07-23T23:19:15.434Z'
+  lastmod: '2026-07-24T21:42:17.551Z'
 - source: code
   loc: https://code.claude.com/docs/en/prompt-caching
-  lastmod: '2026-07-18T00:46:00.699Z'
+  lastmod: '2026-07-24T17:01:55.235Z'
 - source: code
   loc: https://code.claude.com/docs/en/prompt-library
   lastmod: '2026-06-22T23:42:35.023Z'
@@ -388,7 +388,7 @@
   lastmod: '2026-07-16T21:13:23.717Z'
 - source: code
   loc: https://code.claude.com/docs/en/sandboxing
-  lastmod: '2026-07-21T16:15:25.394Z'
+  lastmod: '2026-07-25T01:47:24.813Z'
 - source: code
   loc: https://code.claude.com/docs/en/scheduled-tasks
   lastmod: '2026-07-21T17:47:36.718Z'
@@ -412,16 +412,16 @@
   lastmod: '2026-07-16T23:53:57.814Z'
 - source: code
   loc: https://code.claude.com/docs/en/skills
-  lastmod: '2026-07-23T15:36:38.276Z'
+  lastmod: '2026-07-24T20:48:51.095Z'
 - source: code
   loc: https://code.claude.com/docs/en/slack
   lastmod: '2026-07-15T21:00:33.542Z'
 - source: code
   loc: https://code.claude.com/docs/en/statusline
-  lastmod: '2026-07-21T00:22:35.296Z'
+  lastmod: '2026-07-24T17:01:55.245Z'
 - source: code
   loc: https://code.claude.com/docs/en/sub-agents
-  lastmod: '2026-07-23T15:36:38.278Z'
+  lastmod: '2026-07-24T17:01:55.236Z'
 - source: code
   loc: https://code.claude.com/docs/en/terminal-config
   lastmod: '2026-07-21T00:31:15.420Z'
@@ -508,7 +508,7 @@
   lastmod: '2026-07-17T19:21:49.480Z'
 - source: code
   loc: https://code.claude.com/docs/en/workflows
-  lastmod: '2026-07-23T15:36:38.280Z'
+  lastmod: '2026-07-24T21:19:55.861Z'
 - source: code
   loc: https://code.claude.com/docs/en/worktrees
   lastmod: '2026-07-17T23:53:46.469Z'
@@ -540,7 +540,7 @@
   loc: https://platform.claude.com/docs/en/about-claude/models/overview
   priority: '1'
 - source: platform
-  loc: https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-8
+  loc: https://platform.claude.com/docs/en/about-claude/models/whats-new-opus-5
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/about-claude/models/whats-new-sonnet-5
@@ -1848,6 +1848,9 @@
   loc: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-4-8
   priority: '0.8'
 - source: platform
+  loc: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5
+  priority: '0.8'
+- source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5
   priority: '0.8'
 - source: platform
@@ -2184,7 +2187,7 @@
   loc: https://platform.claude.com/docs/id/about-claude/models/overview
   priority: '0.9'
 - source: platform
-  loc: https://platform.claude.com/docs/id/about-claude/models/whats-new-claude-4-8
+  loc: https://platform.claude.com/docs/id/about-claude/models/whats-new-opus-5
   priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/about-claude/models/whats-new-sonnet-5
@@ -2448,6 +2451,9 @@
   loc: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-4-8
   priority: '0.7'
 - source: platform
+  loc: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5
+  priority: '0.7'
+- source: platform
   loc: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5
   priority: '0.7'
 - source: platform
@@ -2467,6 +2473,18 @@
   priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/build-with-claude/task-budgets
+  priority: '0.7'
+- source: platform
+  loc: https://platform.claude.com/docs/id/build-with-claude/thinking
+  priority: '0.7'
+- source: platform
+  loc: https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost
+  priority: '0.7'
+- source: platform
+  loc: https://platform.claude.com/docs/id/build-with-claude/thinking-tool-workflows
+  priority: '0.7'
+- source: platform
+  loc: https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting
   priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/build-with-claude/token-counting

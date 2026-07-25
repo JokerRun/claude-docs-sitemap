@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 50ab99a97b278791c513bab1337680fa2234500343e0d382e97ea5f37ac81ed4
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: afdb3438ec3883e5c48c2197867625867693a037c82a731d3fdadc4ed4a67ae0
 ---
 
 # Streaming pesan
@@ -15,12 +15,12 @@ Saat membuat Message, Anda dapat mengatur `"stream": true` untuk melakukan strea
 
 ## Streaming dengan SDK
 
-[Python SDK](https://github.com/anthropics/anthropic-sdk-python) dan [TypeScript SDK](https://github.com/anthropics/anthropic-sdk-typescript) menawarkan beberapa cara untuk melakukan streaming. [PHP SDK](https://github.com/anthropics/anthropic-sdk-php) menyediakan streaming melalui `createStream()`. Python SDK memungkinkan stream sinkron maupun asinkron. Lihat dokumentasi di setiap SDK untuk detailnya.
+[Python SDK](https://github.com/anthropics/anthropic-sdk-python) dan [TypeScript SDK](https://github.com/anthropics/anthropic-sdk-typescript) menawarkan beberapa cara untuk melakukan streaming. [PHP SDK](https://github.com/anthropics/anthropic-sdk-php) menyediakan streaming melalui `createStream()`. Python SDK memungkinkan stream sinkron maupun asinkron. Lihat dokumentasi di masing-masing SDK untuk detailnya.
 
 <CodeGroup>
   ```bash CLI
   ant messages create --stream --format jsonl \
-    --model claude-opus-4-8 \
+    --model claude-opus-5 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello"}' \
     | jq -rj 'select(.delta.type? == "text_delta") | .delta.text'
@@ -32,7 +32,7 @@ Saat membuat Message, Anda dapat mengatur `"stream": true` untuk melakukan strea
   with client.messages.stream(
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello"}],
-      model="claude-opus-4-8",
+      model="claude-opus-5",
   ) as stream:
       for text in stream.text_stream:
           print(text, end="", flush=True)
@@ -44,7 +44,7 @@ Saat membuat Message, Anda dapat mengatur `"stream": true` untuk melakukan strea
   await client.messages
     .stream({
       messages: [{ role: "user", content: "Hello" }],
-      model: "claude-opus-4-8",
+      model: "claude-opus-5",
       max_tokens: 1024
     })
     .on("text", (text) => {
@@ -57,7 +57,7 @@ Saat membuat Message, Anda dapat mengatur `"stream": true` untuk melakukan strea
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello" }]
   };
@@ -72,7 +72,7 @@ Saat membuat Message, Anda dapat mengatur `"stream": true` untuk melakukan strea
   client := anthropic.NewClient()
 
   stream := client.Messages.NewStreaming(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello")),
@@ -98,7 +98,7 @@ Saat membuat Message, Anda dapat mengatur `"stream": true` untuk melakukan strea
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_8)
+      .model(Model.CLAUDE_OPUS_5)
       .maxTokens(1024L)
       .addUserMessage("Hello")
       .build();
@@ -122,7 +122,7 @@ Saat membuat Message, Anda dapat mengatur `"stream": true` untuk melakukan strea
       messages: [
           ['role' => 'user', 'content' => 'Hello']
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
   foreach ($stream as $message) {
@@ -134,7 +134,7 @@ Saat membuat Message, Anda dapat mengatur `"stream": true` untuk melakukan strea
   client = Anthropic::Client.new
 
   stream = client.messages.stream(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello" }]
   )
@@ -149,11 +149,11 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
 
 <CodeGroup>
   ```bash CLI
-  # Flag --stream pada CLI ant memancarkan satu event per baris dan tidak
-  # terakumulasi menjadi Message akhir. Untuk generasi panjang, streaming
-  # event mentahnya:
+  # Flag --stream pada CLI ant mengeluarkan satu event per baris dan tidak
+  # mengakumulasikannya menjadi Message akhir. Untuk generasi yang panjang,
+  # lakukan streaming event mentahnya:
   ant messages create --stream --format jsonl <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 128000
   messages:
     - role: user
@@ -167,11 +167,13 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
   with client.messages.stream(
       max_tokens=128000,
       messages=[{"role": "user", "content": "Write a detailed analysis..."}],
-      model="claude-opus-4-8",
+      model="claude-opus-5",
   ) as stream:
       message = stream.get_final_message()
 
-  print(message.content[0].text)
+  for block in message.content:
+      if block.type == "text":
+          print(block.text)
   ```
 
   ```typescript TypeScript
@@ -180,7 +182,7 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
   const stream = client.messages.stream({
     max_tokens: 128000,
     messages: [{ role: "user", content: "Write a detailed analysis..." }],
-    model: "claude-opus-4-8"
+    model: "claude-opus-5"
   });
 
   const message = await stream.finalMessage();
@@ -195,7 +197,7 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 128000,
       Messages = [new() { Role = Role.User, Content = "Write a detailed analysis..." }]
   };
@@ -213,7 +215,7 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
   client := anthropic.NewClient()
 
   stream := client.Messages.NewStreaming(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 128000,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Write a detailed analysis...")),
@@ -231,14 +233,18 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
   	log.Fatal(err)
   }
 
-  fmt.Println(message.Content[0].Text)
+  for _, block := range message.Content {
+  	if textBlock, ok := block.AsAny().(anthropic.TextBlock); ok {
+  		fmt.Println(textBlock.Text)
+  	}
+  }
   ```
 
   ```java Java
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_8)
+      .model(Model.CLAUDE_OPUS_5)
       .maxTokens(128000L)
       .addUserMessage("Write a detailed analysis...")
       .build();
@@ -249,7 +255,9 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
   }
 
   Message message = accumulator.message();
-  message.content().get(0).text().ifPresent(tb -> System.out.println(tb.text()));
+  message.content().stream()
+      .flatMap(block -> block.text().stream())
+      .forEach(textBlock -> System.out.println(textBlock.text()));
   ```
 
   ```php PHP
@@ -260,12 +268,12 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
       messages: [
           ['role' => 'user', 'content' => 'Write a detailed analysis...']
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
   $fullText = '';
   foreach ($stream as $event) {
-      if ($event->type === 'content_block_delta') {
+      if ($event->type === 'content_block_delta' && $event->delta->type === 'text_delta') {
           $fullText .= $event->delta->text;
       }
   }
@@ -277,16 +285,18 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
   client = Anthropic::Client.new
 
   message = client.messages.stream(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 128000,
     messages: [{ role: "user", content: "Write a detailed analysis..." }]
   ).accumulated_message
 
-  puts message.content.first.text
+  message.content.each do |block|
+    puts block.text if block.type == :text
+  end
   ```
 </CodeGroup>
 
-Panggilan `.stream()` menjaga koneksi HTTP tetap hidup dengan server-sent events, kemudian `.get_final_message()` (Python) atau `.finalMessage()` (TypeScript) mengakumulasi semua event dan mengembalikan objek `Message` lengkap. Di Go, Anda memanggil `message.Accumulate(event)` di dalam loop stream untuk membangun `Message` lengkap yang sama. Di Java, gunakan `MessageAccumulator.create()` dan panggil `accumulator.accumulate(event)` pada setiap event. Di C#, await metode ekstensi `.Aggregate()` dari stream untuk mendapatkan `Message` lengkap, atau berikan `MessageContentAggregator` ke `.CollectAsync()` untuk mengagregasi sambil menangani event. Di Ruby, panggil `.accumulated_message` pada stream. Di PHP SDK, Anda melakukan iterasi atas event stream secara manual untuk mengakumulasi respons.
+Pemanggilan `.stream()` menjaga koneksi HTTP tetap hidup dengan server-sent events, kemudian `.get_final_message()` (Python) atau `.finalMessage()` (TypeScript) mengakumulasi semua event dan mengembalikan objek `Message` lengkap. Di Go, Anda memanggil `message.Accumulate(event)` di dalam loop stream untuk membangun `Message` lengkap yang sama. Di Java, gunakan `MessageAccumulator.create()` dan panggil `accumulator.accumulate(event)` pada setiap event. Di C#, await metode ekstensi `.Aggregate()` dari stream untuk mendapatkan `Message` lengkap, atau berikan `MessageContentAggregator` ke `.CollectAsync()` untuk mengagregasi sambil menangani event. Di Ruby, panggil `.accumulated_message` pada stream. Di PHP SDK, Anda melakukan iterasi atas event stream secara manual untuk mengakumulasi respons.
 
 ## Tipe event
 
@@ -300,7 +310,7 @@ Setiap stream menggunakan alur event berikut:
 4. Event `message_stop` terakhir.
 
 <Warning>
-  Jumlah token yang ditampilkan di field `usage` dari event `message_delta` bersifat *kumulatif*.
+  Jumlah token yang ditampilkan di bidang `usage` dari event `message_delta` bersifat *kumulatif*.
 </Warning>
 
 ### Event ping
@@ -309,7 +319,7 @@ Stream event juga dapat menyertakan sejumlah event `ping`.
 
 ### Event error
 
-API terkadang dapat mengirimkan [error](/docs/id/api/errors) dalam stream event. Misalnya, selama periode penggunaan tinggi, Anda mungkin menerima `overloaded_error`, yang biasanya sesuai dengan HTTP 529 dalam konteks non-streaming:
+API terkadang dapat mengirimkan [error](/docs/id/api/errors) dalam stream event. Misalnya, selama periode penggunaan tinggi, Anda mungkin menerima `overloaded_error`, yang biasanya akan sesuai dengan HTTP 529 dalam konteks non-streaming:
 
 ```sse Example error
 event: error
@@ -333,9 +343,9 @@ event: content_block_delta
 data: {"type": "content_block_delta","index": 0,"delta": {"type": "text_delta", "text": "ello frien"}}
 ```
 
-### Delta input JSON
+### Delta JSON input
 
-Delta untuk blok konten `tool_use` sesuai dengan pembaruan untuk field `input` dari blok tersebut. Untuk mendukung granularitas maksimum, delta tersebut adalah *string JSON parsial*, sedangkan `tool_use.input` akhir selalu berupa *objek*.
+Delta untuk blok konten `tool_use` sesuai dengan pembaruan untuk bidang `input` dari blok tersebut. Untuk mendukung granularitas maksimum, delta tersebut adalah *string JSON parsial*, sedangkan `tool_use.input` akhir selalu berupa *objek*.
 
 Anda dapat mengakumulasi delta string dan mem-parsing JSON setelah Anda menerima event `content_block_stop`, dengan menggunakan pustaka seperti [Pydantic](https://docs.pydantic.dev/latest/concepts/json/#partial-json-parsing) untuk melakukan parsing JSON parsial, atau dengan menggunakan [SDK](/docs/id/cli-sdks-libraries/overview), yang menyediakan helper untuk mengakses nilai inkremental yang telah di-parsing.
 
@@ -346,17 +356,17 @@ event: content_block_delta
 data: {"type": "content_block_delta","index": 1,"delta": {"type": "input_json_delta","partial_json": "{\"location\": \"San Fra"}}}
 ```
 
-Catatan: Model saat ini hanya mendukung pengeluaran satu properti kunci dan nilai lengkap dari `input` pada satu waktu. Oleh karena itu, saat menggunakan alat, mungkin ada penundaan antara event streaming saat model sedang bekerja. Setelah kunci dan nilai `input` terakumulasi, keduanya dikeluarkan sebagai beberapa event `content_block_delta` dengan JSON parsial yang dipecah-pecah sehingga format tersebut dapat secara otomatis mendukung granularitas yang lebih halus pada model di masa mendatang.
+Catatan: Model saat ini hanya mendukung pengeluaran satu properti kunci dan nilai lengkap dari `input` pada satu waktu. Oleh karena itu, saat menggunakan alat, mungkin ada penundaan antara event streaming saat model sedang bekerja. Setelah kunci dan nilai `input` terakumulasi, keduanya dikeluarkan sebagai beberapa event `content_block_delta` dengan JSON parsial yang dipecah sehingga format tersebut dapat secara otomatis mendukung granularitas yang lebih halus pada model di masa mendatang.
 
 ### Delta thinking
 
-Saat menggunakan [pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking#streaming-thinking) dengan streaming diaktifkan, Anda akan menerima konten pemikiran melalui event `thinking_delta`. Delta ini sesuai dengan field `thinking` dari blok konten `thinking`.
+Saat menggunakan [thinking](/docs/id/build-with-claude/thinking#streaming-thinking) dengan streaming diaktifkan, Anda akan menerima konten thinking melalui event `thinking_delta`. Delta ini sesuai dengan bidang `thinking` dari blok konten `thinking`.
 
-Untuk konten pemikiran, event `signature_delta` khusus dikirim tepat sebelum event `content_block_stop`. Signature ini digunakan untuk memverifikasi integritas blok pemikiran.
+Untuk konten thinking, event `signature_delta` khusus dikirim tepat sebelum event `content_block_stop`. Signature ini digunakan untuk memverifikasi integritas blok thinking.
 
-Ketika `display: "omitted"` diatur pada konfigurasi pemikiran, tidak ada event `thinking_delta` yang dikirim. Blok pemikiran terbuka, menerima satu `signature_delta`, dan tertutup. Lihat [Mengontrol tampilan pemikiran](/docs/id/build-with-claude/extended-thinking#controlling-thinking-display).
+Ketika `display: "omitted"` diatur pada konfigurasi thinking, tidak ada event `thinking_delta` yang dikirim. Blok thinking terbuka, menerima satu `signature_delta`, dan tertutup. Lihat [Mengontrol tampilan thinking](/docs/id/build-with-claude/thinking#controlling-thinking-display).
 
-Delta pemikiran yang umum terlihat seperti:
+Delta thinking yang umum terlihat seperti:
 
 ```sse Thinking delta
 event: content_block_delta
@@ -372,7 +382,7 @@ data: {"type": "content_block_delta", "index": 0, "delta": {"type": "signature_d
 
 ## Respons stream HTTP lengkap
 
-Gunakan [SDK klien](/docs/id/cli-sdks-libraries/overview) saat menggunakan mode streaming. Namun, jika Anda membangun integrasi API langsung, Anda perlu menangani event ini sendiri.
+Gunakan [SDK klien](/docs/id/cli-sdks-libraries/overview) saat menggunakan mode streaming. Namun, jika Anda membangun integrasi API langsung, Anda perlu menangani event-event ini sendiri.
 
 Respons stream terdiri dari:
 
@@ -399,7 +409,7 @@ Mungkin juga ada event `ping` yang tersebar di seluruh respons. Lihat [Tipe even
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "messages": [{"role": "user", "content": "Hello"}],
       "max_tokens": 256,
       "stream": true
@@ -408,7 +418,7 @@ Mungkin juga ada event `ping` yang tersebar di seluruh respons. Lihat [Tipe even
 
   ```bash CLI
   ant messages create --stream --format jsonl \
-    --model claude-opus-4-8 \
+    --model claude-opus-5 \
     --max-tokens 256 \
     --message '{role: user, content: Hello}'
   ```
@@ -417,7 +427,7 @@ Mungkin juga ada event `ping` yang tersebar di seluruh respons. Lihat [Tipe even
   client = anthropic.Anthropic()
 
   with client.messages.stream(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       messages=[{"role": "user", "content": "Hello"}],
       max_tokens=256,
   ) as stream:
@@ -429,7 +439,7 @@ Mungkin juga ada event `ping` yang tersebar di seluruh respons. Lihat [Tipe even
   const client = new Anthropic();
 
   const stream = client.messages.stream({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     messages: [{ role: "user", content: "Hello" }],
     max_tokens: 256
   });
@@ -446,7 +456,7 @@ Mungkin juga ada event `ping` yang tersebar di seluruh respons. Lihat [Tipe even
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 256,
       Messages = [new() { Role = Role.User, Content = "Hello" }]
   };
@@ -461,7 +471,7 @@ Mungkin juga ada event `ping` yang tersebar di seluruh respons. Lihat [Tipe even
   client := anthropic.NewClient()
 
   stream := client.Messages.NewStreaming(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 256,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello")),
@@ -487,7 +497,7 @@ Mungkin juga ada event `ping` yang tersebar di seluruh respons. Lihat [Tipe even
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_8)
+      .model(Model.CLAUDE_OPUS_5)
       .maxTokens(256L)
       .addUserMessage("Hello")
       .build();
@@ -511,7 +521,7 @@ Mungkin juga ada event `ping` yang tersebar di seluruh respons. Lihat [Tipe even
       messages: [
           ['role' => 'user', 'content' => 'Hello']
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
   foreach ($stream as $message) {
@@ -523,7 +533,7 @@ Mungkin juga ada event `ping` yang tersebar di seluruh respons. Lihat [Tipe even
   client = Anthropic::Client.new
 
   stream = client.messages.stream(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     messages: [{ role: "user", content: "Hello" }],
     max_tokens: 256
   )
@@ -534,7 +544,7 @@ Mungkin juga ada event `ping` yang tersebar di seluruh respons. Lihat [Tipe even
 
 ```sse Response
 event: message_start
-data: {"type": "message_start", "message": {"id": "msg_1nZdL29xx5MUA1yADyHTEsnR8uuvGzszyY", "type": "message", "role": "assistant", "content": [], "model": "claude-opus-4-8", "stop_reason": null, "stop_sequence": null, "usage": {"input_tokens": 25, "output_tokens": 1}}}
+data: {"type": "message_start", "message": {"id": "msg_1nZdL29xx5MUA1yADyHTEsnR8uuvGzszyY", "type": "message", "role": "assistant", "content": [], "model": "claude-opus-5", "stop_reason": null, "stop_sequence": null, "usage": {"input_tokens": 25, "output_tokens": 1}}}
 
 event: content_block_start
 data: {"type": "content_block_start", "index": 0, "content_block": {"type": "text", "text": ""}}
@@ -565,7 +575,7 @@ data: {"type": "message_stop"}
   Penggunaan alat mendukung [streaming berbutir halus](/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming) untuk nilai parameter. Aktifkan per alat dengan `eager_input_streaming`.
 </Tip>
 
-Permintaan ini meminta Claude untuk menggunakan alat untuk melaporkan cuaca.
+Permintaan ini meminta Claude untuk menggunakan alat guna melaporkan cuaca.
 
 <CodeGroup>
   ```bash cURL
@@ -574,7 +584,7 @@ Permintaan ini meminta Claude untuk menggunakan alat untuk melaporkan cuaca.
       -H "x-api-key: $ANTHROPIC_API_KEY" \
       -H "anthropic-version: 2023-06-01" \
       -d '{
-        "model": "claude-opus-4-8",
+        "model": "claude-opus-5",
         "max_tokens": 1024,
         "tools": [
           {
@@ -605,7 +615,7 @@ Permintaan ini meminta Claude untuk menggunakan alat untuk melaporkan cuaca.
 
   ```bash CLI
   ant messages create --stream --format jsonl <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1024
   tools:
     - name: get_weather
@@ -647,7 +657,7 @@ Permintaan ini meminta Claude untuk menggunakan alat untuk melaporkan cuaca.
   ]
 
   with client.messages.stream(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       tools=tools,
       tool_choice={"type": "any"},
@@ -680,7 +690,7 @@ Permintaan ini meminta Claude untuk menggunakan alat untuk melaporkan cuaca.
   ];
 
   const stream = client.messages.stream({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     tools: tools,
     tool_choice: { type: "any" },
@@ -704,7 +714,7 @@ Permintaan ini meminta Claude untuk menggunakan alat untuk melaporkan cuaca.
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Tools = [
           new ToolUnion(new Tool()
@@ -737,7 +747,7 @@ Permintaan ini meminta Claude untuk menggunakan alat untuk melaporkan cuaca.
   client := anthropic.NewClient()
 
   stream := client.Messages.NewStreaming(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Tools: []anthropic.ToolUnionParam{
   		{OfTool: &anthropic.ToolParam{
@@ -779,7 +789,7 @@ Permintaan ini meminta Claude untuk menggunakan alat untuk melaporkan cuaca.
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_8)
+      .model(Model.CLAUDE_OPUS_5)
       .maxTokens(1024L)
       .addTool(Tool.builder()
           .name("get_weather")
@@ -817,7 +827,7 @@ Permintaan ini meminta Claude untuk menggunakan alat untuk melaporkan cuaca.
       messages: [
           ['role' => 'user', 'content' => 'What is the weather like in San Francisco?']
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       toolChoice: ['type' => 'any'],
       tools: [
           [
@@ -863,7 +873,7 @@ Permintaan ini meminta Claude untuk menggunakan alat untuk melaporkan cuaca.
   ]
 
   stream = client.messages.stream(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     tools: tools,
     tool_choice: { type: "any" },
@@ -878,7 +888,7 @@ Permintaan ini meminta Claude untuk menggunakan alat untuk melaporkan cuaca.
 
 ```sse Response
 event: message_start
-data: {"type":"message_start","message":{"id":"msg_014p7gG3wDgGV9EUtLvnow3U","type":"message","role":"assistant","model":"claude-opus-4-8","stop_sequence":null,"usage":{"input_tokens":472,"output_tokens":2},"content":[],"stop_reason":null}}
+data: {"type":"message_start","message":{"id":"msg_014p7gG3wDgGV9EUtLvnow3U","type":"message","role":"assistant","model":"claude-opus-5","stop_sequence":null,"usage":{"input_tokens":472,"output_tokens":2},"content":[],"stop_reason":null}}
 
 event: content_block_start
 data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}}
@@ -959,9 +969,9 @@ event: message_stop
 data: {"type":"message_stop"}
 ```
 
-### Permintaan streaming dengan pemikiran diperpanjang
+### Permintaan streaming dengan thinking
 
-Permintaan ini mengaktifkan pemikiran diperpanjang dengan streaming. Pengaturan `display: "summarized"` melakukan streaming ringkasan padat dari penalaran Claude alih-alih rantai pemikiran lengkap.
+Permintaan ini mengaktifkan thinking dengan streaming. Pengaturan `display: "summarized"` melakukan streaming ringkasan padat dari penalaran Claude alih-alih rantai pemikiran lengkap.
 
 <CodeGroup>
   ```bash cURL
@@ -970,7 +980,7 @@ Permintaan ini mengaktifkan pemikiran diperpanjang dengan streaming. Pengaturan 
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 20000,
       "stream": true,
       "thinking": {
@@ -988,7 +998,7 @@ Permintaan ini mengaktifkan pemikiran diperpanjang dengan streaming. Pengaturan 
 
   ```bash CLI
   ant messages create --stream --format jsonl \
-    --model claude-opus-4-8 \
+    --model claude-opus-5 \
     --max-tokens 20000 \
     --thinking '{type: adaptive, display: summarized}' \
     --message '{role: user, content: What is the greatest common divisor of 1071 and 462?}'
@@ -998,7 +1008,7 @@ Permintaan ini mengaktifkan pemikiran diperpanjang dengan streaming. Pengaturan 
   client = anthropic.Anthropic()
 
   with client.messages.stream(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=20000,
       thinking={"type": "adaptive", "display": "summarized"},
       messages=[
@@ -1020,7 +1030,7 @@ Permintaan ini mengaktifkan pemikiran diperpanjang dengan streaming. Pengaturan 
   const client = new Anthropic();
 
   const stream = client.messages.stream({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 20000,
     thinking: { type: "adaptive", display: "summarized" },
     messages: [
@@ -1050,7 +1060,7 @@ Permintaan ini mengaktifkan pemikiran diperpanjang dengan streaming. Pengaturan 
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 20000,
       Thinking = new ThinkingConfigAdaptive { Display = Display.Summarized },
       Messages = [new() { Role = Role.User, Content = "What is the greatest common divisor of 1071 and 462?" }]
@@ -1066,7 +1076,7 @@ Permintaan ini mengaktifkan pemikiran diperpanjang dengan streaming. Pengaturan 
   client := anthropic.NewClient()
 
   stream := client.Messages.NewStreaming(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 20000,
   	Thinking: anthropic.ThinkingConfigParamUnion{
   		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{
@@ -1099,7 +1109,7 @@ Permintaan ini mengaktifkan pemikiran diperpanjang dengan streaming. Pengaturan 
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_8)
+      .model(Model.CLAUDE_OPUS_5)
       .maxTokens(20000L)
       .thinking(ThinkingConfigAdaptive.builder()
           .display(ThinkingConfigAdaptive.Display.SUMMARIZED)
@@ -1129,7 +1139,7 @@ Permintaan ini mengaktifkan pemikiran diperpanjang dengan streaming. Pengaturan 
       messages: [
           ['role' => 'user', 'content' => 'What is the greatest common divisor of 1071 and 462?']
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       thinking: ['type' => 'adaptive', 'display' => 'summarized'],
   );
 
@@ -1142,7 +1152,7 @@ Permintaan ini mengaktifkan pemikiran diperpanjang dengan streaming. Pengaturan 
   client = Anthropic::Client.new
 
   stream = client.messages.stream(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 20000,
     thinking: { type: "adaptive", display: "summarized" },
     messages: [
@@ -1164,7 +1174,7 @@ Permintaan ini mengaktifkan pemikiran diperpanjang dengan streaming. Pengaturan 
 
 ```sse Response
 event: message_start
-data: {"type": "message_start", "message": {"id": "msg_01...", "type": "message", "role": "assistant", "content": [], "model": "claude-opus-4-8", "stop_reason": null, "stop_sequence": null}}
+data: {"type": "message_start", "message": {"id": "msg_01...", "type": "message", "role": "assistant", "content": [], "model": "claude-opus-5", "stop_reason": null, "stop_sequence": null}}
 
 event: content_block_start
 data: {"type": "content_block_start", "index": 0, "content_block": {"type": "thinking", "thinking": "", "signature": ""}}
@@ -1214,7 +1224,7 @@ Permintaan ini meminta Claude untuk mencari informasi cuaca terkini di web.
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "stream": true,
       "tools": [
@@ -1235,7 +1245,7 @@ Permintaan ini meminta Claude untuk mencari informasi cuaca terkini di web.
 
   ```bash CLI
   ant messages create --stream --format jsonl \
-    --model claude-opus-4-8 \
+    --model claude-opus-5 \
     --max-tokens 1024 \
     --tool '{type: web_search_20250305, name: web_search, max_uses: 5}' \
     --message '{role: user, content: What is the weather like in New York City today?}'
@@ -1245,7 +1255,7 @@ Permintaan ini meminta Claude untuk mencari informasi cuaca terkini di web.
   client = anthropic.Anthropic()
 
   with client.messages.stream(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 5}],
       messages=[
@@ -1260,7 +1270,7 @@ Permintaan ini meminta Claude untuk mencari informasi cuaca terkini di web.
   const client = new Anthropic();
 
   const stream = client.messages.stream({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     tools: [{ type: "web_search_20250305", name: "web_search", max_uses: 5 }],
     messages: [{ role: "user", content: "What is the weather like in New York City today?" }]
@@ -1281,7 +1291,7 @@ Permintaan ini meminta Claude untuk mencari informasi cuaca terkini di web.
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Tools = [new ToolUnion(new WebSearchTool20250305() { MaxUses = 5 })],
       Messages = [new() { Role = Role.User, Content = "What is the weather like in New York City today?" }]
@@ -1297,7 +1307,7 @@ Permintaan ini meminta Claude untuk mencari informasi cuaca terkini di web.
   client := anthropic.NewClient()
 
   stream := client.Messages.NewStreaming(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Tools: []anthropic.ToolUnionParam{
   		{
@@ -1330,7 +1340,7 @@ Permintaan ini meminta Claude untuk mencari informasi cuaca terkini di web.
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_8)
+      .model(Model.CLAUDE_OPUS_5)
       .maxTokens(1024L)
       .addTool(WebSearchTool20250305.builder()
           .maxUses(5L)
@@ -1357,7 +1367,7 @@ Permintaan ini meminta Claude untuk mencari informasi cuaca terkini di web.
       messages: [
           ['role' => 'user', 'content' => 'What is the weather like in New York City today?']
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       tools: [
           ['type' => 'web_search_20250305', 'name' => 'web_search', 'max_uses' => 5]
       ],
@@ -1372,7 +1382,7 @@ Permintaan ini meminta Claude untuk mencari informasi cuaca terkini di web.
   client = Anthropic::Client.new
 
   stream = client.messages.stream(
-    model: :"claude-opus-4-8",
+    model: :"claude-opus-5",
     max_tokens: 1024,
     tools: [
       {
@@ -1395,7 +1405,7 @@ Permintaan ini meminta Claude untuk mencari informasi cuaca terkini di web.
 
 ```sse Response
 event: message_start
-data: {"type":"message_start","message":{"id":"msg_01G...","type":"message","role":"assistant","model":"claude-opus-4-8","content":[],"stop_reason":null,"stop_sequence":null,"usage":{"input_tokens":2679,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":3}}}
+data: {"type":"message_start","message":{"id":"msg_01G...","type":"message","role":"assistant","model":"claude-opus-5","content":[],"stop_reason":null,"stop_sequence":null,"usage":{"input_tokens":2679,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":3}}}
 
 event: content_block_start
 data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}}
@@ -1484,7 +1494,7 @@ Untuk model Claude 4.5 dan sebelumnya, Anda dapat memulihkan permintaan streamin
 Strategi pemulihan dasar melibatkan:
 
 1. **Tangkap respons parsial:** Simpan semua konten yang berhasil diterima sebelum error terjadi.
-2. **Buat permintaan lanjutan:** Buat permintaan API baru yang menyertakan respons asisten parsial sebagai awal dari pesan asisten baru.
+2. **Susun permintaan lanjutan:** Buat permintaan API baru yang menyertakan respons asisten parsial sebagai awal dari pesan asisten baru.
 3. **Lanjutkan streaming:** Lanjutkan menerima sisa respons dari titik di mana respons terputus.
 
 ### Claude 4.6 dan setelahnya
@@ -1492,7 +1502,7 @@ Strategi pemulihan dasar melibatkan:
 Untuk model Claude 4.6 dan setelahnya, strategi tangkap-dan-lanjutkan yang sama berlaku, tetapi langkah 2 berubah: alih-alih menempatkan respons parsial dalam pesan asisten, tambahkan pesan pengguna yang menginstruksikan model untuk melanjutkan dari titik terakhirnya.
 
 1. **Tangkap respons parsial:** Simpan semua konten yang berhasil diterima sebelum error terjadi.
-2. **Buat permintaan lanjutan:** Buat permintaan API baru dengan pesan pengguna yang berisi respons parsial dan instruksi untuk melanjutkan, misalnya:
+2. **Susun permintaan lanjutan:** Buat permintaan API baru dengan pesan pengguna yang berisi respons parsial dan instruksi untuk melanjutkan, misalnya:
    ```text Sample prompt wrap
    Your previous response was interrupted and ended with [previous_response]. Continue from where you left off.
    ```
@@ -1514,8 +1524,8 @@ Untuk model Claude 4.6 dan setelahnya, strategi tangkap-dan-lanjutkan yang sama 
     Streaming JSON input alat tanpa buffering sisi server untuk latensi yang lebih rendah.
   </Card>
 
-  <Card title="Pemikiran diperpanjang" icon="brain" href="/docs/id/build-with-claude/extended-thinking">
-    Streaming output pemikiran diperpanjang dengan event `thinking_delta` dan `signature_delta`.
+  <Card title="Thinking" icon="brain" href="/docs/id/build-with-claude/thinking">
+    Streaming output thinking dengan event `thinking_delta` dan `signature_delta`.
   </Card>
 
   <Card title="SDK klien" icon="code" href="/docs/id/cli-sdks-libraries/overview">
@@ -1523,6 +1533,6 @@ Untuk model Claude 4.6 dan setelahnya, strategi tangkap-dan-lanjutkan yang sama 
   </Card>
 
   <Card title="Pemrosesan batch" icon="stack" href="/docs/id/build-with-claude/batch-processing">
-    Proses permintaan dalam volume besar secara asinkron saat Anda tidak memerlukan respons real-time.
+    Proses permintaan dalam volume besar secara asinkron ketika Anda tidak memerlukan respons real-time.
   </Card>
 </CardGroup>

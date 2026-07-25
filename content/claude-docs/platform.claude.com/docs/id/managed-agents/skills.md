@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/skills
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 299d9c27604d01751634445f3ab0ff1273d235c1a718cda32262ae0221c9aedb
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 94a8918a44afc762e8ac1f506b9f14ac1dbea8e19f3692c84156dd4392326671
 ---
 
 # Skills
@@ -11,7 +11,7 @@ Lampirkan keahlian berbasis filesystem yang dapat digunakan kembali ke agen Anda
 
 ---
 
-Skills adalah sumber daya berbasis filesystem yang dapat digunakan kembali yang memberikan agen Anda keahlian spesifik domain: alur kerja, konteks, dan praktik terbaik yang mengubah agen serba guna menjadi spesialis. Setiap skill yang Anda tambahkan menimbulkan biaya kecil pada "context window" (jendela konteks) sesi, menambahkan instruksi dan metadata yang membantu model menggunakan skill tersebut. Pelajari lebih lanjut di ikhtisar [Agent Skills](/docs/id/agents-and-tools/agent-skills/overview).
+Skills adalah sumber daya berbasis filesystem yang dapat digunakan kembali yang memberikan agen Anda keahlian spesifik domain: alur kerja, konteks, dan praktik terbaik yang mengubah agen serbaguna menjadi spesialis. Setiap skill yang Anda tambahkan menimbulkan biaya kecil pada "context window" (jendela konteks) sesi, menambahkan instruksi dan metadata yang membantu model menggunakan skill tersebut. Pelajari lebih lanjut di ikhtisar [Agent Skills](/docs/id/agents-and-tools/agent-skills/overview).
 
 Anda dapat melampirkan dua jenis skill. Keduanya bekerja dengan cara yang sama: agen Anda memanggilnya secara otomatis ketika relevan dengan tugas.
 
@@ -28,9 +28,9 @@ Untuk mempelajari cara membuat skill kustom, lihat [Agent Skills](/docs/id/agent
 
 Skill kustom adalah direktori yang berisi file `SKILL.md` ditambah file pendukung apa pun, yang diunggah ke workspace Anda sebagai arsip zip atau sebagai file individual. Membuat skill mengembalikan ID `skill_*` yang Anda referensikan saat melampirkannya ke agen. Skill pre-built Anthropic sudah tersedia di setiap workspace dan tidak memerlukan langkah ini. Untuk hanya menggunakan skill pre-built, lewati ke [Melampirkan skill ke agen](#attach-skills-to-an-agent).
 
-Saat Anda memanggil Skills API secara langsung dengan cURL, teruskan header `anthropic-beta: skills-2025-10-02` secara eksplisit. CLI dan SDK mengirimkannya secara otomatis.
+Ketika Anda memanggil Skills API secara langsung dengan cURL, berikan header `anthropic-beta: skills-2025-10-02` secara eksplisit. CLI dan SDK mengirimkannya secara otomatis.
 
-Contoh-contoh ini menghilangkan field opsional `display_title`, sehingga judul skill diturunkan dari `SKILL.md`. `display_title` yang diteruskan secara eksplisit harus unik di antara skill kustom di workspace Anda.
+Contoh-contoh ini menghilangkan field opsional `display_title`, sehingga judul skill diturunkan dari `SKILL.md`. `display_title` yang diberikan secara eksplisit harus unik di antara skill kustom di workspace Anda.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -146,8 +146,8 @@ Contoh-contoh ini menghilangkan field opsional `display_title`, sehingga judul s
           AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
           SkillCreateParams params = SkillCreateParams.builder()
-              .files(MultipartField.<List<InputStream>>builder()
-                  .value(List.of(Files.newInputStream(Path.of("example_skill.zip"))))
+              .addFile(MultipartField.<InputStream>builder()
+                  .value(Files.newInputStream(Path.of("example_skill.zip")))
                   .filename("example_skill.zip")
                   .contentType("application/zip")
                   .build())
@@ -211,7 +211,7 @@ Setiap entri dalam array `skills` menggunakan field berikut:
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `type`     | Baik `anthropic` untuk skill pre-built atau `custom` untuk skill yang dibuat di workspace.                                                                                                                               |
 | `skill_id` | Pengidentifikasi skill. Untuk skill Anthropic, gunakan nama pendek (misalnya, `xlsx`). Untuk skill kustom, gunakan ID `skill_*` yang dikembalikan saat pembuatan (lihat [Membuat skill kustom](#create-a-custom-skill)). |
-| `version`  | Sematkan ke versi tertentu atau gunakan `latest`. Opsional. Default ke `latest` jika dihilangkan. Berlaku untuk skill Anthropic maupun kustom.                                                                           |
+| `version`  | Tetapkan ke versi tertentu atau gunakan `latest`. Opsional. Default ke `latest` jika dihilangkan. Berlaku untuk skill Anthropic maupun kustom.                                                                           |
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -222,11 +222,11 @@ Setiap entri dalam array `skills` menggunakan field berikut:
     --json @- <<'EOF'
   {
     "name": "Financial Analyst",
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5",
     "system": "You are a financial analysis agent.",
     "skills": [
       {"type": "anthropic", "skill_id": "xlsx"},
-      {"type": "custom", "skill_id": "skill_abc123", "version": "latest"}
+      {"type": "custom", "skill_id": "skill_01AbCdEfGhIjKlMnOpQrStUv", "version": "latest"}
     ]
   }
   EOF
@@ -236,13 +236,13 @@ Setiap entri dalam array `skills` menggunakan field berikut:
   ```bash CLI
   ant beta:agents create <<'YAML'
   name: Financial Analyst
-  model: claude-opus-4-8
+  model: claude-opus-5
   system: You are a financial analysis agent.
   skills:
     - type: anthropic
       skill_id: xlsx
     - type: custom
-      skill_id: skill_abc123
+      skill_id: skill_01AbCdEfGhIjKlMnOpQrStUv
       version: latest
   YAML
   ```
@@ -250,7 +250,7 @@ Setiap entri dalam array `skills` menggunakan field berikut:
   ```python Python
   agent = client.beta.agents.create(
       name="Financial Analyst",
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       system="You are a financial analysis agent.",
       skills=[
           {
@@ -259,7 +259,7 @@ Setiap entri dalam array `skills` menggunakan field berikut:
           },
           {
               "type": "custom",
-              "skill_id": "skill_abc123",
+              "skill_id": "skill_01AbCdEfGhIjKlMnOpQrStUv",
               "version": "latest",
           },
       ],
@@ -269,7 +269,7 @@ Setiap entri dalam array `skills` menggunakan field berikut:
   ```typescript TypeScript
   const agent = await client.beta.agents.create({
     name: "Financial Analyst",
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     system: "You are a financial analysis agent.",
     skills: [
       {
@@ -278,7 +278,7 @@ Setiap entri dalam array `skills` menggunakan field berikut:
       },
       {
         type: "custom",
-        skill_id: "skill_abc123",
+        skill_id: "skill_01AbCdEfGhIjKlMnOpQrStUv",
         version: "latest"
       }
     ]
@@ -286,15 +286,17 @@ Setiap entri dalam array `skills` menggunakan field berikut:
   ```
 
   ```csharp C#
+  using Anthropic.Models.Beta.Agents;
+
   var agent = await client.Beta.Agents.Create(new()
   {
       Name = "Financial Analyst",
-      Model = BetaManagedAgentsModel.ClaudeOpus4_8,
+      Model = BetaManagedAgentsModel.ClaudeOpus5,
       System = "You are a financial analysis agent.",
       Skills =
       [
           new BetaManagedAgentsAnthropicSkillParams { Type = BetaManagedAgentsAnthropicSkillParamsType.Anthropic, SkillID = "xlsx" },
-          new BetaManagedAgentsCustomSkillParams { Type = BetaManagedAgentsCustomSkillParamsType.Custom, SkillID = "skill_abc123", Version = "latest" },
+          new BetaManagedAgentsCustomSkillParams { Type = BetaManagedAgentsCustomSkillParamsType.Custom, SkillID = "skill_01AbCdEfGhIjKlMnOpQrStUv", Version = "latest" },
       ],
   });
   ```
@@ -303,7 +305,7 @@ Setiap entri dalam array `skills` menggunakan field berikut:
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "Financial Analyst",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: "claude-opus-4-8",
+  		ID: "claude-opus-5",
   	},
   	System: anthropic.String("You are a financial analysis agent."),
   	Skills: []anthropic.BetaManagedAgentsSkillParamsUnion{
@@ -312,7 +314,7 @@ Setiap entri dalam array `skills` menggunakan field berikut:
   			Type:    anthropic.BetaManagedAgentsAnthropicSkillParamsTypeAnthropic,
   		}},
   		{OfCustom: &anthropic.BetaManagedAgentsCustomSkillParams{
-  			SkillID: "skill_abc123",
+  			SkillID: "skill_01AbCdEfGhIjKlMnOpQrStUv",
   			Type:    anthropic.BetaManagedAgentsCustomSkillParamsTypeCustom,
   			Version: anthropic.String("latest"),
   		}},
@@ -325,10 +327,12 @@ Setiap entri dalam array `skills` menggunakan field berikut:
   ```
 
   ```java Java
+  import com.anthropic.models.beta.agents.*;
+
   var agent = client.beta().agents().create(
       AgentCreateParams.builder()
           .name("Financial Analyst")
-          .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_8)
+          .model(BetaManagedAgentsModel.CLAUDE_OPUS_5)
           .system("You are a financial analysis agent.")
           .addSkill(
               BetaManagedAgentsAnthropicSkillParams.builder()
@@ -339,7 +343,7 @@ Setiap entri dalam array `skills` menggunakan field berikut:
           .addSkill(
               BetaManagedAgentsCustomSkillParams.builder()
                   .type(BetaManagedAgentsCustomSkillParams.Type.CUSTOM)
-                  .skillId("skill_abc123")
+                  .skillId("skill_01AbCdEfGhIjKlMnOpQrStUv")
                   .version("latest")
                   .build()
           )
@@ -350,11 +354,11 @@ Setiap entri dalam array `skills` menggunakan field berikut:
   ```php PHP
   $agent = $client->beta->agents->create(
       name: 'Financial Analyst',
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       system: 'You are a financial analysis agent.',
       skills: [
           ['type' => 'anthropic', 'skill_id' => 'xlsx'],
-          ['type' => 'custom', 'skill_id' => 'skill_abc123', 'version' => 'latest'],
+          ['type' => 'custom', 'skill_id' => 'skill_01AbCdEfGhIjKlMnOpQrStUv', 'version' => 'latest'],
       ],
   );
   ```
@@ -362,11 +366,11 @@ Setiap entri dalam array `skills` menggunakan field berikut:
   ```ruby Ruby
   agent = client.beta.agents.create(
     name: "Financial Analyst",
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     system_: "You are a financial analysis agent.",
     skills: [
       {type: "anthropic", skill_id: "xlsx"},
-      {type: "custom", skill_id: "skill_abc123", version: "latest"}
+      {type: "custom", skill_id: "skill_01AbCdEfGhIjKlMnOpQrStUv", version: "latest"}
     ]
   )
   ```
@@ -375,7 +379,7 @@ Setiap entri dalam array `skills` menggunakan field berikut:
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Penyiapan lingkungan cloud" icon="settings" href="/docs/id/managed-agents/environments">
+  <Card title="Pengaturan lingkungan cloud" icon="settings" href="/docs/id/managed-agents/environments">
     Sesuaikan sandbox cloud untuk sesi Anda.
   </Card>
 

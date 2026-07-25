@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 52b31113af0cb39ae9f84179d40276920a9368b1ce74e49787dd21a9539e9cab
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 793762014f2fbae9f6f939e7a5073d3a6d9c12bea79f48015996f25cf5d76c64
 ---
 
-# Bash tool
+# Alat bash
 
 Biarkan Claude meminta perintah shell yang dijalankan aplikasi Anda dalam sesi bash persisten dan dikembalikan sebagai hasil alat.
 
@@ -15,9 +15,9 @@ Biarkan Claude meminta perintah shell yang dijalankan aplikasi Anda dalam sesi b
   Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
-Bash tool adalah [alat klien](/docs/id/agents-and-tools/tool-use/how-tool-use-works): Claude tidak menjalankan perintah sendiri. Ketika Anda menyertakan alat ini dalam sebuah permintaan, Claude membalas dengan blok `tool_use` yang menyebutkan perintah yang harus dijalankan. Aplikasi Anda menjalankan perintah tersebut dalam sesi bash yang dimilikinya dan mengembalikan output dalam blok `tool_result`.
+Alat bash adalah [alat klien](/docs/id/agents-and-tools/tool-use/how-tool-use-works): Claude tidak menjalankan perintah sendiri. Ketika Anda menyertakan alat ini dalam sebuah permintaan, Claude membalas dengan blok `tool_use` yang menyebutkan perintah yang harus dijalankan. Aplikasi Anda menjalankan perintah tersebut dalam sesi bash yang dimilikinya dan mengembalikan output dalam blok `tool_result`.
 
-Aplikasi Anda menjaga satu proses bash tetap hidup di seluruh panggilan alat, sehingga state tetap bertahan di antara perintah. Direktori kerja, variabel lingkungan, dan file apa pun yang dibuat oleh sebuah perintah masih ada untuk perintah berikutnya.
+Aplikasi Anda mempertahankan satu proses bash tetap hidup di seluruh panggilan alat, sehingga state tetap bertahan di antara perintah. Direktori kerja, variabel lingkungan, dan file apa pun yang dibuat oleh sebuah perintah masih ada untuk perintah berikutnya.
 
 Versi alat saat ini adalah `bash_20250124`. Untuk dukungan model, header beta, dan versi sebelumnya, lihat [Versi alat](#tool-versions). Untuk semua alat yang disediakan Anthropic, lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference).
 
@@ -37,7 +37,7 @@ Versi alat saat ini adalah `bash_20250124`. Untuk dukungan model, header beta, d
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "tools": [
         {
@@ -56,7 +56,7 @@ Versi alat saat ini adalah `bash_20250124`. Untuk dukungan model, header beta, d
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-4-8 \
+    --model claude-opus-5 \
     --max-tokens 1024 \
     --tool '{type: bash_20250124, name: bash}' \
     --message '{role: user, content: List all Python files in the current directory.}'
@@ -66,7 +66,7 @@ Versi alat saat ini adalah `bash_20250124`. Untuk dukungan model, header beta, d
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       tools=[{"type": "bash_20250124", "name": "bash"}],
       messages=[
@@ -81,7 +81,7 @@ Versi alat saat ini adalah `bash_20250124`. Untuk dukungan model, header beta, d
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     tools: [{ type: "bash_20250124", name: "bash" }],
     messages: [
@@ -101,7 +101,7 @@ Versi alat saat ini adalah `bash_20250124`. Untuk dukungan model, header beta, d
   var response = await client.Messages.Create(
       new()
       {
-          Model = Model.ClaudeOpus4_8,
+          Model = Model.ClaudeOpus5,
           MaxTokens = 1024,
           Tools = [new ToolBash20250124()],
           Messages =
@@ -122,7 +122,7 @@ Versi alat saat ini adalah `bash_20250124`. Untuk dukungan model, header beta, d
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Tools: []anthropic.ToolUnionParam{
   		{OfBashTool20250124: &anthropic.ToolBash20250124Param{}},
@@ -145,7 +145,7 @@ Versi alat saat ini adalah `bash_20250124`. Untuk dukungan model, header beta, d
 
       Message response = client.messages().create(
           MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_4_8)
+              .model(Model.CLAUDE_OPUS_5)
               .maxTokens(1024)
               .addTool(ToolBash20250124.builder().build())
               .addUserMessage("List all Python files in the current directory.")
@@ -162,7 +162,7 @@ Versi alat saat ini adalah `bash_20250124`. Untuk dukungan model, header beta, d
   $client = new Client();
 
   $response = $client->messages->create(
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       maxTokens: 1024,
       tools: [new ToolBash20250124()],
       messages: [
@@ -177,7 +177,7 @@ Versi alat saat ini adalah `bash_20250124`. Untuk dukungan model, header beta, d
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     tools: [{type: "bash_20250124", name: "bash"}],
     messages: [
@@ -194,7 +194,7 @@ Claude merespons dengan `stop_reason: "tool_use"` dan blok `tool_use` yang beris
 ```json Output
 {
   "id": "msg_01XAbCDeFgHiJkLmNoPQrStU",
-  "model": "claude-opus-4-8",
+  "model": "claude-opus-5",
   "stop_reason": "tool_use",
   "role": "assistant",
   "content": [
@@ -214,7 +214,7 @@ Claude merespons dengan `stop_reason: "tool_use"` dan blok `tool_use` yang beris
 }
 ```
 
-Jalankan `input.command` dalam sesi bash Anda dan kirim kembali output-nya sebagai `tool_result`. Lihat [Mengimplementasikan bash tool](#implement-the-bash-tool) untuk siklus bolak-baliknya.
+Jalankan `input.command` dalam sesi bash Anda dan kirim kembali output-nya sebagai `tool_result`. Lihat [Mengimplementasikan alat bash](#implement-the-bash-tool) untuk siklus bolak-baliknya.
 
 ## Cara kerjanya
 
@@ -222,16 +222,16 @@ Setiap panggilan alat adalah satu perjalanan bolak-balik antara Claude dan aplik
 
 1. Claude mengembalikan blok `tool_use` yang berisi `command` yang harus dijalankan.
 2. Aplikasi Anda menjalankan perintah tersebut dalam sesi bash-nya.
-3. Aplikasi Anda mengembalikan output perintah, stdout dan stderr bersama-sama, ke Claude dalam blok `tool_result`.
+3. Aplikasi Anda mengembalikan output perintah, stdout dan stderr bersama-sama, kepada Claude dalam blok `tool_result`.
 4. Claude meminta perintah lain dalam sesi yang sama atau merespons dengan teks.
 
-Claude juga dapat mengembalikan beberapa blok `tool_use` dalam satu respons. Jalankan secara berurutan dalam sesi yang sama dan kembalikan semua hasilnya dalam satu pesan `user`. Lihat [Penggunaan alat paralel](/docs/id/agents-and-tools/tool-use/parallel-tool-use).
+Claude juga dapat mengembalikan beberapa blok `tool_use` dalam satu respons. Jalankan semuanya secara berurutan dalam sesi yang sama dan kembalikan semua hasilnya dalam satu pesan `user`. Lihat [Penggunaan alat paralel](/docs/id/agents-and-tools/tool-use/parallel-tool-use).
 
-API bersifat stateless. Tidak ada apa pun tentang sesi shell Anda yang berpindah antar permintaan, sehingga aplikasi Anda yang memutuskan kapan sesi dimulai, berapa lama sesi hidup, dan kapan harus memulai ulang. Untuk siklus permintaan dan respons lengkap, lihat [Menangani panggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls).
+API bersifat stateless. Tidak ada apa pun tentang sesi shell Anda yang berpindah antar permintaan, sehingga aplikasi Anda yang memutuskan kapan sesi dimulai, berapa lama sesi itu hidup, dan kapan harus memulai ulang. Untuk siklus permintaan dan respons lengkap, lihat [Menangani panggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls).
 
 ## Parameter
 
-Definisi bash tool memiliki dua field wajib, `type` dan `name`, dan `name` harus berupa `bash`. Alat ini tanpa skema: Anda tidak menyediakan `input_schema`, karena skemanya sudah tertanam dalam model Claude dan tidak dapat dimodifikasi. Tabel berikut mencantumkan field input yang ditetapkan Claude saat memanggil alat.
+Definisi alat bash memiliki dua field wajib, `type` dan `name`, dan `name` harus berupa `bash`. Alat ini tanpa skema: Anda tidak menyediakan `input_schema`, karena skemanya sudah tertanam dalam model Claude dan tidak dapat dimodifikasi. Tabel berikut mencantumkan field input yang ditetapkan Claude saat memanggil alat.
 
 | Parameter | Wajib | Deskripsi                                     |
 | --------- | ----- | --------------------------------------------- |
@@ -240,7 +240,7 @@ Definisi bash tool memiliki dua field wajib, `type` dan `name`, dan `name` harus
 
 \*Wajib kecuali menggunakan `restart`
 
-Untuk menangani `restart: true`, matikan proses shell, mulai yang baru, dan kembalikan `tool_result` yang mengonfirmasi pemulaian ulang. Sesi yang dimulai ulang dimulai dalam keadaan bersih: direktori kerja, variabel lingkungan, dan proses apa pun yang sedang berjalan akan hilang.
+Untuk menangani `restart: true`, matikan proses shell, mulai yang baru, dan kembalikan `tool_result` yang mengonfirmasi pemulaian ulang. Sesi yang dimulai ulang dimulai dalam keadaan bersih: direktori kerja, variabel lingkungan, dan proses apa pun yang sedang berjalan hilang.
 
 <Accordion title="Contoh penggunaan">
   Menjalankan perintah:
@@ -288,13 +288,13 @@ Claude's tool uses:
 
 Sesi mempertahankan state di antara perintah, sehingga file yang dibuat pada langkah 2 tersedia pada langkah 3.
 
-## Mengimplementasikan bash tool
+## Mengimplementasikan alat bash
 
 Claude menentukan perintah mana yang harus dijalankan. Aplikasi Anda memiliki segala hal lainnya: proses shell, timeout, dan pemeriksaan keamanan. Langkah-langkah berikut menunjukkan implementasi minimal.
 
 <Steps>
   <Step title="Buat sesi bash persisten">
-    Mulai satu proses bash yang berumur panjang dan jalankan setiap perintah di dalamnya. Karena pipe ke proses yang hidup tidak pernah melaporkan end-of-file, sesi mencetak baris sentinel unik setelah setiap perintah untuk menandai di mana output perintah tersebut berakhir:
+    Mulai satu proses bash berumur panjang dan jalankan setiap perintah di dalamnya. Karena pipe ke proses yang hidup tidak pernah melaporkan end-of-file, sesi mencetak baris sentinel unik setelah setiap perintah untuk menandai di mana output perintah tersebut berakhir:
 
     <CodeGroup exclude="shell">
       ```python Python
@@ -361,7 +361,7 @@ Claude menentukan perintah mana yang harus dijalankan. Aplikasi Anda memiliki se
           this.lines = createInterface({ input: this.process.stdout });
         }
 
-        // Menjalankan perintah dalam sesi dan mengembalikan outputnya.
+        // Menjalankan perintah dalam sesi dan mengembalikan output-nya.
         executeCommand(command: string): Promise<string> {
           const sentinel = `__CLAUDE_BASH_DONE_${randomUUID()}__`; // unique per call
           const output: string[] = [];
@@ -465,7 +465,7 @@ Claude menentukan perintah mana yang harus dijalankan. Aplikasi Anda memiliki se
       	"syscall"
       )
 
-      // BashSession adalah proses bash yang tetap hidup di antara perintah sehingga state tetap tersimpan.
+      // BashSession adalah proses bash yang tetap hidup di antara perintah sehingga state-nya tetap tersimpan.
       type BashSession struct {
       	cmd    *exec.Cmd
       	stdin  io.WriteCloser
@@ -490,7 +490,7 @@ Claude menentukan perintah mana yang harus dijalankan. Aplikasi Anda memiliki se
       	return &BashSession{cmd: cmd, stdin: stdin, output: bufio.NewReader(stdout)}, nil
       }
 
-      // ExecuteCommand menjalankan perintah dalam sesi dan mengembalikan keluarannya.
+      // ExecuteCommand menjalankan sebuah perintah dalam sesi dan mengembalikan keluarannya.
       func (s *BashSession) ExecuteCommand(command string) string {
       	buf := make([]byte, 16)
       	rand.Read(buf)
@@ -508,7 +508,7 @@ Claude menentukan perintah mana yang harus dijalankan. Aplikasi Anda memiliki se
       	return output.String()
       }
 
-      // Restart mematikan shell dan memulai sesi baru sebagai gantinya.
+      // Restart mematikan shell dan memulai sesi baru sebagai penggantinya.
       func (s *BashSession) Restart() error {
       	s.cmd.Process.Kill()
       	s.cmd.Wait()
@@ -556,7 +556,7 @@ Claude menentukan perintah mana yang harus dijalankan. Aplikasi Anda memiliki se
               output = new BufferedReader(new InputStreamReader(process.getInputStream()));
           }
 
-          // Menjalankan perintah dalam sesi dan mengembalikan outputnya.
+          // Menjalankan perintah dalam sesi dan mengembalikan output-nya.
           String executeCommand(String command) throws IOException {
               String sentinel = "__CLAUDE_BASH_DONE_" + UUID.randomUUID() + "__"; // unique per call
               stdin.write(command + "\necho " + sentinel + "\n");
@@ -602,7 +602,7 @@ Claude menentukan perintah mana yang harus dijalankan. Aplikasi Anda memiliki se
 
           private function start(): void
           {
-              // setsid memberi shell process group sendiri: timeout dapat mematikan semua child
+              // setsid memberi shell grup proses sendiri: timeout dapat mematikan semua proses anak
               $this->process = proc_open(
                   ['setsid', '/bin/bash'],
                   [0 => ['pipe', 'r'], 1 => ['pipe', 'w'], 2 => ['redirect', 1]], // interleave errors with output
@@ -654,7 +654,7 @@ Claude menentukan perintah mana yang harus dijalankan. Aplikasi Anda memiliki se
           start
         end
 
-        # Menjalankan perintah dalam sesi dan mengembalikan output-nya.
+        # Menjalankan perintah dalam sesi dan mengembalikan outputnya.
         def execute_command(command)
           sentinel = "__CLAUDE_BASH_DONE_#{SecureRandom.hex(16)}__" # unique per call
           @stdin.write("#{command}\necho #{sentinel}\n")
@@ -678,8 +678,8 @@ Claude menentukan perintah mana yang harus dijalankan. Aplikasi Anda memiliki se
         private
 
         def start
-          # popen2e menggabungkan error dengan output secara berurutan; pgroup memberi shell
-          # process group sendiri sehingga timeout dapat mematikan semua proses anak
+          # popen2e menyisipkan error ke dalam output secara berurutan; pgroup memberi shell
+          # process group-nya sendiri sehingga timeout dapat mematikan semua proses anak
           @stdin, @output, @wait_thread = Open3.popen2e("/bin/bash", pgroup: true)
         end
       end
@@ -750,7 +750,7 @@ Claude menentukan perintah mana yang harus dijalankan. Aplikasi Anda memiliki se
                   result = bashSession.ExecuteCommand(command);
               }
 
-              // Satu tool_result per blok tool_use, semuanya dikembalikan dalam pesan pengguna berikutnya
+              // Satu tool_result untuk setiap blok tool_use, semuanya dikembalikan dalam pesan pengguna berikutnya
               toolResults.Add(new ToolResultBlockParam { ToolUseID = toolUse.ID, Content = result });
           }
       }
@@ -795,7 +795,7 @@ Claude menentukan perintah mana yang harus dijalankan. Aplikasi Anda memiliki se
                   result = bashSession.executeCommand(command);
               }
 
-              // Satu tool_result per blok tool_use, semuanya dikembalikan dalam pesan user berikutnya
+              // Satu tool_result per blok tool_use, semuanya dikembalikan dalam pesan pengguna berikutnya
               toolResults.add(Map.of("type", "tool_result", "tool_use_id", block.id(), "content", result));
           }
       }
@@ -848,7 +848,7 @@ Claude menentukan perintah mana yang harus dijalankan. Aplikasi Anda memiliki se
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
         -d '{
-          "model": "claude-opus-4-8",
+          "model": "claude-opus-5",
           "max_tokens": 1024,
           "tools": [
             {
@@ -890,7 +890,7 @@ Claude menentukan perintah mana yang harus dijalankan. Aplikasi Anda memiliki se
 
       ```bash CLI
       ant messages create <<'YAML'
-      model: claude-opus-4-8
+      model: claude-opus-5
       max_tokens: 1024
       tools:
         - type: bash_20250124
@@ -919,7 +919,7 @@ Claude menentukan perintah mana yang harus dijalankan. Aplikasi Anda memiliki se
       client = anthropic.Anthropic()
 
       response = client.messages.create(
-          model="claude-opus-4-8",
+          model="claude-opus-5",
           max_tokens=1024,
           tools=[{"type": "bash_20250124", "name": "bash"}],
           messages=[
@@ -955,7 +955,7 @@ Claude menentukan perintah mana yang harus dijalankan. Aplikasi Anda memiliki se
       const client = new Anthropic();
 
       const response = await client.messages.create({
-        model: "claude-opus-4-8",
+        model: "claude-opus-5",
         max_tokens: 1024,
         tools: [{ type: "bash_20250124", name: "bash" }],
         messages: [
@@ -996,7 +996,7 @@ Claude menentukan perintah mana yang harus dijalankan. Aplikasi Anda memiliki se
       var response = await client.Messages.Create(
           new()
           {
-              Model = Model.ClaudeOpus4_8,
+              Model = Model.ClaudeOpus5,
               MaxTokens = 1024,
               Tools = [new ToolBash20250124()],
               Messages =
@@ -1045,7 +1045,7 @@ Claude menentukan perintah mana yang harus dijalankan. Aplikasi Anda memiliki se
       client := anthropic.NewClient()
 
       response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus4_8,
+      	Model:     anthropic.ModelClaudeOpus5,
       	MaxTokens: 1024,
       	Tools: []anthropic.ToolUnionParam{
       		{OfBashTool20250124: &anthropic.ToolBash20250124Param{}},
@@ -1086,7 +1086,7 @@ Claude menentukan perintah mana yang harus dijalankan. Aplikasi Anda memiliki se
           AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
           MessageCreateParams params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_4_8)
+              .model(Model.CLAUDE_OPUS_5)
               .maxTokens(1024)
               .addTool(ToolBash20250124.builder().build())
               .addUserMessage("List all Python files in the current directory.")
@@ -1128,7 +1128,7 @@ Claude menentukan perintah mana yang harus dijalankan. Aplikasi Anda memiliki se
       $client = new Client();
 
       $response = $client->messages->create(
-          model: 'claude-opus-4-8',
+          model: 'claude-opus-5',
           maxTokens: 1024,
           tools: [new ToolBash20250124()],
           messages: [
@@ -1164,7 +1164,7 @@ Claude menentukan perintah mana yang harus dijalankan. Aplikasi Anda memiliki se
       client = Anthropic::Client.new
 
       response = client.messages.create(
-        model: "claude-opus-4-8",
+        model: "claude-opus-5",
         max_tokens: 1024,
         tools: [{type: "bash_20250124", name: "bash"}],
         messages: [
@@ -1443,7 +1443,7 @@ Claude menentukan perintah mana yang harus dijalankan. Aplikasi Anda memiliki se
       ```
     </CodeGroup>
 
-    Pemeriksaan ini adalah tripwire untuk kesalahan yang jelas, bukan batas penegakan. Pemeriksaan ini menolak perangkaian dengan spasi (`&&`), pipe, dan pengalihan yang digunakan oleh contoh-contoh lain di halaman ini. Pemeriksaan ini tidak menangkap operator yang menempel pada sebuah kata, seperti `cat data.txt|grep x`, karena tokenizer menyimpan `data.txt|grep` dalam satu token. Tentukan perintah dan operator mana yang diizinkan oleh aplikasi Anda. Kontrol yang sebenarnya adalah isolasi: jalankan seluruh sesi di dalam container atau mesin virtual (lihat [Keamanan](#security)).
+    Pemeriksaan ini adalah tripwire untuk kesalahan yang jelas, bukan batas penegakan. Pemeriksaan ini menolak perangkaian dengan spasi (`&&`), pipe, dan pengalihan yang digunakan oleh contoh-contoh lain di halaman ini. Pemeriksaan ini tidak menangkap operator yang menempel pada sebuah kata, seperti `cat data.txt|grep x`, karena tokenizer mempertahankan `data.txt|grep` di dalam satu token. Putuskan perintah dan operator mana yang diizinkan oleh aplikasi Anda. Kontrol yang sesungguhnya adalah isolasi: jalankan seluruh sesi di dalam container atau mesin virtual (lihat [Keamanan](#security)).
   </Step>
 </Steps>
 
@@ -1511,7 +1511,7 @@ Ketika sebuah perintah gagal atau sesi rusak, beri tahu Claude apa yang terjadi.
 
 <AccordionGroup>
   <Accordion title="Gunakan timeout perintah">
-    Perintah yang tidak pernah selesai, seperti perintah yang menunggu input, memblokir sesi selamanya karena baris sentinelnya tidak pernah tiba. Beri setiap perintah tenggat waktu. Ketika tenggat waktu terlewati, hentikan shell dan semua yang dimulai oleh perintah tersebut, lalu mulai ulang sesi:
+    Perintah yang tidak pernah selesai, seperti perintah yang menunggu input, memblokir sesi selamanya karena baris sentinel-nya tidak pernah tiba. Beri setiap perintah tenggat waktu. Ketika tenggat waktu terlewati, hentikan shell dan semua yang dimulai oleh perintah tersebut, lalu mulai ulang sesi:
 
     <CodeGroup exclude="shell">
       ```python Python
@@ -1527,14 +1527,14 @@ Ketika sebuah perintah gagal atau sesi rusak, beri tahu Claude apa yang terjadi.
               try:
                   return future.result(timeout=timeout)
               except concurrent.futures.TimeoutError:
-                  # Grup tersebut adalah shell dan setiap proses yang dimulai oleh perintah
+                  # Grup ini adalah shell dan setiap proses yang dimulai oleh perintah tersebut
                   os.killpg(session.process.pid, signal.SIGKILL)
                   session.restart()
                   return f"Error: command did not finish within {timeout} seconds"
       ```
 
       ```typescript TypeScript
-      // Menjalankan perintah dalam sesi, mengganti sesi jika perintah tersebut macet.
+      // Jalankan perintah dalam sesi, dan ganti sesi jika perintah tersebut hang.
       async function executeWithTimeout(
         session: BashSession,
         command: string,
@@ -1547,7 +1547,7 @@ Ketika sebuah perintah gagal atau sesi rusak, beri tahu Claude apa yang terjadi.
         try {
           return await Promise.race([session.executeCommand(command), timedOut]);
         } catch {
-          // Grup ini adalah shell dan setiap proses yang dimulai oleh perintah tersebut
+          // Grup ini adalah shell dan semua proses yang dimulai oleh perintah tersebut
           if (session.process.pid !== undefined) {
             process.kill(-session.process.pid, "SIGKILL");
           }
@@ -1588,7 +1588,7 @@ Ketika sebuah perintah gagal atau sesi rusak, beri tahu Claude apa yang terjadi.
       	case result := <-done:
       		return result
       	case <-time.After(time.Duration(timeoutSeconds) * time.Second):
-      		// Grup ini terdiri dari shell dan setiap proses yang dimulai oleh perintah tersebut
+      		// Grup tersebut adalah shell dan setiap proses yang dimulai oleh perintah itu
       		syscall.Kill(-session.cmd.Process.Pid, syscall.SIGKILL)
       		session.Restart()
       		return fmt.Sprintf("Error: command did not finish within %d seconds", timeoutSeconds)
@@ -1597,14 +1597,14 @@ Ketika sebuah perintah gagal atau sesi rusak, beri tahu Claude apa yang terjadi.
       ```
 
       ```java Java
-      // Jalankan perintah dalam sesi, dengan mengganti sesi jika perintah tersebut macet.
+      // Menjalankan perintah dalam sesi, mengganti sesi jika perintah macet.
       String executeWithTimeout(BashSession session, String command, int timeoutSeconds) throws Exception {
           ExecutorService pool = Executors.newSingleThreadExecutor();
           try {
               Future<String> future = pool.submit(() -> session.executeCommand(command));
               return future.get(timeoutSeconds, TimeUnit.SECONDS);
           } catch (TimeoutException e) {
-              // Hentikan shell dan semua proses yang dimulainya, lalu mulai sesi baru
+              // Menghentikan shell dan semua proses yang dimulainya, lalu memulai sesi baru
               session.process.descendants().forEach(ProcessHandle::destroyForcibly);
               session.process.destroyForcibly();
               session.restart();
@@ -1617,7 +1617,7 @@ Ketika sebuah perintah gagal atau sesi rusak, beri tahu Claude apa yang terjadi.
 
       ```php PHP
       // Jalankan perintah tetapi menyerah jika tidak selesai dalam tenggat waktu. PHP memblokir pada
-      // pembacaan pipe, jadi tenggat waktu berada di dalam loop baca: stream_select() menunggu
+      // pembacaan pipe, jadi tenggat waktu berada di dalam loop pembacaan: stream_select() menunggu
       // output yang dapat dibaca sebelum setiap fgets() sehingga loop dapat memeriksa tenggat waktu.
       function executeWithTimeout(BashSession $session, string $command, int $timeout = 30): string
       {
@@ -1641,7 +1641,7 @@ Ketika sebuah perintah gagal atau sesi rusak, beri tahu Claude apa yang terjadi.
               $output .= $line;
           }
 
-          // Grup tersebut adalah shell dan setiap proses yang dimulai oleh perintah itu
+          // Grup ini adalah shell dan setiap proses yang dimulai oleh perintah tersebut
           posix_kill(-proc_get_status($session->process)['pid'], 9); // 9 = SIGKILL
           $session->restart();
           return "Error: command did not finish within {$timeout} seconds";
@@ -1655,7 +1655,7 @@ Ketika sebuah perintah gagal atau sesi rusak, beri tahu Claude apa yang terjadi.
       def execute_with_timeout(session, command, timeout: 30)
         Timeout.timeout(timeout) { session.execute_command(command) }
       rescue Timeout::Error
-        # Grup ini adalah shell dan semua proses yang dimulai oleh perintah tersebut
+        # Grup ini adalah shell dan setiap proses yang dimulai oleh perintah tersebut
         Process.kill("KILL", -session.wait_thread.pid)
         session.restart
         "Error: command did not finish within #{timeout} seconds"
@@ -1859,7 +1859,7 @@ Ketika sebuah perintah gagal atau sesi rusak, beri tahu Claude apa yang terjadi.
       ```
 
       ```go Go
-      // executeAndLog menjalankan perintah dalam sesi dan menyimpan catatan auditnya.
+      // executeAndLog menjalankan perintah dalam sesi dan menyimpan catatan audit untuknya.
       func executeAndLog(session *BashSession, command string) string {
       	log.Printf("command=%q", command)
       	output := session.ExecuteCommand(command)
@@ -1871,7 +1871,7 @@ Ketika sebuah perintah gagal atau sesi rusak, beri tahu Claude apa yang terjadi.
       ```java Java
       static final Logger AUDIT = Logger.getLogger("bash-audit");
 
-      // Jalankan perintah dalam sesi dan simpan catatan auditnya.
+      // Menjalankan perintah dalam sesi dan menyimpan catatan auditnya.
       String executeAndLog(BashSession session, String command) throws IOException {
           AUDIT.info("command=" + command);
           String output = session.executeCommand(command);
@@ -1918,18 +1918,18 @@ Ketika sebuah perintah gagal atau sesi rusak, beri tahu Claude apa yang terjadi.
 
 Di luar isolasi, tambahkan kontrol berikut:
 
-* Validasi perintah sebelum menjalankannya, dengan allowlist alih-alih blocklist. Lihat [Mengimplementasikan bash tool](#implement-the-bash-tool).
+* Validasi perintah sebelum menjalankannya, dengan allowlist alih-alih blocklist. Lihat [Mengimplementasikan alat bash](#implement-the-bash-tool).
 * Tetapkan batas sumber daya pada proses shell (CPU, memori, dan disk), misalnya dengan `ulimit`.
 * Catat setiap perintah dan output-nya sehingga Anda dapat mengaudit apa yang dijalankan.
 * Redaksi kredensial dan rahasia lainnya dari output sebelum mengembalikannya ke Claude.
 
 ## Harga
 
-Definisi alat bash menambahkan token input berikut ke permintaan Anda. Ini merupakan tambahan dari [prompt sistem penggunaan alat](/docs/id/agents-and-tools/tool-use/overview#pricing) per-model yang berlaku setiap kali ada alat apa pun yang digunakan.
+Definisi bash tool menambahkan token input berikut ke permintaan Anda. Ini merupakan tambahan dari [prompt sistem penggunaan alat](/docs/id/agents-and-tools/tool-use/overview#pricing) per-model yang berlaku setiap kali ada alat apa pun.
 
 | Model                                                    | Token input tambahan |
 | -------------------------------------------------------- | -------------------- |
-| Claude Opus 4.7 dan Claude Opus 4.8                      | 325 token            |
+| Claude Opus 5, Claude Opus 4.8, dan Claude Opus 4.7      | 325 token            |
 | Claude Opus 4.6, Claude Sonnet 4.6, dan versi sebelumnya | 244 token            |
 
 Token tambahan dikonsumsi oleh:
@@ -1946,7 +1946,7 @@ Lihat [harga penggunaan alat](/docs/id/agents-and-tools/tool-use/overview#pricin
 
 * Menjalankan pengujian: `pytest && coverage report`
 * Membangun proyek: `npm install && npm run build`
-* Operasi Git: `git status && git add . && git commit -m "message"`
+* Operasi git: `git status && git add . && git commit -m "message"`
 
 Untuk panduan tentang penggunaan git sebagai mekanisme checkpoint-dan-pemulihan dalam alur kerja agen yang berjalan lama, lihat [praktik terbaik manajemen state](/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#state-management-best-practices).
 
@@ -1972,20 +1972,20 @@ Untuk panduan tentang penggunaan git sebagai mekanisme checkpoint-dan-pemulihan 
 
 ## Menggabungkan dengan alat lain
 
-Bash tool cocok dipadukan dengan [Text editor tool](/docs/id/agents-and-tools/tool-use/text-editor-tool): Claude mengedit file dengan satu alat dan meminta perintah yang menjalankannya dengan alat lainnya.
+Alat bash berpasangan dengan baik dengan [Alat editor teks](/docs/id/agents-and-tools/tool-use/text-editor-tool): Claude mengedit file dengan satu alat dan meminta perintah yang menjalankannya dengan alat lainnya.
 
 <Note>
-  Jika Anda juga menggunakan [Code execution tool](/docs/id/agents-and-tools/tool-use/code-execution-tool), Claude memiliki akses ke dua lingkungan eksekusi terpisah: sesi bash lokal Anda dan container sandbox Anthropic. State tidak dibagikan di antara keduanya. Lihat [Menggunakan code execution dengan alat eksekusi lainnya](/docs/id/agents-and-tools/tool-use/code-execution-tool#using-code-execution-with-other-execution-tools) untuk panduan tentang memberi prompt kepada Claude agar membedakan antar lingkungan.
+  Jika Anda juga menggunakan [Alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool), Claude memiliki akses ke dua lingkungan eksekusi terpisah: sesi bash lokal Anda dan container sandbox Anthropic. State tidak dibagikan di antara keduanya. Lihat [Menggunakan eksekusi kode dengan alat eksekusi lainnya](/docs/id/agents-and-tools/tool-use/code-execution-tool#using-code-execution-with-other-execution-tools) untuk panduan tentang memberi prompt kepada Claude agar membedakan antar lingkungan.
 </Note>
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Text editor tool" icon="file" href="/docs/id/agents-and-tools/tool-use/text-editor-tool">
+  <Card title="Alat editor teks" icon="file" href="/docs/id/agents-and-tools/tool-use/text-editor-tool">
     Lihat dan modifikasi file teks untuk men-debug, memperbaiki, dan meningkatkan kode.
   </Card>
 
   <Card title="Penggunaan alat dengan Claude" icon="tool" href="/docs/id/agents-and-tools/tool-use/overview">
-    Hubungkan Claude ke alat dan API eksternal. Lihat di mana alat dieksekusi, kapan Claude memanggilnya, dan alat mana yang sesuai dengan tugas Anda.
+    Hubungkan Claude ke alat dan API eksternal. Lihat di mana alat dieksekusi, kapan Claude memanggilnya, dan alat mana yang cocok untuk tugas Anda.
   </Card>
 </CardGroup>

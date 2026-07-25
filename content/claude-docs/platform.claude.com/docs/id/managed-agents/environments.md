@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 5b6fffcc61280de63decc72de39f5b9a537d75c41c39dd47176b890aa234903f
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 5f08322192f686e6a5268edefd3a4d00fd8d3afd7e3a459932a8520533fd9b0b
 ---
 
 # Penyiapan lingkungan cloud
@@ -11,15 +11,15 @@ Sesuaikan sandbox cloud untuk sesi Anda.
 
 ---
 
-Lingkungan mendefinisikan konfigurasi sandbox tempat agen Anda berjalan. Anda membuat lingkungan satu kali, lalu mereferensikan ID-nya setiap kali Anda memulai sesi. Beberapa sesi dapat berbagi lingkungan yang sama, tetapi setiap sesi mendapatkan sandbox terisolasinya sendiri (kontainer Linux yang baru).
+Environment (lingkungan) mendefinisikan konfigurasi sandbox tempat agen Anda berjalan. Anda membuat environment sekali, lalu mereferensikan ID-nya setiap kali Anda memulai sesi. Beberapa sesi dapat berbagi environment yang sama, tetapi setiap sesi mendapatkan sandbox terisolasi miliknya sendiri (container Linux yang baru).
 
-Halaman ini membahas lingkungan `type: cloud`. Untuk menjalankan sandbox pada infrastruktur Anda sendiri, lihat [Sandbox yang di-host sendiri](/docs/id/managed-agents/self-hosted-sandboxes).
+Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di infrastruktur Anda sendiri, lihat [Sandbox yang di-hosting sendiri](/docs/id/managed-agents/self-hosted-sandboxes).
 
 <Note>
   Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
-## Membuat lingkungan
+## Membuat environment
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -135,11 +135,11 @@ Halaman ini membahas lingkungan `type: cloud`. Untuk menjalankan sandbox pada in
   ```
 </CodeGroup>
 
-Gunakan `name` yang unik dan deskriptif agar Anda dapat membedakan antar lingkungan.
+Gunakan `name` yang unik dan deskriptif agar Anda dapat membedakan environment satu sama lain.
 
-## Menggunakan lingkungan dalam sesi
+## Menggunakan environment dalam sesi
 
-Teruskan ID lingkungan sebagai string saat [membuat sesi](/docs/id/managed-agents/sessions).
+Berikan ID environment sebagai string saat [membuat sesi](/docs/id/managed-agents/sessions).
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -223,7 +223,7 @@ Teruskan ID lingkungan sebagai string saat [membuat sesi](/docs/id/managed-agent
 
 ### Paket
 
-Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dimulai. Paket diinstal oleh package manager masing-masing dan di-cache di seluruh sesi yang berbagi lingkungan yang sama. Ketika beberapa package manager ditentukan, mereka dijalankan dalam urutan alfabetis (apt, cargo, gem, go, npm, pip). Anda dapat secara opsional menyematkan versi tertentu. Paket yang tidak disematkan akan menginstal versi terbaru.
+Field `packages` menginstal paket terlebih dahulu ke dalam sandbox sebelum agen dimulai. Paket diinstal oleh package manager masing-masing dan di-cache di seluruh sesi yang berbagi environment yang sama. Ketika beberapa package manager ditentukan, mereka berjalan dalam urutan alfabetis (apt, cargo, gem, go, npm, pip). Anda dapat secara opsional menyematkan versi tertentu. Paket yang tidak disematkan akan menginstal versi terbaru.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -294,6 +294,8 @@ Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dim
   ```
 
   ```csharp C#
+  using Anthropic.Models.Beta.Environments;
+
   var environment = await client.Beta.Environments.Create(new()
   {
       Name = "data-analysis",
@@ -331,6 +333,9 @@ Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dim
   ```
 
   ```java Java
+  import com.anthropic.models.beta.environments.*;
+  import java.util.List;
+
   var environment = client.beta().environments().create(EnvironmentCreateParams.builder()
       .name("data-analysis")
       .config(BetaCloudConfigParams.builder()
@@ -389,10 +394,10 @@ Field `networking` mengontrol akses jaringan keluar dari sandbox. Field ini tida
 
 | Mode           | Deskripsi                                                                                                                                                               |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `unrestricted` | Akses jaringan keluar penuh, kecuali untuk daftar blokir keamanan umum. Ini adalah default.                                                                             |
+| `unrestricted` | Akses jaringan keluar penuh, kecuali untuk blocklist keamanan umum. Ini adalah default.                                                                                 |
 | `limited`      | Membatasi akses jaringan sandbox ke host yang ada di `allowed_hosts`. Atur `allow_package_managers` dan `allow_mcp_servers` ke `true` untuk mengizinkan akses tambahan. |
 
-Contoh berikut membuat lingkungan dengan jaringan `limited`:
+Contoh berikut membuat environment dengan jaringan `limited`:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -460,6 +465,8 @@ Contoh berikut membuat lingkungan dengan jaringan `limited`:
   ```
 
   ```csharp C#
+  using Anthropic.Models.Beta.Environments;
+
   var environment = await client.Beta.Environments.Create(new()
   {
       Name = "api-access",
@@ -497,6 +504,9 @@ Contoh berikut membuat lingkungan dengan jaringan `limited`:
   ```
 
   ```java Java
+  import com.anthropic.models.beta.environments.*;
+  import java.util.List;
+
   var environment = client.beta().environments().create(EnvironmentCreateParams.builder()
       .name("api-access")
       .config(BetaCloudConfigParams.builder()
@@ -541,22 +551,22 @@ Contoh berikut membuat lingkungan dengan jaringan `limited`:
 </CodeGroup>
 
 <Info>
-  Untuk deployment produksi, gunakan jaringan `limited` dengan daftar `allowed_hosts` yang eksplisit. Ikuti prinsip hak istimewa paling rendah (least privilege) dengan hanya memberikan akses jaringan minimum yang dibutuhkan agen Anda, dan audit domain yang diizinkan secara berkala.
+  Untuk deployment produksi, gunakan jaringan `limited` dengan daftar `allowed_hosts` yang eksplisit. Ikuti prinsip hak akses minimum (principle of least privilege) dengan hanya memberikan akses jaringan minimum yang dibutuhkan agen Anda, dan audit domain yang diizinkan secara berkala.
 </Info>
 
 Saat menggunakan jaringan `limited`:
 
-* `allowed_hosts` menentukan domain yang dapat dijangkau oleh sandbox. Tentukan hostname biasa atau pola wildcard (seperti `*.example.com`). Jangan sertakan skema URL, port, atau path.
+* `allowed_hosts` menentukan domain yang dapat dijangkau oleh sandbox. Tentukan hostname polos atau pola wildcard (seperti `*.example.com`). Jangan sertakan skema URL, port, atau path.
 * `allow_mcp_servers` mengizinkan akses keluar ke endpoint server MCP yang dikonfigurasi pada agen, di luar yang tercantum dalam array `allowed_hosts`. Default-nya adalah `false`.
-* `allow_package_managers` mengizinkan akses keluar ke registri paket publik (seperti PyPI dan npm) di luar yang tercantum dalam array `allowed_hosts`. Default-nya adalah `false`.
+* `allow_package_managers` mengizinkan akses keluar ke registry paket publik (seperti PyPI dan npm) di luar yang tercantum dalam array `allowed_hosts`. Default-nya adalah `false`.
 
-## Siklus hidup lingkungan
+## Siklus hidup environment
 
-* Lingkungan tetap ada hingga diarsipkan atau dihapus secara eksplisit.
-* Setiap sesi mendapatkan instance sandbox-nya sendiri, bahkan ketika beberapa sesi mereferensikan lingkungan yang sama. Sesi tidak berbagi state filesystem.
-* Lingkungan tidak memiliki versi. Jika Anda sering memperbarui lingkungan, simpan catatan perubahan Anda sendiri agar Anda dapat mengetahui konfigurasi mana yang digunakan setiap sesi.
+* Environment tetap ada sampai diarsipkan atau dihapus secara eksplisit.
+* Setiap sesi mendapatkan instance sandbox-nya sendiri, bahkan ketika beberapa sesi mereferensikan environment yang sama. Sesi tidak berbagi state filesystem.
+* Environment tidak memiliki versi. Jika Anda sering memperbarui environment, simpan catatan perubahan Anda sendiri agar Anda dapat mengetahui konfigurasi mana yang digunakan oleh setiap sesi.
 
-## Mengelola lingkungan
+## Mengelola environment
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -595,7 +605,7 @@ Saat menggunakan jaringan `limited`:
   # Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
   ant beta:environments archive --environment-id "$ENVIRONMENT_ID"
 
-  # Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
+  # Hapus environment (hanya jika tidak ada sesi yang merujuknya)
   ant beta:environments delete --environment-id "$ENVIRONMENT_ID"
   ```
 
@@ -706,7 +716,7 @@ Sandbox cloud menyertakan runtime umum secara bawaan. Lihat [Referensi sandbox c
     Paket, database, dan utilitas yang sudah terinstal dan tersedia di sandbox cloud.
   </Card>
 
-  <Card title="Memulai sesi" icon="play" href="/docs/id/managed-agents/sessions">
+  <Card title="Mulai sesi" icon="play" href="/docs/id/managed-agents/sessions">
     Buat sesi untuk menjalankan agen Anda dan mulai menjalankan tugas.
   </Card>
 </CardGroup>

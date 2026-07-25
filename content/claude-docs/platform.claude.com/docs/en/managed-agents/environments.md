@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/environments
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: ef189492794e37ee8a9ccdb7026fbb44d1b592b68bbeea53fb4b9ec77b0d569d
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 22639e97859d9776442003ba5855edd0d54b339a1b9b9a5d19bb8bb4e18c2fe8
 ---
 
 # Cloud environment setup
@@ -294,6 +294,8 @@ The `packages` field pre-installs packages into the sandbox before the agent sta
   ```
 
   ```csharp C#
+  using Anthropic.Models.Beta.Environments;
+
   var environment = await client.Beta.Environments.Create(new()
   {
       Name = "data-analysis",
@@ -331,6 +333,9 @@ The `packages` field pre-installs packages into the sandbox before the agent sta
   ```
 
   ```java Java
+  import com.anthropic.models.beta.environments.*;
+  import java.util.List;
+
   var environment = client.beta().environments().create(EnvironmentCreateParams.builder()
       .name("data-analysis")
       .config(BetaCloudConfigParams.builder()
@@ -460,6 +465,8 @@ The following example creates an environment with `limited` networking:
   ```
 
   ```csharp C#
+  using Anthropic.Models.Beta.Environments;
+
   var environment = await client.Beta.Environments.Create(new()
   {
       Name = "api-access",
@@ -497,6 +504,9 @@ The following example creates an environment with `limited` networking:
   ```
 
   ```java Java
+  import com.anthropic.models.beta.environments.*;
+  import java.util.List;
+
   var environment = client.beta().environments().create(EnvironmentCreateParams.builder()
       .name("api-access")
       .config(BetaCloudConfigParams.builder()

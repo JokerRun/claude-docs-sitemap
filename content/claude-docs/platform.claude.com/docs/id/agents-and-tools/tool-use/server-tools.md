@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 3afa6a3e99d599b4535a2e79a56aef248c8f59483aa9281859d37c0f8052d0ba
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 496540d6368422136943c5f0b3e066a45709ec8a2138df4113ee320d4a5be257
 ---
 
 # Alat server
@@ -26,7 +26,7 @@ Blok `server_tool_use` muncul dalam respons Claude ketika alat yang dieksekusi d
 }
 ```
 
-API mengeksekusi alat tersebut secara internal. Anda melihat panggilan dan hasilnya dalam respons, tetapi Anda tidak menangani eksekusinya. Berbeda dengan blok `tool_use` klien, Anda tidak perlu merespons dengan `tool_result`. Blok hasil alat (misalnya, `web_search_tool_result` untuk pencarian web) mengikuti blok `server_tool_use` dalam giliran asisten yang sama, dipasangkan berdasarkan `tool_use_id`. Jika Claude memanggil salah satu alat klien Anda pada saat yang sama, blok `server_tool_use` muncul tanpa hasilnya, dan respons berakhir dengan `stop_reason: "tool_use"`. API menjalankan alat tersebut ketika Anda mengembalikan blok `tool_result` klien dalam permintaan Anda berikutnya.
+API mengeksekusi alat tersebut secara internal. Anda melihat panggilan dan hasilnya dalam respons, tetapi Anda tidak menangani eksekusinya. Berbeda dengan blok `tool_use` klien, Anda tidak perlu merespons dengan `tool_result`. Blok hasil alat (misalnya, `web_search_tool_result` untuk pencarian web) mengikuti blok `server_tool_use` dalam giliran asisten yang sama, dipasangkan melalui `tool_use_id`. Jika Claude memanggil salah satu alat klien Anda pada saat yang sama, blok `server_tool_use` muncul tanpa hasilnya, dan respons berakhir dengan `stop_reason: "tool_use"`. API menjalankan alat tersebut ketika Anda mengembalikan blok `tool_result` klien dalam permintaan Anda berikutnya.
 
 ## Loop sisi server dan pause\_turn
 
@@ -43,7 +43,7 @@ Berikut cara menangani alasan berhenti `pause_turn`:
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "messages": [
         {
@@ -57,9 +57,9 @@ Berikut cara menangani alasan berhenti `pause_turn`:
 
   ```bash CLI
   # Permintaan awal. Jika "stop_reason" pada output adalah "pause_turn", jalankan ulang dengan
-  # konten asisten yang ditambahkan ke messages (lihat tab SDK).
+  # konten assistant yang ditambahkan ke messages (lihat tab SDK).
   ant messages create --format json <<'YAML' | jq '{stop_reason, content}'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 1024
   tools:
     - {type: web_search_20250305, name: web_search, max_uses: 10}
@@ -73,7 +73,7 @@ Berikut cara menangani alasan berhenti `pause_turn`:
 
   # Permintaan awal dengan pencarian web
   response = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=1024,
       messages=[
           {
@@ -97,7 +97,7 @@ Berikut cara menangani alasan berhenti `pause_turn`:
 
       # Kirim permintaan lanjutan
       continuation = client.messages.create(
-          model="claude-opus-4-8",
+          model="claude-opus-5",
           max_tokens=1024,
           messages=messages,
           tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 10}],
@@ -113,7 +113,7 @@ Berikut cara menangani alasan berhenti `pause_turn`:
 
   // Permintaan awal dengan pencarian web
   const response = await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -145,7 +145,7 @@ Berikut cara menangani alasan berhenti `pause_turn`:
 
     // Kirim permintaan lanjutan
     const continuation = await client.messages.create({
-      model: "claude-opus-4-8",
+      model: "claude-opus-5",
       max_tokens: 1024,
       messages,
       tools: [
@@ -168,7 +168,7 @@ Berikut cara menangani alasan berhenti `pause_turn`:
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Messages = [
           new() {
@@ -186,7 +186,7 @@ Berikut cara menangani alasan berhenti `pause_turn`:
       // Lanjutkan percakapan dengan konten yang dijeda
       var continuationParams = new MessageCreateParams
       {
-          Model = Model.ClaudeOpus4_8,
+          Model = Model.ClaudeOpus5,
           MaxTokens = 1024,
           Messages = [
               new() {
@@ -220,7 +220,7 @@ Berikut cara menangani alasan berhenti `pause_turn`:
   }
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Search for comprehensive information about quantum computing breakthroughs in 2025")),
@@ -234,7 +234,7 @@ Berikut cara menangani alasan berhenti `pause_turn`:
   if response.StopReason == anthropic.StopReasonPauseTurn {
   	// Teruskan kembali respons yang dijeda apa adanya agar Claude dapat melanjutkan giliran tersebut
   	continuation, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus4_8,
+  		Model:     anthropic.ModelClaudeOpus5,
   		MaxTokens: 1024,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(anthropic.NewTextBlock("Search for comprehensive information about quantum computing breakthroughs in 2025")),
@@ -259,7 +259,7 @@ Berikut cara menangani alasan berhenti `pause_turn`:
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(1024L)
           .addUserMessage("Search for comprehensive information about quantum computing breakthroughs in 2025")
           .addTool(WebSearchTool20250305.builder()
@@ -272,7 +272,7 @@ Berikut cara menangani alasan berhenti `pause_turn`:
       if (response.stopReason().isPresent()
               && response.stopReason().get().equals(StopReason.PAUSE_TURN)) {
           MessageCreateParams continuationParams = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_4_8)
+              .model(Model.CLAUDE_OPUS_5)
               .maxTokens(1024L)
               .addUserMessage("Search for comprehensive information about quantum computing breakthroughs in 2025")
               .addMessage(response)
@@ -300,7 +300,7 @@ Berikut cara menangani alasan berhenti `pause_turn`:
               'content' => 'Search for comprehensive information about quantum computing breakthroughs in 2025'
           ]
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       tools: [
           [
               'type' => 'web_search_20250305',
@@ -325,7 +325,7 @@ Berikut cara menangani alasan berhenti `pause_turn`:
       $continuation = $client->messages->create(
           maxTokens: 1024,
           messages: $messages,
-          model: 'claude-opus-4-8',
+          model: 'claude-opus-5',
           tools: [
               [
                   'type' => 'web_search_20250305',
@@ -345,7 +345,7 @@ Berikut cara menangani alasan berhenti `pause_turn`:
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
       {
@@ -376,7 +376,7 @@ Berikut cara menangani alasan berhenti `pause_turn`:
     ]
 
     continuation = client.messages.create(
-      model: "claude-opus-4-8",
+      model: "claude-opus-5",
       max_tokens: 1024,
       messages: messages,
       tools: [
@@ -405,7 +405,7 @@ Untuk nilai `stop_reason` lainnya dan pola penanganan umum, lihat [Alasan berhen
 
 ## Mencampur alat server dan alat klien dalam satu giliran
 
-Claude dapat memanggil alat server dan alat klien dalam kelompok panggilan alat paralel yang sama, misalnya, `web_fetch` bersama dengan alat yang didefinisikan pengguna. Alat klien adalah alat apa pun yang dieksekusi oleh kode Anda dan yang menghasilkan blok `tool_use`, baik itu didefinisikan pengguna maupun alat klien berskema Anthropic seperti [alat Bash](/docs/id/agents-and-tools/tool-use/bash-tool). Ketika itu terjadi, API tidak menjalankan alat server. API langsung mengembalikan respons sehingga Anda dapat menjalankan alat klien terlebih dahulu:
+Claude dapat memanggil alat server dan alat klien dalam kelompok panggilan alat paralel yang sama, misalnya, `web_fetch` bersama dengan alat yang didefinisikan pengguna. Alat klien adalah alat apa pun yang dieksekusi oleh kode Anda dan yang menghasilkan blok `tool_use`, baik itu didefinisikan pengguna maupun alat klien berskema Anthropic seperti [alat Bash](/docs/id/agents-and-tools/tool-use/bash-tool). Ketika itu terjadi, API tidak menjalankan alat server. API langsung mengembalikan respons agar Anda dapat menjalankan alat klien terlebih dahulu:
 
 * `stop_reason` adalah `"tool_use"`, bukan `"pause_turn"`.
 * `content` berisi blok `server_tool_use` dan blok `tool_use` klien, tetapi tidak ada blok hasil untuk alat server: panggilan tersebut belum selesai.
@@ -484,7 +484,7 @@ API melampirkan hasil Anda ke giliran asisten yang masih terbuka, menjalankan al
 }
 ```
 
-Blok `server_tool_use` dan blok hasilnya dipasangkan berdasarkan `tool_use_id`, bukan berdasarkan posisi: dalam alur ini keduanya tiba dalam dua respons yang berbeda, dan blok `server_tool_use` tidak diulang dalam respons kedua. Pada permintaan berikutnya, simpan seluruh pertukaran dalam array `messages` Anda secara berurutan: respons pertama sebagai pesan `assistant`, pesan pengguna `tool_result`, lalu respons berikutnya sebagai pesan `assistant` lainnya, dengan cara yang sama seperti Anda mengakumulasi pertukaran penggunaan alat lainnya.
+Blok `server_tool_use` dan blok hasilnya dipasangkan melalui `tool_use_id`, bukan berdasarkan posisi: dalam alur ini keduanya tiba dalam dua respons yang berbeda, dan blok `server_tool_use` tidak diulang dalam respons kedua. Pada permintaan berikutnya, simpan seluruh pertukaran dalam array `messages` Anda secara berurutan: respons pertama sebagai pesan `assistant`, pesan pengguna `tool_result`, lalu respons berikutnya sebagai pesan `assistant` lainnya, dengan cara yang sama seperti Anda mengakumulasi pertukaran penggunaan alat lainnya.
 
 <Warning>
   Pesan pengguna tindak lanjut tidak boleh berisi apa pun kecuali blok `tool_result`. Blok yang ditambahkan setelah hasil, seperti teks, memberi tahu API bahwa giliran asisten telah berakhir. Untuk alat server yang dipanggil Claude secara langsung, hal itu meninggalkan giliran dengan panggilan alat server yang belum terselesaikan, dan permintaan gagal dengan 400 `invalid_request_error`:
@@ -499,17 +499,17 @@ Blok `server_tool_use` dan blok hasilnya dipasangkan berdasarkan `tool_use_id`, 
   `tool_use` ids were found without `tool_result` blocks immediately after: toolu_01PjgRJLbXrXEMZwDNYLnBqk. Each `tool_use` block must have a corresponding `tool_result` block in the next message.
   ```
 
-  Untuk memberi Claude input tambahan, kirimkan sebagai pesan pengguna terpisah setelah giliran selesai.
+  Untuk memberi Claude masukan tambahan, kirimkan sebagai pesan pengguna terpisah setelah giliran selesai.
 </Warning>
 
 **Perbedaannya dengan `pause_turn`:** [Respons `pause_turn`](#the-server-side-loop-and-pause-turn) juga dapat berakhir dengan blok `server_tool_use` yang belum berjalan, tetapi tidak pernah meninggalkan blok `tool_use` klien yang menunggu Anda, sehingga Anda melanjutkannya dengan mengirim ulang konten asisten apa adanya. Respons yang meninggalkan blok `tool_use` klien yang menunggu Anda tidak pernah memiliki `stop_reason` `pause_turn`: ketika Claude berhenti untuk memanggil alat Anda, `stop_reason` adalah `tool_use`, dan Anda melanjutkannya dengan mengirim blok `tool_result` klien alih-alih mengirim ulang respons. Dalam kedua kasus, API menjalankan alat server yang tertunda di awal permintaan berikutnya.
 
-Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang didefinisikan pengguna dan menangani respons campuran:
+Contoh berikut mengaktifkan pengambilan web bersama dengan alat `run_command` yang didefinisikan pengguna dan menangani respons campuran:
 
 <CodeGroup>
   ```bash cURL
   # Jika "stop_reason" adalah "tool_use" dan sebuah blok server_tool_use tidak memiliki
-  # blok hasil yang cocok, panggilan tersebut belum selesai. Jalankan alat klien, lalu POST
+  # blok hasil yang cocok, panggilan itu belum selesai. Jalankan alat klien, lalu POST
   # lagi dengan satu pesan user tambahan yang hanya berisi blok tool_result mereka
   # dan array tools yang sama (lihat tab SDK).
   curl https://api.anthropic.com/v1/messages \
@@ -541,9 +541,9 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
   ```
 
   ```bash CLI
-  # Jika "stop_reason" adalah "tool_use" dan ada blok server_tool_use yang tidak memiliki
-  # blok hasil yang cocok, jalankan alat klien lalu jalankan ulang dengan pesan pengguna yang
-  # hanya berisi blok tool_result mereka (lihat tab SDK).
+  # Jika "stop_reason" adalah "tool_use" dan sebuah blok server_tool_use tidak memiliki
+  # blok hasil yang cocok, jalankan alat klien lalu jalankan ulang dengan pesan pengguna
+  # yang hanya berisi blok tool_result yang ditambahkan (lihat tab SDK).
   ant messages create --format json <<'YAML' | jq '{stop_reason, content}'
   model: claude-opus-4-8
   max_tokens: 1024
@@ -1007,7 +1007,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
       ]
     )
     # Jika web_fetch ditangguhkan, ia dijalankan pada permintaan ini dan
-    # web_fetch_tool_result-nya adalah blok pertama dari continuation.content.
+    # web_fetch_tool_result-nya menjadi blok pertama dari continuation.content.
     puts continuation
   else
     puts response
@@ -1019,7 +1019,7 @@ Kode ini juga benar ketika Claude tidak mencampur kedua jenis panggilan. Giliran
 
 ## ZDR dan allowed\_callers
 
-Versi dasar dari pencarian web (`web_search_20250305`) dan web fetch (`web_fetch_20250910`) memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/manage-claude/api-and-data-retention).
+Versi dasar pencarian web (`web_search_20250305`) dan pengambilan web (`web_fetch_20250910`) memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/manage-claude/api-and-data-retention).
 
 Versi `_20260209` dan yang lebih baru dengan pemfilteran dinamis secara default **tidak** memenuhi syarat ZDR karena pemfilteran dinamis bergantung pada eksekusi kode secara internal.
 
@@ -1035,10 +1035,10 @@ Untuk menggunakan alat server `_20260209` atau yang lebih baru dengan ZDR, nonak
 
 Ini membatasi alat hanya untuk pemanggilan langsung, melewati langkah eksekusi kode internal.
 
-`allowed_callers` mengontrol bagaimana alat dapat dipanggil: langsung oleh Claude (`"direct"`), dari dalam kontainer eksekusi kode (misalnya, `"code_execution_20260120"`), atau keduanya. Versi `_20260209` dari alat web secara default hanya menggunakan pemanggil eksekusi kode; versi sebelumnya secara default menggunakan `["direct"]`. Pada model yang tidak mendukung pemanggilan alat terprogram, versi ini memerlukan `allowed_callers: ["direct"]`; tanpanya API mengembalikan kesalahan validasi yang meminta Anda menyetelnya.
+`allowed_callers` mengontrol bagaimana alat dapat dipanggil: langsung oleh Claude (`"direct"`), dari dalam kontainer eksekusi kode (misalnya, `"code_execution_20260120"`), atau keduanya. Versi `_20260209` dari alat web secara default hanya menggunakan pemanggil eksekusi kode; versi sebelumnya secara default menggunakan `["direct"]`. Pada model yang tidak mendukung pemanggilan alat terprogram, versi-versi ini memerlukan `allowed_callers: ["direct"]`; tanpanya API mengembalikan kesalahan validasi yang meminta Anda menyetelnya.
 
 <Note>
-  Bahkan ketika web fetch digunakan dalam konfigurasi yang memenuhi syarat ZDR, penerbit situs web mungkin menyimpan parameter apa pun yang diteruskan ke URL jika Claude mengambil konten dari situs mereka.
+  Bahkan ketika pengambilan web digunakan dalam konfigurasi yang memenuhi syarat ZDR, penerbit situs web mungkin menyimpan parameter apa pun yang diteruskan ke URL jika Claude mengambil konten dari situs mereka.
 </Note>
 
 ## Pemfilteran domain
@@ -1056,10 +1056,10 @@ Alat server yang mengakses web menerima parameter `allowed_domains` dan `blocked
 Saat menggunakan filter domain:
 
 * Domain tidak boleh menyertakan skema HTTP/HTTPS (gunakan `example.com` alih-alih `https://example.com`).
-* Subdomain secara otomatis disertakan (`example.com` mencakup `docs.example.com`).
-* Subdomain spesifik membatasi hasil hanya pada subdomain tersebut (`docs.example.com` hanya mengembalikan hasil dari subdomain tersebut, bukan dari `example.com` atau `api.example.com`).
+* Subdomain disertakan secara otomatis (`example.com` mencakup `docs.example.com`).
+* Subdomain spesifik membatasi hasil hanya pada subdomain tersebut (`docs.example.com` hanya mengembalikan hasil dari subdomain itu, bukan dari `example.com` atau `api.example.com`).
 * Subpath didukung untuk pencarian web dan mencocokkan apa pun setelah path (`example.com/blog` cocok dengan `example.com/blog/post-1`).
-* Web fetch hanya mencocokkan pada domain: entri yang menyertakan path tidak pernah cocok dengan URL web fetch.
+* Pengambilan web hanya mencocokkan pada domain: entri yang menyertakan path tidak pernah cocok dengan URL pengambilan web.
 * Anda dapat menggunakan `allowed_domains` atau `blocked_domains`, tetapi tidak keduanya dalam permintaan yang sama.
 
 **Dukungan wildcard:**
@@ -1080,7 +1080,7 @@ Format domain yang tidak valid ditolak pada saat permintaan dengan 400 `invalid_
 
 ## Pemfilteran dinamis dengan eksekusi kode
 
-Versi `_20260209` dan yang lebih baru dari pencarian web dan web fetch menggunakan eksekusi kode secara internal untuk menerapkan filter dinamis terhadap hasil pencarian.
+Versi `_20260209` dan yang lebih baru dari pencarian web dan pengambilan web menggunakan eksekusi kode secara internal untuk menerapkan filter dinamis terhadap hasil pencarian.
 
 <Note>
   Anda tidak perlu menambahkan alat `code_execution` untuk versi-versi ini: ketika pemfilteran dinamis berjalan, API menyediakan eksekusi kode untuk permintaan tersebut secara otomatis, dan kedua alat berbagi satu kontainer eksekusi. Jika Anda menyertakannya, gunakan `code_execution_20260120` atau yang lebih baru; API menolak versi eksekusi kode yang lebih lama bersama versi alat web ini.
@@ -1088,7 +1088,7 @@ Versi `_20260209` dan yang lebih baru dari pencarian web dan web fetch menggunak
 
 ## Streaming event alat server
 
-Event alat server di-streaming sebagai bagian dari alur "server-sent events" (event yang dikirim server), atau SSE, yang normal. Blok `server_tool_use` yang dipanggil Claude secara langsung di-streaming seperti blok `tool_use` klien: event `content_block_start` diikuti oleh event `input_json_delta`. Blok hasil tiba secara lengkap dalam satu event `content_block_start`, tanpa delta.
+Event alat server di-streaming sebagai bagian dari alur "server-sent events" (event yang dikirim server), atau SSE, yang normal. Blok `server_tool_use` yang dipanggil Claude secara langsung di-streaming seperti blok `tool_use` klien: event `content_block_start` diikuti oleh event `input_json_delta`. Blok hasil tiba lengkap dalam satu event `content_block_start`, tanpa delta.
 
 Lihat [Streaming](/docs/id/build-with-claude/streaming) untuk referensi event lengkap. Halaman alat individual mendokumentasikan nama event khusus alat jika berbeda.
 
@@ -1096,7 +1096,7 @@ Lihat [Streaming](/docs/id/build-with-claude/streaming) untuk referensi event le
 
 Semua alat server mendukung pemrosesan batch. Dalam batch, loop agentik berjalan sama seperti pada permintaan sinkron, dengan batas iterasi per giliran yang lebih tinggi. Jika loop mencapai batas tersebut, respons berakhir dengan `stop_reason: "pause_turn"`; Anda dapat melanjutkannya dengan mengirimkan permintaan tindak lanjut dengan konten yang dikembalikan. Lihat [Alat server dan loop agentik](/docs/id/build-with-claude/batch-processing#server-tools-and-the-agentic-loop) untuk detailnya.
 
-Beban kerja batch yang umum meliputi memperkaya dataset dengan informasi dari web, memeriksa sekumpulan besar dokumen terhadap sumber terkini, dan menjalankan kode analisis pada banyak file.
+Beban kerja batch yang umum mencakup memperkaya dataset dengan informasi dari web, memeriksa sekumpulan besar dokumen terhadap sumber terkini, dan menjalankan kode analisis pada banyak file.
 
 ## Langkah selanjutnya
 
@@ -1109,7 +1109,7 @@ Beban kerja batch yang umum meliputi memperkaya dataset dengan informasi dari we
     Cari di web dan kutip hasilnya.
   </Card>
 
-  <Card title="Alat web fetch" icon="download" href="/docs/id/agents-and-tools/tool-use/web-fetch-tool">
+  <Card title="Alat pengambilan web" icon="download" href="/docs/id/agents-and-tools/tool-use/web-fetch-tool">
     Ambil dan baca konten dari URL tertentu untuk memperkaya konteks Claude dengan konten web langsung.
   </Card>
 

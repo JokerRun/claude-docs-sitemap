@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 35c19dd3e37adc0d0247d1112bd8fb1948b8ba1e4d7f4d834e097724b3dded3b
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 3854e5a29609354ba9f7e29c3600d3936e1713439eeb1071a15a888b2e3ea03e
 ---
 
 # Handle tool calls
@@ -31,7 +31,7 @@ The response will have a `stop_reason` of `tool_use` and one or more `tool_use` 
   ```json JSON
   {
     "id": "msg_01Aq9w938a90dw8q",
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5",
     "stop_reason": "tool_use",
     "role": "assistant",
     "content": [

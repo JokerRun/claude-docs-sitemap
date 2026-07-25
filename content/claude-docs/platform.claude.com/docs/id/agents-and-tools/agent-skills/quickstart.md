@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 88c07dd0a98515ee1a72b0a7154ea442dba66d67b976ea956a7e6d0fa202c294
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: b7195f7777fdb64d9d4eedac54771e61575c0cbd743959f2f219742cff50064a
 ---
 
 # Memulai dengan Agent Skills di API
@@ -19,7 +19,7 @@ Tutorial ini menunjukkan cara menggunakan Agent Skills untuk membuat presentasi 
 * [SDK klien](/docs/id/cli-sdks-libraries/overview) untuk bahasa Anda, atau `curl` dan `jq`
 * Pemahaman dasar tentang cara membuat permintaan API
 
-## Ikhtisar Agent Skills
+## Gambaran umum Agent Skills
 
 Agent Skills bawaan memperluas kemampuan Claude dengan keahlian khusus untuk tugas-tugas seperti membuat dokumen, menganalisis data, dan memproses file. Anthropic menyediakan Agent Skills bawaan berikut di API:
 
@@ -141,7 +141,7 @@ Gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbarukan. Ten
       -H "anthropic-beta: skills-2025-10-02" \
       -d @- <<'EOF'
   {
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5",
     "max_tokens": 16000,
     "container": {
       "skills": [{"type": "anthropic", "skill_id": "pptx", "version": "latest"}]
@@ -160,7 +160,7 @@ Gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbarukan. Ten
   # Membuat pesan dengan Skill PowerPoint
   response=$(ant beta:messages create --format json \
     --beta skills-2025-10-02 <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 16000
   container:
     skills:
@@ -182,7 +182,7 @@ Gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbarukan. Ten
   ```python Python
   # Buat pesan dengan Skill PowerPoint
   response = client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=16000,
       betas=["skills-2025-10-02"],
       container={
@@ -203,7 +203,7 @@ Gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbarukan. Ten
   ```typescript TypeScript
   // Buat pesan dengan Skill PowerPoint
   const response = await client.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 16000,
     betas: ["skills-2025-10-02"],
     container: {
@@ -227,7 +227,7 @@ Gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbarukan. Ten
   // Buat pesan dengan Skill PowerPoint
   var response = await client.Beta.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 16000,
       Betas = ["skills-2025-10-02"],
       Container = new BetaContainerParams
@@ -259,7 +259,7 @@ Gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbarukan. Ten
   ```go Go
   // Buat pesan dengan Skill PowerPoint
   response, err := client.Beta.Messages.New(ctx, anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 16000,
   	Betas: []anthropic.AnthropicBeta{
   		anthropic.AnthropicBetaSkills2025_10_02,
@@ -295,7 +295,7 @@ Gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbarukan. Ten
   // Buat pesan dengan Skill PowerPoint
   BetaMessage response = client.beta().messages().create(
       MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5)
           .maxTokens(16000)
           .addBeta(AnthropicBeta.SKILLS_2025_10_02)
           .container(
@@ -323,7 +323,7 @@ Gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbarukan. Ten
   ```php PHP
   // Buat pesan dengan Skill PowerPoint
   $response = $client->beta->messages->create(
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       maxTokens: 16000,
       betas: ['skills-2025-10-02'],
       container: [
@@ -344,7 +344,7 @@ Gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbarukan. Ten
   ```ruby Ruby
   # Buat pesan dengan Skill PowerPoint
   response = client.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 16_000,
     betas: ["skills-2025-10-02"],
     container: {
@@ -621,7 +621,7 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. `r
   Untuk detail lengkap tentang bekerja dengan file yang dihasilkan, lihat [Mengambil file yang dihasilkan](/docs/id/agents-and-tools/tool-use/code-execution-tool#retrieve-generated-files) di dokumentasi alat eksekusi kode.
 </Note>
 
-## Coba lebih banyak contoh
+## Coba contoh lainnya
 
 Coba variasi berikut:
 
@@ -635,7 +635,7 @@ Coba variasi berikut:
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: skills-2025-10-02" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 16000,
       "container": {
         "skills": [{"type": "anthropic", "skill_id": "xlsx", "version": "latest"}]
@@ -650,7 +650,7 @@ Coba variasi berikut:
   ```bash CLI
   ant beta:messages create --format json \
     --beta skills-2025-10-02 <<'YAML' | jq -r '"stop_reason=\(.stop_reason)"'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 16000
   container:
     skills:
@@ -668,7 +668,7 @@ Coba variasi berikut:
 
   ```python Python
   response = client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=16000,
       betas=["skills-2025-10-02"],
       container={
@@ -686,7 +686,7 @@ Coba variasi berikut:
 
   ```typescript TypeScript
   const response = await client.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 16000,
     betas: ["skills-2025-10-02"],
     container: {
@@ -706,7 +706,7 @@ Coba variasi berikut:
   var response = await client.Beta.Messages.Create(
       new MessageCreateParams
       {
-          Model = Model.ClaudeOpus4_8,
+          Model = Model.ClaudeOpus5,
           MaxTokens = 16000,
           Betas = ["skills-2025-10-02"],
           Container = new BetaContainerParams
@@ -736,7 +736,7 @@ Coba variasi berikut:
 
   ```go Go
   response, err := client.Beta.Messages.New(context.Background(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 16000,
   	Betas: []anthropic.AnthropicBeta{
   		anthropic.AnthropicBetaSkills2025_10_02,
@@ -769,7 +769,7 @@ Coba variasi berikut:
   ```java Java
   BetaMessage response = client.beta().messages().create(
       MessageCreateParams.builder()
-          .model(CLAUDE_OPUS_4_8)
+          .model(CLAUDE_OPUS_5)
           .maxTokens(16000)
           .addBeta(AnthropicBeta.SKILLS_2025_10_02)
           .container(
@@ -792,7 +792,7 @@ Coba variasi berikut:
 
   ```php PHP
   $response = $client->beta->messages->create(
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       maxTokens: 16000,
       betas: ['skills-2025-10-02'],
       container: [
@@ -812,7 +812,7 @@ Coba variasi berikut:
 
   ```ruby Ruby
   response = client.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 16_000,
     betas: ["skills-2025-10-02"],
     container: {
@@ -839,7 +839,7 @@ Coba variasi berikut:
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: skills-2025-10-02" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 16000,
       "container": {
         "skills": [{"type": "anthropic", "skill_id": "docx", "version": "latest"}]
@@ -854,7 +854,7 @@ Coba variasi berikut:
   ```bash CLI
   ant beta:messages create --format json \
     --beta skills-2025-10-02 <<'YAML' | jq -r '"stop_reason=\(.stop_reason)"'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 16000
   container:
     skills:
@@ -872,7 +872,7 @@ Coba variasi berikut:
 
   ```python Python
   response = client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=16000,
       betas=["skills-2025-10-02"],
       container={
@@ -890,7 +890,7 @@ Coba variasi berikut:
 
   ```typescript TypeScript
   const response = await client.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 16000,
     betas: ["skills-2025-10-02"],
     container: {
@@ -910,7 +910,7 @@ Coba variasi berikut:
   var response = await client.Beta.Messages.Create(
       new MessageCreateParams
       {
-          Model = Model.ClaudeOpus4_8,
+          Model = Model.ClaudeOpus5,
           MaxTokens = 16000,
           Betas = ["skills-2025-10-02"],
           Container = new BetaContainerParams
@@ -940,7 +940,7 @@ Coba variasi berikut:
 
   ```go Go
   response, err := client.Beta.Messages.New(context.Background(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 16000,
   	Betas: []anthropic.AnthropicBeta{
   		anthropic.AnthropicBetaSkills2025_10_02,
@@ -973,7 +973,7 @@ Coba variasi berikut:
   ```java Java
   BetaMessage response = client.beta().messages().create(
       MessageCreateParams.builder()
-          .model(CLAUDE_OPUS_4_8)
+          .model(CLAUDE_OPUS_5)
           .maxTokens(16000)
           .addBeta(AnthropicBeta.SKILLS_2025_10_02)
           .container(
@@ -996,7 +996,7 @@ Coba variasi berikut:
 
   ```php PHP
   $response = $client->beta->messages->create(
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       maxTokens: 16000,
       betas: ['skills-2025-10-02'],
       container: [
@@ -1016,7 +1016,7 @@ Coba variasi berikut:
 
   ```ruby Ruby
   response = client.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 16_000,
     betas: ["skills-2025-10-02"],
     container: {
@@ -1043,7 +1043,7 @@ Coba variasi berikut:
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: skills-2025-10-02" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 16000,
       "container": {
         "skills": [{"type": "anthropic", "skill_id": "pdf", "version": "latest"}]
@@ -1058,7 +1058,7 @@ Coba variasi berikut:
   ```bash CLI
   ant beta:messages create --format json \
     --beta skills-2025-10-02 <<'YAML' | jq -r '"stop_reason=\(.stop_reason)"'
-  model: claude-opus-4-8
+  model: claude-opus-5
   max_tokens: 16000
   container:
     skills:
@@ -1076,7 +1076,7 @@ Coba variasi berikut:
 
   ```python Python
   response = client.beta.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       max_tokens=16000,
       betas=["skills-2025-10-02"],
       container={
@@ -1094,7 +1094,7 @@ Coba variasi berikut:
 
   ```typescript TypeScript
   const response = await client.beta.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 16000,
     betas: ["skills-2025-10-02"],
     container: {
@@ -1114,7 +1114,7 @@ Coba variasi berikut:
   var response = await client.Beta.Messages.Create(
       new MessageCreateParams
       {
-          Model = Model.ClaudeOpus4_8,
+          Model = Model.ClaudeOpus5,
           MaxTokens = 16000,
           Betas = ["skills-2025-10-02"],
           Container = new BetaContainerParams
@@ -1144,7 +1144,7 @@ Coba variasi berikut:
 
   ```go Go
   response, err := client.Beta.Messages.New(context.Background(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 16000,
   	Betas: []anthropic.AnthropicBeta{
   		anthropic.AnthropicBetaSkills2025_10_02,
@@ -1177,7 +1177,7 @@ Coba variasi berikut:
   ```java Java
   BetaMessage response = client.beta().messages().create(
       MessageCreateParams.builder()
-          .model(CLAUDE_OPUS_4_8)
+          .model(CLAUDE_OPUS_5)
           .maxTokens(16000)
           .addBeta(AnthropicBeta.SKILLS_2025_10_02)
           .container(
@@ -1200,7 +1200,7 @@ Coba variasi berikut:
 
   ```php PHP
   $response = $client->beta->messages->create(
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       maxTokens: 16000,
       betas: ['skills-2025-10-02'],
       container: [
@@ -1220,7 +1220,7 @@ Coba variasi berikut:
 
   ```ruby Ruby
   response = client.beta.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     max_tokens: 16_000,
     betas: ["skills-2025-10-02"],
     container: {

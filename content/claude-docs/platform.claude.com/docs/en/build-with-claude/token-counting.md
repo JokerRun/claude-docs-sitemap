@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/token-counting
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 000e789b15ad3556c92a3ee94403f0aef55ca3ce83651cdce1feb6f2997409db
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: f1cbefeaf9c07e6ebda4d39123044caad6e4aba7808b00950765b3becf5dc5fb
 ---
 
 # Token counting
@@ -35,10 +35,10 @@ The [token counting](/docs/en/api/messages-count-tokens) endpoint accepts the sa
 
 ### Supported models
 
-All [active models](/docs/en/about-claude/models/overview) support token counting, including Claude Sonnet 5.
+All [active models](/docs/en/about-claude/models/overview) support token counting, including Claude Opus 5 and Claude Sonnet 5.
 
 <Note>
-  Claude Opus 4.7 and later Opus models, Claude Fable 5, Claude Mythos 5, Claude Mythos Preview, and Claude Sonnet 5 use a newer tokenizer. The same input text produces approximately 30 percent more tokens than on earlier models. The exact increase depends on the content and workload shape. Recount prompts against the model you plan to use rather than reusing counts measured against earlier models.
+  Claude 4.7 and later models and Claude Mythos Preview use a newer tokenizer. The same input text produces approximately 30 percent more tokens than on earlier models. The exact increase depends on the content and workload shape. Recount prompts against the model you plan to use rather than reusing counts measured against earlier models.
 </Note>
 
 ### Count tokens in basic messages
@@ -50,7 +50,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
     -H "content-type: application/json" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "system": "You are a scientist",
       "messages": [{
         "role": "user",
@@ -61,7 +61,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
 
   ```bash CLI
   ant messages count-tokens \
-    --model claude-opus-4-8 \
+    --model claude-opus-5 \
     --system "You are a scientist" \
     --message '{role: user, content: "Hello, Claude"}'
   ```
@@ -70,7 +70,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
   client = anthropic.Anthropic()
 
   response = client.messages.count_tokens(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       system="You are a scientist",
       messages=[{"role": "user", "content": "Hello, Claude"}],
   )
@@ -82,7 +82,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
   const client = new Anthropic();
 
   const response = await client.messages.countTokens({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     system: "You are a scientist",
     messages: [
       {
@@ -105,7 +105,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
 
   var parameters = new MessageCountTokensParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       System = "You are a scientist",
       Messages = [new() { Role = Role.User, Content = "Hello, Claude" }]
   };
@@ -118,7 +118,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
   client := anthropic.NewClient()
 
   response, err := client.Messages.CountTokens(context.TODO(), anthropic.MessageCountTokensParams{
-  	Model: anthropic.ModelClaudeOpus4_8,
+  	Model: anthropic.ModelClaudeOpus5,
   	System: anthropic.MessageCountTokensParamsSystemUnion{
   		OfString: anthropic.String("You are a scientist"),
   	},
@@ -144,7 +144,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCountTokensParams params = MessageCountTokensParams.builder()
-        .model(Model.CLAUDE_OPUS_4_8)
+        .model(Model.CLAUDE_OPUS_5)
         .system("You are a scientist")
         .addUserMessage("Hello, Claude")
         .build();
@@ -162,7 +162,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
       messages: [
           ['role' => 'user', 'content' => 'Hello, Claude']
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       system: 'You are a scientist',
   );
 
@@ -173,7 +173,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
   client = Anthropic::Client.new
 
   response = client.messages.count_tokens(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     system: "You are a scientist",
     messages: [
       { role: "user", content: "Hello, Claude" }
@@ -201,7 +201,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
     -H "content-type: application/json" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "tools": [
         {
           "name": "get_weather",
@@ -229,7 +229,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
 
   ```bash CLI
   ant messages count-tokens <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   tools:
     - name: get_weather
       description: Get the current weather in a given location
@@ -251,7 +251,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
   client = anthropic.Anthropic()
 
   response = client.messages.count_tokens(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       tools=[
           {
               "name": "get_weather",
@@ -278,7 +278,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
   const client = new Anthropic();
 
   const response = await client.messages.countTokens({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     tools: [
       {
         name: "get_weather",
@@ -313,7 +313,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
 
   var parameters = new MessageCountTokensParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       Tools =
       [
           new MessageCountTokensTool(new Tool()
@@ -341,7 +341,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
   client := anthropic.NewClient()
 
   response, err := client.Messages.CountTokens(context.TODO(), anthropic.MessageCountTokensParams{
-  	Model: anthropic.ModelClaudeOpus4_8,
+  	Model: anthropic.ModelClaudeOpus5,
   	Tools: []anthropic.MessageCountTokensToolUnionParam{
   		{OfTool: &anthropic.ToolParam{
   			Name:        "get_weather",
@@ -393,7 +393,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
         .build();
 
       MessageCountTokensParams params = MessageCountTokensParams.builder()
-        .model(Model.CLAUDE_OPUS_4_8)
+        .model(Model.CLAUDE_OPUS_5)
         .addTool(
           Tool.builder()
             .name("get_weather")
@@ -415,7 +415,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
       messages: [
           ['role' => 'user', 'content' => "What's the weather like in San Francisco?"]
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
       tools: [
           [
               'name' => 'get_weather',
@@ -441,7 +441,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
   client = Anthropic::Client.new
 
   response = client.messages.count_tokens(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     tools: [
       {
         name: "get_weather",
@@ -487,7 +487,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
     -H "content-type: application/json" \
     -d @- <<EOF
   {
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5",
     "messages": [
       {"role": "user", "content": [
         {"type": "image", "source": {
@@ -507,7 +507,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
   curl -s "$IMAGE_URL" -o ./ant.jpg
 
   ant messages count-tokens <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   messages:
     - role: user
       content:
@@ -532,7 +532,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
   client = anthropic.Anthropic()
 
   response = client.messages.count_tokens(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       messages=[
           {
               "role": "user",
@@ -563,7 +563,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
   const imageData = Buffer.from(imageArrayBuffer).toString("base64");
 
   const response = await anthropic.messages.countTokens({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     messages: [
       {
         role: "user",
@@ -605,7 +605,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
 
   var parameters = new MessageCountTokensParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       Messages =
       [
           new()
@@ -654,7 +654,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
   client := anthropic.NewClient()
 
   response, err := client.Messages.CountTokens(context.TODO(), anthropic.MessageCountTokensParams{
-  	Model: anthropic.ModelClaudeOpus4_8,
+  	Model: anthropic.ModelClaudeOpus5,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
   			anthropic.NewImageBlockBase64("image/jpeg", imageData),
@@ -704,7 +704,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
       );
 
       MessageCountTokensParams params = MessageCountTokensParams.builder()
-        .model(Model.CLAUDE_OPUS_4_8)
+        .model(Model.CLAUDE_OPUS_5)
         .addUserMessageOfBlockParams(List.of(imageBlock, textBlock))
         .build();
 
@@ -736,7 +736,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
               ]
           ]
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
   print_r($response);
   ```
@@ -754,7 +754,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
   client = Anthropic::Client.new
 
   response = client.messages.count_tokens(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     messages: [
       {
         role: "user",
@@ -780,7 +780,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
 { "input_tokens": 1551 }
 ```
 
-### Count tokens in messages with extended thinking
+### Count tokens in messages with thinking
 
 <Note>
   See [Thinking and the context window](/docs/en/build-with-claude/thinking#thinking-and-the-context-window) for more details.
@@ -1132,7 +1132,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
     -H "anthropic-version: 2023-06-01" \
     -d @- <<EOF
   {
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5",
     "messages": [{
       "role": "user",
       "content": [
@@ -1156,7 +1156,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
 
   ```bash CLI
   ant messages count-tokens <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5
   messages:
     - role: user
       content:
@@ -1180,7 +1180,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
       pdf_base64 = base64.standard_b64encode(pdf_file.read()).decode("utf-8")
 
   response = client.messages.count_tokens(
-      model="claude-opus-4-8",
+      model="claude-opus-5",
       messages=[
           {
               "role": "user",
@@ -1210,7 +1210,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
   const pdfBase64 = await readFile("/path/to/document.pdf", { encoding: "base64" });
 
   const response = await client.messages.countTokens({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     messages: [
       {
         role: "user",
@@ -1250,7 +1250,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
 
   var parameters = new MessageCountTokensParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5,
       Messages =
       [
           new()
@@ -1284,7 +1284,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
   pdfBase64 := base64.StdEncoding.EncodeToString(pdfBytes)
 
   response, err := client.Messages.CountTokens(context.TODO(), anthropic.MessageCountTokensParams{
-  	Model: anthropic.ModelClaudeOpus4_8,
+  	Model: anthropic.ModelClaudeOpus5,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
   			anthropic.NewDocumentBlock(anthropic.Base64PDFSourceParam{
@@ -1324,7 +1324,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
       );
 
       MessageCountTokensParams params = MessageCountTokensParams.builder()
-        .model(Model.CLAUDE_OPUS_4_8)
+        .model(Model.CLAUDE_OPUS_5)
         .addUserMessageOfBlockParams(List.of(documentBlock, textBlock))
         .build();
 
@@ -1357,7 +1357,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
               ]
           ]
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5',
   );
 
   echo json_encode($response);
@@ -1371,7 +1371,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
   pdf_base64 = Base64.strict_encode64(File.binread("/path/to/document.pdf"))
 
   response = client.messages.count_tokens(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5",
     messages: [
       {
         role: "user",

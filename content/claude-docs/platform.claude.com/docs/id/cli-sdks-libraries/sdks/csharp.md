@@ -1,24 +1,24 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/csharp
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 85f5cf00d7a76256e35e1318c917378ac7eedda3f7d7424ab2d1a8fcbb3dda4b
+fetched_at: 2026-07-25T03:07:29.726338Z
+sha256: 38499ebf159da684fb9ea68a832a91e720e9b9f46e5b4fa3d5cb8d6fe5f17359
 ---
 
 # SDK C#
 
-Instal dan konfigurasikan Anthropic C# SDK untuk aplikasi .NET dengan integrasi IChatClient
+Instal dan konfigurasikan SDK C# Anthropic untuk aplikasi .NET dengan integrasi IChatClient
 
 ---
 
-Anthropic C# SDK menyediakan akses yang mudah ke REST API Anthropic dari aplikasi yang ditulis dalam C#.
+SDK C# Anthropic menyediakan akses yang mudah ke REST API Anthropic dari aplikasi yang ditulis dalam C#.
 
 <Info>
   SDK C# saat ini dalam tahap beta. API dapat berubah antar versi.
 </Info>
 
 <Info>
-  Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK yang spesifik untuk C#.
+  Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK yang khusus untuk C#.
 </Info>
 
 <Warning>
@@ -57,7 +57,7 @@ MessageCreateParams parameters = new()
             Content = "Hello, Claude",
         },
     ],
-    Model = Model.ClaudeOpus4_8,
+    Model = Model.ClaudeOpus5,
 };
 
 var message = await client.Messages.Create(parameters);
@@ -124,7 +124,7 @@ Console.WriteLine(message);
 
 Menggunakan [ekspresi `with`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/with-expression) memudahkan pembuatan opsi yang dimodifikasi.
 
-Metode `WithOptions` tidak memengaruhi klien atau layanan aslinya.
+Metode `WithOptions` tidak memengaruhi klien atau layanan asli.
 
 ## Streaming
 
@@ -149,7 +149,7 @@ MessageCreateParams parameters = new()
             Content = "Hello, Claude",
         },
     ],
-    Model = Model.ClaudeOpus4_8,
+    Model = Model.ClaudeOpus5,
 };
 
 await foreach (var message in client.Messages.CreateStreaming(parameters))
@@ -181,7 +181,7 @@ Selain itu, semua kesalahan 4xx mewarisi dari `Anthropic4xxException`.
 
 * `AnthropicIOException`: Kesalahan jaringan I/O.
 
-* `AnthropicInvalidDataException`: Kegagalan menafsirkan data yang berhasil diurai. Misalnya, saat mengakses properti yang seharusnya wajib, tetapi API secara tak terduga menghilangkannya dari respons.
+* `AnthropicInvalidDataException`: Kegagalan dalam menginterpretasikan data yang berhasil diurai. Misalnya, saat mengakses properti yang seharusnya wajib, tetapi API secara tidak terduga menghilangkannya dari respons.
 
 * `AnthropicException`: Kelas dasar untuk semua exception.
 
@@ -207,7 +207,7 @@ using Anthropic;
 AnthropicClient client = new() { MaxRetries = 3 };
 ```
 
-Atau konfigurasikan satu panggilan metode menggunakan `WithOptions`:
+Atau konfigurasikan satu pemanggilan metode menggunakan `WithOptions`:
 
 ```csharp
 using System;
@@ -234,7 +234,7 @@ using Anthropic;
 AnthropicClient client = new() { Timeout = TimeSpan.FromSeconds(42) };
 ```
 
-Atau konfigurasikan satu panggilan metode menggunakan `WithOptions`:
+Atau konfigurasikan satu pemanggilan metode menggunakan `WithOptions`:
 
 ```csharp
 using System;
@@ -288,7 +288,7 @@ while (true)
 
 ## Validasi respons
 
-Dalam kasus yang jarang terjadi, API dapat mengembalikan respons yang tidak cocok dengan tipe yang diharapkan. Secara default, SDK tidak melemparkan exception dalam kasus ini. SDK hanya melemparkan `AnthropicInvalidDataException` jika Anda mengakses properti tersebut secara langsung.
+Dalam kasus yang jarang terjadi, API dapat mengembalikan respons yang tidak sesuai dengan tipe yang diharapkan. Secara default, SDK tidak melemparkan exception dalam kasus ini. SDK hanya melemparkan `AnthropicInvalidDataException` jika Anda mengakses properti tersebut secara langsung.
 
 Jika Anda lebih suka memeriksa bahwa respons sepenuhnya bertipe dengan benar di awal, maka panggil `Validate`:
 
@@ -305,7 +305,7 @@ using Anthropic;
 AnthropicClient client = new() { ResponseValidation = true };
 ```
 
-Atau konfigurasikan satu panggilan metode menggunakan `WithOptions`:
+Atau konfigurasikan satu pemanggilan metode menggunakan `WithOptions`:
 
 ```csharp
 using System;
@@ -331,7 +331,7 @@ using ModelContextProtocol.Client;
 // Dikonfigurasi menggunakan variabel lingkungan ANTHROPIC_API_KEY, ANTHROPIC_AUTH_TOKEN, dan ANTHROPIC_BASE_URL
 AnthropicClient client = new();
 
-IChatClient chatClient = client.AsIChatClient("claude-opus-4-8")
+IChatClient chatClient = client.AsIChatClient("claude-opus-5")
     .AsBuilder()
     .UseFunctionInvocation()
     .Build();
@@ -347,15 +347,15 @@ Console.WriteLine(await chatClient.GetResponseAsync("Tell me about IChatClient",
 
 ## Permintaan dan respons
 
-Untuk mengirim permintaan ke Claude API, buat instans dari kelas `Params` dan teruskan ke metode klien yang sesuai. Ketika respons diterima, respons tersebut dideserialisasi menjadi instans dari kelas C#.
+Untuk mengirim permintaan ke Claude API, buat instance dari kelas `Params` dan teruskan ke metode klien yang sesuai. Ketika respons diterima, respons tersebut dideserialisasi menjadi instance dari kelas C#.
 
-Misalnya, `client.Messages.Create` harus dipanggil dengan instans `MessageCreateParams`, dan akan mengembalikan instans `Task<Message>`.
+Misalnya, `client.Messages.Create` harus dipanggil dengan instance `MessageCreateParams`, dan akan mengembalikan instance `Task<Message>`.
 
 ## Penggunaan lanjutan
 
 ### Respons biner
 
-SDK mendefinisikan metode yang mengembalikan respons biner, yang digunakan untuk respons API yang tidak harus diurai, seperti data non-JSON.
+SDK mendefinisikan metode yang mengembalikan respons biner, yang digunakan untuk respons API yang tidak perlu diurai, seperti data non-JSON.
 
 Metode ini mengembalikan `HttpResponse`:
 
@@ -383,7 +383,7 @@ await contentStream.CopyToAsync(fileStream); // Or any other Stream
 
 ### Respons mentah
 
-SDK mendefinisikan metode yang mendeserialisasi respons menjadi instans kelas C#. Untuk mengakses header respons, kode status, atau body respons mentah, awali panggilan metode HTTP apa pun pada klien atau layanan dengan `WithRawResponse`:
+SDK mendefinisikan metode yang mendeserialisasi respons menjadi instance dari kelas C#. Untuk mengakses header respons, kode status, atau body respons mentah, awali pemanggilan metode HTTP apa pun pada klien atau layanan dengan `WithRawResponse`:
 
 ```csharp
 var response = await client.WithRawResponse.Messages.Create(parameters);
@@ -393,7 +393,7 @@ var headers = response.Headers;
 
 `HttpResponseMessage` mentah juga dapat diakses melalui properti `RawMessage`.
 
-Untuk respons non-streaming, Anda dapat mendeserialisasi respons menjadi instans kelas C# jika diperlukan:
+Untuk respons non-streaming, Anda dapat mendeserialisasi respons menjadi instance dari kelas C# jika diperlukan:
 
 ```csharp
 using System;
@@ -419,7 +419,7 @@ await foreach (var item in response.Enumerate())
 ### Logging
 
 <Warning>
-  Semua pesan log ditujukan hanya untuk debugging. Format dan konten pesan log dapat berubah antar rilis.
+  Semua pesan log hanya ditujukan untuk debugging. Format dan konten pesan log dapat berubah antar rilis.
 </Warning>
 
 Aktifkan debug logging dengan mengatur variabel lingkungan:
@@ -430,7 +430,7 @@ export ANTHROPIC_LOG=debug
 
 ### Fungsionalitas API yang tidak terdokumentasi
 
-SDK diberi tipe untuk penggunaan yang mudah dari API yang terdokumentasi. Namun, SDK juga mendukung bekerja dengan bagian API yang tidak terdokumentasi atau belum didukung.
+SDK diketik untuk penggunaan yang mudah dari API yang terdokumentasi. Namun, SDK juga mendukung bekerja dengan bagian API yang tidak terdokumentasi atau belum didukung.
 
 ## Integrasi platform
 
@@ -448,7 +448,7 @@ SDK C# mendukung platform berikut melalui paket NuGet terpisah:
 
 * **Agent Platform:** `Anthropic.Vertex`. Lihat [Claude di Google Cloud](/docs/id/build-with-claude/claude-on-vertex-ai) untuk penyiapan klien.
 * **Bedrock:** `Anthropic.Bedrock`. Gunakan `AnthropicBedrockMantleClient` untuk endpoint Bedrock Messages-API, atau `AnthropicBedrockClient` (jalur `bedrock-runtime`). `AnthropicBedrockMantleClient` menerima objek konfigurasi `MantleAwsClientOptions` opsional; `AnthropicBedrockClient` menerima `AnthropicBedrockCredentialsHelper.FromEnv()` atau kredensial eksplisit.
-* **Claude Platform di AWS:** `Anthropic.Aws`. Gunakan `AnthropicAwsClient`; atur `WorkspaceId` pada klien atau variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID` (lihat [Workspaces](/docs/id/build-with-claude/claude-platform-on-aws#workspaces)). Tersedia dalam tahap beta.
+* **Claude Platform di AWS:** `Anthropic.Aws`. Gunakan `AnthropicAwsClient`; atur `WorkspaceId` pada klien atau variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID` (lihat [Workspaces](/docs/id/build-with-claude/claude-platform-on-aws#workspaces)). Tersedia dalam beta.
 * **Foundry:** `Anthropic.Foundry`. Gunakan `AnthropicFoundryClient` dengan `DefaultAnthropicFoundryCredentials.FromEnv()` atau kredensial eksplisit.
 
 Gunakan `AnthropicBedrockMantleClient` untuk proyek baru; `AnthropicBedrockClient` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
@@ -456,15 +456,15 @@ Gunakan `AnthropicBedrockMantleClient` untuk proyek baru; `AnthropicBedrockClien
 ## Semantic versioning
 
 <Warning>
-  Meskipun paket ini diberi versi 10+, paket ini saat ini dalam tahap beta. Selama periode beta, perubahan yang merusak (breaking changes) dapat terjadi pada rilis minor atau patch. Setelah pustaka mencapai rilis stabil, konvensi SemVer akan diikuti dengan lebih ketat. Bagikan umpan balik dengan [mengajukan issue](https://github.com/anthropics/anthropic-sdk-csharp/issues/new).
+  Meskipun paket ini diberi versi 10+, paket ini saat ini dalam tahap beta. Selama periode beta, perubahan yang merusak kompatibilitas dapat terjadi pada rilis minor atau patch. Setelah pustaka mencapai rilis stabil, konvensi SemVer akan diikuti dengan lebih ketat. Bagikan masukan dengan [mengajukan issue](https://github.com/anthropics/anthropic-sdk-csharp/issues/new).
 </Warning>
 
-Paket ini umumnya mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel dengan versi sebelumnya dapat dirilis sebagai versi minor:
+Paket ini umumnya mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang dapat dirilis sebagai versi minor:
 
-1. Perubahan pada internal pustaka yang secara teknis publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal.
-2. Perubahan yang tidak diharapkan berdampak pada sebagian besar pengguna dalam praktiknya.
+1. Perubahan pada internal pustaka yang secara teknis bersifat publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal.
+2. Perubahan yang tidak diperkirakan akan berdampak pada sebagian besar pengguna dalam praktiknya.
 
-Kompatibilitas mundur ditangani dengan serius untuk memastikan Anda dapat mengandalkan pengalaman pembaruan yang lancar.
+Kompatibilitas ke belakang ditangani dengan serius untuk memastikan Anda dapat mengandalkan pengalaman pembaruan yang lancar.
 
 ## Sumber daya tambahan
 
