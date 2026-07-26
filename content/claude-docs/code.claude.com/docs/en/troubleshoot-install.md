@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshoot-install
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: a662d944dc52d5850727728763493b26ddb846855fc4e3529ee7349c9d1f9027
+fetched_at: 2026-07-26T03:09:09.496749Z
+sha256: 0fd8274bb0a2f4ad7b1aa6b23d691c128a21955200a2eb0a1434caf7b4239beb
 ---
 
 > ## Documentation Index
@@ -652,7 +652,9 @@ Git for Windows is optional. Claude Code uses the [PowerShell tool](/docs/en/too
 
 If your Git is installed somewhere else, find the path by running `where.exe git` in PowerShell and use the `bin\bash.exe` path from that directory.
 
-**If the path is correct and the file exists** but Claude Code still reports it as not found, endpoint security software such as AppLocker, Group Policy software restriction policies, or EDR agents may be interfering. On versions before v2.1.116, Claude Code spawned a child process (`cmd.exe`) to verify the path, which these policies can block — a common signal is that `cmd.exe /c dir "C:\Program Files\Git\bin\bash.exe"` works when you run it directly in PowerShell but fails silently when launched by `claude.exe`.
+**If the path is correct and the file exists** but Claude Code still doesn't use it, check the file's name first. {/* min-version: 2.1.219 */}Claude Code accepts only a file named `bash.exe`, `sh.exe`, `bash`, or `sh`; with any other name, such as Git for Windows' `git-bash.exe` launcher, it ignores the variable and auto-detects Git Bash as if it were unset, logging a warning visible with `--debug`. A path that doesn't exist gets the same fallback and warning. Before v2.1.219, Claude Code used any existing file as the shell without checking its name, and exited at startup with `Claude Code was unable to find CLAUDE_CODE_GIT_BASH_PATH path` when the path didn't exist.
+
+If the file's name is right, endpoint security software such as AppLocker, Group Policy software restriction policies, or EDR agents may be interfering. On versions before v2.1.116, Claude Code spawned a `cmd.exe` child process to verify the path, which these policies can block. A common signal is that `cmd.exe /c dir "C:\Program Files\Git\bin\bash.exe"` works when you run it directly in PowerShell but fails silently when launched by `claude.exe`.
 
 Claude Code v2.1.116 and later check the filesystem directly, so update first. If the error persists on a current version, ask your IT team to allowlist `claude.exe` and the processes it spawns, including `cmd.exe` and `bash.exe`, in your endpoint protection policy.
 
