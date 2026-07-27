@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/subagents
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: 0f2e4ba3c656874bc34ab877a247ddc7adaac53badcdd2dfeb1841e516d86be6
+fetched_at: 2026-07-27T03:11:21.118026Z
+sha256: 565414be8c07f131a16054c785e56c1d4d1189ebb386c84f17a558859bc28c98
 ---
 
 > ## Documentation Index
@@ -194,7 +194,12 @@ Two subagent behaviors changed in Claude Code v2.1.198:
 * A subagent inherits the main session's extended thinking configuration. On earlier versions, extended thinking is disabled inside subagents regardless of the main session's setting.
 
 <Note>
-  {/* min-version: 2.1.217 */}By default, subagents can't spawn subagents of their own. To let them, set [`CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH`](/docs/en/env-vars) to the number of subagent layers you want below your main conversation, `2` or higher; see [nested subagents](/docs/en/sub-agents#let-subagents-spawn-their-own-subagents). From Claude Code v2.1.172 through v2.1.216, subagents could nest by default, up to five layers.
+  {/* min-version: 2.1.219 */}By default, subagents can spawn subagents of their own, up to three layers below the main conversation. {/* min-version: 2.1.217 */}To change the limit, set [`CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH`](/docs/en/env-vars) to the number of subagent layers you want below your main conversation, or `1` to turn nesting off; see [nested subagents](/docs/en/sub-agents#let-subagents-spawn-their-own-subagents).
+
+  Earlier versions used different defaults:
+
+  * **v2.1.172 through v2.1.216**: subagents could nest by default, up to five layers deep, and the limit couldn't be changed.
+  * **v2.1.217 through v2.1.218**: the limit defaulted to one, so a subagent couldn't spawn its own unless you raised it; {/* min-version: 2.1.219 */}v2.1.219 raised the default to three.
 </Note>
 
 ### Filesystem-based definition (alternative)
