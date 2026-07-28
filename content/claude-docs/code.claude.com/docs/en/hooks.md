@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 038cad460d95b777f4a08dae02dbff2606aba557ed47faeb2a0d85aea3f53019
+fetched_at: 2026-07-28T03:08:15.830819Z
+sha256: b65c99124dc5e4a1ad671d9fa2e906e9601706c0621e18718a122a29af7d33f7
 ---
 
 > ## Documentation Index
@@ -191,7 +191,16 @@ Where you define a hook determines its scope:
 
 For details on settings file resolution, see [settings](/docs/en/settings).
 
+Hooks from settings files, managed policy settings, and plugins also run inside [subagents](/docs/en/sub-agents). When a subagent calls a tool, tool events such as `PreToolUse` and `PostToolUse` fire the same configured hooks as in the main conversation, and the input carries the `agent_id` and `agent_type` [common input fields](#common-input-fields) that identify the subagent.
+
 Enterprise administrators can use `allowManagedHooksOnly` to block user, project, and plugin hooks. Hooks from plugins force-enabled in managed settings `enabledPlugins` are exempt, so administrators can distribute vetted hooks through an organization marketplace. See [Hook configuration](/docs/en/settings#hook-configuration).
+
+Hook entries merge across settings levels rather than replacing each other: user, project, and local settings add their own hooks without removing managed ones, and the [`disableAllHooks`](#disable-or-remove-hooks) setting can't disable managed hooks from outside managed settings.
+
+The [HTTP hook allowlists](/docs/en/settings#hook-configuration) apply to hooks from every source, including managed policy settings:
+
+* `allowedHttpHookUrls`: when defined at any settings level, Claude Code runs an HTTP hook handler only if its URL matches the merged allowlist
+* `httpHookAllowedEnvVars`: when defined, Claude Code interpolates only the environment variables on that list into hook headers
 
 ### Matcher patterns
 

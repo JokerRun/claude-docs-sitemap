@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sub-agents
-fetched_at: 2026-07-27T03:11:21.118026Z
-sha256: 82e253759547b88df6ed527b9d61a8c3aad46ef523bccd9deb1993d37f61bc2c
+fetched_at: 2026-07-28T03:08:15.830819Z
+sha256: 64abaedb06ae3bbe6fbc47b12520f9f8bc0644a52c17069e9c2ada13155bdc7a
 ---
 
 > ## Documentation Index
@@ -607,7 +607,9 @@ See [Permissions documentation](/docs/en/permissions#tool-specific-permission-ru
 Subagents can define [hooks](/docs/en/hooks) that run during the subagent's lifecycle. There are two ways to configure hooks:
 
 * **In the subagent's frontmatter**: define hooks that run only while that subagent is active
-* **In `settings.json`**: define hooks that run in the main session when subagents start or stop
+* **In `settings.json`**: define session-wide hooks that also fire inside subagents. Tool events such as `PreToolUse` and `PostToolUse` fire for the subagent's tool calls the same way they do in the main conversation, and `SubagentStart` and `SubagentStop` fire when a subagent starts or finishes
+
+Hooks from [settings files, managed policy settings, and plugins](/docs/en/hooks#hook-locations) all apply inside subagents, so a `PreToolUse` hook in `settings.json` also runs before every tool a subagent uses.
 
 #### Hooks in subagent frontmatter
 
