@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-config
-fetched_at: 2026-07-28T03:08:15.830819Z
-sha256: 727ef5eff18db91df9c6346c97b926a3280266c17bf6398bbccf22b6a285bc85
+fetched_at: 2026-07-29T03:07:01.598872Z
+sha256: 5fa289dbe31ff4664e08bfc2549a9aadc2ca47eda19e7d56602b37a9327e1d1c
 ---
 
 > ## Documentation Index
@@ -620,13 +620,14 @@ telemetry:
   Enable logs and traces only on destinations with the access controls and retention policy that data warrants.
 </Warning>
 
-Telemetry is off in the CLI by default. Configuring `telemetry.forward_to` together with `listen.public_url` turns it on. The gateway pushes five env vars to every connected client through `/managed/settings`:
+Telemetry is off in the CLI by default. Configuring `telemetry.forward_to` together with `listen.public_url` turns it on. The gateway pushes six env vars to every connected client through `/managed/settings`:
 
 * `CLAUDE_CODE_ENABLE_TELEMETRY=1`
 * `OTEL_METRICS_EXPORTER=otlp`
 * `OTEL_LOGS_EXPORTER=otlp`
 * `OTEL_TRACES_EXPORTER=otlp`
 * `OTEL_EXPORTER_OTLP_ENDPOINT=<public_url>`
+* `OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf`
 
 The pushed endpoint is built from the public URL, so metrics and logs need no OTEL configuration from developers or policies. The pushed configuration is applied at the managed tier, overriding `OTEL_*` variables a developer sets locally.
 

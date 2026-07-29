@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/sessions
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: a624c41567c45d3cd61f1e39498e66e63fceb6ece65213491596104f8480b51a
+fetched_at: 2026-07-29T03:07:01.598872Z
+sha256: 89e991b777429220e0eb6ef74656c4b89c6303eaf81b78afe4e8066d4f982e87
 ---
 
 > ## Documentation Index
@@ -177,10 +177,9 @@ Resume and fork require a session ID. Read it from the `session_id` field on the
                   if message.subtype == "success":
                       print(message.result)
       except Exception as error:
-          # A single-shot query() raises after yielding an error result.
-          # If the failure was an error result, session_id was already
-          # captured by the loop above; connection or process failures
-          # yield no result message.
+          # A single-shot query() raises after yielding an error result. If the
+          # failure was an error result, the loop above already captured session_id;
+          # process failures yield no result message, so session_id stays None.
           print(f"Session ended with an error: {error}")
 
       print(f"Session ID: {session_id}")
@@ -208,10 +207,9 @@ Resume and fork require a session ID. Read it from the `session_id` field on the
       }
     }
   } catch (error) {
-    // A single-shot query() throws after yielding an error result.
-    // If the failure was an error result, sessionId was already captured
-    // by the loop above; connection or process failures yield no result
-    // message.
+    // A single-shot query() throws after yielding an error result. If the
+    // failure was an error result, the loop above already captured sessionId;
+    // process failures yield no result message, so sessionId stays undefined.
     console.error(`Session ended with an error: ${error}`);
   }
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/authentication
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: 43d151845b84e4aeca9f374a64d081aac2f5b1ea190bc10b4d318832ea2878f7
+fetched_at: 2026-07-29T03:07:01.598872Z
+sha256: 093cc22097ce68a67c2d4e03a399146d6dbab6aec2fc37f7d9ba6024217d7154
 ---
 
 > ## Documentation Index
@@ -17,7 +17,7 @@ Claude Code supports multiple authentication methods depending on your setup. In
 
 ## Log in to Claude Code
 
-After [installing Claude Code](/docs/en/setup#install-claude-code), run `claude` in your terminal. On first launch, Claude Code opens a browser window for you to log in.
+After [installing Claude Code](/docs/en/setup#install-claude-code), run `claude` in your terminal. On first launch, Claude Code opens a browser window for you to log in. If you've set the `ANTHROPIC_API_KEY` environment variable, Claude Code skips the login prompt and asks you to approve the key instead.
 
 If the browser doesn't open automatically, press `c` to copy the login URL to your clipboard, then paste it into your browser.
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript-v2-preview
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 9299fb45b5fc6be56a7efbc6167f73dbea4d9c73db575ddf624297566b17b328
+fetched_at: 2026-07-29T03:07:01.598872Z
+sha256: 3d8af69e6112246f444b6ae50908206036863e79c4a7007e11fe76ccc1b02f70
 ---
 
 > ## Documentation Index
@@ -311,6 +311,8 @@ for await (const msg of resumedSession.stream()) {
 ### Cleanup
 
 Sessions can be closed manually or automatically using [`await using`](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-2.html#using-declarations-and-explicit-resource-management), a TypeScript 5.2+ feature for automatic resource cleanup. If you're using an older TypeScript version or encounter compatibility issues, use manual cleanup instead.
+
+The examples below show only the cleanup pattern and don't send any messages, so running them produces no output.
 
 **Automatic cleanup (TypeScript 5.2+):**
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/goal
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 56a76edc6bf3e8e52f184385c7223a075d520b0565ad8a3eb5b07d04b811e076
+fetched_at: 2026-07-29T03:07:01.598872Z
+sha256: f7b5281df344cfea4190e7b2948810a73f8fefcfecd33bb9c50f58e1ecf4ff62
 ---
 
 > ## Documentation Index
@@ -130,7 +130,16 @@ Interrupt the process with Ctrl+C to stop a non-interactive goal before the cond
 
 ## How evaluation works
 
-`/goal` is a wrapper around a session-scoped [prompt-based Stop hook](/docs/en/hooks#prompt-based-hooks). Each time Claude finishes a turn, the condition and the conversation so far are sent to your configured [small fast model](/docs/en/model-config), which defaults to Haiku. The model returns a yes-or-no decision and a short reason. A "no" tells Claude to keep working and includes the reason as guidance for the next turn. A "yes" clears the goal and records an achieved entry in the transcript.
+`/goal` is a wrapper around a session-scoped [prompt-based Stop hook](/docs/en/hooks#prompt-based-hooks). Each time Claude finishes a turn, the condition and the conversation so far are sent to your configured [small fast model](/docs/en/model-config), which defaults to Haiku on the Claude API; on a third-party provider, check your [provider page](/docs/en/third-party-integrations) for the platform's default. The model answers yes or no and gives a short reason.
+
+* **No**: Claude keeps working and takes the reason as guidance for the next turn.
+* **Yes**: Claude Code clears the goal and records an achieved entry in the transcript.
+
+To evaluate on a different model, set [`ANTHROPIC_DEFAULT_HAIKU_MODEL`](/docs/en/model-config#environment-variables).
+
+<Warning>
+  Claude Code reads `ANTHROPIC_DEFAULT_HAIKU_MODEL` everywhere it uses the small fast model, not only for `/goal` evaluation. When you set it, Claude Code also resolves the [`haiku` alias](/docs/en/model-config#model-aliases) to that model and runs [background functionality](/docs/en/costs#background-token-usage), such as conversation summarization, on it.
+</Warning>
 
 The evaluator runs on whichever provider your session is configured for. It does not call tools, so it can only judge what Claude has already surfaced in the conversation.
 

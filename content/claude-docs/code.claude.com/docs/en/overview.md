@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/overview
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 6ab249f4af57b42d07e7a035d3f44a4fe61bd90b92c4e6fee6ba69d166e168fa
+fetched_at: 2026-07-29T03:07:01.598872Z
+sha256: a7bcdc9737d8a2395dcb3e9c3e1d9c6baffd337e0847d22a9f65fb37d94b0393
 ---
 
 > ## Documentation Index
@@ -88,7 +88,7 @@ Claude Code runs on several surfaces: the terminal, IDE extensions, a desktop ap
     claude
     ```
 
-    You'll be prompted to log in on first use. That's it! [Continue with the Quickstart →](/docs/en/quickstart)
+    You'll be prompted to log in on first use. If you've set the `ANTHROPIC_API_KEY` environment variable, Claude Code skips the login prompt and asks you to approve the key instead. That's it! [Continue with the Quickstart →](/docs/en/quickstart)
 
     <Tip>
       See [advanced setup](/docs/en/setup) for installation options, manual updates, or uninstallation instructions. Visit [installation troubleshooting](/docs/en/troubleshoot-install) if you hit issues.
@@ -215,7 +215,7 @@ Here are some of the ways you can use Claude Code:
     * Step away from your desk and keep working from your phone or any browser with [Remote Control](/docs/en/remote-control)
     * Message [Dispatch](/docs/en/desktop#sessions-from-dispatch) a task from your phone and open the Desktop session it creates
     * Kick off a long-running task on the [web](/docs/en/claude-code-on-the-web) or the [Claude mobile app](/docs/en/mobile), then pull it into your terminal with `claude --teleport`. Teleport requires a claude.ai subscription.
-    * Run `/desktop` to continue your current terminal session in the [Desktop app](/docs/en/desktop), where you can review diffs visually. Available on macOS and x64 Windows.
+    * Run `/desktop` to continue your current terminal session in the [Desktop app](/docs/en/desktop), where you can review diffs visually. The `/desktop` handoff requires a claude.ai subscription. Available on macOS and x64 Windows.
     * Route tasks from team chat: mention `@Claude` in [Slack](/docs/en/slack) with a bug report and get a pull request back
   </Accordion>
 </AccordionGroup>

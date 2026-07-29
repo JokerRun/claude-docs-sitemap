@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-connect
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 0c5329b87a1715f1bfcf4e8b07d83a96fbd88d0fe5289a10c6d2449ef524157d
+fetched_at: 2026-07-29T03:07:01.598872Z
+sha256: 2d6b534ee1fd3e5cf5897f23094e2857434ed5a046d43fd98b27a33a87836455
 ---
 
 > ## Documentation Index
@@ -107,7 +107,7 @@ If you export the gateway only in your shell, it doesn't reliably reach backgrou
 To make the configuration apply everywhere Claude Code runs, including [background agents](/docs/en/agent-view#how-background-sessions-are-hosted), set the variables in the `env` block of a [settings file](/docs/en/settings) instead of relying on your shell. Settings files have different scopes:
 
 * `~/.claude/settings.json` applies to all your projects. On Windows the path is `%USERPROFILE%\.claude\settings.json`
-* `.claude/settings.local.json` applies to one project. Claude Code adds it to your gitignore when it creates the file; if you create it yourself, add it to your gitignore manually first so you don't accidentally commit your credential
+* `.claude/settings.local.json` applies to one project. Claude Code adds it to your global gitignore when it saves a setting there; if you create it by hand or have Claude write it, add it to your gitignore yourself first so you don't accidentally commit your credential
 
 <Warning>
   Don't put the credential in a project's `.claude/settings.json`. That file is committed and shared with everyone who clones the repository.
@@ -314,7 +314,7 @@ Enable it if your gateway serves model names that aren't in Claude Code's built-
 
 To enable it, set `CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY=1` in your shell or in the `env` block of `~/.claude/settings.json`. Discovery requires Claude Code v2.1.129 or later. {/* min-version: 2.1.129 */}
 
-Discovered models appear as additional `/model` entries labeled `From gateway`. To confirm discovery ran, start `claude --debug` and look for the `[gatewayDiscovery]` lines: a success logs how many models were cached, and a `404`, timeout, or redirect is recorded there too. For when discovery runs, what it filters, and the response format gateways serve, see the [model discovery reference](/docs/en/llm-gateway-protocol#model-discovery).
+Discovered models appear as additional `/model` entries labeled `From gateway`. To confirm discovery ran, start `claude --debug` and look for the `[gatewayDiscovery]` lines in the debug log at `~/.claude/debug/<session-id>.txt`: a success logs how many models were cached, and a `404`, timeout, or redirect is recorded there too. For when discovery runs, what it filters, and the response format gateways serve, see the [model discovery reference](/docs/en/llm-gateway-protocol#model-discovery).
 
 ### Rotate credentials with apiKeyHelper
 

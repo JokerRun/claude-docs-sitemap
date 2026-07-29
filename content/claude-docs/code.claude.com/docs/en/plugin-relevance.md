@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-relevance
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 0920d33f7d634ca0f88bc7d5761e04f0aba45966afb97093593fd8df5f62d32b
+fetched_at: 2026-07-29T03:07:01.598872Z
+sha256: f62ab788e25840458ab33b9fe3be525abfe36487998dc84876eb53cfbd04d7bc
 ---
 
 > ## Documentation Index
@@ -106,7 +106,7 @@ The following example uses `manifestDeps` to suggest a Stripe plugin once Claude
 ```
 
 <Note>
-  Unknown fields under `relevance` and `relevance.signals` are ignored at load time so older Claude Code clients continue to load your marketplace. Run `claude plugin validate` to surface them as warnings.
+  Claude Code ignores unknown fields under `relevance` and `relevance.signals` at load time, so older clients continue to load your marketplace. Run `claude plugin validate` against your marketplace directory, for example `claude plugin validate ./my-marketplace`, to surface them as warnings.
 </Note>
 
 ## Enable suggestions in managed settings
