@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/slash-commands
-fetched_at: 2026-07-29T03:07:01.598872Z
-sha256: 28ac01de544f9e387beb260b8398bde3d3fdf6ff3bbe05b76e3eb49957d9bf03
+fetched_at: 2026-07-30T03:08:06.608103Z
+sha256: 685bac69f818beb5d4b017c2aa3a7b0a22bdf6162b3ffb814d2d47276d86af7c
 ---
 
 > ## Documentation Index
@@ -226,7 +226,7 @@ This is useful in [streaming input mode](/docs/en/agent-sdk/streaming-vs-single-
 
 ## Creating Custom Slash Commands
 
-In addition to using built-in slash commands, you can create your own custom commands that are available through the SDK. Custom commands are defined as markdown files in specific directories, similar to how subagents are configured.
+In addition to using built-in slash commands, you can create your own custom commands that are available through the SDK. You define custom commands as markdown files in specific directories, the same way you configure subagents.
 
 <Note>
   The `.claude/commands/` directory is the legacy format. The recommended format is `.claude/skills/<name>/SKILL.md`, which supports the same slash-command invocation (`/name`) plus autonomous invocation by Claude. See [Skills](/docs/en/agent-sdk/skills) for the current format. The CLI continues to support both formats, and the examples below remain accurate for `.claude/commands/`.
@@ -234,7 +234,7 @@ In addition to using built-in slash commands, you can create your own custom com
 
 ### File Locations
 
-Custom slash commands are stored in designated directories based on their scope:
+Save custom slash commands in one of these directories, depending on their scope:
 
 * **Project commands**: `.claude/commands/` - Available only in the current project (legacy; prefer `.claude/skills/`)
 * **Personal commands**: `~/.claude/commands/` - Available across all your projects (legacy; prefer `~/.claude/skills/`)

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/devcontainer
-fetched_at: 2026-07-29T03:07:01.598872Z
-sha256: 2f072d7b6056bf14f6aaaf75c8afa1e7879e7762e494df2d3acc0e2ce5bba64d
+fetched_at: 2026-07-30T03:08:06.608103Z
+sha256: 3e86d270d480d2523b5646564ea0eef5f26098a978577307fb47de24a1baa82b
 ---
 
 > ## Documentation Index
@@ -27,7 +27,7 @@ This page covers [installing Claude Code in a dev container](#add-claude-code-to
 <Accordion title="How dev containers work with your editor">
   <img src="https://mintcdn.com/claude-code/YvJyjZfd9yMihr0i/images/devcontainer-architecture.svg?fit=max&auto=format&n=YvJyjZfd9yMihr0i&q=85&s=9017b1d16a446c6cc37ba562f35b9aae" className="dark:hidden" alt="Diagram showing an editor on the host connecting to a Docker dev container. Claude Code, the terminal, and build tools run inside the container. The host repository is bind-mounted into the container as the workspace." width="640" height="300" data-path="images/devcontainer-architecture.svg" />
 
-  <img src="https://mintcdn.com/claude-code/YvJyjZfd9yMihr0i/images/devcontainer-architecture-dark.svg?fit=max&auto=format&n=YvJyjZfd9yMihr0i&q=85&s=ef00c8e25b1ea7a3a152895f1488831b" className="hidden dark:block" alt="Diagram showing an editor on the host connecting to a Docker dev container. Claude Code, the terminal, and build tools run inside the container. The host repository is bind-mounted into the container as the workspace." width="640" height="300" data-path="images/devcontainer-architecture-dark.svg" />
+  <img src="https://mintcdn.com/claude-code/_xqph1dUOslCOwsj/images/devcontainer-architecture-dark.svg?fit=max&auto=format&n=_xqph1dUOslCOwsj&q=85&s=a0a340b1f2afc6a590696102c8acaaca" className="hidden dark:block" alt="Diagram showing an editor on the host connecting to a Docker dev container. Claude Code, the terminal, and build tools run inside the container. The host repository is bind-mounted into the container as the workspace." width="640" height="300" data-path="images/devcontainer-architecture-dark.svg" />
 
   A dev container runs as a Docker container, either on your machine or on a cloud host such as GitHub Codespaces. An editor that supports the Dev Containers spec, such as VS Code, GitHub Codespaces, a JetBrains IDE, or Cursor, connects to that container: you browse and edit files in the editor as usual, but the integrated terminal, language servers, and build tools all run inside the container rather than on your host. Editors without dev container support, such as plain Vim, are not part of this workflow.
 

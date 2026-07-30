@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-07-29T03:07:01.598872Z
-sha256: 2e2c82f8ce24969e26225b0fd5a5f328a5baf22c343277b551023d2702a8b02a
+fetched_at: 2026-07-30T03:08:06.608103Z
+sha256: ee753079c2b94169e84b1391a7270150cb905dd07e01c172525f5103560f38d4
 ---
 
 > ## Documentation Index
@@ -53,7 +53,7 @@ On macOS, there is nothing to install: sandboxing uses the built-in Seatbelt fra
   </Step>
 </Steps>
 
-Selecting a mode in the panel writes to your project's local settings at `.claude/settings.local.json`, which apply to the current project. Claude Code adds that file to your global gitignore when it saves a setting there. To enable the sandbox across all of your projects, set [`sandbox.enabled`](/docs/en/settings#sandbox-settings) to `true` in your user settings at `~/.claude/settings.json`. To enforce sandboxing for every developer in an organization, use [managed settings](#enforce-sandboxing-with-managed-settings).
+When you select a mode in the panel, Claude Code saves it to your project's local settings at `.claude/settings.local.json`, which apply to the current project. Claude Code adds that file to your global gitignore when it saves a setting there. To enable the sandbox across all of your projects, set [`sandbox.enabled`](/docs/en/settings#sandbox-settings) to `true` in your user settings at `~/.claude/settings.json`. To enforce sandboxing for every developer in an organization, use [managed settings](#enforce-sandboxing-with-managed-settings).
 
 <Warning>
   By default, if the sandbox cannot start because dependencies are missing or the platform is unsupported, Claude Code shows a warning and runs commands without sandboxing. To make this a hard failure instead, set [`sandbox.failIfUnavailable`](/docs/en/settings#sandbox-settings) to `true`. This is intended for managed deployments that require sandboxing as a security gate.
@@ -124,7 +124,7 @@ When a required dependency is missing, the Dependencies tab is the only tab show
 
 Claude Code offers two sandbox modes:
 
-**Auto-allow mode**: Bash commands will attempt to run inside the sandbox and are automatically allowed without requiring permission. Commands that cannot be sandboxed, such as those needing network access to non-allowed hosts, fall back to the regular permission flow, where Claude Code checks your [permission rules](/docs/en/permissions) and gates any command those rules do not already allow, with a prompt in default mode or the classifier in [auto mode](/docs/en/permission-modes#eliminate-prompts-with-auto-mode).
+**Auto-allow mode**: when a command can be sandboxed, Claude Code runs it inside the sandbox and approves it automatically, without asking your permission. Commands that cannot be sandboxed, such as those needing network access to non-allowed hosts, fall back to the regular permission flow, where Claude Code checks your [permission rules](/docs/en/permissions) and gates any command those rules do not already allow, with a prompt in default mode or the classifier in [auto mode](/docs/en/permission-modes#eliminate-prompts-with-auto-mode).
 
 Even in auto-allow mode, the following still apply:
 

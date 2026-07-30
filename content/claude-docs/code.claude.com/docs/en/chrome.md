@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/chrome
-fetched_at: 2026-07-22T03:08:36.547264Z
-sha256: 5a950a736c9b5b79672a8f447173e0dffccbf0a08427ec34a3633200b31586d9
+fetched_at: 2026-07-30T03:08:06.608103Z
+sha256: f3d5a2897ec29fd88432399f2e3f1d96e5d70765eed7843662a2a130d6f3da80
 ---
 
 > ## Documentation Index
@@ -67,12 +67,12 @@ Chrome integration also requires signing in with `/login`. If you authenticate w
   <Step title="Ask Claude to use the browser">
     This example navigates to a page, interacts with it, and reports what it finds, all from your terminal or editor:
 
-    ```text theme={null}
+    ```text wrap theme={null}
     Go to code.claude.com/docs, click on the search box,
     type "hooks", and tell me what results appear
     ```
 
-    The first browser action asks for permission to use the `claude-in-chrome` skill. Approve it and Claude opens a new tab and starts the task.
+    Before Claude's first browser action, Claude Code asks for permission to use the `claude-in-chrome` skill. Approve it and Claude opens a new tab and starts the task.
   </Step>
 </Steps>
 
@@ -125,7 +125,7 @@ These examples show common ways to combine browser actions with coding tasks. Ru
 
 When developing a web app, ask Claude to verify your changes work correctly:
 
-```text theme={null}
+```text wrap theme={null}
 I just updated the login form validation. Can you open localhost:3000,
 try submitting the form with invalid data, and check if the error
 messages appear correctly?
@@ -137,7 +137,7 @@ Claude navigates to your local server, interacts with the form, and reports what
 
 Claude can read console output to help diagnose problems. Tell Claude what patterns to look for rather than asking for all console output, since logs can be verbose:
 
-```text theme={null}
+```text wrap theme={null}
 Open the dashboard page and check the console for any errors when
 the page loads.
 ```
@@ -148,7 +148,7 @@ Claude reads the console messages and can filter for specific patterns or error 
 
 Speed up repetitive data entry tasks:
 
-```text theme={null}
+```text wrap theme={null}
 I have a spreadsheet of customer contacts in contacts.csv. For each row,
 go to the CRM at crm.example.com, click "Add Contact", and fill in the
 name, email, and phone fields.
@@ -162,7 +162,7 @@ Claude can attach files from your machine to upload fields on a page. Claude Cod
 
 This example attaches a log file to a form:
 
-```text theme={null}
+```text wrap theme={null}
 Open the bug tracker at bugs.example.com, create a new issue,
 and attach logs/session.log to it
 ```
@@ -177,7 +177,7 @@ Three restrictions apply to uploads:
 
 Use Claude to write directly in your documents without API setup:
 
-```text theme={null}
+```text wrap theme={null}
 Draft a project update based on the recent commits and add it to my
 Google Doc at docs.google.com/document/d/abc123
 ```
@@ -188,7 +188,7 @@ Claude opens the document, clicks into the editor, and types the content. This w
 
 Pull structured information from websites:
 
-```text theme={null}
+```text wrap theme={null}
 Go to the product listings page and extract the name, price, and
 availability for each item. Save the results as a CSV file.
 ```
@@ -199,7 +199,7 @@ Claude navigates to the page, reads the content, and compiles the data into a st
 
 Coordinate tasks across multiple websites:
 
-```text theme={null}
+```text wrap theme={null}
 Check my calendar for meetings tomorrow, then for each meeting with
 an external attendee, look up their company website and add a note
 about what they do.
@@ -211,7 +211,7 @@ Claude works across tabs to gather information and complete the workflow.
 
 Create shareable recordings of browser interactions:
 
-```text theme={null}
+```text wrap theme={null}
 Record a GIF showing how to complete the checkout flow, from adding
 an item to the cart through to the confirmation page.
 ```
@@ -222,7 +222,7 @@ Claude records the interaction sequence and saves it as a GIF file. The recordin
 
 Ask Claude to keep a screenshot as a file:
 
-```text theme={null}
+```text wrap theme={null}
 Take a screenshot of the checkout page and save it to disk
 ```
 

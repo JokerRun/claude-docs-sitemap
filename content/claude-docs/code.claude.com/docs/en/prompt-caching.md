@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/prompt-caching
-fetched_at: 2026-07-29T03:07:01.598872Z
-sha256: b68f0b570c2d9c12da3d4c4bfb4633ccc54b56a8624d293caf8283f182f2fae3
+fetched_at: 2026-07-30T03:08:06.608103Z
+sha256: 318cf6fe2df39918bc115fef5bf4ea3dc1960c2609a3343436e1d6a3eb80b78c
 ---
 
 > ## Documentation Index
@@ -25,7 +25,7 @@ The API caches by matching the start of each request, called the prefix, against
 
 <img src="https://mintcdn.com/claude-code/VbDJw--l6T9a9Wvm/images/prompt-caching-prefix.svg?fit=max&auto=format&n=VbDJw--l6T9a9Wvm&q=85&s=f2e8f0b8298a50305fe428ca3f1d1594" className="dark:hidden" alt="Four turns shown as growing horizontal bars. Each turn's request contains everything from the previous turn plus the latest exchange appended at the end. On turns two and three, the unchanged prefix is read from cache and only the new exchange is processed. On turn four, the system prompt changed, so the prefix no longer matches and the entire request is reprocessed and written." width="720" height="454" data-path="images/prompt-caching-prefix.svg" />
 
-<img src="https://mintcdn.com/claude-code/VbDJw--l6T9a9Wvm/images/prompt-caching-prefix-dark.svg?fit=max&auto=format&n=VbDJw--l6T9a9Wvm&q=85&s=7434a04e08187edd26ec6c3dd332f624" className="hidden dark:block" alt="Four turns shown as growing horizontal bars. Each turn's request contains everything from the previous turn plus the latest exchange appended at the end. On turns two and three, the unchanged prefix is read from cache and only the new exchange is processed. On turn four, the system prompt changed, so the prefix no longer matches and the entire request is reprocessed and written." width="720" height="454" data-path="images/prompt-caching-prefix-dark.svg" />
+<img src="https://mintcdn.com/claude-code/_xqph1dUOslCOwsj/images/prompt-caching-prefix-dark.svg?fit=max&auto=format&n=_xqph1dUOslCOwsj&q=85&s=297dc1c639f0915cae858d0c4b6f3be5" className="hidden dark:block" alt="Four turns shown as growing horizontal bars. Each turn's request contains everything from the previous turn plus the latest exchange appended at the end. On turns two and three, the unchanged prefix is read from cache and only the new exchange is processed. On turn four, the system prompt changed, so the prefix no longer matches and the entire request is reprocessed and written." width="720" height="454" data-path="images/prompt-caching-prefix-dark.svg" />
 
 To get the most out of prefix matching, Claude Code orders each request so content that rarely changes between turns comes first:
 

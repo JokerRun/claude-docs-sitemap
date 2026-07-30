@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins-reference
-fetched_at: 2026-07-29T03:07:01.598872Z
-sha256: 224451e05fb4e4a322a0e799316d66acdef8c7d6bbb373a9d9a94c3b81ac142e
+fetched_at: 2026-07-30T03:08:06.608103Z
+sha256: 0029cf8a6262d05be9436c14abbcdbf7b3e8154e7ae70c4b8f8d1b2e5d40d387
 ---
 
 > ## Documentation Index
@@ -340,7 +340,7 @@ The `command` value supports the [path substitutions](#environment-variables) `$
 
 A monitor `command` can't reference [`${user_config.*}`](#user-configuration) values. The command runs through a shell, so Claude Code rejects the monitor with an [error](/docs/en/errors#plugin-command-references-user-config) instead of substituting the value. Monitor processes don't receive `CLAUDE_PLUGIN_OPTION_<KEY>` environment variables, so have the monitor script read the value from a config file it owns. Before v2.1.207, monitor commands substituted `${user_config.*}` values.
 
-Disabling a plugin mid-session does not stop monitors that are already running. They stop when the session ends.
+If you disable a plugin mid-session, Claude Code doesn't stop monitors that are already running; they stop when the session ends.
 
 ### Themes
 
@@ -358,7 +358,7 @@ Plugins can ship color themes that appear in `/theme` alongside the built-in pre
 }
 ```
 
-Selecting a plugin theme persists `custom:<plugin-name>:<slug>` in the user's config. Plugin themes are read-only; pressing `Ctrl+E` on one in `/theme` copies it into `~/.claude/themes/` so the user can edit the copy.
+When a user selects a plugin theme, Claude Code saves `custom:<plugin-name>:<slug>` in their config. Plugin themes are read-only: when a user presses `Ctrl+E` on one in `/theme`, Claude Code copies it into `~/.claude/themes/` so they can edit the copy.
 
 ***
 

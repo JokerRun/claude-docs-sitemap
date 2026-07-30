@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/goal
-fetched_at: 2026-07-29T03:07:01.598872Z
-sha256: f7b5281df344cfea4190e7b2948810a73f8fefcfecd33bb9c50f58e1ecf4ff62
+fetched_at: 2026-07-30T03:08:06.608103Z
+sha256: c7b6a5a7206d5282be2127db044443c4855d3e50e46656ff2b6106aaa34d363c
 ---
 
 > ## Documentation Index
@@ -130,7 +130,7 @@ Interrupt the process with Ctrl+C to stop a non-interactive goal before the cond
 
 ## How evaluation works
 
-`/goal` is a wrapper around a session-scoped [prompt-based Stop hook](/docs/en/hooks#prompt-based-hooks). Each time Claude finishes a turn, the condition and the conversation so far are sent to your configured [small fast model](/docs/en/model-config), which defaults to Haiku on the Claude API; on a third-party provider, check your [provider page](/docs/en/third-party-integrations) for the platform's default. The model answers yes or no and gives a short reason.
+`/goal` is a wrapper around a session-scoped [prompt-based Stop hook](/docs/en/hooks#prompt-based-hooks). Each time Claude finishes a turn, Claude Code sends the condition and the conversation so far to your configured [small fast model](/docs/en/model-config), which defaults to Haiku on the Claude API; on a third-party provider, check your [provider page](/docs/en/third-party-integrations) for the platform's default. The model answers yes or no and gives a short reason.
 
 * **No**: Claude keeps working and takes the reason as guidance for the next turn.
 * **Yes**: Claude Code clears the goal and records an achieved entry in the transcript.

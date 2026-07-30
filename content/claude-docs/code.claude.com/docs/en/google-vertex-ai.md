@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/google-vertex-ai
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: d5b6d3d622f123526dddf14c983885714163bf530e806d427c9e72dc56c86e1c
+fetched_at: 2026-07-30T03:08:06.608103Z
+sha256: f6a2065ac42db91a32a0e900296cb19fade7267814190040f1d915183fb4f1be
 ---
 
 > ## Documentation Index
@@ -175,7 +175,7 @@ Claude Code supports automatic credential refresh for GCP through the `gcpAuthRe
 }
 ```
 
-The command's output is displayed to the user, but interactive input isn't supported. This works well for browser-based authentication flows where the CLI shows a URL and you complete authentication in the browser. The refresh command times out after three minutes if authentication does not complete. If you set `gcpAuthRefresh` in project settings such as `.claude/settings.json`, the command runs only after you accept the workspace trust prompt.
+Claude Code shows you the command's output, but can't send the command interactive input. This works well for browser-based authentication flows where the CLI shows a URL and you complete authentication in the browser. The refresh command times out after three minutes if authentication does not complete. If you set `gcpAuthRefresh` in project settings such as `.claude/settings.json`, the command runs only after you accept the workspace trust prompt.
 
 ### 4. Configure Claude Code
 

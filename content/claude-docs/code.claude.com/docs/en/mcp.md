@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-07-29T03:07:01.598872Z
-sha256: 9812bbfe1e360f0da018cd7d47c5fb30455f9e26ce7ee6cb4dc8a0e1225ba869
+fetched_at: 2026-07-30T03:08:06.608103Z
+sha256: 9d2dfec8d6092abf9d3899d24eab90fb6da22452275446ae6890b11335592e5f
 ---
 
 > ## Documentation Index
@@ -402,7 +402,7 @@ The command writes the server into the entry for your current project inside `~/
 
 ### Project scope
 
-Project-scoped servers enable team collaboration by storing configurations in a `.mcp.json` file at your project's root directory. This file is designed to be checked into version control, ensuring all team members have access to the same MCP tools and services. When you add a project-scoped server, Claude Code automatically creates or updates this file with the appropriate configuration structure.
+Project-scoped servers enable team collaboration by storing configurations in a `.mcp.json` file at your project's root directory. When you add a project-scoped server, Claude Code automatically creates or updates this file with the appropriate configuration structure. Check `.mcp.json` into version control so everyone on your team gets the same MCP tools and services.
 
 ```bash theme={null}
 # Add a project-scoped server
@@ -497,7 +497,7 @@ claude mcp add --transport http sentry https://mcp.sentry.dev/mcp
 
 Authenticate with your Sentry account:
 
-```text theme={null}
+```text wrap theme={null}
 /mcp
 ```
 
@@ -505,15 +505,15 @@ Follow the sign-in steps in your browser. Once you're signed in, the `sentry` se
 
 Then debug production issues:
 
-```text theme={null}
+```text wrap theme={null}
 What are the most common errors in the last 24 hours?
 ```
 
-```text theme={null}
+```text wrap theme={null}
 Show me the stack trace for error ID abc123
 ```
 
-```text theme={null}
+```text wrap theme={null}
 Which deployment introduced these new errors?
 ```
 
@@ -530,15 +530,15 @@ Replace `YOUR_GITHUB_PAT` with your personal access token. The `claude mcp add` 
 
 Then work with GitHub:
 
-```text theme={null}
+```text wrap theme={null}
 Review PR #456 and suggest improvements
 ```
 
-```text theme={null}
+```text wrap theme={null}
 Create a new issue for the bug we just found
 ```
 
-```text theme={null}
+```text wrap theme={null}
 Show me all open PRs assigned to me
 ```
 
@@ -555,15 +555,15 @@ To confirm the server starts, run `/mcp` and check that `db` shows `connected`.
 
 Then query your database naturally:
 
-```text theme={null}
+```text wrap theme={null}
 What's our total revenue this month?
 ```
 
-```text theme={null}
+```text wrap theme={null}
 Show me the schema for the orders table
 ```
 
-```text theme={null}
+```text wrap theme={null}
 Find customers who haven't made a purchase in 90 days
 ```
 
@@ -597,7 +597,7 @@ If you configured `headers.Authorization` for the server and the server rejects 
   <Step title="Use the /mcp command within Claude Code">
     In Claude Code, use the command:
 
-    ```text theme={null}
+    ```text wrap theme={null}
     /mcp
     ```
 
@@ -908,7 +908,7 @@ If you've logged into Claude Code with a [claude.ai](https://claude.ai) account,
   <Step title="View and manage servers in Claude Code">
     In Claude Code, use the command:
 
-    ```text theme={null}
+    ```text wrap theme={null}
     /mcp
     ```
 
@@ -1132,11 +1132,11 @@ MCP servers can expose resources that you can reference using @ mentions, simila
   <Step title="Reference a specific resource">
     Use the format `@server:protocol://resource/path` to reference a resource:
 
-    ```text theme={null}
+    ```text wrap theme={null}
     Can you analyze @github:issue://123 and suggest a fix?
     ```
 
-    ```text theme={null}
+    ```text wrap theme={null}
     Please review the API documentation at @docs:file://api/authentication
     ```
   </Step>
@@ -1144,7 +1144,7 @@ MCP servers can expose resources that you can reference using @ mentions, simila
   <Step title="Multiple resource references">
     You can reference multiple resources in a single prompt:
 
-    ```text theme={null}
+    ```text wrap theme={null}
     Compare @postgres:schema://users with @docs:file://database/user-model
     ```
   </Step>
@@ -1257,7 +1257,7 @@ MCP servers can expose prompts that become available as commands in Claude Code.
   </Step>
 
   <Step title="Execute a prompt without arguments">
-    ```text theme={null}
+    ```text wrap theme={null}
     /mcp__github__list_prs
     ```
   </Step>
@@ -1265,11 +1265,11 @@ MCP servers can expose prompts that become available as commands in Claude Code.
   <Step title="Execute a prompt with arguments">
     Many prompts accept arguments. Pass them space-separated after the command:
 
-    ```text theme={null}
+    ```text wrap theme={null}
     /mcp__github__pr_review 456
     ```
 
-    ```text theme={null}
+    ```text wrap theme={null}
     /mcp__jira__create_issue "Bug in login flow" high
     ```
   </Step>

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-connect
-fetched_at: 2026-07-29T03:07:01.598872Z
-sha256: 2d6b534ee1fd3e5cf5897f23094e2857434ed5a046d43fd98b27a33a87836455
+fetched_at: 2026-07-30T03:08:06.608103Z
+sha256: 98b8a2c43836b8368af9319354be388ed9292cadf0ea42b225ded69094670920
 ---
 
 > ## Documentation Index
@@ -308,7 +308,7 @@ You can also set `ANTHROPIC_CUSTOM_HEADERS` in the `env` block of a settings fil
 
 ### Add gateway models to the model picker
 
-Model discovery queries the gateway for its model list at startup and adds those names to the `/model` picker alongside the built-in entries.
+With model discovery enabled, Claude Code queries the gateway for its model list at startup and adds those names to the `/model` picker alongside the built-in entries.
 
 Enable it if your gateway serves model names that aren't in Claude Code's built-in list and you want to select them from the picker. If the built-in models are what you use, you don't need discovery; your administrator may also have already enabled it through managed settings.
 

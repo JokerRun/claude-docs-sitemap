@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/custom-tools
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 0ce3287c56927e8c76b6cff678fcc65e9f4c6f686c609a5c64d629806152023c
+fetched_at: 2026-07-30T03:08:06.608103Z
+sha256: c81ddbb9ca99107bfb040c45d52b08c1a62cfe5261e9193189bb47b687f79eb5
 ---
 
 > ## Documentation Index
@@ -459,7 +459,7 @@ The example below catches two kinds of failures inside the handler and composes 
 
 ## Return images and resources
 
-The `content` array in a tool result accepts `text`, `image`, `audio`, `resource`, and `resource_link` blocks. You can mix them in the same response. In TypeScript, audio blocks are saved to disk and Claude receives a text block with the saved file path; in Python, the SDK drops audio blocks from the tool result and logs a warning. Resource link blocks are converted to a text block containing the link's name, URI, and description.
+The `content` array in a tool result accepts `text`, `image`, `audio`, `resource`, and `resource_link` blocks. You can mix them in the same response. In TypeScript, the SDK saves audio blocks to disk and Claude receives a text block with the saved file path; in Python, the SDK drops audio blocks from the tool result and logs a warning. The SDK converts resource link blocks to a text block containing the link's name, URI, and description.
 
 ### Images
 

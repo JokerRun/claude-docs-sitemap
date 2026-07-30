@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop-scheduled-tasks
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 082e005d0ce6445b6d59bf5f78a72f37621fdc9a2822b446a20c84a60eaae8ff
+fetched_at: 2026-07-30T03:08:06.608103Z
+sha256: 355b916faafda891f850801106810755c40e944f511a082986897cc6aad87f66
 ---
 
 > ## Documentation Index
@@ -72,7 +72,7 @@ For intervals the picker doesn't offer, such as every 15 minutes, the first of e
 
 Scheduled tasks run on your machine. Desktop checks the schedule every minute while the app is open and starts a fresh session when a task is due, independent of any manual sessions you have open. Each task gets a small delay of a few minutes after the scheduled time to stagger API traffic. The delay is deterministic: the same task always starts at the same offset.
 
-When a task fires, you get a desktop notification and a new session appears under a **Scheduled** section in the sidebar. Open it to see what Claude did, review changes, or respond to permission prompts. The session works like any other: Claude can edit files, run commands, create commits, and open pull requests.
+When a task fires, you get a desktop notification and a new session appears under a **Scheduled** section in the sidebar. Open it to see what Claude did, review changes, or respond to permission prompts. The session works like any other, except that Claude can't send or receive [cross-session messages](/docs/en/desktop#work-across-sessions) in a scheduled run: Claude can edit files, run commands, create commits, and open pull requests.
 
 Tasks only run while the desktop app is running and your computer is awake. If your computer sleeps through a scheduled time, the run is skipped. To prevent idle-sleep, enable **Keep computer awake** in Settings under **Desktop app → General**. Closing the laptop lid still puts it to sleep. For tasks that need to run even when your computer is off, or that should trigger on an API call or GitHub event, create a remote [routine](/docs/en/routines) instead.
 

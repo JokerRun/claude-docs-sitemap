@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-07-29T03:07:01.598872Z
-sha256: a09e8a208842c263e85795ed77b2042f261e0f593d0ec249709e5cfb4cc63a14
+fetched_at: 2026-07-30T03:08:06.608103Z
+sha256: 2fb236c5d3b990bcb532dcd52b9098cb7c924dc5646b71effce140a617d18490
 ---
 
 > ## Documentation Index
@@ -4309,6 +4309,8 @@ type SDKTaskNotificationMessage = {
   session_id: string;
 };
 ```
+
+Claude Code prepends a notice to every task notification it sends to the model. The notice states that no human input has occurred, so the model doesn't treat the notification as a user instruction or approval. To detect a task-notification turn, check `origin.kind === "task-notification"` on [`SDKUserMessage`](#sdkusermessage) or [`SDKResultMessage`](#sdkresultmessage) rather than matching on the notice text. Before v2.1.205, Claude Code left the notice off notifications that arrived while the session was idle.
 
 ### `SDKToolUseSummaryMessage`
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-deploy
-fetched_at: 2026-07-28T03:08:15.830819Z
-sha256: c549e8d9219d64c281c13e2a41f27a4bcd6380295a8541a887a4a24cd8f9e361
+fetched_at: 2026-07-30T03:08:06.608103Z
+sha256: 0cbbb8ba1a92588b6ccc2ccb9b2549d9dcea0b712f33e437100e49e664f517a9
 ---
 
 > ## Documentation Index
@@ -69,7 +69,7 @@ A few decisions shape the deployment beyond where it runs:
 * **Multiple gateways**: each gateway is a separate deployment with its own config. The CLI stores its trust fingerprint and credentials per gateway hostname, so different teams can connect to different gateways without conflict. To serve multiple OIDC issuers, run separate instances.
 * **Serverless**: Cloud Run works; set `min-instances: 1` to avoid cold OIDC discovery. Lambda and Cloud Functions don't, because the gateway is a long-running HTTP server.
 
-Every production topology here puts an L7 proxy, such as an Ingress, Cloud Run's front end, or an ALB, in front of plain-HTTP replicas. Set [`listen.trusted_proxies`](/docs/en/claude-apps-gateway-config#listen) to the proxy's source ranges so the gateway reads client IPs from `X-Forwarded-For`. The gateway honors the header only when the TCP peer is trusted; the [Google Cloud worked example](/docs/en/claude-apps-gateway-on-gcp) has concrete values per topology. Without trusted proxies, every request appears to come from the proxy's IP, which collapses per-IP rate limits into one shared bucket and records the proxy's IP in audit events.
+Every production topology here puts an L7 proxy, such as an Ingress, Cloud Run's front end, or an ALB, in front of plain-HTTP replicas. Set [`listen.trusted_proxies`](/docs/en/claude-apps-gateway-config#listen) to the proxy's source ranges so the gateway reads client IPs from `X-Forwarded-For`. The gateway honors the header only when the TCP peer is trusted; the [Google Cloud](/docs/en/claude-apps-gateway-on-gcp) and [AWS](/docs/en/claude-apps-gateway-on-aws) worked examples have concrete values per topology. Without trusted proxies, every request appears to come from the proxy's IP, which collapses per-IP rate limits into one shared bucket and records the proxy's IP in audit events.
 
 ### Container image
 
@@ -94,6 +94,8 @@ Run the gateway as a Deployment, like any stateless service:
 * Mount the config from a ConfigMap and secrets from a Secret; reference secrets in the YAML via `${file:/path/to/secret}` or as environment variables
 * Terminate TLS at the Ingress and set `listen.public_url` to the Ingress hostname
 * Point the readiness probe at `GET /readyz` and the liveness probe at `GET /healthz`
+
+For a complete worked example on AWS, covering ECS Fargate or EKS, Amazon RDS, and AWS Secrets Manager, see [Deploy on AWS](/docs/en/claude-apps-gateway-on-aws).
 
 <Note>
   **Workload identity**

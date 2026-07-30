@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/errors
-fetched_at: 2026-07-29T03:07:01.598872Z
-sha256: 1193746fcedd1f0787c5a92c478d3933b50944731a565e6650dcc8c071416c2f
+fetched_at: 2026-07-30T03:08:06.608103Z
+sha256: 2d1596b6fb2087088d0de2599c569777412bfa56e83a3e97bba06ab635f950cd
 ---
 
 > ## Documentation Index
@@ -116,6 +116,7 @@ Match the message you see in your terminal to a section below.
 | `Claude Code process exited with code N`                                                                                  | [Wrapper and IDE errors](#claude-code-process-exited-with-code-n)                                                             |
 | `Restored the code, but skipped N files`                                                                                  | [Rewind warnings](#restored-the-code-but-skipped-files)                                                                       |
 | `Ignoring N permissions.allow entries from ... this workspace has not been trusted`                                       | [Configuration warnings](#workspace-has-not-been-trusted)                                                                     |
+| `... is not matched by file permission checks`                                                                            | [Configuration warnings](#is-not-matched-by-file-permission-checks)                                                           |
 | Responses seem lower quality than usual                                                                                   | [Response quality](#responses-seem-lower-quality-than-usual)                                                                  |
 
 ## Automatic retries
@@ -1612,7 +1613,7 @@ Restored the code, but skipped 2 files: the tracked path is (or became) a link o
 
 ## Configuration warnings
 
-Claude Code writes these messages to stderr at startup rather than showing an error in the conversation. They report configuration it read but didn't apply.
+Claude Code writes these messages to stderr at startup rather than showing an error in the conversation, except where an entry notes that it writes the message to the debug log instead. They report configuration it read but didn't apply.
 
 ### Workspace has not been trusted
 
@@ -1627,6 +1628,24 @@ Ignoring 2 permissions.allow entries from .claude/settings.local.json: this work
 * Run `claude` in the directory and accept the trust dialog. {/* min-version: 2.1.200 */}The dialog appears even when a parent directory is already trusted, lists the rules being held back, and lets you decline and keep working without them. Before v2.1.200, no dialog appeared in that situation, so this step couldn't be completed there.
 * In [non-interactive mode](/docs/en/headless) with `-p` no dialog is shown. Set the `hasTrustDialogAccepted` entry in `~/.claude.json` using the exact `projects` key the message prints.
 * {/* min-version: 2.1.200 */}If the message names `.claude/settings.local.json` and you started Claude Code outside a git repository or in your home directory, update to v2.1.200 or later. Versions 2.1.196 through 2.1.199 treated your own `.claude/settings.local.json` as repository-supplied in those workspaces. {/* min-version: 2.1.207 */}On v2.1.207 and later, updating isn't enough outside a git repository if you haven't trusted the folder: determining that a folder isn't inside a repository runs git, and Claude Code runs that check only after you accept the trust dialog, so use the first step. Your home directory and any other [configuration home](/docs/en/permissions#project-allow-rules-and-workspace-trust) are exempt and don't wait for the dialog. See [Project allow rules and workspace trust](/docs/en/permissions#project-allow-rules-and-workspace-trust).
+
+### Is not matched by file permission checks
+
+{/* min-version: 2.1.210 */}Claude Code found a `Write`, `NotebookEdit`, `MultiEdit`, or `Glob` [permission rule](/docs/en/permissions#read-and-edit) with a path in one of your [settings files](/docs/en/settings#settings-files), in [managed settings](/docs/en/permissions#managed-settings), or in a `--allowedTools`, `--disallowedTools`, or `--settings` flag value. It checks file permissions against `Edit` and `Read` rules only, so it never consults a path rule that names one of the other file tools. It keeps the rule and changes nothing else; the warning names the rule, its source in parentheses, and the replacement to write:
+
+```text theme={null}
+Permission deny rule (.claude/settings.json): Write(docs/**) is not matched by file permission checks — only Edit(path) rules are. Use Edit(docs/**) instead (Edit rules cover all file-editing tools).
+```
+
+**What to do:**
+
+* Replace `Write(path)`, `NotebookEdit(path)`, and legacy `MultiEdit(path)` rules with `Edit(path)`. `Edit` rules cover all file-editing tools.
+* Except in `--allowedTools`, where Claude Code accepts a `Glob` rule without warning, replace `Glob(path)` rules with `Read(path)`.
+* Fix the rule at the source the warning names in parentheses: a settings file path, or the flag itself for `--allowed-tools` and `--disallowed-tools`. A `claude-settings-<hash>.json` path that doesn't exist on disk stands for an inline `--settings` value; fix the JSON you pass to that flag.
+* Leave bare tool-name rules such as `Write` or `Glob` alone. Claude Code matches them at the [tool level](/docs/en/permissions#match-all-uses-of-a-tool) and doesn't warn about them.
+* If the source reads `managed policy settings`, forward the warning to whoever maintains your managed settings; you can't clear it yourself.
+
+In a [background session](/docs/en/agent-view) or with `--output-format json` or `stream-json`, Claude Code writes the warning to the debug log instead of stderr, so machine-read output stays clean; run with `--debug` to capture it at `~/.claude/debug/<session-id>.txt`. Before v2.1.210, Claude Code accepted these rules without a warning.
 
 ## Responses seem lower quality than usual
 

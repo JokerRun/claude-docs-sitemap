@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/quickstart
-fetched_at: 2026-07-29T03:07:01.598872Z
-sha256: fe1e770d35e523e308c281527bb696f03b8bd0b59b7f9c23969b0161ceb32199
+fetched_at: 2026-07-30T03:08:06.608103Z
+sha256: 585c6d1217ef01455d217ab9a56763bdb398d3275b60526f8b7547091a2cb396
 ---
 
 > ## Documentation Index
@@ -52,7 +52,7 @@ Use the Agent SDK to build an AI agent that reads your code, finds bugs, and fix
         npm install --save-dev tsx
         ```
 
-        Setting `"type": "module"` in `package.json` lets your agent script use top-level `await`, and [tsx](https://tsx.is) runs TypeScript files directly. npm prints `added N packages` when the install succeeds.
+        Setting `"type": "module"` in `package.json` lets your agent script use top-level `await`, and [tsx](https://tsx.hirok.io) runs TypeScript files directly. npm prints `added N packages` when the install succeeds.
       </Tab>
 
       <Tab title="TypeScript (existing project)">
@@ -61,7 +61,7 @@ Use the Agent SDK to build an AI agent that reads your code, finds bugs, and fix
         npm install --save-dev tsx
         ```
 
-        [tsx](https://tsx.is) runs TypeScript files directly. If your project uses CommonJS, name your agent script `agent.mts` instead of `agent.ts`. The `.mts` extension makes tsx treat the file as an ES module, so top-level `await` works without converting your whole project to ES modules. Use `agent.mts` in place of `agent.ts` in the create and run steps later in this quickstart.
+        [tsx](https://tsx.hirok.io) runs TypeScript files directly. If your project uses CommonJS, name your agent script `agent.mts` instead of `agent.ts`. The `.mts` extension makes tsx treat the file as an ES module, so top-level `await` works without converting your whole project to ES modules. Use `agent.mts` in place of `agent.ts` in the create and run steps later in this quickstart.
       </Tab>
 
       <Tab title="Python (uv)">

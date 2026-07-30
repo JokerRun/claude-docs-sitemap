@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/authentication
-fetched_at: 2026-07-29T03:07:01.598872Z
-sha256: 093cc22097ce68a67c2d4e03a399146d6dbab6aec2fc37f7d9ba6024217d7154
+fetched_at: 2026-07-30T03:08:06.608103Z
+sha256: caba7cf60119cada4dff8dc9b5f82df5ab4a825ad7a59d7b6038c2934032155d
 ---
 
 > ## Documentation Index
@@ -147,7 +147,7 @@ Claude Code securely manages your authentication credentials:
   * If you've set the `CLAUDE_CONFIG_DIR` environment variable on Linux or Windows, the `.credentials.json` file lives under that directory instead.
   * Claude Code manages `.credentials.json` through `/login` and `/logout`. To route requests through a custom API endpoint, set the [`ANTHROPIC_BASE_URL`](/docs/en/env-vars) environment variable instead.
 * **Supported authentication types**: Claude.ai credentials, Claude API credentials, Microsoft Foundry Auth, Bedrock Auth, Vertex Auth, and [Claude apps gateway](/docs/en/claude-apps-gateway) session tokens.
-* **Custom credential scripts**: the [`apiKeyHelper`](/docs/en/settings#available-settings) setting can be configured to run a shell script that returns an API key.
+* **Custom credential scripts**: configure the [`apiKeyHelper`](/docs/en/settings#available-settings) setting to run a shell script that returns an API key.
 * **Refresh intervals**: by default, `apiKeyHelper` is called after 5 minutes or on HTTP 401 response. Set `CLAUDE_CODE_API_KEY_HELPER_TTL_MS` environment variable for custom refresh intervals.
 * **Slow helper notice**: if `apiKeyHelper` takes longer than 10 seconds to return a key, Claude Code displays a warning notice in the prompt bar showing the elapsed time. If you see this notice regularly, check whether your credential script can be optimized.
 * **Helper failures**: {/* min-version: 2.1.208 */}when the script exits with an error, times out, or prints nothing, requests fail with [`Your apiKeyHelper script is failing`](/docs/en/errors#your-apikeyhelper-script-is-failing) within three attempts. Before v2.1.208, helper failures surfaced as a generic 401 after about ten silent retries.

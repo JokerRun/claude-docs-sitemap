@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/model-config
-fetched_at: 2026-07-29T03:07:01.598872Z
-sha256: 0a8aca620929e8f273c56fb0010b842ad10981d8bde4ff1a925ca8931aeab58a
+fetched_at: 2026-07-30T03:08:06.608103Z
+sha256: 1cd2778d3b4d1585d55d82bee54438e17f3c22c9ec4c414bc111cc4ed52f42ed
 ---
 
 > ## Documentation Index
@@ -419,7 +419,7 @@ To check whether customizations are the trigger, start a session with `claude --
 
 #### Ask before switching
 
-To decide what happens each time a request is flagged, rather than switching automatically, run `/config` and turn off "switch models when a message is flagged". A flagged request then pauses the session with two options: switch to the fallback model, or edit the prompt and retry on the current model.
+To decide what happens each time a request is flagged, rather than switching automatically, run `/config` and turn off **Switch models when a message is flagged**, or set [`switchModelsOnFlag`](/docs/en/settings#available-settings) to `false` in your settings file. A flagged request then pauses the session with two options: switch to the fallback model, or edit the prompt and retry on the current model.
 
 Some cases behave differently:
 

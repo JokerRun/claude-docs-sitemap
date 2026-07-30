@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway
-fetched_at: 2026-07-28T03:08:15.830819Z
-sha256: 6e9bbe55df40646b670f6c28ef1ff192aad720564460c51c42cc46294eb20a45
+fetched_at: 2026-07-30T03:08:06.608103Z
+sha256: b0180b913d0bace6a388102c096d75d376c2fbab5ea038992fe50b9a7af438d4
 ---
 
 > ## Documentation Index
@@ -136,7 +136,7 @@ The gateway server requires the native `claude` binary; download a pinned releas
     This config is enough for a working sign-in loop with the default Amazon Bedrock model catalog. Once it's running, add per-group RBAC and managed settings via [`managed.policies`](/docs/en/claude-apps-gateway-config#managed), telemetry fan-out via [`telemetry`](/docs/en/claude-apps-gateway-config#telemetry), and multi-upstream failover, provisioned-throughput ARNs, or non-US regions via [`models`](/docs/en/claude-apps-gateway-config#models).
 
     <Note>
-      The Amazon Bedrock upstream needs an AWS principal with `bedrock:InvokeModel` and `bedrock:InvokeModelWithResponseStream` on both the `inference-profile/us.anthropic.*` ARNs and the underlying `foundation-model/anthropic.*` ARNs, and model access enabled in the Amazon Bedrock console for the Claude models you want. Supply the credential with IRSA on EKS, an ECS task role, or an EC2 instance profile rather than static keys. The [`upstreams` reference](/docs/en/claude-apps-gateway-config#upstreams) has the full IAM details, the cross-cloud credential matrix, and the `auth` blocks for the other providers.
+      The Amazon Bedrock upstream needs an AWS principal with `bedrock:InvokeModel` and `bedrock:InvokeModelWithResponseStream` on both the `inference-profile/us.anthropic.*` ARNs and the underlying `foundation-model/anthropic.*` ARNs, and Anthropic's one-time use case form submitted for the account from the Bedrock console's Model catalog. Supply the credential with IRSA on EKS, an ECS task role, or an EC2 instance profile rather than static keys. The [`upstreams` reference](/docs/en/claude-apps-gateway-config#upstreams) has the full IAM details, the cross-cloud credential matrix, and the `auth` blocks for the other providers.
     </Note>
   </Step>
 
@@ -421,4 +421,5 @@ The quickstart leaves you with a minimal config running under Docker Compose. To
 * Expand `gateway.yaml` beyond the minimal config, for example to add per-group RBAC, multi-upstream failover, or telemetry destinations. The [configuration reference](/docs/en/claude-apps-gateway-config) covers every option.
 * Move from Compose to a production deployment on Kubernetes or Cloud Run, set up your IdP properly, and review the security model. The [deployment and operations guide](/docs/en/claude-apps-gateway-deploy) covers per-IdP setup, container image requirements, health probes, and troubleshooting.
 * Put spend caps on individual developers or groups so a runaway workload can't consume your whole commitment. [Spend limits](/docs/en/claude-apps-gateway-spend-limits) covers the admin API and how enforcement works.
+* For a complete worked example on AWS, with ECS Fargate or EKS, Amazon RDS, and Secrets Manager, see [Deploy on AWS](/docs/en/claude-apps-gateway-on-aws).
 * For a complete worked example on Google Cloud, with Cloud Run, Cloud SQL, and Secret Manager, see [Deploy on Google Cloud](/docs/en/claude-apps-gateway-on-gcp).

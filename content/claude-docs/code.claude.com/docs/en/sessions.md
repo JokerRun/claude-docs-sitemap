@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sessions
-fetched_at: 2026-07-29T03:07:01.598872Z
-sha256: 58d8c92a0d66530a9dee4d1c7e59e8bdd137438921c6ead03eb1f8e171e68d50
+fetched_at: 2026-07-30T03:08:06.608103Z
+sha256: ae3127b074002b47f7863fd336a670dc4d8e005cdab649b9cebb2e69c0578aa5
 ---
 
 > ## Documentation Index
@@ -69,7 +69,7 @@ Use `Ctrl+W` to widen to all worktrees of the repository or `Ctrl+A` to widen to
 
 {/* min-version: 2.1.169 */}From v2.1.169, moving a session with [`/cd`](/docs/en/commands) relocates it to the new directory's project storage, so it appears in that directory's picker afterward. {/* min-version: 2.1.196 */}As of v2.1.196, a moved session stays out of the old directory's picker even after a crash or forced exit. On earlier versions, it could also reappear in the old directory's list after an exit that wasn't clean when the old path contained special characters such as underscores.
 
-Selecting a session from another worktree of the same repository resumes it in place. Selecting a session from an unrelated project copies a `cd` and resume command to your clipboard instead.
+When you select a session from another worktree of the same repository, Claude Code resumes it in place. When you select a session from an unrelated project, Claude Code copies a `cd` and resume command to your clipboard instead.
 
 Resuming by name resolves across the current repository and its worktrees. Both forms look for an exact match and resume it directly even if it lives in a different worktree:
 

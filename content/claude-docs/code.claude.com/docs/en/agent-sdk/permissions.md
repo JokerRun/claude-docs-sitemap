@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/permissions
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: b91593e834c4e4cabd80a352494f9947a4cac191553db558cc471398a7ec7826
+fetched_at: 2026-07-30T03:08:06.608103Z
+sha256: 6c195680e89c7eeeeaf4be439df425f565f353c21fdc941609d0f29884097348
 ---
 
 > ## Documentation Index
@@ -53,7 +53,9 @@ When Claude requests a tool, the SDK checks permissions in this order:
   </Step>
 </Steps>
 
-<img src="https://mintcdn.com/claude-code/jYgs7qigNjO1Badj/images/agent-sdk/permissions-flow.svg?fit=max&auto=format&n=jYgs7qigNjO1Badj&q=85&s=c771ad9085b1277d3708027a49c744bc" alt="Diagram of the six-step permission evaluation flow matching the steps above: a tool request passes through hooks, deny rules, ask rules, permission mode, allow rules, and canUseTool. Hooks, deny rules, and canUseTool can route down to Blocked; permission mode bypass, allow rules, and canUseTool can route up to Execute; ask rules route to canUseTool." width="1180" height="260" data-path="images/agent-sdk/permissions-flow.svg" />
+<img src="https://mintcdn.com/claude-code/jYgs7qigNjO1Badj/images/agent-sdk/permissions-flow.svg?fit=max&auto=format&n=jYgs7qigNjO1Badj&q=85&s=c771ad9085b1277d3708027a49c744bc" className="dark:hidden" alt="Diagram of the six-step permission evaluation flow matching the steps above: a tool request passes through hooks, deny rules, ask rules, permission mode, allow rules, and canUseTool. Hooks, deny rules, and canUseTool can route down to Blocked; permission mode bypass, allow rules, and canUseTool can route up to Execute; ask rules route to canUseTool." width="1180" height="260" data-path="images/agent-sdk/permissions-flow.svg" />
+
+<img src="https://mintcdn.com/claude-code/_xqph1dUOslCOwsj/images/agent-sdk/permissions-flow-dark.svg?fit=max&auto=format&n=_xqph1dUOslCOwsj&q=85&s=e53a91e9059cbf51852b7cedb4dd4251" className="hidden dark:block" alt="Diagram of the six-step permission evaluation flow matching the steps above: a tool request passes through hooks, deny rules, ask rules, permission mode, allow rules, and canUseTool. Hooks, deny rules, and canUseTool can route down to Blocked; permission mode bypass, allow rules, and canUseTool can route up to Execute; ask rules route to canUseTool." width="1180" height="260" data-path="images/agent-sdk/permissions-flow-dark.svg" />
 
 As of v2.1.198, if you pass a `canUseTool` callback that this evaluation order can never reach, the TypeScript SDK emits a Node.js process warning once when the query is constructed. The warning's code is `CLAUDE_SDK_CAN_USE_TOOL_SHADOWED`. Two configurations trigger it:
 
