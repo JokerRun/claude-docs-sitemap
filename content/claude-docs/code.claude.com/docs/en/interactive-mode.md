@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-07-30T03:08:06.608103Z
-sha256: 792d6ba3eda4b0eda75bfeb1ab0a68f080b14165849eb17163de8b3cab0dd401
+fetched_at: 2026-08-03T03:09:38.628809Z
+sha256: 4ceba050fecab4ce76f3b8965f18592973f24ca8097a4d1587f8feb386e358dd
 ---
 
 > ## Documentation Index
@@ -105,7 +105,7 @@ When the transcript viewer is open (toggled with `Ctrl+O`), these shortcuts are 
 | :------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `?`                  | Toggle the keyboard shortcut help panel. Requires [fullscreen rendering](/docs/en/fullscreen)                                                                                                                              |
 | `{` / `}`            | Jump to the previous or next user prompt, like vim paragraph motion. Requires [fullscreen rendering](/docs/en/fullscreen)                                                                                                  |
-| `Ctrl+E`             | Toggle show all content. Available in the default renderer only, not in [fullscreen rendering](/docs/en/fullscreen)                                                                                                        |
+| `Ctrl+E`             | Toggle show all content. Available in the classic renderer only, not in [fullscreen rendering](/docs/en/fullscreen)                                                                                                        |
 | `[`                  | Write the full conversation to your terminal's native scrollback so `Cmd+F`, tmux copy mode, and other native tools can search it. Requires [fullscreen rendering](/docs/en/fullscreen#search-and-review-the-conversation) |
 | `v`                  | Write the conversation to a temporary file and open it in `$VISUAL` or `$EDITOR`. Requires [fullscreen rendering](/docs/en/fullscreen)                                                                                     |
 | `q`, `Ctrl+C`, `Esc` | Exit transcript view. All three can be rebound via [`transcript:exit`](/docs/en/keybindings)                                                                                                                               |
@@ -256,7 +256,7 @@ Claude Code maintains command history for the current session:
 
 ### Reverse search with Ctrl+R
 
-Press `Ctrl+R` to interactively search through your command history. In [fullscreen rendering](/docs/en/fullscreen), `Ctrl+R` opens a search dialog instead: type to filter, press `Up` and `Down` to move through matches, and press `Ctrl+S` to cycle the scope through this session, this project, and all projects. Press `Enter` or `Tab` to place a match in the prompt input, or `Esc` to cancel. The steps below describe the default inline search:
+Press `Ctrl+R` to interactively search through your command history. In [fullscreen rendering](/docs/en/fullscreen), `Ctrl+R` opens a search dialog instead: type to filter, press `Up` and `Down` to move through matches, and press `Ctrl+S` to cycle the scope through this session, this project, and all projects. Press `Enter` or `Tab` to place a match in the prompt input, or `Esc` to cancel. The steps below describe the classic renderer's inline search:
 
 1. **Start search**: press `Ctrl+R` to activate reverse history search
 2. **Type query**: enter text to search for in previous commands. The search term is highlighted in matching results

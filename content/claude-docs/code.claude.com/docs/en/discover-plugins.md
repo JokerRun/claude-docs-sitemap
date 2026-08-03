@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/discover-plugins
-fetched_at: 2026-07-30T03:08:06.608103Z
-sha256: cdd7bbeafe5b1c5bbd95b967695d632034984fbfad79b92a650fd6bd26a75e52
+fetched_at: 2026-08-03T03:09:38.628809Z
+sha256: 71f37395ea0321bc48f30c7b27c99a7cac2346b46bad7fb2922a2eb92474128f
 ---
 
 > ## Documentation Index
@@ -35,7 +35,7 @@ Think of it like adding an app store: adding the store gives you access to brows
 
 ## Official Anthropic marketplace
 
-Claude Code adds the official Anthropic marketplace (`claude-plugins-official`) automatically when you start it. If Claude Code can't add it, for example because your network blocks the download, add it yourself with `/plugin marketplace add anthropics/claude-plugins-official`.
+Claude Code adds the official Anthropic marketplace (`claude-plugins-official`) automatically the first time you start it interactively. If Claude Code can't add it, for example because your network blocks the download or a [marketplace policy](/docs/en/plugin-marketplaces#managed-marketplace-restrictions) blocked an earlier attempt, add it yourself with `/plugin marketplace add anthropics/claude-plugins-official`.
 
 To browse what's available, run `/plugin` and go to the **Discover** tab, or view the catalog at [claude.com/plugins](https://claude.com/plugins).
 

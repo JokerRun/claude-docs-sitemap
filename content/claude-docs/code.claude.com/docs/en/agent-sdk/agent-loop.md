@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/agent-loop
-fetched_at: 2026-08-01T03:08:08.194476Z
-sha256: 04fb0f9368ba871a48363c15f58255d569bad438c02cdf93479a0a29e3a13405
+fetched_at: 2026-08-03T03:09:38.628809Z
+sha256: 31afd818864ab095f011cacf7291704b2c21bf815ab13e4072273020bf14b56d
 ---
 
 > ## Documentation Index
@@ -166,7 +166,7 @@ Claude determines which tools to call based on the task, but you control whether
 
 * **`allowed_tools` / `allowedTools`** auto-approves listed tools. A read-only agent with `["Read", "Glob", "Grep"]` in its allowed tools list runs those tools without prompting. Tools not listed are still available but require permission.
 * **`disallowed_tools` / `disallowedTools`** blocks listed tools, regardless of other settings. See [Permissions](/docs/en/agent-sdk/permissions) for the order that rules are checked before a tool runs.
-* **`permission_mode` / `permissionMode`** controls what happens to tools that aren't covered by allow or deny rules. See [Permission mode](#permission-mode) for available modes.
+* **`permission_mode` / `permissionMode`** controls how much human oversight you want. The SDK evaluates the active mode together with your allow and deny rules in a fixed order, described in [How permissions are evaluated](/docs/en/agent-sdk/permissions#how-permissions-are-evaluated). See [Permission mode](#permission-mode) for available modes.
 
 You can also scope individual tools with rules like `"Bash(npm *)"` to allow only specific commands. See [Permissions](/docs/en/agent-sdk/permissions) for the full rule syntax.
 

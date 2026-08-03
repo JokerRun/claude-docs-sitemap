@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings
-fetched_at: 2026-07-30T03:08:06.608103Z
-sha256: 7eaf9d5ff252cd2d658e3d91ed52ed58ac36733f26bac30118980e3963cfed25
+fetched_at: 2026-08-03T03:09:38.628809Z
+sha256: c4fce2f04af815c24442bf77515d66eff75051ac41c9bccae92819fa9e0c63c3
 ---
 
 > ## Documentation Index
@@ -1074,7 +1074,14 @@ Example: allow only the official Anthropic marketplace. Matching is exact, so th
 }
 ```
 
-With this entry, the official marketplace registers itself automatically the first time you start Claude Code interactively, so you don't need to pair it with `extraKnownMarketplaces`. In a non-interactive environment that runs before that first interactive launch, add it explicitly with `claude plugin marketplace add anthropics/claude-plugins-official` or include it in `extraKnownMarketplaces`.
+With this entry, Claude Code keeps an already-registered official marketplace available and, on a fresh machine, registers the marketplace automatically the first time you start Claude Code interactively.
+
+Automatic registration doesn't cover every machine. It most commonly misses:
+
+* Non-interactive environments that run before the machine's first interactive launch.
+* Machines where Claude Code already ran interactively under a policy that blocked the marketplace, such as the empty-array lockdown. Claude Code records the blocked attempt and doesn't retry after the policy changes.
+
+On these machines, add the marketplace to [`extraKnownMarketplaces`](#extraknownmarketplaces) in the same `managed-settings.json` so Claude Code registers it automatically, or run `claude plugin marketplace add anthropics/claude-plugins-official`.
 
 Example: allow all marketplaces from an internal git server:
 
@@ -1155,7 +1162,7 @@ For example, Claude Code treats each pair below as two different sources:
 }
 ```
 
-With only `strictKnownMarketplaces` set, users can still add the allowed marketplace manually via `/plugin marketplace add`, but it is not available automatically.
+With only `strictKnownMarketplaces` set, users can still add an allowed marketplace manually via `/plugin marketplace add`. The official Anthropic marketplace is the only one Claude Code registers automatically, and only when the allowlist allows it. Automatic registration also misses some machines, most commonly non-interactive environments and machines where an earlier policy blocked the marketplace. To cover those machines, add the official marketplace to [`extraKnownMarketplaces`](#extraknownmarketplaces) too.
 
 **Important notes**:
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sub-agents
-fetched_at: 2026-07-30T03:08:06.608103Z
-sha256: 498972122dbaf207e5ccf453e2f16ee95411629f2d26f0cc5c779b975de3ad84
+fetched_at: 2026-08-03T03:09:38.628809Z
+sha256: e041a579d2b97ff677a89b6160efebf3f94e50b43a60ac0ad8c69e64e29ceec9
 ---
 
 > ## Documentation Index
@@ -79,10 +79,11 @@ Explore and Plan skip your CLAUDE.md files and the parent session's git status t
   <Tab title="Other">
     Claude Code includes additional helper agents for specific tasks. These are typically invoked automatically, so you don't need to use them directly.
 
-    | Agent             | Model  | When Claude uses it                                      |
-    | :---------------- | :----- | :------------------------------------------------------- |
-    | statusline-setup  | Sonnet | When you run `/statusline` to configure your status line |
-    | claude-code-guide | Haiku  | When you ask questions about Claude Code features        |
+    | Agent             | Model    | When Claude uses it                                                                                                                                                            |
+    | :---------------- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | statusline-setup  | Sonnet   | When you run `/statusline` to configure your status line                                                                                                                       |
+    | claude-code-guide | Haiku    | When you ask questions about Claude Code features                                                                                                                              |
+    | claude            | Inherits | When you dispatch a [background session](/docs/en/agent-view) from `claude agents` or `claude --bg` without naming an agent. Claude can also delegate to it like any other subagent |
   </Tab>
 </Tabs>
 
