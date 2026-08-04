@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-protocol
-fetched_at: 2026-07-29T03:07:01.598872Z
-sha256: 9d1a777cb1f16b9fbf7a49f211914689add9425177d68fb9acd01bc597d2645b
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: b7551b907698b6836803d5a1c150b4445ed125bba7ecd6c1966379f0bdaa5b28
 ---
 
 > ## Documentation Index
@@ -109,7 +109,7 @@ The strip is positional, so it only works when the gateway forwards the `system`
 
 Requests that reach the endpoint unmodified are unaffected.
 
-{/* min-version: 2.1.181 */}From Claude Code v2.1.181, the block is stable for the lifetime of a conversation when requests route through a custom base URL, so a gateway-side prompt cache keyed on the full request body works without disabling it, and any provider your gateway forwards to receives a stable prompt prefix. Before v2.1.181 the block included a per-request token that changed the start of the system prompt on every request. On those versions, set `CLAUDE_CODE_ATTRIBUTION_HEADER=0` when your gateway does either of these:
+From Claude Code v2.1.181, the block is stable for the lifetime of a conversation when requests route through a custom base URL, so a gateway-side prompt cache keyed on the full request body works without disabling it, and any provider your gateway forwards to receives a stable prompt prefix. Before v2.1.181 the block included a per-request token that changed the start of the system prompt on every request. On those versions, set `CLAUDE_CODE_ATTRIBUTION_HEADER=0` when your gateway does either of these:
 
 * Implements a prompt cache keyed on the request body.
 * Forwards requests to a third-party provider such as Amazon Bedrock, Microsoft Foundry, or Google Cloud's Agent Platform, in the Anthropic Messages format or the provider's own, where the changing prefix reduces prompt-cache reuse on that provider.
@@ -185,7 +185,7 @@ Claude Code reads `id` and the optional `display_name` from each entry in the re
 
 The picker is the interactive model list that opens when a developer runs `/model` in Claude Code. Each discovered entry is labeled "From gateway" and uses `display_name` when provided. The [`availableModels` managed setting](/docs/en/settings#available-settings) bounds what discovery can add.
 
-A discovered ID is skipped when it exactly matches a row already in the picker, or when both the discovered and existing IDs resolve to [Fable](/docs/en/model-config#work-with-fable-5). {/* min-version: 2.1.197 */}As of Claude Code v2.1.197, a discovered explicit ID is also folded into a built-in entry when both resolve to the same model. Built-in rows are keyed on aliases such as `sonnet`, so a discovered explicit ID of the model the alias currently resolves to, such as `claude-sonnet-5`, collapses into the `sonnet` row, while an ID the alias doesn't resolve to, such as `claude-sonnet-4-6`, still adds its own "From gateway" row alongside the built-in entry.
+A discovered ID is skipped when it exactly matches a row already in the picker, or when both the discovered and existing IDs resolve to [Fable](/docs/en/model-config#work-with-fable-5). As of Claude Code v2.1.197, a discovered explicit ID is also folded into a built-in entry when both resolve to the same model. Built-in rows are keyed on aliases such as `sonnet`, so a discovered explicit ID of the model the alias currently resolves to, such as `claude-sonnet-5`, collapses into the `sonnet` row, while an ID the alias doesn't resolve to, such as `claude-sonnet-4-6`, still adds its own "From gateway" row alongside the built-in entry.
 
 Results are cached to `~/.claude/cache/gateway-models.json`, or `%USERPROFILE%\.claude\cache\gateway-models.json` on Windows, and refreshed on each startup. If you set [`CLAUDE_CONFIG_DIR`](/docs/en/env-vars), the cache lives under that directory instead. If the request fails or the gateway doesn't implement `/v1/models`, the picker falls back to the cached list from the previous startup or to the built-in model list. If your gateway serves Claude models under aliases that don't match the discovery filter, developers can add those aliases manually with the [model configuration](/docs/en/model-config) variables.
 

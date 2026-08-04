@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop
-fetched_at: 2026-08-03T03:09:38.628809Z
-sha256: c9de339a3046caa869f9825c20b1b83eddc84f46805ce4b5a895c5e3c2d113ba
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: 934ca4435d00e471c7a4aa6dbe537b6d8c5fd702abd357ada1686fe7e52c605e
 ---
 
 > ## Documentation Index
@@ -97,7 +97,7 @@ The `dontAsk` permission mode is available only in the [CLI](/docs/en/permission
 
 Auto mode is available to all users on the Anthropic API and requires Claude Opus 4.6 or later, Sonnet 4.6 or later, or Fable 5. Organization administrators can turn auto mode off with the `disableAutoMode` key in [managed settings](#managed-settings).
 
-In Enterprise deployments that route Desktop to Google Cloud's Agent Platform, auto mode is [available by default](/docs/en/permission-modes#enable-auto-mode-on-bedrock-agent-platform-or-foundry), and only Claude Sonnet 5, Opus 4.7 or later, and Fable 5 are supported there. {/* min-version: 2.1.207 */}Before Claude Code v2.1.207, Enterprise deployments on Google Cloud's Agent Platform had to set `CLAUDE_CODE_ENABLE_AUTO_MODE` to enable auto mode.
+In Enterprise deployments that route Desktop to Google Cloud's Agent Platform, auto mode is [available by default](/docs/en/permission-modes#enable-auto-mode-on-bedrock-agent-platform-or-foundry), and only Claude Sonnet 5, Opus 4.7 or later, and Fable 5 are supported there. Before Claude Code v2.1.207, Enterprise deployments on Google Cloud's Agent Platform had to set `CLAUDE_CODE_ENABLE_AUTO_MODE` to enable auto mode.
 
 <Tip title="Best practice">
   Start complex tasks in Plan so Claude maps out an approach before making changes. Once you approve the plan, switch to Accept edits or Manual to execute it. See [explore first, then plan, then code](/docs/en/best-practices#explore-first-then-plan-then-code) for more on this workflow.
@@ -738,7 +738,7 @@ Which managed settings reach a Desktop session depends on where that session run
 
 `permissions.disableBypassPermissionsMode` and `disableAutoMode` also work in user and project settings, but placing them in managed settings prevents users from overriding them.
 
-{/* min-version: 2.1.207 */}Claude Code reads `autoMode` from user settings, the `--settings` flag, and managed settings, but not from `.claude/settings.json` or `.claude/settings.local.json`: both files live in the repo directory, so a cloned repo or build step can't inject its own classifier rules. Before v2.1.207, Claude Code also read `.claude/settings.local.json`.
+Claude Code reads `autoMode` from user settings, the `--settings` flag, and managed settings, but not from `.claude/settings.json` or `.claude/settings.local.json`: both files live in the repo directory, so a cloned repo or build step can't inject its own classifier rules. Before v2.1.207, Claude Code also read `.claude/settings.local.json`.
 
 For the complete list of managed-only settings including `allowManagedPermissionRulesOnly` and `allowManagedHooksOnly`, see [managed-only settings](/docs/en/permissions#managed-only-settings).
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-integration-patterns
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 9799be7128e6d6e549db564595385305615b08e8b67a0aab0fb99999bc2e7704
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: 28701609e1d55c91c110be037ab889a0cde496edd53a498ddc9de0d9a883f248
 ---
 
 # Rancang integrasi kepatuhan Anda
@@ -32,7 +32,7 @@ Kedua pola berbagi batasan berikut:
 * Aktivitas dapat dikueri dalam 1 menit setelah terjadi dan disimpan selama 6 tahun.
 * `limit` maksimum untuk setiap halaman adalah 5.000.
 * Nilai kursor adalah string opaque yang tidak boleh Anda parse.
-* Permintaan dibatasi hingga 600 per menit per [organisasi induk](/docs/id/manage-claude/compliance-api#how-the-compliance-api-works), dibagi di antara setiap kunci, setiap organisasi yang tertaut, dan setiap endpoint `/v1/compliance/*`; lihat [429 Too Many Requests](/docs/id/manage-claude/compliance-errors#429-too-many-requests) untuk header respons dan kontrak percobaan ulang.
+* Permintaan dibatasi hingga 600 per menit per [organisasi induk](/docs/id/manage-claude/compliance-api#how-the-compliance-api-works), dibagi di antara setiap kunci, setiap organisasi yang tertaut, dan setiap endpoint `/v1/compliance/*`; endpoint sesi jarak jauh membawa anggaran permintaan tambahan di atasnya. Lihat [429 Too Many Requests](/docs/id/manage-claude/compliance-errors#429-too-many-requests) untuk header respons dan kontrak percobaan ulang.
 
 | Pola                                  | Pilih ketika                                                                                                                                                                                                                                                   |
 | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -110,19 +110,20 @@ Panggilan ke Compliance API itu sendiri menghasilkan aktivitas `compliance_api_a
 
 ## Rencanakan retensi konten
 
-Tiga horizon retensi mengatur apa yang dapat Anda ambil nanti:
+Empat horizon retensi mengatur apa yang dapat Anda ambil nanti:
 
 | Data                                                | Disimpan selama                                            | Dikendalikan oleh           |
 | --------------------------------------------------- | ---------------------------------------------------------- | --------------------------- |
 | Catatan Activity Feed                               | 6 tahun                                                    | Anthropic                   |
 | Konten chat, file, dan proyek                       | Kebijakan retensi claude.ai organisasi Anda                | Organisasi Anda             |
+| Transkrip sesi jarak jauh                           | 6 tahun                                                    | Anthropic                   |
 | Konten yang dihapus permanen melalui Compliance API | Tidak disimpan; penghapusan bersifat langsung dan permanen | Pemanggil endpoint `DELETE` |
 
 Untuk bagaimana bagian lain dari Claude Platform menangani retensi, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
 
 Putuskan antara ekspor-dan-arsip dan pengambilan API sesuai permintaan sebagai berikut:
 
-* Jika horizon legal-hold atau audit Anda melebihi 6 tahun untuk metadata aktivitas, ekspor halaman Activity Feed ke arsip Anda sendiri saat Anda mengingesnya.
+* Jika horizon legal-hold atau audit Anda melebihi 6 tahun untuk metadata aktivitas atau transkrip sesi jarak jauh, ekspor halaman Activity Feed dan transkrip sesi ke arsip Anda sendiri saat Anda mengingesnya.
 * Jika kebijakan retensi konten Anda lebih pendek dari horizon eDiscovery Anda, ekspor konten chat dan file sebelum jendela retensi berakhir; Compliance API tidak dapat mengembalikan konten yang sudah dihapus oleh retensi.
 * Jika suatu alur kerja mungkin mengeluarkan hard-delete Compliance API (misalnya, penegakan DLP), ambil dan arsipkan konten target terlebih dahulu. Tidak ada jendela pemulihan setelah hard-delete; soft-delete dari claude.ai tetap dapat diambil dengan `deleted_at` terisi, tetapi penghapusan Compliance API tidak.
 
@@ -138,9 +139,10 @@ Endpoint list tidak mengembalikan field `total_count` atau checksum. Untuk membu
 * Jumlah catatan yang diekspor.
 * Timestamp eksekusi dan `request-id` dari halaman terakhir.
 
-Endpoint konten (chat, file, proyek, dan lampiran proyek) hanya melayani data claude.ai; Activity Feed menampilkan peristiwa administratif dan sumber daya di seluruh organisasi. Compliance API tidak mencakup:
+Endpoint konten (chat, file, proyek, lampiran proyek, dan transkrip sesi jarak jauh Cowork) hanya melayani data claude.ai; Activity Feed menampilkan peristiwa administratif dan sumber daya di seluruh organisasi. Compliance API tidak mencakup:
 
 * Teks prompt atau respons model dari beban kerja Claude Console atau Claude API.
+* Blok pemikiran dan gambar di dalam transkrip sesi jarak jauh (transkrip hanya membawa prompt pengguna, respons asisten, dan aktivitas alat).
 * Konten yang dihapus oleh kebijakan retensi organisasi Anda.
 * Konten yang dihapus permanen melalui Compliance API.
 

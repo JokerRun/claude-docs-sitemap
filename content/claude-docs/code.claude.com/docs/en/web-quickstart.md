@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/web-quickstart
-fetched_at: 2026-07-29T03:07:01.598872Z
-sha256: 85f020ae8290f104d8c8d729ffa5b9e3acb345eb65c63f8befe92583ad9437f7
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: dc1939c6f300acf01e0fc36490ab5a47442fffbb9f6a24b56fb1f7bd52f713ee
 ---
 
 > ## Documentation Index
@@ -204,7 +204,7 @@ On Team and Enterprise plans, the command is also hidden when any of the followi
 
 ### "Could not create a cloud environment" or "No cloud environment available" when using `--cloud` or ultraplan
 
-Remote-session features create a default cloud environment automatically if you don't have one. If you see "Could not create a cloud environment", automatic creation failed. {/* max-version: 2.1.100 */}If you see "No cloud environment available", your CLI predates automatic creation. In either case, run `/web-setup` in the Claude Code CLI, or add an environment from the [environment selector](/docs/en/cloud-environments#configure-your-environment) at [claude.ai/code](https://claude.ai/code).
+Remote-session features create a default cloud environment automatically if you don't have one. If you see "Could not create a cloud environment", automatic creation failed. If you see "No cloud environment available", your CLI predates automatic creation. In either case, run `/web-setup` in the Claude Code CLI, or add an environment from the [environment selector](/docs/en/cloud-environments#configure-your-environment) at [claude.ai/code](https://claude.ai/code).
 
 ### Setup script failed
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/api-and-data-retention
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 8d42938d30399ab4bea7076c4f5220214f8ad9ec224b39d39ff5ae0adb7401d2
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: 77f5cdc9524c46c0c6c906e87454efa05f2338a1b7da57002075fbe5814e88ed
 ---
 
 # API dan retensi data
@@ -23,7 +23,7 @@ API dan fitur yang berbeda memiliki kebutuhan penyimpanan yang berbeda. Jika sua
 * Hanya apa yang secara teknis diperlukan agar fitur berfungsi yang disimpan. Konten percakapan (prompt Anda dan output Claude) tidak disimpan secara default; pengecualiannya adalah [Covered Models](#model-specific-data-retention-requirements), yang memerlukan retensi 30 hari.
 * Data yang disimpan dihapus dengan "time to live" (masa hidup), atau TTL, sesingkat mungkin secara praktis, dan Anthropic bertujuan memberi pelanggan kendali atas berapa lama data disimpan. Apa yang disimpan, dan durasi retensi jika TTL tertentu berlaku, didokumentasikan di halaman masing-masing fitur.
 
-Beberapa model retensi berada di luar pengaturan ZDR dan HIPAA yang dijelaskan di halaman ini. Data yang dapat diakses melalui [Compliance API](/docs/id/manage-claude/compliance-api) mengikuti model retensinya sendiri, [Activity Feed](/docs/id/manage-claude/compliance-activity-feed) menyimpan data selama 6 tahun, dan konten obrolan, file, dan proyek dari claude.ai mengikuti kebijakan retensi organisasi Anda yang diatur di [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls).
+Beberapa model retensi berada di luar pengaturan ZDR dan HIPAA yang dijelaskan di halaman ini. Data yang dapat diakses melalui [Compliance API](/docs/id/manage-claude/compliance-api) mengikuti model retensinya sendiri: [Activity Feed](/docs/id/manage-claude/compliance-activity-feed) dan [transkrip sesi jarak jauh](/docs/id/manage-claude/compliance-content-data#retrieve-remote-sessions) menyimpan data selama 6 tahun, dan konten obrolan, file, dan proyek dari claude.ai mengikuti kebijakan retensi organisasi Anda yang diatur di [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls).
 
 ## Zero data retention (ZDR)
 

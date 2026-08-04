@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/costs
-fetched_at: 2026-07-29T03:07:01.598872Z
-sha256: 179d5be3a3c48fe4ad0f70ff9b47bdaa295816e06309fc4c16fd4d2d5cbe1acf
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: 66faf2f9df0d2037a16e60eed66fa305dd2e229cca3f514908cc4bae15f8544b
 ---
 
 > ## Documentation Index
@@ -50,11 +50,11 @@ In the [VS Code extension](/docs/en/vs-code#check-account-and-usage), the same b
 
 [Usage credits](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans) let you keep working past your plan's usage limit. To manage them, run `/usage-credits` after signing in with your claude.ai subscription through `/login`; the command isn't available with API key authentication. What it opens depends on your role:
 
-| Your role                                        | What `/usage-credits` does                                                                                                                                                     |
-| :----------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Pro or Max subscriber                            | Opens your billing settings in the browser                                                                                                                                     |
-| Team or Enterprise member with billing access    | Opens your organization's usage settings in the browser                                                                                                                        |
-| Team or Enterprise member without billing access | {/* min-version: 2.1.211 */}Asks you to confirm, then sends a request to your organization's admins. Before v2.1.211, Claude Code sent the request without a confirmation step |
+| Your role                                        | What `/usage-credits` does                                                                                                                         |
+| :----------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Pro or Max subscriber                            | Opens your billing settings in the browser                                                                                                         |
+| Team or Enterprise member with billing access    | Opens your organization's usage settings in the browser                                                                                            |
+| Team or Enterprise member without billing access | Asks you to confirm, then sends a request to your organization's admins. Before v2.1.211, Claude Code sent the request without a confirmation step |
 
 For Team and Enterprise members without billing access, the confirmation appears only in interactive sessions: in non-interactive mode with the `-p` flag and from [Remote Control](/docs/en/remote-control), the command sends no request and tells you to run it in an interactive session instead.
 

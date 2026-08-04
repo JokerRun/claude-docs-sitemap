@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/claude_api_primer
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 62ecfe1b08165ae47d6a71ecd5edb9f4b8377db537e8aa56edc14f612009558b
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: 4d0ca0145762acbd7cb31e321d7367011661335a0a26884114ea91ff3f34afdd
 ---
 
 # API usage primer for Claude
@@ -152,11 +152,10 @@ Claude can read both text and images in requests. Both `base64` and `url` source
 
 <CodeGroup>
   ```bash CLI
-  IMAGE_URL="https://upload.wikimedia.org/wikipedia/commons/a/a7"
-  IMAGE_URL="$IMAGE_URL/Camponotus_flavomarginatus_ant.jpg"
+  IMAGE_URL="https://platform.claude.com/docs/images/vision-example.jpg"
 
   # Option 1: Base64-encoded image (@ prefix auto-encodes binary files as base64)
-  curl -sSo ant.jpg "$IMAGE_URL"
+  curl -sSo vision-example.jpg "$IMAGE_URL"
 
   ant messages create <<'YAML'
   model: claude-opus-5
@@ -168,7 +167,7 @@ Claude can read both text and images in requests. Both `base64` and `url` source
           source:
             type: base64
             media_type: image/jpeg
-            data: "@./ant.jpg"
+            data: "@./vision-example.jpg"
         - type: text
           text: What is in the above image?
   YAML
@@ -195,7 +194,7 @@ Claude can read both text and images in requests. Both `base64` and `url` source
   import httpx
 
   # Option 1: Base64-encoded image
-  image_url = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
+  image_url = "https://platform.claude.com/docs/images/vision-example.jpg"
   image_media_type = "image/jpeg"
   image_data = base64.standard_b64encode(httpx.get(image_url).content).decode("utf-8")
 
@@ -233,7 +232,7 @@ Claude can read both text and images in requests. Both `base64` and `url` source
                       "type": "image",
                       "source": {
                           "type": "url",
-                          "url": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg",
+                          "url": "https://platform.claude.com/docs/images/vision-example.jpg",
                       },
                   },
                   {"type": "text", "text": "What is in the above image?"},

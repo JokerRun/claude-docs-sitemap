@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/api-and-data-retention
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 5705dd82fc3503a5026e9243b30ff5e3ec8d5d25c15aa97ae8f737fef70da94d
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: 98000d2ee468dfb8fb2989b8fc108f42b5c9fef8954e4aec45ff9d9645a707ab
 ---
 
 # API and data retention
@@ -23,7 +23,7 @@ Different APIs and features have different storage needs. Where a feature does n
 * Only what is technically necessary for the feature to work is retained. Conversation content (your prompts and Claude's outputs) is not retained by default; the exception is [Covered Models](#model-specific-data-retention-requirements), which require 30-day retention.
 * Retained data is purged on the shortest practical time to live (TTL), and Anthropic aims to give customers control over how long data is retained. What is held, and the retention duration where a specific TTL applies, is documented on each feature's page.
 
-Several retention models sit outside the ZDR and HIPAA arrangements described on this page. Data accessible through the [Compliance API](/docs/en/manage-claude/compliance-api) follows its own retention model, the [Activity Feed](/docs/en/manage-claude/compliance-activity-feed) retains data for 6 years, and chat, file, and project content from claude.ai follows your organization's retention policy set in [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls).
+Several retention models sit outside the ZDR and HIPAA arrangements described on this page. Data accessible through the [Compliance API](/docs/en/manage-claude/compliance-api) follows its own retention model: the [Activity Feed](/docs/en/manage-claude/compliance-activity-feed) and [remote session transcripts](/docs/en/manage-claude/compliance-content-data#retrieve-remote-sessions) retain data for 6 years, and chat, file, and project content from claude.ai follows your organization's retention policy set in [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls).
 
 ## Zero data retention (ZDR)
 

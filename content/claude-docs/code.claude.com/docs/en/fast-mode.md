@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fast-mode
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 32b81e9abee5d60854d9b64272552a5e6047ced2f4442bf5449f30ec75c4251e
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: 7e0416dd45c96d2edb542e2dbb3d975bc328bf62bd3e9623b40bd6a5f582aba6
 ---
 
 > ## Documentation Index
@@ -37,7 +37,7 @@ Toggle fast mode in either of these ways:
 * Type `/fast` and press Tab to toggle on or off
 * Set `"fastMode": true` in your [user settings file](/docs/en/settings)
 
-By default, fast mode you turn on in an interactive session persists across sessions. {/* min-version: 2.1.205 */}In [non-interactive mode](/docs/en/headless), with the `-p` flag, `/fast` works only in a session launched with fast mode in its [`--settings`](/docs/en/cli-reference#cli-flags) value, for example `claude -p --settings '{"fastMode": true}'`; the toggle then applies to that session only and isn't saved as your default, and in any other non-interactive session the command reports that fast mode isn't available. You can configure fast mode to reset each session. See [require per-session opt-in](#require-per-session-opt-in) for details.
+By default, fast mode you turn on in an interactive session persists across sessions. In [non-interactive mode](/docs/en/headless), with the `-p` flag, `/fast` works only in a session launched with fast mode in its [`--settings`](/docs/en/cli-reference#cli-flags) value, for example `claude -p --settings '{"fastMode": true}'`; the toggle then applies to that session only and isn't saved as your default, and in any other non-interactive session the command reports that fast mode isn't available. You can configure fast mode to reset each session. See [require per-session opt-in](#require-per-session-opt-in) for details.
 
 For the best cost efficiency, enable fast mode at the start of a session rather than switching mid-conversation. See [understand the cost tradeoff](#understand-the-cost-tradeoff) for details.
 
@@ -48,13 +48,17 @@ When you enable fast mode:
 * A small `↯` icon appears next to the prompt while fast mode is active
 * Run `/fast` again at any time to check whether fast mode is on or off
 
+Opus 5 is the fast mode default in Claude Code v2.1.219 and later. Before v2.1.219, fast mode defaulted to Opus 4.8 on v2.1.154 through v2.1.218, and to Opus 4.7 on v2.1.142 through v2.1.153.
+
 When you disable fast mode with `/fast` again, you remain on Opus. The model does not revert to your previous model. To switch to a different model, use `/model`.
 
-When you switch to a model that doesn't support fast mode, Claude Code turns fast mode off, except on Opus 4.7, where fast mode stays on and the API rejects the requests. {/* min-version: 2.1.208 */}Switching back to a supported Opus model turns it on again when your saved fast mode preference is on, the same preference a new session starts from by default; a model switch never turns fast mode on for a session whose saved preference is off. With [per-session opt-in](#require-per-session-opt-in) configured, switching back doesn't turn fast mode on again; run `/fast` to re-enable it. Before v2.1.208, fast mode stayed off after you switched back until you ran `/fast` again.
+### Switch models while fast mode is on
 
-{/* min-version: 2.1.218 */}Whenever a model switch turns fast mode on or off, Claude Code shows a `Fast mode ON` or `Fast mode OFF` confirmation, and the `↯` icon appears while fast mode is on. This holds whether you switch with `/model`, with [`/config model=<model>`](/docs/en/settings), or from a device connected through [Remote Control](/docs/en/remote-control); before v2.1.218, switches through `/config model=<model>` or Remote Control changed fast mode without the confirmation.
+When you switch to a model that doesn't support fast mode, Claude Code turns fast mode off, except on Opus 4.7, where fast mode stays on and the API rejects the requests. Switching back to a supported Opus model turns it on again when your saved fast mode preference is on, the same preference a new session starts from by default; a model switch never turns fast mode on for a session whose saved preference is off. With [per-session opt-in](#require-per-session-opt-in) configured, switching back doesn't turn fast mode on again; run `/fast` to re-enable it. Before v2.1.208, fast mode stayed off after you switched back until you ran `/fast` again.
 
-Opus 5 is the fast mode default in Claude Code v2.1.219 and later. Before v2.1.219, fast mode defaulted to Opus 4.8 on v2.1.154 through v2.1.218, and to Opus 4.7 on v2.1.142 through v2.1.153.
+Whenever a model switch turns fast mode on or off, Claude Code shows a `Fast mode ON` or `Fast mode OFF` confirmation, and the `↯` icon appears while fast mode is on. This holds whether you switch with `/model`, with [`/config model=<model>`](/docs/en/settings), or from a device connected through [Remote Control](/docs/en/remote-control); before v2.1.218, switches through `/config model=<model>` or Remote Control changed fast mode without the confirmation.
+
+Claude Code resends the session's fast mode status to devices connected through Remote Control after a model switch, a reconnection, or a failed [availability check](#use-fast-mode-behind-proxies-and-llm-gateways).
 
 ## Understand the cost tradeoff
 

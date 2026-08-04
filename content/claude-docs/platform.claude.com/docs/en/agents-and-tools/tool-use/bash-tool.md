@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 84b72fed16cbe363e7d36eb1cb1b26afe39b44ccbf81aa68760c918dd438a7a7
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: 715ffd53c40f120ebd1b31a3c71544f5a7995b20e29da1623863a2adfc62a543
 ---
 
 # Bash tool
@@ -821,14 +821,14 @@ Claude determines which command to run. Your application owns everything else: t
       ```ruby Ruby
       tool_results = []
       response.content.each do |block|
-        next unless block.type == "tool_use" && block.name == "bash"
+        next unless block.type == :tool_use && block.name == "bash"
 
         result =
-          if block.input["restart"]
+          if block.input[:restart]
             bash_session.restart
             "Bash session restarted"
           else
-            bash_session.execute_command(block.input["command"])
+            bash_session.execute_command(block.input[:command])
           end
 
         # One tool_result per tool_use block, all returned in the next user message

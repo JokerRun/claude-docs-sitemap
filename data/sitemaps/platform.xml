@@ -21,6 +21,10 @@
 <priority>1</priority>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/en/manage-claude/authentication</loc>
+<priority>0.8</priority>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/en/build-with-claude/overview</loc>
 <priority>1</priority>
 </url>
@@ -2402,10 +2406,6 @@
 </url>
 <url>
 <loc>https://platform.claude.com/docs/en/manage-claude/workspaces</loc>
-<priority>0.8</priority>
-</url>
-<url>
-<loc>https://platform.claude.com/docs/en/manage-claude/authentication</loc>
 <priority>0.8</priority>
 </url>
 <url>

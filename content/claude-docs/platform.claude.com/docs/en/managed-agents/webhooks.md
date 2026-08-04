@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/webhooks
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: 33ea5bef3f76c95c4a50f6032a279ff2891d9d59d2ac0411e68cf358baabfe24
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: ffd09688139938b5611f2b199fa6f6122a68f99a09507d6244f3cbddcd7b8131
 ---
 
 # Subscribe to webhooks
@@ -326,7 +326,7 @@ Set `ANTHROPIC_WEBHOOK_SIGNING_KEY` to the `whsec_`-prefixed secret shown at end
       halt 400, "invalid signature"
     end
 
-    if event.data.type == "session.status_idled"
+    if event.data.type == :"session.status_idled"
       puts "session idled: #{event.data.id}"
     end
     # handle other event types
@@ -409,7 +409,7 @@ Every event payload has the same structure, including the event type, identifier
   ```
 
   ```ruby Ruby
-  if event.data.type == "session.status_idled"
+  if event.data.type == :"session.status_idled"
     session = client.beta.sessions.retrieve(event.data.id)
     notify_user(session)
   end

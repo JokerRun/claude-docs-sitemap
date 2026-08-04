@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/mcp
-fetched_at: 2026-07-29T03:07:01.598872Z
-sha256: d020bd860ff3ba9ccfbaf03257a897661e2f88a8fd1f1f5324a773daf67a67e8
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: d3d42df087f775dfbe27afef03a2ce41a77269818bd22f0f59b18abf03a691cb
 ---
 
 > ## Documentation Index
@@ -153,7 +153,7 @@ Create a `.mcp.json` file at your project root. The file is picked up when the `
 
 ## Connection timing
 
-Servers you pass in `options.mcpServers` start connecting as soon as the query starts. Connection is non-blocking by default: the first turn begins without waiting, and each server's tools become available once its connection completes. {/* min-version: 2.1.142 */}Before Claude Code v2.1.142, startup blocked on the connection batch for up to 5 seconds.
+Servers you pass in `options.mcpServers` start connecting as soon as the query starts. Connection is non-blocking by default: the first turn begins without waiting, and each server's tools become available once its connection completes. Before Claude Code v2.1.142, startup blocked on the connection batch for up to 5 seconds.
 
 To restore a bounded startup wait for every server, set the [`MCP_CONNECTION_NONBLOCKING`](/docs/en/env-vars) environment variable to `0`. The wait is capped at 5 seconds by [`MCP_CONNECT_TIMEOUT_MS`](/docs/en/env-vars), and servers still pending at that deadline keep connecting in the background.
 
@@ -385,7 +385,7 @@ For the streamable HTTP transport, use `"type": "http"` instead. In `.mcp.json` 
 
 Define custom tools directly in your application code instead of running a separate server process. See the [custom tools guide](/docs/en/agent-sdk/custom-tools) for implementation details.
 
-{/* min-version: 2.1.210 */}An SDK MCP server registered by an [`initialize` control request](/docs/en/agent-sdk/typescript#sdkcontrolinitializeresponse) begins connecting as soon as Claude Code processes the request.
+An SDK MCP server registered by an [`initialize` control request](/docs/en/agent-sdk/typescript#sdkcontrolinitializeresponse) begins connecting as soon as Claude Code processes the request.
 
 ## MCP tool search
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/rate-limits
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: dbb622a74d48f482dabbadccdf13209ebc8d6b7faf7719e9317bc1e2a7a33915
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: c0ebd246d5029e4f3cd8b80e57f99124a786c3bb1eb464c3184deab351f19033
 ---
 
 # Rate limits
@@ -26,7 +26,7 @@ The API enforces service-configured limits at the organization level, but you ma
 
 * Limits are designed to prevent API abuse, while minimizing impact on common customer usage patterns.
 * Limits are defined by **usage tier**. Organizations are placed on a tier automatically based on usage history and account standing and can move to a higher tier over time as they use the API.
-* New organizations and organizations with limited usage history may start with limits below the standard limits shown on this page while account history is established. These starting limits are part of how Anthropic prevents fraud and abuse, and they increase automatically as your organization builds usage history.
+* New organizations and organizations with limited usage history may start in the Evaluation tier, with limits below the standard limits shown on this page while account history is established. These starting limits are part of how Anthropic prevents fraud and abuse, and they increase automatically as your organization builds usage history.
 * Limits are set at the organization level. You can see your organization's tier and current limits on the [Limits](/settings/limits) page in the [Claude Console](/).
 * You might hit rate limits over shorter time intervals. For instance, a rate of 60 requests per minute (RPM) might be enforced as 1 request per second. Short bursts of requests can exceed the limit and trigger rate limit errors.
 * The following limits are the standard limits for each tier. If you need higher limits, see [Requesting higher limits](#requesting-higher-limits).

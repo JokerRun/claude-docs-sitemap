@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/intro
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 38b2b9cf203381fc82a2dc7bd3e3de9b828ba583a18353a401d5f05159c39eee
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: 133301e1ab6a355e0d92fcbedd9d3ceaea100507bfd2c13091dab3658c16ed4c
 ---
 
 # Intro to Claude
@@ -46,6 +46,12 @@ Follow these steps to go from zero to a working Claude integration.
     Set up your environment, install an SDK, and send your first message to Claude.
 
     [Go to the quickstart](/docs/en/get-started)
+  </Step>
+
+  <Step title="Secure your credentials">
+    Set an expiration when you create your API key. Keep the key out of source control, client-side code, and prompts. Check whether your workload can use Workload Identity Federation instead of a static key.
+
+    [Read the authentication guide](/docs/en/manage-claude/authentication)
   </Step>
 
   <Step title="Understand the Messages API">

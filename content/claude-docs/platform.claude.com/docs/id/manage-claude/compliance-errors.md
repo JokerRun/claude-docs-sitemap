@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-errors
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: cc8b3d1682c786a164da2a7836b59367f90b048a7b090722b99f002a74905aa5
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: 3a1d7d65b8bd9f210a51425c0abf85eca8f59474fc63ee6f7c57b33843fe53a7
 ---
 
 # Menangani error Compliance API
@@ -32,16 +32,16 @@ Cocokkan berdasarkan `error.type`, bukan berdasarkan string pesan. Pesan cukup s
 
 Tabel berikut memberi tahu Anda secara sekilas apakah perlu mencoba ulang. Setiap bagian berikutnya menunjukkan body error secara verbatim dan perbaikannya.
 
-| Status                                                  | Coba ulang?                 | Kapan                                                                                                                            |
-| ------------------------------------------------------- | --------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| [400 Bad Request](#400-bad-request)                     | Tidak                       | Perbaiki permintaan dan kirim ulang.                                                                                             |
-| [401 Unauthorized](#401-unauthorized)                   | Tidak                       | Perbaiki atau rotasi kunci, lalu kirim ulang.                                                                                    |
-| [403 Forbidden](#403-forbidden)                         | Tidak                       | Tambahkan scope yang hilang atau gunakan jenis kunci yang tepat, lalu kirim ulang.                                               |
-| [404 Not Found](#404-not-found)                         | Tidak                       | Resource telah dihapus atau tidak pernah ada; hapus dari antrean Anda.                                                           |
-| [409 Conflict](#409-conflict)                           | Tidak                       | Permintaan bertentangan dengan status resource saat ini; selesaikan konflik (seperti melepaskan resource anak), lalu coba ulang. |
-| [429 Too Many Requests](#429-too-many-requests)         | Ya, setelah `retry-after`   | Tunggu selama detik yang tertera di `retry-after`, lalu coba ulang; jangan majukan cursor Anda.                                  |
-| [500 Internal Server Error](#500-internal-server-error) | Tergantung `x-should-retry` | Periksa header respons `x-should-retry` sebelum mencoba ulang.                                                                   |
-| [502, 503, 504, 529](#500-internal-server-error)        | Ya, dengan backoff          | Sementara; coba ulang dengan exponential backoff.                                                                                |
+| Status                                                  | Coba ulang?                 | Kapan                                                                                                                                                                                                                                                             |
+| ------------------------------------------------------- | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [400 Bad Request](#400-bad-request)                     | Tidak                       | Perbaiki permintaan dan kirim ulang.                                                                                                                                                                                                                              |
+| [401 Unauthorized](#401-unauthorized)                   | Tidak                       | Perbaiki atau rotasi kunci, lalu kirim ulang.                                                                                                                                                                                                                     |
+| [403 Forbidden](#403-forbidden)                         | Tidak                       | Tambahkan scope yang hilang atau gunakan jenis kunci yang tepat, lalu kirim ulang.                                                                                                                                                                                |
+| [404 Not Found](#404-not-found)                         | Biasanya tidak              | Resource telah dihapus atau tidak pernah ada; hapus dari antrean Anda. Pengecualian: sesi remote yang masih berstatus `pending` mengembalikan 404 pada endpoint messages-nya sampai sesi dimulai; lihat [Sesi remote tidak ditemukan](#remote-session-not-found). |
+| [409 Conflict](#409-conflict)                           | Tidak                       | Permintaan bertentangan dengan status resource saat ini; selesaikan konflik (seperti melepaskan resource anak), lalu coba ulang.                                                                                                                                  |
+| [429 Too Many Requests](#429-too-many-requests)         | Ya, setelah `retry-after`   | Tunggu selama detik yang tertera di `retry-after`, lalu coba ulang; jangan majukan cursor Anda.                                                                                                                                                                   |
+| [500 Internal Server Error](#500-internal-server-error) | Tergantung `x-should-retry` | Periksa header respons `x-should-retry` sebelum mencoba ulang.                                                                                                                                                                                                    |
+| [502, 503, 504, 529](#500-internal-server-error)        | Ya, dengan backoff          | Sementara; coba ulang dengan exponential backoff.                                                                                                                                                                                                                 |
 
 ## 400 Bad Request
 
@@ -71,6 +71,8 @@ The limit parameter must be between 1 and 1000, inclusive. Got 1500.
 
 **Perbaikan:** Kirim `limit` dalam rentang yang diterima endpoint. Setiap endpoint list memiliki rentang `limit` masing-masing; lihat batasan parameter pada halaman [referensi Compliance API](/docs/id/api/compliance) yang sesuai.
 
+Endpoint transkrip sesi remote (`GET /v1/compliance/apps/sessions/remote/{session_id}/messages`) memvalidasi parameter pemotongannya dengan cara yang sama: `tool_use_input_max_bytes` dan `tool_result_max_bytes` masing-masing menerima jumlah byte positif atau `-1` (maksimum server), sehingga nilai seperti `0` mengembalikan 400 `invalid_request_error` yang sama.
+
 ### ID paginasi tidak valid
 
 **Type:** `invalid_request_error`
@@ -83,7 +85,7 @@ Invalid `after_id`. No activity found for `after_id` "activity_invalid123"
 
 **Perbaikan:** Perlakukan cursor paginasi sebagai string opaque. Selalu salin nilai `first_id` atau `last_id` yang dikembalikan oleh halaman sebelumnya; berhenti ketika `has_more` bernilai `false`. Jangan membangun cursor dari ID objek.
 
-Endpoint direktori dan proyek (organizations, users, roles, role permissions, groups, group members, projects, dan project attachments) melakukan paginasi dengan token `page` opaque alih-alih `after_id` dan `before_id`. Saran yang sama berlaku: teruskan nilai `next_page` dari respons sebelumnya tanpa diubah, dan berhenti ketika `has_more` bernilai `false`. Token `page` yang salah format mengembalikan 400 `invalid_request_error` yang sama seperti `after_id` atau `before_id` yang salah format.
+Endpoint direktori, proyek, dan sesi remote (organizations, users, roles, role permissions, groups, group members, projects, project attachments, remote sessions, dan session messages) melakukan paginasi dengan token `page` opaque alih-alih `after_id` dan `before_id`. Saran yang sama berlaku: teruskan nilai `next_page` dari respons sebelumnya tanpa diubah, dan berhenti ketika `has_more` bernilai `false` (atau, pada endpoint sesi remote, ketika `next_page` bernilai `null`). Token `page` yang salah format mengembalikan 400 `invalid_request_error` yang sama seperti `after_id` atau `before_id` yang salah format.
 
 ## 401 Unauthorized
 
@@ -155,10 +157,10 @@ Missing required scopes. Got: ['read:compliance_org_settings'] Needed: ['read:co
 Missing required scopes. Got: ['read:compliance_activities'] Needed: ['read:compliance_user_data']
 ```
 
-**Penyebab:** Kunci tanpa `read:compliance_user_data` digunakan untuk memanggil endpoint chats, messages, files, projects, organization users, atau group-members. Ada dua jalur umum menuju error ini:
+**Penyebab:** Kunci tanpa `read:compliance_user_data` digunakan untuk memanggil endpoint chats, messages, files, projects, remote sessions, organization users, atau group-members. Ada dua jalur umum menuju error ini:
 
 * Compliance Access Key (`sk-ant-api01-...`) dibuat tanpa scope `read:compliance_user_data`.
-* Kunci Admin API Claude Console (`sk-ant-admin01-...`) digunakan. Kunci Admin API hanya membawa `read:compliance_activities` dan tidak dapat diberikan `read:compliance_user_data`, sehingga tidak dapat memanggil endpoint chat, file, project, project attachment, user, atau group-member.
+* Kunci Admin API Claude Console (`sk-ant-admin01-...`) digunakan. Kunci Admin API hanya membawa `read:compliance_activities` dan tidak dapat diberikan `read:compliance_user_data`, sehingga tidak dapat memanggil endpoint chat, file, project, project attachment, remote session, user, atau group-member.
 
 **Perbaikan:** Gunakan [Compliance Access Key](/docs/id/manage-claude/compliance-api-access#set-up-the-compliance-api) yang dibuat di claude.ai dengan `read:compliance_user_data` dipilih. Jika permintaan memang seharusnya hanya untuk Activity Feed, arahkan kunci Admin API ke `GET /v1/compliance/activities` sebagai gantinya.
 
@@ -176,7 +178,7 @@ Missing required scopes. Got: ['read:compliance_user_data'] Needed: ['delete:com
 
 ## 404 Not Found
 
-Endpoint berhasil diresolusi tetapi ID resource tidak ada atau sudah dihapus. Penghapusan Compliance API bersifat langsung dan permanen, sehingga 404 pada ID yang sebelumnya dikenal biasanya berarti konten telah dihapus permanen melalui panggilan delete Compliance API atau dihapus oleh kebijakan retensi. String tipe aktivitas yang dikutip dalam setiap Perbaikan (misalnya, `claude_chat_created`) adalah nilai yang dapat Anda teruskan ke filter `activity_types[]` Activity Feed; lihat [Query aktivitas compliance](/docs/id/api/compliance/activities/list) untuk setiap nilai yang didukung.
+Endpoint berhasil diresolusi tetapi ID resource tidak ada atau sudah dihapus. Penghapusan Compliance API bersifat langsung dan permanen, sehingga 404 pada ID yang sebelumnya dikenal biasanya berarti konten telah dihapus permanen melalui panggilan delete Compliance API atau dihapus oleh kebijakan retensi. Satu pengecualian adalah sesi remote yang masih berstatus `pending`, yang endpoint messages-nya mengembalikan 404 secara sementara sampai sesi dimulai; lihat [Sesi remote tidak ditemukan](#remote-session-not-found). String tipe aktivitas yang dikutip dalam setiap Perbaikan (misalnya, `claude_chat_created`) adalah nilai yang dapat Anda teruskan ke filter `activity_types[]` Activity Feed; lihat [Query aktivitas compliance](/docs/id/api/compliance/activities/list) untuk setiap nilai yang didukung.
 
 ### Chat tidak ditemukan
 
@@ -226,6 +228,18 @@ No project document found with provided id, or it has already been deleted.
 
 **Perbaikan:** Gunakan `GET /v1/compliance/apps/projects/{project_id}/attachments` untuk mencantumkan lampiran saat ini. Jika dokumen tidak ada, dokumen tersebut telah dihapus; ambil melalui catatan aktivitas `claude_project_document_uploaded` jika Anda hanya membutuhkan metadata-nya.
 
+### Sesi remote tidak ditemukan
+
+**Type:** `not_found_error`
+
+```text wrap
+Remote session not found.
+```
+
+**Penyebab:** ID sesi yang diteruskan ke `GET /v1/compliance/apps/sessions/remote/{session_id}/messages` tidak cocok dengan transkrip sesi yang dapat dibaca melalui Compliance API. Ini terjadi ketika ID sesi (`cse_...`) tidak ada atau sesi telah dihapus, ketika sesi milik organisasi yang tidak dapat dibaca oleh kunci Anda, atau ketika `status` sesi masih `pending`: sesi pending belum memiliki transkrip, sehingga endpoint messages mengembalikan 404 sampai sesi dimulai. ID sesi yang bukan identifier `cse_` yang terbentuk dengan baik mengembalikan [400 Bad Request](#400-bad-request) sebagai gantinya.
+
+**Perbaikan:** Konfirmasi ID sesi dan `status`-nya terhadap `GET /v1/compliance/apps/sessions/remote`; lihat [Mengambil sesi remote](/docs/id/manage-claude/compliance-content-data#retrieve-remote-sessions). Jika sesi berstatus `pending`, coba ulang setelah sesi meninggalkan status tersebut. Jika sesi tidak lagi muncul dalam daftar, sesi telah dihapus dan transkripnya tidak dapat diambil.
+
 ### Organisasi, role, atau grup tidak ditemukan
 
 **Type:** `not_found_error`
@@ -270,9 +284,9 @@ The "claude_proj_01KGp4eZNug9ri4kE35RSppq" project cannot be deleted as it has c
 
 ## 429 Too Many Requests
 
-Permintaan ke Compliance API dibatasi hingga **600 permintaan per menit per [organisasi induk](/docs/id/manage-claude/compliance-api#how-the-compliance-api-works)**. Batas ini adalah satu anggaran tunggal yang dibagi di antara setiap kunci di bawah induk (Compliance Access Key dan kunci Admin API dari semua organisasi yang tertaut) dan di antara setiap endpoint `/v1/compliance/*`. Hubungi perwakilan Anthropic Anda jika integrasi Anda memerlukan batas yang lebih tinggi.
+Permintaan ke Compliance API dibatasi hingga **600 permintaan per menit per [organisasi induk](/docs/id/manage-claude/compliance-api#how-the-compliance-api-works)**. Batas ini adalah satu anggaran yang dibagi di antara setiap kunci di bawah induk (Compliance Access Key dan kunci Admin API dari semua organisasi yang tertaut) dan di antara setiap endpoint `/v1/compliance/*`; endpoint sesi remote membawa anggaran permintaan kedua di atasnya. Hubungi perwakilan Anthropic Anda jika integrasi Anda memerlukan batas yang lebih tinggi.
 
-Setelah kunci API Anda terautentikasi, setiap respons Compliance API menyertakan [header respons rate-limit](/docs/id/api/rate-limits#response-headers) standar sehingga klien Anda dapat melakukan throttling secara proaktif alih-alih menunggu 429:
+Setelah kunci API Anda terautentikasi, respons Compliance API melaporkan anggaran bersama melalui [header respons rate-limit](/docs/id/api/rate-limits#response-headers) standar sehingga klien Anda dapat melakukan throttling secara proaktif alih-alih menunggu 429:
 
 * `anthropic-ratelimit-requests-limit` adalah anggaran permintaan per menit organisasi induk Anda.
 * `anthropic-ratelimit-requests-remaining` adalah anggaran yang tersisa di jendela saat ini.
@@ -298,11 +312,13 @@ anthropic-ratelimit-requests-reset: 2026-04-21T14:38:25Z
 }
 ```
 
-**Penyebab:** Organisasi induk Anda mengirim lebih dari 600 permintaan ke `/v1/compliance/*` dalam jendela 1 menit, di seluruh kuncinya dan organisasi yang tertaut.
+**Penyebab:** Organisasi induk Anda mengirim lebih dari 600 permintaan ke `/v1/compliance/*` dalam jendela 1 menit, di seluruh kuncinya dan organisasi yang tertaut, atau menghabiskan anggaran permintaan kedua dari endpoint sesi remote (dijelaskan nanti di bagian ini).
 
 **Perbaikan:** Tunggu selama jumlah detik di header `retry-after`, lalu coba ulang. Jika header tidak ada (misalnya, dihapus oleh perantara), gunakan exponential backoff sebagai cadangan (mulai dari 1 detik, gandakan hingga 60 detik). Jangan majukan cursor paginasi Anda pada 429: permintaan yang gagal tidak mengembalikan data, sehingga cursor dari halaman terakhir yang berhasil masih benar.
 
 Permintaan yang gagal autentikasi (kunci yang hilang atau tidak dikenali, atau kunci Claude API alih-alih Compliance Access Key atau kunci Admin API) ditolak sebelum rate limiter dan tidak mengonsumsi kuota. Kunci valid yang tidak memiliki scope yang dibutuhkan endpoint mengonsumsi satu unit kuota sebelum 403 dikembalikan.
+
+[Endpoint sesi remote](/docs/id/manage-claude/compliance-content-data#retrieve-remote-sessions) membawa anggaran permintaan kedua, juga terikat pada organisasi induk Anda, di atas batas bersama. Respons 429 dari anggaran tersebut menyertakan header `retry-after` tetapi tidak menyertakan header `anthropic-ratelimit-*`; perbaikan yang sama berlaku.
 
 Jika Anda melakukan polling [Activity Feed](/docs/id/manage-claude/compliance-activity-feed) secara terjadwal, anggarkan laju permintaan agregat Anda (di seluruh kunci, organisasi yang tertaut, dan worker yang berjalan bersamaan) di bawah batas organisasi induk. Pantau `anthropic-ratelimit-requests-remaining` untuk memperlambat sebelum Anda mencapainya. Lihat [Merancang integrasi compliance Anda](/docs/id/manage-claude/compliance-integration-patterns#choose-a-feed-consumption-pattern) untuk memilih antara window-polling dan ingesti berbasis cursor.
 

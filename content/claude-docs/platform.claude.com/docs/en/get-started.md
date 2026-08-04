@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/get-started
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: bd42004cf11012a067a51a0299f2f21a4a488e520ede4391f7a2195d035cbf17
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: 2f3f834891c413fedec98464ddaa0951588b621bcbeb731f3baa0283809b8686
 ---
 
 # Get started with Claude
@@ -667,7 +667,7 @@ You made your first API call. Next, learn the Messages API patterns you'll use i
 
 Once you're comfortable with the basics, explore further:
 
-<CardGroup cols={3}>
+<CardGroup cols={2}>
   <Card title="Models overview" icon="brain" href="/docs/en/about-claude/models/overview">
     Compare Claude models by capability and cost.
   </Card>
@@ -678,5 +678,9 @@ Once you're comfortable with the basics, explore further:
 
   <Card title="Client SDKs" icon="code-brackets" href="/docs/en/cli-sdks-libraries/overview">
     Reference documentation for Python, TypeScript, C#, and other client libraries.
+  </Card>
+
+  <Card title="Authentication" icon="lock" href="/docs/en/manage-claude/authentication">
+    Compare API keys and Workload Identity Federation, and set key expiration.
   </Card>
 </CardGroup>

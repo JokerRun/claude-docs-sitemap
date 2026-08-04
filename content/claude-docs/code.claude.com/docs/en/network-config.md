@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/network-config
-fetched_at: 2026-07-29T03:07:01.598872Z
-sha256: 921399d697b665c199b5b821c54579e122d6c32d2608882f8b081ad372879d05
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: 38355655935f5efd7d75e86895d8953f639293e1e7c899f8d12d2d9fec5636a8
 ---
 
 > ## Documentation Index
@@ -25,7 +25,7 @@ Set these environment variables before you launch Claude Code. Variables exporte
 
 ### Environment variables
 
-Claude Code respects standard proxy environment variables. {/* min-version: 2.1.217 */}In Claude Desktop sessions where the app manages the provider connection, Claude Code reads them only from managed settings and `~/.claude/settings.json`; see [mTLS authentication](#mtls-authentication) for the scope rules.
+Claude Code respects standard proxy environment variables. In Claude Desktop sessions where the app manages the provider connection, Claude Code reads them only from managed settings and `~/.claude/settings.json`; see [mTLS authentication](#mtls-authentication) for the scope rules.
 
 ```bash theme={null}
 # HTTPS proxy (recommended)
@@ -183,7 +183,7 @@ Claude Code requires access to the following URLs. Allowlist these in your proxy
 | `mcp-proxy.anthropic.com`            | [MCP connectors from claude.ai](/docs/en/mcp#use-mcp-servers-from-claude-ai), including connectors an organization administrator configures. Connector traffic routes through this proxy; connectors are enabled by default for claude.ai-authenticated users. To disable, set [`ENABLE_CLAUDEAI_MCP_SERVERS=false`](/docs/en/env-vars) or the [`disableClaudeAiConnectors`](/docs/en/settings#available-settings) setting |
 | `downloads.claude.ai`                | Plugin executable downloads; native installer, native auto-updater, and update version checks                                                                                                                                                                                                                                                                                                               |
 | `storage.googleapis.com`             | Install counts and plugin metadata shown in `/plugin`. Signed [artifact](/docs/en/artifacts) uploads try this host first; publishing falls back to `api.anthropic.com` when it is blocked                                                                                                                                                                                                                        |
-| `storage.googleapis.com`             | {/* max-version: 2.1.115 */}Native installer and native auto-updater on versions prior to 2.1.116                                                                                                                                                                                                                                                                                                           |
+| `storage.googleapis.com`             | Native installer and native auto-updater on versions prior to 2.1.116                                                                                                                                                                                                                                                                                                                                       |
 | `bridge.claudeusercontent.com`       | [Claude in Chrome](/docs/en/chrome) extension WebSocket bridge                                                                                                                                                                                                                                                                                                                                                   |
 | `raw.githubusercontent.com`          | Changelog feed for [`/release-notes`](/docs/en/commands) and the release notes shown after updating                                                                                                                                                                                                                                                                                                              |
 | `http-intake.logs.us5.datadoghq.com` | Operational telemetry events, sent only when the CLI uses the Anthropic API directly, never for Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry. Optional: disable with [`DISABLE_TELEMETRY`](/docs/en/data-usage#telemetry-services) or `DO_NOT_TRACK`                                                                                                                                      |

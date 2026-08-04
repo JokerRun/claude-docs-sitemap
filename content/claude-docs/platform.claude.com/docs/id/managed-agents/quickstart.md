@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 502296ed894e2cb25ee1b4ecb065dc5c6a80ef7198f201ad7ce57e37118739ec
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: 8c51bd63a469a73529172152b13351895afe3f576a315dc3409b1ce76918131f
 ---
 
 # Memulai dengan Claude Managed Agents
@@ -169,11 +169,14 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       ```
 
       ```bash CLI
-      ant beta:agents create \
+      AGENT_ID=$(ant beta:agents create \
         --name "Coding Assistant" \
         --model '{id: claude-opus-5}' \
         --system "You are a helpful coding assistant. Write clean, well-documented code." \
-        --tool '{type: agent_toolset_20260401}'
+        --tool '{type: agent_toolset_20260401}' \
+        --transform id --raw-output)
+
+      echo "Agent ID: $AGENT_ID"
       ```
 
       ```python Python
@@ -363,9 +366,12 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       ```
 
       ```bash CLI
-      ant beta:environments create \
+      ENVIRONMENT_ID=$(ant beta:environments create \
         --name "quickstart-env" \
-        --config '{type: cloud, networking: {type: unrestricted}}'
+        --config '{type: cloud, networking: {type: unrestricted}}' \
+        --transform id --raw-output)
+
+      echo "Environment ID: $ENVIRONMENT_ID"
       ```
 
       ```python Python
@@ -567,7 +573,17 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 
     <CodeGroup>
       ```bash curl
-      # Kirim pesan pengguna terlebih dahulu; API menyangga event hingga stream terhubung
+      # Open the SSE stream first: only events emitted after the stream opens are delivered
+      exec {stream}< <(
+        curl -sS -N --fail-with-body \
+          "https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream" \
+          -H "x-api-key: $ANTHROPIC_API_KEY" \
+          -H "anthropic-version: 2023-06-01" \
+          -H "anthropic-beta: managed-agents-2026-04-01" \
+          -H "Accept: text/event-stream"
+      )
+
+      # Send the user message
       curl -sS --fail-with-body \
         "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -590,8 +606,8 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       }
       EOF
 
-      # Buka stream SSE dan proses event saat diterima
-      while IFS= read -r line; do
+      # Process events as they arrive
+      while IFS= read -r -u "$stream" line; do
         [[ $line == data:* ]] || continue
         json=${line#data: }
         case $(jq -r '.type' <<<"$json") in
@@ -606,14 +622,8 @@ export ANTHROPIC_API_KEY="your-api-key-here"
             break
             ;;
         esac
-      done < <(
-        curl -sS -N --fail-with-body \
-          "https://api.anthropic.com/v1/sessions/$SESSION_ID/stream" \
-          -H "x-api-key: $ANTHROPIC_API_KEY" \
-          -H "anthropic-version: 2023-06-01" \
-          -H "anthropic-beta: managed-agents-2026-04-01" \
-          -H "Accept: text/event-stream"
-      )
+      done
+      exec {stream}<&-
       ```
 
       ```python Python

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/token-counting
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: f1cbefeaf9c07e6ebda4d39123044caad6e4aba7808b00950765b3becf5dc5fb
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: b70294f113c482313c5de16db9ff98a3fa627aca378cb0b35d7c96d60dfbce22
 ---
 
 # Token counting
@@ -477,7 +477,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
   ```bash cURL
   #!/bin/sh
 
-  IMAGE_URL="https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
+  IMAGE_URL="https://platform.claude.com/docs/images/vision-example.jpg"
   IMAGE_MEDIA_TYPE="image/jpeg"
   IMAGE_BASE64=$(curl -s "$IMAGE_URL" | base64 | tr -d '\n')
 
@@ -503,8 +503,8 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
   ```
 
   ```bash CLI
-  IMAGE_URL="https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
-  curl -s "$IMAGE_URL" -o ./ant.jpg
+  IMAGE_URL="https://platform.claude.com/docs/images/vision-example.jpg"
+  curl -s "$IMAGE_URL" -o ./vision-example.jpg
 
   ant messages count-tokens <<'YAML'
   model: claude-opus-5
@@ -515,7 +515,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
           source:
             type: base64
             media_type: image/jpeg
-            data: "@./ant.jpg"
+            data: "@./vision-example.jpg"
         - type: text
           text: Describe this image
   YAML
@@ -525,7 +525,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
   import base64
   import httpx
 
-  image_url = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
+  image_url = "https://platform.claude.com/docs/images/vision-example.jpg"
   image_media_type = "image/jpeg"
   image_data = base64.standard_b64encode(httpx.get(image_url).content).decode("utf-8")
 
@@ -556,8 +556,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
   ```typescript TypeScript
   const anthropic = new Anthropic();
 
-  const imageUrl =
-    "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
+  const imageUrl = "https://platform.claude.com/docs/images/vision-example.jpg";
   const imageMediaType = "image/jpeg";
   const imageArrayBuffer = await (await fetch(imageUrl)).arrayBuffer();
   const imageData = Buffer.from(imageArrayBuffer).toString("base64");
@@ -597,7 +596,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
 
   AnthropicClient client = new();
 
-  string imageUrl = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
+  string imageUrl = "https://platform.claude.com/docs/images/vision-example.jpg";
 
   using HttpClient httpClient = new();
   byte[] imageBytes = await httpClient.GetByteArrayAsync(imageUrl);
@@ -631,7 +630,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
   ```
 
   ```go Go
-  imageURL := "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
+  imageURL := "https://platform.claude.com/docs/images/vision-example.jpg"
 
   req, err := http.NewRequest("GET", imageURL, nil)
   if err != nil {
@@ -678,7 +677,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       String imageUrl =
-        "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
+        "https://platform.claude.com/docs/images/vision-example.jpg";
       String imageMediaType = "image/jpeg";
 
       HttpClient httpClient = HttpClient.newHttpClient();
@@ -713,7 +712,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
   ```
 
   ```php PHP
-  $imageUrl = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
+  $imageUrl = "https://platform.claude.com/docs/images/vision-example.jpg";
   $imageMediaType = "image/jpeg";
   $imageData = base64_encode(file_get_contents($imageUrl));
 
@@ -745,7 +744,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
   require "base64"
   require "net/http"
 
-  image_url = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
+  image_url = "https://platform.claude.com/docs/images/vision-example.jpg"
   image_media_type = "image/jpeg"
 
   uri = URI(image_url)
@@ -777,7 +776,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
 </CodeGroup>
 
 ```json Output
-{ "input_tokens": 1551 }
+{ "input_tokens": 1028 }
 ```
 
 ### Count tokens in messages with thinking

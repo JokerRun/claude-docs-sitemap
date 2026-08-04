@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/effort
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 64372a183e97c1a03cb2891c671640cacc2a3642e9862d166a94cc39fb5ae37a
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: 8cb1c5c8e12e9415fd7e768a889df48268b276e33c1eb945d043f99c2e0e13b5
 ---
 
 # Effort
@@ -146,16 +146,12 @@ Reduce effort if a task completes but takes longer than necessary, or if you wan
 
   ```bash CLI
   ant messages create \
+    --model claude-opus-5 \
+    --max-tokens 4096 \
+    --output-config '{effort: medium}' \
+    --message '{role: user, content: "Analyze the trade-offs between microservices and monolithic architectures"}' \
     --transform 'content.#(type=="text").text' \
-    --raw-output <<'YAML'
-  model: claude-opus-5
-  max_tokens: 4096
-  messages:
-    - role: user
-      content: Analyze the trade-offs between microservices and monolithic architectures
-  output_config:
-    effort: medium
-  YAML
+    --raw-output
   ```
 
   ```python Python
@@ -208,7 +204,12 @@ Reduce effort if a task completes but takes longer than necessary, or if you wan
   {
       Model = Model.ClaudeOpus5,
       MaxTokens = 4096,
-      Messages = [new() { Role = Role.User, Content = "Analyze the trade-offs between microservices and monolithic architectures" }],
+      Messages = [
+          new() {
+              Role = Role.User,
+              Content = "Analyze the trade-offs between microservices and monolithic architectures"
+          }
+      ],
       OutputConfig = new OutputConfig
       {
           Effort = Effort.Medium
@@ -243,21 +244,25 @@ Reduce effort if a task completes but takes longer than necessary, or if you wan
   ```
 
   ```java Java
-  AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+  import com.anthropic.models.messages.OutputConfig;
 
-  MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
-      .maxTokens(4096L)
-      .addUserMessage("Analyze the trade-offs between microservices and monolithic architectures")
-      .outputConfig(OutputConfig.builder()
-          .effort(OutputConfig.Effort.MEDIUM)
-          .build())
-      .build();
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-  Message response = client.messages().create(params);
-  response.content().stream()
-      .flatMap(block -> block.text().stream())
-      .forEach(textBlock -> IO.println(textBlock.text()));
+      MessageCreateParams params = MessageCreateParams.builder()
+          .model(Model.CLAUDE_OPUS_5)
+          .maxTokens(4096L)
+          .addUserMessage("Analyze the trade-offs between microservices and monolithic architectures")
+          .outputConfig(OutputConfig.builder()
+              .effort(OutputConfig.Effort.MEDIUM)
+              .build())
+          .build();
+
+      Message response = client.messages().create(params);
+      response.content().stream()
+          .flatMap(block -> block.text().stream())
+          .forEach(textBlock -> IO.println(textBlock.text()));
+  }
   ```
 
   ```php PHP

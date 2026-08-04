@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-content-data
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: f6ea9aaa6fdd1e961e61f0b87d0fc72833afbbfe6a3f935044f1936bef5121d6
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: 74819030488a0d4bc48685ebb874555f86738aeee9ca1544c33caa2f9589b657
 ---
 
 # Mengambil dan menghapus chat, file, dan proyek
@@ -18,12 +18,12 @@ Akses konten chat, lampiran file, dan proyek untuk organisasi claude.ai melalui 
 <Check>
   **Scope yang diperlukan:** `read:compliance_user_data` pada Compliance Access Key. Endpoint penghapusan juga memerlukan `delete:compliance_user_data`.
 
-  **Prasyarat:** Tidak ada untuk mencantumkan chat di seluruh organisasi. Untuk memfilter daftar chat ke pengguna tertentu, Anda memerlukan ID pengguna dari [List organization users](/docs/id/manage-claude/compliance-org-data#list-organization-users). Endpoint lain pada halaman ini menerima ID sumber daya secara langsung.
+  **Prasyarat:** Tidak ada untuk mencantumkan chat atau sesi jarak jauh di seluruh organisasi. Untuk memfilter daftar chat atau sesi ke pengguna tertentu, Anda memerlukan ID pengguna dari [List organization users](/docs/id/manage-claude/compliance-org-data#list-organization-users). Endpoint lain pada halaman ini menerima ID sumber daya secara langsung.
 </Check>
 
-Endpoint pada halaman ini mengekspos konten chat claude.ai, unggahan file, proyek, dan lampiran proyek kepada peninjau kepatuhan. Endpoint ini mendukung ekspor eDiscovery (electronic discovery), penegakan "data loss prevention" (pencegahan kehilangan data), atau DLP, dan respons penghapusan akun. Konten dipertahankan selama kebijakan retensi organisasi Anda mengizinkan. Chat yang telah di-soft-delete oleh pengguna di claude.ai tetap terlihat melalui Compliance API dengan `deleted_at` terisi; chat yang telah di-hard-delete (melalui Compliance API itu sendiri, atau setelah jendela retensi organisasi berakhir) tidak dapat diambil.
+Endpoint pada halaman ini mengekspos konten chat claude.ai, unggahan file, proyek, lampiran proyek, dan transkrip sesi jarak jauh kepada peninjau kepatuhan. Endpoint ini mendukung ekspor eDiscovery (electronic discovery), penegakan "data loss prevention" (pencegahan kehilangan data), atau DLP, dan respons penghapusan akun. Konten chat, file, dan proyek dipertahankan selama kebijakan retensi organisasi Anda mengizinkan; transkrip sesi jarak jauh dipertahankan selama 6 tahun. Chat yang telah di-soft-delete oleh pengguna di claude.ai tetap terlihat melalui Compliance API dengan `deleted_at` terisi; chat yang telah di-hard-delete (melalui Compliance API itu sendiri, atau setelah jendela retensi organisasi berakhir) tidak dapat diambil.
 
-Kedua scope hanya diberikan pada Compliance Access Key (`sk-ant-api01-...`) yang dibuat di claude.ai; lihat [Menyiapkan Compliance API](/docs/id/manage-claude/compliance-api-access) untuk menyediakannya. Scope `read:compliance_user_data` mencakup pengambilan; `delete:compliance_user_data` hanya diperlukan untuk endpoint penghapusan. Endpoint chat, file, proyek, dan lampiran tidak tersedia untuk kunci Admin API (`sk-ant-admin01-...`); panggilan yang diautentikasi dengan kunci Admin API mengembalikan [403 Forbidden](/docs/id/manage-claude/compliance-errors#403-forbidden).
+Kedua scope hanya diberikan pada Compliance Access Key (`sk-ant-api01-...`) yang dibuat di claude.ai; lihat [Menyiapkan Compliance API](/docs/id/manage-claude/compliance-api-access) untuk menyediakannya. Scope `read:compliance_user_data` mencakup pengambilan; `delete:compliance_user_data` hanya diperlukan untuk endpoint penghapusan. Endpoint chat, file, proyek, lampiran, dan sesi tidak tersedia untuk kunci Admin API (`sk-ant-admin01-...`); panggilan yang diautentikasi dengan kunci Admin API mengembalikan [403 Forbidden](/docs/id/manage-claude/compliance-errors#403-forbidden).
 
 Endpoint pada halaman ini melakukan paginasi dengan dua cara; lihat [Paginasi hasil](/docs/id/manage-claude/compliance-activity-feed#paginate-results) untuk referensi lengkapnya. Setiap bagian mencatat skema mana yang berlaku.
 
@@ -251,6 +251,142 @@ curl --fail-with-body -sS -G \
 }
 ```
 
+## Mengambil sesi jarak jauh
+
+Sesi Cowork yang dimulai di web atau seluler claude.ai berjalan di lingkungan cloud yang dikelola Anthropic. Compliance API mengekspos sesi jarak jauh ini melalui dua endpoint: `GET /v1/compliance/apps/sessions/remote` mencantumkan metadata sesi, dan `GET /v1/compliance/apps/sessions/remote/{session_id}/messages` mengembalikan transkrip satu sesi. Keduanya memerlukan scope `read:compliance_user_data`, dan keduanya dihitung terhadap batas laju Compliance API bersama ditambah anggaran kedua yang khusus untuk endpoint ini; lihat [429 Too Many Requests](/docs/id/manage-claude/compliance-errors#429-too-many-requests).
+
+<Note>
+  Endpoint sesi jarak jauh berada dalam tahap beta. Tidak diperlukan penyiapan tambahan: endpoint ini bekerja dengan Compliance Access Key dan scope `read:compliance_user_data` yang sama seperti endpoint konten lainnya.
+</Note>
+
+Endpoint daftar secara default menggunakan cakupan seluruh organisasi: hilangkan `organization_ids[]` untuk menyertakan setiap organisasi claude.ai yang dapat dibaca kunci Anda, atau kirimkan hingga 500 nilai untuk mempersempit cakupan. Untuk membatasi daftar ke pengguna tertentu, kirimkan 1–10 nilai `user_ids[]` (dapatkan ID dari [List organization users](/docs/id/manage-claude/compliance-org-data#list-organization-users)); filter ini mencocokkan pengguna pemilik sesi, sehingga sesi yang dimiliki agen dikecualikan setiap kali `user_ids[]` disetel. Batasi hasil berdasarkan waktu dengan parameter rentang `created_at` (`gte`, `gt`, `lt`, `lte`, dalam format RFC 3339). Tidak ada filter `updated_at`. Permintaan berikut mencantumkan sesi yang dibuat sejak tanggal tertentu.
+
+```bash cURL
+curl --fail-with-body -sS -G \
+  "https://api.anthropic.com/v1/compliance/apps/sessions/remote" \
+  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+  --data-urlencode "created_at.gte=2026-06-01T00:00:00Z" \
+  --data-urlencode "limit=100"
+```
+
+```json Response
+{
+  "data": [
+    {
+      "id": "cse_01WpQrStUvXyZaBcDeFgHjK6",
+      "organization_uuid": "91012d09-e48b-438e-a489-1bebfd8fa6f9",
+      "user": {
+        "id": "user_01XyDMpzjS89pFZXqSFUBDr6",
+        "email_address": "user@example.com"
+      },
+      "agent_id": null,
+      "started_by_user": null,
+      "status": "active",
+      "created_at": "2026-07-01T17:04:05Z",
+      "updated_at": "2026-07-01T18:00:41Z",
+      "product_surface": "cowork_remote"
+    },
+    {
+      "id": "cse_01TkNpRsUvWxYzAbCdEfGhJ4",
+      "organization_uuid": "91012d09-e48b-438e-a489-1bebfd8fa6f9",
+      "user": null,
+      "agent_id": "cagt_01MnPqRsTuVwXyZaBcDeFgH8",
+      "started_by_user": {
+        "id": "user_01XyDMpzjS89pFZXqSFUBDr6",
+        "email_address": "user@example.com"
+      },
+      "status": "archived",
+      "created_at": "2026-06-28T09:15:22Z",
+      "updated_at": "2026-06-28T09:47:10Z",
+      "product_surface": "cowork_remote"
+    }
+  ],
+  "next_page": "page_AAEfMk93cXpYdGxrZXk"
+}
+```
+
+Hasil diurutkan dalam urutan kronologis terbalik (terbaru lebih dulu) berdasarkan `created_at` dan dibatasi hingga `limit` hasil per respons (default 100, maksimum 500). Endpoint ini melakukan paginasi dengan skema token halaman yang sama seperti proyek dan lampiran (lihat [Paginasi hasil](/docs/id/manage-claude/compliance-activity-feed#paginate-results)): kirimkan kembali nilai `next_page` dari respons sebagai parameter kueri `page` pada permintaan berikutnya, dan berhenti ketika `next_page` bernilai `null`.
+
+Sebuah sesi dimiliki oleh pengguna atau agen, tidak pernah keduanya. Untuk sesi yang dimiliki pengguna, `user` membawa ID dan alamat email pemilik (`email_address` bernilai `null` ketika pengguna tidak lagi menjadi anggota organisasi yang dapat dibaca kunci Anda) dan `agent_id` bernilai `null`. Untuk sesi yang dimiliki agen (misalnya, tugas terjadwal), `user` bernilai `null`, `agent_id` membawa ID agen (awalan `cagt_`), dan `started_by_user` mengidentifikasi manusia yang memulai eksekusi, misalnya dengan memulai tugas terjadwal; pada sesi yang dimiliki pengguna, `started_by_user` bernilai `null`.
+
+`status` adalah salah satu dari `pending`, `active`, `paused`, `archived`, atau `failed`. Sebuah sesi berstatus `pending` saat sedang disediakan; sesi `pending` belum memiliki transkrip, dan endpoint pesan mengembalikan 404 untuknya hingga penyediaan selesai. Sesi yang telah dihapus tidak pernah dikembalikan.
+
+`product_surface` (string atau `null`) mengidentifikasi produk yang membuat sesi. Endpoint ini saat ini hanya mengembalikan sesi dengan `product_surface` bernilai `cowork_remote`: sesi Cowork yang dimulai di web atau seluler claude.ai.
+
+<Note>
+  **Bangun handler yang kompatibel ke depan.** Teruskan nilai `status` dan `product_surface` yang tidak dikenali, dan abaikan bidang yang tidak diharapkan handler Anda, sehingga integrasi Anda tetap bekerja saat status dan permukaan produk baru dirilis.
+</Note>
+
+### Mengambil transkrip sesi
+
+Endpoint pesan mengembalikan transkrip sesi: prompt pengguna, respons asisten, serta panggilan alat dan hasilnya. Blok pemikiran dan gambar tidak disertakan. Untuk ringkasan cakupan dan perbandingan dengan pencatatan OpenTelemetry Cowork, lihat [FAQ Compliance API](/docs/id/manage-claude/compliance-faq#data-coverage-and-retention).
+
+```bash cURL
+session_id="cse_01WpQrStUvXyZaBcDeFgHjK6"
+
+curl --fail-with-body -sS \
+  "https://api.anthropic.com/v1/compliance/apps/sessions/remote/$session_id/messages" \
+  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
+```
+
+```json Response
+{
+  "session": {
+    "id": "cse_01WpQrStUvXyZaBcDeFgHjK6",
+    "organization_uuid": "91012d09-e48b-438e-a489-1bebfd8fa6f9",
+    "user": {
+      "id": "user_01XyDMpzjS89pFZXqSFUBDr6",
+      "email_address": null
+    },
+    "agent_id": null,
+    "started_by_user": null,
+    "status": "active",
+    "created_at": "2026-07-01T17:04:05Z",
+    "updated_at": "2026-07-01T18:00:41Z",
+    "product_surface": "cowork_remote"
+  },
+  "data": [
+    {
+      "id": "csev_01HjKmNpQrStUvWxYzAbCdE2",
+      "role": "user",
+      "created_at": "2026-07-01T17:04:05Z",
+      "content": [
+        {
+          "type": "text",
+          "text": "Summarize the customer feedback in the attached spreadsheet."
+        }
+      ],
+      "sent_by_user_id": null,
+      "content_unavailable": false
+    },
+    {
+      "id": "csev_01BcDeFgHjKmNpQrStUvWxY4",
+      "role": "assistant",
+      "created_at": "2026-07-01T17:04:06Z",
+      "content": [
+        {
+          "type": "text",
+          "text": "I'll start by reading the spreadsheet..."
+        }
+      ],
+      "sent_by_user_id": null,
+      "content_unavailable": false
+    }
+  ],
+  "next_page": null
+}
+```
+
+Respons menyematkan amplop `session` di samping array `data` yang berpaginasi. Pada endpoint ini, amplop selalu memiliki `user.email_address` dan `started_by_user` yang disetel ke `null`; dapatkan nilai-nilai tersebut dari endpoint daftar sebagai gantinya.
+
+Pesan dikembalikan dari yang tertua lebih dulu secara default; kirimkan `order=desc` untuk membalik urutan. Paginasi menggunakan skema `page`/`next_page` yang sama seperti endpoint daftar, dengan `limit` default 100 dan maksimum 1.000. Sebuah halaman dapat berakhir lebih awal ketika respons mencapai anggaran ukurannya, sehingga halaman dengan pesan lebih sedikit dari `limit` tidak berarti Anda telah mencapai akhir; terus lakukan paginasi hingga `next_page` bernilai `null`.
+
+Setiap pesan membawa `role` (`user` atau `assistant`) dan array `content` berisi blok `text`, `tool_use`, dan `tool_result`. Nilai `created_at` pesan adalah stempel waktu commit: pesan yang berurutan dapat berbagi stempel waktu atau sedikit terbalik, jadi pertahankan urutan yang dikembalikan alih-alih mengurutkan ulang berdasarkan `created_at`. Pada sesi yang dimiliki agen, `sent_by_user_id` mencatat pengguna yang mengirim pesan pengguna tertentu ketika dapat diatribusikan; bernilai `null` jika tidak, termasuk pada semua pesan asisten. Ketika konten sebuah pesan sama sekali tidak dapat dikembalikan (misalnya, melebihi batas ukuran), pesan tersebut membawa `content_unavailable` yang disetel ke `true`.
+
+Dua parameter membatasi berapa banyak byte dari setiap blok alat yang dikembalikan: `tool_use_input_max_bytes` dan `tool_result_max_bytes`, keduanya default 10.000 byte. Kirimkan `-1` untuk maksimum server (sekitar 1 MiB); `0` tidak valid. Blok yang terpotong oleh salah satu batas membawa `"truncated": true`, dan input `tool_use` yang terpotong tidak lagi merupakan JSON yang valid, jadi parse input alat hanya dari blok yang tidak terpotong (atau naikkan batasnya dan ambil ulang).
+
+Endpoint pesan mengembalikan [404 Not Found](/docs/id/manage-claude/compliance-errors#404-not-found) untuk sesi `pending`, sesi yang dihapus, dan sesi di organisasi yang tidak dapat dibaca kunci Anda.
+
 ## Menghapus konten
 
 <Warning>
@@ -265,6 +401,8 @@ Compliance API mengekspos endpoint hard-delete untuk chat, file, dokumen proyek,
 * [Delete project](/docs/id/api/compliance/apps/projects/delete): lihat [Lepaskan chat sebelum menghapus proyek](#detach-chats-before-deleting-a-project).
 
 Keempat endpoint memerlukan scope `delete:compliance_user_data`, yang diberikan secara terpisah dari scope baca saat Compliance Access Key dibuat.
+
+Endpoint sesi jarak jauh bersifat hanya-baca; sesi jarak jauh tidak dapat dihapus melalui Compliance API. Transkrip sesi dipertahankan selama 6 tahun; lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
 
 Permintaan berikut menghapus satu chat. Pola yang sama berlaku untuk endpoint penghapusan lainnya; hanya URL yang berubah.
 
@@ -314,6 +452,6 @@ Untuk mengatasinya, cantumkan chat proyek dengan `GET /v1/compliance/apps/chats?
   </Card>
 
   <Card title="Mencantumkan organisasi, pengguna, peran, grup, dan pengaturan" href="/docs/id/manage-claude/compliance-org-data">
-    Enumerasi orang dan tim yang terkait dengan chat dan proyek pada halaman ini.
+    Enumerasi orang dan tim yang terkait dengan chat, proyek, dan sesi pada halaman ini.
   </Card>
 </CardGroup>

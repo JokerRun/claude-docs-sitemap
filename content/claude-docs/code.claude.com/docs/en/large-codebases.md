@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/large-codebases
-fetched_at: 2026-07-29T03:07:01.598872Z
-sha256: a543f35ee8f48332cafff485b655ebbe0457d60978fb8cad1d695b8cf5cb76dc
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: 4473b31b12dc8f0781d9f6735586c306ff3134103fec3f31f35f21eb02477407
 ---
 
 > ## Documentation Index
@@ -176,7 +176,7 @@ For paths that are checked in, such as a vendored SDK or committed generated cod
 The deny rules can cover everyone working in the repository, only you, or every session on the machine, depending on which settings file you put them in:
 
 * **Everyone working in the repository**: commit the rules to `.claude/settings.json`. Like other project settings on this page, that file loads only from your starting directory, so place it at the repository root if you start Claude there, or in each package's `.claude/` if you start from subdirectories.
-* **Yourself only**: use `.claude/settings.local.json` at the repository root, which loads in every CLI session inside the repository regardless of starting directory. Relative patterns like the example's `Read(./vendor/**)` still [anchor at the directory you start Claude Code from](/docs/en/permissions#read-and-edit), so if you start sessions from subdirectories, write the rules in this file as `//`-absolute paths, such as `Read(//absolute/path/to/repo/vendor/**)`. {/* min-version: 2.1.211 */}Before v2.1.211, `.claude/settings.local.json` also loaded only from the starting directory.
+* **Yourself only**: use `.claude/settings.local.json` at the repository root, which loads in every CLI session inside the repository regardless of starting directory. Relative patterns like the example's `Read(./vendor/**)` still [anchor at the directory you start Claude Code from](/docs/en/permissions#read-and-edit), so if you start sessions from subdirectories, write the rules in this file as `//`-absolute paths, such as `Read(//absolute/path/to/repo/vendor/**)`. Before v2.1.211, `.claude/settings.local.json` also loaded only from the starting directory.
 * **Everyone, enforced in every session**: set the rules in [managed settings](/docs/en/settings#settings-files), which user and project settings cannot override.
 
 The example below blocks build artifacts and a vendored SDK:

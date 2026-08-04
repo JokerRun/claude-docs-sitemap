@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/admin-api-keys
-fetched_at: 2026-07-17T03:08:17.884216Z
-sha256: 921664bffcce223d6670f2103a78816d6378b9c296c530e112f209236a99b6c3
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: 8ef3afd43088b069d031651d9f17a29f1c3d9c15da4021a094240096a343b4bc
 ---
 
 # Create an Admin API key
@@ -78,7 +78,7 @@ When you create a Claude Enterprise key, select every scope that the APIs you pl
 | [Spend Limits API](/docs/en/manage-claude/spend-limits-api): set or clear per-user spend limits; approve or deny increase requests                                                                                                              | `write:spend_limits`          |
 | [Claude Enterprise Analytics API](/docs/en/manage-claude/analytics-api): engagement, adoption, cost, and usage reports                                                                                                                          | `read:analytics`              |
 | [Compliance API Activity Feed](/docs/en/manage-claude/compliance-activity-feed): organization-wide activity events                                                                                                                              | `read:compliance_activities`  |
-| [Compliance API content endpoints](/docs/en/manage-claude/compliance-content-data): read chats, files, projects, and users                                                                                                                      | `read:compliance_user_data`   |
+| [Compliance API content endpoints](/docs/en/manage-claude/compliance-content-data): read chats, files, projects, Cowork session transcripts, and users                                                                                          | `read:compliance_user_data`   |
 | [Compliance API content endpoints](/docs/en/manage-claude/compliance-content-data): delete chats, files, and projects                                                                                                                           | `delete:compliance_user_data` |
 | [Compliance API organization endpoints](/docs/en/manage-claude/compliance-org-data): read organization metadata and effective settings                                                                                                          | `read:compliance_org_data`    |
 | Admin API [user management](/docs/en/manage-claude/user-management) read endpoints and every Compliance API read endpoint, with a single read-only scope (for security-audit integrations; does not include the Spend Limits or Analytics APIs) | `read:org_audit`              |

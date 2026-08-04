@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 31a41379c7fcd229765c1d93c3c9755dc9180fa2305c8098cd4e6789ed3af6b0
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: d3609fb581b47bdd18355f2a715c73478af9fa1ae296d7689d747f05fca37eba
 ---
 
 # Melakukan kueri pada Activity Feed
@@ -78,15 +78,16 @@ Aktivitas dikembalikan dari yang terbaru terlebih dahulu, dengan nilai `created_
 
 Compliance API menggunakan dua skema paginasi tergantung pada keluarga endpoint:
 
-| Keluarga endpoint                                                                    | Urutan pengurutan       | Skema         | Parameter                                                            |
-| ------------------------------------------------------------------------------------ | ----------------------- | ------------- | -------------------------------------------------------------------- |
-| Aktivitas                                                                            | Terbaru terlebih dahulu | Cursor        | `after_id`, `before_id` (dikembalikan sebagai `first_id`, `last_id`) |
-| Chat dan pesan chat                                                                  | Terlama terlebih dahulu | Cursor        | `after_id`, `before_id` (dikembalikan sebagai `first_id`, `last_id`) |
-| Organisasi, proyek, lampiran proyek, pengguna, peran, izin peran, grup, anggota grup | Spesifik per endpoint   | Token halaman | `page` (dikembalikan sebagai `next_page`)                            |
+| Keluarga endpoint                                                                    | Urutan pengurutan                                                          | Skema         | Parameter                                                            |
+| ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------- | ------------- | -------------------------------------------------------------------- |
+| Aktivitas                                                                            | Terbaru terlebih dahulu                                                    | Cursor        | `after_id`, `before_id` (dikembalikan sebagai `first_id`, `last_id`) |
+| Chat dan pesan chat                                                                  | Terlama terlebih dahulu                                                    | Cursor        | `after_id`, `before_id` (dikembalikan sebagai `first_id`, `last_id`) |
+| Organisasi, proyek, lampiran proyek, pengguna, peran, izin peran, grup, anggota grup | Spesifik per endpoint                                                      | Token halaman | `page` (dikembalikan sebagai `next_page`)                            |
+| Sesi jarak jauh dan pesan sesi                                                       | Sesi terbaru terlebih dahulu; pesan terlama terlebih dahulu secara default | Token halaman | `page` (dikembalikan sebagai `next_page`)                            |
 
 File tidak dipaginasi: file diambil satu per satu berdasarkan ID.
 
-Cursor paginasi dan token halaman adalah string opak: kembalikan tanpa diubah. Format internalnya tidak stabil, dan mem-parsing-nya akan rusak tanpa pemberitahuan. Hanya salah satu dari `after_id` atau `before_id` yang boleh diatur di setiap permintaan, dan kedua skema mengembalikan `has_more` sehingga Anda tahu kapan harus berhenti.
+Cursor paginasi dan token halaman adalah string opak: kembalikan tanpa diubah. Format internalnya tidak stabil, dan mem-parsing-nya akan rusak tanpa pemberitahuan. Hanya salah satu dari `after_id` atau `before_id` yang boleh diatur di setiap permintaan, dan kedua skema mengembalikan `has_more` sehingga Anda tahu kapan harus berhenti. Endpoint sesi jarak jauh adalah pengecualian: endpoint tersebut mengembalikan `next_page` tanpa `has_more`, jadi berhentilah ketika `next_page` bernilai `null`.
 
 Untuk menelusuri halaman aktivitas:
 

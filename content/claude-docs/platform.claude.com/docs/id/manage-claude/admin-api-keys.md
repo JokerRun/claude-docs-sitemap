@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/admin-api-keys
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 5361430a3b2a0ba7a7a89f4fe8bc331737fd326cc7501a3613b206b5c8bbea74
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: 4259c0c0ae0c3333af96e8de154ac70fb92ec415e6817ad42a73805204c93dc3
 ---
 
 # Membuat kunci API Admin
@@ -78,7 +78,7 @@ Saat Anda membuat kunci Claude Enterprise, pilih setiap cakupan yang diperlukan 
 | [Spend Limits API](/docs/id/manage-claude/spend-limits-api): menetapkan atau menghapus batas pengeluaran per pengguna; menyetujui atau menolak permintaan kenaikan                                                                            | `write:spend_limits`          |
 | [Claude Enterprise Analytics API](/docs/id/manage-claude/analytics-api): laporan keterlibatan, adopsi, biaya, dan penggunaan                                                                                                                  | `read:analytics`              |
 | [Activity Feed Compliance API](/docs/id/manage-claude/compliance-activity-feed): peristiwa aktivitas di seluruh organisasi                                                                                                                    | `read:compliance_activities`  |
-| [Endpoint konten Compliance API](/docs/id/manage-claude/compliance-content-data): membaca chat, file, proyek, dan pengguna                                                                                                                    | `read:compliance_user_data`   |
+| [Endpoint konten Compliance API](/docs/id/manage-claude/compliance-content-data): membaca chat, file, proyek, transkrip sesi Cowork, dan pengguna                                                                                             | `read:compliance_user_data`   |
 | [Endpoint konten Compliance API](/docs/id/manage-claude/compliance-content-data): menghapus chat, file, dan proyek                                                                                                                            | `delete:compliance_user_data` |
 | [Endpoint organisasi Compliance API](/docs/id/manage-claude/compliance-org-data): membaca metadata organisasi dan pengaturan efektif                                                                                                          | `read:compliance_org_data`    |
 | Endpoint baca [manajemen pengguna](/docs/id/manage-claude/user-management) Admin API dan setiap endpoint baca Compliance API, dengan satu cakupan hanya-baca (untuk integrasi audit keamanan; tidak termasuk Spend Limits atau Analytics API) | `read:org_audit`              |

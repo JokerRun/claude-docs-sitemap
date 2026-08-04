@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-spend-limits
-fetched_at: 2026-07-30T03:08:06.608103Z
-sha256: 57ce4047b4c8de858a097f7c2d1b7dda0ea4ac91cc303e2f50553ed707579911
+fetched_at: 2026-08-04T03:08:17.915636Z
+sha256: d24c02770459a8bf4309ff8efe29e3fde192cf8b64a143320e378eaa8e73139c
 ---
 
 > ## Documentation Index
@@ -67,7 +67,7 @@ Spend limits estimate spend from token counts at USD list price; they're a circu
 Pricing uses the same table the Claude Code CLI uses for its own cost display, with the same model-ID canonicalization across Anthropic, Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry ID forms, such as Bedrock's `us.anthropic.…-v1:0` and Agent Platform's `claude-…@date`. The meter resolves each request's rate tier in order:
 
 1. Exact rates for the upstream model ID, the model string the gateway sends to the provider. When the table recognizes it, such as `us.anthropic.claude-…`, the meter prices the request by the model that served it.
-2. {/* min-version: 2.1.218 */}Rates for the configured [`models[].id`](/docs/en/claude-apps-gateway-config#models) you mapped to the upstream ID. This step covers upstream strings that carry no model name, such as an Amazon Bedrock application-inference-profile ARN or a Microsoft Foundry deployment name, and requires Claude Code v2.1.218 or later on the gateway server.
+2. Rates for the configured [`models[].id`](/docs/en/claude-apps-gateway-config#models) you mapped to the upstream ID. This step covers upstream strings that carry no model name, such as an Amazon Bedrock application-inference-profile ARN or a Microsoft Foundry deployment name, and requires Claude Code v2.1.218 or later on the gateway server.
 3. The unknown-model default tier of \$5/\$25 per million input/output tokens. The meter prices an ID that neither the table nor your `models` config can place, including a `models[].id` that is itself a custom alias, at this tier rather than zero, so an unrecognized ID can't bypass a cap by going unmetered.
 
 The gateway warns at boot and once per ID at runtime when it prices a model at the unknown-model tier. Before v2.1.218, the meter skipped step 2: it priced any upstream ID the table couldn't place at the unknown-model tier and warned about it even when the configured ID's rates were known.
