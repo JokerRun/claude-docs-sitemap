@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/security-guidance
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: 5845b26b19093022565742c9830b150bdd14f06553a603f206245193ce01ddbf
+fetched_at: 2026-08-05T03:08:04.164913Z
+sha256: a4f182e23f7777625f5f999f514671ee20b1934164c1cd59443b8d5c7ecf6391
 ---
 
 > ## Documentation Index
@@ -40,9 +40,14 @@ In a terminal Claude Code session, install from the [official Anthropic marketpl
 * **Claude desktop app, local or SSH session**: open the [plugin browser](/docs/en/desktop#install-plugins) by clicking the **+** button next to the prompt, then **Plugins**, then **Add plugin**
 * **Claude Code on the web or a desktop cloud session**: declare the plugin in `.claude/settings.json` as shown under [Enable in cloud sessions](#enable-in-cloud-sessions-and-shared-repositories)
 
-The terminal install prompts for a scope. Choose user scope to write the plugin to your user settings, so it loads in every new local session you start on this machine. If Claude Code reports `Marketplace "claude-plugins-official" not found`, add the marketplace with `/plugin marketplace add anthropics/claude-plugins-official`. If it reports that the plugin is not found in the marketplace, your local copy is outdated: refresh it with `/plugin marketplace update claude-plugins-official`. Then retry the install.
+The terminal install prompts for a scope. Choose user scope to write the plugin to your user settings, so it loads in every new local session you start on this machine.
 
-Then activate it in the current session with `/reload-plugins`, which applies pending plugin changes without a restart:
+If the install fails, match the message Claude Code reports:
+
+* `Marketplace "claude-plugins-official" not found`: add the marketplace with `/plugin marketplace add anthropics/claude-plugins-official`, then retry the install.
+* The plugin is not found in the marketplace: check the plugin name. Claude Code [refreshes a stale marketplace catalog and retries](/docs/en/discover-plugins#install-plugins) before reporting this, so if you turned off [marketplace auto-update](/docs/en/discover-plugins#configure-auto-updates), refresh manually with `/plugin marketplace update claude-plugins-official` and retry the install.
+
+Check the install summary. If it reports `Run /reload-plugins to activate.`, apply the pending change without a restart:
 
 ```text theme={null}
 /reload-plugins

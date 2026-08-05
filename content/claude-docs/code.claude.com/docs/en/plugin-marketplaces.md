@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-marketplaces
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: f3b67408fe9c1baac520e0a03c904ddc489db95c938f0b561d562f7b7f639dd6
+fetched_at: 2026-08-05T03:08:04.164913Z
+sha256: a55e84de22c80c33b8edd6606df9bdd38ae7df943d4788d6ea6c754e5375a425
 ---
 
 > ## Documentation Index
@@ -99,12 +99,11 @@ This example creates a marketplace with one plugin: a `quality-review` skill for
   </Step>
 
   <Step title="Add and install">
-    From the directory that contains `my-marketplace`, start Claude Code and run the following commands. The install command opens a plugin details view where you select an installation scope to confirm the install, and `/reload-plugins` activates the plugin in your current session.
+    From the directory that contains `my-marketplace`, start Claude Code and run the following commands. The install command opens a plugin details view where you select an installation scope to confirm the install. Check the install summary: if it reports `Run /reload-plugins to activate.`, run that command.
 
     ```shell theme={null}
     /plugin marketplace add ./my-marketplace
     /plugin install quality-review-plugin@my-plugins
-    /reload-plugins
     ```
   </Step>
 

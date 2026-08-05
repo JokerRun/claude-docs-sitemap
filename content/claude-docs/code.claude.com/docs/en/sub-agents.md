@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sub-agents
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: b7073809f3fe88a5cb71b3b0bbe5ae1ec444a709a1f5f7a8d096368a803ba369
+fetched_at: 2026-08-05T03:08:04.164913Z
+sha256: 35a57d4660f9376a1cbf5be9afb7bfcf1178ce74693fd3375420350a5468ec5f
 ---
 
 > ## Documentation Index
@@ -79,12 +79,11 @@ Explore and Plan skip your CLAUDE.md files and the parent session's git status t
   <Tab title="Other">
     Claude Code includes additional helper agents for specific tasks. These are typically invoked automatically, so you don't need to use them directly.
 
-    | Agent             | Model                           | When Claude uses it                                                                                                                                                                                                                                                                        |
-    | :---------------- | :------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | claude            | Inherits from main conversation | When a task doesn't fit a more specialized agent. A catch-all with every tool [available to subagents](#available-tools). Also the default agent for a dispatched [background session](/docs/en/agent-view), which runs with your settings' permission mode rather than a parent conversation's |
-    | statusline-setup  | Sonnet                          | When you run `/statusline` to configure your status line                                                                                                                                                                                                                                   |
-    | claude-code-guide | Haiku                           | When you ask questions about Claude Code features                                                                                                                                                                                                                                          |
-    | claude            | Inherits                        | When you dispatch a [background session](/docs/en/agent-view) from `claude agents` and the dispatch [resolves to it as the default agent](/docs/en/agent-view#permission-mode-model-and-effort). Claude can also delegate to it like any other subagent                                              |
+    | Agent             | Model    | When Claude uses it                                                                                                                                                                                                                                                                                                                           |
+    | :---------------- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | claude            | Inherits | When a task doesn't fit a more specialized agent. A catch-all with every tool [available to subagents](#available-tools). Also the [default agent](/docs/en/agent-view#permission-mode-model-and-effort) for a dispatched [background session](/docs/en/agent-view), which runs with your settings' permission mode rather than a parent conversation's |
+    | statusline-setup  | Sonnet   | When you run `/statusline` to configure your status line                                                                                                                                                                                                                                                                                      |
+    | claude-code-guide | Haiku    | When you ask questions about Claude Code features                                                                                                                                                                                                                                                                                             |
   </Tab>
 </Tabs>
 

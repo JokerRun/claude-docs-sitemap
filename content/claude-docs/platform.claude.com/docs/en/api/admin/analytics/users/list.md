@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/users/list
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: d8cd433256c234fd49827a94ba978a2139d437fd42dd30b43c65271cfa1980f2
+fetched_at: 2026-08-05T03:08:04.164913Z
+sha256: 1f09699d06c63e50c58516ca259227560821f75681c834af522779b80a8b7428
 ---
 
 ## List User Activity
@@ -12,8 +12,10 @@ sha256: d8cd433256c234fd49827a94ba978a2139d437fd42dd30b43c65271cfa1980f2
 Get per-user activity for a given day, with cursor-based pagination.
 
 Returns activity metrics for each user in the organization, sorted by email
-address. Available to organizations on a Claude Enterprise plan. Requires
-an API key with the `read:analytics` scope.
+address. Use group_by[] for per-RBAC-group aggregates, or filter[] to
+scope results to specific members, groups, or a chat project. Available
+to organizations on a Claude Enterprise plan. Requires an API key with
+the `read:analytics` scope.
 
 ### Query Parameters
 
@@ -27,11 +29,13 @@ an API key with the `read:analytics` scope.
 
 - `filter: optional array of string`
 
-  Filters as 'dimension:value', e.g. filter[]=rbac_group_id:<id>. Repeat the param for OR within a dimension and across dimensions for AND. Unsupported dimensions return 400. rbac_group_id accepts the tagged id (rbac_group_..., as emitted in responses and by the spend-limits API) or a bare group UUID, and matches users who held the group at any point during each covered UTC day (time-of-usage attribution). At most 100 entries.
+  Filters as 'dimension:value', e.g. filter[]=rbac_group_id:<id>. Repeat the param for OR within a dimension and across dimensions for AND. Supported dimensions on this endpoint: project_id, rbac_group_id, user_id. Value forms: project_id takes a tagged project id (claude_proj_...) and scopes each member's row to their claude.ai chat activity within that project (it cannot be combined with group_by[] or an rbac_group_id filter); rbac_group_id takes the tagged id (rbac_group_..., as emitted in responses and by the spend-limits API) or a bare group UUID, and matches users who held the group at any point during each covered UTC day (time-of-usage attribution); user_id takes a tagged user id (user_...), as emitted in responses. An unsupported dimension returns 400. At most 100 entries.
 
-- `group_by: optional array of string`
+- `group_by: optional array of "rbac_group_id"`
 
-  Dimensions to break results out by, e.g. group_by[]=rbac_group_id. Supported dimensions vary by endpoint; an unsupported dimension returns 400. Grouped responses paginate like ungrouped ones via next_page. rbac_group_id attributes a user to every group they held at any point during each covered UTC day, so grouped rows are not an exclusive partition and can sum above org-level totals. At most 100 entries.
+  Dimensions to break results out by (e.g. group_by[]=rbac_group_id). Supported on this endpoint: rbac_group_id. Rows are already per-member, so the one supported grouping aggregates them per RBAC group instead. Grouped rows carry the requested dimension values as additional fields and paginate like ungrouped responses via next_page; an unsupported dimension returns 400. rbac_group_id attributes a user to every group they held at any point during each covered UTC day, so grouped rows are not an exclusive partition and can sum above org-level totals. At most 100 entries.
+
+  - `"rbac_group_id"`
 
 - `limit: optional number`
 
@@ -365,6 +369,12 @@ an API key with the `read:analytics` scope.
 
         Email address of the user
 
+      - `type: optional "user"`
+
+        Object type. Always `user`.
+
+        - `"user"`
+
   - `next_page: string`
 
     Opaque cursor for the next page, or null if no more results
@@ -498,7 +508,8 @@ curl https://api.anthropic.com/v1/organizations/analytics/users \
       "rbac_group_name": "rbac_group_name",
       "user": {
         "id": "id",
-        "email_address": "email_address"
+        "email_address": "email_address",
+        "type": "user"
       }
     }
   ],

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/web-quickstart
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: dc1939c6f300acf01e0fc36490ab5a47442fffbb9f6a24b56fb1f7bd52f713ee
+fetched_at: 2026-08-05T03:08:04.164913Z
+sha256: 097821e2de12b6bda33605b6c56ff2700f404f06fdcdbd4b839f6c89059c4678
 ---
 
 > ## Documentation Index
@@ -202,7 +202,7 @@ On Team and Enterprise plans, the command is also hidden when any of the followi
 * an administrator has disabled the [Quick web setup toggle](/docs/en/claude-code-on-the-web#github-authentication-options)
 * your Enterprise organization has [Zero Data Retention](/docs/en/zero-data-retention) enabled, which makes Claude Code on the web unavailable
 
-### "Could not create a cloud environment" or "No cloud environment available" when using `--cloud` or ultraplan
+### "Could not create a cloud environment" or "No cloud environment available" when using `--cloud`
 
 Remote-session features create a default cloud environment automatically if you don't have one. If you see "Could not create a cloud environment", automatic creation failed. If you see "No cloud environment available", your CLI predates automatic creation. In either case, run `/web-setup` in the Claude Code CLI, or add an environment from the [environment selector](/docs/en/cloud-environments#configure-your-environment) at [claude.ai/code](https://claude.ai/code).
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/usage_report/retrieve_messages
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 582a91dbb1a07a826c31dba4d4bc3b00ea5838669ed707f826fee50bec68d840
+fetched_at: 2026-08-05T03:08:04.164913Z
+sha256: eb3e83a52a125f77d575d153bcfdd79fa47b469eb71c42b2c145c3da0e8a20bb
 ---
 
 ## Get Messages Usage Report
@@ -184,10 +184,15 @@ Get Messages Usage Report
 
         - `"200k-1M"`
 
-      - `inference_geo: string`
+      - `inference_geo: "global" or "not_available" or "us"`
 
-        Inference geo used matching requests' `inference_geo` parameter if set, otherwise the workspace's `default_inference_geo`.
-        For models that do not support specifying `inference_geo` the value is `"not_available"`. Always `null` if not grouping by inference geo.
+        InferenceGeo values extended with NOT_AVAILABLE for filtering usage data.
+
+        - `"global"`
+
+        - `"not_available"`
+
+        - `"us"`
 
       - `model: string`
 
@@ -286,6 +291,6 @@ curl https://api.anthropic.com/v1/organizations/usage_report/messages \
     }
   ],
   "has_more": true,
-  "next_page": "2019-12-27T18:11:19.117Z"
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
 }
 ```

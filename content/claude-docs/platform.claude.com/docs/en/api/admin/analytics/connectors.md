@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/connectors
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 8cee691b75ed1aaecc21fa48798bd68c52aa4ea0e6f6985035d0978d512909a0
+fetched_at: 2026-08-05T03:08:04.164913Z
+sha256: 0a125e243e4f7e3386dc69cc3ed7cd69e9ed27312a5bd2c644b94ab588ed8876
 ---
 
 # Connectors
@@ -16,8 +16,11 @@ Get per-connector usage for a given day, with cursor-based pagination.
 Returns connector usage metrics for the organization, sorted by connector
 name. Connector names are normalized from their various sources — for
 example, "Atlassian MCP server" and "mcp-atlassian" both appear as
-"atlassian". Available to organizations on a Claude Enterprise plan.
-Requires an API key with the `read:analytics` scope.
+"atlassian". Use group_by[] to break usage out per member, per RBAC
+group, or per product surface, and filter[] to scope results; the
+parameter descriptions list the supported dimensions. Available to
+organizations on a Claude Enterprise plan. Requires an API key with the
+`read:analytics` scope.
 
 ### Query Parameters
 
@@ -31,11 +34,17 @@ Requires an API key with the `read:analytics` scope.
 
 - `filter: optional array of string`
 
-  Filters as 'dimension:value', e.g. filter[]=rbac_group_id:<id>. Repeat the param for OR within a dimension and across dimensions for AND. Unsupported dimensions return 400. rbac_group_id accepts the tagged id (rbac_group_..., as emitted in responses and by the spend-limits API) or a bare group UUID, and matches users who held the group at any point during each covered UTC day (time-of-usage attribution). At most 100 entries.
+  Filters as 'dimension:value', e.g. filter[]=rbac_group_id:<id>. Repeat the param for OR within a dimension and across dimensions for AND. Supported dimensions on this endpoint: connector_name, product, rbac_group_id, user_id. Value forms: connector_name matches case-insensitively, and a display name such as 'GitHub MCP' also matches its normalized stored form ('github'); product is one of chat, claude_code, cowork, or office_agent; rbac_group_id takes the tagged id (rbac_group_..., as emitted in responses and by the spend-limits API) or a bare group UUID, and matches users who held the group at any point during each covered UTC day (time-of-usage attribution); user_id takes a tagged user id (user_...), as emitted in responses. An unsupported dimension returns 400. At most 100 entries.
 
-- `group_by: optional array of string`
+- `group_by: optional array of "product" or "rbac_group_id" or "user_id"`
 
-  Dimensions to break results out by, e.g. group_by[]=rbac_group_id. Supported dimensions vary by endpoint; an unsupported dimension returns 400. Grouped responses paginate like ungrouped ones via next_page. rbac_group_id attributes a user to every group they held at any point during each covered UTC day, so grouped rows are not an exclusive partition and can sum above org-level totals. At most 100 entries.
+  Dimensions to break results out by (e.g. group_by[]=user_id). Supported on this endpoint: product, rbac_group_id, user_id. Grouped rows carry the requested dimension values as additional fields and paginate like ungrouped responses via next_page; an unsupported dimension returns 400. rbac_group_id attributes a user to every group they held at any point during each covered UTC day, so grouped rows are not an exclusive partition and can sum above org-level totals. At most 100 entries.
+
+  - `"product"`
+
+  - `"rbac_group_id"`
+
+  - `"user_id"`
 
 - `limit: optional number`
 

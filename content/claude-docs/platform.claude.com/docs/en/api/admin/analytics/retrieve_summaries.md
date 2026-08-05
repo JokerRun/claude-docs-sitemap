@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/retrieve_summaries
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 9d4c26afa650dac65ef592c178d07c6847e3894b25089f68427e16ea264eefa7
+fetched_at: 2026-08-05T03:08:04.164913Z
+sha256: 9db6dcd843a5c684aed4c59f5753c71e0d7c56b8629ba75cefb6a8e28ffc54e8
 ---
 
 ## Get Activity Summaries
@@ -15,8 +15,9 @@ Returns one entry per day in [starting_date, ending_date). Data is
 typically available with a 1-day lag and may be revised by a few percent
 over the following days: when ending_date is omitted it defaults to the
 most recent available day + 1, so the last entry covers the most recent
-available day. Available to organizations on a Claude Enterprise plan.
-Requires an API key with the `read:analytics` scope.
+available day. The series can be scoped to an RBAC group via
+filter[]=rbac_group_id:<id>. Available to organizations on a Claude
+Enterprise plan. Requires an API key with the `read:analytics` scope.
 
 ### Query Parameters
 

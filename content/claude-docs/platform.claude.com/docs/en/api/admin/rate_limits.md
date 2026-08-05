@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rate_limits
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 5637511ab6247500f1c1527a178c2fc8a5a3c76b9811f4f9ed1c3f9d89338a4c
+fetched_at: 2026-08-05T03:08:04.164913Z
+sha256: 5775dd31ea7981d2acc4824e1abb33ce92b0ddaa97e2747c10acdcfbdca6b033
 ---
 
 # Rate Limits
@@ -45,9 +45,13 @@ and contains the set of limiter values that apply to it.
 
 ### Returns
 
-- `data: array of object { group_type, limits, models, type }`
+- `data: array of object { id, group_type, limits, 2 more }`
 
   Rate-limit entries for the organization, one per group.
+
+  - `id: string`
+
+    Stable identifier for this rate-limit group within the organization.
 
   - `group_type: "batch" or "files" or "model_group" or 3 more`
 
@@ -105,6 +109,7 @@ curl https://api.anthropic.com/v1/organizations/rate_limits \
 {
   "data": [
     {
+      "id": "id",
       "group_type": "batch",
       "limits": [
         {
@@ -128,9 +133,13 @@ curl https://api.anthropic.com/v1/organizations/rate_limits \
 
 - `RateLimitListResponse object { data, next_page }`
 
-  - `data: array of object { group_type, limits, models, type }`
+  - `data: array of object { id, group_type, limits, 2 more }`
 
     Rate-limit entries for the organization, one per group.
+
+    - `id: string`
+
+      Stable identifier for this rate-limit group within the organization.
 
     - `group_type: "batch" or "files" or "model_group" or 3 more`
 

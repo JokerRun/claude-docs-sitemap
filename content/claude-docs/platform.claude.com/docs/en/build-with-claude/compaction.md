@@ -1,19 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 0e312fbd2c99ef37801adf2d71641a431a79c03bf0e40c21b58b70603a8c8062
+fetched_at: 2026-08-05T03:08:04.164913Z
+sha256: 7c481a8881a9818084d4326e846f091ca38bcc1c75cc7a56fb1231941cb0d672
 ---
 
 # Compaction
 
 Server-side context compaction for managing long conversations that approach context window limits.
 
----
+## Compatibility
+- Status: Beta
+- [Beta header](/docs/en/api/beta-headers): `compact-2026-01-12`
+- [ZDR](/docs/en/manage-claude/api-and-data-retention): eligible (excludes [Covered Models](/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))
+- Supported models: `claude-fable-5`, `claude-mythos-5`, `claude-mythos-preview`, `claude-opus-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-opus-4-6`, `claude-sonnet-5`, `claude-sonnet-4-6`
+- Platforms: Claude API (beta), Claude Platform on AWS (beta), Amazon Bedrock (beta), Google Cloud (beta), Microsoft Foundry (beta)
 
-<Note>
-  For how zero data retention (ZDR) applies to this feature, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
-</Note>
+---
 
 <Tip>
   Server-side compaction is the recommended strategy for managing context in long-running conversations and agentic workflows. It handles context management automatically, without client-side summarization code.
@@ -29,24 +32,6 @@ This is ideal for:
 
 * Chat-based, multi-turn conversations where you want users to use one chat for a long period of time
 * Task-oriented prompts that require a lot of follow-up work (often tool use) that might exceed the context window
-
-<Note>
-  Compaction is in beta. Include the [beta header](/docs/en/api/beta-headers) `compact-2026-01-12` in your API requests to use this feature.
-</Note>
-
-## Supported models
-
-Compaction is supported on the following models:
-
-* Claude Fable 5 (claude-fable-5)
-* [Claude Mythos 5](https://anthropic.com/glasswing) (claude-mythos-5)
-* [Claude Mythos Preview](https://anthropic.com/glasswing) (claude-mythos-preview)
-* Claude Opus 5 (claude-opus-5)
-* Claude Opus 4.8 (claude-opus-4-8)
-* Claude Opus 4.7 (claude-opus-4-7)
-* Claude Opus 4.6 (claude-opus-4-6)
-* Claude Sonnet 5 (claude-sonnet-5)
-* Claude Sonnet 4.6 (claude-sonnet-4-6)
 
 ## How compaction works
 

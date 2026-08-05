@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/rate_limits
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 86ea8b4e5ba74832fef7d39aa26023d09afeeb1f3ccb1f93c8e9ee871cf798af
+fetched_at: 2026-08-05T03:08:04.164913Z
+sha256: e2b9dc7ce85fbb8ac3589d9673d498ce72ea1d5086d8fff710a674171ea69979
 ---
 
 # Rate Limits
@@ -47,7 +47,7 @@ are not listed; use `GET /v1/organizations/rate_limits` to see those.
 
 ### Returns
 
-- `data: array of object { group_type, limits, models, type }`
+- `data: array of object { group_type, limits, models, 3 more }`
 
   Rate-limit entries for the workspace, one per group that has at least one override.
 
@@ -87,11 +87,19 @@ are not listed; use `GET /v1/organizations/rate_limits` to see those.
 
     Model names this entry's limits apply to, including aliases. `null` when `group_type` is not `"model_group"`.
 
+  - `rate_limit_id: string`
+
+    The `id` of the RateLimit group this override applies to.
+
   - `type: "workspace_rate_limit"`
 
     Object type. Always `workspace_rate_limit` for workspace rate-limit entries.
 
     - `"workspace_rate_limit"`
+
+  - `workspace_id: string`
+
+    ID of the Workspace this override applies to.
 
 - `next_page: string`
 
@@ -122,7 +130,9 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/rate_li
       "models": [
         "string"
       ],
-      "type": "workspace_rate_limit"
+      "rate_limit_id": "rate_limit_id",
+      "type": "workspace_rate_limit",
+      "workspace_id": "workspace_id"
     }
   ],
   "next_page": "next_page"
@@ -135,7 +145,7 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/rate_li
 
 - `RateLimitListResponse object { data, next_page }`
 
-  - `data: array of object { group_type, limits, models, type }`
+  - `data: array of object { group_type, limits, models, 3 more }`
 
     Rate-limit entries for the workspace, one per group that has at least one override.
 
@@ -175,11 +185,19 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/rate_li
 
       Model names this entry's limits apply to, including aliases. `null` when `group_type` is not `"model_group"`.
 
+    - `rate_limit_id: string`
+
+      The `id` of the RateLimit group this override applies to.
+
     - `type: "workspace_rate_limit"`
 
       Object type. Always `workspace_rate_limit` for workspace rate-limit entries.
 
       - `"workspace_rate_limit"`
+
+    - `workspace_id: string`
+
+      ID of the Workspace this override applies to.
 
   - `next_page: string`
 

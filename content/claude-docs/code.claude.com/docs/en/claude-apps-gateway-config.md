@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-config
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: daede6c2d7db14bfa02612fc57d0e023b99e70d2c6a7d0e71bfaab6818f809f1
+fetched_at: 2026-08-05T03:08:04.164913Z
+sha256: fc7510cadaf7d94194fd20d6a631c2a8b594e26a404d0c3852773394f5954d4b
 ---
 
 > ## Documentation Index
@@ -420,6 +420,8 @@ A `match: {}` catch-all, conventionally listed last, is treated as a base layer.
 * **Record-typed keys**: `env`, `modelOverrides`, and `skillOverrides`. These shallow-merge, so a per-role `env` block overrides keys it sets and inherits the rest from the base.
 
 `availableModels` is also enforced server-side at `/v1/messages`, so a denied model returns `400` regardless of what the client sends.
+
+When a request's `model` value isn't a string, the gateway rejects the request with a `400` and the message `model must be a string`, so a malformed value never reaches an upstream. Requires a gateway running Claude Code v2.1.221 or later.
 
 | Matcher                                             | Behavior                                                                                                                         |
 | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |

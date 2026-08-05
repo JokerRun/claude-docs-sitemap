@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rate_limits/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 73d3e2f907808d26289a975f045f61d273efefc27f6734bc83711ea0bc842334
+fetched_at: 2026-08-05T03:08:04.164913Z
+sha256: a1df936ad433b0a70874f2739d1034bd9fb6242befe2e4571963b5141424372a
 ---
 
 ## List Organization Rate Limits
@@ -43,9 +43,13 @@ and contains the set of limiter values that apply to it.
 
 ### Returns
 
-- `data: array of object { group_type, limits, models, type }`
+- `data: array of object { id, group_type, limits, 2 more }`
 
   Rate-limit entries for the organization, one per group.
+
+  - `id: string`
+
+    Stable identifier for this rate-limit group within the organization.
 
   - `group_type: "batch" or "files" or "model_group" or 3 more`
 
@@ -103,6 +107,7 @@ curl https://api.anthropic.com/v1/organizations/rate_limits \
 {
   "data": [
     {
+      "id": "id",
       "group_type": "batch",
       "limits": [
         {

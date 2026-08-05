@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/rate_limits/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 6b60869ec81b34ed66780912805fc3bfa35ec851733c75391b2e37ced105eb94
+fetched_at: 2026-08-05T03:08:04.164913Z
+sha256: cdf1c5735b8e44159fbe05b05b9be8ad6ba5029a8890a0fc7b924ba4658729b9
 ---
 
 ## List Workspace Rate Limits
@@ -45,7 +45,7 @@ are not listed; use `GET /v1/organizations/rate_limits` to see those.
 
 ### Returns
 
-- `data: array of object { group_type, limits, models, type }`
+- `data: array of object { group_type, limits, models, 3 more }`
 
   Rate-limit entries for the workspace, one per group that has at least one override.
 
@@ -85,11 +85,19 @@ are not listed; use `GET /v1/organizations/rate_limits` to see those.
 
     Model names this entry's limits apply to, including aliases. `null` when `group_type` is not `"model_group"`.
 
+  - `rate_limit_id: string`
+
+    The `id` of the RateLimit group this override applies to.
+
   - `type: "workspace_rate_limit"`
 
     Object type. Always `workspace_rate_limit` for workspace rate-limit entries.
 
     - `"workspace_rate_limit"`
+
+  - `workspace_id: string`
+
+    ID of the Workspace this override applies to.
 
 - `next_page: string`
 
@@ -120,7 +128,9 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/rate_li
       "models": [
         "string"
       ],
-      "type": "workspace_rate_limit"
+      "rate_limit_id": "rate_limit_id",
+      "type": "workspace_rate_limit",
+      "workspace_id": "workspace_id"
     }
   ],
   "next_page": "next_page"

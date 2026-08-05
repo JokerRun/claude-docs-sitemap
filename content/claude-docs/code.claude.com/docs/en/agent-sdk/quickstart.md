@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/quickstart
-fetched_at: 2026-08-03T03:09:38.628809Z
-sha256: c22f2209e1a3a2e26d13b3f1a0afbf68f283e32a36a9ac9a676d78bc803010d6
+fetched_at: 2026-08-05T03:08:04.164913Z
+sha256: 56fda91b98e018dec0e4a0ee128f8e9ea0f6201238e25dcaf9f622f15ae24969
 ---
 
 > ## Documentation Index
@@ -97,7 +97,10 @@ Use the Agent SDK to build an AI agent that reads your code, finds bugs, and fix
     </Tabs>
 
     <Note>
-      Both the TypeScript and Python SDKs bundle a native Claude Code binary for your platform, so you don't need to install Claude Code separately.
+      Both the TypeScript and Python SDKs bundle a native Claude Code binary, so most installs need no separate Claude Code install. Some installs have no bundled binary:
+
+      * If pip installs the Python SDK's source distribution instead of a platform wheel, for example on ARM64 Windows, no binary is bundled. [Install Claude Code natively](/docs/en/setup#install-claude-code). The Python SDK finds it on your `PATH`.
+      * The TypeScript SDK installs its binary through npm optional dependencies, so an install that skips them, for example `npm ci --omit=optional`, gets no binary even on a supported platform. Reinstall without skipping optional dependencies, or [install Claude Code natively](/docs/en/setup#install-claude-code) and set `pathToClaudeCodeExecutable` to its path.
     </Note>
   </Step>
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/google-vertex-ai
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: 92c88261bced8ca835dcfab328202ef0c8ff238cc7c8803d0105cb1176fc9f05
+fetched_at: 2026-08-05T03:08:04.164913Z
+sha256: 4ec72623eb9407146ad7424198c7a1bf07eb671422eccf22b7d153f4b7433b03
 ---
 
 > ## Documentation Index
@@ -205,7 +205,12 @@ Most model versions have a corresponding `VERTEX_REGION_CLAUDE_*` variable. See 
 
 [Prompt caching](/docs/en/prompt-caching) is enabled automatically. To disable it, set `DISABLE_PROMPT_CACHING=1`. To request a 1-hour cache TTL instead of the 5-minute default, set `ENABLE_PROMPT_CACHING_1H=1`; cache writes with a 1-hour TTL are billed at a higher rate. For heightened rate limits, contact Google Cloud support. When using Google Cloud's Agent Platform, the `/logout` command is unavailable since authentication is handled through Google Cloud credentials.
 
-Claude Code disables [MCP tool search](/docs/en/mcp#scale-with-mcp-tool-search) by default on Google Cloud's Agent Platform, so MCP tool definitions load upfront. Google Cloud's Agent Platform supports tool search for Claude Sonnet 4.5 and later and Claude Opus 4.5 and later. Set `ENABLE_TOOL_SEARCH=true` to enable it on those models. Earlier models on Google Cloud's Agent Platform do not accept the required beta header, and requests fail if you enable tool search with them.
+Claude Code decides between [MCP tool search](/docs/en/mcp#scale-with-mcp-tool-search) and upfront loading by model generation:
+
+* **Claude Opus 4.5, Sonnet 4.5, Haiku 4.5, and later**: Claude Code enables tool search by default.
+* **Earlier models, including all Claude 3.x models**: Claude Code loads MCP tool definitions upfront, because their Agent Platform serving stacks reject the required beta header. Setting `ENABLE_TOOL_SEARCH=true` doesn't override this.
+
+Set `ENABLE_TOOL_SEARCH=false` to disable tool search on every model. Before v2.1.221, Claude Code disabled tool search for all models on Google Cloud's Agent Platform unless you set `ENABLE_TOOL_SEARCH=true`.
 
 ### 5. Pin model versions
 

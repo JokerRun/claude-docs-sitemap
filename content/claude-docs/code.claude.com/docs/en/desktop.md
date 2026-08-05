@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: 934ca4435d00e471c7a4aa6dbe537b6d8c5fd702abd357ada1686fe7e52c605e
+fetched_at: 2026-08-05T03:08:04.164913Z
+sha256: 354ccef237d3d2c52cbe757651c77f426c959efe3c9c95b7e5f20b25b86d543e
 ---
 
 > ## Documentation Index
@@ -339,7 +339,9 @@ To include gitignored files like `.env` in new worktrees, create a [`.worktreein
   Session isolation requires [Git](https://git-scm.com/downloads). Most Macs include Git by default. Run `git --version` in Terminal to check; if it prints a version number, Git is installed. On Windows, Git is required for the Code tab to work: [download Git for Windows](https://git-scm.com/downloads/win), install it, and restart the app. If you run into Git errors, ask Claude in the [Cowork tab](https://claude.com/product/cowork) to help troubleshoot your setup.
 </Note>
 
-Use the controls at the top of the sidebar to filter sessions by status, project, or environment, and to group sessions by project. To rename a session, click the session title in the toolbar at the top of the active session. To check context usage, see [Check usage](#check-usage). When context fills up, Claude automatically summarizes the conversation and continues working. You can also type `/compact` to trigger summarization earlier and free up context space. See [the context window](/docs/en/how-claude-code-works#the-context-window) for details on how compaction works.
+Use the controls at the top of the sidebar to filter sessions by status, project, or environment, and to group sessions by project. To rename a session, click the session title in the toolbar at the top of the active session. Claude Code applies the rename to the session's underlying CLI name too, so the new name appears when you list sessions from a terminal with `claude agents`; the shared rename requires Claude Code v2.1.221 or later.
+
+To check context usage, see [Check usage](#check-usage). When context fills up, Claude automatically summarizes the conversation and continues working. You can also type `/compact` to trigger summarization earlier and free up context space. See [the context window](/docs/en/how-claude-code-works#the-context-window) for details on how compaction works.
 
 The desktop app sends an OS notification when a Code session finishes a task and you aren't currently viewing that session.
 

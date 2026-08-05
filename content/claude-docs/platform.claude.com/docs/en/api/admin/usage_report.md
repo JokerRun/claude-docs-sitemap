@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/usage_report
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 9f8074fa8dbd18cc898d50d3366d47efea9bf57f435d1872aec5f4c0a16ee4db
+fetched_at: 2026-08-05T03:08:04.164913Z
+sha256: 42a9f3bdd2593c909d6a7646f8ea35e084118dfeedad438a7e45f66be9756ad8
 ---
 
 # Usage Report
@@ -186,10 +186,15 @@ Get Messages Usage Report
 
         - `"200k-1M"`
 
-      - `inference_geo: string`
+      - `inference_geo: "global" or "not_available" or "us"`
 
-        Inference geo used matching requests' `inference_geo` parameter if set, otherwise the workspace's `default_inference_geo`.
-        For models that do not support specifying `inference_geo` the value is `"not_available"`. Always `null` if not grouping by inference geo.
+        InferenceGeo values extended with NOT_AVAILABLE for filtering usage data.
+
+        - `"global"`
+
+        - `"not_available"`
+
+        - `"us"`
 
       - `model: string`
 
@@ -288,7 +293,7 @@ curl https://api.anthropic.com/v1/organizations/usage_report/messages \
     }
   ],
   "has_more": true,
-  "next_page": "2019-12-27T18:11:19.117Z"
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
 }
 ```
 
@@ -325,7 +330,7 @@ Enables organizations to analyze developer productivity and build custom dashboa
 
       The user or API key that performed the Claude Code actions.
 
-      - `ClaudeCodeUserActor object { email_address, type }`
+      - `UserActor object { email_address, type }`
 
         - `email_address: string`
 
@@ -335,7 +340,7 @@ Enables organizations to analyze developer productivity and build custom dashboa
 
           - `"user_actor"`
 
-      - `ClaudeCodeAPIActor object { api_key_name, type }`
+      - `APIActor object { api_key_name, type }`
 
         - `api_key_name: string`
 
@@ -383,7 +388,8 @@ Enables organizations to analyze developer productivity and build custom dashboa
 
     - `date: string`
 
-      UTC date for the usage metrics in YYYY-MM-DD format.
+      UTC day the usage metrics cover, as an RFC 3339 timestamp at midnight UTC
+      (for example `2025-08-08T00:00:00Z`).
 
     - `model_breakdown: array of object { estimated_cost, model, tokens }`
 
@@ -496,7 +502,7 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
             "amount": 186,
             "currency": "USD"
           },
-          "model": "claude-sonnet-4-20250514",
+          "model": "claude-opus-4-8",
           "tokens": {
             "cache_creation": 2340,
             "cache_read": 8790,
@@ -509,7 +515,7 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
             "amount": 42,
             "currency": "USD"
           },
-          "model": "claude-3-5-haiku-20241022",
+          "model": "claude-sonnet-5",
           "tokens": {
             "cache_creation": 890,
             "cache_read": 3420,
@@ -560,7 +566,7 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
 
       The user or API key that performed the Claude Code actions.
 
-      - `ClaudeCodeUserActor object { email_address, type }`
+      - `UserActor object { email_address, type }`
 
         - `email_address: string`
 
@@ -570,7 +576,7 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
 
           - `"user_actor"`
 
-      - `ClaudeCodeAPIActor object { api_key_name, type }`
+      - `APIActor object { api_key_name, type }`
 
         - `api_key_name: string`
 
@@ -618,7 +624,8 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
 
     - `date: string`
 
-      UTC date for the usage metrics in YYYY-MM-DD format.
+      UTC day the usage metrics cover, as an RFC 3339 timestamp at midnight UTC
+      (for example `2025-08-08T00:00:00Z`).
 
     - `model_breakdown: array of object { estimated_cost, model, tokens }`
 
@@ -742,10 +749,15 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
 
         - `"200k-1M"`
 
-      - `inference_geo: string`
+      - `inference_geo: "global" or "not_available" or "us"`
 
-        Inference geo used matching requests' `inference_geo` parameter if set, otherwise the workspace's `default_inference_geo`.
-        For models that do not support specifying `inference_geo` the value is `"not_available"`. Always `null` if not grouping by inference geo.
+        InferenceGeo values extended with NOT_AVAILABLE for filtering usage data.
+
+        - `"global"`
+
+        - `"not_available"`
+
+        - `"us"`
 
       - `model: string`
 

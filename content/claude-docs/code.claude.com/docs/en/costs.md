@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/costs
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: 66faf2f9df0d2037a16e60eed66fa305dd2e229cca3f514908cc4bae15f8544b
+fetched_at: 2026-08-05T03:08:04.164913Z
+sha256: 843592ad478031d0aa7951cf81e3f53b0341fee07ebac0d1a180729c7bb75f9c
 ---
 
 > ## Documentation Index
@@ -133,7 +133,7 @@ For per-user cost attribution, you have three options:
 Developers usually bring limit questions to their admin, so it helps to know which ceiling they hit. The three situations mean different things:
 
 * **"You've hit your session limit" or "You've hit your weekly limit"**: a seat-based usage window on a subscription plan. These windows are shared across all models, so switching models with `/model` doesn't restore access, though it does keep the developer working after the model-specific "You've hit your Opus limit" message. The message shows when the window resets, and the developer can run `/usage-credits` to request usage beyond the allowance if you have [usage credits](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans) turned on. See [usage limit errors](/docs/en/errors#youve-hit-your-session-limit).
-* **A context or auto-compact warning**: not a usage limit. The conversation has grown close to the model's maximum input size, and Claude Code summarizes older history to free space. Point the developer at [reduce token usage](#reduce-token-usage).
+* **A context or auto-compact warning**: not a usage limit. The conversation has grown close to the session's [auto-compact window](/docs/en/context-window#when-your-context-fills-up), the threshold where Claude Code summarizes older history to free space. Point the developer at [reduce token usage](#reduce-token-usage).
 * **Unexpectedly high spend on an API or cloud-provider plan**: usually traces back to long sessions that were never cleared or to Opus left as the default model. The highest-impact habits to share are clearing between unrelated tasks and matching the model to the job, both covered in [reduce token usage](#reduce-token-usage).
 
 ### Agent team token costs

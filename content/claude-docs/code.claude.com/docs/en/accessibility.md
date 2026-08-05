@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/accessibility
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: 4cb0a17196398b22faf1adec45efb4c346669367cc607722d424a56ffd5e03ea
+fetched_at: 2026-08-05T03:08:04.164913Z
+sha256: be08fbda1db231542ca7a85594f717dac5a0494e258efe0a42ffec7fcf017445
 ---
 
 > ## Documentation Index
@@ -71,7 +71,7 @@ Each message in the transcript starts with a label your screen reader announces,
 
 The terminal cursor follows the input caret, so a screen reader's read-current-line command answers "where am I" with the prompt you're editing.
 
-As you type at the end of the input line, Claude Code writes only the characters you type, so your screen reader echoes only those characters. Requires Claude Code v2.1.219 or later; earlier versions rewrite the whole input line on every keystroke, so the screen reader re-reads it as you type.
+As you type or press `Backspace` at the end of the input line, Claude Code writes only the characters that change, so your screen reader echoes just those characters. Deletions require Claude Code v2.1.222 or later and typing requires v2.1.219 or later; before those versions, each keystroke rewrote the line, so the screen reader re-read it.
 
 When you delete a word or a line in the input, Claude Code announces the deleted text. Requires Claude Code v2.1.218 or later. The announcement covers:
 
