@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/file-checkpointing
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: 3659eba3c3ca3540a05baa4ae633c5994cdc7f9012f0d3e4887cd12c66e028b9
+fetched_at: 2026-08-06T03:07:37.547989Z
+sha256: 80b6e5ab4ebb9b95cb0e2e85be21a61c6bb00bb572ea9c92b0d24e9194e9bba1
 ---
 
 > ## Documentation Index
@@ -758,7 +758,7 @@ If `message.uuid` is `undefined` or missing, you're not receiving checkpoint UUI
 
 **Solution**: Add `extra_args={"replay-user-messages": None}` (Python) or `extraArgs: { 'replay-user-messages': null }` (TypeScript) to your options.
 
-### "No file checkpoint found for message" error
+### "No file checkpoint found for this message" error
 
 This error occurs when the checkpoint data doesn't exist for the specified user message UUID.
 

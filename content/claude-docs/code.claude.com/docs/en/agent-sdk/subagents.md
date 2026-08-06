@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/subagents
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: 72dfc2d81170b016d5b364d3d7a81f02e385a595bc1e6be6c53c3f260c6eac38
+fetched_at: 2026-08-06T03:07:37.547989Z
+sha256: ccb8e9825997326b60e1d1cccf0707e87597c9c8076d0d60a9e99fd126024c12
 ---
 
 > ## Documentation Index
@@ -667,10 +667,6 @@ Claude Code watches `~/.claude/agents/` and `.claude/agents/` and picks up a new
 * **A programmatic agent with the same name**: `agents` passed to `query()` override a filesystem agent with the same name.
 
 For the file format, see [how to write subagent files](/docs/en/sub-agents#write-subagent-files).
-
-### Long prompt failures on Windows
-
-On Windows, subagents with very long prompts may fail due to the command line length limit of 8191 characters. Keep prompts concise or use filesystem-based agents for complex instructions.
 
 ## Related documentation
 

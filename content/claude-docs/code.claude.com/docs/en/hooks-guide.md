@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: ab890d8dcfce7a2817057d1e45be2ee80008d3605790f1f8063e5257daea03a0
+fetched_at: 2026-08-06T03:07:37.547989Z
+sha256: cee1ae59db08b02d2fd876dcdfd181a0233473132eb5313e7b18679973b39252
 ---
 
 > ## Documentation Index
@@ -253,6 +253,9 @@ This example uses a separate script file that the hook calls. The script checks 
 
     INPUT=$(cat)
     FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty')
+
+    # Normalize Windows backslash separators so the patterns below match
+    FILE_PATH="${FILE_PATH//\\//}"
 
     PROTECTED_PATTERNS=(".env" "package-lock.json" ".git/")
 

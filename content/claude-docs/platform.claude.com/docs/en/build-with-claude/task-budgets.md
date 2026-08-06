@@ -1,21 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/task-budgets
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 887cd33465fde4cf8c7ae2767ee0e3be1bb66fdd4c94c5c1a249cd3682398a8e
+fetched_at: 2026-08-06T03:07:37.547989Z
+sha256: 0a42f40d7e20aad9628f1569748b95efc2508888d4d5895c9f85f23fe564906c
 ---
 
 # Task budgets
 
 Give Claude an advisory token budget for the full agentic loop to help the model self-regulate on long agentic tasks.
 
+## Compatibility
+- Status: Beta
+- [Beta header](/docs/en/api/beta-headers): `task-budgets-2026-03-13`
+- Supported models: `claude-fable-5`, `claude-mythos-5`, `claude-opus-5`, `claude-opus-4-8`, `claude-opus-4-7`
+
 ---
 
 Task budgets let you tell Claude how many tokens it has for a full agentic loop, including thinking, tool calls, tool results, and output. The model sees a running countdown and uses it to prioritize work and finish gracefully as the budget is consumed.
-
-<Note>
-  Task budgets are in beta on Claude Opus 5, Claude Fable 5, Claude Mythos 5, Claude Opus 4.8, and Claude Opus 4.7. Set the `task-budgets-2026-03-13` beta header to opt in.
-</Note>
 
 ## When to use task budgets
 

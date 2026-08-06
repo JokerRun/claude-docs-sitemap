@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 1ce05f79d5e77e6c5ec077f1a5cf3910cbf8c60369bcc0bb495128f5dcd2f8a5
+fetched_at: 2026-08-06T03:07:37.547989Z
+sha256: f58b24cb644849e11e3468a70b8775c906d87dc5c30bda750010e6614beabe75
 ---
 
 # Customer-managed encryption keys
@@ -91,7 +91,7 @@ Some features are turned off or substantially modified when CMEK is enabled. Thi
 
 * Conversation history search is disabled. Conversation titles are encrypted, so searching by title or content returns no results.
 * Search across large numbers of files is slower.
-* The Analytics API and in-product analytics are degraded. Some usage views and reports may be incomplete.
+* Certain analytics will be degraded - Admin analytics for Claude.ai skills and connectors (under claude.ai/analytics/usage and via analytics API), Claude smart reports (claude.ai/analytics/insights), and Claude Code contribution metrics (under claude.ai/analytics/claude-code).
 * Audit log exports are disabled.
 * Signed URLs for temporary file exchanges are disabled. These back organization data exports in claude.ai and Claude Code Remote file flows such as screenshot updates.
 * Personal preferences are disabled for users who belong to a CMEK-protected organization, across all organizations under the same parent. Users who do not belong to a CMEK-protected organization can still use them across all organizations.

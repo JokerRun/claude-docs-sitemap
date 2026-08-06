@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-content-data
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: 405ace36c0a8e1daf416a32cf821ef2ce1c79e2257b2f6424dac4f1cd5b72f53
+fetched_at: 2026-08-06T03:07:37.547989Z
+sha256: 78fc0c4d58f80c8e14453955c53d28a2c22911fe4820dc8e52627931604132c7
 ---
 
 # Retrieve and delete chats, files, and projects
@@ -12,7 +12,7 @@ Access chat content, file attachments, and projects for claude.ai organizations 
 ---
 
 <Note>
-  The endpoints on this page retrieve and delete claude.ai content and are available only to Claude Enterprise organizations, which have self-service access to the Compliance API. See [Set up the Compliance API](/docs/en/manage-claude/compliance-api-access).
+  The endpoints on this page retrieve and delete claude.ai content and are available only to Claude Enterprise organizations. See [Set up the Compliance API](/docs/en/manage-claude/compliance-api-access).
 </Note>
 
 <Check>

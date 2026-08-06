@@ -1,29 +1,29 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 5b4bc6d7f454c172a94b4f11e1090a9f67ea3fb79b94246952c4f7194a8873bb
+fetched_at: 2026-08-06T03:07:37.547989Z
+sha256: cc89cfaf6a4dac16b012acc00862563c3f17241d4787769c1fa32d85fcbe9ecf
 ---
 
 # Computer use tool
 
 Give Claude screenshot, mouse, and keyboard control of a desktop environment with the computer use tool.
 
+## Compatibility
+- Status: Beta
+- [Beta header](/docs/en/api/beta-headers): `computer-use-2025-11-24`
+- [ZDR](/docs/en/manage-claude/api-and-data-retention): eligible (excludes [Covered Models](/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))
+- Supported models: `claude-opus-5`, `claude-sonnet-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-opus-4-6`, `claude-sonnet-4-6`, `claude-opus-4-5-20251101`
+- Platforms: Claude API (beta), Claude Platform on AWS (beta), Amazon Bedrock (beta), Google Cloud (beta), Microsoft Foundry (beta)
+
 ---
 
 Claude can interact with computer environments through the computer use tool, which provides screenshot capabilities and mouse/keyboard control for autonomous desktop interaction.
 
 <Note>
-  Computer use is in beta and requires a [beta header](/docs/en/api/beta-headers):
-
-  * `"computer-use-2025-11-24"` for Claude Opus 5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, and Claude Opus 4.5
-  * `"computer-use-2025-01-24"` for Claude Sonnet 4.5, Claude Haiku 4.5, Claude Opus 4.1 ([deprecated](/docs/en/about-claude/model-deprecations)), Claude Sonnet 4 ([retired, except on Bedrock and Google Cloud](/docs/en/about-claude/model-deprecations)), and Claude Opus 4 ([retired, except on Google Cloud](/docs/en/about-claude/model-deprecations))
+  On Claude Sonnet 4.5, Claude Haiku 4.5, Claude Opus 4.1 ([retired, except on Bedrock and Google Cloud](/docs/en/about-claude/model-deprecations)), Claude Sonnet 4 ([retired, except on Bedrock and Google Cloud](/docs/en/about-claude/model-deprecations)), and Claude Opus 4 ([retired, except on Google Cloud](/docs/en/about-claude/model-deprecations)), use the earlier `computer-use-2025-01-24` [beta header](/docs/en/api/beta-headers) instead of `computer-use-2025-11-24`.
 
   Reach out through the [feedback form](https://forms.gle/H6UFuXaaLywri9hz6) to share your feedback on this feature.
-</Note>
-
-<Note>
-  For how zero data retention (ZDR) applies to this feature, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 </Note>
 
 ## Overview

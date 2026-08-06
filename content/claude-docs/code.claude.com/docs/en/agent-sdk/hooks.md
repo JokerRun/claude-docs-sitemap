@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/hooks
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: 9aa389ef18dd7e3c6f6dd2e55449ef0c8a67c243d54233dd5b5e8a4b40b6bca4
+fetched_at: 2026-08-06T03:07:37.547989Z
+sha256: f5087ca47269ea7ffa9a517fb0110d84f3bceb56d036a284d2b939e5a0d3bd95
 ---
 
 > ## Documentation Index
@@ -864,7 +864,7 @@ To run initialization logic as a Python SDK callback instead, use the first mess
 
 ### Subagent permission prompts multiplying
 
-When spawning multiple subagents, each one may request permissions separately. Subagents don't automatically inherit parent agent permissions. To avoid repeated prompts, use `PreToolUse` hooks to auto-approve specific tools, or configure permission rules that apply to subagent sessions.
+When spawning multiple subagents, each one may request permissions separately for its own tool calls. To avoid repeated prompts, use `PreToolUse` hooks to auto-approve specific tools, or configure permission rules, which subagents [inherit from the parent conversation](/docs/en/sub-agents#permission-modes).
 
 ### Recursive hook loops with subagents
 

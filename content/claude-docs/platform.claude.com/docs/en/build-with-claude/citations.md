@@ -1,19 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/citations
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 81a311a3a4e3fea2cf62852649db1c95f8f3297594b6f50793abd3977fb30015
+fetched_at: 2026-08-06T03:07:37.547989Z
+sha256: 2112eea0a6796e3aded2941644ef99936e0668e8e985ab20c931f6dda9328b30
 ---
 
 # Citations
 
 Ground Claude's responses in your source documents. Citations return the exact passages that support each claim, so you can verify answers and surface sources to your users.
 
----
+## Compatibility
+- [ZDR](/docs/en/manage-claude/api-and-data-retention): eligible (excludes [Covered Models](/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))
+- Platforms: Claude API, Claude Platform on AWS, Amazon Bedrock, Google Cloud, Microsoft Foundry
 
-<Note>
-  For how zero data retention (ZDR) applies to this feature, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
-</Note>
+---
 
 Claude can provide detailed citations when answering questions about documents, helping you track and verify the sources behind each response.
 

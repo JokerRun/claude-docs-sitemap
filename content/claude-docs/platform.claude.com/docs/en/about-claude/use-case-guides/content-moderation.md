@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/content-moderation
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 204ccb0ca8e17360fbd47627d9a12ccdc0a41b09847b2318bddcd6501fc96849
+fetched_at: 2026-08-06T03:07:37.547989Z
+sha256: da103598a8558455d50b66fbe22a96946c85a1b7eb23a7c2c4b0082eadc061ef
 ---
 
 # Content moderation
@@ -58,7 +58,7 @@ Here are some key indicators that you should use an LLM like Claude instead of a
 </AccordionGroup>
 
 <Note>
-  Anthropic has trained all Claude models to be honest, helpful, and harmless. This may result in Claude moderating content deemed particularly dangerous (in line with the 
+  All Claude models are trained with built-in safety behaviors. This may result in Claude moderating content deemed particularly dangerous (in line with the 
 
   [Acceptable Use Policy](https://www.anthropic.com/legal/aup)
 

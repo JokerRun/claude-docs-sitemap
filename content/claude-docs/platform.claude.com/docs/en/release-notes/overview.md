@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/overview
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: e090e070f2449dd02c893b3a48e8a6ae75d7ed165d35ae6a28694fe6f727a5a3
+fetched_at: 2026-08-06T03:07:37.547989Z
+sha256: 13a2f7269216269f0390390a0a1c11cfc2d22757f8db6f1c3dad36b3de04c2c0
 ---
 
 # Claude Platform release notes
@@ -16,6 +16,12 @@ Updates to the Claude Platform, including the Claude API, client SDKs, and the C
 
   For updates to Claude Code, see the [complete CHANGELOG.md](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) in the `claude-code` repository.
 </Tip>
+
+### August 5, 2026
+
+* **Inference hooks** are now in beta for Claude Enterprise organizations. Point Claude at your organization's AI security server, and each governed prompt across claude.ai, Cowork, and Claude Code is held for the server's allow or deny verdict before inference proceeds. Requests are signed, failure handling is configurable, and every denial is recorded in the compliance [Activity Feed](/docs/en/manage-claude/compliance-activity-feed). See [Inference hooks](/docs/en/manage-claude/inference-hooks).
+
+- We've retired the Claude Opus 4.1 model (`claude-opus-4-1-20250805`). All requests to this model will now return an error. We recommend upgrading to [Claude Opus 5](/docs/en/about-claude/models/overview#latest-models-comparison). Researchers can request ongoing access through the [External Researcher Access Program](https://support.claude.com/en/articles/9125743-what-is-the-external-researcher-access-program).
 
 ### August 1, 2026
 

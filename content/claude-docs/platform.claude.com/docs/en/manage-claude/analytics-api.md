@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/analytics-api
-fetched_at: 2026-07-08T03:08:53.943475Z
-sha256: 55930cf123da0820dc89f4df4ebf040eb5fb657cc35908f58a5ea640c2cd3972
+fetched_at: 2026-08-06T03:07:37.547989Z
+sha256: 33b51e2287583c0017562dc47c0847c0af99beed6315723ace9f56023f73b304
 ---
 
 # Analytics APIs
@@ -88,7 +88,7 @@ For endpoint details, parameters, and response schemas, see the [Claude Enterpri
 
 Claude Enterprise Analytics API data is available for dates on or after January 1, 2026.
 
-**Engagement and adoption endpoints** (user activity, summaries, projects, skills, connectors) return a per-day snapshot for the date you specify. Data for a given day is aggregated at 10UTC the following day and becomes available for querying three days after aggregation. If data is not available within that timeline, it usually indicates a data pipeline failure on Anthropic's side; contact support if the gap persists.
+**Engagement and adoption endpoints** (user activity, summaries, projects, skills, connectors) return a per-day snapshot for the date you specify. Data for a given day is aggregated at 10UTC the following day and is typically available with a 1-day lag. Exact freshness varies by query, so rather than assuming a fixed lag, check the error response: requesting a date that is not yet available returns a 400 error naming the most recent available day. If data is not available well past the typical lag, it usually indicates a data pipeline failure on Anthropic's side; contact support if the gap persists.
 
 **Cost and usage endpoints** follow a different freshness model. Data is typically available within four hours of the underlying usage but may take up to 24 hours. Values for a given date can be revised for up to 30 days as late events arrive and reconciliation runs. For invoicing-grade totals, query dates at least 30 days in the past.
 

@@ -1,13 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/token-counting
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: b70294f113c482313c5de16db9ff98a3fa627aca378cb0b35d7c96d60dfbce22
+fetched_at: 2026-08-06T03:07:37.547989Z
+sha256: 09b65155c26273802ade85593b04e8ff402a19032ab530f91695474dd298e524
 ---
 
 # Token counting
 
 Count the tokens in a message before you send it to Claude. Use token counts to manage rate limits and costs, make model routing decisions, and fit prompts to a target length.
+
+## Compatibility
+- [ZDR](/docs/en/manage-claude/api-and-data-retention): eligible (excludes [Covered Models](/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))
+- Platforms: Claude API, Claude Platform on AWS, Amazon Bedrock, Google Cloud, Microsoft Foundry
 
 ---
 
@@ -16,10 +20,6 @@ Token counting lets you determine the number of tokens in a message before you s
 * Proactively manage rate limits and costs
 * Make smart model routing decisions
 * Optimize prompts to a specific length
-
-<Note>
-  For how zero data retention (ZDR) applies to this feature, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
-</Note>
 
 ***
 

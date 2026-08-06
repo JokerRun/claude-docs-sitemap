@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/server-managed-settings
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: 7a143859dd94140abff08621affe26bba5e173f68fb6a333914cd3e97ddec94d
+fetched_at: 2026-08-06T03:07:37.547989Z
+sha256: f628e5824191f0cede868b8ecabbee72e91262b2f7d0dce2162cff4590055ff5
 ---
 
 > ## Documentation Index
@@ -125,7 +125,7 @@ Restrict access to trusted personnel, as settings changes apply to all users in 
 
 ### Managed-only settings
 
-Most [settings keys](/docs/en/settings#available-settings) work in any scope. A handful of keys are only read from managed settings and have no effect when placed in user or project settings files. See [managed-only settings](/docs/en/permissions#managed-only-settings) for the full list. Any setting not on that list can still be placed in managed settings and takes the highest precedence.
+Most [settings keys](/docs/en/settings#available-settings) work in any scope. A handful of keys are only read from managed settings and have no effect when placed in user or project settings files. See [managed-only settings](/docs/en/permissions#managed-only-settings) for the full list. Any setting not on that list can still be placed in managed settings and takes the highest precedence, apart from the exceptions listed in the [settings reference's precedence section](/docs/en/settings#settings-precedence).
 
 ### Current limitations
 
@@ -139,7 +139,7 @@ Server-managed settings have the following limitations:
 
 ### Settings precedence
 
-Server-managed settings and [endpoint-managed settings](/docs/en/settings#settings-files) both occupy the highest tier in the Claude Code [settings hierarchy](/docs/en/settings#settings-precedence). No other settings level can override them, including command line arguments.
+Server-managed settings and [endpoint-managed settings](/docs/en/settings#settings-files) both occupy the highest tier in the Claude Code [settings hierarchy](/docs/en/settings#settings-precedence). No other settings level can override them, including command line arguments, apart from the exceptions listed in the [settings reference's precedence section](/docs/en/settings#settings-precedence).
 
 Within the managed tier, a configured [`policyHelper`](/docs/en/settings#compute-managed-settings-with-a-policy-helper) preempts every other managed source, including server-managed settings: its output becomes the only managed configuration for the run.
 

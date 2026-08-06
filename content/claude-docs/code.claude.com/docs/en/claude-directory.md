@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-directory
-fetched_at: 2026-07-29T03:07:01.598872Z
-sha256: 19a8ef0e49cc1c1f030cebe3476889cf21015134f1312b02d51ff11634d923e1
+fetched_at: 2026-08-06T03:07:37.547989Z
+sha256: afe21152784f956d2f66e2744c22d41e0d2a2f43efae5b9cddeb7585b89e52d7
 ---
 
 > ## Documentation Index
@@ -1455,7 +1455,7 @@ The explorer covers files you author and edit. A few related files live elsewher
 
 | File                    | Location                   | Purpose                                                                                                                                                                                                                                                             |
 | ----------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `managed-settings.json` | System-level, varies by OS | Enterprise-enforced settings that you can't override. See [server-managed settings](/docs/en/server-managed-settings).                                                                                                                                                   |
+| `managed-settings.json` | System-level, varies by OS | Enterprise-enforced settings that you can't override, apart from [narrow exceptions](/docs/en/settings#settings-precedence). See [server-managed settings](/docs/en/server-managed-settings).                                                                                 |
 | `CLAUDE.local.md`       | Project root               | Your private preferences for this project, loaded alongside CLAUDE.md. Create it manually and add it to `.gitignore`.                                                                                                                                               |
 | Installed plugins       | `~/.claude/plugins`        | Cloned marketplaces, installed plugin versions, and per-plugin data, managed by `claude plugin` commands. Orphaned versions are deleted 14 days after a plugin update or uninstall. See [plugin caching](/docs/en/plugins-reference#plugin-caching-and-file-resolution). |
 
@@ -1485,7 +1485,7 @@ This table lists every file the explorer covers. Project-scope files live in you
 <Note>
   Several things can override what you put in these files:
 
-  * [Managed settings](/docs/en/server-managed-settings) deployed by your organization take precedence over everything
+  * [Managed settings](/docs/en/server-managed-settings) deployed by your organization take precedence over everything, apart from the [exceptions under Settings precedence](/docs/en/settings#settings-precedence)
   * CLI flags like `--permission-mode` or `--settings` override `settings.json` for that session
   * Some environment variables take precedence over their equivalent setting, but this varies: check the [environment variables reference](/docs/en/env-vars) for each one
 

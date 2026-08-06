@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: 6cdbba7eaf02ccc40c3fc142c9b207a129427e43f2b66d48cbda1275e01c003c
+fetched_at: 2026-08-06T03:07:37.547989Z
+sha256: 462c31bf401db9d46f9fa8ec4c91b3caca879abdc7ccc0da210470d1a263395b
 ---
 
 > ## Documentation Index
@@ -15,7 +15,7 @@ sha256: 6cdbba7eaf02ccc40c3fc142c9b207a129427e43f2b66d48cbda1275e01c003c
 
 The [Agent SDK](/docs/en/agent-sdk/overview) gives you the same tools, agent loop, and context management that power Claude Code. It's available as a CLI for scripts and CI/CD, or as [Python](/docs/en/agent-sdk/python) and [TypeScript](/docs/en/agent-sdk/typescript) packages for full programmatic control.
 
-To run Claude Code in non-interactive mode, pass `-p` with your prompt and any [CLI options](/docs/en/cli-reference):
+To run Claude Code in non-interactive mode, pass `-p` with your prompt and the [CLI options](/docs/en/cli-reference) you need:
 
 ```bash theme={null}
 claude -p "Find and fix the bug in auth.py" --allowedTools "Read,Edit,Bash"
@@ -25,7 +25,7 @@ This page covers using the Agent SDK via the CLI (`claude -p`). For the Python a
 
 ## Basic usage
 
-Add the `-p` (or `--print`) flag to any `claude` command to run it non-interactively. All [CLI options](/docs/en/cli-reference) work with `-p`, including:
+Add the `-p` (or `--print`) flag to any `claude` command to run it non-interactively. Not every [CLI option](/docs/en/cli-reference) combines with `-p`. Claude Code rejects `--bg` and `--cloud` with an error naming the conflict. Options you'll combine with `-p` often include:
 
 * `--continue` for [continuing conversations](#continue-conversations)
 * `--allowedTools` for [auto-approving tools](#auto-approve-tools)
@@ -217,7 +217,9 @@ Use the plugin fields in the `system/init` event to catch a plugin that didn't l
 | `plugins`       | array | plugins that loaded successfully, each with `name` and `path`                                                                                                                                                                                                                                |
 | `plugin_errors` | array | plugin load-time errors, each with `plugin`, `type`, and `message`. Includes unsatisfied dependency versions and `--plugin-dir` load failures such as a missing path or invalid archive. Affected plugins are demoted and absent from `plugins`. The key is omitted when there are no errors |
 
-Use the MCP server fields the same way. Claude Code validates each [`--mcp-config`](/docs/en/cli-reference#cli-flags) entry at startup and skips entries that fail validation, for example a `url` entry with no `type`; the run continues and exits cleanly, so check these fields to catch a server that never loaded:
+Use the MCP server fields the same way. When you pass [`--mcp-config`](/docs/en/cli-reference#cli-flags) with `-p`, Claude Code waits for still-pending servers before running the first turn, up to the [`MCP_TIMEOUT`](/docs/en/env-vars) startup timeout, 30 seconds by default. A remote server with a [cached tool list](/docs/en/agent-sdk/mcp#connection-timing) skips the wait, shows `pending` in `system/init`, and connects on its first tool call. The wait requires Claude Code v2.1.221 or later.
+
+Claude Code validates each `--mcp-config` entry at startup and skips entries that fail validation, for example a `url` entry with no `type`. The run continues and exits cleanly, so check these fields to catch a server that never loaded:
 
 | Field               | Type  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | ------------------- | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

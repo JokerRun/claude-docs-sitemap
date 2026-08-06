@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/memory
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: 7440c4551042f4607926031816a38681c7edddc07f0d3ae65313a3f1d2e123fd
+fetched_at: 2026-08-06T03:07:37.547989Z
+sha256: bd9dcc0069d792cc6acfe231ccfbabd760e641f969237d15b6523f69f80a3f5b
 ---
 
 > ## Documentation Index
@@ -451,9 +451,9 @@ The [`/doctor`](/docs/en/commands#all-commands) checkup proposes trims for a che
 
 ### Instructions seem lost after `/compact`
 
-Project-root CLAUDE.md survives compaction: after `/compact`, Claude re-reads it from disk and re-injects it into the session. Nested CLAUDE.md files in subdirectories are not re-injected automatically; they reload the next time Claude reads a file in that subdirectory.
+Project-root CLAUDE.md survives compaction: after `/compact`, Claude re-reads it from disk and re-injects it into the session. Nested CLAUDE.md files in subdirectories and rules with [`paths:` frontmatter](#path-specific-rules) are not re-injected automatically; they reload the next time Claude reads a file in that subdirectory or a file matching the rule's patterns.
 
-If an instruction disappeared after compaction, it was either given only in conversation or lives in a nested CLAUDE.md that hasn't reloaded yet. Add conversation-only instructions to CLAUDE.md to make them persist. See [What survives compaction](/docs/en/context-window#what-survives-compaction) for the full breakdown.
+If an instruction disappeared after compaction, it was given only in conversation, lives in a nested CLAUDE.md that hasn't reloaded yet, or is a path-scoped rule that hasn't matched a file since. Add conversation-only instructions to CLAUDE.md to make them persist. See [What survives compaction](/docs/en/context-window#what-survives-compaction) for the full breakdown.
 
 See [Write effective instructions](#write-effective-instructions) for guidance on size, structure, and specificity.
 

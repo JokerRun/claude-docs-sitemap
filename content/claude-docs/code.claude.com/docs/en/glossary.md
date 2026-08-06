@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: 5272a2fc6a78a5c1f0d54954869b02d06074c7fe7c40f25208e5a5eb144e333f
+fetched_at: 2026-08-06T03:07:37.547989Z
+sha256: c4840553fb8330019e9dac58a3007607c87990484f1045d15d67c24d1fb633b4
 ---
 
 > ## Documentation Index
@@ -167,7 +167,7 @@ Learn more: [Get started with hooks](/docs/en/hooks-guide) · [Hooks reference](
 
 ### Managed settings
 
-Settings enforced org-wide by IT or DevOps, delivered from Anthropic's servers through the admin console or deployed to devices at an OS-level path outside `~/.claude`. User and project settings cannot override managed settings. Server-managed delivery applies on [eligible configurations](/docs/en/server-managed-settings#platform-availability); see [Security considerations](/docs/en/server-managed-settings#security-considerations). Use this for security policies, compliance requirements, or standardized tooling across a fleet.
+Settings enforced org-wide by IT or DevOps, delivered from Anthropic's servers through the admin console or deployed to devices at an OS-level path outside `~/.claude`. User and project settings cannot override managed settings, apart from the exceptions listed under [Settings precedence](/docs/en/settings#settings-precedence). Server-managed delivery applies on [eligible configurations](/docs/en/server-managed-settings#platform-availability); see [Security considerations](/docs/en/server-managed-settings#security-considerations). Use this for security policies, compliance requirements, or standardized tooling across a fleet.
 
 Learn more: [Server-managed settings](/docs/en/server-managed-settings) · [Settings files](/docs/en/settings#settings-files)
 
@@ -275,7 +275,7 @@ Learn more: [Work with sessions](/docs/en/how-claude-code-works#work-with-sessio
 
 ### Settings layers
 
-The hierarchy Claude Code reads configuration from, in precedence order from highest to lowest: [managed policy](#managed-settings), command-line arguments, local settings at `.claude/settings.local.json`, project settings at `.claude/settings.json`, then user settings at `~/.claude/settings.json`. Arrays merge across layers; scalars at a higher layer override lower ones.
+The hierarchy Claude Code reads configuration from, in precedence order from highest to lowest: [managed policy](#managed-settings), command-line arguments, local settings at `.claude/settings.local.json`, project settings at `.claude/settings.json`, then user settings at `~/.claude/settings.json`. Arrays merge across layers; scalars at a higher layer override lower ones, apart from the exceptions under [Settings precedence](/docs/en/settings#settings-precedence).
 
 Learn more: [Settings files](/docs/en/settings#settings-files)
 

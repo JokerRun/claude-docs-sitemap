@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sessions
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 149611e0bd2f48c750079d40c7622dee6fe43abb3a6f2105059c76a3d18bb345
+fetched_at: 2026-08-06T03:07:37.547989Z
+sha256: f82e154e0f875280ffaa9e4009dc43425e0e4cd9ddf4fa0c726737c134c9c312
 ---
 
 > ## Documentation Index
@@ -82,16 +82,16 @@ Resuming by name resolves across the current repository and its worktrees. Both 
 
 Give sessions descriptive names so they're findable in the session picker and resumable by name. This matters most when you're working on several tasks in parallel.
 
-| When                             | How to set the name                                                                                                                                                     |
-| :------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| At startup                       | `claude -n auth-refactor`                                                                                                                                               |
-| During a session                 | `/rename auth-refactor`. The name also appears on the prompt bar                                                                                                        |
-| From the session picker          | Highlight a session and press `Ctrl+R`                                                                                                                                  |
-| On plan accept                   | Accepting a plan in [plan mode](/docs/en/permission-modes#analyze-before-you-edit-with-plan-mode) names the session from the plan content unless you've already set one      |
-| From claude.ai or the Claude app | Rename a [Remote Control session](/docs/en/remote-control#connect-from-another-device); Claude Code applies the same name in the CLI. Requires Claude Code v2.1.221 or later |
-| From the desktop app             | Rename a session in the [desktop app](/docs/en/desktop#work-in-parallel-with-sessions); Claude Code applies the same name in the CLI. Requires Claude Code v2.1.221 or later |
+| When                             | How to set the name                                                                                                                                                                   |
+| :------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| At startup                       | `claude -n auth-refactor`                                                                                                                                                             |
+| During a session                 | `/rename auth-refactor`. The name also appears on the prompt bar                                                                                                                      |
+| From the session picker          | Highlight a session and press `Ctrl+R`                                                                                                                                                |
+| On plan accept                   | Accepting a plan in [plan mode](/docs/en/permission-modes#analyze-before-you-edit-with-plan-mode) names the session from the plan content unless you've already set one                    |
+| From claude.ai or the Claude app | Rename a [Remote Control session](/docs/en/remote-control#connect-from-another-device); Claude Code applies the same name in the CLI. Requires Claude Code v2.1.221 or later               |
+| From the desktop app             | Rename a session in the [desktop app](/docs/en/desktop#work-in-parallel-with-sessions); that section covers where the name is visible from the CLI. Requires Claude Code v2.1.221 or later |
 
-Once a session is named, return to it with `claude --resume <name>` or `/resume <name>`. See [Resume a session](#resume-a-session) for how name resolution behaves across worktrees.
+Once you name a session through a CLI route or from claude.ai, return to it with `claude --resume <name>` or `/resume <name>`; a desktop-app session resumes in the app, which keeps its own session history. See [Resume a session](#resume-a-session) for how name resolution behaves across worktrees.
 
 Interactive sessions you never name still get a default display name when they start. Requires Claude Code v2.1.196 or later. The default combines the working directory's name with a two-character suffix, for example `my-app-3f`, and identifies the session in listings of running sessions, such as [agent view](/docs/en/agent-view) and `claude agents --json` output.
 

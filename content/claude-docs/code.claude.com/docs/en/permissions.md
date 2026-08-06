@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permissions
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: 78aa3829c842f9859a6d2f9464858ab761a3e18b6ff204a6a204f14d74d8f049
+fetched_at: 2026-08-06T03:07:37.547989Z
+sha256: 3b518bf81e92cfaf6183aecea67b6f48cf3576245adea77e4a4142d4ae58fd0d
 ---
 
 > ## Documentation Index
@@ -490,7 +490,7 @@ Commands that won't run sandboxed, such as excluded commands, respect the bare `
 
 ## Managed settings
 
-For organizations that need centralized control over Claude Code configuration, administrators can deploy managed settings that can't be overridden by user or project settings. These policy settings follow the same format as regular settings files and can be delivered through MDM/OS-level policies, managed settings files, [server-managed settings](/docs/en/server-managed-settings), or a self-hosted [Claude apps gateway](/docs/en/claude-apps-gateway). See [settings files](/docs/en/settings#settings-files) for delivery mechanisms and file locations.
+For organizations that need centralized control over Claude Code configuration, administrators can deploy managed settings that can't be overridden by user or project settings, apart from the exceptions listed in the [settings reference's precedence section](/docs/en/settings#settings-precedence). These policy settings follow the same format as regular settings files and can be delivered through MDM/OS-level policies, managed settings files, [server-managed settings](/docs/en/server-managed-settings), or a self-hosted [Claude apps gateway](/docs/en/claude-apps-gateway). See [settings files](/docs/en/settings#settings-files) for delivery mechanisms and file locations.
 
 ### Managed-only settings
 
@@ -524,7 +524,7 @@ The following settings are only read from managed settings. Placing them in user
 
 Permission rules follow the same [settings precedence](/docs/en/settings#settings-precedence) as all other Claude Code settings:
 
-1. **Managed settings**: can't be overridden by any other level, including command line arguments
+1. **Managed settings**: no other level, including command line arguments, can override a managed permission rule
 2. **Command line arguments**: temporary session overrides
 3. **Local project settings** (`.claude/settings.local.json`)
 4. **Shared project settings** (`.claude/settings.json`)

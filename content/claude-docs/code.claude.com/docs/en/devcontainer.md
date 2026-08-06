@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/devcontainer
-fetched_at: 2026-07-30T03:08:06.608103Z
-sha256: 3e86d270d480d2523b5646564ea0eef5f26098a978577307fb47de24a1baa82b
+fetched_at: 2026-08-06T03:07:37.547989Z
+sha256: b23e87bff565fe5f7168a7a232808c18811d9f8d07075d2c14aac6621dd11d85
 ---
 
 > ## Documentation Index
@@ -119,7 +119,7 @@ To carry authentication across codespaces, store `ANTHROPIC_API_KEY` or a `CLAUD
 
 A dev container is a convenient place to apply organization policy, because the same image and configuration run on every engineer's machine.
 
-Claude Code reads `/etc/claude-code/managed-settings.json` on Linux and applies it at the highest precedence in the [settings hierarchy](/docs/en/settings#how-scopes-interact), so values there override anything an engineer sets in `~/.claude` or the project's `.claude/` directory. Copy the file into place from your Dockerfile:
+Claude Code reads `/etc/claude-code/managed-settings.json` on Linux and applies it at the highest precedence in the [settings hierarchy](/docs/en/settings#how-scopes-interact), so values there override anything an engineer sets in `~/.claude` or the project's `.claude/` directory, apart from the exceptions under [Settings precedence](/docs/en/settings#settings-precedence). Copy the file into place from your Dockerfile:
 
 ```dockerfile Dockerfile theme={null}
 RUN mkdir -p /etc/claude-code
