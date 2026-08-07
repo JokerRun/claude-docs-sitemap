@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-08-06T03:07:37.547989Z
-sha256: ae67748029111e31c4c1c44b2375fd0ca4c02202944f00c9b39811ea6d957a00
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: 125a7ffc4934136c0ab3c0863fd61df048310dc331a9453fbff6504ccc3e978d
 ---
 
 # Claude in Microsoft Foundry
@@ -111,7 +111,7 @@ Anthropic's [client SDKs](/docs/en/cli-sdks-libraries/overview) support Foundry 
 
   <Tab title="PHP">
     ```bash
-    composer require anthropic-ai/sdk
+    composer require "anthropic-ai/sdk" "guzzlehttp/guzzle:^7"
     ```
   </Tab>
 

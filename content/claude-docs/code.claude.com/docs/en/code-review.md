@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/code-review
-fetched_at: 2026-08-06T03:07:37.547989Z
-sha256: 37080df3bb2ace86c2799d59422206faf57e7bf01cf3c4d1edfcdfab25c0df47
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: 5cc0d33a5ddde6471c14a7b5f2d37c4f7318a92da69ea82dca23ee46a720cc68
 ---
 
 > ## Documentation Index
@@ -287,6 +287,8 @@ If the check run title says issues were found but you don't see inline review co
 
 The [`/code-review` command](/docs/en/commands) reviews a diff in your terminal without installing the GitHub App. It reports correctness bugs and reuse, simplification, and efficiency cleanups.
 
+`/review` is an alias of `/code-review`; before v2.1.223, it was a separate command that ran a single-pass, read-only review of a GitHub pull request.
+
 <Steps>
   <Step title="Run /code-review">
     From the session where you're working, run the command:
@@ -327,7 +329,9 @@ The review follows your `CLAUDE.md` like any Claude Code session, but it doesn't
 
 ### Tune effort and arguments
 
-Pass an [effort level](/docs/en/model-config#adjust-effort-level) to trade coverage for confidence. At `low` and `medium`, the review reports only the findings it's most confident in, so you see fewer false positives; `high` through `max` cast a wider net and may include findings the review is less sure about. Without an effort argument, the review uses the session's current effort.
+Pass an [effort level](/docs/en/model-config#adjust-effort-level) to trade coverage for confidence. At `low` and `medium`, the review reports only the findings it's most confident in, so you see fewer false positives; `high` through `max` broaden coverage and may include findings the review is less sure about.
+
+When you don't type a level, the review reuses the last one you typed, even in an earlier session, and Claude Code shows a notice such as `Reusing high effort, the level you typed last time`. Type a level, like `/code-review high`, to change what later runs reuse; a level you pass in a non-interactive `-p` run doesn't update it. If you've never typed a level, the review uses the session's current effort. Before v2.1.223, a `/code-review` without a level always used the session's current effort.
 
 After the effort level and flags, Claude Code reads the rest of the line in one of two ways:
 

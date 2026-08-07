@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 8259d4f7047df252edc567200d2b78346edfba9483bb9eb07a58f9e3f6588f45
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: d13b9856db92eac788e399f10c52fc717b01ea093731b6d9b08fe0cb48028f08
 ---
 
 > ## Documentation Index
@@ -142,7 +142,7 @@ Pull a cloud session into your terminal using any of these:
 * **Using `--teleport`**: from the command line, run `claude --teleport` for an interactive session picker, or `claude --teleport <session-id>` to resume a specific session directly. If you have uncommitted changes, you'll be prompted to stash them first.
 * **Using `/teleport`**: inside an existing CLI session, run `/teleport` or `/tp` to open the same session picker without restarting Claude Code.
 * **From `/tasks`**: run `/tasks` to see your background sessions, then press `t` to teleport into one.
-* **From the web interface**: select **Open in CLI** to copy a command you can paste into your terminal.
+* **From the web interface**: select **Open in > Terminal** from the session menu to copy a command you can paste into your terminal.
 
 When you teleport a session, Claude verifies you're in the correct repository, fetches and checks out the branch from the cloud session, and loads the full conversation history into your terminal. The terminal gets its own copy of the session: new work there stays local and doesn't appear in the cloud session on claude.ai or the Claude mobile app. To keep steering from your phone after teleporting, start [`/remote-control`](/docs/en/remote-control) in the local session.
 

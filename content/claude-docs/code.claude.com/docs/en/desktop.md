@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop
-fetched_at: 2026-08-06T03:07:37.547989Z
-sha256: 6db642e1c1ac5f7f3ae254c1dcbdb132854e39d83f39dc44299d0d7366101f8d
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: 04421e719499659388c7bcc7a1c08310538fc9d7f8c13c14ea4a9b470d899f0d
 ---
 
 > ## Documentation Index
@@ -339,7 +339,7 @@ To include gitignored files like `.env` in new worktrees, create a [`.worktreein
   Session isolation requires [Git](https://git-scm.com/downloads). Most Macs include Git by default. Run `git --version` in Terminal to check; if it prints a version number, Git is installed. On Windows, Git is required for the Code tab to work: [download Git for Windows](https://git-scm.com/downloads/win), install it, and restart the app. If you run into Git errors, ask Claude in the [Cowork tab](https://claude.com/product/cowork) to help troubleshoot your setup.
 </Note>
 
-Use the controls at the top of the sidebar to filter sessions by status, project, or environment, and to group sessions by project. To rename a session, click the session title in the toolbar at the top of the active session. For a session on a local environment, Claude Code applies the rename to the session's underlying CLI name too, so the new name appears in the `claude agents` listing on that machine; the shared rename requires Claude Code v2.1.221 or later.
+Use the controls at the top of the sidebar to filter sessions by status, project, or environment, and to group sessions by project. To rename a session, click the session title in the toolbar at the top of the active session.
 
 To check context usage, see [Check usage](#check-usage). When context fills up, Claude automatically summarizes the conversation and continues working. You can also type `/compact` to trigger summarization earlier and free up context space. See [the context window](/docs/en/how-claude-code-works#the-context-window) for details on how compaction works.
 

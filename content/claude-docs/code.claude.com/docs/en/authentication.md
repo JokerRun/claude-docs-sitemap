@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/authentication
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: b7cb2673f7018b8f4fd9ada42bfe948ec70f2ba6ca2e7dcdfccdf87c079f3f25
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: 6e425f8d2550ba2676e8ab5ff3d926daefa0c49c2fe12142cb105aef600ead17
 ---
 
 > ## Documentation Index
@@ -132,7 +132,12 @@ Developers can log in from several paths: the terminal `/login` flow, the [VS Co
 * **`claude setup-token` and `/install-github-app`**: enforce only `forceLoginMethod`, so they can mint a token in a different organization
 * **[Gateway](/docs/en/claude-apps-gateway) sign-in**: selected by `forceLoginMethod: "gateway"` rather than restricted by it, and doesn't authenticate against an Anthropic organization, so `forceLoginOrgUUID` doesn't apply; use your gateway identity provider to restrict access
 
-Deploy the keys through your device management tooling. [Server-managed settings](/docs/en/server-managed-settings) reach only accounts that are already authenticated into your organization, so they can't redirect a developer's first login. If your organization distributes server-managed settings as well, set the keys in both places: managed-settings sources [don't merge](/docs/en/server-managed-settings#settings-precedence), and cached server-managed settings replace the device-managed file entirely.
+Deploy the keys through your device management tooling. [Server-managed settings](/docs/en/server-managed-settings) reach only accounts that are already authenticated into your organization, so they can't redirect a developer's first login. If your organization distributes server-managed settings as well, set the keys in both places: managed-settings sources [don't merge](/docs/en/server-managed-settings#settings-precedence), and cached server-managed settings replace the device-managed file, apart from two kinds of keys that still fill in from a losing source:
+
+* **The `env` block**: [merges per key](/docs/en/server-managed-settings#per-key-exceptions-across-managed-sources) in Claude Code v2.1.223 or later
+* **The [cross-source lock keys](/docs/en/server-managed-settings#per-key-exceptions-across-managed-sources)**: honored from any admin source
+
+`forceLoginMethod` and `forceLoginOrgUUID` are neither, so keep them in both places.
 
 The keys also block sessions authenticated by `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, or `apiKeyHelper`, since organization membership can't be verified for an environment credential. Cloud provider sessions such as Amazon Bedrock authenticate against your cloud provider and aren't blocked; restrict those through your cloud IAM policies. See [`forceLoginOrgUUID`](/docs/en/settings#available-settings) in the settings reference for the full behavior. Before v2.1.146, the pin applied only to the login flow and didn't block API-key credentials.
 

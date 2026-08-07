@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/sessions
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: d9baf665e0aad21f4719b8fd814eeb55726941844038f049d1e43de8ced795ea
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: 8678f924a1cf3ebeb484832e62613ee0cac41aff6e7a99cd3f9cb554b5447e8c
 ---
 
 # Start a session
@@ -754,7 +754,7 @@ If your agent uses MCP tools that require authentication, pass `vault_ids` at se
 
 ## Starting the session
 
-Creating a session without `initial_events` registers the session but does not start any work; the environment's sandbox is provisioned when the session first needs it. To delegate a task, send events to the session using a [user event](/docs/en/managed-agents/reference#event-types). To supply the first event in the create request instead, see [Seed the session with initial events](#seed-the-session-with-initial-events). The session acts as a state machine that tracks progress while events drive the actual execution.
+Creating a session without `initial_events` registers the session but does not start any work; the environment's sandbox begins provisioning as soon as the session is created, so the first tool call does not wait on it. To delegate a task, send events to the session using a [user event](/docs/en/managed-agents/reference#event-types). To supply the first event in the create request instead, see [Seed the session with initial events](#seed-the-session-with-initial-events). The session acts as a state machine that tracks progress while events drive the actual execution.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL

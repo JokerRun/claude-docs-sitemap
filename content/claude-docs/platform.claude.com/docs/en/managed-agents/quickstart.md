@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/quickstart
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: d594beb403b50c67d457f4c67b9e87dddd61b746784abc1172c7c90076237d2b
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: bbc64e7ac17dba2573b23ee0470f4d76fcafe5e2c15548875a1e4b80d3b19eb9
 ---
 
 # Get started with Claude Managed Agents
@@ -119,7 +119,7 @@ ant --version
 
   <Tab title="PHP">
     ```bash
-    composer require anthropic-ai/sdk
+    composer require "anthropic-ai/sdk" "guzzlehttp/guzzle:^7"
     ```
   </Tab>
 </Tabs>

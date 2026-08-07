@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/skills
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: b7a64fa13b5b26855b03a89d3bf0d445354dcd883c66a43c88d78966fea8a57a
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: 6e5f5806781237ea85fa83bed7a15665206b28da12713e059a8412d7f4d2f496
 ---
 
 # Skills
@@ -139,25 +139,22 @@ These examples omit the optional `display_title` field, so the skill's title is 
   import java.io.InputStream;
   import java.nio.file.Files;
   import java.nio.file.Path;
-  import java.util.List;
 
-  public class SkillCreate {
-      public static void main(String[] args) throws IOException {
-          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+  void main() throws IOException {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-          SkillCreateParams params = SkillCreateParams.builder()
-              .addFile(MultipartField.<InputStream>builder()
-                  .value(Files.newInputStream(Path.of("example_skill.zip")))
-                  .filename("example_skill.zip")
-                  .contentType("application/zip")
-                  .build())
-              .build();
+      SkillCreateParams params = SkillCreateParams.builder()
+          .addFile(MultipartField.<InputStream>builder()
+              .value(Files.newInputStream(Path.of("example_skill.zip")))
+              .filename("example_skill.zip")
+              .contentType("application/zip")
+              .build())
+          .build();
 
-          SkillCreateResponse skill = client.beta().skills().create(params);
+      SkillCreateResponse skill = client.beta().skills().create(params);
 
-          System.out.println("Created skill: " + skill.id());
-          System.out.println("Latest version: " + skill.latestVersion().orElseThrow());
-      }
+      IO.println("Created skill: " + skill.id());
+      IO.println("Latest version: " + skill.latestVersion().orElseThrow());
   }
   ```
 
@@ -199,7 +196,7 @@ To list, retrieve, delete, and version custom skills, see [Managing custom skill
 
 ## Attach skills to an agent
 
-Attach skills when creating an agent. Each [session](/docs/en/managed-agents/sessions) supports up to 500 skills total, counted across every agent in the session (see [Multiagent orchestration](/docs/en/managed-agents/multiagent-orchestration)).
+Attach skills when creating an agent. Each [session](/docs/en/managed-agents/sessions) supports up to 500 skills, counted as the deduplicated set across every agent in the session (see [Multiagent orchestration](/docs/en/managed-agents/multiagent-orchestration)).
 
 <Note>
   Mounting more skills increases the time it takes for the session's sandbox to start. Attach only the skills each agent needs for its task.

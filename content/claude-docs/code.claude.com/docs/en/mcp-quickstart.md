@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp-quickstart
-fetched_at: 2026-08-06T03:07:37.547989Z
-sha256: 349b2cfc89e226d3115810ff163fcf34fc192e45b3e3471f130d6d2f831a060f
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: 6a791d8fc5fab0c403fb9e4f69edd27571d1a795c50779fdf37b5dcc9addcd1b
 ---
 
 > ## Documentation Index
@@ -308,7 +308,7 @@ If a server doesn't connect, check its status with `/mcp` inside a session or `c
   <Accordion title="Status shows Failed to connect or Connection error">
     Both statuses mean the server didn't start or the URL didn't respond. They can also appear for HTTP servers that reject the token you configured in `headers.Authorization`; a server that wants a token you haven't configured shows `! Needs authentication` instead, covered in [Connect a server that requires sign-in](#connect-a-server-that-requires-sign-in).
 
-    An HTTP server that returns `404 Not Found` shows `MCP endpoint not found at <url>. Check the URL in your MCP config.` when you select the server in `/mcp`. The message shows the URL's origin, such as `https://mcp.example.com`, without its path, so run `claude mcp get <name>` to see the full URL you configured. Compare its path to the server's documented MCP endpoint path, then run `claude mcp remove <name>` and re-add with the correct URL. Before v2.1.191, Claude Code showed a generic `Error POSTing to endpoint` message without the URL.
+    If an HTTP server returns `404 Not Found`, Claude Code shows `MCP endpoint not found at <origin>. Check the URL in your MCP config.` when you select the server in `/mcp`. The message names the URL's origin, such as `https://mcp.example.com`, without its path, so run `claude mcp get <name>` to see the full URL you configured. Compare its path to the server's documented MCP endpoint path, then run `claude mcp remove <name>` and re-add with the correct URL. Before v2.1.219, the message included the URL's path as well, and before v2.1.191, a `404` showed a generic `Error POSTing to endpoint` message without the URL.
 
     For HTTP servers, confirm the URL is reachable from your machine:
 

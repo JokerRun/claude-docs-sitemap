@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/terminal-config
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 1fdccde646c3f913f35757fc28791eae07bcb5ae631038982ccdf14fe4bfeccb
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: c10537da744a96147cf50b2db2be80db43ac5fe0998b86a5998ab60160b51763
 ---
 
 > ## Documentation Index
@@ -133,10 +133,6 @@ Use the `/theme` command, or the theme picker in `/config`, to choose a Claude C
 To customize what appears at the bottom of the interface, configure a [custom status line](/docs/en/statusline) that shows the current model, working directory, git branch, or other context.
 
 ### Create a custom theme
-
-<Note>
-  Custom themes require Claude Code v2.1.118 or later.
-</Note>
 
 In addition to the built-in presets, `/theme` lists any custom themes you have defined and any themes contributed by installed [plugins](/docs/en/plugins-reference#themes). Select **New custom theme…** at the end of the list to create one interactively: you name the theme, then pick individual color tokens to override. Press `Ctrl+E` while a custom theme is highlighted to edit it.
 

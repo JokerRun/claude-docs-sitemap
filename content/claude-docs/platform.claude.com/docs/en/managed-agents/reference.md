@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/reference
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 518139faf947920f3bad79867f3034289a71c7ab6efcd3c46fba1a4402931a65
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: 0c62ba5e1593b912c4bca6199a363c1cdd3802f01cda35e0fac25c2d68f53ac9
 ---
 
 # Reference
@@ -36,7 +36,7 @@ Persisted event type strings follow a `{domain}.{action}` naming convention; the
   <Tab title="Agent events">
     | Type                             | Description                                                                                                                                                                                                                                         |
     | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | `agent.message`                  | Agent response containing text content blocks.                                                                                                                                                                                                      |
+    | `agent.message`                  | Agent response content blocks.                                                                                                                                                                                                                      |
     | `agent.thinking`                 | Signals the agent is making forward progress through extended thinking. This is a progress signal only and does not carry the thinking content.                                                                                                     |
     | `agent.tool_use`                 | Agent invokes a pre-built agent tool (bash, file operations, and so on).                                                                                                                                                                            |
     | `agent.tool_result`              | Result of a pre-built agent tool execution.                                                                                                                                                                                                         |
@@ -54,7 +54,7 @@ Persisted event type strings follow a `{domain}.{action}` naming convention; the
     | `session.status_running`            | Agent is actively processing.                                                                                                                                                                                                        |
     | `session.status_idle`               | Agent finished its current task and is waiting for input. Includes a `stop_reason` indicating why the agent stopped.                                                                                                                 |
     | `session.status_rescheduled`        | A transient error occurred and the session is retrying automatically.                                                                                                                                                                |
-    | `session.status_terminated`         | Session ended, either because of an unrecoverable error or on completion.                                                                                                                                                            |
+    | `session.status_terminated`         | Session ended, either because of an unrecoverable error or because it was archived.                                                                                                                                                  |
     | `session.deleted`                   | Session was deleted. Terminates any active event stream; no further events are emitted for this session.                                                                                                                             |
     | `session.updated`                   | Session update request changed at least one field. Includes only the fields that changed. Updates apply on the next turn.                                                                                                            |
     | `session.error`                     | An error occurred during processing. Includes a typed `error` object with a `retry_status`.                                                                                                                                          |

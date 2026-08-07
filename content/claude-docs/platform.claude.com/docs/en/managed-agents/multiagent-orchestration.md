@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 36462ac36170393fc53c8122de5f26eac7c0d9e7403702665e8f90be0982342d
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: 2ea9869c03063e94ca3a4637e654a072d340944d7442d4503a4ac33547595b93
 ---
 
 # Multiagent orchestration
@@ -697,7 +697,7 @@ The **session-level event stream** (`/v1/sessions/{session_id}/events/stream`) i
 The session `status` is an aggregation of all agent activity; if at least one thread is `running`, then the overall session status is `running` as well.
 
 <Note>
-  A maximum of 25 concurrent threads are supported. The coordinator can call multiple copies of a single agent in the roster, creating multiple threads associated with one `agent`.
+  A maximum of 25 concurrent threads is supported. The coordinator can call multiple copies of a single agent in the roster, creating multiple threads associated with one `agent`.
 </Note>
 
 <Tabs>
@@ -1325,7 +1325,7 @@ If a subagent needs something from your client, such as [permission](/docs/en/ma
   "agent_name": "code-reviewer",
   "stop_reason": {
     "type": "requires_action",
-    "event_ids": ["toolu_01XYZ..."]
+    "event_ids": ["sevt_01XYZ..."]
   }
 }
 ```

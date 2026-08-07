@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-protocol
-fetched_at: 2026-08-06T03:07:37.547989Z
-sha256: 340f90162d6be43af3b843e73482270a466036f40852489de7d5ec867d56973a
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: 5b8cc84015de390527943e0e93da31fcf5c011d6f48e0569eed28e66b45e3140
 ---
 
 > ## Documentation Index
@@ -172,7 +172,7 @@ The discovery request sends exactly one credential header:
 
 This differs from inference requests, which send a helper value in both headers. A gateway that authenticates `/v1/models` must accept `x-api-key` for helper deployments. Any headers from `ANTHROPIC_CUSTOM_HEADERS` are included as well.
 
-Claude Code reads `id` and the optional `display_name` from each entry in the response's `data` array, and ignores entries whose `id` doesn't begin with `claude` or `anthropic`:
+Claude Code reads `id` and the optional `display_name` from each entry in the response's `data` array:
 
 ```json theme={null}
 {
@@ -182,6 +182,8 @@ Claude Code reads `id` and the optional `display_name` from each entry in the re
   ]
 }
 ```
+
+Claude Code keeps an entry when its `id` contains `claude` or `anthropic` anywhere in the string, matched case-insensitively, and ignores the rest. Provider-prefixed IDs such as `vertex_ai/claude-sonnet-4-6` or `bedrock/anthropic.claude-sonnet-4-5` pass the filter; an ID that contains neither substring doesn't. Before v2.1.223, Claude Code kept an entry only when its `id` began with `claude` or `anthropic`, which hid provider-prefixed IDs.
 
 ### Picker entries and caching
 

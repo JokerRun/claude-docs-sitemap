@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/overview
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: f3d1325829a5759caf3f5d717f329718e45931d90680074c9268f4ff06d2cf3c
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: cc6c994ef4c189c1b051b682dba5296d8bc61180dbc57614e923a9709a91d545
 ---
 
 # Features overview
@@ -103,7 +103,7 @@ Infrastructure for controlling and optimizing Claude's context window.
 | --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ------------------------------------------------------------------------------------------------- |
 | [Compaction](/docs/en/build-with-claude/compaction)                                     | Server-side context summarization for long-running conversations. When context approaches the window limit, the API automatically summarizes earlier parts of the conversation.                       | ZDR eligible | <PlatformAvailability claudeApiBeta claudePlatformAwsBeta bedrockBeta vertexAiBeta azureAiBeta /> |
 | [Context editing](/docs/en/build-with-claude/context-editing)                           | Automatically manage conversation context with configurable strategies. Supports clearing tool results when approaching token limits and managing thinking blocks in extended thinking conversations. | ZDR eligible | <PlatformAvailability claudeApiBeta claudePlatformAwsBeta bedrockBeta vertexAiBeta azureAiBeta /> |
-| [Automatic prompt caching](/docs/en/build-with-claude/prompt-caching#automatic-caching) | Simplify prompt caching to a single API parameter. The system automatically caches the last cacheable block in your request, moving the cache point forward as conversations grow.                    | ZDR eligible | <PlatformAvailability claudeApi claudePlatformAws vertexAi azureAi />                             |
+| [Automatic prompt caching](/docs/en/build-with-claude/prompt-caching#automatic-caching) | Simplify prompt caching to a single API parameter. The system automatically caches the last cacheable block in your request, moving the cache point forward as conversations grow.                    | ZDR eligible | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAi />                     |
 | [Prompt caching (5m)](/docs/en/build-with-claude/prompt-caching)                        | Provide Claude with more background knowledge and example outputs to reduce costs and latency.                                                                                                        | ZDR eligible | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAi />                     |
 | [Prompt caching (1hr)](/docs/en/build-with-claude/prompt-caching#1-hour-cache-duration) | Extended 1-hour cache duration for less frequently accessed but important context, complementing the standard 5-minute cache.                                                                         | ZDR eligible | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAi />                     |
 | [Token counting](/docs/en/build-with-claude/token-counting)                             | Token counting enables you to determine the number of tokens in a message before sending it to Claude, helping you make informed decisions about your prompts and usage.                              | ZDR eligible | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAi />                     |

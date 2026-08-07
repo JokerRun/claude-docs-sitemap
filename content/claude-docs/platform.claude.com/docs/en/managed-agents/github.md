@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/github
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 93ccb8e7dfea194bd90da4d79a2d14d4789181931dcde7792bdd62e286baddde
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: bad403cdf10891496b3bb3737832f1c38047c54beff3d87a0dcd8e0fafc3986e
 ---
 
 # Accessing GitHub
@@ -21,7 +21,7 @@ GitHub repositories are cached, so future sessions that use the same repository 
 
 ## GitHub MCP and session resources
 
-First, create an agent that declares the GitHub MCP server. The agent definition holds the server URL but no auth token:
+First, create an agent that declares the GitHub MCP server. The agent definition holds the server URL but no authentication token:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -113,7 +113,7 @@ First, create an agent that declares the GitHub MCP server. The agent definition
   var agent = await client.Beta.Agents.Create(new()
   {
       Name = "Code Reviewer",
-      Model = new("claude-opus-5"),
+      Model = BetaManagedAgentsModel.ClaudeOpus5,
       System = "You are a code review assistant with access to GitHub.",
       McpServers =
       [
@@ -138,7 +138,7 @@ First, create an agent that declares the GitHub MCP server. The agent definition
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "Code Reviewer",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: "claude-opus-5",
+  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5,
   	},
   	System: anthropic.String("You are a code review assistant with access to GitHub."),
   	MCPServers: []anthropic.BetaManagedAgentsURLMCPServerParams{

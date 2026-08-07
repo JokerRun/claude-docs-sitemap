@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/data-residency
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: c2dbc1575eedb8130872e7a2d39d0f01afa50ee2955f2f79359096556ef544b9
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: 73aa47ffdc72aff5a2f6d3931d0ef52ba875405a892efb280a616b0b2cabf822
 ---
 
 # Data residency
@@ -38,18 +38,18 @@ The `inference_geo` parameter controls where model inference runs for a specific
 <CodeGroup>
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
-      --header "x-api-key: $ANTHROPIC_API_KEY" \
-      --header "anthropic-version: 2023-06-01" \
-      --header "content-type: application/json" \
-      --data '{
-          "model": "claude-opus-5",
-          "max_tokens": 1024,
-          "inference_geo": "us",
-          "messages": [{
-              "role": "user",
-              "content": "Summarize the key points of this document."
-          }]
-      }'
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "content-type: application/json" \
+    -d '{
+      "model": "claude-opus-5",
+      "max_tokens": 1024,
+      "inference_geo": "us",
+      "messages": [{
+        "role": "user",
+        "content": "Summarize the key points of this document."
+      }]
+    }'
   ```
 
   ```bash CLI
@@ -247,7 +247,7 @@ These settings can be configured through the Console or the [Admin API](/docs/en
 
 ## Workspace geo
 
-Workspace geo is set when you create a workspace and can't be changed afterwards. Currently, `"us"` is the only available workspace geo.
+Workspace geo is set when you create a workspace and can't be changed afterward. Currently, `"us"` is the only available workspace geo.
 
 To set workspace geo, create a new workspace in the [Console](https://platform.claude.com):
 
@@ -256,7 +256,7 @@ To set workspace geo, create a new workspace in the [Console](https://platform.c
 3. Select the workspace geo.
 
 <Note>
-  **Claude Platform on AWS:** Workspace geo is not configurable. Workspaces are provisioned through the AWS Console, and the Claude Console Workspaces page is read-only. Claude Managed Agents sessions on this platform run with an effective Workspace geo of `"us"`, which is currently the only available workspace geo. See [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws) for data residency considerations specific to that platform.
+  **Claude Platform on AWS:** Workspace geo is not configurable. Claude Managed Agents sessions on this platform run with an effective Workspace geo of `"us"`, which is currently the only available workspace geo. See [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws) for data residency considerations specific to that platform.
 </Note>
 
 ## Pricing

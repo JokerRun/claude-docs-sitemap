@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-marketplaces
-fetched_at: 2026-08-06T03:07:37.547989Z
-sha256: 5f6fd7e3693eed5d2b0fb22d6eba85f438ac688ebf26d9b42c557e1db48502bc
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: a07056b0fa332502f5d4075794e616e39d2f3e3f29c937bbd8ee05ad7707fbf1
 ---
 
 > ## Documentation Index
@@ -497,7 +497,7 @@ This example shows a plugin entry using many of the optional fields, including c
 Key things to notice:
 
 * **`commands` and `agents`**: you can specify multiple directories or individual files. Paths are relative to the plugin root.
-* **`${CLAUDE_PLUGIN_ROOT}`**: use this variable in hook commands and MCP server configs to reference files within the plugin's installation directory. This is necessary because plugins are copied to a cache location when installed.
+* **`${CLAUDE_PLUGIN_ROOT}`**: use this variable in hook commands and MCP server configs to reference files within the plugin's installation directory.
   * See the [substitution table](/docs/en/plugins-reference#environment-variables) for which config fields substitute it per server type
   * For dependencies or state that should survive plugin updates, use [`${CLAUDE_PLUGIN_DATA}`](/docs/en/plugins-reference#persistent-data-directory) instead
 * **`strict: false`**: since this is set to false, the plugin doesn't need its own `plugin.json`. The marketplace entry defines everything. See [Strict mode](#strict-mode) below.
@@ -591,17 +591,6 @@ The rewrite stores the token in plaintext in your gitconfig, so use a token with
 <Note>
   In CI/CD environments, configure a git credential helper before installing plugins from private repositories. On GitHub Actions, export a token with read access to the marketplace repository as `GH_TOKEN`, then run `gh auth setup-git`. The default workflow token can only access the workflow's own repository, so a private marketplace in another repository needs a personal access token or app token. A global URL rewrite configured in the pipeline also authenticates the background pull directly.
 </Note>
-
-### Test locally before distribution
-
-Test your marketplace locally before sharing:
-
-```shell theme={null}
-/plugin marketplace add ./my-marketplace
-/plugin install quality-review-plugin@my-plugins
-```
-
-For the full range of add commands (GitHub, Git URLs, local paths, remote URLs), see [Add marketplaces](/docs/en/discover-plugins#add-marketplaces).
 
 ### Require marketplaces for your team
 

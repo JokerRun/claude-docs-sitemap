@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-directory
-fetched_at: 2026-08-06T03:07:37.547989Z
-sha256: afe21152784f956d2f66e2744c22d41e0d2a2f43efae5b9cddeb7585b89e52d7
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: d283b8a61ffb27f7d9b6482bd446901936979e44821d9b59f6c5227c4b0eacfc
 ---
 
 > ## Documentation Index
@@ -1567,7 +1567,7 @@ Transcripts and history are not encrypted at rest. OS file permissions are the o
 
 ### Clear local data
 
-Run `claude project purge` to delete the state Claude Code holds for one project. The command requires Claude Code v2.1.124 or later. It deletes:
+Run `claude project purge` to delete the state Claude Code holds for one project. It deletes:
 
 * Transcripts and auto memory under `projects/`
 * Per-session `tasks/`, `debug/`, and `file-history/` entries

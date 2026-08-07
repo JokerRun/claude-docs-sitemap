@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: faaf9010891c9ce0fb9496872022b4a398327e9271971b78f3ea0d43acc7c313
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: 6148df61d14d4cb1f3a6452ed0a23550053422160081f02416892567aad16915
 ---
 
 > ## Documentation Index
@@ -26,21 +26,6 @@ Claude Code supports two ways to add custom skills, agents, and hooks:
 | **Standalone** (`.claude/` directory)                                                                           | `/hello`             | Personal workflows, project-specific customizations, quick experiments                          |
 | **Plugins** (self-contained directories with skills, agents, hooks, or a `.claude-plugin/plugin.json` manifest) | `/plugin-name:hello` | Sharing with teammates, distributing to community, versioned releases, reusable across projects |
 
-**Use standalone configuration when**:
-
-* You're customizing Claude Code for a single project
-* The configuration is personal and doesn't need to be shared
-* You're experimenting with skills or hooks before packaging them
-* You want short skill names like `/hello` or `/deploy`
-
-**Use plugins when**:
-
-* You want to share functionality with your team or community
-* You need the same skills/agents across multiple projects
-* You want version control and easy updates for your extensions
-* You're distributing through a marketplace
-* You're okay with namespaced skills like `/my-plugin:hello` (namespacing prevents conflicts between plugins)
-
 <Tip>
   Start with standalone configuration in `.claude/` for quick iteration, then [convert to a plugin](#convert-existing-configurations-to-plugins) when you're ready to share.
 </Tip>
@@ -52,10 +37,6 @@ This quickstart walks you through creating a plugin with a custom skill. You'll 
 ### Prerequisites
 
 * Claude Code [installed and authenticated](/docs/en/quickstart#step-1-install-claude-code)
-
-<Note>
-  If you don't see the `/plugin` command, update Claude Code to the latest version. See [Troubleshooting](/docs/en/troubleshooting) for upgrade instructions.
-</Note>
 
 ### Create your first plugin
 
@@ -169,12 +150,6 @@ This quickstart walks you through creating a plugin with a custom skill. You'll 
     Claude will greet you by name. For more on passing arguments to skills, see [Skills](/docs/en/skills#pass-arguments-to-skills).
   </Step>
 </Steps>
-
-You've successfully created and tested a plugin with these key components:
-
-* **Plugin manifest** (`.claude-plugin/plugin.json`): describes your plugin's metadata
-* **Skills directory** (`skills/`): contains your custom skills
-* **Skill arguments** (`$ARGUMENTS`): captures user input for dynamic behavior
 
 <Tip>
   The `--plugin-dir` flag is useful for development and testing. When you're ready to share your plugin with others, see [Create and distribute a plugin marketplace](/docs/en/plugin-marketplaces).
@@ -326,7 +301,7 @@ Use the `--plugin-dir` flag to test plugins during development. This loads your 
 claude --plugin-dir ./my-plugin
 ```
 
-The flag also accepts a `.zip` archive of the plugin directory, which requires Claude Code v2.1.128 or later.
+The flag also accepts a `.zip` archive of the plugin directory.
 
 ```bash theme={null}
 claude --plugin-dir ./my-plugin.zip
@@ -402,10 +377,6 @@ Approved plugins are pinned to a specific commit SHA in the [`anthropics/claude-
 The official marketplace, `claude-plugins-official`, is curated separately. Anthropic decides which plugins to include at its discretion. There is no application process, and the submission form does not add plugins to the official marketplace.
 
 If Anthropic lists your plugin in the official marketplace, your CLI can prompt Claude Code users to install it. See [Recommend your plugin from your CLI](/docs/en/plugin-hints).
-
-<Note>
-  For complete technical specifications, debugging techniques, and distribution strategies, see [Plugins reference](/docs/en/plugins-reference).
-</Note>
 
 ## Convert existing configurations to plugins
 

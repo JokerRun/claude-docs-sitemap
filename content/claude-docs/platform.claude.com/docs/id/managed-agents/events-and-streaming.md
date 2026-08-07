@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 364e430942f2bcd0b29b5980c2a5727f572b38e01685e4eb075529f471ce657d
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: d3854b997664dfff91bf5f0081f0afc2e1b6350d22fed5858d9e4aa380828239
 ---
 
 # Stream event sesi
@@ -262,8 +262,8 @@ Setiap event yang dipersistenkan menyertakan timestamp `processed_at` yang ditet
       ```
 
       ```csharp C#
-      // Agen sedang menganalisis sebuah file...
-      // Interupsi dengan arahan baru:
+      // Agent is currently analyzing a file...
+      // Interrupt with a new direction:
       await client.Beta.Sessions.Events.Send(session.ID, new()
       {
           Events =
@@ -289,8 +289,8 @@ Setiap event yang dipersistenkan menyertakan timestamp `processed_at` yang ditet
       ```
 
       ```go Go
-      // Agen sedang menganalisis sebuah file...
-      // Interupsi dengan arahan baru:
+      // Agent is currently analyzing a file...
+      // Interrupt with a new direction:
       if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
       	Events: []anthropic.BetaManagedAgentsEventParamsUnion{
       		{
@@ -485,7 +485,7 @@ Setiap event yang dipersistenkan menyertakan timestamp `processed_at` yang ditet
       ```
 
       ```csharp C#
-      // Buka stream terlebih dahulu, lalu kirim pesan pengguna
+      // Open the stream first, then send the user message
       using var stream = await client.Beta.Sessions.Events.WithRawResponse.StreamStreaming(session.ID);
       await client.Beta.Sessions.Events.Send(session.ID, new()
       {
@@ -528,7 +528,7 @@ Setiap event yang dipersistenkan menyertakan timestamp `processed_at` yang ditet
       ```
 
       ```go Go
-      	// Buka stream terlebih dahulu, lalu kirim pesan pengguna
+      	// Open the stream first, then send the user message
       	stream := client.Beta.Sessions.Events.StreamEvents(ctx, session.ID, anthropic.BetaSessionEventStreamParams{})
       	defer stream.Close()
 
@@ -552,7 +552,7 @@ Setiap event yang dipersistenkan menyertakan timestamp `processed_at` yang ditet
       	for stream.Next() {
       		switch event := stream.Current().AsAny().(type) {
       		case anthropic.BetaManagedAgentsAgentMessageEvent:
-      			// daftar bertipe konkret: BetaManagedAgentsTextBlock
+      			// concrete-typed list: BetaManagedAgentsTextBlock
       			for _, block := range event.Content {
       				fmt.Print(block.Text)
       			}
@@ -765,7 +765,7 @@ Setiap event yang dipersistenkan menyertakan timestamp `processed_at` yang ditet
       ```csharp C#
       using var stream = await client.Beta.Sessions.Events.WithRawResponse.StreamStreaming(session.ID);
 
-      // Stream terbuka dan melakukan buffering. Daftar riwayat sebelum mengikuti event langsung.
+      // Stream is open and buffering. List history before tailing live.
       HashSet<string> seenEventIds = [];
       var history = await client.Beta.Sessions.Events.List(session.ID);
       await foreach (var pastEvent in history.Paginate())
@@ -773,7 +773,7 @@ Setiap event yang dipersistenkan menyertakan timestamp `processed_at` yang ditet
           seenEventIds.Add(pastEvent.ID);
       }
 
-      // Ikuti event langsung, lewati yang sudah terlihat
+      // Tail live events, skipping anything already seen
       await foreach (var streamEvent in stream.Enumerate())
       {
           if (!seenEventIds.Add(streamEvent.ID))
@@ -798,7 +798,7 @@ Setiap event yang dipersistenkan menyertakan timestamp `processed_at` yang ditet
       	stream := client.Beta.Sessions.Events.StreamEvents(ctx, session.ID, anthropic.BetaSessionEventStreamParams{})
       	defer stream.Close()
 
-      	// Stream terbuka dan melakukan buffering. Daftarkan riwayat sebelum men-tail secara langsung.
+      	// Stream is open and buffering. List history before tailing live.
       	seenEventIDs := map[string]struct{}{}
       	history := client.Beta.Sessions.Events.ListAutoPaging(ctx, session.ID, anthropic.BetaSessionEventListParams{})
       	for history.Next() {
@@ -808,7 +808,7 @@ Setiap event yang dipersistenkan menyertakan timestamp `processed_at` yang ditet
       		panic(err)
       	}
 
-      	// Tail event langsung, lewati yang sudah terlihat
+      	// Tail live events, skipping anything already seen
       tail:
       	for stream.Next() {
       		event := stream.Current()
@@ -818,7 +818,7 @@ Setiap event yang dipersistenkan menyertakan timestamp `processed_at` yang ditet
       		seenEventIDs[event.ID] = struct{}{}
       		switch event := event.AsAny().(type) {
       		case anthropic.BetaManagedAgentsAgentMessageEvent:
-      			// daftar bertipe konkret: BetaManagedAgentsTextBlock
+      			// concrete-typed list: BetaManagedAgentsTextBlock
       			for _, block := range event.Content {
       				fmt.Print(block.Text)
       			}
@@ -1309,7 +1309,7 @@ Jaminan yang diandalkan pola ini:
   ```
 
   ```csharp C#
-  // Aktifkan delta event: event agent.message dipratinjau saat dihasilkan.
+  // Opt in to event deltas: agent.message events are previewed as they are produced.
   using var stream = await client.Beta.Sessions.Events.WithRawResponse.StreamStreaming(
       session.ID,
       new() { EventDeltas = [BetaManagedAgentsDeltaType.AgentMessage] }
@@ -1333,18 +1333,18 @@ Jaminan yang diandalkan pola ini:
       ],
   });
 
-  // Akumulasikan fragmen pratinjau per (id event, indeks konten). Event agent.message
-  // yang di-buffer berikutnya membawa konten lengkap, sehingga menggantikan
-  // pratinjau yang terakumulasi alih-alih menambahkannya.
+  // Accumulate preview fragments per (event id, content index). The buffered
+  // agent.message that follows carries the complete content, so it replaces the
+  // accumulated preview rather than appending to it.
   Dictionary<string, SortedDictionary<long, string>> previews = [];
 
   await foreach (var streamEvent in stream.Enumerate())
   {
       if (streamEvent.TryPickStartEvent(out var start))
       {
-          // Pratinjau dibuka untuk event dengan id ini. Stream ini hanya mengaktifkan
-          // delta agent.message; TryPick* mengembalikan false alih-alih melempar error,
-          // sehingga tipe pratinjau lain (termasuk yang ditambahkan kemudian) dilewati.
+          // A preview opened for the event with this id. This stream only opts in
+          // to agent.message deltas; TryPick* returns false instead of throwing,
+          // so other preview types (including ones added later) are skipped.
           if (start.Event.TryPickAgentMessage(out var preview))
           {
               Console.WriteLine($"event_start             {preview.Type.Raw()} {preview.ID}");
@@ -1352,7 +1352,7 @@ Jaminan yang diandalkan pola ini:
       }
       else if (streamEvent.TryPickDeltaEvent(out var delta))
       {
-          // Sisipkan pada indeks baru, tambahkan pada indeks yang sudah ada
+          // Insert at a new index, append at an existing one
           if (!previews.TryGetValue(delta.EventID, out var fragments))
           {
               previews[delta.EventID] = fragments = [];
@@ -1363,13 +1363,13 @@ Jaminan yang diandalkan pola ini:
       }
       else if (streamEvent.TryPickAgentMessageEvent(out var message))
       {
-          // Delta bersifat best-effort: buang pratinjau dan gunakan event yang di-buffer
+          // Deltas are best-effort: discard the preview and use the buffered event
           previews.Remove(message.ID);
           Console.WriteLine($"agent.message           {message.ID} {string.Concat(message.Content.Select(block => block.Text))}");
       }
       else if (streamEvent.TryPickSpanModelRequestEndEvent(out _))
       {
-          // Tidak ada delta lagi yang datang; tutup pratinjau apa pun yang belum direkonsiliasi.
+          // No more deltas are coming; close any preview that was never reconciled.
           foreach (var eventId in previews.Keys)
           {
               Console.WriteLine($"span.model_request_end  closing preview for {eventId}");
@@ -1384,7 +1384,7 @@ Jaminan yang diandalkan pola ini:
   ```
 
   ```go Go
-  	// Aktifkan pratinjau inkremental untuk event agent.message
+  	// Opt in to incremental previews of agent.message events
   	stream := client.Beta.Sessions.Events.StreamEvents(ctx, session.ID, anthropic.BetaSessionEventStreamParams{
   		EventDeltas: []anthropic.BetaManagedAgentsDeltaType{
   			anthropic.BetaManagedAgentsDeltaTypeAgentMessage,
@@ -1407,8 +1407,8 @@ Jaminan yang diandalkan pola ini:
   		panic(err)
   	}
 
-  	// Akumulator menggabungkan fragmen event_start / event_delta menjadi
-  	// snapshot agent.message per event-id. Nilai zero-nya siap dipakai.
+  	// The accumulator folds event_start / event_delta fragments into
+  	// per-event-id agent.message snapshots. The zero value is ready to use.
   	var previews anthropic.BetaManagedAgentsEventAccumulator
 
   deltas:
@@ -1422,13 +1422,13 @@ Jaminan yang diandalkan pola ini:
   		case anthropic.BetaManagedAgentsDeltaEvent:
   			fmt.Printf("event_delta             preview: %q\n", previews.AgentMessageText(event.EventID))
   		case anthropic.BetaManagedAgentsAgentMessageEvent:
-  			// Event yang di-buffer membawa konten lengkap: akumulator
-  			// menggantikan pratinjau dengannya
+  			// The buffered event carries the complete content: the accumulator
+  			// replaces the preview with it
   			fmt.Printf("agent.message           %s %q\n", event.ID, previews.AgentMessageText(event.ID))
   		case anthropic.BetaManagedAgentsSpanModelRequestEndEvent:
-  			// Tidak ada delta lagi untuk permintaan ini. Akumulator
-  			// membuang snapshot-nya di sini, menutup pratinjau apa pun yang tidak pernah
-  			// direkonsiliasi oleh agent.message yang di-buffer.
+  			// No more deltas are coming for this request. The accumulator
+  			// drops its snapshots here, closing any preview that was never
+  			// reconciled by a buffered agent.message.
   			fmt.Println("span.model_request_end  no more deltas for this request")
   		case anthropic.BetaManagedAgentsSessionStatusIdleEvent:
   			break deltas
@@ -1703,13 +1703,13 @@ Event pratinjau itu sendiri tidak berubah. `event_start` dan `event_delta` memil
   ```
 
   ```csharp C#
-  // Daftar thread sesi dan pilih satu anak: thread anak membawa parent_thread_id
-  // non-null, dan parent_thread_id thread utama bernilai null.
+  // List the session's threads and pick a child: child threads carry a non-null
+  // parent_thread_id, and the primary thread's parent_thread_id is null.
   var threads = await client.Beta.Sessions.Threads.List(session.ID);
   var childThread = threads.Items.First(thread => thread.ParentThreadID is not null);
 
-  // Stream thread anak menerima parameter event_deltas yang sama dengan
-  // stream sesi.
+  // The child thread's stream takes the same event_deltas parameter as the
+  // session stream.
   using var stream = await client.Beta.Sessions.Threads.Events.WithRawResponse.StreamStreaming(
       childThread.ID,
       new() { SessionID = session.ID, EventDeltas = [BetaManagedAgentsDeltaType.AgentMessage] }
@@ -1723,7 +1723,7 @@ Event pratinjau itu sendiri tidak berubah. `event_start` dan `event_delta` memil
       }
       else if (streamEvent.TryPickAgentMessageEvent(out var message))
       {
-          // Event yang di-buffer adalah catatan otoritatif; render kontennya.
+          // The buffered event is the authoritative record; render its content.
           Console.WriteLine();
           Console.WriteLine(string.Concat(message.Content.Select(block => block.Text)));
       }
@@ -1735,8 +1735,8 @@ Event pratinjau itu sendiri tidak berubah. `event_start` dan `event_delta` memil
   ```
 
   ```go Go
-  	// Daftarkan thread sesi dan pilih satu anak: thread anak memiliki parent_thread_id
-  	// non-null, dan parent_thread_id thread utama bernilai null.
+  	// List the session's threads and pick a child: child threads carry a non-null
+  	// parent_thread_id, and the primary thread's parent_thread_id is null.
   	var childThreadID string
   	threads := client.Beta.Sessions.Threads.ListAutoPaging(ctx, session.ID, anthropic.BetaSessionThreadListParams{})
   	for threads.Next() {
@@ -1749,8 +1749,8 @@ Event pratinjau itu sendiri tidak berubah. `event_start` dan `event_delta` memil
   		panic(err)
   	}
 
-  	// Stream thread anak menerima parameter event_deltas yang sama dengan
-  	// stream sesi; jalankan satu loop baca per koneksi stream.
+  	// The child thread's stream takes the same event_deltas parameter as the
+  	// session stream; run one read loop per stream connection.
   	stream := client.Beta.Sessions.Threads.Events.StreamEvents(ctx, childThreadID, anthropic.BetaSessionThreadEventStreamParams{
   		SessionID: session.ID,
   		EventDeltas: []anthropic.BetaManagedAgentsDeltaType{
@@ -1764,9 +1764,9 @@ Event pratinjau itu sendiri tidak berubah. `event_start` dan `event_delta` memil
   		case anthropic.BetaManagedAgentsDeltaEvent:
   			fmt.Print(event.Delta.Content.Text)
   		case anthropic.BetaManagedAgentsAgentMessageEvent:
-  			// Event yang di-buffer adalah catatan otoritatif; render kontennya.
+  			// The buffered event is the authoritative record; render its content.
   			fmt.Println()
-  			// daftar bertipe konkret: BetaManagedAgentsTextBlock
+  			// concrete-typed list: BetaManagedAgentsTextBlock
   			for _, block := range event.Content {
   				fmt.Print(block.Text)
   			}
@@ -1988,11 +1988,11 @@ Ketika agen memanggil [alat kustom](/docs/id/managed-agents/tools#custom-tools):
       {
           foreach (var eventId in requiresAction.EventIds)
           {
-              // Cari event custom tool use dan jalankan
+              // Look up the custom tool use event and execute it
               var toolEvent = eventsById[eventId];
               var result = await CallTool(toolEvent.Name, toolEvent.Input);
 
-              // Kirim hasilnya kembali
+              // Send the result back
               await client.Beta.Sessions.Events.Send(session.ID, new()
               {
                   Events =
@@ -2034,10 +2034,10 @@ Ketika agen memanggil [alat kustom](/docs/id/managed-agents/tools#custom-tools):
   		switch stopReason := event.StopReason.AsAny().(type) {
   		case anthropic.BetaManagedAgentsSessionRequiresAction:
   			for _, eventID := range stopReason.EventIDs {
-  				// Cari event custom tool use dan jalankan
+  				// Look up the custom tool use event and execute it
   				toolEvent := eventsByID[eventID]
   				result := callTool(toolEvent.Name, toolEvent.Input)
-  				// Kirim hasilnya kembali
+  				// Send the result back
   				if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   					Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   						OfUserCustomToolResult: &anthropic.BetaManagedAgentsUserCustomToolResultEventParams{
@@ -2254,7 +2254,7 @@ Ketika [kebijakan izin](/docs/id/managed-agents/permission-policies) memerlukan 
       {
           foreach (var eventId in requiresAction.EventIds)
           {
-              // Setujui panggilan alat yang tertunda
+              // Approve the pending tool call
               await client.Beta.Sessions.Events.Send(session.ID, new()
               {
                   Events =
@@ -2289,7 +2289,7 @@ Ketika [kebijakan izin](/docs/id/managed-agents/permission-policies) memerlukan 
   		switch stopReason := event.StopReason.AsAny().(type) {
   		case anthropic.BetaManagedAgentsSessionRequiresAction:
   			for _, eventID := range stopReason.EventIDs {
-  				// Setujui panggilan alat yang tertunda
+  				// Approve the pending tool call
   				if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   					Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   						OfUserToolConfirmation: &anthropic.BetaManagedAgentsUserToolConfirmationEventParams{
@@ -2460,8 +2460,8 @@ Untuk melanjutkan sesi, kirim event `user.message` ke sesi tersebut seperti bias
   ```
 
   ```csharp C#
-  // Lanjutkan sesi yang dibuat sebelumnya berdasarkan ID. Di produksi, berikan
-  // ID sesi yang Anda simpan saat sesi dibuat.
+  // Resume a previously created session by ID. In production, pass the
+  // session ID you stored when the session was created.
   await client.Beta.Sessions.Events.Send(session.ID, new()
   {
       Events =
@@ -2483,8 +2483,8 @@ Untuk melanjutkan sesi, kirim event `user.message` ke sesi tersebut seperti bias
   ```
 
   ```go Go
-  // Lanjutkan sesi yang dibuat sebelumnya dengan mengirimkan event user.message
-  // baru. Di produksi, berikan ID tersimpan dari sesi yang akan dilanjutkan.
+  // Resume a previously created session by sending it a new user.message
+  // event. In production, pass the stored ID of the session to resume.
   if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   		OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{

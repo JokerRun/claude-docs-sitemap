@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: fc6709a29e61a321b5839d5f57ffedf163dffa156a19f6ed9e19b465d97a1dd3
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: 1659b14bfcc2e3a824249f6033dcf62b2cf049fc28d1d22d73e2f1f6cd5b4f8b
 ---
 
 > ## Documentation Index
@@ -358,8 +358,8 @@ Each lock makes Claude Code ignore the developer's own entries for that setting,
 
 Four parent-supplied settings are honored even with all five locks set:
 
-* **`forceLoginOrgUUID`**: Claude Code honors a parent-supplied value when no admin source sets an org UUID. Gateway sign-in doesn't check this key, so it matters only for fleets that also use first-party Anthropic logins. An org UUID in any admin source blocks the parent's value, but the value Claude Code enforces comes from the highest-priority source, so set `forceLoginOrgUUID` there.
-* **`allowedMcpServers`**: Claude Code honors a parent-supplied allowlist when no admin source sets one, and `allowManagedMcpServersOnly` doesn't block it, because the lock enforces whichever list wins as the managed value, including a parent-supplied list when no admin source sets one. A list in any admin source blocks the parent's, but the list Claude Code enforces comes from the highest-priority source, so set `allowedMcpServers` there, next to the lock.
+* **`forceLoginOrgUUID`**: Claude Code honors a parent-supplied value when the highest-priority admin source doesn't set an org UUID. Gateway sign-in doesn't check this key, so it matters only for fleets that also use first-party Anthropic logins. An org UUID in the highest-priority admin source blocks the parent's value and is the one Claude Code enforces, so set `forceLoginOrgUUID` there.
+* **`allowedMcpServers`**: Claude Code honors a parent-supplied allowlist when the highest-priority admin source doesn't set one, and `allowManagedMcpServersOnly` doesn't block it, because the lock enforces whichever list wins as the managed value, including a parent-supplied list when the highest-priority admin source doesn't set one. A list in the highest-priority admin source blocks the parent's and is the list Claude Code enforces, so set `allowedMcpServers` there, next to the lock. Before v2.1.223, a value for either key in any admin source blocked the parent's.
 * **`availableModels`**: Claude Code honors a parent-supplied model list when the winning managed source doesn't set one. If your fleet restricts models, set `availableModels` in the winning source.
 * **`strictPluginOnlyCustomization`**: this key passes the filter regardless of any lock, and it makes Claude Code ignore the developer's own customization, including protective hooks. No lock blocks it.
 

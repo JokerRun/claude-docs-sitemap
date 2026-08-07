@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 5ff6b6e46292196ba740be959dd5e03c79e159e4017b808dfbada67c29b389ac
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: dcf4d46872d0350be21b43d6e855dc01e2f366be1e4f937f0eec984df1bbcc65
 ---
 
 # Sandbox yang di-hosting sendiri
@@ -1255,10 +1255,10 @@ Worker hanya menjawab alat yang terdaftar padanya. Alat kustom yang dideklarasik
 
       const mcpServerURL = "http://mcp.internal.example.com:8000/mcp"
 
-      // toCustomTool memetakan satu definisi alat MCP ke sebuah deklarasi alat kustom.
-      // Field-field dipetakan satu-ke-satu: parameter bertipe membawa `properties` dan
-      // `required`, dan setiap kata kunci JSON Schema lain yang dikeluarkan server dibawa dalam
-      // ExtraFields sehingga skema yang dideklarasikan cocok dengan skema server.
+      // toCustomTool maps one MCP tool definition onto a custom tool declaration.
+      // The fields map one to one: the typed parameter carries `properties` and
+      // `required`, and every other JSON Schema keyword the server emits travels in
+      // ExtraFields so the declared schema matches the server's schema.
       func toCustomTool(tool *mcpsdk.Tool) (anthropic.BetaAgentNewParamsToolUnion, error) {
       	raw, err := json.Marshal(tool.InputSchema)
       	if err != nil {
@@ -1273,7 +1273,7 @@ Worker hanya menjawab alat yang terdaftar padanya. Alat kustom yang dideklarasik
       	for keyword, value := range schema {
       		switch keyword {
       		case "type":
-      			// Tipe parameter selalu melakukan marshal "type": "object".
+      			// The parameter type always marshals "type": "object".
       		case "properties":
       			properties, _ := value.(map[string]any)
       			inputSchema.Properties = properties
@@ -1306,8 +1306,8 @@ Worker hanya menjawab alat yang terdaftar padanya. Alat kustom yang dideklarasik
       func main() {
       	ctx := context.Background()
 
-      	// Jalankan ini di tempat Anda membuat agen, bukan di host worker: kode ini
-      	// melakukan autentikasi dengan kunci API Claude Anda (ANTHROPIC_API_KEY).
+      	// Run this wherever you create agents, not on the worker host: it
+      	// authenticates with your Claude API key (ANTHROPIC_API_KEY).
       	client := anthropic.NewClient()
 
       	mcpClient := mcpsdk.NewClient(&mcpsdk.Implementation{Name: "declare-agent-tools", Version: "1.0.0"}, nil)
@@ -1337,7 +1337,7 @@ Worker hanya menjawab alat yang terdaftar padanya. Alat kustom yang dideklarasik
 
       	agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
       		Name:  "Internal tools agent",
-      		Model: anthropic.BetaManagedAgentsModelConfigParams{ID: "claude-opus-5"},
+      		Model: anthropic.BetaManagedAgentsModelConfigParams{ID: anthropic.BetaManagedAgentsModelClaudeOpus5},
       		Tools: tools,
       	})
       	if err != nil {

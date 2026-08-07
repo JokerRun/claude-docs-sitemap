@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/github
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: f5e9b568b742500936b1dc65a1ff824b159bee999005e035f61c72494c1bd6af
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: 0db322325615f4f2e95c7260bc6ed1f4f893af65747e1a4f7c349315dd01a26c
 ---
 
 # Mengakses GitHub
@@ -113,7 +113,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
   var agent = await client.Beta.Agents.Create(new()
   {
       Name = "Code Reviewer",
-      Model = new("claude-opus-5"),
+      Model = BetaManagedAgentsModel.ClaudeOpus5,
       System = "You are a code review assistant with access to GitHub.",
       McpServers =
       [
@@ -138,7 +138,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "Code Reviewer",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: "claude-opus-5",
+  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5,
   	},
   	System: anthropic.String("You are a code review assistant with access to GitHub."),
   	MCPServers: []anthropic.BetaManagedAgentsURLMCPServerParams{
@@ -634,12 +634,12 @@ Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan
   ```
 
   ```csharp C#
-  // Daftar resource pada sesi
+  // List resources on the session
   var listed = await client.Beta.Sessions.Resources.List(session.ID);
   var repoResourceId = (await listed.Paginate().FirstAsync()).ID;
   Console.WriteLine(repoResourceId); // "sesrsc_01ABC..."
 
-  // Rotasi token otorisasi
+  // Rotate the authorization token
   await client.Beta.Sessions.Resources.Update(repoResourceId, new()
   {
       SessionID = session.ID,
@@ -648,7 +648,7 @@ Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan
   ```
 
   ```go Go
-  // Daftar resource pada sesi
+  // List resources on the session
   listed, err := client.Beta.Sessions.Resources.List(ctx, session.ID, anthropic.BetaSessionResourceListParams{})
   if err != nil {
   	panic(err)
@@ -656,7 +656,7 @@ Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan
   repoResourceID := listed.Data[0].ID
   fmt.Println(repoResourceID) // "sesrsc_01ABC..."
 
-  // Rotasi token otorisasi
+  // Rotate the authorization token
   _, err = client.Beta.Sessions.Resources.Update(ctx, repoResourceID, anthropic.BetaSessionResourceUpdateParams{
   	SessionID:          session.ID,
   	AuthorizationToken: "ghp_your_new_github_token",

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/mcp
-fetched_at: 2026-08-06T03:07:37.547989Z
-sha256: 88131aa5e7b3cbc463b50f28ff70bcfb5965f229e3b8f31f5872cb01e33f6ee4
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: 283aabe0334ecef06ae4e00ac3b907b5ec5f430ae4b8c554a9e96fb54b150309
 ---
 
 > ## Documentation Index
@@ -164,7 +164,7 @@ Claude Code registers the servers you pass in `options.mcpServers` at startup an
 To block startup itself at a separate, earlier phase than the first-turn wait, before the init message is sent:
 
 * Set [`MCP_CONNECTION_NONBLOCKING`](/docs/en/env-vars) to `0` to block on the whole connection batch. Claude Code caps that wait at 5 seconds by default. Adjust the cap with the [`MCP_CONNECT_TIMEOUT_MS`](/docs/en/env-vars) environment variable, in milliseconds. Servers still pending at that deadline keep connecting in the background.
-* Set `alwaysLoad: true` on a server's config to make its tools available at their full schemas on the first turn, [exempt from tool search deferral](/docs/en/mcp#exempt-a-server-from-deferral). Claude Code waits at startup for that server's tools, capped at the same deadline, while other servers keep connecting in the background; a remote server with a cached tool list supplies them without connecting, per the table above. The `alwaysLoad` field requires Claude Code v2.1.121 or later.
+* Set `alwaysLoad: true` on a server's config to make its tools available at their full schemas on the first turn, [exempt from tool search deferral](/docs/en/mcp#exempt-a-server-from-deferral). Claude Code waits at startup for that server's tools, capped at the same deadline, while other servers keep connecting in the background; a remote server with a cached tool list supplies them without connecting, per the table above.
 
 The `system` message with subtype `init` reports each server's status at the moment it's emitted. Check for status `failed` or `needs-auth` when you want to detect servers that won't be usable, rather than treating every status other than `connected` as a failure; see [Error handling](#error-handling) for the full status check.
 

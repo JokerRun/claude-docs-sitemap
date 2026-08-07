@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/skills
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 6e56dc9e6d2911040cb8f01c046d884c408751d169b0aea84e3b1db819d5cd1b
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: c3d7ad8eaf830abd0b854d766450edb9920876bba84b67ce5b7be508b4fe676d
 ---
 
 > ## Documentation Index
@@ -103,7 +103,7 @@ To enable only specific Skills, pass their names. Names match the `name` field i
   ```
 </CodeGroup>
 
-In the TypeScript SDK, the list takes exact Skill names only. `query()` throws before starting the Claude Code process when a name can't work as an exact Skill name, for example:
+The list takes exact Skill names only. In the TypeScript SDK, `query()` throws before starting the Claude Code process when a name can't work as an exact Skill name. In the Python SDK, `query()` raises `ValueError` in the same cases, for example:
 
 * An empty name
 * A name containing parentheses, commas, or control characters

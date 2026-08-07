@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-08-06T03:07:37.547989Z
-sha256: b8156361a3b6b1a23be7a1d4cfda70ec8f69d98e99bf6bc98009c5a5f5abcf24
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: 2c08beefa974a4c76d7c52a67c38cecc4b026ce769cbc45b28a0a88e9162dcce
 ---
 
 > ## Documentation Index
@@ -2335,7 +2335,7 @@ Set `persistent: true` for session-length watches such as log tails. When Monito
 
 **Tool name:** `TaskOutput`
 
-<Note>`TaskOutput` is deprecated; prefer `Read` on the task's output file path. Deprecated since Claude Code v2.1.83. The schemas below remain valid for hooks and permission handlers that encounter the tool.</Note>
+<Note>`TaskOutput` is deprecated; prefer `Read` on the task's output file path. The schemas below remain valid for hooks and permission handlers that encounter the tool.</Note>
 
 ```typescript theme={null}
 type TaskOutputInput = {
@@ -3090,7 +3090,13 @@ type BashOutput = {
 };
 ```
 
-Returns command output with stdout/stderr split. Background commands include a `backgroundTaskId`.
+The `stdout`, `stderr`, and `backgroundTaskId` fields carry:
+
+| Field              | What it carries                                                                                 |
+| ------------------ | ----------------------------------------------------------------------------------------------- |
+| `stdout`           | The command's stdout and stderr, merged into one interleaved stream                             |
+| `stderr`           | Notices the tool itself adds, such as a shell working-directory reset, not the command's stderr |
+| `backgroundTaskId` | Present for background commands                                                                 |
 
 `timedOutAfterMs` is the timeout in milliseconds, set when the command reached its timeout and moved to the background rather than starting there explicitly. `backgroundCwdHint` is set when the backgrounded command contained a directory-change builtin such as `cd`, `pushd`, `popd`, or `chdir`, and notes that the session working directory didn't change. Both fields require Claude Code v2.1.210 or later.
 

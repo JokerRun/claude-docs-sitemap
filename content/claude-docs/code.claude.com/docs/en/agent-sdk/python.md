@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-08-06T03:07:37.547989Z
-sha256: 44b2131f134c5c03887aee5712243c029b705de4b72ea9d714a8b3c79625b6de
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: 8f9fe520e09156c0eb3c354a100f75760d54294d2204f31d9068bfd0bb1a74dc
 ---
 
 > ## Documentation Index
@@ -866,7 +866,7 @@ class ClaudeAgentOptions:
 | `plugins`                     | `list[SdkPluginConfig]`                                                               | `[]`                               | Load custom plugins from local paths. See [Plugins](/docs/en/agent-sdk/plugins) for details                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | `sandbox`                     | [`SandboxSettings`](#sandboxsettings) ` \| None`                                      | `None`                             | Configure sandbox behavior programmatically. See [Sandbox settings](#sandboxsettings) for details                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | `setting_sources`             | `list[SettingSource] \| None`                                                         | `None` (CLI defaults: all sources) | Control which filesystem settings to load. Pass `[]` to disable user, project, and local settings. Endpoint-managed policy loads regardless; server-managed settings are fetched when the session authenticates with an organization credential on an [eligible configuration](/docs/en/server-managed-settings#platform-availability). See [Use Claude Code features](/docs/en/agent-sdk/claude-code-features#what-settingsources-does-not-control)                                                                                                                                                           |
-| `skills`                      | `list[str] \| Literal["all"] \| None`                                                 | `None`                             | Skills available to the session. Pass `"all"` to enable every discovered skill, or a list of skill names. When set, the SDK adds the Skill tool to `allowed_tools` automatically. If you also pass `tools`, include `"Skill"` in that list. See [Skills](/docs/en/agent-sdk/skills)                                                                                                                                                                                                                                                                                                                       |
+| `skills`                      | `list[str] \| Literal["all"] \| None`                                                 | `None`                             | Skills available to the session. Pass `"all"` to enable every discovered skill, or a list of skill names. Pass exact names only. The SDK rejects malformed and wildcard-form names with a `ValueError` before starting the Claude Code process. When set, the SDK adds the Skill tool to `allowed_tools` automatically. If you also pass `tools`, include `"Skill"` in that list. See [Skills](/docs/en/agent-sdk/skills)                                                                                                                                                                                 |
 | `max_thinking_tokens`         | `int \| None`                                                                         | `None`                             | *Deprecated* - Maximum tokens for thinking blocks. Use `thinking` instead                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | `thinking`                    | [`ThinkingConfig`](#thinkingconfig) ` \| None`                                        | `None`                             | Controls extended thinking behavior. Takes precedence over `max_thinking_tokens`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | `effort`                      | [`EffortLevel`](#effortlevel) ` \| None`                                              | `None`                             | Effort level for thinking depth. See [adjust the effort level](/docs/en/model-config#adjust-effort-level)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
@@ -2159,16 +2159,16 @@ class PostToolUseFailureHookInput(BaseHookInput):
     agent_type: NotRequired[str]
 ```
 
-| Field             | Type                            | Description                                                        |
-| :---------------- | :------------------------------ | :----------------------------------------------------------------- |
-| `hook_event_name` | `Literal["PostToolUseFailure"]` | Always "PostToolUseFailure"                                        |
-| `tool_name`       | `str`                           | Name of the tool that failed                                       |
-| `tool_input`      | `dict[str, Any]`                | Input parameters that were used                                    |
-| `tool_use_id`     | `str`                           | Unique identifier for this tool use                                |
-| `error`           | `str`                           | Error message from the failed execution                            |
-| `is_interrupt`    | `bool` (optional)               | Whether the failure was caused by an interrupt                     |
-| `agent_id`        | `str` (optional)                | Subagent identifier, present when the hook fires inside a subagent |
-| `agent_type`      | `str` (optional)                | Subagent type, present when the hook fires inside a subagent       |
+| Field             | Type                            | Description                                                                                                                                                                                                                     |
+| :---------------- | :------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `hook_event_name` | `Literal["PostToolUseFailure"]` | Always "PostToolUseFailure"                                                                                                                                                                                                     |
+| `tool_name`       | `str`                           | Name of the tool that failed                                                                                                                                                                                                    |
+| `tool_input`      | `dict[str, Any]`                | Input parameters that were used                                                                                                                                                                                                 |
+| `tool_use_id`     | `str`                           | Unique identifier for this tool use                                                                                                                                                                                             |
+| `error`           | `str`                           | Error message from the failed execution                                                                                                                                                                                         |
+| `is_interrupt`    | `bool` (optional)               | True when the failure reached Claude Code as an abort rather than as an error the tool reported. Cancelling a running tool with `interrupt()` does not fire this hook; the tool result carries the interruption message instead |
+| `agent_id`        | `str` (optional)                | Subagent identifier, present when the hook fires inside a subagent                                                                                                                                                              |
+| `agent_type`      | `str` (optional)                | Subagent type, present when the hook fires inside a subagent                                                                                                                                                                    |
 
 ### `UserPromptSubmitHookInput`
 
@@ -2641,10 +2641,11 @@ Asks the user clarifying questions during execution. See [Handle approvals and u
 
 ```python theme={null}
 {
-    "output": str,  # Combined stdout and stderr output
-    "exitCode": int,  # Exit code of the command
-    "killed": bool | None,  # Whether command was killed due to timeout
-    "shellId": str | None,  # Shell ID for background processes
+    "stdout": str,  # The command's output; stdout and stderr arrive merged into this one interleaved stream
+    "stderr": str,  # Notices the tool itself adds, not the command's stderr
+    "interrupted": bool,  # Whether the command was interrupted
+    "isImage": bool | None,  # Whether stdout contains image data
+    "backgroundTaskId": str | None,  # ID of the background task if command is running in background
 }
 ```
 
@@ -3052,7 +3053,7 @@ When Monitor runs a command, it follows the same permission rules as Bash; a Web
 
 **Tool name:** `TaskOutput`. The previous name `BashOutput` is still accepted as an alias.
 
-<Note>`TaskOutput` is deprecated; prefer `Read` on the task's output file path. Deprecated since Claude Code v2.1.83. The schemas below remain valid for hooks and permission handlers that encounter the tool.</Note>
+<Note>`TaskOutput` is deprecated; prefer `Read` on the task's output file path. The schemas below remain valid for hooks and permission handlers that encounter the tool.</Note>
 
 **Input:**
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-08-06T03:07:37.547989Z
-sha256: 95fe40ab1e8563f73942b3c07542812594d7c9034a901c427d18bc28684bc336
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: 5f9f391c210d0246662e4104085a3b133716c247dcf2953b9acbb345c4cfb877
 ---
 
 # MCP connector
@@ -691,7 +691,7 @@ Install both the Anthropic SDK and the MCP SDK:
     The helpers use the official [MCP PHP SDK](https://packagist.org/packages/mcp/sdk):
 
     ```bash
-    composer require "anthropic-ai/sdk" "mcp/sdk"
+    composer require "anthropic-ai/sdk" "guzzlehttp/guzzle:^7" "mcp/sdk"
     ```
   </Tab>
 

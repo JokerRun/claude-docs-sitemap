@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
-fetched_at: 2026-08-06T03:07:37.547989Z
-sha256: 9e09716fdf0e0bedc7bc7ef7d080901bc19e1ffed475919479f021d9186b1fcc
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: ad78acf70ad6827e2765981fe4ff41eb22d09905d047a4919ab8f74af5b126c9
 ---
 
 # Tool use with Claude
@@ -858,9 +858,9 @@ Tool use requests are priced based on:
 
 1. The total number of input tokens sent to the model (including in the `tools` parameter)
 2. The number of output tokens generated
-3. For server-side tools, additional usage-based pricing (e.g., web search charges per search performed)
+3. For server-side tools, additional usage-based pricing (for example, web search charges per search performed)
 
-Client-side tools are priced the same as any other Claude API request, while server-side tools may incur additional charges based on their specific usage.
+Client-side tools are priced the same as any other Claude API request, although server-side tools can incur additional charges based on their specific usage.
 
 The additional tokens from tool use come from:
 
@@ -868,7 +868,7 @@ The additional tokens from tool use come from:
 * `tool_use` content blocks in API requests and responses
 * `tool_result` content blocks in API requests
 
-When you use `tools`, the API also automatically includes a special system prompt for the model which enables tool use. The number of tool use tokens required for each model are listed below (excluding the additional tokens listed above). Note that the table assumes at least 1 tool is provided. If no `tools` are provided, then a tool choice of `none` uses 0 additional system prompt tokens.
+When you use `tools`, the API also automatically includes a special system prompt for the model that enables tool use. The number of tool use tokens required for each model is listed in the following table (excluding the additional tokens listed earlier). Note that the table assumes at least 1 tool is provided. If no `tools` are provided, then a tool choice of `none` uses 0 additional system prompt tokens.
 
 | Model                                                                                                      | Tool choice                    | Tool use system prompt token count |
 | ---------------------------------------------------------------------------------------------------------- | ------------------------------ | ---------------------------------- |

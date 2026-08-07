@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/agent-setup
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 8c34f146da229deaf5b1ef5fdcf34f8e1e38128db54a5ea59b069b09d7b748d8
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: 6648115c54c3c2ab582e2f67cd02b63c7406a849223ead9af0e0fec819208231
 ---
 
 # Definisikan agen Anda
@@ -95,7 +95,7 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
   var agent = await client.Beta.Agents.Create(new()
   {
       Name = "Coding Assistant",
-      Model = new("claude-opus-5"),
+      Model = BetaManagedAgentsModel.ClaudeOpus5,
       System = "You are a helpful coding agent.",
       Tools =
       [
@@ -111,7 +111,7 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "Coding Assistant",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: "claude-opus-5",
+  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5,
   	},
   	System: anthropic.String("You are a helpful coding agent."),
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{

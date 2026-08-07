@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: e4194abaddfcb066dcae20649b1f5f8d6640756fa5e9d7450698014cd0c23c06
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: 80c07efecd6f4a940e06ccd4a29024aab28b7dbc59aeb74726ceff1c8783c6ab
 ---
 
 # Claude on Amazon Bedrock (Opus 4.6 and earlier)
@@ -744,6 +744,7 @@ For the full feature list with Amazon Bedrock availability, see [Features overvi
 * API endpoints (Message Batches, Models, Admin, Compliance, Usage and Cost)
 * Claude Managed Agents
 * Server-side fallback (the [`fallbacks` parameter](/docs/en/build-with-claude/refusals-and-fallback#server-side-fallback); use the [client-side fallback pattern](/docs/en/build-with-claude/refusals-and-fallback#client-side-fallback) instead)
+* Automatic prompt caching (the [top-level `cache_control` field](/docs/en/build-with-claude/prompt-caching#automatic-caching); use [explicit cache breakpoints](/docs/en/build-with-claude/prompt-caching#explicit-cache-breakpoints) instead)
 
 ### PDF support on Bedrock
 

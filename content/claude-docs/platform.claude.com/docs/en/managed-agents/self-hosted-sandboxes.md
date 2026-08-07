@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 32c9b79785044dfab5f0fb86e0b20ce698b006ba181c2b6ec6681248fd700887
+fetched_at: 2026-08-07T03:04:51.007486Z
+sha256: 5e7bf5451cc9294d35fe2dfc1afbbd3755fea0e692458444539b689aa7ebe5bd
 ---
 
 # Self-hosted sandboxes
@@ -1337,7 +1337,7 @@ The SDKs' [Client-side MCP helpers](/docs/en/agents-and-tools/mcp-connector#clie
 
       	agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
       		Name:  "Internal tools agent",
-      		Model: anthropic.BetaManagedAgentsModelConfigParams{ID: "claude-opus-5"},
+      		Model: anthropic.BetaManagedAgentsModelConfigParams{ID: anthropic.BetaManagedAgentsModelClaudeOpus5},
       		Tools: tools,
       	})
       	if err != nil {
