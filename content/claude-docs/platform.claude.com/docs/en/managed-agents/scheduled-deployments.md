@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/scheduled-deployments
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: e928508d7705adbb2926f1f3028654db149e9cbf3ac6fcbe1f260cbaea68e535
+fetched_at: 2026-08-08T02:41:37.599145Z
+sha256: bdca195a6966589a770c57af3c787d58bec54365e809d74bb46b7a49a4a38922
 ---
 
 # Scheduled deployments
@@ -264,6 +264,30 @@ See the [Create Deployment reference](/docs/en/api/beta/deployments/create) for 
 <Note>
   Wall-clock times that do not exist on a spring-forward day (such as 2 AM) are not triggered. Wall-clock times that occur twice on a fall-back day fire twice. Schedule outside the 1–3 AM local window, or use UTC, when missed or duplicate executions are unacceptable.
 </Note>
+
+### Set a budget on each run
+
+Pass the optional `budget` object when you create or update the deployment. It takes the same shape as a [session budget](/docs/en/managed-agents/budgets). The deployment copies the cap onto each session it starts, so the budget bounds every run separately rather than acting as a cumulative ceiling across runs: a deployment with a `"2000"` cap can spend up to about $20 on every run.
+
+A session started by the deployment behaves exactly like any other budgeted session: it pauses with `budget_reached` when its own list cost [reaches the cap](/docs/en/managed-agents/budgets#when-a-session-reaches-its-budget). Changing the deployment's budget applies to runs started afterward; a session already running keeps the cap it started with, which you can [change through the session itself](/docs/en/managed-agents/session-operations#updating-the-session-budget). Unlike a session budget, a deployment's budget can be removed with `"budget": null` and set again later.
+
+The following example sets a budget on an existing deployment:
+
+```bash cURL
+curl --fail-with-body -sS "https://api.anthropic.com/v1/deployments/$DEPLOYMENT_ID?beta=true" \
+  -H "x-api-key: $ANTHROPIC_API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-beta: managed-agents-2026-04-01" \
+  -H "content-type: application/json" \
+  -d @- <<'EOF'
+{
+  "budget": {
+    "type": "limit",
+    "max_list_cost": {"amount": "2000", "currency": "USD"}
+  }
+}
+EOF
+```
 
 ## Deployment runs
 

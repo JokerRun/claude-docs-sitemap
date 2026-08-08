@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/security-guidance
-fetched_at: 2026-08-07T03:04:51.007486Z
-sha256: 91f20dab438682183940a0f88633e8877e1a0ebf2a48faef5c592094eb7ae5ae
+fetched_at: 2026-08-08T02:41:37.599145Z
+sha256: 6dd2b54f6d1a19ec0fc03f663d0ae7ee339ff9bdc8daf0f4949812e008198054
 ---
 
 > ## Documentation Index
@@ -55,7 +55,7 @@ Check the install summary. If it reports `Run /reload-plugins to activate.`, app
 
 ### Enable in cloud sessions and shared repositories
 
-User-scoped plugins do not carry into [Claude Code on the web](/docs/en/claude-code-on-the-web), because those sessions run on Anthropic infrastructure rather than your machine. To enable the plugin there, or to turn it on for everyone who clones a repository, declare it in the project's checked-in settings:
+User-scoped plugins do not carry into [Claude Code on the web](/docs/en/claude-code-on-the-web), because those sessions run in the cloud rather than on your machine. To enable the plugin there, or to turn it on for everyone who clones a repository, declare it in the project's checked-in settings:
 
 ```json .claude/settings.json theme={null}
 {

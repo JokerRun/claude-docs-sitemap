@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/terminal-config
-fetched_at: 2026-08-07T03:04:51.007486Z
-sha256: c10537da744a96147cf50b2db2be80db43ac5fe0998b86a5998ab60160b51763
+fetched_at: 2026-08-08T02:41:37.599145Z
+sha256: 4f20beffe81dd8930d09c56473e719cb51becfb6e402b8ad8d7aab4d19ea9c77
 ---
 
 > ## Documentation Index
@@ -303,6 +303,13 @@ Run `/tui fullscreen` to switch and save the preference. Your conversation relau
 ## Paste large content
 
 When you paste more than 800 characters or more than two lines into the prompt, Claude Code collapses the input to a placeholder such as `[Pasted text #1 +120 lines]` so the input box stays usable. The full content is still sent to Claude when you submit.
+
+Claude Code keeps the collapsed content under `~/.claude/paste-cache/`, so when you recall a prompt from [command history](/docs/en/interactive-mode#command-history) and resubmit it, Claude Code sends the full pasted content again, including in a later session, until the cache file ages past `cleanupPeriodDays`.
+
+Claude Code deletes cache files older than [`cleanupPeriodDays`](/docs/en/settings#available-settings) at startup, so a recalled prompt can reference pasted text that no longer exists. When you submit such a prompt, Claude Code never sends the literal `[Pasted text #N]` string, and shows a notification naming the missing paste:
+
+* In a plain prompt with text remaining, Claude Code removes the placeholder and sends the remaining text.
+* In a [shell mode](/docs/en/interactive-mode#shell-mode-with-prefix) command or a `/` command, where the removal would change what runs, and in any prompt the removal leaves empty, Claude Code cancels the submission and keeps the original text in the input, with the placeholder still in it. Delete the placeholder or edit the command, then resubmit.
 
 The VS Code integrated terminal can drop characters from very large pastes before they reach Claude Code, so prefer file-based workflows there. For very large inputs such as entire files or long logs, write the content to a file and ask Claude to read it instead of pasting. This keeps the conversation transcript readable and lets Claude reference the file by path in later turns.
 

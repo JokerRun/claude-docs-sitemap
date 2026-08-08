@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-connect
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: 456a2e9bc9689d49f3c1edf25e19bf222c9bed379548b774e15574bb6153a389
+fetched_at: 2026-08-08T02:41:37.599145Z
+sha256: 2cbc7e4bb5387879ad2705cd5d0eb12adc6853a98b9dce4fca00fd4b2e7fe83f
 ---
 
 > ## Documentation Index
@@ -312,7 +312,7 @@ With model discovery enabled, Claude Code queries the gateway for its model list
 
 Enable it if your gateway serves model names that aren't in Claude Code's built-in list and you want to select them from the picker. If the built-in models are what you use, you don't need discovery; your administrator may also have already enabled it through managed settings.
 
-To enable it, set `CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY=1` in your shell or in the `env` block of `~/.claude/settings.json`. Discovery requires Claude Code v2.1.129 or later.&#x20;
+To enable it, set `CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY=1` in your shell or in the `env` block of `~/.claude/settings.json`.
 
 Discovered models appear as additional `/model` entries labeled `From gateway`. To confirm discovery ran, start `claude --debug` and look for the `[gatewayDiscovery]` lines in the debug log at `~/.claude/debug/<session-id>.txt`: a success logs how many models were cached, and a `404`, timeout, or redirect is recorded there too. For when discovery runs, what it filters, and the response format gateways serve, see the [model discovery reference](/docs/en/llm-gateway-protocol#model-discovery).
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-08-07T03:04:51.007486Z
-sha256: 7823a5867393672cd8e65f1ceadd47c464a357ddeb2421e7cc6e508cf25528cd
+fetched_at: 2026-08-08T02:41:37.599145Z
+sha256: d29d21b554b5c6bd0b0ed1f7a28161c1cd05954510a6fd0acb84b74d496987fb
 ---
 
 > ## Documentation Index
@@ -2582,9 +2582,17 @@ CwdChanged hooks have no decision control. They can't block the directory change
 
 ### DirectoryAdded
 
-Runs after a working directory is added mid-session, with the `/add-dir` command or the SDK `register_repo_root` control request. Use this to prepare a newly added repository, for example by installing its dependencies. Claude Code doesn't fire this event for directories you pass with the `--add-dir` startup flag; [SessionStart](#sessionstart) covers those.
+Runs after you add a working directory mid-session with the `/add-dir` command, or after an SDK client adds one with the `register_repo_root` control request. Use this to prepare a newly added repository, for example by installing its dependencies.
 
-DirectoryAdded fires after Claude Code has refreshed sandbox and permission state, so sandboxed tools already see the new directory when your hook runs. Hook commands themselves run unsandboxed.
+Claude Code doesn't fire this event when:
+
+* You pass a directory with the `--add-dir` startup flag; [SessionStart](#sessionstart) covers those directories
+* You add a directory on the `/permissions` Workspace tab
+* You add a directory that is already a working directory; the add fails with an error
+
+Claude Code fires DirectoryAdded after refreshing sandbox and permission state, so sandboxed tools already see the new directory when your hook runs. Hook commands themselves run unsandboxed.
+
+Claude Code doesn't wait for the hook: the add completes immediately, and the hook runs in the background with the 600-second default timeout.
 
 The matcher filters on how the directory was added:
 

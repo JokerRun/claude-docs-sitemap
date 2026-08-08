@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/channels
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 9c9fbf1b76fbd1618706adc14fde6bb612956b3f7de2824d7815539effc3f0e0
+fetched_at: 2026-08-08T02:41:37.599145Z
+sha256: efde7cdb88976e9d368cae3357633e8f53fa9f090700d80bae8cba3faf04562a
 ---
 
 > ## Documentation Index
@@ -280,7 +280,13 @@ To try the fakechat demo, you'll need:
   </Step>
 </Steps>
 
-If Claude hits a permission prompt while you're away from the terminal, the session pauses until you respond. Channel servers that declare the [permission relay capability](/docs/en/channels-reference#relay-permission-prompts) can forward these prompts to you so you can approve or deny remotely. For unattended use, [`--dangerously-skip-permissions`](/docs/en/permission-modes#skip-all-checks-with-bypasspermissions-mode) bypasses most prompts, but only use it in environments you trust. Explicit ask rules, connector tools [your organization set to `ask`](/docs/en/mcp#organization-controls-on-connector-tools), and MCP tools marked [`requiresUserInteraction`](/docs/en/mcp#require-approval-for-a-specific-tool) still prompt.
+If Claude hits a permission prompt while you're away from the terminal, the session pauses until you respond. Channel servers that declare the [permission relay capability](/docs/en/channels-reference#relay-permission-prompts) can forward these prompts to you so you can approve or deny remotely. For unattended use, [`--dangerously-skip-permissions`](/docs/en/permission-modes#skip-all-checks-with-bypasspermissions-mode) bypasses most prompts, but only use it in environments you trust. Even then, these checks still prompt:
+
+* Explicit ask rules
+* Connector tools [your organization set to `ask`](/docs/en/mcp#organization-controls-on-connector-tools)
+* MCP tools marked [`requiresUserInteraction`](/docs/en/mcp#require-approval-for-a-specific-tool)
+* Removals targeting `/` or your home directory
+* The [cross-session messaging safeguards](/docs/en/permission-modes#skip-all-checks-with-bypasspermissions-mode)
 
 When you run channels in non-interactive mode with `-p`, tools that need terminal input, such as multiple-choice questions and plan mode approval, are disabled so the session never stalls waiting for input.
 

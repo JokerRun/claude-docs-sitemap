@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/deep-links
-fetched_at: 2026-07-30T03:08:06.608103Z
-sha256: e4c1f3566e7517c2909702fe665ff20abf935a338a2a298a90f5ecfdac002a50
+fetched_at: 2026-08-08T02:41:37.599145Z
+sha256: 360588087823f795e0763b82411553349f2f4f1d9fc22b71beb6f398ba9d68f2
 ---
 
 > ## Documentation Index
@@ -80,7 +80,7 @@ Investigate the failed deploy of payments-api.
 Check recent commits to main and the last successful build.
 ```
 
-You can edit the prompt before pressing Enter to send it. If you have no local clone of the repository, the session opens in your home directory instead. See [Choose between `cwd` and `repo`](#choose-between-cwd-and-repo) for how the local path is selected when you have multiple clones or worktrees.
+You can edit the prompt before pressing Enter to send it. See [Choose between `cwd` and `repo`](#choose-between-cwd-and-repo) for how the local path is selected when you have multiple clones or worktrees.
 
 ### Choose between `cwd` and `repo`
 

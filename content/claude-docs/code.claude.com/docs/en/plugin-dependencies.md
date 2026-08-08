@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-dependencies
-fetched_at: 2026-08-07T03:04:51.007486Z
-sha256: 7b533282acfd866384bb2a6035cccde3ae1503207a26623b9a2d24b858406cca
+fetched_at: 2026-08-08T02:41:37.599145Z
+sha256: d0cfa37f9bacf8149ae8d3c086d6edacac419acc21956b4f10db58349bc315b8
 ---
 
 > ## Documentation Index
@@ -141,7 +141,7 @@ A marketplace added as a local folder path resolves tags the same way when the f
 The resolved tag's semver is recorded separately from `plugin.json`'s `version`, so constraint checks use the tag that was actually fetched even if `plugin.json` at that commit has a stale value. The cache directory name for a tag-resolved install includes a 12-character commit-SHA suffix, so if a maintainer force-moves a tag to a different commit, the next install gets a fresh cache directory instead of reusing stale content.
 
 <Note>
-  For `npm` marketplace sources, the constraint does not control which version is fetched, since tag-based resolution applies only to git-backed sources. The constraint is still checked at load time, and the dependent plugin is disabled with `dependency-version-unsatisfied` if the installed version does not satisfy it.
+  For dependencies with an `npm` [plugin source](/docs/en/plugin-marketplaces#plugin-sources), the constraint does not control which version is fetched, since tag-based resolution applies only to git-backed sources. The constraint is still checked at load time, and the dependent plugin is disabled with `dependency-version-unsatisfied` if the installed version does not satisfy it.
 </Note>
 
 ## How constraints interact

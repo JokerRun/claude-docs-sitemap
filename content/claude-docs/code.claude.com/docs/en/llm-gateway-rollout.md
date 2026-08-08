@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-rollout
-fetched_at: 2026-08-06T03:07:37.547989Z
-sha256: 780dcb5fd1b30b568b0722c71dc641d928fa8a06278ab875e9c23de0c9e8850a
+fetched_at: 2026-08-08T02:41:37.599145Z
+sha256: 34066917b0cefef20af493e2d04feb11281925014bf434b44d5b134876ba1157
 ---
 
 > ## Documentation Index
@@ -42,7 +42,7 @@ Whichever product provides the gateway, it must:
 * **Return upstream errors unmodified**: Claude Code's automatic recovery matches on error wording, so wrapping errors in the gateway's own envelope breaks it
 * **Exempt the path from request-body WAF inspection**: Claude Code prompts carry source code and XML-style tags that match cross-site-scripting body rules; a WAF in front of the gateway returns `403` on real sessions while short test requests pass
 
-Optionally, serve `GET /v1/models` so Claude Code can populate the model picker from your gateway with [model discovery](/docs/en/llm-gateway-protocol#model-discovery).&#x20;
+Optionally, serve `GET /v1/models` so Claude Code can populate the model picker from your gateway with [model discovery](/docs/en/llm-gateway-protocol#model-discovery).
 
 ## Rollout steps
 

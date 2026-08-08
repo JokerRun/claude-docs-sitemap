@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/prompt-caching
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: f9ce04d1c0ad3ad0358965c34958e7c63bfb02cefd29bf1f82036da1c5d838e7
+fetched_at: 2026-08-08T02:41:37.599145Z
+sha256: 724abe6b712ff95cb21d0cadecb422a67265deed983da24d8b1206e768af0f5c
 ---
 
 > ## Documentation Index
@@ -200,7 +200,7 @@ The time to live (TTL) controls how long a gap the cache survives. The API offer
 
 On a Claude subscription, Claude Code requests the one-hour TTL automatically, so the cache survives breaks of up to an hour.
 
-If you've gone over your plan's usage limit and Claude Code is drawing on [usage credits](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans), you are billed for that usage. Cache writes cost more at the one-hour TTL than at the five-minute TTL, so Claude Code automatically drops to the shorter one.
+If you've gone over your plan's usage limit and Claude Code is drawing on [usage credits](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans), you are billed for that usage. Cache writes cost more at the one-hour TTL than at the five-minute TTL, so Claude Code automatically drops to the shorter one. To keep the one-hour TTL while drawing on usage credits, set `ENABLE_PROMPT_CACHING_1H=1`.
 
 ### On an API key or third-party provider
 

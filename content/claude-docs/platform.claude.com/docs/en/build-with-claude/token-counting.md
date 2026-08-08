@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/token-counting
-fetched_at: 2026-08-06T03:07:37.547989Z
-sha256: 09b65155c26273802ade85593b04e8ff402a19032ab530f91695474dd298e524
+fetched_at: 2026-08-08T02:41:37.599145Z
+sha256: 45a25930a1fbc0c80be80337c25844b1c3562a31d14cef331e9cfced8342ebb6
 ---
 
 # Token counting
@@ -1414,7 +1414,7 @@ Claude Fable 5 and Claude Mythos 5 use the tokenizer introduced with Claude Opus
 
 ## Pricing and rate limits
 
-Token counting is **free to use** but subject to requests per minute rate limits based on your [usage tier](/docs/en/api/rate-limits#rate-limits). If you need higher limits, use **Request rate limit increase** on the [Limits](/settings/limits) page.
+Token counting is **free to use** but subject to requests per minute rate limits based on your [usage tier](/docs/en/api/rate-limits#rate-limits). If you need higher limits, use **Request rate limit increase** on the [Rate limits](/settings/limits) page.
 
 | Usage tier | Requests per minute (RPM) |
 | ---------- | ------------------------- |

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/server-managed-settings
-fetched_at: 2026-08-07T03:04:51.007486Z
-sha256: 952eb7132d72f20ac76e49be6a29af67ea0bdd303820cbfe570e02bf5fa2e7b1
+fetched_at: 2026-08-08T02:41:37.599145Z
+sha256: e93c8920fb33e419a926ad5d92a810130a1f155762f12766a1596841af7b24fa
 ---
 
 > ## Documentation Index
@@ -38,7 +38,7 @@ Claude Code supports two approaches for centralized configuration. Server-manage
 | **Server-managed settings**                                  | Organizations without MDM, or users on unmanaged devices | Settings delivered from Anthropic's servers at authentication time                                        |
 | **[Endpoint-managed settings](/docs/en/settings#settings-files)** | Organizations with MDM or endpoint management            | Settings deployed to devices via MDM configuration profiles, registry policies, or managed settings files |
 
-If your devices are enrolled in an MDM or endpoint management solution, endpoint-managed settings provide stronger security guarantees because the settings file can be protected from user modification at the OS level. Endpoint-managed settings don't reach [cloud sessions](/docs/en/model-config#surface-coverage), so organizations using Claude Code on the web should configure server-managed settings as well.
+If your devices are enrolled in an MDM or endpoint management solution, endpoint-managed settings provide stronger security guarantees because the settings file can be protected from user modification at the OS level. Endpoint-managed settings don't reach [cloud sessions](/docs/en/model-config#surface-coverage) in Anthropic-hosted environments, so organizations using Claude Code on the web should configure server-managed settings as well. Sessions in a [self-hosted environment](/docs/en/self-hosted-environments) read the managed settings file in the runner image, but only when server-managed settings deliver no keys, per the [settings precedence](#settings-precedence) below and its [per-key exceptions](#per-key-exceptions-across-managed-sources).
 
 ## Configure server-managed settings
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/github
-fetched_at: 2026-08-07T03:04:51.007486Z
-sha256: bad403cdf10891496b3bb3737832f1c38047c54beff3d87a0dcd8e0fafc3986e
+fetched_at: 2026-08-08T02:41:37.599145Z
+sha256: f41a6aeb1bd08d41103eceeda233b4540d5db5c9f7696dc7fa837589e1e75d21
 ---
 
 # Accessing GitHub
@@ -385,6 +385,8 @@ Then create a session that mounts the GitHub repository:
 </CodeGroup>
 
 The `resources[].authorization_token` authenticates the repository clone operation and is not echoed in API responses.
+
+Mounting a repository also loads any skills stored in its root `.claude/skills` directory. Skills are discovered once per session, from the repository state checked out at session start. See [Load skills from a GitHub repository](/docs/en/managed-agents/skills#load-skills-from-a-github-repository).
 
 ## Token permissions
 

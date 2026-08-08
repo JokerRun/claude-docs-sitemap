@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/statusline
-fetched_at: 2026-08-07T03:04:51.007486Z
-sha256: 6567501c3752fc41525d561e9300eea6ab2a50baf5f052854bf33540416e0233
+fetched_at: 2026-08-08T02:41:37.599145Z
+sha256: bb650a787ec21ee82649bce6f0d4ddbd31a8b77d66acb4ab6c698c188b98bc59
 ---
 
 > ## Documentation Index
@@ -187,7 +187,7 @@ Claude Code sends the following JSON fields to your script via stdin:
 | `cost.total_duration_ms`                                                         | Total wall-clock time since the session started, in milliseconds                                                                                                                                                                                                                                                                 |
 | `cost.total_api_duration_ms`                                                     | Total time spent waiting for API responses in milliseconds                                                                                                                                                                                                                                                                       |
 | `cost.total_lines_added`, `cost.total_lines_removed`                             | Lines of code changed                                                                                                                                                                                                                                                                                                            |
-| `context_window.total_input_tokens`, `context_window.total_output_tokens`        | Token counts currently in the context window, from the most recent API response. Input includes cache reads and writes. Before v2.1.132 these were cumulative session totals                                                                                                                                                     |
+| `context_window.total_input_tokens`, `context_window.total_output_tokens`        | Token counts currently in the context window, from the most recent API response. Input includes cache reads and writes                                                                                                                                                                                                           |
 | `context_window.context_window_size`                                             | Maximum context window size in tokens. 200000 by default, or 1000000 for models with extended context.                                                                                                                                                                                                                           |
 | `context_window.used_percentage`                                                 | Pre-calculated percentage of context window used                                                                                                                                                                                                                                                                                 |
 | `context_window.remaining_percentage`                                            | Pre-calculated percentage of context window remaining                                                                                                                                                                                                                                                                            |
@@ -325,7 +325,7 @@ Claude Code sends the following JSON fields to your script via stdin:
 
 ### Context window fields
 
-The `context_window` object describes the live context window from the most recent API response. As of v2.1.132, `total_input_tokens` and `total_output_tokens` reflect current context usage, not cumulative session totals.
+The `context_window` object describes the live context window from the most recent API response.
 
 * **Combined totals** (`total_input_tokens`, `total_output_tokens`): tokens currently in the context window. `total_input_tokens` is the sum of `input_tokens`, `cache_creation_input_tokens`, and `cache_read_input_tokens`; `total_output_tokens` is the output tokens from the most recent response. Both are `0` before the first API response.
 * **Per-component usage** (`current_usage`): the same token counts broken out by category. Use this when you need cache hits separate from fresh input.

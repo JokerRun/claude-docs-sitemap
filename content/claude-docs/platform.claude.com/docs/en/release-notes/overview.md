@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/overview
-fetched_at: 2026-08-06T03:07:37.547989Z
-sha256: 13a2f7269216269f0390390a0a1c11cfc2d22757f8db6f1c3dad36b3de04c2c0
+fetched_at: 2026-08-08T02:41:37.599145Z
+sha256: cd324e0b516c05336f9d2bb7de9e9d525a7819efdf584424b3265ecfe13c3dfb
 ---
 
 # Claude Platform release notes
@@ -16,6 +16,13 @@ Updates to the Claude Platform, including the Claude API, client SDKs, and the C
 
   For updates to Claude Code, see the [complete CHANGELOG.md](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) in the `claude-code` repository.
 </Tip>
+
+### August 7, 2026
+
+* You can now set a budget on a Claude Managed Agents session: a hard cap on the session's spend, priced at public list rates. A session that reaches its budget pauses with the `budget_reached` stop reason instead of starting new model requests; changing or removing the budget resumes it. Deployments accept the same budget and apply it to each session they start. See [Session budgets](/docs/en/managed-agents/budgets).
+* You can now give a Claude Managed Agents session an advisor: a model at least as capable as the agent's own that the session's primary thread can consult mid-turn for strategic guidance. Configure it as a `{"type": "advisor"}` entry in the agent's multiagent roster, naming the `model` to consult. See [Give the session an advisor](/docs/en/managed-agents/multiagent-orchestration#give-the-session-an-advisor).
+* You can now control where model inference runs for a Claude Managed Agents agent. Set `inference_geo` inside the `model` object when you [create the agent](/docs/en/managed-agents/agent-setup#create-an-agent), or override it for a single session. See [Data residency](/docs/en/manage-claude/data-residency) for the available geos and pricing.
+* Claude Managed Agents sessions can now [load skills from a GitHub repository](/docs/en/managed-agents/skills#load-skills-from-a-github-repository). When a session [mounts a repository](/docs/en/managed-agents/github), any skills in its root `.claude/skills` directory are discovered automatically at session start and available to the agent for that session.
 
 ### August 5, 2026
 

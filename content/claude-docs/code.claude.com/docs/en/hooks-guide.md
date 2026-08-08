@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-08-07T03:04:51.007486Z
-sha256: de80ec951b12fdb08a1c12b7c0ebfb0fba0a40beebd89a0bed6d3952c3651e03
+fetched_at: 2026-08-08T02:41:37.599145Z
+sha256: 44481165eb466f1a3e7f27dd1375642b02f2b9e71df319085521af8f8e485f6d
 ---
 
 > ## Documentation Index
@@ -679,6 +679,7 @@ Each event type matches on a specific field:
 | `PreCompact`, `PostCompact`                                                                                                                                     | what triggered compaction                                             | `manual`, `auto`                                                                                                                                                                    |
 | `SubagentStop`                                                                                                                                                  | agent type                                                            | same values as `SubagentStart`                                                                                                                                                      |
 | `ConfigChange`                                                                                                                                                  | configuration source                                                  | `user_settings`, `project_settings`, `local_settings`, `policy_settings`, `skills`                                                                                                  |
+| `DirectoryAdded`                                                                                                                                                | how the directory was added                                           | `slash_command`, `register_repo_root`                                                                                                                                               |
 | `StopFailure`                                                                                                                                                   | error type                                                            | `rate_limit`, `overloaded`, `authentication_failed`, `oauth_org_not_allowed`, `billing_error`, `invalid_request`, `model_not_found`, `server_error`, `max_output_tokens`, `unknown` |
 | `InstructionsLoaded`                                                                                                                                            | load reason                                                           | `session_start`, `nested_traversal`, `path_glob_match`, `include`, `compact`                                                                                                        |
 | `Elicitation`                                                                                                                                                   | MCP server name                                                       | your configured MCP server names                                                                                                                                                    |

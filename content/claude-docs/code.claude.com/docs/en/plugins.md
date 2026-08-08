@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins
-fetched_at: 2026-08-07T03:04:51.007486Z
-sha256: 6148df61d14d4cb1f3a6452ed0a23550053422160081f02416892567aad16915
+fetched_at: 2026-08-08T02:41:37.599145Z
+sha256: 98f8ce43bab1f0e2821443f37ece219c8c371a7bead0397d4f12bc5403f19848
 ---
 
 > ## Documentation Index
@@ -73,12 +73,12 @@ This quickstart walks you through creating a plugin with a custom skill. You'll 
     }
     ```
 
-    | Field         | Purpose                                                                                                                                                                                                                                                        |
-    | :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | `name`        | Unique identifier and skill namespace. Skills are prefixed with this (e.g., `/my-first-plugin:hello`).                                                                                                                                                         |
-    | `description` | Shown in the plugin manager when browsing or installing plugins.                                                                                                                                                                                               |
-    | `version`     | Optional. If set, users only receive updates when you bump this field. If omitted and your plugin is distributed via git, the commit SHA is used and every commit counts as a new version. See [version management](/docs/en/plugins-reference#version-management). |
-    | `author`      | Optional. Helpful for attribution.                                                                                                                                                                                                                             |
+    | Field         | Purpose                                                                                                                                                                                      |
+    | :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `name`        | Unique identifier and skill namespace. Skills are prefixed with this (e.g., `/my-first-plugin:hello`).                                                                                       |
+    | `description` | Shown in the plugin manager when browsing or installing plugins.                                                                                                                             |
+    | `version`     | Optional. If set, users only receive updates when you bump this field. If omitted, the version comes from the next source in [version management](/docs/en/plugins-reference#version-management). |
+    | `author`      | Optional. Helpful for attribution.                                                                                                                                                           |
 
     For additional fields like `homepage`, `repository`, and `license`, see the [full manifest schema](/docs/en/plugins-reference#plugin-manifest-schema).
   </Step>
@@ -350,7 +350,7 @@ If your plugin isn't working as expected:
 When your plugin is ready to share:
 
 1. **Add documentation**: Include a `README.md` with installation and usage instructions
-2. **Choose a versioning strategy**: Decide whether to set an explicit `version` or rely on the git commit SHA. See [version management](/docs/en/plugins-reference#version-management)
+2. **Choose a versioning strategy**: Decide whether to set an explicit `version` or rely on the fallback described in [version management](/docs/en/plugins-reference#version-management).
 3. **Create or use a marketplace**: Distribute through [plugin marketplaces](/docs/en/plugin-marketplaces) for installation
 4. **Test with others**: Have team members test the plugin before wider distribution
 

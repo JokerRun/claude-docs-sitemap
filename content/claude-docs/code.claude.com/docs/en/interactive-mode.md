@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: 8bb5a812045c5a9dff1ff3b7e246d5f302a38992f5adc63c3989698b3a738836
+fetched_at: 2026-08-08T02:41:37.599145Z
+sha256: 4281baa14a6befe1f13b27ef9ae94bc35552ee185fb23468218d880cb53e4e80
 ---
 
 > ## Documentation Index
@@ -49,7 +49,7 @@ sha256: 8bb5a812045c5a9dff1ff3b7e246d5f302a38992f5adc63c3989698b3a738836
 | `Esc` + `Esc`                                                                                | Clear input draft, or rewind                                                                                                                               | When the prompt input contains text, double `Esc` clears it and saves the draft to history so `Up` recalls it. When the input is empty, double `Esc` opens the [rewind menu](/docs/en/checkpointing) to restore or summarize code and conversation from a previous point. Before v2.1.216, double `Esc` at an empty prompt could stop opening the menu for the rest of a long-running session that used background tasks                      |
 | `Shift+Tab`, or `Alt+M` on Windows when the Node or Bun runtime doesn't enable VT input mode | Cycle permission modes                                                                                                                                     | Cycle through `default` (labeled Manual in the mode indicator), `acceptEdits`, `plan`, and any modes you have enabled, such as `auto` or `bypassPermissions`. See [permission modes](/docs/en/permission-modes).                                                                                                                                                                                                                              |
 | `Option+P` (macOS) or `Alt+P` (Windows/Linux)                                                | Switch model                                                                                                                                               | Switch models without clearing your prompt                                                                                                                                                                                                                                                                                                                                                                                               |
-| `Option+T` (macOS) or `Alt+T` (Windows/Linux)                                                | Toggle extended thinking                                                                                                                                   | Enable or disable extended thinking mode. Has no effect on Fable 5, which always uses extended thinking. As of v2.1.132 this shortcut works on macOS without configuring Option as Meta                                                                                                                                                                                                                                                  |
+| `Option+T` (macOS) or `Alt+T` (Windows/Linux)                                                | Toggle extended thinking                                                                                                                                   | Enable or disable extended thinking mode. Has no effect on Fable 5, which always uses extended thinking. Works on macOS without configuring Option as Meta                                                                                                                                                                                                                                                                               |
 | `Option+O` (macOS) or `Alt+O` (Windows/Linux)                                                | Toggle fast mode                                                                                                                                           | Enable or disable [fast mode](/docs/en/fast-mode)                                                                                                                                                                                                                                                                                                                                                                                             |
 
 ### Text editing
@@ -246,12 +246,13 @@ Block-wise visual mode with `Ctrl+V` is not supported.
 
 ## Command history
 
-Claude Code maintains command history for the current session:
+Claude Code keeps a history of the prompts you type, and Up-arrow recall reaches prompts from past sessions of the same project:
 
 * Input history is stored per working directory
-* Input history resets when you run `/clear` to start a new session. The previous session's conversation is preserved and can be resumed.
+* Running `/clear` starts a new session: recall then lists the new session's prompts first, with earlier sessions' prompts after them. The previous session's conversation is preserved and can be resumed.
 * Submitting the same prompt twice in a row records one history entry, so pressing Up steps to the previous distinct prompt
 * Use Up/Down arrows to navigate (see keyboard shortcuts above)
+* When you recall a prompt that included pasted text, Claude Code sends the full pasted content again when you resubmit. If the content has since been [cleaned up](/docs/en/claude-directory#cleaned-up-automatically), Claude Code doesn't send the literal `[Pasted text #N]` string; see [Paste large content](/docs/en/terminal-config#paste-large-content) for what happens to the prompt
 * History expansion with `!` is disabled by default
 
 ### Reverse search with Ctrl+R

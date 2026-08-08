@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/workflows
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: 991975639184580ea32e4e0023c2bdf4c3550ef1584e14e7059309df64e4f136
+fetched_at: 2026-08-08T02:41:37.599145Z
+sha256: 5e2e750ad5a2112c67cb1d79f5fe62eb49517ea5dcb70d881e4603869bec8145
 ---
 
 > ## Documentation Index
@@ -322,12 +322,13 @@ The runtime tracks each agent's result as the run progresses, which is what make
 
 The runtime applies the following constraints:
 
-| Constraint                                                           | Why                                                                                                            |
-| :------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------- |
-| No mid-run user input                                                | Only agent permission prompts can pause a run. For sign-off between stages, run each stage as its own workflow |
-| No direct filesystem or shell access from the workflow itself        | Agents read, write, and run commands. The script coordinates the agents                                        |
-| Up to 16 concurrent agents, fewer on machines with limited CPU cores | Bounds local resource use                                                                                      |
-| 1,000 agents total per run                                           | Prevents runaway loops                                                                                         |
+| Constraint                                                                       | Why                                                                                                            |
+| :------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------- |
+| No mid-run user input                                                            | Only agent permission prompts can pause a run. For sign-off between stages, run each stage as its own workflow |
+| No direct filesystem or shell access from the workflow itself                    | Agents read, write, and run commands. The script coordinates the agents                                        |
+| No module loading: a script that contains `import()` fails before the run starts | The script body is plain JavaScript. Put work that needs a library in an agent's task                          |
+| Up to 16 concurrent agents, fewer on machines with limited CPU cores             | Bounds local resource use                                                                                      |
+| 1,000 agents total per run                                                       | Prevents runaway loops                                                                                         |
 
 ## Manage runs
 
@@ -367,6 +368,8 @@ Every agent in a workflow uses your session's model unless the script routes a s
 
 * Check `/model` before a large run if you usually switch to a smaller model for routine work
 * Ask Claude to use a smaller model for stages that don't need the strongest one when you describe the task
+
+When your organization's [`availableModels` allowlist](/docs/en/model-config#restrict-model-selection) blocks a model the script requests for an agent, that agent runs on a substituted model instead, following the same [substitution rules as subagents](/docs/en/sub-agents#choose-a-model). The run's progress view in [`/workflows`](#watch-the-run) shows a warning naming both the requested and substituted models.
 
 ### Set a size guideline
 

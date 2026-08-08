@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sessions
-fetched_at: 2026-08-07T03:04:51.007486Z
-sha256: df9095e8a2a186f2be90a40fb235674279b848ff4aa41e755f9ae7e1dc6fb487
+fetched_at: 2026-08-08T02:41:37.599145Z
+sha256: 10073ff31800d4ffba991fd72f9b7fd6e1a54101e062a7696353f2c63c25625e
 ---
 
 > ## Documentation Index
@@ -31,7 +31,7 @@ Sessions are saved continuously to [local transcript files](#export-and-locate-s
 
 Sessions created with [`claude -p`](/docs/en/headless) or the [Agent SDK](/docs/en/agent-sdk/overview) don't appear in the session picker, but you can still resume one by passing its session ID to `claude --resume <session-id>`.
 
-You can run `claude --resume <session-id>` from any directory: Claude Code looks for the ID in the current project directory and its git worktrees first, then in every other project on this machine, so it finds a session that started elsewhere or moved with [`/cd`](/docs/en/commands). The cross-project search resolves the ID only when exactly one other project holds a transcript for it, so a hand-copied duplicate makes Claude Code report not-found rather than resume an arbitrary copy. If no stored session matches the ID, Claude Code reports `No conversation found with session ID: <session-id>`. Before v2.1.223, the lookup stopped at the current project directory and its git worktrees, so you had to resume from the directory the session last worked in.
+You can run `claude --resume <session-id>` from any directory: Claude Code looks for the ID in the current project directory and its git worktrees first, then in every other project on this machine, so it finds a session that started elsewhere or moved with [`/cd`](/docs/en/commands). The cross-project search resolves the ID only when exactly one other project holds a transcript with messages for it, so a hand-copied duplicate makes Claude Code report not-found rather than resume an arbitrary copy. If no stored session matches the ID, Claude Code reports `No conversation found with session ID: <session-id>`. Before v2.1.223, the lookup stopped at the current project directory and its git worktrees, so you had to resume from the directory the session last worked in.
 
 ### What a resumed session restores
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/routines
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: 5867b84cfae2e24df67880c5bbb09d4dee3c51991102d5f5df08bc50dbe5c898
+fetched_at: 2026-08-08T02:41:37.599145Z
+sha256: 74b1495a8d0c580b27552868e50b5077af0d231f8ba8d2c3565552207a8812f8
 ---
 
 > ## Documentation Index
@@ -11,13 +11,13 @@ sha256: 5867b84cfae2e24df67880c5bbb09d4dee3c51991102d5f5df08bc50dbe5c898
 
 # Automate work with routines
 
-> Put Claude Code on autopilot. Define routines that run on a schedule, trigger on API calls, or react to GitHub events from Anthropic-managed cloud infrastructure.
+> Put Claude Code on autopilot. Define routines that run on a schedule, trigger on API calls, or react to GitHub events from cloud infrastructure.
 
 <Note>
   Routines are in research preview. Behavior, limits, and the API surface may change.
 </Note>
 
-A routine is a saved Claude Code configuration: a prompt, one or more repositories, and a set of [connectors](/docs/en/mcp), packaged once and run automatically. Routines execute on Anthropic-managed cloud infrastructure, so they keep working when your laptop is closed.
+A routine is a saved Claude Code configuration: a prompt, one or more repositories, and a set of [connectors](/docs/en/mcp), packaged once and run automatically. Routines execute on Anthropic-managed cloud infrastructure, or on your organization's [self-hosted environment](/docs/en/self-hosted-environments) when routed there, so they keep working when your laptop is closed.
 
 Each routine can have one or more triggers attached to it:
 
@@ -48,8 +48,6 @@ Each example pairs a trigger type with the kind of work routines are suited to: 
 **Docs drift.** A schedule trigger runs weekly. The routine scans merged PRs since the last run, flags documentation that references changed APIs, and opens update PRs against the docs repository for an editor to review.
 
 **Library port.** A GitHub trigger runs on `pull_request.closed` filtered to merged PRs in one SDK repository. The routine ports the change to a parallel SDK in another language and opens a matching PR, keeping the two libraries in step without a human re-implementing each change.
-
-The sections below walk through creating a routine and configuring each of these trigger types.
 
 ## Create a routine
 
@@ -163,7 +161,7 @@ Create a one-off run from the CLI by describing the time in natural language. Cl
 
 The same local-to-UTC conversion as recurring schedules applies to one-off timestamps.
 
-One-off runs do not count against the daily routine run cap. They consume your plan's regular subscription usage like any other session. See [Usage and limits](#usage-and-limits) for details.
+One-off runs do not count against the daily routine run cap. See [Usage and limits](#usage-and-limits) for details.
 
 ### Add an API trigger
 
@@ -234,7 +232,7 @@ The `/fire` endpoint is available to claude.ai users only and is not part of the
 
 ### Add a GitHub trigger
 
-A GitHub trigger starts a new session automatically when a matching event occurs on a connected repository. Each matching event starts its own session.
+A GitHub trigger starts a new session automatically when a matching event occurs on a connected repository. Claude Code doesn't reuse sessions across events, so two PR updates produce two independent sessions.
 
 <Note>
   During the research preview, GitHub webhook events are subject to per-routine and per-account hourly caps. Events beyond the limit are dropped until the window resets. See your current limits at [claude.ai/code/routines](https://claude.ai/code/routines).
@@ -255,7 +253,7 @@ GitHub triggers are configured from the web UI only.
     The Claude GitHub App must be installed on the repository you want to subscribe to. The trigger setup prompts you to install it if it isn't already.
 
     <Note>
-      Running `/web-setup` in the CLI grants repository access for cloning, but it does not install the Claude GitHub App and does not enable webhook delivery. GitHub triggers require installing the Claude GitHub App, which the trigger setup prompts you to do.
+      Running `/web-setup` in the CLI grants repository access for cloning, but it does not install the Claude GitHub App and does not enable webhook delivery.
     </Note>
   </Step>
 
@@ -297,10 +295,6 @@ A few example filter combinations:
 * **Auth module review**: base branch `main`, head branch contains `auth-provider`. Sends any PR that touches authentication to a focused reviewer.
 * **Ready-for-review only**: is draft is `false`. Skips drafts so the routine only runs when the PR is ready for review.
 * **Label-gated backport**: labels include `needs-backport`. Triggers a port-to-another-branch routine only when a maintainer tags the PR.
-
-#### How sessions map to events
-
-Each matching GitHub event starts a new session. Session reuse across events is not available for GitHub-triggered routines, so two PR updates produce two independent sessions.
 
 ## Manage routines
 
@@ -383,7 +377,7 @@ Routines draw down subscription usage the same way interactive sessions do. In a
 
 When a routine hits the daily cap or your subscription usage limit, organizations with usage credits turned on can keep running routines on metered overage. Without usage credits, additional runs are rejected until the window resets. Turn on usage credits at [claude.ai/settings/usage](https://claude.ai/settings/usage). On Team and Enterprise plans, an admin turns them on for the organization at [claude.ai/admin-settings/usage](https://claude.ai/admin-settings/usage).
 
-One-off runs do not count against the daily routine cap. They draw down your regular subscription usage like any other session, but they are exempt from the per-account daily routine run allowance.
+One-off runs do not count against the daily routine cap. They draw down your regular subscription usage like any other session.
 
 ## Troubleshooting
 

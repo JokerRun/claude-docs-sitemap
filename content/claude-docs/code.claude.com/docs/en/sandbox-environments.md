@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandbox-environments
-fetched_at: 2026-08-07T03:04:51.007486Z
-sha256: d2224bb6cf707f0bf73447eed1b49b457522871b965c8f5484b3353ed19fbc64
+fetched_at: 2026-08-08T02:41:37.599145Z
+sha256: a08ac4bb1709f06d6e431a8b68d6612ef515fe0618b61abcec4ef5ddf6d245b3
 ---
 
 > ## Documentation Index
@@ -61,7 +61,15 @@ Match your goal to a row below, then read the detail section that follows.
 
 [Permission modes](/docs/en/permission-modes) decide whether a tool call runs and whether you are prompted first. Isolation restricts what a command can access once it runs. The two work together: when a permission mode lets actions run without asking you, an isolation boundary limits what those actions can reach.
 
-When you pass `--dangerously-skip-permissions`, Claude acts without asking you first; you're only prompted for explicit [ask rules](/docs/en/permissions#manage-permissions), connector tools [your organization set to `ask`](/docs/en/mcp#organization-controls-on-connector-tools), MCP tools marked [`requiresUserInteraction`](/docs/en/mcp#require-approval-for-a-specific-tool), and removals targeting `/` or your home directory. With no prompts to catch mistakes, the isolation boundary you choose is what protects your system. Always run `--dangerously-skip-permissions` sessions inside a container, a VM, or the [sandbox runtime](#sandbox-runtime), so that file tools, MCP servers, and hooks are also inside the boundary. On Linux and macOS, Claude Code refuses to start with this flag when running as root, so run the container, VM, or sandbox runtime as a non-root user.
+When you pass `--dangerously-skip-permissions`, Claude acts without asking you first. Claude Code still prompts you only for:
+
+* Explicit [ask rules](/docs/en/permissions#manage-permissions)
+* Connector tools [your organization set to `ask`](/docs/en/mcp#organization-controls-on-connector-tools)
+* MCP tools marked [`requiresUserInteraction`](/docs/en/mcp#require-approval-for-a-specific-tool)
+* Removals targeting `/` or your home directory
+* The [cross-session messaging safeguards](/docs/en/permission-modes#skip-all-checks-with-bypasspermissions-mode)
+
+With no prompts to catch mistakes, the isolation boundary you choose is what protects your system. Always run `--dangerously-skip-permissions` sessions inside a container, a VM, or the [sandbox runtime](#sandbox-runtime), so that file tools, MCP servers, and hooks are also inside the boundary. On Linux and macOS, Claude Code refuses to start with this flag when running as root, so run the container, VM, or sandbox runtime as a non-root user.
 
 [Auto mode](/docs/en/permission-modes#eliminate-prompts-with-auto-mode) replaces the prompt with a classifier that reviews actions. The classifier is a per-action control, not an isolation boundary, so an isolation boundary still adds defense in depth for unattended runs, and is not required the way it is for `--dangerously-skip-permissions`.
 
@@ -160,7 +168,7 @@ Use this approach when you are evaluating untrusted code, when your security pol
 
 ## Claude Code on the web
 
-[Claude Code on the web](/docs/en/claude-code-on-the-web) runs each session in an isolated, Anthropic-managed virtual machine. A network proxy enforces a default allowlist, and a separate proxy holds your GitHub token outside the sandbox while issuing scoped credentials for repository access inside it.
+[Claude Code on the web](/docs/en/claude-code-on-the-web) runs each session in an isolated, Anthropic-managed virtual machine. A network proxy enforces a default allowlist, and a separate proxy holds your GitHub token outside the sandbox while issuing scoped credentials for repository access inside it. Sessions your organization routes to a [self-hosted environment](/docs/en/self-hosted-environments) run on infrastructure you provision instead, where isolation, egress control, and git credentials are your deployment's responsibility.
 
 Use this approach when you want full VM isolation without provisioning infrastructure yourself, or when you are delegating tasks from a device that does not have a local development environment. It requires a Claude subscription. When you launch a session from the web interface, you also need a connected GitHub account so the sandbox can clone your repository. When you launch from the CLI with `--cloud`, Claude Code can [bundle and upload your local repository](/docs/en/claude-code-on-the-web#send-local-repositories-without-github) instead if GitHub isn't connected. See [Claude Code on the web](/docs/en/claude-code-on-the-web) for plan availability and GitHub authentication options.
 
