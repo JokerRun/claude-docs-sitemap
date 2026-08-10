@@ -584,8 +584,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/env-vars",
     "local_path": "content/claude-docs/code.claude.com/docs/en/env-vars.md",
-    "fetched_at": "2026-08-08T02:41:37.599145Z",
-    "sha256": "1973917c95bf48a36e1bc4474c0bf5f498fdf7bb2afebee169c5767c40616bb7"
+    "fetched_at": "2026-08-10T02:50:33.173366Z",
+    "sha256": "5961f37b9369849f268b74e1afcc4305a58203c92b92b5f48c1a6d0b44a5f22d"
   },
   {
     "source": "code",
@@ -710,8 +710,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/interactive-mode",
     "local_path": "content/claude-docs/code.claude.com/docs/en/interactive-mode.md",
-    "fetched_at": "2026-08-08T02:41:37.599145Z",
-    "sha256": "4281baa14a6befe1f13b27ef9ae94bc35552ee185fb23468218d880cb53e4e80"
+    "fetched_at": "2026-08-10T02:50:33.173366Z",
+    "sha256": "4b4bb782f99f6db60cbfee917b58ddc76d8aa9b9fc94c0db0f218e4243c1ccf4"
   },
   {
     "source": "code",
@@ -1046,8 +1046,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/settings",
     "local_path": "content/claude-docs/code.claude.com/docs/en/settings.md",
-    "fetched_at": "2026-08-08T02:41:37.599145Z",
-    "sha256": "f668e49ff6c12c6c634ef1f8d44d5cb87158c811dba1aa04e191d1d229706292"
+    "fetched_at": "2026-08-10T02:50:33.173366Z",
+    "sha256": "20a7c3bf0a74995739cce6c52a0bb7af3232a8a93885bb8186d2be6ebf76b753"
   },
   {
     "source": "code",

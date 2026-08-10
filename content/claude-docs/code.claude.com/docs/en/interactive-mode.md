@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-08-08T02:41:37.599145Z
-sha256: 4281baa14a6befe1f13b27ef9ae94bc35552ee185fb23468218d880cb53e4e80
+fetched_at: 2026-08-10T02:50:33.173366Z
+sha256: 4b4bb782f99f6db60cbfee917b58ddc76d8aa9b9fc94c0db0f218e4243c1ccf4
 ---
 
 > ## Documentation Index
@@ -345,11 +345,16 @@ Suggestions are automatically skipped after the first turn of a conversation and
 
 In print mode they are off by default. Pass [`--prompt-suggestions`](/docs/en/cli-reference#cli-flags) with `-p "<prompt>" --output-format stream-json --verbose` to emit a `prompt_suggestion` message after each turn instead.
 
-To disable prompt suggestions entirely, set the environment variable or toggle the setting in `/config`:
+To disable prompt suggestions entirely, use any of the following:
 
-```bash theme={null}
-export CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION=false
-```
+* Turn off **Prompt suggestions** in `/config`
+* Set [`promptSuggestionEnabled`](/docs/en/settings#available-settings) to `false` in your settings file
+* Set the `CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION` environment variable to `false`, which takes precedence over the setting:
+  ```bash theme={null}
+  export CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION=false
+  ```
+
+To turn prompt suggestions off across an organization, set `promptSuggestionEnabled` to `false` in [managed settings](/docs/en/settings#settings-files). Also set `CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION` to `false` under the managed [`env`](/docs/en/settings#environment-variables) key so that users can't re-enable them with their own environment variable.
 
 ## Emoji shortcodes
 
