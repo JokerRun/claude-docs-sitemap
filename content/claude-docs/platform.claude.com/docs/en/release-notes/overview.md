@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/overview
-fetched_at: 2026-08-08T02:41:37.599145Z
-sha256: cd324e0b516c05336f9d2bb7de9e9d525a7819efdf584424b3265ecfe13c3dfb
+fetched_at: 2026-08-11T02:45:59.001861Z
+sha256: 0ecd25e66b0ec53fca22d819ec12a84db10af28241105c20d40d12e1d00e8e45
 ---
 
 # Claude Platform release notes
@@ -36,7 +36,7 @@ Updates to the Claude Platform, including the Claude API, client SDKs, and the C
 
 ### July 24, 2026
 
-* We've launched **Claude Opus 5** (`claude-opus-5`), a step-change improvement over Claude Opus 4.8. Claude Opus 5 supports a [1M token context window](/docs/en/build-with-claude/context-windows) (both the default and the maximum), 128k max output tokens, and [thinking](/docs/en/build-with-claude/thinking) on by default, at $5 / $25 per MTok, the same pricing as Claude Opus 4.8. It's available on the Claude API, [Claude in Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock), [Claude on Google Cloud](/docs/en/build-with-claude/claude-on-vertex-ai), and [Claude in Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry). See [What's new in Claude Opus 5](/docs/en/about-claude/models/whats-new-opus-5) for new features, behavior changes, and migration guidance, and the [models overview](/docs/en/about-claude/models/overview) for complete specs.
+* We've launched **Claude Opus 5** (`claude-opus-5`), a step-change improvement over Claude Opus 4.8. Claude Opus 5 supports a [1M token context window](/docs/en/build-with-claude/context-windows) (both the default and the maximum), 128k max output tokens, and [thinking](/docs/en/build-with-claude/thinking) on by default, at $5 / $25 USD per MTok, the same pricing as Claude Opus 4.8. It's available on the Claude API, [Claude in Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock), [Claude on Google Cloud](/docs/en/build-with-claude/claude-on-vertex-ai), and [Claude in Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry). See [What's new in Claude Opus 5](/docs/en/about-claude/models/whats-new-opus-5) for new features, behavior changes, and migration guidance, and the [models overview](/docs/en/about-claude/models/overview) for complete specs.
 * On Claude Opus 5, disabling thinking is allowed only at effort `high` or below: `thinking: {"type": "disabled"}` with effort `xhigh` or `max` returns a 400 error, a breaking change from Claude Opus 4.8. See [What's new in Claude Opus 5](/docs/en/about-claude/models/whats-new-opus-5#behavior-changes).
 * [Effort](/docs/en/build-with-claude/effort) is the primary control for steering Claude Opus 5: the model supports the full ladder (`low`, `medium`, `high`, `xhigh`, `max`), with `max` for capability-critical work.
 * Mid-conversation tool changes are now in beta on Claude Fable 5, Claude Mythos 5, Claude Opus 4.8, and Claude Opus 5: add or remove tools between turns of a conversation while preserving the prompt cache. Include the `mid-conversation-tool-changes-2026-07-01` beta header in your requests.

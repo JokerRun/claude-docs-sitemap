@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: b92c583d95ac987fd21d3211680d9d6350658cdad1896fcb61c47a9ce7b6cb17
+fetched_at: 2026-08-11T02:45:59.001861Z
+sha256: 391f1d717efd862bf000bc1cf5b37a133fda143d5fd5d886e32ac9ed011d0450
 ---
 
 # Claude in Amazon Bedrock (Opus 4.7 and later)
@@ -358,10 +358,10 @@ For the full feature list with Amazon Bedrock availability, see [Features overvi
 * [Thinking](/docs/en/build-with-claude/thinking)
 * [Tool use](/docs/en/agents-and-tools/tool-use/overview), including the [Bash tool](/docs/en/agents-and-tools/tool-use/bash-tool), [Computer use tool](/docs/en/agents-and-tools/tool-use/computer-use-tool), [Memory tool](/docs/en/agents-and-tools/tool-use/memory-tool), and [Text editor tool](/docs/en/agents-and-tools/tool-use/text-editor-tool)
 * [Citations](/docs/en/build-with-claude/citations)
-* [Structured outputs](/docs/en/build-with-claude/structured-outputs)
 
 ### Features not supported
 
+* [Structured outputs](/docs/en/build-with-claude/structured-outputs)
 * Input sources (URL sources for images and documents, Files API)
 * Server-side tools (code execution, web search, web fetch, advisor)
 * Agent infrastructure (Agent Skills, MCP connector, programmatic tool calling)

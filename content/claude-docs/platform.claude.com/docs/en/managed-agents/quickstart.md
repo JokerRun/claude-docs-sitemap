@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/quickstart
-fetched_at: 2026-08-07T03:04:51.007486Z
-sha256: bbc64e7ac17dba2573b23ee0470f4d76fcafe5e2c15548875a1e4b80d3b19eb9
+fetched_at: 2026-08-11T02:45:59.001861Z
+sha256: f0f4dcc79a069accea9d5984373e851a2896536145502224c99414143e0647f3
 ---
 
 # Get started with Claude Managed Agents
@@ -851,6 +851,24 @@ When you send a user event, Claude Managed Agents:
 4. **Streams events:** You receive real-time updates as the agent works.
 5. **Goes idle:** The agent emits a `session.status_idle` event when it has nothing more to do.
 
+## Build a complete app
+
+Each of these quickstarts pairs Claude Managed Agents with a popular chat framework to make a complete, runnable application. In each one, the framework renders the chat surface while a managed session runs the agent loop server-side: the session holds the transcript, runs tools in a sandbox, and streams events that the front end renders.
+
+<CardGroup cols={3}>
+  <Card title="Chat SDK" icon="github-logo" href="https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/chat-sdk">
+    A research analyst in a browser chat built with Vercel's Chat SDK. Each conversation is one persistent session that streams its reply while a live feed shows the tool calls. Swapping the Chat SDK adapter moves the same handler to Slack, Teams, Discord, or WhatsApp.
+  </Card>
+
+  <Card title="assistant-ui" icon="github-logo" href="https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/assistant-ui">
+    A spreadsheet analyst in a chat built from assistant-ui primitives. Sessions are the thread list, one reducer turns the session event log into messages and tool cards, and each bash command renders an inline Allow/Deny gate before it runs.
+  </Card>
+
+  <Card title="CopilotKit (AG-UI)" icon="github-logo" href="https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/copilot-kit-ag-ui">
+    A personal finance assistant in a CopilotKit chat. The AG-UI adapter for Claude Managed Agents maps each chat thread to a managed session and streams replies token by token, and custom tools render interactive charts inline in the conversation.
+  </Card>
+</CardGroup>
+
 ## Next steps
 
 <CardGroup cols={2}>
@@ -874,7 +892,7 @@ When you send a user event, Claude Managed Agents:
     Run your agent on a recurring cron schedule
   </Card>
 
-  <Card title="Chat SDK quickstart" icon="github-logo" href="https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/chat-sdk">
-    Explore a complete app that pairs Managed Agents with Vercel's Chat SDK
+  <Card title="Knowledge wiki quickstart" icon="github-logo" href="https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/knowledge-wiki">
+    Distill a document corpus once into a knowledge wiki, then answer repeated questions from it at a fraction of the cost
   </Card>
 </CardGroup>

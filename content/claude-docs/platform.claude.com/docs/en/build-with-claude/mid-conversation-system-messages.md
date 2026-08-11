@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 85d9f6bd1ae53376076577ce4d54f78c008a919b4847335ad950b1205adcc293
+fetched_at: 2026-08-11T02:45:59.001861Z
+sha256: 3af15ee313f01d35a60cbeac32409aed51e68abde0f88d54a9d3bd70af974b6f
 ---
 
 # Mid-conversation system messages and tool changes
@@ -24,9 +24,9 @@ This page covers two features: mid-conversation system messages, which are gener
 <Note>
   Mid-conversation system messages are available on the Claude API, [Claude in Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock), and [Google Cloud](/docs/en/build-with-claude/claude-on-vertex-ai).
 
-  This feature is available on Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), Claude Opus 4.8, and Claude Opus 5. No beta header is required for mid-conversation system messages. This feature is not available on Claude Sonnet 5; use the top-level `system` field instead.
+  This feature is available on Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), Claude Opus 4.8, Claude Opus 5, and Claude Sonnet 5. No beta header is required for mid-conversation system messages.
 
-  Mid-conversation tool changes are in beta and require the `mid-conversation-tool-changes-2026-07-01` beta header. They are available on Claude Fable 5, Claude Mythos 5, Claude Opus 4.8, and Claude Opus 5, on the Claude API, Amazon Bedrock, and Google Cloud.
+  Mid-conversation tool changes are in beta and require the `mid-conversation-tool-changes-2026-07-01` beta header. They are available on Claude Fable 5, Claude Mythos 5, Claude Opus 4.8, and Claude Opus 5, on the Claude API, Amazon Bedrock, and Google Cloud. They are not available on Claude Sonnet 5.
 </Note>
 
 ## Mid-conversation tool changes

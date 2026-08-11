@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/skills
-fetched_at: 2026-08-07T03:04:51.007486Z
-sha256: c3d7ad8eaf830abd0b854d766450edb9920876bba84b67ce5b7be508b4fe676d
+fetched_at: 2026-08-11T02:45:59.001861Z
+sha256: 81dd0e86f05cca1d91e758ccf0d5b26b1a72efd5eb6646c9a9f163e60723dcb7
 ---
 
 > ## Documentation Index
@@ -113,14 +113,6 @@ The list takes exact Skill names only. In the TypeScript SDK, `query()` throws b
 To enable every discovered Skill, pass `skills: "all"` rather than a wildcard.
 
 The `skills` option is a context filter, not a sandbox. Unlisted Skills are hidden from the model and rejected by the Skill tool, but their files remain on disk and are reachable through Read and Bash.
-
-## Skill Locations
-
-Skills are loaded from filesystem directories based on your `settingSources`/`setting_sources` configuration:
-
-* **Project Skills** (`.claude/skills/`): Shared with your team via git - loaded when `setting_sources` includes `"project"`
-* **User Skills** (`~/.claude/skills/`): Personal Skills across all projects - loaded when `setting_sources` includes `"user"`
-* **Plugin Skills**: Bundled with installed Claude Code plugins
 
 ## Creating Skills
 
@@ -284,7 +276,7 @@ Claude automatically invokes the relevant Skill if the description matches your 
   ```
 </CodeGroup>
 
-For more details on `settingSources`/`setting_sources`, see the [TypeScript SDK reference](/docs/en/agent-sdk/typescript#settingsource) or [Python SDK reference](/docs/en/agent-sdk/python#settingsource).
+For which skill directories each source loads, see the [filesystem sources table](/docs/en/agent-sdk/claude-code-features#control-filesystem-settings-with-settingsources). For more details on `settingSources`/`setting_sources`, see the [TypeScript SDK reference](/docs/en/agent-sdk/typescript#settingsource) or [Python SDK reference](/docs/en/agent-sdk/python#settingsource).
 
 **Check working directory**: The SDK loads Skills from `.claude/skills/` in the `cwd` option and in every parent directory up to the repository root. Ensure `cwd` points at or below the directory containing `.claude/skills/`, within the same repository:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/intro
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: 133301e1ab6a355e0d92fcbedd9d3ceaea100507bfd2c13091dab3658c16ed4c
+fetched_at: 2026-08-11T02:45:59.001861Z
+sha256: 7d4a747a8ef6843f6cc0e20d99b22b238271460f40aeebbb12a8040c8a1695ee
 ---
 
 # Intro to Claude
@@ -88,7 +88,7 @@ Anthropic provides developer tools to help you build and scale applications with
     Explore the full Claude API and client SDK documentation.
   </Card>
 
-  <Card title="Claude Cookbook" icon="chef-hat" href="https://platform.claude.com/cookbooks">
+  <Card title="Claude Cookbook" icon="chef-hat" href="https://platform.claude.com/cookbook">
     Learn with interactive Jupyter notebooks covering PDFs, embeddings, and more.
   </Card>
 </CardGroup>

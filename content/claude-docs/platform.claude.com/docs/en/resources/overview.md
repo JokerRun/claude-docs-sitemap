@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/overview
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 42c3b7524301d59ac480ddd82a771327c6901d2bfe95b150238d1bda0c090b52
+fetched_at: 2026-08-11T02:45:59.001861Z
+sha256: f9a860e9f2781bc005bfdf3f4c9df5d88e2e1dbe5a8b5402ab1f0232e999948f
 ---
 
 # Resources
@@ -94,7 +94,7 @@ Model cards, learning resources, and documentation formats optimized for AI inge
     Step-by-step lessons on building with Claude.
   </Card>
 
-  <Card title="Cookbook" icon="fork-knife" href="https://platform.claude.com/cookbooks">
+  <Card title="Cookbook" icon="fork-knife" href="https://platform.claude.com/cookbook">
     Replicable code samples and implementations.
   </Card>
 

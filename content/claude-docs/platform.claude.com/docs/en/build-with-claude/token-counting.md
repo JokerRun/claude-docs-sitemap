@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/token-counting
-fetched_at: 2026-08-08T02:41:37.599145Z
-sha256: 45a25930a1fbc0c80be80337c25844b1c3562a31d14cef331e9cfced8342ebb6
+fetched_at: 2026-08-11T02:45:59.001861Z
+sha256: c811368ecc8981f31662a8e49d73333973d0820598e9a82734e983bcc5674da2
 ---
 
 # Token counting
@@ -929,10 +929,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
   using Anthropic;
   using Anthropic.Models.Messages;
 
-  AnthropicClient client = new()
-  {
-      ApiKey = Environment.GetEnvironmentVariable("ANTHROPIC_API_KEY")
-  };
+  AnthropicClient client = new();
 
   var parameters = new MessageCountTokensParams
   {

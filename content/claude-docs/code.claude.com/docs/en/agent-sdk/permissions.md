@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/permissions
-fetched_at: 2026-08-08T02:41:37.599145Z
-sha256: 369f8e5daa76bb12d8963d7106c17a468123d9778f2bc2cd68dacfe9b84bd798
+fetched_at: 2026-08-11T02:45:59.001861Z
+sha256: 6c35f18f7d787b01aa3df973147c64bc937fff17fc0dbf22cb98b99a9edfac6d
 ---
 
 > ## Documentation Index
@@ -14,10 +14,6 @@ sha256: 369f8e5daa76bb12d8963d7106c17a468123d9778f2bc2cd68dacfe9b84bd798
 > Control how your agent uses tools with permission modes, hooks, and declarative allow/deny rules.
 
 The Claude Agent SDK provides permission controls to manage how Claude uses tools. Use permission modes and rules to define what's allowed automatically, and the [`canUseTool` callback](/docs/en/agent-sdk/user-input) to handle everything else at runtime.
-
-<Note>
-  This page covers permission modes and rules. To build interactive approval flows where users approve or deny tool requests at runtime, see [Handle approvals and user input](/docs/en/agent-sdk/user-input).
-</Note>
 
 ## How permissions are evaluated
 
@@ -57,7 +53,7 @@ When Claude requests a tool, the SDK checks permissions in this order:
 
 <img src="https://mintcdn.com/claude-code/_xqph1dUOslCOwsj/images/agent-sdk/permissions-flow-dark.svg?fit=max&auto=format&n=_xqph1dUOslCOwsj&q=85&s=e53a91e9059cbf51852b7cedb4dd4251" className="hidden dark:block" alt="Diagram of the six-step permission evaluation flow matching the steps above: a tool request passes through hooks, deny rules, ask rules, permission mode, allow rules, and canUseTool. Hooks, deny rules, and canUseTool can route down to Blocked; permission mode bypass, allow rules, and canUseTool can route up to Execute; ask rules route to canUseTool." width="1180" height="260" data-path="images/agent-sdk/permissions-flow-dark.svg" />
 
-As of v2.1.198, if you pass a `canUseTool` callback that this evaluation order can never reach, the TypeScript SDK emits a Node.js process warning once when the query is constructed. The warning's code is `CLAUDE_SDK_CAN_USE_TOOL_SHADOWED`. Two configurations trigger it:
+If you pass a `canUseTool` callback that this evaluation order can never reach, the TypeScript SDK emits a Node.js process warning once when the query is constructed. The warning's code is `CLAUDE_SDK_CAN_USE_TOOL_SHADOWED`. Two configurations trigger it:
 
 * `permissionMode: 'bypassPermissions'`, which auto-approves every call that reaches the permission mode step
 * Each bare `allowedTools` entry such as `"Read"`, which auto-approves that whole tool before the callback is consulted

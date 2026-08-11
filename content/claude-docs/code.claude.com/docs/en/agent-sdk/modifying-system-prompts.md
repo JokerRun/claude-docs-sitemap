@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/modifying-system-prompts
-fetched_at: 2026-07-29T03:07:01.598872Z
-sha256: 9321db6276134be8291673a6d719710e9a422c8b48eca1ba4a2573465c7f976e
+fetched_at: 2026-08-11T02:45:59.001861Z
+sha256: 7559ab339b0b2d8e1cf362a37288263f5dcd41f9db9ff48193611174afe43440
 ---
 
 > ## Documentation Index
@@ -14,13 +14,6 @@ sha256: 9321db6276134be8291673a6d719710e9a422c8b48eca1ba4a2573465c7f976e
 > Choose between the `claude_code` preset and a custom system prompt, and customize behavior with CLAUDE.md, output styles, append, or a fully custom prompt.
 
 System prompts define Claude's behavior, capabilities, and response style. Start from the `claude_code` preset for CLI or IDE-like coding tools where a human watches and steers the work. Write your own prompt for agents with a different surface, identity, or permission model.
-
-This page covers:
-
-* [How system prompts work](#how-system-prompts-work), with a decision table for choosing between the preset, the preset with `append`, and a custom prompt
-* [Customize agent behavior](#customize-agent-behavior) with CLAUDE.md files, output styles, `append`, or a custom string
-* [Compare the four approaches](#compare-the-four-approaches) by persistence, scope, and what they preserve
-* [Combine approaches](#combine-approaches) to layer customization methods together
 
 ## How system prompts work
 
@@ -363,8 +356,6 @@ The four customization methods differ in where they live, how they're shared, an
 ### When to use CLAUDE.md
 
 Use CLAUDE.md for instructions that should apply to every session in a project, regardless of which system prompt the session uses: coding standards, common commands, architecture context, and team conventions. CLAUDE.md is committed to your repository, so it stays in sync with the code it describes. See [When to add to CLAUDE.md](/docs/en/memory#when-to-add-to-claude-md) for full guidance.
-
-CLAUDE.md files load when the `project` setting source is enabled, which it is for default `query()` options. If you set `settingSources` in TypeScript or `setting_sources` in Python explicitly, include `'project'` to keep loading project-level CLAUDE.md.
 
 ### When to use output styles
 

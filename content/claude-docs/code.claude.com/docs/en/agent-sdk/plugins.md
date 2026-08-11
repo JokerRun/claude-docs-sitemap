@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/plugins
-fetched_at: 2026-07-29T03:07:01.598872Z
-sha256: 1d0da47cda713fd6af4338206e842e0211f46089baab49f7198745de02f12c77
+fetched_at: 2026-08-11T02:45:59.001861Z
+sha256: 60bcfbed7d65c7b1a4d2c7a2698ad003cdd3b8ada00c8f6fefd25674942df332
 ---
 
 > ## Documentation Index
@@ -299,30 +299,7 @@ my-plugin/
 └── .mcp.json                # MCP server definitions
 ```
 
-For detailed information on creating plugins, see:
-
-* [Plugins](/docs/en/plugins) - Complete plugin development guide
-* [Plugins reference](/docs/en/plugins-reference) - Technical specifications and schemas
-
-## Common use cases
-
-### Development and testing
-
-Load plugins during development without installing them globally:
-
-```typescript theme={null}
-plugins: [{ type: "local", path: "./dev-plugins/my-plugin" }];
-```
-
-### Project-specific extensions
-
-Include plugins in your project repository for team-wide consistency:
-
-```typescript theme={null}
-plugins: [{ type: "local", path: "./project-plugins/team-workflows" }];
-```
-
-### Multiple plugin sources
+## Multiple plugin sources
 
 Combine plugins from different locations:
 
@@ -361,14 +338,6 @@ If plugin skills don't work:
 1. **Use the namespace**: invoke plugin skills as `/plugin-name:skill-name`
 2. **Check init message**: verify the skill appears in the `skills` list with the correct namespace
 3. **Validate skill files**: ensure each skill has a `SKILL.md` file in its own subdirectory under `skills/`, for example `skills/my-skill/SKILL.md`
-
-### Path resolution issues
-
-If relative paths don't work:
-
-1. **Check working directory**: Relative paths are resolved from your current working directory
-2. **Use absolute paths**: For reliability, consider using absolute paths
-3. **Normalize paths**: Use path utilities to construct paths correctly
 
 ## See also
 

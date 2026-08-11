@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/usage-cost-api
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: e901e35bc6dcb1a2e9a078e4476199dadbffca46b4497f238bda65a9acc6983a
+fetched_at: 2026-08-11T02:45:59.001861Z
+sha256: 038c89aa2d16147122b453df2ea75404ff0521e10bcb40c474527c916d693450
 ---
 
 # Usage and Cost API
@@ -291,7 +291,7 @@ page=page_xyz..." \
 
 ## Common use cases
 
-Explore detailed implementations in [Claude Cookbook](https://platform.claude.com/cookbooks):
+Explore detailed implementations in [Claude Cookbook](https://platform.claude.com/cookbook):
 
 * **Daily usage reports:** Track token consumption trends
 * **Cost attribution:** Allocate expenses by workspace for chargebacks

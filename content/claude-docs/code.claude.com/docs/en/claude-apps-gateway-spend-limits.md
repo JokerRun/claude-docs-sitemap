@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-spend-limits
-fetched_at: 2026-08-08T02:41:37.599145Z
-sha256: 0263cbadaa219046b36951e27b1b1b6c4c5e66217614a910e6a75243175b63de
+fetched_at: 2026-08-11T02:45:59.001861Z
+sha256: ecdcab396b4882fcc4d2881a451ba5f15d92de01a5587b19ae57a076e9cf8797
 ---
 
 > ## Documentation Index
@@ -59,6 +59,8 @@ Send one of:
 On each `/v1/messages` request, the gateway resolves the developer's caps and period-to-date spend in one Postgres query. If they're over any cap, the request returns `429` with `error.type: billing_error` and the header `x-should-retry: false`. The message is `spend limit reached`, followed by your [`admin.blocked_message`](/docs/en/claude-apps-gateway-config#admin) if set. Caps reset on UTC calendar boundaries: daily at 00:00 UTC, weekly at 00:00 UTC on Monday, and monthly at 00:00 UTC on the first of the month.
 
 `/v1/messages/count_tokens` is exempt. Token counting is free, so it runs regardless of cap state.
+
+A running gateway serves a protocol description at `<public_url>/protocol` that lists the exact usage-limit response headers and the shape of the blocked `429`. Requires v2.1.227 or later.
 
 After each response, a usage meter reads token counts off the response as it streams to the client, prices them at USD list price, and increments Postgres counters for all three period buckets. The meter is a single reader on the stream, so the client's bytes are untouched and a metering failure doesn't break the response.
 

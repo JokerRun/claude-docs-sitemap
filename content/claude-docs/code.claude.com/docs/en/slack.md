@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/slack
-fetched_at: 2026-07-29T03:07:01.598872Z
-sha256: 878f148a01a2309622829a9b465cf4ccf8290c11e2aa0b8dd803127cbbe3710f
+fetched_at: 2026-08-11T02:45:59.001861Z
+sha256: b6da636facfc6ceb01989b9fcabccfce82d04eb348d4c5055130d901e839cc14
 ---
 
 > ## Documentation Index
@@ -16,7 +16,7 @@ sha256: 878f148a01a2309622829a9b465cf4ccf8290c11e2aa0b8dd803127cbbe3710f
 <Warning>
   This page documents the earlier Claude Code in Slack, which runs each session under an individual user's account.
 
-  * **Team and Enterprise plans:** Anthropic is retiring this version in favor of [Claude Tag](https://claude.com/docs/claude-tag/overview), which runs @Claude as your organization's shared identity with admin-configured access. Your existing Slack app and @Claude handle stay, and your Anthropic account team can tell you the cutover date. Set up Claude Tag for a new workspace; to move one that already uses this version, see [Migrate from the earlier Claude in Slack](https://claude.com/docs/claude-tag/admins/migrate-from-earlier).
+  * **Team and Enterprise plans:** Anthropic is retiring this version in favor of [Claude Tag](https://claude.com/product/tag), which runs @Claude as your organization's shared identity with admin-configured access. Your existing Slack app and @Claude handle stay, and your Anthropic account team can tell you the cutover date. [Set up Claude Tag](https://claude.com/docs/claude-tag/overview) for a new workspace; to move one that already uses this version, see [Migrate from the earlier Claude in Slack](https://claude.com/docs/claude-tag/admins/migrate-from-earlier).
   * **Pro and Max plans:** Claude Tag isn't available on individual plans, so this page remains the setup path.
 </Warning>
 

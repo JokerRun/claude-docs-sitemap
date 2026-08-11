@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/hooks
-fetched_at: 2026-08-06T03:07:37.547989Z
-sha256: f5087ca47269ea7ffa9a517fb0110d84f3bceb56d036a284d2b939e5a0d3bd95
+fetched_at: 2026-08-11T02:45:59.001861Z
+sha256: 7c4ee493ce3281b6e98c7abc5d3babfee9acfaff9f71978a3e809e0cba4f4e33
 ---
 
 > ## Documentation Index
@@ -20,8 +20,6 @@ Hooks are callback functions that run your code in response to agent events, lik
 * **Transform inputs and outputs** to sanitize data, inject credentials, or redirect file paths
 * **Require human approval** for sensitive actions like database writes or API calls
 * **Track session lifecycle** to manage state, clean up resources, or send notifications
-
-This guide covers how hooks work and how to configure them, with examples for common patterns like blocking tools, modifying inputs, and forwarding notifications.
 
 ## How hooks work
 

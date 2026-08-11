@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/custom-tools
-fetched_at: 2026-08-03T03:09:38.628809Z
-sha256: 7d4a06c54a06652f62d07fe2848dfe75151e53662e32f388833a1ce44aae4017
+fetched_at: 2026-08-11T02:45:59.001861Z
+sha256: 3617118a4cd66a51faabac2e194f7d0d87dc99e60feeb90634001b283107b9af
 ---
 
 > ## Documentation Index
@@ -14,8 +14,6 @@ sha256: 7d4a06c54a06652f62d07fe2848dfe75151e53662e32f388833a1ce44aae4017
 > Define custom tools with the Claude Agent SDK's in-process MCP server so Claude can call your functions, hit your APIs, and perform domain-specific operations.
 
 Custom tools extend the Agent SDK by letting you define your own functions that Claude can call during a conversation. Using the SDK's in-process MCP server, you can give Claude access to databases, external APIs, domain-specific logic, or any other capability your application needs.
-
-This guide covers how to define tools with input schemas and handlers, bundle them into an MCP server, pass them to `query`, and control which tools Claude can access. It also covers error handling, tool annotations, and returning non-text content like images.
 
 ## Quick reference
 

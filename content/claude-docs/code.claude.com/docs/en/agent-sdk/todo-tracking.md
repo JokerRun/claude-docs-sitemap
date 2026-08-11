@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/todo-tracking
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: 7d13a55e844e312b2711f909b32d3644cf7293d6d4b4c8d3c32c3c03d159bc42
+fetched_at: 2026-08-11T02:45:59.001861Z
+sha256: d61dae67cd040bf73355e1feb535a6d1512660b21e8e5d73ce64d64213d8bf83
 ---
 
 > ## Documentation Index
@@ -13,7 +13,7 @@ sha256: 7d13a55e844e312b2711f909b32d3644cf7293d6d4b4c8d3c32c3c03d159bc42
 
 > Track and display todos using the Claude Agent SDK for organized task management
 
-Todo tracking provides a structured way to manage tasks and display progress to users. The Claude Agent SDK includes built-in todo functionality that helps organize complex workflows and keep users informed about task progression.
+The Claude Agent SDK includes built-in todo functionality that helps organize complex workflows and keep users informed about task progression.
 
 <Note>
   As of TypeScript Agent SDK 0.3.142 and Claude Code v2.1.142, sessions use the structured Task tools `TaskCreate`, `TaskUpdate`, `TaskGet`, and `TaskList` instead of `TodoWrite`. The Python SDK gets this change from the Claude Code CLI it launches, not from the Python package version: the switch applies once that CLI — the copy bundled inside the pip package, or one you point to with `cli_path` — is v2.1.142 or later. See [Migrate to Task tools](#migrate-to-task-tools) for how monitoring code changes. The examples on this page set `CLAUDE_CODE_ENABLE_TASKS=0` to keep showing `TodoWrite` for sessions that have not migrated yet.

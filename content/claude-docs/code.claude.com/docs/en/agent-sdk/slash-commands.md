@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/slash-commands
-fetched_at: 2026-08-07T03:04:51.007486Z
-sha256: caa51426cda96f19351f249c793b7c5b3bc0116d156ebe934f1dcbd49b50d239
+fetched_at: 2026-08-11T02:45:59.001861Z
+sha256: 63394cfc278702ec72b08da7a3456cc4edda4013e3777879545c0c65747b0388
 ---
 
 > ## Documentation Index
@@ -515,61 +515,6 @@ Run tests matching pattern: $ARGUMENTS
 3. If tests fail, analyze and fix them
 4. Re-run to verify fixes
 ```
-
-Use these commands through the SDK:
-
-<CodeGroup>
-  ```typescript TypeScript theme={null}
-  import { query } from "@anthropic-ai/claude-agent-sdk";
-
-  // Run code review
-  try {
-    for await (const message of query({
-      prompt: "/review-pr",
-      options: { maxTurns: 3 }
-    })) {
-      // Process review feedback
-    }
-  } catch (error) {
-    // A single-shot query() throws after yielding an error result,
-    // so the second query below still runs.
-    console.error(`Session ended with an error: ${error}`);
-  }
-
-  // Run specific tests
-  for await (const message of query({
-    prompt: "/test auth",
-    options: { maxTurns: 5 }
-  })) {
-    // Handle test results
-  }
-  ```
-
-  ```python Python theme={null}
-  import asyncio
-  from claude_agent_sdk import query, ClaudeAgentOptions
-
-
-  async def main():
-      # Run code review
-      try:
-          async for message in query(prompt="/review-pr", options=ClaudeAgentOptions(max_turns=3)):
-              # Process review feedback
-              pass
-      except Exception as error:
-          # A single-shot query() raises after yielding an error result,
-          # so the second query below still runs.
-          print(f"Session ended with an error: {error}")
-
-      # Run specific tests
-      async for message in query(prompt="/test auth", options=ClaudeAgentOptions(max_turns=5)):
-          # Handle test results
-          pass
-
-
-  asyncio.run(main())
-  ```
-</CodeGroup>
 
 ## See Also
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/subagents
-fetched_at: 2026-08-06T03:07:37.547989Z
-sha256: ccb8e9825997326b60e1d1cccf0707e87597c9c8076d0d60a9e99fd126024c12
+fetched_at: 2026-08-11T02:45:59.001861Z
+sha256: 737247b2e49c3036c592d725e9947a4b2d98ec54e634aea19bc0dff97eda95ac
 ---
 
 > ## Documentation Index
@@ -27,8 +27,6 @@ You can create subagents in three ways:
 * **Built-in general-purpose**: Claude can invoke the built-in `general-purpose` subagent at any time via the Agent tool without you defining anything
 
 This guide focuses on the programmatic approach, which is recommended for SDK applications.
-
-When you define subagents, Claude determines whether to invoke them based on each subagent's `description` field. Write clear descriptions that explain when to use the subagent, and Claude automatically delegates appropriate tasks. You can also explicitly request a subagent by name in your prompt, for example "Use the code-reviewer agent to...".
 
 ## Benefits of using subagents
 
@@ -191,15 +189,10 @@ In the Python SDK, multi-word field names such as `disallowedTools` and `mcpServ
 Two subagent behaviors changed in Claude Code v2.1.198:
 
 * Subagents run in the background by default. An Agent tool call that omits the [`run_in_background`](/docs/en/agent-sdk/typescript) input launches a background subagent, and Claude sets `run_in_background: false` when it needs the result before continuing. Before v2.1.198, omitting `run_in_background` ran the subagent synchronously. Set the `background` field to `true` to force background execution for a specific agent regardless of what Claude requests.
-* A subagent inherits the main session's extended thinking configuration. On earlier versions, extended thinking is disabled inside subagents regardless of the main session's setting.
+* A subagent inherits the main session's extended thinking configuration.
 
 <Note>
   By default, subagents can spawn subagents of their own, up to three layers below the main conversation. To change the limit, set [`CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH`](/docs/en/env-vars) to the number of subagent layers you want below your main conversation, or `1` to turn nesting off; see [nested subagents](/docs/en/sub-agents#let-subagents-spawn-their-own-subagents).
-
-  Earlier versions used different defaults:
-
-  * **v2.1.172 through v2.1.216**: subagents could nest by default, up to five layers deep, and the limit couldn't be changed.
-  * **v2.1.217 through v2.1.218**: the limit defaulted to one, so a subagent couldn't spawn its own unless you raised it; v2.1.219 raised the default to three.
 </Note>
 
 ### Filesystem-based definition (alternative)
@@ -234,9 +227,7 @@ A subagent that has the [`SendMessage`](/docs/en/tools-reference) tool starts wi
   For a control-tag or permission-configuration match, Claude Code prepends a `[harness: ...]` marker line naming the matched patterns; a turn-marker match doesn't add the marker line. Those are the only modifications the scan makes: it never removes or rewords the subagent's text.
 </Note>
 
-An API error that ends the subagent early, such as a rate limit, is never delivered as its result. If a rate limit, overload, or server error cuts off a foreground subagent that already produced text output, the Agent tool returns that partial output with a note that the subagent didn't finish. A subagent that produced nothing, or whose only output was tool calls with no text, fails with an error message, `Agent terminated early due to an API error`, followed by the error detail. See [API errors in subagents](/docs/en/sub-agents#api-errors-in-subagents) for the foreground and background behavior.
-
-This partial-output handling requires Claude Code v2.1.199 or later. In v2.1.199, a rate limit, overload, or server error left the tool-calls-only shape with an empty partial result containing only the cutoff note.
+An API error that ends the subagent early, such as a rate limit, is never delivered as its result. See [API errors in subagents](/docs/en/sub-agents#api-errors-in-subagents) for the foreground and background behavior.
 
 ## Invoke subagents
 
@@ -563,11 +554,7 @@ The example below defines a custom `endpoint-finder` agent. The first query runs
   ```
 </CodeGroup>
 
-Subagent transcripts persist independently of the main conversation:
-
-* **Main conversation compaction**: when the main conversation compacts, subagent transcripts are unaffected. They're stored in separate files.
-* **Session persistence**: subagent transcripts persist within their session. You can resume a subagent after restarting Claude Code by resuming the same session.
-* **Automatic cleanup**: Claude Code deletes subagent transcripts after the `cleanupPeriodDays` retention period, 30 days by default.
+Subagent transcripts are stored in separate files and persist independently of the main conversation. See [resume subagents in Claude Code](/docs/en/sub-agents#resume-subagents) for compaction behavior and the `cleanupPeriodDays` cleanup period.
 
 ## Tool restrictions
 

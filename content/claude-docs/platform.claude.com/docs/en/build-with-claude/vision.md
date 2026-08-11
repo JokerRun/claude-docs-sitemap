@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/vision
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: e591c22b66503a77abd85cb90b64ca0494ed2f536715520f6e372f46bbfb9257
+fetched_at: 2026-08-11T02:45:59.001861Z
+sha256: 7105ea2f1fb4870574b57734a0cd004a00864cc663f2e24a1f51ac2eaf9902b9
 ---
 
 # Vision
@@ -121,9 +121,7 @@ On the API, provide images to Claude as `image` content blocks using one of thre
   ```
 
   ```typescript TypeScript
-  const anthropic = new Anthropic({
-    apiKey: process.env.ANTHROPIC_API_KEY
-  });
+  const anthropic = new Anthropic();
 
   const message = await anthropic.messages.create({
     model: "claude-opus-5",
@@ -372,9 +370,7 @@ On the API, provide images to Claude as `image` content blocks using one of thre
   ```
 
   ```typescript TypeScript
-  const anthropic = new Anthropic({
-    apiKey: process.env.ANTHROPIC_API_KEY
-  });
+  const anthropic = new Anthropic();
 
   const message = await anthropic.messages.create({
     model: "claude-opus-5",
@@ -975,9 +971,7 @@ You can include multiple images in a single request, and Claude analyzes them jo
   ```
 
   ```typescript TypeScript
-  const anthropic = new Anthropic({
-    apiKey: process.env.ANTHROPIC_API_KEY
-  });
+  const anthropic = new Anthropic();
 
   const image1Data =
     "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4z8AAAAMBAQDJ/pLvAAAAAElFTkSuQmCC";
@@ -1283,7 +1277,7 @@ The following table shows the downsized resolution and visual-token cost for sev
 
 When an image is downsized, Claude scales it to the largest size that fits the tier's limits while preserving its aspect ratio. This caps the token cost. For the precise rule and a reference implementation, see [How Claude resizes and pads images](/docs/en/build-with-claude/vision-coordinates#how-claude-resizes-and-pads-images).
 
-To estimate cost, multiply the token count by the [per-token price of the model](https://claude.com/pricing) you're using. For example, at Claude Haiku 4.5's $1 per million input tokens (standard tier), the 1000×1000 image costs about $1.30 per thousand images. At Claude Opus 5's $5 per million (high-resolution tier), the same image costs about $6.48 per thousand and the 4K image about $23.92 per thousand.
+To estimate cost, multiply the token count by the [per-token price of the model](https://claude.com/pricing) you're using. For example, at Claude Haiku 4.5's $1 USD per million input tokens (standard tier), the 1000×1000 image costs about $1.30 USD per thousand images. At Claude Opus 5's $5 USD per million (high-resolution tier), the same image costs about $6.48 USD per thousand and the 4K image about $23.92 USD per thousand.
 
 High-resolution images can use up to roughly three times more visual tokens than the same image on a standard-tier model. If you don't need the additional fidelity that high resolution provides for computer use, screenshot understanding, and dense documents, downsample images before sending to control token costs. To minimize latency and to simplify [coordinate-based workflows](/docs/en/build-with-claude/vision-coordinates), prefer resizing images before uploading them.
 

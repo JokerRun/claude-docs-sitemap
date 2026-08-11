@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/claude_api_primer
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: 4d0ca0145762acbd7cb31e321d7367011661335a0a26884114ea91ff3f34afdd
+fetched_at: 2026-08-11T02:45:59.001861Z
+sha256: ea21481241b56ef1f53cea5edda9d380c33e13321c29e3d0de36089e907d63d2
 ---
 
 # API usage primer for Claude
@@ -38,11 +38,8 @@ For fast, cost-effective tasks: Claude Haiku 4.5: claude-haiku-4-5-20251001
 
   ```python Python
   import anthropic
-  import os
 
-  message = anthropic.Anthropic(
-      api_key=os.environ.get("ANTHROPIC_API_KEY")
-  ).messages.create(
+  message = anthropic.Anthropic().messages.create(
       model="claude-opus-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello, Claude"}],
@@ -109,7 +106,7 @@ The Messages API is stateless, which means that you always send the full convers
 
 ### Prefilling Claude's response
 
-You can pre-fill part of Claude's response in the last position of the input messages list. This can be used to shape Claude's response. The following example uses `"max_tokens": 1` to get a single multiple choice answer from Claude.
+You can prefill part of Claude's response in the last position of the input messages list. Use this technique to shape Claude's response. The following example uses `"max_tokens": 1` to get a single multiple choice answer from Claude.
 
 <Note>
   Claude 4.6 and later models and Claude Mythos Preview do not support assistant message prefill; requests to those models must end with a user message. The examples below use a model that supports prefill.

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permission-modes
-fetched_at: 2026-08-09T02:46:05.584233Z
-sha256: d0d7141229b3828cdc1e8d313dc147c52f940fd16292ab40fdb612e7a2844791
+fetched_at: 2026-08-11T02:45:59.001861Z
+sha256: 2121706e5ba466ecd09812f31a06a03fb061d7954cf658d28c3501d39e88afad
 ---
 
 > ## Documentation Index
@@ -205,6 +205,8 @@ To make plan mode the default for a project, set `defaultMode` in `.claude/setti
 </Note>
 
 Auto mode lets Claude execute without routine permission prompts. A separate classifier model reviews actions before they run, blocking anything that escalates beyond your request, targets unrecognized infrastructure, or appears driven by hostile content Claude read. Explicit [ask rules](/docs/en/permissions#manage-permissions) still force a prompt.
+
+The classifier also reviews each message Claude sends to another agent with [`SendMessage`](/docs/en/tools-reference), plain or structured, before Claude Code delivers it, both in auto mode and in [plan mode while the classifier reviews commands](#analyze-before-you-edit-with-plan-mode); the send review requires Claude Code v2.1.222 or later.
 
 The classifier also decides removals targeting the filesystem root or home directory, such as `rm -rf /` and `rm -rf ~`, including when the removal sits inside command or process substitution. Before v2.1.218, the plain forms prompted for approval instead, and the substitution forms prompted in v2.1.208 through v2.1.217.
 
