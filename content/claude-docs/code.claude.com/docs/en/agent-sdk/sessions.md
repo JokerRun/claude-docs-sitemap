@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/sessions
-fetched_at: 2026-08-08T02:41:37.599145Z
-sha256: 3c6bd45fadfd845ba350d2376b49bd0b99d3041e3548e0eb143ee52afaf19ca5
+fetched_at: 2026-08-12T02:56:30.865670Z
+sha256: 43aea77cd7f51e871536b8e043636e06e4e058c26d2b4f284fb9e878168016fe
 ---
 
 > ## Documentation Index
@@ -276,7 +276,7 @@ This example resumes the session from [Capture the session ID](#capture-the-sess
 You should see a response that builds on the earlier analysis instead of starting fresh. That confirms the agent resumed the session with its prior context intact.
 
 <Tip>
-  Sessions are stored under `~/.claude/projects/<encoded-cwd>/*.jsonl`, or under `$CLAUDE_CONFIG_DIR/projects/<encoded-cwd>/*.jsonl` if you set the `CLAUDE_CONFIG_DIR` environment variable. `<encoded-cwd>` is the absolute working directory with every non-alphanumeric character replaced by `-`, so `/Users/me/proj` becomes `-Users-me-proj`.
+  Claude Code stores sessions under `~/.claude/projects/<encoded-cwd>/*.jsonl`. If you set the `CLAUDE_CONFIG_DIR` environment variable, look under `$CLAUDE_CONFIG_DIR/projects/` instead. To find your session's directory, replace every non-alphanumeric character in the absolute working directory with `-`: `/Users/me/proj` becomes `-Users-me-proj`. For a working directory whose converted name exceeds 200 characters, Claude Code [truncates the name and appends a hash](/docs/en/sessions#where-transcripts-are-stored), so match the first 200 characters of the converted name when you list `projects/`.
 
   You can resume from any working directory:
 

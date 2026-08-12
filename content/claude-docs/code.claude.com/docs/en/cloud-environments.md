@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cloud-environments
-fetched_at: 2026-08-08T02:41:37.599145Z
-sha256: e969490d7194f00e27a8ede7cde3b3ae4dba93b38e1c51c373f85a5467bce5a0
+fetched_at: 2026-08-12T02:56:30.865670Z
+sha256: a43587c3674ce9cfcdc8743a7501dadec48b437538453babf2e542203ca29f10
 ---
 
 > ## Documentation Index
@@ -35,7 +35,7 @@ Onboarding sets up the **Default** environment for you, whether you connect thro
 With only **Default** available, every session runs in it. When you have more than one environment, sessions choose one per surface:
 
 * On the web, the Desktop app, and the mobile app, sessions use the environment shown in the [selector](#configure-your-environment). An admin-set [organization default](#organization-shared-environments) fills the selection when you haven't picked one.
-* From the CLI, sessions use your [`/remote-env` pick](#select-an-environment-from-the-cli), or fall back to your first available cloud environment. Passing `--environment <environment-id>` on a [scripted dispatch](/docs/en/self-hosted-environments-testing#run-the-test-loop) overrides both for that invocation; the flag requires Claude Code v2.1.224 or later.
+* From the CLI, sessions use your [`/remote-env` pick](#select-an-environment-from-the-cli), or fall back to your first available cloud environment. For a [self-hosted environment](/docs/en/self-hosted-environments), passing `--environment <environment-id>` with its `ccpool_` ID [when you dispatch a session](/docs/en/self-hosted-environments-testing#run-the-test-loop) overrides both for that invocation. The flag rejects Anthropic-hosted `env_` IDs, so use `/remote-env` to target those. The flag requires Claude Code v2.1.224 or later.
 
 Configure an environment when the default isn't enough: when Claude needs to reach domains outside the [default allowlist](#default-allowed-domains), needs environment variables set for its sessions, or needs dependencies installed before it starts working.
 

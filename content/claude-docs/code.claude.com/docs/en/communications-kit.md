@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/communications-kit
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: d25e7e8aa96f1e15e5c4235735f4f53607a0433debd06b12844a549972ba8764
+fetched_at: 2026-08-12T02:56:30.865670Z
+sha256: e808b73b06fabf2cd5eeec86df10e216a2374ec0f32d9b378c8433ed609bc551
 ---
 
 > ## Documentation Index
@@ -203,8 +203,6 @@ Anthropic team. I can share a short playbook if you're in.
 ## Tips and tricks campaign
 
 Ready-to-paste Slack or Teams messages designed to drive feature activation after launch. Each follows the same pattern: a hook, the payoff, a "try it now" prompt, and a docs link. Drip them one or two a week in `#claude-code`, or pick the handful that match your team's gaps. They stand alone with no required order.
-
-Copy the message body from each block directly into Slack or Teams. Replace `[bracketed placeholders]` before sending.
 
 ### Get started
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/statusline
-fetched_at: 2026-08-08T02:41:37.599145Z
-sha256: bb650a787ec21ee82649bce6f0d4ddbd31a8b77d66acb4ab6c698c188b98bc59
+fetched_at: 2026-08-12T02:56:30.865670Z
+sha256: 999f391fe8c7f6bd0271dea644b9234e601410fd2aaea41e3c3a5a4c1595a73c
 ---
 
 > ## Documentation Index
@@ -152,8 +152,6 @@ Your script runs once when a session starts, including when you resume one. Afte
 * The permission mode changes
 * Vim mode toggles
 * A [`refreshInterval`](#manually-configure-a-status-line) timer elapses, if you set one
-
-Before v2.1.216, resuming a session ran the command twice in quick succession, so the first result could flicker before being replaced.
 
 Claude Code debounces updates at 300ms, so rapid changes batch together and your script runs once after the changes stop. If a new update triggers while your script is still running, Claude Code cancels the in-flight script. If you edit your script, the changes appear the next time an update trigger re-runs it.
 
@@ -579,7 +577,7 @@ Each script formats cost as currency and converts milliseconds to minutes and se
 
 ### Display multiple lines
 
-Your script can output multiple lines to create a richer display. Each `echo` statement produces a separate row in the status area.
+Your script can output multiple lines to create a richer display.
 
 <Frame>
   <img src="https://mintcdn.com/claude-code/nibzesLaJVh4ydOq/images/statusline-multiline.png?fit=max&auto=format&n=nibzesLaJVh4ydOq&q=85&s=60f11387658acc9ff75158ae85f2ac87" alt="A multi-line status line showing model name, directory, git branch on the first line, and a context usage progress bar with cost and duration on the second line" width="776" height="212" data-path="images/statusline-multiline.png" />
@@ -686,7 +684,7 @@ This example combines several techniques: threshold-based colors (green under 70
 
 ### Clickable links
 
-This example creates a clickable link to your GitHub repository. It reads the git remote URL, converts SSH format to HTTPS with `sed`, and wraps the repo name in OSC 8 escape codes. Hold Cmd (macOS) or Ctrl (Windows/Linux) and click to open the link in your browser.
+This example creates a clickable link to your GitHub repository. Hold Cmd (macOS) or Ctrl (Windows/Linux) and click to open the link in your browser.
 
 <Frame>
   <img src="https://mintcdn.com/claude-code/nibzesLaJVh4ydOq/images/statusline-links.png?fit=max&auto=format&n=nibzesLaJVh4ydOq&q=85&s=4bcc6e7deb7cf52f41ab85a219b52661" alt="A status line showing a clickable link to a GitHub repository" width="726" height="198" data-path="images/statusline-links.png" />

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/permissions
-fetched_at: 2026-08-11T02:45:59.001861Z
-sha256: 6c35f18f7d787b01aa3df973147c64bc937fff17fc0dbf22cb98b99a9edfac6d
+fetched_at: 2026-08-12T02:56:30.865670Z
+sha256: b00680ea12974a78e0c60bb52118eb9dfc1bc68351186077b7fe1bd02a63958a
 ---
 
 > ## Documentation Index
@@ -123,7 +123,7 @@ The SDK supports these permission modes:
 | `auto`              | Model-classified approvals   | A model classifier approves or denies permission prompts. See [Auto mode](/docs/en/permission-modes#eliminate-prompts-with-auto-mode) for availability                                                                                                                                                                                                                                                             |
 
 <Warning>
-  **Subagent inheritance:** Subagents inherit the parent session's permission mode. An [`AgentDefinition`'s `permissionMode`](/docs/en/agent-sdk/typescript#agentdefinition) can override it, except when the parent uses `bypassPermissions`, `acceptEdits`, or `auto`: those modes apply to every subagent and can't be overridden per subagent.
+  **Subagent inheritance:** Subagents inherit the parent session's permission mode. An [`AgentDefinition`'s `permissionMode`](/docs/en/agent-sdk/typescript#agentdefinition) can override it, except when the parent uses `bypassPermissions`, `acceptEdits`, or `auto`: those modes apply to every subagent and can't be overridden per subagent. Claude Code also ignores a definition's `permissionMode: "bypassPermissions"` when bypass mode is disabled by [`permissions.disableBypassPermissionsMode`](/docs/en/permissions#managed-settings), so that subagent runs with the parent session's mode.
 
   Subagents may have different system prompts and less constrained behavior than your main agent, so inheriting `bypassPermissions` grants them full, autonomous system access. Explicit [`ask` rules](#how-permissions-are-evaluated), connector tools [your organization set to `ask`](/docs/en/mcp#organization-controls-on-connector-tools), and tools that require user interaction still force a prompt, as does the [`isolatePeerMachines`](/docs/en/settings#available-settings) approval for cross-machine messages.
 </Warning>

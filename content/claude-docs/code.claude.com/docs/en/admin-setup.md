@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/admin-setup
-fetched_at: 2026-08-07T03:04:51.007486Z
-sha256: 59d34c2fbefe7872fad2fe2a2f955806f4f772e629b73ec190976dfc76cbf59c
+fetched_at: 2026-08-12T02:56:30.865670Z
+sha256: ee790a6c1e0ac313513f1ab02a81955592b701d17bd9e02d1b3d65e0b3d47fde
 ---
 
 > ## Documentation Index
@@ -62,8 +62,6 @@ When a [`policyHelper`](/docs/en/settings#compute-managed-settings-with-a-policy
 | plist / registry policy | macOS: `com.anthropic.claudecode` plist<br />Windows: `HKLM\SOFTWARE\Policies\ClaudeCode`                                                                                                             | High     | macOS, Windows |
 | File-based managed      | macOS: `/Library/Application Support/ClaudeCode/managed-settings.json`<br />Linux and WSL: `/etc/claude-code/managed-settings.json`<br />Windows: `C:\Program Files\ClaudeCode\managed-settings.json` | Medium   | All            |
 | Windows user registry   | `HKCU\SOFTWARE\Policies\ClaudeCode`                                                                                                                                                                   | Lowest   | Windows only   |
-
-A configured [`policyHelper`](/docs/en/settings#compute-managed-settings-with-a-policy-helper) preempts all four sources: its output becomes the only managed configuration for the run. See [Settings precedence](/docs/en/settings#settings-precedence).
 
 Server-managed settings reach devices at authentication time and refresh hourly during active sessions, with no endpoint infrastructure. Delivery through the claude.ai admin console requires a Claude for Teams or Enterprise plan. Deployments on Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry can get the same remote delivery by running a [Claude apps gateway](/docs/en/claude-apps-gateway), or use one of the file-based or OS-level mechanisms instead.
 

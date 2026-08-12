@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/inference-hooks
-fetched_at: 2026-08-08T02:41:37.599145Z
-sha256: a6f2a9e59b295a3c87e88b195903d0448370e6bd508c18bc56bfdfbda990ec15
+fetched_at: 2026-08-12T02:56:30.865670Z
+sha256: eb437569677b2d2010d44f9b7a52ba1ddb02f520f6ce68173262f7ed0284122b
 ---
 
 # Inference hooks
@@ -77,11 +77,11 @@ Governed requests are the inference requests behind the user's conversation. Anc
 
 Both features serve security, legal, and compliance teams at Claude Enterprise organizations.
 
-|              | Inference hooks                                     | Compliance API                                                             |
-| ------------ | --------------------------------------------------- | -------------------------------------------------------------------------- |
-| When it acts | Inline, before inference runs                       | After the fact                                                             |
-| What it does | Allows or denies each governed request in real time | Retrieves activity, chats, files, projects, and users for audit and export |
-| Direction    | Anthropic calls your AI security server             | You call Anthropic's API                                                   |
+|              | Inference hooks                                     | Compliance API                                                                                                         |
+| ------------ | --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| When it acts | Inline, before inference runs                       | After the fact                                                                                                         |
+| What it does | Allows or denies each governed request in real time | Retrieves activity, chats, files, projects, Cowork and Claude Code session transcripts, and users for audit and export |
+| Direction    | Anthropic calls your AI security server             | You call Anthropic's API                                                                                               |
 
 Use Inference hooks to stop a request before it reaches the model, and the [Compliance API](/docs/en/manage-claude/compliance-api) to audit what happened afterward.
 

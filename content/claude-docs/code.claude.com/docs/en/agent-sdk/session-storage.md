@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/session-storage
-fetched_at: 2026-07-29T03:07:01.598872Z
-sha256: bcc58d0fc90e6345eb79a8a3908428ea26be00c91714d902399d1d3fafe9a49e
+fetched_at: 2026-08-12T02:56:30.865670Z
+sha256: 9a74a56b1c8504c308960593cef87c96ae9b36e65b3c109a1ceb8cbcd42169c0
 ---
 
 > ## Documentation Index
@@ -285,7 +285,7 @@ Subagent transcripts are mirrored under `subpath: "subagents/agent-<id>"`. `list
 
 ### Retention
 
-The SDK never deletes from your store on its own. Retention is the adapter's responsibility: implement TTLs, S3 lifecycle policies, or scheduled cleanup according to your compliance requirements. Local transcripts under `CLAUDE_CONFIG_DIR` are swept independently by the `cleanupPeriodDays` setting.
+The SDK never deletes from your store on its own. Retention is the adapter's responsibility: implement TTLs, S3 lifecycle policies, or scheduled cleanup according to your compliance requirements. Local transcripts under `CLAUDE_CONFIG_DIR` are swept independently by the `cleanupPeriodDays` setting, following the [retention sweep rules](/docs/en/claude-directory#cleaned-up-automatically).
 
 ## Supported on
 

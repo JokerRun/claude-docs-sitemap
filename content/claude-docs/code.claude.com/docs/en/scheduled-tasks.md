@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/scheduled-tasks
-fetched_at: 2026-08-08T02:41:37.599145Z
-sha256: b68aa508a656b4bd12d84cb64fc209a43fcea9a28d03f265ca9efc1a44c35197
+fetched_at: 2026-08-12T02:56:30.865670Z
+sha256: 18ac07d33bfbda8d303a4924d976fb186f06c9f6b3911e1c72ecdcdf909da3c4
 ---
 
 > ## Documentation Index
@@ -50,7 +50,7 @@ The `/loop` [bundled skill](/docs/en/commands) is the quickest way to run a prom
 You can also pass a skill as the prompt, for example `/loop 20m /review-pr 1234`, to re-run that skill each iteration. As of v2.1.196, a scheduled fire only runs skills that Claude is [allowed to invoke on its own](/docs/en/skills#control-who-invokes-a-skill). The following reach Claude as plain text instead of executing:
 
 * Built-in commands such as `/permissions`, `/model`, or `/clear`
-* Skills marked [`disable-model-invocation: true`](/docs/en/skills#frontmatter-reference), including the bundled `/verify` and `/code-review` skills.
+* Skills marked [`disable-model-invocation: true`](/docs/en/skills#frontmatter-reference), including the bundled `/verify` skill
 * Skills withheld from Claude by a [`skillOverrides`](/docs/en/skills#override-skill-visibility-from-settings) setting or a `Skill` [deny rule](/docs/en/skills#restrict-claude’s-skill-access)
 * [MCP prompts](/docs/en/mcp#use-mcp-prompts-as-commands) such as `/mcp__github__list_prs`
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/auto-mode-config
-fetched_at: 2026-08-08T02:41:37.599145Z
-sha256: 286d02271bba947944d2b0eedef9d176ac13bc01ff0ed18401adb46341ac912a
+fetched_at: 2026-08-12T02:56:30.865670Z
+sha256: a9343239f37e943d121d7fd94bcacfc40b8c8719a35323c967d4aea96e0d7127
 ---
 
 > ## Documentation Index
@@ -298,8 +298,6 @@ claude auto-mode critique
 
 Run `claude auto-mode config` after saving your settings to confirm the effective rules are what you expect, with `"$defaults"` expanded in place. If you've written custom rules, `claude auto-mode critique` reviews them and flags entries that are ambiguous, redundant, or likely to cause false positives.
 
-If you need to remove or rewrite a built-in rule rather than add alongside it, save the output of `claude auto-mode defaults` to a file, edit the lists, and paste the result into your settings file in place of `"$defaults"`.
-
 To discard your customizations and return to the built-in defaults, run the reset subcommand. It requires Claude Code v2.1.212 or later and removes the `autoMode` section from your user settings file:
 
 ```bash theme={null}
@@ -310,7 +308,9 @@ The command summarizes what it will remove and asks `Reset auto mode configurati
 
 ## Review denials
 
-When auto mode denies a tool call, Claude Code records the denial in `/permissions` under the **Recently denied** tab. Press `r` on a denied action to mark it for retry: when you exit the dialog, Claude Code sends a message telling the model it may retry that tool call and resumes the conversation.
+To review and retry actions the auto mode classifier denied, open `/permissions` and select the **Recently denied** tab, where Claude Code records each denial. Press `r` on a denied action to mark it for retry: when you exit the dialog, Claude Code sends a message telling the model it may retry that tool call and resumes the conversation.
+
+When the classifier produces [no verdict on the action](/docs/en/errors#auto-mode-cannot-determine-the-safety-of-an-action), because a safety check separate from auto mode refused the classifier's own request or its response didn't parse, Claude Code denies the action without recording it under **Recently denied**. The linked error entry covers what Claude is told and how to run the action if you need it.
 
 ### Fix a denial with an allow rule, an environment entry, or a retry
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/voice-dictation
-fetched_at: 2026-08-07T03:04:51.007486Z
-sha256: 2346eb497262ee8fd1d3e7d9d5116c310ceb0c17b0331c8711bf4043198c380d
+fetched_at: 2026-08-12T02:56:30.865670Z
+sha256: 5f862468a1adb6911cb506ee9ef21d048b3dbdbf7caa7f6d27c299696f4eba4a
 ---
 
 > ## Documentation Index
@@ -95,7 +95,7 @@ Enable tap mode with `/voice tap`. With the prompt input empty, tap `Space` to s
 
 Claude Code inserts the transcript and submits the prompt automatically when the transcript is at least three words long. Shorter transcripts are inserted but not submitted, so an accidental tap does not send a stray word.
 
-The three-word threshold counts words for languages written without spaces. As of v2.1.195, Japanese, Chinese, and Thai transcripts count individual words, so they auto-submit in tap mode and in hold mode with `autoSubmit`. Earlier versions counted a transcript with no spaces as one word and never submitted it automatically.
+The three-word threshold counts words for languages written without spaces. Japanese, Chinese, and Thai transcripts count individual words, so they auto-submit in tap mode and in hold mode with `autoSubmit`.
 
 The first tap only starts recording when the prompt input is empty, so you can still type spaces normally while composing a message. The second tap stops recording regardless of input contents. Recording also stops automatically after 15 seconds of silence or two minutes total.
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway
-fetched_at: 2026-08-08T02:41:37.599145Z
-sha256: aa6232a0d06b51c4df36090abc0a608d4b8909cf9b1e3b05df15d16421ff7781
+fetched_at: 2026-08-12T02:56:30.865670Z
+sha256: b322573e9cae48018900ef7fe8285f1c6db6c6a9bd2575978134dd538119764a
 ---
 
 > ## Documentation Index
@@ -385,7 +385,7 @@ These guarantees apply to every signed-in gateway session.
 
 * **Model access**: requests for models the policy doesn't grant return 400, and the `/model` picker is filtered to the policy's `availableModels` allowlist. Set [`enforceAvailableModels: true`](/docs/en/model-config#default-model-behavior) in the policy so the Default option resolves to a model inside `availableModels` instead of to Claude Code's built-in default; without it, Default stays selectable and is rejected at request time if that model isn't granted.
 * **Telemetry destination**: the CLI sends its OTLP/HTTP exports to the gateway regardless of any locally set `OTEL_EXPORTER_OTLP_ENDPOINT`, and the gateway relays them to the destinations in [`telemetry.forward_to`](/docs/en/claude-apps-gateway-config#telemetry). With no destination configured for a signal, the gateway accepts and discards it, so if you already collect Claude Code telemetry directly, add your collector as a `forward_to` destination.
-* **Credentials**: the gateway token is the session's only credential. `ANTHROPIC_AUTH_TOKEN`, `ANTHROPIC_API_KEY`, `apiKeyHelper`, and any earlier claude.ai login are ignored while signed in, so developers don't need to log out of claude.ai first.
+* **Credentials**: the gateway token is the session's only credential. `ANTHROPIC_AUTH_TOKEN`, `ANTHROPIC_API_KEY`, `apiKeyHelper`, [Anthropic profiles](/docs/en/authentication#anthropic-profiles-and-federation-credentials), and any earlier claude.ai login are ignored while signed in, so developers don't need to log out of claude.ai first.
 * **Managed settings**: locked keys can't be overridden locally. The CLI applies the policy at startup and on each hourly poll.
 * **Startup**: signed-in sessions exit at startup with an error after about 10 seconds when the gateway is unreachable, rather than starting without their settings.
 * **Deprovisioning**: a session whose user is disabled in the IdP expires within `ttl_hours` when the next refresh fails.

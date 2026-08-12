@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/whats-new-sonnet-5
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 3d5f452036e6a7f73d38dfdb46ef836ea8e8789a8bd1b7e30ae231cec65d41b3
+fetched_at: 2026-08-12T02:56:30.865670Z
+sha256: 7b46461418762c520bbf621ea5acb6faf846bd7931dd35d342826e5a2db2e507
 ---
 
 # What's new in Claude Sonnet 5
@@ -108,7 +108,7 @@ The change affects anything you measure or budget in tokens:
 * **Token counts:** `usage` fields and [token counting](/docs/en/build-with-claude/token-counting) results for the same text are higher than on Claude Sonnet 4.6. Don't reuse counts measured against earlier models; recount against Claude Sonnet 5.
 * **Context window capacity in text terms:** the context window is 1M tokens, but each token covers less text on average, so the same window holds less text than on Claude Sonnet 4.6.
 * **`max_tokens` budgets:** an output limit tuned for Claude Sonnet 4.6 may truncate equivalent output on Claude Sonnet 5. Revisit limits sized close to your expected output length.
-* **Per-request cost:** per-token pricing is unchanged (see [Pricing](#pricing)), but because the same text produces more tokens, the cost of an equivalent request can differ from Claude Sonnet 4.6.
+* **Per-request cost:** per-token pricing is lower than Claude Sonnet 4.6's (see [Pricing](#pricing)), but because the same text produces more tokens, the cost of an equivalent request does not drop in direct proportion.
 
 ## API constraints inherited from Claude Sonnet 4.6
 
@@ -122,7 +122,7 @@ Prefilling the assistant message returns a `400` error, unchanged from Claude So
 
 ## Capability improvements
 
-Claude Sonnet 5 is a capability upgrade over Claude Sonnet 4.6 at the same price. It is also an option for workloads that need more capability than Claude Sonnet 4.6 provides without moving to an Opus-class model.
+Claude Sonnet 5 is a capability upgrade over Claude Sonnet 4.6 at a lower price. It is also an option for workloads that need more capability than Claude Sonnet 4.6 provides without moving to an Opus-class model.
 
 The largest gains over Claude Sonnet 4.6 are in coding and agentic tasks. For benchmark results, see [Anthropic's Transparency Hub](https://www.anthropic.com/transparency).
 
@@ -132,9 +132,7 @@ Claude Sonnet 5 is the first Sonnet-tier model with real-time cybersecurity safe
 
 ## Pricing
 
-Claude Sonnet 5 is priced at $3 per million input tokens and $15 per million output tokens, unchanged from Claude Sonnet 4.6. Because the [new tokenizer](#new-tokenizer) produces approximately 30% more tokens for the same text, the cost of an equivalent request can differ from Claude Sonnet 4.6 even though per-token pricing is unchanged. The exact increase depends on the content and workload shape.
-
-Introductory pricing of $2/$10 per million input/output tokens is in effect through August 31, 2026, after which the standard pricing of $3/$15 per million input/output tokens will take effect.
+Claude Sonnet 5 is priced at $2 per million input tokens and $10 per million output tokens, lower per-token pricing than Claude Sonnet 4.6's $3/$15. Because the [new tokenizer](#new-tokenizer) produces approximately 30% more tokens for the same text, the cost of an equivalent request does not drop in direct proportion to the per-token prices when comparing with Claude Sonnet 4.6. The exact difference depends on the content and workload shape.
 
 See [Pricing](/docs/en/about-claude/pricing) for complete pricing, including batch processing and prompt caching rates.
 

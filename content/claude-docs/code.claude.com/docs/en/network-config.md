@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/network-config
-fetched_at: 2026-08-08T02:41:37.599145Z
-sha256: 7d511dd3c70d2718242bdcdd591a95b41c88030cd93ef2c0fb060ae5874f2583
+fetched_at: 2026-08-12T02:56:30.865670Z
+sha256: 67b70229ab726b7df06a30abd14862231aa3ffac6b7bc75279c9c08bc45c53fc
 ---
 
 > ## Documentation Index
@@ -203,6 +203,7 @@ Claude Code requires access to the following URLs. Allowlist these in your proxy
 | `downloads.claude.ai`                | Plugin executable downloads; native installer, native auto-updater, and update version checks                                                                                                                                                                                                                                                                                                               |
 | `storage.googleapis.com`             | Install counts and plugin metadata shown in `/plugin`. Signed [artifact](/docs/en/artifacts) uploads try this host first; publishing falls back to `api.anthropic.com` when it is blocked                                                                                                                                                                                                                        |
 | `storage.googleapis.com`             | Native installer and native auto-updater on versions prior to 2.1.116                                                                                                                                                                                                                                                                                                                                       |
+| `registry.npmjs.org`                 | Plugin installs (fetching npm-source plugin packages and installing plugins' Node.js package dependencies), `npx`-launched MCP servers, and the package registry for npm and bun installs of Claude Code itself                                                                                                                                                                                             |
 | `bridge.claudeusercontent.com`       | [Claude in Chrome](/docs/en/chrome) extension WebSocket bridge                                                                                                                                                                                                                                                                                                                                                   |
 | `raw.githubusercontent.com`          | Changelog feed for [`/release-notes`](/docs/en/commands) and the release notes shown after updating                                                                                                                                                                                                                                                                                                              |
 | `http-intake.logs.us5.datadoghq.com` | Operational telemetry events, sent only when the CLI uses the Anthropic API directly, never for Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry. Optional: disable with [`DISABLE_TELEMETRY`](/docs/en/data-usage#telemetry-services) or `DO_NOT_TRACK`                                                                                                                                      |

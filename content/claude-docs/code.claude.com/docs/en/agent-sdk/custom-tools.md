@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/custom-tools
-fetched_at: 2026-08-11T02:45:59.001861Z
-sha256: 3617118a4cd66a51faabac2e194f7d0d87dc99e60feeb90634001b283107b9af
+fetched_at: 2026-08-12T02:56:30.865670Z
+sha256: 8c4062373454a15c02803718d36d73cc92c989c8e8d491deb3327f00b1e9c4f7
 ---
 
 > ## Documentation Index
@@ -322,14 +322,7 @@ See `ToolAnnotations` in the [TypeScript](/docs/en/agent-sdk/typescript#toolanno
 
 ## Control tool access
 
-The [weather tool example](#weather-tool-example) registered a server and listed tools in `allowedTools`. This section covers how tool names are constructed and how to scope access when you have multiple tools or want to restrict built-ins.
-
-### Tool name format
-
-When MCP tools are exposed to Claude, their names follow a specific format:
-
-* Pattern: `mcp__{server_name}__{tool_name}`
-* Example: A tool named `get_temperature` in server `weather` becomes `mcp__weather__get_temperature`
+The [weather tool example](#weather-tool-example) registered a server and listed tools in `allowedTools`. This section covers how to scope access when you have multiple tools or want to restrict built-ins. For how tool names are constructed, see [Call a custom tool](#call-a-custom-tool).
 
 ### Configure allowed tools
 
@@ -852,7 +845,7 @@ Because [tool search](/docs/en/agent-sdk/tool-search) is on by default, the outp
 
 ## Next steps
 
-Custom tools wrap async functions in a standard interface. You can mix the patterns on this page in the same server: a single server can hold a database tool, an API gateway tool, and an image renderer alongside each other.
+You can mix the patterns on this page in the same server: a single server can hold a database tool, an API gateway tool, and an image renderer alongside each other.
 
 From here:
 

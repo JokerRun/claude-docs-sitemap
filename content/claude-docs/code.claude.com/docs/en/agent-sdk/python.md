@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-08-11T02:45:59.001861Z
-sha256: 479e14cf74cf14b02004b01a502ae684984599534ec81dad1e274fdec3020244
+fetched_at: 2026-08-12T02:56:30.865670Z
+sha256: 9e9b2fb9d9bae99e910436fbe0a1fe876010442ab0b2fd6b027d9872b5b51444
 ---
 
 > ## Documentation Index
@@ -2406,7 +2406,7 @@ Launches a new agent to handle complex, multi-step tasks autonomously.
     "modelsUsed": list[str] | None,  # Models used in order, with consecutive repeats collapsed
     "totalToolUseCount": int,  # Number of tool calls the agent made
     "totalDurationMs": int,  # Execution duration in milliseconds
-    "totalTokens": int,  # Total tokens used
+    "totalTokens": int,  # Token count from the final API request, not the whole run
     "usage": {  # Token usage statistics
         "input_tokens": int,
         "output_tokens": int,

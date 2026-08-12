@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/google-vertex-ai
-fetched_at: 2026-08-07T03:04:51.007486Z
-sha256: 6d9f99167f252c0305108b1bbf8437f02a57bb85f4450f21bc25da649065d257
+fetched_at: 2026-08-12T02:56:30.865670Z
+sha256: 13cbce32617eb50d42ffd81fd970c212aa748be5fc5852fee152c6f242f7b497
 ---
 
 > ## Documentation Index
@@ -190,12 +190,6 @@ export ANTHROPIC_VERTEX_PROJECT_ID=YOUR-PROJECT-ID
 # Optional: Override the Agent Platform endpoint URL for custom endpoints or gateways
 # export ANTHROPIC_VERTEX_BASE_URL=https://aiplatform.googleapis.com
 
-# Optional: Disable prompt caching if needed
-# export DISABLE_PROMPT_CACHING=1
-
-# Optional: Request 1-hour prompt cache TTL instead of the 5-minute default
-# export ENABLE_PROMPT_CACHING_1H=1
-
 # When CLOUD_ML_REGION=global, override region for models that don't support global endpoints
 export VERTEX_REGION_CLAUDE_HAIKU_4_5=us-east5
 export VERTEX_REGION_CLAUDE_4_6_SONNET=europe-west1
@@ -271,13 +265,9 @@ When you start the session on a specific Sonnet or Opus version, with `--model`,
 
 Model aliases such as `opus` don't act as pins, and neither does a model ID Claude Code doesn't recognize.
 
-<Info>Before v2.1.211, Claude Code checked the default model's availability even when a session model was explicitly configured, and could show a fallback notice for a default the session didn't use.</Info>
-
 ## IAM configuration
 
-Assign the required IAM permissions:
-
-The `roles/aiplatform.user` role includes the required permissions:
+Assign the `roles/aiplatform.user` role, which includes the required permissions:
 
 * `aiplatform.endpoints.predict` - Required for model invocation and token counting
 

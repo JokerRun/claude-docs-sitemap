@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/onboarding
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: e316390c19b564ef432ac52ca0e72137248b64474235e156413f89431ba434b9
+fetched_at: 2026-08-12T02:56:30.865670Z
+sha256: 9fa54955f50652cb7d9e5d0e0cf242380afc5282c905156ed15118d038875665
 ---
 
-# Prototype in Console
+# Build in Console
 
-Create and test agents visually in Console without writing API calls.
+Create, test, and iterate on agents visually in Console, then run them from your code with the API.
 
 ---
 
@@ -32,7 +32,7 @@ As you configure, Console shows the equivalent API request so you can copy it in
 
 Console includes an inline session runner. After configuring your agent, you can start a test session directly, send messages, and watch the event stream without leaving the page. This is the fastest way to check that your system prompt and tool selection produce the behavior you expect.
 
-## From prototype to code
+## From Console to your codebase
 
 Once your agent works as expected:
 
