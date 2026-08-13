@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/cost
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 04008a9a031dd5f14ef6bf855c8027fb952604cc37750dc405df8d0383253b4f
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 9e35cff70bd5da1907f024772036f933809cac58400416ade6dd618f3cadb6c6
+---
+
+---
+title: Cost
+url: https://platform.claude.com/docs/en/api/admin/analytics/cost
 ---
 
 # Cost

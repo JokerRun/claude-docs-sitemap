@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: 8c51bd63a469a73529172152b13351895afe3f576a315dc3409b1ce76918131f
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 527213e5f9ff3a371559b592fc951465926d224e0c49da3a7b88f8ad7033069e
 ---
 
-# Memulai dengan Claude Managed Agents
-
-Buat agen otonom pertama Anda.
-
+---
+title: Memulai dengan Claude Managed Agents
+url: https://platform.claude.com/docs/id/managed-agents/quickstart
+description: Buat agen otonom pertama Anda.
 ---
 
-Panduan ini memandu Anda membuat agen, menyiapkan environment, memulai sesi, dan melakukan streaming respons agen.
+Panduan ini memandu Anda dalam membuat agen, menyiapkan environment, memulai sesi, dan melakukan streaming respons agen.
 
 <Tip>
   **Lebih suka panduan interaktif?** Jalankan `/claude-api managed-agents-onboard` di versi terbaru [Claude Code](https://claude.com/product/claude-code) untuk penyiapan terpandu dan tanya jawab interaktif.
@@ -28,8 +28,8 @@ Panduan ini memandu Anda membuat agen, menyiapkan environment, memulai sesi, dan
 
 ## Prasyarat
 
-* Akun [Claude Console](https://platform.claude.com)
-* [Kunci API](/settings/keys)
+* Sebuah [akun Claude Console](https://platform.claude.com)
+* Sebuah [kunci API](https://platform.claude.com/settings/keys)
 
 ## Instal CLI
 
@@ -44,7 +44,7 @@ Panduan ini memandu Anda membuat agen, menyiapkan environment, memulai sesi, dan
     Untuk lingkungan Linux, unduh binary rilis secara langsung.
 
     ```bash
-    VERSION=1.21.0
+    VERSION=1.22.1
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -95,7 +95,7 @@ ant --version
 
   <Tab title="Java">
     ```groovy Gradle
-    implementation("com.anthropic:anthropic-java:2.52.0")
+    implementation("com.anthropic:anthropic-java:2.53.0")
     ```
   </Tab>
 
@@ -119,7 +119,7 @@ ant --version
 
   <Tab title="PHP">
     ```bash
-    composer require anthropic-ai/sdk
+    composer require "anthropic-ai/sdk" "guzzlehttp/guzzle:^7"
     ```
   </Tab>
 </Tabs>
@@ -133,7 +133,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 ## Buat sesi pertama Anda
 
 <Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](/docs/id/api/beta-headers#endpoint-specific-headers).
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 <Steps>
@@ -141,7 +141,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
     Buat agen yang mendefinisikan model, prompt sistem, dan alat yang tersedia.
 
     <CodeGroup defaultLanguage="CLI">
-      ```bash curl
+      ```bash cURL
       set -euo pipefail
 
       agent=$(
@@ -333,16 +333,16 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       ```
     </CodeGroup>
 
-    Tipe alat `agent_toolset_20260401` mengaktifkan set lengkap alat agen bawaan (bash, operasi file, pencarian web, dan lainnya). Lihat [Alat](/docs/id/managed-agents/tools) untuk daftar lengkap dan opsi konfigurasi per alat.
+    Tipe alat `agent_toolset_20260401` mengaktifkan set lengkap alat agen bawaan (bash, operasi file, pencarian web, dan lainnya). Lihat [Alat](https://platform.claude.com/docs/id/managed-agents/tools) untuk daftar lengkap dan opsi konfigurasi per alat.
 
     Simpan `agent.id` yang dikembalikan. Anda akan mereferensikannya di setiap sesi yang Anda buat.
   </Step>
 
   <Step title="Buat environment">
-    Environment mendefinisikan sandbox tempat agen Anda berjalan.
+    Sebuah "environment" (lingkungan) mendefinisikan sandbox tempat agen Anda berjalan.
 
     <CodeGroup defaultLanguage="CLI">
-      ```bash curl
+      ```bash cURL
       environment=$(
         curl -sS --fail-with-body https://api.anthropic.com/v1/environments \
           -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -461,7 +461,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
     <Tip>
       Untuk menjalankan sandbox di infrastruktur Anda sendiri alih-alih sandbox cloud, lihat 
 
-      [Sandbox yang dihosting sendiri](/docs/id/managed-agents/self-hosted-sandboxes)
+      [Sandbox yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes)
 
       .
     </Tip>
@@ -471,7 +471,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
     Buat sesi yang mereferensikan agen dan environment Anda.
 
     <CodeGroup>
-      ```bash curl
+      ```bash cURL
       session=$(
         curl -sS --fail-with-body https://api.anthropic.com/v1/sessions \
           -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -488,6 +488,16 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       )
 
       SESSION_ID=$(jq -er '.id' <<<"$session")
+
+      echo "Session ID: $SESSION_ID"
+      ```
+
+      ```bash CLI
+      SESSION_ID=$(ant beta:sessions create \
+        --agent "$AGENT_ID" \
+        --environment-id "$ENVIRONMENT_ID" \
+        --title "Quickstart session" \
+        --transform id --raw-output)
 
       echo "Session ID: $SESSION_ID"
       ```
@@ -568,62 +578,18 @@ export ANTHROPIC_API_KEY="your-api-key-here"
     </CodeGroup>
   </Step>
 
-  <Step title="Kirim pesan dan streaming responsnya">
-    Buka stream, kirim event pengguna, lalu proses event saat tiba:
+  <Step title="Kirim pesan dan lakukan streaming respons">
+    Buka stream, kirim event pengguna, lalu proses event saat event tersebut tiba:
 
     <CodeGroup>
-      ```bash curl
-      # Open the SSE stream first: only events emitted after the stream opens are delivered
-      exec {stream}< <(
-        curl -sS -N --fail-with-body \
-          "https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream" \
-          -H "x-api-key: $ANTHROPIC_API_KEY" \
-          -H "anthropic-version: 2023-06-01" \
-          -H "anthropic-beta: managed-agents-2026-04-01" \
-          -H "Accept: text/event-stream"
-      )
+      ```bash cURL
+      # Alur kerja ini tidak cocok diterjemahkan menjadi perintah shell sekali jalan.
+      # Gunakan salah satu contoh SDK dalam grup kode ini sebagai gantinya.
+      ```
 
-      # Send the user message
-      curl -sS --fail-with-body \
-        "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
-        -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
-        -H "anthropic-beta: managed-agents-2026-04-01" \
-        -H "content-type: application/json" \
-        -d @- >/dev/null <<'EOF'
-      {
-        "events": [
-          {
-            "type": "user.message",
-            "content": [
-              {
-                "type": "text",
-                "text": "Create a Python script that generates the first 20 Fibonacci numbers and saves them to fibonacci.txt"
-              }
-            ]
-          }
-        ]
-      }
-      EOF
-
-      # Process events as they arrive
-      while IFS= read -r -u "$stream" line; do
-        [[ $line == data:* ]] || continue
-        json=${line#data: }
-        case $(jq -r '.type' <<<"$json") in
-          agent.message)
-            jq -j '.content[] | select(.type == "text") | .text' <<<"$json"
-            ;;
-          agent.tool_use)
-            printf '\n[Using tool: %s]\n' "$(jq -r '.name' <<<"$json")"
-            ;;
-          session.status_idle)
-            printf '\n\nAgent finished.\n'
-            break
-            ;;
-        esac
-      done
-      exec {stream}<&-
+      ```bash CLI
+      # Alur kerja ini tidak cocok diterjemahkan ke perintah shell sekali jalan.
+      # Gunakan salah satu contoh SDK di grup kode ini sebagai gantinya.
       ```
 
       ```python Python
@@ -790,7 +756,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
           // Proses event streaming
           for (var event : (Iterable<BetaManagedAgentsStreamSessionEvents>) stream.stream()::iterator) {
               if (event.isAgentMessage()) {
-                  event.asAgentMessage().content().forEach(block -> IO.print(block.text()));
+                  event.asAgentMessage().content().forEach(block -> block.text().ifPresent(textBlock -> IO.print(textBlock.text())));
               } else if (event.isAgentToolUse()) {
                   IO.println("\n[Using tool: " + event.asAgentToolUse().name() + "]");
               } else if (event.isSessionStatusIdle()) {
@@ -860,7 +826,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       ```
     </CodeGroup>
 
-    Agen menulis skrip Python, mengeksekusinya di sandbox, dan memverifikasi bahwa file output telah dibuat. Output Anda akan terlihat mirip dengan ini:
+    Agen menulis skrip Python, menjalankannya di sandbox, dan memverifikasi bahwa file output telah dibuat. Output Anda terlihat seperti ini:
 
     ```text wrap
     I'll create a Python script that generates the first 20 Fibonacci numbers and saves them to a file.
@@ -877,34 +843,56 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 
 ## Apa yang terjadi
 
-Ketika Anda mengirim event pengguna, Claude Managed Agents:
+Saat Anda mengirim event pengguna, Claude Managed Agents:
 
 1. **Menyediakan sandbox:** Konfigurasi environment Anda menentukan bagaimana sandbox dibangun.
 2. **Menjalankan loop agen:** Claude menentukan alat mana yang akan digunakan berdasarkan pesan Anda.
-3. **Mengeksekusi alat:** Penulisan file, perintah bash, dan panggilan alat lainnya berjalan di dalam sandbox.
-4. **Streaming event:** Anda menerima pembaruan real-time saat agen bekerja.
-5. **Menjadi idle:** Agen mengeluarkan event `session.status_idle` ketika tidak ada lagi yang perlu dilakukan.
+3. **Menjalankan alat:** Penulisan file, perintah bash, dan pemanggilan alat lainnya berjalan di dalam sandbox.
+4. **Melakukan streaming event:** Anda menerima pembaruan real-time saat agen bekerja.
+5. **Menjadi idle:** Agen mengeluarkan event `session.status_idle` saat tidak ada lagi yang perlu dilakukan.
+
+## Bangun aplikasi lengkap
+
+Setiap quickstart ini memasangkan Claude Managed Agents dengan framework chat populer untuk membuat aplikasi lengkap yang dapat dijalankan. Di masing-masing contoh, framework merender antarmuka chat sementara sesi terkelola menjalankan loop agen di sisi server: sesi menyimpan transkrip, menjalankan alat di sandbox, dan melakukan streaming event yang dirender oleh front end.
+
+<CardGroup cols={3}>
+  <Card title="Chat SDK" icon="github-logo" href="https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/chat-sdk">
+    Seorang analis riset dalam chat browser yang dibangun dengan Chat SDK dari Vercel. Setiap percakapan adalah satu sesi persisten yang melakukan streaming balasannya sementara feed langsung menampilkan pemanggilan alat. Mengganti adapter Chat SDK memindahkan handler yang sama ke Slack, Teams, Discord, atau WhatsApp.
+  </Card>
+
+  <Card title="assistant-ui" icon="github-logo" href="https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/assistant-ui">
+    Seorang analis spreadsheet dalam chat yang dibangun dari primitif assistant-ui. Sesi adalah daftar thread, satu reducer mengubah log event sesi menjadi pesan dan kartu alat, dan setiap perintah bash merender gerbang Allow/Deny inline sebelum dijalankan.
+  </Card>
+
+  <Card title="CopilotKit (AG-UI)" icon="github-logo" href="https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/copilot-kit-ag-ui">
+    Asisten keuangan pribadi dalam chat CopilotKit. Adapter AG-UI untuk Claude Managed Agents memetakan setiap thread chat ke sesi terkelola dan melakukan streaming balasan token demi token, dan alat kustom merender grafik interaktif secara inline dalam percakapan.
+  </Card>
+</CardGroup>
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Definisikan agen Anda" icon="brain" href="/docs/id/managed-agents/agent-setup">
-    Buat konfigurasi agen yang dapat digunakan kembali dan berversi
+  <Card title="Definisikan agen Anda" icon="brain" href="https://platform.claude.com/docs/id/managed-agents/agent-setup">
+    Buat konfigurasi agen yang dapat digunakan kembali dan memiliki versi
   </Card>
 
-  <Card title="Konfigurasikan environment" icon="settings" href="/docs/id/managed-agents/environments">
+  <Card title="Konfigurasi environment" icon="settings" href="https://platform.claude.com/docs/id/managed-agents/environments">
     Sesuaikan pengaturan jaringan dan sandbox
   </Card>
 
-  <Card title="Alat agen" icon="tool" href="/docs/id/managed-agents/tools">
+  <Card title="Alat agen" icon="tool" href="https://platform.claude.com/docs/id/managed-agents/tools">
     Aktifkan alat tertentu untuk agen Anda
   </Card>
 
-  <Card title="Stream event sesi" icon="lightning" href="/docs/id/managed-agents/events-and-streaming">
+  <Card title="Stream event sesi" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/events-and-streaming">
     Tangani event dan arahkan agen di tengah eksekusi
   </Card>
 
-  <Card title="Deployment terjadwal" icon="arrows-clockwise" href="/docs/id/managed-agents/scheduled-deployments">
-    Jalankan agen Anda dengan jadwal cron berulang
+  <Card title="Deployment terjadwal" icon="arrows-clockwise" href="https://platform.claude.com/docs/id/managed-agents/scheduled-deployments">
+    Jalankan agen Anda pada jadwal cron berulang
+  </Card>
+
+  <Card title="Quickstart wiki pengetahuan" icon="github-logo" href="https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/knowledge-wiki">
+    Saring korpus dokumen sekali menjadi wiki pengetahuan, lalu jawab pertanyaan berulang darinya dengan biaya yang jauh lebih rendah
   </Card>
 </CardGroup>

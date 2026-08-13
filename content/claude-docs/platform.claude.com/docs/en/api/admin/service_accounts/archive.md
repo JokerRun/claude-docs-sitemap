@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/service_accounts/archive
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: e360a058af98026391253b2ddbe48facce0f36147ef71122a1e075947a9a6c71
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 6a3f30f7b4a009a4df1d8dbc69f811678941981bc8bd4e33b0fbaafc971f25e3
+---
+
+---
+title: Archive Service Account
+url: https://platform.claude.com/docs/en/api/admin/service_accounts/archive
 ---
 
 ## Archive Service Account

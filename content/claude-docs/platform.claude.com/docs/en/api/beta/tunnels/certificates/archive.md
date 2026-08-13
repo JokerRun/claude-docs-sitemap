@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/archive
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 5abb15f354074c91e83a4d30d2a10d4d717ea09e981dbfcfae4510f4ac424430
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: bde145562ba862b1934bc0e6a00deb40ffee16d77b57341a32c9fb7390b4c1e6
+---
+
+---
+title: Archive Tunnel Certificate
+url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/archive
 ---
 
 ## Archive Tunnel Certificate
@@ -27,7 +32,7 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -92,6 +97,8 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
     - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
+
+    - `"mid-conversation-tool-changes-2026-07-01"`
 
 ### Returns
 

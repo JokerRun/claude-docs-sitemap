@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys/update
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: ecbc2436b142b7c49b52674dbcb1cc9b4621923734c7a1a084e70b00806478a0
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 8678b297719e4a94af74f510a640ce2cb0f0a17ff245c5052e22ae3655ade595
+---
+
+---
+title: Update API Key
+url: https://platform.claude.com/docs/en/api/admin/api_keys/update
 ---
 
 ## Update API Key

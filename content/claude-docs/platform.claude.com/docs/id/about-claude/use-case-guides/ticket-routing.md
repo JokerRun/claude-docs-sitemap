@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/ticket-routing
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: a1b09e2e6aa6002b370119a09c0b1044e2bd9d51cf3c29ac6e323c6e0d327aaf
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: d91aeeae168a5b4ba9ccf10c70d4caa8b3cb585caa7e3a4db33a9fdd07429589
 ---
 
-# Perutean tiket
-
-Panduan ini membahas cara memanfaatkan kemampuan pemahaman bahasa alami tingkat lanjut Claude untuk mengklasifikasikan tiket dukungan pelanggan dalam skala besar berdasarkan niat pelanggan, urgensi, prioritas, profil pelanggan, dan lainnya.
-
+---
+title: Perutean tiket
+url: https://platform.claude.com/docs/id/about-claude/use-case-guides/ticket-routing
+description: Panduan ini membahas cara memanfaatkan kemampuan pemahaman bahasa alami tingkat lanjut Claude untuk mengklasifikasikan tiket dukungan pelanggan dalam skala besar berdasarkan niat pelanggan, urgensi, prioritas, profil pelanggan, dan lainnya.
 ---
 
 ## Prasyarat
@@ -160,7 +160,7 @@ Selain niat, perutean dan prioritas tiket juga dapat dipengaruhi oleh faktor lai
 
 ### Tetapkan kriteria keberhasilan
 
-Bekerjalah dengan tim dukungan Anda untuk [mendefinisikan kriteria keberhasilan yang jelas](/docs/id/test-and-evaluate/develop-tests) dengan tolok ukur, ambang batas, dan tujuan yang dapat diukur.
+Bekerjalah dengan tim dukungan Anda untuk [mendefinisikan kriteria keberhasilan yang jelas](https://platform.claude.com/docs/id/test-and-evaluate/develop-tests) dengan tolok ukur, ambang batas, dan tujuan yang dapat diukur.
 
 Berikut adalah beberapa kriteria dan tolok ukur standar saat menggunakan LLM untuk perutean tiket dukungan:
 
@@ -242,7 +242,7 @@ Berikut adalah beberapa kriteria keberhasilan umum yang mungkin berguna terlepas
 
 Pilihan model bergantung pada pertimbangan antara biaya, akurasi, dan waktu respons.
 
-Banyak pelanggan menemukan bahwa `claude-haiku-4-5-20251001` adalah model yang ideal untuk perutean tiket, karena merupakan model tercepat dan paling hemat biaya dalam keluarga Claude 4 sambil tetap memberikan hasil yang sangat baik. Jika masalah klasifikasi Anda memerlukan keahlian materi yang mendalam atau volume kategori niat yang besar, atau penalaran yang kompleks, Anda dapat memilih [model Sonnet yang lebih besar](/docs/id/about-claude/models).
+Banyak pelanggan menemukan bahwa `claude-haiku-4-5-20251001` adalah model yang ideal untuk perutean tiket, karena merupakan model tercepat dan paling hemat biaya dalam keluarga Claude 4 sambil tetap memberikan hasil yang sangat baik. Jika masalah klasifikasi Anda memerlukan keahlian materi yang mendalam atau volume kategori niat yang besar, atau penalaran yang kompleks, Anda dapat memilih [model Sonnet yang lebih besar](https://platform.claude.com/docs/id/about-claude/models).
 
 ### Bangun prompt yang kuat
 
@@ -325,7 +325,7 @@ Meminta Claude membagi responsnya menjadi bagian tag XML terpisah memungkinkan A
 
 ### Terapkan prompt Anda
 
-Sulit untuk mengetahui seberapa baik prompt Anda bekerja tanpa menerapkannya dalam pengaturan produksi uji dan [menjalankan evaluasi](/docs/id/test-and-evaluate/develop-tests).
+Sulit untuk mengetahui seberapa baik prompt Anda bekerja tanpa menerapkannya dalam pengaturan produksi uji dan [menjalankan evaluasi](https://platform.claude.com/docs/id/test-and-evaluate/develop-tests).
 
 Bangun struktur penerapan. Mulailah dengan mendefinisikan tanda tangan metode untuk membungkus panggilan ke Claude. Perluas metode yang mulai Anda tulis sebelumnya, yang menerima `ticket_contents` sebagai input, sehingga sekarang mengembalikan tuple `reasoning` dan `intent` sebagai output. Jika Anda memiliki otomasi yang sudah ada menggunakan ML tradisional, Anda sebaiknya mengikuti tanda tangan metode tersebut.
 
@@ -383,7 +383,7 @@ Karena seluruh teks penalaran dan niat harus dihasilkan sebelum penguraian, cont
 
 Prompting sering memerlukan pengujian dan optimasi agar siap untuk produksi. Untuk menentukan kesiapan solusi Anda, evaluasi kinerja berdasarkan kriteria keberhasilan dan ambang batas yang Anda tetapkan sebelumnya.
 
-Untuk menjalankan evaluasi Anda, Anda memerlukan kasus uji untuk menjalankannya. Sisa panduan ini mengasumsikan Anda telah [mengembangkan kasus uji Anda](/docs/id/test-and-evaluate/develop-tests).
+Untuk menjalankan evaluasi Anda, Anda memerlukan kasus uji untuk menjalankannya. Sisa panduan ini mengasumsikan Anda telah [mengembangkan kasus uji Anda](https://platform.claude.com/docs/id/test-and-evaluate/develop-tests).
 
 ### Bangun fungsi evaluasi
 
@@ -457,7 +457,7 @@ Memiliki ambang batas ini memungkinkan Anda dengan cepat dan mudah mengetahui da
 
 ## Tingkatkan kinerja
 
-Dalam skenario yang kompleks, mungkin berguna untuk mempertimbangkan strategi tambahan untuk meningkatkan kinerja di luar [teknik rekayasa prompt](/docs/id/build-with-claude/prompt-engineering/overview) standar & [strategi implementasi pengaman](/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations). Berikut adalah beberapa skenario umum:
+Dalam skenario yang kompleks, mungkin berguna untuk mempertimbangkan strategi tambahan untuk meningkatkan kinerja di luar [teknik rekayasa prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview) standar & [strategi implementasi pengaman](https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations). Berikut adalah beberapa skenario umum:
 
 ### Gunakan hierarki taksonomi untuk kasus dengan 20+ kategori niat
 
@@ -468,7 +468,7 @@ Seiring bertambahnya jumlah kelas, jumlah contoh yang diperlukan juga bertambah,
 
 Misalnya, Anda mungkin memiliki pengklasifikasi tingkat atas yang secara luas mengkategorikan tiket menjadi "Technical Issues," "Billing Questions," dan "General Inquiries." Setiap kategori ini kemudian dapat memiliki sub-pengklasifikasinya sendiri untuk lebih menyempurnakan klasifikasi.
 
-![](/docs/images/ticket-hierarchy.png)
+![](https://platform.claude.com/docs/images/ticket-hierarchy.png)
 
 * **Kelebihan - nuansa dan akurasi yang lebih besar:** Anda dapat membuat prompt yang berbeda untuk setiap jalur induk, memungkinkan klasifikasi yang lebih terarah dan spesifik konteks. Ini dapat menghasilkan peningkatan akurasi dan penanganan permintaan pelanggan yang lebih bernuansa.
 
@@ -526,7 +526,7 @@ Untuk salah satu dari pendekatan ini, Anda perlu membungkus skrip Anda dalam seb
     Kunjungi cookbook klasifikasi untuk contoh kode lebih lanjut dan panduan evaluasi yang terperinci.
   </Card>
 
-  <Card title="Claude Console" icon="link" href="/dashboard">
+  <Card title="Claude Console" icon="link" href="https://platform.claude.com/dashboard">
     Mulai membangun dan mengevaluasi alur kerja Anda di Claude Console.
   </Card>
 </CardGroup>

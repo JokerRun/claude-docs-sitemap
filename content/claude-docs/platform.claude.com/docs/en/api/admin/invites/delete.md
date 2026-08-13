@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/invites/delete
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 31cf60aed6d9184d034253d26b4cbb06f9a36c4aa65de453ea16ed0729423053
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 4be0fa805c20d0a6fa3339894624313297944e09bc18c0f7a256ffe8f4ebc1ec
+---
+
+---
+title: Delete Invite
+url: https://platform.claude.com/docs/en/api/admin/invites/delete
 ---
 
 ## Delete Invite

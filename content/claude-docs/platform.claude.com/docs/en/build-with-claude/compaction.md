@@ -1,22 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 7c481a8881a9818084d4326e846f091ca38bcc1c75cc7a56fb1231941cb0d672
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 5c2ae51a814f8550399e50106769e01943df8d0514ea2492cc2c9b28d976c840
 ---
 
-# Compaction
-
-Server-side context compaction for managing long conversations that approach context window limits.
+---
+title: Compaction
+url: https://platform.claude.com/docs/en/build-with-claude/compaction
+description: Server-side context compaction for managing long conversations that approach context window limits.
+---
 
 ## Compatibility
 - Status: Beta
-- [Beta header](/docs/en/api/beta-headers): `compact-2026-01-12`
-- [ZDR](/docs/en/manage-claude/api-and-data-retention): eligible (excludes [Covered Models](/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))
+- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `compact-2026-01-12`
+- [ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention): eligible (excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))
 - Supported models: `claude-fable-5`, `claude-mythos-5`, `claude-mythos-preview`, `claude-opus-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-opus-4-6`, `claude-sonnet-5`, `claude-sonnet-4-6`
 - Platforms: Claude API (beta), Claude Platform on AWS (beta), Amazon Bedrock (beta), Google Cloud (beta), Microsoft Foundry (beta)
-
----
 
 <Tip>
   Server-side compaction is the recommended strategy for managing context in long-running conversations and agentic workflows. It handles context management automatically, without client-side summarization code.
@@ -44,7 +44,7 @@ When compaction is enabled, Claude automatically summarizes your conversation wh
 
 On subsequent requests, append the response to your messages. The API automatically drops all content blocks prior to the `compaction` block, continuing the conversation from the summary.
 
-![Compaction flow: when input tokens reach the trigger, Claude writes a summary into a compaction block and continues](/docs/images/compaction-flow.svg)
+![Compaction flow: when input tokens reach the trigger, Claude writes a summary into a compaction block and continues](https://platform.claude.com/docs/images/compaction-flow.svg)
 
 ## Basic usage
 
@@ -1098,7 +1098,7 @@ When enabled, the API returns a message with the `compaction` stop reason after 
 
 When a model works on long tasks with many tool-use iterations, total token consumption can grow significantly. You can combine `pause_after_compaction` with a compaction counter to estimate cumulative usage and gracefully wrap up the task once a budget is reached.
 
-This example appears in the SDK languages only: its value is the budget-tracking logic around the request. The raw request combines the `trigger` from [Trigger configuration](#trigger-configuration) with `pause_after_compaction` from [Pausing after compaction](#pausing-after-compaction).
+This example appears in the SDK languages only: its value is the budget-tracking logic around the request. The raw request combines the `trigger` from [Trigger configuration](https://platform.claude.com/docs/en/build-with-claude/compaction#trigger-configuration) with `pause_after_compaction` from [Pausing after compaction](https://platform.claude.com/docs/en/build-with-claude/compaction#pausing-after-compaction).
 
 <CodeGroup exclude="shell">
   ```python Python
@@ -2055,7 +2055,7 @@ The compaction block streams differently from text blocks. You receive a `conten
 
 ### Prompt caching
 
-Compaction works well with [prompt caching](/docs/en/build-with-claude/prompt-caching). You can add a `cache_control` breakpoint on compaction blocks to cache the summarized content.
+Compaction works well with [prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching). You can add a `cache_control` breakpoint on compaction blocks to cache the summarized content.
 
 ```json
 {
@@ -3494,7 +3494,7 @@ Here's an example that uses `pause_after_compaction` to preserve the prior excha
 
 * **Same model for summarization:** The model specified in your request is used for summarization. There is no option to use a different (for example, cheaper) model for the summary.
 
-* **Compaction might fail when tools are defined:** When your request includes `tools`, the model occasionally calls a tool during the internal summarization step instead of writing a summary. When this occurs, the response contains a `compaction` block with `content: null`. To prevent this, set [`instructions`](#custom-summarization-instructions) to a prompt that explicitly tells the model not to call tools, for example:
+* **Compaction might fail when tools are defined:** When your request includes `tools`, the model occasionally calls a tool during the internal summarization step instead of writing a summary. When this occurs, the response contains a `compaction` block with `content: null`. To prevent this, set [`instructions`](https://platform.claude.com/docs/en/build-with-claude/compaction#custom-summarization-instructions) to a prompt that explicitly tells the model not to call tools, for example:
 
   ```text wrap
   Summarize the transcript inside <summary></summary> tags. Include relevant information in the summary for continuing the task in the next context window. Do not call any tools while writing this summary; respond with text only.
@@ -3503,11 +3503,11 @@ Here's an example that uses `pause_after_compaction` to preserve the prior excha
 ## Next steps
 
 <CardGroup cols={3}>
-  <Card title="Context editing" icon="edit" href="/docs/en/build-with-claude/context-editing">
+  <Card title="Context editing" icon="edit" href="https://platform.claude.com/docs/en/build-with-claude/context-editing">
     Automatically manage conversation context as it grows with context editing.
   </Card>
 
-  <Card title="Context windows" icon="arrows-left-right" href="/docs/en/build-with-claude/context-windows">
+  <Card title="Context windows" icon="arrows-left-right" href="https://platform.claude.com/docs/en/build-with-claude/context-windows">
     Learn about context window sizes and management strategies.
   </Card>
 

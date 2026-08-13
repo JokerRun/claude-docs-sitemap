@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rbac_groups/create
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: b5879ed5742e05c32a9dc1325b028342e69580c8cb790ccace5aadb9fa13bd7e
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 5f7a972f887bd595a9bc601ce94aadd415b288d82cc0a5bd77c887c8cfbc770e
+---
+
+---
+title: Create RBAC Group
+url: https://platform.claude.com/docs/en/api/admin/rbac_groups/create
 ---
 
 ## Create RBAC Group

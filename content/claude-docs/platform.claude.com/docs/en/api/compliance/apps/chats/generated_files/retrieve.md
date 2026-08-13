@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/generated_files/retrieve
-fetched_at: 2026-06-19T03:18:02.201222Z
-sha256: f7619aa410ae89a48c02a49ab3fd99135f7bb7d48b3c9ec2a421bc71537b3d66
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 4080fb67104ee78d850d0c50fe0eaac9b237d672b7949522be1c482935d31786
+---
+
+---
+title: Get Claude-generated file metadata
+url: https://platform.claude.com/docs/en/api/compliance/apps/chats/generated_files/retrieve
 ---
 
 ## Get Claude-generated file metadata

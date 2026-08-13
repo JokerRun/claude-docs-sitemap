@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 4feb177e2b047fc8aa4a791e1dd70a2b164d08306cffb8a94616a1f04b2b4f5d
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 487ca5147f986ba6ef7285d2d80f5b13d1e5819a801fac532eb4de9ef25d060b
 ---
 
-# Definisikan hasil
-
-Beri tahu agen seperti apa 'selesai' itu, dan biarkan agen melakukan iterasi hingga mencapainya.
-
+---
+title: Definisikan hasil
+url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
+description: Beri tahu agen seperti apa 'selesai' itu, dan biarkan agen melakukan iterasi hingga mencapainya.
 ---
 
 Sebuah outcome (hasil) memberi tahu sesi seperti apa hasil akhirnya seharusnya dan bagaimana mengukur kualitasnya. Agen bekerja menuju target tersebut, mengevaluasi diri sendiri dan melakukan iterasi hingga hasil tercapai.
@@ -18,7 +18,7 @@ Ketika Anda mendefinisikan sebuah hasil, harness secara otomatis menyediakan *gr
 Grader mengembalikan penjelasan yang merangkum kriteria mana yang lulus atau gagal, atau mengonfirmasi bahwa artefak memenuhi rubrik. Umpan balik tersebut diserahkan kembali ke agen untuk iterasi berikutnya.
 
 <Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](/docs/id/api/beta-headers#endpoint-specific-headers).
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Buat rubrik
@@ -59,14 +59,14 @@ Contoh rubrik:
 - Sensitivity analysis on WACC and terminal growth rate is included
 ```
 
-Berikan rubrik sebagai teks inline pada `user.define_outcome` (lihat [Buat sesi dengan hasil](#create-a-session-with-an-outcome)), atau unggah melalui Files API untuk digunakan kembali di berbagai sesi.
+Berikan rubrik sebagai teks inline pada `user.define_outcome` (lihat [Buat sesi dengan hasil](https://platform.claude.com/docs/id/managed-agents/define-outcomes#create-a-session-with-an-outcome)), atau unggah melalui Files API untuk digunakan kembali di berbagai sesi.
 
 <Note>
   Mengunggah melalui Files API memerlukan header beta yang memberikan akses Files API. Header beta Managed Agents Anda sudah memberikan akses ini dengan sendirinya, jadi Anda tidak perlu mengirim `files-api-2025-04-14` bersamanya. Contoh curl meneruskan header-nya secara eksplisit.
 </Note>
 
 <CodeGroup>
-  ```bash curl
+  ```bash cURL
   rubric=$(curl -fsSL https://api.anthropic.com/v1/files \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -297,10 +297,10 @@ Berikan rubrik sebagai teks inline pada `user.define_outcome` (lihat [Buat sesi 
 
 ## Buat sesi dengan hasil
 
-Contoh berikut membuat sebuah [sesi](/docs/id/managed-agents/sessions) untuk [agen](/docs/id/managed-agents/agent-setup) dan [lingkungan](/docs/id/managed-agents/environments) yang sudah ada (keduanya dibuat secara terpisah), lalu mengirim event `user.define_outcome`. Agen langsung mulai bekerja. Tidak diperlukan event pesan pengguna tambahan.
+Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) untuk [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) dan [lingkungan](https://platform.claude.com/docs/id/managed-agents/environments) yang sudah ada (keduanya dibuat secara terpisah), lalu mengirim event `user.define_outcome`. Agen langsung mulai bekerja. Tidak diperlukan event pesan pengguna tambahan.
 
 <CodeGroup>
-  ```bash curl
+  ```bash cURL
   # Membuat sesi
   session=$(curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -544,16 +544,16 @@ Contoh berikut membuat sebuah [sesi](/docs/id/managed-agents/sessions) untuk [ag
 </CodeGroup>
 
 <Note>
-  Anda juga dapat mendefinisikan hasil dalam permintaan pembuatan itu sendiri: berikan satu event `user.define_outcome` di [`initial_events`](/docs/id/managed-agents/sessions#seed-the-session-with-initial-events) untuk membuat sesi dan memulai pekerjaan menuju hasil dalam satu panggilan.
+  Anda juga dapat mendefinisikan hasil dalam permintaan pembuatan itu sendiri: berikan satu event `user.define_outcome` di [`initial_events`](https://platform.claude.com/docs/id/managed-agents/sessions#seed-the-session-with-initial-events) untuk membuat sesi dan memulai pekerjaan menuju hasil dalam satu panggilan.
 </Note>
 
 ## Event hasil
 
-Kemajuan pada sesi yang berorientasi hasil ditampilkan pada [stream](/docs/id/managed-agents/events-and-streaming) event.
+Kemajuan pada sesi yang berorientasi hasil ditampilkan pada [stream](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) event.
 
 * Event `agent.*` (seperti pesan dan penggunaan alat) menunjukkan kemajuan menuju hasil.
 * Event `span.outcome_evaluation_*` hanya dipancarkan untuk sesi yang berorientasi hasil dan menunjukkan jumlah loop iterasi serta proses umpan balik grader.
-* Anda juga dapat mengirim [event](/docs/id/managed-agents/reference#event-types) `user.message` ke sesi yang berorientasi hasil untuk mengarahkan pekerjaan agen saat berlangsung, tetapi ini tidak wajib: agen bekerja menuju hasil dengan sendirinya, melakukan iterasi hingga berhasil atau kehabisan iterasi.
+* Anda juga dapat mengirim [event](https://platform.claude.com/docs/id/managed-agents/reference#event-types) `user.message` ke sesi yang berorientasi hasil untuk mengarahkan pekerjaan agen saat berlangsung, tetapi ini tidak wajib: agen bekerja menuju hasil dengan sendirinya, melakukan iterasi hingga berhasil atau kehabisan iterasi.
 * Event `user.interrupt` menjeda pekerjaan pada hasil saat ini dan menandai `span.outcome_evaluation_end.result` sebagai `interrupted`, memungkinkan Anda memulai hasil baru.
 * Setelah evaluasi hasil terakhir, sesi dapat dilanjutkan sebagai sesi percakapan, atau hasil baru dapat dimulai. Sesi menyimpan riwayat hasil sebelumnya.
 
@@ -635,10 +635,10 @@ Dipancarkan ketika siklus evaluasi hasil berakhir: setelah grader selesai mengev
 
 ## Periksa status hasil
 
-Anda dapat mendengarkan [stream event](/docs/id/managed-agents/events-and-streaming) untuk `span.outcome_evaluation_end`, atau melakukan polling `GET /v1/sessions/{session_id}` dan membaca `outcome_evaluations[].result`. Hingga evaluasi selesai, `result` melaporkan `pending`, `running`, atau `evaluating`:
+Anda dapat mendengarkan [stream event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) untuk `span.outcome_evaluation_end`, atau melakukan polling `GET /v1/sessions/{session_id}` dan membaca `outcome_evaluations[].result`. Hingga evaluasi selesai, `result` melaporkan `pending`, `running`, atau `evaluating`:
 
 <CodeGroup>
-  ```bash curl
+  ```bash cURL
   session=$(curl -fsSL "https://api.anthropic.com/v1/sessions/$session_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -722,14 +722,14 @@ Anda dapat mendengarkan [stream event](/docs/id/managed-agents/events-and-stream
 
 ## Ambil deliverable
 
-Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah sesi idle, ambil file tersebut melalui [Files API](/docs/id/build-with-claude/files) yang dicakup ke sesi tersebut.
+Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah sesi idle, ambil file tersebut melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files) yang dicakup ke sesi tersebut.
 
 <Note>
   Memfilter berdasarkan `scope_id` memerlukan header beta `managed-agents-2026-04-01` pada permintaan files. Metode files SDK hanya mengirim beta files secara otomatis, sehingga contoh-contoh meneruskannya secara eksplisit.
 </Note>
 
 <CodeGroup>
-  ```bash curl
+  ```bash cURL
   # Mencantumkan file yang dihasilkan oleh sesi ini
   # Pemfilteran scope_id memerlukan beta managed-agents
   files=$(curl -fsSL "https://api.anthropic.com/v1/files?scope_id=$session_id" \
@@ -903,15 +903,15 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah se
 ## Langkah selanjutnya
 
 <CardGroup cols={3}>
-  <Card title="Autentikasi dengan vault" icon="fingerprint" href="/docs/id/managed-agents/vaults">
+  <Card title="Autentikasi dengan vault" icon="fingerprint" href="https://platform.claude.com/docs/id/managed-agents/vaults">
     Daftarkan kredensial per pengguna saat membuat sesi.
   </Card>
 
-  <Card title="Stream event sesi" icon="lightning" href="/docs/id/managed-agents/events-and-streaming">
+  <Card title="Stream event sesi" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/events-and-streaming">
     Kirim event, streaming respons, dan interupsi atau alihkan sesi Anda di tengah eksekusi.
   </Card>
 
-  <Card title="Menambahkan file" icon="file" href="/docs/id/managed-agents/files">
+  <Card title="Menambahkan file" icon="file" href="https://platform.claude.com/docs/id/managed-agents/files">
     Unggah file dan pasang di sandbox Anda untuk dibaca dan diproses.
   </Card>
 </CardGroup>

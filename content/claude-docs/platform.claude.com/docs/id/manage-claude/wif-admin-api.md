@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-admin-api
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 61659b4dc0ce5b51348769c226f68b6f95d20a2285464dbdc0dc987df51dcb72
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: e67b228d0f071d71c8b6929f8af4e18b795dc3664f791f4464a429b83ce036c7
 ---
 
-# Mengelola WIF dengan Admin API
-
-Buat dan kelola service account, issuer, dan rule Workload Identity Federation secara terprogram untuk infrastructure-as-code dan alur kerja CI.
-
+---
+title: Mengelola WIF dengan Admin API
+url: https://platform.claude.com/docs/id/manage-claude/wif-admin-api
+description: Buat dan kelola service account, issuer, dan rule Workload Identity Federation secara terprogram untuk infrastructure-as-code dan alur kerja CI.
 ---
 
-Admin API memungkinkan Anda membuat dan mengelola sumber daya [Workload Identity Federation](/docs/id/manage-claude/workload-identity-federation) secara terprogram: service account, federation issuer, dan federation rule. Gunakan ini untuk menyimpan konfigurasi federasi Anda dalam infrastructure as code, menyediakannya dari CI, dan mereproduksinya di berbagai organisasi alih-alih mengklik melalui Claude Console. Endpoint ini berbagi prefiks path `/v1/organizations` dengan bagian lain dari [Admin API](/docs/id/manage-claude/admin-api).
+Admin API memungkinkan Anda membuat dan mengelola sumber daya [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation) secara terprogram: service account, federation issuer, dan federation rule. Gunakan ini untuk menyimpan konfigurasi federasi Anda dalam infrastructure as code, menyediakannya dari CI, dan mereproduksinya di berbagai organisasi alih-alih mengklik melalui Claude Console. Endpoint ini berbagi prefiks path `/v1/organizations` dengan bagian lain dari [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api).
 
 ## Prasyarat
 
@@ -19,7 +19,7 @@ Setiap permintaan di halaman ini diautentikasi dengan token bearer OAuth yang me
 
 ### Interaktif (terminal Anda)
 
-Masuk dengan [`ant` CLI](/docs/id/cli-sdks-libraries/cli/quickstart) di bawah profil khusus, dengan meminta scope `org:admin` (lihat [Akses admin](/docs/id/cli-sdks-libraries/cli/authentication#admin-access)), lalu ekspor token bearer:
+Masuk dengan [`ant` CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart) di bawah profil khusus, dengan meminta scope `org:admin` (lihat [Akses admin](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication#admin-access)), lalu ekspor token bearer:
 
 ```bash CLI
 ant auth login --profile admin --scope "org:admin"
@@ -41,12 +41,12 @@ Satu rule yang dibuat di Console sudah cukup untuk menempatkan sisa konfigurasi 
     Di Claude Console, buka **Settings → Workload identity** dan pilih **Connect workload** untuk membuat satu federation rule untuk workload otomatisasi Anda, misalnya alur kerja GitHub Actions di repositori infrastruktur Anda. Di bawah **Advanced rule options**, atur OAuth scope rule tersebut ke `org:admin`: wizard kemudian membuat service account baru dengan peran organisasi Admin (atau meminta Anda memilih service account admin yang sudah ada sebagai target).
 
     <Warning>
-      Cocokkan rule dengan satu identitas workload yang tepat, bukan pola yang luas. `subject_prefix` adalah pencocokan persis kecuali diakhiri dengan `*`. Untuk GitHub Actions, sematkan subject ke branch yang dilindungi, seperti `repo:my-org/my-repo:ref:refs/heads/main`. Wildcard di akhir seperti `repo:my-org/my-repo:*` juga cocok dengan run `pull_request`, termasuk run yang dipicu dari fork, sehingga siapa pun yang dapat membuka pull request terhadap repositori tersebut dapat mencetak token `org:admin`. Lihat [Batasi alur kerja mana yang dapat melakukan autentikasi](/docs/id/manage-claude/wif-providers/github-actions#restrict-which-workflows-can-authenticate).
+      Cocokkan rule dengan satu identitas workload yang tepat, bukan pola yang luas. `subject_prefix` adalah pencocokan persis kecuali diakhiri dengan `*`. Untuk GitHub Actions, sematkan subject ke branch yang dilindungi, seperti `repo:my-org/my-repo:ref:refs/heads/main`. Wildcard di akhir seperti `repo:my-org/my-repo:*` juga cocok dengan run `pull_request`, termasuk run yang dipicu dari fork, sehingga siapa pun yang dapat membuka pull request terhadap repositori tersebut dapat mencetak token `org:admin`. Lihat [Batasi alur kerja mana yang dapat melakukan autentikasi](https://platform.claude.com/docs/id/manage-claude/wif-providers/github-actions#restrict-which-workflows-can-authenticate).
     </Warning>
   </Step>
 
   <Step title="Tukarkan token identitas workload">
-    Saat runtime, workload menukarkan JWT dari penyedia identitasnya dengan token bearer `org:admin` berumur pendek menggunakan [pertukaran token](/docs/id/manage-claude/workload-identity-federation#authenticate-from-your-workload) yang sama seperti workload terfederasi lainnya.
+    Saat runtime, workload menukarkan JWT dari penyedia identitasnya dengan token bearer `org:admin` berumur pendek menggunakan [pertukaran token](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#authenticate-from-your-workload) yang sama seperti workload terfederasi lainnya.
   </Step>
 
   <Step title="Kelola issuer dan rule dengan cakupan workspace melalui API">
@@ -54,7 +54,7 @@ Satu rule yang dibuat di Console sudah cukup untuk menempatkan sisa konfigurasi 
   </Step>
 </Steps>
 
-Untuk operasi yang dapat dan tidak dapat dilakukan oleh token yang dicetak workload, lihat [Izin dan batasan](#permissions-and-constraints). Jika Anda sudah membuat issuer, service account, atau rule dengan wizard **Connect workload**, daftarkan mereka dengan endpoint berikut dan impor ke dalam state infrastructure-as-code Anda alih-alih membuatnya ulang.
+Untuk operasi yang dapat dan tidak dapat dilakukan oleh token yang dicetak workload, lihat [Izin dan batasan](https://platform.claude.com/docs/id/manage-claude/wif-admin-api#permissions-and-constraints). Jika Anda sudah membuat issuer, service account, atau rule dengan wizard **Connect workload**, daftarkan mereka dengan endpoint berikut dan impor ke dalam state infrastructure-as-code Anda alih-alih membuatnya ulang.
 
 ## Autentikasi
 
@@ -70,7 +70,7 @@ Kunci Admin API tidak diterima pada endpoint ini; contoh `x-api-key` di halaman 
 
 ## Service account
 
-Sebuah [service account](/docs/id/manage-claude/workload-identity-federation#service-accounts) (`svac_...`) adalah identitas non-manusia yang diwakili oleh token terfederasi. Atur `organization_role` ke `developer`.
+Sebuah [service account](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#service-accounts) (`svac_...`) adalah identitas non-manusia yang diwakili oleh token terfederasi. Atur `organization_role` ke `developer`.
 
 ```bash cURL
 # Membuat akun layanan
@@ -109,11 +109,11 @@ Endpoint create mengembalikan service account baru:
 
 Untuk membaca atau memperbarui satu service account, gunakan `GET` dan `POST` pada `/v1/organizations/service_accounts/{service_account_id}`. Sebuah service account harus menjadi anggota workspace sebelum token terfederasi dapat bertindak di dalamnya. Setiap service account memiliki keanggotaan implisit di workspace default organisasi Anda; tambahkan keanggotaan eksplisit untuk workspace lain dengan `GET`, `POST`, dan `DELETE` pada `/v1/organizations/service_accounts/{service_account_id}/workspaces`, di mana `DELETE` menargetkan `.../workspaces/{workspace_id}`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Referensi API Service accounts](/docs/id/api/admin/service_accounts).
+Untuk detail parameter lengkap dan skema respons, lihat [Referensi API Service accounts](https://platform.claude.com/docs/id/api/admin/service_accounts).
 
 ## Federation issuer
 
-Sebuah [federation issuer](/docs/id/manage-claude/workload-identity-federation#federation-issuers) (`fdis_...`) mendaftarkan penyedia identitas OIDC ke organisasi Anda. Field `jwks` adalah discriminated union yang mengontrol bagaimana Anthropic mengambil kunci penandatanganan penyedia:
+Sebuah [federation issuer](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#federation-issuers) (`fdis_...`) mendaftarkan penyedia identitas OIDC ke organisasi Anda. Field `jwks` adalah discriminated union yang mengontrol bagaimana Anthropic mengambil kunci penandatanganan penyedia:
 
 | Nilai `jwks`                             | Kapan digunakan                                                                  |
 | ---------------------------------------- | -------------------------------------------------------------------------------- |
@@ -144,13 +144,13 @@ curl --fail-with-body -sS -X POST "https://api.anthropic.com/v1/organizations/fe
   -H "authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
-Untuk membaca atau memperbarui satu issuer, gunakan `GET` dan `POST` pada `/v1/organizations/federation_issuers/{issuer_id}`. Pemanggil OAuth tidak dapat memperbarui issuer yang mendukung rule yang `oauth_scope`-nya selain `workspace:developer` atau `workspace:inference`; lihat [Izin dan batasan](#permissions-and-constraints).
+Untuk membaca atau memperbarui satu issuer, gunakan `GET` dan `POST` pada `/v1/organizations/federation_issuers/{issuer_id}`. Pemanggil OAuth tidak dapat memperbarui issuer yang mendukung rule yang `oauth_scope`-nya selain `workspace:developer` atau `workspace:inference`; lihat [Izin dan batasan](https://platform.claude.com/docs/id/manage-claude/wif-admin-api#permissions-and-constraints).
 
-Untuk detail parameter lengkap dan skema respons, lihat [Referensi API Federation issuers](/docs/id/api/admin/federation_issuers).
+Untuk detail parameter lengkap dan skema respons, lihat [Referensi API Federation issuers](https://platform.claude.com/docs/id/api/admin/federation_issuers).
 
 ## Federation rule
 
-Sebuah [federation rule](/docs/id/manage-claude/workload-identity-federation#federation-rules) (`fdrl_...`) mengikat sebuah issuer ke sebuah service account: JWT dari issuer yang memenuhi kondisi pencocokan rule dapat mencetak token yang bertindak sebagai target rule tersebut. `workspace_id` dalam permintaan create mengaktifkan rule di workspace tersebut saat pembuatan; tambahkan lebih banyak workspace nanti melalui sub-resource `/federation_rules/{rule_id}/workspaces`. Salah satu dari `workspace_id` atau `applies_to_all_workspaces: true` diperlukan saat create.
+Sebuah [federation rule](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#federation-rules) (`fdrl_...`) mengikat sebuah issuer ke sebuah service account: JWT dari issuer yang memenuhi kondisi pencocokan rule dapat mencetak token yang bertindak sebagai target rule tersebut. `workspace_id` dalam permintaan create mengaktifkan rule di workspace tersebut saat pembuatan; tambahkan lebih banyak workspace nanti melalui sub-resource `/federation_rules/{rule_id}/workspaces`. Salah satu dari `workspace_id` atau `applies_to_all_workspaces: true` diperlukan saat create.
 
 ```bash cURL
 # Membuat aturan (GitHub Actions melakukan deploy dari branch main)
@@ -196,7 +196,7 @@ Endpoint list mengembalikan satu halaman rule dan kursor untuk halaman berikutny
 
 Untuk membaca atau memperbarui satu rule, gunakan `GET` dan `POST` pada `/v1/organizations/federation_rules/{rule_id}`. Untuk mengelola workspace tempat sebuah rule dapat mencetak token, gunakan `GET` dan `POST` pada `/v1/organizations/federation_rules/{rule_id}/workspaces`, dan `DELETE` pada `/v1/organizations/federation_rules/{rule_id}/workspaces/{workspace_id}`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Referensi API Federation rules](/docs/id/api/admin/federation_rules).
+Untuk detail parameter lengkap dan skema respons, lihat [Referensi API Federation rules](https://platform.claude.com/docs/id/api/admin/federation_rules).
 
 ## Izin dan batasan
 
@@ -206,7 +206,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [Referensi API Federatio
   * Kunci Admin API tidak diterima pada endpoint ini, baik untuk baca maupun tulis; gunakan token OAuth `org:admin`.
 </Note>
 
-Rule dengan `oauth_scope: org:admin` harus menargetkan service account yang `organization_role`-nya adalah `admin`. Nama sumber daya harus cocok dengan `^[a-z0-9-]+$`, memiliki panjang 1 hingga 255 karakter, dan unik dalam satu organisasi untuk setiap jenis sumber daya; untuk batasan lengkap tingkat field, lihat [Aturan validasi](/docs/id/manage-claude/wif-reference#validation-rules).
+Rule dengan `oauth_scope: org:admin` harus menargetkan service account yang `organization_role`-nya adalah `admin`. Nama sumber daya harus cocok dengan `^[a-z0-9-]+$`, memiliki panjang 1 hingga 255 karakter, dan unik dalam satu organisasi untuk setiap jenis sumber daya; untuk batasan lengkap tingkat field, lihat [Aturan validasi](https://platform.claude.com/docs/id/manage-claude/wif-reference#validation-rules).
 
 ## Paginasi dan pengarsipan
 
@@ -216,7 +216,7 @@ Pengarsipan adalah soft delete dan bersifat idempoten: mengarsipkan sumber daya 
 
 ## Lihat juga
 
-* [Workload Identity Federation](/docs/id/manage-claude/workload-identity-federation): konsep dan panduan penyiapan di Console
-* [Referensi WIF](/docs/id/manage-claude/wif-reference): variabel lingkungan, aturan validasi, OAuth scope, dan kode error
-* [Admin API](/docs/id/manage-claude/admin-api): bagian lain dari permukaan manajemen organisasi
-* [Referensi Admin API](/docs/id/api/admin): skema permintaan dan respons yang dihasilkan untuk setiap endpoint Admin API
+* [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation): konsep dan panduan penyiapan di Console
+* [Referensi WIF](https://platform.claude.com/docs/id/manage-claude/wif-reference): variabel lingkungan, aturan validasi, OAuth scope, dan kode error
+* [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api): bagian lain dari permukaan manajemen organisasi
+* [Referensi Admin API](https://platform.claude.com/docs/id/api/admin): skema permintaan dan respons yang dihasilkan untuk setiap endpoint Admin API

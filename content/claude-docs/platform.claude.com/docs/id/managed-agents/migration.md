@@ -1,34 +1,34 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/migration
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 9b812f999828a2e872ef4d75f989890c9c54da2a735b34f764de17cf4318b625
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 8722076d1df2dffe070cc9b308dd5c978ba2dfb62ffe51b3217270391628ed3b
 ---
 
-# Migrasi
-
-Pindahkan agen yang sudah ada yang dibangun di atas Messages API atau Claude Agent SDK ke Claude Managed Agents.
-
+---
+title: Migrasi
+url: https://platform.claude.com/docs/id/managed-agents/migration
+description: Pindahkan agen yang sudah ada yang dibangun di atas Messages API atau Claude Agent SDK ke Claude Managed Agents.
 ---
 
-Claude Managed Agents menggantikan loop agen yang Anda tulis sendiri dengan infrastruktur terkelola. Halaman ini membahas apa yang berubah ketika Anda bermigrasi dari loop kustom yang dibangun di atas [Messages API](/docs/id/build-with-claude/working-with-messages) atau dari [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview).
+Claude Managed Agents menggantikan loop agen yang Anda tulis sendiri dengan infrastruktur terkelola. Halaman ini membahas apa saja yang berubah ketika Anda bermigrasi dari loop kustom yang dibangun di atas [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) atau dari [Claude Agent SDK](https://code.claude.com/docs/id/agent-sdk/overview).
 
 <Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](/docs/id/api/beta-headers#endpoint-specific-headers).
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Dari loop agen Messages API
 
-Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, mengeksekusi panggilan alat sendiri, dan menambahkan hasilnya ke riwayat percakapan, sebagian besar kode tersebut akan hilang.
+Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, mengeksekusi panggilan alat sendiri, dan menambahkan hasilnya ke riwayat percakapan, sebagian besar kode tersebut tidak lagi diperlukan.
 
-### Apa yang tidak perlu Anda kelola lagi
+### Apa yang tidak lagi Anda kelola
 
-| Sebelum                                                                                                           | Sesudah                                                                                                                        |
-| ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| Anda memelihara array riwayat percakapan dan mengirimkannya kembali pada setiap giliran.                          | Sesi menyimpan riwayat di sisi server. Kirim event, terima event.                                                              |
-| Anda mengiterasi blok konten `tool_use`, menjalankan setiap alat, dan kembali ke loop dengan pesan `tool_result`. | Alat bawaan berjalan di dalam sandbox secara otomatis. Anda hanya menangani alat kustom melalui event `agent.custom_tool_use`. |
-| Anda menyediakan sandbox Anda sendiri untuk menjalankan kode yang dihasilkan agen.                                | Sandbox sesi menangani eksekusi kode, operasi file, dan bash.                                                                  |
-| Anda memutuskan kapan loop selesai.                                                                               | Sesi memancarkan `session.status_idle` ketika agen tidak memiliki hal lain untuk dilakukan.                                    |
+| Sebelum                                                                                                             | Sesudah                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Anda memelihara array riwayat percakapan dan mengirimkannya kembali pada setiap giliran.                            | Sesi menyimpan riwayat di sisi server. Kirim event, terima event.                                                              |
+| Anda mengiterasi blok konten `tool_use`, menjalankan setiap alat, dan mengulang kembali dengan pesan `tool_result`. | Alat bawaan berjalan di dalam sandbox secara otomatis. Anda hanya menangani alat kustom melalui event `agent.custom_tool_use`. |
+| Anda menyediakan sandbox sendiri untuk menjalankan kode yang dihasilkan agen.                                       | Sandbox sesi menangani eksekusi kode, operasi file, dan bash.                                                                  |
+| Anda menentukan kapan loop selesai.                                                                                 | Sesi mengeluarkan `session.status_idle` ketika agen tidak memiliki hal lain untuk dilakukan.                                   |
 
 ### Perbandingan kode
 
@@ -299,9 +299,9 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
     > /dev/null
 
   # Tunggu hingga sesi menjadi idle. grep keluar pada kecocokan pertama, dan
-  # membaca melalui process substitution berarti shell tidak menunggu
-  # tail (pipeline `tail -f | grep -m1` di latar depan akan menggantung: tail
-  # hanya mati saat penulisan berikutnya, yang tidak pernah terjadi setelah stream idle).
+  # membaca via process substitution berarti shell tidak menunggu
+  # tail (pipeline `tail -f | grep -m1` di foreground akan menggantung: tail
+  # baru mati pada penulisan berikutnya, yang tak pernah datang setelah stream idle).
   grep -m1 '"session.status_idle"' <(tail -f -n +1 "${stream_log}") > /dev/null
 
   kill "${stream_pid}" 2>/dev/null || true
@@ -603,156 +603,721 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
 
 ### Apa yang masih Anda kendalikan
 
-* **Prompt sistem dan model:** Field yang sama, sekarang pada definisi agen.
-* **Alat kustom:** Masih dideklarasikan dengan JSON Schema. Eksekusi berpindah dari penanganan inline menjadi merespons event `agent.custom_tool_use`. Lihat [Stream event sesi](/docs/id/managed-agents/events-and-streaming).
-* **Konteks:** Anda masih dapat menyuntikkan konteks melalui prompt sistem, [sumber daya file](/docs/id/managed-agents/files), atau [skills](/docs/id/managed-agents/skills).
+* **Prompt sistem dan model:** Field yang sama, sekarang berada pada definisi agen.
+* **Alat kustom:** Masih dideklarasikan dengan JSON Schema. Eksekusi berpindah dari penanganan inline menjadi merespons event `agent.custom_tool_use`. Lihat [Stream event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming).
+* **Konteks:** Anda masih dapat menyuntikkan konteks melalui prompt sistem, [resource file](https://platform.claude.com/docs/id/managed-agents/files), atau [skill](https://platform.claude.com/docs/id/managed-agents/skills).
 
 ## Dari Claude Agent SDK
 
-Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview), Anda sudah bekerja dengan konsep agen, alat, dan sesi. Perbedaannya adalah di mana mereka berjalan: SDK dieksekusi dalam proses yang Anda operasikan, sedangkan Managed Agents berjalan di infrastruktur Anthropic. Sebagian besar migrasi adalah memetakan objek konfigurasi SDK ke padanannya di sisi API.
+Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/agent-sdk/overview), Anda sudah bekerja dengan agen, alat, dan sesi sebagai konsep. Perbedaannya adalah di mana mereka berjalan: SDK dieksekusi dalam proses yang Anda operasikan, sedangkan Managed Agents berjalan di infrastruktur Anthropic. Sebagian besar migrasi adalah memetakan objek konfigurasi SDK ke padanannya di sisi API.
 
 ### Apa yang berubah
 
-| Agent SDK                                                               | Managed Agents                                                                                                                                                                                                                                   |
-| ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `ClaudeAgentOptions(...)` dibuat per eksekusi                           | `client.beta.agents.create(...)` sekali; Agent dipersistenkan dan diberi versi di sisi server. Lihat [Penyiapan agen](/docs/id/managed-agents/agent-setup).                                                                                      |
-| `async with ClaudeSDKClient(...)` atau `query(...)`                     | `client.beta.sessions.create(...)` lalu kirim dan terima [event](/docs/id/managed-agents/events-and-streaming).                                                                                                                                  |
-| Fungsi yang didekorasi `@tool` yang didispatch secara otomatis oleh SDK | Deklarasikan sebagai `{"type": "custom", ...}` pada Agent; klien Anda menangani event `agent.custom_tool_use` dan membalas dengan `user.custom_tool_result`. Lihat [Alat](/docs/id/managed-agents/tools).                                        |
-| Alat bawaan berjalan di proses Anda terhadap filesystem Anda            | `{"type": "agent_toolset_20260401"}` menjalankan alat yang sama di dalam sandbox sesi terhadap `/workspace`.                                                                                                                                     |
-| `cwd`, `add_dirs` menunjuk ke path lokal                                | Unggah atau mount [file](/docs/id/managed-agents/files) sebagai sumber daya sesi.                                                                                                                                                                |
-| `system_prompt` dan hierarki `CLAUDE.md`                                | Satu string `system` pada Agent. Setiap pembaruan menghasilkan versi baru di sisi server; sematkan sesi ke versi tertentu untuk mempromosikan atau melakukan rollback tanpa deploy. Lihat [Penyiapan agen](/docs/id/managed-agents/agent-setup). |
-| `mcp_servers` dikonfigurasi dan diautentikasi di satu tempat            | Deklarasikan server pada Agent; berikan kredensial melalui [Vault](/docs/id/managed-agents/vaults) pada Session.                                                                                                                                 |
-| `permission_mode`, `can_use_tool`                                       | [`permission_policy`](/docs/id/managed-agents/permission-policies) per alat; kirim event `user.tool_confirmation` untuk alat `always_ask`.                                                                                                       |
+| Agent SDK                                                                 | Managed Agents                                                                                                                                                                                                                                                         |
+| ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ClaudeAgentOptions(...)` dibuat per eksekusi                             | `client.beta.agents.create(...)` satu kali; Agent dipersistenkan dan diberi versi di sisi server. Lihat [Penyiapan agen](https://platform.claude.com/docs/id/managed-agents/agent-setup).                                                                              |
+| `async with ClaudeSDKClient(...)` atau `query(...)`                       | `client.beta.sessions.create(...)` lalu kirim dan terima [event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming).                                                                                                                             |
+| Fungsi dengan dekorator `@tool` yang di-dispatch secara otomatis oleh SDK | Deklarasikan sebagai `{"type": "custom", ...}` pada Agent; klien Anda menangani event `agent.custom_tool_use` dan membalas dengan `user.custom_tool_result`. Lihat [Alat](https://platform.claude.com/docs/id/managed-agents/tools).                                   |
+| Alat bawaan berjalan di proses Anda terhadap filesystem Anda              | `{"type": "agent_toolset_20260401"}` menjalankan alat yang sama di dalam sandbox sesi terhadap `/workspace`.                                                                                                                                                           |
+| `cwd`, `add_dirs` menunjuk ke path lokal                                  | Unggah atau mount [file](https://platform.claude.com/docs/id/managed-agents/files) sebagai resource sesi.                                                                                                                                                              |
+| `system_prompt` dan hierarki `CLAUDE.md`                                  | Satu string `system` pada Agent. Setiap pembaruan menghasilkan versi baru di sisi server; pin sesi ke versi tertentu untuk mempromosikan atau melakukan rollback tanpa deploy. Lihat [Penyiapan agen](https://platform.claude.com/docs/id/managed-agents/agent-setup). |
+| `mcp_servers` dikonfigurasi dan diautentikasi di satu tempat              | Deklarasikan server pada Agent; sediakan kredensial melalui [Vault](https://platform.claude.com/docs/id/managed-agents/vaults) pada Session.                                                                                                                           |
+| `permission_mode`, `can_use_tool`                                         | [`permission_policy`](https://platform.claude.com/docs/id/managed-agents/permission-policies) per alat; kirim event `user.tool_confirmation` untuk alat `always_ask`.                                                                                                  |
 
 ### Perbandingan kode
 
 **Sebelum** (Agent SDK):
 
-```python
-from claude_agent_sdk import (
-    ClaudeAgentOptions,
-    ClaudeSDKClient,
-    create_sdk_mcp_server,
-    tool,
-)
+<CodeGroup exclude="shell, csharp, go, java, php, ruby">
+  ```python Python
+  from claude_agent_sdk import (
+      ClaudeAgentOptions,
+      ClaudeSDKClient,
+      create_sdk_mcp_server,
+      tool,
+  )
 
 
-@tool("get_weather", "Get the current weather for a city.", {"city": str})
-async def get_weather(args: dict) -> dict:
-    return {"content": [{"type": "text", "text": f"{args['city']}: 18°C, clear"}]}
+  @tool("get_weather", "Get the current weather for a city.", {"city": str})
+  async def get_weather(args: dict) -> dict:
+      return {"content": [{"type": "text", "text": f"{args['city']}: 18°C, clear"}]}
 
 
-options = ClaudeAgentOptions(
-    model="claude-opus-5",
-    system_prompt="You are a concise weather assistant.",
-    mcp_servers={
-        "weather": create_sdk_mcp_server("weather", "1.0", tools=[get_weather])
-    },
-)
+  options = ClaudeAgentOptions(
+      model="claude-opus-5",
+      system_prompt="You are a concise weather assistant.",
+      mcp_servers={
+          "weather": create_sdk_mcp_server("weather", "1.0", tools=[get_weather])
+      },
+  )
 
-async with ClaudeSDKClient(options=options) as agent:
-    await agent.query("What's the weather in Tokyo?")
-    async for msg in agent.receive_response():
-        print(msg)
-```
+  async with ClaudeSDKClient(options=options) as agent:
+      await agent.query("What's the weather in Tokyo?")
+      async for msg in agent.receive_response():
+          print(msg)
+  ```
+
+  ```typescript TypeScript
+  import { createSdkMcpServer, query, tool } from "@anthropic-ai/claude-agent-sdk";
+  import { z } from "zod";
+
+  const getWeather = tool(
+    "get_weather",
+    "Get the current weather for a city.",
+    { city: z.string() },
+    async (args) => ({
+      content: [{ type: "text", text: `${args.city}: 18°C, clear` }]
+    })
+  );
+
+  for await (const message of query({
+    prompt: "What's the weather in Tokyo?",
+    options: {
+      model: "claude-opus-5",
+      systemPrompt: "You are a concise weather assistant.",
+      mcpServers: {
+        weather: createSdkMcpServer({ name: "weather", version: "1.0", tools: [getWeather] })
+      }
+    }
+  })) {
+    console.log(message);
+  }
+  ```
+</CodeGroup>
 
 **Sesudah** (Managed Agents):
 
-```python
-from anthropic import Anthropic
+<CodeGroup exclude="shell">
+  ```python Python
+  from anthropic import Anthropic
 
-client = Anthropic()
+  client = Anthropic()
 
-agent = client.beta.agents.create(
-    name="weather-agent",
-    model="claude-opus-5",
-    system="You are a concise weather assistant.",
-    tools=[
-        {
-            "type": "custom",
-            "name": "get_weather",
-            "description": "Get the current weather for a city.",
-            "input_schema": {
-                "type": "object",
-                "properties": {"city": {"type": "string"}},
-                "required": ["city"],
-            },
+  agent = client.beta.agents.create(
+      name="weather-agent",
+      model="claude-opus-5",
+      system="You are a concise weather assistant.",
+      tools=[
+          {
+              "type": "custom",
+              "name": "get_weather",
+              "description": "Get the current weather for a city.",
+              "input_schema": {
+                  "type": "object",
+                  "properties": {"city": {"type": "string"}},
+                  "required": ["city"],
+              },
+          }
+      ],
+  )
+  environment = client.beta.environments.create(
+      name="weather-env",
+      config={"type": "cloud", "networking": {"type": "unrestricted"}},
+  )
+
+  session = client.beta.sessions.create(
+      agent={"type": "agent", "id": agent.id, "version": agent.version},
+      environment_id=environment.id,
+  )
+
+
+  def get_weather(city: str) -> str:
+      return f"{city}: 18°C, clear"
+
+
+  with client.beta.sessions.events.stream(session.id) as stream:
+      client.beta.sessions.events.send(
+          session.id,
+          events=[
+              {
+                  "type": "user.message",
+                  "content": [{"type": "text", "text": "What's the weather in Tokyo?"}],
+              }
+          ],
+      )
+      for ev in stream:
+          if ev.type == "agent.message":
+              print("".join(block.text for block in ev.content if block.type == "text"))
+          elif ev.type == "agent.custom_tool_use":
+              result = get_weather(**ev.input)
+              client.beta.sessions.events.send(
+                  session.id,
+                  events=[
+                      {
+                          "type": "user.custom_tool_result",
+                          "custom_tool_use_id": ev.id,
+                          "content": [{"type": "text", "text": result}],
+                      }
+                  ],
+              )
+          elif (
+              ev.type == "session.status_idle"
+              and ev.stop_reason
+              and ev.stop_reason.type == "end_turn"
+          ):
+              break
+  ```
+
+  ```typescript TypeScript
+  import Anthropic from "@anthropic-ai/sdk";
+
+  const client = new Anthropic();
+
+  const agent = await client.beta.agents.create({
+    name: "weather-agent",
+    model: "claude-opus-5",
+    system: "You are a concise weather assistant.",
+    tools: [
+      {
+        type: "custom",
+        name: "get_weather",
+        description: "Get the current weather for a city.",
+        input_schema: {
+          type: "object",
+          properties: { city: { type: "string" } },
+          required: ["city"]
         }
-    ],
-)
-environment = client.beta.environments.create(
-    name="weather-env",
-    config={"type": "cloud", "networking": {"type": "unrestricted"}},
-)
+      }
+    ]
+  });
+  const environment = await client.beta.environments.create({
+    name: "weather-env",
+    config: { type: "cloud", networking: { type: "unrestricted" } }
+  });
 
-session = client.beta.sessions.create(
-    agent={"type": "agent", "id": agent.id, "version": agent.version},
-    environment_id=environment.id,
-)
+  const session = await client.beta.sessions.create({
+    agent: { type: "agent", id: agent.id, version: agent.version },
+    environment_id: environment.id
+  });
 
+  function getWeather({ city }: Record<string, unknown>): string {
+    return `${city}: 18°C, clear`;
+  }
 
-def get_weather(city: str) -> str:
-    return f"{city}: 18°C, clear"
+  const stream = await client.beta.sessions.events.stream(session.id);
 
+  await client.beta.sessions.events.send(session.id, {
+    events: [
+      {
+        type: "user.message",
+        content: [{ type: "text", text: "What's the weather in Tokyo?" }]
+      }
+    ]
+  });
 
-with client.beta.sessions.events.stream(session.id) as stream:
-    client.beta.sessions.events.send(
+  for await (const event of stream) {
+    if (event.type === "agent.message") {
+      for (const block of event.content) {
+        if (block.type === "text") {
+          console.log(block.text);
+        }
+      }
+    } else if (event.type === "agent.custom_tool_use") {
+      const result = getWeather(event.input);
+      await client.beta.sessions.events.send(session.id, {
+        events: [
+          {
+            type: "user.custom_tool_result",
+            custom_tool_use_id: event.id,
+            content: [{ type: "text", text: result }]
+          }
+        ]
+      });
+    } else if (event.type === "session.status_idle" && event.stop_reason?.type === "end_turn") {
+      break;
+    }
+  }
+  ```
+
+  ```csharp C#
+  using System.Text.Json;
+
+  using Anthropic.Models.Beta.Agents;
+  using Anthropic.Models.Beta.Environments;
+  using Anthropic.Models.Beta.Sessions;
+  using Anthropic.Models.Beta.Sessions.Events;
+
+  AnthropicClient client = new();
+
+  var agent = await client.Beta.Agents.Create(new()
+  {
+      Name = "weather-agent",
+      Model = BetaManagedAgentsModel.ClaudeOpus5,
+      System = "You are a concise weather assistant.",
+      Tools =
+      [
+          new BetaManagedAgentsCustomToolParams
+          {
+              Type = "custom",
+              Name = "get_weather",
+              Description = "Get the current weather for a city.",
+              InputSchema = new()
+              {
+                  Properties = new Dictionary<string, JsonElement>
+                  {
+                      ["city"] = JsonSerializer.SerializeToElement(new { type = "string" }),
+                  },
+                  Required = ["city"],
+              },
+          },
+      ],
+  });
+  var environment = await client.Beta.Environments.Create(new()
+  {
+      Name = "weather-env",
+      Config = new BetaCloudConfigParams
+      {
+          Networking = new BetaUnrestrictedNetwork(),
+      },
+  });
+
+  var session = await client.Beta.Sessions.Create(new()
+  {
+      Agent = new BetaManagedAgentsAgentParams
+      {
+          Type = "agent",
+          ID = agent.ID,
+          Version = agent.Version,
+      },
+      EnvironmentID = environment.ID,
+  });
+
+  static string GetWeather(string city) => $"{city}: 18°C, clear";
+
+  using var stream = await client.Beta.Sessions.Events.WithRawResponse.StreamStreaming(session.ID);
+
+  await client.Beta.Sessions.Events.Send(session.ID, new()
+  {
+      Events =
+      [
+          new BetaManagedAgentsUserMessageEventParams
+          {
+              Type = "user.message",
+              Content = [new BetaManagedAgentsTextBlock { Type = "text", Text = "What's the weather in Tokyo?" }],
+          },
+      ],
+  });
+
+  await foreach (var streamEvent in stream.Enumerate())
+  {
+      if (streamEvent.Value is BetaManagedAgentsAgentMessageEvent message)
+      {
+          Console.WriteLine(string.Concat(message.Content.Select(block => block.Text)));
+      }
+      else if (streamEvent.Value is BetaManagedAgentsAgentCustomToolUseEvent toolUse)
+      {
+          var result = GetWeather(toolUse.Input["city"].GetString()!);
+          await client.Beta.Sessions.Events.Send(session.ID, new()
+          {
+              Events =
+              [
+                  new BetaManagedAgentsUserCustomToolResultEventParams
+                  {
+                      Type = "user.custom_tool_result",
+                      CustomToolUseID = toolUse.ID,
+                      Content =
+                      [
+                          new BetaManagedAgentsTextBlock
+                          {
+                              Type = "text",
+                              Text = result,
+                          },
+                      ],
+                  },
+              ],
+          });
+      }
+      else if (streamEvent.Value is BetaManagedAgentsSessionStatusIdleEvent idle
+          && idle.StopReason?.Value is BetaManagedAgentsSessionEndTurn)
+      {
+          break;
+      }
+  }
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+  ctx := context.Background()
+
+  agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
+  	Name: "weather-agent",
+  	Model: anthropic.BetaManagedAgentsModelConfigParams{
+  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5,
+  	},
+  	System: anthropic.String("You are a concise weather assistant."),
+  	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
+  		OfCustom: &anthropic.BetaManagedAgentsCustomToolParams{
+  			Type:        anthropic.BetaManagedAgentsCustomToolParamsTypeCustom,
+  			Name:        "get_weather",
+  			Description: "Get the current weather for a city.",
+  			InputSchema: anthropic.BetaManagedAgentsCustomToolInputSchemaParam{
+  				Properties: map[string]any{
+  					"city": map[string]any{"type": "string"},
+  				},
+  				Required: []string{"city"},
+  			},
+  		},
+  	}},
+  })
+  if err != nil {
+  	panic(err)
+  }
+  environment, err := client.Beta.Environments.New(ctx, anthropic.BetaEnvironmentNewParams{
+  	Name: "weather-env",
+  	Config: anthropic.BetaEnvironmentNewParamsConfigUnion{
+  		OfCloud: &anthropic.BetaCloudConfigParams{
+  			Networking: anthropic.BetaCloudConfigParamsNetworkingUnion{
+  				OfUnrestricted: &anthropic.BetaUnrestrictedNetworkParam{},
+  			},
+  		},
+  	},
+  })
+  if err != nil {
+  	panic(err)
+  }
+
+  session, err := client.Beta.Sessions.New(ctx, anthropic.BetaSessionNewParams{
+  	Agent: anthropic.BetaSessionNewParamsAgentUnion{
+  		OfBetaManagedAgentsAgents: &anthropic.BetaManagedAgentsAgentParams{
+  			Type:    anthropic.BetaManagedAgentsAgentParamsTypeAgent,
+  			ID:      agent.ID,
+  			Version: anthropic.Int(agent.Version),
+  		},
+  	},
+  	EnvironmentID: environment.ID,
+  })
+  if err != nil {
+  	panic(err)
+  }
+
+  getWeather := func(city string) string {
+  	return fmt.Sprintf("%s: 18°C, clear", city)
+  }
+
+  stream := client.Beta.Sessions.Events.StreamEvents(ctx, session.ID, anthropic.BetaSessionEventStreamParams{})
+  defer stream.Close()
+
+  _, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
+  	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
+  		OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
+  			Type: anthropic.BetaManagedAgentsUserMessageEventParamsTypeUserMessage,
+  			Content: []anthropic.BetaManagedAgentsUserMessageEventParamsContentUnion{{
+  				OfText: &anthropic.BetaManagedAgentsTextBlockParam{
+  					Type: anthropic.BetaManagedAgentsTextBlockTypeText,
+  					Text: "What's the weather in Tokyo?",
+  				},
+  			}},
+  		},
+  	}},
+  })
+  if err != nil {
+  	panic(err)
+  }
+
+  loop:
+  for stream.Next() {
+  	event := stream.Current()
+  	switch event.Type {
+  	case "agent.message":
+  		for _, block := range event.AsAgentMessage().Content {
+  			if block.Type == "text" {
+  				fmt.Println(block.Text)
+  			}
+  		}
+  	case "agent.custom_tool_use":
+  		toolUse := event.AsAgentCustomToolUse()
+  		result := getWeather(toolUse.Input["city"].(string))
+  		if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
+  			Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
+  				OfUserCustomToolResult: &anthropic.BetaManagedAgentsUserCustomToolResultEventParams{
+  					Type:            anthropic.BetaManagedAgentsUserCustomToolResultEventParamsTypeUserCustomToolResult,
+  					CustomToolUseID: toolUse.ID,
+  					Content: []anthropic.BetaManagedAgentsUserCustomToolResultEventParamsContentUnion{{
+  						OfText: &anthropic.BetaManagedAgentsTextBlockParam{
+  							Type: anthropic.BetaManagedAgentsTextBlockTypeText,
+  							Text: result,
+  						},
+  					}},
+  				},
+  			}},
+  		}); err != nil {
+  			panic(err)
+  		}
+  	case "session.status_idle":
+  		idle := event.AsSessionStatusIdle()
+  		if _, ok := idle.StopReason.AsAny().(anthropic.BetaManagedAgentsSessionEndTurn); ok {
+  			break loop
+  		}
+  	}
+  }
+  if err := stream.Err(); err != nil {
+  	panic(err)
+  }
+  ```
+
+  ```java Java
+  import java.util.Map;
+  import java.util.function.Function;
+
+  import com.anthropic.models.beta.agents.AgentCreateParams;
+  import com.anthropic.models.beta.agents.BetaManagedAgentsCustomToolInputSchema;
+  import com.anthropic.models.beta.agents.BetaManagedAgentsCustomToolParams;
+  import com.anthropic.models.beta.agents.BetaManagedAgentsModel;
+  import com.anthropic.models.beta.environments.BetaCloudConfigParams;
+  import com.anthropic.models.beta.environments.BetaUnrestrictedNetwork;
+  import com.anthropic.models.beta.environments.EnvironmentCreateParams;
+  import com.anthropic.models.beta.sessions.BetaManagedAgentsAgentParams;
+  import com.anthropic.models.beta.sessions.SessionCreateParams;
+  import com.anthropic.models.beta.sessions.events.BetaManagedAgentsStreamSessionEvents;
+  import com.anthropic.models.beta.sessions.events.BetaManagedAgentsUserCustomToolResultEventParams;
+  import com.anthropic.models.beta.sessions.events.BetaManagedAgentsUserMessageEventParams;
+  import com.anthropic.models.beta.sessions.events.EventSendParams;
+
+  var client = AnthropicOkHttpClient.fromEnv();
+
+  var agent = client.beta().agents().create(AgentCreateParams.builder()
+      .name("weather-agent")
+      .model(BetaManagedAgentsModel.CLAUDE_OPUS_5)
+      .system("You are a concise weather assistant.")
+      .addTool(BetaManagedAgentsCustomToolParams.builder()
+          .type(BetaManagedAgentsCustomToolParams.Type.CUSTOM)
+          .name("get_weather")
+          .description("Get the current weather for a city.")
+          .inputSchema(BetaManagedAgentsCustomToolInputSchema.builder()
+              .properties(BetaManagedAgentsCustomToolInputSchema.Properties.builder()
+                  .putAdditionalProperty("city", JsonValue.from(Map.of("type", "string")))
+                  .build())
+              .addRequired("city")
+              .build())
+          .build())
+      .build());
+  var environment = client.beta().environments().create(EnvironmentCreateParams.builder()
+      .name("weather-env")
+      .config(BetaCloudConfigParams.builder()
+          .networking(BetaUnrestrictedNetwork.builder().build())
+          .build())
+      .build());
+
+  var session = client.beta().sessions().create(SessionCreateParams.builder()
+      .agent(BetaManagedAgentsAgentParams.builder()
+          .type(BetaManagedAgentsAgentParams.Type.AGENT)
+          .id(agent.id())
+          .version(agent.version())
+          .build())
+      .environmentId(environment.id())
+      .build());
+
+  Function<String, String> getWeather = city -> city + ": 18°C, clear";
+
+  try (var stream = client.beta().sessions().events().streamStreaming(session.id())) {
+      client.beta().sessions().events().send(
+          session.id(),
+          EventSendParams.builder()
+              .addEvent(BetaManagedAgentsUserMessageEventParams.builder()
+                  .type(BetaManagedAgentsUserMessageEventParams.Type.USER_MESSAGE)
+                  .addTextContent("What's the weather in Tokyo?")
+                  .build())
+              .build());
+
+      for (var event : (Iterable<BetaManagedAgentsStreamSessionEvents>) stream.stream()::iterator) {
+          if (event.isAgentMessage()) {
+              for (var block : event.asAgentMessage().content()) {
+                  block.text().ifPresent(textBlock -> IO.println(textBlock.text()));
+              }
+          } else if (event.isAgentCustomToolUse()) {
+              var toolUse = event.asAgentCustomToolUse();
+              var city = toolUse.input()._additionalProperties().get("city").asStringOrThrow();
+              var result = getWeather.apply(city);
+              client.beta().sessions().events().send(
+                  session.id(),
+                  EventSendParams.builder()
+                      .addEvent(BetaManagedAgentsUserCustomToolResultEventParams.builder()
+                          .type(BetaManagedAgentsUserCustomToolResultEventParams.Type.USER_CUSTOM_TOOL_RESULT)
+                          .customToolUseId(toolUse.id())
+                          .addTextContent(result)
+                          .build())
+                      .build());
+          } else if (event.isSessionStatusIdle()
+              && event.asSessionStatusIdle().stopReason().isEndTurn()) {
+              break;
+          }
+      }
+  }
+  ```
+
+  ```php PHP
+  use Anthropic\Client;
+  use Anthropic\Beta\Agents\BetaManagedAgentsCustomToolInputSchema;
+  use Anthropic\Beta\Agents\BetaManagedAgentsCustomToolParams;
+  use Anthropic\Beta\Sessions\BetaManagedAgentsAgentParams;
+
+  $client = new Client();
+
+  $agent = $client->beta->agents->create(
+      name: 'weather-agent',
+      model: 'claude-opus-5',
+      system: 'You are a concise weather assistant.',
+      tools: [
+          BetaManagedAgentsCustomToolParams::with(
+              type: 'custom',
+              name: 'get_weather',
+              description: 'Get the current weather for a city.',
+              inputSchema: BetaManagedAgentsCustomToolInputSchema::with(
+                  properties: ['city' => ['type' => 'string']],
+                  required: ['city'],
+              ),
+          ),
+      ],
+  );
+  $environment = $client->beta->environments->create(
+      name: 'weather-env',
+      config: ['type' => 'cloud', 'networking' => ['type' => 'unrestricted']],
+  );
+
+  $session = $client->beta->sessions->create(
+      agent: BetaManagedAgentsAgentParams::with(
+          type: 'agent',
+          id: $agent->id,
+          version: $agent->version,
+      ),
+      environmentID: $environment->id,
+  );
+
+  function getWeather(string $city): string
+  {
+      return "{$city}: 18°C, clear";
+  }
+
+  $stream = $client->beta->sessions->events->streamStream($session->id);
+
+  $client->beta->sessions->events->send(
+      $session->id,
+      events: [
+          [
+              'type' => 'user.message',
+              'content' => [['type' => 'text', 'text' => "What's the weather in Tokyo?"]],
+          ],
+      ],
+  );
+
+  foreach ($stream as $event) {
+      if ($event->type === 'agent.message') {
+          foreach ($event->content as $block) {
+              if ($block->type === 'text') {
+                  echo $block->text . "\n";
+              }
+          }
+      } elseif ($event->type === 'agent.custom_tool_use') {
+          $result = getWeather($event->input['city']);
+          $client->beta->sessions->events->send(
+              $session->id,
+              events: [
+                  [
+                      'type' => 'user.custom_tool_result',
+                      'custom_tool_use_id' => $event->id,
+                      'content' => [['type' => 'text', 'text' => $result]],
+                  ],
+              ],
+          );
+      } elseif ($event->type === 'session.status_idle' && $event->stopReason?->type === 'end_turn') {
+          break;
+      }
+  }
+  $stream->close();
+  ```
+
+  ```ruby Ruby
+  require "anthropic"
+
+  client = Anthropic::Client.new
+
+  agent = client.beta.agents.create(
+    name: "weather-agent",
+    model: "claude-opus-5",
+    system_: "You are a concise weather assistant.",
+    tools: [
+      {
+        type: "custom",
+        name: "get_weather",
+        description: "Get the current weather for a city.",
+        input_schema: {
+          type: "object",
+          properties: {city: {type: "string"}},
+          required: ["city"]
+        }
+      }
+    ]
+  )
+  environment = client.beta.environments.create(
+    name: "weather-env",
+    config: {type: "cloud", networking: {type: "unrestricted"}}
+  )
+
+  session = client.beta.sessions.create(
+    agent: {type: "agent", id: agent.id, version: agent.version},
+    environment_id: environment.id
+  )
+
+  def get_weather(city)
+    "#{city}: 18°C, clear"
+  end
+
+  stream = client.beta.sessions.events.stream_events(session.id)
+  client.beta.sessions.events.send_(
+    session.id,
+    events: [{type: "user.message", content: [{type: "text", text: "What's the weather in Tokyo?"}]}]
+  )
+
+  stream.each do |event|
+    case event.type
+    when :"agent.message"
+      event.content.each do |block|
+        puts block.text if block.type == :text
+      end
+    when :"agent.custom_tool_use"
+      result = get_weather(event.input[:city])
+      client.beta.sessions.events.send_(
         session.id,
-        events=[
-            {
-                "type": "user.message",
-                "content": [{"type": "text", "text": "What's the weather in Tokyo?"}],
-            }
-        ],
-    )
-    for ev in stream:
-        if ev.type == "agent.message":
-            print("".join(block.text for block in ev.content if block.type == "text"))
-        elif ev.type == "agent.custom_tool_use":
-            result = get_weather(**ev.input)
-            client.beta.sessions.events.send(
-                session.id,
-                events=[
-                    {
-                        "type": "user.custom_tool_result",
-                        "custom_tool_use_id": ev.id,
-                        "content": [{"type": "text", "text": result}],
-                    }
-                ],
-            )
-        elif (
-            ev.type == "session.status_idle"
-            and ev.stop_reason
-            and ev.stop_reason.type == "end_turn"
-        ):
-            break
-```
+        events: [
+          {
+            type: "user.custom_tool_result",
+            custom_tool_use_id: event.id,
+            content: [{type: "text", text: result}]
+          }
+        ]
+      )
+    when :"session.status_idle"
+      break if event.stop_reason&.type == :end_turn
+    end
+  end
+  ```
+</CodeGroup>
 
-Agent dan Environment dibuat sekali dan digunakan kembali di berbagai sesi. Fungsi alat masih berjalan di proses Anda; perbedaannya adalah Anda membaca event `agent.custom_tool_use` dan mengirim hasilnya secara eksplisit alih-alih SDK yang mendispatchnya untuk Anda.
+Agent dan Environment dibuat satu kali dan digunakan kembali di seluruh sesi. Fungsi alat masih berjalan di proses Anda; perbedaannya adalah Anda membaca event `agent.custom_tool_use` dan mengirim hasilnya secara eksplisit, alih-alih SDK yang melakukan dispatch untuk Anda.
 
 ### Fitur yang berpindah ke klien Anda
 
-Konsekuensi dari Anthropic menjalankan loop agen adalah beberapa hal yang ditangani SDK secara otomatis menjadi tanggung jawab klien Anda.
+Konsekuensi dari Anthropic yang menjalankan loop agen adalah beberapa hal yang sebelumnya ditangani SDK secara otomatis kini menjadi tanggung jawab klien Anda.
 
 | Fitur SDK                         | Pendekatan Managed Agents                                                                                                                                                |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Mode plan                         | Jalankan sesi khusus perencanaan terlebih dahulu, lalu sesi kedua untuk menjalankan rencana tersebut.                                                                    |
-| Output styles, slash commands     | Terapkan di klien Anda sebelum mengirim `user.message` atau setelah menerima `agent.message`.                                                                            |
+| Plan mode                         | Jalankan sesi khusus perencanaan terlebih dahulu, lalu sesi kedua untuk menjalankan rencana tersebut.                                                                    |
+| Output style, slash command       | Terapkan di klien Anda sebelum mengirim `user.message` atau setelah menerima `agent.message`.                                                                            |
 | Hook `PreToolUse` / `PostToolUse` | Klien Anda sudah melihat setiap event `agent.custom_tool_use` sebelum merespons; letakkan logikanya di sana. Untuk alat bawaan, gunakan `permission_policy: always_ask`. |
 | `max_turns`                       | Hitung giliran di sisi klien.                                                                                                                                            |
 
 ## Daftar periksa migrasi
 
-1. [Buat environment](/docs/id/managed-agents/environments) dengan jaringan dan runtime yang dibutuhkan agen Anda.
-2. Pindahkan prompt sistem dan pemilihan alat Anda ke [definisi agen](/docs/id/managed-agents/agent-setup).
-3. Ganti loop Anda dengan [`sessions.create`](/docs/id/managed-agents/sessions) dan [`sessions.events.stream`](/docs/id/managed-agents/events-and-streaming).
-4. Untuk file lokal apa pun yang dibaca agen, unggah melalui [Files API](/docs/id/managed-agents/files) dan mount sebagai `resources`.
+1. [Buat environment](https://platform.claude.com/docs/id/managed-agents/environments) dengan jaringan dan runtime yang dibutuhkan agen Anda.
+2. Pindahkan prompt sistem dan pemilihan alat Anda ke [definisi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup).
+3. Ganti loop Anda dengan [`sessions.create`](https://platform.claude.com/docs/id/managed-agents/sessions) dan [`sessions.events.stream`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming).
+4. Untuk file lokal apa pun yang dibaca agen, unggah melalui [Files API](https://platform.claude.com/docs/id/managed-agents/files) dan mount sebagai `resources`.
 5. Untuk handler alat kustom apa pun, pindahkan eksekusi ke dalam event loop Anda sebagai respons terhadap event `agent.custom_tool_use`.
-6. Verifikasi dengan sesi uji sebelum mengarahkan lalu lintas produksi ke alur baru.
+6. Verifikasi dengan sesi uji sebelum mengarahkan traffic produksi ke alur baru.
 
-## Bermigrasi antar versi model
+## Migrasi antar versi model
 
-Ketika model Claude baru dirilis, memigrasikan integrasi Claude Managed Agents biasanya hanya perubahan satu field: perbarui `model` pada [definisi agen](/docs/id/managed-agents/agent-setup) Anda dan perubahan tersebut berlaku pada sesi berikutnya yang Anda buat.
+Ketika model Claude baru dirilis, memigrasikan integrasi Claude Managed Agents biasanya hanya perubahan satu field: perbarui `model` pada [definisi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) Anda dan perubahan tersebut akan berlaku pada sesi berikutnya yang Anda buat.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -832,10 +1397,10 @@ Ketika model Claude baru dirilis, memigrasikan integrasi Claude Managed Agents b
   ```
 </CodeGroup>
 
-Sebagian besar perubahan perilaku tingkat model yang didokumentasikan dalam [panduan migrasi Messages API](/docs/id/about-claude/models/migration-guide) tidak memerlukan tindakan dari sisi Anda:
+Sebagian besar perubahan perilaku tingkat model yang didokumentasikan dalam [panduan migrasi Messages API](https://platform.claude.com/docs/id/about-claude/models/migration-guide) tidak memerlukan tindakan dari sisi Anda:
 
-* **Perubahan parameter permintaan** (nilai default `max_tokens`, konfigurasi `thinking`) ditangani oleh runtime Claude Managed Agents. Field-field ini tidak diekspos pada definisi agen.
-* **Prefilling pesan asisten** tidak ada dalam model sesi berbasis event, sehingga penghapusannya pada model yang lebih baru tidak berdampak apa pun.
-* **Escaping JSON argumen alat** diurai oleh runtime sebelum Anda menerima event `agent.custom_tool_use`. Anda melihat data terstruktur, bukan string mentah.
+* **Perubahan parameter permintaan** (default `max_tokens`, konfigurasi `thinking`) ditangani oleh runtime Claude Managed Agents. Field ini tidak diekspos pada definisi agen.
+* **Prefilling pesan asisten** tidak ada dalam model sesi berbasis event, sehingga penghapusannya pada model yang lebih baru tidak berdampak apa-apa.
+* **Escaping JSON argumen alat** di-parse oleh runtime sebelum Anda menerima event `agent.custom_tool_use`. Anda melihat data terstruktur, bukan string mentah.
 
-Deskripsi perilaku dalam panduan Messages API (apa yang dilakukan model secara berbeda) tetap berlaku. Langkah-langkah migrasinya (cara mengubah kode permintaan Anda) tidak.
+Deskripsi perilaku dalam panduan Messages API (apa yang dilakukan model secara berbeda) tetap berlaku. Langkah-langkah migrasi (cara mengubah kode permintaan Anda) tidak berlaku.

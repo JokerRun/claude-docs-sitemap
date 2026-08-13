@@ -1,31 +1,32 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: d1c0e6a93ea797350ccc252d38049402a242b2903e82a73bf8dcb5b69f737071
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 4e24d0ccf215908a9fb88ceff24fdb0dfa9a1fcaf9f93d73d30648fbdfcd5c6d
 ---
 
-# Files API
-
-Unggah file sekali, referensikan dengan file_id dalam permintaan Messages, dan unduh output yang dibuat oleh skills atau alat eksekusi kode.
-
+---
+title: Files API
+url: https://platform.claude.com/docs/id/build-with-claude/files
+description: Unggah file sekali, referensikan dengan file_id dalam permintaan Messages, dan unduh output yang dibuat oleh skills atau alat eksekusi kode.
 ---
 
-Files API memungkinkan Anda mengunggah dan mengelola file untuk digunakan dengan Claude API tanpa mengunggah ulang konten pada setiap permintaan. Ini sangat berguna saat menggunakan [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk menyediakan input (misalnya, dataset dan dokumen) dan kemudian mengunduh output (misalnya, grafik). Anda dapat [menjelajahi referensi API secara langsung](/docs/id/api/beta/files/upload), selain panduan ini.
+## Compatibility
+- Status: Beta
+- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `files-api-2025-04-14`
+- [ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention): not eligible
+- Platforms: Claude API (beta), Claude Platform on AWS (beta), Microsoft Foundry (beta) [1]; not available on Amazon Bedrock, Google Cloud
+1. Di [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), Files API memerlukan [deployment Hosted on Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure).
+
+Files API memungkinkan Anda mengunggah dan mengelola file untuk digunakan dengan Claude API tanpa mengunggah ulang konten pada setiap permintaan. Ini sangat berguna saat menggunakan [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk menyediakan input (misalnya, dataset dan dokumen) lalu mengunduh output (misalnya, grafik). Anda dapat [menjelajahi referensi API secara langsung](https://platform.claude.com/docs/id/api/beta/files/upload), selain panduan ini.
 
 <Note>
-  Files API berada dalam tahap beta. Hubungi kami melalui [formulir umpan balik](https://forms.gle/tisHyierGwgN4DUE9) untuk membagikan pengalaman Anda dengan Files API.
+  Hubungi kami melalui [formulir umpan balik](https://forms.gle/tisHyierGwgN4DUE9) untuk membagikan pengalaman Anda dengan Files API.
 </Note>
 
-<Note>
-  Untuk mengetahui bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
-</Note>
+## Dukungan tipe file
 
-## Model yang didukung
-
-Mereferensikan `file_id` dalam permintaan Messages didukung pada semua model yang mendukung tipe file yang diberikan. [Gambar](/docs/id/build-with-claude/vision) didukung pada semua model Claude saat ini. Untuk [PDF](/docs/id/build-with-claude/pdf-support) dan [tipe file lainnya dengan alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool#model-compatibility), lihat halaman tertaut untuk dukungan model.
-
-Files API tersedia di Claude API, [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Di Microsoft Foundry, Files API memerlukan [deployment Hosted on Anthropic](/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure). Saat ini belum tersedia di Amazon Bedrock atau Google Cloud.
+Mereferensikan `file_id` dalam permintaan Messages didukung pada semua model yang mendukung tipe file tersebut. [Gambar](https://platform.claude.com/docs/id/build-with-claude/vision) didukung pada semua model Claude saat ini. Untuk [PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support) dan [tipe file lainnya dengan alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#model-compatibility), lihat halaman tertaut untuk dukungan model.
 
 ## Cara kerja Files API
 
@@ -33,8 +34,12 @@ Files API menyediakan pendekatan buat-sekali, gunakan-berkali-kali untuk bekerja
 
 * **Unggah file** ke penyimpanan aman Anthropic dan terima `file_id` yang unik
 * **Unduh file** yang dibuat oleh skills atau alat eksekusi kode
-* **Referensikan file** dalam permintaan [Messages](/docs/id/api/messages/create) menggunakan `file_id` alih-alih mengunggah ulang konten
+* **Referensikan file** dalam permintaan [Messages](https://platform.claude.com/docs/id/api/messages/create) menggunakan `file_id` alih-alih mengunggah ulang konten
 * **Kelola file Anda** dengan operasi list, retrieve, dan delete
+
+<Warning id="workspace-scoped-access">
+  **File yang diunggah dapat diakses oleh seluruh workspace Anda, tidak dibatasi pada pengguna akhir, percakapan, atau sesi tertentu.** Kunci API apa pun dalam workspace yang sama dapat mengakses file apa pun yang diunggah di sana, dan semua kunci Anda berbagi Default Workspace organisasi Anda kecuali Anda telah menetapkannya ke [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces#api-keys-and-resource-scoping) terpisah. Jangan pernah menerima nilai `file_id` dari pengguna akhir atau sumber tidak tepercaya lainnya: ID file yang disediakan pengguna akan memungkinkan satu pengguna aplikasi Anda membaca konten yang diunggah oleh pengguna lain. Perlakukan ID file sebagai referensi sisi server, dan simpan pemetaan antara pengguna Anda dan file mereka di dalam aplikasi Anda.
+</Warning>
 
 ## Cara menggunakan Files API
 
@@ -169,7 +174,7 @@ Respons dari pengunggahan file mencakup:
 }
 ```
 
-`downloadable` bernilai `false` untuk file yang Anda unggah. Hanya file yang dibuat oleh [skills](/docs/id/build-with-claude/skills-guide) atau [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) yang dapat diunduh. Lihat [Mengunduh file](#downloading-a-file).
+`downloadable` bernilai `false` untuk file yang Anda unggah. Hanya file yang dibuat oleh [skills](https://platform.claude.com/docs/id/build-with-claude/skills-guide) atau [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) yang dapat diunduh. Lihat [Mengunduh file](https://platform.claude.com/docs/id/build-with-claude/files#downloading-a-file).
 
 ### Menggunakan file dalam messages
 
@@ -401,12 +406,12 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
 
 Files API mendukung berbagai tipe file yang sesuai dengan tipe blok konten yang berbeda:
 
-| Tipe file                                                                                                    | Tipe MIME                                            | Tipe blok konten   | Kasus penggunaan                       |
-| ------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------- | ------------------ | -------------------------------------- |
-| PDF                                                                                                          | `application/pdf`                                    | `document`         | Analisis teks, pemrosesan dokumen      |
-| Teks biasa                                                                                                   | `text/plain`                                         | `document`         | Analisis teks, pemrosesan              |
-| Gambar                                                                                                       | `image/jpeg`, `image/png`, `image/gif`, `image/webp` | `image`            | Analisis gambar, tugas visual          |
-| [Dataset, lainnya](/docs/id/agents-and-tools/tool-use/code-execution-tool#upload-and-analyze-your-own-files) | Bervariasi                                           | `container_upload` | Menganalisis data, membuat visualisasi |
+| Tipe file                                                                                                                               | Tipe MIME                                            | Tipe blok konten   | Kasus penggunaan                       |
+| --------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ------------------ | -------------------------------------- |
+| PDF                                                                                                                                     | `application/pdf`                                    | `document`         | Analisis teks, pemrosesan dokumen      |
+| Teks biasa                                                                                                                              | `text/plain`                                         | `document`         | Analisis teks, pemrosesan              |
+| Gambar                                                                                                                                  | `image/jpeg`, `image/png`, `image/gif`, `image/webp` | `image`            | Analisis gambar, tugas visual          |
+| [Dataset, lainnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#upload-and-analyze-your-own-files) | Bervariasi                                           | `container_upload` | Menganalisis data, membuat visualisasi |
 
 #### Blok document
 
@@ -441,7 +446,7 @@ Untuk gambar, gunakan blok konten `image`:
 
 #### Blok container upload
 
-Untuk mengirim file ke [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool#upload-and-analyze-your-own-files), gunakan blok konten `container_upload`:
+Untuk mengirim file ke [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#upload-and-analyze-your-own-files), gunakan blok konten `container_upload`:
 
 ```json
 {
@@ -452,9 +457,9 @@ Untuk mengirim file ke [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/c
 
 ### Bekerja dengan format file lainnya
 
-Untuk tipe file yang tidak didukung oleh blok `document` (misalnya, .docx dan .xlsx), konversikan file tersebut ke teks biasa dan sertakan kontennya langsung dalam pesan Anda. File yang sudah berupa teks biasa, seperti file .csv dan .md, dapat dibaca dengan cara ini atau diunggah melalui Files API dengan tipe konten `text/plain` secara eksplisit. Untuk menganalisis dataset alih-alih membacanya sebagai teks, unggah dataset tersebut untuk [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool#upload-and-analyze-your-own-files) menggunakan blok `container_upload`.
+Untuk tipe file yang tidak didukung oleh blok `document` (misalnya, .docx dan .xlsx), konversikan file tersebut ke teks biasa dan sertakan kontennya langsung dalam pesan Anda. File yang sudah berupa teks biasa, seperti file .csv dan .md, dapat dibaca dengan cara ini atau diunggah melalui Files API dengan tipe konten `text/plain` eksplisit. Untuk menganalisis dataset alih-alih membacanya sebagai teks, unggah dataset tersebut untuk [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#upload-and-analyze-your-own-files) menggunakan blok `container_upload`.
 
-Contoh berikut membaca file teks dan mengirimkan isinya sebagai teks biasa:
+Contoh berikut membaca file teks dan mengirim isinya sebagai teks biasa:
 
 <CodeGroup>
   ```bash cURL
@@ -486,7 +491,7 @@ Contoh berikut membaca file teks dan mengirimkan isinya sebagai teks biasa:
   ```
 
   ```bash CLI
-  # Referensi "@./path" menyisipkan isi file secara langsung ke dalam field tersebut.
+  # Referensi "@./path" menyisipkan isi file secara langsung ke dalam field.
   ant messages create \
     --model claude-opus-5 \
     --max-tokens 1024 \
@@ -688,14 +693,14 @@ Contoh berikut membaca file teks dan mengirimkan isinya sebagai teks biasa:
 </CodeGroup>
 
 <Note>
-  Untuk file .docx yang berisi gambar, konversikan terlebih dahulu ke format PDF, lalu gunakan [dukungan PDF](/docs/id/build-with-claude/pdf-support) untuk memanfaatkan penguraian gambar bawaan. Ini memungkinkan penggunaan sitasi dari dokumen PDF.
+  Untuk file .docx yang berisi gambar, konversikan terlebih dahulu ke format PDF, lalu gunakan [dukungan PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support) untuk memanfaatkan parsing gambar bawaan. Ini memungkinkan penggunaan sitasi dari dokumen PDF.
 </Note>
 
 ### Mengelola file
 
-#### Daftar file
+#### Membuat daftar file
 
-Ambil daftar file yang telah Anda unggah. Endpoint ini dipaginasi: setiap permintaan mengembalikan hingga `limit` file (20 secara default), dan parameter `before_id` serta `after_id` mengambil halaman yang berdekatan. Lihat [referensi List Files API](/docs/id/api/beta/files/list). SDK mengembalikan halaman pertama dan menyediakan helper paginasi otomatis. Contoh CLI membatasi total dengan `--max-items`:
+Ambil daftar file yang telah Anda unggah. Endpoint ini menggunakan paginasi: setiap permintaan mengembalikan hingga `limit` file (20 secara default), dan parameter `before_id` serta `after_id` mengambil halaman yang berdekatan. Lihat [referensi API List Files](https://platform.claude.com/docs/id/api/beta/files/list). SDK mengembalikan halaman pertama dan menyediakan helper paginasi otomatis. Contoh CLI membatasi total dengan `--max-items`:
 
 <CodeGroup>
   ```bash cURL
@@ -882,7 +887,7 @@ Hapus file dari workspace Anda:
 
 ### Mengunduh file
 
-Unduh file yang dibuat oleh [skills](/docs/id/build-with-claude/skills-guide) atau [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool). File yang Anda unggah tidak dapat diunduh. `file_id` dari file yang dihasilkan muncul di [blok konten `bash_code_execution_tool_result`](/docs/id/agents-and-tools/tool-use/code-execution-tool#retrieve-generated-files) dari respons Messages yang membuatnya:
+Unduh file yang dibuat oleh [skills](https://platform.claude.com/docs/id/build-with-claude/skills-guide) atau [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool). File yang Anda unggah tidak dapat diunduh. `file_id` dari file yang dihasilkan muncul di [blok konten `bash_code_execution_tool_result`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#retrieve-generated-files) dari respons Messages yang membuatnya:
 
 <CodeGroup>
   ```bash cURL
@@ -969,33 +974,33 @@ Unduh file yang dibuat oleh [skills](/docs/id/build-with-claude/skills-guide) at
   File hanya dapat diunduh jika metadatanya menunjukkan `"downloadable": true`, yang berlaku untuk file yang dibuat oleh skills atau alat eksekusi kode. Mengunduh file yang Anda unggah akan mengembalikan error 400.
 </Note>
 
-## Penyimpanan dan batas file
+## Penyimpanan dan batasan file
 
-### Batas penyimpanan
+### Batasan penyimpanan
 
 * **Ukuran file maksimum:** 500 MB per file
 * **Total penyimpanan:** 500 GB per organisasi
 
 ### Siklus hidup file
 
-* File dibatasi pada workspace dari kunci API yang mengunggahnya. Kunci API apa pun dalam workspace yang sama dapat mereferensikannya
-* File tidak dapat dimodifikasi atau diganti namanya setelah diunggah. Untuk mengubah konten file, unggah file baru dan hapus file lama
-* File tetap ada sampai Anda menghapusnya dengan endpoint `DELETE /v1/files/{file_id}`
+* File dibatasi pada workspace dari kunci API yang mengunggahnya. Kunci API apa pun dalam workspace yang sama dapat mereferensikannya; jangan pernah menerima ID file dari sumber tidak tepercaya (lihat [peringatan akses workspace](https://platform.claude.com/docs/id/build-with-claude/files#workspace-scoped-access))
+* File tidak dapat dimodifikasi atau diganti namanya setelah diunggah. Untuk mengubah konten file, unggah file baru dan hapus yang lama
+* File tetap ada hingga Anda menghapusnya dengan endpoint `DELETE /v1/files/{file_id}`
 * File yang dihapus tidak dapat dipulihkan
-* File tidak dapat diakses melalui API segera setelah penghapusan, tetapi mungkin tetap ada dalam panggilan Messages API yang aktif dan penggunaan alat terkait
-* File yang dihapus pengguna akan dihapus sesuai dengan [kebijakan retensi data](https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data) Anthropic. Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention)
+* File tidak dapat diakses melalui API sesaat setelah penghapusan, tetapi mungkin masih ada dalam panggilan Messages API yang aktif dan penggunaan alat terkait
+* File yang dihapus pengguna akan dihapus sesuai dengan [kebijakan retensi data](https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data) Anthropic. Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention)
 
 ## Penanganan error
 
 Error umum saat menggunakan Files API meliputi:
 
-* **File tidak ditemukan (404):** `file_id` yang ditentukan tidak ada atau Anda tidak memiliki akses ke file tersebut
-* **Tipe file tidak valid (400):** Tipe file tidak cocok dengan tipe blok konten (misalnya, menggunakan file gambar dalam blok document)
-* **Tidak dapat diunduh (400):** File yang Anda unggah memiliki `"downloadable": false` dan tidak dapat diunduh. Hanya file yang dibuat oleh skills atau alat eksekusi kode yang dapat diunduh
-* **Melebihi ukuran jendela konteks (400):** File lebih besar dari ukuran jendela konteks (misalnya, menggunakan file teks biasa 500 MB dalam permintaan `/v1/messages`)
-* **Nama file tidak valid (400):** Nama file tidak memenuhi persyaratan panjang (1-255 karakter) atau mengandung karakter terlarang (`<`, `>`, `:`, `"`, `|`, `?`, `*`, `\`, `/`, atau karakter Unicode 0-31)
-* **File terlalu besar (413):** File melebihi batas 500 MB
-* **Batas penyimpanan terlampaui (400):** Organisasi Anda telah mencapai batas penyimpanan 500 GB
+* **File not found (404):** `file_id` yang ditentukan tidak ada atau Anda tidak memiliki akses ke file tersebut
+* **Invalid file type (400):** Tipe file tidak cocok dengan tipe blok konten (misalnya, menggunakan file gambar dalam blok document)
+* **Not downloadable (400):** File yang Anda unggah memiliki `"downloadable": false` dan tidak dapat diunduh. Hanya file yang dibuat oleh skills atau alat eksekusi kode yang dapat diunduh
+* **Exceeds context window size (400):** File lebih besar dari ukuran jendela konteks (misalnya, menggunakan file teks biasa 500 MB dalam permintaan `/v1/messages`)
+* **Invalid filename (400):** Nama file tidak memenuhi persyaratan panjang (1-255 karakter) atau berisi karakter terlarang (`<`, `>`, `:`, `"`, `|`, `?`, `*`, `\`, `/`, atau karakter Unicode 0-31)
+* **File too large (413):** File melebihi batas 500 MB
+* **Storage limit exceeded (400):** Organisasi Anda telah mencapai batas penyimpanan 500 GB
 
 ```json Output
 {
@@ -1010,11 +1015,11 @@ Error umum saat menggunakan Files API meliputi:
 
 ## Penggunaan dan penagihan
 
-Operasi Files API gratis:
+Operasi Files API bersifat gratis:
 
 * Mengunggah file
 * Mengunduh file
-* Mendaftar file
+* Membuat daftar file
 * Mendapatkan metadata file
 * Menghapus file
 
@@ -1024,21 +1029,21 @@ Konten file yang digunakan dalam permintaan Messages dikenakan biaya sebagai tok
 
 Selama periode beta:
 
-* Panggilan API terkait file dibatasi hingga sekitar 100 permintaan per menit
+* Panggilan API terkait file dibatasi sekitar 100 permintaan per menit
 * [Hubungi kami](mailto:sales@anthropic.com) jika Anda memerlukan batas yang lebih tinggi untuk kasus penggunaan Anda
 
 ## Langkah selanjutnya
 
 <CardGroup cols={3}>
-  <Card title="Dukungan PDF" icon="file" href="/docs/id/build-with-claude/pdf-support">
+  <Card title="Dukungan PDF" icon="file" href="https://platform.claude.com/docs/id/build-with-claude/pdf-support">
     Proses PDF dengan Claude. Ekstrak teks, analisis grafik, dan pahami konten visual dari dokumen Anda.
   </Card>
 
-  <Card title="Alat eksekusi kode" icon="terminal" href="/docs/id/agents-and-tools/tool-use/code-execution-tool">
-    Jalankan kode Python dan bash dalam kontainer sandbox untuk menganalisis data, menghasilkan file, dan mengiterasi solusi.
+  <Card title="Alat eksekusi kode" icon="terminal" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool">
+    Jalankan kode Python dan bash dalam kontainer sandbox untuk menganalisis data, menghasilkan file, dan melakukan iterasi pada solusi.
   </Card>
 
-  <Card title="Vision" icon="image" href="/docs/id/build-with-claude/vision">
+  <Card title="Vision" icon="image" href="https://platform.claude.com/docs/id/build-with-claude/vision">
     Proses dan analisis input visual serta hasilkan teks dan kode dari gambar.
   </Card>
 </CardGroup>

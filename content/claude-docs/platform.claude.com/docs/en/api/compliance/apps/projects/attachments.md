@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments
-fetched_at: 2026-06-19T03:18:02.201222Z
-sha256: b8c4314e9ecda2fe3c70c5734f2a53eaf592f49f7ef37876b8091d9507bcac26
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: e53734391f6fc1a1708390c5eb705422a33918badd30cac422a3416d316503c2
+---
+
+---
+title: Attachments
+url: https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments
 ---
 
 # Attachments

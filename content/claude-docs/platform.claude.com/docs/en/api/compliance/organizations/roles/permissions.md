@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/permissions
-fetched_at: 2026-06-27T03:14:28.973816Z
-sha256: 6ec8647d5b13f8f7ccae191768afe6ae0f149343d7a8ca98194cc9794a4b5ec0
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 8e2b7350b1c09909f19907154bca82063bd3b5e5c037cae35738daeb7e7ea329
+---
+
+---
+title: Permissions
+url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/permissions
 ---
 
 # Permissions

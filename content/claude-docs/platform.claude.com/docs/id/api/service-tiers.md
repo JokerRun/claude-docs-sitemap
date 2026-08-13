@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/service-tiers
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: f89ac11ccff7b0a89017aa5d490de21712348f8cc31be3bc9b62886dcdcce19e
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 987310ea8e8add9aa3b39f930a123b968a35928f8b9cc448e0ea3d8552368702
 ---
 
-# Tingkat layanan
-
-Berbagai tingkat layanan memungkinkan Anda menyeimbangkan ketersediaan, kinerja, dan biaya yang dapat diprediksi berdasarkan kebutuhan aplikasi Anda.
-
+---
+title: Tingkat layanan
+url: https://platform.claude.com/docs/id/api/service-tiers
+description: Berbagai tingkat layanan memungkinkan Anda menyeimbangkan ketersediaan, kinerja, dan biaya yang dapat diprediksi berdasarkan kebutuhan aplikasi Anda.
 ---
 
 <Warning>
@@ -27,9 +27,9 @@ Tingkat standard adalah tingkat layanan default untuk semua permintaan API. API 
 
 ## Priority Tier
 
-API memprioritaskan permintaan di tingkat ini di atas semua permintaan lainnya. Prioritisasi ini membantu meminimalkan [kesalahan "server overloaded"](/docs/id/api/errors#http-errors), bahkan selama waktu puncak.
+API memprioritaskan permintaan di tingkat ini di atas semua permintaan lainnya. Prioritisasi ini membantu meminimalkan [kesalahan "server overloaded"](https://platform.claude.com/docs/id/api/errors#http-errors), bahkan selama waktu puncak.
 
-Untuk informasi lebih lanjut, lihat [Komitmen Priority Tier yang sudah ada](#existing-priority-tier-commitments).
+Untuk informasi lebih lanjut, lihat [Komitmen Priority Tier yang sudah ada](https://platform.claude.com/docs/id/api/service-tiers#existing-priority-tier-commitments).
 
 ## Bagaimana permintaan ditetapkan ke tingkat tertentu
 
@@ -45,12 +45,12 @@ Anthropic menghitung penggunaan terhadap kapasitas Priority Tier sebagai berikut
 * Pembacaan cache dihitung sebagai 0,1 token per token yang dibaca dari cache
 * Penulisan cache dihitung sebagai 1,25 token per token yang ditulis ke cache dengan TTL 5 menit
 * Penulisan cache dihitung sebagai 2,00 token per token yang ditulis ke cache dengan TTL 1 jam
-* Untuk permintaan [inferensi khusus AS](/docs/id/manage-claude/data-residency) (`inference_geo: "us"`) pada model Claude 4.6 dan yang lebih baru, token input dihitung sebagai 1,1 token per token
+* Untuk permintaan [inferensi khusus AS](https://platform.claude.com/docs/id/manage-claude/data-residency) (`inference_geo: "us"`) pada model Claude 4.6 dan yang lebih baru, token input dihitung sebagai 1,1 token per token
 * Semua token input lainnya dihitung sebagai 1 token per token
 
 **Token output**
 
-* Untuk permintaan [inferensi khusus AS](/docs/id/manage-claude/data-residency) (`inference_geo: "us"`) pada model Claude 4.6 dan yang lebih baru, token output dihitung sebagai 1,1 token per token
+* Untuk permintaan [inferensi khusus AS](https://platform.claude.com/docs/id/manage-claude/data-residency) (`inference_geo: "us"`) pada model Claude 4.6 dan yang lebih baru, token output dihitung sebagai 1,1 token per token
 * Semua token output lainnya dihitung sebagai 1 token per token
 
 Jika tidak, permintaan diproses pada tingkat standard.
@@ -238,4 +238,4 @@ Priority Tier menargetkan uptime 99,5% dengan sumber daya komputasi yang diprior
 
 Priority Tier didukung pada semua model Claude yang tersedia kecuali Claude Mythos 5, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 5, dan Claude Sonnet 5.
 
-Lihat [Ikhtisar model](/docs/id/about-claude/models/overview) untuk detail lebih lanjut tentang model yang tersedia.
+Lihat [Ikhtisar model](https://platform.claude.com/docs/id/about-claude/models/overview) untuk detail lebih lanjut tentang model yang tersedia.

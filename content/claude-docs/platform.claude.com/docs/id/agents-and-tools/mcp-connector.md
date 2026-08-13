@@ -1,50 +1,50 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-connector
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 3c685a1d393b5dae061bb6f78f768f050eef3cf7e3136116593c7bb5bc7fcebd
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 484f12a23265ffec49cd8061ac8221f1c73b640ec6ac48048cc2a662b1b79418
 ---
 
-# Konektor MCP
-
-Hubungkan ke server MCP jarak jauh langsung dari Messages API tanpa klien MCP, dan buat allowlist, denylist, atau konfigurasikan alat individual.
-
+---
+title: Konektor MCP
+url: https://platform.claude.com/docs/id/agents-and-tools/mcp-connector
+description: Hubungkan ke server MCP jarak jauh langsung dari Messages API tanpa klien MCP, dan buat daftar izin, daftar tolak, atau konfigurasikan alat individual.
 ---
 
-Fitur konektor Model Context Protocol (MCP) dari Claude memungkinkan Anda terhubung ke server MCP jarak jauh langsung dari Messages API tanpa klien MCP terpisah.
+## Compatibility
+- Status: Beta
+- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `mcp-client-2025-11-20`
+- [ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention): not eligible
+- Platforms: Claude API (beta), Claude Platform on AWS (beta), Microsoft Foundry (beta) [1]; not available on Amazon Bedrock, Google Cloud
+1. Pada [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), konektor MCP memerlukan [deployment Hosted on Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure).
+
+Fitur konektor "Model Context Protocol", atau MCP, dari Claude memungkinkan Anda terhubung ke server MCP jarak jauh langsung dari Messages API tanpa klien MCP terpisah.
 
 <Note>
-  **Versi saat ini:** Fitur ini memerlukan header beta: `"anthropic-beta": "mcp-client-2025-11-20"`
-
-  Versi sebelumnya (`mcp-client-2025-04-04`) sudah tidak digunakan lagi (deprecated). Lihat [Versi yang tidak digunakan lagi: mcp-client-2025-04-04](#deprecated-version-mcp-client-2025-04-04).
-</Note>
-
-<Note>
-  Untuk mengetahui bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
+  Versi sebelumnya dari fitur ini (`mcp-client-2025-04-04`) sudah tidak digunakan lagi. Lihat [Versi yang tidak digunakan lagi: mcp-client-2025-04-04](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#deprecated-version-mcp-client-2025-04-04).
 </Note>
 
 ## Fitur utama
 
-* **Integrasi API langsung**: Hubungkan ke server MCP tanpa mengimplementasikan klien MCP
+* **Integrasi API langsung**: Terhubung ke server MCP tanpa mengimplementasikan klien MCP
 * **Dukungan pemanggilan alat**: Akses alat MCP melalui Messages API
-* **Konfigurasi alat yang fleksibel**: Aktifkan semua alat, buat allowlist untuk alat tertentu, atau buat denylist untuk alat yang tidak diinginkan
-* **Konfigurasi per-alat**: Konfigurasikan alat individual dengan pengaturan kustom
+* **Konfigurasi alat yang fleksibel**: Aktifkan semua alat, buat daftar izin untuk alat tertentu, atau buat daftar tolak untuk alat yang tidak diinginkan
+* **Konfigurasi per alat**: Konfigurasikan alat individual dengan pengaturan kustom
 * **Autentikasi OAuth**: Dukungan untuk token OAuth Bearer untuk server yang terautentikasi
-* **Beberapa server**: Hubungkan ke beberapa server MCP dalam satu permintaan
+* **Beberapa server**: Terhubung ke beberapa server MCP dalam satu permintaan
 
 ## Kapan Claude menggunakan alat MCP
 
-Setelah server MCP terhubung, Claude memanggil alat-alatnya ketika permintaan pengguna sesuai dengan kemampuan yang dideskripsikan oleh alat tersebut, baik secara eksplisit ("cari bug yang masih terbuka di Jira") maupun secara implisit ("apa yang menghambat rilis?" dengan server Jira terpasang).
+Setelah server MCP terhubung, Claude memanggil alatnya ketika permintaan pengguna sesuai dengan kemampuan yang dijelaskan oleh suatu alat, baik secara eksplisit ("cari bug terbuka di Jira") maupun secara implisit ("apa yang menghambat rilis?" dengan server Jira yang terhubung).
 
-Claude **tidak** memanggil alat MCP untuk pertanyaan pengetahuan umum tentang layanan yang terhubung. Pertanyaan "bagaimana cara kerja database Notion?" dengan server Notion terpasang akan dijawab langsung; pertanyaan "apa isi database Projects saya?" akan memicu alat tersebut.
+Claude **tidak** memanggil alat MCP untuk pertanyaan pengetahuan umum tentang layanan yang terhubung. Bertanya "bagaimana cara kerja database Notion?" dengan server Notion yang terhubung akan dijawab secara langsung; bertanya "apa yang ada di database Projects saya?" akan memicu alat tersebut.
 
-Anda dapat mengarahkan seberapa mudah Claude memanggil alat MCP melalui prompt sistem Anda. Lihat [Kapan Claude menggunakan alat](/docs/id/agents-and-tools/tool-use/overview#when-claude-uses-tools) untuk panduan umum dan contoh frasa.
+Anda dapat mengarahkan seberapa mudah Claude memanggil alat MCP melalui prompt sistem Anda. Lihat [Kapan Claude menggunakan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview#when-claude-uses-tools) untuk panduan umum dan contoh frasa.
 
-## Keterbatasan
+## Batasan
 
-* Dari kumpulan fitur [spesifikasi MCP](https://modelcontextprotocol.io/introduction#explore-mcp), saat ini hanya [pemanggilan alat](https://modelcontextprotocol.io/docs/concepts/tools) yang didukung.
+* Dari kumpulan fitur [spesifikasi MCP](https://modelcontextprotocol.io/introduction#explore-mcp), hanya [pemanggilan alat](https://modelcontextprotocol.io/docs/concepts/tools) yang saat ini didukung.
 * Server harus diekspos secara publik melalui HTTP (mendukung transport Streamable HTTP dan SSE). Server STDIO lokal tidak dapat dihubungkan secara langsung.
-* Konektor MCP tersedia di Claude API, [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Di Microsoft Foundry, konektor MCP memerlukan [deployment Hosted on Anthropic](/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure). Saat ini tidak tersedia di Amazon Bedrock atau Google Cloud.
 
 ## Menggunakan konektor MCP di Messages API
 
@@ -325,7 +325,7 @@ Setiap server MCP dalam array `mcp_servers` mendefinisikan detail koneksi:
 | Properti              | Tipe   | Wajib | Deskripsi                                                                                                                                                     |
 | --------------------- | ------ | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `type`                | string | Ya    | Saat ini hanya "url" yang didukung.                                                                                                                           |
-| `url`                 | string | Ya    | URL server MCP. Harus dimulai dengan https\://.                                                                                                               |
+| `url`                 | string | Ya    | URL dari server MCP. Harus dimulai dengan https\://.                                                                                                          |
 | `name`                | string | Ya    | Pengidentifikasi unik untuk server MCP ini. Harus direferensikan oleh tepat satu MCPToolset dalam array `tools`.                                              |
 | `authorization_token` | string | Tidak | Token otorisasi OAuth jika diperlukan oleh server MCP. Lihat [spesifikasi MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization). |
 
@@ -354,28 +354,28 @@ MCPToolset berada dalam array `tools` dan mengonfigurasi alat mana dari server M
 
 ### Deskripsi field
 
-| Properti          | Tipe   | Wajib | Deskripsi                                                                                                                         |
-| ----------------- | ------ | ----- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `type`            | string | Ya    | Harus "mcp\_toolset".                                                                                                             |
-| `mcp_server_name` | string | Ya    | Harus cocok dengan nama server yang didefinisikan dalam array `mcp_servers`.                                                      |
-| `default_config`  | object | Tidak | Konfigurasi default yang diterapkan ke semua alat dalam set ini. Konfigurasi alat individual dalam `configs` menimpa default ini. |
-| `configs`         | object | Tidak | Penimpaan konfigurasi per-alat. Kunci adalah nama alat, nilai adalah objek konfigurasi.                                           |
-| `cache_control`   | object | Tidak | Konfigurasi breakpoint cache [Prompt caching](/docs/id/build-with-claude/prompt-caching) untuk toolset ini.                       |
+| Properti          | Tipe   | Wajib | Deskripsi                                                                                                                              |
+| ----------------- | ------ | ----- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`            | string | Ya    | Harus berupa "mcp\_toolset".                                                                                                           |
+| `mcp_server_name` | string | Ya    | Harus cocok dengan nama server yang didefinisikan dalam array `mcp_servers`.                                                           |
+| `default_config`  | object | Tidak | Konfigurasi default yang diterapkan ke semua alat dalam set ini. Konfigurasi alat individual dalam `configs` menimpa default ini.      |
+| `configs`         | object | Tidak | Penimpaan konfigurasi per alat. Key adalah nama alat, value adalah objek konfigurasi.                                                  |
+| `cache_control`   | object | Tidak | Konfigurasi breakpoint cache [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk toolset ini. |
 
 ### Opsi konfigurasi alat
 
-Setiap alat (baik yang dikonfigurasi dalam `default_config` maupun dalam `configs`) mendukung field berikut:
+Setiap alat (baik dikonfigurasi dalam `default_config` atau dalam `configs`) mendukung field berikut:
 
-| Properti        | Tipe    | Default | Deskripsi                                                                                                                                                |
-| --------------- | ------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `enabled`       | boolean | `true`  | Apakah alat ini diaktifkan.                                                                                                                              |
-| `defer_loading` | boolean | `false` | Jika true, deskripsi alat tidak dikirim ke model pada awalnya. Digunakan dengan [Tool search tool](/docs/id/agents-and-tools/tool-use/tool-search-tool). |
+| Properti        | Tipe    | Default | Deskripsi                                                                                                                                                                           |
+| --------------- | ------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `enabled`       | boolean | `true`  | Apakah alat ini diaktifkan.                                                                                                                                                         |
+| `defer_loading` | boolean | `false` | Jika true, deskripsi alat tidak dikirim ke model pada awalnya. Digunakan dengan [Tool search tool](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool). |
 
-Untuk direktori lengkap alat yang disediakan Anthropic dan properti opsional seperti `defer_loading`, lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference). Untuk pencarian di seluruh kumpulan alat yang besar, lihat [Tool search tool](/docs/id/agents-and-tools/tool-use/tool-search-tool).
+Untuk direktori lengkap alat yang disediakan Anthropic dan properti opsional seperti `defer_loading`, lihat [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference). Untuk pencarian di seluruh kumpulan alat yang besar, lihat [Tool search tool](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool).
 
 ### Penggabungan konfigurasi
 
-Nilai konfigurasi digabungkan dengan prioritas berikut (tertinggi ke terendah):
+Nilai konfigurasi digabungkan dengan urutan prioritas ini (tertinggi ke terendah):
 
 1. Pengaturan spesifik alat dalam `configs`
 2. `default_config` tingkat set
@@ -416,7 +416,7 @@ Pola paling sederhana - aktifkan semua alat dari sebuah server:
 }
 ```
 
-### Allowlist: aktifkan hanya alat tertentu
+### Daftar izin: aktifkan hanya alat tertentu
 
 Atur `enabled: false` sebagai default, lalu aktifkan alat tertentu secara eksplisit:
 
@@ -438,9 +438,9 @@ Atur `enabled: false` sebagai default, lalu aktifkan alat tertentu secara ekspli
 }
 ```
 
-### Denylist: nonaktifkan alat tertentu
+### Daftar tolak: nonaktifkan alat tertentu
 
-Aktifkan semua alat secara default, lalu nonaktifkan alat yang tidak diinginkan secara eksplisit. Membuat denylist untuk alat yang bersifat menulis atau destruktif direkomendasikan saat membangun asisten yang hanya-baca, atau ketika Anda menginginkan langkah konfirmasi manusia sebelum perubahan state:
+Aktifkan semua alat secara default, lalu nonaktifkan alat yang tidak diinginkan secara eksplisit. Memasukkan alat tulis atau alat destruktif ke daftar tolak direkomendasikan saat membangun asisten read-only, atau saat Anda menginginkan langkah konfirmasi manusia sebelum perubahan state:
 
 ```json
 {
@@ -457,9 +457,9 @@ Aktifkan semua alat secara default, lalu nonaktifkan alat yang tidak diinginkan 
 }
 ```
 
-### Campuran: allowlist dengan konfigurasi per-alat
+### Campuran: daftar izin dengan konfigurasi per alat
 
-Gabungkan allowlist dengan konfigurasi kustom untuk setiap alat:
+Gabungkan daftar izin dengan konfigurasi kustom untuk setiap alat:
 
 ```json
 {
@@ -572,17 +572,17 @@ Anda dapat terhubung ke beberapa server MCP dengan menyertakan beberapa definisi
 }
 ```
 
-Dengan banyak alat yang tersedia, Claude memilih berdasarkan nama dan deskripsi alat. Deskripsi alat yang jelas dan spesifik meningkatkan akurasi pemilihan. Untuk kumpulan alat yang besar (puluhan alat di beberapa server), pertimbangkan untuk mengaktifkan [`defer_loading`](#tool-configuration-options) dengan [Tool search tool](/docs/id/agents-and-tools/tool-use/tool-search-tool) sehingga hanya alat yang relevan yang dimunculkan per kueri.
+Dengan banyak alat yang tersedia, Claude memilih berdasarkan nama dan deskripsi alat. Deskripsi alat yang jelas dan spesifik meningkatkan akurasi pemilihan. Untuk kumpulan alat yang besar (puluhan alat di beberapa server), pertimbangkan untuk mengaktifkan [`defer_loading`](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#tool-configuration-options) dengan [Tool search tool](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool) sehingga hanya alat yang relevan yang dimunculkan per kueri.
 
 ## Autentikasi
 
-Untuk server MCP yang memerlukan autentikasi OAuth, Anda perlu mendapatkan access token. Beta konektor MCP mendukung pengiriman parameter `authorization_token` dalam definisi server MCP. Konsumen API diharapkan menangani alur OAuth dan mendapatkan access token sebelum melakukan panggilan API, serta menyegarkan token sesuai kebutuhan.
+Untuk server MCP yang memerlukan autentikasi OAuth, Anda perlu mendapatkan access token. Beta konektor MCP mendukung pengiriman parameter `authorization_token` dalam definisi server MCP. Konsumen API diharapkan menangani alur OAuth dan mendapatkan access token sebelum melakukan panggilan API, serta me-refresh token sesuai kebutuhan.
 
 ### Mendapatkan access token untuk pengujian
 
 MCP inspector dapat memandu Anda melalui proses mendapatkan access token untuk tujuan pengujian.
 
-1. Jalankan inspector dengan perintah berikut. Anda memerlukan Node.js terinstal di mesin Anda.
+1. Jalankan inspector dengan perintah berikut. Anda memerlukan Node.js yang terinstal di mesin Anda.
 
    ```bash
    npx @modelcontextprotocol/inspector
@@ -592,9 +592,9 @@ MCP inspector dapat memandu Anda melalui proses mendapatkan access token untuk t
 
 3. Masukkan URL server MCP.
 
-4. Di area sebelah kanan, klik tombol "Open Auth Settings" setelah "Need to configure authentication?".
+4. Di area kanan, klik tombol "Open Auth Settings" setelah "Need to configure authentication?".
 
-5. Klik "Quick OAuth Flow" dan berikan otorisasi pada layar OAuth.
+5. Klik "Quick OAuth Flow" dan otorisasi pada layar OAuth.
 
 6. Ikuti langkah-langkah di bagian "OAuth Flow Progress" pada inspector dan klik "Continue" hingga Anda mencapai "Authentication complete".
 
@@ -604,7 +604,7 @@ MCP inspector dapat memandu Anda melalui proses mendapatkan access token untuk t
 
 ### Menggunakan access token
 
-Setelah Anda mendapatkan access token menggunakan salah satu alur OAuth di atas, Anda dapat menggunakannya dalam konfigurasi server MCP Anda:
+Setelah Anda mendapatkan access token menggunakan salah satu alur OAuth sebelumnya, Anda dapat menggunakannya dalam konfigurasi server MCP Anda:
 
 ```json
 {
@@ -623,10 +623,10 @@ Untuk penjelasan terperinci tentang alur OAuth, lihat [bagian Authorization](htt
 
 ## Helper MCP sisi klien
 
-Jika Anda mengelola koneksi klien MCP Anda sendiri (misalnya, dengan server stdio lokal, prompt MCP, atau resource MCP), SDK menyediakan fungsi helper yang mengonversi antara tipe MCP dan tipe Claude API. Ini menghilangkan kode konversi manual saat menggunakan MCP SDK untuk bahasa Anda (misalnya, [TypeScript MCP SDK](https://github.com/modelcontextprotocol/typescript-sdk)) bersama dengan Anthropic SDK.
+Jika Anda mengelola koneksi klien MCP Anda sendiri (misalnya, dengan server stdio lokal, prompt MCP, atau resource MCP), SDK menyediakan fungsi helper yang mengonversi antara tipe MCP dan tipe Claude API. Ini menghilangkan kode konversi manual saat menggunakan SDK MCP untuk bahasa Anda (misalnya, [TypeScript MCP SDK](https://github.com/modelcontextprotocol/typescript-sdk)) bersama dengan Anthropic SDK.
 
 <Note>
-  Gunakan [parameter API `mcp_servers`](#using-the-mcp-connector-in-the-messages-api) ketika Anda memiliki server jarak jauh yang dapat diakses melalui URL dan hanya memerlukan dukungan alat. Gunakan helper sisi klien ketika Anda memerlukan server lokal, prompt, resource, atau kontrol lebih besar atas koneksi dengan SDK dasar.
+  Gunakan [parameter API `mcp_servers`](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#using-the-mcp-connector-in-the-messages-api) ketika Anda memiliki server jarak jauh yang dapat diakses melalui URL dan hanya memerlukan dukungan alat. Gunakan helper sisi klien ketika Anda memerlukan server lokal, prompt, resource, atau kontrol lebih atas koneksi dengan SDK dasar.
 </Note>
 
 ### Instalasi
@@ -635,7 +635,7 @@ Instal Anthropic SDK dan MCP SDK:
 
 <Tabs>
   <Tab title="Python">
-    Helper MCP disertakan dalam extra `mcp`, yang memerlukan Python 3.10 atau yang lebih baru:
+    Helper MCP disertakan dalam extra `mcp`, yang memerlukan Python 3.10 atau lebih baru:
 
     ```bash
     pip install "anthropic[mcp]"
@@ -666,12 +666,12 @@ Instal Anthropic SDK dan MCP SDK:
   </Tab>
 
   <Tab title="Java">
-    Helper berada dalam artefak terpisah `anthropic-java-mcp`, yang memerlukan Java 17 atau yang lebih baru (SDK inti mendukung Java 8):
+    Helper berada dalam artifact terpisah `anthropic-java-mcp`, yang memerlukan Java 17 atau lebih baru (SDK inti mendukung Java 8):
 
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java-mcp:2.52.0")
+        implementation("com.anthropic:anthropic-java-mcp:2.53.0")
         ```
       </Tab>
 
@@ -680,7 +680,7 @@ Instal Anthropic SDK dan MCP SDK:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-mcp</artifactId>
-            <version>2.52.0</version>
+            <version>2.53.0</version>
         </dependency>
         ```
       </Tab>
@@ -691,7 +691,7 @@ Instal Anthropic SDK dan MCP SDK:
     Helper menggunakan [MCP PHP SDK](https://packagist.org/packages/mcp/sdk) resmi:
 
     ```bash
-    composer require "anthropic-ai/sdk" "mcp/sdk"
+    composer require "anthropic-ai/sdk" "guzzlehttp/guzzle:^7" "mcp/sdk"
     ```
   </Tab>
 
@@ -766,7 +766,7 @@ Nama helper dan signature persisnya mengikuti konvensi masing-masing bahasa; tab
 
 ### Menggunakan alat MCP
 
-Konversikan alat MCP untuk digunakan dengan [tool runner](/docs/id/agents-and-tools/tool-use/tool-runner) SDK, yang menangani eksekusi alat secara otomatis:
+Konversi alat MCP untuk digunakan dengan [tool runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner) SDK, yang menangani eksekusi alat secara otomatis:
 
 <CodeGroup exclude="shell">
   ```python Python
@@ -1021,7 +1021,7 @@ Konversikan alat MCP untuk digunakan dengan [tool runner](/docs/id/agents-and-to
 
 ### Menggunakan prompt MCP
 
-Konversikan pesan prompt MCP ke format pesan Claude API:
+Konversi pesan prompt MCP ke format pesan Claude API:
 
 <CodeGroup exclude="shell">
   ```python Python
@@ -1130,7 +1130,7 @@ Konversikan pesan prompt MCP ke format pesan Claude API:
 
 ### Menggunakan resource MCP
 
-Konversikan resource MCP menjadi blok konten untuk disertakan dalam pesan, atau menjadi objek file untuk diunggah:
+Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau menjadi objek file untuk diunggah:
 
 <CodeGroup exclude="shell">
   ```python Python
@@ -1379,27 +1379,27 @@ Konversikan resource MCP menjadi blok konten untuk disertakan dalam pesan, atau 
 
 ### Penanganan error
 
-Fungsi konversi melempar `UnsupportedMCPValueError` jika nilai MCP tidak didukung oleh Claude API (di Go, helper mengembalikan `UnsupportedValueError`; di Java dan C#, helper melempar `AnthropicInvalidDataException`). Ini dapat terjadi dengan tipe konten, tipe MIME, atau tautan resource yang tidak didukung (selesaikan tautan resource dengan klien MCP Anda sebelum mengonversi).
+Fungsi konversi melempar `UnsupportedMCPValueError` jika nilai MCP tidak didukung oleh Claude API (di Go, helper mengembalikan `UnsupportedValueError`; di Java dan C#, helper melempar `AnthropicInvalidDataException`). Ini dapat terjadi dengan tipe konten yang tidak didukung, tipe MIME, atau tautan resource (selesaikan tautan resource dengan klien MCP Anda sebelum mengonversi).
 
 ## Permintaan batch
 
-Anda dapat menyertakan `mcp_servers` dalam permintaan [Message Batches API](/docs/id/build-with-claude/batch-processing). Pemanggilan alat MCP melalui Batches API dikenakan harga yang sama dengan yang ada di permintaan Messages API biasa.
+Anda dapat menyertakan `mcp_servers` dalam permintaan [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing). Pemanggilan alat MCP melalui Batches API dikenakan harga yang sama dengan permintaan Messages API reguler.
 
 ## Retensi data
 
-Konektor MCP tidak tercakup dalam pengaturan ZDR. Data yang dipertukarkan dengan server MCP, termasuk definisi alat dan hasil eksekusi, disimpan sesuai dengan kebijakan retensi data standar Anthropic.
+Konektor MCP tidak tercakup oleh pengaturan ZDR. Data yang dipertukarkan dengan server MCP, termasuk definisi alat dan hasil eksekusi, disimpan sesuai dengan kebijakan retensi data standar Anthropic.
 
-Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
+Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 
 ## Panduan migrasi
 
-Jika Anda menggunakan header beta `mcp-client-2025-04-04` yang sudah tidak digunakan lagi, ikuti panduan ini untuk bermigrasi ke versi baru.
+Jika Anda menggunakan beta header `mcp-client-2025-04-04` yang sudah tidak digunakan lagi, ikuti panduan ini untuk bermigrasi ke versi baru.
 
 ### Perubahan utama
 
-1. **Header beta baru**: Ubah dari `mcp-client-2025-04-04` menjadi `mcp-client-2025-11-20`
+1. **Beta header baru**: Ubah dari `mcp-client-2025-04-04` ke `mcp-client-2025-11-20`
 2. **Konfigurasi alat dipindahkan**: Konfigurasi alat sekarang berada dalam array `tools` sebagai objek MCPToolset, bukan dalam definisi server MCP
-3. **Konfigurasi yang lebih fleksibel**: Pola baru mendukung allowlist, denylist, dan konfigurasi per-alat
+3. **Konfigurasi lebih fleksibel**: Pola baru mendukung daftar izin, daftar tolak, dan konfigurasi per alat
 
 ### Langkah-langkah migrasi
 
@@ -1475,7 +1475,7 @@ Jika Anda menggunakan header beta `mcp-client-2025-04-04` yang sudah tidak digun
 ## Versi yang tidak digunakan lagi: mcp-client-2025-04-04
 
 <Note type="warning">
-  Versi ini sudah tidak digunakan lagi. Bermigrasilah ke `mcp-client-2025-11-20` menggunakan [panduan migrasi](#migration-guide) di atas.
+  Versi ini sudah tidak digunakan lagi. Migrasikan ke `mcp-client-2025-11-20` menggunakan [panduan migrasi](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#migration-guide) sebelumnya.
 </Note>
 
 Versi sebelumnya dari konektor MCP menyertakan konfigurasi alat langsung dalam definisi server MCP:
@@ -1499,8 +1499,8 @@ Versi sebelumnya dari konektor MCP menyertakan konfigurasi alat langsung dalam d
 
 ### Deskripsi field yang tidak digunakan lagi
 
-| Properti                           | Tipe    | Deskripsi                                                                          |
-| ---------------------------------- | ------- | ---------------------------------------------------------------------------------- |
-| `tool_configuration`               | object  | **Tidak digunakan lagi**: Gunakan MCPToolset dalam array `tools` sebagai gantinya  |
-| `tool_configuration.enabled`       | boolean | **Tidak digunakan lagi**: Gunakan `default_config.enabled` dalam MCPToolset        |
-| `tool_configuration.allowed_tools` | array   | **Tidak digunakan lagi**: Gunakan pola allowlist dengan `configs` dalam MCPToolset |
+| Properti                           | Tipe    | Deskripsi                                                                            |
+| ---------------------------------- | ------- | ------------------------------------------------------------------------------------ |
+| `tool_configuration`               | object  | **Tidak digunakan lagi**: Gunakan MCPToolset dalam array `tools` sebagai gantinya    |
+| `tool_configuration.enabled`       | boolean | **Tidak digunakan lagi**: Gunakan `default_config.enabled` dalam MCPToolset          |
+| `tool_configuration.allowed_tools` | array   | **Tidak digunakan lagi**: Gunakan pola daftar izin dengan `configs` dalam MCPToolset |

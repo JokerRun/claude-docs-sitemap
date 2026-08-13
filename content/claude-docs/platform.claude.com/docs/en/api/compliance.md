@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 36b4c0847a990e208efc0bd6707a397f638e9f10dfea40ee522f99057a9bcec6
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 884970fb00729999852f76b267796e5c70e79b21f6c9cd19120f5a5461f66d58
+---
+
+---
+title: Compliance API
+url: https://platform.claude.com/docs/en/api/compliance
 ---
 
 # Compliance API

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments/list
-fetched_at: 2026-06-19T03:18:02.201222Z
-sha256: 2ab0979af6b605b95ab42a0387f422030b33827a465bb4e506525f34c1f10317
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 94bdecdf5a2236257a955190e82840366733b2488136558160cbb83f90052b8b
+---
+
+---
+title: List project attachments
+url: https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments/list
 ---
 
 ## List project attachments

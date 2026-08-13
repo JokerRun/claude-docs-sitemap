@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rate_limits
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 5775dd31ea7981d2acc4824e1abb33ce92b0ddaa97e2747c10acdcfbdca6b033
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 4f9dde457969280f80d0f31ac3366d3322717546b020cfd8816eddbf51343f39
+---
+
+---
+title: Rate Limits
+url: https://platform.claude.com/docs/en/api/admin/rate_limits
 ---
 
 # Rate Limits

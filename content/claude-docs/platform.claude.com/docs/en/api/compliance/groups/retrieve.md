@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/groups/retrieve
-fetched_at: 2026-06-27T03:14:28.973816Z
-sha256: 42bf13eea8272a970a0835eb73521d575e66bbd27680ce0595497de03d0db27c
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 6d2efb78fd1e6e228b74c5d12ed1fd26fb16240074fb45b65c9e8c21e0a2c3d3
+---
+
+---
+title: Get Compliance Group
+url: https://platform.claude.com/docs/en/api/compliance/groups/retrieve
 ---
 
 ## Get Compliance Group

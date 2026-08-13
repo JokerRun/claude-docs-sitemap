@@ -1,20 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/memory
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 1222f5b3b5a68eb7753f882606e416edd90e5cbf3f521e379b06cdff20506f05
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: d552822f7cd2419b7f0e99f22d223caf190f8ba0bab70e10ae0d9903bc7d732d
 ---
 
-# Menggunakan memori agen
-
-Berikan agen Anda memori persisten yang bertahan di seluruh sesi menggunakan memory store.
-
+---
+title: Menggunakan memori agen
+url: https://platform.claude.com/docs/id/managed-agents/memory
+description: Berikan agen Anda memori persisten yang bertahan di seluruh sesi menggunakan memory store.
 ---
 
 Setiap sesi Managed Agents dimulai dengan konteks baru secara default. Ketika sesi berakhir, semua state yang dibangun agen akan hilang. Memory store memungkinkan agen membawa informasi di seluruh sesi: preferensi pengguna, konvensi proyek, kesalahan sebelumnya, dan konteks domain.
 
 <Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](/docs/id/api/beta-headers#endpoint-specific-headers).
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 <Note>
@@ -25,7 +25,7 @@ Setiap sesi Managed Agents dimulai dengan konteks baru secara default. Ketika se
 
 ## Ikhtisar
 
-**Memory store** adalah kumpulan dokumen teks dengan cakupan workspace yang dioptimalkan untuk Claude. Ketika Anda melampirkan store ke sebuah sesi, store tersebut dipasang (mount) sebagai direktori di dalam sandbox sesi. Agen membaca dan menulisnya dengan alat file yang sama yang digunakan untuk sisa filesystem, dan catatan yang menjelaskan setiap mount secara otomatis ditambahkan ke prompt sistem, memberi tahu agen di mana harus mencari. [Toolset agen](/docs/id/managed-agents/tools) diperlukan untuk interaksi ini; pastikan untuk mengaktifkannya selama [pembuatan agen](/docs/id/managed-agents/agent-setup).
+**Memory store** adalah kumpulan dokumen teks dengan cakupan workspace yang dioptimalkan untuk Claude. Ketika Anda melampirkan store ke sebuah sesi, store tersebut dipasang (mount) sebagai direktori di dalam sandbox sesi. Agen membaca dan menulisnya dengan alat file yang sama yang digunakan untuk sisa filesystem, dan catatan yang menjelaskan setiap mount secara otomatis ditambahkan ke prompt sistem, memberi tahu agen di mana harus mencari. [Toolset agen](https://platform.claude.com/docs/id/managed-agents/tools) diperlukan untuk interaksi ini; pastikan untuk mengaktifkannya selama [pembuatan agen](https://platform.claude.com/docs/id/managed-agents/agent-setup).
 
 Setiap **memori** dalam sebuah store dialamatkan dengan path dan dapat dibaca serta diedit langsung melalui API atau Console, memungkinkan penyetelan, impor, dan ekspor.
 
@@ -36,7 +36,7 @@ Setiap perubahan pada memori membuat **versi memori** yang tidak dapat diubah (i
 Berikan store sebuah `name` dan `description`. Deskripsi tersebut diteruskan ke agen, memberi tahu apa isi store tersebut.
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   store=$(curl -s https://api.anthropic.com/v1/memory_stores \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -132,7 +132,7 @@ Berikan store sebuah `name` dan `description`. Deskripsi tersebut diteruskan ke 
 Muat store terlebih dahulu dengan materi referensi sebelum agen apa pun berjalan:
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memories" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -222,7 +222,7 @@ Secara opsional sertakan `instructions` untuk memberikan panduan khusus sesi ten
 Anda juga dapat mengonfigurasi `access`. Nilai defaultnya adalah `read_write` (ditampilkan secara eksplisit dalam contoh berikut), tetapi `read_only` juga didukung.
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   curl -s https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -384,11 +384,11 @@ Maksimum **8 memory store** didukung per sesi. Lampirkan beberapa store ketika b
 
 ### Bagaimana agen mengakses memori
 
-Setiap store yang dilampirkan dipasang di dalam sandbox sesi sebagai direktori di bawah `/mnt/memory/`. Nama direktori adalah nama tampilan store yang disanitasi menjadi slug yang aman untuk filesystem (huruf kecil; rangkaian karakter non-alfanumerik menjadi satu tanda hubung), jadi store bernama "Demo Memory" dipasang di `/mnt/memory/demo-memory/`. Path yang tepat dikembalikan dalam field `mount_path` pada sumber daya memory-store sesi; baca dari sana alih-alih membangunnya sendiri. Agen membaca dan menulis store dengan [toolset agen](/docs/id/managed-agents/tools) standar. Penulisan di bawah mount path dipersistenkan kembali ke store dan tetap sinkron di seluruh sesi yang membagikannya; penulisan ke path lain di bawah `/mnt/memory/` masuk ke scratch lokal container dan hilang ketika sesi berakhir. Deskripsi singkat dari setiap mount (nama tampilan, mount path, mode akses, `description` store, dan `instructions` apa pun) secara otomatis ditambahkan ke prompt sistem.
+Setiap store yang dilampirkan dipasang di dalam sandbox sesi sebagai direktori di bawah `/mnt/memory/`. Nama direktori adalah nama tampilan store yang disanitasi menjadi slug yang aman untuk filesystem (huruf kecil; rangkaian karakter non-alfanumerik menjadi satu tanda hubung), jadi store bernama "Demo Memory" dipasang di `/mnt/memory/demo-memory/`. Path yang tepat dikembalikan dalam field `mount_path` pada sumber daya memory-store sesi; baca dari sana alih-alih membangunnya sendiri. Agen membaca dan menulis store dengan [toolset agen](https://platform.claude.com/docs/id/managed-agents/tools) standar. Penulisan di bawah mount path dipersistenkan kembali ke store dan tetap sinkron di seluruh sesi yang membagikannya; penulisan ke path lain di bawah `/mnt/memory/` masuk ke scratch lokal container dan hilang ketika sesi berakhir. Deskripsi singkat dari setiap mount (nama tampilan, mount path, mode akses, `description` store, dan `instructions` apa pun) secara otomatis ditambahkan ke prompt sistem.
 
-`access` diberlakukan di tingkat filesystem: mount `read_only` menolak penulisan, sementara penulisan ke mount `read_write` menghasilkan [versi memori](#audit-memory-changes) yang diatribusikan ke sesi tersebut.
+`access` diberlakukan di tingkat filesystem: mount `read_only` menolak penulisan, sementara penulisan ke mount `read_write` menghasilkan [versi memori](https://platform.claude.com/docs/id/managed-agents/memory#audit-memory-changes) yang diatribusikan ke sesi tersebut.
 
-Pembacaan dan penulisan agen muncul di [event stream](/docs/id/managed-agents/events-and-streaming) sebagai event `agent.tool_use` dan `agent.tool_result` biasa untuk alat mana pun yang menyentuh mount tersebut.
+Pembacaan dan penulisan agen muncul di [event stream](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) sebagai event `agent.tool_use` dan `agent.tool_result` biasa untuk alat mana pun yang menyentuh mount tersebut.
 
 ## Melihat dan mengedit memori
 
@@ -402,7 +402,7 @@ Daftarkan memori dalam sebuah store. Hasil dikembalikan dalam urutan stabil yang
 * `depth` mengontrol seberapa dalam daftar berjalan di bawah `path_prefix`: hilangkan (atau berikan `0`) untuk mendaftar seluruh subtree, atau berikan `1` untuk mendaftar hanya anak langsung. Nilai lain mengembalikan error `400`.
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memories?path_prefix=/" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -491,14 +491,14 @@ Daftarkan memori dalam sebuah store. Hasil dikembalikan dalam urutan stabil yang
   ```
 </CodeGroup>
 
-Lihat [referensi List memories](/docs/id/api/beta/memory_stores/memories/list) untuk parameter lengkap dan skema respons.
+Lihat [referensi List memories](https://platform.claude.com/docs/id/api/beta/memory_stores/memories/list) untuk parameter lengkap dan skema respons.
 
 ### Membaca memori
 
 Mengambil memori individual mengembalikan konten lengkap.
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memories/$mem_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -549,7 +549,7 @@ Mengambil memori individual mengembalikan konten lengkap.
       mem.id(),
       MemoryRetrieveParams.builder().memoryStoreId(store.id()).build()
   );
-  IO.println(retrieved.content());
+  IO.println(retrieved.content().orElseThrow());
   ```
 
   ```php PHP
@@ -566,14 +566,14 @@ Mengambil memori individual mengembalikan konten lengkap.
   ```
 </CodeGroup>
 
-Lihat [referensi Retrieve a memory](/docs/id/api/beta/memory_stores/memories/retrieve) untuk parameter lengkap dan skema respons.
+Lihat [referensi Retrieve a memory](https://platform.claude.com/docs/id/api/beta/memory_stores/memories/retrieve) untuk parameter lengkap dan skema respons.
 
 ### Membuat memori
 
-`memories.create` membuat memori pada `path` tertentu. Create tidak menimpa; untuk mengubah memori yang sudah ada, gunakan [`memories.update`](#update-a-memory).
+`memories.create` membuat memori pada `path` tertentu. Create tidak menimpa; untuk mengubah memori yang sudah ada, gunakan [`memories.update`](https://platform.claude.com/docs/id/managed-agents/memory#update-a-memory).
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   mem=$(curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memories" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -654,14 +654,14 @@ Lihat [referensi Retrieve a memory](/docs/id/api/beta/memory_stores/memories/ret
   ```
 </CodeGroup>
 
-Lihat [referensi Create a memory](/docs/id/api/beta/memory_stores/memories/create) untuk parameter lengkap dan skema respons.
+Lihat [referensi Create a memory](https://platform.claude.com/docs/id/api/beta/memory_stores/memories/create) untuk parameter lengkap dan skema respons.
 
 ### Memperbarui memori
 
 `memories.update` memodifikasi memori yang sudah ada berdasarkan ID. Anda dapat mengubah `content`, `path` (penggantian nama), atau keduanya. Contoh ini mengganti nama memori ke path arsip:
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   curl -s -X POST "https://api.anthropic.com/v1/memory_stores/$store_id/memories/$mem_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -738,14 +738,14 @@ Lihat [referensi Create a memory](/docs/id/api/beta/memory_stores/memories/creat
   ```
 </CodeGroup>
 
-Lihat [referensi Update a memory](/docs/id/api/beta/memory_stores/memories/update) untuk parameter lengkap dan skema respons.
+Lihat [referensi Update a memory](https://platform.claude.com/docs/id/api/beta/memory_stores/memories/update) untuk parameter lengkap dan skema respons.
 
 #### Pengeditan konten yang aman (optimistic concurrency)
 
 Untuk menghindari menimpa penulisan yang bersamaan, berikan prasyarat `content_sha256`. Pembaruan hanya diterapkan jika hash konten yang tersimpan masih cocok dengan yang Anda baca; jika tidak cocok, baca ulang memori dan coba lagi terhadap state yang baru.
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   curl -s -X POST "https://api.anthropic.com/v1/memory_stores/$store_id/memories/$mem_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -850,7 +850,7 @@ Untuk menghindari menimpa penulisan yang bersamaan, berikan prasyarat `content_s
 ### Menghapus memori
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   curl -s -X DELETE "https://api.anthropic.com/v1/memory_stores/$store_id/memories/$mem_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -912,7 +912,7 @@ Untuk menghindari menimpa penulisan yang bersamaan, berikan prasyarat `content_s
   ```
 </CodeGroup>
 
-Lihat [referensi Delete a memory](/docs/id/api/beta/memory_stores/memories/delete) untuk parameter lengkap dan skema respons.
+Lihat [referensi Delete a memory](https://platform.claude.com/docs/id/api/beta/memory_stores/memories/delete) untuk parameter lengkap dan skema respons.
 
 ## Audit perubahan memori
 
@@ -929,7 +929,7 @@ Versi memori lama mungkin dihapus setelah 30 hari. Untuk mempertahankan riwayat 
 Daftarkan riwayat versi untuk sebuah store, yang terbaru lebih dulu. Contoh ini memfilter ke riwayat satu memori:
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   versions=$(curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memory_versions?memory_id=$mem_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -1043,14 +1043,14 @@ Daftarkan riwayat versi untuk sebuah store, yang terbaru lebih dulu. Contoh ini 
   ```
 </CodeGroup>
 
-Lihat [referensi List memory versions](/docs/id/api/beta/memory_stores/memory_versions/list) untuk parameter lengkap dan skema respons.
+Lihat [referensi List memory versions](https://platform.claude.com/docs/id/api/beta/memory_stores/memory_versions/list) untuk parameter lengkap dan skema respons.
 
 ### Mengambil versi
 
 Mengambil versi individual mengembalikan field yang sama dengan respons daftar ditambah isi `content` lengkap.
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memory_versions/$version_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -1101,7 +1101,7 @@ Mengambil versi individual mengembalikan field yang sama dengan respons daftar d
       versionId,
       MemoryVersionRetrieveParams.builder().memoryStoreId(store.id()).build()
   );
-  IO.println(version.content());
+  IO.println(version.content().orElseThrow());
   ```
 
   ```php PHP
@@ -1121,7 +1121,7 @@ Mengambil versi individual mengembalikan field yang sama dengan respons daftar d
   ```
 </CodeGroup>
 
-Lihat [referensi Retrieve a memory version](/docs/id/api/beta/memory_stores/memory_versions/retrieve) untuk parameter lengkap dan skema respons.
+Lihat [referensi Retrieve a memory version](https://platform.claude.com/docs/id/api/beta/memory_stores/memory_versions/retrieve) untuk parameter lengkap dan skema respons.
 
 ### Meredaksi versi
 
@@ -1130,7 +1130,7 @@ Redact membersihkan konten dari versi historis sambil mempertahankan jejak audit
 Versi yang merupakan head saat ini dari memori yang masih aktif tidak dapat diredaksi. Tulis versi baru terlebih dahulu (atau hapus memorinya), lalu redaksi versi yang lama.
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   curl -s -X POST "https://api.anthropic.com/v1/memory_stores/$store_id/memory_versions/$version_id/redact" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -1196,18 +1196,18 @@ Versi yang merupakan head saat ini dari memori yang masih aktif tidak dapat dire
   ```
 </CodeGroup>
 
-Lihat [referensi Redact a memory version](/docs/id/api/beta/memory_stores/memory_versions/redact) untuk parameter lengkap dan skema respons.
+Lihat [referensi Redact a memory version](https://platform.claude.com/docs/id/api/beta/memory_stores/memory_versions/redact) untuk parameter lengkap dan skema respons.
 
 ## Mengelola memory store
 
-Selain [`create`](/docs/id/api/beta/memory_stores/create), memory store mendukung [`retrieve`](/docs/id/api/beta/memory_stores/retrieve), [`update`](/docs/id/api/beta/memory_stores/update), [`list`](/docs/id/api/beta/memory_stores/list), [`archive`](/docs/id/api/beta/memory_stores/archive), dan [`delete`](/docs/id/api/beta/memory_stores/delete).
+Selain [`create`](https://platform.claude.com/docs/id/api/beta/memory_stores/create), memory store mendukung [`retrieve`](https://platform.claude.com/docs/id/api/beta/memory_stores/retrieve), [`update`](https://platform.claude.com/docs/id/api/beta/memory_stores/update), [`list`](https://platform.claude.com/docs/id/api/beta/memory_stores/list), [`archive`](https://platform.claude.com/docs/id/api/beta/memory_stores/archive), dan [`delete`](https://platform.claude.com/docs/id/api/beta/memory_stores/delete).
 
 ### Mendaftar store
 
 Daftarkan store dalam workspace. Store yang diarsipkan dikecualikan secara default; berikan `include_archived: true` untuk menyertakannya.
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   curl -s "https://api.anthropic.com/v1/memory_stores?include_archived=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -1273,14 +1273,14 @@ Daftarkan store dalam workspace. Store yang diarsipkan dikecualikan secara defau
   ```
 </CodeGroup>
 
-Lihat [referensi List memory stores](/docs/id/api/beta/memory_stores/list) untuk parameter lengkap dan skema respons.
+Lihat [referensi List memory stores](https://platform.claude.com/docs/id/api/beta/memory_stores/list) untuk parameter lengkap dan skema respons.
 
 ### Mengarsipkan store
 
 Pengarsipan membuat store menjadi read-only dan mencegahnya dilampirkan ke sesi baru. Pengarsipan bersifat satu arah; tidak ada unarchive.
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   curl -s -X POST "https://api.anthropic.com/v1/memory_stores/$store_id/archive" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -1323,9 +1323,9 @@ Pengarsipan membuat store menjadi read-only dan mencegahnya dilampirkan ke sesi 
   ```
 </CodeGroup>
 
-Lihat [referensi Archive a memory store](/docs/id/api/beta/memory_stores/archive) untuk parameter lengkap dan skema respons.
+Lihat [referensi Archive a memory store](https://platform.claude.com/docs/id/api/beta/memory_stores/archive) untuk parameter lengkap dan skema respons.
 
-Untuk menghapus store secara permanen beserta semua memori dan versinya, gunakan [`memory_stores.delete`](/docs/id/api/beta/memory_stores/delete).
+Untuk menghapus store secara permanen beserta semua memori dan versinya, gunakan [`memory_stores.delete`](https://platform.claude.com/docs/id/api/beta/memory_stores/delete).
 
 ## Praktik terbaik untuk manajemen memori
 
@@ -1333,7 +1333,7 @@ Ketika sebuah store mencapai batas 2.000 memorinya, penulisan ke memori baru aka
 
 * **Gunakan store yang terfokus.** Alih-alih satu store besar serbaguna, gunakan store yang lebih kecil dan dibuat untuk tujuan tertentu: satu per pengguna, satu untuk pengetahuan domain bersama, dan satu untuk konteks khusus proyek. Setiap store memiliki batas 2.000 memorinya sendiri, jadi menjaga store tetap terbatas cakupannya mengurangi kemungkinan salah satunya penuh.
 
-* **Padatkan atau pangkas sebelum store penuh.** Hapus memori yang usang atau berlebihan dengan `memories.delete`. Anda juga dapat menjalankan [sesi dreaming](/docs/id/managed-agents/dreams), yang mengonsolidasikan konten yang terfragmentasi ke dalam store output baru yang terpisah alih-alih memodifikasi yang asli. Alihkan sesi Anda ke store output tersebut, lalu arsipkan atau hapus yang asli.
+* **Padatkan atau pangkas sebelum store penuh.** Hapus memori yang usang atau berlebihan dengan `memories.delete`. Anda juga dapat menjalankan [sesi dreaming](https://platform.claude.com/docs/id/managed-agents/dreams), yang mengonsolidasikan konten yang terfragmentasi ke dalam store output baru yang terpisah alih-alih memodifikasi yang asli. Alihkan sesi Anda ke store output tersebut, lalu arsipkan atau hapus yang asli.
 
 * **Lampirkan store baru ketika masuk akal.** Jika sebuah store telah tumbuh melampaui cakupan yang berguna, lampirkan yang baru untuk konten baru dan lampirkan yang asli dengan akses `read_only`. Agen dapat membaca dari keduanya sambil hanya menulis ke yang baru.
 

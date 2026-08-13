@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/php
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 2763db475b8a693310aec0e08a7d356e4d5ac190106b0202a5bd3d9da987fc10
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: de0993598fda739703bc50b4ba9fa29d2276966db558b7685f5e61b542d35be1
 ---
 
-# PHP SDK
-
-Install and configure the Anthropic PHP SDK with value objects and builder patterns
-
+---
+title: PHP SDK
+url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/php
+description: Install and configure the Anthropic PHP SDK with value objects and builder patterns
 ---
 
 The Anthropic PHP library provides convenient access to the Anthropic REST API from any PHP 8.1.0+ application.
@@ -18,7 +18,7 @@ The Anthropic PHP library provides convenient access to the Anthropic REST API f
 </Info>
 
 <Info>
-  For API feature documentation with code examples, see the [API reference](/docs/en/api/overview). This page covers PHP-specific SDK features and configuration.
+  For API feature documentation with code examples, see the [API reference](https://platform.claude.com/docs/en/api/overview). This page covers PHP-specific SDK features and configuration.
 </Info>
 
 ## Installation
@@ -50,7 +50,7 @@ $textBlock = array_find($message->content, static fn ($block): bool => $block->t
 echo $textBlock->text;
 ```
 
-For authentication options including Workload Identity Federation, see [Authentication](/docs/en/manage-claude/authentication).
+For authentication options including Workload Identity Federation, see [Authentication](https://platform.claude.com/docs/en/manage-claude/authentication).
 
 ## Value objects
 
@@ -224,11 +224,11 @@ $response = $client->request(
 <Note>
   For detailed platform setup guides with code examples, see:
 
-  * [Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock)
-  * [Amazon Bedrock (Opus 4.6 and earlier)](/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy)
-  * [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws)
-  * [Google Cloud](/docs/en/build-with-claude/claude-on-vertex-ai)
-  * [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry)
+  * [Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock)
+  * [Amazon Bedrock (Opus 4.6 and earlier)](https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy)
+  * [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws)
+  * [Google Cloud](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai)
+  * [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry)
 </Note>
 
 The PHP SDK supports the following platforms:
@@ -251,5 +251,5 @@ This package considers improvements to the (non-runtime) PHPDoc type definitions
 
 * [GitHub repository](https://github.com/anthropics/anthropic-sdk-php)
 * [Packagist](https://packagist.org/packages/anthropic-ai/sdk)
-* [API reference](/docs/en/api/overview)
-* [Streaming Messages](/docs/en/build-with-claude/streaming)
+* [API reference](https://platform.claude.com/docs/en/api/overview)
+* [Streaming Messages](https://platform.claude.com/docs/en/build-with-claude/streaming)

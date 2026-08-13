@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/run
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: b0046ca142565937f9e010b78a7af36ad03eecc1bf6f9e43f891b9b52e9cd1f7
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 9643499ff76f4b86c753253f776e4ea9a94f9416171c20267c1707d3bf6c71a3
+---
+
+---
+title: Run Deployment Now
+url: https://platform.claude.com/docs/en/api/beta/deployments/run
 ---
 
 ## Run Deployment Now
@@ -23,7 +28,7 @@ Run Deployment Now
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -88,6 +93,8 @@ Run Deployment Now
     - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
+
+    - `"mid-conversation-tool-changes-2026-07-01"`
 
 ### Returns
 

@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 91a40c815eada16a00f08d359fdcee44fd41b438bb5f503723082cc941e27c61
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 8acc6924c9790385bc645b8280dd1cb6cfda69e9567222b0970f349e6a25df50
 ---
 
-# Memory tool
-
-Biarkan Claude menyimpan dan mengambil informasi di seluruh percakapan dengan mengimplementasikan operasi file memory tool di aplikasi Anda.
-
+---
+title: Memory tool
+url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool
+description: Biarkan Claude menyimpan dan mengambil informasi di seluruh percakapan dengan mengimplementasikan operasi file memory tool di aplikasi Anda.
 ---
 
 Memory tool (alat memori) memungkinkan Claude menyimpan dan mengambil informasi di seluruh percakapan dalam sebuah direktori file memori. Claude dapat membuat, membaca, memperbarui, dan menghapus file yang bertahan di antara sesi, membangun pengetahuan dari waktu ke waktu tanpa menyimpan semuanya di jendela konteks.
@@ -22,7 +22,7 @@ Memory tool beroperasi di sisi klien: Claude meminta operasi file, dan aplikasi 
 </Note>
 
 <Note>
-  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
+  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 ## Kasus penggunaan
@@ -35,7 +35,7 @@ Memory tool beroperasi di sisi klien: Claude meminta operasi file, dan aplikasi 
 
 Ketika memory tool diaktifkan, Claude secara otomatis memeriksa direktori memorinya sebelum memulai tugas. Saat bekerja, Claude menyimpan apa yang dipelajarinya dalam file di bawah `/memories` dan membacanya kembali di percakapan selanjutnya untuk melanjutkan pekerjaan sebelumnya.
 
-Karena memory tool berada di sisi klien, Claude hanya meminta operasi memori. Aplikasi Anda mengeksekusi setiap permintaan terhadap penyimpanan yang Anda kontrol dan mengembalikan hasilnya dalam blok `tool_result` (lihat [Menangani panggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls)). Path `/memories` adalah prefiks yang dipetakan oleh handler Anda ke penyimpanan nyata, seperti direktori per pengguna atau kunci dalam database. Memori sepenuhnya berada di aplikasi Anda. Percakapan selanjutnya melanjutkan dari memori yang sama ketika mengirimkan entri `tools` yang sama dan handler Anda melayani penyimpanan yang sama. Untuk keamanan, batasi semua operasi memori ke direktori `/memories` (lihat [Perlindungan path traversal](#path-traversal-protection)).
+Karena memory tool berada di sisi klien, Claude hanya meminta operasi memori. Aplikasi Anda mengeksekusi setiap permintaan terhadap penyimpanan yang Anda kontrol dan mengembalikan hasilnya dalam blok `tool_result` (lihat [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls)). Path `/memories` adalah prefiks yang dipetakan oleh handler Anda ke penyimpanan nyata, seperti direktori per pengguna atau kunci dalam database. Memori sepenuhnya berada di aplikasi Anda. Percakapan selanjutnya melanjutkan dari memori yang sama ketika mengirimkan entri `tools` yang sama dan handler Anda melayani penyimpanan yang sama. Untuk keamanan, batasi semua operasi memori ke direktori `/memories` (lihat [Perlindungan path traversal](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool#path-traversal-protection)).
 
 ### Contoh: Cara kerja panggilan memory tool
 
@@ -107,14 +107,14 @@ Claude memanggil memory tool:
 "Based on your customer service guidelines, I can help you craft a response. Please share the ticket details..."
 ```
 
-Memory tool tersedia di semua model Claude 4 dan yang lebih baru. Untuk daftar lengkap alat yang disediakan Anthropic, lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference).
+Memory tool tersedia di semua model Claude 4 dan yang lebih baru. Untuk daftar lengkap alat yang disediakan Anthropic, lihat [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference).
 
 ## Memulai
 
 Memory tool tersedia secara umum di Messages API: tidak diperlukan header beta. Menggunakannya memerlukan dua langkah:
 
 1. Tambahkan memory tool ke permintaan Anda. Entri `tools` `{"type": "memory_20250818", "name": "memory"}` adalah keseluruhan konfigurasinya: `name` harus `memory`, dan Anda tidak mendefinisikan skema input untuk alat yang disediakan Anthropic.
-2. Implementasikan handler sisi klien untuk setiap perintah memori. Handler Anda harus menolak path di luar `/memories`, jadi baca [Perlindungan path traversal](#path-traversal-protection) sebelum Anda menulisnya.
+2. Implementasikan handler sisi klien untuk setiap perintah memori. Handler Anda harus menolak path di luar `/memories`, jadi baca [Perlindungan path traversal](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool#path-traversal-protection) sebelum Anda menulisnya.
 
 ## Penggunaan dasar
 
@@ -290,7 +290,7 @@ Memory tool tersedia secara umum di Messages API: tidak diperlukan header beta. 
 
 ## Mengimplementasikan handler memori
 
-Balasan Claude terhadap permintaan seperti sebelumnya diakhiri dengan blok `tool_use` yang meminta operasi memori, seperti `view /memories`. Aplikasi Anda mengeksekusi operasi tersebut dan mengembalikan hasilnya dalam blok `tool_result`, lalu mengirimkan kembali percakapan agar Claude dapat melanjutkan: [loop penggunaan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls) standar.
+Balasan Claude terhadap permintaan seperti sebelumnya diakhiri dengan blok `tool_use` yang meminta operasi memori, seperti `view /memories`. Aplikasi Anda mengeksekusi operasi tersebut dan mengembalikan hasilnya dalam blok `tool_result`, lalu mengirimkan kembali percakapan agar Claude dapat melanjutkan: [loop penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls) standar.
 
 Empat SDK menyediakan helper memory tool yang menangani antarmuka alat dan loop tersebut. Buat subclass `BetaAbstractMemoryTool` (Python dan C#), gunakan `betaMemoryTool` (TypeScript), atau implementasikan `BetaMemoryToolHandler` (Java) untuk mendukung memori dengan penyimpanan Anda sendiri, seperti file di disk, database, penyimpanan cloud, atau file terenkripsi. Python dan TypeScript juga menyertakan implementasi sistem file lokal yang siap pakai, `BetaLocalFilesystemMemoryTool`. Permukaan helper dan tool-runner berada di namespace beta masing-masing SDK meskipun memory tool itu sendiri tersedia secara umum. SDK Go dan Ruby tidak memiliki helper memori, jadi contoh-contoh tersebut menjalankan loop penggunaan alat sendiri, dan PHP membungkus closure handler Anda dalam `BetaRunnableTool` generiknya. Ketiganya menggunakan penyimpanan in-memory yang Anda ganti dengan penyimpanan Anda sendiri.
 
@@ -717,7 +717,7 @@ Empat SDK menyediakan helper memory tool yang menangani antarmuka alat dan loop 
   ```
 </CodeGroup>
 
-Penyimpanan in-memory dalam contoh Go, PHP, dan Ruby membuatnya mandiri: masing-masing melakukan dispatch pada field `command` di `input` blok `tool_use` dan mengembalikan string yang dijelaskan di bagian [Perintah alat](#tool-commands). Handler produksi juga memerlukan [validasi path](#path-traversal-protection) yang dilewati oleh penyimpanan demonstrasi ini. Untuk contoh lengkap dari SDK itu sendiri, lihat:
+Penyimpanan in-memory dalam contoh Go, PHP, dan Ruby membuatnya mandiri: masing-masing melakukan dispatch pada field `command` di `input` blok `tool_use` dan mengembalikan string yang dijelaskan di bagian [Perintah alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool#tool-commands). Handler produksi juga memerlukan [validasi path](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool#path-traversal-protection) yang dilewati oleh penyimpanan demonstrasi ini. Untuk contoh lengkap dari SDK itu sendiri, lihat:
 
 * Python: [examples/memory/basic.py](https://github.com/anthropics/anthropic-sdk-python/blob/main/examples/memory/basic.py)
 * TypeScript: [examples/tools-helpers-memory.ts](https://github.com/anthropics/anthropic-sdk-typescript/blob/main/examples/tools-helpers-memory.ts)
@@ -970,7 +970,7 @@ Pertimbangkan pengamanan berikut:
 
 ## Penanganan error
 
-Memory tool menggunakan pola penanganan error yang mirip dengan [text editor tool](/docs/id/agents-and-tools/tool-use/text-editor-tool#handle-errors). Pesan error setiap perintah tercantum di bagian [Perintah alat](#tool-commands). Untuk mengembalikan error ke Claude, atur `is_error` ke `true` pada hasil alat dan letakkan pesannya di `content`:
+Memory tool menggunakan pola penanganan error yang mirip dengan [text editor tool](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool#handle-errors). Pesan error setiap perintah tercantum di bagian [Perintah alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool#tool-commands). Untuk mengembalikan error ke Claude, atur `is_error` ke `true` pada hasil alat dan letakkan pesannya di `content`:
 
 ```json
 {
@@ -983,11 +983,11 @@ Memory tool menggunakan pola penanganan error yang mirip dengan [text editor too
 
 ## Integrasi pengeditan konteks
 
-Memory tool berpasangan dengan pengeditan konteks untuk mengelola percakapan yang berjalan lama. Untuk detailnya, lihat [Pengeditan konteks](/docs/id/build-with-claude/context-editing).
+Memory tool berpasangan dengan pengeditan konteks untuk mengelola percakapan yang berjalan lama. Untuk detailnya, lihat [Pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing).
 
 ## Menggunakan dengan compaction
 
-Memory tool juga dapat dipasangkan dengan [compaction](/docs/id/build-with-claude/compaction), yang merangkum konteks percakapan yang lebih lama di sisi server. Pengeditan konteks menghapus hasil alat tertentu di klien. Compaction secara otomatis merangkum seluruh percakapan di server ketika percakapan mendekati batas jendela konteks.
+Memory tool juga dapat dipasangkan dengan [compaction](https://platform.claude.com/docs/id/build-with-claude/compaction), yang merangkum konteks percakapan yang lebih lama di sisi server. Pengeditan konteks menghapus hasil alat tertentu di klien. Compaction secara otomatis merangkum seluruh percakapan di server ketika percakapan mendekati batas jendela konteks.
 
 Untuk agen yang berjalan lama, pertimbangkan untuk menggunakan keduanya: compaction menjaga konteks aktif tetap kecil tanpa pembukuan di sisi klien, dan memori mempertahankan informasi yang harus bertahan dari perangkuman.
 
@@ -1014,19 +1014,19 @@ Kerjakan satu fitur pada satu waktu. Tandai fitur sebagai selesai hanya setelah 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Bash tool" icon="terminal" href="/docs/id/agents-and-tools/tool-use/bash-tool">
+  <Card title="Bash tool" icon="terminal" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool">
     Jalankan perintah shell dalam sesi bash yang persisten.
   </Card>
 
-  <Card title="Pengeditan konteks" icon="edit" href="/docs/id/build-with-claude/context-editing">
+  <Card title="Pengeditan konteks" icon="edit" href="https://platform.claude.com/docs/id/build-with-claude/context-editing">
     Kelola konteks percakapan secara otomatis seiring pertumbuhannya dengan pengeditan konteks.
   </Card>
 
-  <Card title="Compaction" icon="stack" href="/docs/id/build-with-claude/compaction">
+  <Card title="Compaction" icon="stack" href="https://platform.claude.com/docs/id/build-with-claude/compaction">
     Compaction konteks di sisi server untuk mengelola percakapan panjang yang mendekati batas jendela konteks.
   </Card>
 
-  <Card title="Referensi alat" icon="book" href="/docs/id/agents-and-tools/tool-use/tool-reference">
+  <Card title="Referensi alat" icon="book" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference">
     Direktori alat yang disediakan Anthropic dan referensi untuk properti definisi alat opsional.
   </Card>
 </CardGroup>

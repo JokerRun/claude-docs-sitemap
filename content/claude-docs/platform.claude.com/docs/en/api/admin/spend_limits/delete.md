@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/delete
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: e187c671956b476111a62c93eacd2046a52992252047d46b61dc58a472a92d82
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 7d2790ca4cc8d6cafa376057cc3507e8ebe049bdd1191dc9cf4436640a7615ef
+---
+
+---
+title: Delete Spend Limit
+url: https://platform.claude.com/docs/en/api/admin/spend_limits/delete
 ---
 
 ## Delete Spend Limit

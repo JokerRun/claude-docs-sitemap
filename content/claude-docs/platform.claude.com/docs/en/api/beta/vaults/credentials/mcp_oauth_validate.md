@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/mcp_oauth_validate
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 9fbc71c0dc7ecf2a9d1773a65be7f4b49fbd62db90f618291644371652a97f33
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 2aa4b59257c4a0c2ecf8867588b09f96025228a53e9ff4e71db55497614cb58e
+---
+
+---
+title: Validate Credential
+url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/mcp_oauth_validate
 ---
 
 ## Validate Credential
@@ -25,7 +30,7 @@ Validate Credential
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -90,6 +95,8 @@ Validate Credential
     - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
+
+    - `"mid-conversation-tool-changes-2026-07-01"`
 
 ### Returns
 

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/artifacts/list
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 473932edd732548c1788e2f9757b2adbcc75ac9726d9100a2e1ff29999006983
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 2354add9dc9a7884cc1d6149810409e98ca13b1dc861983318dffadd7a3a5723
+---
+
+---
+title: Get Artifact Activity
+url: https://platform.claude.com/docs/en/api/admin/analytics/artifacts/list
 ---
 
 ## Get Artifact Activity

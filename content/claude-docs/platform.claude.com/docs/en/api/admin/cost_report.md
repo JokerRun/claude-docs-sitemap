@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/cost_report
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 7cc2812db37e5dfeed87471cdae33281c2faf9cceb0d8690ee20ec75b6885f18
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 4aa3add9aa465fd0f50da230bf25d77fee5130bb1daf292db430fef847930b15
+---
+
+---
+title: Cost Report
+url: https://platform.claude.com/docs/en/api/admin/cost_report
 ---
 
 # Cost Report

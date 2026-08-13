@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 815c1a64ea79705740d2c2c82aa2b249ff902e75774417d9f5b10bfa04bf0afc
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: d8e6269359dc2687ebed2497056a420381f30d953d1b192649490f6113faa137
 ---
 
-# Agen dukungan pelanggan
-
-Bangun chatbot dukungan pelanggan dengan Claude yang menjawab pertanyaan produk, tetap pada topik, dan menghasilkan penawaran harga melalui penggunaan alat.
-
+---
+title: Agen dukungan pelanggan
+url: https://platform.claude.com/docs/id/about-claude/use-case-guides/customer-support-chat
+description: Bangun chatbot dukungan pelanggan dengan Claude yang menjawab pertanyaan produk, tetap pada topik, dan menghasilkan penawaran harga melalui penggunaan alat.
 ---
 
 ## Prasyarat
@@ -18,7 +18,7 @@ Untuk mengikuti panduan ini, Anda memerlukan:
 * Kunci API Claude (diatur sebagai variabel lingkungan `ANTHROPIC_API_KEY`)
 * Python 3.9 atau yang lebih baru
 
-Instal paket-paket yang diperlukan:
+Instal paket yang diperlukan:
 
 ```bash
 pip install anthropic streamlit python-dotenv
@@ -26,13 +26,13 @@ pip install anthropic streamlit python-dotenv
 
 ## Sebelum membangun dengan Claude
 
-### Putuskan apakah akan menggunakan Claude untuk chat dukungan
+### Tentukan apakah akan menggunakan Claude untuk obrolan dukungan
 
-Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan LLM seperti Claude untuk mengotomatiskan sebagian dari proses dukungan pelanggan Anda:
+Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan LLM seperti Claude untuk mengotomatiskan sebagian proses dukungan pelanggan Anda:
 
 <AccordionGroup>
   <Accordion title="Volume tinggi pertanyaan berulang">
-    Claude unggul dalam menangani sejumlah besar pertanyaan serupa secara efisien, membebaskan agen manusia untuk masalah yang lebih kompleks.
+    Claude unggul dalam menangani sejumlah besar pertanyaan serupa secara efisien, membebaskan agen manusia untuk menangani masalah yang lebih kompleks.
   </Accordion>
 
   <Accordion title="Kebutuhan sintesis informasi yang cepat">
@@ -40,7 +40,7 @@ Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan LLM sep
   </Accordion>
 
   <Accordion title="Kebutuhan ketersediaan 24/7">
-    Claude dapat memberikan dukungan sepanjang waktu tanpa kelelahan, sedangkan menempatkan agen manusia untuk cakupan berkelanjutan bisa mahal dan menantang.
+    Claude dapat memberikan dukungan sepanjang waktu tanpa kelelahan, sedangkan mempekerjakan agen manusia untuk cakupan berkelanjutan bisa mahal dan menantang.
   </Accordion>
 
   <Accordion title="Penskalaan cepat selama periode puncak">
@@ -54,33 +54,33 @@ Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan LLM sep
 
 Beberapa pertimbangan untuk memilih Claude dibandingkan LLM lainnya:
 
-* Anda memprioritaskan percakapan yang alami dan bernuansa: Pemahaman bahasa Claude yang canggih memungkinkan percakapan yang lebih alami dan sadar konteks yang terasa lebih mirip manusia dibandingkan chat dengan LLM lainnya.
-* Anda sering menerima pertanyaan yang kompleks dan terbuka: Claude dapat menangani berbagai topik dan pertanyaan tanpa menghasilkan respons kalengan atau memerlukan pemrograman ekstensif dari permutasi ucapan pengguna.
-* Anda memerlukan dukungan multibahasa yang dapat diskalakan: Kemampuan multibahasa Claude memungkinkannya terlibat dalam percakapan dalam lebih dari 200 bahasa tanpa perlu chatbot terpisah atau proses terjemahan ekstensif untuk setiap bahasa yang didukung.
+* Anda memprioritaskan percakapan yang alami dan bernuansa: Pemahaman bahasa Claude yang canggih memungkinkan percakapan yang lebih alami dan sadar konteks yang terasa lebih mirip manusia dibandingkan obrolan dengan LLM lainnya.
+* Anda sering menerima pertanyaan yang kompleks dan terbuka: Claude dapat menangani berbagai topik dan pertanyaan tanpa menghasilkan respons kaku atau memerlukan pemrograman ekstensif untuk berbagai permutasi ucapan pengguna.
+* Anda membutuhkan dukungan multibahasa yang dapat diskalakan: Kemampuan multibahasa Claude memungkinkannya terlibat dalam percakapan dalam lebih dari 200 bahasa tanpa memerlukan chatbot terpisah atau proses penerjemahan ekstensif untuk setiap bahasa yang didukung.
 
-### Definisikan interaksi chat ideal Anda
+### Definisikan interaksi obrolan ideal Anda
 
-Buat garis besar interaksi pelanggan yang ideal untuk mendefinisikan bagaimana dan kapan Anda mengharapkan pelanggan berinteraksi dengan Claude. Garis besar ini akan membantu menentukan persyaratan teknis dari solusi Anda.
+Buat garis besar interaksi pelanggan yang ideal untuk mendefinisikan bagaimana dan kapan Anda mengharapkan pelanggan berinteraksi dengan Claude. Garis besar ini akan membantu menentukan persyaratan teknis solusi Anda.
 
-Berikut adalah contoh interaksi chat untuk dukungan pelanggan asuransi mobil:
+Berikut adalah contoh interaksi obrolan untuk dukungan pelanggan asuransi mobil:
 
-* **Pelanggan:** Memulai pengalaman chat dukungan
+* **Pelanggan:** Memulai pengalaman obrolan dukungan
   * **Claude:** Menyapa pelanggan dengan hangat dan memulai percakapan
 
 * **Pelanggan:** Bertanya tentang asuransi untuk mobil listrik baru mereka
-  * **Claude:** Memberikan informasi yang relevan tentang cakupan kendaraan listrik
+  * **Claude:** Memberikan informasi relevan tentang cakupan kendaraan listrik
 
 * **Pelanggan:** Mengajukan pertanyaan terkait kebutuhan unik untuk asuransi kendaraan listrik
-  * **Claude:** Merespons dengan jawaban yang akurat dan informatif serta menyediakan tautan ke sumber-sumbernya
+  * **Claude:** Merespons dengan jawaban yang akurat dan informatif serta memberikan tautan ke sumber
 
 * **Pelanggan:** Mengajukan pertanyaan di luar topik yang tidak terkait dengan asuransi atau mobil
   * **Claude:** Mengklarifikasi bahwa ia tidak membahas topik yang tidak terkait dan mengarahkan pengguna kembali ke asuransi mobil
 
 * **Pelanggan:** Menyatakan minat pada penawaran harga asuransi
 
-  * **Claude:** Mengajukan serangkaian pertanyaan untuk menentukan penawaran harga yang sesuai, menyesuaikan dengan respons mereka
-  * **Claude:** Mengirim permintaan untuk menggunakan alat API pembuatan penawaran harga bersama dengan informasi yang diperlukan yang dikumpulkan dari pengguna
-  * **Claude:** Menerima informasi respons dari penggunaan alat API, mensintesis informasi menjadi respons yang alami, dan menyajikan penawaran harga yang diberikan kepada pengguna
+  * **Claude:** Mengajukan serangkaian pertanyaan untuk menentukan penawaran yang sesuai, menyesuaikan dengan respons mereka
+  * **Claude:** Mengirim permintaan untuk menggunakan alat API pembuatan penawaran bersama dengan informasi yang diperlukan yang dikumpulkan dari pengguna
+  * **Claude:** Menerima informasi respons dari penggunaan alat API, mensintesis informasi menjadi respons yang alami, dan menyajikan penawaran yang diberikan kepada pengguna
 
 * **Pelanggan:** Mengajukan pertanyaan lanjutan
 
@@ -88,15 +88,15 @@ Berikut adalah contoh interaksi chat untuk dukungan pelanggan asuransi mobil:
   * **Claude:** Memandu pelanggan ke langkah selanjutnya dalam proses asuransi dan menutup percakapan
 
 <Tip>
-  Dalam contoh nyata yang Anda tulis untuk kasus penggunaan Anda sendiri, Anda mungkin merasa berguna untuk menuliskan kata-kata sebenarnya dalam interaksi ini sehingga Anda juga dapat memperoleh gambaran tentang nada ideal, panjang respons, dan tingkat detail yang Anda inginkan dari Claude.
+  Dalam contoh nyata yang Anda tulis untuk kasus penggunaan Anda sendiri, Anda mungkin merasa berguna untuk menuliskan kata-kata sebenarnya dalam interaksi ini sehingga Anda juga dapat merasakan nada ideal, panjang respons, dan tingkat detail yang Anda inginkan dari Claude.
 </Tip>
 
 ### Pecah interaksi menjadi tugas-tugas unik
 
-Chat dukungan pelanggan adalah kumpulan dari berbagai tugas yang berbeda, mulai dari menjawab pertanyaan hingga pengambilan informasi hingga mengambil tindakan atas permintaan, yang dibungkus dalam satu interaksi pelanggan. Sebelum Anda mulai membangun, pecah interaksi pelanggan ideal Anda menjadi setiap tugas yang Anda ingin Claude dapat lakukan. Ini memastikan Anda dapat membuat prompt dan mengevaluasi Claude untuk setiap tugas, dan memberi Anda gambaran yang baik tentang rentang interaksi yang perlu Anda perhitungkan saat menulis kasus uji.
+Obrolan dukungan pelanggan adalah kumpulan dari berbagai tugas yang berbeda, mulai dari menjawab pertanyaan hingga pengambilan informasi hingga mengambil tindakan atas permintaan, yang dikemas dalam satu interaksi pelanggan. Sebelum Anda mulai membangun, pecah interaksi pelanggan ideal Anda menjadi setiap tugas yang Anda ingin Claude dapat lakukan. Ini memastikan Anda dapat membuat prompt dan mengevaluasi Claude untuk setiap tugas, dan memberi Anda gambaran yang baik tentang rentang interaksi yang perlu Anda perhitungkan saat menulis kasus uji.
 
 <Tip>
-  Pelanggan terkadang merasa terbantu dengan memvisualisasikan ini sebagai diagram alur interaksi dari titik-titik perubahan percakapan yang mungkin terjadi tergantung pada permintaan pengguna.
+  Pelanggan terkadang merasa terbantu dengan memvisualisasikan ini sebagai diagram alur interaksi dari titik-titik belok percakapan yang mungkin terjadi tergantung pada permintaan pengguna.
 </Tip>
 
 Berikut adalah tugas-tugas utama yang terkait dengan contoh interaksi asuransi:
@@ -117,34 +117,34 @@ Berikut adalah tugas-tugas utama yang terkait dengan contoh interaksi asuransi:
         diperlukan.
      </Note>
    * Menjawab pertanyaan terkait kebutuhan unik asuransi kendaraan listrik
-   * Menjawab pertanyaan lanjutan tentang penawaran harga atau detail asuransi
-   * Menawarkan tautan ke sumber-sumber bila sesuai
+   * Menjawab pertanyaan lanjutan tentang penawaran atau detail asuransi
+   * Menawarkan tautan ke sumber jika sesuai
 
 3. Manajemen percakapan
 
    * Tetap pada topik (asuransi mobil)
    * Mengarahkan kembali pertanyaan di luar topik ke subjek yang relevan
 
-4. Pembuatan penawaran harga
+4. Pembuatan penawaran
 
-   * Mengajukan pertanyaan yang sesuai untuk menentukan kelayakan penawaran harga
+   * Mengajukan pertanyaan yang sesuai untuk menentukan kelayakan penawaran
    * Menyesuaikan pertanyaan berdasarkan respons pelanggan
-   * Mengirimkan informasi yang dikumpulkan ke API pembuatan penawaran harga
-   * Menyajikan penawaran harga yang diberikan kepada pelanggan
+   * Mengirimkan informasi yang dikumpulkan ke API pembuatan penawaran
+   * Menyajikan penawaran yang diberikan kepada pelanggan
 
 ### Tetapkan kriteria keberhasilan
 
-Bekerja samalah dengan tim dukungan Anda untuk [mendefinisikan kriteria keberhasilan dan menulis evaluasi terperinci](/docs/id/test-and-evaluate/develop-tests) dengan tolok ukur dan tujuan yang dapat diukur.
+Bekerja sama dengan tim dukungan Anda untuk [mendefinisikan kriteria keberhasilan dan menulis evaluasi terperinci](https://platform.claude.com/docs/id/test-and-evaluate/develop-tests) dengan tolok ukur dan tujuan yang terukur.
 
-Berikut adalah kriteria dan tolok ukur yang dapat digunakan untuk mengevaluasi seberapa berhasil Claude melakukan tugas-tugas yang telah ditentukan:
+Berikut adalah kriteria dan tolok ukur yang dapat digunakan untuk mengevaluasi seberapa berhasil Claude melakukan tugas-tugas yang telah didefinisikan:
 
 <AccordionGroup>
   <Accordion title="Akurasi pemahaman pertanyaan">
-    Metrik ini mengevaluasi seberapa akurat Claude memahami pertanyaan pelanggan di berbagai topik. Ukur ini dengan meninjau sampel percakapan dan menilai apakah Claude memiliki interpretasi yang benar tentang maksud pelanggan, langkah penting berikutnya, seperti apa penyelesaian yang berhasil, dan lainnya. Targetkan akurasi pemahaman 95% atau lebih tinggi.
+    Metrik ini mengevaluasi seberapa akurat Claude memahami pertanyaan pelanggan di berbagai topik. Ukur ini dengan meninjau sampel percakapan dan menilai apakah Claude memiliki interpretasi yang benar tentang maksud pelanggan, langkah penting berikutnya, seperti apa resolusi yang berhasil, dan lainnya. Targetkan akurasi pemahaman 95% atau lebih tinggi.
   </Accordion>
 
   <Accordion title="Relevansi respons">
-    Ini menilai seberapa baik respons Claude menjawab pertanyaan atau masalah spesifik pelanggan. Evaluasi serangkaian percakapan dan nilai relevansi setiap respons (menggunakan penilaian berbasis LLM untuk skala). Targetkan skor relevansi 90% atau lebih.
+    Ini menilai seberapa baik respons Claude menjawab pertanyaan atau masalah spesifik pelanggan. Evaluasi sekumpulan percakapan dan beri nilai relevansi setiap respons (menggunakan penilaian berbasis LLM untuk skala). Targetkan skor relevansi 90% atau lebih.
   </Accordion>
 
   <Accordion title="Akurasi respons">
@@ -155,16 +155,16 @@ Berikut adalah kriteria dan tolok ukur yang dapat digunakan untuk mengevaluasi s
     Lacak frekuensi dan relevansi tautan atau sumber yang ditawarkan. Targetkan penyediaan sumber yang relevan dalam 80% interaksi di mana informasi tambahan dapat bermanfaat.
   </Accordion>
 
-  <Accordion title="Kepatuhan pada topik">
+  <Accordion title="Kepatuhan topik">
     Ukur seberapa baik Claude tetap pada topik, seperti topik asuransi mobil dalam contoh implementasi. Targetkan 95% respons terkait langsung dengan asuransi mobil atau pertanyaan spesifik pelanggan.
   </Accordion>
 
   <Accordion title="Efektivitas pembuatan konten">
-    Ukur seberapa berhasil Claude dalam menentukan kapan harus menghasilkan konten informasional dan seberapa relevan konten tersebut. Misalnya, dalam implementasi ini, Anda akan menentukan seberapa baik Claude memahami kapan harus menghasilkan penawaran harga dan seberapa akurat penawaran harga tersebut. Targetkan akurasi 100%, karena ini adalah informasi vital untuk interaksi pelanggan yang berhasil.
+    Ukur seberapa berhasil Claude dalam menentukan kapan harus menghasilkan konten informasional dan seberapa relevan konten tersebut. Misalnya, dalam implementasi ini, Anda akan menentukan seberapa baik Claude memahami kapan harus menghasilkan penawaran dan seberapa akurat penawaran tersebut. Targetkan akurasi 100%, karena ini adalah informasi vital untuk interaksi pelanggan yang berhasil.
   </Accordion>
 
   <Accordion title="Efisiensi eskalasi">
-    Ini mengukur kemampuan Claude untuk mengenali kapan sebuah pertanyaan memerlukan intervensi manusia dan melakukan eskalasi dengan tepat. Lacak persentase percakapan yang dieskalasi dengan benar dibandingkan dengan yang seharusnya dieskalasi tetapi tidak. Targetkan akurasi eskalasi 95% atau lebih tinggi.
+    Ini mengukur kemampuan Claude untuk mengenali kapan suatu pertanyaan memerlukan intervensi manusia dan mengeskalasi dengan tepat. Lacak persentase percakapan yang dieskalasi dengan benar versus yang seharusnya dieskalasi tetapi tidak. Targetkan akurasi eskalasi 95% atau lebih tinggi.
   </Accordion>
 </AccordionGroup>
 
@@ -184,7 +184,7 @@ Berikut adalah kriteria dan tolok ukur yang dapat digunakan untuk mengevaluasi d
   </Accordion>
 
   <Accordion title="Waktu penanganan rata-rata">
-    Waktu rata-rata yang dibutuhkan chatbot untuk menyelesaikan sebuah pertanyaan. Ini sangat bervariasi berdasarkan kompleksitas masalah, tetapi secara umum, targetkan AHT yang lebih rendah dibandingkan dengan agen manusia.
+    Waktu rata-rata yang dibutuhkan chatbot untuk menyelesaikan suatu pertanyaan. Ini sangat bervariasi berdasarkan kompleksitas masalah, tetapi secara umum, targetkan AHT yang lebih rendah dibandingkan dengan agen manusia.
   </Accordion>
 </AccordionGroup>
 
@@ -192,15 +192,15 @@ Berikut adalah kriteria dan tolok ukur yang dapat digunakan untuk mengevaluasi d
 
 ### Pilih model Claude yang tepat
 
-Pilihan model bergantung pada pertimbangan antara biaya, akurasi, dan waktu respons.
+Pilihan model bergantung pada kompromi antara biaya, akurasi, dan waktu respons.
 
-Untuk chat dukungan pelanggan, Claude Opus 5 sangat cocok untuk menyeimbangkan kecerdasan, latensi, dan biaya, termasuk skenario dukungan paling kompleks yang memerlukan penalaran mendalam di sepanjang percakapan panjang dan multi-langkah. Namun, untuk kasus di mana Anda memiliki alur percakapan dengan beberapa prompt termasuk RAG, penggunaan alat, atau prompt konteks panjang, Claude Haiku 4.5 mungkin lebih cocok untuk mengoptimalkan latensi.
+Untuk obrolan dukungan pelanggan, Claude Opus 5 sangat cocok untuk menyeimbangkan kecerdasan, latensi, dan biaya, termasuk skenario dukungan paling kompleks yang memerlukan penalaran mendalam di seluruh percakapan panjang dan multi-langkah. Namun, untuk kasus di mana Anda memiliki alur percakapan dengan beberapa prompt termasuk RAG, penggunaan alat, atau prompt konteks panjang, Claude Haiku 4.5 mungkin lebih cocok untuk mengoptimalkan latensi.
 
 ### Bangun prompt yang kuat
 
-Menggunakan Claude untuk dukungan pelanggan mengharuskan Claude memiliki arahan dan konteks yang cukup untuk merespons dengan tepat, sambil memiliki fleksibilitas yang cukup untuk menangani berbagai pertanyaan pelanggan.
+Menggunakan Claude untuk dukungan pelanggan mengharuskan Claude memiliki arahan dan konteks yang cukup untuk merespons dengan tepat, sekaligus memiliki fleksibilitas yang cukup untuk menangani berbagai pertanyaan pelanggan.
 
-Mulailah dengan menulis elemen-elemen dari prompt yang kuat, dimulai dengan prompt sistem. Buat file bernama `config.py` dan tambahkan setiap blok berikut ke dalamnya:
+Mulailah dengan menulis elemen-elemen prompt yang kuat, dimulai dengan prompt sistem. Buat file bernama `config.py` dan tambahkan setiap blok berikut ke dalamnya:
 
 ```python
 IDENTITY = """You are Eva, a friendly and knowledgeable AI assistant for Acme Insurance
@@ -216,12 +216,12 @@ insurance. You can also help customers get quotes for their insurance needs."""
 
    pertama (dengan satu-satunya pengecualian adalah role prompting). Baca lebih lanjut di 
 
-  [Memberikan Claude sebuah peran dengan prompt sistem](/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role)
+  [Memberikan Claude peran dengan prompt sistem](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role)
 
   .
 </Tip>
 
-Sebaiknya pecah prompt yang kompleks menjadi subbagian dan tulis satu bagian pada satu waktu. Untuk setiap tugas, Anda mungkin menemukan keberhasilan yang lebih besar dengan mengikuti proses langkah demi langkah untuk mendefinisikan bagian-bagian prompt yang dibutuhkan Claude untuk melakukan tugas dengan baik. Untuk contoh dukungan pelanggan asuransi mobil ini, Anda akan menulis sedikit demi sedikit semua bagian untuk prompt yang dimulai dengan tugas "Sapaan dan panduan umum". Ini juga membuat debugging prompt Anda lebih mudah karena Anda dapat lebih cepat menyesuaikan bagian-bagian individual dari keseluruhan prompt.
+Sebaiknya pecah prompt yang kompleks menjadi sub-bagian dan tulis satu bagian pada satu waktu. Untuk setiap tugas, Anda mungkin menemukan keberhasilan yang lebih besar dengan mengikuti proses langkah demi langkah untuk mendefinisikan bagian-bagian prompt yang dibutuhkan Claude untuk melakukan tugas dengan baik. Untuk contoh dukungan pelanggan asuransi mobil ini, Anda akan menulis secara bertahap semua bagian untuk prompt yang dimulai dengan tugas "Sapaan dan panduan umum". Ini juga membuat debugging prompt Anda lebih mudah karena Anda dapat lebih cepat menyesuaikan bagian-bagian individual dari keseluruhan prompt.
 
 ```python
 STATIC_GREETINGS_AND_GENERAL = """
@@ -356,7 +356,7 @@ Once you provide this information, I'll use our quoting tool to generate a perso
 """
 ```
 
-Anda juga perlu menyertakan instruksi penting apa pun yang menguraikan hal yang boleh dan tidak boleh dilakukan tentang bagaimana Claude harus berinteraksi dengan pelanggan. Ini dapat diambil dari guardrail merek atau kebijakan dukungan.
+Anda juga perlu menyertakan instruksi penting apa pun yang menguraikan hal-hal yang boleh dan tidak boleh dilakukan tentang bagaimana Claude harus berinteraksi dengan pelanggan. Ini mungkin diambil dari guardrail merek atau kebijakan dukungan.
 
 ```python
 ADDITIONAL_GUARDRAILS = """Please adhere to the following guardrails:
@@ -386,12 +386,12 @@ TASK_SPECIFIC_INSTRUCTIONS = " ".join(
 
 ### Tambahkan kemampuan dinamis dan agentik dengan penggunaan alat
 
-Claude mampu mengambil tindakan dan mengambil informasi secara dinamis menggunakan fungsionalitas penggunaan alat sisi klien. Mulailah dengan mendaftar alat eksternal atau API apa pun yang harus digunakan oleh prompt.
+Claude mampu mengambil tindakan dan mengambil informasi secara dinamis menggunakan fungsionalitas penggunaan alat sisi klien. Mulailah dengan membuat daftar alat eksternal atau API apa pun yang harus digunakan oleh prompt.
 
-Untuk contoh ini, mulailah dengan satu alat untuk menghitung penawaran harga.
+Untuk contoh ini, mulailah dengan satu alat untuk menghitung penawaran.
 
 <Tip>
-  Sebagai pengingat, alat ini tidak akan melakukan perhitungan yang sebenarnya, alat ini hanya akan memberi sinyal kepada aplikasi bahwa sebuah alat harus digunakan dengan argumen apa pun yang ditentukan.
+  Sebagai pengingat, alat ini tidak akan melakukan perhitungan sebenarnya, alat ini hanya akan memberi sinyal kepada aplikasi bahwa suatu alat harus digunakan dengan argumen apa pun yang ditentukan.
 </Tip>
 
 Tambahkan nama model, definisi alat, dan implementasi stub ke `config.py`:
@@ -432,18 +432,18 @@ TOOLS = [
 def get_quote(make, model, year, mileage, driver_age):
     """Returns the premium per month in USD"""
     # Anda dapat memanggil endpoint http atau database untuk mendapatkan penawaran harga.
-    # Di sini, kami mensimulasikan penundaan 1 detik dan mengembalikan penawaran harga tetap sebesar 100.
+    # Di sini, kita mensimulasikan penundaan 1 detik dan mengembalikan penawaran tetap sebesar 100.
     time.sleep(1)
     return 100
 ```
 
 ### Deploy prompt Anda
 
-Sulit untuk mengetahui seberapa baik prompt Anda bekerja tanpa men-deploy-nya dalam pengaturan produksi uji dan [menjalankan evaluasi](/docs/id/test-and-evaluate/develop-tests). Bangun aplikasi kecil menggunakan prompt, Anthropic SDK, dan Streamlit untuk antarmuka pengguna.
+Sulit untuk mengetahui seberapa baik prompt Anda bekerja tanpa men-deploy-nya dalam pengaturan produksi uji dan [menjalankan evaluasi](https://platform.claude.com/docs/id/test-and-evaluate/develop-tests). Bangun aplikasi kecil menggunakan prompt, Anthropic SDK, dan Streamlit untuk antarmuka pengguna.
 
 Dalam file bernama `chatbot.py` (atau modul yang setara dalam bahasa Anda), siapkan kelas ChatBot, yang akan mengenkapsulasi interaksi dengan Anthropic SDK.
 
-Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghasilkan pesan, dan satu yang memproses setiap input pengguna yang masuk.
+Kelas tersebut harus memiliki dua metode utama: satu yang memanggil API untuk menghasilkan pesan, dan satu yang memproses setiap input pengguna yang masuk.
 
 <CodeGroup exclude="shell">
   ```python Python
@@ -1094,7 +1094,7 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
 
 ### Bangun antarmuka pengguna Anda
 
-Uji deploy kode ini dengan Streamlit menggunakan metode main. Fungsi `main()` ini menyiapkan antarmuka chat berbasis Streamlit. Streamlit adalah framework Python, jadi bagian dari panduan ini hanya ditampilkan dalam Python; kelas ChatBot di atas adalah bagian yang dapat Anda porting ke bahasa apa pun.
+Uji deploy kode ini dengan Streamlit menggunakan metode main. Fungsi `main()` ini menyiapkan antarmuka obrolan berbasis Streamlit. Streamlit adalah framework Python, jadi bagian panduan ini hanya ditampilkan dalam Python; kelas ChatBot di atas adalah bagian yang dapat Anda porting ke bahasa apa pun.
 
 Lakukan ini dalam file bernama `app.py`
 
@@ -1115,9 +1115,9 @@ def main():
 
     chatbot = ChatBot(st.session_state)
 
-    # Tampilkan pesan user dan assistant dengan melewati dua pesan pertama
+    # Tampilkan pesan user dan assistant dengan melewati dua yang pertama
     for message in st.session_state.messages[2:]:
-        # abaikan blok penggunaan alat
+        # abaikan blok tool_use
         if isinstance(message["content"], str):
             with st.chat_message(message["role"]):
                 st.markdown(message["content"])
@@ -1144,57 +1144,57 @@ streamlit run app.py
 
 ### Evaluasi prompt Anda
 
-Prompting sering kali memerlukan pengujian dan optimisasi agar siap untuk produksi. Untuk menentukan kesiapan solusi Anda, evaluasi kinerja chatbot menggunakan proses sistematis yang menggabungkan metode kuantitatif dan kualitatif. Membuat [evaluasi empiris yang kuat](/docs/id/test-and-evaluate/develop-tests#building-evals-and-test-cases) berdasarkan kriteria keberhasilan yang telah Anda tentukan akan memungkinkan Anda mengoptimalkan prompt Anda.
+Prompting sering kali memerlukan pengujian dan optimasi agar siap untuk produksi. Untuk menentukan kesiapan solusi Anda, evaluasi kinerja chatbot menggunakan proses sistematis yang menggabungkan metode kuantitatif dan kualitatif. Membuat [evaluasi empiris yang kuat](https://platform.claude.com/docs/id/test-and-evaluate/develop-tests#build-evaluations) berdasarkan kriteria keberhasilan yang telah Anda definisikan akan memungkinkan Anda mengoptimalkan prompt Anda.
 
 ### Tingkatkan kinerja
 
-Dalam skenario yang kompleks, mungkin berguna untuk mempertimbangkan strategi tambahan untuk meningkatkan kinerja di luar [teknik rekayasa prompt](/docs/id/build-with-claude/prompt-engineering/overview) standar & [strategi implementasi guardrail](/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations). Berikut adalah beberapa skenario umum:
+Dalam skenario yang kompleks, mungkin berguna untuk mempertimbangkan strategi tambahan untuk meningkatkan kinerja di luar [teknik rekayasa prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview) standar & [strategi implementasi guardrail](https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations). Berikut adalah beberapa skenario umum:
 
 #### Kurangi latensi konteks panjang dengan RAG
 
-Saat menangani sejumlah besar konteks statis dan dinamis, menyertakan semua informasi dalam prompt dapat menyebabkan biaya tinggi, waktu respons yang lebih lambat, dan mencapai batas jendela konteks. Dalam skenario ini, mengimplementasikan teknik "Retrieval Augmented Generation" (generasi yang diperkaya pengambilan), atau RAG, dapat meningkatkan kinerja dan efisiensi.
+Saat menangani sejumlah besar konteks statis dan dinamis, menyertakan semua informasi dalam prompt dapat menyebabkan biaya tinggi, waktu respons yang lebih lambat, dan mencapai batas jendela konteks. Dalam skenario ini, menerapkan teknik "Retrieval Augmented Generation" (pembangkitan yang diperkaya pengambilan), atau RAG, dapat meningkatkan kinerja dan efisiensi.
 
-Dengan menggunakan [model embedding seperti Voyage](/docs/id/build-with-claude/embeddings) untuk mengonversi informasi menjadi representasi vektor, Anda dapat membuat sistem yang lebih dapat diskalakan dan responsif. Pendekatan ini memungkinkan pengambilan dinamis informasi yang relevan berdasarkan kueri saat ini, alih-alih menyertakan semua konteks yang mungkin dalam setiap prompt.
+Dengan menggunakan [model embedding seperti Voyage](https://platform.claude.com/docs/id/build-with-claude/embeddings) untuk mengonversi informasi menjadi representasi vektor, Anda dapat membuat sistem yang lebih dapat diskalakan dan responsif. Pendekatan ini memungkinkan pengambilan informasi relevan secara dinamis berdasarkan kueri saat ini, daripada menyertakan semua konteks yang mungkin dalam setiap prompt.
 
-Mengimplementasikan RAG untuk kasus penggunaan dukungan telah terbukti meningkatkan akurasi, mengurangi waktu respons, dan mengurangi biaya API dalam sistem dengan kebutuhan konteks yang ekstensif. Lihat [resep RAG](https://platform.claude.com/cookbook/capabilities-retrieval-augmented-generation-guide) untuk contoh yang sudah dikerjakan.
+Menerapkan RAG untuk kasus penggunaan dukungan telah terbukti meningkatkan akurasi, mengurangi waktu respons, dan mengurangi biaya API dalam sistem dengan persyaratan konteks yang ekstensif. Lihat [resep RAG](https://platform.claude.com/cookbook/capabilities-retrieval-augmented-generation-guide) untuk contoh yang telah dikerjakan.
 
 #### Integrasikan data real-time dengan penggunaan alat
 
-Saat menangani kueri yang memerlukan informasi real-time, seperti saldo akun atau detail polis, pendekatan RAG berbasis embedding tidaklah cukup. Sebagai gantinya, penggunaan alat dapat meningkatkan kemampuan chatbot Anda untuk memberikan respons yang akurat dan real-time. Misalnya, Anda dapat menggunakan penggunaan alat untuk mencari informasi pelanggan, mengambil detail pesanan, dan membatalkan pesanan atas nama pelanggan.
+Saat menangani kueri yang memerlukan informasi real-time, seperti saldo akun atau detail polis, pendekatan RAG berbasis embedding tidak cukup. Sebagai gantinya, penggunaan alat dapat meningkatkan kemampuan chatbot Anda untuk memberikan respons yang akurat dan real-time. Misalnya, Anda dapat menggunakan penggunaan alat untuk mencari informasi pelanggan, mengambil detail pesanan, dan membatalkan pesanan atas nama pelanggan.
 
-Pendekatan ini, [yang diuraikan dalam resep penggunaan alat: agen layanan pelanggan](https://platform.claude.com/cookbook/tool-use-customer-service-agent), memungkinkan Anda mengintegrasikan data langsung ke dalam respons Claude dan memberikan pengalaman pelanggan yang lebih personal dan efisien.
+Pendekatan ini, [diuraikan dalam resep penggunaan alat: agen layanan pelanggan](https://platform.claude.com/cookbook/tool-use-customer-service-agent), memungkinkan Anda mengintegrasikan data langsung ke dalam respons Claude dan memberikan pengalaman pelanggan yang lebih personal dan efisien.
 
 #### Perkuat guardrail input dan output
 
 Saat men-deploy chatbot, terutama dalam skenario layanan pelanggan, penting untuk mencegah risiko yang terkait dengan penyalahgunaan, kueri di luar cakupan, dan respons yang tidak pantas. Meskipun Claude secara inheren tangguh terhadap skenario semacam itu, berikut adalah langkah-langkah tambahan untuk memperkuat guardrail chatbot Anda:
 
-* [Kurangi halusinasi](/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations): Implementasikan mekanisme pemeriksaan fakta dan [sitasi](https://platform.claude.com/cookbook/misc-using-citations) untuk mendasarkan respons pada informasi yang diberikan.
+* [Kurangi halusinasi](https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations): Terapkan mekanisme pemeriksaan fakta dan [sitasi](https://platform.claude.com/cookbook/misc-using-citations) untuk mendasarkan respons pada informasi yang diberikan.
 * Periksa silang informasi: Verifikasi bahwa respons agen selaras dengan kebijakan perusahaan Anda dan fakta yang diketahui.
 * Hindari komitmen kontraktual: Pastikan agen tidak membuat janji atau masuk ke dalam perjanjian yang tidak diizinkan untuk dibuatnya.
-* [Mitigasi jailbreak](/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks): Gunakan metode seperti penyaringan harmlessness dan validasi input untuk mencegah pengguna mengeksploitasi kerentanan model, yang bertujuan menghasilkan konten yang tidak pantas.
-* Hindari menyebutkan pesaing: Implementasikan filter penyebutan pesaing untuk mempertahankan fokus merek dan tidak menyebutkan produk atau layanan pesaing mana pun.
-* [Tingkatkan konsistensi output](/docs/id/test-and-evaluate/strengthen-guardrails/increase-consistency): Cegah Claude mengubah gaya atau keluar dari karakter, bahkan selama interaksi yang panjang dan kompleks.
-* Hapus Informasi Identifikasi Pribadi (PII): Kecuali secara eksplisit diperlukan dan diizinkan, hapus PII apa pun dari respons.
+* [Mitigasi jailbreak](https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks): Gunakan metode seperti layar harmlessness dan validasi input untuk mencegah pengguna mengeksploitasi kerentanan model, yang bertujuan menghasilkan konten yang tidak pantas.
+* Hindari menyebutkan pesaing: Terapkan filter penyebutan pesaing untuk mempertahankan fokus merek dan tidak menyebutkan produk atau layanan pesaing mana pun.
+* [Tingkatkan konsistensi output](https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/increase-consistency): Cegah Claude mengubah gaya atau keluar dari karakter, bahkan selama interaksi yang panjang dan kompleks.
+* Hapus Informasi Identitas Pribadi (PII): Kecuali secara eksplisit diperlukan dan diizinkan, hapus PII apa pun dari respons.
 
 #### Kurangi waktu respons yang dirasakan dengan streaming
 
-Saat menangani respons yang berpotensi panjang, mengimplementasikan streaming dapat meningkatkan keterlibatan dan kepuasan pengguna. Dalam skenario ini, pengguna menerima jawaban secara progresif alih-alih menunggu seluruh respons dihasilkan.
+Saat menangani respons yang berpotensi panjang, menerapkan streaming dapat meningkatkan keterlibatan dan kepuasan pengguna. Dalam skenario ini, pengguna menerima jawaban secara progresif alih-alih menunggu seluruh respons dihasilkan.
 
-Berikut cara mengimplementasikan streaming:
+Berikut cara menerapkan streaming:
 
-1. Gunakan [Anthropic Streaming API](/docs/id/build-with-claude/streaming) untuk mendukung respons streaming.
+1. Gunakan [Anthropic Streaming API](https://platform.claude.com/docs/id/build-with-claude/streaming) untuk mendukung respons streaming.
 2. Siapkan frontend Anda untuk menangani potongan teks yang masuk.
 3. Tampilkan setiap potongan saat tiba, mensimulasikan pengetikan real-time.
-4. Implementasikan mekanisme untuk menyimpan respons lengkap, memungkinkan pengguna melihatnya jika mereka berpindah halaman dan kembali.
+4. Terapkan mekanisme untuk menyimpan respons lengkap, memungkinkan pengguna melihatnya jika mereka menavigasi keluar dan kembali.
 
-Dalam beberapa kasus, streaming memungkinkan penggunaan model yang lebih canggih dengan latensi dasar yang lebih tinggi, karena tampilan progresif mengurangi dampak dari waktu pemrosesan yang lebih lama.
+Dalam beberapa kasus, streaming memungkinkan penggunaan model yang lebih canggih dengan latensi dasar yang lebih tinggi, karena tampilan progresif mengurangi dampak waktu pemrosesan yang lebih lama.
 
 #### Skalakan chatbot Anda
 
-Seiring bertambahnya kompleksitas chatbot Anda, arsitektur aplikasi Anda dapat berkembang untuk menyesuaikannya. Sebelum Anda menambahkan lapisan lebih lanjut ke arsitektur Anda, pertimbangkan opsi-opsi yang tidak lengkap berikut:
+Seiring bertambahnya kompleksitas chatbot Anda, arsitektur aplikasi Anda dapat berkembang untuk menyesuaikan. Sebelum Anda menambahkan lapisan lebih lanjut ke arsitektur Anda, pertimbangkan opsi-opsi yang lebih sederhana berikut:
 
-* Pastikan Anda memanfaatkan prompt Anda secara maksimal dan mengoptimalkannya melalui rekayasa prompt. Gunakan [panduan rekayasa prompt](/docs/id/build-with-claude/prompt-engineering/overview) untuk menulis prompt yang paling efektif.
-* Tambahkan [alat](/docs/id/agents-and-tools/tool-use/overview) tambahan ke prompt (yang dapat mencakup [rantai prompt](/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#chain-complex-prompts)) dan lihat apakah Anda dapat mencapai fungsionalitas yang diperlukan.
+* Pastikan Anda memaksimalkan prompt Anda dan mengoptimalkan melalui rekayasa prompt. Gunakan [panduan rekayasa prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview) untuk menulis prompt yang paling efektif.
+* Tambahkan [alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) tambahan ke prompt (yang dapat mencakup [rantai prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#chain-complex-prompts)) dan lihat apakah Anda dapat mencapai fungsionalitas yang diperlukan.
 
 Jika chatbot Anda menangani tugas yang sangat bervariasi, Anda mungkin ingin mempertimbangkan untuk menambahkan [pengklasifikasi maksud terpisah](https://platform.claude.com/cookbook/capabilities-classification-guide) untuk merutekan kueri pelanggan awal. Untuk aplikasi yang ada, ini akan melibatkan pembuatan pohon keputusan yang akan merutekan kueri pelanggan melalui pengklasifikasi dan kemudian ke percakapan khusus (dengan set alat dan prompt sistem mereka sendiri). Perhatikan, metode ini memerlukan panggilan tambahan ke Claude yang dapat meningkatkan latensi.
 
@@ -1202,32 +1202,32 @@ Jika chatbot Anda menangani tugas yang sangat bervariasi, Anda mungkin ingin mem
 
 Meskipun contoh-contoh ini berfokus pada fungsi Python yang dapat dipanggil dalam lingkungan Streamlit, men-deploy Claude untuk chatbot dukungan real-time memerlukan layanan API.
 
-Berikut cara Anda dapat mendekati hal ini:
+Berikut cara Anda dapat mendekati ini:
 
 1. Buat pembungkus API: Kembangkan pembungkus API sederhana di sekitar fungsi klasifikasi Anda. Misalnya, Anda dapat menggunakan Flask API atau Fast API untuk membungkus kode Anda menjadi Layanan HTTP. Layanan HTTP Anda dapat menerima input pengguna dan mengembalikan respons Assistant secara keseluruhan. Dengan demikian, layanan Anda dapat memiliki karakteristik berikut:
 
-   * Server-Sent Events (SSE): SSE memungkinkan streaming respons secara real-time dari server ke klien. Ini memberikan pengalaman yang mulus dan interaktif saat bekerja dengan LLM.
-   * Caching: Mengimplementasikan caching dapat meningkatkan waktu respons dan mengurangi panggilan API yang tidak perlu.
-   * Retensi konteks: Mempertahankan konteks saat pengguna berpindah halaman dan kembali penting untuk kesinambungan dalam percakapan.
+   * Server-Sent Events (SSE): SSE memungkinkan streaming respons real-time dari server ke klien. Ini memberikan pengalaman yang mulus dan interaktif saat bekerja dengan LLM.
+   * Caching: Menerapkan caching dapat meningkatkan waktu respons dan mengurangi panggilan API yang tidak perlu.
+   * Retensi konteks: Mempertahankan konteks saat pengguna menavigasi keluar dan kembali penting untuk kontinuitas dalam percakapan.
 
-2. Bangun antarmuka web: Implementasikan UI web yang ramah pengguna untuk berinteraksi dengan agen yang didukung Claude.
+2. Bangun antarmuka web: Terapkan UI web yang ramah pengguna untuk berinteraksi dengan agen yang didukung Claude.
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Penggunaan alat" icon="wrench" href="/docs/id/agents-and-tools/tool-use/overview">
+  <Card title="Penggunaan alat" icon="wrench" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview">
     Berikan Claude akses ke API Anda sehingga dapat mengambil tindakan atas nama pelanggan.
   </Card>
 
-  <Card title="Kembangkan pengujian" icon="check" href="/docs/id/test-and-evaluate/develop-tests">
-    Bangun evaluasi untuk mengukur agen dukungan Anda terhadap kriteria keberhasilan yang telah Anda tentukan.
+  <Card title="Kembangkan pengujian" icon="check" href="https://platform.claude.com/docs/id/test-and-evaluate/develop-tests">
+    Bangun evaluasi untuk mengukur agen dukungan Anda terhadap kriteria keberhasilan yang telah Anda definisikan.
   </Card>
 
-  <Card title="Streaming" icon="bolt" href="/docs/id/build-with-claude/streaming">
-    Lakukan streaming respons sehingga pelanggan melihat jawaban saat dihasilkan.
+  <Card title="Streaming" icon="bolt" href="https://platform.claude.com/docs/id/build-with-claude/streaming">
+    Stream respons sehingga pelanggan melihat jawaban saat dihasilkan.
   </Card>
 
-  <Card title="Rekayasa prompt" icon="lightbulb" href="/docs/id/build-with-claude/prompt-engineering/overview">
-    Sempurnakan prompt sistem dan contoh-contoh Anda untuk kinerja tugas yang lebih baik.
+  <Card title="Rekayasa prompt" icon="lightbulb" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview">
+    Sempurnakan prompt sistem dan contoh Anda untuk kinerja tugas yang lebih baik.
   </Card>
 </CardGroup>

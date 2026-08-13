@@ -1,24 +1,24 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/spend-limits-api
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 470503fbe7a1bdcbf4a3460188f727e77df5b1d81b0c72bb90b5d26bbbb760cc
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: fdd269a58f134a73a9de4230f4ae02dc3a94d707bd1397c12de99cc5d83c2e66
 ---
 
-# Spend Limits API
-
-Tetapkan batas pengeluaran pada setiap anggota Claude Enterprise, lihat dari mana batas pengeluaran setiap anggota diwarisi, dan tinjau atau tindak lanjuti permintaan anggota untuk batas yang lebih tinggi.
-
+---
+title: Spend Limits API
+url: https://platform.claude.com/docs/id/manage-claude/spend-limits-api
+description: Tetapkan batas pengeluaran pada setiap anggota Claude Enterprise, lihat dari mana batas pengeluaran setiap anggota diwarisi, dan tinjau atau tindak lanjuti permintaan anggota untuk batas yang lebih tinggi.
 ---
 
 Spend Limits API memungkinkan Anda menetapkan batas pengeluaran pada setiap anggota Claude Enterprise, melihat dari mana batas pengeluaran setiap anggota diwarisi, dan meninjau atau menindaklanjuti permintaan anggota untuk batas yang lebih tinggi.
 
-Untuk *pelaporan* penggunaan dan biaya per pengguna dan berdasarkan rentang waktu, lihat [Analytics API](/docs/id/manage-claude/analytics-api).
+Untuk *pelaporan* penggunaan dan biaya per pengguna dan berdasarkan rentang waktu, lihat [Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api).
 
 <Check>
   **Diperlukan kunci Admin API dengan cakupan tertentu**
 
-  Endpoint ini memerlukan kunci Admin API dengan cakupan `read:spend_limits` (untuk endpoint `GET`) atau cakupan `write:spend_limits` (untuk endpoint `POST` dan `DELETE`). Lihat [Membuat kunci Admin API](/docs/id/manage-claude/admin-api-keys#create-a-key-for-a-claude-enterprise-organization) untuk mengetahui di mana primary owner Anda membuatnya dan cakupan mana yang harus dipilih. Sertakan kunci tersebut di header `x-api-key` pada setiap permintaan.
+  Endpoint ini memerlukan kunci Admin API dengan cakupan `read:spend_limits` (untuk endpoint `GET`) atau cakupan `write:spend_limits` (untuk endpoint `POST` dan `DELETE`). Lihat [Membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys#create-a-key-for-a-claude-enterprise-organization) untuk mengetahui di mana primary owner Anda membuatnya dan cakupan mana yang harus dipilih. Sertakan kunci tersebut di header `x-api-key` pada setiap permintaan.
 </Check>
 
 <Note>
@@ -108,7 +108,7 @@ user_ids[]=user_01AbCdEfGh&user_ids[]=user_01JkLmNoPq
 
 ## Respons error
 
-Respons error mengikuti bentuk standar yang didokumentasikan di [Errors](/docs/id/api/errors). Kutip `request_id` dari body respons saat menghubungi dukungan.
+Respons error mengikuti bentuk standar yang didokumentasikan di [Errors](https://platform.claude.com/docs/id/api/errors). Kutip `request_id` dari body respons saat menghubungi dukungan.
 
 ## Spend limits
 
@@ -116,7 +116,7 @@ Respons error mengikuti bentuk standar yang didokumentasikan di [Errors](/docs/i
 
 `GET /v1/organizations/spend_limits/effective` mengembalikan satu baris per anggota saat ini, yang mencerminkan batas pengeluaran efektif setiap anggota, `source`-nya dalam hierarki cakupan, dan `period_to_date_spend` mereka. Memerlukan cakupan `read:spend_limits`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [List effective spend limits](/docs/id/api/admin/spend_limits/list_effective) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [List effective spend limits](https://platform.claude.com/docs/id/api/admin/spend_limits/list_effective) di referensi API.
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/spend_limits/effective?limit=20" \
@@ -151,7 +151,7 @@ curl "https://api.anthropic.com/v1/organizations/spend_limits/effective?limit=20
 
 `GET /v1/organizations/spend_limits/{spend_limit_id}` mengembalikan satu batas pengeluaran yang dikonfigurasi berdasarkan ID. Gunakan untuk memeriksa baris yang direferensikan oleh field `spend_limit_id`. Memerlukan cakupan `read:spend_limits`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Retrieve a spend limit](/docs/id/api/admin/spend_limits/retrieve) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Retrieve a spend limit](https://platform.claude.com/docs/id/api/admin/spend_limits/retrieve) di referensi API.
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/spend_limits/spl_01AbCdEfGhIjKlMnOpQrSt" \
@@ -162,7 +162,7 @@ curl "https://api.anthropic.com/v1/organizations/spend_limits/spl_01AbCdEfGhIjKl
 
 `POST /v1/organizations/spend_limits` menetapkan override batas pengeluaran per pengguna. Ini adalah upsert yang dikunci pada `(scope, period)`: menetapkan batas untuk pengguna dan periode yang sudah memilikinya akan menimpanya di tempat. Endpoint ini hanya menerima `scope.type: "user"`; default tingkat kursi, grup, dan organisasi dikonfigurasi di pengaturan claude.ai. Memerlukan cakupan `write:spend_limits`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Create a spend limit](/docs/id/api/admin/spend_limits/create) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Create a spend limit](https://platform.claude.com/docs/id/api/admin/spend_limits/create) di referensi API.
 
 ```bash cURL
 curl --request POST "https://api.anthropic.com/v1/organizations/spend_limits" \
@@ -188,7 +188,7 @@ curl --request POST "https://api.anthropic.com/v1/organizations/spend_limits" \
 
 `DELETE /v1/organizations/spend_limits/{spend_limit_id}` menghapus override per pengguna, setelah itu anggota kembali ke default tingkat kursi, grup, atau organisasi yang diwarisi. Baris tingkat kursi, grup, dan organisasi tidak dapat dihapus melalui endpoint ini. Memerlukan cakupan `write:spend_limits`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Delete a spend limit](/docs/id/api/admin/spend_limits/delete) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Delete a spend limit](https://platform.claude.com/docs/id/api/admin/spend_limits/delete) di referensi API.
 
 ```bash cURL
 curl --request DELETE "https://api.anthropic.com/v1/organizations/spend_limits/spl_01RsTuVwXyZaBcDeFgHiJk" \
@@ -201,7 +201,7 @@ curl --request DELETE "https://api.anthropic.com/v1/organizations/spend_limits/s
 
 `GET /v1/organizations/spend_limit_increase_requests` mencantumkan permintaan, yang terbaru lebih dulu. Filter berdasarkan `status[]` (`pending`, `approved`, `denied`) dan `actor_ids[]`. Daftar ini mengecualikan permintaan yang pemohonnya bukan lagi anggota organisasi. Memerlukan cakupan `read:spend_limits`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [List spend limit increase requests](/docs/id/api/admin/spend_limits/increase_requests/list) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [List spend limit increase requests](https://platform.claude.com/docs/id/api/admin/spend_limits/increase_requests/list) di referensi API.
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests?status[]=pending&limit=50" \
@@ -214,7 +214,7 @@ Setiap permintaan pending membawa `spend_summary` langsung yang menunjukkan bata
 
 `GET /v1/organizations/spend_limit_increase_requests/{id}` mengembalikan satu permintaan berdasarkan ID. Memerlukan cakupan `read:spend_limits`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Retrieve a spend limit increase request](/docs/id/api/admin/spend_limits/increase_requests/retrieve) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Retrieve a spend limit increase request](https://platform.claude.com/docs/id/api/admin/spend_limits/increase_requests/retrieve) di referensi API.
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/slir_01AbCdEfGhIjKlMnOpQrSt" \
@@ -225,7 +225,7 @@ curl "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/s
 
 `POST /v1/organizations/spend_limit_increase_requests/{id}/approve` menyetujui permintaan pending: endpoint ini menulis batas pengeluaran per pengguna pada `amount` yang disediakan admin untuk pemohon dan mengubah status permintaan menjadi `approved`. Permintaan tidak membawa jumlah yang diminta; Anda menyediakan batas pengeluaran baru saat persetujuan. Memerlukan cakupan `write:spend_limits`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Approve a spend limit increase request](/docs/id/api/admin/spend_limits/increase_requests/approve) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Approve a spend limit increase request](https://platform.claude.com/docs/id/api/admin/spend_limits/increase_requests/approve) di referensi API.
 
 ```bash cURL
 curl --request POST "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/slir_01AbCdEfGhIjKlMnOpQrSt/approve" \
@@ -238,7 +238,7 @@ curl --request POST "https://api.anthropic.com/v1/organizations/spend_limit_incr
 
 `POST /v1/organizations/spend_limit_increase_requests/{id}/deny` menolak permintaan pending. Idempoten pada `denied`: menolak permintaan yang sudah ditolak mengembalikan 200 dengan resource yang ada. Endpoint menolak upaya untuk menolak permintaan yang sudah disetujui sehingga otomatisasi dapat membedakan percobaan ulang dari keputusan yang bertentangan. Memerlukan cakupan `write:spend_limits`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Deny a spend limit increase request](/docs/id/api/admin/spend_limits/increase_requests/deny) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Deny a spend limit increase request](https://platform.claude.com/docs/id/api/admin/spend_limits/increase_requests/deny) di referensi API.
 
 ```bash cURL
 curl --request POST "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/slir_01AbCdEfGhIjKlMnOpQrSt/deny" \
@@ -249,9 +249,9 @@ curl --request POST "https://api.anthropic.com/v1/organizations/spend_limit_incr
 
 ## Contoh alur kerja
 
-Alur kerja ini menggabungkan Spend Limits API dengan endpoint biaya [Analytics API](/docs/id/manage-claude/analytics-api). Endpoint biaya Analytics dirancang untuk pelaporan pengeluaran seluruh organisasi di seluruh rentang tanggal. `GET /spend_limits/effective` mengembalikan batas yang saat ini berlaku untuk setiap anggota. Mulai penyisiran dengan Analytics untuk menemukan anggota mana yang perlu dilihat, lalu baca batas mereka saat ini dengan `/effective`.
+Alur kerja ini menggabungkan Spend Limits API dengan endpoint biaya [Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api). Endpoint biaya Analytics dirancang untuk pelaporan pengeluaran seluruh organisasi di seluruh rentang tanggal. `GET /spend_limits/effective` mengembalikan batas yang saat ini berlaku untuk setiap anggota. Mulai penyisiran dengan Analytics untuk menemukan anggota mana yang perlu dilihat, lalu baca batas mereka saat ini dengan `/effective`.
 
-Endpoint Spend Limits memerlukan cakupan `spend_limits` dan endpoint biaya Analytics memerlukan `read:analytics`; lihat [Analytics API](/docs/id/manage-claude/analytics-api) untuk cara menyediakan akses. Semua nilai moneter pada keduanya adalah string desimal dalam unit minor (sen). Kedua API dipaginasi dengan kursor opaque. Tetapkan `limit` eksplisit dan lakukan paginasi melalui `next_page` hingga bernilai `null` untuk mencakup seluruh organisasi.
+Endpoint Spend Limits memerlukan cakupan `spend_limits` dan endpoint biaya Analytics memerlukan `read:analytics`; lihat [Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api) untuk cara menyediakan akses. Semua nilai moneter pada keduanya adalah string desimal dalam unit minor (sen). Kedua API dipaginasi dengan kursor opaque. Tetapkan `limit` eksplisit dan lakukan paginasi melalui `next_page` hingga bernilai `null` untuk mencakup seluruh organisasi.
 
 ### Mengotomatiskan alur peninjauan permintaan peningkatan
 
@@ -318,7 +318,7 @@ Tampilkan anggota yang pengeluarannya melonjak dari minggu ke minggu.
 
    Dengan `bucket_width` ditetapkan, setiap anggota mencakup satu baris per hari dengan penggunaan; lakukan paginasi melalui `next_page` untuk mengumpulkan seri lengkap setiap anggota.
 
-2. Kelompokkan baris berdasarkan `actor.user_id`. Untuk setiap anggota, jumlahkan tujuh hari terakhir dan tujuh hari sebelumnya. Tandai anggota yang minggu terakhirnya melebihi minggu sebelumnya dengan kelipatan yang Anda pilih (misalnya, tiga). Biaya hari terakhir bersifat sementara dan dapat direvisi ke atas; untuk perbandingan yang dapat diulang, tetapkan `ending_at` pada atau sebelum `data_refreshed_at` yang dikembalikan sebelumnya (lihat [Ketersediaan dan kesegaran data](/docs/id/manage-claude/analytics-api#data-availability-and-freshness)).
+2. Kelompokkan baris berdasarkan `actor.user_id`. Untuk setiap anggota, jumlahkan tujuh hari terakhir dan tujuh hari sebelumnya. Tandai anggota yang minggu terakhirnya melebihi minggu sebelumnya dengan kelipatan yang Anda pilih (misalnya, tiga). Biaya hari terakhir bersifat sementara dan dapat direvisi ke atas; untuk perbandingan yang dapat diulang, tetapkan `ending_at` pada atau sebelum `data_refreshed_at` yang dikembalikan sebelumnya (lihat [Ketersediaan dan kesegaran data](https://platform.claude.com/docs/id/manage-claude/analytics-api#data-availability-and-freshness)).
 
 3. Tindak lanjuti anggota yang ditandai: sesuaikan batas dengan `POST /v1/organizations/spend_limits`, atau hubungi mereka.
 
@@ -343,15 +343,15 @@ Pembacaan pengeluaran dapat untuk sementara tidak tersedia, dalam hal ini field 
 ## Lihat juga
 
 <CardGroup cols={2}>
-  <Card title="Referensi Spend Limits API" href="/docs/id/api/admin/spend_limits">
+  <Card title="Referensi Spend Limits API" href="https://platform.claude.com/docs/id/api/admin/spend_limits">
     Skema permintaan dan respons yang dihasilkan untuk setiap endpoint Spend Limits API.
   </Card>
 
-  <Card title="Referensi Spend Limit Increase Requests API" href="/docs/id/api/admin/spend_limits/increase_requests">
+  <Card title="Referensi Spend Limit Increase Requests API" href="https://platform.claude.com/docs/id/api/admin/spend_limits/increase_requests">
     Skema permintaan dan respons yang dihasilkan untuk endpoint permintaan peningkatan.
   </Card>
 
-  <Card title="Analytics API" href="/docs/id/manage-claude/analytics-api">
+  <Card title="Analytics API" href="https://platform.claude.com/docs/id/manage-claude/analytics-api">
     Pelaporan penggunaan dan biaya per pengguna dan berdasarkan rentang waktu untuk Claude Enterprise.
   </Card>
 </CardGroup>

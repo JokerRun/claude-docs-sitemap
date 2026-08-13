@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/supported-regions
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 53522a8dd4579642d4c2f1604c0b30bd1c5734fe65477df0a191994bb7a0ac23
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: da4e956b1e51a0c435b03794b0440e93b9473ec452473ece5a1ee90cebdc503b
 ---
 
-# Supported regions
-
-Here are the countries, regions, and territories we can currently support access from:
-
+---
+title: Supported regions
+url: https://platform.claude.com/docs/en/api/supported-regions
+description: "Here are the countries, regions, and territories we can currently support access from:"
 ---
 
 * Albania

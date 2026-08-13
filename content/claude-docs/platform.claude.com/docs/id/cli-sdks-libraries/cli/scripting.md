@@ -1,24 +1,24 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 67062df304c3701ca9e8333f23572e10f0d00a8c96082d3240f94f1459d72dd2
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 0af5cdf98ccc522daa742e9c744c16d3d6956cdf0ce1e16b927fac81b83ec968
 ---
 
-# Scripting dan otomatisasi CLI
-
-Kelola versi sumber daya API sebagai YAML, rangkai perintah CLI ant dalam skrip, operasikan sumber daya dari Claude Code, dan autentikasi panggilan curl dengan kredensial CLI.
-
+---
+title: Scripting dan otomatisasi CLI
+url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting
+description: Kelola versi sumber daya API sebagai YAML, rangkai perintah CLI ant dalam skrip, operasikan sumber daya dari Claude Code, dan autentikasi panggilan curl dengan kredensial CLI.
 ---
 
-Halaman ini membahas alur kerja berorientasi tugas yang dibangun di atas CLI `ant`. Untuk flag dan opsi output yang mendasarinya, lihat [Menggunakan CLI](/docs/id/cli-sdks-libraries/cli/using).
+Halaman ini membahas alur kerja berorientasi tugas yang dibangun di atas CLI `ant`. Untuk flag dan opsi output yang mendasarinya, lihat [Menggunakan CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using).
 
 ## Mengelola versi sumber daya API
 
 Anda dapat menggunakan CLI untuk mengelola versi sumber daya API seperti skill, agen, environment, atau deployment sebagai file YAML di repositori Anda dan menjaganya tetap sinkron dengan Claude API.
 
 <Note>
-  Untuk informasi lebih lanjut tentang sumber daya ini, lihat [Managed Agents](/docs/id/managed-agents/overview).
+  Untuk informasi lebih lanjut tentang sumber daya ini, lihat [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview).
 </Note>
 
 <Steps>
@@ -62,7 +62,7 @@ Anda dapat menggunakan CLI untuk mengelola versi sumber daya API seperti skill, 
   </Step>
 
   <Step title="Definisikan environment">
-    Sebuah sesi berjalan dalam sebuah [environment](/docs/id/api/cli/beta/environments), yang mendefinisikan sandbox tempat sesi tersebut dieksekusi. Tulis definisi environment ke `summarizer.environment.yaml`:
+    Sebuah sesi berjalan dalam sebuah [environment](https://platform.claude.com/docs/id/api/cli/beta/environments), yang mendefinisikan sandbox tempat sesi tersebut dieksekusi. Tulis definisi environment ke `summarizer.environment.yaml`:
 
     ```yaml summarizer.environment.yaml
     name: summarizer-env
@@ -189,7 +189,7 @@ Claude Code menjalankan `ant` melalui shell, mem-parsing output terstruktur, dan
 
 ## Autentikasi permintaan curl dengan kredensial CLI
 
-Skrip yang memanggil API dengan `curl` atau klien HTTP lainnya dapat menggunakan kredensial yang disimpan oleh [`ant auth login`](/docs/id/cli-sdks-libraries/cli/quickstart#authentication) alih-alih kunci API statis. Token akses OAuth ditempatkan di header `Authorization` sebagai bearer token; header `x-api-key` hanya untuk kunci API statis.
+Skrip yang memanggil API dengan `curl` atau klien HTTP lainnya dapat menggunakan kredensial yang disimpan oleh [`ant auth login`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart#authentication) alih-alih kunci API statis. Token akses OAuth ditempatkan di header `Authorization` sebagai bearer token; header `x-api-key` hanya untuk kunci API statis.
 
 `ant auth print-credentials --access-token` mencetak token akses dari profil aktif, menyegarkannya terlebih dahulu jika sudah kedaluwarsa atau mendekati kedaluwarsa:
 
@@ -206,7 +206,7 @@ curl https://api.anthropic.com/v1/messages \
 ```
 
 <Note>
-  Biarkan `ANTHROPIC_API_KEY` dan `ANTHROPIC_AUTH_TOKEN` tidak diatur saat bekerja dari login CLI. Salah satu variabel tersebut akan diprioritaskan di atas login untuk perintah `ant` (lihat [Prioritas kredensial](/docs/id/manage-claude/wif-reference#credential-precedence)) dan dapat secara diam-diam mengarahkannya ke organisasi atau workspace yang berbeda.
+  Biarkan `ANTHROPIC_API_KEY` dan `ANTHROPIC_AUTH_TOKEN` tidak diatur saat bekerja dari login CLI. Salah satu variabel tersebut akan diprioritaskan di atas login untuk perintah `ant` (lihat [Prioritas kredensial](https://platform.claude.com/docs/id/manage-claude/wif-reference#credential-precedence)) dan dapat secara diam-diam mengarahkannya ke organisasi atau workspace yang berbeda.
 </Note>
 
-Jalankan [`ant auth status`](/docs/id/cli-sdks-libraries/cli/authentication#check-authentication-status) untuk mengonfirmasi organisasi dan workspace mana yang sedang Anda gunakan untuk login; perintah ini memberi peringatan ketika sebuah variabel lingkungan menimpa login Anda.
+Jalankan [`ant auth status`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication#check-authentication-status) untuk mengonfirmasi organisasi dan workspace mana yang sedang Anda gunakan untuk login; perintah ini memberi peringatan ketika sebuah variabel lingkungan menimpa login Anda.

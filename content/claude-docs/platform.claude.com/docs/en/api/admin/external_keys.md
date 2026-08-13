@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 7f2bb912ce4bc4414a82dfe225ce907f641f2d37ef5e4b3dfa2f07a965613f41
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 9a799e9f7794b23e9a44d2c806094623635343e92b2591163fd5aaecd3e8640e
+---
+
+---
+title: External Keys
+url: https://platform.claude.com/docs/en/api/admin/external_keys
 ---
 
 # External Keys

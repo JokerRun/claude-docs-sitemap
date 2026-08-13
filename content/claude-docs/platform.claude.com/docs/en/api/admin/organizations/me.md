@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/organizations/me
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 6b61096defaee189d274bd3996c713de912464cd1a16ac3aee17d02e936004ce
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: a8d11fa52d0c3675010b39df8c8fd19f17b3274718997d550a44e6be1d555857
+---
+
+---
+title: Get Current Organization
+url: https://platform.claude.com/docs/en/api/admin/organizations/me
 ---
 
 ## Get Current Organization

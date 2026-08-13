@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 04a1b7efb83f1347e3ad8de9ed2e70a770a9acdc8dd3d2693433ad5738aab046
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 2e2b19886660962961f066fba8d200a920b19384898cf29a7d629e0289102e5c
+---
+
+---
+title: Analytics
+url: https://platform.claude.com/docs/en/api/admin/analytics
 ---
 
 # Analytics

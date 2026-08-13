@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/gcp
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 1b849e2794054d794d2b1c40e08486896c6fd2e3a39bb5cae006a11c5170a4b7
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 9c5102d2a82b20ce6c6d83efbc202f52bf817e8bb691153b0f4ffd0651ff3282
 ---
 
-# Menggunakan WIF dengan Google Cloud
-
-Federasikan workload Google Cloud (Cloud Run, Cloud Functions, App Engine, GCE, GKE) ke Claude API menggunakan token identitas yang ditandatangani Google alih-alih kunci API statis.
-
+---
+title: Menggunakan WIF dengan Google Cloud
+url: https://platform.claude.com/docs/id/manage-claude/wif-providers/gcp
+description: Federasikan workload Google Cloud (Cloud Run, Cloud Functions, App Engine, GCE, GKE) ke Claude API menggunakan token identitas yang ditandatangani Google alih-alih kunci API statis.
 ---
 
 Setiap lingkungan komputasi Google Cloud yang memiliki akses ke server metadata instans (Cloud Run, Cloud Functions, App Engine, Compute Engine (GCE), dan GKE dengan Workload Identity) dapat meminta token identitas yang ditandatangani Google untuk service account yang terpasang padanya. Issuer token tersebut adalah `https://accounts.google.com`, dan Anthropic dapat memvalidasinya secara langsung melalui penemuan OIDC standar, tanpa memerlukan konfigurasi Google Cloud tambahan.
@@ -17,7 +17,7 @@ Panduan ini menunjukkan cara mendaftarkan issuer Google ke Anthropic, mengikat s
 
 ## Prasyarat
 
-* Pemahaman tentang [konsep WIF](/docs/id/manage-claude/workload-identity-federation#concepts): service account, federation issuer, dan federation rule.
+* Pemahaman tentang [konsep WIF](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#concepts): service account, federation issuer, dan federation rule.
 * Proyek Google Cloud dengan workload yang berjalan di Cloud Run, Cloud Functions, App Engine, Compute Engine, atau GKE.
 * Service account Google yang dikelola pengguna dan terpasang pada workload tersebut (bukan service account default Compute Engine).
 * Izin untuk membuat service account, federation issuer, dan federation rule di Claude Console untuk organisasi Anthropic Anda.
@@ -50,7 +50,7 @@ Google menerbitkan token identitas secara otomatis untuk setiap workload yang me
       --include-email
     ```
 
-    Padanan SDK-nya ditunjukkan di [Memperoleh dan menggunakan token](#acquire-and-use-the-token).
+    Padanan SDK-nya ditunjukkan di [Memperoleh dan menggunakan token](https://platform.claude.com/docs/id/manage-claude/wif-providers/gcp#acquire-and-use-the-token).
 
     Payload token yang telah didekode terlihat seperti ini:
 
@@ -87,7 +87,7 @@ Google menerbitkan token identitas secara otomatis untuk setiap workload yang me
     Token `format=full` dari GKE juga menyertakan klaim `google.compute_engine.project_id`, `google.compute_engine.zone`, dan `google.compute_engine.instance_name`, yang dapat Anda rujuk dalam matcher `condition` pada federation rule (ekspresi CEL seperti `claims.google.compute_engine.project_id == "my-project"`) untuk membatasi akses ke klaster atau node pool tertentu.
 
     <Note>
-      Jika Anda tidak ingin mengikat service account Kubernetes ke service account Google, pod GKE dapat menggunakan issuer OIDC milik klaster itu sendiri (`https://container.googleapis.com/v1/projects/PROJECT/locations/REGION/clusters/CLUSTER`) dengan volume `serviceAccountToken` yang diproyeksikan. Jalur tersebut menggunakan issuer per klaster, bukan `accounts.google.com`. Lihat [Menggunakan WIF dengan Kubernetes](/docs/id/manage-claude/wif-providers/kubernetes) untuk pola tersebut.
+      Jika Anda tidak ingin mengikat service account Kubernetes ke service account Google, pod GKE dapat menggunakan issuer OIDC milik klaster itu sendiri (`https://container.googleapis.com/v1/projects/PROJECT/locations/REGION/clusters/CLUSTER`) dengan volume `serviceAccountToken` yang diproyeksikan. Jalur tersebut menggunakan issuer per klaster, bukan `accounts.google.com`. Lihat [Menggunakan WIF dengan Kubernetes](https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes) untuk pola tersebut.
     </Note>
   </Tab>
 </Tabs>
@@ -96,7 +96,7 @@ Google menerbitkan token identitas secara otomatis untuk setiap workload yang me
 
 Di Claude Console, buka **Settings → Workload identity**, klik **Connect workload**, dan pilih kotak **Google Cloud**. Wizard akan memandu Anda mendaftarkan issuer, membuat service account, dan membuat federation rule.
 
-Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut baik saat Anda memasukkannya di wizard maupun saat mengirimkannya ke [Admin API](/docs/id/manage-claude/wif-admin-api):
+Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut baik saat Anda memasukkannya di wizard maupun saat mengirimkannya ke [Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api):
 
 **Federation issuer:** Google memublikasikan dokumen penemuan OIDC-nya secara publik, jadi gunakan mode discovery. Satu issuer ini mencakup semua permukaan Google Cloud (Cloud Run, GCE, Cloud Functions, App Engine, dan GKE dengan Workload Identity). Bedakan workload dengan rule, bukan dengan issuer.
 
@@ -436,7 +436,7 @@ curl -sS -H "Metadata-Flavor: Google" \
   | jq -rR 'split(".")[1] | gsub("-";"+") | gsub("_";"/") | @base64d | fromjson'
 ```
 
-Periksa bahwa `iss` adalah `https://accounts.google.com`, `aud` adalah `https://api.anthropic.com`, dan `email` cocok dengan nilai di federation rule Anda. Kemudian jalankan penukaran dari bagian sebelumnya. Penukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Pada `400 invalid_grant`, lihat [Memecahkan masalah penukaran yang gagal](/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi Google Cloud adalah klaim `email` yang hilang (minta token dengan `format=full` agar klaim tersebut disertakan).
+Periksa bahwa `iss` adalah `https://accounts.google.com`, `aud` adalah `https://api.anthropic.com`, dan `email` cocok dengan nilai di federation rule Anda. Kemudian jalankan penukaran dari bagian sebelumnya. Penukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Pada `400 invalid_grant`, lihat [Memecahkan masalah penukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi Google Cloud adalah klaim `email` yang hilang (minta token dengan `format=full` agar klaim tersebut disertakan).
 
 ## Membatasi cakupan rule Anda
 
@@ -453,5 +453,5 @@ Kunci blok `match` pada rule ke cakupan tersempit yang sesuai dengan kasus pengg
 
 ## Langkah selanjutnya
 
-* Baca halaman [Workload Identity Federation](/docs/id/manage-claude/workload-identity-federation) untuk model sumber daya lengkap dan urutan prioritas kredensial SDK.
+* Baca halaman [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation) untuk model sumber daya lengkap dan urutan prioritas kredensial SDK.
 * Tambahkan federation rule terpisah per lingkungan (produksi, staging) sehingga Anda dapat mencabut salah satunya tanpa memengaruhi yang lain.

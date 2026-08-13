@@ -1,32 +1,32 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/overview
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: e1065cacc6ed14df80a82f338a211a63c30b0300c07854467aa9ec408d16797c
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 111f77eaa88112457d2a732e641f20ec917dee635d4e337e418133339fc31e1e
 ---
 
-# Guides to common use cases
-
-Explore production guides for building common Claude use cases: ticket routing, customer support agents, content moderation, and legal summarization.
-
+---
+title: Guides to common use cases
+url: https://platform.claude.com/docs/en/about-claude/use-case-guides/overview
+description: "Explore production guides for building common Claude use cases: ticket routing, customer support agents, content moderation, and legal summarization."
 ---
 
 Claude is designed to excel in a variety of tasks. Explore these in-depth production guides to learn how to build common use cases with Claude.
 
 <CardGroup cols={2}>
-  <Card title="Ticket routing" icon="headset" href="/docs/en/about-claude/use-case-guides/ticket-routing">
+  <Card title="Ticket routing" icon="headset" href="https://platform.claude.com/docs/en/about-claude/use-case-guides/ticket-routing">
     Best practices for using Claude to classify and route customer support tickets at scale.
   </Card>
 
-  <Card title="Customer support agent" icon="robot" href="/docs/en/about-claude/use-case-guides/customer-support-chat">
+  <Card title="Customer support agent" icon="robot" href="https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat">
     Build intelligent, context-aware chatbots with Claude to enhance customer support interactions.
   </Card>
 
-  <Card title="Content moderation" icon="verified" href="/docs/en/about-claude/use-case-guides/content-moderation">
+  <Card title="Content moderation" icon="verified" href="https://platform.claude.com/docs/en/about-claude/use-case-guides/content-moderation">
     Techniques and best practices for using Claude to perform content filtering and general content moderation.
   </Card>
 
-  <Card title="Legal summarization" icon="book" href="/docs/en/about-claude/use-case-guides/legal-summarization">
+  <Card title="Legal summarization" icon="book" href="https://platform.claude.com/docs/en/about-claude/use-case-guides/legal-summarization">
     Summarize legal documents using Claude to extract key information and expedite research.
   </Card>
 </CardGroup>

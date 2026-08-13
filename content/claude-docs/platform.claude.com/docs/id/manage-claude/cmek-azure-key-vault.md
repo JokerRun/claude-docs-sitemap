@@ -1,24 +1,24 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: e9b043b34eacc59d632dc6cc8f035c90024e755e15c5c2eb5f42c4cc7b3a9566
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: d25bcdc69467ef989334322d3c11469d0ba7d563db6903e301073532dd235a32
 ---
 
-# Mengonfigurasi Azure Key Vault untuk CMEK
-
-Gunakan Azure Key Vault untuk menyediakan kunci enkripsi bagi organisasi Anda.
-
+---
+title: Mengonfigurasi Azure Key Vault untuk CMEK
+url: https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault
+description: Gunakan Azure Key Vault untuk menyediakan kunci enkripsi bagi organisasi Anda.
 ---
 
 ```bash Configure with the /claude-api skill in Claude Code
 claude "/claude-api help me configure a customer-managed encryption key with Azure Key Vault"
 ```
 
-Panduan ini menjelaskan cara mengonfigurasi kunci Azure Key Vault sebagai [customer-managed encryption key (CMEK)](/docs/id/manage-claude/cmek) untuk organisasi Anthropic Anda.
+Panduan ini menjelaskan cara mengonfigurasi kunci Azure Key Vault sebagai [customer-managed encryption key (CMEK)](https://platform.claude.com/docs/id/manage-claude/cmek) untuk organisasi Anthropic Anda.
 
 <Warning>
-  Mengaktifkan CMEK bersifat permanen. Jika kunci Key Vault Anda dihapus atau dinonaktifkan, Anthropic tidak dapat memulihkan data yang dienkripsi dengan kunci tersebut. Tinjau [peringatan dan batasan](/docs/id/manage-claude/cmek) sebelum Anda memulai.
+  Mengaktifkan CMEK bersifat permanen. Jika kunci Key Vault Anda dihapus atau dinonaktifkan, Anthropic tidak dapat memulihkan data yang dienkripsi dengan kunci tersebut. Tinjau [peringatan dan batasan](https://platform.claude.com/docs/id/manage-claude/cmek) sebelum Anda memulai.
 </Warning>
 
 ## Prasyarat
@@ -73,7 +73,7 @@ Agar Anthropic menggunakan kunci enkripsi Anda, Anda harus mengonfigurasi ID apl
     Langkah ini tidak memiliki padanan di Portal. Jika Anda tidak memiliki Azure CLI terpasang secara lokal, buka Cloud Shell dari bilah navigasi atas Portal. Setelah perintah berhasil, Anda dapat menemukan object ID service principal di **Microsoft Entra ID > Enterprise applications** dengan menghapus filter tipe aplikasi default dan mencari `anthropic-cmek-client-us`.
 
     <Frame caption="Temukan Object ID service principal pada ikhtisar aplikasi enterprise Entra-nya.">
-      ![Ikhtisar aplikasi enterprise Microsoft Entra untuk anthropic-cmek-client-us, menampilkan Application ID dan Object ID-nya.](/docs/images/cmek/azure-service-principal.png)
+      ![Ikhtisar aplikasi enterprise Microsoft Entra untuk anthropic-cmek-client-us, menampilkan Application ID dan Object ID-nya.](https://platform.claude.com/docs/images/cmek/azure-service-principal.png)
     </Frame>
   </Step>
 
@@ -93,11 +93,11 @@ Agar Anthropic menggunakan kunci enkripsi Anda, Anda harus mengonfigurasi ID apl
     Dari Portal, buka Key Vault Anda, pilih **Keys**, lalu **Generate/Import**. Atur tipe kunci ke RSA dan ukurannya ke 3072 atau lebih besar. Untuk membatasi kunci hanya untuk wrap dan unwrap, buka versi kunci, gulir ke **Permitted operations**, dan hapus centang semuanya kecuali **Wrap Key** dan **Unwrap Key**.
 
     <Frame caption="Buat kunci RSA berukuran 3072 atau lebih besar.">
-      ![Halaman Create a key Azure Key Vault dengan opsi Generate, tipe kunci RSA, dan ukuran kunci RSA 3072 dipilih.](/docs/images/cmek/azure-create-key.png)
+      ![Halaman Create a key Azure Key Vault dengan opsi Generate, tipe kunci RSA, dan ukuran kunci RSA 3072 dipilih.](https://platform.claude.com/docs/images/cmek/azure-create-key.png)
     </Frame>
 
     <Frame caption="Batasi permitted operations ke Wrap Key dan Unwrap Key.">
-      ![Versi kunci Azure Key Vault dengan Permitted operations dibatasi ke Wrap Key dan Unwrap Key.](/docs/images/cmek/azure-permitted-operations.png)
+      ![Versi kunci Azure Key Vault dengan Permitted operations dibatasi ke Wrap Key dan Unwrap Key.](https://platform.claude.com/docs/images/cmek/azure-permitted-operations.png)
     </Frame>
   </Step>
 
@@ -123,7 +123,7 @@ Agar Anthropic menggunakan kunci enkripsi Anda, Anda harus mengonfigurasi ID apl
     </Note>
 
     <Frame caption="Tetapkan Key Vault Crypto User ke service principal Anthropic, dengan cakupan pada kunci.">
-      ![Penetapan peran IAM Key Vault yang menampilkan anthropic-cmek-client-us ditetapkan peran Key Vault Crypto User.](/docs/images/cmek/azure-role-assignment.png)
+      ![Penetapan peran IAM Key Vault yang menampilkan anthropic-cmek-client-us ditetapkan peran Key Vault Crypto User.](https://platform.claude.com/docs/images/cmek/azure-role-assignment.png)
     </Frame>
   </Step>
 

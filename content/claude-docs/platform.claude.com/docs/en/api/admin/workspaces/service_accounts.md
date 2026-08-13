@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/service_accounts
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: b17818638c5801c50a9009154fef69f7e0fc0f756466e6dce21c8dc36c1da965
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 0f1e6a3246364d89dcbb331e5966d50ceb9223cd7fd406b0844a811d912349d2
+---
+
+---
+title: Service Accounts
+url: https://platform.claude.com/docs/en/api/admin/workspaces/service_accounts
 ---
 
 # Service Accounts

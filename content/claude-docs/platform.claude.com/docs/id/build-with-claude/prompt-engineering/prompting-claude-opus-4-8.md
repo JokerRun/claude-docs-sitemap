@@ -1,22 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-4-8
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 789d0e4a1e53eff15c8b20f08b23b380f005b5a7dc276e137eea552c01fdba21
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 834b62ba6660dc621576adec53078cbf11babd6df21c312b3ddd9352a0939b88
 ---
 
-# Prompting Claude Opus 4.8
-
-Perbedaan perilaku dan pola prompting untuk Claude Opus 4.8, mencakup verbositas, kalibrasi effort, penggunaan alat, subagen, dan default frontend.
-
+---
+title: Prompting Claude Opus 4.8
+url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-4-8
+description: Perbedaan perilaku dan pola prompting untuk Claude Opus 4.8, mencakup verbositas, kalibrasi effort, penggunaan alat, subagen, dan default frontend.
 ---
 
-Panduan ini mencakup pola prompting yang spesifik untuk Claude Opus 4.8. Untuk perubahan API yang terlibat dalam perpindahan dari Claude Opus 4.8 ke model Opus terbaru, lihat [Migrasi ke Claude Opus 5 dari Claude Opus 4.8](/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-4-8-to-claude-opus-5). Untuk teknik yang berlaku di semua model Claude saat ini, lihat [Praktik terbaik prompting](/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
+Panduan ini mencakup pola prompting yang spesifik untuk Claude Opus 4.8. Untuk perubahan API yang terlibat dalam perpindahan dari Claude Opus 4.8 ke model Opus terbaru, lihat [Migrasi ke Claude Opus 5 dari Claude Opus 4.8](https://platform.claude.com/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-4-8-to-claude-opus-5). Untuk teknik yang berlaku di semua model Claude saat ini, lihat [Praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
 
 Claude Opus 4.8 memiliki kekuatan khusus dalam pekerjaan agentik jangka panjang, pekerjaan pengetahuan, visi, dan tugas memori. Model ini bekerja dengan baik secara langsung pada prompt Claude Opus 4.7 yang sudah ada. Pola-pola berikut mencakup perilaku yang paling sering memerlukan penyesuaian.
 
 <Note>
-  Untuk perubahan parameter API sejak Claude Opus 4.7 (parameter sampling, default effort, default jendela konteks 1M, pesan sistem di tengah percakapan, dan detail stop penolakan), lihat [Migrasi ke Claude Opus 5 dari Claude Opus 4.7](/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-47), yang mencakup perubahan yang sama dalam perjalanan menuju model Opus terbaru; Claude Opus 4.8 memiliki perilaku yang sama.
+  Untuk perubahan parameter API sejak Claude Opus 4.7 (parameter sampling, default effort, default jendela konteks 1M, pesan sistem di tengah percakapan, dan detail stop penolakan), lihat [Migrasi ke Claude Opus 5 dari Claude Opus 4.7](https://platform.claude.com/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-47), yang mencakup perubahan yang sama dalam perjalanan menuju model Opus terbaru; Claude Opus 4.8 memiliki perilaku yang sama.
 </Note>
 
 ## Panjang respons dan verbositas
@@ -33,7 +33,7 @@ Jika Anda melihat contoh spesifik dari jenis verbositas tertentu (seperti penjel
 
 ## Mengkalibrasi effort dan kedalaman pemikiran
 
-[Parameter effort](/docs/id/build-with-claude/effort) memungkinkan Anda menyesuaikan kecerdasan Claude versus pengeluaran token, menukar kemampuan untuk kecepatan yang lebih tinggi dan biaya yang lebih rendah. Mulailah dengan level effort `xhigh` untuk kasus penggunaan coding dan agentik, dan gunakan minimum effort `high` untuk sebagian besar kasus penggunaan yang sensitif terhadap kecerdasan. Bereksperimenlah dengan level effort lain untuk lebih menyesuaikan penggunaan token dan kecerdasan:
+[Parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort) memungkinkan Anda menyesuaikan kecerdasan Claude versus pengeluaran token, menukar kemampuan untuk kecepatan yang lebih tinggi dan biaya yang lebih rendah. Mulailah dengan level effort `xhigh` untuk kasus penggunaan coding dan agentik, dan gunakan minimum effort `high` untuk sebagian besar kasus penggunaan yang sensitif terhadap kecerdasan. Bereksperimenlah dengan level effort lain untuk lebih menyesuaikan penggunaan token dan kecerdasan:
 
 * **`max`:** Effort max dapat memberikan peningkatan performa dalam beberapa kasus penggunaan, tetapi mungkin menunjukkan hasil yang semakin berkurang dari peningkatan penggunaan token. Pengaturan ini juga terkadang rentan terhadap pemikiran berlebihan. Uji effort max untuk tugas yang menuntut kecerdasan tinggi.
 * **`xhigh`:** Effort extra high adalah pengaturan terbaik untuk sebagian besar kasus penggunaan coding dan agentik.
@@ -164,6 +164,6 @@ Iterasikan prompt terhadap subset evaluasi atau kasus uji Anda untuk memvalidasi
 
 ## Computer use
 
-Kemampuan [computer use](/docs/id/agents-and-tools/tool-use/computer-use-tool) bekerja di berbagai resolusi, hingga resolusi maksimum 2576px / 3.75MP. Pengujian computer use internal menunjukkan bahwa mengirim gambar pada 1080p memberikan keseimbangan yang baik antara performa dan biaya.
+Kemampuan [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) bekerja di berbagai resolusi, hingga resolusi maksimum 2576px / 3.75MP. Pengujian computer use internal menunjukkan bahwa mengirim gambar pada 1080p memberikan keseimbangan yang baik antara performa dan biaya.
 
 Untuk beban kerja yang sangat sensitif terhadap biaya, 720p atau 1366×768 adalah opsi berbiaya lebih rendah dengan performa yang kuat. Lakukan pengujian Anda sendiri untuk menemukan pengaturan ideal untuk kasus penggunaan Anda; bereksperimen dengan pengaturan effort juga dapat membantu menyesuaikan perilaku model.

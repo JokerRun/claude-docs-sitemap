@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rbac_groups
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: d81fcef45eea5514ed132f7aadbe190df2f819bdb98777720bec59b8fdbe2d60
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 07bb34b8564cf6619e8aecbb7bc4a7949fb7d26dc93d3638c87f80014c1fcd80
+---
+
+---
+title: RBAC Groups
+url: https://platform.claude.com/docs/en/api/admin/rbac_groups
 ---
 
 # RBAC Groups

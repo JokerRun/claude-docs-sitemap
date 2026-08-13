@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: a0f1da3c99c827b99df68f51173c0dd4c63aabad276cd140c1f416c8903eb254
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: e5d0aa4d3c1bfe06b25439633d0147c9e8e48d56843aa5769d7742f5b39b5626
 ---
 
-# Model IDs and versioning
-
-How Claude model IDs are structured and versioned, including the dateless format introduced with the Claude 4.6 generation and what it means for stability.
-
+---
+title: Model IDs and versioning
+url: https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions
+description: How Claude model IDs are structured and versioned, including the dateless format introduced with the Claude 4.6 generation and what it means for stability.
 ---
 
-Each Claude model ID identifies a pinned version of the model. When you use a model ID in an API request, the underlying model remains constant for the lifetime of that ID. This guarantee covers model IDs, not the convenience aliases that the Claude API accepts for some earlier models (see [Before the 4.6 generation](#before-the-4-6-generation)).
+Each Claude model ID identifies a pinned version of the model. When you use a model ID in an API request, the underlying model remains constant for the lifetime of that ID. This guarantee covers model IDs, not the convenience aliases that the Claude API accepts for some earlier models (see [Before the 4.6 generation](https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions#before-the-4-6-generation)).
 
 ## Model ID format
 
@@ -87,4 +87,4 @@ Occasionally, infrastructure updates produce minor differences in observable beh
 
 ## Current model IDs
 
-For the full list of current model IDs and their Amazon Bedrock and Google Cloud equivalents, see [Models overview](/docs/en/about-claude/models/overview).
+For the full list of current model IDs and their Amazon Bedrock and Google Cloud equivalents, see [Models overview](https://platform.claude.com/docs/en/about-claude/models/overview).

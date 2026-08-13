@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats
-fetched_at: 2026-07-08T03:08:53.943475Z
-sha256: 17fd22c504c93267f1b905fa6181dc70af56d4c2a90b60c24f24ee7d62f8a89c
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: f861ae05411f8c277691b7d50756892ce9d79c570f952a025c65b43fbd8f6e69
+---
+
+---
+title: Chats
+url: https://platform.claude.com/docs/en/api/compliance/apps/chats
 ---
 
 # Chats

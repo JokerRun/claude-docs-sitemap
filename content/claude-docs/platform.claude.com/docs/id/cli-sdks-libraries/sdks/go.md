@@ -1,20 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: b138882ccb01c097167584cc55b0e135b4ca57fa4637ced3fb60dca549ff8fa1
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: a293c65f5eafb5762f94eb9d57148a243e6c8948520e2b51e7da0f64924440a2
 ---
 
-# Go SDK
-
-Instal dan konfigurasikan Anthropic Go SDK dengan pembatalan berbasis context dan functional options
-
+---
+title: Go SDK
+url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go
+description: Instal dan konfigurasikan Anthropic Go SDK dengan pembatalan berbasis context dan functional options
 ---
 
 Library Go Anthropic menyediakan akses yang nyaman ke REST API Anthropic dari aplikasi yang ditulis dalam Go.
 
 <Info>
-  Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK yang spesifik untuk Go.
+  Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](https://platform.claude.com/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK yang spesifik untuk Go.
 </Info>
 
 ## Instalasi
@@ -70,7 +70,7 @@ func main() {
 }
 ```
 
-Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](/docs/id/manage-claude/authentication).
+Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication).
 
 <AccordionGroup>
   <Accordion title="Conversations">
@@ -524,7 +524,7 @@ client := anthropic.NewClient(
 
 Request Messages non-streaming akan timeout setelah 10 menit secara default; request lainnya tidak memiliki timeout default. Gunakan context untuk mengonfigurasi timeout untuk siklus hidup request.
 
-Perhatikan bahwa jika sebuah request [dicoba ulang](#retries), timeout context tidak dimulai ulang. Untuk mengatur timeout per percobaan ulang, gunakan `option.WithRequestTimeout()`.
+Perhatikan bahwa jika sebuah request [dicoba ulang](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go#retries), timeout context tidak dimulai ulang. Untuk mengatur timeout per percobaan ulang, gunakan `option.WithRequestTimeout()`.
 
 ```go
 // Ini mengatur timeout untuk permintaan, termasuk semua percobaan ulang.
@@ -556,9 +556,9 @@ defer cancel()
   Pertimbangkan untuk menggunakan Messages API streaming untuk request yang berjalan lebih lama.
 </Warning>
 
-Hindari mengatur nilai `MaxTokens` yang besar tanpa menggunakan streaming karena beberapa jaringan dapat memutus koneksi yang idle setelah periode waktu tertentu, yang dapat menyebabkan request gagal atau [timeout](#timeouts) tanpa menerima respons dari Anthropic.
+Hindari mengatur nilai `MaxTokens` yang besar tanpa menggunakan streaming karena beberapa jaringan dapat memutus koneksi yang idle setelah periode waktu tertentu, yang dapat menyebabkan request gagal atau [timeout](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go#timeouts) tanpa menerima respons dari Anthropic.
 
-SDK ini juga akan mengembalikan error jika request non-streaming diperkirakan akan berlangsung lebih dari sekitar 10 menit. Memanggil `.Messages.NewStreaming()` atau [mengatur timeout kustom](#timeouts) akan menonaktifkan error ini.
+SDK ini juga akan mengembalikan error jika request non-streaming diperkirakan akan berlangsung lebih dari sekitar 10 menit. Memanggil `.Messages.NewStreaming()` atau [mengatur timeout kustom](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go#timeouts) akan menonaktifkan error ini.
 
 ## Unggahan file
 
@@ -640,17 +640,17 @@ Lihat [daftar lengkap opsi request](https://pkg.go.dev/github.com/anthropics/ant
 
 ## Kustomisasi HTTP client
 
-Untuk middleware request (`option.WithMiddleware`) dan mengganti `http.Client` default (`option.WithHTTPClient`), lihat [middleware SDK](/docs/id/cli-sdks-libraries/middleware).
+Untuk middleware request (`option.WithMiddleware`) dan mengganti `http.Client` default (`option.WithHTTPClient`), lihat [middleware SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/middleware).
 
 ## Integrasi platform
 
 <Note>
   Untuk panduan penyiapan platform yang terperinci dengan contoh kode, lihat:
 
-  * [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock)
-  * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
-  * [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws)
-  * [Google Cloud](/docs/id/build-with-claude/claude-on-vertex-ai)
+  * [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
+  * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
+  * [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
+  * [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai)
 </Note>
 
 Go SDK mendukung platform-platform berikut:
@@ -658,7 +658,7 @@ Go SDK mendukung platform-platform berikut:
 * **Agent Platform:** `import "github.com/anthropics/anthropic-sdk-go/vertex"`. Gunakan `vertex.WithGoogleAuth(ctx, region, projectID)` atau `vertex.WithCredentials(ctx, region, projectID, creds)`.
 * **Bedrock:** `import "github.com/anthropics/anthropic-sdk-go/bedrock"`. Gunakan `bedrock.NewMantleClient` untuk endpoint Bedrock Messages-API (streaming melalui SSE), atau `bedrock.WithLoadDefaultConfig(ctx)` / `bedrock.WithConfig(cfg)` (jalur `bedrock-runtime`). Mengimpor paket `bedrock` secara global akan mendaftarkan decoder untuk `application/vnd.amazon.eventstream` dengan lapisan streaming SDK (melalui `init()` paket). Ini berlaku baik Anda menggunakan jalur `bedrock-runtime` `WithConfig`/`WithLoadDefaultConfig` maupun `NewMantleClient`.
 * **Claude Platform di AWS:** `import anthropicaws "github.com/anthropics/anthropic-sdk-go/aws"`. Gunakan `anthropicaws.NewClient(ctx, cfg)` dengan nilai `anthropicaws.ClientConfig` untuk membangun client; atur `WorkspaceID` pada config atau variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID`. Alias impor `anthropicaws` menghindari tabrakan nama dengan `github.com/aws/aws-sdk-go-v2/aws` ketika keduanya diimpor. Tersedia dalam versi beta.
-* **Foundry:** Saat ini tidak didukung di Go SDK. Lihat [Claude di Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk SDK yang didukung.
+* **Foundry:** Saat ini tidak didukung di Go SDK. Lihat [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk SDK yang didukung.
 
 Gunakan `bedrock.NewMantleClient` untuk proyek baru; `bedrock.WithLoadDefaultConfig`/`WithConfig` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
 
@@ -755,5 +755,5 @@ Masukan Anda sangat diterima; buka [issue](https://github.com/anthropics/anthrop
 
 * [Repositori GitHub](https://github.com/anthropics/anthropic-sdk-go)
 * [Dokumentasi paket Go](https://pkg.go.dev/github.com/anthropics/anthropic-sdk-go)
-* [Referensi API](/docs/id/api/overview)
-* [Streaming Messages](/docs/id/build-with-claude/streaming)
+* [Referensi API](https://platform.claude.com/docs/id/api/overview)
+* [Streaming Messages](https://platform.claude.com/docs/id/build-with-claude/streaming)

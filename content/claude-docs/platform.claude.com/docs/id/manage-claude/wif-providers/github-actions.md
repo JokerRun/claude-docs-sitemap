@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/github-actions
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 24c09410da63bbfc6e3b3dbf8d0b57573ebeab7cd08487e064261ac7d7d622b3
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 7931d91d1cbb9960ae6996cb75d3c7f5c7cd2170993c15fd4d53ccdee872c67e
 ---
 
-# Menggunakan WIF dengan GitHub Actions
-
-Autentikasi alur kerja GitHub Actions ke Claude API dengan token identitas berumur pendek alih-alih kunci API berumur panjang.
-
+---
+title: Menggunakan WIF dengan GitHub Actions
+url: https://platform.claude.com/docs/id/manage-claude/wif-providers/github-actions
+description: Autentikasi alur kerja GitHub Actions ke Claude API dengan token identitas berumur pendek alih-alih kunci API berumur panjang.
 ---
 
 Setiap eksekusi alur kerja GitHub Actions dapat meminta token identitas yang ditandatangani dari issuer yang dihosting GitHub di `https://token.actions.githubusercontent.com`. Dengan Workload Identity Federation, alur kerja Anda menukar token tersebut dengan token akses Anthropic berumur pendek, sehingga job CI Anda dapat memanggil Claude API tanpa secret `ANTHROPIC_API_KEY` yang disimpan di repositori Anda.
@@ -17,7 +17,7 @@ Klaim `sub` pada token mengodekan konteks repositori dan pemicu. Untuk push ke s
 
 ## Prasyarat
 
-* Pemahaman tentang [konsep WIF](/docs/id/manage-claude/workload-identity-federation#concepts): service account, federation issuer, dan federation rule.
+* Pemahaman tentang [konsep WIF](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#concepts): service account, federation issuer, dan federation rule.
 * Repositori GitHub tempat Anda dapat mengedit file alur kerja dan memberikan izin `id-token: write`.
 * Izin untuk membuat service account, federation issuer, dan federation rule di Claude Console untuk organisasi Anthropic Anda.
 * ID organisasi Anthropic Anda. Anda dapat menemukannya di Claude Console di bawah **Settings → Organization**.
@@ -77,7 +77,7 @@ Lihat [referensi klaim subject OIDC GitHub](https://docs.github.com/en/actions/d
 
 Di Claude Console, buka **Settings → Workload identity**, klik **Connect workload**, dan pilih tile **GitHub Actions**. Wizard akan memandu Anda melalui pendaftaran issuer, pembuatan service account, dan pembuatan federation rule.
 
-Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut baik saat Anda memasukkannya di wizard maupun saat mengirimkannya ke [Admin API](/docs/id/manage-claude/wif-admin-api):
+Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut baik saat Anda memasukkannya di wizard maupun saat mengirimkannya ke [Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api):
 
 **Federation issuer:** GitHub memublikasikan dokumen discovery OIDC dan JWKS-nya secara publik, jadi gunakan mode discovery. Anthropic menyegarkan kunci secara otomatis ketika GitHub merotasinya.
 
@@ -89,7 +89,7 @@ Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut 
 }
 ```
 
-**Federation rule:** Cocokkan hanya eksekusi alur kerja yang memang Anda percayai. Lihat [Batasi alur kerja mana yang dapat melakukan autentikasi](#restrict-which-workflows-can-authenticate) untuk cara membatasi cakupan klaim-klaim ini dengan aman.
+**Federation rule:** Cocokkan hanya eksekusi alur kerja yang memang Anda percayai. Lihat [Batasi alur kerja mana yang dapat melakukan autentikasi](https://platform.claude.com/docs/id/manage-claude/wif-providers/github-actions#restrict-which-workflows-can-authenticate) untuk cara membatasi cakupan klaim-klaim ini dengan aman.
 
 ```json
 {
@@ -319,7 +319,7 @@ Setiap token identitas yang diterbitkan GitHub kedaluwarsa sekitar lima menit se
 
 ## Verifikasi penyiapan
 
-Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Pada `400 invalid_grant`, lihat [Memecahkan masalah pertukaran yang gagal](/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi GitHub Actions adalah format klaim `sub` yang tidak cocok (segmen akhirnya bervariasi antara event `ref:...`, `environment:...`, dan `pull_request`).
+Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Pada `400 invalid_grant`, lihat [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi GitHub Actions adalah format klaim `sub` yang tidak cocok (segmen akhirnya bervariasi antara event `ref:...`, `environment:...`, dan `pull_request`).
 
 ## Batasi alur kerja mana yang dapat melakukan autentikasi
 
@@ -336,5 +336,5 @@ Kunci blok `match` pada aturan ke cakupan tersempit yang sesuai dengan kasus pen
 
 ## Langkah selanjutnya
 
-* [Workload Identity Federation](/docs/id/manage-claude/workload-identity-federation): panduan penyiapan lengkap, variabel lingkungan, dan prioritas kredensial.
-* [Autentikasi](/docs/id/manage-claude/authentication): perbandingan federasi dengan kunci API.
+* [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation): panduan penyiapan lengkap, variabel lingkungan, dan prioritas kredensial.
+* [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication): perbandingan federasi dengan kunci API.

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rate_limits/list
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: a1df936ad433b0a70874f2739d1034bd9fb6242befe2e4571963b5141424372a
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 407c25ac628e465372dd5d4916f019d5bf28b71cc60a971f13ebda56cc6429ff
+---
+
+---
+title: List Organization Rate Limits
+url: https://platform.claude.com/docs/en/api/admin/rate_limits/list
 ---
 
 ## List Organization Rate Limits

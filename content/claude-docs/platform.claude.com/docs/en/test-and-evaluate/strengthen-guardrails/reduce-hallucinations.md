@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
-fetched_at: 2026-08-12T02:56:30.865670Z
-sha256: 359253d8186754f21f19f95d42e64fc170b24120d7f50e243197701dd6a57e97
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 6682502aad1f43b85911fa310212874afa496016c9feb669a988594b622d1aad
 ---
 
-# Reduce hallucinations
-
-Minimize hallucinations in Claude's outputs by allowing uncertainty, grounding responses in direct quotes, and verifying claims with citations.
-
+---
+title: Reduce hallucinations
+url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
+description: Minimize hallucinations in Claude's outputs by allowing uncertainty, grounding responses in direct quotes, and verifying claims with citations.
 ---
 
 Even the most advanced language models, like Claude, can sometimes generate text that is factually incorrect or inconsistent with the given context. This phenomenon, known as "hallucination," can undermine the reliability of your AI-driven solutions. This guide will explore techniques to minimize hallucinations and ensure Claude's outputs are accurate and trustworthy.

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/usage/list_by_user
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 311189b420bca8a05e03312b28e4a3bf6995226a84c876cf6cf3d5a0d2a42f85
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: c137c35e9afe2d1cf64ef1455181cea39da8b3deca3665534ad2a00938d8447e
+---
+
+---
+title: Get Per-User Token Usage
+url: https://platform.claude.com/docs/en/api/admin/analytics/usage/list_by_user
 ---
 
 ## Get Per-User Token Usage

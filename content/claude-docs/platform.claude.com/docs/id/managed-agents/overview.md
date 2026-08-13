@@ -1,40 +1,40 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/overview
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 7edd66ecd7dd9f3be6a6bb5043aa1978aca83f6f541a9efc193254396bbd0443
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: c83a957b352d9e097344f32348c03b71bf17d598613b582f90abc0e1f7c50467
 ---
 
-# Ikhtisar Claude Managed Agents
-
-Harness agen yang sudah jadi dan dapat dikonfigurasi yang berjalan di infrastruktur terkelola. Terbaik untuk tugas yang berjalan lama dan pekerjaan asinkron.
-
+---
+title: Ikhtisar Claude Managed Agents
+url: https://platform.claude.com/docs/id/managed-agents/overview
+description: Harness agen yang sudah jadi dan dapat dikonfigurasi yang berjalan di infrastruktur terkelola. Terbaik untuk tugas yang berjalan lama dan pekerjaan asinkron.
 ---
 
 Anthropic menawarkan dua cara untuk membangun dengan Claude, masing-masing cocok untuk kasus penggunaan yang berbeda:
 
-|                           | Messages API                                                                 | Claude Managed Agents                                                                          |
-| ------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| **Apa itu**               | Akses langsung untuk memberikan prompt ke model                              | Kerangka agen yang sudah dibangun dan dapat dikonfigurasi, berjalan di infrastruktur terkelola |
-| **Paling cocok untuk**    | Loop agen kustom dan kontrol yang sangat terperinci                          | Tugas yang berjalan lama dan pekerjaan asinkron                                                |
-| **Pelajari lebih lanjut** | [Dokumentasi Messages API](/docs/id/build-with-claude/working-with-messages) | [Dokumentasi Claude Managed Agents](/docs/id/managed-agents/overview)                          |
+|                           | Messages API                                                                                            | Claude Managed Agents                                                                            |
+| ------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| **Apa itu**               | Akses langsung untuk memberikan prompt ke model                                                         | Kerangka agen yang sudah dibangun dan dapat dikonfigurasi, berjalan di infrastruktur terkelola   |
+| **Paling cocok untuk**    | Loop agen kustom dan kontrol yang sangat terperinci                                                     | Tugas yang berjalan lama dan pekerjaan asinkron                                                  |
+| **Pelajari lebih lanjut** | [Dokumentasi Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) | [Dokumentasi Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) |
 
 Claude Managed Agents menyediakan harness dan infrastruktur untuk menjalankan Claude sebagai agen otonom. Alih-alih membangun loop agen, eksekusi alat, dan runtime Anda sendiri, Anda mendapatkan lingkungan yang sepenuhnya terkelola di mana Claude dapat membaca file, menjalankan perintah, menjelajahi web, dan menjalankan kode dengan aman. Harness ini mendukung "prompt caching" (caching prompt) bawaan, kompaksi, dan optimisasi kinerja lainnya untuk output agen yang berkualitas tinggi dan efisien.
 
 <Note>
-  Claude Managed Agents juga tersedia di Claude Platform on AWS, dengan beberapa perbedaan dalam ketersediaan fitur dan perilaku sesi. Lihat [Claude Managed Agents](/docs/id/build-with-claude/claude-platform-on-aws#claude-managed-agents) dalam panduan Claude Platform on AWS.
+  Claude Managed Agents juga tersedia di Claude Platform on AWS, dengan beberapa perbedaan dalam ketersediaan fitur dan perilaku sesi. Lihat [Claude Managed Agents](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#claude-managed-agents) dalam panduan Claude Platform on AWS.
 </Note>
 
 <CardGroup cols={3}>
-  <Card title="Mulai cepat" icon="play" href="/docs/id/managed-agents/quickstart">
+  <Card title="Mulai cepat" icon="play" href="https://platform.claude.com/docs/id/managed-agents/quickstart">
     Buat sesi agen pertama Anda
   </Card>
 
-  <Card title="Mulai sesi" icon="code-brackets" href="/docs/id/managed-agents/sessions">
+  <Card title="Mulai sesi" icon="code-brackets" href="https://platform.claude.com/docs/id/managed-agents/sessions">
     Buat sesi dan kirim event pertama Anda
   </Card>
 
-  <Card title="Referensi" icon="book" href="/docs/id/managed-agents/reference">
+  <Card title="Referensi" icon="book" href="https://platform.claude.com/docs/id/managed-agents/reference">
     Tipe event, batas laju, flag CLI, dan tabel pencarian lainnya
   </Card>
 </CardGroup>
@@ -58,7 +58,7 @@ Claude Managed Agents dibangun di sekitar empat konsep:
   </Step>
 
   <Step title="Buat lingkungan">
-    Konfigurasikan di mana agen berjalan: sandbox cloud, atau [sandbox yang dihosting sendiri](/docs/id/managed-agents/self-hosted-sandboxes) di infrastruktur Anda sendiri.
+    Konfigurasikan di mana agen berjalan: sandbox cloud, atau [sandbox yang dihosting sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes) di infrastruktur Anda sendiri.
   </Step>
 
   <Step title="Mulai sesi">
@@ -83,7 +83,7 @@ Claude Managed Agents paling cocok untuk beban kerja yang membutuhkan:
 * **Eksekusi yang dihosting sendiri:** Sandbox di infrastruktur yang Anda kendalikan untuk kebutuhan kepatuhan atau residensi data
 * **Infrastruktur minimal:** Tidak perlu membangun loop agen, sandbox, atau lapisan eksekusi alat Anda sendiri
 * **Sesi stateful:** Sistem file persisten dan riwayat percakapan di beberapa interaksi
-* **Eksekusi terjadwal:** Menjalankan agen berulang pada jadwal cron melalui [deployment terjadwal](/docs/id/managed-agents/scheduled-deployments)
+* **Eksekusi terjadwal:** Menjalankan agen berulang pada jadwal cron melalui [deployment terjadwal](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments)
 
 ## Alat yang didukung
 
@@ -94,7 +94,7 @@ Claude Managed Agents memberi Claude akses ke serangkaian alat bawaan:
 * **Pencarian dan pengambilan web:** Mencari di web dan mengambil konten dari URL
 * **Server MCP:** Terhubung ke penyedia alat eksternal
 
-Lihat [Alat](/docs/id/managed-agents/tools) untuk daftar lengkap dan opsi konfigurasi.
+Lihat [Alat](https://platform.claude.com/docs/id/managed-agents/tools) untuk daftar lengkap dan opsi konfigurasi.
 
 ## Akses beta
 
@@ -104,12 +104,12 @@ Lihat [Alat](/docs/id/managed-agents/tools) untuk daftar lengkap dan opsi konfig
 
 Untuk memulai, Anda memerlukan:
 
-1. [Kunci API Claude](/settings/keys)
+1. [Kunci API Claude](https://platform.claude.com/settings/keys)
 2. Header beta `managed-agents-2026-04-01` pada semua permintaan
 3. Akses ke Claude Managed Agents (diaktifkan secara default untuk semua akun API)
 
-Dalam beta ini, [tunnel MCP](/docs/id/agents-and-tools/mcp-tunnels/overview) dan [dreaming](/docs/id/managed-agents/dreams) berada dalam pratinjau riset yang lebih terbatas. [Minta akses](https://claude.com/form/claude-managed-agents) untuk mengaktifkannya.
+Dalam beta ini, [tunnel MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview) dan [dreaming](https://platform.claude.com/docs/id/managed-agents/dreams) berada dalam pratinjau riset yang lebih terbatas. [Minta akses](https://claude.com/form/claude-managed-agents) untuk mengaktifkannya.
 
-Claude Managed Agents bersifat stateful secara desain: sesi berjalan lama, dilanjutkan dengan bersih setelah jeda, dan menyimpan riwayat percakapan, status sandbox, dan output di sisi server. Karena itu, Managed Agents saat ini tidak memenuhi syarat untuk [Zero Data Retention](/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) atau cakupan HIPAA Business Associate Agreement (BAA). Anda tetap memegang kendali atas data ini: Anda dapat [menghapus sesi](/docs/id/managed-agents/session-operations#deleting-a-session), dan secara terpisah menghapus [file](/docs/id/build-with-claude/files#delete-a-file) apa pun yang Anda unggah, kapan saja melalui API. Untuk kelayakan di semua fitur, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention#feature-eligibility).
+Claude Managed Agents bersifat stateful secara desain: sesi berjalan lama, dilanjutkan dengan bersih setelah jeda, dan menyimpan riwayat percakapan, status sandbox, dan output di sisi server. Karena itu, Managed Agents saat ini tidak memenuhi syarat untuk [Zero Data Retention](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) atau cakupan HIPAA Business Associate Agreement (BAA). Anda tetap memegang kendali atas data ini: Anda dapat [menghapus sesi](https://platform.claude.com/docs/id/managed-agents/session-operations#deleting-a-session), dan secara terpisah menghapus [file](https://platform.claude.com/docs/id/build-with-claude/files#delete-a-file) apa pun yang Anda unggah, kapan saja melalui API. Untuk kelayakan di semua fitur, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility).
 
-Lihat [Batas laju](/docs/id/managed-agents/reference#rate-limits) dan [Pedoman branding](/docs/id/managed-agents/reference#branding-guidelines) di referensi.
+Lihat [Batas laju](https://platform.claude.com/docs/id/managed-agents/reference#rate-limits) dan [Pedoman branding](https://platform.claude.com/docs/id/managed-agents/reference#branding-guidelines) di referensi.

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models/list
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: eaf6e1945864edffb31be45354bfd791bed169031a862868316d924e4b69418f
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: f048914315e84bb5fa89f0c6aba5d2b220c662604d56bd88904a846b12589d6b
+---
+
+---
+title: List Models
+url: https://platform.claude.com/docs/en/api/models/list
 ---
 
 ## List Models
@@ -37,7 +42,7 @@ The Models API response can be used to determine which models are available for 
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -102,6 +107,8 @@ The Models API response can be used to determine which models are available for 
     - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
+
+    - `"mid-conversation-tool-changes-2026-07-01"`
 
 ### Returns
 

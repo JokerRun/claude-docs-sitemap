@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/code/artifacts/list
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: 15bd402ed3f4e359029320c966a4ad33e709a17fbc167d86d1c1164b376a9004
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 1ef8d5bb7360a56168bcd1d14c5639c7f4d8890b7106f4f9089704bbd0ec8e55
+---
+
+---
+title: List Code Artifacts
+url: https://platform.claude.com/docs/en/api/compliance/code/artifacts/list
 ---
 
 ## List Code Artifacts

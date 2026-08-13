@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/federation_issuers/update
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: c6520e6b9bacc4b9e2b5c068d9ef53eff463d2fc951987b6effaee42fb6fcf95
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 75d1d3de772ef9c4130f4e39b500ab0db8f9e2bac17ac40479085e49b68bd080
+---
+
+---
+title: Update Federation Issuer
+url: https://platform.claude.com/docs/en/api/admin/federation_issuers/update
 ---
 
 ## Update Federation Issuer

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/service_accounts/update
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: b7290e7b19c0d5aefbf7e324999ea96a8bff34097c867b50096eaefcc0030c4e
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 6b242708f45f53d6c1227af1c32684714731e5f570d08d5d41390558031132c4
+---
+
+---
+title: Update Service Account
+url: https://platform.claude.com/docs/en/api/admin/service_accounts/update
 ---
 
 ## Update Service Account

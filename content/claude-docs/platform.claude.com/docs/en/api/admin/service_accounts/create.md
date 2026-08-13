@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/service_accounts/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 0eaa948cba0277c2e475712e11f2ad92a029cb40b35b7fbb5e524bcea2a6f79f
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: d8613bd0b96fc16f4f6f8b434791843936cc61862454779aa57707755f7d5161
+---
+
+---
+title: Create Service Account
+url: https://platform.claude.com/docs/en/api/admin/service_accounts/create
 ---
 
 ## Create Service Account

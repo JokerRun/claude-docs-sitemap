@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/retrieve
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 561950322ba70c270fa2e4554f95836f36c1bd34345cc36a10244c8ec507600e
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: ac232bd4fa82c3325fa96a32f62edfd8ea05253811892ddfbba76e9b44927ca4
+---
+
+---
+title: Get Tunnel Certificate
+url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/retrieve
 ---
 
 ## Get Tunnel Certificate
@@ -27,7 +32,7 @@ Fetches a tunnel certificate by ID.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -92,6 +97,8 @@ Fetches a tunnel certificate by ID.
     - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
+
+    - `"mid-conversation-tool-changes-2026-07-01"`
 
 ### Returns
 

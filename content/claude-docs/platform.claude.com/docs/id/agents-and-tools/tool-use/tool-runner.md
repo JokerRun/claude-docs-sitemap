@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: c74fa85fde884e0dae5dbd0316c06422bb3494631e277d5fee0b1e4fdcc16eae
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 38299d8ba84d36551287be1a2bbd5256a6e0ecf71520f46895343fcde431ea6f
 ---
 
-# Tool runner (SDK)
-
-Gunakan tool runner dari SDK untuk menangani loop agentik, pembungkusan error, dan keamanan tipe secara otomatis.
-
+---
+title: Tool runner (SDK)
+url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner
+description: Gunakan tool runner dari SDK untuk menangani loop agentik, pembungkusan error, dan keamanan tipe secara otomatis.
 ---
 
-"Tool runner" (penjalan alat) menangani loop agentik, pembungkusan error, dan keamanan tipe sehingga Anda tidak perlu melakukannya. Ketika Anda memerlukan persetujuan human-in-the-loop, logging kustom, atau eksekusi bersyarat, gunakan [loop manual](/docs/id/agents-and-tools/tool-use/handle-tool-calls) sebagai gantinya.
+"Tool runner" (penjalan alat) menangani loop agentik, pembungkusan error, dan keamanan tipe sehingga Anda tidak perlu melakukannya. Ketika Anda memerlukan persetujuan human-in-the-loop, logging kustom, atau eksekusi bersyarat, gunakan [loop manual](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls) sebagai gantinya.
 
 Alih-alih menangani panggilan alat, hasil alat, dan manajemen percakapan secara manual, tool runner secara otomatis:
 
@@ -357,7 +357,7 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
   </Tab>
 
   <Tab title="Java">
-    Definisikan setiap alat sebagai kelas yang mengimplementasikan `Supplier<String>`. Anotasikan kelas dengan `@JsonClassDescription` untuk deskripsi alat, dan setiap field publik dengan `@JsonPropertyDescription` untuk deskripsi parameter. SDK menurunkan skema JSON, nama alat (nama kelas dalam format snake-case), dan parsing input dari kelas tersebut, serta menandai alat dengan `strict: true` ([strict tool use](/docs/id/agents-and-tools/tool-use/strict-tool-use)).
+    Definisikan setiap alat sebagai kelas yang mengimplementasikan `Supplier<String>`. Anotasikan kelas dengan `@JsonClassDescription` untuk deskripsi alat, dan setiap field publik dengan `@JsonPropertyDescription` untuk deskripsi parameter. SDK menurunkan skema JSON, nama alat (nama kelas dalam format snake-case), dan parsing input dari kelas tersebut, serta menandai alat dengan `strict: true` ([strict tool use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use)).
 
     ```java
     import com.anthropic.client.AnthropicClient;
@@ -782,7 +782,7 @@ Di dalam loop, Anda dapat membaca setiap pesan respons dan memodifikasi status r
 4. Ketika badan loop Anda selesai, runner memeriksa apakah Anda memodifikasi riwayat pesannya.
 
    * **Jika Anda tidak memodifikasi riwayat pesan:** Jika pesan berisi panggilan alat, runner menambahkan pesan asisten dan hasil alat, lalu melanjutkan. Jika tidak ada panggilan alat, loop berakhir.
-   * **Jika Anda memodifikasi riwayat pesan:** Runner melewati penambahan otomatisnya dan menggunakan status Anda tanpa perubahan. Lihat [Mengambil alih riwayat pesan](#taking-over-message-history).
+   * **Jika Anda memodifikasi riwayat pesan:** Runner melewati penambahan otomatisnya dan menggunakan status Anda tanpa perubahan. Lihat [Mengambil alih riwayat pesan](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner#taking-over-message-history).
 
 ```mermaid
 sequenceDiagram
@@ -1095,7 +1095,7 @@ Ketika Anda mengambil alih untuk sebuah iterasi, runner tidak menambahkan pesan 
 
 ### Manajemen konteks otomatis
 
-Untuk tugas agentik yang berjalan lama, tool runner Python, TypeScript, dan Ruby mendukung [kompaksi](/docs/id/build-with-claude/context-editing#client-side-compaction-sdk) otomatis, yang menghasilkan ringkasan ketika penggunaan token melebihi ambang batas sehingga percakapan dapat berlanjut melampaui batas jendela konteks. Ketiga SDK tersebut telah menghentikan dukungan (deprecated) opsi sisi klien ini demi [context editing](/docs/id/build-with-claude/context-editing) sisi server, yang tersedia di setiap SDK. Tool runner Go, Java, C#, dan PHP tidak menyertakan kompaksi sisi klien.
+Untuk tugas agentik yang berjalan lama, tool runner Python, TypeScript, dan Ruby mendukung [kompaksi](https://platform.claude.com/docs/id/build-with-claude/context-editing#client-side-compaction-sdk) otomatis, yang menghasilkan ringkasan ketika penggunaan token melebihi ambang batas sehingga percakapan dapat berlanjut melampaui batas jendela konteks. Ketiga SDK tersebut telah menghentikan dukungan (deprecated) opsi sisi klien ini demi [context editing](https://platform.claude.com/docs/id/build-with-claude/context-editing) sisi server, yang tersedia di setiap SDK. Tool runner Go, Java, C#, dan PHP tidak menyertakan kompaksi sisi klien.
 
 ### Melakukan debug eksekusi alat
 
@@ -1248,7 +1248,7 @@ Di SDK Python dan TypeScript, gunakan metode respons alat (`generate_tool_call_r
   </Tab>
 
   <Tab title="PHP">
-    Tool runner PHP saat ini tidak mengekspos hasil alat sebelum ditambahkan. Exception yang dilemparkan dari closure `run` sebuah alat ditangkap dan dikirim ke Claude sebagai hasil alat dengan `is_error: true` secara otomatis. Untuk memeriksa atau mengganti konten error, gunakan pola `pushMessages()` manual yang ditunjukkan di [Memodifikasi hasil alat](#modifying-tool-results).
+    Tool runner PHP saat ini tidak mengekspos hasil alat sebelum ditambahkan. Exception yang dilemparkan dari closure `run` sebuah alat ditangkap dan dikirim ke Claude sebagai hasil alat dengan `is_error: true` secara otomatis. Untuk memeriksa atau mengganti konten error, gunakan pola `pushMessages()` manual yang ditunjukkan di [Memodifikasi hasil alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner#modifying-tool-results).
   </Tab>
 
   <Tab title="Ruby">
@@ -1292,7 +1292,7 @@ Di SDK Python dan TypeScript, gunakan metode respons alat (`generate_tool_call_r
 
 ### Memodifikasi hasil alat
 
-Anda dapat memodifikasi hasil alat sebelum dikirim kembali ke Claude. Ini berguna untuk menambahkan metadata seperti `cache_control` untuk mengaktifkan [prompt caching](/docs/id/build-with-claude/prompt-caching) (caching prompt) pada hasil alat, atau untuk mentransformasi output alat.
+Anda dapat memodifikasi hasil alat sebelum dikirim kembali ke Claude. Ini berguna untuk menambahkan metadata seperti `cache_control` untuk mengaktifkan [prompt caching](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) (caching prompt) pada hasil alat, atau untuk mentransformasi output alat.
 
 Di SDK Python dan TypeScript, gunakan metode respons alat untuk mendapatkan hasil alat, lalu modifikasi sebelum runner melanjutkan. Apakah Anda secara eksplisit menambahkan hasil yang dimodifikasi atau memutasinya secara langsung bergantung pada SDK. Lihat komentar kode di setiap tab.
 
@@ -1518,7 +1518,7 @@ Di SDK Python dan TypeScript, gunakan metode respons alat untuk mendapatkan hasi
 </Tabs>
 
 <Tip>
-  Menambahkan `cache_control` ke hasil alat sangat berguna ketika alat mengembalikan data dalam jumlah besar (seperti hasil pencarian dokumen) yang ingin Anda cache untuk panggilan API berikutnya. Lihat [Prompt caching](/docs/id/build-with-claude/prompt-caching) untuk detail lebih lanjut tentang strategi caching.
+  Menambahkan `cache_control` ke hasil alat sangat berguna ketika alat mengembalikan data dalam jumlah besar (seperti hasil pencarian dokumen) yang ingin Anda cache untuk panggilan API berikutnya. Lihat [Prompt caching](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk detail lebih lanjut tentang strategi caching.
 </Tip>
 
 ## Streaming
@@ -1717,19 +1717,19 @@ Aktifkan streaming untuk memproses respons setiap giliran secara bertahap. Setia
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Strict tool use" icon="check" href="/docs/id/agents-and-tools/tool-use/strict-tool-use">
+  <Card title="Strict tool use" icon="check" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use">
     Terapkan kepatuhan JSON Schema pada input alat Claude dengan sampling yang dibatasi grammar.
   </Card>
 
-  <Card title="Menangani panggilan alat" icon="arrows-left-right" href="/docs/id/agents-and-tools/tool-use/handle-tool-calls">
+  <Card title="Menangani panggilan alat" icon="arrows-left-right" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls">
     Parse blok `tool_use`, format respons `tool_result`, dan tangani error dengan `is_error`.
   </Card>
 
-  <Card title="Penggunaan alat paralel" icon="grid" href="/docs/id/agents-and-tools/tool-use/parallel-tool-use">
+  <Card title="Penggunaan alat paralel" icon="grid" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use">
     Aktifkan, format, dan nonaktifkan panggilan alat paralel, dengan panduan riwayat pesan dan pemecahan masalah.
   </Card>
 
-  <Card title="Mendefinisikan alat" icon="hammer" href="/docs/id/agents-and-tools/tool-use/define-tools">
+  <Card title="Mendefinisikan alat" icon="hammer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools">
     Tentukan skema alat, tulis deskripsi yang efektif, dan kontrol kapan Claude memanggil alat Anda.
   </Card>
 </CardGroup>

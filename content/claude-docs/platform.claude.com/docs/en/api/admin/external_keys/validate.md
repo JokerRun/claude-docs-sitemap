@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/validate
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 8da7661ad651f78e58bad8677eec9ee9bfae79a7462b9af7bd4879ccb684615f
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: b404d5f71ea1540f47dee9415bdf13e92a1e50408ff08c9770d31bd9cf0f2e26
+---
+
+---
+title: Validate External Key
+url: https://platform.claude.com/docs/en/api/admin/external_keys/validate
 ---
 
 ## Validate External Key

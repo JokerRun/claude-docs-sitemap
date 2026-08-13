@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/list
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 986c746b663ca4fd9d05898bce42e892fa4fe26111ddf13558ced8e2849ff766
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 7b16d1bd1980f23332eabe3c7b2e022e574f3cb435d4d9fde70fff2b20c02d8d
+---
+
+---
+title: List User Profiles
+url: https://platform.claude.com/docs/en/api/beta/user_profiles/list
 ---
 
 ## List User Profiles
@@ -37,7 +42,7 @@ List User Profiles
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -102,6 +107,8 @@ List User Profiles
     - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
+
+    - `"mid-conversation-tool-changes-2026-07-01"`
 
 ### Returns
 

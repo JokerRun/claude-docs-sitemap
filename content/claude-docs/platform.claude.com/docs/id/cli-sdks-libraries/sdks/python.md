@@ -1,20 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 0986ed0694097829b7c96369ed8b37e0a79690e89a9be4a36044106386538a83
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: c1b0c6d57cf925bea0b947377fb5adcf2cdc936c7eb31fdcf5d200ee3cd53ce3
 ---
 
-# Python SDK
-
-Instal dan konfigurasikan Anthropic Python SDK dengan dukungan klien sync dan async
-
+---
+title: Python SDK
+url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python
+description: Instal dan konfigurasikan Anthropic Python SDK dengan dukungan klien sync dan async
 ---
 
 Anthropic Python SDK menyediakan akses yang mudah ke Anthropic REST API dari aplikasi Python. SDK ini mendukung operasi sinkron dan asinkron, streaming, serta integrasi dengan Amazon Bedrock, Claude Platform di AWS, Google Cloud, dan Microsoft Foundry.
 
 <Info>
-  Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK yang spesifik untuk Python.
+  Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](https://platform.claude.com/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK yang spesifik untuk Python.
 </Info>
 
 ## Instalasi
@@ -76,7 +76,7 @@ for block in message.content:
   Pertimbangkan untuk menggunakan [python-dotenv](https://pypi.org/project/python-dotenv/) untuk menambahkan `ANTHROPIC_API_KEY="my-anthropic-api-key"` ke file `.env` Anda sehingga kunci API Anda tidak tersimpan di source control.
 </Tip>
 
-Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](/docs/id/manage-claude/authentication).
+Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication).
 
 ## Penggunaan async
 
@@ -232,7 +232,7 @@ print(count.input_tokens)  # 10
 
 ## Penggunaan alat
 
-SDK ini menyediakan dukungan untuk penggunaan alat, yang juga dikenal sebagai function calling. Untuk detail lebih lanjut, lihat [Penggunaan alat dengan Claude](/docs/id/agents-and-tools/tool-use/overview).
+SDK ini menyediakan dukungan untuk penggunaan alat, yang juga dikenal sebagai function calling. Untuk detail lebih lanjut, lihat [Penggunaan alat dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview).
 
 ### Helper alat
 
@@ -280,7 +280,7 @@ Pada setiap iterasi, sebuah permintaan API dibuat. Jika respons menyertakan pang
 
 ## Message batches
 
-SDK ini menyediakan dukungan untuk [Message Batches API](/docs/id/build-with-claude/batch-processing) di bawah `client.messages.batches`.
+SDK ini menyediakan dukungan untuk [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing) di bawah `client.messages.batches`.
 
 ### Membuat batch
 
@@ -394,7 +394,7 @@ Kode error adalah sebagai berikut:
 
 ## Request ID
 
-> Untuk informasi lebih lanjut tentang debugging permintaan, lihat [Request ID](/docs/id/api/errors#request-id).
+> Untuk informasi lebih lanjut tentang debugging permintaan, lihat [Request ID](https://platform.claude.com/docs/id/api/errors#request-id).
 
 Semua respons objek dalam SDK menyediakan properti `_request_id` yang ditambahkan dari header respons `request-id` sehingga Anda dapat dengan cepat mencatat permintaan yang gagal dan melaporkannya kembali ke Anthropic.
 
@@ -459,19 +459,19 @@ client.with_options(timeout=5.0).messages.create(
 
 Saat timeout, SDK melemparkan `APITimeoutError`.
 
-Perhatikan bahwa permintaan yang timeout akan [dicoba ulang dua kali secara default](#retries).
+Perhatikan bahwa permintaan yang timeout akan [dicoba ulang dua kali secara default](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python#retries).
 
 ## Permintaan panjang
 
 <Warning>
-  Pertimbangkan untuk menggunakan [Messages API](#streaming-responses) streaming untuk permintaan yang berjalan lebih lama.
+  Pertimbangkan untuk menggunakan [Messages API](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python#streaming-responses) streaming untuk permintaan yang berjalan lebih lama.
 </Warning>
 
-Hindari menetapkan nilai `max_tokens` yang besar tanpa menggunakan streaming. Beberapa jaringan mungkin memutus koneksi yang idle setelah jangka waktu tertentu, yang dapat menyebabkan permintaan gagal atau [timeout](#timeouts) tanpa menerima respons dari Anthropic.
+Hindari menetapkan nilai `max_tokens` yang besar tanpa menggunakan streaming. Beberapa jaringan mungkin memutus koneksi yang idle setelah jangka waktu tertentu, yang dapat menyebabkan permintaan gagal atau [timeout](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python#timeouts) tanpa menerima respons dari Anthropic.
 
 SDK akan melemparkan `ValueError` jika permintaan non-streaming diperkirakan memakan waktu lebih dari sekitar 10 menit. Memberikan `stream=True` atau menimpa opsi `timeout` pada level klien atau permintaan akan menonaktifkan error ini.
 
-Latensi permintaan yang diperkirakan lebih lama dari [timeout](#timeouts) untuk permintaan non-streaming akan mengakibatkan klien memutus koneksi dan mencoba ulang tanpa menerima respons.
+Latensi permintaan yang diperkirakan lebih lama dari [timeout](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python#timeouts) untuk permintaan non-streaming akan mengakibatkan klien memutus koneksi dan mencoba ulang tanpa menerima respons.
 
 SDK menetapkan opsi [TCP socket keep-alive](https://tldp.org/HOWTO/TCP-Keepalive-HOWTO/overview.html) untuk mengurangi dampak timeout koneksi idle pada beberapa jaringan. Ini dapat ditimpa dengan memberikan opsi `http_client` kustom ke klien.
 
@@ -716,11 +716,11 @@ with Anthropic() as client:
 
 ## Fitur beta
 
-Fitur beta tersedia sebelum rilis umum untuk mendapatkan umpan balik awal dan menguji fungsionalitas baru. Anda dapat memeriksa ketersediaan semua kemampuan dan alat Claude di [ikhtisar membangun dengan Claude](/docs/id/build-with-claude/overview).
+Fitur beta tersedia sebelum rilis umum untuk mendapatkan umpan balik awal dan menguji fungsionalitas baru. Anda dapat memeriksa ketersediaan semua kemampuan dan alat Claude di [ikhtisar membangun dengan Claude](https://platform.claude.com/docs/id/build-with-claude/overview).
 
-Anda dapat mengakses sebagian besar fitur API beta melalui properti `beta` pada klien. Untuk mengaktifkan fitur beta tertentu, Anda perlu menambahkan [header beta](/docs/id/api/beta-headers) yang sesuai ke field `betas` saat membuat pesan.
+Anda dapat mengakses sebagian besar fitur API beta melalui properti `beta` pada klien. Untuk mengaktifkan fitur beta tertentu, Anda perlu menambahkan [header beta](https://platform.claude.com/docs/id/api/beta-headers) yang sesuai ke field `betas` saat membuat pesan.
 
-Misalnya, untuk menggunakan [Files API](/docs/id/build-with-claude/files):
+Misalnya, untuk menggunakan [Files API](https://platform.claude.com/docs/id/build-with-claude/files):
 
 ```python
 client = Anthropic()
@@ -752,11 +752,11 @@ response = client.beta.messages.create(
 <Note>
   Untuk panduan penyiapan platform yang terperinci dengan contoh kode, lihat:
 
-  * [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock)
-  * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
-  * [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws)
-  * [Google Cloud](/docs/id/build-with-claude/claude-on-vertex-ai)
-  * [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry)
+  * [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
+  * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
+  * [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
+  * [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai)
+  * [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)
 </Note>
 
 Kelima kelas klien disertakan dalam paket dasar `anthropic`:
@@ -792,6 +792,6 @@ print(anthropic.__version__)
 ## Sumber daya tambahan
 
 * [Repositori GitHub](https://github.com/anthropics/anthropic-sdk-python)
-* [Referensi API](/docs/id/api/overview)
-* [Streaming Messages](/docs/id/build-with-claude/streaming)
-* [Penggunaan alat dengan Claude](/docs/id/agents-and-tools/tool-use/overview)
+* [Referensi API](https://platform.claude.com/docs/id/api/overview)
+* [Streaming Messages](https://platform.claude.com/docs/id/build-with-claude/streaming)
+* [Penggunaan alat dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview)

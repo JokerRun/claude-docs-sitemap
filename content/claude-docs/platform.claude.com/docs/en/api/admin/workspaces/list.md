@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/list
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 534145d3057db8f86350545c3c32b6653ca52e792f54b2ceb9b639e9e801e400
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 13d353522dc919a8870ea3d654614af96bf6181672c9b39cf5c82f3b95959ba7
+---
+
+---
+title: List Workspaces
+url: https://platform.claude.com/docs/en/api/admin/workspaces/list
 ---
 
 ## List Workspaces

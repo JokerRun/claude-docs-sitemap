@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/activities
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: e4e2ffee5096d88b19369f395102700df37c8de7b64a1e03ad2bbb9742698c57
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: a7ab279aa348c84a4b1ea863f877ced92c6f170ebd11734d028955b278db6bd9
+---
+
+---
+title: Activities
+url: https://platform.claude.com/docs/en/api/compliance/activities
 ---
 
 # Activities

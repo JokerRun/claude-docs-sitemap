@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/members/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: feb1bd62a44d906754b6372da0dc6dbed753f5f2444cb6dab0fe05be5e6c22d1
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 4ae41d73a3e4f417f042e5668c8e7b1e53804f2acd07897463ed36e4a2e4d437
+---
+
+---
+title: Create Workspace Member
+url: https://platform.claude.com/docs/en/api/admin/workspaces/members/create
 ---
 
 ## Create Workspace Member

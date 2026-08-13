@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 8d55ea1ee42bbd326ab21ed4b25fd68e9b4a6f975e1423b80d8f9796f90e8c92
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: f7896b1659a5041a0671b831bdaa8d93193dcd521b85eae632bc083db94a362e
+---
+
+---
+title: Admin
+url: https://platform.claude.com/docs/en/api/admin
 ---
 
 # Admin
@@ -17803,7 +17808,7 @@ curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/certificates 
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN" \
     -d '{
-          "ca_certificate_pem": "-----BEGIN CERTIFICATE-----\\nMIIBexampleEXAMPLEexampleEXAMPLEexampleEXAMPLEexampleEXAMPLEexa\\n...illustrative placeholder, not a real certificate...\\n-----END CERTIFICATE-----\\n"
+          "ca_certificate_pem": "-----BEGIN CERTIFICATE-----\nMIIBexampleEXAMPLEexampleEXAMPLEexampleEXAMPLEexampleEXAMPLEexa\n...illustrative placeholder, not a real certificate...\n-----END CERTIFICATE-----\n"
         }'
 ```
 

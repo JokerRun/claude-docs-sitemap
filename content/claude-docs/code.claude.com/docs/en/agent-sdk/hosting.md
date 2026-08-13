@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/hosting
-fetched_at: 2026-08-11T02:45:59.001861Z
-sha256: fe2d232629522ebadcd6d6b68952a520dbd45a03dc0df17bae454297098b7dc0
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 0ca0bdd88dd83957f5164368c5864a739b525c5aea913368df7968f7d7999c8f
 ---
 
 > ## Documentation Index
@@ -219,7 +219,7 @@ Default local disk is lost on restart, scale-down, or a move to a different node
 Three things to know about how `SessionStore` behaves:
 
 * **Transcripts only**: `SessionStore` mirrors transcripts, not `CLAUDE.md` memory files or other working-directory artifacts. Mount a shared volume or sync those separately.
-* **Mirror, not replacement**: the subprocess writes to local disk first, and the store receives a copy of each batch. Local writes remain authoritative.
+* **Mirror, not replacement**: the subprocess writes to local disk first, and the SDK forwards a copy of each batch to the store. A fresh session's local transcript outlives the run; a run resumed from the store deletes its local copy at the end, so the store holds the only durable copy. See [Dual-write architecture](/docs/en/agent-sdk/session-storage#dual-write-architecture).
 * **`mirror_error` messages**: when the SDK can't deliver a batch to the store, it drops the batch, emits a `{ type: "system", subtype: "mirror_error" }` message, and continues the query. Alert on these if store durability matters. See [Mirror writes are best-effort](/docs/en/agent-sdk/session-storage#mirror-writes-are-best-effort) for the retry and timeout behavior.
 
 ### Observability

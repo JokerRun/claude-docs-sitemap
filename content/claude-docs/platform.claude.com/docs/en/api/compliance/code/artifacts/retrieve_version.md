@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/code/artifacts/retrieve_version
-fetched_at: 2026-07-08T03:08:53.943475Z
-sha256: 41689fcb4dcdbb19906ba1900d4f98daa9db6e0770b228981730b60f7b2ec080
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 2828952191bc318884da07240f7a6aca58efa65fc2679d1355f7f15c86b41754
+---
+
+---
+title: Download Code Artifact Version Content
+url: https://platform.claude.com/docs/en/api/compliance/code/artifacts/retrieve_version
 ---
 
 ## Download Code Artifact Version Content

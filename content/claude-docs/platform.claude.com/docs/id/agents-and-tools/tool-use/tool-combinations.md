@@ -1,19 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-combinations
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: d4e26d71f60d6fe86e43f4f8a3a147e7d5ea553664110c0219ef2b334b0ad05e
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 11ebb9f53a528600596b8ccff3111c4d593acc2c8ebd0f8ebf09a9fc454ef9ef
 ---
 
-# Kombinasi alat
-
-Pasangan alat Anthropic yang umum untuk agen riset, agen coding, dan agen yang berjalan lama.
-
+---
+title: Kombinasi alat
+url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-combinations
+description: Pasangan alat Anthropic yang umum untuk agen riset, agen coding, dan agen yang berjalan lama.
 ---
 
 Alat-alat yang disediakan Anthropic dirancang untuk bekerja bersama. Pola agen yang umum memasangkan alat-alat yang mencakup tahapan alur kerja yang saling melengkapi: satu alat mengumpulkan atau menemukan, alat lainnya memproses atau bertindak. Kombinasi di bawah ini adalah titik awal, bukan aturan baku. Padukan sesuai kebutuhan tugas Anda.
 
-Setiap cuplikan hanya menampilkan array `tools`. Lihat [Menangani panggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls) untuk bentuk permintaan lengkapnya.
+Setiap cuplikan hanya menampilkan array `tools`. Lihat [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls) untuk bentuk permintaan lengkapnya.
 
 ## Agen riset: web\_search + code\_execution
 
@@ -43,7 +43,7 @@ Editor teks membaca dan memodifikasi file; bash menjalankan pengujian dan perint
 }
 ```
 
-Pasangkan ini dengan direktori kerja yang dibatasi dan daftar perintah yang diizinkan (allowlist) jika agen beroperasi pada kode yang tidak tepercaya. Lihat [Alat editor teks](/docs/id/agents-and-tools/tool-use/text-editor-tool) dan [Alat bash](/docs/id/agents-and-tools/tool-use/bash-tool) untuk kontrak eksekusinya.
+Pasangkan ini dengan direktori kerja yang dibatasi dan daftar perintah yang diizinkan (allowlist) jika agen beroperasi pada kode yang tidak tepercaya. Lihat [Alat editor teks](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool) dan [Alat bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool) untuk kontrak eksekusinya.
 
 ## Kutip-lalu-ambil: web\_search + web\_fetch
 
@@ -72,7 +72,7 @@ Memory mempertahankan state di seluruh percakapan; alat-alat lainnya melakukan p
 
 Tambahkan alat-alat Anda yang lain bersama `memory` dalam array yang sama.
 
-Memory bersifat ortogonal terhadap toolset Anda yang lain. Memory tidak mengubah cara alat lain berperilaku; memory memberi Claude tempat untuk mencatat dan kemudian mengambil kembali fakta-fakta yang jika tidak akan hilang ketika jendela konteks direset. Lihat [Alat memory](/docs/id/agents-and-tools/tool-use/memory-tool) untuk model penyimpanannya.
+Memory bersifat ortogonal terhadap toolset Anda yang lain. Memory tidak mengubah cara alat lain berperilaku; memory memberi Claude tempat untuk mencatat dan kemudian mengambil kembali fakta-fakta yang jika tidak akan hilang ketika jendela konteks direset. Lihat [Alat memory](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool) untuk model penyimpanannya.
 
 ## Semua-dalam-satu: computer\_use
 
@@ -91,16 +91,16 @@ Alat computer use mencakup sebagian besar alat lainnya dengan mengoperasikan des
 }
 ```
 
-Computer use adalah opsi yang paling umum dan juga yang paling lambat, karena setiap aksi memerlukan perjalanan bolak-balik tangkapan layar. Utamakan alat yang lebih sempit ketika alat tersebut mencakup kasus penggunaan Anda, dan gunakan computer use ketika tidak ada yang lain yang cocok. Lihat [Alat computer use](/docs/id/agents-and-tools/tool-use/computer-use-tool) untuk penyiapan sandbox-nya.
+Computer use adalah opsi yang paling umum dan juga yang paling lambat, karena setiap aksi memerlukan perjalanan bolak-balik tangkapan layar. Utamakan alat yang lebih sempit ketika alat tersebut mencakup kasus penggunaan Anda, dan gunakan computer use ketika tidak ada yang lain yang cocok. Lihat [Alat computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) untuk penyiapan sandbox-nya.
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Referensi alat" icon="book" href="/docs/id/agents-and-tools/tool-use/tool-reference">
+  <Card title="Referensi alat" icon="book" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference">
     Katalog lengkap alat yang disediakan Anthropic beserta string tipe dan parameternya.
   </Card>
 
-  <Card title="Ikhtisar penggunaan alat" icon="map" href="/docs/id/agents-and-tools/tool-use/overview">
+  <Card title="Ikhtisar penggunaan alat" icon="map" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview">
     Cara kerja penggunaan alat dan kapan menggunakan alat Anthropic versus mendefinisikan alat Anda sendiri.
   </Card>
 </CardGroup>

@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/manage-tool-context
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 9b7b5e97456e569314923abe852df1f7f3ca7035910f8af24047d4b826ff5369
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: f6c6cb74d3adc96c5912d96f6c3a341f7fc855eb18a2616f05418fe31fc02d1c
 ---
 
-# Mengelola konteks alat
-
-Pilih antara pencarian alat, pemanggilan alat terprogram, caching prompt, dan pengeditan konteks untuk mengelola pembengkakan konteks.
-
+---
+title: Mengelola konteks alat
+url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/manage-tool-context
+description: Pilih antara pencarian alat, pemanggilan alat terprogram, caching prompt, dan pengeditan konteks untuk mengelola pembengkakan konteks.
 ---
 
 Definisi alat dan blok `tool_result` yang terakumulasi menghabiskan "context window" (jendela konteks) Anda. Agen yang berjalan lama dengan banyak alat atau banyak giliran dapat menghabiskan konteks yang tersedia sebelum tugas selesai. Empat pendekatan berikut mengatasi hal ini di titik-titik berbeda dalam pipeline.
@@ -17,12 +17,12 @@ Definisi alat dan blok `tool_result` yang terakumulasi menghabiskan "context win
 
 Setiap pendekatan menargetkan sumber tekanan konteks yang berbeda. Pilih pendekatan yang sesuai dengan ke mana token Anda terpakai.
 
-| Pendekatan                  | Apa yang dikurangi                           | Kapan cocok digunakan                                                                         | Pelajari lebih lanjut                                                                                    |
-| --------------------------- | -------------------------------------------- | --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| Pencarian alat              | Definisi alat yang dimuat di awal            | Kumpulan alat besar (20+ alat) di mana sebagian besar alat tidak diperlukan di setiap giliran | [Alat pencarian alat](/docs/id/agents-and-tools/tool-use/tool-search-tool)                               |
-| Pemanggilan alat terprogram | Bolak-balik `tool_result`                    | Rangkaian pemanggilan alat yang dapat dieksekusi sebagai satu skrip                           | [Pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling)              |
-| Caching prompt              | Biaya token dari definisi alat yang berulang | Kumpulan alat yang stabil di banyak permintaan                                                | [Penggunaan alat dengan caching prompt](/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching) |
-| Pengeditan konteks          | Blok `tool_result` lama dalam riwayat        | Percakapan panjang di mana hasil awal tidak lagi relevan                                      | [Pengeditan konteks](/docs/id/build-with-claude/context-editing)                                         |
+| Pendekatan                  | Apa yang dikurangi                           | Kapan cocok digunakan                                                                         | Pelajari lebih lanjut                                                                                                               |
+| --------------------------- | -------------------------------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Pencarian alat              | Definisi alat yang dimuat di awal            | Kumpulan alat besar (20+ alat) di mana sebagian besar alat tidak diperlukan di setiap giliran | [Alat pencarian alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool)                               |
+| Pemanggilan alat terprogram | Bolak-balik `tool_result`                    | Rangkaian pemanggilan alat yang dapat dieksekusi sebagai satu skrip                           | [Pemanggilan alat terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling)              |
+| Caching prompt              | Biaya token dari definisi alat yang berulang | Kumpulan alat yang stabil di banyak permintaan                                                | [Penggunaan alat dengan caching prompt](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching) |
+| Pengeditan konteks          | Blok `tool_result` lama dalam riwayat        | Percakapan panjang di mana hasil awal tidak lagi relevan                                      | [Pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing)                                         |
 
 ### Pencarian alat
 
@@ -54,19 +54,19 @@ Titik awal yang masuk akal untuk agen bervolume tinggi:
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Alat pencarian alat" icon="magnifying-glass" href="/docs/id/agents-and-tools/tool-use/tool-search-tool">
+  <Card title="Alat pencarian alat" icon="magnifying-glass" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool">
     Muat definisi alat sesuai kebutuhan, bukan di awal.
   </Card>
 
-  <Card title="Pemanggilan alat terprogram" icon="code" href="/docs/id/agents-and-tools/tool-use/programmatic-tool-calling">
+  <Card title="Pemanggilan alat terprogram" icon="code" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling">
     Ringkas rangkaian pemanggilan alat menjadi satu skrip yang dapat dieksekusi.
   </Card>
 
-  <Card title="Penggunaan alat dengan caching prompt" icon="database" href="/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching">
+  <Card title="Penggunaan alat dengan caching prompt" icon="database" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching">
     Cache definisi alat di seluruh permintaan untuk memangkas biaya token.
   </Card>
 
-  <Card title="Pengeditan konteks" icon="scissors" href="/docs/id/build-with-claude/context-editing">
+  <Card title="Pengeditan konteks" icon="scissors" href="https://platform.claude.com/docs/id/build-with-claude/context-editing">
     Pangkas hasil alat yang usang dari percakapan yang berjalan lama.
   </Card>
 </CardGroup>

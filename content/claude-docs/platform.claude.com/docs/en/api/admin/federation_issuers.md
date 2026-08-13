@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/federation_issuers
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: eab7d2ee227852d68b508683c4040d9bc91f395224de13d247bdb59d45865e31
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 2039c2971c8af4e0529ca9d063076ed1e69e70c8ba6e1bccf65d67eed46b363b
+---
+
+---
+title: Federation Issuers
+url: https://platform.claude.com/docs/en/api/admin/federation_issuers
 ---
 
 # Federation Issuers

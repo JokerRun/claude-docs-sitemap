@@ -1,42 +1,42 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-operations
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 6f6e8174dafc83af04054a9d9e208442de80fef33b9fb736fbfe718460ba2ead
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 92353a58505e6cfd49aaf0b1239c9575d43c48147c9986cc5f0133ee65df6954
 ---
 
-# Operasi sesi
-
-Mengambil, mendaftar, memperbarui, mengarsipkan, dan menghapus sesi Claude Managed Agents.
-
+---
+title: Operasi sesi
+url: https://platform.claude.com/docs/id/managed-agents/session-operations
+description: Mengambil, membuat daftar, memperbarui, mengarsipkan, dan menghapus sesi Claude Managed Agents.
 ---
 
-Setelah sebuah sesi ada, gunakan operasi-operasi ini untuk membaca, memperbarui, mengarsipkan, atau menghapusnya. Lihat [Memulai sesi](/docs/id/managed-agents/sessions) untuk membuat sesi dan mengirimkan pekerjaan kepadanya.
+Setelah sesi dibuat, gunakan operasi ini untuk membaca, memperbarui, mengarsipkan, atau menghapusnya. Lihat [Memulai sesi](https://platform.claude.com/docs/id/managed-agents/sessions) untuk membuat sesi dan mengirimkan pekerjaan ke dalamnya.
 
 <Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](/docs/id/api/beta-headers#endpoint-specific-headers).
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Status sesi
 
-Sesi berkembang melalui status-status berikut. Lihat [Memulai sesi](/docs/id/managed-agents/sessions) untuk siklus hidup sesi.
+Sesi berjalan melalui status-status berikut. Lihat [Memulai sesi](https://platform.claude.com/docs/id/managed-agents/sessions) untuk siklus hidup sesi.
 
-| Status         | Deskripsi                                                                                                                                      |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| `idle`         | Agen sedang menunggu input, termasuk pesan pengguna atau konfirmasi alat. Sesi yang dibuat tanpa `initial_events` dimulai dalam status `idle`. |
-| `running`      | Agen sedang aktif mengeksekusi.                                                                                                                |
-| `rescheduling` | Terjadi kesalahan sementara, mencoba ulang secara otomatis.                                                                                    |
-| `terminated`   | Sesi telah berakhir, baik karena kesalahan yang tidak dapat dipulihkan atau karena selesai.                                                    |
+| Status         | Deskripsi                                                                                                                                                                         |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `idle`         | Agen sedang menunggu input, termasuk pesan pengguna atau konfirmasi alat. Sesi yang dibuat tanpa `initial_events` dimulai dalam status `idle`.                                    |
+| `running`      | Agen sedang aktif mengeksekusi.                                                                                                                                                   |
+| `rescheduling` | Terjadi kesalahan sementara, mencoba ulang secara otomatis.                                                                                                                       |
+| `terminated`   | Sesi telah berakhir, baik karena kesalahan yang tidak dapat dipulihkan atau karena sesi diarsipkan. Sesi yang menyelesaikan pekerjaannya akan menjadi `idle`, bukan `terminated`. |
 
 ## Memperbarui konfigurasi agen
 
-Anda dapat memperbarui `agent.tools` dan `agent.mcp_servers` sebuah sesi, termasuk kebijakan izin, di tengah sesi tanpa membuat versi agen baru. Pembaruan bersifat lokal untuk sesi dan tidak disebarkan kembali ke agen yang mendasarinya.
+Anda dapat memperbarui `agent.tools` dan `agent.mcp_servers` milik sesi, termasuk kebijakan izin, di tengah sesi tanpa membuat versi agen baru. Pembaruan bersifat lokal untuk sesi dan tidak disebarkan kembali ke agen yang mendasarinya.
 
-Hanya `tools` dan `mcp_servers` agen yang dapat berubah setelah sesi dibuat. Untuk menjalankan sesi dengan nilai `model`, `system`, atau `skills` yang berbeda dari milik agen, gunakan [penggantian konfigurasi agen](/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) saat Anda membuat sesi. Bidang `system` yang dikonfigurasi pada agen bersifat tetap selama masa hidup sesi. Pada model yang mendukungnya, Anda masih dapat menambahkan panduan tingkat sistem di tengah sesi dengan mengirimkan [event `system.message`](/docs/id/managed-agents/events-and-streaming#sending-system-messages).
+Hanya `tools` dan `mcp_servers` milik agen yang dapat diubah setelah sesi dibuat. Untuk menjalankan sesi dengan nilai `model`, `system`, atau `skills` yang berbeda dari milik agen, gunakan [override konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) saat Anda membuat sesi. Konfigurasi model agen, termasuk pin [`inference_geo`](https://platform.claude.com/docs/id/manage-claude/data-residency) miliknya, juga tidak dapat diubah di tengah sesi: atur pin tersebut saat Anda menyimpan agen, atau atur atau hapus untuk satu sesi dengan override `model` saat Anda membuatnya. Field `system` yang dikonfigurasi pada agen bersifat tetap selama masa hidup sesi. Pada model yang mendukungnya, Anda masih dapat menambahkan panduan tingkat sistem di tengah sesi dengan mengirimkan [event `system.message`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#sending-system-messages).
 
-Semantik dari pembaruan `tools` atau `mcp_servers` adalah penggantian penuh: array yang diberikan adalah nilai baru. Untuk mempertahankan entri yang sudah ada, lakukan `GET` pada sesi, modifikasi array-nya, dan `POST` kembali.
+Semantik pembaruan `tools` atau `mcp_servers` adalah penggantian penuh: array yang diberikan menjadi nilai baru. Untuk mempertahankan entri yang sudah ada, lakukan `GET` pada sesi, modifikasi array-nya, lalu `POST` kembali.
 
-Sesi harus dalam status `idle` untuk memperbarui agen. [Interupsi](/docs/id/managed-agents/events-and-streaming#integrating-events) sesi jika Anda perlu memperbarui agen saat sesi sedang berjalan.
+Sesi harus dalam status `idle` untuk memperbarui agen. [Interupsi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events) sesi jika Anda perlu memperbarui agen saat sesi sedang berjalan.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -218,6 +218,10 @@ Sesi harus dalam status `idle` untuk memperbarui agen. [Interupsi](/docs/id/mana
   ```
 </CodeGroup>
 
+## Memperbarui anggaran sesi
+
+Sesi yang [dibuat dengan anggaran](https://platform.claude.com/docs/id/managed-agents/sessions#set-a-session-budget) menerima dua jenis pembaruan anggaran: mengganti batas dengan `max_list_cost` baru, dan menghapusnya dengan mengatur `budget` ke `null`. Keduanya secara otomatis melanjutkan pekerjaan yang dijeda ketika sesi mencapai batasnya. Batas pengganti dapat lebih tinggi atau lebih rendah dari batas saat ini, tetapi harus lebih besar secara ketat dari list cost yang telah dikonsumsi sesi, dan penghapusan bersifat satu arah: `budget` non-null hanya diterima pada sesi yang saat ini memilikinya, sehingga Anda tidak dapat menambahkan kembali anggaran yang telah dihapus atau menambahkannya ke sesi yang dibuat tanpa anggaran. Lihat [Anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets#resume-a-session-at-its-budget) untuk contoh permintaan, perilaku kesalahan, dan apa saja yang dihitung dalam list cost.
+
 ## Mengambil sesi
 
 <CodeGroup defaultLanguage="CLI">
@@ -272,13 +276,13 @@ Sesi harus dalam status `idle` untuk memperbarui agen. [Interupsi](/docs/id/mana
   ```
 </CodeGroup>
 
-## Mendaftar sesi
+## Membuat daftar sesi
 
-Hasil dari `GET /v1/sessions` dipaginasi. Gunakan parameter kueri `limit` untuk mengontrol ukuran halaman. Setiap respons menyertakan kursor `next_page`; teruskan sebagai parameter `page` pada permintaan berikutnya untuk mengambil halaman selanjutnya. `next_page` bernilai `null` ketika tidak ada lagi hasil.
+Hasil dari `GET /v1/sessions` dipaginasi. Gunakan parameter kueri `limit` untuk mengontrol ukuran halaman. Setiap respons menyertakan kursor `next_page`; teruskan sebagai parameter `page` pada permintaan berikutnya untuk mengambil halaman selanjutnya. `next_page` bernilai `null` ketika tidak ada hasil lagi.
 
 Untuk kembali satu halaman, teruskan `prev_page` sebagai parameter `page`. `prev_page` bernilai `null` ketika Anda berada di halaman pertama.
 
-Kursor `page` bersifat opak dan mengodekan `order` dari permintaan yang menghasilkannya. Parameter kueri `order` menetapkan arah pengurutan hasil, `asc` atau `desc` berdasarkan waktu pembuatan; nilai default adalah `desc` (terbaru lebih dulu). Menggunakan kembali kursor dengan `order` yang berbeda akan mengembalikan error 400; parameter kueri lainnya, termasuk filter dan `limit`, dapat berubah di antara permintaan yang dipaginasi. Untuk bidang paginasi yang digunakan bersama di seluruh endpoint daftar, lihat [Paginasi](/docs/id/api/overview#pagination).
+Kursor `page` bersifat opaque dan mengenkode `order` dari permintaan yang menghasilkannya. Parameter kueri `order` mengatur arah pengurutan hasil, `asc` atau `desc` berdasarkan waktu pembuatan; nilai default-nya adalah `desc` (terbaru lebih dulu). Menggunakan kembali kursor dengan `order` yang berbeda akan mengembalikan kesalahan 400, begitu pula mengubah filter `created_at` sehingga mengecualikan posisi kursor. Parameter kueri lainnya, termasuk filter yang tersisa dan `limit`, dapat berubah di antara permintaan yang dipaginasi. Untuk field paginasi yang digunakan bersama di seluruh endpoint daftar, lihat [Paginasi](https://platform.claude.com/docs/id/api/overview#pagination).
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -535,7 +539,7 @@ Kursor `page` bersifat opak dan mengodekan `order` dari permintaan yang menghasi
 
 ## Mengarsipkan sesi
 
-Arsipkan sesi untuk mencegah event baru dikirim sambil mempertahankan riwayatnya. Sesi dengan status `running` tidak dapat diarsipkan; kirim [event interupsi](/docs/id/managed-agents/events-and-streaming#integrating-events) jika Anda perlu mengarsipkannya segera.
+Arsipkan sesi untuk mencegah event baru dikirim sambil mempertahankan riwayatnya. Sesi dengan status `running` tidak dapat diarsipkan; kirim [event interupsi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events) jika Anda perlu mengarsipkannya segera.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -584,9 +588,9 @@ Arsipkan sesi untuk mencegah event baru dikirim sambil mempertahankan riwayatnya
 
 ## Menghapus sesi
 
-Hapus sesi untuk menghilangkan secara permanen catatan, event, dan sandbox yang terkait dengannya. Sesi dengan status `running` tidak dapat dihapus; kirim [event interupsi](/docs/id/managed-agents/events-and-streaming#integrating-events) jika Anda perlu menghapusnya segera.
+Hapus sesi untuk menghapus secara permanen catatan, event, dan sandbox terkaitnya. Sesi dengan status `running` tidak dapat dihapus; kirim [event interupsi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events) jika Anda perlu menghapusnya segera.
 
-File, penyimpanan memori, vault, skill, environment, dan agen adalah sumber daya independen dan tidak terpengaruh oleh penghapusan sesi.
+Memory store, vault, skill, environment, dan agent adalah sumber daya independen dan tidak terpengaruh oleh penghapusan sesi. File yang Anda unggah melalui Files API juga tidak terpengaruh, tetapi file yang dihasilkan oleh sesi itu sendiri terikat pada sesi tersebut dan akan dihapus secara permanen bersama dengan filesystem-nya. Unduh apa pun yang perlu Anda simpan sebelum menghapus sesi.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL

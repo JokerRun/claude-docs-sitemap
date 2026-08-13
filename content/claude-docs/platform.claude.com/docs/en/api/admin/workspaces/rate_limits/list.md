@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/rate_limits/list
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: cdf1c5735b8e44159fbe05b05b9be8ad6ba5029a8890a0fc7b924ba4658729b9
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: f236841f0f8a3f77d429367d67679b3fb6fdc04a4d587dd445419617f2082fe0
+---
+
+---
+title: List Workspace Rate Limits
+url: https://platform.claude.com/docs/en/api/admin/workspaces/rate_limits/list
 ---
 
 ## List Workspace Rate Limits

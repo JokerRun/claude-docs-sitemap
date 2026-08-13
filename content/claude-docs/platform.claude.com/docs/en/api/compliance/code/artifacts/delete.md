@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/code/artifacts/delete
-fetched_at: 2026-07-08T03:08:53.943475Z
-sha256: 4203dd2d89a5521dc985deab1f64c1bfa6d1dd29c1300f7d1569dfb020e10a09
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 5c9fb856c59cc5cee97cb40333ca5fe2051c6afac3450d923864fdb4d3632d36
+---
+
+---
+title: Delete Code Artifact
+url: https://platform.claude.com/docs/en/api/compliance/code/artifacts/delete
 ---
 
 ## Delete Code Artifact

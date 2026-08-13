@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/service_accounts/retrieve
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: b10e5b965e31954b1563733da752f68559e9e7b692752a310e25cdb22e54f66d
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: cbe979219ffc59ac25b6b008feca19bb3ea35635f099090cea4f0a2a6c9841d9
+---
+
+---
+title: Get Service Account
+url: https://platform.claude.com/docs/en/api/admin/service_accounts/retrieve
 ---
 
 ## Get Service Account

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 7156ce6eb5bd6e21db2bac2d031ccd45d688689f3f59d36acb47eff6bdf54523
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: e6943413a0ae3d21fbca7f70f10fa449f488b51c6e0325e3ff6fd1ffeed65116
+---
+
+---
+title: API Keys
+url: https://platform.claude.com/docs/en/api/admin/api_keys
 ---
 
 # API Keys

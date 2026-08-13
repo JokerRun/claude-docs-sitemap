@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: e587aa907d82faff01ac2b316614a9719b69d9920d355f51dc0c44215241c512
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 61cad6759a5a97b979124d38310bb7fb6e4632b1bf593723e74c582f124f86bb
 ---
 
-# PHP SDK
-
-Instal dan konfigurasikan Anthropic PHP SDK dengan value object dan pola builder
-
+---
+title: PHP SDK
+url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php
+description: Instal dan konfigurasikan Anthropic PHP SDK dengan value object dan pola builder
 ---
 
 Library PHP Anthropic menyediakan akses yang mudah ke REST API Anthropic dari aplikasi PHP 8.1.0+ apa pun.
@@ -18,7 +18,7 @@ Library PHP Anthropic menyediakan akses yang mudah ke REST API Anthropic dari ap
 </Info>
 
 <Info>
-  Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK yang spesifik untuk PHP.
+  Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](https://platform.claude.com/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK yang spesifik untuk PHP.
 </Info>
 
 ## Instalasi
@@ -50,7 +50,7 @@ $textBlock = array_find($message->content, static fn ($block): bool => $block->t
 echo $textBlock->text;
 ```
 
-Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](/docs/id/manage-claude/authentication).
+Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication).
 
 ## Value object
 
@@ -224,11 +224,11 @@ $response = $client->request(
 <Note>
   Untuk panduan pengaturan platform yang terperinci dengan contoh kode, lihat:
 
-  * [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock)
-  * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
-  * [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws)
-  * [Google Cloud](/docs/id/build-with-claude/claude-on-vertex-ai)
-  * [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry)
+  * [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
+  * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
+  * [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
+  * [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai)
+  * [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)
 </Note>
 
 PHP SDK mendukung platform berikut:
@@ -251,5 +251,5 @@ Paket ini menganggap perbaikan pada definisi tipe PHPDoc (non-runtime) sebagai p
 
 * [Repositori GitHub](https://github.com/anthropics/anthropic-sdk-php)
 * [Packagist](https://packagist.org/packages/anthropic-ai/sdk)
-* [Referensi API](/docs/id/api/overview)
-* [Streaming Messages](/docs/id/build-with-claude/streaming)
+* [Referensi API](https://platform.claude.com/docs/id/api/overview)
+* [Streaming Messages](https://platform.claude.com/docs/id/build-with-claude/streaming)

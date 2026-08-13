@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/users
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: ee7e22696e25e412abef940c6515792137c1ad944c76e203e264aca2f52ed6c4
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 2db91abb1d23bc4180ecae81f3a53957832304b789c9565b3cce9fea561234a3
+---
+
+---
+title: Users
+url: https://platform.claude.com/docs/en/api/admin/analytics/users
 ---
 
 # Users

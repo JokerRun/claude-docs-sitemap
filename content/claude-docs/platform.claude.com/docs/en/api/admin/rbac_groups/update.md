@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rbac_groups/update
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: afbc4f2376615d9f61706471424e2f8a4387e977c63d1b0694900e6c6fbbd6cc
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: f56fdf2a7647982ada86be3a01afa5d4a52ead63eb7c22842a00df6590fe48e0
+---
+
+---
+title: Update RBAC Group
+url: https://platform.claude.com/docs/en/api/admin/rbac_groups/update
 ---
 
 ## Update RBAC Group

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rbac_roles/permissions
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: b6ab3a63d0182b8a3000d5685ac473022354014b6520e418d7379c1c7e7f3971
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: a32456d1703f19ab43ac6e5bcfea34a6e7c9865992c57b2b81d4aa6ce6771c2b
+---
+
+---
+title: Permissions
+url: https://platform.claude.com/docs/en/api/admin/rbac_roles/permissions
 ---
 
 # Permissions

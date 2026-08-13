@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/generated_files
-fetched_at: 2026-06-19T03:18:02.201222Z
-sha256: a7bcea18dc007b41c3b74b2a00dbeaa77d47df5acbf6a32bd04a03be057fccf8
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 752a27eab1fec7330b2a4ee5c2341abfc042d34a3462dd6f3f3f29a4d1f97581
+---
+
+---
+title: Generated Files
+url: https://platform.claude.com/docs/en/api/compliance/apps/chats/generated_files
 ---
 
 # Generated Files

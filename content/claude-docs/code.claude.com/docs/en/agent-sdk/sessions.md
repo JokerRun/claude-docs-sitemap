@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/sessions
-fetched_at: 2026-08-12T02:56:30.865670Z
-sha256: 43aea77cd7f51e871536b8e043636e06e4e058c26d2b4f284fb9e878168016fe
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 1e95f0fecbb3418e0b587bbba61ee494c615d7ffec568a106c60794e42519ac4
 ---
 
 > ## Documentation Index
@@ -400,7 +400,9 @@ You should see that `forkedId` differs from the original session ID. Resuming th
 
 ## Resume across hosts
 
-Session files are local to the machine that created them. To resume a session on a different host (CI workers, ephemeral containers, serverless), you have two options:
+Session files are local to the machine that created them. To resume a session on a different host (CI workers, ephemeral containers, serverless), pick the approach that fits:
+
+* **Pass a session store.** Attach a [`sessionStore` / `session_store` adapter](/docs/en/agent-sdk/session-storage) so the SDK mirrors transcripts to your own backend and another host can resume them. The store lookup key derives from the working directory, so resume from a `cwd` matching the original run's.
 
 * **Move the session file.** Persist `~/.claude/projects/<encoded-cwd>/<session-id>.jsonl` from the first run and restore it inside any directory under `~/.claude/projects/` on the new host before calling `resume`.
 

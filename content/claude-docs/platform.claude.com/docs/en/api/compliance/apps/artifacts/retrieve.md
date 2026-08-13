@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/artifacts/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 6d988f8d23996e06739765d3037c31a0fa1c8b46ce650f579cffae8b18eb0b8e
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: a3533e5ed422882d1d88499d526c20a29e528f718e20b57a9b25351fe5397e6c
+---
+
+---
+title: Get artifact metadata
+url: https://platform.claude.com/docs/en/api/compliance/apps/artifacts/retrieve
 ---
 
 ## Get artifact metadata

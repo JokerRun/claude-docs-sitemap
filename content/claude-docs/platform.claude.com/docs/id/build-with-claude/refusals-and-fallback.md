@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 98368dfcc2bbaf9d99ee29513fe912c1b33c3e5b5c39b0d7a3117b3974d5fbfc
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 3e71f99fea5cc6f5f8361b7813aa61f30bed929be46553617d3b569575d63143
 ---
 
-# Penolakan dan fallback
-
-Bagaimana Claude Fable 5 dan Claude Opus 5 mengembalikan penolakan classifier dan cara mencoba ulang permintaan yang ditolak pada model fallback.
-
+---
+title: Penolakan dan fallback
+url: https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback
+description: Bagaimana Claude Fable 5 dan Claude Opus 5 mengembalikan penolakan classifier dan cara mencoba ulang permintaan yang ditolak pada model fallback.
 ---
 
 Claude Fable 5 dan Claude Opus 5 menyertakan safety classifier (pengklasifikasi keamanan) yang dapat menolak sebuah permintaan. Ketika itu terjadi, Anda menerima respons normal, bukan error, dengan `stop_reason: "refusal"`. Anda biasanya masih bisa mendapatkan jawaban dengan mengirimkan permintaan yang sama ke model Claude lain. Halaman ini menunjukkan cara mengenali penolakan dan cara menyiapkan percobaan ulang tersebut.
@@ -17,9 +17,9 @@ Baca halaman ini ketika Anda membangun di atas Claude Fable 5 atau Claude Opus 5
 
 Halaman terkait:
 
-* [Stop reason dan fallback](/docs/id/build-with-claude/handling-stop-reasons): daftar lengkap nilai `stop_reason`.
-* [Kredit fallback](/docs/id/build-with-claude/fallback-credit): bagaimana permintaan yang ditolak ditagih, dan cara menghindari membayar dua kali untuk caching prompt pada percobaan ulang.
-* [Middleware SDK](/docs/id/cli-sdks-libraries/middleware): helper SDK yang membungkus semua ini.
+* [Stop reason dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons): daftar lengkap nilai `stop_reason`.
+* [Kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit): bagaimana permintaan yang ditolak ditagih, dan cara menghindari membayar dua kali untuk caching prompt pada percobaan ulang.
+* [Middleware SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/middleware): helper SDK yang membungkus semua ini.
 * [Cookbook fallback dan penagihan](https://platform.claude.com/cookbook/fable-5-fallback-billing-guide): contoh lengkap dari awal hingga akhir.
 
 Penyiapan paling sederhana, dalam beta di Claude API: atur `fallbacks` ke `"default"`, dan API mencoba ulang permintaan yang ditolak pada model fallback yang direkomendasikan Anthropic untuk kategori penolakannya. Untuk kategori tanpa fallback yang direkomendasikan, penolakan tetap berlaku.
@@ -192,7 +192,7 @@ Objek `stop_details` menjelaskan penolakan tersebut:
 | `"cyber"`                | Permintaan dapat memungkinkan bahaya siber, seperti pengembangan malware atau exploit. Pekerjaan keamanan siber yang tidak berbahaya juga dapat memicu kategori ini.                                                                                  |
 | `"bio"`                  | Permintaan dapat memungkinkan bahaya biologis, seperti metode laboratorium yang berbahaya. Pekerjaan ilmu hayati yang bermanfaat juga dapat memicu kategori ini.                                                                                      |
 | `"frontier_llm"`         | Permintaan dapat membantu pengembangan model AI pesaing, yang dibatasi berdasarkan [ketentuan komersial Anthropic](https://www.anthropic.com/legal/commercial-terms). Pekerjaan machine learning yang tidak berbahaya juga dapat memicu kategori ini. |
-| `"reasoning_extraction"` | Permintaan meminta model untuk mereproduksi penalaran internalnya dalam teks respons. Untuk mendapatkan penalaran dalam bentuk terstruktur, gunakan [adaptive thinking](/docs/id/build-with-claude/thinking).                                         |
+| `"reasoning_extraction"` | Permintaan meminta model untuk mereproduksi penalaran internalnya dalam teks respons. Untuk mendapatkan penalaran dalam bentuk terstruktur, gunakan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking).              |
 | `"general_harms"`        | Permintaan dapat terkait dengan area yang ditentukan sebagai berbahaya. Pekerjaan yang tidak berbahaya terkadang dapat memicu kategori ini.                                                                                                           |
 
 Penolakan dapat tiba sebelum output apa pun, atau di tengah stream setelah output parsial. Dalam kedua kasus, perlakukan output parsial apa pun sebagai tidak lengkap dan buang.
@@ -205,20 +205,20 @@ Penolakan dapat tiba sebelum output apa pun, atau di tengah stream setelah outpu
 
 Ada tiga cara untuk mencoba ulang permintaan yang ditolak pada model lain. Pilihan yang tepat bergantung pada di mana Anda berjalan dan seberapa banyak kontrol yang Anda butuhkan.
 
-| Situasi Anda                                   | Gunakan                                                                                     | Alasan                                                                   |
-| ---------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| Claude API, penyiapan paling sederhana         | [Fallback sisi server](#server-side-fallback)                                               | Satu permintaan, satu respons. API menangani percobaan ulang.            |
-| Platform apa pun, menggunakan SDK Anthropic    | [Middleware SDK](#client-side-fallback)                                                     | Konfigurasikan sekali di klien. Percobaan ulang terjadi secara otomatis. |
-| HTTP mentah atau logika percobaan ulang kustom | Percobaan ulang manual dengan [kredit fallback](/docs/id/build-with-claude/fallback-credit) | Kontrol penuh. Kredit fallback menjaga biaya tetap rendah.               |
+| Situasi Anda                                   | Gunakan                                                                                                                  | Alasan                                                                   |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| Claude API, penyiapan paling sederhana         | [Fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) | Satu permintaan, satu respons. API menangani percobaan ulang.            |
+| Platform apa pun, menggunakan SDK Anthropic    | [Middleware SDK](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback)       | Konfigurasikan sekali di klien. Percobaan ulang terjadi secara otomatis. |
+| HTTP mentah atau logika percobaan ulang kustom | Percobaan ulang manual dengan [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit)   | Kontrol penuh. Kredit fallback menjaga biaya tetap rendah.               |
 
-Fallback sisi server dan middleware SDK menerapkan kredit fallback untuk Anda. Anda hanya memerlukan halaman [Kredit fallback](/docs/id/build-with-claude/fallback-credit) ketika Anda membangun percobaan ulang sendiri.
+Fallback sisi server dan middleware SDK menerapkan kredit fallback untuk Anda. Anda hanya memerlukan halaman [Kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) ketika Anda membangun percobaan ulang sendiri.
 
 ## Fallback sisi server
 
 Fallback sisi server mencoba ulang permintaan yang ditolak di dalam satu panggilan API. Dalam mode default, ketika model utama menolak dan kategori penolakan memiliki fallback yang direkomendasikan, API menjalankan permintaan yang sama pada model yang direkomendasikan Anthropic untuk kategori tersebut. Anda juga dapat menyebutkan hingga tiga model fallback Anda sendiri (di bawah). Dengan cara apa pun, Anda mendapatkan kembali satu respons yang menyebutkan model yang menjawab, sehingga pengguna Anda mendapatkan jawaban dalam satu perjalanan bolak-balik.
 
 <Note>
-  Fallback sisi server dalam beta di Claude API. Parameter `fallbacks` tidak didukung pada [Message Batches API](/docs/id/build-with-claude/batch-processing) (item batch yang menyertakannya kembali sebagai hasil error) dan tidak tersedia di Amazon Bedrock, Google Cloud, atau Microsoft Foundry. Pada platform tersebut, gunakan [fallback sisi klien dengan middleware SDK](#client-side-fallback) sebagai gantinya.
+  Fallback sisi server dalam beta di Claude API. Parameter `fallbacks` tidak didukung pada [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing) (item batch yang menyertakannya kembali sebagai hasil error) dan tidak tersedia di Amazon Bedrock, Google Cloud, atau Microsoft Foundry. Pada platform tersebut, gunakan [fallback sisi klien dengan middleware SDK](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) sebagai gantinya.
 </Note>
 
 ### Membuat permintaan
@@ -480,7 +480,7 @@ Atur parameter `fallbacks` ke string `"default"` dan kirim header beta `server-s
 
 Anthropic menetapkan pengamanan untuk setiap model secara individual dan untuk setiap kategori kebijakan, sesuai dengan kemampuan model: bergantung pada kategorinya, permintaan yang ditandai dapat dialihkan ke model yang kurang mampu atau ditolak. Mode `"default"` mengkodekan rekomendasi per-model, per-kategori ini untuk Anda, sehingga permintaan yang ditolak dicoba ulang pada model yang direkomendasikan Anthropic untuk kategori tersebut. Fallback terlihat dengan cara apa pun: respons menyebutkan model yang melayaninya, dan blok konten `fallback` menandai peralihan.
 
-Perutean diterapkan di sisi server dan tidak dipublikasikan per model pada [Models API](/docs/id/api/models/list). Untuk melihat model mana yang melayani permintaan yang ditolak, periksa field `model` tingkat atas pada respons dan cari entri `fallback_message` di `usage.iterations`, seperti yang dilakukan contoh-contoh di halaman ini.
+Perutean diterapkan di sisi server dan tidak dipublikasikan per model pada [Models API](https://platform.claude.com/docs/id/api/models/list). Untuk melihat model mana yang melayani permintaan yang ditolak, periksa field `model` tingkat atas pada respons dan cari entri `fallback_message` di `usage.iterations`, seperti yang dilakukan contoh-contoh di halaman ini.
 
 Hanya penolakan safety classifier yang memicu fallback. Batas laju, kelebihan beban, atau error server pada model yang diminta dikembalikan kepada Anda apa adanya.
 
@@ -629,7 +629,7 @@ Alih-alih perutean default, Anda dapat mengatur `fallbacks` ke daftar hingga tig
 Beberapa aturan berlaku untuk daftar `fallbacks`:
 
 * Entri dicoba secara berurutan. Masing-masing harus berbeda dari entri lainnya dan dari model yang diminta.
-* Setiap entri harus merupakan salah satu target yang diizinkan untuk model yang diminta. Dengan header beta diatur, daftar tersebut dipublikasikan sebagai `allowed_fallback_models` pada entri model di [Models API](/docs/id/api/models/list).
+* Setiap entri harus merupakan salah satu target yang diizinkan untuk model yang diminta. Dengan header beta diatur, daftar tersebut dipublikasikan sebagai `allowed_fallback_models` pada entri model di [Models API](https://platform.claude.com/docs/id/api/models/list).
 * Setiap entri menyebutkan `model` dan dapat menimpa `max_tokens`, `thinking`, `output_config`, dan `speed` hanya untuk percobaan tersebut.
 * Permintaan harus valid sebagai permintaan langsung ke setiap model yang disebutkan. Jika model fallback tidak mendukung fitur yang digunakan permintaan, API menolak permintaan di awal.
 * Seperti pada mode default, hanya penolakan safety classifier yang memicu fallback. Batas laju, kelebihan beban, atau error server pada model yang diminta dikembalikan kepada Anda apa adanya.
@@ -1114,7 +1114,7 @@ Berikan middleware ke konstruktor klien, dan bagikan satu instans `BetaFallbackS
 
 * Percobaan ulang menelusuri daftar fallback Anda secara berurutan. Model fallback yang juga menolak meneruskan permintaan ke entri berikutnya.
 * Ketika setiap model dalam daftar telah menolak, middleware mengembalikan penolakan terakhir (respons penolakan model terakhir) alih-alih memunculkan error.
-* [Blok thinking dari Claude Fable 5](/docs/id/build-with-claude/thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5) diteruskan tanpa perubahan: setiap percobaan ulang mengirim ulang body permintaan asli Anda, dan satu-satunya blok yang dihapus middleware dari riwayat percakapan pada permintaan berikutnya adalah blok batas `fallback` yang ditambahkannya sendiri.
+* [Blok thinking dari Claude Fable 5](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5) diteruskan tanpa perubahan: setiap percobaan ulang mengirim ulang body permintaan asli Anda, dan satu-satunya blok yang dihapus middleware dari riwayat percakapan pada permintaan berikutnya adalah blok batas `fallback` yang ditambahkannya sendiri.
 * Respons yang dilayani melalui middleware menyertakan blok konten `fallback` pada setiap batas model, sama seperti respons fallback sisi server. Middleware mengelola blok-blok tersebut untuk Anda pada permintaan berikutnya.
 * Model yang menerima dicatat di `BetaFallbackState`, sehingga permintaan lanjutan yang berbagi state tersebut tetap terikat padanya alih-alih menanyakan kembali model yang menolak.
 
@@ -1131,9 +1131,9 @@ Berikan middleware ke konstruktor klien, dan bagikan satu instans `BetaFallbackS
     </Step>
 
     <Step title="Kirim ulang pada model fallback">
-      Kirim permintaan yang sama dengan `model` diatur ke model fallback, seperti Claude Opus 4.8. Permintaan yang ditolak oleh classifier Claude Fable 5 biasanya dapat dilayani oleh model lain. Cara Anda menangani riwayat percakapan bergantung pada apakah Anda menukarkan [kredit fallback](/docs/id/build-with-claude/fallback-credit):
+      Kirim permintaan yang sama dengan `model` diatur ke model fallback, seperti Claude Opus 4.8. Permintaan yang ditolak oleh classifier Claude Fable 5 biasanya dapat dilayani oleh model lain. Cara Anda menangani riwayat percakapan bergantung pada apakah Anda menukarkan [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit):
 
-      * **Tidak menukarkan kredit:** Anda dapat terlebih dahulu menghapus [blok thinking dari Claude Fable 5](/docs/id/build-with-claude/thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5) dari riwayat percakapan. Model lain mengabaikannya, dan penghapusan menjaga permintaan lintas model tetap minimal.
+      * **Tidak menukarkan kredit:** Anda dapat terlebih dahulu menghapus [blok thinking dari Claude Fable 5](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5) dari riwayat percakapan. Model lain mengabaikannya, dan penghapusan menjaga permintaan lintas model tetap minimal.
       * **Menukarkan kredit:** kirim body tanpa perubahan, karena penukaran memerlukan kecocokan yang persis.
     </Step>
 
@@ -1142,12 +1142,12 @@ Berikan middleware ke konstruktor klien, dan bagikan satu instans `BetaFallbackS
     </Step>
   </Steps>
 
-  Percobaan ulang manual menulis cache prompt model fallback dari awal, yang biayanya lebih besar daripada membaca cache yang sudah ada. [Kredit fallback](/docs/id/build-with-claude/fallback-credit) mengembalikan biaya tersebut; tukarkan pada setiap percobaan ulang yang Anda bangun sendiri.
+  Percobaan ulang manual menulis cache prompt model fallback dari awal, yang biayanya lebih besar daripada membaca cache yang sudah ada. [Kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) mengembalikan biaya tersebut; tukarkan pada setiap percobaan ulang yang Anda bangun sendiri.
 </Accordion>
 
 ## Penolakan dalam Message Batches
 
-Permintaan yang ditolak dalam [Message Batch](/docs/id/build-with-claude/batch-processing) kembali sebagai `result.type: "succeeded"` dengan `stop_reason: "refusal"`. Hasil batch membawa objek `stop_details` yang sama dengan respons sinkron, sehingga Anda dapat mendeteksi penolakan melalui `stop_reason` atau `stop_details.type`. Satu perbedaan: penolakan batch tidak menghasilkan kredit fallback, sehingga `stop_details` pada hasil batch tidak pernah menyertakan `fallback_credit_token`.
+Permintaan yang ditolak dalam [Message Batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing) kembali sebagai `result.type: "succeeded"` dengan `stop_reason: "refusal"`. Hasil batch membawa objek `stop_details` yang sama dengan respons sinkron, sehingga Anda dapat mendeteksi penolakan melalui `stop_reason` atau `stop_details.type`. Satu perbedaan: penolakan batch tidak menghasilkan kredit fallback, sehingga `stop_details` pada hasil batch tidak pernah menyertakan `fallback_credit_token`.
 
 Fallback sisi server tidak tersedia untuk batch (permintaan batch yang menyertakan `fallbacks` menghasilkan hasil error per-item). Untuk mencoba ulang item batch yang ditolak:
 
@@ -1168,19 +1168,19 @@ Fallback sisi server tidak tersedia untuk batch (permintaan batch yang menyertak
 ## Langkah selanjutnya
 
 <CardGroup>
-  <Card title="Kredit fallback" icon="scales" href="/docs/id/build-with-claude/fallback-credit">
+  <Card title="Kredit fallback" icon="scales" href="https://platform.claude.com/docs/id/build-with-claude/fallback-credit">
     Hindari membayar biaya cache prompt dua kali ketika Anda membangun percobaan ulang sendiri.
   </Card>
 
-  <Card title="Stop reason dan fallback" icon="code" href="/docs/id/build-with-claude/handling-stop-reasons">
+  <Card title="Stop reason dan fallback" icon="code" href="https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons">
     Setiap nilai `stop_reason` dan cara menanganinya.
   </Card>
 
-  <Card title="Middleware SDK" icon="settings" href="/docs/id/cli-sdks-libraries/middleware">
+  <Card title="Middleware SDK" icon="settings" href="https://platform.claude.com/docs/id/cli-sdks-libraries/middleware">
     Cara kerja middleware SDK, termasuk helper refusal-fallback.
   </Card>
 
-  <Card title="Panduan migrasi" icon="arrow-right" href="/docs/id/about-claude/models/migration-guide">
+  <Card title="Panduan migrasi" icon="arrow-right" href="https://platform.claude.com/docs/id/about-claude/models/migration-guide">
     Pindahkan aplikasi yang ada ke Claude Fable 5.
   </Card>
 </CardGroup>

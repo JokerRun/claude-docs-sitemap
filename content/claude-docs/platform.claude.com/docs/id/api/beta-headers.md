@@ -1,20 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/beta-headers
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: e63b8b15390a0accfeeb37bfb895870d5386a4eba05e8557e125771b831d8866
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 1b098e03b02674a3bee364d83b43898d9380817a692c8bdbad3730e8531c4dec
 ---
 
-# Header beta
-
-Akses fitur eksperimental sebelum ketersediaan umum dengan header `anthropic-beta` atau parameter `betas` pada SDK.
-
+---
+title: Header beta
+url: https://platform.claude.com/docs/id/api/beta-headers
+description: Akses fitur eksperimental sebelum ketersediaan umum dengan header `anthropic-beta` atau parameter `betas` pada SDK.
 ---
 
 Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model baru sebelum menjadi bagian dari API standar.
 
 <Info>
-  Setiap [SDK klien](/docs/id/cli-sdks-libraries/overview) menyediakan namespace `beta` untuk memanggil API dengan fitur beta diaktifkan.
+  Setiap [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) menyediakan namespace `beta` untuk memanggil API dengan fitur beta diaktifkan.
 </Info>
 
 ## Cara menggunakan header beta
@@ -29,7 +29,7 @@ anthropic-beta: BETA_FEATURE_NAME
 content-type: application/json
 ```
 
-Dokumentasi setiap fitur menyebutkan nama beta yang tepat untuk dikirim. [Ikhtisar API](/docs/id/api/overview) mencantumkan API yang saat ini dalam tahap beta.
+Dokumentasi setiap fitur menyebutkan nama beta yang tepat untuk dikirim. [Ikhtisar API](https://platform.claude.com/docs/id/api/overview) mencantumkan API yang saat ini dalam tahap beta.
 
 Contoh berikut menunjukkan permintaan yang sama dengan cURL, CLI `ant`, dan SDK. SDK menerima nama beta dalam parameter `betas` dan mengirimkan header `anthropic-beta` untuk Anda:
 
@@ -187,7 +187,7 @@ Beberapa API beta terbatas pada endpoint tertentu dan memerlukan header beta khu
 | `/v1/tunnels`                                    | `mcp-tunnels-2026-06-22`    |
 | `/v1/memory_stores` dan sub-resource             | `agent-memory-2026-07-22`   |
 
-Namespace `beta` pada SDK menambahkan header ini secara otomatis. Tambahkan sendiri hanya saat membuat permintaan HTTP mentah. Lihat [ikhtisar Managed Agents](/docs/id/managed-agents/overview), [Menggunakan memori agen](/docs/id/managed-agents/memory), dan [referensi MCP tunnels](/docs/id/agents-and-tools/mcp-tunnels/reference#tunnels-api) untuk detailnya.
+Namespace `beta` pada SDK menambahkan header ini secara otomatis. Tambahkan sendiri hanya saat membuat permintaan HTTP mentah. Lihat [ikhtisar Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), [Menggunakan memori agen](https://platform.claude.com/docs/id/managed-agents/memory), dan [referensi MCP tunnels](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference#tunnels-api) untuk detailnya.
 
 Header khusus endpoint yang berlaku untuk endpoint yang sama tidak selalu dapat digabungkan. Pada endpoint memory store, `agent-memory-2026-07-22` menggantikan `managed-agents-2026-04-01`: mengirim keduanya pada permintaan yang sama akan mengembalikan error `400`. SDK klien mengirimkan header yang benar untuk setiap endpoint secara otomatis.
 
@@ -212,16 +212,16 @@ Jika Anda menggunakan nama beta yang tidak valid, atau beta yang tidak dapat dia
 
 ## Mendapatkan bantuan
 
-Untuk pembaruan fitur beta, lihat [catatan rilis](/docs/id/release-notes/overview). Untuk bantuan terkait masalah produksi, hubungi [dukungan](https://support.claude.com/).
+Untuk pembaruan fitur beta, lihat [catatan rilis](https://platform.claude.com/docs/id/release-notes/overview). Untuk bantuan terkait masalah produksi, hubungi [dukungan](https://support.claude.com/).
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Error" icon="info" href="/docs/id/api/errors">
+  <Card title="Error" icon="info" href="https://platform.claude.com/docs/id/api/errors">
     Pahami kode status HTTP, bentuk respons error, dan ID permintaan yang dikembalikan oleh Claude API, serta tangani error dengan exception bertipe dari SDK.
   </Card>
 
-  <Card title="Ikhtisar API" icon="compass" href="/docs/id/api/overview">
+  <Card title="Ikhtisar API" icon="compass" href="https://platform.claude.com/docs/id/api/overview">
     Jelajahi fitur-fitur Claude API, termasuk API yang saat ini dalam tahap beta.
   </Card>
 </CardGroup>

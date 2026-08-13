@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/usage/list
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 0e2511ff1a1d884c9b4a22922d3f5c39f3c8df117135d5f6d43bfcdb39de22ae
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 13502fe6e28a7f3e015f8aece56c5de64c8e6378ea3d18ff07d39c8fc208584f
+---
+
+---
+title: Get Token Usage Over Time
+url: https://platform.claude.com/docs/en/api/admin/analytics/usage/list
 ---
 
 ## Get Token Usage Over Time

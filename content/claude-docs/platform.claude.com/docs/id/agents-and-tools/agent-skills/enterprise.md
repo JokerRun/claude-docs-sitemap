@@ -1,23 +1,23 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterprise
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 9ba894ccb938690d0520e32a97b1c840b0c7e1c78dac9ab0c8a2d5384fe51cb5
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 8c314785d5a5daf8b79c0618f16797879315a61811dc57c0494585346be78f12
 ---
 
-# Skills untuk enterprise
-
-Tata kelola, tinjauan keamanan, evaluasi, dan panduan organisasi untuk menerapkan Agent Skills dalam skala enterprise.
-
+---
+title: Skills untuk enterprise
+url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterprise
+description: Tata kelola, tinjauan keamanan, evaluasi, dan panduan organisasi untuk menerapkan Agent Skills dalam skala enterprise.
 ---
 
-Panduan ini ditujukan untuk admin dan arsitek enterprise yang perlu mengatur tata kelola Agent Skills di seluruh organisasi. Panduan ini mencakup cara memeriksa, mengevaluasi, menerapkan, dan mengelola Skills dalam skala besar. Untuk panduan penulisan, lihat [praktik terbaik](/docs/id/agents-and-tools/agent-skills/best-practices). Untuk detail arsitektur, lihat [ikhtisar Skills](/docs/id/agents-and-tools/agent-skills/overview).
+Panduan ini ditujukan untuk admin dan arsitek enterprise yang perlu mengatur tata kelola Agent Skills di seluruh organisasi. Panduan ini mencakup cara memeriksa, mengevaluasi, menerapkan, dan mengelola Skills dalam skala besar. Untuk panduan penulisan, lihat [praktik terbaik](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices). Untuk detail arsitektur, lihat [ikhtisar Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview).
 
 ## Tinjauan keamanan dan pemeriksaan
 
 Menerapkan Skills di enterprise memerlukan jawaban atas dua pertanyaan yang berbeda:
 
-1. **Apakah Skills aman secara umum?** Lihat bagian [pertimbangan keamanan](/docs/id/agents-and-tools/agent-skills/overview#security-considerations) di ikhtisar untuk detail keamanan tingkat platform.
+1. **Apakah Skills aman secara umum?** Lihat bagian [pertimbangan keamanan](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#security-considerations) di ikhtisar untuk detail keamanan tingkat platform.
 2. **Bagaimana cara memeriksa Skill tertentu?** Gunakan penilaian risiko dan daftar periksa tinjauan berikut.
 
 ### Penilaian tingkat risiko
@@ -71,7 +71,7 @@ Tetapkan gerbang persetujuan untuk dimensi-dimensi berikut sebelum menerapkan Sk
 
 Wajibkan penulis Skill untuk menyerahkan rangkaian evaluasi dengan 3–5 kueri representatif per Skill, yang mencakup kasus di mana Skill harus terpicu, tidak boleh terpicu, dan kasus tepi yang ambigu. Wajibkan pengujian di seluruh model yang digunakan organisasi Anda (Haiku, Sonnet, Opus), karena efektivitas Skill bervariasi menurut model.
 
-Untuk panduan terperinci tentang membangun evaluasi, lihat [evaluasi dan iterasi](/docs/id/agents-and-tools/agent-skills/best-practices#evaluation-and-iteration) di praktik terbaik. Untuk metodologi evaluasi umum, lihat [mengembangkan kasus uji](/docs/id/test-and-evaluate/develop-tests).
+Untuk panduan terperinci tentang membangun evaluasi, lihat [evaluasi dan iterasi](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices#evaluation-and-iteration) di praktik terbaik. Untuk metodologi evaluasi umum, lihat [mengembangkan kasus uji](https://platform.claude.com/docs/id/test-and-evaluate/develop-tests).
 
 ### Menggunakan evaluasi untuk keputusan siklus hidup
 
@@ -90,7 +90,7 @@ Hasil evaluasi memberi sinyal kapan harus bertindak:
   </Step>
 
   <Step title="Buat dan tinjau">
-    Pastikan penulis Skill mengikuti [praktik terbaik](/docs/id/agents-and-tools/agent-skills/best-practices). Wajibkan tinjauan keamanan menggunakan [daftar periksa tinjauan](#review-checklist). Wajibkan rangkaian evaluasi sebelum persetujuan. Tetapkan pemisahan tugas: penulis Skill tidak boleh menjadi peninjau untuk Skill mereka sendiri.
+    Pastikan penulis Skill mengikuti [praktik terbaik](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices). Wajibkan tinjauan keamanan menggunakan [daftar periksa tinjauan](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterprise#review-checklist). Wajibkan rangkaian evaluasi sebelum persetujuan. Tetapkan pemisahan tugas: penulis Skill tidak boleh menjadi peninjau untuk Skill mereka sendiri.
   </Step>
 
   <Step title="Uji">
@@ -98,7 +98,7 @@ Hasil evaluasi memberi sinyal kapan harus bertindak:
   </Step>
 
   <Step title="Terapkan">
-    Unggah melalui Skills API untuk akses di seluruh workspace. Lihat [Menggunakan Skills dengan API](/docs/id/build-with-claude/skills-guide) untuk pengunggahan dan manajemen versi. Dokumentasikan Skill di registri internal Anda dengan tujuan, pemilik, dan versi.
+    Unggah melalui Skills API untuk akses di seluruh workspace. Lihat [Menggunakan Skills dengan API](https://platform.claude.com/docs/id/build-with-claude/skills-guide) untuk pengunggahan dan manajemen versi. Dokumentasikan Skill di registri internal Anda dengan tujuan, pemilik, dan versi.
   </Step>
 
   <Step title="Pantau">
@@ -116,7 +116,7 @@ Hasil evaluasi memberi sinyal kapan harus bertindak:
 
 Sebagai pedoman umum, batasi jumlah Skills yang dimuat secara bersamaan untuk mempertahankan akurasi recall yang andal. Metadata setiap Skill (nama dan deskripsi) bersaing untuk mendapatkan perhatian dalam prompt sistem. Dengan terlalu banyak Skills yang aktif, Claude mungkin gagal memilih Skill yang tepat atau melewatkan Skill yang relevan sama sekali. Gunakan rangkaian evaluasi Anda untuk mengukur akurasi recall saat Anda menambahkan Skills, dan berhenti menambahkan ketika kinerja menurun.
 
-Perhatikan bahwa permintaan API mendukung maksimum 8 Skills untuk setiap permintaan (lihat [Menggunakan Skills dengan API](/docs/id/build-with-claude/skills-guide)). Jika suatu peran memerlukan lebih banyak Skills daripada yang didukung oleh satu permintaan, pertimbangkan untuk mengonsolidasikan Skills yang sempit menjadi Skills yang lebih luas atau merutekan permintaan ke kumpulan Skill yang berbeda berdasarkan jenis tugas.
+Perhatikan bahwa permintaan API mendukung maksimum 8 Skills untuk setiap permintaan (lihat [Menggunakan Skills dengan API](https://platform.claude.com/docs/id/build-with-claude/skills-guide)). Jika suatu peran memerlukan lebih banyak Skills daripada yang didukung oleh satu permintaan, pertimbangkan untuk mengonsolidasikan Skills yang sempit menjadi Skills yang lebih luas atau merutekan permintaan ke kumpulan Skill yang berbeda berdasarkan jenis tugas.
 
 ### Mulai dari yang spesifik, konsolidasikan kemudian
 
@@ -133,7 +133,7 @@ Dorong tim untuk memulai dengan Skills yang sempit dan spesifik untuk alur kerja
 
 ### Penamaan dan katalogisasi
 
-Gunakan konvensi penamaan yang konsisten di seluruh organisasi Anda. Bagian [konvensi penamaan](/docs/id/agents-and-tools/agent-skills/best-practices#naming-conventions) di praktik terbaik menyediakan panduan pemformatan.
+Gunakan konvensi penamaan yang konsisten di seluruh organisasi Anda. Bagian [konvensi penamaan](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices#naming-conventions) di praktik terbaik menyediakan panduan pemformatan.
 
 Pertahankan registri internal untuk setiap Skill dengan:
 
@@ -161,7 +161,7 @@ Simpan direktori Skill di Git untuk pelacakan riwayat, tinjauan kode melalui pul
 
 ### Distribusi berbasis API
 
-Skills API menyediakan distribusi dengan cakupan workspace. Skills yang diunggah melalui API tersedia untuk semua anggota workspace. Lihat [Menggunakan Skills dengan API](/docs/id/build-with-claude/skills-guide) untuk endpoint pengunggahan, pembuatan versi, dan manajemen.
+Skills API menyediakan distribusi dengan cakupan workspace. Skills yang diunggah melalui API tersedia untuk semua anggota workspace. Lihat [Menggunakan Skills dengan API](https://platform.claude.com/docs/id/build-with-claude/skills-guide) untuk endpoint pengunggahan, pembuatan versi, dan manajemen.
 
 ### Strategi pembuatan versi
 
@@ -176,20 +176,20 @@ Skills API menyediakan distribusi dengan cakupan workspace. Skills yang diunggah
   Skills kustom tidak tersinkronisasi antar permukaan. Skills yang diunggah ke API tidak tersedia di claude.ai atau di Claude Code, dan sebaliknya. Setiap permukaan memerlukan pengunggahan dan manajemen terpisah.
 </Warning>
 
-Pertahankan file sumber Skill di Git sebagai satu-satunya sumber kebenaran. Jika organisasi Anda menerapkan Skills di beberapa permukaan, terapkan proses sinkronisasi Anda sendiri untuk menjaga konsistensinya. Untuk detail lengkap, lihat [ketersediaan lintas permukaan](/docs/id/agents-and-tools/agent-skills/overview#cross-surface-availability).
+Pertahankan file sumber Skill di Git sebagai satu-satunya sumber kebenaran. Jika organisasi Anda menerapkan Skills di beberapa permukaan, terapkan proses sinkronisasi Anda sendiri untuk menjaga konsistensinya. Untuk detail lengkap, lihat [ketersediaan lintas permukaan](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#cross-surface-availability).
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Ikhtisar Agent Skills" icon="book-open" href="/docs/id/agents-and-tools/agent-skills/overview">
+  <Card title="Ikhtisar Agent Skills" icon="book-open" href="https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview">
     Detail arsitektur dan platform
   </Card>
 
-  <Card title="Praktik terbaik" icon="lightbulb" href="/docs/id/agents-and-tools/agent-skills/best-practices">
+  <Card title="Praktik terbaik" icon="lightbulb" href="https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices">
     Panduan penulisan untuk pembuat Skill
   </Card>
 
-  <Card title="Menggunakan Skills dengan API" icon="code" href="/docs/id/build-with-claude/skills-guide">
+  <Card title="Menggunakan Skills dengan API" icon="code" href="https://platform.claude.com/docs/id/build-with-claude/skills-guide">
     Unggah dan kelola Skills secara terprogram
   </Card>
 </CardGroup>

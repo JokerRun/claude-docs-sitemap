@@ -1,15 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 285921a9e312c46fc024086dd6ea42b664989a855fa086e1a9077221b2a0313b
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 7914cf90cb5ccd9cb6f42b37affe133dc6f3c131db579923ff55ebf21f6ab6aa
 ---
 
-# Penghitungan token
-
-Hitung token dalam sebuah pesan sebelum Anda mengirimkannya ke Claude. Gunakan jumlah token untuk mengelola batas laju dan biaya, membuat keputusan perutean model, dan menyesuaikan prompt dengan panjang target.
-
 ---
+title: Penghitungan token
+url: https://platform.claude.com/docs/id/build-with-claude/token-counting
+description: Hitung token dalam sebuah pesan sebelum Anda mengirimkannya ke Claude. Gunakan jumlah token untuk mengelola batas laju dan biaya, membuat keputusan perutean model, dan menyesuaikan prompt dengan panjang target.
+---
+
+## Compatibility
+- [ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention): eligible (excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))
+- Platforms: Claude API, Claude Platform on AWS, Amazon Bedrock, Google Cloud, Microsoft Foundry
 
 Penghitungan token memungkinkan Anda menentukan jumlah token dalam sebuah pesan sebelum Anda mengirimkannya ke Claude. Ini membantu Anda membuat keputusan yang tepat tentang prompt dan penggunaan Anda. Dengan penghitungan token, Anda dapat:
 
@@ -17,15 +21,11 @@ Penghitungan token memungkinkan Anda menentukan jumlah token dalam sebuah pesan 
 * Membuat keputusan perutean model yang cerdas
 * Mengoptimalkan prompt ke panjang tertentu
 
-<Note>
-  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
-</Note>
-
 ***
 
 ## Cara menghitung token pesan
 
-Endpoint [penghitungan token](/docs/id/api/messages-count-tokens) menerima daftar input terstruktur yang sama untuk membuat pesan, termasuk dukungan untuk prompt sistem, [alat](/docs/id/agents-and-tools/tool-use/overview), [gambar](/docs/id/build-with-claude/vision), dan [PDF](/docs/id/build-with-claude/pdf-support). Respons berisi jumlah total token input.
+Endpoint [penghitungan token](https://platform.claude.com/docs/id/api/messages-count-tokens) menerima daftar input terstruktur yang sama seperti untuk membuat pesan, termasuk dukungan untuk prompt sistem, [alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), [gambar](https://platform.claude.com/docs/id/build-with-claude/vision), dan [PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support). Respons berisi jumlah total token input.
 
 <Note>
   Jumlah token adalah sebuah **estimasi**. Dalam beberapa kasus, jumlah token input aktual yang digunakan saat membuat pesan mungkin berbeda sedikit.
@@ -35,10 +35,10 @@ Endpoint [penghitungan token](/docs/id/api/messages-count-tokens) menerima dafta
 
 ### Model yang didukung
 
-Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitungan token, termasuk Claude Opus 5 dan Claude Sonnet 5.
+Semua [model aktif](https://platform.claude.com/docs/id/about-claude/models/overview) mendukung penghitungan token, termasuk Claude Opus 5 dan Claude Sonnet 5.
 
 <Note>
-  Claude 4.7 dan model yang lebih baru serta Claude Mythos Preview menggunakan tokenizer yang lebih baru. Teks input yang sama menghasilkan sekitar 30 persen lebih banyak token dibandingkan model sebelumnya. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Hitung ulang prompt terhadap model yang akan Anda gunakan daripada menggunakan kembali jumlah yang diukur terhadap model sebelumnya.
+  Model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview menggunakan tokenizer yang lebih baru. Teks input yang sama menghasilkan sekitar 30 persen lebih banyak token dibandingkan pada model sebelumnya. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Hitung ulang prompt terhadap model yang akan Anda gunakan, alih-alih menggunakan kembali jumlah yang diukur terhadap model sebelumnya.
 </Note>
 
 ### Menghitung token dalam pesan dasar
@@ -191,7 +191,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
 ### Menghitung token dalam pesan dengan alat
 
 <Note>
-  Jumlah token [alat server](/docs/id/agents-and-tools/tool-use/server-tools) hanya berlaku untuk panggilan sampling pertama.
+  Jumlah token [alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) hanya berlaku untuk panggilan sampling pertama.
 </Note>
 
 <CodeGroup>
@@ -477,7 +477,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   ```bash cURL
   #!/bin/sh
 
-  IMAGE_URL="https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
+  IMAGE_URL="https://platform.claude.com/docs/images/vision-example.jpg"
   IMAGE_MEDIA_TYPE="image/jpeg"
   IMAGE_BASE64=$(curl -s "$IMAGE_URL" | base64 | tr -d '\n')
 
@@ -503,8 +503,8 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   ```
 
   ```bash CLI
-  IMAGE_URL="https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
-  curl -s "$IMAGE_URL" -o ./ant.jpg
+  IMAGE_URL="https://platform.claude.com/docs/images/vision-example.jpg"
+  curl -s "$IMAGE_URL" -o ./vision-example.jpg
 
   ant messages count-tokens <<'YAML'
   model: claude-opus-5
@@ -515,7 +515,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
           source:
             type: base64
             media_type: image/jpeg
-            data: "@./ant.jpg"
+            data: "@./vision-example.jpg"
         - type: text
           text: Describe this image
   YAML
@@ -525,7 +525,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   import base64
   import httpx
 
-  image_url = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
+  image_url = "https://platform.claude.com/docs/images/vision-example.jpg"
   image_media_type = "image/jpeg"
   image_data = base64.standard_b64encode(httpx.get(image_url).content).decode("utf-8")
 
@@ -556,8 +556,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   ```typescript TypeScript
   const anthropic = new Anthropic();
 
-  const imageUrl =
-    "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
+  const imageUrl = "https://platform.claude.com/docs/images/vision-example.jpg";
   const imageMediaType = "image/jpeg";
   const imageArrayBuffer = await (await fetch(imageUrl)).arrayBuffer();
   const imageData = Buffer.from(imageArrayBuffer).toString("base64");
@@ -597,7 +596,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
 
   AnthropicClient client = new();
 
-  string imageUrl = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
+  string imageUrl = "https://platform.claude.com/docs/images/vision-example.jpg";
 
   using HttpClient httpClient = new();
   byte[] imageBytes = await httpClient.GetByteArrayAsync(imageUrl);
@@ -631,7 +630,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   ```
 
   ```go Go
-  imageURL := "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
+  imageURL := "https://platform.claude.com/docs/images/vision-example.jpg"
 
   req, err := http.NewRequest("GET", imageURL, nil)
   if err != nil {
@@ -678,7 +677,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       String imageUrl =
-        "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
+        "https://platform.claude.com/docs/images/vision-example.jpg";
       String imageMediaType = "image/jpeg";
 
       HttpClient httpClient = HttpClient.newHttpClient();
@@ -713,7 +712,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   ```
 
   ```php PHP
-  $imageUrl = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
+  $imageUrl = "https://platform.claude.com/docs/images/vision-example.jpg";
   $imageMediaType = "image/jpeg";
   $imageData = base64_encode(file_get_contents($imageUrl));
 
@@ -745,7 +744,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   require "base64"
   require "net/http"
 
-  image_url = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
+  image_url = "https://platform.claude.com/docs/images/vision-example.jpg"
   image_media_type = "image/jpeg"
 
   uri = URI(image_url)
@@ -777,16 +776,16 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
 </CodeGroup>
 
 ```json Output
-{ "input_tokens": 1551 }
+{ "input_tokens": 1028 }
 ```
 
 ### Menghitung token dalam pesan dengan pemikiran
 
 <Note>
-  Lihat [Pemikiran dan jendela konteks](/docs/id/build-with-claude/thinking#thinking-and-the-context-window) untuk detail lebih lanjut.
+  Lihat [Pemikiran dan jendela konteks](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-the-context-window) untuk detail lebih lanjut.
 
-  * Blok pemikiran dari giliran asisten **sebelumnya** diabaikan dan **tidak** dihitung dalam token input Anda
-  * Pemikiran giliran asisten **saat ini** **dihitung** dalam token input Anda
+  * Blok pemikiran dari giliran asisten **sebelumnya** diabaikan dan **tidak** dihitung terhadap token input Anda
+  * Pemikiran giliran asisten **saat ini** **dihitung** terhadap token input Anda
 </Note>
 
 <CodeGroup>
@@ -930,10 +929,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   using Anthropic;
   using Anthropic.Models.Messages;
 
-  AnthropicClient client = new()
-  {
-      ApiKey = Environment.GetEnvironmentVariable("ANTHROPIC_API_KEY")
-  };
+  AnthropicClient client = new();
 
   var parameters = new MessageCountTokensParams
   {
@@ -1121,7 +1117,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
 ### Menghitung token dalam pesan dengan PDF
 
 <Note>
-  Penghitungan token mendukung PDF dengan [batasan dukungan PDF](/docs/id/build-with-claude/pdf-support#pdf-support-limitations) yang sama seperti Messages API.
+  Penghitungan token mendukung PDF dengan [batasan dukungan PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support#pdf-support-limitations) yang sama seperti Messages API.
 </Note>
 
 <CodeGroup>
@@ -1405,7 +1401,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
 
 ## Jumlah token pada Claude Fable 5 dan Claude Mythos 5
 
-Claude Fable 5 dan Claude Mythos 5 menggunakan tokenizer yang diperkenalkan dengan Claude Opus 4.7, yang menghasilkan sekitar 30 persen lebih banyak token dibandingkan model sebelum Claude Opus 4.7 untuk teks yang sama. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Endpoint penghitungan token mengembalikan jumlah berdasarkan tokenizer dari `model` yang Anda berikan, jadi untuk mengukur perbedaan pada beban kerja Anda, hitung permintaan yang sama dua kali: sekali dengan model Anda saat ini dan sekali dengan `model: "claude-fable-5"` (atau `"claude-mythos-5"`), lalu bandingkan kedua nilai `input_tokens`.
+Claude Fable 5 dan Claude Mythos 5 menggunakan tokenizer yang diperkenalkan dengan Claude Opus 4.7, yang menghasilkan sekitar 30 persen lebih banyak token dibandingkan model sebelum Claude Opus 4.7 untuk teks yang sama. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Endpoint penghitungan token mengembalikan jumlah berdasarkan tokenizer dari `model` yang Anda berikan, jadi untuk mengukur perbedaan pada beban kerja Anda, hitung permintaan yang sama dua kali: sekali dengan model Anda saat ini dan sekali dengan `model: "claude-fable-5"` (atau `"claude-mythos-5"`), lalu bandingkan kedua nilai `input_tokens` tersebut.
 
 <Note>
   **Penagihan dan migrasi:** Penggunaan dan penagihan pada Claude Fable 5 dan Claude Mythos 5 mencerminkan jumlah dari tokenizer ini. Jika Anda bermigrasi dari model sebelum Claude Opus 4.7, konten yang sama mengonsumsi sekitar 30 persen lebih banyak token. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Saat memigrasikan beban kerja ke Claude Fable 5 dan Claude Mythos 5, jangan gunakan kembali jumlah token yang diukur pada model sebelum Claude Opus 4.7 untuk memperkirakan biaya atau kesesuaian jendela konteks. Hitung prompt Anda dengan `model: "claude-fable-5"` (atau `"claude-mythos-5"`).
@@ -1415,7 +1411,7 @@ Claude Fable 5 dan Claude Mythos 5 menggunakan tokenizer yang diperkenalkan deng
 
 ## Harga dan batas laju
 
-Penghitungan token **gratis untuk digunakan** tetapi tunduk pada batas laju permintaan per menit berdasarkan [tingkat penggunaan](/docs/id/api/rate-limits#rate-limits) Anda. Jika Anda memerlukan batas yang lebih tinggi, gunakan **Request rate limit increase** pada halaman [Limits](/settings/limits).
+Penghitungan token **gratis untuk digunakan** tetapi tunduk pada batas laju permintaan per menit berdasarkan [tingkat penggunaan](https://platform.claude.com/docs/id/api/rate-limits#rate-limits) Anda. Jika Anda memerlukan batas yang lebih tinggi, gunakan **Request rate limit increase** pada halaman [Rate limits](https://platform.claude.com/settings/limits).
 
 | Tingkat penggunaan | Permintaan per menit (RPM) |
 | ------------------ | -------------------------- |
@@ -1442,19 +1438,19 @@ Penghitungan token **gratis untuk digunakan** tetapi tunduk pada batas laju perm
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Hitung token pesan" icon="code" href="/docs/id/api/messages-count-tokens">
+  <Card title="Menghitung token pesan" icon="code" href="https://platform.claude.com/docs/id/api/messages-count-tokens">
     Baca referensi API lengkap untuk endpoint penghitungan token.
   </Card>
 
-  <Card title="Jendela konteks" icon="arrows-maximize" href="/docs/id/build-with-claude/context-windows">
+  <Card title="Jendela konteks" icon="arrows-maximize" href="https://platform.claude.com/docs/id/build-with-claude/context-windows">
     Gunakan jumlah token untuk menjaga prompt tetap dalam jendela konteks model.
   </Card>
 
-  <Card title="Batas laju" icon="gauge" href="/docs/id/api/rate-limits">
+  <Card title="Batas laju" icon="gauge" href="https://platform.claude.com/docs/id/api/rate-limits">
     Periksa jumlah token sebelum Anda mengirim permintaan agar tetap dalam tingkat penggunaan Anda.
   </Card>
 
-  <Card title="Caching prompt" icon="database" href="/docs/id/build-with-claude/prompt-caching">
-    Kurangi biaya dan latensi pada prompt yang berulang dengan melakukan caching pada prefiks prompt.
+  <Card title="Caching prompt" icon="database" href="https://platform.claude.com/docs/id/build-with-claude/prompt-caching">
+    Kurangi biaya dan latensi pada prompt berulang dengan melakukan caching pada prefiks prompt.
   </Card>
 </CardGroup>

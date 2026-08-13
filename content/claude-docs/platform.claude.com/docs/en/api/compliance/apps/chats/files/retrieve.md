@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: ce22b8a3068c219bb35f764131032a28d834c9ef1170428ae06ba81cbc3ff50d
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: adaaf5d790019991c629f88076889d683bf254aacb72ef831de599667b644de3
+---
+
+---
+title: Get file metadata
+url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files/retrieve
 ---
 
 ## Get file metadata

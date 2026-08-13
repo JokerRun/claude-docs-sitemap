@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/retrieve_summaries
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 9db6dcd843a5c684aed4c59f5753c71e0d7c56b8629ba75cefb6a8e28ffc54e8
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: c0ee50bd7a6488465b9457a0a9b5eef9a7606c37d457511a635ae6e8112b1347
+---
+
+---
+title: Get Activity Summaries
+url: https://platform.claude.com/docs/en/api/admin/analytics/retrieve_summaries
 ---
 
 ## Get Activity Summaries

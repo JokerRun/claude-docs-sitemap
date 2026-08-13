@@ -1,22 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 5121515da5e878dd6201722966be3b20488e82d1cc6991b55fc5874d4d5a580d
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 2dea0b009cbef49185794bd39fbd8061185678c692da916624c6d6d0f1560ba3
 ---
 
-# Alat
-
-Konfigurasikan alat yang tersedia untuk agen Anda.
-
+---
+title: Alat
+url: https://platform.claude.com/docs/id/managed-agents/tools
+description: Konfigurasikan alat yang tersedia untuk agen Anda.
 ---
 
-Claude Managed Agents menyediakan serangkaian alat bawaan yang dapat digunakan Claude secara otonom dalam sebuah [sesi](/docs/id/managed-agents/sessions). Anda mengontrol alat mana yang tersedia dengan menentukannya dalam konfigurasi agen.
+Claude Managed Agents menyediakan serangkaian alat bawaan yang dapat digunakan Claude secara otonom dalam sebuah [sesi](https://platform.claude.com/docs/id/managed-agents/sessions). Anda mengontrol alat mana yang tersedia dengan menentukannya dalam konfigurasi agen.
 
-Claude Managed Agents juga mendukung alat kustom yang didefinisikan pengguna. Aplikasi Anda mengeksekusi alat-alat ini secara terpisah dan mengembalikan hasilnya ke Claude, yang menggunakannya untuk melanjutkan tugas. Untuk memberikan alat dari server MCP kepada agen, gunakan [konektor MCP](/docs/id/managed-agents/mcp-connector) sebagai gantinya.
+Claude Managed Agents juga mendukung alat kustom yang didefinisikan pengguna. Aplikasi Anda mengeksekusi alat-alat ini secara terpisah dan mengembalikan hasilnya ke Claude, yang menggunakannya untuk melanjutkan tugas. Untuk memberikan alat dari server MCP kepada agen, gunakan [konektor MCP](https://platform.claude.com/docs/id/managed-agents/mcp-connector) sebagai gantinya.
 
 <Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](/docs/id/api/beta-headers#endpoint-specific-headers).
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Alat yang tersedia
@@ -34,14 +34,14 @@ Toolset agen mencakup alat-alat berikut. Semuanya diaktifkan secara default keti
 | Web fetch  | `web_fetch`  | Mengambil konten dari sebuah URL                      |
 | Web search | `web_search` | Mencari informasi di web                              |
 
-Ketika output alat melebihi 100.000 karakter (sekitar 25.000 token), output tersebut secara otomatis ditulis ke sebuah file di [sandbox](/docs/id/managed-agents/environments). Model menerima pratinjau yang dipotong beserta jalur file dan dapat membaca konten lengkapnya dari sana.
+Ketika output alat melebihi 100.000 karakter (sekitar 25.000 token), output tersebut secara otomatis ditulis ke sebuah file di [sandbox](https://platform.claude.com/docs/id/managed-agents/environments). Model menerima pratinjau yang dipotong beserta jalur file dan dapat membaca konten lengkapnya dari sana.
 
 ## Mengonfigurasi toolset
 
-Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Gunakan array `configs` untuk menonaktifkan alat tertentu atau menimpa pengaturannya. Setiap entri config juga dapat menetapkan `permission_policy` yang mengontrol apakah panggilan alat tersebut disetujui secara otomatis atau memerlukan konfirmasi. Lihat [Kebijakan izin](/docs/id/managed-agents/permission-policies) untuk jenis kebijakan yang tersedia.
+Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Gunakan array `configs` untuk menonaktifkan alat tertentu atau menimpa pengaturannya. Setiap entri config juga dapat menetapkan `permission_policy` yang mengontrol apakah panggilan alat tersebut disetujui secara otomatis atau memerlukan konfirmasi. Lihat [Kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) untuk jenis kebijakan yang tersedia.
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -229,14 +229,14 @@ Objek `default_config` menetapkan baseline untuk setiap alat dalam set tersebut,
 
 ## Alat kustom
 
-Selain alat bawaan, Anda dapat mendefinisikan alat kustom. Alat kustom analog dengan [alat klien yang didefinisikan pengguna](/docs/id/agents-and-tools/tool-use/how-tool-use-works#user-defined-tools-client-executed) di Messages API.
+Selain alat bawaan, Anda dapat mendefinisikan alat kustom. Alat kustom analog dengan [alat klien yang didefinisikan pengguna](https://platform.claude.com/docs/id/agents-and-tools/tool-use/how-tool-use-works#user-defined-tools-client-executed) di Messages API.
 
-Setiap alat kustom mendefinisikan sebuah kontrak: Anda menentukan operasi apa yang tersedia dan apa yang dikembalikannya, dan Claude menentukan kapan dan bagaimana memanggilnya. Model tidak pernah mengeksekusi apa pun sendiri. Model mengeluarkan permintaan terstruktur, kode Anda menjalankan operasinya, dan hasilnya mengalir kembali ke dalam percakapan. Lihat [Aliran event sesi](/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls) untuk cara menerima panggilan alat kustom dan mengembalikan hasil selama sesi berlangsung.
+Setiap alat kustom mendefinisikan sebuah kontrak: Anda menentukan operasi apa yang tersedia dan apa yang dikembalikannya, dan Claude menentukan kapan dan bagaimana memanggilnya. Model tidak pernah mengeksekusi apa pun sendiri. Model mengeluarkan permintaan terstruktur, kode Anda menjalankan operasinya, dan hasilnya mengalir kembali ke dalam percakapan. Lihat [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls) untuk cara menerima panggilan alat kustom dan mengembalikan hasil selama sesi berlangsung.
 
-Jika sesi Anda berjalan di sandbox yang di-hosting sendiri, environment worker dapat [menyajikan alat kustom dari sandbox Anda](/docs/id/managed-agents/self-hosted-sandboxes#serve-custom-tools-from-your-sandbox), termasuk alat yang membungkus server MCP di dalam jaringan Anda.
+Jika sesi Anda berjalan di sandbox yang di-hosting sendiri, environment worker dapat [menyajikan alat kustom dari sandbox Anda](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#serve-custom-tools-from-your-sandbox), termasuk alat yang membungkus server MCP di dalam jaringan Anda.
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -483,15 +483,15 @@ Setelah Anda mendefinisikan alat kustom pada agen, agen akan memanggilnya selama
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Konektor MCP" icon="link" href="/docs/id/managed-agents/mcp-connector">
+  <Card title="Konektor MCP" icon="link" href="https://platform.claude.com/docs/id/managed-agents/mcp-connector">
     Hubungkan server MCP ke agen Anda untuk akses ke alat eksternal dan sumber data.
   </Card>
 
-  <Card title="Kebijakan izin" icon="lock" href="/docs/id/managed-agents/permission-policies">
+  <Card title="Kebijakan izin" icon="lock" href="https://platform.claude.com/docs/id/managed-agents/permission-policies">
     Kontrol kapan alat agen dan MCP dieksekusi.
   </Card>
 
-  <Card title="Aliran event sesi" icon="lightning" href="/docs/id/managed-agents/events-and-streaming">
+  <Card title="Aliran event sesi" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/events-and-streaming">
     Kirim event, streaming respons, dan interupsi atau alihkan sesi Anda di tengah eksekusi.
   </Card>
 </CardGroup>

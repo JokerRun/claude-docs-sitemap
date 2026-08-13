@@ -1,23 +1,23 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 006d6f7cb05f3ca17c0d198facbf1e82b89151f33ce61acaeeff8add0b877eee
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 6f00e3722632a88857200df3e69bdb3c9c1f3cc2267a4a1dd8604c747c79733c
 ---
 
-# Menangani panggilan alat
-
-Mengurai blok tool_use, memformat respons tool_result, dan menangani kesalahan dengan is_error.
-
+---
+title: Menangani panggilan alat
+url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls
+description: Mengurai blok tool_use, memformat respons tool_result, dan menangani kesalahan dengan is_error.
 ---
 
-Halaman ini membahas siklus hidup panggilan alat: membaca blok `tool_use` dari respons Claude, memformat blok `tool_result` dalam balasan Anda, dan memberi sinyal kesalahan. Untuk abstraksi SDK yang menangani ini secara otomatis, lihat [Tool Runner](/docs/id/agents-and-tools/tool-use/tool-runner).
+Halaman ini membahas siklus hidup panggilan alat: membaca blok `tool_use` dari respons Claude, memformat blok `tool_result` dalam balasan Anda, dan memberi sinyal kesalahan. Untuk abstraksi SDK yang menangani ini secara otomatis, lihat [Tool Runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner).
 
 <Note>
-  **Lebih sederhana dengan Tool Runner**: Penanganan alat manual yang dijelaskan di halaman ini dikelola secara otomatis oleh [Tool Runner](/docs/id/agents-and-tools/tool-use/tool-runner). Gunakan halaman ini ketika Anda memerlukan kontrol kustom atas eksekusi alat.
+  **Lebih sederhana dengan Tool Runner**: Penanganan alat manual yang dijelaskan di halaman ini dikelola secara otomatis oleh [Tool Runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner). Gunakan halaman ini ketika Anda memerlukan kontrol kustom atas eksekusi alat.
 </Note>
 
-Respons Claude berbeda tergantung pada apakah ia menggunakan [alat klien atau alat server](/docs/id/agents-and-tools/tool-use/overview#how-tool-use-works).
+Respons Claude berbeda tergantung pada apakah ia menggunakan [alat klien atau alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview#how-tool-use-works).
 
 ## Menangani hasil dari alat klien
 
@@ -59,7 +59,7 @@ Ketika Anda menerima respons penggunaan alat untuk alat klien, Anda harus:
 3. Melanjutkan percakapan dengan mengirim pesan baru dengan `role` berupa `user`, dan blok `content` yang berisi tipe `tool_result` serta informasi berikut:
 
    * `tool_use_id`: `id` dari permintaan penggunaan alat yang menjadi hasil ini.
-   * `content` (opsional): Hasil dari alat, sebagai string (misalnya, `"content": "15 degrees"`), daftar blok konten bersarang (misalnya, `"content": [{"type": "text", "text": "15 degrees"}]`), atau daftar blok dokumen (misalnya, `"content": [{"type": "document", "source": {"type": "text", "media_type": "text/plain", "data": "15 degrees"}}]`). Blok konten ini dapat menggunakan tipe `text`, `image`, `document`, atau [`search_result`](/docs/id/build-with-claude/search-results).
+   * `content` (opsional): Hasil dari alat, sebagai string (misalnya, `"content": "15 degrees"`), daftar blok konten bersarang (misalnya, `"content": [{"type": "text", "text": "15 degrees"}]`), atau daftar blok dokumen (misalnya, `"content": [{"type": "document", "source": {"type": "text", "media_type": "text/plain", "data": "15 degrees"}}]`). Blok konten ini dapat menggunakan tipe `text`, `image`, `document`, atau [`search_result`](https://platform.claude.com/docs/id/build-with-claude/search-results).
    * `is_error` (opsional): Atur ke `true` jika eksekusi alat menghasilkan kesalahan.
 
 <Note>
@@ -67,7 +67,7 @@ Ketika Anda menerima respons penggunaan alat untuk alat klien, Anda harus:
 
   * Blok hasil alat harus langsung mengikuti blok penggunaan alat yang sesuai dalam riwayat pesan. Anda tidak dapat menyertakan pesan apa pun di antara pesan penggunaan alat dari assistant dan pesan hasil alat dari user.
   * Dalam pesan user yang berisi hasil alat, blok tool\_result harus berada PERTAMA dalam array content. Teks apa pun harus berada SETELAH semua hasil alat.
-  * Jika giliran assistant juga memanggil [alat server](/docs/id/agents-and-tools/tool-use/server-tools) yang belum memiliki blok hasil, pesan user hanya boleh berisi blok `tool_result`. Teks setelah hasil mengakhiri giliran lebih awal; untuk alat server yang dipanggil Claude secara langsung, permintaan kemudian gagal dengan kesalahan 400 yang menyebutkan alat server yang belum terselesaikan. Lihat [Stop reason dan fallback](/docs/id/build-with-claude/handling-stop-reasons#tool-use).
+  * Jika giliran assistant juga memanggil [alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) yang belum memiliki blok hasil, pesan user hanya boleh berisi blok `tool_result`. Teks setelah hasil mengakhiri giliran lebih awal; untuk alat server yang dipanggil Claude secara langsung, permintaan kemudian gagal dengan kesalahan 400 yang menyebutkan alat server yang belum terselesaikan. Lihat [Stop reason dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#tool-use).
 
   Misalnya, ini akan menyebabkan kesalahan 400:
 
@@ -97,7 +97,7 @@ Ketika Anda menerima respons penggunaan alat untuk alat klien, Anda harus:
 </Note>
 
 <Warning>
-  Hasil alat sering membawa konten dari sumber di luar kendali Anda: halaman web, email masuk, unggahan pengguna, API pihak ketiga. Perlakukan konten tersebut sebagai tidak tepercaya: penyerang yang dapat memengaruhinya mungkin menyematkan instruksi yang mencoba mengalihkan Claude (injeksi prompt tidak langsung). Simpan konten yang tidak tepercaya di dalam blok `tool_result` alih-alih prompt `system` atau blok `text` user biasa, dan lihat [Mitigasi jailbreak dan injeksi prompt](/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks#indirect-prompt-injection) untuk penguatan lebih lanjut.
+  Hasil alat sering membawa konten dari sumber di luar kendali Anda: halaman web, email masuk, unggahan pengguna, API pihak ketiga. Perlakukan konten tersebut sebagai tidak tepercaya: penyerang yang dapat memengaruhinya mungkin menyematkan instruksi yang mencoba mengalihkan Claude (injeksi prompt tidak langsung). Simpan konten yang tidak tepercaya di dalam blok `tool_result` alih-alih prompt `system` atau blok `text` user biasa, dan lihat [Mitigasi jailbreak dan injeksi prompt](https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks#indirect-prompt-injection) untuk penguatan lebih lanjut.
 </Warning>
 
 <AccordionGroup>
@@ -188,7 +188,7 @@ Setelah menerima hasil alat, Claude akan menggunakan informasi tersebut untuk me
 Claude mengeksekusi alat secara internal dan memasukkan hasilnya langsung ke dalam responsnya tanpa memerlukan interaksi pengguna tambahan.
 
 <Note>
-  Sebuah respons dapat berisi blok `tool_use` klien dan blok `server_tool_use` yang belum memiliki blok hasil. Panggilan alat server tersebut belum selesai, dan blok hasilnya tiba dalam respons berikutnya. Balas dengan pesan user yang hanya berisi blok `tool_result` untuk alat klien dan pertahankan array `tools` yang sama; untuk alat server yang dipanggil Claude secara langsung, API menjalankannya pada permintaan tersebut dan respons berikutnya dimulai dengan blok hasilnya. Lihat [Stop reason dan fallback](/docs/id/build-with-claude/handling-stop-reasons#tool-use).
+  Sebuah respons dapat berisi blok `tool_use` klien dan blok `server_tool_use` yang belum memiliki blok hasil. Panggilan alat server tersebut belum selesai, dan blok hasilnya tiba dalam respons berikutnya. Balas dengan pesan user yang hanya berisi blok `tool_result` untuk alat klien dan pertahankan array `tools` yang sama; untuk alat server yang dipanggil Claude secara langsung, API menjalankannya pada permintaan tersebut dan respons berikutnya dimulai dengan blok hasilnya. Lihat [Stop reason dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#tool-use).
 </Note>
 
 <Tip>
@@ -250,7 +250,7 @@ Ada beberapa jenis kesalahan berbeda yang dapat terjadi saat menggunakan alat de
     Jika permintaan alat tidak valid atau parameternya hilang, Claude akan mencoba lagi 2-3 kali dengan koreksi sebelum meminta maaf kepada pengguna.
 
     <Tip>
-      Untuk menghilangkan panggilan alat yang tidak valid sepenuhnya, gunakan [strict tool use](/docs/id/agents-and-tools/tool-use/strict-tool-use) dengan `strict: true` pada definisi alat Anda. Ini menjamin bahwa input alat akan selalu cocok dengan skema Anda secara tepat, mencegah parameter yang hilang dan ketidakcocokan tipe.
+      Untuk menghilangkan panggilan alat yang tidak valid sepenuhnya, gunakan [strict tool use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) dengan `strict: true` pada definisi alat Anda. Ini menjamin bahwa input alat akan selalu cocok dengan skema Anda secara tepat, mencegah parameter yang hilang dan ketidakcocokan tipe.
     </Tip>
   </Accordion>
 
@@ -270,15 +270,15 @@ Ada beberapa jenis kesalahan berbeda yang dapat terjadi saat menggunakan alat de
 ## Langkah selanjutnya
 
 <CardGroup cols={3}>
-  <Card title="Penggunaan alat paralel" icon="grid" href="/docs/id/agents-and-tools/tool-use/parallel-tool-use">
+  <Card title="Penggunaan alat paralel" icon="grid" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use">
     Tangani respons di mana Claude memanggil beberapa alat dalam satu giliran.
   </Card>
 
-  <Card title="Tool Runner (SDK)" icon="wrench" href="/docs/id/agents-and-tools/tool-use/tool-runner">
+  <Card title="Tool Runner (SDK)" icon="wrench" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner">
     Biarkan SDK mengelola loop `tool_use`, pemformatan hasil, dan percobaan ulang untuk Anda.
   </Card>
 
-  <Card title="Definisikan alat" icon="hammer" href="/docs/id/agents-and-tools/tool-use/define-tools">
+  <Card title="Definisikan alat" icon="hammer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools">
     Tulis skema dan deskripsi yang mengarahkan Claude ke alat yang tepat.
   </Card>
 </CardGroup>

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/update
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 7aa438b664f671343ec43ac21b1fbc6237965746ffb19b8d9a6872e6078fb9b5
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: fa0988a40c43c4bd93da1f2d83a1b06cedaaf5037cbc3480b706eaa57bbc6893
+---
+
+---
+title: Update User
+url: https://platform.claude.com/docs/en/api/admin/users/update
 ---
 
 ## Update User

@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/middleware
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 538f19f96ebef4e4a315fc0ab359e7a1980efb803f4612f91eaa3016fc9157f5
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 1a13044e322d2c4bd7b3a3e0b7e95244056dc360231472d00e5a07bbb3ce512c
 ---
 
-# Middleware SDK
-
-Mencegat dan memodifikasi permintaan dan respons di SDK Anthropic.
-
+---
+title: Middleware SDK
+url: https://platform.claude.com/docs/id/cli-sdks-libraries/middleware
+description: Mencegat dan memodifikasi permintaan dan respons di SDK Anthropic.
 ---
 
 SDK Anthropic menyediakan hook "middleware" (perangkat lunak perantara), atau interceptor, yang memungkinkan Anda menjalankan kode sebelum permintaan dikirim dan setelah respons diterima. Gunakan middleware untuk kebutuhan lintas-fungsi seperti logging, retry kustom, anotasi permintaan, dan penanganan fallback penolakan.
@@ -182,4 +182,4 @@ Setiap SDK juga menerima klien HTTP kustom (untuk konfigurasi proxy, TLS kustom,
 
 ## Middleware bawaan
 
-SDK menyertakan middleware refusal-fallback yang secara otomatis mencoba ulang permintaan yang ditolak oleh Claude Fable 5 pada model fallback. Lihat [Mendeteksi dan mencoba ulang pada model fallback](/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) untuk penyiapan dan contoh per bahasa.
+SDK menyertakan middleware refusal-fallback yang secara otomatis mencoba ulang permintaan yang ditolak oleh Claude Fable 5 pada model fallback. Lihat [Mendeteksi dan mencoba ulang pada model fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) untuk penyiapan dan contoh per bahasa.

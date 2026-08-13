@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/cost/list_by_user
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: f80a6b301dfe03caa8a96db8fca9f937a872653518e00a3dff897cfc53aaad48
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: a673d25bd19fd51ac4d1f7045e293eeef52b1a2ad8f10ae2ada80daeca3760dd
+---
+
+---
+title: Get Per-User Cost
+url: https://platform.claude.com/docs/en/api/admin/analytics/cost/list_by_user
 ---
 
 ## Get Per-User Cost

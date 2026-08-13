@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/retrieve
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 958ce23e3863ac8ea0d540ca80db32c708034b07e5d5e10fab58c3e2b497e13b
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: a4e49345e7f6d7f2eed2f34d76245e3e143d892df602916723d7318e5c0d8fef
+---
+
+---
+title: Get Spend Limit
+url: https://platform.claude.com/docs/en/api/admin/spend_limits/retrieve
 ---
 
 ## Get Spend Limit

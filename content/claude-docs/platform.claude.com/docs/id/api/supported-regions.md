@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/supported-regions
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 0f6593d90309f582e3b5e137f257c7d1bfa1aeb02849e2f5fb7a889b4fa00ca4
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: f84d6ab2d8bd525f30a4a739ee031950706e6461b1d292bfd792f178b63dcc4e
 ---
 
-# Wilayah yang didukung
-
-Berikut adalah negara, wilayah, dan teritori yang saat ini dapat kami dukung aksesnya:
-
+---
+title: Wilayah yang didukung
+url: https://platform.claude.com/docs/id/api/supported-regions
+description: "Berikut adalah negara, wilayah, dan teritori yang saat ini dapat kami dukung aksesnya:"
 ---
 
 * Albania

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/users/list
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 1f09699d06c63e50c58516ca259227560821f75681c834af522779b80a8b7428
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 378bf11121cd6305a2a70d36880ccadde296fd9ee2cbb89133be3e5924fef4bb
+---
+
+---
+title: List User Activity
+url: https://platform.claude.com/docs/en/api/admin/analytics/users/list
 ---
 
 ## List User Activity

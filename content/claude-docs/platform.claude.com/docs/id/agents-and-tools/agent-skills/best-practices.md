@@ -1,25 +1,25 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: a10d9bb1f1a6453b7d61b2447d38f4ca9f328d40fb0d8e6e9fc0be9d77549818
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: cbb8833681a86a37d0966561e247fb2703494b4b54bbf7f4f7b9c9211a2d7819
 ---
 
-# Praktik terbaik penulisan Skill
-
-Pelajari cara menulis Skill yang efektif yang dapat ditemukan dan digunakan Claude dengan sukses.
-
+---
+title: Praktik terbaik penulisan Skill
+url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices
+description: Pelajari cara menulis Skill yang efektif yang dapat ditemukan dan digunakan Claude dengan sukses.
 ---
 
 Skill yang baik bersifat ringkas, terstruktur dengan baik, dan diuji dengan penggunaan nyata. Panduan ini memberikan keputusan penulisan praktis untuk membantu Anda menulis Skill yang dapat ditemukan dan digunakan Claude secara efektif.
 
-Untuk latar belakang konseptual tentang cara kerja Skill, lihat [ikhtisar Skill](/docs/id/agents-and-tools/agent-skills/overview).
+Untuk latar belakang konseptual tentang cara kerja Skill, lihat [ikhtisar Skill](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview).
 
 ## Prinsip inti
 
 ### Ringkas adalah kunci
 
-"Context window" ([jendela konteks](/docs/id/build-with-claude/context-windows)) adalah barang publik. Skill Anda berbagi jendela konteks dengan semua hal lain yang perlu diketahui Claude, termasuk:
+"Context window" ([jendela konteks](https://platform.claude.com/docs/id/build-with-claude/context-windows)) adalah barang publik. Skill Anda berbagi jendela konteks dengan semua hal lain yang perlu diketahui Claude, termasuk:
 
 * Prompt sistem
 * Riwayat percakapan
@@ -169,7 +169,7 @@ Apa yang bekerja sempurna untuk Opus mungkin memerlukan lebih banyak detail untu
   * Tidak boleh berisi tag XML
   * Harus menjelaskan apa yang dilakukan Skill dan kapan menggunakannya
 
-  Untuk detail lengkap struktur Skill, lihat [ikhtisar Skill](/docs/id/agents-and-tools/agent-skills/overview#skill-structure).
+  Untuk detail lengkap struktur Skill, lihat [ikhtisar Skill](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#skill-structure).
 </Note>
 
 ### Konvensi penamaan
@@ -257,7 +257,7 @@ description: Does stuff with files
 
 ### Pola progressive disclosure
 
-SKILL.md berfungsi sebagai ikhtisar yang mengarahkan Claude ke materi terperinci sesuai kebutuhan, seperti daftar isi dalam panduan onboarding. Untuk penjelasan tentang cara kerja progressive disclosure, lihat [Cara kerja Skill](/docs/id/agents-and-tools/agent-skills/overview#how-skills-work) di ikhtisar.
+SKILL.md berfungsi sebagai ikhtisar yang mengarahkan Claude ke materi terperinci sesuai kebutuhan, seperti daftar isi dalam panduan onboarding. Untuk penjelasan tentang cara kerja progressive disclosure, lihat [Cara kerja Skill](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#how-skills-work) di ikhtisar.
 
 **Panduan praktis:**
 
@@ -269,11 +269,11 @@ SKILL.md berfungsi sebagai ikhtisar yang mengarahkan Claude ke materi terperinci
 
 Skill dasar dimulai hanya dengan file SKILL.md yang berisi metadata dan instruksi:
 
-![File SKILL.md sederhana yang menunjukkan YAML frontmatter dan isi markdown](/docs/images/agent-skills-simple-file.png)
+![File SKILL.md sederhana yang menunjukkan YAML frontmatter dan isi markdown](https://platform.claude.com/docs/images/agent-skills-simple-file.png)
 
 Seiring Skill Anda berkembang, Anda dapat membundel konten tambahan yang dimuat Claude hanya saat diperlukan:
 
-![Membundel file referensi tambahan seperti reference.md dan forms.md.](/docs/images/agent-skills-bundling-content.png)
+![Membundel file referensi tambahan seperti reference.md dan forms.md.](https://platform.claude.com/docs/images/agent-skills-bundling-content.png)
 
 Struktur direktori Skill lengkap mungkin terlihat seperti ini:
 
@@ -428,7 +428,7 @@ Untuk file referensi yang lebih panjang dari 100 baris, sertakan daftar isi di b
 
 Claude kemudian dapat membaca file lengkap atau melompat ke bagian tertentu sesuai kebutuhan.
 
-Untuk detail tentang bagaimana arsitektur berbasis filesystem ini memungkinkan progressive disclosure, lihat bagian [Lingkungan runtime](#runtime-environment) nanti dalam panduan ini.
+Untuk detail tentang bagaimana arsitektur berbasis filesystem ini memungkinkan progressive disclosure, lihat bagian [Lingkungan runtime](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices#runtime-environment) nanti dalam panduan ini.
 
 ## Alur kerja dan loop umpan balik
 
@@ -873,7 +873,7 @@ For scanned PDFs requiring OCR, use pdf2image with pytesseract instead."
 
 ## Lanjutan: Skill dengan kode yang dapat dieksekusi
 
-Bagian berikut berfokus pada Skill yang menyertakan skrip yang dapat dieksekusi. Jika Skill Anda hanya menggunakan instruksi markdown, lewati ke [Checklist untuk Skill yang efektif](#checklist-for-effective-skills).
+Bagian berikut berfokus pada Skill yang menyertakan skrip yang dapat dieksekusi. Jika Skill Anda hanya menggunakan instruksi markdown, lewati ke [Checklist untuk Skill yang efektif](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices#checklist-for-effective-skills).
 
 ### Selesaikan, jangan tunda
 
@@ -939,7 +939,7 @@ Bahkan jika Claude dapat menulis skrip, skrip yang sudah jadi menawarkan keuntun
 * Menghemat waktu (tidak perlu pembuatan kode)
 * Memastikan konsistensi di seluruh penggunaan
 
-![Membundel skrip yang dapat dieksekusi bersama file instruksi](/docs/images/agent-skills-executable-scripts.png)
+![Membundel skrip yang dapat dieksekusi bersama file instruksi](https://platform.claude.com/docs/images/agent-skills-executable-scripts.png)
 
 Diagram sebelumnya menunjukkan bagaimana skrip yang dapat dieksekusi bekerja bersama file instruksi. File instruksi (forms.md) merujuk skrip, dan Claude dapat mengeksekusinya tanpa memuat isinya ke dalam konteks.
 
@@ -948,7 +948,7 @@ Diagram sebelumnya menunjukkan bagaimana skrip yang dapat dieksekusi bekerja ber
 * **Mengeksekusi skrip** (paling umum): "Run `analyze_form.py` to extract fields"
 * **Membacanya sebagai referensi** (untuk logika kompleks): "See `analyze_form.py` for the field extraction algorithm"
 
-Untuk sebagian besar skrip utilitas, eksekusi lebih disukai karena lebih andal dan efisien. Lihat bagian [Lingkungan runtime](#runtime-environment) berikut untuk detail tentang cara kerja eksekusi skrip.
+Untuk sebagian besar skrip utilitas, eksekusi lebih disukai karena lebih andal dan efisien. Lihat bagian [Lingkungan runtime](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices#runtime-environment) berikut untuk detail tentang cara kerja eksekusi skrip.
 
 **Contoh:**
 
@@ -1031,11 +1031,11 @@ Skill berjalan di lingkungan eksekusi kode dengan batasan spesifik platform:
 * **claude.ai:** Dapat menginstal paket dari npm dan PyPI serta menarik dari repositori GitHub
 * **Claude API:** Tidak memiliki akses jaringan dan tidak ada instalasi paket saat runtime
 
-Daftarkan paket yang diperlukan dalam SKILL.md Anda dan verifikasi ketersediaannya dalam dokumentasi [Alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool).
+Daftarkan paket yang diperlukan dalam SKILL.md Anda dan verifikasi ketersediaannya dalam dokumentasi [Alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool).
 
 ### Lingkungan runtime
 
-Skill berjalan di lingkungan eksekusi kode dengan akses filesystem, perintah bash, dan kemampuan eksekusi kode. Untuk penjelasan konseptual arsitektur ini, lihat [Arsitektur Skill](/docs/id/agents-and-tools/agent-skills/overview#the-skills-architecture) di ikhtisar.
+Skill berjalan di lingkungan eksekusi kode dengan akses filesystem, perintah bash, dan kemampuan eksekusi kode. Untuk penjelasan konseptual arsitektur ini, lihat [Arsitektur Skill](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#the-skills-architecture) di ikhtisar.
 
 **Bagaimana ini memengaruhi penulisan Anda:**
 
@@ -1079,7 +1079,7 @@ bigquery-skill/
 
 Ketika pengguna bertanya tentang pendapatan, Claude membaca SKILL.md, melihat referensi ke `reference/finance.md`, dan memanggil bash untuk membaca hanya file itu. File sales.md dan product.md tetap berada di filesystem, mengonsumsi nol token konteks sampai diperlukan. Model berbasis filesystem inilah yang memungkinkan progressive disclosure. Claude dapat menavigasi dan memuat secara selektif persis apa yang dibutuhkan setiap tugas.
 
-Untuk detail lengkap tentang arsitektur teknis, lihat [Cara kerja Skill](/docs/id/agents-and-tools/agent-skills/overview#how-skills-work) di ikhtisar Skill.
+Untuk detail lengkap tentang arsitektur teknis, lihat [Cara kerja Skill](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#how-skills-work) di ikhtisar Skill.
 
 ### Referensi alat MCP
 
@@ -1128,11 +1128,11 @@ Frontmatter SKILL.md memerlukan field `name` dan `description` dengan aturan val
 * `name`: Maksimum 64 karakter, hanya huruf kecil/angka/tanda hubung, tanpa tag XML, tanpa kata yang dicadangkan
 * `description`: Maksimum 1.024 karakter, tidak kosong, tanpa tag XML
 
-Lihat [ikhtisar Skill](/docs/id/agents-and-tools/agent-skills/overview#skill-structure) untuk detail struktur lengkap.
+Lihat [ikhtisar Skill](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#skill-structure) untuk detail struktur lengkap.
 
 ### Anggaran token
 
-Jaga isi SKILL.md di bawah 500 baris untuk kinerja optimal. Jika konten Anda melebihi ini, pisahkan ke file terpisah menggunakan pola progressive disclosure yang dijelaskan sebelumnya. Untuk detail arsitektur, lihat [ikhtisar Skill](/docs/id/agents-and-tools/agent-skills/overview#how-skills-work).
+Jaga isi SKILL.md di bawah 500 baris untuk kinerja optimal. Jika konten Anda melebihi ini, pisahkan ke file terpisah menggunakan pola progressive disclosure yang dijelaskan sebelumnya. Untuk detail arsitektur, lihat [ikhtisar Skill](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#how-skills-work).
 
 ## Checklist untuk Skill yang efektif
 
@@ -1172,7 +1172,7 @@ Sebelum membagikan Skill, verifikasi:
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Mulai dengan Agent Skills" icon="rocket" href="/docs/id/agents-and-tools/agent-skills/quickstart">
+  <Card title="Mulai dengan Agent Skills" icon="rocket" href="https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart">
     Buat Skill pertama Anda
   </Card>
 
@@ -1180,7 +1180,7 @@ Sebelum membagikan Skill, verifikasi:
     Buat dan kelola Skill di Claude Code
   </Card>
 
-  <Card title="Gunakan Skill dengan API" icon="code" href="/docs/id/build-with-claude/skills-guide">
+  <Card title="Gunakan Skill dengan API" icon="code" href="https://platform.claude.com/docs/id/build-with-claude/skills-guide">
     Unggah dan gunakan Skill secara terprogram
   </Card>
 </CardGroup>

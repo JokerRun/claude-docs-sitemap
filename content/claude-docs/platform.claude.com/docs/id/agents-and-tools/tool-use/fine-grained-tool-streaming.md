@@ -1,31 +1,31 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: c15413e8a5ca7d08b07081812bd7c98eb546403a729801adb510d59137a54083
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 3b7905cdcfb24f8052ed5cf8db06968d733cfa74da2e26c924662922248a643b
 ---
 
-# Streaming alat berbutir halus
-
-Streaming input alat tanpa buffering JSON di sisi server untuk aplikasi yang sensitif terhadap latensi.
-
+---
+title: Streaming alat berbutir halus
+url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
+description: Streaming input alat tanpa buffering JSON di sisi server untuk aplikasi yang sensitif terhadap latensi.
 ---
 
 <Note>
-  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
+  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
-"Fine-grained tool streaming" (streaming alat berbutir halus) mengirimkan input alat ke klien Anda saat Claude menghasilkannya, tanpa buffering di sisi server atau validasi JSON. Melewati langkah buffering mengurangi waktu hingga fragmen pertama dari parameter besar, seperti dokumen atau blok kode, dan fragmen-fragmen tersebut tiba melalui event [Streaming messages](/docs/id/build-with-claude/streaming) yang sama seperti penggunaan alat standar.
+"Fine-grained tool streaming" (streaming alat berbutir halus) mengirimkan input alat ke klien Anda saat Claude menghasilkannya, tanpa buffering di sisi server atau validasi JSON. Melewati langkah buffering mengurangi waktu hingga fragmen pertama dari parameter besar, seperti dokumen atau blok kode, dan fragmen-fragmen tersebut tiba melalui event [Streaming messages](https://platform.claude.com/docs/id/build-with-claude/streaming) yang sama seperti penggunaan alat standar.
 
 <Warning>
-  Karena API tidak melakukan buffering atau memvalidasi input alat sebelum melakukan streaming, Anda mungkin menerima JSON yang parsial atau tidak valid. Respons yang berakhir dengan [stop reason](/docs/id/build-with-claude/handling-stop-reasons) `max_tokens` juga dapat memotong parameter di tengah jalan. Akumulasikan fragmen-fragmennya, lindungi proses parsing, dan lihat [Menangani JSON tidak valid dalam respons alat](#handling-invalid-json-in-tool-responses) untuk cara mengembalikan input yang tidak dapat di-parse ke Claude.
+  Karena API tidak melakukan buffering atau memvalidasi input alat sebelum melakukan streaming, Anda mungkin menerima JSON yang parsial atau tidak valid. Respons yang berakhir dengan [stop reason](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons) `max_tokens` juga dapat memotong parameter di tengah jalan. Akumulasikan fragmen-fragmennya, lindungi proses parsing, dan lihat [Menangani JSON tidak valid dalam respons alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming#handling-invalid-json-in-tool-responses) untuk cara mengembalikan input yang tidak dapat di-parse ke Claude.
 </Warning>
 
 ## Cara menggunakan streaming alat berbutir halus
 
-Semua model mendukung streaming alat berbutir halus di Claude API, [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws), [Google Cloud](/docs/id/build-with-claude/claude-on-vertex-ai), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Untuk menggunakannya, atur `eager_input_streaming` ke `true` pada alat yang didefinisikan pengguna di mana Anda ingin streaming berbutir halus diaktifkan, dan aktifkan streaming pada permintaan Anda.
+Semua model mendukung streaming alat berbutir halus di Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Untuk menggunakannya, atur `eager_input_streaming` ke `true` pada alat yang didefinisikan pengguna di mana Anda ingin streaming berbutir halus diaktifkan, dan aktifkan streaming pada permintaan Anda.
 
-Field `eager_input_streaming` bersifat opsional. Mengaturnya ke `true` mengaktifkan streaming berbutir halus untuk alat tersebut, dan menghilangkannya memberi Anda streaming buffered standar, di mana API melakukan buffering dan memvalidasi setiap nilai parameter sebelum melakukan streaming kembali. Pengecualiannya adalah permintaan yang masih mengirimkan header beta lama `fine-grained-tool-streaming-2025-05-14`, yang mengaktifkan streaming berbutir halus untuk alat yang membiarkan field tersebut tidak diatur. Field per-alat menggantikan header tersebut, dan `false` eksplisit mempertahankan streaming buffered untuk sebuah alat bahkan ketika permintaan masih mengirimkannya. Lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference) untuk definisi field.
+Field `eager_input_streaming` bersifat opsional. Mengaturnya ke `true` mengaktifkan streaming berbutir halus untuk alat tersebut, dan menghilangkannya memberi Anda streaming buffered standar, di mana API melakukan buffering dan memvalidasi setiap nilai parameter sebelum melakukan streaming kembali. Pengecualiannya adalah permintaan yang masih mengirimkan header beta lama `fine-grained-tool-streaming-2025-05-14`, yang mengaktifkan streaming berbutir halus untuk alat yang membiarkan field tersebut tidak diatur. Field per-alat menggantikan header tersebut, dan `false` eksplisit mempertahankan streaming buffered untuk sebuah alat bahkan ketika permintaan masih mengirimkannya. Lihat [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference) untuk definisi field.
 
 Contoh berikut mengaktifkan streaming berbutir halus untuk alat `make_file` dan meminta Claude membuat puisi panjang, sehingga input alat cukup besar untuk melihatnya melakukan streaming:
 
@@ -486,7 +486,7 @@ Tanpa `eager_input_streaming`, API melakukan buffering dan memvalidasi setiap ni
 
 ## Mengakumulasi delta input alat
 
-Kontrak akumulasi sama dengan streaming penggunaan alat standar, jadi bagian ini berlaku dengan dan tanpa `eager_input_streaming`. Lihat [Input JSON delta](/docs/id/build-with-claude/streaming#input-json-delta) di Streaming messages untuk format event. Streaming alat berbutir halus mengubah apa yang dapat Anda asumsikan tentang hasilnya: server melakukan streaming fragmen tanpa memvalidasinya, sehingga string yang terakumulasi mungkin bukan JSON yang valid.
+Kontrak akumulasi sama dengan streaming penggunaan alat standar, jadi bagian ini berlaku dengan dan tanpa `eager_input_streaming`. Lihat [Input JSON delta](https://platform.claude.com/docs/id/build-with-claude/streaming#input-json-delta) di Streaming messages untuk format event. Streaming alat berbutir halus mengubah apa yang dapat Anda asumsikan tentang hasilnya: server melakukan streaming fragmen tanpa memvalidasinya, sehingga string yang terakumulasi mungkin bukan JSON yang valid.
 
 Ketika blok konten `tool_use` di-streaming, event `content_block_start` awal berisi `input: {}` (objek kosong). Ini adalah placeholder. Input sebenarnya tiba sebagai serangkaian event `input_json_delta`, masing-masing membawa fragmen string `partial_json`. Untuk merakit input lengkap, gabungkan fragmen-fragmen ini dan parse hasilnya ketika blok ditutup.
 
@@ -498,7 +498,7 @@ Kontrak akumulasi:
 2. Untuk setiap `content_block_delta` dengan `type: "input_json_delta"`, tambahkan: `input_json += event.delta.partial_json`
 3. Pada `content_block_stop`, parse string yang terakumulasi
 
-Lindungi proses parsing, seperti yang dilakukan contoh SDK berikut. Respons juga dapat berhenti pada `max_tokens` di tengah parameter. Periksa [stop reason](/docs/id/build-with-claude/handling-stop-reasons) dan putuskan apakah akan mencoba ulang permintaan dengan `max_tokens` yang lebih tinggi atau memperbaiki input parsial.
+Lindungi proses parsing, seperti yang dilakukan contoh SDK berikut. Respons juga dapat berhenti pada `max_tokens` di tengah parameter. Periksa [stop reason](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons) dan putuskan apakah akan mencoba ulang permintaan dengan `max_tokens` yang lebih tinggi atau memperbaiki input parsial.
 
 Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) memang disengaja. Objek kosong menandai slot dalam array konten. String delta membangun nilai sebenarnya.
 
@@ -899,7 +899,7 @@ Dengan streaming alat berbutir halus, input terakumulasi untuk pemanggilan alat 
 }
 ```
 
-Kembalikan pembungkus tersebut, yang diserialisasi menjadi string, sebagai `content` dari blok konten [tool result](/docs/id/agents-and-tools/tool-use/handle-tool-calls#handling-errors-with-is-error) dengan `is_error` diatur ke `true`:
+Kembalikan pembungkus tersebut, yang diserialisasi menjadi string, sebagai `content` dari blok konten [tool result](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls#handling-errors-with-is-error) dengan `is_error` diatur ke `true`:
 
 ```json
 {
@@ -917,19 +917,19 @@ Kembalikan pembungkus tersebut, yang diserialisasi menjadi string, sebagai `cont
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Jendela konteks" icon="stack" href="/docs/id/build-with-claude/context-windows">
+  <Card title="Jendela konteks" icon="stack" href="https://platform.claude.com/docs/id/build-with-claude/context-windows">
     Pahami cara kerja jendela konteks, bagaimana pemikiran diperpanjang dan penggunaan alat dihitung di dalamnya, dan cara mengelola konteks saat percakapan berkembang.
   </Card>
 
-  <Card title="Streaming messages" icon="lightning" href="/docs/id/build-with-claude/streaming">
+  <Card title="Streaming messages" icon="lightning" href="https://platform.claude.com/docs/id/build-with-claude/streaming">
     Streaming respons Messages API secara bertahap dengan server-sent events, termasuk teks, penggunaan alat, dan delta pemikiran diperpanjang.
   </Card>
 
-  <Card title="Menangani pemanggilan alat" icon="arrows-left-right" href="/docs/id/agents-and-tools/tool-use/handle-tool-calls">
+  <Card title="Menangani pemanggilan alat" icon="arrows-left-right" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls">
     Parse blok tool\_use, format respons tool\_result, dan tangani error dengan is\_error.
   </Card>
 
-  <Card title="Referensi alat" icon="book" href="/docs/id/agents-and-tools/tool-use/tool-reference">
+  <Card title="Referensi alat" icon="book" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference">
     Direktori alat yang disediakan Anthropic dan referensi untuk properti definisi alat opsional.
   </Card>
 </CardGroup>

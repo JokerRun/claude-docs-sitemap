@@ -1,23 +1,23 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 50899de5441d1a513bb98a276f61b366ac351b8265286582ef71fdab4a08bdfa
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: c16df9c45438fff8ba70f57d7ab7467d6326b4788a4adf31621c1b5eb03e057f
 ---
 
-# Alat text editor
-
-Berikan Claude alat text editor yang didefinisikan Anthropic untuk melihat, membuat, dan mengedit file, serta menangani perintah view, str_replace, create, dan insert.
-
+---
+title: Alat text editor
+url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool
+description: Berikan Claude alat text editor yang didefinisikan Anthropic untuk melihat, membuat, dan mengedit file, serta menangani perintah view, str_replace, create, dan insert.
 ---
 
 <Note>
-  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
+  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 Claude dapat menggunakan alat text editor berskema Anthropic untuk melihat dan memodifikasi file teks, membantu Anda melakukan debug, memperbaiki, dan meningkatkan kode Anda atau dokumen teks lainnya. Ini memungkinkan Claude untuk berinteraksi langsung dengan file Anda, memberikan bantuan langsung alih-alih hanya menyarankan perubahan.
 
-Untuk dukungan model, lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference).
+Untuk dukungan model, lihat [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference).
 
 ## Kapan menggunakan alat text editor
 
@@ -2243,7 +2243,7 @@ Selain token dasar, token input tambahan berikut diperlukan untuk alat editor te
 | ----------------------------------- | -------------------- |
 | `text_editor_20250429` (Claude 4.x) | 700 token            |
 
-Untuk informasi lebih rinci tentang harga alat, lihat [Harga penggunaan alat](/docs/id/agents-and-tools/tool-use/overview#pricing).
+Untuk informasi lebih rinci tentang harga alat, lihat [Harga penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview#pricing).
 
 ## Mengintegrasikan alat text editor dengan alat lain
 
@@ -2254,12 +2254,12 @@ Anda dapat menggunakan alat text editor bersama alat Claude lainnya. Saat mengga
 
 ## Log perubahan
 
-| Tanggal         | Versi                  | Perubahan                                                                                                                                                                                                                                                                                    |
-| --------------- | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 28 Juli 2025    | `text_editor_20250728` | Rilis alat text editor yang diperbarui yang memperbaiki beberapa masalah dan menambahkan parameter opsional `max_characters`. Selain itu identik dengan `text_editor_20250429`.                                                                                                              |
-| 29 April 2025   | `text_editor_20250429` | Rilis alat text editor untuk Claude 4. Versi ini menghapus perintah `undo_edit` tetapi mempertahankan semua kemampuan lainnya. Nama alat telah diperbarui untuk mencerminkan arsitekturnya yang berbasis str\_replace.                                                                       |
-| 13 Maret 2025   | `text_editor_20250124` | Pengenalan dokumentasi alat text editor mandiri. Versi ini dioptimalkan untuk Claude Sonnet 3.7 tetapi memiliki kemampuan yang identik dengan versi sebelumnya.                                                                                                                              |
-| 22 Oktober 2024 | `text_editor_20241022` | Rilis awal alat text editor dengan Claude Sonnet 3.5 (sudah dipensiunkan; lihat [Penghentian model](/docs/id/about-claude/model-deprecations)). Menyediakan kemampuan untuk melihat, membuat, dan mengedit file melalui perintah `view`, `create`, `str_replace`, `insert`, dan `undo_edit`. |
+| Tanggal         | Versi                  | Perubahan                                                                                                                                                                                                                                                                                                       |
+| --------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 28 Juli 2025    | `text_editor_20250728` | Rilis alat text editor yang diperbarui yang memperbaiki beberapa masalah dan menambahkan parameter opsional `max_characters`. Selain itu identik dengan `text_editor_20250429`.                                                                                                                                 |
+| 29 April 2025   | `text_editor_20250429` | Rilis alat text editor untuk Claude 4. Versi ini menghapus perintah `undo_edit` tetapi mempertahankan semua kemampuan lainnya. Nama alat telah diperbarui untuk mencerminkan arsitekturnya yang berbasis str\_replace.                                                                                          |
+| 13 Maret 2025   | `text_editor_20250124` | Pengenalan dokumentasi alat text editor mandiri. Versi ini dioptimalkan untuk Claude Sonnet 3.7 tetapi memiliki kemampuan yang identik dengan versi sebelumnya.                                                                                                                                                 |
+| 22 Oktober 2024 | `text_editor_20241022` | Rilis awal alat text editor dengan Claude Sonnet 3.5 (dihentikan; lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations)). Menyediakan kemampuan untuk melihat, membuat, dan mengedit file melalui perintah `view`, `create`, `str_replace`, `insert`, dan `undo_edit`. |
 
 ## Langkah selanjutnya
 
@@ -2274,11 +2274,11 @@ Berikut beberapa ide tentang cara menggunakan alat text editor dengan cara yang 
 Alat text editor memungkinkan Claude bekerja langsung dengan basis kode Anda, mendukung alur kerja dari debugging hingga dokumentasi otomatis.
 
 <CardGroup cols={3}>
-  <Card title="Ikhtisar penggunaan alat" icon="wrench" href="/docs/id/agents-and-tools/tool-use/overview">
+  <Card title="Ikhtisar penggunaan alat" icon="wrench" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview">
     Pelajari cara mengimplementasikan alur kerja alat untuk digunakan dengan Claude.
   </Card>
 
-  <Card title="Alat bash" icon="terminal" href="/docs/id/agents-and-tools/tool-use/bash-tool">
+  <Card title="Alat bash" icon="terminal" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool">
     Jalankan perintah shell dengan Claude.
   </Card>
 </CardGroup>

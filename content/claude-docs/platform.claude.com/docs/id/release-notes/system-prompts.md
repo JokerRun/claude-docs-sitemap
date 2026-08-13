@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/system-prompts
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 328399872c264c84164162186e61321c6df0c6329e1aaf3704a382823a3b19ef
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: db2281a1ce28b78be5f6db9747f3497edcb7841b0309640efc4a28488c1c5575
 ---
 
-# Prompt Sistem
-
-Lihat pembaruan pada prompt sistem inti di [claude.ai](https://claude.ai) serta [aplikasi Claude untuk iOS](https://anthropic.com/ios) dan [aplikasi Claude untuk Android](https://anthropic.com/android).
-
+---
+title: Prompt Sistem
+url: https://platform.claude.com/docs/id/release-notes/system-prompts
+description: Lihat pembaruan pada prompt sistem inti di [claude.ai](https://claude.ai) serta [aplikasi Claude untuk iOS](https://anthropic.com/ios) dan [aplikasi Claude untuk Android](https://anthropic.com/android).
 ---
 
-Antarmuka web Claude ([claude.ai](https://claude.ai)) dan aplikasi selulernya menggunakan prompt sistem untuk memberikan informasi terkini, seperti tanggal saat ini, kepada Claude di awal setiap percakapan. Prompt sistem ini juga mendorong perilaku tertentu, seperti selalu menyediakan cuplikan kode dalam format Markdown. Prompt ini diperbarui secara berkala untuk meningkatkan respons Claude. Pembaruan prompt sistem ini tidak berlaku untuk Claude API. Jika sebuah model memiliki beberapa entri bertanggal di bawah ini, pembaruan antar versi ditandai dengan huruf tebal. Mulai dari generasi Claude 4.6, setiap ID model adalah [satu snapshot tetap](/docs/id/about-claude/models/model-ids-and-versions), sehingga model-model tersebut hanya memiliki satu entri.
+Antarmuka web Claude ([claude.ai](https://claude.ai)) dan aplikasi selulernya menggunakan prompt sistem untuk memberikan informasi terkini, seperti tanggal saat ini, kepada Claude di awal setiap percakapan. Prompt sistem ini juga mendorong perilaku tertentu, seperti selalu menyediakan cuplikan kode dalam format Markdown. Prompt ini diperbarui secara berkala untuk meningkatkan respons Claude. Pembaruan prompt sistem ini tidak berlaku untuk Claude API. Jika sebuah model memiliki beberapa entri bertanggal di bawah ini, pembaruan antar versi ditandai dengan huruf tebal. Mulai dari generasi Claude 4.6, setiap ID model adalah [satu snapshot tetap](https://platform.claude.com/docs/id/about-claude/models/model-ids-and-versions), sehingga model-model tersebut hanya memiliki satu entri.
 
 ## Claude Opus 5
 

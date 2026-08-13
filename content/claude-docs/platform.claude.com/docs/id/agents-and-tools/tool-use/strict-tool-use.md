@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 31982250357a4cd99bb0d11201307763336aad1ab830163526b54265a396c3b0
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: c5eca60b5c4cd7fdd4ba776b9124aba0eba643218ef423a00aa125718f462f12
 ---
 
-# Penggunaan alat ketat
-
-Terapkan kepatuhan JSON Schema pada input alat Claude dengan grammar-constrained sampling.
-
+---
+title: Penggunaan alat ketat
+url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use
+description: Terapkan kepatuhan JSON Schema pada input alat Claude dengan grammar-constrained sampling.
 ---
 
-Mengatur `strict: true` pada definisi alat menjamin input alat Claude sesuai dengan JSON Schema Anda dengan membatasi sampling token model ke output yang valid terhadap skema (teknik yang disebut "grammar-constrained sampling" atau sampling yang dibatasi tata bahasa). Halaman ini membahas mengapa mode ketat penting untuk agen, cara mengaktifkannya, dan kasus penggunaan umum. Untuk subset JSON Schema yang didukung, lihat [Batasan JSON Schema](/docs/id/build-with-claude/structured-outputs#json-schema-limitations). Untuk panduan skema non-ketat, lihat [Mendefinisikan alat](/docs/id/agents-and-tools/tool-use/define-tools).
+Mengatur `strict: true` pada definisi alat menjamin input alat Claude sesuai dengan JSON Schema Anda dengan membatasi sampling token model ke output yang valid terhadap skema (teknik yang disebut "grammar-constrained sampling" atau sampling yang dibatasi tata bahasa). Halaman ini membahas mengapa mode ketat penting untuk agen, cara mengaktifkannya, dan kasus penggunaan umum. Untuk subset JSON Schema yang didukung, lihat [Batasan JSON Schema](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations). Untuk panduan skema non-ketat, lihat [Mendefinisikan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools).
 
 Penggunaan alat ketat memvalidasi parameter alat, memastikan Claude memanggil fungsi Anda dengan argumen yang bertipe benar. Gunakan penggunaan alat ketat ketika Anda perlu:
 
@@ -375,7 +375,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
 
 <Steps>
   <Step title="Definisikan skema alat Anda">
-    Buat skema JSON untuk `input_schema` alat Anda. Skema ini menggunakan format JSON Schema standar dengan beberapa batasan (lihat [Batasan JSON Schema](/docs/id/build-with-claude/structured-outputs#json-schema-limitations)).
+    Buat skema JSON untuk `input_schema` alat Anda. Skema ini menggunakan format JSON Schema standar dengan beberapa batasan (lihat [Batasan JSON Schema](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations)).
   </Step>
 
   <Step title="Tambahkan strict: true">
@@ -1122,28 +1122,28 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
 
 ## Retensi data
 
-Penggunaan alat ketat mengompilasi definisi `input_schema` alat menjadi grammar menggunakan pipeline yang sama dengan [structured outputs](/docs/id/build-with-claude/structured-outputs). Skema alat di-cache sementara hingga 24 jam sejak terakhir digunakan. Prompt dan respons tidak disimpan setelah respons API.
+Penggunaan alat ketat mengompilasi definisi `input_schema` alat menjadi grammar menggunakan pipeline yang sama dengan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs). Skema alat di-cache sementara hingga 24 jam sejak terakhir digunakan. Prompt dan respons tidak disimpan setelah respons API.
 
 Penggunaan alat ketat memenuhi syarat HIPAA, tetapi **PHI tidak boleh disertakan dalam definisi skema alat**. API menyimpan cache skema yang telah dikompilasi secara terpisah dari konten pesan, dan skema yang di-cache ini tidak menerima perlindungan PHI yang sama seperti prompt dan respons. Jangan sertakan PHI dalam nama properti `input_schema`, nilai `enum`, nilai `const`, atau ekspresi reguler `pattern`. PHI hanya boleh muncul dalam konten pesan (prompt dan respons), di mana PHI dilindungi di bawah perlindungan HIPAA.
 
-Untuk kelayakan ZDR dan HIPAA di semua fitur, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
+Untuk kelayakan ZDR dan HIPAA di semua fitur, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Alat web fetch" icon="link" href="/docs/id/agents-and-tools/tool-use/web-fetch-tool">
+  <Card title="Alat web fetch" icon="link" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool">
     Ambil dan baca konten dari URL tertentu untuk membawa konten web langsung ke dalam konteks Claude.
   </Card>
 
-  <Card title="Penggunaan alat dengan caching prompt" icon="database" href="/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching">
+  <Card title="Penggunaan alat dengan caching prompt" icon="database" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching">
     Cache definisi alat di seluruh giliran untuk mengurangi biaya dan latensi.
   </Card>
 
-  <Card title="Structured outputs" icon="code-brackets" href="/docs/id/build-with-claude/structured-outputs">
+  <Card title="Structured outputs" icon="code-brackets" href="https://platform.claude.com/docs/id/build-with-claude/structured-outputs">
     Dapatkan respons JSON tervalidasi menggunakan grammar-constrained sampling yang sama.
   </Card>
 
-  <Card title="Mendefinisikan alat" icon="hammer" href="/docs/id/agents-and-tools/tool-use/define-tools">
+  <Card title="Mendefinisikan alat" icon="hammer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools">
     Tentukan skema alat, tulis deskripsi yang efektif, dan kendalikan kapan Claude memanggil alat Anda.
   </Card>
 </CardGroup>

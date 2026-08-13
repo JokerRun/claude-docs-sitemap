@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/usage
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 8d40ac8bc61d9b7119ec88942b472a042260bfa571662f2a7de8ebfaaf9fe5eb
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 08967e5eb270c976c9b7d31a97f446a9ca1e704c322be26771a70720a56635f2
+---
+
+---
+title: Usage
+url: https://platform.claude.com/docs/en/api/admin/analytics/usage
 ---
 
 # Usage

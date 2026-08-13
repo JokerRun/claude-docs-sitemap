@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/service_accounts/update
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: b36a995febd366782c63e5f1abdfd82872f9b86804681004ee7617a532e2b207
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: d1c852763e8baab433290ae63adb315f4e4bfceccc269f9b0ddfd7abed54689d
+---
+
+---
+title: Update Service Account Workspace Member
+url: https://platform.claude.com/docs/en/api/admin/workspaces/service_accounts/update
 ---
 
 ## Update Service Account Workspace Member

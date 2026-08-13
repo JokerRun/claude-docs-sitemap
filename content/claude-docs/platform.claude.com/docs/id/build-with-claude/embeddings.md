@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/embeddings
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 521c4eb0e7958cdd1c9215d102615d4022b0a70954fbef9f6e3383525bb50a00
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: c338fbbcd103c6c0fdb5acbe4fa5d211fb564a204129fb3134214c1d8870c2a3
 ---
 
-# Embeddings
-
-Text embeddings adalah representasi numerik dari teks yang memungkinkan pengukuran kesamaan semantik. Panduan ini memperkenalkan embeddings, aplikasinya, dan cara menggunakan model embedding untuk tugas-tugas seperti pencarian, rekomendasi, dan deteksi anomali.
-
+---
+title: Embeddings
+url: https://platform.claude.com/docs/id/build-with-claude/embeddings
+description: Text embeddings adalah representasi numerik dari teks yang memungkinkan pengukuran kesamaan semantik. Panduan ini memperkenalkan embeddings, aplikasinya, dan cara menggunakan model embedding untuk tugas-tugas seperti pencarian, rekomendasi, dan deteksi anomali.
 ---
 
 ## Sebelum mengimplementasikan embeddings
@@ -216,7 +216,7 @@ retrieved_id = np.argmax(similarities)
 print(documents[retrieved_id])
 ```
 
-Perhatikan bahwa `input_type="document"` dan `input_type="query"` digunakan untuk meng-embed dokumen dan query, masing-masing. Spesifikasi lebih lanjut dapat ditemukan di [pustaka Python Voyage](#voyage-python-library).
+Perhatikan bahwa `input_type="document"` dan `input_type="query"` digunakan untuk meng-embed dokumen dan query, masing-masing. Spesifikasi lebih lanjut dapat ditemukan di [pustaka Python Voyage](https://platform.claude.com/docs/id/build-with-claude/embeddings#voyage-python-library).
 
 Outputnya adalah dokumen kelima, yang memang paling relevan dengan query:
 
@@ -296,7 +296,7 @@ Jika Anda mencari kumpulan resep terperinci tentang cara melakukan RAG dengan em
 
     * `float`: Setiap embedding yang dikembalikan adalah daftar angka floating-point presisi tunggal 32-bit (4-byte). Ini adalah default dan memberikan presisi / akurasi retrieval tertinggi.
     * `int8` dan `uint8`: Setiap embedding yang dikembalikan adalah daftar integer 8-bit (1-byte) yang berkisar masing-masing dari -128 hingga 127 dan 0 hingga 255.
-    * `binary` dan `ubinary`: Setiap embedding yang dikembalikan adalah daftar integer 8-bit yang merepresentasikan nilai embedding satu-bit terkuantisasi yang dikemas dalam bit: `int8` untuk `binary` dan `uint8` untuk `ubinary`. Panjang daftar integer yang dikembalikan adalah 1/8 dari dimensi sebenarnya dari embedding. Tipe binary menggunakan metode offset binary, yang dapat Anda pelajari lebih lanjut di [FAQ embeddings](#faq).
+    * `binary` dan `ubinary`: Setiap embedding yang dikembalikan adalah daftar integer 8-bit yang merepresentasikan nilai embedding satu-bit terkuantisasi yang dikemas dalam bit: `int8` untuk `binary` dan `uint8` untuk `ubinary`. Panjang daftar integer yang dikembalikan adalah 1/8 dari dimensi sebenarnya dari embedding. Tipe binary menggunakan metode offset binary, yang dapat Anda pelajari lebih lanjut di [FAQ embeddings](https://platform.claude.com/docs/id/build-with-claude/embeddings#faq).
 
     > **Contoh kuantisasi biner**
     >

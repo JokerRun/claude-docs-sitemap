@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rbac_roles/permissions/list
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 084310695c1548ad97f303eb4973b103834ba11770dc30fa8730c141f2e058cc
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: bc929fe9c71f5e9421e5c1ad6c39738a5c7d3e849b24fa0b22405a8d079df3db
+---
+
+---
+title: List RBAC Role Permissions
+url: https://platform.claude.com/docs/en/api/admin/rbac_roles/permissions/list
 ---
 
 ## List RBAC Role Permissions

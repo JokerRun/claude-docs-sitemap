@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/tunnel_certificates/list
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: e12bb8993b515ff6cbe49015663c5115d2226c82f30341cf36020bdc896a3ae0
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 5488cf86674310c502642becfb87082aab259b011850f164d05eafe752ea4522
+---
+
+---
+title: List Tunnel Certificates
+url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/tunnel_certificates/list
 ---
 
 ## List Tunnel Certificates

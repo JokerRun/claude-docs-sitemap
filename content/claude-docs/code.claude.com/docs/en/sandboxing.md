@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-08-12T02:56:30.865670Z
-sha256: 43fee3c2a816f607e8ed3c5678c0bdc19480727bf8a63a3bba39249a9036498e
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 8a74d40129206f8fbee16d31dc4e01ac2be9c6160fc4b0270b311920e3744f2a
 ---
 
 > ## Documentation Index
@@ -494,7 +494,7 @@ The sandboxed Bash tool leverages operating system security primitives:
 * **Linux**: uses [bubblewrap](https://github.com/containers/bubblewrap) for isolation
 * **WSL2**: uses bubblewrap, same as Linux
 
-WSL1 is not supported because bubblewrap requires kernel features only available in WSL2. These OS-level restrictions ensure that all child processes spawned by Claude Code's commands inherit the same security boundaries.
+WSL1 is not supported because bubblewrap requires kernel features only available in WSL2.
 
 These same primitives are available as the standalone [`@anthropic-ai/sandbox-runtime`](https://github.com/anthropic-experimental/sandbox-runtime) package, which the [Sandbox environments](/docs/en/sandbox-environments#sandbox-runtime) page covers as a separate approach for wrapping the entire Claude Code process.
 
@@ -513,17 +513,17 @@ The two layers also differ in how they are enforced. Claude Code evaluates permi
 
 Filesystem and network restrictions are configured through both sandbox settings and permission rules:
 
-| Setting or rule                                                  | What it does                                                                                                    |
-| :--------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------- |
-| `sandbox.filesystem.allowWrite`                                  | Grants subprocess write access to paths outside the working directory                                           |
-| `sandbox.filesystem.denyWrite` and `sandbox.filesystem.denyRead` | Block subprocess access to specific paths                                                                       |
-| `sandbox.filesystem.allowRead`                                   | Re-allows reading specific paths within a `denyRead` region                                                     |
-| [`sandbox.filesystem.disabled`](#disable-filesystem-isolation)   | Turns the filesystem layer off entirely while keeping network isolation; requires Claude Code v2.1.216 or later |
-| `Edit` allow rules                                               | Grant write access to specific paths, the same way `sandbox.filesystem.allowWrite` does                         |
-| `Read` and `Edit` deny rules                                     | Block access to specific files or directories                                                                   |
-| `WebFetch` allow and deny rules                                  | Control domain access                                                                                           |
-| Sandbox `allowedDomains`                                         | Controls which domains Bash commands can reach                                                                  |
-| Sandbox `deniedDomains`                                          | Blocks specific domains even when a broader `allowedDomains` wildcard would otherwise permit them               |
+| Setting or rule                                                  | What it does                                                                                      |
+| :--------------------------------------------------------------- | :------------------------------------------------------------------------------------------------ |
+| `sandbox.filesystem.allowWrite`                                  | Grants subprocess write access to paths outside the working directory                             |
+| `sandbox.filesystem.denyWrite` and `sandbox.filesystem.denyRead` | Block subprocess access to specific paths                                                         |
+| `sandbox.filesystem.allowRead`                                   | Re-allows reading specific paths within a `denyRead` region                                       |
+| [`sandbox.filesystem.disabled`](#disable-filesystem-isolation)   | Turns the filesystem layer off entirely while keeping network isolation                           |
+| `Edit` allow rules                                               | Grant write access to specific paths, the same way `sandbox.filesystem.allowWrite` does           |
+| `Read` and `Edit` deny rules                                     | Block access to specific files or directories                                                     |
+| `WebFetch` allow and deny rules                                  | Control domain access                                                                             |
+| Sandbox `allowedDomains`                                         | Controls which domains Bash commands can reach                                                    |
+| Sandbox `deniedDomains`                                          | Blocks specific domains even when a broader `allowedDomains` wildcard would otherwise permit them |
 
 Paths from both `sandbox.filesystem` settings and permission rules are merged together into the final sandbox configuration.
 

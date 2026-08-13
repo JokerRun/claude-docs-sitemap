@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/system-prompts
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 4047adcbdd8f513eaa2b7570208e7f94375cc04a614814a3ca8d4b16d777b84c
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 5f22f4f307bd1f954bc676c4c9a158f967c99171c7c047db722b2bd139eec59d
 ---
 
-# System Prompts
-
-See updates to the core system prompts on [claude.ai](https://claude.ai) and the [Claude iOS app](https://anthropic.com/ios) and [Claude Android app](https://anthropic.com/android).
-
+---
+title: System Prompts
+url: https://platform.claude.com/docs/en/release-notes/system-prompts
+description: See updates to the core system prompts on [claude.ai](https://claude.ai) and the [Claude iOS app](https://anthropic.com/ios) and [Claude Android app](https://anthropic.com/android).
 ---
 
-Claude's web interface ([claude.ai](https://claude.ai)) and mobile apps use a system prompt to provide up-to-date information, such as the current date, to Claude at the start of every conversation. The system prompt also encourages certain behaviors, such as always providing code snippets in Markdown. This prompt is periodically updated to improve Claude's responses. These system prompt updates do not apply to the Claude API. Where a model has multiple dated entries below, updates between versions are bolded. Starting with the Claude 4.6 generation, each model ID is a [single fixed snapshot](/docs/en/about-claude/models/model-ids-and-versions), so those models have one entry.
+Claude's web interface ([claude.ai](https://claude.ai)) and mobile apps use a system prompt to provide up-to-date information, such as the current date, to Claude at the start of every conversation. The system prompt also encourages certain behaviors, such as always providing code snippets in Markdown. This prompt is periodically updated to improve Claude's responses. These system prompt updates do not apply to the Claude API. Where a model has multiple dated entries below, updates between versions are bolded. Starting with the Claude 4.6 generation, each model ID is a [single fixed snapshot](https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions), so those models have one entry.
 
 ## Claude Opus 5
 

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/members/update
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: e2b61cad4f4d354fa5371e1a2ed6aee36ed770af5093dc3f6fabbc1f3a5f20b4
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 06bc56a1ed42a32a3f1c8b74df8de76abf3806cb5554a0efd5eedcd1fdf3c152
+---
+
+---
+title: Update Workspace Member
+url: https://platform.claude.com/docs/en/api/admin/workspaces/members/update
 ---
 
 ## Update Workspace Member

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/retrieve
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 46ce9d06e20c0a31284f1d6f81a37a128204bba499950a6ca5d8f3cc88e37866
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: a45a03d58b62750a6cd7ea472a80253395b9707e21a30cb7ab238cb18f9c8661
+---
+
+---
+title: Get Work Item
+url: https://platform.claude.com/docs/en/api/beta/environments/work/retrieve
 ---
 
 ## Get Work Item
@@ -27,7 +32,7 @@ Retrieve detailed information about a specific work item.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -92,6 +97,8 @@ Retrieve detailed information about a specific work item.
     - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
+
+    - `"mid-conversation-tool-changes-2026-07-01"`
 
 ### Returns
 

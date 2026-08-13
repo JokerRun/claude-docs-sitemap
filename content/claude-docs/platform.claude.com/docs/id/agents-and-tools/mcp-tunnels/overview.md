@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: a977a36ec63e4edcc32c3adf1a4118e2b037a5790de231b8b46db1e0f624e875
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 8edb1eca1a8ef7162a5ef1523669ccac3ce404ad8c6d99a901823e574037ef4f
 ---
 
-# Tunnel MCP
-
-Hubungkan Claude secara aman ke server MCP yang berjalan di jaringan privat Anda tanpa membuka port masuk atau mengekspos layanan ke internet publik.
-
+---
+title: Tunnel MCP
+url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview
+description: Hubungkan Claude secara aman ke server MCP yang berjalan di jaringan privat Anda tanpa membuka port masuk atau mengekspos layanan ke internet publik.
 ---
 
 "MCP tunnels" (tunnel MCP) memungkinkan Anda menghubungkan Claude ke server Model Context Protocol, atau MCP, yang berjalan di dalam jaringan privat Anda. Lalu lintas mengalir melalui koneksi keluar saja (outbound-only), sehingga Anda tidak perlu membuka port firewall masuk, mengekspos layanan ke internet publik, atau memasukkan rentang IP Anthropic ke daftar izin pada origin Anda.
@@ -17,16 +17,16 @@ Hubungkan Claude secara aman ke server MCP yang berjalan di jaringan privat Anda
   MCP tunnels berada dalam research preview. [Minta akses](https://claude.com/form/claude-managed-agents) untuk mencobanya. Fitur ini disediakan "apa adanya" tanpa komitmen uptime, dukungan, atau kontinuitas apa pun, dan bergantung pada penyedia jaringan pihak ketiga (Cloudflare) yang tidak memberikan komitmen ketersediaan untuk transport yang mendasarinya. Anthropic dapat memodifikasi atau menghentikan MCP tunnels kapan saja.
 </Note>
 
-Untuk kelayakan Zero Data Retention dan HIPAA BAA, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention#feature-eligibility).
+Untuk kelayakan Zero Data Retention dan HIPAA BAA, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility).
 
 ## Cara kerjanya
 
-[Tunnel stack](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) terdiri dari dua komponen yang berjalan di dalam jaringan Anda:
+[Tunnel stack](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) terdiri dari dua komponen yang berjalan di dalam jaringan Anda:
 
-* **[cloudflared](/docs/id/agents-and-tools/mcp-tunnels/concepts#components):** Konektor tunnel open-source dari Cloudflare. Komponen ini memulai koneksi keluar saja ke [tunnel edge](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) dan membawa lalu lintas terenkripsi dari Anthropic ke proxy Anda.
-* **[Proxy](/docs/id/agents-and-tools/mcp-tunnels/concepts#components):** Komponen routing dari Anthropic. Komponen ini mengakhiri [inner TLS](/docs/id/agents-and-tools/mcp-tunnels/concepts#components), memvalidasi bahwa IP upstream berada dalam rentang yang diizinkan, dan merutekan setiap permintaan ke [server MCP upstream](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) yang benar berdasarkan hostname.
+* **[cloudflared](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components):** Konektor tunnel open-source dari Cloudflare. Komponen ini memulai koneksi keluar saja ke [tunnel edge](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) dan membawa lalu lintas terenkripsi dari Anthropic ke proxy Anda.
+* **[Proxy](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components):** Komponen routing dari Anthropic. Komponen ini mengakhiri [inner TLS](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components), memvalidasi bahwa IP upstream berada dalam rentang yang diizinkan, dan merutekan setiap permintaan ke [server MCP upstream](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) yang benar berdasarkan hostname.
 
-Setiap server MCP yang Anda ekspos mendapatkan hostname di bawah domain tunnel Anda (misalnya, `docs.<your-tunnel-domain>`). Anda melampirkan hostname ini ke sesi Managed Agent di Claude Console, atau meneruskannya ke Messages API melalui [konektor MCP](/docs/id/agents-and-tools/mcp-connector).
+Setiap server MCP yang Anda ekspos mendapatkan hostname di bawah domain tunnel Anda (misalnya, `docs.<your-tunnel-domain>`). Anda melampirkan hostname ini ke sesi Managed Agent di Claude Console, atau meneruskannya ke Messages API melalui [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector).
 
 ## Prasyarat
 
@@ -34,16 +34,16 @@ Sebelum melakukan deployment, pastikan Anda memiliki:
 
 * Target deployment: klaster Kubernetes, atau VM dengan Docker dan Docker Compose.
 
-* Sebuah tunnel. Buat satu di Claude Console (lihat [Membuat tunnel](/docs/id/agents-and-tools/mcp-tunnels/console#create-a-tunnel)) atau melalui API; setup hook pada Helm chart juga dapat membuatnya untuk Anda selama instalasi.
+* Sebuah tunnel. Buat satu di Claude Console (lihat [Membuat tunnel](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#create-a-tunnel)) atau melalui API; setup hook pada Helm chart juga dapat membuatnya untuk Anda selama instalasi.
 
 * Cara bagi stack Anda untuk melakukan autentikasi ke Tunnels API. Pilih salah satu:
 
-  * **[Akses programatik](/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning) (direkomendasikan).** Siapkan [Workload Identity Federation](/docs/id/manage-claude/workload-identity-federation) saat Anda membuat tunnel. Stack Anda mencetak token API berumur pendek dari penyedia identitas Anda, mengambil token tunnel, serta menghasilkan dan mendaftarkan sertifikat CA secara otomatis. Memerlukan izin untuk mengelola aturan federasi, issuer OIDC yang terdaftar, dan aturan federasi dengan scope `workspace:manage_tunnels`.
-  * **[Manual](/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning).** Sediakan kredensial statis sendiri: token tunnel dari Console dan sertifikat server yang ditandatangani oleh CA yang Anda daftarkan di sana. Lihat [Mendapatkan detail koneksi](/docs/id/agents-and-tools/mcp-tunnels/console#get-the-connection-details) dan [Menambahkan sertifikat CA](/docs/id/agents-and-tools/mcp-tunnels/console#add-a-ca-certificate).
+  * **[Akses programatik](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning) (direkomendasikan).** Siapkan [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation) saat Anda membuat tunnel. Stack Anda mencetak token API berumur pendek dari penyedia identitas Anda, mengambil token tunnel, serta menghasilkan dan mendaftarkan sertifikat CA secara otomatis. Memerlukan izin untuk mengelola aturan federasi, issuer OIDC yang terdaftar, dan aturan federasi dengan scope `workspace:manage_tunnels`.
+  * **[Manual](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning).** Sediakan kredensial statis sendiri: token tunnel dari Console dan sertifikat server yang ditandatangani oleh CA yang Anda daftarkan di sana. Lihat [Mendapatkan detail koneksi](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#get-the-connection-details) dan [Menambahkan sertifikat CA](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#add-a-ca-certificate).
 
-* Satu atau lebih server MCP yang berjalan di jaringan privat Anda. Lihat [Server MCP jarak jauh](/docs/id/agents-and-tools/remote-mcp-servers) untuk contoh.
+* Satu atau lebih server MCP yang berjalan di jaringan privat Anda. Lihat [Server MCP jarak jauh](https://platform.claude.com/docs/id/agents-and-tools/remote-mcp-servers) untuk contoh.
 
-* Konektivitas keluar seperti yang tercantum di bawah [Persyaratan jaringan](#network-requirements).
+* Konektivitas keluar seperti yang tercantum di bawah [Persyaratan jaringan](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview#network-requirements).
 
 ### Persyaratan jaringan
 
@@ -65,7 +65,7 @@ Tiga lapisan independen melindungi setiap permintaan:
 | Inner TLS dari back end Anthropic ke proxy Anda                        | Inspeksi payload oleh penyedia transport atau perantara jaringan mana pun      |
 | OAuth pada setiap server MCP                                           | Penggunaan tidak sah atas alat MCP oleh lalu lintas tunnel yang terautentikasi |
 
-Transport tunnel berjalan di jaringan Cloudflare. Karena proxy mengakhiri inner TLS menggunakan sertifikat yang hanya Anda miliki, Cloudflare tidak dapat membaca payload permintaan atau respons. Anthropic tidak terhubung ke tunnel sampai sertifikat CA terdaftar, sehingga payload selalu terenkripsi saat melintasi jaringan Cloudflare. Cloudflare memang menerima metadata koneksi; lihat [Apa yang dapat diamati oleh penyedia transport](#what-the-transport-provider-can-observe).
+Transport tunnel berjalan di jaringan Cloudflare. Karena proxy mengakhiri inner TLS menggunakan sertifikat yang hanya Anda miliki, Cloudflare tidak dapat membaca payload permintaan atau respons. Anthropic tidak terhubung ke tunnel sampai sertifikat CA terdaftar, sehingga payload selalu terenkripsi saat melintasi jaringan Cloudflare. Cloudflare memang menerima metadata koneksi; lihat [Apa yang dapat diamati oleh penyedia transport](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview#what-the-transport-provider-can-observe).
 
 ### Model tanggung jawab bersama
 
@@ -80,7 +80,7 @@ Transport tunnel berjalan di jaringan Cloudflare. Karena proxy mengakhiri inner 
 |                                                                                          | Memberi tahu Anthropic jika Anda mencurigai adanya pelanggaran                                                                                                                       |
 
 <Warning>
-  Jika penyerang memperoleh token tunnel Anda **dan** salah satu kunci privat TLS Anda, mereka dapat menyamar sebagai proxy Anda dan membaca payload permintaan MCP. Perlakukan keduanya sebagai rahasia bernilai tinggi. Lihat [Keamanan MCP tunnels](/docs/id/agents-and-tools/mcp-tunnels/security) untuk panduan pengerasan (hardening).
+  Jika penyerang memperoleh token tunnel Anda **dan** salah satu kunci privat TLS Anda, mereka dapat menyamar sebagai proxy Anda dan membaca payload permintaan MCP. Perlakukan keduanya sebagai rahasia bernilai tinggi. Lihat [Keamanan MCP tunnels](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/security) untuk panduan pengerasan (hardening).
 </Warning>
 
 ### Apa yang dapat diamati oleh penyedia transport
@@ -99,15 +99,15 @@ Perjanjian Anthropic dengan Cloudflare membatasi penggunaan telemetri ini oleh C
 Jika Anda baru mengenal MCP tunnels, mulailah dengan quickstart untuk mendapatkan tunnel yang berfungsi secara lokal sebelum mengonfigurasi deployment produksi.
 
 <CardGroup cols={2}>
-  <Card title="Quickstart" icon="rocket" href="/docs/id/agents-and-tools/mcp-tunnels/quickstart">
+  <Card title="Quickstart" icon="rocket" href="https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/quickstart">
     Jalur tercepat menuju tunnel yang berfungsi: Docker Compose dengan contoh server MCP.
   </Card>
 
-  <Card title="Deploy dengan Helm" icon="stack" href="/docs/id/agents-and-tools/mcp-tunnels/deploy-helm">
+  <Card title="Deploy dengan Helm" icon="stack" href="https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm">
     Instal pada klaster Kubernetes menggunakan Helm chart dari Anthropic.
   </Card>
 
-  <Card title="Deploy dengan Docker Compose" icon="cube" href="/docs/id/agents-and-tools/mcp-tunnels/deploy-compose">
+  <Card title="Deploy dengan Docker Compose" icon="cube" href="https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-compose">
     Instal pada VM menggunakan Docker Compose.
   </Card>
 </CardGroup>
@@ -142,7 +142,7 @@ Dalam kedua kasus tersebut, tunnel membawa lalu lintas terenkripsi ke server MCP
 
 ### Messages API
 
-Teruskan URL server MCP upstream dalam array `mcp_servers`, dengan cara yang sama seperti server MCP jarak jauh lainnya. Body permintaan dan header `anthropic-beta` mengikuti format standar [konektor MCP](/docs/id/agents-and-tools/mcp-connector); hanya `url` yang spesifik untuk tunnel. Contoh berikut menggunakan header beta `mcp-client` dari konektor MCP, yang terpisah dari beta `mcp-tunnels` yang digunakan oleh [Tunnels API](/docs/id/agents-and-tools/mcp-tunnels/reference). Gunakan kunci API untuk workspace tempat tunnel dibuat (Console **Settings > API keys**).
+Teruskan URL server MCP upstream dalam array `mcp_servers`, dengan cara yang sama seperti server MCP jarak jauh lainnya. Body permintaan dan header `anthropic-beta` mengikuti format standar [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector); hanya `url` yang spesifik untuk tunnel. Contoh berikut menggunakan header beta `mcp-client` dari konektor MCP, yang terpisah dari beta `mcp-tunnels` yang digunakan oleh [Tunnels API](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference). Gunakan kunci API untuk workspace tempat tunnel dibuat (Console **Settings > API keys**).
 
 Host pada URL adalah `<subdomain>.<your-tunnel-domain>`. Path bergantung pada server MCP upstream Anda, bukan pada tunnel: transport `streamable-http` dari FastMCP melayani di `/mcp`, dan server lain mungkin menggunakan `/` atau path kustom (periksa dokumentasi server tersebut). Proxy meneruskan path tanpa mengubahnya.
 
@@ -382,24 +382,24 @@ Host pada URL adalah `<subdomain>.<your-tunnel-domain>`. Path bergantung pada se
   ```
 </CodeGroup>
 
-Untuk autentikasi ke server MCP upstream (`authorization_token`) dan opsi `mcp_servers` lainnya, lihat [konektor MCP](/docs/id/agents-and-tools/mcp-connector).
+Untuk autentikasi ke server MCP upstream (`authorization_token`) dan opsi `mcp_servers` lainnya, lihat [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector).
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Keamanan" icon="lock" href="/docs/id/agents-and-tools/mcp-tunnels/security">
+  <Card title="Keamanan" icon="lock" href="https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/security">
     Panduan pengerasan, rotasi kredensial, dan respons terhadap pelanggaran.
   </Card>
 
-  <Card title="Pemecahan masalah" icon="wrench" href="/docs/id/agents-and-tools/mcp-tunnels/troubleshooting">
+  <Card title="Pemecahan masalah" icon="wrench" href="https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting">
     Mendiagnosis masalah konektivitas, TLS, dan routing.
   </Card>
 
-  <Card title="Referensi" icon="book" href="/docs/id/agents-and-tools/mcp-tunnels/reference">
+  <Card title="Referensi" icon="book" href="https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference">
     Field konfigurasi proxy, Tunnels API, persyaratan sertifikat, dan komponen setup.
   </Card>
 
-  <Card title="Konektor MCP" icon="link" href="/docs/id/agents-and-tools/mcp-connector">
+  <Card title="Konektor MCP" icon="link" href="https://platform.claude.com/docs/id/agents-and-tools/mcp-connector">
     Gunakan server yang di-tunnel dari Messages API.
   </Card>
 </CardGroup>

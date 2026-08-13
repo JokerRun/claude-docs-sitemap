@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/list
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 1d4754ab6970670c9b48e79221fceb3401492deec0df0d2322700a98bbf3941c
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: f10c4d79ec2800a563f7d8b1aded35c11f088faef638d19d20c6dfcc8c9a29cf
+---
+
+---
+title: List Users
+url: https://platform.claude.com/docs/en/api/admin/users/list
 ---
 
 ## List Users

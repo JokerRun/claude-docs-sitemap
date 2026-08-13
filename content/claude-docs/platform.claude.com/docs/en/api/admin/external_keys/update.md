@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/update
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: f2f44c31e159d023e602cc99b60c8f99fcbf461a684e93c0c8e74eb97925676a
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 058a7fb040cc3bcdc36d8cee998e1b26271d998e5dfcfb28000900b346ad140e
+---
+
+---
+title: Update External Key
+url: https://platform.claude.com/docs/en/api/admin/external_keys/update
 ---
 
 ## Update External Key

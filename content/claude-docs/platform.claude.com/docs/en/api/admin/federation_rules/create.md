@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/federation_rules/create
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: 3a5465c465b71646e69e8382d6701c00a2adfa0662f7f7b076262b90804d35dc
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 3c0a7afa7ad1359fa9d6f2f5f35a611876127ab300a1de33d3b1774f16e502d6
+---
+
+---
+title: Create Federation Rule
+url: https://platform.claude.com/docs/en/api/admin/federation_rules/create
 ---
 
 ## Create Federation Rule

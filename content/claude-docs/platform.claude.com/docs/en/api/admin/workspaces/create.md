@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/create
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 1861bdfb6b8ff3e57e307551706f1d8b32a85d9870e8eb5762516a83b50484a4
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 18d0c30d41cc0fed2aa84727b014a24cf7032b22c23825396a6d2de87585b2e6
+---
+
+---
+title: Create Workspace
+url: https://platform.claude.com/docs/en/api/admin/workspaces/create
 ---
 
 ## Create Workspace

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/retrieve
-fetched_at: 2026-06-27T03:14:28.973816Z
-sha256: 9a70b82420d66c3c26848a2b59cf2ae0410b7534dc5c4d6fc844c8671cc786b3
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 65f5cfb77a51c52b31e96e0e11bce0f1bc7c74ea4cc97ec288618813b7a8ae80
+---
+
+---
+title: Get project details
+url: https://platform.claude.com/docs/en/api/compliance/apps/projects/retrieve
 ---
 
 ## Get project details

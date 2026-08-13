@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/tunnel_certificates/create
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: cfdf5c8d127bb840cc5f49d5321b957a58290bc88f093d83ab721f7369b669e4
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 0838ae12cfb8ce5238ac7a98a55b7de4b46cb5b587e27a56f036eee4f444e0c7
+---
+
+---
+title: Create Tunnel Certificate
+url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/tunnel_certificates/create
 ---
 
 ## Create Tunnel Certificate
@@ -81,7 +86,7 @@ curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/certificates 
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN" \
     -d '{
-          "ca_certificate_pem": "-----BEGIN CERTIFICATE-----\\nMIIBexampleEXAMPLEexampleEXAMPLEexampleEXAMPLEexampleEXAMPLEexa\\n...illustrative placeholder, not a real certificate...\\n-----END CERTIFICATE-----\\n"
+          "ca_certificate_pem": "-----BEGIN CERTIFICATE-----\nMIIBexampleEXAMPLEexampleEXAMPLEexampleEXAMPLEexampleEXAMPLEexa\n...illustrative placeholder, not a real certificate...\n-----END CERTIFICATE-----\n"
         }'
 ```
 

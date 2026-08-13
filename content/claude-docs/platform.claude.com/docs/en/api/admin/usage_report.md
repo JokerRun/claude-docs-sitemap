@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/usage_report
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 42a9f3bdd2593c909d6a7646f8ea35e084118dfeedad438a7e45f66be9756ad8
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: cd052e3c74f6a618a9d88820e0cd2198f1385152160582e4cfe5dd3245354a2d
+---
+
+---
+title: Usage Report
+url: https://platform.claude.com/docs/en/api/admin/usage_report
 ---
 
 # Usage Report

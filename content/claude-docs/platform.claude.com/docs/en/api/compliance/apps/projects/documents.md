@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents
-fetched_at: 2026-06-27T03:14:28.973816Z
-sha256: f881b699fb5a2275c876846c470d6895a7070a4b5dbf58a6182fc6c9c083d55d
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 722fe08db92518bacf0fe4e7eab860122db88622c5a04324b8572914969d263e
+---
+
+---
+title: Documents
+url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents
 ---
 
 # Documents

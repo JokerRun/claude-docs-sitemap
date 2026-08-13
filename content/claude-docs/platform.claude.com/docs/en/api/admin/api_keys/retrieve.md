@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys/retrieve
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 8d10ffee44a046215a1bd867fad9da2c55770c1751fc0cb77a4c65b1c347e8b8
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 3b04594aeff81cbe8ef44a3a490d709feff7c4969e2b60256c8f87ada60ae7de
+---
+
+---
+title: Retrieve API Key (Admin API)
+url: https://platform.claude.com/docs/en/api/admin/api_keys/retrieve
 ---
 
 ## Retrieve API Key (Admin API)

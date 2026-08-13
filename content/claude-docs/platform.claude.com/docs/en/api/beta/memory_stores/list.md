@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/list
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 74d14f41294b99b72763b2b4c1e9a4655e46224a4ff50e7bf1c33e375296ca03
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 3fe4ed5446149e7d46f2cf1612195d4f6cebcf4079dc8c9cf36a6517cc5e3d85
+---
+
+---
+title: List memory stores
+url: https://platform.claude.com/docs/en/api/beta/memory_stores/list
 ---
 
 ## List memory stores
@@ -41,7 +46,7 @@ List memory stores
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -106,6 +111,8 @@ List memory stores
     - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
+
+    - `"mid-conversation-tool-changes-2026-07-01"`
 
 ### Returns
 

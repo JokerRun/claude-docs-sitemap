@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/retrieve
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: d71dc133f118c9b446a12c443b87ca48cdd24f5f69c216a43cef3a21ff8fbe62
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 6f0f69a0e54e006fdcc7e3cc0644924312ac3ddab8b27b58ef4ad36e814ec63f
+---
+
+---
+title: Get External Key
+url: https://platform.claude.com/docs/en/api/admin/external_keys/retrieve
 ---
 
 ## Get External Key

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-08-12T02:56:30.865670Z
-sha256: 8fcf573816cc29605b27b0e72719f7d0ff73ae2f8ea234b78435c2f0c890e5d3
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: ee62289b6ecfb7298af7d833436872c76900f543313c69f926779667fcbe6d27
 ---
 
 > ## Documentation Index
@@ -933,10 +933,6 @@ jq -nc --arg seq "$seq" '{terminalSequence: $seq}'
 
 The `{ "terminalSequence": "..." }` shape is the same from any shell or language. On Windows, build the escape string in PowerShell or a script and emit the same JSON object.
 
-<Note>
-  `terminalSequence` is the supported replacement for hooks that previously wrote escape sequences directly to `/dev/tty`. The allowlist is restricted to sequences that can't move the cursor or alter colors, so a hook can never corrupt an on-screen prompt.
-</Note>
-
 #### Add context for Claude
 
 The `additionalContext` field passes a string from your hook into Claude's context window. Claude Code wraps the string in a system reminder and inserts it into the conversation at the point where the hook fired. Claude reads the reminder on the next model request, but it doesn't appear as a chat message in the interface.
@@ -1183,8 +1179,6 @@ The matcher value corresponds to the CLI flag that triggered the hook:
 | `maintenance` | `claude -p --maintenance`                  |
 
 When you run `claude --init-only`, Claude Code runs Setup hooks and `SessionStart` hooks with the `startup` matcher, then exits without starting a conversation.
-
-`--init` and `--maintenance` fire Setup hooks only when you combine them with `-p`. In an interactive session, those two flags don't currently fire Setup hooks.
 
 When you start or continue a conversation with `-p`, you also need to supply a prompt, as an argument or piped on stdin. You can skip the prompt when a `SessionStart` hook supplies [`initialUserMessage`](#sessionstart-decision-control) or when you resume a session with a [deferred tool call](#defer-a-tool-call-for-later).
 
@@ -2544,7 +2538,7 @@ exit 0
 
 Runs when a configuration file changes during a session. Use this to audit settings changes, enforce security policies, or block unauthorized modifications to configuration files.
 
-ConfigChange hooks fire for changes to settings files, managed policy settings, and skill files. The `source` field in the input tells you which type of configuration changed, and the optional `file_path` field provides the path to the changed file.
+ConfigChange hooks fire for changes to settings files, managed policy settings, and skill files.
 
 The matcher filters on the configuration source:
 

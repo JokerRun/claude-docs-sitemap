@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/update
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 6ed87d2fabff08bf27194b69c0ffd43fdab498b28fd93a1adfeccc06fbf899b8
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 523b69f9185cb3a33ab5211ccf304ee4819e7972b2ab770ee4a66b4ba50bbad0
+---
+
+---
+title: Update a memory store
+url: https://platform.claude.com/docs/en/api/beta/memory_stores/update
 ---
 
 ## Update a memory store
@@ -23,7 +28,7 @@ Update a memory store
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -88,6 +93,8 @@ Update a memory store
     - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
+
+    - `"mid-conversation-tool-changes-2026-07-01"`
 
 ### Body Parameters
 

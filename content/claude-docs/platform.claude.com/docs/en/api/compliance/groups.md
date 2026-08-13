@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/groups
-fetched_at: 2026-06-27T03:14:28.973816Z
-sha256: 60221f631db3ac811b7c95f7f80f202857e92745e2edcba067d66ec6a1fc50a9
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: fc42dc56844304b7e40680240c67d2afd41c3c792d4d614e8152ea12e7d777b9
+---
+
+---
+title: Groups
+url: https://platform.claude.com/docs/en/api/compliance/groups
 ---
 
 # Groups

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: ec74a011a784c2393af1d654d1f8592fee16137ca094aa165aa3adf16d3441f6
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 7c13879d4f5d42812bceb2b455a2edcb8e150965fdcfd8545e7d0ba96a985112
+---
+
+---
+title: Set Spend Limit
+url: https://platform.claude.com/docs/en/api/admin/spend_limits/create
 ---
 
 ## Set Spend Limit

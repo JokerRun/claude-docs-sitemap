@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/archive
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: d70306b1d44a75ecaaa0928688a4ffbe63e7e778823b046e250fb9c6cf622d10
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: f2bae8d46b3050f1e20503dd7ef21903aab4276351125e0491435959532c085c
+---
+
+---
+title: Archive Tunnel
+url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/archive
 ---
 
 ## Archive Tunnel

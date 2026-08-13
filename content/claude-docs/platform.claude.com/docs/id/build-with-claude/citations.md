@@ -1,29 +1,29 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/citations
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 418aa7d2dad2d9a6962b34c0ec78d12cc493324244e9b64ed118fc6df4acdf09
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: b16d1720acffa367097d8f29f91cfa1c77470162b8befb82633fccf928f8b7ff
 ---
 
-# Citations
-
-Landaskan respons Claude pada dokumen sumber Anda. Citations mengembalikan bagian teks persis yang mendukung setiap klaim, sehingga Anda dapat memverifikasi jawaban dan menampilkan sumber kepada pengguna Anda.
-
+---
+title: Kutipan
+url: https://platform.claude.com/docs/id/build-with-claude/citations
+description: Dasarkan respons Claude pada dokumen sumber Anda. Kutipan mengembalikan bagian teks persis yang mendukung setiap klaim, sehingga Anda dapat memverifikasi jawaban dan menampilkan sumber kepada pengguna Anda.
 ---
 
-<Note>
-  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
-</Note>
+## Compatibility
+- [ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention): eligible (excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))
+- Platforms: Claude API, Claude Platform on AWS, Amazon Bedrock, Google Cloud, Microsoft Foundry
 
-Claude dapat memberikan sitasi (citations) yang terperinci saat menjawab pertanyaan tentang dokumen, membantu Anda melacak dan memverifikasi sumber di balik setiap respons.
+Claude dapat memberikan kutipan terperinci saat menjawab pertanyaan tentang dokumen, membantu Anda melacak dan memverifikasi sumber di balik setiap respons.
 
-Semua [model aktif](/docs/id/about-claude/models/overview) mendukung citations.
+Semua [model aktif](https://platform.claude.com/docs/id/about-claude/models/overview) mendukung kutipan.
 
 <Tip>
-  Bagikan umpan balik dan saran Anda tentang fitur citations menggunakan [formulir umpan balik citations](https://forms.gle/9n9hSrKnKe3rpowH9).
+  Bagikan masukan dan saran Anda tentang fitur kutipan menggunakan [formulir umpan balik kutipan](https://forms.gle/9n9hSrKnKe3rpowH9).
 </Tip>
 
-Contoh berikut menunjukkan cara mengaktifkan citations pada dokumen teks biasa dengan Messages API:
+Contoh berikut menunjukkan cara mengaktifkan kutipan pada dokumen teks biasa dengan Messages API:
 
 <CodeGroup>
   ```bash cURL
@@ -310,42 +310,42 @@ Contoh berikut menunjukkan cara mengaktifkan citations pada dokumen teks biasa d
 <Tip>
   **Perbandingan dengan pendekatan berbasis prompt**
 
-  Dibandingkan dengan meminta Claude mengutip sumber melalui prompt, fitur citations menawarkan keunggulan berikut:
+  Dibandingkan dengan meminta Claude untuk mengutip sumber melalui prompt, fitur kutipan menawarkan keuntungan berikut:
 
-  * **Penghematan biaya:** Jika pendekatan berbasis prompt Anda meminta Claude untuk menghasilkan kutipan langsung, Anda mungkin melihat penghematan biaya karena `cited_text` tidak dihitung dalam token output Anda.
-  * **Keandalan sitasi yang lebih baik:** Karena API mengurai citations ke dalam format respons yang dijelaskan di bagian berikut dan mengekstrak `cited_text` secara langsung, citations dijamin berisi penunjuk yang valid ke dokumen yang disediakan.
-  * **Kualitas sitasi yang lebih baik:** Dalam evaluasi Anthropic, fitur citations secara signifikan lebih mungkin mengutip kutipan yang paling relevan dari dokumen dibandingkan pendekatan yang murni berbasis prompt.
+  * **Penghematan biaya:** Jika pendekatan berbasis prompt Anda meminta Claude untuk menghasilkan kutipan langsung, Anda mungkin melihat penghematan biaya karena `cited_text` tidak dihitung terhadap token output Anda.
+  * **Keandalan kutipan yang lebih baik:** Karena API mengurai kutipan ke dalam format respons yang dijelaskan di bagian berikut dan mengekstrak `cited_text` secara langsung, kutipan dijamin berisi penunjuk yang valid ke dokumen yang disediakan.
+  * **Kualitas kutipan yang lebih baik:** Dalam evaluasi Anthropic, fitur kutipan secara signifikan lebih mungkin mengutip kutipan yang paling relevan dari dokumen dibandingkan pendekatan yang murni berbasis prompt.
 </Tip>
 
 ***
 
-## Cara kerja citations
+## Cara kerja kutipan
 
-Integrasikan citations dengan Claude dalam langkah-langkah berikut:
+Integrasikan kutipan dengan Claude dalam langkah-langkah berikut:
 
 <Steps>
-  <Step title="Sediakan dokumen dan aktifkan citations">
-    * Sertakan dokumen dalam salah satu format yang didukung: dokumen [PDF](#pdf-documents), [teks biasa](#plain-text-documents), atau [konten kustom](#custom-content-documents).
-    * Atur `citations.enabled=true` pada setiap dokumen Anda. Saat ini, citations harus diaktifkan pada semua dokumen atau tidak sama sekali dalam satu permintaan.
-    * Hanya sitasi teks yang saat ini didukung. Sitasi gambar belum dimungkinkan.
+  <Step title="Sediakan dokumen dan aktifkan kutipan">
+    * Sertakan dokumen dalam salah satu format yang didukung: dokumen [PDF](https://platform.claude.com/docs/id/build-with-claude/citations#pdf-documents), [teks biasa](https://platform.claude.com/docs/id/build-with-claude/citations#plain-text-documents), atau [konten kustom](https://platform.claude.com/docs/id/build-with-claude/citations#custom-content-documents).
+    * Atur `citations.enabled=true` pada setiap dokumen Anda. Saat ini, kutipan harus diaktifkan pada semua dokumen atau tidak sama sekali dalam satu permintaan.
+    * Hanya kutipan teks yang saat ini didukung. Kutipan gambar belum dimungkinkan.
   </Step>
 
   <Step title="Dokumen diproses">
-    * Konten dokumen "dipecah" (chunked) untuk menentukan granularitas minimum dari citations yang mungkin. Misalnya, pemecahan per kalimat memungkinkan Claude mengutip satu kalimat atau merangkai beberapa kalimat berurutan untuk mengutip paragraf atau bagian yang lebih panjang.
+    * Konten dokumen "dipecah menjadi potongan" (chunked) untuk menentukan granularitas minimum dari kutipan yang mungkin. Misalnya, pemecahan per kalimat memungkinkan Claude mengutip satu kalimat atau merangkai beberapa kalimat berurutan untuk mengutip paragraf atau bagian yang lebih panjang.
 
-      * **Untuk PDF:** Teks diekstrak seperti yang dijelaskan dalam [dukungan PDF](/docs/id/build-with-claude/pdf-support) dan konten dipecah menjadi kalimat. Mengutip gambar dari PDF saat ini tidak didukung.
-      * **Untuk dokumen teks biasa:** Konten dipecah menjadi kalimat-kalimat yang dapat dikutip.
+      * **Untuk PDF:** Teks diekstrak seperti yang dijelaskan dalam [Dukungan PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support) dan konten dipecah menjadi kalimat. Mengutip gambar dari PDF saat ini tidak didukung.
+      * **Untuk dokumen teks biasa:** Konten dipecah menjadi kalimat yang dapat dikutip.
       * **Untuk dokumen konten kustom:** Blok konten yang Anda sediakan digunakan apa adanya dan tidak ada pemecahan lebih lanjut yang dilakukan.
   </Step>
 
-  <Step title="Claude memberikan respons dengan sitasi">
-    * Respons sekarang dapat mencakup beberapa blok teks di mana setiap blok teks dapat berisi klaim yang dibuat Claude dan daftar citations yang mendukung klaim tersebut.
+  <Step title="Claude memberikan respons dengan kutipan">
+    * Respons sekarang dapat mencakup beberapa blok teks di mana setiap blok teks dapat berisi klaim yang dibuat Claude dan daftar kutipan yang mendukung klaim tersebut.
 
-    * Citations merujuk pada lokasi spesifik dalam dokumen sumber. Format citations ini bergantung pada jenis dokumen yang dikutip.
+    * Kutipan merujuk ke lokasi spesifik dalam dokumen sumber. Format kutipan ini bergantung pada jenis dokumen yang dikutip.
 
-      * **Untuk PDF:** Citations mencakup rentang nomor halaman (diindeks mulai dari 1).
-      * **Untuk dokumen teks biasa:** Citations mencakup rentang indeks karakter (diindeks mulai dari 0).
-      * **Untuk dokumen konten kustom:** Citations mencakup rentang indeks blok konten (diindeks mulai dari 0) yang sesuai dengan daftar konten asli yang disediakan.
+      * **Untuk PDF:** Kutipan mencakup rentang nomor halaman (indeks dimulai dari 1).
+      * **Untuk dokumen teks biasa:** Kutipan mencakup rentang indeks karakter (indeks dimulai dari 0).
+      * **Untuk dokumen konten kustom:** Kutipan mencakup rentang indeks blok konten (indeks dimulai dari 0) yang sesuai dengan daftar konten asli yang disediakan.
 
     * Indeks dokumen disediakan untuk menunjukkan sumber referensi dan diindeks mulai dari 0 sesuai dengan daftar semua dokumen dalam permintaan asli Anda.
   </Step>
@@ -354,47 +354,47 @@ Integrasikan citations dengan Claude dalam langkah-langkah berikut:
 <Tip>
   **Pemecahan otomatis vs konten kustom**
 
-  Secara default, dokumen teks biasa dan PDF secara otomatis dipecah menjadi kalimat. Jika Anda memerlukan kontrol lebih atas granularitas sitasi (misalnya, untuk poin-poin atau transkrip), gunakan dokumen konten kustom sebagai gantinya. Lihat [Jenis dokumen](#document-types) untuk detail lebih lanjut.
+  Secara default, dokumen teks biasa dan PDF secara otomatis dipecah menjadi kalimat. Jika Anda memerlukan kontrol lebih atas granularitas kutipan (misalnya, untuk poin-poin atau transkrip), gunakan dokumen konten kustom sebagai gantinya. Lihat [Jenis dokumen](https://platform.claude.com/docs/id/build-with-claude/citations#document-types) untuk detail lebih lanjut.
 
-  Misalnya, jika Anda ingin Claude dapat mengutip kalimat tertentu dari chunk RAG Anda, Anda harus memasukkan setiap chunk RAG ke dalam dokumen teks biasa. Sebaliknya, jika Anda tidak ingin ada pemecahan lebih lanjut, atau jika Anda ingin menyesuaikan pemecahan tambahan, Anda dapat memasukkan chunk RAG ke dalam dokumen konten kustom.
+  Misalnya, jika Anda ingin Claude dapat mengutip kalimat spesifik dari potongan RAG Anda, Anda harus menempatkan setiap potongan RAG ke dalam dokumen teks biasa. Sebaliknya, jika Anda tidak ingin pemecahan lebih lanjut dilakukan, atau jika Anda ingin menyesuaikan pemecahan tambahan apa pun, Anda dapat menempatkan potongan RAG ke dalam dokumen konten kustom.
 </Tip>
 
-### Konten yang dapat dikutip versus yang tidak dapat dikutip
+### Konten yang dapat dikutip versus tidak dapat dikutip
 
 * Teks yang ditemukan dalam konten `source` dokumen dapat dikutip.
-* `title` dan `context` adalah field opsional yang diteruskan ke model tetapi tidak digunakan untuk konten yang dikutip.
-* `title` memiliki batasan panjang, sehingga field `context` berguna untuk menyimpan metadata dokumen sebagai teks atau JSON yang di-string-kan.
+* `title` dan `context` adalah field opsional yang diteruskan ke model tetapi tidak digunakan sebagai konten yang dikutip.
+* `title` memiliki batasan panjang, sehingga field `context` berguna untuk menyimpan metadata dokumen sebagai teks atau JSON yang di-stringify.
 
-### Indeks sitasi
+### Indeks kutipan
 
-* Indeks dokumen diindeks mulai dari 0 berdasarkan daftar semua blok konten dokumen dalam permintaan (mencakup semua pesan).
-* Indeks karakter diindeks mulai dari 0 dengan indeks akhir eksklusif.
-* Nomor halaman diindeks mulai dari 1 dengan nomor halaman akhir eksklusif.
-* Indeks blok konten diindeks mulai dari 0 dengan indeks akhir eksklusif dari daftar `content` yang disediakan dalam dokumen konten kustom.
+* Indeks dokumen dimulai dari 0 berdasarkan daftar semua blok konten dokumen dalam permintaan (mencakup semua pesan).
+* Indeks karakter dimulai dari 0 dengan indeks akhir eksklusif.
+* Nomor halaman dimulai dari 1 dengan nomor halaman akhir eksklusif.
+* Indeks blok konten dimulai dari 0 dengan indeks akhir eksklusif dari daftar `content` yang disediakan dalam dokumen konten kustom.
 
 ### Biaya token
 
-* Mengaktifkan citations menyebabkan sedikit peningkatan token input karena penambahan prompt sistem dan pemecahan dokumen.
-* Namun, fitur citations sangat efisien dalam hal token output. Secara internal, model menghasilkan citations dalam format terstandar yang kemudian diurai menjadi teks yang dikutip dan indeks lokasi dokumen. Field `cited_text` disediakan untuk kenyamanan dan tidak dihitung dalam token output.
-* Ketika diteruskan kembali dalam giliran percakapan berikutnya, `cited_text` juga tidak dihitung dalam token input.
+* Mengaktifkan kutipan menyebabkan sedikit peningkatan pada token input karena penambahan prompt sistem dan pemecahan dokumen.
+* Namun, fitur kutipan sangat efisien dengan token output. Secara internal, model menghasilkan kutipan dalam format terstandar yang kemudian diurai menjadi teks yang dikutip dan indeks lokasi dokumen. Field `cited_text` disediakan untuk kemudahan dan tidak dihitung terhadap token output.
+* Ketika diteruskan kembali dalam giliran percakapan berikutnya, `cited_text` juga tidak dihitung terhadap token input.
 
 ### Kompatibilitas fitur
 
-Citations bekerja bersama dengan fitur API lainnya termasuk [caching prompt](/docs/id/build-with-claude/prompt-caching), [penghitungan token](/docs/id/build-with-claude/token-counting), dan [pemrosesan batch](/docs/id/build-with-claude/batch-processing).
+Kutipan bekerja bersama dengan fitur API lainnya termasuk [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching), [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting), dan [pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing).
 
 <Warning>
-  **Citations dan structured outputs tidak kompatibel**
+  **Kutipan dan output terstruktur tidak kompatibel**
 
-  Citations tidak dapat digunakan bersama dengan [structured outputs](/docs/id/build-with-claude/structured-outputs). Jika Anda mengaktifkan citations pada dokumen apa pun yang disediakan pengguna (blok `document` atau blok `search_result`) dan juga menyertakan parameter `output_config.format` (atau parameter `output_format` yang sudah usang), API mengembalikan error 400.
+  Kutipan tidak dapat digunakan bersama dengan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs). Jika Anda mengaktifkan kutipan pada dokumen apa pun yang disediakan pengguna (blok `document` atau blok `search_result`) dan juga menyertakan parameter `output_config.format` (atau parameter `output_format` yang sudah tidak digunakan lagi), API mengembalikan error 400.
 
-  Hal ini karena citations memerlukan penyisipan blok sitasi di antara output teks, yang tidak kompatibel dengan batasan skema JSON yang ketat dari structured outputs.
+  Ini karena kutipan memerlukan penyisipan blok kutipan di antara output teks, yang tidak kompatibel dengan batasan skema JSON yang ketat dari output terstruktur.
 </Warning>
 
-#### Menggunakan caching prompt dengan citations
+#### Menggunakan caching prompt dengan kutipan
 
-Citations dan caching prompt dapat digunakan bersama secara efektif.
+Kutipan dan caching prompt dapat digunakan bersama secara efektif.
 
-Blok sitasi yang dihasilkan dalam respons tidak dapat di-cache secara langsung, tetapi dokumen sumber yang dirujuknya dapat di-cache. Untuk mengoptimalkan kinerja, terapkan `cache_control` pada blok konten dokumen tingkat atas Anda.
+Blok kutipan yang dihasilkan dalam respons tidak dapat di-cache secara langsung, tetapi dokumen sumber yang dirujuknya dapat di-cache. Untuk mengoptimalkan kinerja, terapkan `cache_control` pada blok konten dokumen tingkat atas Anda.
 
 <CodeGroup>
   ```bash cURL
@@ -702,29 +702,29 @@ Blok sitasi yang dihasilkan dalam respons tidak dapat di-cache secara langsung, 
 Dalam contoh ini:
 
 * Konten dokumen di-cache menggunakan `cache_control` pada blok dokumen.
-* Citations diaktifkan pada dokumen.
-* Claude dapat menghasilkan respons dengan citations sambil mendapatkan manfaat dari konten dokumen yang di-cache.
+* Kutipan diaktifkan pada dokumen.
+* Claude dapat menghasilkan respons dengan kutipan sambil mendapatkan manfaat dari konten dokumen yang di-cache.
 * Permintaan berikutnya yang menggunakan dokumen yang sama mendapatkan manfaat dari konten yang di-cache.
 
 ## Jenis dokumen
 
 ### Memilih jenis dokumen
 
-Tiga jenis dokumen didukung untuk citations. Dokumen dapat disediakan langsung dalam pesan (base64, teks, atau URL) atau diunggah melalui [Files API](/docs/id/build-with-claude/files) dan dirujuk dengan `file_id`:
+Tiga jenis dokumen didukung untuk kutipan. Dokumen dapat disediakan langsung dalam pesan (base64, teks, atau URL) atau diunggah melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files) dan direferensikan dengan `file_id`:
 
-| Jenis         | Paling cocok untuk                                                   | Pemecahan                    | Format sitasi                           |
-| ------------- | -------------------------------------------------------------------- | ---------------------------- | --------------------------------------- |
-| Teks biasa    | Dokumen teks sederhana, prosa                                        | Kalimat                      | Indeks karakter (diindeks mulai dari 0) |
-| PDF           | File PDF dengan konten teks                                          | Kalimat                      | Nomor halaman (diindeks mulai dari 1)   |
-| Konten kustom | Daftar, transkrip, pemformatan khusus, citations yang lebih granular | Tidak ada pemecahan tambahan | Indeks blok (diindeks mulai dari 0)     |
+| Jenis         | Paling cocok untuk                                                 | Pemecahan                    | Format kutipan                   |
+| ------------- | ------------------------------------------------------------------ | ---------------------------- | -------------------------------- |
+| Teks biasa    | Dokumen teks sederhana, prosa                                      | Kalimat                      | Indeks karakter (dimulai dari 0) |
+| PDF           | File PDF dengan konten teks                                        | Kalimat                      | Nomor halaman (dimulai dari 1)   |
+| Konten kustom | Daftar, transkrip, pemformatan khusus, kutipan yang lebih granular | Tidak ada pemecahan tambahan | Indeks blok (dimulai dari 0)     |
 
 <Note>
-  Untuk jenis file yang tidak didukung oleh blok `document` (misalnya, .docx dan .xlsx), konversikan file tersebut ke teks biasa dan sertakan kontennya langsung dalam konten pesan. File yang sudah berupa teks biasa, seperti file .csv dan .md, juga dapat diunggah dengan tipe konten `text/plain` secara eksplisit. Lihat [Bekerja dengan format file lain](/docs/id/build-with-claude/files#working-with-other-file-formats).
+  Untuk jenis file yang tidak didukung oleh blok `document` (misalnya, .docx dan .xlsx), konversikan file ke teks biasa dan sertakan kontennya langsung dalam konten pesan. File yang sudah berupa teks biasa, seperti file .csv dan .md, juga dapat diunggah dengan tipe konten `text/plain` eksplisit. Lihat [Bekerja dengan format file lainnya](https://platform.claude.com/docs/id/build-with-claude/files#working-with-other-file-formats).
 </Note>
 
 ### Dokumen teks biasa
 
-Dokumen teks biasa secara otomatis dipecah menjadi kalimat. Anda dapat menyediakannya secara inline atau dengan referensi menggunakan `file_id`-nya:
+Dokumen teks biasa secara otomatis dipecah menjadi kalimat. Anda dapat menyediakannya secara inline atau dengan referensi menggunakan `file_id`:
 
 <Tabs>
   <Tab title="Teks inline">
@@ -747,7 +747,7 @@ Dokumen teks biasa secara otomatis dipecah menjadi kalimat. Anda dapat menyediak
 
   <Tab title="Files API">
     <Note>
-      Sumber dokumen Files API masih dalam tahap beta. Contoh-contoh ini menggunakan jalur klien beta; lihat [Files API](/docs/id/build-with-claude/files) untuk detail pengunggahan.
+      Sumber dokumen Files API masih dalam tahap beta. Contoh-contoh ini menggunakan jalur klien beta; lihat [Files API](https://platform.claude.com/docs/id/build-with-claude/files) untuk detail pengunggahan.
     </Note>
 
     <CodeGroup>
@@ -990,7 +990,7 @@ Dokumen teks biasa secara otomatis dipecah menjadi kalimat. Anda dapat menyediak
   </Tab>
 </Tabs>
 
-<Accordion title="Contoh sitasi teks biasa">
+<Accordion title="Contoh kutipan teks biasa">
   ```python
   {
       "type": "char_location",
@@ -1005,7 +1005,7 @@ Dokumen teks biasa secara otomatis dipecah menjadi kalimat. Anda dapat menyediak
 
 ### Dokumen PDF
 
-Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau dengan `file_id`. Teks PDF diekstrak dan dipecah menjadi kalimat. Karena sitasi gambar belum didukung, PDF yang merupakan hasil pindaian dokumen dan tidak berisi teks yang dapat diekstrak tidak dapat dikutip.
+Dokumen PDF dapat disediakan sebagai data yang dienkode base64, URL, atau dengan `file_id`. Teks PDF diekstrak dan dipecah menjadi kalimat. Karena kutipan gambar belum didukung, PDF yang merupakan hasil pemindaian dokumen dan tidak berisi teks yang dapat diekstrak tidak dapat dikutip.
 
 <Tabs>
   <Tab title="Base64">
@@ -1578,7 +1578,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
 
   <Tab title="Files API">
     <Note>
-      Sumber dokumen Files API masih dalam tahap beta. Contoh-contoh ini menggunakan jalur klien beta; lihat [Files API](/docs/id/build-with-claude/files) untuk detail pengunggahan.
+      Sumber dokumen Files API masih dalam tahap beta. Contoh-contoh ini menggunakan jalur klien beta; lihat [Files API](https://platform.claude.com/docs/id/build-with-claude/files) untuk detail pengunggahan.
     </Note>
 
     <CodeGroup>
@@ -1821,7 +1821,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
   </Tab>
 </Tabs>
 
-<Accordion title="Contoh sitasi PDF">
+<Accordion title="Contoh kutipan PDF">
   ```python
   {
       "type": "page_location",
@@ -1836,7 +1836,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
 
 ### Dokumen konten kustom
 
-Dokumen konten kustom memberi Anda kontrol atas granularitas sitasi. Tidak ada pemecahan tambahan yang dilakukan dan chunk disediakan ke model sesuai dengan blok konten yang diberikan.
+Dokumen konten kustom memberi Anda kontrol atas granularitas kutipan. Tidak ada pemecahan tambahan yang dilakukan dan potongan disediakan ke model sesuai dengan blok konten yang disediakan.
 
 <CodeGroup>
   ```bash cURL
@@ -2141,7 +2141,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas sitasi. Tidak ada p
   ```
 </CodeGroup>
 
-<Accordion title="Contoh sitasi">
+<Accordion title="Contoh kutipan">
   ```python
   {
       "type": "content_block_location",
@@ -2158,7 +2158,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas sitasi. Tidak ada p
 
 ## Struktur respons
 
-Ketika citations diaktifkan, respons mencakup beberapa blok teks dengan citations:
+Ketika kutipan diaktifkan, respons mencakup beberapa blok teks dengan kutipan:
 
 ```python
 {
@@ -2235,7 +2235,7 @@ Ketika citations diaktifkan, respons mencakup beberapa blok teks dengan citation
 
 ### Dukungan streaming
 
-Untuk respons streaming, citations tiba sebagai tipe delta `citations_delta` di dalam event `content_block_delta`. Setiap delta berisi satu sitasi untuk ditambahkan ke daftar `citations` pada blok konten `text` saat ini.
+Untuk respons streaming, kutipan tiba sebagai tipe delta `citations_delta` di dalam event `content_block_delta`. Setiap delta berisi satu kutipan untuk ditambahkan ke daftar `citations` pada blok konten `text` saat ini.
 
 <AccordionGroup>
   <Accordion title="Contoh event streaming">
@@ -2272,19 +2272,19 @@ Untuk respons streaming, citations tiba sebagai tipe delta `citations_delta` di 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Streaming pesan" icon="wifi-high" href="/docs/id/build-with-claude/streaming">
-    Tangani tipe delta `citations_delta` bersama dengan delta teks untuk merender respons yang dikutip saat di-streaming.
+  <Card title="Pesan streaming" icon="wifi-high" href="https://platform.claude.com/docs/id/build-with-claude/streaming">
+    Tangani tipe delta `citations_delta` bersama dengan delta teks untuk merender respons yang dikutip saat di-stream.
   </Card>
 
-  <Card title="Hasil pencarian" icon="book-bookmark" href="/docs/id/build-with-claude/search-results">
-    Teruskan hasil pencarian dari pipeline RAG Anda sebagai blok konten kelas satu dengan dukungan sitasi bawaan.
+  <Card title="Hasil pencarian" icon="book-bookmark" href="https://platform.claude.com/docs/id/build-with-claude/search-results">
+    Teruskan hasil pencarian dari pipeline RAG Anda sebagai blok konten kelas satu dengan dukungan kutipan bawaan.
   </Card>
 
-  <Card title="Dukungan PDF" icon="file" href="/docs/id/build-with-claude/pdf-support">
-    Pelajari bagaimana Claude mengekstrak teks dari PDF dan bagaimana citations berbasis halaman dipetakan kembali ke file sumber Anda.
+  <Card title="Dukungan PDF" icon="file" href="https://platform.claude.com/docs/id/build-with-claude/pdf-support">
+    Pelajari cara Claude mengekstrak teks dari PDF dan bagaimana kutipan berbasis halaman dipetakan kembali ke file sumber Anda.
   </Card>
 
-  <Card title="Files API" icon="hard-drives" href="/docs/id/build-with-claude/files">
-    Unggah dokumen sekali dan rujuk dengan `file_id` di beberapa permintaan citations.
+  <Card title="Files API" icon="hard-drives" href="https://platform.claude.com/docs/id/build-with-claude/files">
+    Unggah dokumen sekali dan referensikan dengan `file_id` di beberapa permintaan kutipan.
   </Card>
 </CardGroup>

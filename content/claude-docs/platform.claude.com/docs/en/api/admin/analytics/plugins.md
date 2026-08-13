@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/plugins
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 55cb9fa81e9d4bc48b22ac53724bff41e98e8675876b9037121f69666e490292
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 29ff4a4ceb4231ecfe899326eebe3489d06d44e38d3ca050beb2685714abbf55
+---
+
+---
+title: Plugins
+url: https://platform.claude.com/docs/en/api/admin/analytics/plugins
 ---
 
 # Plugins

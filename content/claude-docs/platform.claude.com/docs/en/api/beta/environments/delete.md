@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/delete
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 0171bf88a2a2b425dc4298d23b4c3f7d9c1f6fc44f536cc28a3c1aeb673d6790
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: e36b27b075e0feda60db9d9f05996378f8c621e17729966ae10e8ca73a3d52d1
+---
+
+---
+title: Delete Environment
+url: https://platform.claude.com/docs/en/api/beta/environments/delete
 ---
 
 ## Delete Environment
@@ -23,7 +28,7 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -88,6 +93,8 @@ Delete an environment by ID. Returns a confirmation of the deletion.
     - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
+
+    - `"mid-conversation-tool-changes-2026-07-01"`
 
 ### Returns
 

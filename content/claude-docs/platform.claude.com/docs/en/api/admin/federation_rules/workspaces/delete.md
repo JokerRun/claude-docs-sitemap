@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/federation_rules/workspaces/delete
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: c68bf0ff0dc19c2c75c963500af618d19d0178a792b5716c8364f3dfd396088e
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: b81ce395f3299db443edaaf590df412167e01eb24335e182346e7fc6d4d04a88
+---
+
+---
+title: Remove Federation Rule Workspace
+url: https://platform.claude.com/docs/en/api/admin/federation_rules/workspaces/delete
 ---
 
 ## Remove Federation Rule Workspace

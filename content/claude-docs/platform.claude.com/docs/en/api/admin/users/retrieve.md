@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/retrieve
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: f377efd6473037dbef0ed613bb305cec0bd677c7c06f45f453e8e2c2d10db98b
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 016a392969bd279bd0a8268f0c7bef05650d2c1bd22f321181fad1a7b0196c8d
+---
+
+---
+title: Get User
+url: https://platform.claude.com/docs/en/api/admin/users/retrieve
 ---
 
 ## Get User

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/retrieve
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 2bbd47c36459952efae2df7e927006e014f2c891eb043ea7e30b2e61ff7fda9b
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 292e32800c0c6d77e875b7253227f27d26cbc34cf6e27735b4c580b8e3b81b15
+---
+
+---
+title: Retrieve a memory store
+url: https://platform.claude.com/docs/en/api/beta/memory_stores/retrieve
 ---
 
 ## Retrieve a memory store
@@ -23,7 +28,7 @@ Retrieve a memory store
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -88,6 +93,8 @@ Retrieve a memory store
     - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
+
+    - `"mid-conversation-tool-changes-2026-07-01"`
 
 ### Returns
 

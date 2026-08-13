@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/federation_rules/retrieve
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: ec62fe7d5679a3cc517a9228baa3338d2c8488ee3be8feac2fd8af2cf49fcad7
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: ce853b999bc2e77c2c39a9ed5049302fa415556799f3a2716c7ceba8cfc8bf1c
+---
+
+---
+title: Get Federation Rule
+url: https://platform.claude.com/docs/en/api/admin/federation_rules/retrieve
 ---
 
 ## Get Federation Rule

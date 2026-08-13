@@ -1,43 +1,43 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: b0bc267b561fedb03b19c74d02f7e77aafca771c5f5e47bd7aba703d9f83b386
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: eadc0bbf25400ebdccbb5a300339fbe7c27b25e526772e1d900886f969b68952
 ---
 
-# Alat computer use
-
-Berikan Claude kontrol tangkapan layar, mouse, dan keyboard atas lingkungan desktop dengan alat computer use.
-
+---
+title: Alat computer use
+url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
+description: Berikan Claude kontrol tangkapan layar, mouse, dan keyboard atas lingkungan desktop dengan alat computer use.
 ---
 
-Claude dapat berinteraksi dengan lingkungan komputer melalui alat computer use, yang menyediakan kemampuan tangkapan layar dan kontrol mouse/keyboard untuk interaksi desktop secara otonom.
+## Compatibility
+- Status: Beta
+- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `computer-use-2025-11-24`
+- [ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention): eligible (excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))
+- Supported models: `claude-opus-5`, `claude-sonnet-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-opus-4-6`, `claude-sonnet-4-6`, `claude-opus-4-5-20251101`
+- Platforms: Claude API (beta), Claude Platform on AWS (beta), Amazon Bedrock (beta), Google Cloud (beta), Microsoft Foundry (beta)
+
+Claude dapat berinteraksi dengan lingkungan komputer melalui alat "computer use" (penggunaan komputer), yang menyediakan kemampuan tangkapan layar dan kontrol mouse/keyboard untuk interaksi desktop secara otonom.
 
 <Note>
-  Computer use berada dalam tahap beta dan memerlukan [header beta](/docs/id/api/beta-headers):
+  Pada Claude Sonnet 4.5, Claude Haiku 4.5, Claude Opus 4.1 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Sonnet 4 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)), dan Claude Opus 4 ([dihentikan, kecuali di Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)), gunakan [beta header](https://platform.claude.com/docs/id/api/beta-headers) `computer-use-2025-01-24` yang lebih lama alih-alih `computer-use-2025-11-24`.
 
-  * `"computer-use-2025-11-24"` untuk Claude Opus 5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5
-  * `"computer-use-2025-01-24"` untuk Claude Sonnet 4.5, Claude Haiku 4.5, Claude Opus 4.1 ([tidak digunakan lagi](/docs/id/about-claude/model-deprecations)), Claude Sonnet 4 ([dihentikan, kecuali di Bedrock dan Google Cloud](/docs/id/about-claude/model-deprecations)), dan Claude Opus 4 ([dihentikan, kecuali di Google Cloud](/docs/id/about-claude/model-deprecations))
-
-  Hubungi kami melalui [formulir umpan balik](https://forms.gle/H6UFuXaaLywri9hz6) untuk membagikan umpan balik Anda tentang fitur ini.
-</Note>
-
-<Note>
-  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
+  Hubungi kami melalui [formulir umpan balik](https://forms.gle/H6UFuXaaLywri9hz6) untuk membagikan masukan Anda tentang fitur ini.
 </Note>
 
 ## Ikhtisar
 
 Computer use adalah fitur beta yang memungkinkan Claude berinteraksi dengan lingkungan desktop. Alat ini menyediakan:
 
-* **Pengambilan tangkapan layar:** Melihat apa yang saat ini ditampilkan di layar
+* **Pengambilan tangkapan layar:** Melihat apa yang sedang ditampilkan di layar
 * **Kontrol mouse:** Klik, seret, dan gerakkan kursor
 * **Input keyboard:** Mengetik teks dan menggunakan pintasan keyboard
 * **Otomatisasi desktop:** Berinteraksi dengan aplikasi atau antarmuka apa pun
 
-Meskipun computer use dapat ditambah dengan alat lain seperti bash dan text editor untuk alur kerja otomatisasi yang lebih komprehensif, computer use secara khusus mengacu pada kemampuan alat computer use untuk melihat dan mengontrol lingkungan desktop.
+Meskipun computer use dapat ditambah dengan alat lain seperti bash dan text editor untuk alur kerja otomatisasi yang lebih komprehensif, computer use secara spesifik mengacu pada kemampuan alat computer use untuk melihat dan mengontrol lingkungan desktop.
 
-Untuk dukungan model, lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference).
+Untuk dukungan model, lihat [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference).
 
 ## Pertimbangan keamanan
 
@@ -46,19 +46,19 @@ Computer use adalah fitur beta dengan risiko unik yang berbeda dari fitur API st
 <Warning>
   Untuk meminimalkan risiko, pertimbangkan untuk mengambil tindakan pencegahan seperti:
 
-  1. Menggunakan mesin virtual atau container khusus dengan hak istimewa minimal untuk mencegah serangan sistem langsung atau kecelakaan.
+  1. Menggunakan mesin virtual atau container khusus dengan hak akses minimal untuk mencegah serangan sistem langsung atau kecelakaan.
   2. Menghindari memberikan model akses ke data sensitif, seperti informasi login akun, untuk mencegah pencurian informasi.
   3. Membatasi akses internet ke daftar domain yang diizinkan untuk mengurangi paparan terhadap konten berbahaya.
-  4. Meminta manusia untuk mengonfirmasi keputusan yang mungkin mengakibatkan konsekuensi nyata yang berarti dan tugas apa pun yang memerlukan persetujuan afirmatif, seperti menerima cookie, menyelesaikan transaksi keuangan, atau menyetujui ketentuan layanan.
+  4. Meminta manusia untuk mengonfirmasi keputusan yang mungkin menghasilkan konsekuensi nyata yang signifikan dan tugas apa pun yang memerlukan persetujuan afirmatif, seperti menerima cookie, menyelesaikan transaksi keuangan, atau menyetujui ketentuan layanan.
 </Warning>
 
-Dalam beberapa keadaan, Claude akan mengikuti perintah yang ditemukan dalam konten bahkan ketika bertentangan dengan instruksi Anda. Misalnya, instruksi di halaman web atau yang terkandung dalam gambar mungkin menimpa instruksi Anda atau menyebabkan Claude membuat kesalahan. Ambil tindakan pencegahan untuk mengisolasi Claude dari data dan tindakan sensitif untuk menghindari risiko terkait prompt injection.
+Dalam beberapa keadaan, Claude akan mengikuti perintah yang ditemukan dalam konten meskipun bertentangan dengan instruksi Anda. Misalnya, instruksi pada halaman web atau yang terkandung dalam gambar mungkin menggantikan instruksi Anda atau menyebabkan Claude membuat kesalahan. Ambil tindakan pencegahan untuk mengisolasi Claude dari data dan tindakan sensitif guna menghindari risiko terkait prompt injection.
 
-Anthropic telah melatih model untuk menahan prompt injection ini dan telah menambahkan lapisan pertahanan ekstra. Jika Anda menggunakan alat computer use, classifier akan secara otomatis berjalan pada prompt Anda untuk menandai potensi kasus prompt injection. Ketika classifier ini mengidentifikasi potensi prompt injection dalam tangkapan layar, mereka akan secara otomatis mengarahkan model untuk meminta konfirmasi pengguna sebelum melanjutkan dengan tindakan berikutnya. Perlindungan ekstra ini tidak akan ideal untuk setiap kasus penggunaan (misalnya, kasus penggunaan tanpa manusia dalam prosesnya), jadi jika Anda ingin memilih keluar dan menonaktifkannya, [hubungi dukungan](https://support.claude.com/en/).
+Anthropic telah melatih model untuk menolak prompt injection ini dan telah menambahkan lapisan pertahanan ekstra. Jika Anda menggunakan alat computer use, classifier akan secara otomatis berjalan pada prompt Anda untuk menandai potensi kasus prompt injection. Ketika classifier ini mengidentifikasi potensi prompt injection dalam tangkapan layar, mereka akan secara otomatis mengarahkan model untuk meminta konfirmasi pengguna sebelum melanjutkan ke tindakan berikutnya. Perlindungan ekstra ini tidak akan ideal untuk setiap kasus penggunaan (misalnya, kasus penggunaan tanpa manusia dalam loop), jadi jika Anda ingin memilih keluar dan menonaktifkannya, [hubungi dukungan](https://support.claude.com/en/).
 
-Tindakan pencegahan ini tetap penting bahkan dengan lapisan pertahanan classifier yang sudah ada.
+Tindakan pencegahan ini tetap penting meskipun lapisan pertahanan classifier sudah diterapkan.
 
-Informasikan pengguna akhir tentang risiko yang relevan dan dapatkan persetujuan mereka sebelum mengaktifkan computer use dalam produk Anda sendiri.
+Informasikan pengguna akhir tentang risiko yang relevan dan dapatkan persetujuan mereka sebelum mengaktifkan computer use di produk Anda sendiri.
 
 <Card title="Implementasi referensi computer use" icon="computer" href="https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo">
   Mulai dengan implementasi referensi computer use yang mencakup antarmuka web, container Docker, contoh implementasi alat, dan agent loop.
@@ -337,9 +337,9 @@ Berikut cara memulai dengan computer use:
 </CodeGroup>
 
 <Note>
-  Header beta hanya diperlukan untuk alat computer use.
+  Beta header hanya diperlukan untuk alat computer use.
 
-  Contoh sebelumnya menunjukkan ketiga alat digunakan bersama-sama, yang memerlukan header beta karena menyertakan alat computer use.
+  Contoh sebelumnya menunjukkan ketiga alat digunakan bersama, yang memerlukan beta header karena menyertakan alat computer use.
 </Note>
 
 ***
@@ -353,20 +353,20 @@ Berikut cara memulai dengan computer use:
   </Step>
 
   <Step title="Claude memilih alat computer use" icon="wrench">
-    * Claude menilai apakah alat computer use dapat membantu dengan kueri pengguna.
-    * Jika ya, Claude membangun permintaan penggunaan alat yang diformat dengan benar.
+    * Claude menilai apakah alat computer use dapat membantu dengan pertanyaan pengguna.
+    * Jika ya, Claude menyusun permintaan penggunaan alat yang diformat dengan benar.
     * Respons API memiliki `stop_reason` berupa `tool_use`, yang menandakan permintaan penggunaan alat.
   </Step>
 
-  <Step title="Ekstrak input alat, evaluasi alat di komputer, dan kembalikan hasilnya" icon="computer">
+  <Step title="Ekstrak input alat, evaluasi alat pada komputer, dan kembalikan hasilnya" icon="computer">
     * Di sisi Anda, ekstrak nama alat dan input dari permintaan Claude.
-    * Gunakan alat pada container atau mesin virtual.
+    * Gunakan alat tersebut pada container atau mesin virtual.
     * Lanjutkan percakapan dengan pesan `user` baru yang berisi blok konten `tool_result`.
   </Step>
 
   <Step title="Claude terus memanggil alat computer use hingga tugas selesai" icon="arrows-clockwise">
     * Claude menganalisis hasil alat untuk menentukan apakah diperlukan lebih banyak penggunaan alat atau tugas telah selesai.
-    * Jika Claude menentukan bahwa alat lain diperlukan, ia merespons dengan `stop_reason` `tool_use` lainnya dan Anda harus kembali ke langkah 3.
+    * Jika Claude menentukan alat lain diperlukan, ia merespons dengan `stop_reason` `tool_use` lainnya dan Anda harus kembali ke langkah 3.
     * Jika tidak, ia menyusun respons teks untuk pengguna.
   </Step>
 </Steps>
@@ -375,17 +375,17 @@ Pengulangan langkah 3 dan 4 tanpa input pengguna disebut sebagai "agent loop" (y
 
 ### Lingkungan komputasi
 
-Computer use memerlukan lingkungan komputasi yang di-sandbox di mana Claude dapat berinteraksi dengan aman dengan aplikasi dan web. Lingkungan ini mencakup:
+Computer use memerlukan lingkungan komputasi sandbox tempat Claude dapat berinteraksi dengan aman dengan aplikasi dan web. Lingkungan ini mencakup:
 
 1. **Tampilan virtual:** Server tampilan X11 virtual (menggunakan Xvfb) yang merender antarmuka desktop yang akan dilihat Claude melalui tangkapan layar dan dikontrol dengan tindakan mouse/keyboard.
 
-2. **Lingkungan desktop:** UI ringan dengan window manager (Mutter) dan panel (Tint2) yang berjalan di Linux, yang menyediakan antarmuka grafis yang konsisten untuk berinteraksi dengan Claude.
+2. **Lingkungan desktop:** UI ringan dengan window manager (Mutter) dan panel (Tint2) yang berjalan di Linux, yang menyediakan antarmuka grafis yang konsisten untuk Claude berinteraksi.
 
-3. **Aplikasi:** Aplikasi Linux yang sudah terpasang seperti Firefox, LibreOffice, editor teks, dan pengelola file yang dapat digunakan Claude untuk menyelesaikan tugas.
+3. **Aplikasi:** Aplikasi Linux yang sudah terinstal seperti Firefox, LibreOffice, editor teks, dan file manager yang dapat digunakan Claude untuk menyelesaikan tugas.
 
 4. **Implementasi alat:** Kode integrasi yang menerjemahkan permintaan alat abstrak Claude (seperti "gerakkan mouse" atau "ambil tangkapan layar") menjadi operasi aktual di lingkungan virtual.
 
-5. **Agent loop:** Program yang menangani komunikasi antara Claude dan lingkungan, mengirimkan tindakan Claude ke lingkungan dan mengembalikan hasilnya (tangkapan layar, output perintah) kembali ke Claude.
+5. **Agent loop:** Program yang menangani komunikasi antara Claude dan lingkungan, mengirim tindakan Claude ke lingkungan dan mengembalikan hasilnya (tangkapan layar, output perintah) kembali ke Claude.
 
 Saat Anda menggunakan computer use, Claude tidak terhubung langsung ke lingkungan ini. Sebaliknya, aplikasi Anda:
 
@@ -402,25 +402,25 @@ Untuk keamanan dan isolasi, implementasi referensi menjalankan semua ini di dala
 
 ### Mulai dengan implementasi referensi
 
-[Implementasi referensi](https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo) tersedia yang mencakup semua yang Anda butuhkan untuk memulai dengan computer use:
+Tersedia [implementasi referensi](https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo) yang mencakup semua yang Anda butuhkan untuk memulai dengan computer use:
 
 * [Lingkungan terkontainerisasi](https://github.com/anthropics/anthropic-quickstarts/blob/main/computer-use-demo/Dockerfile) yang cocok untuk computer use dengan Claude
-* Implementasi [alat computer use](https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo/computer_use_demo/tools)
+* Implementasi dari [alat computer use](https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo/computer_use_demo/tools)
 * [Agent loop](https://github.com/anthropics/anthropic-quickstarts/blob/main/computer-use-demo/computer_use_demo/loop.py) yang berinteraksi dengan Claude API dan menjalankan alat computer use
 * Antarmuka web untuk berinteraksi dengan container, agent loop, dan alat.
 
-### Pahami agent loop
+### Memahami agent loop
 
-Inti dari computer use adalah "agent loop": siklus di mana Claude meminta tindakan alat, aplikasi Anda menjalankannya, dan mengembalikan hasilnya ke Claude. Loop ini menggunakan klien yang Anda buat di [Mulai cepat](#quick-start), daftar alat yang berbentuk seperti array `tools` di Mulai cepat, dan helper pemrosesan panggilan alat yang didefinisikan di [Proses panggilan alat Claude](#implement-the-computer-use-tool). Berikut contoh yang disederhanakan:
+Inti dari computer use adalah "agent loop": siklus di mana Claude meminta tindakan alat, aplikasi Anda menjalankannya, dan mengembalikan hasilnya ke Claude. Loop ini menggunakan client yang Anda buat di [Mulai cepat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#quick-start), daftar alat yang dibentuk seperti array `tools` di Mulai cepat, dan helper pemrosesan panggilan alat yang didefinisikan di [Memproses panggilan alat Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#implement-the-computer-use-tool). Berikut contoh yang disederhanakan:
 
 <CodeGroup>
   ```bash cURL
-  # Loop agen adalah pola stateful multi-giliran yang tidak dapat diubah menjadi
+  # Loop agen adalah pola stateful multi-giliran yang tidak dapat diterjemahkan ke
   # perintah shell sekali jalan. Lihat tab SDK untuk implementasinya.
   ```
 
   ```bash CLI
-  # Loop agen adalah pola stateful multi-giliran yang tidak dapat diubah menjadi
+  # Loop agen adalah pola stateful multi-giliran yang tidak dapat diterjemahkan ke
   # perintah shell sekali jalan. Lihat tab SDK untuk implementasinya.
   ```
 
@@ -675,39 +675,39 @@ Inti dari computer use adalah "agent loop": siklus di mana Claude meminta tindak
 
 Loop berlanjut hingga Claude merespons tanpa meminta alat apa pun (penyelesaian tugas) atau batas iterasi maksimum tercapai. Pengaman ini mencegah potensi loop tak terbatas yang dapat mengakibatkan biaya API yang tidak terduga.
 
-Coba implementasi referensi sebelum membaca sisa dokumentasi ini.
+Coba implementasi referensi terlebih dahulu sebelum membaca sisa dokumentasi ini.
 
-### Optimalkan kinerja model dengan prompting
+### Optimalkan performa model dengan prompting
 
-Berikut beberapa tips tentang cara mendapatkan output dengan kualitas terbaik:
+Berikut beberapa tips tentang cara mendapatkan output berkualitas terbaik:
 
-1. Tentukan tugas yang sederhana dan terdefinisi dengan baik serta berikan instruksi eksplisit untuk setiap langkah.
-2. Claude terkadang mengasumsikan hasil dari tindakannya tanpa secara eksplisit memeriksa hasilnya. Untuk mencegah hal ini, Anda dapat memberi prompt kepada Claude dengan `After each step, take a screenshot and carefully evaluate if you have achieved the right outcome. Explicitly show your thinking: "I have evaluated step X..." If not correct, try again. Only when you confirm a step was executed correctly should you move on to the next one.`
-3. Beberapa elemen UI (seperti dropdown dan scrollbar) mungkin sulit dimanipulasi oleh Claude menggunakan gerakan mouse. Jika Anda mengalami hal ini, coba beri prompt kepada model untuk menggunakan pintasan keyboard.
+1. Tentukan tugas yang sederhana dan terdefinisi dengan baik, serta berikan instruksi eksplisit untuk setiap langkah.
+2. Claude terkadang mengasumsikan hasil dari tindakannya tanpa secara eksplisit memeriksa hasilnya. Untuk mencegah hal ini, Anda dapat memberikan prompt kepada Claude dengan `After each step, take a screenshot and carefully evaluate if you have achieved the right outcome. Explicitly show your thinking: "I have evaluated step X..." If not correct, try again. Only when you confirm a step was executed correctly should you move on to the next one.`
+3. Beberapa elemen UI (seperti dropdown dan scrollbar) mungkin sulit dimanipulasi Claude menggunakan gerakan mouse. Jika Anda mengalami hal ini, coba berikan prompt kepada model untuk menggunakan pintasan keyboard.
 4. Untuk tugas yang dapat diulang atau interaksi UI, sertakan contoh tangkapan layar dan panggilan alat dari hasil yang berhasil dalam prompt Anda.
-5. Jika Anda memerlukan model untuk login, berikan nama pengguna dan kata sandi dalam prompt Anda di dalam tag XML seperti `<robot_credentials>`. Menggunakan computer use dalam aplikasi yang memerlukan login meningkatkan risiko hasil buruk sebagai akibat dari prompt injection. Tinjau [Mitigasi jailbreak dan prompt injection](/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks) sebelum memberikan kredensial login kepada model.
-6. Saat membangun array `content` giliran pengguna, tempatkan teks instruksi *sebelum* gambar tangkapan layar. Memberikan deskripsi target sebelum gambar diproses meningkatkan akurasi klik.
-7. Saat menggunakan `computer_20251124` dengan `enable_zoom: true` diatur, Claude memperbesar suatu wilayah ketika ditanya tentang teks kecil atau elemen UI tertentu yang tidak terbaca pada resolusi default tangkapan layar, seperti nama file di sidebar, judul tab, teks status-bar, nomor baris, atau label tombol. Jika Claude tidak memperbesar saat Anda mengharapkannya, tanyakan tentang wilayah atau elemen tertentu daripada layar secara keseluruhan.
+5. Jika Anda memerlukan model untuk login, berikan username dan password dalam prompt Anda di dalam tag XML seperti `<robot_credentials>`. Menggunakan computer use dalam aplikasi yang memerlukan login meningkatkan risiko hasil buruk akibat prompt injection. Tinjau [Mitigasi jailbreak dan prompt injection](https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks) sebelum memberikan kredensial login kepada model.
+6. Saat menyusun array `content` pada giliran pengguna, tempatkan teks instruksi *sebelum* gambar tangkapan layar. Memberikan deskripsi target sebelum gambar diproses meningkatkan akurasi klik.
+7. Saat menggunakan `computer_20251124` dengan `enable_zoom: true` diatur, Claude memperbesar suatu wilayah ketika ditanya tentang teks kecil atau elemen UI spesifik yang tidak terbaca pada resolusi default tangkapan layar, seperti nama file di sidebar, judul tab, teks status bar, nomor baris, atau label tombol. Jika Claude tidak memperbesar saat Anda mengharapkannya, tanyakan tentang wilayah atau elemen spesifik alih-alih layar secara keseluruhan.
 
 <Tip>
   Jika Anda berulang kali menemui serangkaian masalah yang jelas atau mengetahui sebelumnya tugas yang perlu diselesaikan Claude, gunakan prompt sistem untuk memberikan Claude tips atau instruksi eksplisit tentang cara melakukan tugas dengan sukses.
 </Tip>
 
 <Tip>
-  Untuk agen yang mencakup beberapa sesi, jalankan verifikasi end-to-end di awal setiap sesi, bukan hanya setelah implementasi. Pemeriksaan berbasis browser menangkap regresi dari sesi sebelumnya yang terlewat oleh tinjauan tingkat kode saja. Lihat [Harness efektif untuk agen yang berjalan lama](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) untuk detailnya.
+  Untuk agen yang mencakup beberapa sesi, jalankan verifikasi end-to-end di awal setiap sesi, bukan hanya setelah implementasi. Pemeriksaan berbasis browser menangkap regresi dari sesi sebelumnya yang terlewat oleh tinjauan tingkat kode saja. Lihat [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) untuk detailnya.
 </Tip>
 
 ### Prompt sistem
 
-Ketika salah satu alat skema Anthropic diminta melalui Claude API, prompt sistem khusus computer use dihasilkan. Ini mirip dengan [prompt sistem penggunaan alat](/docs/id/agents-and-tools/tool-use/define-tools#tool-use-system-prompt) tetapi dimulai dengan:
+Ketika salah satu alat dengan skema Anthropic diminta melalui Claude API, prompt sistem khusus computer use akan dihasilkan. Ini mirip dengan [prompt sistem penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#tool-use-system-prompt) tetapi dimulai dengan:
 
 > You have access to a set of functions you can use to answer the user's question. This includes access to a sandboxed computing environment. You do NOT currently have the ability to inspect files or interact with external resources, except by invoking the below functions.
 
-Seperti penggunaan alat biasa, parameter `system` yang disediakan pengguna tetap dihormati dan digunakan dalam konstruksi prompt sistem gabungan.
+Seperti halnya penggunaan alat biasa, parameter `system` yang disediakan pengguna tetap dihormati dan digunakan dalam konstruksi prompt sistem gabungan.
 
 ### Tindakan yang tersedia
 
-Alat computer use mendukung tindakan-tindakan berikut:
+Alat computer use mendukung tindakan berikut:
 
 **Tindakan dasar (semua versi)**
 
@@ -717,23 +717,23 @@ Alat computer use mendukung tindakan-tindakan berikut:
 * **key:** Menekan tombol atau kombinasi tombol (misalnya, "ctrl+s")
 * **mouse\_move:** Memindahkan kursor ke koordinat
 
-**Tindakan yang ditingkatkan (`computer_20250124` dan yang lebih baru)** Tersedia di `computer_20250124` dan `computer_20251124`:
+**Tindakan yang ditingkatkan (`computer_20250124` dan setelahnya)** Tersedia di `computer_20250124` dan `computer_20251124`:
 
-* **scroll:** Menggulir ke segala arah dengan kontrol jumlah
+* **scroll:** Menggulir ke arah mana pun dengan kontrol jumlah
 * **left\_click\_drag:** Klik dan seret antar koordinat
 * **right\_click**, **middle\_click:** Tombol mouse tambahan
-* **double\_click**, **triple\_click:** Klik berganda
-* **left\_mouse\_down**, **left\_mouse\_up:** Kontrol klik yang lebih halus
+* **double\_click**, **triple\_click:** Klik ganda dan tiga kali
+* **left\_mouse\_down**, **left\_mouse\_up:** Kontrol klik yang lebih detail
 * **hold\_key:** Menahan tombol selama durasi tertentu (dalam detik)
 * **wait:** Jeda antar tindakan
 
 **Tindakan yang ditingkatkan (`computer_20251124`)** Tersedia di Claude Opus 5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5:
 
 * Semua tindakan dari `computer_20250124`
-* **zoom:** Melihat wilayah tertentu dari layar pada resolusi penuh. Memerlukan `enable_zoom: true` dalam definisi alat. Menerima parameter `region` dengan koordinat `[x1, y1, x2, y2]` yang mendefinisikan sudut kiri-atas dan kanan-bawah dari area yang akan diperiksa.
+* **zoom:** Melihat wilayah spesifik layar pada resolusi penuh. Memerlukan `enable_zoom: true` dalam definisi alat. Menerima parameter `region` dengan koordinat `[x1, y1, x2, y2]` yang mendefinisikan sudut kiri atas dan kanan bawah area yang akan diperiksa.
 
 <Accordion title="Contoh tindakan">
-  Ambil tangkapan layar:
+  Mengambil tangkapan layar:
 
   ```json
   {
@@ -750,7 +750,7 @@ Alat computer use mendukung tindakan-tindakan berikut:
   }
   ```
 
-  Ketik teks:
+  Mengetik teks:
 
   ```json
   {
@@ -759,7 +759,7 @@ Alat computer use mendukung tindakan-tindakan berikut:
   }
   ```
 
-  Gulir ke bawah:
+  Menggulir ke bawah:
 
   ```json
   {
@@ -780,8 +780,8 @@ Alat computer use mendukung tindakan-tindakan berikut:
   ```
 </Accordion>
 
-<Accordion title="Tombol modifier dengan tindakan klik dan gulir">
-  Untuk menahan tombol modifier (seperti Shift, Ctrl, atau Alt) saat melakukan tindakan klik atau gulir, gunakan parameter `text` pada tindakan tersebut. Ini berbeda dari `hold_key`, yang menahan tombol selama durasi tertentu tanpa melakukan tindakan lain.
+<Accordion title="Tombol modifier dengan tindakan klik dan scroll">
+  Untuk menahan tombol modifier (seperti Shift, Ctrl, atau Alt) saat melakukan tindakan klik atau scroll, gunakan parameter `text` pada tindakan tersebut. Ini berbeda dari `hold_key`, yang menahan tombol selama durasi tertentu tanpa melakukan tindakan lain.
 
   Shift+klik (misalnya, untuk memilih rentang item):
 
@@ -793,7 +793,7 @@ Alat computer use mendukung tindakan-tindakan berikut:
   }
   ```
 
-  Ctrl+klik (misalnya, untuk multi-pilih di Windows/Linux):
+  Ctrl+klik (misalnya, untuk multi-select di Windows/Linux):
 
   ```json
   {
@@ -803,7 +803,7 @@ Alat computer use mendukung tindakan-tindakan berikut:
   }
   ```
 
-  Cmd+klik (misalnya, untuk multi-pilih di macOS):
+  Cmd+klik (misalnya, untuk multi-select di macOS):
 
   ```json
   {
@@ -813,7 +813,7 @@ Alat computer use mendukung tindakan-tindakan berikut:
   }
   ```
 
-  Shift+gulir (misalnya, untuk menggulir secara horizontal):
+  Shift+scroll (misalnya, untuk menggulir secara horizontal):
 
   ```json
   {
@@ -825,19 +825,19 @@ Alat computer use mendukung tindakan-tindakan berikut:
   }
   ```
 
-  Parameter `text` dalam tindakan klik/gulir menerima tombol modifier seperti `shift`, `ctrl`, `alt`, dan `super` (untuk tombol Command/Windows).
+  Parameter `text` dalam tindakan klik/scroll menerima tombol modifier seperti `shift`, `ctrl`, `alt`, dan `super` (untuk tombol Command/Windows).
 </Accordion>
 
 ### Parameter alat
 
-| Parameter           | Wajib | Deskripsi                                                                                                                                             |
-| ------------------- | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`              | Ya    | Versi alat (`computer_20251124` atau `computer_20250124`)                                                                                             |
-| `name`              | Ya    | Harus "computer"                                                                                                                                      |
-| `display_width_px`  | Ya    | Lebar tampilan dalam piksel                                                                                                                           |
-| `display_height_px` | Ya    | Tinggi tampilan dalam piksel                                                                                                                          |
-| `display_number`    | Tidak | Nomor tampilan untuk lingkungan X11                                                                                                                   |
-| `enable_zoom`       | Tidak | Mengaktifkan tindakan zoom (hanya `computer_20251124`). Atur ke `true` untuk memungkinkan Claude memperbesar wilayah layar tertentu. Default: `false` |
+| Parameter           | Wajib | Deskripsi                                                                                                                                            |
+| ------------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`              | Ya    | Versi alat (`computer_20251124` atau `computer_20250124`)                                                                                            |
+| `name`              | Ya    | Harus "computer"                                                                                                                                     |
+| `display_width_px`  | Ya    | Lebar tampilan dalam piksel                                                                                                                          |
+| `display_height_px` | Ya    | Tinggi tampilan dalam piksel                                                                                                                         |
+| `display_number`    | Tidak | Nomor tampilan untuk lingkungan X11                                                                                                                  |
+| `enable_zoom`       | Tidak | Mengaktifkan tindakan zoom (hanya `computer_20251124`). Atur ke `true` untuk mengizinkan Claude memperbesar wilayah layar tertentu. Default: `false` |
 
 <Note>
   **Penting:** Aplikasi Anda harus secara eksplisit menjalankan alat computer use; Claude tidak dapat menjalankannya secara langsung. Anda bertanggung jawab untuk mengimplementasikan pengambilan tangkapan layar, gerakan mouse, input keyboard, dan tindakan lainnya berdasarkan permintaan Claude.
@@ -845,48 +845,48 @@ Alat computer use mendukung tindakan-tindakan berikut:
 
 ### Menggabungkan dengan thinking
 
-Untuk menggabungkan computer use dengan thinking, lihat [Thinking](/docs/id/build-with-claude/thinking).
+Untuk menggabungkan computer use dengan thinking, lihat [Thinking](https://platform.claude.com/docs/id/build-with-claude/thinking).
 
 <Tip>
-  Khusus untuk computer use, benchmark internal menyarankan pengaturan `effort` berikut:
+  Khusus untuk computer use, benchmarking internal menyarankan pengaturan `effort` berikut:
 
   * **Claude Opus 4.7:** gunakan `high` sebagai default; gunakan `low` untuk beban kerja dengan throughput tinggi atau yang sensitif terhadap biaya.
-  * **Claude Sonnet 4.6 dan Claude Opus 4.6:** gunakan `medium` sebagai default (rasio akurasi-terhadap-biaya terbaik). Hindari `max`, yang menambah biaya token tanpa meningkatkan akurasi pada tugas UI. Pada model-model ini, `low` menggunakan *lebih sedikit* token output dibandingkan menonaktifkan thinking sepenuhnya (lebih sedikit kesalahan berarti lebih sedikit percobaan ulang), menjadikannya pilihan yang kuat untuk loop yang sensitif terhadap biaya.
+  * **Claude Sonnet 4.6 dan Claude Opus 4.6:** gunakan `medium` sebagai default (rasio akurasi-terhadap-biaya terbaik). Hindari `max`, yang menambah biaya token tanpa meningkatkan akurasi pada tugas UI. Pada model-model ini, `low` menggunakan *lebih sedikit* token output dibandingkan menonaktifkan thinking sepenuhnya (lebih sedikit kesalahan berarti lebih sedikit percobaan ulang), menjadikannya opsi yang kuat untuk loop yang sensitif terhadap biaya.
 </Tip>
 
 ### Menambah computer use dengan alat lain
 
-Untuk menambahkan alat lain bersama computer use, sertakan mereka dalam array `tools` yang sama. Bagian [Mulai cepat](#quick-start) menunjukkan pola ini dengan [alat bash](/docs/id/agents-and-tools/tool-use/bash-tool) dan [alat text editor](/docs/id/agents-and-tools/tool-use/text-editor-tool). Anda dapat menambahkan [definisi alat kustom](/docs/id/agents-and-tools/tool-use/define-tools) Anda sendiri dengan cara yang sama.
+Untuk menambahkan alat lain bersama computer use, sertakan dalam array `tools` yang sama. Bagian [Mulai cepat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#quick-start) menunjukkan pola ini dengan [alat bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool) dan [alat text editor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool). Anda dapat menambahkan [definisi alat kustom](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools) Anda sendiri dengan cara yang sama.
 
-### Bangun lingkungan computer use kustom
+### Membangun lingkungan computer use kustom
 
 [Implementasi referensi](https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo) dimaksudkan untuk membantu Anda memulai dengan computer use. Ini mencakup semua komponen yang diperlukan agar Claude dapat menggunakan komputer. Namun, Anda dapat membangun lingkungan Anda sendiri untuk computer use sesuai kebutuhan Anda. Anda akan memerlukan:
 
 * Lingkungan tervirtualisasi atau terkontainerisasi yang cocok untuk computer use dengan Claude
-* Implementasi setidaknya satu alat computer use skema Anthropic
+* Implementasi dari setidaknya satu alat computer use dengan skema Anthropic
 * Agent loop yang berinteraksi dengan Claude API dan menjalankan hasil `tool_use` menggunakan implementasi alat Anda
 * API atau UI yang memungkinkan input pengguna untuk memulai agent loop
 
-#### Implementasikan alat computer use
+#### Mengimplementasikan alat computer use
 
-Alat computer use diimplementasikan sebagai alat tanpa skema. Saat menggunakan alat ini, Anda tidak perlu menyediakan skema input seperti alat lainnya; skema sudah terpasang di model Claude dan tidak dapat dimodifikasi.
+Alat computer use diimplementasikan sebagai alat tanpa skema. Saat menggunakan alat ini, Anda tidak perlu menyediakan skema input seperti pada alat lainnya; skema sudah terintegrasi ke dalam model Claude dan tidak dapat dimodifikasi.
 
 <Steps>
   <Step title="Siapkan lingkungan komputasi Anda">
-    Buat tampilan virtual atau hubungkan ke tampilan yang ada yang akan berinteraksi dengan Claude. Ini biasanya melibatkan pengaturan Xvfb (X Virtual Framebuffer) atau teknologi serupa.
+    Buat tampilan virtual atau hubungkan ke tampilan yang sudah ada yang akan berinteraksi dengan Claude. Ini biasanya melibatkan pengaturan Xvfb (X Virtual Framebuffer) atau teknologi serupa.
   </Step>
 
-  <Step title="Implementasikan handler tindakan">
+  <Step title="Implementasikan action handler">
     Buat fungsi untuk menangani setiap jenis tindakan yang mungkin diminta Claude:
 
     <CodeGroup>
       ```bash cURL
-      # Ini adalah kode pembantu di sisi aplikasi tanpa permintaan API. Lihat tab SDK
+      # Ini adalah kode helper sisi aplikasi tanpa permintaan API. Lihat tab SDK
       # untuk polanya.
       ```
 
       ```bash CLI
-      # Ini adalah kode helper di sisi aplikasi tanpa permintaan API. Lihat tab SDK
+      # Ini adalah kode helper sisi aplikasi tanpa permintaan API. Lihat tab SDK
       # untuk polanya.
       ```
 
@@ -1084,17 +1084,17 @@ Alat computer use diimplementasikan sebagai alat tanpa skema. Saat menggunakan a
     </CodeGroup>
   </Step>
 
-  <Step title="Proses panggilan alat Claude">
+  <Step title="Memproses panggilan alat Claude">
     Ekstrak dan jalankan panggilan alat dari respons Claude:
 
     <CodeGroup>
       ```bash cURL
-      # Ini adalah kode pembantu di sisi aplikasi tanpa permintaan API. Lihat tab SDK
+      # Ini adalah kode helper sisi aplikasi tanpa permintaan API. Lihat tab SDK
       # untuk polanya.
       ```
 
       ```bash CLI
-      # Ini adalah kode helper di sisi aplikasi tanpa permintaan API. Lihat tab SDK
+      # Ini adalah kode helper sisi aplikasi tanpa permintaan API. Lihat tab SDK
       # untuk polanya.
       ```
 
@@ -1234,12 +1234,12 @@ Alat computer use diimplementasikan sebagai alat tanpa skema. Saat menggunakan a
 
     <CodeGroup>
       ```bash cURL
-      # Loop agen adalah pola stateful multi-giliran yang tidak dapat diubah menjadi
+      # Loop agen adalah pola stateful multi-giliran yang tidak dapat diterjemahkan ke
       # perintah shell sekali jalan. Lihat tab SDK untuk implementasinya.
       ```
 
       ```bash CLI
-      # Loop agen adalah pola stateful multi-giliran yang tidak dapat diterjemahkan menjadi
+      # Loop agen adalah pola stateful multi-giliran yang tidak dapat diterjemahkan ke
       # perintah shell sekali jalan. Lihat tab SDK untuk implementasinya.
       ```
 
@@ -1494,13 +1494,13 @@ Alat computer use diimplementasikan sebagai alat tanpa skema. Saat menggunakan a
   </Step>
 </Steps>
 
-#### Tangani kesalahan
+#### Menangani error
 
-Saat mengimplementasikan alat computer use, berbagai kesalahan mungkin terjadi. Berikut cara menanganinya:
+Saat mengimplementasikan alat computer use, berbagai error mungkin terjadi. Berikut cara menanganinya:
 
 <AccordionGroup>
   <Accordion title="Kegagalan pengambilan tangkapan layar">
-    Jika pengambilan tangkapan layar gagal, kembalikan pesan kesalahan yang sesuai:
+    Jika pengambilan tangkapan layar gagal, kembalikan pesan error yang sesuai:
 
     ```json
     {
@@ -1554,25 +1554,25 @@ Saat mengimplementasikan alat computer use, berbagai kesalahan mungkin terjadi. 
   </Accordion>
 </AccordionGroup>
 
-#### Sesuaikan ukuran tangkapan layar agar sesuai dengan batas gambar
+#### Menyesuaikan ukuran tangkapan layar agar sesuai batas gambar
 
-Tangkapan layar yang dikirim ke alat computer harus sesuai dengan batas ukuran gambar Claude (lihat [batas ukuran gambar](/docs/id/build-with-claude/vision#evaluate-image-size)). API memperkecil gambar yang terlalu besar sebelum Claude melihatnya, dan Claude mengembalikan koordinat untuk gambar yang dilihatnya, sehingga mengandalkan pengecilan di sisi server membuat Anda tidak memiliki faktor skala yang diperlukan untuk memetakan koordinat tersebut kembali ke layar Anda. Hanya gambar yang melebihi [batas permintaan](/docs/id/build-with-claude/vision#request-limits) terpisah dari API (misalnya, lebih dari 8.000 px pada satu sisi) yang ditolak dengan kesalahan validasi alih-alih diperkecil.
+Tangkapan layar yang dikirim ke alat computer harus sesuai dengan batas ukuran gambar Claude (lihat [batas ukuran gambar](https://platform.claude.com/docs/id/build-with-claude/vision#evaluate-image-size)). API memperkecil gambar yang terlalu besar sebelum Claude melihatnya, dan Claude mengembalikan koordinat untuk gambar yang dilihatnya, sehingga mengandalkan pengecilan di sisi server membuat Anda tidak memiliki faktor skala yang diperlukan untuk memetakan koordinat tersebut kembali ke layar Anda. Hanya gambar yang melebihi [batas permintaan](https://platform.claude.com/docs/id/build-with-claude/vision#request-limits) terpisah dari API (misalnya, lebih dari 8.000 px pada satu sisi) yang ditolak dengan error validasi alih-alih diperkecil.
 
 <Note>
-  Batas bervariasi menurut model. Claude Opus 5, Claude Sonnet 5, Claude Opus 4.8, dan Claude Opus 4.7 menerima hingga 2576 piksel pada sisi terpanjang; model sebelumnya menerima hingga 1568 piksel pada sisi terpanjang dan sekitar 1,15 megapiksel total. Contoh berikut menggunakan batas model sebelumnya 1568 px / 1,15 MP; gantikan dengan batas model Anda.
+  Batas bervariasi menurut model. Claude Opus 5, Claude Sonnet 5, Claude Opus 4.8, dan Claude Opus 4.7 menerima hingga 2576 piksel pada sisi panjang; model sebelumnya menerima hingga 1568 piksel pada sisi panjang dan sekitar 1,15 megapiksel total. Contoh berikut menggunakan batas model sebelumnya yaitu 1568 px / 1,15 MP; ganti dengan batas model Anda.
 </Note>
 
-Jika layar Anda lebih besar dari batas, ubah ukuran tangkapan layar sebelum mengirimkannya, atur `display_width_px`/`display_height_px` ke dimensi yang telah diubah ukurannya, dan skalakan koordinat yang dikembalikan Claude kembali ke ruang layar asli:
+Jika layar Anda lebih besar dari batas tersebut, ubah ukuran tangkapan layar sebelum mengirimnya, atur `display_width_px`/`display_height_px` ke dimensi yang telah diubah ukurannya, dan skalakan koordinat yang dikembalikan Claude kembali ke ruang layar asli:
 
 <CodeGroup>
   ```bash cURL
-  # Penskalaan koordinat dan pengubahan ukuran screenshot terjadi di kode aplikasi Anda, bukan
-  # di permintaan API. Lihat tab SDK untuk pola helper.
+  # Penskalaan koordinat dan pengubahan ukuran tangkapan layar terjadi di kode aplikasi Anda, bukan
+  # di permintaan API. Lihat tab SDK untuk pola helper-nya.
   ```
 
   ```bash CLI
-  # Penskalaan koordinat dan pengubahan ukuran screenshot terjadi di kode aplikasi Anda, bukan
-  # di permintaan API. Lihat tab SDK untuk pola helper.
+  # Penskalaan koordinat dan pengubahan ukuran tangkapan layar terjadi di kode aplikasi Anda, bukan
+  # di permintaan API. Lihat tab SDK untuk pola helper-nya.
   ```
 
   ```python Python
@@ -1590,16 +1590,16 @@ Jika layar Anda lebih besar dari batas, ubah ukuran tangkapan layar sebelum meng
       return min(1.0, long_edge_scale, total_pixels_scale)
 
 
-  # Saat mengambil tangkapan layar
+  # Saat mengambil screenshot
   scale = get_scale_factor(screen_width, screen_height)
   scaled_width = int(screen_width * scale)
   scaled_height = int(screen_height * scale)
 
-  # Ubah ukuran gambar ke dimensi yang diskalakan sebelum dikirim ke Claude
+  # Ubah ukuran gambar ke dimensi yang diskalakan sebelum mengirim ke Claude
   screenshot = capture_and_resize(scaled_width, scaled_height)
 
 
-  # Saat menangani koordinat dari Claude, skalakan kembali ke ukuran semula
+  # Saat menangani koordinat dari Claude, skalakan kembali ke ukuran asli
   def execute_click(x, y):
       screen_x = x / scale
       screen_y = y / scale
@@ -1625,10 +1625,10 @@ Jika layar Anda lebih besar dari batas, ubah ukuran tangkapan layar sebelum meng
   const scaledWidth = Math.floor(screenWidth * scale);
   const scaledHeight = Math.floor(screenHeight * scale);
 
-  // Ubah ukuran gambar ke dimensi yang diskalakan sebelum dikirim ke Claude
+  // Ubah ukuran gambar ke dimensi yang diskalakan sebelum mengirim ke Claude
   const screenshot = captureAndResize(scaledWidth, scaledHeight);
 
-  // Saat menangani koordinat dari Claude, skalakan kembali ke ukuran semula
+  // Saat menangani koordinat dari Claude, skalakan kembali ke ukuran asli
   function executeClick(x: number, y: number): void {
     const screenX = x / scale;
     const screenY = y / scale;
@@ -1654,10 +1654,10 @@ Jika layar Anda lebih besar dari batas, ubah ukuran tangkapan layar sebelum meng
   int scaledWidth = (int)(screenWidth * scale);
   int scaledHeight = (int)(screenHeight * scale);
 
-  // Ubah ukuran gambar ke dimensi yang telah diskalakan sebelum dikirim ke Claude
+  // Ubah ukuran gambar ke dimensi yang diskalakan sebelum mengirim ke Claude
   var screenshot = CaptureAndResize(scaledWidth, scaledHeight);
 
-  // Saat menangani koordinat dari Claude, skalakan kembali ke ukuran semula
+  // Saat menangani koordinat dari Claude, skalakan kembali ke ukuran asli
   void ExecuteClick(int x, int y)
   {
       double screenX = x / scale;
@@ -1679,10 +1679,10 @@ Jika layar Anda lebih besar dari batas, ubah ukuran tangkapan layar sebelum meng
   	scaledWidth := int(float64(screenWidth) * scale)
   	scaledHeight := int(float64(screenHeight) * scale)
 
-  	// Ubah ukuran gambar ke dimensi yang diskalakan sebelum dikirim ke Claude
+  	// Ubah ukuran gambar ke dimensi yang diskalakan sebelum mengirim ke Claude
   	screenshot := captureAndResize(scaledWidth, scaledHeight)
 
-  	// Saat menangani koordinat dari Claude, skalakan kembali ke ukuran semula
+  	// Saat menangani koordinat dari Claude, skalakan kembali ke ukuran asli
   	executeClick := func(x, y int) {
   		performClick(float64(x)/scale, float64(y)/scale)
   	}
@@ -1706,10 +1706,10 @@ Jika layar Anda lebih besar dari batas, ubah ukuran tangkapan layar sebelum meng
       int scaledWidth = (int)(screenWidth * scale);
       int scaledHeight = (int)(screenHeight * scale);
 
-      // Ubah ukuran gambar ke dimensi yang diskalakan sebelum dikirim ke Claude
+      // Ubah ukuran gambar ke dimensi yang diskalakan sebelum mengirim ke Claude
       var screenshot = captureAndResize(scaledWidth, scaledHeight);
 
-      // Saat menangani koordinat dari Claude, skalakan kembali ke ukuran semula
+      // Saat menangani koordinat dari Claude, skalakan kembali ke ukuran asli
       BiConsumer<Integer, Integer> executeClick =
           (x, y) -> performClick(x / scale, y / scale);
   // ...
@@ -1731,10 +1731,10 @@ Jika layar Anda lebih besar dari batas, ubah ukuran tangkapan layar sebelum meng
   $scaledWidth = (int)($screenWidth * $scale);
   $scaledHeight = (int)($screenHeight * $scale);
 
-  // Ubah ukuran gambar ke dimensi yang diskalakan sebelum dikirim ke Claude
+  // Ubah ukuran gambar ke dimensi yang diskalakan sebelum mengirim ke Claude
   $screenshot = captureAndResize($scaledWidth, $scaledHeight);
 
-  // Saat menangani koordinat dari Claude, skalakan kembali ke ukuran semula
+  // Saat menangani koordinat dari Claude, skalakan kembali ke ukuran asli
   $executeClick = fn(int $x, int $y) => performClick($x / $scale, $y / $scale);
   ```
 
@@ -1748,10 +1748,10 @@ Jika layar Anda lebih besar dari batas, ubah ukuran tangkapan layar sebelum meng
   scaled_width = (screen_width * scale).to_i
   scaled_height = (screen_height * scale).to_i
 
-  # Ubah ukuran gambar ke dimensi yang diskalakan sebelum dikirim ke Claude
+  # Ubah ukuran gambar ke dimensi yang diskalakan sebelum mengirim ke Claude
   screenshot = capture_and_resize(scaled_width, scaled_height)
 
-  # Saat menangani koordinat dari Claude, skalakan kembali ke ukuran semula
+  # Saat menangani koordinat dari Claude, skalakan kembali ke ukuran asli
   execute_click = ->(x, y) { perform_click(x / scale, y / scale) }
   ```
 </CodeGroup>
@@ -1760,19 +1760,19 @@ Jika layar Anda lebih besar dari batas, ubah ukuran tangkapan layar sebelum meng
   **Tampilan Retina macOS** menangkap tangkapan layar pada rasio piksel perangkat 2, sehingga gambar memiliki resolusi dua kali lipat dari koordinat layar logis. Perkecil tangkapan layar sebesar 2x sebelum mengirim, atau bagi dua koordinat yang dikembalikan Claude sebelum melakukan klik.
 </Note>
 
-#### Diagnosis masalah klik
+#### Mendiagnosis masalah klik
 
 Jika klik meleset dari targetnya, penyebabnya biasanya salah satu dari berikut:
 
-| Gejala                                                      | Kemungkinan penyebab                                                                             | Coba                                                                                                                                           |
-| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| Klik secara konsisten bergeser ke satu arah                 | `display_width_px`/`display_height_px` tidak cocok dengan dimensi gambar yang sebenarnya dikirim | Pastikan dimensi tampilan sama persis dengan tangkapan layar yang Anda kirim                                                                   |
-| Klik mendarat di area yang benar tetapi meleset dari target | Target sangat kecil, detail hilang saat memperkecil sumber 4K+, atau rasio aspek terdistorsi     | Atur `enable_zoom: true`; tangkap pada DPI yang lebih rendah atau potong ke wilayah yang relevan; pertahankan rasio aspek saat mengubah ukuran |
-| Claude mengklik elemen yang sepenuhnya salah                | Instruksi ambigu, atau elemen yang mirip secara visual di dekatnya                               | Gunakan prompt posisional ("tombol Submit biru di kanan bawah"); pecah interaksi menjadi langkah-langkah yang lebih kecil                      |
-| Akurasi secara konsisten buruk                              | Resolusi terlalu rendah                                                                          | Coba 1280x720 sebagai dasar                                                                                                                    |
+| Gejala                                                      | Kemungkinan penyebab                                                                             | Coba                                                                                                                                      |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| Klik secara konsisten bergeser ke satu arah                 | `display_width_px`/`display_height_px` tidak cocok dengan dimensi gambar yang sebenarnya dikirim | Pastikan dimensi tampilan persis cocok dengan tangkapan layar yang Anda kirim                                                             |
+| Klik mendarat di area yang benar tetapi meleset dari target | Target sangat kecil, detail hilang saat memperkecil sumber 4K+, atau rasio aspek terdistorsi     | Atur `enable_zoom: true`; tangkap pada DPI lebih rendah atau potong ke wilayah yang relevan; pertahankan rasio aspek saat mengubah ukuran |
+| Claude mengklik elemen yang sepenuhnya salah                | Instruksi ambigu, atau elemen yang secara visual mirip di dekatnya                               | Gunakan prompt posisional ("tombol Submit biru di kanan bawah"); pecah interaksi menjadi langkah-langkah yang lebih kecil                 |
+| Akurasi secara konsisten buruk                              | Resolusi terlalu rendah                                                                          | Coba 1280x720 sebagai baseline                                                                                                            |
 
 <Tip>
-  **Pilihan model memengaruhi presisi klik.** Claude Sonnet 4.6 lebih presisi secara mekanis dalam mengklik dibandingkan Claude Opus 4.6 dan lebih tangguh ketika tangkapan layar memerlukan pengecilan yang signifikan. Claude Opus 4.7 mempersempit kesenjangan tersebut: presisi kliknya kurang lebih sebanding dengan Sonnet 4.6, dan batas resolusinya yang lebih tinggi berarti lebih sedikit pengecilan yang diperlukan.
+  **Pilihan model memengaruhi presisi klik.** Claude Sonnet 4.6 secara mekanis lebih presisi dalam mengklik dibandingkan Claude Opus 4.6 dan lebih tangguh ketika tangkapan layar memerlukan pengecilan yang berat. Claude Opus 4.7 mempersempit kesenjangan tersebut: presisi kliknya kira-kira sebanding dengan Sonnet 4.6, dan batas resolusinya yang lebih tinggi berarti lebih sedikit pengecilan yang diperlukan.
 </Tip>
 
 #### Ikuti praktik terbaik implementasi
@@ -1783,18 +1783,18 @@ Jika klik meleset dari targetnya, penyebabnya biasanya salah satu dari berikut:
 
     * Untuk tugas desktop umum: 1024x768 atau 1280x720
     * Untuk aplikasi web: 1280x800 atau 1366x768
-    * Hindari resolusi di atas 1920x1080 untuk mencegah masalah kinerja
+    * Hindari resolusi di atas 1920x1080 untuk mencegah masalah performa
   </Accordion>
 
   <Accordion title="Implementasikan penanganan tangkapan layar yang tepat">
     Saat mengembalikan tangkapan layar ke Claude:
 
-    * Enkode tangkapan layar sebagai base64 PNG atau JPEG
-    * Pertimbangkan untuk mengompresi tangkapan layar besar untuk meningkatkan kinerja
+    * Encode tangkapan layar sebagai base64 PNG atau JPEG
+    * Pertimbangkan untuk mengompresi tangkapan layar besar untuk meningkatkan performa
     * Sertakan metadata yang relevan seperti timestamp atau status tampilan
-    * Jika menggunakan resolusi yang lebih tinggi, pastikan koordinat diskalakan secara akurat
+    * Jika menggunakan resolusi lebih tinggi, pastikan koordinat diskalakan secara akurat
 
-    Tangkapan layar dikembalikan sebagai blok konten gambar di dalam array konten `tool_result` (lihat [Tangani panggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls)):
+    Tangkapan layar dikembalikan sebagai blok konten gambar di dalam array konten `tool_result` (lihat [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls)):
 
     ```json
     {
@@ -1820,10 +1820,10 @@ Jika klik meleset dari targetnya, penyebabnya biasanya salah satu dari berikut:
   </Accordion>
 
   <Accordion title="Kelola riwayat tangkapan layar untuk caching prompt">
-    Agent loop yang panjang mengakumulasi tangkapan layar dengan cepat (sekitar 1.000–1.800 token input masing-masing). Untuk menjaga [caching prompt](/docs/id/build-with-claude/prompt-caching) tetap efektif sambil membatasi konteks:
+    Agent loop yang panjang mengakumulasi tangkapan layar dengan cepat (sekitar 1.000–1.800 token input masing-masing). Untuk menjaga [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) tetap efektif sambil membatasi konteks:
 
     * Tempatkan satu breakpoint `cache_control` setelah prompt sistem dan definisi alat, dan hingga tiga lagi pada blok `tool_result` terbaru, memajukannya setiap giliran.
-    * Pangkas tangkapan layar lama dalam *batch*, bukan satu per giliran. Menghapus satu tangkapan layar setiap giliran mengubah prefiks setiap giliran dan membatalkan cache. Default yang wajar adalah menyimpan tiga tangkapan layar terakhir dan memangkas setiap 25 giliran, sehingga prefiks tetap identik byte-per-byte di antara peristiwa pemangkasan.
+    * Pangkas tangkapan layar lama dalam *batch*, bukan satu setiap giliran. Menghapus tangkapan layar setiap giliran mengubah prefix setiap giliran dan membatalkan cache. Default yang wajar adalah menyimpan tiga tangkapan layar terakhir dan memangkas setiap 25 giliran, sehingga prefix tetap identik secara byte di antara peristiwa pemangkasan.
   </Accordion>
 
   <Accordion title="Tambahkan jeda tindakan">
@@ -1905,7 +1905,7 @@ Jika klik meleset dari targetnya, penyebabnya biasanya salah satu dari berikut:
 
     <CodeGroup>
       ```bash cURL
-      # Ini adalah kode helper di sisi aplikasi tanpa permintaan API. Lihat tab SDK untuk
+      # Ini adalah kode helper sisi aplikasi tanpa permintaan API. Lihat tab SDK untuk
       # polanya.
       ```
 
@@ -2042,7 +2042,7 @@ Jika klik meleset dari targetnya, penyebabnya biasanya salah satu dari berikut:
       ```
 
       ```bash CLI
-      # Ini adalah kode helper di sisi aplikasi tanpa permintaan API. Lihat tab SDK untuk
+      # Ini adalah kode helper sisi aplikasi tanpa permintaan API. Lihat tab SDK untuk
       # polanya.
       ```
 
@@ -2114,41 +2114,41 @@ Jika klik meleset dari targetnya, penyebabnya biasanya salah satu dari berikut:
 
 ***
 
-## Pahami keterbatasan computer use
+## Memahami keterbatasan computer use
 
-Computer use berada dalam tahap beta. Perhatikan keterbatasan berikut:
+Computer use masih dalam tahap beta. Perhatikan keterbatasan berikut:
 
-1. **Latency:** "Latency" (latensi) computer use saat ini untuk interaksi manusia-AI mungkin terlalu lambat dibandingkan dengan tindakan komputer yang diarahkan manusia secara biasa. Fokus pada kasus penggunaan di mana kecepatan tidak kritis (misalnya, pengumpulan informasi latar belakang, pengujian perangkat lunak otomatis) di lingkungan tepercaya.
+1. **Latency:** "Latency" (latensi) computer use saat ini untuk interaksi manusia-AI mungkin terlalu lambat dibandingkan dengan tindakan komputer yang diarahkan manusia biasa. Fokus pada kasus penggunaan di mana kecepatan tidak kritis (misalnya, pengumpulan informasi latar belakang, pengujian perangkat lunak otomatis) di lingkungan tepercaya.
 
-2. **Akurasi dan keandalan computer vision:** Claude mungkin membuat kesalahan atau berhalusinasi saat mengeluarkan koordinat tertentu saat menghasilkan tindakan. Pemikiran diperpanjang dapat membantu Anda memahami penalaran model dan mengidentifikasi potensi masalah.
+2. **Akurasi dan keandalan computer vision:** Claude mungkin membuat kesalahan atau berhalusinasi saat menghasilkan koordinat spesifik ketika menghasilkan tindakan. Pemikiran diperpanjang dapat membantu Anda memahami penalaran model dan mengidentifikasi potensi masalah.
 
-3. **Akurasi dan keandalan pemilihan alat:** Claude mungkin membuat kesalahan atau berhalusinasi saat memilih alat saat menghasilkan tindakan atau mengambil tindakan yang tidak terduga untuk menyelesaikan masalah. Selain itu, keandalan mungkin lebih rendah saat berinteraksi dengan aplikasi khusus atau beberapa aplikasi sekaligus. Beri prompt kepada model dengan hati-hati saat meminta tugas yang kompleks.
+3. **Akurasi dan keandalan pemilihan alat:** Claude mungkin membuat kesalahan atau berhalusinasi saat memilih alat ketika menghasilkan tindakan atau mengambil tindakan tak terduga untuk menyelesaikan masalah. Selain itu, keandalan mungkin lebih rendah saat berinteraksi dengan aplikasi khusus atau beberapa aplikasi sekaligus. Berikan prompt kepada model dengan hati-hati saat meminta tugas yang kompleks.
 
-4. **Keandalan pengguliran:** Tindakan scroll mendukung kontrol arah (atas, bawah, kiri, kanan) dan jumlah yang ditentukan. Dalam aplikasi di mana pengguliran tidak berfungsi, alternatif keyboard seperti Page Down dapat membantu.
+4. **Keandalan scrolling:** Tindakan scroll mendukung kontrol arah (atas, bawah, kiri, kanan) dan jumlah yang ditentukan. Dalam aplikasi di mana scrolling tidak berfungsi, alternatif keyboard seperti Page Down dapat membantu.
 
-5. **Interaksi spreadsheet:** Gunakan tindakan kontrol mouse yang lebih halus (`left_mouse_down`, `left_mouse_up`) dan kombinasi tombol modifier untuk memilih sel individual. Operasi spreadsheet yang kompleks mungkin masih memerlukan beberapa percobaan.
+5. **Interaksi spreadsheet:** Gunakan tindakan kontrol mouse yang detail (`left_mouse_down`, `left_mouse_up`) dan kombinasi tombol modifier untuk memilih sel individual. Operasi spreadsheet yang kompleks mungkin masih memerlukan beberapa percobaan.
 
-6. **Pembuatan akun dan pembuatan konten di platform sosial dan komunikasi:** Meskipun Claude akan mengunjungi situs web, kemampuan Claude untuk membuat akun atau menghasilkan dan membagikan konten atau terlibat dalam peniruan manusia di situs web dan platform media sosial terbatas. Kemampuan ini mungkin diperbarui di masa mendatang.
+6. **Pembuatan akun dan pembuatan konten di platform sosial dan komunikasi:** Meskipun Claude akan mengunjungi situs web, kemampuan Claude untuk membuat akun atau menghasilkan dan membagikan konten atau terlibat dalam peniruan manusia di seluruh situs web dan platform media sosial dibatasi. Kemampuan ini mungkin diperbarui di masa mendatang.
 
-7. **Kerentanan:** Kerentanan seperti jailbreaking atau prompt injection mungkin tetap ada di seluruh sistem AI terdepan, termasuk API computer use beta. Dalam beberapa keadaan, Claude akan mengikuti perintah yang ditemukan dalam konten, terkadang bahkan ketika bertentangan dengan instruksi Anda. Misalnya, instruksi di halaman web atau yang terkandung dalam gambar mungkin menimpa instruksi Anda atau menyebabkan Claude membuat kesalahan. Pertimbangkan hal berikut:
+7. **Kerentanan:** Kerentanan seperti jailbreaking atau prompt injection mungkin tetap ada di seluruh sistem AI frontier, termasuk API computer use beta. Dalam beberapa keadaan, Claude akan mengikuti perintah yang ditemukan dalam konten, terkadang bahkan ketika bertentangan dengan instruksi Anda. Misalnya, instruksi pada halaman web atau yang terkandung dalam gambar mungkin menggantikan instruksi Anda atau menyebabkan Claude membuat kesalahan. Pertimbangkan hal berikut:
 
-   * Membatasi computer use ke lingkungan tepercaya seperti mesin virtual atau container dengan hak istimewa minimal
+   * Membatasi computer use ke lingkungan tepercaya seperti mesin virtual atau container dengan hak akses minimal
    * Menghindari memberikan computer use akses ke akun atau data sensitif tanpa pengawasan ketat
-   * Menginformasikan pengguna akhir tentang risiko yang relevan dan mendapatkan persetujuan mereka sebelum mengaktifkan atau meminta izin yang diperlukan untuk fitur computer use dalam aplikasi Anda
+   * Menginformasikan pengguna akhir tentang risiko yang relevan dan mendapatkan persetujuan mereka sebelum mengaktifkan atau meminta izin yang diperlukan untuk fitur computer use di aplikasi Anda
 
 8. **Tindakan yang tidak pantas atau ilegal:** Berdasarkan Ketentuan Layanan Anthropic, Anda tidak boleh menggunakan computer use untuk melanggar hukum apa pun atau Kebijakan Penggunaan yang Dapat Diterima.
 
-Selalu tinjau dan verifikasi dengan cermat tindakan dan log computer use Claude. Jangan gunakan Claude untuk tugas yang memerlukan presisi sempurna atau informasi pengguna yang sensitif tanpa pengawasan manusia.
+Selalu tinjau dan verifikasi dengan cermat tindakan dan log computer use Claude. Jangan gunakan Claude untuk tugas yang memerlukan presisi sempurna atau informasi pengguna sensitif tanpa pengawasan manusia.
 
 ## Retensi data
 
-Computer use adalah alat sisi klien. Semua tangkapan layar, tindakan mouse, input keyboard, dan file apa pun yang terlibat dalam sesi ditangkap dan disimpan di lingkungan Anda, bukan oleh Anthropic. Anthropic memproses gambar tangkapan layar dan permintaan tindakan secara real time sebagai bagian dari panggilan API. Retensi untuk permintaan API tersebut diatur oleh [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
+Computer use adalah alat sisi klien. Semua tangkapan layar, tindakan mouse, input keyboard, dan file apa pun yang terlibat dalam sesi ditangkap dan disimpan di lingkungan Anda, bukan oleh Anthropic. Anthropic memproses gambar tangkapan layar dan permintaan tindakan secara real time sebagai bagian dari panggilan API. Retensi untuk permintaan API tersebut diatur oleh [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 
-Karena aplikasi Anda mengontrol di mana dan bagaimana data computer use disimpan, computer use memenuhi syarat ZDR. Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
+Karena aplikasi Anda mengontrol di mana dan bagaimana data computer use disimpan, computer use memenuhi syarat ZDR. Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 
 ## Harga
 
-Computer use mengikuti [harga penggunaan alat](/docs/id/agents-and-tools/tool-use/overview#pricing) standar. Saat menggunakan alat computer use:
+Computer use mengikuti [harga penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview#pricing) standar. Saat menggunakan alat computer use:
 
 **Overhead prompt sistem:** Beta computer use menambahkan 466–499 token ke prompt sistem
 
@@ -2160,7 +2160,7 @@ Computer use mengikuti [harga penggunaan alat](/docs/id/agents-and-tools/tool-us
 
 **Konsumsi token tambahan:**
 
-* Gambar tangkapan layar (lihat [harga Vision](/docs/id/build-with-claude/vision))
+* Gambar tangkapan layar (lihat [harga Vision](https://platform.claude.com/docs/id/build-with-claude/vision))
 * Hasil eksekusi alat yang dikembalikan ke Claude
 
 <Note>
@@ -2170,19 +2170,19 @@ Computer use mengikuti [harga penggunaan alat](/docs/id/agents-and-tools/tool-us
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Pemecahan masalah penggunaan alat" icon="wrench" href="/docs/id/agents-and-tools/tool-use/troubleshooting-tool-use">
-    Perbaiki kesalahan penggunaan alat yang paling umum dengan tabel diagnostik gejala-ke-perbaikan.
+  <Card title="Pemecahan masalah penggunaan alat" icon="wrench" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/troubleshooting-tool-use">
+    Perbaiki error penggunaan alat yang paling umum dengan tabel diagnostik gejala-ke-perbaikan.
   </Card>
 
   <Card title="Implementasi referensi" icon="github-logo" href="https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo">
     Mulai dengan implementasi lengkap berbasis Docker
   </Card>
 
-  <Card title="Penggunaan alat dengan Claude" icon="tool" href="/docs/id/agents-and-tools/tool-use/overview">
-    Hubungkan Claude ke alat dan API eksternal. Lihat di mana alat dieksekusi, kapan Claude memanggilnya, dan alat mana yang cocok untuk tugas Anda.
+  <Card title="Penggunaan alat dengan Claude" icon="tool" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview">
+    Hubungkan Claude ke alat dan API eksternal. Lihat di mana alat dieksekusi, kapan Claude memanggilnya, dan alat mana yang sesuai dengan tugas Anda.
   </Card>
 
   <Card title="Praktik terbaik secara detail" icon="book" href="https://claude.com/blog/best-practices-for-computer-and-browser-use-with-claude">
-    Rekomendasi yang telah di-benchmark untuk resolusi, upaya thinking, dan manajemen konteks
+    Rekomendasi yang telah di-benchmark untuk resolusi, thinking effort, dan manajemen konteks
   </Card>
 </CardGroup>

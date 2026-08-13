@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/service_accounts/delete
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: a59d9a9d4be55f4610e3356a2cefd89ee94a9a88a3ef6ad30d0645553c0a8488
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: f1983654a87edc88dc7f2f776adcf9544644c452a6e8a3ef87e92b4633c9d247
+---
+
+---
+title: Delete Service Account Workspace Member
+url: https://platform.claude.com/docs/en/api/admin/workspaces/service_accounts/delete
 ---
 
 ## Delete Service Account Workspace Member

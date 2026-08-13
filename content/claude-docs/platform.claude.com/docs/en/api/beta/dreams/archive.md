@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/archive
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: c03e8e5367a2f255f0acccf813523d394428df1018ca54abf5e4961b6aba2afa
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 877736a96959a3f9fe76f284c6ef298bed3098dd9f318ee6cbb9ada00c908821
+---
+
+---
+title: Archive a Dream
+url: https://platform.claude.com/docs/en/api/beta/dreams/archive
 ---
 
 ## Archive a Dream
@@ -23,7 +28,7 @@ Archive a Dream
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -88,6 +93,8 @@ Archive a Dream
     - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
+
+    - `"mid-conversation-tool-changes-2026-07-01"`
 
 ### Returns
 

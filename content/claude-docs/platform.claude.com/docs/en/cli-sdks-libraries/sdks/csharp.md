@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/csharp
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 4f841ed3101d2b24e229a1dd83d463eb3bc0035289f2b694ce2f079fc746d62c
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 269ec9c975e95605062809c4d8b240507f4d81d3089cf5d213d502b4681c2e57
 ---
 
-# C# SDK
-
-Install and configure the Anthropic C# SDK for .NET applications with IChatClient integration
-
+---
+title: C# SDK
+url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/csharp
+description: Install and configure the Anthropic C# SDK for .NET applications with IChatClient integration
 ---
 
 The Anthropic C# SDK provides convenient access to the Anthropic REST API from applications written in C#.
@@ -18,7 +18,7 @@ The Anthropic C# SDK provides convenient access to the Anthropic REST API from a
 </Info>
 
 <Info>
-  For API feature documentation with code examples, see the [API reference](/docs/en/api/overview). This page covers C#-specific SDK features and configuration.
+  For API feature documentation with code examples, see the [API reference](https://platform.claude.com/docs/en/api/overview). This page covers C#-specific SDK features and configuration.
 </Info>
 
 <Warning>
@@ -71,7 +71,7 @@ foreach (var block in message.Content)
 }
 ```
 
-For authentication options including Workload Identity Federation, see [Authentication](/docs/en/manage-claude/authentication).
+For authentication options including Workload Identity Federation, see [Authentication](https://platform.claude.com/docs/en/manage-claude/authentication).
 
 ## Client configuration
 
@@ -437,18 +437,18 @@ The SDK is typed for convenient usage of the documented API. However, it also su
 <Note>
   For detailed platform setup guides with code examples, see:
 
-  * [Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock)
-  * [Amazon Bedrock (Opus 4.6 and earlier)](/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy)
-  * [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws)
-  * [Google Cloud](/docs/en/build-with-claude/claude-on-vertex-ai)
-  * [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry)
+  * [Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock)
+  * [Amazon Bedrock (Opus 4.6 and earlier)](https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy)
+  * [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws)
+  * [Google Cloud](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai)
+  * [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry)
 </Note>
 
 The C# SDK supports the following platforms through separate NuGet packages:
 
-* **Agent Platform:** `Anthropic.Vertex`. See [Claude on Google Cloud](/docs/en/build-with-claude/claude-on-vertex-ai) for client setup.
+* **Agent Platform:** `Anthropic.Vertex`. See [Claude on Google Cloud](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai) for client setup.
 * **Bedrock:** `Anthropic.Bedrock`. Use `AnthropicBedrockMantleClient` for the Messages-API Bedrock endpoint, or `AnthropicBedrockClient` (`bedrock-runtime` path). `AnthropicBedrockMantleClient` takes an optional `MantleAwsClientOptions` config object; `AnthropicBedrockClient` accepts `AnthropicBedrockCredentialsHelper.FromEnv()` or explicit credentials.
-* **Claude Platform on AWS:** `Anthropic.Aws`. Use `AnthropicAwsClient`; set `WorkspaceId` on the client or the `ANTHROPIC_AWS_WORKSPACE_ID` environment variable (see [Workspaces](/docs/en/build-with-claude/claude-platform-on-aws#workspaces)). Available in beta.
+* **Claude Platform on AWS:** `Anthropic.Aws`. Use `AnthropicAwsClient`; set `WorkspaceId` on the client or the `ANTHROPIC_AWS_WORKSPACE_ID` environment variable (see [Workspaces](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws#workspaces)). Available in beta.
 * **Foundry:** `Anthropic.Foundry`. Use `AnthropicFoundryClient` with `DefaultAnthropicFoundryCredentials.FromEnv()` or explicit credentials.
 
 Use `AnthropicBedrockMantleClient` for new projects; `AnthropicBedrockClient` remains for existing applications using the Bedrock `InvokeModel` API.
@@ -470,5 +470,5 @@ Backwards-compatibility is taken seriously to ensure you can rely on a smooth up
 
 * [GitHub repository](https://github.com/anthropics/anthropic-sdk-csharp)
 * [NuGet package](https://www.nuget.org/packages/Anthropic)
-* [API reference](/docs/en/api/overview)
-* [Streaming Messages](/docs/en/build-with-claude/streaming)
+* [API reference](https://platform.claude.com/docs/en/api/overview)
+* [Streaming Messages](https://platform.claude.com/docs/en/build-with-claude/streaming)

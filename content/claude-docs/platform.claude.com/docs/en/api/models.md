@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 9cfaf67cab24522ac25106fb0a74f2f65f7c5ae678bb85e0f6b491921c07af92
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: dc3bd0e1defa75eda7227d89a6d347fc1f305aa5f687a0190c4300bd6cc154e3
+---
+
+---
+title: Models
+url: https://platform.claude.com/docs/en/api/models
 ---
 
 # Models
@@ -39,7 +44,7 @@ The Models API response can be used to determine which models are available for 
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -104,6 +109,8 @@ The Models API response can be used to determine which models are available for 
     - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
+
+    - `"mid-conversation-tool-changes-2026-07-01"`
 
 ### Returns
 
@@ -360,7 +367,7 @@ The Models API response can be used to determine information about a specific mo
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -425,6 +432,8 @@ The Models API response can be used to determine information about a specific mo
     - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
+
+    - `"mid-conversation-tool-changes-2026-07-01"`
 
 ### Returns
 

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rbac_groups/members/list
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: c5e9e39b5c8d149e3fa79ca8ad5355ac080bcd19e4e40f92c76272ca5be935b9
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: b322e39ed05badc18d56878d65c4569f06cea80fe0cc0f625a0113c699d6445f
+---
+
+---
+title: List RBAC Group Members
+url: https://platform.claude.com/docs/en/api/admin/rbac_groups/members/list
 ---
 
 ## List RBAC Group Members

@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/csharp
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 38499ebf159da684fb9ea68a832a91e720e9b9f46e5b4fa3d5cb8d6fe5f17359
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: d1d92094e5e35ba7e16fa86704f465b277e9806d3950504c9d3f58753463fcc1
 ---
 
-# SDK C#
-
-Instal dan konfigurasikan SDK C# Anthropic untuk aplikasi .NET dengan integrasi IChatClient
-
+---
+title: SDK C#
+url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/csharp
+description: Instal dan konfigurasikan SDK C# Anthropic untuk aplikasi .NET dengan integrasi IChatClient
 ---
 
 SDK C# Anthropic menyediakan akses yang mudah ke REST API Anthropic dari aplikasi yang ditulis dalam C#.
@@ -18,7 +18,7 @@ SDK C# Anthropic menyediakan akses yang mudah ke REST API Anthropic dari aplikas
 </Info>
 
 <Info>
-  Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK yang khusus untuk C#.
+  Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](https://platform.claude.com/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK yang khusus untuk C#.
 </Info>
 
 <Warning>
@@ -71,7 +71,7 @@ foreach (var block in message.Content)
 }
 ```
 
-Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](/docs/id/manage-claude/authentication).
+Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication).
 
 ## Konfigurasi klien
 
@@ -437,18 +437,18 @@ SDK diketik untuk penggunaan yang mudah dari API yang terdokumentasi. Namun, SDK
 <Note>
   Untuk panduan penyiapan platform yang terperinci dengan contoh kode, lihat:
 
-  * [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock)
-  * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
-  * [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws)
-  * [Google Cloud](/docs/id/build-with-claude/claude-on-vertex-ai)
-  * [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry)
+  * [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
+  * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
+  * [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
+  * [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai)
+  * [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)
 </Note>
 
 SDK C# mendukung platform berikut melalui paket NuGet terpisah:
 
-* **Agent Platform:** `Anthropic.Vertex`. Lihat [Claude di Google Cloud](/docs/id/build-with-claude/claude-on-vertex-ai) untuk penyiapan klien.
+* **Agent Platform:** `Anthropic.Vertex`. Lihat [Claude di Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai) untuk penyiapan klien.
 * **Bedrock:** `Anthropic.Bedrock`. Gunakan `AnthropicBedrockMantleClient` untuk endpoint Bedrock Messages-API, atau `AnthropicBedrockClient` (jalur `bedrock-runtime`). `AnthropicBedrockMantleClient` menerima objek konfigurasi `MantleAwsClientOptions` opsional; `AnthropicBedrockClient` menerima `AnthropicBedrockCredentialsHelper.FromEnv()` atau kredensial eksplisit.
-* **Claude Platform di AWS:** `Anthropic.Aws`. Gunakan `AnthropicAwsClient`; atur `WorkspaceId` pada klien atau variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID` (lihat [Workspaces](/docs/id/build-with-claude/claude-platform-on-aws#workspaces)). Tersedia dalam beta.
+* **Claude Platform di AWS:** `Anthropic.Aws`. Gunakan `AnthropicAwsClient`; atur `WorkspaceId` pada klien atau variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID` (lihat [Workspaces](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#workspaces)). Tersedia dalam beta.
 * **Foundry:** `Anthropic.Foundry`. Gunakan `AnthropicFoundryClient` dengan `DefaultAnthropicFoundryCredentials.FromEnv()` atau kredensial eksplisit.
 
 Gunakan `AnthropicBedrockMantleClient` untuk proyek baru; `AnthropicBedrockClient` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
@@ -470,5 +470,5 @@ Kompatibilitas ke belakang ditangani dengan serius untuk memastikan Anda dapat m
 
 * [Repositori GitHub](https://github.com/anthropics/anthropic-sdk-csharp)
 * [Paket NuGet](https://www.nuget.org/packages/Anthropic)
-* [Referensi API](/docs/id/api/overview)
-* [Streaming Messages](/docs/id/build-with-claude/streaming)
+* [Referensi API](https://platform.claude.com/docs/id/api/overview)
+* [Streaming Messages](https://platform.claude.com/docs/id/build-with-claude/streaming)

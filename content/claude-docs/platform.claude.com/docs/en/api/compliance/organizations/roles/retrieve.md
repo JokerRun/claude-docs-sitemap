@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/retrieve
-fetched_at: 2026-06-27T03:14:28.973816Z
-sha256: c053a861b1e0f4e2badbaff51e1bba4be3f845dd04fd58424f02a9943e6dda17
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: e1061d9c7118f0f689b8f86986c71c3c9dbb81b65dbec08ad9ad823a882113a0
+---
+
+---
+title: Get Compliance Role
+url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/retrieve
 ---
 
 ## Get Compliance Role

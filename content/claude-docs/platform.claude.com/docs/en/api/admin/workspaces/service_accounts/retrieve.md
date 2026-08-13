@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/service_accounts/retrieve
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 74aa3b222a17c8ccc682a2a560bc5a7d07a46f170221897b034be0bbf68a827f
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 0eb74a67a64c54a64a0fca371009618a891db8ffd47629032b265b4f986f9311
+---
+
+---
+title: Get Service Account Workspace Member
+url: https://platform.claude.com/docs/en/api/admin/workspaces/service_accounts/retrieve
 ---
 
 ## Get Service Account Workspace Member

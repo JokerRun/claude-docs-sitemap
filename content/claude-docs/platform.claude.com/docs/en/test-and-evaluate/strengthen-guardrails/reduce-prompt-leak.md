@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-prompt-leak
-fetched_at: 2026-08-12T02:56:30.865670Z
-sha256: fda6b537d7ce2d6eb775f05ed3428bc526ceef6285d8d79209d97d59d96998dd
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: bcb3092fa6f2df4682a20c5d94b8b07eecfa2fda0b3e78cc57b98001349de12c
 ---
 
-# Reduce prompt leak
-
-Reduce the risk of prompt leaks by separating context from user queries, filtering Claude's outputs, and auditing prompts, without degrading task performance.
-
+---
+title: Reduce prompt leak
+url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-prompt-leak
+description: Reduce the risk of prompt leaks by separating context from user queries, filtering Claude's outputs, and auditing prompts, without degrading task performance.
 ---
 
 Prompt leaks can expose sensitive information that you expect to be "hidden" in your prompt. While no method is foolproof, the strategies below can significantly reduce the risk.
@@ -30,7 +30,7 @@ If you decide to implement leak-resistant techniques, be sure to test your promp
 * **Separate context from queries:** You can try using system prompts to isolate key information and context from user queries. You can emphasize key instructions in the `User` turn, then reemphasize those instructions by prefilling the `Assistant` turn. (Note: prefilling is not supported on Claude 4.6 and later models and [Claude Mythos Preview](https://anthropic.com/glasswing).)
 
 <Accordion title="Example: Safeguarding proprietary analytics">
-  Notice that this system prompt is still predominantly a role prompt, which is the [most effective way to use system prompts](/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role).
+  Notice that this system prompt is still predominantly a role prompt, which is the [most effective way to use system prompts](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role).
 
   ```text System wrap
   You are AnalyticsBot, an AI assistant that uses our proprietary EBITDA formula:

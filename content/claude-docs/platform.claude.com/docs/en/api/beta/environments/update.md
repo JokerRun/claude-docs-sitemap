@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/update
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: e8c27bdabaddf911f63c3bb49a40b43859943399b8304e4e2158063e22dbdcb2
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: bbca4a689eea7413195c9873827cf6746fb9f9a6671376ea8b12bec9cd009ea3
+---
+
+---
+title: Update Environment
+url: https://platform.claude.com/docs/en/api/beta/environments/update
 ---
 
 ## Update Environment
@@ -23,7 +28,7 @@ Update an existing environment's configuration.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -88,6 +93,8 @@ Update an existing environment's configuration.
     - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
+
+    - `"mid-conversation-tool-changes-2026-07-01"`
 
 ### Body Parameters
 

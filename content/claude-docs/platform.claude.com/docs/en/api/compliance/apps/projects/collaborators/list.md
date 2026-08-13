@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/collaborators/list
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: f88f374f324a7bf94d8e081f3d01a06c9eb5c4ad517cf1f0c0b3eb7a2e7edb93
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: f3a478a303b58843064fc01bbf86be2c9c52bcbf2988984f751ff7dfbc57d2e8
+---
+
+---
+title: List project collaborators
+url: https://platform.claude.com/docs/en/api/compliance/apps/projects/collaborators/list
 ---
 
 ## List project collaborators

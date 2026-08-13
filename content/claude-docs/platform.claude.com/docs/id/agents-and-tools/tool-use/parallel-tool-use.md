@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 1ba980f66cc51c67ef23a7355ebc30932e34bb08b1f44e0fa10fbf6131034803
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 772ef062d539a3288044998a164d36bd7567fab8229ba04d7509d885474ecb60
 ---
 
-# Penggunaan alat paralel
-
-Mengaktifkan, memformat, dan menonaktifkan panggilan alat paralel, dengan panduan riwayat pesan dan pemecahan masalah.
-
+---
+title: Penggunaan alat paralel
+url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use
+description: Mengaktifkan, memformat, dan menonaktifkan panggilan alat paralel, dengan panduan riwayat pesan dan pemecahan masalah.
 ---
 
-Secara default, Claude dapat memanggil beberapa alat dalam satu respons. Halaman ini membahas cara menjalankan panggilan tersebut, cara memformat riwayat pesan agar paralelisme tetap berfungsi, dan cara menonaktifkan penggunaan alat paralel saat Anda membutuhkannya. Untuk alur panggilan tunggal, lihat [Menangani panggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls).
+Secara default, Claude dapat memanggil beberapa alat dalam satu respons. Halaman ini membahas cara menjalankan panggilan tersebut, cara memformat riwayat pesan agar paralelisme tetap berfungsi, dan cara menonaktifkan penggunaan alat paralel saat Anda membutuhkannya. Untuk alur panggilan tunggal, lihat [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls).
 
 ## Semantik eksekusi
 
@@ -19,7 +19,7 @@ Ketika Claude memanggil alat, respons memiliki `stop_reason` bernilai `tool_use`
 
 Pilih strategi berdasarkan apa yang dilakukan alat Anda. Operasi independen yang hanya membaca biasanya aman dijalankan secara paralel untuk "latency" (latensi) yang lebih rendah. Alat dengan efek samping, state bersama, atau persyaratan urutan mungkin lebih baik dijalankan secara berurutan.
 
-Strategi apa pun yang Anda gunakan, kembalikan satu `tool_result` untuk setiap blok `tool_use`, semuanya bersama-sama dalam pesan pengguna berikutnya. Cocokkan setiap hasil dengan panggilannya menggunakan `tool_use_id`, dan letakkan setiap blok `tool_result` sebelum konten teks apa pun dalam pesan tersebut. Lihat [Menangani panggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls) untuk aturan pemformatan lengkap. Jika Anda memilih untuk tidak menjalankan panggilan tertentu (misalnya, karena Anda menjalankan batch secara berurutan dan panggilan sebelumnya gagal), tetap kembalikan `tool_result` untuknya dengan `is_error: true` dan penjelasan singkat.
+Strategi apa pun yang Anda gunakan, kembalikan satu `tool_result` untuk setiap blok `tool_use`, semuanya bersama-sama dalam pesan pengguna berikutnya. Cocokkan setiap hasil dengan panggilannya menggunakan `tool_use_id`, dan letakkan setiap blok `tool_result` sebelum konten teks apa pun dalam pesan tersebut. Lihat [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls) untuk aturan pemformatan lengkap. Jika Anda memilih untuk tidak menjalankan panggilan tertentu (misalnya, karena Anda menjalankan batch secara berurutan dan panggilan sebelumnya gagal), tetap kembalikan `tool_result` untuknya dengan `is_error: true` dan penjelasan singkat.
 
 ```json
 {
@@ -33,7 +33,7 @@ Strategi apa pun yang Anda gunakan, kembalikan satu `tool_result` untuk setiap b
 ## Menguji panggilan alat paralel
 
 <Note>
-  **Gunakan Tool Runner untuk sebagian besar aplikasi:** [Tool Runner](/docs/id/agents-and-tools/tool-use/tool-runner) SDK menangani respons dengan beberapa panggilan alat dan memformat hasilnya untuk Anda, sehingga Anda tidak perlu menulis penanganan ini sendiri. Gunakan pola manual di halaman ini ketika Anda memerlukan kontrol langsung atas cara panggilan dijalankan, seperti batching kustom, pengurutan, atau penanganan kesalahan.
+  **Gunakan Tool Runner untuk sebagian besar aplikasi:** [Tool Runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner) SDK menangani respons dengan beberapa panggilan alat dan memformat hasilnya untuk Anda, sehingga Anda tidak perlu menulis penanganan ini sendiri. Gunakan pola manual di halaman ini ketika Anda memerlukan kontrol langsung atas cara panggilan dijalankan, seperti batching kustom, pengurutan, atau penanganan kesalahan.
 </Note>
 
 Skrip berikut mengirimkan permintaan yang seharusnya memicu panggilan alat paralel, memverifikasi bahwa respons berisi panggilan tersebut, dan memformat hasil alat agar paralelisme tetap berfungsi. Jalankan dengan `ANTHROPIC_API_KEY` yang telah diatur di lingkungan Anda:
@@ -845,7 +845,7 @@ Model Claude 4 dan yang lebih baru melakukan panggilan alat paralel secara defau
 
 ## Menonaktifkan penggunaan alat paralel
 
-Penggunaan alat paralel aktif secara default. Untuk menonaktifkannya, atur `disable_parallel_tool_use: true` di dalam objek [`tool_choice`](/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use). Ini bukan parameter permintaan tingkat atas. Efeknya bergantung pada tipe `tool_choice`.
+Penggunaan alat paralel aktif secara default. Untuk menonaktifkannya, atur `disable_parallel_tool_use: true` di dalam objek [`tool_choice`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use). Ini bukan parameter permintaan tingkat atas. Efeknya bergantung pada tipe `tool_choice`.
 
 ### Paling banyak satu panggilan alat
 
@@ -1437,11 +1437,11 @@ Khusus untuk penggunaan alat paralel:
 ]
 ```
 
-Lihat [Menangani panggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls) untuk aturan pemformatan lainnya.
+Lihat [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls) untuk aturan pemformatan lainnya.
 
 **2. Prompting yang lemah**
 
-Prompting default mungkin tidak mencukupi. Gunakan prompt sistem yang lebih kuat dari [Memaksimalkan penggunaan alat paralel](#maximizing-parallel-tool-use).
+Prompting default mungkin tidak mencukupi. Gunakan prompt sistem yang lebih kuat dari [Memaksimalkan penggunaan alat paralel](https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use#maximizing-parallel-tool-use).
 
 **3. Mengukur penggunaan alat paralel**
 
@@ -1579,15 +1579,15 @@ Urutan eksekusi adalah pilihan Anda. Jika alat Anda memiliki ketergantungan urut
 ## Langkah selanjutnya
 
 <CardGroup cols={3}>
-  <Card title="Tool Runner (SDK)" icon="wrench" href="/docs/id/agents-and-tools/tool-use/tool-runner">
+  <Card title="Tool Runner (SDK)" icon="wrench" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner">
     Gunakan abstraksi Tool Runner dari SDK untuk menangani loop agentik, pembungkusan kesalahan, dan keamanan tipe secara otomatis.
   </Card>
 
-  <Card title="Menangani panggilan alat" icon="arrows-left-right" href="/docs/id/agents-and-tools/tool-use/handle-tool-calls">
+  <Card title="Menangani panggilan alat" icon="arrows-left-right" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls">
     Mengurai blok tool\_use, memformat respons tool\_result, dan menangani kesalahan dengan is\_error.
   </Card>
 
-  <Card title="Mendefinisikan alat" icon="hammer" href="/docs/id/agents-and-tools/tool-use/define-tools">
+  <Card title="Mendefinisikan alat" icon="hammer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools">
     Menentukan skema alat, menulis deskripsi yang efektif, dan mengontrol kapan Claude memanggil alat Anda.
   </Card>
 </CardGroup>

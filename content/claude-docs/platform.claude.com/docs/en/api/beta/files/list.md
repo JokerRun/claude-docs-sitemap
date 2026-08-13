@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/list
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: b1aa24e1ded282d93c1c3da66737e2d795bf17504d907d844cf4f396a9a5dd3e
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 20114ec6a562e328f8b714ec5f61477300f78611067508d9e355bd08f4de2586
+---
+
+---
+title: List Files
+url: https://platform.claude.com/docs/en/api/beta/files/list
 ---
 
 ## List Files
@@ -39,7 +44,7 @@ List Files
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -104,6 +109,8 @@ List Files
     - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
+
+    - `"mid-conversation-tool-changes-2026-07-01"`
 
 ### Returns
 

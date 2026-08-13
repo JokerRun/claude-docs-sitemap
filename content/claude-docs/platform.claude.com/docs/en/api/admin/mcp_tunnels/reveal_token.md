@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/reveal_token
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 9d9f986f3118c5a15417c415bc2657d70e911c07f616a800c428984ece790a74
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: cf518ce4c1be0bd51cf8b63ca0a8c64963044e1b193fc5754701884bf4e66bac
+---
+
+---
+title: Reveal Tunnel Token
+url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/reveal_token
 ---
 
 ## Reveal Tunnel Token

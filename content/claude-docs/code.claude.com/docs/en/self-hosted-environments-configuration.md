@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/self-hosted-environments-configuration
-fetched_at: 2026-08-12T02:56:30.865670Z
-sha256: fa76c6db350656cbe1aef1ace91145f2c30f1cf410f10501a4047074e93d401a
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 913bf0891a25ed02e9fd037b304b4acb50a59859530feb138486c004bf64ec70
 ---
 
 > ## Documentation Index
@@ -190,7 +190,7 @@ The orchestrator keeps no state between polls, so you can run two or more replic
 
 ### The spawn-runner hook
 
-The orchestrator runs `${hooks-dir}/spawn-runner` once per spawn request. The hook must submit work asynchronously and return within `--hook-timeout`, 60 seconds by default. It must not wait for the runner to boot. The hook receives:
+The orchestrator runs `${hooks-dir}/spawn-runner` once per spawn request. The hook must submit work asynchronously, without waiting for the runner to boot, and return within `--hook-timeout`, 60 seconds by default. The hook receives:
 
 | Variable                              | Description                                                                                                                                                                                                                                                |
 | :------------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -233,7 +233,7 @@ RUN claude mcp add --scope user sidecar -- /usr/local/bin/mcp-sidecar
 RUN claude mcp add --scope user --transport http internal http://mcp-gateway.svc.cluster.local:8080
 ```
 
-The runner snapshots the host's config once at startup. The snapshot captures the `mcpServers` key from the host's `.claude.json`, which lives next to rather than inside `~/.claude/`, and the runner seeds only that key into each session's isolated config; account state and project history are dropped. To confirm the servers reached sessions, start a session on the environment and ask Claude to list its MCP tools; the runner also logs a startup warning for any captured entry whose `type` it doesn't recognize and drops the entry, so the drop is visible instead of the server silently failing to load. When `SELF_HOSTED_RUNNER_HOST_CONFIG_DIR` is set, the runner reads `.claude.json` from that directory instead, so pointing the variable at an empty directory disables MCP seeding too.
+The runner snapshots the host's config once at startup. The snapshot captures the `mcpServers` key from the host's `.claude.json`, which lives next to rather than inside `~/.claude/`, and the runner seeds only that key into each session's isolated config; account state and project history are dropped. To confirm the servers reached sessions, start a session on the environment and ask Claude to list its MCP tools; the runner also logs a startup warning for any captured entry whose `type` it doesn't recognize and drops the entry, so you can see why that server is missing from sessions. When `SELF_HOSTED_RUNNER_HOST_CONFIG_DIR` is set, the runner reads `.claude.json` from that directory instead, so pointing the variable at an empty directory disables MCP seeding too.
 
 Two other sources work as well:
 

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles
-fetched_at: 2026-06-27T03:14:28.973816Z
-sha256: dabca08c824e5605be7f0431312bdf7451cd39df1f1d854260f3c225fd1ddd68
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 08213feb838fe55463d2a3d75f02fdbdb87b296530b52c857ca587a36d07e159
+---
+
+---
+title: Roles
+url: https://platform.claude.com/docs/en/api/compliance/organizations/roles
 ---
 
 # Roles

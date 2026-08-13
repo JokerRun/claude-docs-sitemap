@@ -1,28 +1,28 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 5f08322192f686e6a5268edefd3a4d00fd8d3afd7e3a459932a8520533fd9b0b
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 17ad8b7fd4fd15361ee9da4d7f197a451e67f458bc625e0d87a0aebc1fa93011
 ---
 
-# Penyiapan lingkungan cloud
-
-Sesuaikan sandbox cloud untuk sesi Anda.
-
+---
+title: Penyiapan lingkungan cloud
+url: https://platform.claude.com/docs/id/managed-agents/environments
+description: Sesuaikan sandbox cloud untuk sesi Anda.
 ---
 
 Environment (lingkungan) mendefinisikan konfigurasi sandbox tempat agen Anda berjalan. Anda membuat environment sekali, lalu mereferensikan ID-nya setiap kali Anda memulai sesi. Beberapa sesi dapat berbagi environment yang sama, tetapi setiap sesi mendapatkan sandbox terisolasi miliknya sendiri (container Linux yang baru).
 
-Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di infrastruktur Anda sendiri, lihat [Sandbox yang di-hosting sendiri](/docs/id/managed-agents/self-hosted-sandboxes).
+Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di infrastruktur Anda sendiri, lihat [Sandbox yang di-hosting sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes).
 
 <Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](/docs/id/api/beta-headers#endpoint-specific-headers).
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Membuat environment
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   environment=$(curl -fsS https://api.anthropic.com/v1/environments \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -139,10 +139,10 @@ Gunakan `name` yang unik dan deskriptif agar Anda dapat membedakan environment s
 
 ## Menggunakan environment dalam sesi
 
-Berikan ID environment sebagai string saat [membuat sesi](/docs/id/managed-agents/sessions).
+Berikan ID environment sebagai string saat [membuat sesi](https://platform.claude.com/docs/id/managed-agents/sessions).
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   session=$(curl -fsS https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -226,7 +226,7 @@ Berikan ID environment sebagai string saat [membuat sesi](/docs/id/managed-agent
 Field `packages` menginstal paket terlebih dahulu ke dalam sandbox sebelum agen dimulai. Paket diinstal oleh package manager masing-masing dan di-cache di seluruh sesi yang berbagi environment yang sama. Ketika beberapa package manager ditentukan, mereka berjalan dalam urutan alfabetis (apt, cargo, gem, go, npm, pip). Anda dapat secara opsional menyematkan versi tertentu. Paket yang tidak disematkan akan menginstal versi terbaru.
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   environment=$(curl -fsS https://api.anthropic.com/v1/environments \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -400,7 +400,7 @@ Field `networking` mengontrol akses jaringan keluar dari sandbox. Field ini tida
 Contoh berikut membuat environment dengan jaringan `limited`:
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   curl -fsS https://api.anthropic.com/v1/environments \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -569,7 +569,7 @@ Saat menggunakan jaringan `limited`:
 ## Mengelola environment
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   # Daftar environment
   environments=$(curl -fsS https://api.anthropic.com/v1/environments \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -707,16 +707,16 @@ Saat menggunakan jaringan `limited`:
 
 ## Runtime yang sudah terinstal
 
-Sandbox cloud menyertakan runtime umum secara bawaan. Lihat [Referensi sandbox cloud](/docs/id/managed-agents/cloud-sandboxes-reference) untuk daftar lengkap bahasa, database, dan utilitas yang sudah terinstal.
+Sandbox cloud menyertakan runtime umum secara bawaan. Lihat [Referensi sandbox cloud](https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference) untuk daftar lengkap bahasa, database, dan utilitas yang sudah terinstal.
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Referensi sandbox cloud" icon="book" href="/docs/id/managed-agents/cloud-sandboxes-reference">
+  <Card title="Referensi sandbox cloud" icon="book" href="https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference">
     Paket, database, dan utilitas yang sudah terinstal dan tersedia di sandbox cloud.
   </Card>
 
-  <Card title="Mulai sesi" icon="play" href="/docs/id/managed-agents/sessions">
+  <Card title="Mulai sesi" icon="play" href="https://platform.claude.com/docs/id/managed-agents/sessions">
     Buat sesi untuk menjalankan agen Anda dan mulai menjalankan tugas.
   </Card>
 </CardGroup>

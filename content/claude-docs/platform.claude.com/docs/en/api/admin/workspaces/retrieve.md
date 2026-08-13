@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/retrieve
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: a8e10809a3f2ecf9282786cea6b572e098dcd6f800059e6d332b2f63747c2c94
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: d5f4783c50a698b476bc46b8eafb7112e44914ea1ab51c84c8f750df505964ac
+---
+
+---
+title: Get Workspace
+url: https://platform.claude.com/docs/en/api/admin/workspaces/retrieve
 ---
 
 ## Get Workspace

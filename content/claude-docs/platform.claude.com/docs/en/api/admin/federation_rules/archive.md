@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/federation_rules/archive
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: d70cee1cf07092bc8e521d80171832c2dad69d8ede2b2ab8c3ededc265c4ab38
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: bd55a23727e461a5590e124beac2ffa9ec6876249c3cb55ec253882f288a0e5d
+---
+
+---
+title: Archive Federation Rule
+url: https://platform.claude.com/docs/en/api/admin/federation_rules/archive
 ---
 
 ## Archive Federation Rule

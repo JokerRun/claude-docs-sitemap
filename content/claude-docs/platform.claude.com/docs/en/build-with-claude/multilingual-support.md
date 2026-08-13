@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/multilingual-support
-fetched_at: 2026-08-06T03:07:37.547989Z
-sha256: e82f02866c6fc5376eac89e9cd3f7b8915a2b71012b1bff31b9b8995a810aeeb
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: f67b5a26d9dd4c46a3a45e0c1928e0da0f48910458250651e6686ac40f758455
 ---
 
-# Multilingual support
-
-Claude excels at tasks across multiple languages, maintaining strong cross-lingual performance relative to English.
-
+---
+title: Multilingual support
+url: https://platform.claude.com/docs/en/build-with-claude/multilingual-support
+description: Claude excels at tasks across multiple languages, maintaining strong cross-lingual performance relative to English.
 ---
 
 ## Overview
@@ -39,7 +39,7 @@ The following table shows zero-shot chain-of-thought evaluation scores for Claud
 | Swahili                           | 91.1%              | 78.3%             |
 | Yoruba                            | 79.7%              | 52.7%             |
 
-1 With [extended thinking](/docs/en/build-with-claude/extended-thinking).
+1 With [extended thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking).
 
 <Note>
   These metrics are based on [MMLU (Massive Multitask Language Understanding)](https://en.wikipedia.org/wiki/MMLU) English test sets that were translated into 14 additional languages by professional human translators, as documented in [OpenAI's simple-evals repository](https://github.com/openai/simple-evals/blob/main/multilingual_mmlu_benchmark_results.md). The use of human translators for this evaluation ensures high-quality translations, particularly important for languages with fewer digital resources.
@@ -195,7 +195,7 @@ When working with multilingual content:
 2. **Use native scripts:** Submit text in its native script rather than transliteration for optimal results.
 3. **Consider cultural context:** Effective communication often requires cultural and regional awareness beyond pure translation.
 
-Also follow the general guidance in [Prompt engineering overview](/docs/en/build-with-claude/prompt-engineering/overview) to further improve output quality.
+Also follow the general guidance in [Prompt engineering overview](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview) to further improve output quality.
 
 ***
 
@@ -208,19 +208,19 @@ Also follow the general guidance in [Prompt engineering overview](/docs/en/build
 ## Next steps
 
 <CardGroup cols={2}>
-  <Card title="Prompt engineering overview" icon="edit" href="/docs/en/build-with-claude/prompt-engineering/overview">
+  <Card title="Prompt engineering overview" icon="edit" href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview">
     Apply general prompting techniques to improve multilingual output quality.
   </Card>
 
-  <Card title="Customer support agent" icon="headset" href="/docs/en/about-claude/use-case-guides/customer-support-chat">
+  <Card title="Customer support agent" icon="headset" href="https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat">
     Build a localized support chatbot using a language-constrained system prompt.
   </Card>
 
-  <Card title="Models overview" icon="table" href="/docs/en/about-claude/models/overview">
+  <Card title="Models overview" icon="table" href="https://platform.claude.com/docs/en/about-claude/models/overview">
     Compare model tiers to balance multilingual quality against cost and latency.
   </Card>
 
-  <Card title="Define success criteria and build evaluations" icon="scales" href="/docs/en/test-and-evaluate/develop-tests">
+  <Card title="Define success criteria and build evaluations" icon="scales" href="https://platform.claude.com/docs/en/test-and-evaluate/develop-tests">
     Evaluate translation and localization quality before you ship.
   </Card>
 </CardGroup>

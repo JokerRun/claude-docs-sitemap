@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rbac_groups/members/delete
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: e9470b810aff1e7cd30c42dc748b3524709d6f70f988c7324686b5855cc788ba
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 065679eccbbc5b8c23ea760b35b24b63ba935a768a3b67edae71c98ebab832dc
+---
+
+---
+title: Remove RBAC Group Member
+url: https://platform.claude.com/docs/en/api/admin/rbac_groups/members/delete
 ---
 
 ## Remove RBAC Group Member

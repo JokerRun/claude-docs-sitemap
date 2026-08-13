@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/tunnel_certificates/archive
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: e5fa3f46762b4d99f6c86b3199e05104455ef1913bb3e817f9d2890ea7aee7b6
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: e3934d041fca6294887f7c5a0f99cccaa3ad1007329b543d49df7c2cab765514
+---
+
+---
+title: Archive Tunnel Certificate
+url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/tunnel_certificates/archive
 ---
 
 ## Archive Tunnel Certificate

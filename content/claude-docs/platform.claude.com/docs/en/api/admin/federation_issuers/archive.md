@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/federation_issuers/archive
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: 5cf3b6957d92f1d443ff1544e0f2e735682a7807dcab073e18fef9bd9f72cc5d
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: cd40154c25994948f16fde44944dca8d3b349f4f7702e1c3057157c1bb77eacb
+---
+
+---
+title: Archive Federation Issuer
+url: https://platform.claude.com/docs/en/api/admin/federation_issuers/archive
 ---
 
 ## Archive Federation Issuer

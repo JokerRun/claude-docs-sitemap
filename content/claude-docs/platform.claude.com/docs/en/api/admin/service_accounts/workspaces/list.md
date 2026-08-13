@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/service_accounts/workspaces/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: c194f518f77e340093e6e61fc4b02fa9e4fcab5329b2b28074fcbe2b63420862
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 4011abe1481c68913d865df592ee6ba956be6f50723aee3d3fd2755fda3f8f7e
+---
+
+---
+title: List Workspaces For Service Account
+url: https://platform.claude.com/docs/en/api/admin/service_accounts/workspaces/list
 ---
 
 ## List Workspaces For Service Account

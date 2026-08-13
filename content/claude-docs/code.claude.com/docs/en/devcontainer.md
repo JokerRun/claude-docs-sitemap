@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/devcontainer
-fetched_at: 2026-08-08T02:41:37.599145Z
-sha256: 6ce5a4633b2ba16e46310e1e9240bda46acbed4b91274fab045dbd664a0f9519
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: f028aad17ee651cf1aea6cd00ff6e2b4a30b05e2124c50822683b170d8d74a37
 ---
 
 > ## Documentation Index
@@ -137,7 +137,7 @@ To set [environment variables](/docs/en/env-vars) that apply to every Claude Cod
 }
 ```
 
-`CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` also disables the feature-flag evaluation that [Remote Control](/docs/en/remote-control#requirements) and [cross-session messaging](/docs/en/cross-session-messaging#availability) depend on, so sessions in the container can't use either.
+`CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` also disables the feature-flag evaluation that [Remote Control](/docs/en/remote-control#requirements) and the other [features that need feature-flag fetching](/docs/en/env-vars#features-that-need-feature-flag-fetching) depend on, so sessions in the container can't use them.
 
 The Dev Container Feature always installs the latest Claude Code release. To pin a specific Claude Code version for reproducible builds, install it from your Dockerfile with `npm install -g @anthropic-ai/claude-code@X.Y.Z` instead of using the feature, and set `DISABLE_AUTOUPDATER` as shown above.
 

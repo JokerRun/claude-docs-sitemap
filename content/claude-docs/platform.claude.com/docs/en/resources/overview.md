@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/overview
-fetched_at: 2026-08-11T02:45:59.001861Z
-sha256: f9a860e9f2781bc005bfdf3f4c9df5d88e2e1dbe5a8b5402ab1f0232e999948f
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: f4efe011ae305ac858b24e203f15314b66f53814c2d108fec52a373c79fd56a5
 ---
 
-# Resources
-
-Model cards, learning resources, and documentation formats optimized for AI ingestion.
-
+---
+title: Resources
+url: https://platform.claude.com/docs/en/resources/overview
+description: Model cards, learning resources, and documentation formats optimized for AI ingestion.
 ---
 
 ## Model cards
@@ -98,11 +98,11 @@ Model cards, learning resources, and documentation formats optimized for AI inge
     Replicable code samples and implementations.
   </Card>
 
-  <Card title="Use case guides" icon="compass" href="/docs/en/about-claude/use-case-guides/overview">
+  <Card title="Use case guides" icon="compass" href="https://platform.claude.com/docs/en/about-claude/use-case-guides/overview">
     In-depth production guides for building common use cases with Claude.
   </Card>
 
-  <Card title="Glossary" icon="book-bookmark" href="/docs/en/about-claude/glossary">
+  <Card title="Glossary" icon="book-bookmark" href="https://platform.claude.com/docs/en/about-claude/glossary">
     Key terms and concepts for working with Claude and language models.
   </Card>
 </CardGroup>
@@ -110,15 +110,15 @@ Model cards, learning resources, and documentation formats optimized for AI inge
 ## Resources for AI ingestion
 
 <CardGroup cols={3}>
-  <Card title="API primer for Claude ingestion" icon="settings" href="/docs/en/claude_api_primer">
+  <Card title="API primer for Claude ingestion" icon="settings" href="https://platform.claude.com/docs/en/claude_api_primer">
     Concise API guide meant for ingestion by Claude.
   </Card>
 
-  <Card title="Claude Platform docs overview" icon="robot" href="/docs/for-claude">
+  <Card title="Claude Platform docs overview" icon="robot" href="https://platform.claude.com/docs/for-claude">
     Concise overview of Claude Platform documentation, optimized for LLM ingestion.
   </Card>
 
-  <Card title="llms.txt" icon="file" href="/llms.txt">
+  <Card title="llms.txt" icon="file" href="https://platform.claude.com/llms.txt">
     LLM-optimized documentation index.
   </Card>
 </CardGroup>

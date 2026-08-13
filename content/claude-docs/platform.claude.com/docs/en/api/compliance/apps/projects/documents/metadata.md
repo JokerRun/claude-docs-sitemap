@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/metadata
-fetched_at: 2026-06-27T03:14:28.973816Z
-sha256: ff2a5faf61947bc43e2480f7f128feff81a071a7999cca78ed25cbe93a9040c7
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: c56c5a63d89a3973b366a37b5e7f6cfa1b33f00c4a777cbad263a7c2ac800a66
+---
+
+---
+title: Get project document metadata
+url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/metadata
 ---
 
 ## Get project document metadata

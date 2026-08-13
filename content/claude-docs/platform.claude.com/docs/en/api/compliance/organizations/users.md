@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/users
-fetched_at: 2026-06-27T03:14:28.973816Z
-sha256: f4840856c40719b334254138a11778ddc82868d95e1202f62445fc72482a5a98
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 6a2e9effd82f39b61e6b75f8167c0857989c4969e408d318cc8ad0e1207475ec
+---
+
+---
+title: Users
+url: https://platform.claude.com/docs/en/api/compliance/organizations/users
 ---
 
 # Users

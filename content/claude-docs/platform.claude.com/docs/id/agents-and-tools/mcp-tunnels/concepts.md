@@ -1,21 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 2ce5469158332f31975885a2c8abcc595e149da0ce5cc9a1a523e140ef8562da
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: f3148edadf51a34f7de44c8f64682e6c1e062bcdb7f03f956eec501368acf874
 ---
 
-# Arsitektur dan komponen
-
-Nama kanonis untuk bagian-bagian dari deployment MCP tunnel, dua mode penyediaan kredensial, dan model koneksi.
-
+---
+title: Arsitektur dan komponen
+url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts
+description: Nama kanonis untuk bagian-bagian dari deployment MCP tunnel, dua mode penyediaan kredensial, dan model koneksi.
 ---
 
 <Note>
   Tunnel MCP sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/claude-managed-agents) untuk mencobanya.
 </Note>
 
-Halaman ini mendefinisikan istilah-istilah yang digunakan di seluruh dokumentasi [MCP tunnels](/docs/id/agents-and-tools/mcp-tunnels/overview). Beberapa komponen muncul dengan nama yang berbeda dalam file konfigurasi, image container, dan teks naratif; tabel berikut memberikan satu nama kanonis untuk masing-masing dan mencantumkan alias yang mungkin Anda temui.
+Halaman ini mendefinisikan istilah-istilah yang digunakan di seluruh dokumentasi [MCP tunnels](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview). Beberapa komponen muncul dengan nama yang berbeda dalam file konfigurasi, image container, dan teks naratif; tabel berikut memberikan satu nama kanonis untuk masing-masing dan mencantumkan alias yang mungkin Anda temui.
 
 ## Komponen
 
@@ -33,10 +33,10 @@ Halaman ini mendefinisikan istilah-istilah yang digunakan di seluruh dokumentasi
 
 Tunnel stack membutuhkan dua kredensial saat runtime: **token tunnel**, yang mengautentikasi koneksi outbound cloudflared, dan **sertifikat server** yang ditandatangani oleh CA yang terdaftar pada tunnel, yang disajikan oleh proxy selama handshake inner TLS. Ada dua cara untuk menyediakannya, yang disajikan di seluruh panduan ini sebagai sepasang tab.
 
-| Mode                 | Bagaimana kredensial mencapai stack                                                                                                                                                                                                                                                                                                                                                   | Nama chart Helm                               | Label tab                       |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- | ------------------------------- |
-| **Akses terprogram** | Komponen setup mengautentikasi ke Tunnels API melalui [Workload Identity Federation](/docs/id/manage-claude/workload-identity-federation), mengambil token tunnel, menghasilkan CA dan sertifikat server secara lokal, dan mendaftarkan CA tersebut. Tidak ada secret berumur panjang yang disalin secara manual. Memerlukan aturan federasi dengan scope `workspace:manage_tunnels`. | Managed mode (`setup.enabled: true`, default) | **With programmatic access**    |
-| **Manual**           | Anda menyalin token tunnel dari Claude Console, menghasilkan CA dan sertifikat server sendiri (misalnya dengan `openssl`), mendaftarkan CA di Console, dan menyediakan token serta sertifikat ke stack sebagai secret. Tidak ada komponen setup yang berjalan.                                                                                                                        | External mode (`setup.enabled: false`)        | **Without programmatic access** |
+| Mode                 | Bagaimana kredensial mencapai stack                                                                                                                                                                                                                                                                                                                                                                              | Nama chart Helm                               | Label tab                       |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- | ------------------------------- |
+| **Akses terprogram** | Komponen setup mengautentikasi ke Tunnels API melalui [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation), mengambil token tunnel, menghasilkan CA dan sertifikat server secara lokal, dan mendaftarkan CA tersebut. Tidak ada secret berumur panjang yang disalin secara manual. Memerlukan aturan federasi dengan scope `workspace:manage_tunnels`. | Managed mode (`setup.enabled: true`, default) | **With programmatic access**    |
+| **Manual**           | Anda menyalin token tunnel dari Claude Console, menghasilkan CA dan sertifikat server sendiri (misalnya dengan `openssl`), mendaftarkan CA di Console, dan menyediakan token serta sertifikat ke stack sebagai secret. Tidak ada komponen setup yang berjalan.                                                                                                                                                   | External mode (`setup.enabled: false`)        | **Without programmatic access** |
 
 Mode-mode ini juga disebut sebagai **alur terprogram** (the programmatic flow) dan **alur manual** (the manual flow) dalam panduan deploy.
 
@@ -75,5 +75,5 @@ sequenceDiagram
 
 ## Lihat juga
 
-* [MCP tunnels](/docs/id/agents-and-tools/mcp-tunnels/overview) untuk model keamanan dan tabel tanggung jawab bersama.
-* [Referensi MCP tunnels](/docs/id/agents-and-tools/mcp-tunnels/reference) untuk field konfigurasi proxy, persyaratan sertifikat, dan komponen setup.
+* [MCP tunnels](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview) untuk model keamanan dan tabel tanggung jawab bersama.
+* [Referensi MCP tunnels](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference) untuk field konfigurasi proxy, persyaratan sertifikat, dan komponen setup.

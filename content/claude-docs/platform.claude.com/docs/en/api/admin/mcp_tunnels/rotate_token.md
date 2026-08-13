@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/rotate_token
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: bde907810e392604a211941b8051b12c7b0e78c77f8fd2742a979916b137c5b9
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 524b24396d5ff4ba24d23c55e6e14f9dff666fdb6a4067ebb2ccd96be1ae5518
+---
+
+---
+title: Rotate Tunnel Token
+url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/rotate_token
 ---
 
 ## Rotate Tunnel Token

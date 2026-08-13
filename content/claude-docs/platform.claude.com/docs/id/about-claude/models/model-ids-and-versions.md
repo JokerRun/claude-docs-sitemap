@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/model-ids-and-versions
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 4f0d25b9644500e59bb8f89bed194411a1e1a4c6397d08cc8a2b81de3ea63331
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 27f6a77bc0b3354d2b5e02168cb87a650699f02bf393de21f7d7c1ee84717b72
 ---
 
-# ID model dan pembuatan versi
-
-Bagaimana ID model Claude disusun dan diberi versi, termasuk format tanpa tanggal yang diperkenalkan dengan generasi Claude 4.6 dan apa artinya bagi stabilitas.
-
+---
+title: ID model dan pembuatan versi
+url: https://platform.claude.com/docs/id/about-claude/models/model-ids-and-versions
+description: Bagaimana ID model Claude disusun dan diberi versi, termasuk format tanpa tanggal yang diperkenalkan dengan generasi Claude 4.6 dan apa artinya bagi stabilitas.
 ---
 
-Setiap ID model Claude mengidentifikasi versi model yang telah dipatok (pinned). Ketika Anda menggunakan ID model dalam permintaan API, model yang mendasarinya tetap konstan selama masa pakai ID tersebut. Jaminan ini mencakup ID model, bukan alias kemudahan yang diterima Claude API untuk beberapa model sebelumnya (lihat [Sebelum generasi 4.6](#before-the-4-6-generation)).
+Setiap ID model Claude mengidentifikasi versi model yang telah dipatok (pinned). Ketika Anda menggunakan ID model dalam permintaan API, model yang mendasarinya tetap konstan selama masa pakai ID tersebut. Jaminan ini mencakup ID model, bukan alias kemudahan yang diterima Claude API untuk beberapa model sebelumnya (lihat [Sebelum generasi 4.6](https://platform.claude.com/docs/id/about-claude/models/model-ids-and-versions#before-the-4-6-generation)).
 
 ## Format ID model
 
@@ -87,4 +87,4 @@ Terkadang, pembaruan infrastruktur menghasilkan perbedaan kecil dalam perilaku y
 
 ## ID model saat ini
 
-Untuk daftar lengkap ID model saat ini beserta padanannya di Amazon Bedrock dan Google Cloud, lihat [Ikhtisar model](/docs/id/about-claude/models/overview).
+Untuk daftar lengkap ID model saat ini beserta padanannya di Amazon Bedrock dan Google Cloud, lihat [Ikhtisar model](https://platform.claude.com/docs/id/about-claude/models/overview).

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/skills
-fetched_at: 2026-08-11T02:45:59.001861Z
-sha256: 81dd0e86f05cca1d91e758ccf0d5b26b1a72efd5eb6646c9a9f163e60723dcb7
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 978ecbb28fbfc4dc7aed5380f99c42a108bd5bff652cf98e59ed4566c625cc3a
 ---
 
 > ## Documentation Index
@@ -127,8 +127,8 @@ Create each Skill as a directory containing a `SKILL.md` file with YAML frontmat
 
 For complete guidance on creating Skills, including SKILL.md structure, multi-file Skills, and examples, see:
 
-* [Agent Skills in Claude Code](/docs/en/skills): Complete guide with examples
-* [Agent Skills Best Practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices): Authoring guidelines and naming conventions
+* [Agent Skills in Claude Code](/docs/en/skills): complete guide with examples
+* [Agent Skills Best Practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices): authoring guidelines and naming conventions
 
 ## Tool Restrictions
 
@@ -326,15 +326,15 @@ For general Skills troubleshooting (YAML syntax, debugging, etc.), see the [Clau
 
 ### Skills Guides
 
-* [Agent Skills in Claude Code](/docs/en/skills): Complete Skills guide with creation, examples, and troubleshooting
-* [Agent Skills Overview](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview): Conceptual overview, benefits, and architecture
-* [Agent Skills Best Practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices): Authoring guidelines for effective Skills
-* [Agent Skills Cookbook](https://platform.claude.com/cookbook/skills-notebooks-01-skills-introduction): Example Skills and templates
+* [Agent Skills in Claude Code](/docs/en/skills): complete Skills guide with creation, examples, and troubleshooting
+* [Agent Skills Overview](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview): conceptual overview, benefits, and architecture
+* [Agent Skills Best Practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices): authoring guidelines for effective Skills
+* [Agent Skills Cookbook](https://platform.claude.com/cookbook/skills-notebooks-01-skills-introduction): example Skills and templates
 
 ### SDK Resources
 
-* [Subagents in the SDK](/docs/en/agent-sdk/subagents): Similar filesystem-based agents with programmatic options
-* [Slash Commands in the SDK](/docs/en/agent-sdk/slash-commands): User-invoked commands
-* [SDK Overview](/docs/en/agent-sdk/overview): General SDK concepts
-* [TypeScript SDK Reference](/docs/en/agent-sdk/typescript): Complete API documentation
-* [Python SDK Reference](/docs/en/agent-sdk/python): Complete API documentation
+* [Subagents in the SDK](/docs/en/agent-sdk/subagents): similar filesystem-based agents with programmatic options
+* [Commands in the SDK](/docs/en/agent-sdk/slash-commands): user-invoked commands
+* [SDK Overview](/docs/en/agent-sdk/overview): general SDK concepts
+* [TypeScript SDK Reference](/docs/en/agent-sdk/typescript): complete API documentation
+* [Python SDK Reference](/docs/en/agent-sdk/python): complete API documentation

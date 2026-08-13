@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/settings
-fetched_at: 2026-07-08T03:08:53.943475Z
-sha256: db6f2e9612f9b549eaaf6d6a6e2d914481d87937e998ed8cdd3a6271f0d07fac
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: f1a5a24670f7bacbe9dbf38dbbf4ce19ef2abe87dddb3284ec190b8d68098a46
+---
+
+---
+title: Settings
+url: https://platform.claude.com/docs/en/api/compliance/organizations/settings
 ---
 
 # Settings

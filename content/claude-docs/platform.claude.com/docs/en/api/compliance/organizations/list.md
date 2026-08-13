@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/list
-fetched_at: 2026-06-27T03:14:28.973816Z
-sha256: 17853e6e7411b4837d3dd79fef5fd1758c59ac538948045932ccf431d746c3a3
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 00d7ed3ca03293f94b238c3cc487c515afade425a6dd650f7123ad1159521f3c
+---
+
+---
+title: List organizations
+url: https://platform.claude.com/docs/en/api/compliance/organizations/list
 ---
 
 ## List organizations

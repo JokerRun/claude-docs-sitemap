@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/federation_rules/workspaces/create
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: 1ea8a6493da56412ddeb109ad762d4472f3673e4fce5e25dbeece5c7c3e6c7bf
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 571e5321c07d9c8d125e8c87fc116613dd61887028f576215e29100c30b6a978
+---
+
+---
+title: Add Federation Rule Workspace
+url: https://platform.claude.com/docs/en/api/admin/federation_rules/workspaces/create
 ---
 
 ## Add Federation Rule Workspace

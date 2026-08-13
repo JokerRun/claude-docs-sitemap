@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/groups/members
-fetched_at: 2026-06-27T03:14:28.973816Z
-sha256: e22c588604a2a413f866a70cc80514dda25c0897295db67c43ea439efd17724f
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: f5c3c670298585199a97cf083cbf576a7c6dc578a22fa9342282394bbe40bb1d
+---
+
+---
+title: Members
+url: https://platform.claude.com/docs/en/api/compliance/groups/members
 ---
 
 # Members

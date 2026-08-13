@@ -1,33 +1,33 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 5601f4b550106d1ee99fe085eb49e2a485c8a32a12b14506be8d0d98a06c6321
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 0ed35d59fc5d95cfd3edd7ca2b345c50dd622a37fddea5b90fec1d43d65b2bd1
 ---
 
-# Memecahkan masalah tunnel MCP
-
-Mendiagnosis masalah konektivitas, TLS, validasi IP, dan routing OAuth dalam stack tunnel.
-
+---
+title: Memecahkan masalah tunnel MCP
+url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting
+description: Mendiagnosis masalah konektivitas, TLS, validasi IP, dan routing OAuth dalam stack tunnel.
 ---
 
 <Note>
   Tunnel MCP sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/claude-managed-agents) untuk mencobanya.
 </Note>
 
-Permintaan melalui tunnel dapat gagal di salah satu dari tiga lapisan; diagnosis secara berurutan: koneksi keluar ke [tunnel edge](/docs/id/agents-and-tools/mcp-tunnels/concepts#components), [inner TLS](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) dari Anthropic ke [proxy](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) Anda, kemudian routing dan validasi IP menuju [upstream MCP server](/docs/id/agents-and-tools/mcp-tunnels/concepts#components).
+Permintaan melalui tunnel dapat gagal di salah satu dari tiga lapisan; diagnosis secara berurutan: koneksi keluar ke [tunnel edge](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components), [inner TLS](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) dari Anthropic ke [proxy](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) Anda, kemudian routing dan validasi IP menuju [upstream MCP server](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components).
 
 ## Referensi cepat
 
-| Gejala                                                                                                                                            | Penyebab                                                                                            | Perbaikan                                                                                                                                           |
-| ------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tunnel tidak muncul di pemilih **+ MCP Server** pada agen                                                                                         | Pemilih hanya menampilkan tunnel di workspace sesi yang memiliki setidaknya satu sertifikat aktif.  | Daftarkan sertifikat CA, atau buka sesi di workspace tempat tunnel dibuat.                                                                          |
-| Pemanggil melihat HTTP 500; [cloudflared](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) mencatat log `No ingress rules were defined` | cloudflared tidak memiliki target lokal.                                                            | Tambahkan `--url http://localhost:8080` dan `network_mode: "service:mcp-proxy"` ke layanan cloudflared.                                             |
-| Proxy mencatat log `no route for host`                                                                                                            | `tunnel_domain` tidak cocok dengan domain yang ditetapkan, atau `config.yaml` diedit tanpa restart. | Atur `tunnel_domain` ke domain persis yang ditampilkan di halaman detail tunnel, lalu restart proxy (`docker compose restart mcp-proxy`).           |
-| Proxy mencatat log `IP validation failed: <ip> is not a private address`                                                                          | Upstream MCP server di-resolve di luar RFC1918.                                                     | Lihat [Validasi IP upstream](#upstream-ip-validation).                                                                                              |
-| Proxy keluar dengan `cannot unmarshal !!seq into map[string]string`                                                                               | `routes` berupa list YAML.                                                                          | Gunakan `routes: { name: http://host:port }`.                                                                                                       |
-| Proxy keluar dengan `open /data/tls.key: permission denied`                                                                                       | Key memiliki permission `0600`; container proxy berjalan sebagai non-root.                          | `chmod 644 data/tls.key`.                                                                                                                           |
-| `curl https://<proxy>:8080` gagal dengan `wrong version number`                                                                                   | Ini memang diharapkan; listener adalah WebSocket plaintext. TLS terjadi di dalam stream WS.         | Verifikasi melalui [Managed Agent atau Messages API](/docs/id/agents-and-tools/mcp-tunnels/overview#use-the-tunneled-mcp-servers) sebagai gantinya. |
+| Gejala                                                                                                                                                                       | Penyebab                                                                                            | Perbaikan                                                                                                                                                                      |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Tunnel tidak muncul di pemilih **+ MCP Server** pada agen                                                                                                                    | Pemilih hanya menampilkan tunnel di workspace sesi yang memiliki setidaknya satu sertifikat aktif.  | Daftarkan sertifikat CA, atau buka sesi di workspace tempat tunnel dibuat.                                                                                                     |
+| Pemanggil melihat HTTP 500; [cloudflared](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) mencatat log `No ingress rules were defined` | cloudflared tidak memiliki target lokal.                                                            | Tambahkan `--url http://localhost:8080` dan `network_mode: "service:mcp-proxy"` ke layanan cloudflared.                                                                        |
+| Proxy mencatat log `no route for host`                                                                                                                                       | `tunnel_domain` tidak cocok dengan domain yang ditetapkan, atau `config.yaml` diedit tanpa restart. | Atur `tunnel_domain` ke domain persis yang ditampilkan di halaman detail tunnel, lalu restart proxy (`docker compose restart mcp-proxy`).                                      |
+| Proxy mencatat log `IP validation failed: <ip> is not a private address`                                                                                                     | Upstream MCP server di-resolve di luar RFC1918.                                                     | Lihat [Validasi IP upstream](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting#upstream-ip-validation).                                         |
+| Proxy keluar dengan `cannot unmarshal !!seq into map[string]string`                                                                                                          | `routes` berupa list YAML.                                                                          | Gunakan `routes: { name: http://host:port }`.                                                                                                                                  |
+| Proxy keluar dengan `open /data/tls.key: permission denied`                                                                                                                  | Key memiliki permission `0600`; container proxy berjalan sebagai non-root.                          | `chmod 644 data/tls.key`.                                                                                                                                                      |
+| `curl https://<proxy>:8080` gagal dengan `wrong version number`                                                                                                              | Ini memang diharapkan; listener adalah WebSocket plaintext. TLS terjadi di dalam stream WS.         | Verifikasi melalui [Managed Agent atau Messages API](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview#use-the-tunneled-mcp-servers) sebagai gantinya. |
 
 Bagian berikut membahas kegagalan yang memerlukan lebih dari sekadar perbaikan satu baris.
 
@@ -76,7 +76,7 @@ Dengan konfigurasi ini, browser pengguna mengakses `/authorize` pada hostname An
 
 ## Kegagalan autentikasi komponen setup
 
-[Komponen setup](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) (Helm Job atau layanan `setup` Compose) melakukan autentikasi ke Tunnels API dengan menukar OIDC JWT melalui aturan federasi Anda. Ketika pertukaran gagal, lihat [Memecahkan masalah pertukaran yang gagal](/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange) di referensi Workload Identity Federation; mode kegagalannya (subject, audience, issuer, JWKS, lifetime) sama.
+[Komponen setup](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) (Helm Job atau layanan `setup` Compose) melakukan autentikasi ke Tunnels API dengan menukar OIDC JWT melalui aturan federasi Anda. Ketika pertukaran gagal, lihat [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange) di referensi Workload Identity Federation; mode kegagalannya (subject, audience, issuer, JWKS, lifetime) sama.
 
 Penyebab khusus Tunnels:
 
@@ -107,11 +107,11 @@ Ketika Anthropic menolak sertifikat proxy selama inner TLS, proxy mencatat log `
 * Subject Alternative Name sertifikat cocok dengan `*.<tunnel-domain>`.
 * CA penandatangan terdaftar di Anthropic untuk tunnel ini.
 
-Lihat [persyaratan sertifikat](/docs/id/agents-and-tools/mcp-tunnels/reference#certificate-requirements) untuk aturan validasi lengkap.
+Lihat [persyaratan sertifikat](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference#certificate-requirements) untuk aturan validasi lengkap.
 
 ## Validasi IP upstream
 
-Untuk perlindungan SSRF, proxy secara default hanya menghubungi alamat dalam rentang privat RFC1918 (`10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`). Hanya IPv4 yang didukung untuk koneksi proxy-ke-upstream. (Rentang egress cloudflared-ke-edge di [Persyaratan jaringan](/docs/id/agents-and-tools/mcp-tunnels/overview#network-requirements) adalah hop yang berbeda.)
+Untuk perlindungan SSRF, proxy secara default hanya menghubungi alamat dalam rentang privat RFC1918 (`10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`). Hanya IPv4 yang didukung untuk koneksi proxy-ke-upstream. (Rentang egress cloudflared-ke-edge di [Persyaratan jaringan](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview#network-requirements) adalah hop yang berbeda.)
 
 Jika proxy mencatat log `IP validation failed: <ip> is not a private address`, hostname upstream di-resolve di luar rentang tersebut. Pada Kubernetes, beberapa distribusi terkelola mengalokasikan Service CIDR di luar RFC1918; jika `kubectl get svc kubernetes -n default -o jsonpath='{.spec.clusterIP}'` mengembalikan alamat di luar rentang privat, cari Service CIDR cluster Anda dan tambahkan.
 

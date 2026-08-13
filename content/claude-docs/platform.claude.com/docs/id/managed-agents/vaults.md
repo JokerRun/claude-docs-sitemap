@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/vaults
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: a74a1252b5156fbea2ed201aee5b9df7c1ad85acca8497084115dab55a2ef2c8
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: f81a9979ff7f108e87f7ed096eaa23b946f0ef4ce627e3d167a36e3b8d0881bc
 ---
 
-# Autentikasi dengan vault
-
-Daftarkan kredensial per-pengguna saat membuat sesi.
-
+---
+title: Autentikasi dengan vault
+url: https://platform.claude.com/docs/id/managed-agents/vaults
+description: Daftarkan kredensial per-pengguna saat membuat sesi.
 ---
 
 Vault dan kredensial adalah primitif autentikasi yang memungkinkan Anda mendaftarkan kredensial untuk layanan pihak ketiga satu kali dan mereferensikannya berdasarkan ID saat pembuatan sesi. Ini berarti Anda tidak perlu menjalankan penyimpanan rahasia Anda sendiri, mengirimkan token pada setiap panggilan, atau kehilangan jejak pengguna akhir mana yang diwakili oleh agen.
@@ -16,7 +16,7 @@ Vault dan kredensial adalah primitif autentikasi yang memungkinkan Anda mendafta
 Referensi vault adalah parameter per-sesi, sehingga Anda dapat mengelola produk Anda pada granularitas resource `agent` dan pengguna Anda pada granularitas resource `session`.
 
 <Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](/docs/id/api/beta-headers#endpoint-specific-headers).
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Membuat vault
@@ -28,7 +28,7 @@ Referensi vault adalah parameter per-sesi, sehingga Anda dapat mengelola produk 
 Vault adalah kumpulan `credentials` yang terkait dengan pengguna akhir. Berikan `display_name` dan secara opsional tandai dengan `metadata` sehingga Anda dapat memetakannya kembali ke catatan pengguna Anda sendiri.
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   vault_id=$(curl --fail-with-body -sS https://api.anthropic.com/v1/vaults \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -139,7 +139,7 @@ Dua kategori kredensial didukung:
 Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_token`, `client_secret`, `secret_value`) diperlakukan sebagai bidang sensitif yang hanya dapat ditulis dan tidak pernah dikembalikan dalam respons API.
 
 <Note>
-  Kredensial variabel lingkungan (`environment_variable`) belum didukung dengan [sandbox yang di-hosting sendiri](/docs/id/managed-agents/self-hosted-sandboxes).
+  Kredensial variabel lingkungan (`environment_variable`) belum didukung dengan [sandbox yang di-hosting sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes).
 </Note>
 
 <Tabs>
@@ -153,7 +153,7 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
     * `client_secret_post`: client secret di dalam body POST
 
     <CodeGroup defaultLanguage="CLI">
-      ```bash curl
+      ```bash cURL
       credential_id=$(curl --fail-with-body -sS "https://api.anthropic.com/v1/vaults/$vault_id/credentials" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
@@ -371,7 +371,7 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
     Gunakan `static_bearer` ketika server MCP menerima bearer token tetap (kunci API, personal access token, atau sejenisnya). Tidak diperlukan alur penyegaran.
 
     <CodeGroup defaultLanguage="CLI">
-      ```bash curl
+      ```bash cURL
       curl --fail-with-body -sS "https://api.anthropic.com/v1/vaults/$vault_id/credentials" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
@@ -498,13 +498,13 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
     Membatasi domain sangat direkomendasikan untuk tujuan keamanan, dan mencegah kunci Anda dibagikan kepada host yang tidak berwenang.
 
     <Note>
-      `networking.allowed_hosts` pada kredensial vault mengontrol permintaan mana yang menggunakan rahasia, bukan permintaan mana yang diizinkan. Agar agen benar-benar dapat menjangkau suatu domain, domain tersebut juga harus diizinkan pada [tingkat lingkungan](/docs/id/managed-agents/environments). Kedua tingkat harus menyertakan domain tersebut (baik melalui jaringan `unrestricted` atau dengan secara eksplisit mencantumkan domain di `allowed_hosts`) agar permintaan dengan substitusi rahasia berhasil.
+      `networking.allowed_hosts` pada kredensial vault mengontrol permintaan mana yang menggunakan rahasia, bukan permintaan mana yang diizinkan. Agar agen benar-benar dapat menjangkau suatu domain, domain tersebut juga harus diizinkan pada [tingkat lingkungan](https://platform.claude.com/docs/id/managed-agents/environments). Kedua tingkat harus menyertakan domain tersebut (baik melalui jaringan `unrestricted` atau dengan secara eksplisit mencantumkan domain di `allowed_hosts`) agar permintaan dengan substitusi rahasia berhasil.
     </Note>
 
     Bidang opsional `injection_location` membatasi cakupan di mana rahasia disubstitusikan; semantik lengkapnya mengikuti contoh.
 
     <CodeGroup defaultLanguage="CLI">
-      ```bash curl
+      ```bash cURL
       curl --fail-with-body -sS "https://api.anthropic.com/v1/vaults/$vault_id/credentials" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
@@ -742,7 +742,7 @@ Batasan:
 Berikan `vault_ids` saat membuat sesi:
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   session_id=$(curl --fail-with-body -sS https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -842,14 +842,14 @@ Perilaku runtime:
 
 * Ketika tidak ada kredensial MCP yang cocok berdasarkan `mcp_server_url`, koneksi dicoba tanpa autentikasi dan akan menghasilkan error jika server memerlukan autentikasi.
 * Ketika beberapa vault berisi kredensial yang cocok, vault pertama dengan kecocokan yang menang.
-* Dalam [sesi multiagen](/docs/id/managed-agents/multiagent-orchestration), kredensial vault berlaku untuk setiap thread. Agen yang definisinya sendiri mendeklarasikan server MCP yang cocok akan melakukan autentikasi dengan kredensial ini. Lihat [Menghubungkan agen ke server MCP](/docs/id/managed-agents/multiagent-orchestration#connect-agents-to-mcp-servers).
+* Dalam [sesi multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), kredensial vault berlaku untuk setiap thread. Agen yang definisinya sendiri mendeklarasikan server MCP yang cocok akan melakukan autentikasi dengan kredensial ini. Lihat [Menghubungkan agen ke server MCP](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#connect-agents-to-mcp-servers).
 
 ## Merotasi kredensial
 
-Nilai rahasia, `display_name`, dan (pada kredensial variabel lingkungan) `injection_location` dapat diperbarui. Pembaruan `injection_location` digabungkan per bidang, seperti yang dijelaskan di tab Variabel lingkungan pada [Menambahkan kredensial](#add-a-credential). Untuk sesi yang sedang berjalan, pembaruan `injection_location` dipropagasikan dengan cara yang sama seperti rotasi rahasia: kredensial sesi diselesaikan ulang tanpa restart, seperti yang dijelaskan di [Siklus hidup kredensial](#credential-lifecycle), dan lokasi yang diperbarui berlaku untuk permintaan keluar sesi berikutnya. Bidang struktural (`mcp_server_url`, `secret_name`, `token_endpoint`, `client_id`) dikunci setelah pembuatan. Untuk mengubahnya, arsipkan kredensial tersebut dan buat yang baru.
+Nilai rahasia, `display_name`, dan (pada kredensial variabel lingkungan) `injection_location` dapat diperbarui. Pembaruan `injection_location` digabungkan per bidang, seperti yang dijelaskan di tab Variabel lingkungan pada [Menambahkan kredensial](https://platform.claude.com/docs/id/managed-agents/vaults#add-a-credential). Untuk sesi yang sedang berjalan, pembaruan `injection_location` dipropagasikan dengan cara yang sama seperti rotasi rahasia: kredensial sesi diselesaikan ulang tanpa restart, seperti yang dijelaskan di [Siklus hidup kredensial](https://platform.claude.com/docs/id/managed-agents/vaults#credential-lifecycle), dan lokasi yang diperbarui berlaku untuk permintaan keluar sesi berikutnya. Bidang struktural (`mcp_server_url`, `secret_name`, `token_endpoint`, `client_id`) dikunci setelah pembuatan. Untuk mengubahnya, arsipkan kredensial tersebut dan buat yang baru.
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   curl --fail-with-body -sS \
     "https://api.anthropic.com/v1/vaults/$vault_id/credentials/$credential_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -987,7 +987,7 @@ Nilai rahasia, `display_name`, dan (pada kredensial variabel lingkungan) `inject
 
 Kredensial diselesaikan ulang secara berkala, baik selama sesi maupun selama siklus hidup vault. Ini memastikan bahwa rotasi, pengarsipan, atau penghapusan kredensial dipropagasikan ke sesi yang sedang berjalan tanpa restart.
 
-Untuk mendapatkan notifikasi jika kredensial diarsipkan, dihapus, atau gagal disegarkan, Anda dapat berlangganan [webhook](/docs/id/managed-agents/webhooks) vault dan kredensial yang terkait dengan perubahan siklus hidup tersebut.
+Untuk mendapatkan notifikasi jika kredensial diarsipkan, dihapus, atau gagal disegarkan, Anda dapat berlangganan [webhook](https://platform.claude.com/docs/id/managed-agents/webhooks) vault dan kredensial yang terkait dengan perubahan siklus hidup tersebut.
 
 | Event                             | Pemicu                                                                                                                               |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
@@ -998,7 +998,7 @@ Untuk mendapatkan notifikasi jika kredensial diarsipkan, dihapus, atau gagal dis
 | `vault_credential.refresh_failed` | Kredensial `mcp_oauth` tidak dapat disegarkan (refresh token tidak valid, atau error yang tidak dapat dipulihkan dari server OAuth). |
 
 <Note>
-  Ini adalah daftar webhook yang tidak lengkap; lihat [Berlangganan webhook](/docs/id/managed-agents/webhooks) untuk daftar lengkapnya.
+  Ini adalah daftar webhook yang tidak lengkap; lihat [Berlangganan webhook](https://platform.claude.com/docs/id/managed-agents/webhooks) untuk daftar lengkapnya.
 </Note>
 
 Untuk kredensial `mcp_oauth`, penyelesaian ulang juga menyegarkan token akses jika telah kedaluwarsa. Jika penyegaran gagal, event `vault_credential.refresh_failed` dipancarkan.
@@ -1014,7 +1014,7 @@ Untuk mendiagnosis mengapa penyegaran gagal, panggil `POST /v1/vaults/{vault_id}
 * `unknown`: error sementara (5xx, 429, atau kegagalan jaringan). Tunggu dan coba lagi.
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   curl --fail-with-body -sS -X POST \
     "https://api.anthropic.com/v1/vaults/$vault_id/credentials/$credential_id/mcp_oauth_validate?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \

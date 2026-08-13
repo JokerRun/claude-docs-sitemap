@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/connectors/list
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: f5a3fefbf1b062ca8d3bed06b2af49331fca98cc91904fb20657a8bc5d206d42
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 2cc74d84e1e994e69546040b6b46b489fcf28b565bcd2092bc751866f66ec4f1
+---
+
+---
+title: Get Connector Usage
+url: https://platform.claude.com/docs/en/api/admin/analytics/connectors/list
 ---
 
 ## Get Connector Usage

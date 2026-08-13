@@ -1,18 +1,18 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 54575688b1e43da340bf21771eb9f1e94b614daa66f9d7f841c68e8296aff71d
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 7c5a4917f6804f2cf7c35fb4e714f40b2b8fbd0b2122a8a3cd078db9d8df0efe
 ---
 
-# Agent Skills
-
-Agent Skills adalah kemampuan modular yang memperluas fungsionalitas Claude. Setiap Skill mengemas instruksi, metadata, dan sumber daya opsional (skrip, templat) yang digunakan Claude secara otomatis saat relevan.
-
+---
+title: Agent Skills
+url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview
+description: Agent Skills adalah kemampuan modular yang memperluas fungsionalitas Claude. Setiap Skill mengemas instruksi, metadata, dan sumber daya opsional (skrip, templat) yang digunakan Claude secara otomatis saat relevan.
 ---
 
 <Note>
-  Untuk mengetahui bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
+  Untuk mengetahui bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku pada fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 ## Mengapa menggunakan Skills
@@ -33,14 +33,14 @@ Skills adalah sumber daya berbasis filesystem yang dapat digunakan kembali dan m
 
 Anthropic menyediakan Agent Skills bawaan untuk tugas dokumen umum (PowerPoint, Excel, Word, PDF), dan Anda dapat membuat Skills kustom Anda sendiri. Keduanya bekerja dengan cara yang sama: setelah sebuah Skill tersedia di lingkungan Anda, Claude menggunakannya secara otomatis saat relevan dengan permintaan Anda.
 
-**Agent Skills bawaan** tersedia di claude.ai, Claude API, [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Di Microsoft Foundry, Agent Skills memerlukan [deployment Hosted on Anthropic](/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure). Lihat [Skills yang tersedia](#available-skills) untuk daftar lengkapnya.
+**Agent Skills bawaan** tersedia di claude.ai, Claude API, [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Di Microsoft Foundry, Agent Skills memerlukan [deployment Hosted on Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure). Lihat [Skills yang tersedia](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#available-skills) untuk daftar lengkapnya.
 
-**Skills kustom** memungkinkan Anda mengemas keahlian domain dan pengetahuan organisasi. Skills ini tersedia di seluruh produk Claude: buat di Claude Code, unggah melalui Claude API, atau tambahkan di pengaturan claude.ai. Di [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws) dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry), unggah Skills kustom melalui Skills API.
+**Skills kustom** memungkinkan Anda mengemas keahlian domain dan pengetahuan organisasi. Skills ini tersedia di seluruh produk Claude: buat di Claude Code, unggah melalui Claude API, atau tambahkan di pengaturan claude.ai. Di [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), unggah Skills kustom melalui Skills API.
 
 <Note>
   **Mulai:**
 
-  * Untuk Agent Skills bawaan: Lihat [tutorial quickstart](/docs/id/agents-and-tools/agent-skills/quickstart) untuk mulai menggunakan Skills PowerPoint, Excel, Word, dan PDF di API
+  * Untuk Agent Skills bawaan: Lihat [tutorial quickstart](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart) untuk mulai menggunakan Skills PowerPoint, Excel, Word, dan PDF di API
   * Untuk Skills kustom: Lihat [Agent Skills Cookbook](https://platform.claude.com/cookbook/skills-notebooks-01-skills-introduction) untuk mempelajari cara membuat Skills Anda sendiri
 </Note>
 
@@ -121,7 +121,7 @@ Progressive disclosure memastikan hanya konten yang relevan yang menempati jende
 
 Skills berjalan di lingkungan eksekusi kode di mana Claude memiliki akses filesystem, perintah bash, dan kemampuan eksekusi kode. Skills ada sebagai direktori di mesin virtual, dan Claude berinteraksi dengannya menggunakan perintah bash yang sama yang Anda gunakan untuk menavigasi file di komputer Anda.
 
-![Arsitektur Agent Skills - menunjukkan bagaimana Skills terintegrasi dengan konfigurasi agen dan mesin virtual](/docs/images/agent-skills-architecture.png)
+![Arsitektur Agent Skills - menunjukkan bagaimana Skills terintegrasi dengan konfigurasi agen dan mesin virtual](https://platform.claude.com/docs/images/agent-skills-architecture.png)
 
 **Bagaimana Claude mengakses konten Skill:**
 
@@ -143,7 +143,7 @@ Berikut adalah bagaimana Claude memuat dan menggunakan Skill kustom `pdf-process
 4. **Claude menentukan:** Pengisian formulir tidak diperlukan, sehingga FORMS.md tidak dibaca
 5. **Claude mengeksekusi:** Menggunakan instruksi dari SKILL.md untuk menyelesaikan tugas
 
-![Skills dimuat ke dalam context window (jendela konteks) - menunjukkan pemuatan bertahap metadata dan konten skill](/docs/images/agent-skills-context-window.png)
+![Skills dimuat ke dalam context window (jendela konteks) - menunjukkan pemuatan bertahap metadata dan konten skill](https://platform.claude.com/docs/images/agent-skills-context-window.png)
 
 ## Di mana Skills bekerja
 
@@ -155,23 +155,23 @@ Skills tersedia di seluruh produk agen Claude:
 
 ### Claude API
 
-Claude API mendukung baik Agent Skills bawaan maupun Skills kustom. Keduanya bekerja secara identik: tentukan `skill_id` yang relevan dalam parameter `container` bersama dengan [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool).
+Claude API mendukung baik Agent Skills bawaan maupun Skills kustom. Keduanya bekerja secara identik: tentukan `skill_id` yang relevan dalam parameter `container` bersama dengan [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool).
 
-**Prasyarat:** Menggunakan Skills melalui API memerlukan [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool), yang container-nya menjadi tempat Skills berjalan, dan satu header beta:
+**Prasyarat:** Menggunakan Skills melalui API memerlukan [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool), yang container-nya menjadi tempat Skills berjalan, dan satu header beta:
 
 * `skills-2025-10-02` - Mengaktifkan fungsionalitas Skills
 
-Tambahkan header kedua, `files-api-2025-04-14`, ketika Anda menggunakan [Files API](/docs/id/build-with-claude/files) untuk mengunggah file input ke container atau mengunduh file yang dihasilkan sebuah Skill.
+Tambahkan header kedua, `files-api-2025-04-14`, ketika Anda menggunakan [Files API](https://platform.claude.com/docs/id/build-with-claude/files) untuk mengunggah file input ke container atau mengunduh file yang dihasilkan sebuah Skill.
 
 Gunakan Agent Skills bawaan dengan mereferensikan `skill_id`-nya (`pptx`, `xlsx`, `docx`, atau `pdf`), atau buat dan unggah milik Anda sendiri melalui Skills API (endpoint `/v1/skills`). Skills kustom dibagikan ke seluruh workspace: semua anggota workspace dapat mengaksesnya.
 
-Skills di API berjalan dalam container sandbox tanpa akses jaringan dan tanpa instalasi paket saat runtime. Lihat [Keterbatasan dan kendala](#limitations-and-constraints) untuk detailnya.
+Skills di API berjalan dalam container sandbox tanpa akses jaringan dan tanpa instalasi paket saat runtime. Lihat [Keterbatasan dan kendala](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#limitations-and-constraints) untuk detailnya.
 
-Untuk mempelajari lebih lanjut, lihat [Menggunakan Agent Skills dengan API](/docs/id/build-with-claude/skills-guide).
+Untuk mempelajari lebih lanjut, lihat [Menggunakan Agent Skills dengan API](https://platform.claude.com/docs/id/build-with-claude/skills-guide).
 
 ### Claude Code
 
-[Claude Code](https://code.claude.com/docs/id/overview) mendukung Skills kustom. Skills dokumen bawaan (PowerPoint, Excel, Word, PDF) tidak tersedia di Claude Code, meskipun [Claude API skill](/docs/id/agents-and-tools/agent-skills/claude-api-skill) yang open-source sudah dibundel dengannya. Lihat daftar lengkap [perintah dan Skills bawaan](https://code.claude.com/docs/id/commands) yang disertakan dengan Claude Code.
+[Claude Code](https://code.claude.com/docs/id/overview) mendukung Skills kustom. Skills dokumen bawaan (PowerPoint, Excel, Word, PDF) tidak tersedia di Claude Code, meskipun [Claude API skill](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill) yang open-source sudah dibundel dengannya. Lihat daftar lengkap [perintah dan Skills bawaan](https://code.claude.com/docs/id/commands) yang disertakan dengan Claude Code.
 
 **Skills kustom:** Buat Skills sebagai direktori dengan file SKILL.md. Claude menemukan dan menggunakannya secara otomatis.
 
@@ -230,7 +230,7 @@ description: Brief description of what this Skill does and when to use it
 * Maksimum 1024 karakter
 * Tidak boleh berisi tag XML
 
-`description` harus mencakup baik apa yang dilakukan Skill maupun kapan Claude harus menggunakannya. Untuk panduan penulisan lengkap, lihat [Praktik terbaik penulisan Skill](/docs/id/agents-and-tools/agent-skills/best-practices).
+`description` harus mencakup baik apa yang dilakukan Skill maupun kapan Claude harus menggunakannya. Untuk panduan penulisan lengkap, lihat [Praktik terbaik penulisan Skill](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices).
 
 ## Pertimbangan keamanan
 
@@ -248,7 +248,7 @@ Gunakan Skills hanya dari sumber tepercaya: yang Anda buat sendiri atau yang dip
 * **Paparan data:** Skills dengan akses ke data sensitif dapat dirancang untuk membocorkan informasi ke sistem eksternal
 * **Perlakukan seperti memasang perangkat lunak:** Berhati-hatilah secara khusus saat mengintegrasikan Skills ke dalam sistem produksi dengan akses ke data sensitif atau operasi kritis
 
-Untuk panduan tata kelola, pemeriksaan, dan deployment skala organisasi, lihat [Skills untuk enterprise](/docs/id/agents-and-tools/agent-skills/enterprise).
+Untuk panduan tata kelola, pemeriksaan, dan deployment skala organisasi, lihat [Skills untuk enterprise](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterprise).
 
 ## Skills yang tersedia
 
@@ -261,13 +261,13 @@ Agent Skills bawaan berikut tersedia untuk langsung digunakan:
 * **Word (docx):** Membuat dokumen, mengedit konten, memformat teks
 * **PDF (pdf):** Menghasilkan dokumen dan laporan PDF yang terformat
 
-Skills ini tersedia di Claude API, [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws), [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry), dan claude.ai. Lihat [tutorial quickstart](/docs/id/agents-and-tools/agent-skills/quickstart) untuk mulai menggunakannya di API.
+Skills ini tersedia di Claude API, [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), dan claude.ai. Lihat [tutorial quickstart](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart) untuk mulai menggunakannya di API.
 
 ### Skills open-source
 
 Anthropic juga menerbitkan Skills open-source di [repositori skills](https://github.com/anthropics/skills):
 
-* **[Claude API skill](/docs/id/agents-and-tools/agent-skills/claude-api-skill):** Menyediakan Claude dengan materi referensi API terkini, dokumentasi SDK, dan praktik terbaik untuk delapan bahasa pemrograman. Dibundel dengan Claude Code dan juga tersedia untuk instalasi dari repositori skills.
+* **[Claude API skill](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill):** Menyediakan Claude dengan materi referensi API terkini, dokumentasi SDK, dan praktik terbaik untuk delapan bahasa pemrograman. Dibundel dengan Claude Code dan juga tersedia untuk instalasi dari repositori skills.
 
 ### Contoh Skills kustom
 
@@ -277,7 +277,7 @@ Untuk contoh lengkap Skills kustom, lihat [Skills cookbook](https://platform.cla
 
 Agent Skills tidak tercakup dalam pengaturan ZDR. Definisi Skill dan data eksekusi disimpan sesuai dengan kebijakan retensi data standar Anthropic.
 
-Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
+Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 
 ## Keterbatasan dan kendala
 
@@ -314,7 +314,7 @@ Lingkungan runtime yang tepat yang tersedia untuk Skill Anda tergantung pada per
 
   * **Tidak ada akses jaringan:** Skills tidak dapat melakukan panggilan API eksternal atau mengakses internet.
   * **Tidak ada instalasi paket saat runtime:** Hanya paket yang sudah terpasang sebelumnya yang tersedia. Anda tidak dapat memasang paket baru selama eksekusi.
-  * **Hanya dependensi yang telah dikonfigurasi sebelumnya:** Periksa dokumentasi [Alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk daftar paket yang tersedia.
+  * **Hanya dependensi yang telah dikonfigurasi sebelumnya:** Periksa dokumentasi [Alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk daftar paket yang tersedia.
 
 * **Claude Code:**
 
@@ -326,11 +326,11 @@ Rencanakan Skills Anda agar bekerja dalam kendala-kendala ini.
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Mulai dengan Agent Skills di API" icon="graduation-cap" href="/docs/id/agents-and-tools/agent-skills/quickstart">
+  <Card title="Mulai dengan Agent Skills di API" icon="graduation-cap" href="https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart">
     Pelajari cara menggunakan Agent Skills untuk membuat dokumen dengan Claude API dalam waktu kurang dari 10 menit.
   </Card>
 
-  <Card title="Menggunakan Agent Skills dengan API" icon="code" href="/docs/id/build-with-claude/skills-guide">
+  <Card title="Menggunakan Agent Skills dengan API" icon="code" href="https://platform.claude.com/docs/id/build-with-claude/skills-guide">
     Pelajari cara menggunakan Agent Skills untuk memperluas kemampuan Claude melalui API.
   </Card>
 
@@ -338,7 +338,7 @@ Rencanakan Skills Anda agar bekerja dalam kendala-kendala ini.
     Buat dan kelola Skills kustom di Claude Code.
   </Card>
 
-  <Card title="Praktik terbaik penulisan Skill" icon="lightbulb" href="/docs/id/agents-and-tools/agent-skills/best-practices">
+  <Card title="Praktik terbaik penulisan Skill" icon="lightbulb" href="https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices">
     Pelajari cara menulis Skills yang efektif yang dapat ditemukan dan digunakan Claude dengan sukses.
   </Card>
 </CardGroup>

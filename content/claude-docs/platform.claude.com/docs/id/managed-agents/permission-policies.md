@@ -1,43 +1,43 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/permission-policies
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: d1503569ea8fa067deb9ba245886d50454d6246e4855ef81ff109311ed434cf6
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 5b24ea8dd48aa1a6c97c09ab5032b18e56210f601c93795ff1168999b391499a
 ---
 
-# Kebijakan izin
-
-Kontrol kapan alat agen dan MCP dieksekusi.
-
+---
+title: Kebijakan izin
+url: https://platform.claude.com/docs/id/managed-agents/permission-policies
+description: Kontrol kapan alat agen dan MCP dieksekusi.
 ---
 
 Kebijakan izin mengontrol apakah alat yang dieksekusi server (toolset agen bawaan dan toolset MCP) berjalan secara otomatis atau menunggu persetujuan Anda. Alat kustom dieksekusi oleh aplikasi Anda dan dikontrol oleh Anda, sehingga tidak diatur oleh kebijakan izin.
 
 <Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](/docs/id/api/beta-headers#endpoint-specific-headers).
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Jenis kebijakan izin
 
-| Kebijakan      | Perilaku                                                                                                                                                         |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `always_allow` | Alat dieksekusi secara otomatis tanpa konfirmasi.                                                                                                                |
-| `always_ask`   | Sesi dijeda dan menunggu persetujuan Anda sebelum mengeksekusi. Lihat [Merespons permintaan konfirmasi](#respond-to-confirmation-requests) untuk alur event-nya. |
+| Kebijakan      | Perilaku                                                                                                                                                                                                                               |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `always_allow` | Alat dieksekusi secara otomatis tanpa konfirmasi.                                                                                                                                                                                      |
+| `always_ask`   | Sesi dijeda dan menunggu persetujuan Anda sebelum mengeksekusi. Lihat [Merespons permintaan konfirmasi](https://platform.claude.com/docs/id/managed-agents/permission-policies#respond-to-confirmation-requests) untuk alur event-nya. |
 
 Setiap jenis toolset memiliki default-nya sendiri: toolset agen secara default menggunakan `always_allow`, dan toolset MCP secara default menggunakan `always_ask`.
 
-Kebijakan izin mengontrol kapan alat yang diaktifkan berjalan. Untuk menghapus alat dari agen sepenuhnya, nonaktifkan alat tersebut. Lihat [Menonaktifkan alat tertentu](/docs/id/managed-agents/tools#disabling-specific-tools).
+Kebijakan izin mengontrol kapan alat yang diaktifkan berjalan. Untuk menghapus alat dari agen sepenuhnya, nonaktifkan alat tersebut. Lihat [Menonaktifkan alat tertentu](https://platform.claude.com/docs/id/managed-agents/tools#disabling-specific-tools).
 
 ## Menetapkan kebijakan untuk toolset
 
-Anda menetapkan kebijakan izin dalam konfigurasi `tools` agen saat Anda membuat agen, dan Anda dapat mengubahnya nanti dengan [memperbarui agen](/docs/id/managed-agents/agent-setup#update-an-agent). Sesi yang sedang berjalan mempertahankan konfigurasi toolset yang digunakan saat sesi dibuat. Pembaruan berlaku untuk sesi yang dibuat setelahnya.
+Anda menetapkan kebijakan izin dalam konfigurasi `tools` agen saat Anda membuat agen, dan Anda dapat mengubahnya nanti dengan [memperbarui agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-an-agent). Sesi yang sedang berjalan mempertahankan konfigurasi toolset yang digunakan saat sesi dibuat. Pembaruan berlaku untuk sesi yang dibuat setelahnya.
 
 ### Izin toolset agen
 
 Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_toolset_20260401` menggunakan `default_config.permission_policy`:
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -216,7 +216,7 @@ Toolset MCP secara default menggunakan `always_ask`. Ini memastikan bahwa alat b
 Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan tanpa konfirmasi:
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -458,10 +458,10 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
 
 ## Menimpa kebijakan alat individual
 
-Gunakan array `configs` untuk menimpa default pada alat individual. Nilai `name` untuk toolset agen tercantum di [Alat yang tersedia](/docs/id/managed-agents/tools#available-tools). Contoh ini mengizinkan seluruh toolset agen secara default tetapi memerlukan konfirmasi sebelum perintah bash apa pun berjalan:
+Gunakan array `configs` untuk menimpa default pada alat individual. Nilai `name` untuk toolset agen tercantum di [Alat yang tersedia](https://platform.claude.com/docs/id/managed-agents/tools#available-tools). Contoh ini mengizinkan seluruh toolset agen secara default tetapi memerlukan konfirmasi sebelum perintah bash apa pun berjalan:
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   tools='[
     {
       "type": "agent_toolset_20260401",
@@ -650,7 +650,7 @@ Gunakan array `configs` untuk menimpa default pada alat individual. Nilai `name`
   ```
 </CodeGroup>
 
-Teruskan konfigurasi `tools` ini dalam permintaan pembuatan agen (tab CLI menunjukkan perintah lengkapnya). Toolset MCP mendukung penimpaan per-alat yang sama, dengan `name` diatur ke nama alat yang dilaporkan oleh server MCP. Lihat [Mengonfigurasi alat MCP mana yang tersedia](/docs/id/managed-agents/mcp-connector#configure-which-mcp-tools-are-available).
+Teruskan konfigurasi `tools` ini dalam permintaan pembuatan agen (tab CLI menunjukkan perintah lengkapnya). Toolset MCP mendukung penimpaan per-alat yang sama, dengan `name` diatur ke nama alat yang dilaporkan oleh server MCP. Lihat [Mengonfigurasi alat MCP mana yang tersedia](https://platform.claude.com/docs/id/managed-agents/mcp-connector#configure-which-mcp-tools-are-available).
 
 ## Merespons permintaan konfirmasi
 
@@ -661,10 +661,10 @@ Ketika agen memanggil alat dengan kebijakan `always_ask`:
 3. Kirim event `user.tool_confirmation` untuk setiap event yang memblokir, dengan meneruskan ID event dalam parameter `tool_use_id`. Atur `result` ke `"allow"` atau `"deny"`. Gunakan `deny_message` untuk menjelaskan penolakan. Anda dapat mengirim beberapa konfirmasi dalam satu permintaan `events`.
 4. Setelah semua event yang memblokir diselesaikan, sesi bertransisi kembali ke `running`. Alat yang diizinkan dieksekusi. Alat yang ditolak tidak berjalan, dan agen menerima tool result yang menyatakan bahwa panggilan tersebut ditolak, termasuk `deny_message` Anda.
 
-Dalam contoh berikut, ID event tool-use berasal dari array `stop_reason.event_ids` pada event `session.status_idle`. Pelajari lebih lanjut tentang menerima event di panduan [Aliran event sesi](/docs/id/managed-agents/events-and-streaming#integrating-events), atau [berlangganan webhook](/docs/id/managed-agents/webhooks) untuk mendapatkan notifikasi ketika sesi dijeda untuk menunggu input.
+Dalam contoh berikut, ID event tool-use berasal dari array `stop_reason.event_ids` pada event `session.status_idle`. Pelajari lebih lanjut tentang menerima event di panduan [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events), atau [berlangganan webhook](https://platform.claude.com/docs/id/managed-agents/webhooks) untuk mendapatkan notifikasi ketika sesi dijeda untuk menunggu input.
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   # Izinkan alat untuk dieksekusi
   curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -916,16 +916,16 @@ Dalam contoh berikut, ID event tool-use berasal dari array `stop_reason.event_id
 
 ## Alat kustom
 
-Kebijakan izin tidak berlaku untuk alat kustom. Ketika agen memanggil alat kustom, aplikasi Anda menerima event `agent.custom_tool_use` dan bertanggung jawab untuk memutuskan apakah akan mengeksekusinya sebelum mengirim kembali `user.custom_tool_result`. Lihat [Aliran event sesi](/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls) untuk alur lengkapnya.
+Kebijakan izin tidak berlaku untuk alat kustom. Ketika agen memanggil alat kustom, aplikasi Anda menerima event `agent.custom_tool_use` dan bertanggung jawab untuk memutuskan apakah akan mengeksekusinya sebelum mengirim kembali `user.custom_tool_result`. Lihat [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls) untuk alur lengkapnya.
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Skills" icon="books" href="/docs/id/managed-agents/skills">
+  <Card title="Skills" icon="books" href="https://platform.claude.com/docs/id/managed-agents/skills">
     Lampirkan keahlian berbasis filesystem yang dapat digunakan kembali ke agen Anda untuk alur kerja spesifik domain.
   </Card>
 
-  <Card title="Aliran event sesi" icon="lightning" href="/docs/id/managed-agents/events-and-streaming">
+  <Card title="Aliran event sesi" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/events-and-streaming">
     Kirim event, streaming respons, dan interupsi atau alihkan sesi Anda di tengah eksekusi.
   </Card>
 </CardGroup>

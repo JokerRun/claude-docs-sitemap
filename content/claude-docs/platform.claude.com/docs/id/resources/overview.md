@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/overview
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 11c4c212f41deb58afd71c62b325e332246c4c3dd87c12019dba7ef109c08ab7
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 173ef59343ec11a61402b219cdd12a848133a2f9aeab86e47b818d2e4063fb4a
 ---
 
-# Sumber Daya
-
-Model card, sumber daya pembelajaran, dan format dokumentasi yang dioptimalkan untuk konsumsi AI.
-
+---
+title: Sumber Daya
+url: https://platform.claude.com/docs/id/resources/overview
+description: Model card, sumber belajar, dan format dokumentasi yang dioptimalkan untuk diserap oleh AI.
 ---
 
 ## Model card
@@ -63,11 +63,11 @@ Model card, sumber daya pembelajaran, dan format dokumentasi yang dioptimalkan u
   </Card>
 
   <Card title="System Card Claude 4" icon="file" href="https://www.anthropic.com/claude-4-system-card">
-    Dokumentasi terperinci tentang model Claude 4.
+    Dokumentasi terperinci tentang model-model Claude 4.
   </Card>
 
   <Card title="System Card Claude Sonnet 3.7" icon="file" href="https://www.anthropic.com/claude-3-7-sonnet-system-card">
-    System card untuk Claude Sonnet 3.7 dengan detail kinerja dan keamanan.
+    System card untuk Claude Sonnet 3.7 dengan detail performa dan keamanan.
   </Card>
 
   <Card title="System Card Claude Haiku 3.5 dan Sonnet 3.5" icon="file" href="https://www-cdn.anthropic.com/c7822cdc35ad788ec87e14b3a9d45010f1f86c38.pdf">
@@ -75,15 +75,15 @@ Model card, sumber daya pembelajaran, dan format dokumentasi yang dioptimalkan u
   </Card>
 
   <Card title="Model Card Claude 3" icon="file" href="https://www.anthropic.com/claude-3-model-card">
-    Dokumentasi terperinci tentang model Claude 3 termasuk adendum 3.5 terbaru.
+    Dokumentasi terperinci tentang model-model Claude 3 termasuk adendum 3.5 terbaru.
   </Card>
 
   <Card title="Model Card Claude 2" icon="file" href="https://www.anthropic.com/claude-2-model-card">
-    Dokumentasi terperinci tentang model Claude 2.
+    Dokumentasi terperinci tentang model-model Claude 2.
   </Card>
 </CardGroup>
 
-## Sumber daya pembelajaran
+## Sumber belajar
 
 <CardGroup cols={3}>
   <Card title="Quickstart" icon="lightning" href="https://github.com/anthropics/anthropic-quickstarts">
@@ -91,34 +91,34 @@ Model card, sumber daya pembelajaran, dan format dokumentasi yang dioptimalkan u
   </Card>
 
   <Card title="Kursus" icon="graduation-cap" href="https://anthropic.skilljar.com/">
-    Pelajaran langkah demi langkah tentang membangun dengan Claude.
+    Pelajaran langkah demi langkah untuk membangun dengan Claude.
   </Card>
 
-  <Card title="Cookbook" icon="fork-knife" href="https://platform.claude.com/cookbooks">
+  <Card title="Cookbook" icon="fork-knife" href="https://platform.claude.com/cookbook">
     Contoh kode dan implementasi yang dapat direplikasi.
   </Card>
 
-  <Card title="Panduan kasus penggunaan" icon="compass" href="/docs/id/about-claude/use-case-guides/overview">
+  <Card title="Panduan kasus penggunaan" icon="compass" href="https://platform.claude.com/docs/id/about-claude/use-case-guides/overview">
     Panduan produksi mendalam untuk membangun kasus penggunaan umum dengan Claude.
   </Card>
 
-  <Card title="Glosarium" icon="book-bookmark" href="/docs/id/about-claude/glossary">
-    Istilah dan konsep kunci untuk bekerja dengan Claude dan model bahasa.
+  <Card title="Glosarium" icon="book-bookmark" href="https://platform.claude.com/docs/id/about-claude/glossary">
+    Istilah dan konsep utama untuk bekerja dengan Claude dan model bahasa.
   </Card>
 </CardGroup>
 
-## Sumber daya untuk konsumsi AI
+## Sumber daya untuk diserap oleh AI
 
 <CardGroup cols={3}>
-  <Card title="Primer API untuk konsumsi Claude" icon="settings" href="/docs/id/claude_api_primer">
-    Panduan API ringkas yang dimaksudkan untuk dikonsumsi oleh Claude.
+  <Card title="Pengantar API untuk diserap oleh Claude" icon="settings" href="https://platform.claude.com/docs/id/claude_api_primer">
+    Panduan API ringkas yang ditujukan untuk diserap oleh Claude.
   </Card>
 
-  <Card title="Ikhtisar dokumentasi Claude Platform" icon="robot" href="/docs/for-claude">
-    Ikhtisar ringkas dokumentasi Claude Platform, dioptimalkan untuk konsumsi LLM.
+  <Card title="Ikhtisar dokumentasi Claude Platform" icon="robot" href="https://platform.claude.com/docs/for-claude">
+    Ikhtisar ringkas dokumentasi Claude Platform, dioptimalkan untuk diserap oleh LLM.
   </Card>
 
-  <Card title="llms.txt" icon="file" href="/llms.txt">
+  <Card title="llms.txt" icon="file" href="https://platform.claude.com/llms.txt">
     Indeks dokumentasi yang dioptimalkan untuk LLM.
   </Card>
 </CardGroup>

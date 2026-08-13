@@ -1,22 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-started
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: a8c5549c98ab9d95f3b68ce71441af003f95036cecbf8c6bcb5918e00b82fc53
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: ad54a1491361bd8319c7541251ad8a74cebffbb0a99922878c44430f3fce47d7
 ---
 
-# Memulai dengan Claude
-
-Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web sederhana.
-
+---
+title: Memulai dengan Claude
+url: https://platform.claude.com/docs/id/get-started
+description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web sederhana.
 ---
 
 ## Prasyarat
 
 * Sebuah [akun Claude Console](https://platform.claude.com)
-* Sebuah [kunci API](/settings/keys)
+* Sebuah [kunci API](https://platform.claude.com/settings/keys)
 
-## Panggil API
+## Memanggil API
 
 <Tabs>
   <Tab title="cURL">
@@ -85,7 +85,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         brew install anthropics/tap/ant
         ```
 
-        Untuk metode instalasi lainnya, lihat [Instalasi](/docs/id/cli-sdks-libraries/cli/quickstart#installation) di quickstart CLI.
+        Untuk metode instalasi lainnya, lihat [Instalasi](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart#installation) di panduan cepat CLI.
       </Step>
 
       <Step title="Autentikasi">
@@ -95,13 +95,13 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         ant auth login
         ```
 
-        Ini akan membuka alur OAuth berbasis browser. Setelah memberikan otorisasi, konfirmasikan kredensial Anda dengan:
+        Ini akan membuka alur OAuth berbasis browser. Setelah memberikan otorisasi, konfirmasi kredensial Anda dengan:
 
         ```bash
         ant auth status
         ```
 
-        Pada host jarak jauh tanpa browser, gunakan `--no-browser` untuk mendapatkan URL yang dapat Anda buka di perangkat lain, lalu tempelkan kode yang dikembalikan ke terminal. Jika `ANTHROPIC_API_KEY` diatur di lingkungan Anda, variabel tersebut akan diprioritaskan di atas kredensial login. Untuk lingkungan non-interaktif seperti CI, lihat [opsi autentikasi CLI](/docs/id/cli-sdks-libraries/cli/authentication).
+        Pada host jarak jauh tanpa browser, berikan `--no-browser` untuk mendapatkan URL yang dapat Anda buka di perangkat lain, lalu tempelkan kode yang dikembalikan ke terminal. Jika `ANTHROPIC_API_KEY` diatur di lingkungan Anda, variabel tersebut akan diutamakan daripada kredensial login. Untuk lingkungan non-interaktif seperti CI, lihat [opsi autentikasi CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication).
       </Step>
 
       <Step title="Lakukan panggilan API pertama Anda">
@@ -117,7 +117,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
           }'
         ```
 
-        CLI mencetak respons JSON:
+        CLI akan mencetak respons JSON:
 
         ```json Output
         {
@@ -421,7 +421,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         mkdir -p claude-quickstart/src/main/java && cd claude-quickstart
         ```
 
-        Kemudian tambahkan file build. Temukan versi SDK terbaru di [Maven Central](https://central.sonatype.com/artifact/com.anthropic/anthropic-java).
+        Kemudian tambahkan file build. Temukan versi SDK terkini di [Maven Central](https://central.sonatype.com/artifact/com.anthropic/anthropic-java).
 
         <Tabs>
           <Tab title="Gradle">
@@ -443,7 +443,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
             }
 
             dependencies {
-                implementation("com.anthropic:anthropic-java:2.52.0")
+                implementation("com.anthropic:anthropic-java:2.53.0")
             }
 
             application {
@@ -469,7 +469,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
                 <dependency>
                   <groupId>com.anthropic</groupId>
                   <artifactId>anthropic-java</artifactId>
-                  <version>2.52.0</version>
+                  <version>2.53.0</version>
                 </dependency>
               </dependencies>
             </project>
@@ -661,22 +661,26 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
 
 Anda telah melakukan panggilan API pertama Anda. Selanjutnya, pelajari pola Messages API yang akan Anda gunakan di setiap integrasi Claude.
 
-<Card title="Bekerja dengan Messages API" icon="messages" href="/docs/id/build-with-claude/working-with-messages">
+<Card title="Bekerja dengan Messages API" icon="messages" href="https://platform.claude.com/docs/id/build-with-claude/working-with-messages">
   Pelajari percakapan multi-giliran, prompt sistem, alasan berhenti, dan pola inti lainnya.
 </Card>
 
-Setelah Anda nyaman dengan dasar-dasarnya, jelajahi lebih lanjut:
+Setelah Anda merasa nyaman dengan dasar-dasarnya, jelajahi lebih lanjut:
 
-<CardGroup cols={3}>
-  <Card title="Ikhtisar model" icon="brain" href="/docs/id/about-claude/models/overview">
+<CardGroup cols={2}>
+  <Card title="Ikhtisar model" icon="brain" href="https://platform.claude.com/docs/id/about-claude/models/overview">
     Bandingkan model Claude berdasarkan kemampuan dan biaya.
   </Card>
 
-  <Card title="Ikhtisar fitur" icon="list" href="/docs/id/build-with-claude/overview">
+  <Card title="Ikhtisar fitur" icon="list" href="https://platform.claude.com/docs/id/build-with-claude/overview">
     Jelajahi semua kemampuan Claude: alat, manajemen konteks, output terstruktur, dan lainnya.
   </Card>
 
-  <Card title="SDK klien" icon="code-brackets" href="/docs/id/cli-sdks-libraries/overview">
+  <Card title="SDK Klien" icon="code-brackets" href="https://platform.claude.com/docs/id/cli-sdks-libraries/overview">
     Dokumentasi referensi untuk Python, TypeScript, C#, dan pustaka klien lainnya.
+  </Card>
+
+  <Card title="Autentikasi" icon="lock" href="https://platform.claude.com/docs/id/manage-claude/authentication">
+    Bandingkan kunci API dan Workload Identity Federation, serta atur masa berlaku kunci.
   </Card>
 </CardGroup>

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/create
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: de17946b5bf7a991ea4548f70734661d2ba9d7e71524373cebaf522ad0515a2e
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: dc4ce1071cf273e6c399ba0a69154844ccb623d5803451e4c7ddf4386552c335
+---
+
+---
+title: Create External Key
+url: https://platform.claude.com/docs/en/api/admin/external_keys/create
 ---
 
 ## Create External Key

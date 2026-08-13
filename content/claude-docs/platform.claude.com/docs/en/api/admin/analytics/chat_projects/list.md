@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/chat_projects/list
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 728c0701e5b7115d83832a7cbb8a6a64bdf8ad32dd7de540c67d6ebe8c7c11ef
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 4ff879c58b2f8ee3b249ef3ccc715a1eff761286ad4a187b63954eaed73c1b6a
+---
+
+---
+title: Get Chat Project Usage
+url: https://platform.claude.com/docs/en/api/admin/analytics/chat_projects/list
 ---
 
 ## Get Chat Project Usage

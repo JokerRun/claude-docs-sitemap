@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/delete
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: bd5b3c008efa41ee11ae08f5e59873e8f38f105e6d9f3852baa0aa78ad3a7692
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 21fba282d57821c2805e516a6ef21907ae4a59bdfe8b97c7c922a8fab868e163
+---
+
+---
+title: Delete Skill Version
+url: https://platform.claude.com/docs/en/api/beta/skills/versions/delete
 ---
 
 ## Delete Skill Version
@@ -33,7 +38,7 @@ Delete Skill Version
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -98,6 +103,8 @@ Delete Skill Version
     - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
+
+    - `"mid-conversation-tool-changes-2026-07-01"`
 
 ### Returns
 

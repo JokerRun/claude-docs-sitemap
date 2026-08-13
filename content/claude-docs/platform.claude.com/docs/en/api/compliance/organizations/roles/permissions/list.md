@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/permissions/list
-fetched_at: 2026-06-27T03:14:28.973816Z
-sha256: 7d4948bf8199193d94a980ced6ef2fd853f8550289282ec617689aa52c2b7e5c
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 21ce4500a308c4fba7071b8a39a959faf94105189ef46735f31fbd1e4a77875e
+---
+
+---
+title: List Compliance Role Permissions
+url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/permissions/list
 ---
 
 ## List Compliance Role Permissions

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/service_accounts/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 28be6202a635a9abf5404350a1a9011e48d3e0fb07f46e94f7307e3e73186153
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 035cecf6fc9064e0a681aff720285190f2cd443c16caa6994fea274d3c6e0d81
+---
+
+---
+title: Create Service Account Workspace Member
+url: https://platform.claude.com/docs/en/api/admin/workspaces/service_accounts/create
 ---
 
 ## Create Service Account Workspace Member

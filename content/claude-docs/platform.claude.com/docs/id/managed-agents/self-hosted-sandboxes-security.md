@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-security
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 0a42bc7a2ef90cba84b4408a0a545b10b1d0417a3db0418d242a2018d036c543
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 47aa74b3be765751fe9ac6674d4c1fbb1419b878490d9567f33a7b9211ae08b1
 ---
 
-# Model keamanan
-
-Model tanggung jawab bersama untuk lingkungan sandbox yang di-hosting sendiri.
-
+---
+title: Model keamanan
+url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-security
+description: Model tanggung jawab bersama untuk lingkungan sandbox yang di-hosting sendiri.
 ---
 
 Anthropic mengamankan control plane di semua lingkungan: integritas sesi dan antrean kerja, isolasi multitenant, dan minimalisasi konteks agen. Ketika Anda melakukan self-hosting, tanggung jawab berikut menjadi milik Anda.

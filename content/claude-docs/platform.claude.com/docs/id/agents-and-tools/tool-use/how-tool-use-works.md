@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/how-tool-use-works
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 9484d1ae1916e971f53c9d39255d5a987f770444f48366f23d2db3bd8bb12dae
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 5121515fe68b7f08efd506c0665e2ec2e480afc24148732bd800fcbdc5b6d404
 ---
 
-# Cara kerja penggunaan alat
-
-Pahami loop penggunaan alat, di mana alat dieksekusi, dan kapan menggunakan alat alih-alih prosa.
-
+---
+title: Cara kerja penggunaan alat
+url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/how-tool-use-works
+description: Pahami loop penggunaan alat, di mana alat dieksekusi, dan kapan menggunakan alat alih-alih prosa.
 ---
 
-Halaman ini menjelaskan konsep di balik "tool use" (penggunaan alat): di mana alat berjalan, bagaimana loop agentik bekerja, dan kapan penggunaan alat adalah pendekatan yang tepat. Untuk panduan praktis, mulailah dengan tutorial [Membangun agen yang menggunakan alat](/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent) atau panduan [Mendefinisikan alat](/docs/id/agents-and-tools/tool-use/define-tools).
+Halaman ini menjelaskan konsep di balik "tool use" (penggunaan alat): di mana alat berjalan, bagaimana loop agentik bekerja, dan kapan penggunaan alat adalah pendekatan yang tepat. Untuk panduan praktis, mulailah dengan tutorial [Membangun agen yang menggunakan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent) atau panduan [Mendefinisikan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools).
 
 ## Kontrak penggunaan alat
 
@@ -25,21 +25,21 @@ Sumbu utama yang membedakan alat adalah di mana kode dieksekusi. Setiap alat mas
 
 ### Alat yang didefinisikan pengguna (dieksekusi klien)
 
-Anda menulis skemanya, Anda mengeksekusi kodenya, Anda mengembalikan hasilnya. Ini adalah kasus yang paling umum: sebagian besar lalu lintas penggunaan alat adalah [alat yang didefinisikan pengguna](/docs/id/agents-and-tools/tool-use/define-tools) yang memanggil logika spesifik aplikasi.
+Anda menulis skemanya, Anda mengeksekusi kodenya, Anda mengembalikan hasilnya. Ini adalah kasus yang paling umum: sebagian besar lalu lintas penggunaan alat adalah [alat yang didefinisikan pengguna](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools) yang memanggil logika spesifik aplikasi.
 
 Ketika Claude memanggil salah satu alat Anda, respons API berisi blok `tool_use` dengan nama alat dan objek JSON berisi argumen. Aplikasi Anda mengekstrak argumen tersebut, menjalankan operasinya (kueri database, panggilan HTTP, penulisan file, apa pun yang dilakukan alat tersebut), dan mengirimkan output kembali dalam blok `tool_result` pada permintaan berikutnya. Claude tidak pernah melihat implementasi Anda; Claude hanya melihat skema yang Anda berikan dan hasil yang Anda kembalikan.
 
 ### Alat skema Anthropic (dieksekusi klien)
 
-Untuk beberapa operasi umum (mengelola memori scratchpad, menjalankan perintah shell, mengedit file, mengendalikan browser), Anthropic menerbitkan skema alat dan aplikasi Anda menangani eksekusinya. Alat dalam kategori ini adalah [`memory`](/docs/id/agents-and-tools/tool-use/memory-tool), [`bash`](/docs/id/agents-and-tools/tool-use/bash-tool), [`text_editor`](/docs/id/agents-and-tools/tool-use/text-editor-tool), dan [`computer`](/docs/id/agents-and-tools/tool-use/computer-use-tool).
+Untuk beberapa operasi umum (mengelola memori scratchpad, menjalankan perintah shell, mengedit file, mengendalikan browser), Anthropic menerbitkan skema alat dan aplikasi Anda menangani eksekusinya. Alat dalam kategori ini adalah [`memory`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool), [`bash`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool), [`text_editor`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool), dan [`computer`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool).
 
 Model eksekusinya identik dengan alat yang didefinisikan pengguna: respons berisi blok `tool_use`, kode Anda menjalankan operasinya, dan Anda mengirim kembali `tool_result`. Alasan menggunakan alat skema Anthropic alih-alih mendefinisikan padanan Anda sendiri adalah karena skema-skema ini sudah terlatih di dalam model. Claude telah dioptimalkan pada ribuan trajektori sukses yang menggunakan signature alat yang persis sama, sehingga Claude memanggilnya dengan lebih andal dan pulih dari kesalahan dengan lebih baik dibandingkan dengan alat kustom yang melakukan hal yang sama. Skema tersebut adalah antarmuka yang sudah diharapkan oleh model.
 
 ### Alat yang dieksekusi server
 
-Untuk [`web_search`](/docs/id/agents-and-tools/tool-use/web-search-tool), [`web_fetch`](/docs/id/agents-and-tools/tool-use/web-fetch-tool), [`code_execution`](/docs/id/agents-and-tools/tool-use/code-execution-tool), dan [`tool_search`](/docs/id/agents-and-tools/tool-use/tool-search-tool), Anthropic yang menjalankan kodenya. Anda mengaktifkan alat dalam permintaan Anda dan server menangani semua hal lainnya. Anda tidak pernah membuat blok `tool_result` untuk alat-alat ini. Ketika sebuah giliran hanya memanggil [alat server](/docs/id/agents-and-tools/tool-use/server-tools), loop sisi server mengeksekusi operasi dan mengembalikan output ke model sebelum respons sampai kepada Anda, kecuali loop berhenti sebelum selesai, paling sering karena loop tersebut dijeda.
+Untuk [`web_search`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool), [`web_fetch`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool), [`code_execution`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool), dan [`tool_search`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool), Anthropic yang menjalankan kodenya. Anda mengaktifkan alat dalam permintaan Anda dan server menangani semua hal lainnya. Anda tidak pernah membuat blok `tool_result` untuk alat-alat ini. Ketika sebuah giliran hanya memanggil [alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools), loop sisi server mengeksekusi operasi dan mengembalikan output ke model sebelum respons sampai kepada Anda, kecuali loop berhenti sebelum selesai, paling sering karena loop tersebut dijeda.
 
-Respons yang Anda terima berisi blok `server_tool_use` yang menunjukkan apa yang dijalankan dan apa yang dikembalikan. Dalam kasus umum, eksekusi sudah selesai pada saat Anda melihatnya, dan tugas aplikasi Anda adalah mengaktifkan alat dan membaca jawaban akhir alih-alih berpartisipasi dalam loop eksekusi; pengecualian utamanya adalah loop yang dijeda ([`pause_turn`](#the-server-side-loop)) dan giliran yang juga memanggil alat klien.
+Respons yang Anda terima berisi blok `server_tool_use` yang menunjukkan apa yang dijalankan dan apa yang dikembalikan. Dalam kasus umum, eksekusi sudah selesai pada saat Anda melihatnya, dan tugas aplikasi Anda adalah mengaktifkan alat dan membaca jawaban akhir alih-alih berpartisipasi dalam loop eksekusi; pengecualian utamanya adalah loop yang dijeda ([`pause_turn`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/how-tool-use-works#the-server-side-loop)) dan giliran yang juga memanggil alat klien.
 
 ## Loop agentik (alat klien)
 
@@ -55,15 +55,15 @@ Bentuk kanoniknya adalah loop `while` yang dikunci pada `stop_reason`:
 
 Dalam praktiknya ini dibaca sebagai: selama `stop_reason == "tool_use"`, eksekusi alat dan lanjutkan percakapan. Loop keluar pada alasan berhenti lainnya (`"end_turn"`, `"max_tokens"`, `"stop_sequence"`, atau `"refusal"`), yang berarti Claude telah menghasilkan jawaban akhir atau berhenti karena alasan lain yang harus ditangani oleh aplikasi Anda.
 
-Untuk mekanisme membangun permintaan, menangani panggilan alat paralel, dan memformat hasil, lihat [Menangani panggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls).
+Untuk mekanisme membangun permintaan, menangani panggilan alat paralel, dan memformat hasil, lihat [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls).
 
 ## Loop sisi server
 
 Alat yang dieksekusi server menjalankan loop mereka sendiri di dalam infrastruktur Anthropic. Satu permintaan dari aplikasi Anda mungkin memicu beberapa pencarian web atau eksekusi kode sebelum respons kembali. Model mencari, membaca hasil, menentukan apakah perlu mencari lagi, dan mengulangi hingga mendapatkan apa yang dibutuhkan, semuanya tanpa partisipasi aplikasi Anda.
 
-Loop internal ini memiliki batas iterasi. Jika model masih melakukan iterasi ketika mencapai batas tersebut, respons kembali dengan `stop_reason: "pause_turn"` alih-alih `"end_turn"`. Giliran yang dijeda berarti pekerjaan belum selesai; kirim ulang percakapan (termasuk respons yang dijeda) agar model dapat melanjutkan dari tempat terakhirnya. Lihat [Alat server](/docs/id/agents-and-tools/tool-use/server-tools) untuk pola kelanjutannya.
+Loop internal ini memiliki batas iterasi. Jika model masih melakukan iterasi ketika mencapai batas tersebut, respons kembali dengan `stop_reason: "pause_turn"` alih-alih `"end_turn"`. Giliran yang dijeda berarti pekerjaan belum selesai; kirim ulang percakapan (termasuk respons yang dijeda) agar model dapat melanjutkan dari tempat terakhirnya. Lihat [Alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) untuk pola kelanjutannya.
 
-Loop juga mengembalikan kendali kepada Anda sebelum alat server berjalan jika Claude memanggil alat server tersebut dan alat klien dalam kelompok panggilan alat paralel yang sama. Respons kemudian kembali dengan `stop_reason: "tool_use"` dan blok `server_tool_use` yang belum memiliki blok hasil; API menjalankannya setelah Anda mengembalikan hasil alat klien. Lihat [Alasan berhenti dan fallback](/docs/id/build-with-claude/handling-stop-reasons#tool-use) untuk kontrak yang tepat.
+Loop juga mengembalikan kendali kepada Anda sebelum alat server berjalan jika Claude memanggil alat server tersebut dan alat klien dalam kelompok panggilan alat paralel yang sama. Respons kemudian kembali dengan `stop_reason: "tool_use"` dan blok `server_tool_use` yang belum memiliki blok hasil; API menjalankannya setelah Anda mengembalikan hasil alat klien. Lihat [Alasan berhenti dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#tool-use) untuk kontrak yang tepat.
 
 ## Kapan menggunakan alat (dan kapan tidak)
 
@@ -84,24 +84,24 @@ Penggunaan alat tidak cocok ketika:
 
 ## Memilih di antara pendekatan
 
-| Pendekatan                             | Kapan menggunakannya                                         | Apa yang diharapkan                                                                                       | Pelajari lebih lanjut                                                  |
-| -------------------------------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| Alat klien yang didefinisikan pengguna | Logika bisnis kustom, API internal, data proprietary         | Anda menangani eksekusi dan loop agentik                                                                  | [Mendefinisikan alat](/docs/id/agents-and-tools/tool-use/define-tools) |
-| Alat klien skema Anthropic             | Operasi dev standar (bash, pengeditan file, kontrol browser) | Anda menangani eksekusi; Claude memanggil alat dengan andal karena skemanya sudah terlatih di dalam model | [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference)    |
-| Alat yang dieksekusi server            | Pencarian web, sandbox kode, pengambilan web                 | Anthropic menangani eksekusi; Anda membaca hasilnya alih-alih menghasilkannya                             | [Alat server](/docs/id/agents-and-tools/tool-use/server-tools)         |
+| Pendekatan                             | Kapan menggunakannya                                         | Apa yang diharapkan                                                                                       | Pelajari lebih lanjut                                                                             |
+| -------------------------------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Alat klien yang didefinisikan pengguna | Logika bisnis kustom, API internal, data proprietary         | Anda menangani eksekusi dan loop agentik                                                                  | [Mendefinisikan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools) |
+| Alat klien skema Anthropic             | Operasi dev standar (bash, pengeditan file, kontrol browser) | Anda menangani eksekusi; Claude memanggil alat dengan andal karena skemanya sudah terlatih di dalam model | [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference)    |
+| Alat yang dieksekusi server            | Pencarian web, sandbox kode, pengambilan web                 | Anthropic menangani eksekusi; Anda membaca hasilnya alih-alih menghasilkannya                             | [Alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools)         |
 
 ## Langkah selanjutnya
 
 <CardGroup>
-  <Card href="/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent" title="Tutorial: Membangun agen yang menggunakan alat">
+  <Card href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent" title="Tutorial: Membangun agen yang menggunakan alat">
     Bangun agen langkah demi langkah dari satu panggilan alat hingga produksi.
   </Card>
 
-  <Card href="/docs/id/agents-and-tools/tool-use/define-tools" title="Mendefinisikan alat">
+  <Card href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools" title="Mendefinisikan alat">
     Spesifikasi skema, deskripsi, dan `tool_choice`.
   </Card>
 
-  <Card href="/docs/id/agents-and-tools/tool-use/tool-reference" title="Referensi alat">
+  <Card href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference" title="Referensi alat">
     Direktori alat yang disediakan Anthropic.
   </Card>
 </CardGroup>

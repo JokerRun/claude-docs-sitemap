@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/cancel
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: b5a790fc189d34176ac6121cc2a717ebf38fc44d63c62994de1a5d621ce7d05e
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 114d86b6ea4e70bed11e868e430d0626afea7bedb2b02fb933b1a466a20452b3
+---
+
+---
+title: Cancel a Message Batch
+url: https://platform.claude.com/docs/en/api/messages/batches/cancel
 ---
 
 ## Cancel a Message Batch

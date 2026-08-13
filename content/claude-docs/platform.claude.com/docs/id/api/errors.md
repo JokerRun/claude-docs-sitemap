@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/errors
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 51315d9dd86b61190663984e5cefe4e58abb5131d4d51f8f3d0216bb08f36f38
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: d83800af65256a7127e2f0cffb406abe94d86740919a10723a2acc669157ca7c
 ---
 
-# Error API Claude
-
-Pahami kode status HTTP, bentuk respons error, dan ID permintaan yang dikembalikan oleh Claude API, serta tangani error dengan exception bertipe dari SDK.
-
+---
+title: Error API Claude
+url: https://platform.claude.com/docs/id/api/errors
+description: Pahami kode status HTTP, bentuk respons error, dan ID permintaan yang dikembalikan oleh Claude API, serta tangani error dengan exception bertipe dari SDK.
 ---
 
 ## Error HTTP
@@ -17,7 +17,7 @@ API mengikuti format kode error HTTP yang dapat diprediksi:
 
 * 400 - `invalid_request_error`: Ada masalah dengan format atau konten permintaan Anda. Tipe error ini juga dapat digunakan untuk kode status 4XX lainnya yang tidak tercantum di bagian ini.
 
-* 401 - `authentication_error`: Ada masalah dengan kunci API Anda (misalnya, formatnya salah, dicabut, atau kedaluwarsa; lihat [Kedaluwarsa kunci](/docs/id/manage-claude/authentication#key-expiration)). Pada Claude Platform di AWS, ini juga dapat menunjukkan masalah dengan kredensial AWS atau tanda tangan SigV4 Anda.
+* 401 - `authentication_error`: Ada masalah dengan kunci API Anda (misalnya, formatnya salah, dicabut, atau kedaluwarsa; lihat [Kedaluwarsa kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration)). Pada Claude Platform di AWS, ini juga dapat menunjukkan masalah dengan kredensial AWS atau tanda tangan SigV4 Anda.
 
 * 402 - `billing_error`: Ada masalah dengan informasi penagihan atau pembayaran Anda. Periksa detail pembayaran Anda di [Claude Console](https://platform.claude.com), atau di AWS Marketplace jika Anda menggunakan Claude Platform di AWS.
 
@@ -27,13 +27,13 @@ API mengikuti format kode error HTTP yang dapat diprediksi:
 
 * 409 - `conflict_error`: Permintaan bertentangan dengan status sumber daya saat ini. Misalnya, sumber daya dimodifikasi secara bersamaan, atau nilai yang harus unik sudah digunakan. Selesaikan konflik tersebut, lalu coba lagi permintaannya.
 
-* 413 - `request_too_large`: Permintaan melebihi jumlah byte maksimum yang diizinkan. Lihat [Batas ukuran permintaan](#request-size-limits) untuk maksimum per endpoint.
+* 413 - `request_too_large`: Permintaan melebihi jumlah byte maksimum yang diizinkan. Lihat [Batas ukuran permintaan](https://platform.claude.com/docs/id/api/errors#request-size-limits) untuk maksimum per endpoint.
 
 * 429 - `rate_limit_error`: Akun Anda telah mencapai batas laju (rate limit).
 
-* 500 - `api_error`: Terjadi error tak terduga di dalam sistem internal Anthropic. Coba lagi permintaan dengan exponential backoff; jika error berlanjut, hubungi dukungan dengan menyertakan [ID permintaan](#request-id).
+* 500 - `api_error`: Terjadi error tak terduga di dalam sistem internal Anthropic. Coba lagi permintaan dengan exponential backoff; jika error berlanjut, hubungi dukungan dengan menyertakan [ID permintaan](https://platform.claude.com/docs/id/api/errors#request-id).
 
-* 504 - `timeout_error`: Permintaan kehabisan waktu saat diproses. Pertimbangkan untuk menggunakan [streaming Messages API](/docs/id/build-with-claude/streaming) untuk permintaan yang berjalan lama. Lihat [Permintaan panjang](#long-requests) untuk opsi lainnya.
+* 504 - `timeout_error`: Permintaan kehabisan waktu saat diproses. Pertimbangkan untuk menggunakan [streaming Messages API](https://platform.claude.com/docs/id/build-with-claude/streaming) untuk permintaan yang berjalan lama. Lihat [Permintaan panjang](https://platform.claude.com/docs/id/api/errors#long-requests) untuk opsi lainnya.
 
 * 529 - `overloaded_error`: API sedang kelebihan beban untuk sementara.
 
@@ -45,18 +45,18 @@ API mengikuti format kode error HTTP yang dapat diprediksi:
 
 SDK resmi secara otomatis mencoba ulang kegagalan sementara (seperti error koneksi, batas laju, dan error server 5xx) dengan exponential backoff, dua kali secara default, dengan menghormati header `retry-after` jika ada. Setiap klien SDK menerima opsi maximum-retries untuk mengonfigurasi atau menonaktifkan perilaku ini.
 
-Saat menerima respons [streaming](/docs/id/build-with-claude/streaming) melalui server-sent events (SSE), error dapat terjadi setelah API mengembalikan respons 200. Dalam kasus tersebut, penanganan error tidak mengikuti mekanisme standar ini. Lihat [Event error](/docs/id/build-with-claude/streaming#error-events) untuk bentuk error di tengah stream.
+Saat menerima respons [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming) melalui server-sent events (SSE), error dapat terjadi setelah API mengembalikan respons 200. Dalam kasus tersebut, penanganan error tidak mengikuti mekanisme standar ini. Lihat [Event error](https://platform.claude.com/docs/id/build-with-claude/streaming#error-events) untuk bentuk error di tengah stream.
 
 ## Batas ukuran permintaan
 
 API memberlakukan batas ukuran permintaan:
 
-| Tipe endpoint                                            | Ukuran permintaan maksimum |
-| -------------------------------------------------------- | -------------------------- |
-| Messages API                                             | 32 MB                      |
-| Token Counting API                                       | 32 MB                      |
-| [Batch API](/docs/id/build-with-claude/batch-processing) | 256 MB                     |
-| [Files API](/docs/id/build-with-claude/files)            | 500 MB                     |
+| Tipe endpoint                                                                       | Ukuran permintaan maksimum |
+| ----------------------------------------------------------------------------------- | -------------------------- |
+| Messages API                                                                        | 32 MB                      |
+| Token Counting API                                                                  | 32 MB                      |
+| [Batch API](https://platform.claude.com/docs/id/build-with-claude/batch-processing) | 256 MB                     |
+| [Files API](https://platform.claude.com/docs/id/build-with-claude/files)            | 500 MB                     |
 
 Jika Anda melebihi batas ini, Anda akan menerima error 413 `request_too_large`. Pada Claude API langsung, Cloudflare mengembalikan error ini sebelum permintaan mencapai server API.
 
@@ -75,19 +75,19 @@ API selalu mengembalikan error sebagai JSON, dengan objek `error` tingkat atas y
 }
 ```
 
-Sesuai dengan kebijakan [versioning](/docs/id/api/versioning), nilai-nilai di dalam objek ini dapat bertambah, dan ada kemungkinan nilai `type` akan bertambah seiring waktu.
+Sesuai dengan kebijakan [versioning](https://platform.claude.com/docs/id/api/versioning), nilai-nilai di dalam objek ini dapat bertambah, dan ada kemungkinan nilai `type` akan bertambah seiring waktu.
 
 ## Tipe error SDK
 
 SDK resmi memunculkan exception bertipe untuk error-error ini alih-alih mengembalikan JSON mentah, dan nama kelas serta namespace-nya berbeda menurut bahasa. Misalnya, 404 muncul sebagai `anthropic.NotFoundError` di Python, `Anthropic::Errors::NotFoundError` di Ruby, `com.anthropic.errors.NotFoundException` di Java, dan sebagai nilai tunggal `*anthropic.Error` (bercabang berdasarkan `StatusCode`) di Go. Tangkap kelas bertipe dari SDK alih-alih mencocokkan string pesan error, dengan menangani kelas yang paling spesifik terlebih dahulu. Setiap halaman SDK mendokumentasikan hierarki exception lengkapnya:
 
-* [Python](/docs/id/cli-sdks-libraries/sdks/python#handling-errors) · [TypeScript](/docs/id/cli-sdks-libraries/sdks/typescript#handling-errors) · [C#](/docs/id/cli-sdks-libraries/sdks/csharp#error-handling) · [Go](/docs/id/cli-sdks-libraries/sdks/go#error-handling) · [Java](/docs/id/cli-sdks-libraries/sdks/java#error-handling) · [PHP](/docs/id/cli-sdks-libraries/sdks/php#error-handling) · [Ruby](/docs/id/cli-sdks-libraries/sdks/ruby#handling-errors)
+* [Python](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python#handling-errors) · [TypeScript](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#handling-errors) · [C#](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/csharp#error-handling) · [Go](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go#error-handling) · [Java](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#error-handling) · [PHP](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php#error-handling) · [Ruby](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/ruby#handling-errors)
 
 ## ID permintaan
 
-Setiap respons API menyertakan header `request-id` yang unik. Header ini berisi nilai seperti `req_018EeWyXxfu5pfWkrYcMdjWG`. Pengidentifikasi yang sama muncul sebagai field `request_id` di [badan respons error](#error-shapes). Saat menghubungi dukungan tentang permintaan tertentu, sertakan ID ini untuk membantu menyelesaikan masalah Anda dengan cepat.
+Setiap respons API menyertakan header `request-id` yang unik. Header ini berisi nilai seperti `req_018EeWyXxfu5pfWkrYcMdjWG`. Pengidentifikasi yang sama muncul sebagai field `request_id` di [badan respons error](https://platform.claude.com/docs/id/api/errors#error-shapes). Saat menghubungi dukungan tentang permintaan tertentu, sertakan ID ini untuk membantu menyelesaikan masalah Anda dengan cepat.
 
-Pada [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws), respons menyertakan dua ID permintaan: ID permintaan AWS (`x-amzn-requestid`, utama, terindeks di CloudTrail) dan ID permintaan Anthropic (`request-id`, sekunder). Gunakan ID permintaan AWS untuk pencarian di CloudTrail dan ID permintaan Anthropic untuk tiket dukungan Anthropic.
+Pada [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), respons menyertakan dua ID permintaan: ID permintaan AWS (`x-amzn-requestid`, utama, terindeks di CloudTrail) dan ID permintaan Anthropic (`request-id`, sekunder). Gunakan ID permintaan AWS untuk pencarian di CloudTrail dan ID permintaan Anthropic untuk tiket dukungan Anthropic.
 
 SDK Python dan TypeScript mengekspos ID permintaan sebagai properti `_request_id` pada objek respons tingkat atas. SDK C#, Go, Java, dan PHP mengeksposnya melalui accessor raw-response mereka, yang juga memungkinkan Anda membaca header respons lainnya. Pada Claude Platform di AWS, gunakan accessor raw-response untuk membaca ID permintaan AWS (`x-amzn-requestid`) juga:
 
@@ -246,22 +246,22 @@ SDK Python dan TypeScript mengekspos ID permintaan sebagai properti `_request_id
   ```
 </CodeGroup>
 
-Untuk contoh request-ID Claude Platform di AWS dalam bahasa lain, lihat [ID Permintaan](/docs/id/build-with-claude/claude-platform-on-aws#request-ids).
+Untuk contoh request-ID Claude Platform di AWS dalam bahasa lain, lihat [ID Permintaan](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#request-ids).
 
 ## Permintaan panjang
 
 <Warning>
-  Pertimbangkan untuk menggunakan [streaming Messages API](/docs/id/build-with-claude/streaming) atau [Message Batches API](/docs/id/api/messages/batches/create) untuk permintaan yang berjalan lama, terutama yang lebih dari 10 menit.
+  Pertimbangkan untuk menggunakan [streaming Messages API](https://platform.claude.com/docs/id/build-with-claude/streaming) atau [Message Batches API](https://platform.claude.com/docs/id/api/messages/batches/create) untuk permintaan yang berjalan lama, terutama yang lebih dari 10 menit.
 </Warning>
 
-Hindari menetapkan nilai `max_tokens` yang besar tanpa menggunakan [streaming Messages API](/docs/id/build-with-claude/streaming) atau [Message Batches API](/docs/id/api/messages/batches/create):
+Hindari menetapkan nilai `max_tokens` yang besar tanpa menggunakan [streaming Messages API](https://platform.claude.com/docs/id/build-with-claude/streaming) atau [Message Batches API](https://platform.claude.com/docs/id/api/messages/batches/create):
 
 * Beberapa jaringan mungkin memutuskan koneksi yang idle setelah periode waktu yang bervariasi, yang dapat menyebabkan permintaan gagal atau kehabisan waktu tanpa menerima respons dari Anthropic.
-* Keandalan jaringan berbeda-beda. [Message Batches API](/docs/id/api/messages/batches/create) dapat membantu Anda mengelola risiko masalah jaringan dengan memungkinkan Anda melakukan polling untuk hasil alih-alih memerlukan koneksi jaringan yang tidak terputus.
+* Keandalan jaringan berbeda-beda. [Message Batches API](https://platform.claude.com/docs/id/api/messages/batches/create) dapat membantu Anda mengelola risiko masalah jaringan dengan memungkinkan Anda melakukan polling untuk hasil alih-alih memerlukan koneksi jaringan yang tidak terputus.
 
 Jika Anda membangun integrasi API langsung, menetapkan [TCP socket keep-alive](https://tldp.org/HOWTO/TCP-Keepalive-HOWTO/programming.html) dapat mengurangi dampak timeout koneksi idle pada beberapa jaringan.
 
-[SDK](/docs/id/cli-sdks-libraries/overview) memvalidasi bahwa permintaan Messages API non-streaming Anda tidak diperkirakan melebihi timeout 10 menit. SDK juga menetapkan opsi socket untuk TCP keep-alive.
+[SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) memvalidasi bahwa permintaan Messages API non-streaming Anda tidak diperkirakan melebihi timeout 10 menit. SDK juga menetapkan opsi socket untuk TCP keep-alive.
 
 Jika Anda tidak perlu memproses event secara bertahap, SDK dapat mengonsumsi stream untuk Anda dan mengembalikan objek `Message` lengkap, identik dengan apa yang dikembalikan oleh panggilan non-streaming:
 
@@ -419,7 +419,7 @@ Jika Anda tidak perlu memproses event secara bertahap, SDK dapat mengonsumsi str
   ```
 </CodeGroup>
 
-Lihat [Streaming Messages](/docs/id/build-with-claude/streaming#get-the-final-message-without-handling-events) untuk detail lebih lanjut.
+Lihat [Streaming Messages](https://platform.claude.com/docs/id/build-with-claude/streaming#get-the-final-message-without-handling-events) untuk detail lebih lanjut.
 
 ## Error validasi umum
 
@@ -437,7 +437,7 @@ Model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthr
 }
 ```
 
-Sebagai gantinya, gunakan [structured outputs](/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, instruksi prompt sistem, atau [`output_config.format`](/docs/id/build-with-claude/structured-outputs#json-outputs).
+Sebagai gantinya, gunakan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, instruksi prompt sistem, atau [`output_config.format`](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-outputs).
 
 ### Blok thinking tidak dapat dimodifikasi
 
@@ -447,7 +447,7 @@ Jika pesan assistant terbaru berisi blok `thinking` atau `redacted_thinking` yan
 `thinking` or `redacted_thinking` blocks in the latest assistant message cannot be modified. These blocks must remain as they were in the original response.
 ```
 
-Dengan penggunaan alat (tool use), setiap blok `thinking` dan `redacted_thinking` dari giliran assistant harus dikirim kembali persis seperti yang diterima, termasuk blok yang field `thinking`-nya kosong. Kirim kembali blok thinking tanpa perubahan, dan jika aplikasi Anda menyaring blok konten berdasarkan tipe sebelum mengirim ulang, sertakan baik `thinking` maupun `redacted_thinking`. Lihat [Pemecahan masalah thinking](/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-blocks-modified), [Mempertahankan blok thinking](/docs/id/build-with-claude/thinking#preserving-thinking-blocks), dan [Output thinking pada Claude Fable 5 dan Claude Mythos 5](/docs/id/build-with-claude/thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5).
+Dengan penggunaan alat (tool use), setiap blok `thinking` dan `redacted_thinking` dari giliran assistant harus dikirim kembali persis seperti yang diterima, termasuk blok yang field `thinking`-nya kosong. Kirim kembali blok thinking tanpa perubahan, dan jika aplikasi Anda menyaring blok konten berdasarkan tipe sebelum mengirim ulang, sertakan baik `thinking` maupun `redacted_thinking`. Lihat [Pemecahan masalah thinking](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-blocks-modified), [Mempertahankan blok thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks), dan [Output thinking pada Claude Fable 5 dan Claude Mythos 5](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5).
 
 ### Extended thinking tidak didukung
 
@@ -457,7 +457,7 @@ Model Claude 4.7 dan yang lebih baru telah menghapus "extended thinking" (pemiki
 "thinking.type.enabled" is not supported for this model. Use "thinking.type.adaptive" and "output_config.effort" to control thinking behavior.
 ```
 
-Sebagai gantinya, gunakan [adaptive thinking](/docs/id/build-with-claude/thinking). [Migrasi ke adaptive thinking](/docs/id/build-with-claude/extended-thinking#migrating-to-adaptive-thinking) menunjukkan pemetaan parameter, dan [Pemecahan masalah thinking](/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-type-enabled) membahas perbaikan berdasarkan gejala.
+Sebagai gantinya, gunakan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking). [Migrasi ke adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#migrating-to-adaptive-thinking) menunjukkan pemetaan parameter, dan [Pemecahan masalah thinking](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-type-enabled) membahas perbaikan berdasarkan gejala.
 
 ### Adaptive thinking tidak didukung
 
@@ -467,7 +467,7 @@ Model yang hanya mendukung pemikiran diperpanjang (model Claude 4.5 dan yang leb
 adaptive thinking is not supported on this model
 ```
 
-Gunakan `thinking: {"type": "enabled", "budget_tokens": N}` pada model-model ini; lihat [Extended thinking](/docs/id/build-with-claude/extended-thinking) untuk konfigurasinya dan [Pemecahan masalah thinking](/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-type-adaptive) untuk perbaikan berdasarkan gejala.
+Gunakan `thinking: {"type": "enabled", "budget_tokens": N}` pada model-model ini; lihat [Extended thinking](https://platform.claude.com/docs/id/build-with-claude/extended-thinking) untuk konfigurasinya dan [Pemecahan masalah thinking](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-type-adaptive) untuk perbaikan berdasarkan gejala.
 
 ### Thinking tidak dapat dinonaktifkan
 
@@ -477,24 +477,24 @@ Pada Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), dan [Cl
 "thinking.type.disabled" is not supported for this model. Thinking defaults to adaptive mode when not specified; use "thinking.type.enabled" with "budget_tokens" for extended thinking.
 ```
 
-Pada Claude Fable 5 dan Claude Mythos 5, saran dari pesan error itu sendiri yaitu `"thinking.type.enabled"` juga ditolak. Hilangkan parameter `thinking` dan permintaan akan berjalan dengan adaptive thinking. Untuk menjaga konten thinking tidak muncul di respons tanpa mematikan thinking, tetapkan `display: "omitted"` pada konfigurasi thinking. Lihat [Pemecahan masalah thinking](/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-type-disabled).
+Pada Claude Fable 5 dan Claude Mythos 5, saran dari pesan error itu sendiri yaitu `"thinking.type.enabled"` juga ditolak. Hilangkan parameter `thinking` dan permintaan akan berjalan dengan adaptive thinking. Untuk menjaga konten thinking tidak muncul di respons tanpa mematikan thinking, tetapkan `display: "omitted"` pada konfigurasi thinking. Lihat [Pemecahan masalah thinking](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-type-disabled).
 
 ### Outbound web identity federation dinonaktifkan (Claude Platform di AWS)
 
-Jika setiap permintaan ke [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws) mengembalikan `"Outbound web identity federation is disabled for your account"`, jalankan `aws iam enable-outbound-web-identity-federation` sekali per akun AWS. Lihat [Mengaktifkan outbound web identity federation](/docs/id/build-with-claude/claude-platform-on-aws#enable-outbound-web-identity-federation) untuk detailnya.
+Jika setiap permintaan ke [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) mengembalikan `"Outbound web identity federation is disabled for your account"`, jalankan `aws iam enable-outbound-web-identity-federation` sekali per akun AWS. Lihat [Mengaktifkan outbound web identity federation](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#enable-outbound-web-identity-federation) untuk detailnya.
 
 ## Langkah selanjutnya
 
 <CardGroup cols={3}>
-  <Card title="Memicu routine melalui API" icon="play" href="/docs/id/api/claude-code/routines-fire">
+  <Card title="Memicu routine melalui API" icon="play" href="https://platform.claude.com/docs/id/api/claude-code/routines-fire">
     Mulai sesi routine Claude Code sesuai permintaan dengan mengirim permintaan POST yang terautentikasi.
   </Card>
 
-  <Card title="Batas laju" icon="gauge" href="/docs/id/api/rate-limits">
+  <Card title="Batas laju" icon="gauge" href="https://platform.claude.com/docs/id/api/rate-limits">
     Untuk mengurangi penyalahgunaan dan mengelola kapasitas pada API, terdapat batasan pada seberapa banyak sebuah organisasi dapat menggunakan Claude API.
   </Card>
 
-  <Card title="Streaming pesan" icon="lightning" href="/docs/id/build-with-claude/streaming">
+  <Card title="Streaming pesan" icon="lightning" href="https://platform.claude.com/docs/id/build-with-claude/streaming">
     Lakukan streaming respons Messages API secara bertahap dengan server-sent events, termasuk delta teks, penggunaan alat, dan pemikiran diperpanjang.
   </Card>
 </CardGroup>

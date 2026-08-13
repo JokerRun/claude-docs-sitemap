@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 1f31dd22ceb95aa30bd9fe9f46dac1b01e3ecab25c01c069d0f5dbe3615fdf59
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: b624fb0de9751bdf2baeb35dda57249463a86ff874c0e800f43144317b22323c
+---
+
+---
+title: Workspaces
+url: https://platform.claude.com/docs/en/api/admin/workspaces
 ---
 
 # Workspaces

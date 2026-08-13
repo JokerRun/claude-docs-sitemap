@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/chat_projects
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: c0b0ea33e7d15cf2f598ba927ccff80643e7e233a063f5a1f6d9099e7ba4efad
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 2894de744a50e8068a217e617e509b2b22d4c710928edcec78ca14a4db5af5ff
+---
+
+---
+title: Chat Projects
+url: https://platform.claude.com/docs/en/api/admin/analytics/chat_projects
 ---
 
 # Chat Projects

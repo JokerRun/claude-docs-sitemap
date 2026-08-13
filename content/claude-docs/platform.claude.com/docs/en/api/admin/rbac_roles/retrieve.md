@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rbac_roles/retrieve
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: e03c6fbaa4a54dc0030cb4907d3323126d4ee758f9b48eee937d98e24b3f6090
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 2182770456290349935c67f9d771cc8afea8e59b74c78419a6519d8658613cd0
+---
+
+---
+title: Get RBAC Role
+url: https://platform.claude.com/docs/en/api/admin/rbac_roles/retrieve
 ---
 
 ## Get RBAC Role

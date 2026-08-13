@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/list
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 8be6813e155f96f22a22d227cf6ef759b9c778d85c57ae2e8ba6cda3dcb55915
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 5315a815cc4604fde1478137f9472fde524944e792614d98e607672134e768d5
+---
+
+---
+title: List Message Batches
+url: https://platform.claude.com/docs/en/api/messages/batches/list
 ---
 
 ## List Message Batches

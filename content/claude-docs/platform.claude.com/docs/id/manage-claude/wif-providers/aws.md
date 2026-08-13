@@ -1,23 +1,23 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/aws
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 88aae34c408f45ef989c13551fd7324711d2ccb619eee42696ad23e4b3579b3e
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 8724e35e7775708fd73733b8ac4fee6b3062df8c3f3722ff2ee02ad48fb7d95f
 ---
 
-# Menggunakan WIF dengan AWS
-
-Autentikasi workload AWS di Lambda, EC2, ECS, atau EKS ke Claude API dengan Workload Identity Federation dan token identitas yang diterbitkan STS.
-
+---
+title: Menggunakan WIF dengan AWS
+url: https://platform.claude.com/docs/id/manage-claude/wif-providers/aws
+description: Autentikasi workload AWS di Lambda, EC2, ECS, atau EKS ke Claude API dengan Workload Identity Federation dan token identitas yang diterbitkan STS.
 ---
 
-Workload AWS dapat melakukan autentikasi ke Claude API tanpa kunci API statis dengan menukarkan token identitas OIDC yang ditandatangani AWS. Jalur yang direkomendasikan memanggil API AWS STS [`GetWebIdentityToken`](https://docs.aws.amazon.com/STS/latest/APIReference/API_GetWebIdentityToken.html), yang berfungsi di mana pun workload memiliki kredensial AWS: Lambda, EC2, ECS, dan EKS. Workload EKS dapat sebagai alternatif menggunakan [jalur projected-token Kubernetes](#use-eks-projected-service-account-tokens), yang memiliki lebih sedikit langkah konfigurasi tetapi hanya berfungsi di dalam pod.
+Workload AWS dapat melakukan autentikasi ke Claude API tanpa kunci API statis dengan menukarkan token identitas OIDC yang ditandatangani AWS. Jalur yang direkomendasikan memanggil API AWS STS [`GetWebIdentityToken`](https://docs.aws.amazon.com/STS/latest/APIReference/API_GetWebIdentityToken.html), yang berfungsi di mana pun workload memiliki kredensial AWS: Lambda, EC2, ECS, dan EKS. Workload EKS dapat sebagai alternatif menggunakan [jalur projected-token Kubernetes](https://platform.claude.com/docs/id/manage-claude/wif-providers/aws#use-eks-projected-service-account-tokens), yang memiliki lebih sedikit langkah konfigurasi tetapi hanya berfungsi di dalam pod.
 
-Panduan ini menunjukkan kedua jalur tersebut. Untuk konsep yang mendasarinya (service account, federation issuer, dan federation rule), lihat [Workload Identity Federation](/docs/id/manage-claude/workload-identity-federation).
+Panduan ini menunjukkan kedua jalur tersebut. Untuk konsep yang mendasarinya (service account, federation issuer, dan federation rule), lihat [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation).
 
 ## Prasyarat
 
-* Pemahaman tentang [konsep WIF](/docs/id/manage-claude/workload-identity-federation#concepts): service account, federation issuer, dan federation rule.
+* Pemahaman tentang [konsep WIF](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#concepts): service account, federation issuer, dan federation rule.
 * Workload AWS (pod EKS, task ECS, fungsi Lambda, atau instance EC2) dengan IAM role yang terpasang.
 * CLI `aws` atau AWS SDK yang tersedia di dalam workload.
 * Izin untuk membuat service account, federation issuer, dan federation rule di Claude Console untuk organisasi Anthropic Anda.
@@ -69,7 +69,7 @@ API AWS STS `GetWebIdentityToken` mengembalikan token OIDC yang ditandatangani o
 
 Di Claude Console, buka **Settings → Workload identity**, klik **Connect workload**, dan pilih tile **AWS**. Wizard akan memandu Anda melalui pendaftaran issuer, pembuatan service account, dan pembuatan federation rule.
 
-Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut baik saat Anda memasukkannya di wizard maupun saat mengirimkannya ke [Admin API](/docs/id/manage-claude/wif-admin-api):
+Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut baik saat Anda memasukkannya di wizard maupun saat mengirimkannya ke [Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api):
 
 **Federation issuer:** Daftarkan URL issuer STS per-akun yang Anda salin pada langkah sebelumnya. URL ini mengekspos endpoint JWKS publik, jadi gunakan mode discovery.
 
@@ -438,11 +438,11 @@ curl -sS https://api.anthropic.com/v1/oauth/token \
   }" | jq
 ```
 
-Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Pada `400 invalid_grant`, lihat [Memecahkan masalah pertukaran yang gagal](/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi AWS adalah ketidakcocokan `iss` (URL issuer STS per-akun harus sama persis dengan `issuer_url` yang terdaftar).
+Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Pada `400 invalid_grant`, lihat [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi AWS adalah ketidakcocokan `iss` (URL issuer STS per-akun harus sama persis dengan `issuer_url` yang terdaftar).
 
 ## Menggunakan token service-account terproyeksi EKS
 
-Jika workload Anda berjalan di pod EKS, Anda dapat melewati panggilan STS dan membaca token service-account yang diproyeksikan Kubernetes langsung dari disk. Kubernetes secara native memproyeksikan token yang kompatibel dengan OIDC ke dalam pod, dan SDK dapat membacanya dari path file, sehingga tidak diperlukan callable token-provider. Jalur ini memiliki dua langkah konfigurasi AWS lebih sedikit dibandingkan jalur STS tetapi hanya berfungsi di dalam pod; mekanisme yang mendasarinya sama dengan [integrasi Kubernetes generik](/docs/id/manage-claude/wif-providers/kubernetes).
+Jika workload Anda berjalan di pod EKS, Anda dapat melewati panggilan STS dan membaca token service-account yang diproyeksikan Kubernetes langsung dari disk. Kubernetes secara native memproyeksikan token yang kompatibel dengan OIDC ke dalam pod, dan SDK dapat membacanya dari path file, sehingga tidak diperlukan callable token-provider. Jalur ini memiliki dua langkah konfigurasi AWS lebih sedikit dibandingkan jalur STS tetapi hanya berfungsi di dalam pod; mekanisme yang mendasarinya sama dengan [integrasi Kubernetes generik](https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes).
 
 Jalur ini juga memerlukan klaster EKS dengan [IAM OIDC provider yang diaktifkan](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html) dan akses `kubectl` ke klaster.
 
@@ -537,7 +537,7 @@ Jalur ini juga memerlukan klaster EKS dengan [IAM OIDC provider yang diaktifkan]
 
 Di Claude Console, buka **Settings → Workload identity**, klik **Connect workload**, dan pilih tile **AWS**. Wizard akan memandu Anda melalui pendaftaran issuer, pembuatan service account, dan pembuatan federation rule.
 
-Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut baik saat Anda memasukkannya di wizard maupun saat mengirimkannya ke [Admin API](/docs/id/manage-claude/wif-admin-api):
+Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut baik saat Anda memasukkannya di wizard maupun saat mengirimkannya ke [Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api):
 
 **Federation issuer:** Issuer EKS mengekspos endpoint JWKS publik, jadi gunakan mode discovery. URL issuer harus sama persis dengan klaim `iss` pada token. Daftarkan satu issuer per klaster.
 
@@ -792,7 +792,7 @@ curl -sS https://api.anthropic.com/v1/oauth/token \
   }" | jq
 ```
 
-Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Pada `400 invalid_grant`, lihat [Memecahkan masalah pertukaran yang gagal](/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi EKS adalah `aud` pada token yang diproyeksikan tidak cocok dengan rule (proyeksikan token dengan `audience: https://api.anthropic.com`, bukan default IRSA `sts.amazonaws.com`).
+Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Pada `400 invalid_grant`, lihat [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi EKS adalah `aud` pada token yang diproyeksikan tidak cocok dengan rule (proyeksikan token dengan `audience: https://api.anthropic.com`, bukan default IRSA `sts.amazonaws.com`).
 
 ## Batasi cakupan rule Anda
 
@@ -809,5 +809,5 @@ Kunci blok `match` pada rule ke cakupan tersempit yang sesuai dengan kasus pengg
 
 ## Langkah selanjutnya
 
-* Tinjau [referensi WIF](/docs/id/manage-claude/wif-reference) untuk referensi lengkap tentang urutan prioritas kredensial, konfigurasi profil, dan pencocokan rule.
-* Untuk klaster Kubernetes yang dikelola sendiri dan tidak berada di EKS, lihat [Menggunakan WIF dengan Kubernetes](/docs/id/manage-claude/wif-providers/kubernetes).
+* Tinjau [referensi WIF](https://platform.claude.com/docs/id/manage-claude/wif-reference) untuk referensi lengkap tentang urutan prioritas kredensial, konfigurasi profil, dan pencocokan rule.
+* Untuk klaster Kubernetes yang dikelola sendiri dan tidak berada di EKS, lihat [Menggunakan WIF dengan Kubernetes](https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes).

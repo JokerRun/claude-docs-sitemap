@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/okta
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 65cf6331818a91dba30323619cc8488941547268b861d1d7bfee4537b0e524b6
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 1fb7140117ae0540840bebe9a2d47179d44274b7e424fa337d9252a734e2205f
 ---
 
-# Gunakan WIF dengan Okta
-
-Federasikan identitas aplikasi layanan Okta ke Claude API dengan Workload Identity Federation.
-
+---
+title: Gunakan WIF dengan Okta
+url: https://platform.claude.com/docs/id/manage-claude/wif-providers/okta
+description: Federasikan identitas aplikasi layanan Okta ke Claude API dengan Workload Identity Federation.
 ---
 
 Okta dapat bertindak sebagai penyedia identitas workload dengan menerbitkan token akses OIDC ke **aplikasi layanan** melalui grant OAuth 2.0 `client_credentials`. Workload Anda mengautentikasi ke Okta (biasanya dengan `private_key_jwt`, sehingga tidak ada rahasia bersama yang disimpan), menerima "JSON Web Token" (token web JSON), atau JWT, yang telah ditandatangani, dan menukarkan JWT tersebut dengan Anthropic untuk mendapatkan token akses berumur pendek.
@@ -23,7 +23,7 @@ Ada banyak cara untuk mengonfigurasi dan mengautentikasi ke Okta yang berada di 
 
 ## Prasyarat
 
-* Pemahaman tentang [konsep WIF](/docs/id/manage-claude/workload-identity-federation#concepts): service account, federation issuer, dan federation rule.
+* Pemahaman tentang [konsep WIF](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#concepts): service account, federation issuer, dan federation rule.
 * Organisasi Okta dengan API Access Management yang diaktifkan (diperlukan untuk custom authorization server).
 * Izin untuk membuat service account, federation issuer, dan federation rule di Claude Console untuk organisasi Anthropic Anda.
 * Workload yang dapat meminta token dari endpoint `/v1/token` Okta dan menjangkau `api.anthropic.com`.
@@ -50,7 +50,7 @@ Untuk aplikasi layanan yang menggunakan `client_credentials`, Okta mengatur klai
 
 Di Claude Console, buka **Settings → Workload identity**, klik **Connect workload**, dan pilih **Custom OIDC**. Wizard akan memandu Anda melalui pendaftaran issuer, pembuatan service account, dan pembuatan federation rule.
 
-Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut baik saat Anda memasukkannya di wizard maupun saat mengirimkannya ke [Admin API](/docs/id/manage-claude/wif-admin-api):
+Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut baik saat Anda memasukkannya di wizard maupun saat mengirimkannya ke [Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api):
 
 **Federation issuer:** Gunakan URL custom authorization server Okta Anda dan mode discovery. Anthropic membaca dokumen discovery `.well-known/openid-configuration` Okta dan mengambil JWKS dari `jwks_uri` yang diiklankannya.
 
@@ -463,7 +463,7 @@ Setiap tab SDK menunjukkan pola callable: SDK Anthropic memanggil penyedia token
 
 ## Verifikasi pengaturan
 
-Pertukaran yang berhasil mengembalikan `access_token` yang dimulai dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Pada `400 invalid_grant`, lihat [Memecahkan masalah pertukaran yang gagal](/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi Okta adalah ketidakcocokan `issuer_url` (harus menyertakan path `/oauth2/<auth-server-id>`; authorization server org Okta tidak dapat digunakan).
+Pertukaran yang berhasil mengembalikan `access_token` yang dimulai dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Pada `400 invalid_grant`, lihat [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi Okta adalah ketidakcocokan `issuer_url` (harus menyertakan path `/oauth2/<auth-server-id>`; authorization server org Okta tidak dapat digunakan).
 
 ## Batasi cakupan rule Anda
 
@@ -480,5 +480,5 @@ Kunci blok `match` pada rule ke cakupan tersempit yang sesuai dengan kasus pengg
 
 ## Langkah selanjutnya
 
-* Tinjau [referensi WIF](/docs/id/manage-claude/wif-reference) untuk urutan resolusi kredensial lengkap dan konfigurasi profil.
-* Lihat [referensi WIF](/docs/id/manage-claude/wif-reference#rule-matching-semantics) untuk mencocokkan pada custom claim Okta dengan ekspresi CEL.
+* Tinjau [referensi WIF](https://platform.claude.com/docs/id/manage-claude/wif-reference) untuk urutan resolusi kredensial lengkap dan konfigurasi profil.
+* Lihat [referensi WIF](https://platform.claude.com/docs/id/manage-claude/wif-reference#rule-matching-semantics) untuk mencocokkan pada custom claim Okta dengan ekspresi CEL.

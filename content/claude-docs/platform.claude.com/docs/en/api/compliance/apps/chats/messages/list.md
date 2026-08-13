@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/messages/list
-fetched_at: 2026-07-08T03:08:53.943475Z
-sha256: 1d584fb7e2394a9d114bb612abff23af6c578408c8242734a7a9ba5186cac240
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 3c0c236d75b3d8d4a2969fec68a87d69b359efb50f0b5f8fd749e8f393269416
+---
+
+---
+title: Get chat messages
+url: https://platform.claude.com/docs/en/api/compliance/apps/chats/messages/list
 ---
 
 ## Get chat messages

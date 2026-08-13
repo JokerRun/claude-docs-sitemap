@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 3165980feadaa849835ea5a54e1045acd1dda6b528a59e31ceae18b71c8baeda
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: c765b373ed70303c70280c0662d8b7b8e9e99dd47e02346d3517769c2a3b330f
+---
+
+---
+title: MCP Tunnels
+url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels
 ---
 
 # MCP Tunnels
@@ -646,7 +651,7 @@ curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/certificates 
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN" \
     -d '{
-          "ca_certificate_pem": "-----BEGIN CERTIFICATE-----\\nMIIBexampleEXAMPLEexampleEXAMPLEexampleEXAMPLEexampleEXAMPLEexa\\n...illustrative placeholder, not a real certificate...\\n-----END CERTIFICATE-----\\n"
+          "ca_certificate_pem": "-----BEGIN CERTIFICATE-----\nMIIBexampleEXAMPLEexampleEXAMPLEexampleEXAMPLEexampleEXAMPLEexa\n...illustrative placeholder, not a real certificate...\n-----END CERTIFICATE-----\n"
         }'
 ```
 

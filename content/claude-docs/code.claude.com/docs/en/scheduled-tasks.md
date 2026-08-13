@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/scheduled-tasks
-fetched_at: 2026-08-12T02:56:30.865670Z
-sha256: 18ac07d33bfbda8d303a4924d976fb186f06c9f6b3911e1c72ecdcdf909da3c4
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: e2cc7df66774de33509ca7ab32f87c2323deae521b70bd4090b895d2df1d7220
 ---
 
 > ## Documentation Index
@@ -81,7 +81,7 @@ When you ask for a dynamic `/loop` schedule, Claude may use the [Monitor tool](/
 A dynamically scheduled loop appears in your [scheduled task list](#manage-scheduled-tasks) like any other task, so you can list or cancel it the same way. The [jitter rules](#jitter) don't apply to it, but the [seven-day expiry](#seven-day-expiry) does: the loop ends automatically seven days after you start it.
 
 <Note>
-  On Amazon Bedrock, Claude Platform on AWS, Google Cloud's Agent Platform, and Microsoft Foundry, a prompt with no interval runs on a fixed 10-minute schedule instead.
+  On Amazon Bedrock, Claude Platform on AWS, Google Cloud's Agent Platform, and Microsoft Foundry, a prompt with no interval runs on a fixed 10-minute schedule instead. Claude Code also uses that fixed schedule when you turn off [feature-flag fetching](/docs/en/env-vars#features-that-need-feature-flag-fetching).
 </Note>
 
 ### Run the built-in maintenance prompt
@@ -101,7 +101,7 @@ Claude does not start new initiatives outside that scope, and irreversible actio
 A bare `/loop` runs this prompt at a [dynamically chosen interval](#let-claude-choose-the-interval). Add an interval, for example `/loop 15m`, to run it on a fixed schedule instead. To replace the built-in prompt with your own default, see [Customize the default prompt with loop.md](#customize-the-default-prompt-with-loop-md).
 
 <Note>
-  On Amazon Bedrock, Claude Platform on AWS, Google Cloud's Agent Platform, and Microsoft Foundry, `/loop` with no prompt prints the usage message instead of running the maintenance prompt.
+  On Amazon Bedrock, Claude Platform on AWS, Google Cloud's Agent Platform, and Microsoft Foundry, `/loop` with no prompt prints the usage message instead of running the maintenance prompt. The same happens when you turn off [feature-flag fetching](/docs/en/env-vars#features-that-need-feature-flag-fetching).
 </Note>
 
 ### Customize the default prompt with loop.md
@@ -127,7 +127,7 @@ quiet, say so in one line.
 Edits to `loop.md` take effect on the next iteration, so you can refine the instructions while a loop is running. When no `loop.md` exists in either location, the loop falls back to the built-in maintenance prompt. Keep the file concise: content beyond 25,000 bytes is truncated.
 
 <Note>
-  On Amazon Bedrock, Claude Platform on AWS, Google Cloud's Agent Platform, and Microsoft Foundry, `loop.md` isn't read and `/loop` with no prompt prints the usage message instead.
+  On Amazon Bedrock, Claude Platform on AWS, Google Cloud's Agent Platform, and Microsoft Foundry, `loop.md` isn't read and `/loop` with no prompt prints the usage message instead. The same happens when you turn off [feature-flag fetching](/docs/en/env-vars#features-that-need-feature-flag-fetching).
 </Note>
 
 ### Stop a loop

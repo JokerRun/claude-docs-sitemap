@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/list_effective
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 4f046699fd52db621af04a1f4542fd2c929db9e6ae216eb56c15c0b60b89ee26
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: addd372ef7b6f6c4303e23963ddcb1d127b2c2fc71b1d1a50695045f0b89060a
+---
+
+---
+title: List Effective Spend Limits
+url: https://platform.claude.com/docs/en/api/admin/spend_limits/list_effective
 ---
 
 ## List Effective Spend Limits

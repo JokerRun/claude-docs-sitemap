@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/retrieve
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: a91814f0eb90706045cd2dc4d59bf10017c24617f56e9a732aceab35ab156fe3
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: ffcd26da49c6ad36884f98d826093332bd197bdd2f042e64c6d9daabd042a056
+---
+
+---
+title: Retrieve a Message Batch
+url: https://platform.claude.com/docs/en/api/messages/batches/retrieve
 ---
 
 ## Retrieve a Message Batch

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/delete
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 1fdae42af692219072cb029032a0ed10c62757f0c2ae6a25000fe18626f95538
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: fde22d53154614dbc3bace1f5b6bd954235fa71c1aeeb640a04d7dd8f4f708bd
+---
+
+---
+title: Delete External Key
+url: https://platform.claude.com/docs/en/api/admin/external_keys/delete
 ---
 
 ## Delete External Key

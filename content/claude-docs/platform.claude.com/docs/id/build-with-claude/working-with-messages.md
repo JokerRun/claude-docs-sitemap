@@ -1,34 +1,34 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 3987ee0449747e784b475814abe37fe81adf9b77ca69917a315d15fce2f874d0
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 63367eb8a323bfb89e1bdfba1c0ef030cc935277042218abaa45d8ede2a10590
 ---
 
-# Menggunakan Messages API
-
-Pola praktis dan contoh untuk menggunakan Messages API secara efektif
-
+---
+title: Menggunakan Messages API
+url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
+description: Pola praktis dan contoh untuk menggunakan Messages API secara efektif
 ---
 
 Anthropic menawarkan dua cara untuk membangun dengan Claude, masing-masing cocok untuk kasus penggunaan yang berbeda:
 
-|                           | Messages API                                                                 | Claude Managed Agents                                                                          |
-| ------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| **Apa itu**               | Akses langsung untuk memberikan prompt ke model                              | Kerangka agen yang sudah dibangun dan dapat dikonfigurasi, berjalan di infrastruktur terkelola |
-| **Paling cocok untuk**    | Loop agen kustom dan kontrol yang sangat terperinci                          | Tugas yang berjalan lama dan pekerjaan asinkron                                                |
-| **Pelajari lebih lanjut** | [Dokumentasi Messages API](/docs/id/build-with-claude/working-with-messages) | [Dokumentasi Claude Managed Agents](/docs/id/managed-agents/overview)                          |
+|                           | Messages API                                                                                            | Claude Managed Agents                                                                            |
+| ------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| **Apa itu**               | Akses langsung untuk memberikan prompt ke model                                                         | Kerangka agen yang sudah dibangun dan dapat dikonfigurasi, berjalan di infrastruktur terkelola   |
+| **Paling cocok untuk**    | Loop agen kustom dan kontrol yang sangat terperinci                                                     | Tugas yang berjalan lama dan pekerjaan asinkron                                                  |
+| **Pelajari lebih lanjut** | [Dokumentasi Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) | [Dokumentasi Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) |
 
-Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permintaan dasar, percakapan multi-giliran, teknik prefill, dan kemampuan vision. Untuk spesifikasi API lengkap, lihat [referensi Messages API](/docs/id/api/messages/create).
+Panduan ini membahas pola umum untuk bekerja dengan Messages API, termasuk permintaan dasar, percakapan multi-giliran, teknik prefill, dan kemampuan vision. Untuk spesifikasi API lengkap, lihat [referensi Messages API](https://platform.claude.com/docs/id/api/messages/create).
 
 <Note>
-  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
+  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 ## Permintaan dan respons dasar
 
 <Note>
-  Parameter sampling `temperature`, `top_p`, dan `top_k` tidak didukung pada model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview. Mengaturnya ke nilai non-default akan mengembalikan error 400. Hilangkan parameter tersebut dari payload permintaan dan gunakan prompting untuk memandu perilaku model sebagai gantinya. Lihat [panduan migrasi](/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-47).
+  Parameter sampling `temperature`, `top_p`, dan `top_k` tidak didukung pada model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview. Menyetelnya ke nilai non-default akan mengembalikan error 400. Hilangkan parameter tersebut dari payload permintaan dan gunakan prompting untuk memandu perilaku model sebagai gantinya. Lihat [panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-47).
 </Note>
 
 <CodeGroup>
@@ -162,11 +162,11 @@ Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permi
 }
 ```
 
-Respons penolakan (`stop_reason: "refusal"`) juga menyertakan objek `stop_details` yang mengidentifikasi kategori kebijakan yang memicu penolakan tersebut, pada setiap model. Lihat [Menangani stop reason](/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk referensi field dan contoh kode penanganannya.
+Respons penolakan (`stop_reason: "refusal"`) juga menyertakan objek `stop_details` yang mengidentifikasi kategori kebijakan yang memicu penolakan, pada setiap model. Lihat [Menangani stop reason](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk referensi field dan contoh kode penanganan.
 
 ## Beberapa giliran percakapan
 
-Messages API bersifat stateless, yang berarti Anda selalu mengirimkan riwayat percakapan lengkap ke API. Anda dapat menggunakan pola ini untuk membangun percakapan dari waktu ke waktu. Giliran percakapan sebelumnya tidak harus benar-benar berasal dari Claude. Anda dapat menggunakan pesan `assistant` sintetis.
+Messages API bersifat stateless, yang berarti Anda selalu mengirimkan seluruh riwayat percakapan ke API. Anda dapat menggunakan pola ini untuk membangun percakapan dari waktu ke waktu. Giliran percakapan sebelumnya tidak harus benar-benar berasal dari Claude. Anda dapat menggunakan pesan `assistant` sintetis.
 
 <CodeGroup>
   ```bash cURL
@@ -331,18 +331,18 @@ Messages API bersifat stateless, yang berarti Anda selalu mengirimkan riwayat pe
 
 ### Peran system dalam pesan
 
-Pada Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), Claude Opus 4.8, dan Claude Opus 5, Anda dapat menyertakan pesan dengan `"role": "system"` setelah giliran user (tunduk pada [aturan penempatan](/docs/id/build-with-claude/mid-conversation-system-messages#limitations)) untuk menambahkan instruksi sistem baru di tengah percakapan. Pesan `system` tidak dapat menjadi entri pertama dalam `messages`; gunakan field `system` tingkat atas untuk instruksi yang berlaku sejak awal.
+Pada Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), Claude Opus 4.8, dan Claude Opus 5, Anda dapat menyertakan pesan dengan `"role": "system"` setelah giliran user (tunduk pada [aturan penempatan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations)) untuk menambahkan instruksi sistem baru di tengah percakapan. Pesan `system` tidak boleh menjadi entri pertama dalam `messages`; gunakan field `system` tingkat atas untuk instruksi yang berlaku sejak awal.
 
-Pesan sistem di tengah percakapan memiliki otoritas yang sama dengan field `system` tingkat atas, tetapi karena ditambahkan di akhir riwayat pesan, pesan tersebut tidak membatalkan prefix yang telah di-cache sebelumnya. Gunakan field `system` tingkat atas untuk instruksi yang harus berlaku sejak giliran pertama, dan pesan sistem di tengah percakapan untuk instruksi yang baru menjadi relevan kemudian.
+Pesan sistem di tengah percakapan memiliki otoritas yang sama dengan field `system` tingkat atas, tetapi karena ditambahkan di akhir riwayat pesan, pesan tersebut tidak membatalkan prefiks yang di-cache yang datang sebelumnya. Gunakan field `system` tingkat atas untuk instruksi yang harus berlaku sejak giliran pertama, dan pesan sistem di tengah percakapan untuk instruksi yang baru menjadi relevan kemudian.
 
-Lihat [Pesan sistem di tengah percakapan](/docs/id/build-with-claude/mid-conversation-system-messages) untuk panduan lengkap, termasuk cara menggabungkannya dengan [caching prompt](/docs/id/build-with-claude/prompt-caching).
+Lihat [Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) untuk panduan lengkap, termasuk cara menggabungkannya dengan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
 
 ## Mengisi awal respons Claude
 
-Anda dapat mengisi terlebih dahulu sebagian respons Claude pada posisi terakhir dalam daftar pesan input. Gunakan teknik ini untuk membentuk respons Claude. Contoh berikut menggunakan `"max_tokens": 1` untuk mendapatkan satu jawaban pilihan ganda dari Claude.
+Anda dapat mengisi awal sebagian respons Claude di posisi terakhir dari daftar pesan input. Gunakan teknik ini untuk membentuk respons Claude. Contoh berikut menggunakan `"max_tokens": 1` untuk mendapatkan satu jawaban pilihan ganda dari Claude.
 
 <Warning>
-  Prefilling tidak didukung pada model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing). Permintaan yang menggunakan prefill dengan model-model ini akan mengembalikan error 400. Sebagai gantinya, gunakan [structured outputs](/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, atau instruksi prompt sistem. Lihat [panduan migrasi](/docs/id/about-claude/models/migration-guide) untuk pola migrasi.
+  Prefilling tidak didukung pada model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing). Permintaan yang menggunakan prefill dengan model-model ini akan mengembalikan error 400. Gunakan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, atau instruksi prompt sistem, sebagai gantinya. Lihat [panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide) untuk pola migrasi.
 </Warning>
 
 <CodeGroup>
@@ -509,14 +509,14 @@ Anda dapat mengisi terlebih dahulu sebagian respons Claude pada posisi terakhir 
 
 ## Vision
 
-Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan gambar menggunakan tipe sumber `base64`, `url`, atau `file`. Tipe sumber `file` merujuk pada gambar yang diunggah melalui [Files API](/docs/id/build-with-claude/files). Tipe media yang didukung adalah `image/jpeg`, `image/png`, `image/gif`, dan `image/webp`. Lihat [panduan vision](/docs/id/build-with-claude/vision) untuk detail lebih lanjut.
+Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan gambar menggunakan tipe sumber `base64`, `url`, atau `file`. Tipe sumber `file` mereferensikan gambar yang diunggah melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files). Tipe media yang didukung adalah `image/jpeg`, `image/png`, `image/gif`, dan `image/webp`. Lihat [panduan vision](https://platform.claude.com/docs/id/build-with-claude/vision) untuk detail lebih lanjut.
 
 <CodeGroup>
   ```bash cURL
   #!/bin/sh
 
-  # Opsi 1: Gambar yang dikodekan dengan Base64
-  IMAGE_URL="https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
+  # Opsi 1: Gambar yang dienkode Base64
+  IMAGE_URL="https://platform.claude.com/docs/images/vision-example.jpg"
   IMAGE_MEDIA_TYPE="image/jpeg"
   IMAGE_BASE64=$(curl "$IMAGE_URL" | base64 | tr -d '\n')
 
@@ -541,7 +541,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
   }
   EOF
 
-  # Opsi 2: Gambar yang dirujuk melalui URL
+  # Opsi 2: Gambar yang direferensikan melalui URL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -553,7 +553,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
         {"role": "user", "content": [
           {"type": "image", "source": {
             "type": "url",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
+            "url": "https://platform.claude.com/docs/images/vision-example.jpg"
           }},
           {"type": "text", "text": "What is in the above image?"}
         ]}
@@ -562,10 +562,10 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
   ```
 
   ```bash CLI
-  IMAGE_URL="https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
+  IMAGE_URL="https://platform.claude.com/docs/images/vision-example.jpg"
 
-  # Opsi 1: Gambar yang dienkode Base64 (CLI otomatis mengenkode referensi @file biner)
-  curl -s "$IMAGE_URL" -o ./ant.jpg
+  # Opsi 1: Gambar yang di-encode Base64 (CLI otomatis meng-encode referensi @file biner)
+  curl -s "$IMAGE_URL" -o ./vision-example.jpg
 
   ant messages create <<'YAML'
   model: claude-opus-5
@@ -577,7 +577,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
           source:
             type: base64
             media_type: image/jpeg
-            data: "@./ant.jpg"
+            data: "@./vision-example.jpg"
         - type: text
           text: What is in the above image?
   YAML
@@ -602,8 +602,8 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
   import base64
   import httpx
 
-  # Opsi 1: Gambar yang dikodekan Base64
-  image_url = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
+  # Opsi 1: Gambar yang dienkode Base64
+  image_url = "https://platform.claude.com/docs/images/vision-example.jpg"
   image_media_type = "image/jpeg"
   image_data = base64.standard_b64encode(httpx.get(image_url).content).decode("utf-8")
 
@@ -641,7 +641,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
                       "type": "image",
                       "source": {
                           "type": "url",
-                          "url": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg",
+                          "url": "https://platform.claude.com/docs/images/vision-example.jpg",
                       },
                   },
                   {"type": "text", "text": "What is in the above image?"},
@@ -655,9 +655,8 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
   ```typescript TypeScript
   const anthropic = new Anthropic();
 
-  // Opsi 1: Gambar yang dikodekan dalam Base64
-  const imageUrl =
-    "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
+  // Opsi 1: Gambar yang dienkode Base64
+  const imageUrl = "https://platform.claude.com/docs/images/vision-example.jpg";
   const imageMediaType = "image/jpeg";
   const imageArrayBuffer = await (await fetch(imageUrl)).arrayBuffer();
   const imageData = Buffer.from(imageArrayBuffer).toString("base64");
@@ -687,7 +686,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
   });
   console.log(message);
 
-  // Opsi 2: Gambar yang dirujuk melalui URL
+  // Opsi 2: Gambar yang direferensikan melalui URL
   const messageFromUrl = await anthropic.messages.create({
     model: "claude-opus-5",
     max_tokens: 1024,
@@ -699,7 +698,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
             type: "image",
             source: {
               type: "url",
-              url: "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
+              url: "https://platform.claude.com/docs/images/vision-example.jpg"
             }
           },
           {
@@ -722,7 +721,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
   AnthropicClient client = new();
 
   // Opsi 1: Gambar yang dienkode Base64
-  string imageUrl = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
+  string imageUrl = "https://platform.claude.com/docs/images/vision-example.jpg";
 
   using HttpClient httpClient = new();
   byte[] imageBytes = await httpClient.GetByteArrayAsync(imageUrl);
@@ -770,7 +769,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
                   new ContentBlockParam(new ImageBlockParam(
                       new ImageBlockParamSource(new UrlImageSource()
                       {
-                          Url = new Uri("https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"),
+                          Url = "https://platform.claude.com/docs/images/vision-example.jpg",
                       })
                   )),
                   new ContentBlockParam(new TextBlockParam("What is in the above image?")),
@@ -787,7 +786,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
   client := anthropic.NewClient()
 
   // Opsi 1: Gambar yang dienkode Base64
-  imageURL := "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
+  imageURL := "https://platform.claude.com/docs/images/vision-example.jpg"
 
   req, err := http.NewRequest("GET", imageURL, nil)
   if err != nil {
@@ -822,14 +821,14 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
   }
   fmt.Println(message)
 
-  // Opsi 2: Gambar yang dirujuk melalui URL
+  // Opsi 2: Gambar yang direferensikan melalui URL
   messageFromURL, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
   	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
   			anthropic.NewImageBlock(anthropic.URLImageSourceParam{
-  				URL: "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg",
+  				URL: "https://platform.claude.com/docs/images/vision-example.jpg",
   			}),
   			anthropic.NewTextBlock("What is in the above image?"),
   		),
@@ -844,8 +843,8 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
   ```java Java
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-  // Opsi 1: Gambar yang dienkode Base64
-  String imageUrl = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
+  // Opsi 1: Gambar yang di-encode Base64
+  String imageUrl = "https://platform.claude.com/docs/images/vision-example.jpg";
 
   HttpClient httpClient = HttpClient.newHttpClient();
   HttpRequest request = HttpRequest.newBuilder().uri(URI.create(imageUrl)).build();
@@ -879,7 +878,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
       ContentBlockParam.ofImage(
           ImageBlockParam.builder()
               .source(UrlImageSource.builder()
-                  .url("https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg")
+                  .url("https://platform.claude.com/docs/images/vision-example.jpg")
                   .build())
               .build()),
       ContentBlockParam.ofText(
@@ -901,7 +900,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
   $client = new Client();
 
   // Opsi 1: Gambar yang dienkode Base64
-  $image_url = 'https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg';
+  $image_url = 'https://platform.claude.com/docs/images/vision-example.jpg';
   $image_media_type = "image/jpeg";
   $image_data = base64_encode(file_get_contents($image_url));
 
@@ -930,7 +929,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
   );
   echo $message;
 
-  // Opsi 2: Gambar yang dirujuk melalui URL
+  // Opsi 2: Gambar yang direferensikan melalui URL
   $message_from_url = $client->messages->create(
       maxTokens: 1024,
       messages: [
@@ -941,7 +940,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
                       'type' => 'image',
                       'source' => [
                           'type' => 'url',
-                          'url' => 'https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg',
+                          'url' => 'https://platform.claude.com/docs/images/vision-example.jpg',
                       ],
                   ],
                   [
@@ -962,8 +961,8 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
 
   client = Anthropic::Client.new
 
-  # Opsi 1: Gambar yang dikodekan Base64
-  image_url = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
+  # Opsi 1: Gambar yang dienkode Base64
+  image_url = "https://platform.claude.com/docs/images/vision-example.jpg"
   image_media_type = "image/jpeg"
   image_data = Base64.strict_encode64(Net::HTTP.get(URI(image_url)))
 
@@ -1004,7 +1003,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
             type: "image",
             source: {
               type: "url",
-              url: "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
+              url: "https://platform.claude.com/docs/images/vision-example.jpg"
             }
           },
           {
@@ -1021,21 +1020,21 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
 
 ```json Output
 {
-  "id": "msg_01EcyWo6m4hyW8KHs2y2pei5",
+  "id": "msg_011CdKmWtV3oFx1C5yUbf5CY",
   "type": "message",
   "role": "assistant",
   "content": [
     {
       "type": "text",
-      "text": "This image shows an ant, specifically a close-up view of an ant. The ant is shown in detail, with its distinct head, antennae, and legs clearly visible. The image is focused on capturing the intricate details and features of the ant, likely taken with a macro lens to get an extreme close-up perspective."
+      "text": "This image is a beautiful minimalist/flat-design illustration of a sunset landscape. Here's what it contains:\n\n**Sky & Sun:**\n- A warm gradient sky transitioning from golden-yellow at the top to deep orange toward the horizon\n- A large pale yellow sun positioned in the upper-right area\n\n**Birds:**\n- Three small silhouetted birds flying in the upper-left portion of the sky, depicted as simple \"M\" or \"v\" shapes\n\n**Mountains:**\n- Multiple layered mountain peaks in purple and maroon tones\n- The mountains overlap to create depth, with varying shades of dusty purple and deep burgundy\n\n**Water:**\n- A dark purple body of water at the bottom of the image\n- A reflection of the sun shown as horizontal cream/peach colored lines in the center-bottom area\n\nThe overall style is clean, geometric, and uses a warm sunset color palette (oranges, yellows, purples, and maroons), giving it a peaceful, serene aesthetic typical of modern vector/flat design artwork."
     }
   ],
   "model": "claude-opus-5",
   "stop_reason": "end_turn",
   "stop_sequence": null,
   "usage": {
-    "input_tokens": 1551,
-    "output_tokens": 71
+    "input_tokens": 1030,
+    "output_tokens": 350
   }
 }
 ```
@@ -1043,23 +1042,23 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Stop reason dan fallback" icon="list" href="/docs/id/build-with-claude/handling-stop-reasons">
+  <Card title="Stop reason dan fallback" icon="list" href="https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons">
     Tangani setiap nilai `stop_reason` dan tentukan apa yang harus dilakukan ketika respons berakhir.
   </Card>
 
-  <Card title="Penggunaan alat dengan Claude" icon="wrench" href="/docs/id/agents-and-tools/tool-use/overview">
-    Berikan Claude alat untuk memanggil layanan eksternal dan API dari dalam Messages API.
+  <Card title="Penggunaan alat dengan Claude" icon="wrench" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview">
+    Berikan Claude alat untuk memanggil layanan dan API eksternal dari dalam Messages API.
   </Card>
 
-  <Card title="Alat computer use" icon="computer" href="/docs/id/agents-and-tools/tool-use/computer-use-tool">
+  <Card title="Alat computer use" icon="computer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool">
     Kendalikan lingkungan komputer desktop dengan Messages API.
   </Card>
 
-  <Card title="Structured outputs" icon="code-brackets" href="/docs/id/build-with-claude/structured-outputs">
+  <Card title="Structured outputs" icon="code-brackets" href="https://platform.claude.com/docs/id/build-with-claude/structured-outputs">
     Dapatkan output JSON yang terjamin dan tervalidasi skema dari Claude.
   </Card>
 
-  <Card title="Anggaran tugas" icon="gauge" href="/docs/id/build-with-claude/task-budgets">
-    Tetapkan anggaran token yang bersifat anjuran di seluruh loop agentik penuh dengan `output_config.task_budget`.
+  <Card title="Task budget" icon="gauge" href="https://platform.claude.com/docs/id/build-with-claude/task-budgets">
+    Tetapkan anggaran token advisory di seluruh loop agentik penuh dengan `output_config.task_budget`.
   </Card>
 </CardGroup>

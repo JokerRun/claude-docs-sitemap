@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workload-identity-federation
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: f666a200df6bf23ac76903ae7709ddf6e1051a44fcd37af7dea960e55401a017
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 62ac9eb2cc1c2e759d4f318341f6cb07d9603defa0efdd9e8c93d6ac2360397a
 ---
 
-# Workload Identity Federation
-
-Autentikasi workload ke Claude API dengan token identitas berumur pendek dari penyedia identitas Anda sendiri alih-alih kunci API statis berumur panjang.
-
+---
+title: Workload Identity Federation
+url: https://platform.claude.com/docs/id/manage-claude/workload-identity-federation
+description: Autentikasi workload ke Claude API dengan token identitas berumur pendek dari penyedia identitas Anda sendiri alih-alih kunci API statis berumur panjang.
 ---
 
 "Workload Identity Federation" (federasi identitas workload), atau WIF, memungkinkan workload Anda melakukan autentikasi ke Claude API dengan token OpenID Connect (OIDC) berumur pendek alih-alih kunci API `sk-ant-...` berumur panjang. Token tersebut berasal dari "identity provider" (penyedia identitas), atau IdP, yang sudah Anda operasikan: AWS IAM, Google Cloud, atau penerbit OIDC apa pun yang sesuai standar seperti GitHub Actions, Kubernetes, SPIFFE, Microsoft Entra ID, atau Okta.
@@ -48,7 +48,7 @@ Sebuah rule mendefinisikan kondisi pencocokan, target, serta scope otorisasi dan
 
 * **Match:** Kondisi yang harus dipenuhi oleh JWT yang masuk. Anda dapat mencocokkan pada `subject_prefix` (misalnya, `system:serviceaccount:prod:worker`, atau dengan `*` di akhir untuk pencocokan prefiks), `audience` yang persis, peta nilai klaim yang persis, ekspresi `condition` [CEL](https://cel.dev/) untuk logika yang kompleks, atau kombinasi apa pun. Setidaknya salah satu dari `subject_prefix`, `claims`, atau `condition` harus diatur, dan semua matcher yang dikonfigurasi harus lolos agar JWT diterima.
 * **Target:** Service account yang dipetakan oleh JWT yang cocok.
-* **Authorization:** `scope` OAuth yang diberikan pada token yang diterbitkan. Default-nya adalah `workspace:developer`, yang memberikan akses yang sama dengan kunci API yang diterbitkan untuk workspace tersebut. Beberapa produk mengunci scope ketika Anda membuat rule dari alur mereka; misalnya, modal create-tunnel pada [MCP tunnels](/docs/id/agents-and-tools/mcp-tunnels/overview) membuat rule dengan scope `workspace:manage_tunnels`. Lihat [OAuth scopes](/docs/id/manage-claude/wif-reference#oauth-scopes). Rule juga mengatur `token_lifetime_seconds` (60 hingga 86400, default 3600).
+* **Authorization:** `scope` OAuth yang diberikan pada token yang diterbitkan. Default-nya adalah `workspace:developer`, yang memberikan akses yang sama dengan kunci API yang diterbitkan untuk workspace tersebut. Beberapa produk mengunci scope ketika Anda membuat rule dari alur mereka; misalnya, modal create-tunnel pada [MCP tunnels](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview) membuat rule dengan scope `workspace:manage_tunnels`. Lihat [OAuth scopes](https://platform.claude.com/docs/id/manage-claude/wif-reference#oauth-scopes). Rule juga mengatur `token_lifetime_seconds` (60 hingga 86400, default 3600).
 
 Satu issuer dapat memiliki banyak rule: satu per tim, namespace, atau tingkat izin. Rule dievaluasi berdasarkan ID: klien menentukan rule mana yang akan digunakan dalam permintaan pertukaran, dan Anthropic memverifikasi bahwa JWT memenuhi kriteria pencocokan rule tersebut. Tidak ada pencarian rule secara implisit.
 
@@ -82,11 +82,11 @@ Wizard **Connect workload** membuat ketiga sumber daya (issuer, service account,
   </Step>
 
   <Step title="Uji koneksi">
-    Wizard membuat issuer, service account, dan federation rule, lalu mendengarkan pertukaran token yang berhasil selama 15 menit. Picu pertukaran dari workload Anda dalam jendela waktu tersebut (lihat [Autentikasi dari workload Anda](#authenticate-from-your-workload)) untuk mengonfirmasi bahwa penyiapan berfungsi. Jika jendela waktu berlalu, sumber daya tetap ada; Anda dapat menjalankan ulang pengujian dari halaman detail federation rule. Catat ID rule (`fdrl_...`) dan ID service account (`svac_...`) yang dibuat wizard: workload Anda meneruskan keduanya, bersama dengan ID organisasi Anda (dan ID workspace Anda ketika rule mencakup lebih dari satu workspace), dalam setiap permintaan pertukaran token.
+    Wizard membuat issuer, service account, dan federation rule, lalu mendengarkan pertukaran token yang berhasil selama 15 menit. Picu pertukaran dari workload Anda dalam jendela waktu tersebut (lihat [Autentikasi dari workload Anda](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#authenticate-from-your-workload)) untuk mengonfirmasi bahwa penyiapan berfungsi. Jika jendela waktu berlalu, sumber daya tetap ada; Anda dapat menjalankan ulang pengujian dari halaman detail federation rule. Catat ID rule (`fdrl_...`) dan ID service account (`svac_...`) yang dibuat wizard: workload Anda meneruskan keduanya, bersama dengan ID organisasi Anda (dan ID workspace Anda ketika rule mencakup lebih dari satu workspace), dalam setiap permintaan pertukaran token.
   </Step>
 </Steps>
 
-Untuk mengelola sumber daya ini secara terprogram, lihat [Mengelola WIF dengan Admin API](/docs/id/manage-claude/wif-admin-api) untuk panduan curl, atau lihat [Referensi API Service accounts](/docs/id/api/admin/service_accounts), [Referensi API Federation issuers](/docs/id/api/admin/federation_issuers), dan [Referensi API Federation rules](/docs/id/api/admin/federation_rules) untuk detail parameter lengkap dan skema respons.
+Untuk mengelola sumber daya ini secara terprogram, lihat [Mengelola WIF dengan Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api) untuk panduan curl, atau lihat [Referensi API Service accounts](https://platform.claude.com/docs/id/api/admin/service_accounts), [Referensi API Federation issuers](https://platform.claude.com/docs/id/api/admin/federation_issuers), dan [Referensi API Federation rules](https://platform.claude.com/docs/id/api/admin/federation_rules) untuk detail parameter lengkap dan skema respons.
 
 ## Autentikasi dari workload Anda
 
@@ -94,7 +94,7 @@ Dengan federasi yang telah dikonfigurasi, workload Anda menukar JWT yang diterbi
 
 ### Membangun klien SDK
 
-Anda dapat membangun klien dengan kredensial eksplisit atau tanpa argumen. Tanpa argumen, SDK me-resolve kredensial dari variabel lingkungan atau profil aktif, seperti dijelaskan di bagian [Prioritas kredensial](#credential-precedence). Bentuk tanpa argumen adalah pola yang direkomendasikan untuk workload produksi: kirimkan image container yang sama ke mana-mana dan injeksikan `ANTHROPIC_FEDERATION_RULE_ID`, `ANTHROPIC_ORGANIZATION_ID`, `ANTHROPIC_SERVICE_ACCOUNT_ID`, `ANTHROPIC_WORKSPACE_ID`, dan `ANTHROPIC_IDENTITY_TOKEN_FILE` per lingkungan.
+Anda dapat membangun klien dengan kredensial eksplisit atau tanpa argumen. Tanpa argumen, SDK me-resolve kredensial dari variabel lingkungan atau profil aktif, seperti dijelaskan di bagian [Prioritas kredensial](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#credential-precedence). Bentuk tanpa argumen adalah pola yang direkomendasikan untuk workload produksi: kirimkan image container yang sama ke mana-mana dan injeksikan `ANTHROPIC_FEDERATION_RULE_ID`, `ANTHROPIC_ORGANIZATION_ID`, `ANTHROPIC_SERVICE_ACCOUNT_ID`, `ANTHROPIC_WORKSPACE_ID`, dan `ANTHROPIC_IDENTITY_TOKEN_FILE` per lingkungan.
 
 <CodeGroup>
   ```bash cURL
@@ -336,23 +336,23 @@ Anda dapat membangun klien dengan kredensial eksplisit atau tanpa argumen. Tanpa
   ```
 </CodeGroup>
 
-Respons pertukaran token mengikuti [RFC 6749 §5.1](https://www.rfc-editor.org/rfc/rfc6749#section-5.1). Lihat [Respons pertukaran token](/docs/id/manage-claude/wif-reference#token-exchange-response) untuk referensi field.
+Respons pertukaran token mengikuti [RFC 6749 §5.1](https://www.rfc-editor.org/rfc/rfc6749#section-5.1). Lihat [Respons pertukaran token](https://platform.claude.com/docs/id/manage-claude/wif-reference#token-exchange-response) untuk referensi field.
 
 ## Prioritas kredensial
 
 Setiap SDK me-resolve kredensial dalam urutan lima tingkat yang sama: argumen konstruktor, lalu `ANTHROPIC_API_KEY` / `ANTHROPIC_AUTH_TOKEN`, lalu `ANTHROPIC_PROFILE` eksplisit, lalu variabel lingkungan federasi, lalu profil aktif implisit. Sumber pertama yang menghasilkan kredensial yang menang.
 
 <Warning>
-  `ANTHROPIC_API_KEY` berada di atas tingkat federasi, sehingga kunci yang tersisa di lingkungan secara diam-diam menutupi federasi. Saat memigrasikan workload dari kunci API ke Workload Identity Federation, pastikan `ANTHROPIC_API_KEY` tidak diatur di mana pun workload tersebut berjalan (env container, secret CI, profil shell). Perintah CLI [`ant auth status`](/docs/id/cli-sdks-libraries/cli/authentication#check-authentication-status) melaporkan sumber mana yang menang.
+  `ANTHROPIC_API_KEY` berada di atas tingkat federasi, sehingga kunci yang tersisa di lingkungan secara diam-diam menutupi federasi. Saat memigrasikan workload dari kunci API ke Workload Identity Federation, pastikan `ANTHROPIC_API_KEY` tidak diatur di mana pun workload tersebut berjalan (env container, secret CI, profil shell). Perintah CLI [`ant auth status`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication#check-authentication-status) melaporkan sumber mana yang menang.
 </Warning>
 
-Untuk tabel prioritas lengkap, semantik per tingkat, dan skema file profil, lihat [Prioritas kredensial di referensi WIF](/docs/id/manage-claude/wif-reference#credential-precedence).
+Untuk tabel prioritas lengkap, semantik per tingkat, dan skema file profil, lihat [Prioritas kredensial di referensi WIF](https://platform.claude.com/docs/id/manage-claude/wif-reference#credential-precedence).
 
 ## Migrasi dari kunci API
 
 Untuk mengalihkan workload yang ada dari kunci API statis ke federasi tanpa downtime:
 
-1. **Konfigurasikan federasi secara paralel.** Selesaikan [panduan penyiapan](#set-up-federation) dan konfirmasikan bahwa federation rule cocok dengan token workload Anda. Biarkan `ANTHROPIC_API_KEY` yang ada tetap di tempatnya untuk saat ini.
+1. **Konfigurasikan federasi secara paralel.** Selesaikan [panduan penyiapan](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#set-up-federation) dan konfirmasikan bahwa federation rule cocok dengan token workload Anda. Biarkan `ANTHROPIC_API_KEY` yang ada tetap di tempatnya untuk saat ini.
 2. **Uji coba kredensial mana yang menang.** Jalankan `ant auth status` dari dalam workload (atau periksa log debug SDK). Karena `ANTHROPIC_API_KEY` berada di atas tingkat federasi dalam rantai prioritas, kunci API masih menang pada tahap ini.
 3. **Hapus `ANTHROPIC_API_KEY` di mana pun ia diinjeksikan.** Hapus dari secret CI, lingkungan container, dan profil shell (lihat peringatan sebelumnya). Jalankan ulang `ant auth status` dan konfirmasikan bahwa sumber federasi sekarang dipilih.
 4. **Cabut kunci API.** Setelah workload berjalan dengan token terfederasi, hapus kunci di Claude Console di bawah **Settings → API keys**.
@@ -373,38 +373,38 @@ Karena SDK membaca ulang `ANTHROPIC_IDENTITY_TOKEN_FILE` pada setiap pertukaran,
 Setiap panduan mencakup dari mana JWT berasal pada platform tersebut, seperti apa klaimnya, dan konfigurasi issuer serta rule yang perlu didaftarkan.
 
 <CardGroup cols={3}>
-  <Card title="AWS" icon="cloud" href="/docs/id/manage-claude/wif-providers/aws">
+  <Card title="AWS" icon="cloud" href="https://platform.claude.com/docs/id/manage-claude/wif-providers/aws">
     Token web identity STS, atau token terproyeksi EKS IRSA.
   </Card>
 
-  <Card title="Google Cloud" icon="cloud" href="/docs/id/manage-claude/wif-providers/gcp">
+  <Card title="Google Cloud" icon="cloud" href="https://platform.claude.com/docs/id/manage-claude/wif-providers/gcp">
     Token identitas yang ditandatangani Google dari server metadata.
   </Card>
 
-  <Card title="Microsoft Entra ID" icon="cloud" href="/docs/id/manage-claude/wif-providers/azure">
+  <Card title="Microsoft Entra ID" icon="cloud" href="https://platform.claude.com/docs/id/manage-claude/wif-providers/azure">
     Managed Identity (IMDS) dan Entra Workload ID di AKS.
   </Card>
 
-  <Card title="GitHub Actions" icon="github-logo" href="/docs/id/manage-claude/wif-providers/github-actions">
+  <Card title="GitHub Actions" icon="github-logo" href="https://platform.claude.com/docs/id/manage-claude/wif-providers/github-actions">
     Autentikasi CI tanpa kunci dengan token OIDC Actions.
   </Card>
 
-  <Card title="Kubernetes" icon="cube" href="/docs/id/manage-claude/wif-providers/kubernetes">
+  <Card title="Kubernetes" icon="cube" href="https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes">
     Klaster yang dikelola sendiri dan on-premises menggunakan token service-account terproyeksi.
   </Card>
 
-  <Card title="SPIFFE" icon="fingerprint" href="/docs/id/manage-claude/wif-providers/spiffe">
+  <Card title="SPIFFE" icon="fingerprint" href="https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe">
     Workload dengan SPIFFE JWT-SVID dari SPIRE atau issuer lain yang sesuai.
   </Card>
 
-  <Card title="Okta" icon="lock" href="/docs/id/manage-claude/wif-providers/okta">
+  <Card title="Okta" icon="lock" href="https://platform.claude.com/docs/id/manage-claude/wif-providers/okta">
     Aplikasi layanan Okta menggunakan alur client-credentials.
   </Card>
 </CardGroup>
 
 ## Lihat juga
 
-* [Mengelola WIF dengan Admin API](/docs/id/manage-claude/wif-admin-api): membuat issuer, service account, dan rule dari infrastructure as code
-* [Referensi WIF](/docs/id/manage-claude/wif-reference): variabel lingkungan, skema file profil, aturan validasi, dan kode error
-* [Autentikasi](/docs/id/manage-claude/authentication): semua opsi autentikasi di seluruh SDK Anthropic
-* [Referensi Admin API](/docs/id/api/admin): skema permintaan dan respons yang dihasilkan untuk setiap endpoint Admin API
+* [Mengelola WIF dengan Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api): membuat issuer, service account, dan rule dari infrastructure as code
+* [Referensi WIF](https://platform.claude.com/docs/id/manage-claude/wif-reference): variabel lingkungan, skema file profil, aturan validasi, dan kode error
+* [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication): semua opsi autentikasi di seluruh SDK Anthropic
+* [Referensi Admin API](https://platform.claude.com/docs/id/api/admin): skema permintaan dan respons yang dihasilkan untuk setiap endpoint Admin API

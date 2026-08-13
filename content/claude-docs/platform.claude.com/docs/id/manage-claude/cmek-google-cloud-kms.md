@@ -1,24 +1,24 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 4ee407386390d6d31567f25cca586009d02b8e7a22a19ff074deb57dc24944e0
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 23d6d69dcc501b4ca4fb5ad5b4b643c4c69e9983ef7d4b3b7ba3753e4a612a5f
 ---
 
-# Mengonfigurasi Google Cloud KMS untuk CMEK
-
-Gunakan Google Cloud KMS untuk menyediakan kunci enkripsi bagi organisasi Anda.
-
+---
+title: Mengonfigurasi Google Cloud KMS untuk CMEK
+url: https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms
+description: Gunakan Google Cloud KMS untuk menyediakan kunci enkripsi bagi organisasi Anda.
 ---
 
 ```bash Configure with the /claude-api skill in Claude Code
 claude "/claude-api help me configure a customer-managed encryption key with Google Cloud KMS"
 ```
 
-Panduan ini menjelaskan cara mengonfigurasi kunci Google Cloud KMS sebagai [customer-managed encryption key (kunci enkripsi yang dikelola pelanggan), atau CMEK](/docs/id/manage-claude/cmek) untuk organisasi Anthropic Anda.
+Panduan ini menjelaskan cara mengonfigurasi kunci Google Cloud KMS sebagai [customer-managed encryption key (kunci enkripsi yang dikelola pelanggan), atau CMEK](https://platform.claude.com/docs/id/manage-claude/cmek) untuk organisasi Anthropic Anda.
 
 <Warning>
-  Mengaktifkan CMEK bersifat permanen. Jika kunci KMS Anda dihapus atau dinonaktifkan, Anthropic tidak dapat memulihkan data yang dienkripsi dengan kunci tersebut. Tinjau [peringatan dan batasan](/docs/id/manage-claude/cmek) sebelum Anda memulai.
+  Mengaktifkan CMEK bersifat permanen. Jika kunci KMS Anda dihapus atau dinonaktifkan, Anthropic tidak dapat memulihkan data yang dienkripsi dengan kunci tersebut. Tinjau [peringatan dan batasan](https://platform.claude.com/docs/id/manage-claude/cmek) sebelum Anda memulai.
 </Warning>
 
 ## Prasyarat
@@ -76,7 +76,7 @@ anthropic-cmek-client-us@gcp-anthropic-cmek-clients.iam.gserviceaccount.com
     Anda juga dapat membuat kunci dari Google Cloud Console. Buka key ring, klik **Create key**, pilih **Generated key**, atur tujuan dan algoritma ke symmetric encrypt dan decrypt, lalu pilih **HSM** di bawah protection level.
 
     <Frame caption="Buat kunci symmetric encrypt/decrypt yang dilindungi HSM.">
-      ![Halaman Create key Google Cloud KMS dengan tingkat perlindungan HSM dan tujuan Symmetric encrypt/decrypt.](/docs/images/cmek/gcp-create-key.png)
+      ![Halaman Create key Google Cloud KMS dengan tingkat perlindungan HSM dan tujuan Symmetric encrypt/decrypt.](https://platform.claude.com/docs/images/cmek/gcp-create-key.png)
     </Frame>
   </Step>
 
@@ -108,7 +108,7 @@ anthropic-cmek-client-us@gcp-anthropic-cmek-clients.iam.gserviceaccount.com
     Dari Console, pilih kunci, buka panel **Permissions**, klik **Grant access**, dan tambahkan akun layanan dengan kedua peran Cloud KMS CryptoKey Encrypter/Decrypter dan Cloud KMS Viewer. Pastikan Anda berada di halaman izin kunci, bukan key ring atau proyek, sehingga pemberian akses hanya dibatasi pada kunci ini saja.
 
     <Frame caption="Berikan akun layanan Anthropic kedua peran, dibatasi pada kunci.">
-      ![Dialog Grant access dengan akun layanan Anthropic yang diberi peran Cloud KMS CryptoKey Encrypter/Decrypter dan Viewer.](/docs/images/cmek/gcp-grant-access.png)
+      ![Dialog Grant access dengan akun layanan Anthropic yang diberi peran Cloud KMS CryptoKey Encrypter/Decrypter dan Viewer.](https://platform.claude.com/docs/images/cmek/gcp-grant-access.png)
     </Frame>
   </Step>
 
@@ -132,7 +132,7 @@ anthropic-cmek-client-us@gcp-anthropic-cmek-clients.iam.gserviceaccount.com
     Dari Console, buka halaman detail kunci dan klik **Copy resource name**.
 
     <Frame caption="Salin nama resource lengkap kunci dari menu tindakan.">
-      ![Detail key ring Google Cloud dengan tindakan Copy resource name yang disorot di menu tindakan kunci.](/docs/images/cmek/gcp-copy-resource-name.png)
+      ![Detail key ring Google Cloud dengan tindakan Copy resource name yang disorot di menu tindakan kunci.](https://platform.claude.com/docs/images/cmek/gcp-copy-resource-name.png)
     </Frame>
   </Step>
 </Steps>

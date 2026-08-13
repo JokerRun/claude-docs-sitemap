@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/versioning
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 90090935f46c902d6e3e4a0e004a98ec6eb3e6e0183772a17dea8b16715d4dc0
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: c0b5d00f83aeadd3fd4a895e148539202bc00a1fceb03151b6aca6083113f158
 ---
 
-# Versi
-
-Saat membuat permintaan API, Anda harus mengirimkan header permintaan `anthropic-version`. Misalnya, `anthropic-version: 2023-06-01`. Jika Anda menggunakan [SDK klien](/docs/id/cli-sdks-libraries/overview), hal ini ditangani secara otomatis untuk Anda.
-
+---
+title: Versi
+url: https://platform.claude.com/docs/id/api/versioning
+description: "Saat membuat permintaan API, Anda harus mengirimkan header permintaan `anthropic-version`. Misalnya, `anthropic-version: 2023-06-01`. Jika Anda menggunakan [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview), hal ini ditangani secara otomatis untuk Anda."
 ---
 
 Untuk setiap versi tertentu dengan Messages API, Anthropic mempertahankan:
@@ -31,7 +31,7 @@ Anthropic merekomendasikan penggunaan versi API terbaru bila memungkinkan. Versi
 
 * `2023-06-01`
 
-  * Format baru untuk server-sent events (SSE) [streaming](/docs/id/build-with-claude/streaming):
+  * Format baru untuk server-sent events (SSE) [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming):
 
     * Completion bersifat inkremental. Misalnya, `" Hello"`, `" my"`, `" name"`, `" is"`, `" Claude." `alih-alih `" Hello"`, `" Hello my"`, `" Hello my name"`, `" Hello my name is"`, `" Hello my name is Claude."`.
     * Semua event adalah [named events](https://developer.mozilla.org/en-US/Web/API/Server-sent%5Fevents/Using%5Fserver-sent%5Fevents#named%5Fevents), bukan [data-only events](https://developer.mozilla.org/en-US/Web/API/Server-sent%5Fevents/Using%5Fserver-sent%5Fevents#data-only%5Fmessages).

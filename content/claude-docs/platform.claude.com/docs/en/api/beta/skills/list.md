@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/list
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 22da5bb26a02a2bb580149ca8d8770340a9eef4621bc0b8c5790c8204fb7395f
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: c3a1ca1bdcd45b3e24ce4ea1ebd0207fce66d61787d6b09ebb17d9f319913bd3
+---
+
+---
+title: List Skills
+url: https://platform.claude.com/docs/en/api/beta/skills/list
 ---
 
 ## List Skills
@@ -42,7 +47,7 @@ List Skills
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -108,6 +113,8 @@ List Skills
 
     - `"agent-memory-2026-07-22"`
 
+    - `"mid-conversation-tool-changes-2026-07-01"`
+
 ### Returns
 
 - `data: array of object { id, created_at, display_title, 4 more }`
@@ -165,7 +172,7 @@ List Skills
 
   Token for fetching the next page of results.
 
-  If `null`, there are no more results available. Pass this value to the `page_token` parameter in the next request to get the next page.
+  If `null`, there are no more results available. Pass this value to the `page` parameter in the next request to get the next page.
 
 ### Example
 

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/update
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 5ab870b1e19aee661976b559b0ae90a12a66026e10abb3409e7826bb450bd636
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 54106f3d83a1d037a21e9edd1488b3f4d101270e896d21e75a9b5054f13c4a2f
+---
+
+---
+title: Update Workspace
+url: https://platform.claude.com/docs/en/api/admin/workspaces/update
 ---
 
 ## Update Workspace

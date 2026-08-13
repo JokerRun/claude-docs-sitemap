@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/create
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: dbf7812924c8a7d1d082bc6fd3b85b97c22272cf5168ea340d5e0aa85020dd9e
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 8d2675413dcb9faf348c548b01580cfcc7073a340069e20d39e3e22259968605
+---
+
+---
+title: Create Credential
+url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/create
 ---
 
 ## Create Credential
@@ -23,7 +28,7 @@ Create Credential
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -88,6 +93,8 @@ Create Credential
     - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
+
+    - `"mid-conversation-tool-changes-2026-07-01"`
 
 ### Body Parameters
 

@@ -1,28 +1,28 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/files
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 7f5258f6747a7b0e81059a43f73fd09d83d528215ed66b3d0c062da586752717
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: f0b5aca49d0173328efd79af80419023141d4caee54b514d22c6ab25e5b6d390
 ---
 
-# Menambahkan file
-
-Unggah file dan pasang di sandbox Anda untuk dibaca dan diproses.
-
+---
+title: Menambahkan file
+url: https://platform.claude.com/docs/id/managed-agents/files
+description: Unggah file dan pasang di sandbox Anda untuk dibaca dan diproses.
 ---
 
 Anda dapat menyediakan file untuk agen Anda dengan mengunggahnya melalui Files API dan memasangnya di sandbox sesi.
 
 <Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](/docs/id/api/beta-headers#endpoint-specific-headers).
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Mengunggah file
 
-Pertama, unggah file menggunakan [Files API](/docs/id/build-with-claude/files):
+Pertama, unggah file menggunakan [Files API](https://platform.claude.com/docs/id/build-with-claude/files):
 
 <CodeGroup>
-  ```bash curl
+  ```bash cURL
   file=$(curl --fail-with-body -sS "${auth[@]}" \
     "${base_url}/files" \
     -F file=@data.csv)
@@ -99,7 +99,7 @@ Pasang file yang telah diunggah ke dalam sandbox dengan menambahkannya ke array 
 </Tip>
 
 <CodeGroup>
-  ```bash curl
+  ```bash cURL
   session=$(
     jq -n \
       --arg agent_id "${agent_id}" \
@@ -242,16 +242,16 @@ Pasang file yang telah diunggah ke dalam sandbox dengan menambahkannya ke array 
   ```
 </CodeGroup>
 
-Dengan `mount_path` di atas, agen membaca file di `/mnt/session/uploads/data.csv` (lihat [Jalur file](#file-paths)).
+Dengan `mount_path` di atas, agen membaca file di `/mnt/session/uploads/data.csv` (lihat [Jalur file](https://platform.claude.com/docs/id/managed-agents/files#file-paths)).
 
-Sebuah `file_id` baru dibuat yang mereferensikan instans file dalam sesi tersebut. Salinan ini tidak dihitung terhadap [batas penyimpanan](/docs/id/build-with-claude/files) Anda.
+Sebuah `file_id` baru dibuat yang mereferensikan instans file dalam sesi tersebut. Salinan ini tidak dihitung terhadap [batas penyimpanan](https://platform.claude.com/docs/id/build-with-claude/files) Anda.
 
 ## Beberapa file
 
 Pasang beberapa file dengan menambahkan entri ke array `resources`:
 
 <CodeGroup>
-  ```json curl
+  ```json cURL
   "resources": [
     { "type": "file", "file_id": "file_abc123", "mount_path": "/data.csv" },
     { "type": "file", "file_id": "file_def456", "mount_path": "/config.json" },
@@ -345,7 +345,7 @@ Maksimum 500 file didukung per sesi.
 Anda dapat menambahkan atau menghapus file dari sesi setelah pembuatan menggunakan API sumber daya sesi. Setiap sumber daya memiliki `id` yang dikembalikan saat ditambahkan (atau didaftar), yang Anda gunakan untuk penghapusan.
 
 <CodeGroup>
-  ```bash curl
+  ```bash cURL
   resource=$(
     jq -n --arg file_id "${file_id}" '{type: "file", file_id: $file_id}' \
       | curl --fail-with-body -sS "${auth[@]}" \
@@ -442,7 +442,7 @@ Anda dapat menambahkan atau menghapus file dari sesi setelah pembuatan menggunak
 Daftar semua sumber daya pada sesi dengan `resources.list`. Untuk menghapus file, panggil `resources.delete` dengan ID sumber daya:
 
 <CodeGroup>
-  ```bash curl
+  ```bash cURL
   curl --fail-with-body -sS "${auth[@]}" \
     "${base_url}/sessions/${session_id}/resources" \
     | jq -r '.data[] | "\(.id) \(.type)"'
@@ -544,10 +544,10 @@ Daftar semua sumber daya pada sesi dengan `resources.list`. Untuk menghapus file
 
 ## Mendaftar dan mengunduh file sesi
 
-Gunakan [Files API](/docs/id/build-with-claude/files) untuk mendaftar file yang tercakup dalam sesi dan mengunduhnya.
+Gunakan [Files API](https://platform.claude.com/docs/id/build-with-claude/files) untuk mendaftar file yang tercakup dalam sesi dan mengunduhnya.
 
 <CodeGroup>
-  ```bash curl
+  ```bash cURL
   # Menampilkan daftar file yang terkait dengan sebuah sesi
   curl -fsSL "https://api.anthropic.com/v1/files?scope_id=sesn_abc123" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \

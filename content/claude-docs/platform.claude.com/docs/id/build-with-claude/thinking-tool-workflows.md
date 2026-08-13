@@ -1,30 +1,30 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-tool-workflows
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: db7bbafcef05d43a6be4e7583a190f8e8a44a2439f38cb8dcd7353e77c9eace5
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 4ec7d743aee4c39193efb6b3715ac7fa385d4489e9eb96bbb676ee1b4f40eed2
 ---
 
-# Pemikiran dalam alur kerja alat dan multi-giliran
-
-Telusuri perjalanan bolak-balik penggunaan alat dua giliran lengkap yang mempertahankan blok pemikiran dengan benar, dan lihat bagaimana pemikiran tersisip mengubah alurnya.
-
+---
+title: Pemikiran dalam alur kerja alat dan multi-giliran
+url: https://platform.claude.com/docs/id/build-with-claude/thinking-tool-workflows
+description: Telusuri perjalanan bolak-balik penggunaan alat dua giliran lengkap yang mempertahankan blok pemikiran dengan benar, dan lihat bagaimana pemikiran tersisip mengubah alurnya.
 ---
 
 <Note>
-  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
+  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
-Halaman ini menelusuri perjalanan bolak-balik penggunaan alat (tool use) dua giliran lengkap dengan pemikiran diaktifkan: Claude berpikir, meminta panggilan alat, menerima hasilnya, dan menyelesaikan jawabannya, dengan blok pemikiran ditangani dengan benar di setiap langkah. Aturan lengkapnya ada di halaman [Pemikiran](/docs/id/build-with-claude/thinking), di [Pemikiran dengan penggunaan alat](/docs/id/build-with-claude/thinking#thinking-with-tool-use) dan [Mempertahankan blok pemikiran](/docs/id/build-with-claude/thinking#preserving-thinking-blocks); halaman ini menunjukkan aturan-aturan tersebut diterapkan dalam kode yang dapat dijalankan.
+Halaman ini menelusuri perjalanan bolak-balik penggunaan alat (tool use) dua giliran lengkap dengan pemikiran diaktifkan: Claude berpikir, meminta panggilan alat, menerima hasilnya, dan menyelesaikan jawabannya, dengan blok pemikiran ditangani dengan benar di setiap langkah. Aturan lengkapnya ada di halaman [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking), di [Pemikiran dengan penggunaan alat](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use) dan [Mempertahankan blok pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks); halaman ini menunjukkan aturan-aturan tersebut diterapkan dalam kode yang dapat dijalankan.
 
 ## Aturan yang diterapkan dalam panduan ini
 
 Setiap tautan mengarah ke pernyataan lengkap di halaman Pemikiran:
 
-* [Batasi pilihan alat ke `auto` atau `none` dalam mode manual](/docs/id/build-with-claude/thinking#thinking-with-tool-use): opsi `tool_choice` yang memaksa penggunaan alat mengembalikan error dengan pemikiran diperpanjang manual (`thinking: {type: "enabled"}`); pemikiran adaptif mendukung penggunaan alat yang dipaksa.
-* [Pertahankan satu konfigurasi pemikiran per giliran asisten](/docs/id/build-with-claude/thinking#thinking-with-tool-use): loop penggunaan alat adalah satu giliran asisten, jadi ubah konfigurasi hanya di antara giliran.
-* [Kirimkan kembali blok pemikiran secara lengkap dan tanpa modifikasi](/docs/id/build-with-claude/thinking#preserving-thinking-blocks): saat Anda mengembalikan hasil alat, blok pemikiran dari pesan asisten harus dikembalikan bersamanya.
-* [Kembalikan pesan asisten persis seperti yang diterima](/docs/id/build-with-claude/thinking#preserving-thinking-blocks): membangun ulang pesan atau memfilter blok `redacted_thinking` memicu error 400.
+* [Batasi pilihan alat ke `auto` atau `none` dalam mode manual](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use): opsi `tool_choice` yang memaksa penggunaan alat mengembalikan error dengan pemikiran diperpanjang manual (`thinking: {type: "enabled"}`); pemikiran adaptif mendukung penggunaan alat yang dipaksa.
+* [Pertahankan satu konfigurasi pemikiran per giliran asisten](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use): loop penggunaan alat adalah satu giliran asisten, jadi ubah konfigurasi hanya di antara giliran.
+* [Kirimkan kembali blok pemikiran secara lengkap dan tanpa modifikasi](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks): saat Anda mengembalikan hasil alat, blok pemikiran dari pesan asisten harus dikembalikan bersamanya.
+* [Kembalikan pesan asisten persis seperti yang diterima](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks): membangun ulang pesan atau memfilter blok `redacted_thinking` memicu error 400.
 
 Contoh-contoh ini menggunakan pemikiran adaptif; pada model yang hanya mendukung pemikiran diperpanjang, gantikan dengan `thinking: {type: "enabled", budget_tokens: N}`. Aturan perjalanan bolak-baliknya identik.
 
@@ -34,7 +34,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
 
 <Steps>
   <Step title="Buat permintaan pertama dengan alat yang tersedia">
-    Kirim permintaan dengan pemikiran adaptif diaktifkan dan alat yang telah didefinisikan. Selain parameter `thinking`, ini adalah permintaan [penggunaan alat](/docs/id/agents-and-tools/tool-use/overview) standar:
+    Kirim permintaan dengan pemikiran adaptif diaktifkan dan alat yang telah didefinisikan. Selain parameter `thinking`, ini adalah permintaan [penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) standar:
 
     <CodeGroup>
       ```bash CLI
@@ -267,7 +267,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
     Anda akan melihat blok `thinking`, `text`, dan `tool_use` dalam konten respons pada eksekusi di mana Claude memilih untuk berpikir (pada permintaan yang lebih sederhana, mode adaptif dapat melewati blok pemikiran). Jaga array konten ini tetap utuh: langkah berikutnya mengirimkannya kembali secara verbatim.
 
     <Note>
-      Untuk melihat teks pemikiran seperti output ini, tambahkan `display: "summarized"` ke permintaan. Pada model di mana display secara default dihilangkan, termasuk claude-opus-4-8, field `thinking` akan dikembalikan sebagai string kosong dengan hanya `signature` yang terisi. Apa pun caranya, kembalikan array konten tanpa perubahan; lihat [Mengontrol tampilan pemikiran](/docs/id/build-with-claude/thinking#controlling-thinking-display).
+      Untuk melihat teks pemikiran seperti output ini, tambahkan `display: "summarized"` ke permintaan. Pada model di mana display secara default dihilangkan, termasuk claude-opus-4-8, field `thinking` akan dikembalikan sebagai string kosong dengan hanya `signature` yang terisi. Apa pun caranya, kembalikan array konten tanpa perubahan; lihat [Mengontrol tampilan pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking#controlling-thinking-display).
     </Note>
 
     ```json Output
@@ -793,7 +793,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
   </Step>
 
   <Step title="Baca respons akhir">
-    Anda akan melihat Claude menyelesaikan giliran dengan teks. Karena [pemikiran tersisip](/docs/id/build-with-claude/thinking#interleaved-thinking) bersifat otomatis dalam mode adaptif, kelanjutannya juga dapat dibuka dengan blok pemikiran baru sebelum teks akhir:
+    Anda akan melihat Claude menyelesaikan giliran dengan teks. Karena [pemikiran tersisip](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking) bersifat otomatis dalam mode adaptif, kelanjutannya juga dapat dibuka dengan blok pemikiran baru sebelum teks akhir:
 
     ```json Output
     {
@@ -810,7 +810,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
 
 ## Bagaimana pemikiran tersisip mengubah alur
 
-"Interleaved thinking" (pemikiran tersisip) memungkinkan Claude berpikir di antara panggilan alat, bernalar tentang setiap hasil alat sebelum menindaklanjutinya. Konsep dan ketersediaan per model dibahas di [Pemikiran tersisip](/docs/id/build-with-claude/thinking#interleaved-thinking) pada halaman Pemikiran; penyisipan mengubah di mana blok pemikiran muncul, bukan apakah panggilan alat dapat berantai. Perbandingan berikut menunjukkan apa yang diubah oleh pemikiran tersisip dalam alur kerja dua alat:
+"Interleaved thinking" (pemikiran tersisip) memungkinkan Claude berpikir di antara panggilan alat, bernalar tentang setiap hasil alat sebelum menindaklanjutinya. Konsep dan ketersediaan per model dibahas di [Pemikiran tersisip](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking) pada halaman Pemikiran; penyisipan mengubah di mana blok pemikiran muncul, bukan apakah panggilan alat dapat berantai. Perbandingan berikut menunjukkan apa yang diubah oleh pemikiran tersisip dalam alur kerja dua alat:
 
 <AccordionGroup>
   <Accordion title="Penggunaan alat tanpa pemikiran tersisip">
@@ -861,15 +861,15 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
 ## Langkah selanjutnya
 
 <CardGroup cols={3}>
-  <Card title="Pemikiran" icon="brain" href="/docs/id/build-with-claude/thinking">
+  <Card title="Pemikiran" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/thinking">
     Ikhtisar: aktifkan pemikiran, baca output pemikiran, dan tinjau aturan lengkap untuk penggunaan alat, caching, dan streaming.
   </Card>
 
-  <Card title="Mengarahkan pemikiran" icon="compass" href="/docs/id/build-with-claude/thinking-steering-and-cost">
+  <Card title="Mengarahkan pemikiran" icon="compass" href="https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost">
     Arahkan seberapa sering dan seberapa dalam Claude berpikir dengan tingkat upaya dan panduan berbasis prompt.
   </Card>
 
-  <Card title="Pemikiran diperpanjang" icon="clock" href="/docs/id/build-with-claude/extended-thinking">
+  <Card title="Pemikiran diperpanjang" icon="clock" href="https://platform.claude.com/docs/id/build-with-claude/extended-thinking">
     Anggaran pemikiran manual pada model lama: mekanisme `budget_tokens` dan migrasi ke adaptif.
   </Card>
 </CardGroup>

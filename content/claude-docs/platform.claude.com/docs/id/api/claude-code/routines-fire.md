@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/claude-code/routines-fire
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 7fb3b1af73dbbed1a09fb87b7522d988e36c305c58ccc21486f32493b1aae00a
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 4bba8e785b2e3bdf04aeaa2ab81a1d84f9a41edc56869ad918a1308f28c7095b
 ---
 
-# Memicu routine melalui API
-
-Mulai sesi routine Claude Code sesuai permintaan dengan mengirimkan permintaan POST yang terautentikasi.
-
+---
+title: Memicu routine melalui API
+url: https://platform.claude.com/docs/id/api/claude-code/routines-fire
+description: Mulai sesi routine Claude Code sesuai permintaan dengan mengirimkan permintaan POST yang terautentikasi.
 ---
 
 <Warning>
@@ -25,14 +25,14 @@ Memanggil endpoint ini memerlukan akun claude.ai pada paket Pro, Max, Team, atau
 
 Endpoint pemicu routine termasuk dalam permukaan produk Claude Code, yang berbeda dari API dan SDK Claude Platform dalam beberapa hal:
 
-| Aspek          | Endpoint ini                                                                                                                                    | API Claude Platform                                                 |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| Autentikasi    | `Authorization: Bearer` dengan token per-routine (`sk-ant-oat01-...`) yang dibuat di [claude.ai/code/routines](https://claude.ai/code/routines) | `x-api-key` dengan kunci API Claude dari Claude Console             |
-| Cakupan token  | Hanya satu routine; tanpa akses baca                                                                                                            | Tingkat workspace                                                   |
-| Dukungan SDK   | Tidak ada                                                                                                                                       | Tersedia di semua [SDK klien](/docs/id/cli-sdks-libraries/overview) |
-| Penagihan      | Penggunaan langganan Claude Code di claude.ai                                                                                                   | Penggunaan Claude Platform                                          |
-| Namespace path | `/v1/claude_code/...`                                                                                                                           | `/v1/...`                                                           |
-| Stabilitas     | Eksperimental; memerlukan `anthropic-beta: experimental-cc-routine-2026-04-01`                                                                  | Stabil atau beta standar                                            |
+| Aspek          | Endpoint ini                                                                                                                                    | API Claude Platform                                                                            |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| Autentikasi    | `Authorization: Bearer` dengan token per-routine (`sk-ant-oat01-...`) yang dibuat di [claude.ai/code/routines](https://claude.ai/code/routines) | `x-api-key` dengan kunci API Claude dari Claude Console                                        |
+| Cakupan token  | Hanya satu routine; tanpa akses baca                                                                                                            | Tingkat workspace                                                                              |
+| Dukungan SDK   | Tidak ada                                                                                                                                       | Tersedia di semua [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) |
+| Penagihan      | Penggunaan langganan Claude Code di claude.ai                                                                                                   | Penggunaan Claude Platform                                                                     |
+| Namespace path | `/v1/claude_code/...`                                                                                                                           | `/v1/...`                                                                                      |
+| Stabilitas     | Eksperimental; memerlukan `anthropic-beta: experimental-cc-routine-2026-04-01`                                                                  | Stabil atau beta standar                                                                       |
 
 ## Sebelum Anda mulai
 
@@ -84,7 +84,7 @@ Permintaan mengembalikan respons setelah sesi dibuat. Permintaan ini tidak melak
 | ------------------- | ------------- | ----------------------------------------------------------------------------------------------------- |
 | `Authorization`     | Ya            | `Bearer <token>`. Token per-routine yang dibuat di UI web Claude Code, dengan awalan `sk-ant-oat01-`. |
 | `anthropic-beta`    | Ya            | Harus menyertakan `experimental-cc-routine-2026-04-01`.                                               |
-| `anthropic-version` | Ya            | [Versi API](/docs/id/api/versioning), misalnya `2023-06-01`.                                          |
+| `anthropic-version` | Ya            | [Versi API](https://platform.claude.com/docs/id/api/versioning), misalnya `2023-06-01`.               |
 | `Content-Type`      | Saat body ada | `application/json`.                                                                                   |
 
 ### Parameter path
@@ -121,7 +121,7 @@ Permintaan yang berhasil mengembalikan `200 OK` dengan detail sesi baru:
 
 ### Error
 
-Error menggunakan [amplop error](/docs/id/api/errors) standar Anthropic:
+Error menggunakan [amplop error](https://platform.claude.com/docs/id/api/errors) standar Anthropic:
 
 ```json
 {
@@ -166,5 +166,5 @@ Endpoint ini tidak tersedia di SDK Anthropic. Model tokennya berbeda dari autent
 ## Lihat juga
 
 * [Otomatiskan pekerjaan dengan routine](https://code.claude.com/docs/en/routines) di dokumentasi Claude Code
-* [Header beta](/docs/id/api/beta-headers)
-* [Error](/docs/id/api/errors)
+* [Header beta](https://platform.claude.com/docs/id/api/beta-headers)
+* [Error](https://platform.claude.com/docs/id/api/errors)

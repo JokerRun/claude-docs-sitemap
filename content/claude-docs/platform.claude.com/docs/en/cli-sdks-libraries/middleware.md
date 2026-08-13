@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/middleware
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: a2824c8576947c98174cbc5f96d8dc2a979ae8a75dbcd90297728f1c108671cf
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 81ba368a89210f91354bd1c12f3d283ab27bb0f0c91b9752faaa061a08f35e7f
 ---
 
-# SDK middleware
-
-Intercept and modify requests and responses in the Anthropic SDKs.
-
+---
+title: SDK middleware
+url: https://platform.claude.com/docs/en/cli-sdks-libraries/middleware
+description: Intercept and modify requests and responses in the Anthropic SDKs.
 ---
 
 The Anthropic SDKs provide a middleware (or interceptor) hook that lets you run code before a request is sent and after the response is received. Use middleware for cross-cutting concerns such as logging, custom retries, request annotation, and refusal fallback handling.
@@ -182,4 +182,4 @@ Each SDK also accepts a custom HTTP client (for proxy configuration, custom TLS,
 
 ## Built-in middleware
 
-The SDKs ship a refusal-fallback middleware that automatically retries requests Claude Fable 5 declines on a fallback model. See [Detect and retry on a fallback model](/docs/en/build-with-claude/refusals-and-fallback#client-side-fallback) for setup and per-language examples.
+The SDKs ship a refusal-fallback middleware that automatically retries requests Claude Fable 5 declines on a fallback model. See [Detect and retry on a fallback model](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback#client-side-fallback) for setup and per-language examples.

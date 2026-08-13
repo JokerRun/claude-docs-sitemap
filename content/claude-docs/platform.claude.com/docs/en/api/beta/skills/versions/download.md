@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/download
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 1e7753c556f1518b8c65b9218ca443c7e67ef68977bd60fac5087475d727e649
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: c01e01a75efb10c87790cdaf7c808692521293ab92e5701502ef7336cedb8697
+---
+
+---
+title: Download Skill Version Content
+url: https://platform.claude.com/docs/en/api/beta/skills/versions/download
 ---
 
 ## Download Skill Version Content
@@ -33,7 +38,7 @@ Download a skill version's content as a zip archive.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -98,6 +103,8 @@ Download a skill version's content as a zip archive.
     - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
+
+    - `"mid-conversation-tool-changes-2026-07-01"`
 
 ### Example
 

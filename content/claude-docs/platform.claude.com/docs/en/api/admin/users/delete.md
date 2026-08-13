@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/delete
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: cfb516e46bd1f1074ae3f6c5bd067f7d538f2947dbf2775cbea201bf977f58f0
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: aa22cb4c239f82978dd9c0fed02db84751931c99cf0a8edad11abebead4d1ba5
+---
+
+---
+title: Remove User
+url: https://platform.claude.com/docs/en/api/admin/users/delete
 ---
 
 ## Remove User

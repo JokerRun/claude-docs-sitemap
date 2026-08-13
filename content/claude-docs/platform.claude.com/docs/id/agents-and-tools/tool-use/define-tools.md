@@ -1,19 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 278c09adf1755359a27277221cc6df8975b1b274e16b3619f45bea831af0b8e2
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 4d5dd1d7bfff3c1ecaf7f253ca479ff960dd49acfc2cc0243df3d80c40b48f32
 ---
 
-# Mendefinisikan alat
-
-Tentukan skema alat, tulis deskripsi yang efektif, dan kendalikan kapan Claude memanggil alat Anda.
-
+---
+title: Mendefinisikan alat
+url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools
+description: Tentukan skema alat, tulis deskripsi yang efektif, dan kendalikan kapan Claude memanggil alat Anda.
 ---
 
 ## Prasyarat
 
-* Keakraban dengan [ikhtisar penggunaan alat](/docs/id/agents-and-tools/tool-use/overview)
+* Keakraban dengan [ikhtisar penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview)
 * Kunci API Claude dan pengaturan SDK atau cURL yang berfungsi
 
 ## Memilih model
@@ -23,21 +23,21 @@ Gunakan model Claude Opus terbaru, Claude Opus 5, untuk alat yang kompleks dan k
 Gunakan model Claude Haiku untuk alat yang sederhana, tetapi perhatikan bahwa model ini mungkin menyimpulkan parameter yang hilang.
 
 <Tip>
-  Jika menggunakan Claude dengan penggunaan alat dan pemikiran, lihat [Pemikiran](/docs/id/build-with-claude/thinking) untuk informasi lebih lanjut.
+  Jika menggunakan Claude dengan penggunaan alat dan pemikiran, lihat [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking) untuk informasi lebih lanjut.
 </Tip>
 
 ## Menentukan alat klien
 
 Alat klien (baik skema Anthropic maupun yang ditentukan pengguna) ditentukan dalam parameter tingkat atas `tools` dari permintaan API. Setiap definisi alat mencakup:
 
-| Parameter        | Deskripsi                                                                                                                                                          |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `name`           | Nama alat. Harus cocok dengan regex `^[a-zA-Z0-9_-]{1,64}$`.                                                                                                       |
-| `description`    | Deskripsi teks biasa yang terperinci tentang apa yang dilakukan alat, kapan harus digunakan, dan bagaimana perilakunya.                                            |
-| `input_schema`   | Objek [JSON Schema](https://json-schema.org/) yang mendefinisikan parameter yang diharapkan untuk alat tersebut.                                                   |
-| `input_examples` | (Opsional) Array objek contoh input untuk membantu Claude memahami cara menggunakan alat. Lihat [Memberikan contoh penggunaan alat](#providing-tool-use-examples). |
+| Parameter        | Deskripsi                                                                                                                                                                                                                                    |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`           | Nama alat. Harus cocok dengan regex `^[a-zA-Z0-9_-]{1,64}$`.                                                                                                                                                                                 |
+| `description`    | Deskripsi teks biasa yang terperinci tentang apa yang dilakukan alat, kapan harus digunakan, dan bagaimana perilakunya.                                                                                                                      |
+| `input_schema`   | Objek [JSON Schema](https://json-schema.org/) yang mendefinisikan parameter yang diharapkan untuk alat tersebut.                                                                                                                             |
+| `input_examples` | (Opsional) Array objek contoh input untuk membantu Claude memahami cara menggunakan alat. Lihat [Memberikan contoh penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#providing-tool-use-examples). |
 
-Untuk kumpulan lengkap properti opsional yang tersedia pada definisi alat apa pun, termasuk `cache_control`, `strict`, `defer_loading`, dan `allowed_callers`, lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference#tool-definition-properties).
+Untuk kumpulan lengkap properti opsional yang tersedia pada definisi alat apa pun, termasuk `cache_control`, `strict`, `defer_loading`, dan `allowed_callers`, lihat [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#tool-definition-properties).
 
 <Accordion title="Contoh definisi alat sederhana">
   ```json JSON
@@ -90,11 +90,11 @@ Untuk mendapatkan kinerja terbaik dari Claude saat menggunakan alat, ikuti pandu
   * Apa arti setiap parameter dan bagaimana pengaruhnya terhadap perilaku alat
   * Peringatan atau batasan penting apa pun, seperti informasi apa yang tidak dikembalikan oleh alat jika nama alat tidak jelas. Semakin banyak konteks yang dapat Anda berikan kepada Claude tentang alat Anda, semakin baik Claude dalam memutuskan kapan dan bagaimana menggunakannya. Usahakan setidaknya 3–4 kalimat untuk setiap deskripsi alat, lebih banyak jika alatnya kompleks.
 
-* **Prioritaskan deskripsi, tetapi pertimbangkan untuk menggunakan `input_examples` untuk alat yang kompleks.** Deskripsi yang jelas adalah yang paling penting, tetapi untuk alat dengan input yang kompleks, objek bersarang, atau parameter yang sensitif terhadap format, Anda dapat menggunakan bidang `input_examples` untuk memberikan contoh yang divalidasi skema. Lihat [Memberikan contoh penggunaan alat](#providing-tool-use-examples) untuk detailnya.
+* **Prioritaskan deskripsi, tetapi pertimbangkan untuk menggunakan `input_examples` untuk alat yang kompleks.** Deskripsi yang jelas adalah yang paling penting, tetapi untuk alat dengan input yang kompleks, objek bersarang, atau parameter yang sensitif terhadap format, Anda dapat menggunakan bidang `input_examples` untuk memberikan contoh yang divalidasi skema. Lihat [Memberikan contoh penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#providing-tool-use-examples) untuk detailnya.
 
 * **Konsolidasikan operasi terkait menjadi lebih sedikit alat.** Daripada membuat alat terpisah untuk setiap tindakan (`create_pr`, `review_pr`, `merge_pr`), kelompokkan menjadi satu alat dengan parameter `action`. Alat yang lebih sedikit dan lebih mumpuni mengurangi ambiguitas pemilihan dan membuat permukaan alat Anda lebih mudah dinavigasi oleh Claude.
 
-* **Gunakan namespacing yang bermakna dalam nama alat.** Ketika alat Anda mencakup beberapa layanan atau sumber daya, awali nama dengan layanan (misalnya, `github_list_prs`, `slack_send_message`). Ini membuat pemilihan alat tidak ambigu seiring bertambahnya pustaka Anda, dan sangat penting saat menggunakan [pencarian alat](/docs/id/agents-and-tools/tool-use/tool-search-tool).
+* **Gunakan namespacing yang bermakna dalam nama alat.** Ketika alat Anda mencakup beberapa layanan atau sumber daya, awali nama dengan layanan (misalnya, `github_list_prs`, `slack_send_message`). Ini membuat pemilihan alat tidak ambigu seiring bertambahnya pustaka Anda, dan sangat penting saat menggunakan [pencarian alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool).
 
 * **Rancang respons alat agar hanya mengembalikan informasi bernilai tinggi.** Kembalikan pengidentifikasi semantik yang stabil (misalnya, slug atau UUID) daripada referensi internal yang tidak jelas, dan sertakan hanya bidang yang dibutuhkan Claude untuk mempertimbangkan langkah berikutnya. Respons yang membengkak membuang-buang konteks dan mempersulit Claude untuk mengekstrak apa yang penting.
 
@@ -852,19 +852,19 @@ Saat bekerja dengan parameter `tool_choice`, ada empat opsi yang mungkin:
 * `none` mencegah Claude menggunakan alat apa pun. Ini adalah nilai default ketika tidak ada `tools` yang disediakan.
 
 <Note>
-  Saat menggunakan [caching prompt](/docs/id/build-with-claude/prompt-caching#what-invalidates-the-cache), perubahan pada parameter `tool_choice` akan membatalkan blok pesan yang di-cache. Definisi alat dan prompt sistem tetap di-cache, tetapi konten pesan harus diproses ulang.
+  Saat menggunakan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#what-invalidates-the-cache), perubahan pada parameter `tool_choice` akan membatalkan blok pesan yang di-cache. Definisi alat dan prompt sistem tetap di-cache, tetapi konten pesan harus diproses ulang.
 </Note>
 
 Diagram ini mengilustrasikan cara kerja setiap opsi:
 
 <Frame>
-  ![Diagram yang menunjukkan empat opsi tool_choice: auto, any, tool, dan none](/docs/images/tool_choice.png)
+  ![Diagram yang menunjukkan empat opsi tool_choice: auto, any, tool, dan none](https://platform.claude.com/docs/images/tool_choice.png)
 </Frame>
 
 Perhatikan bahwa ketika Anda menetapkan `tool_choice` sebagai `any` atau `tool`, API akan mengisi awal pesan asisten untuk memaksa penggunaan alat. Ini berarti model tidak akan mengeluarkan respons bahasa alami atau penjelasan sebelum blok konten `tool_use`, bahkan jika diminta secara eksplisit untuk melakukannya.
 
 <Note>
-  Saat menggunakan [pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking) manual (`thinking: {type: "enabled"}`) dengan penggunaan alat, `tool_choice: {"type": "any"}` dan `tool_choice: {"type": "tool", "name": "..."}` tidak didukung dan menghasilkan error. Hanya `tool_choice: {"type": "auto"}` (default) dan `tool_choice: {"type": "none"}` yang kompatibel dengan pemikiran diperpanjang manual. [Pemikiran adaptif](/docs/id/build-with-claude/thinking), termasuk pada model di mana pemikiran aktif secara default seperti Claude Opus 5, mendukung penggunaan alat yang dipaksa.
+  Saat menggunakan [pemikiran diperpanjang](https://platform.claude.com/docs/id/build-with-claude/extended-thinking) manual (`thinking: {type: "enabled"}`) dengan penggunaan alat, `tool_choice: {"type": "any"}` dan `tool_choice: {"type": "tool", "name": "..."}` tidak didukung dan menghasilkan error. Hanya `tool_choice: {"type": "auto"}` (default) dan `tool_choice: {"type": "none"}` yang kompatibel dengan pemikiran diperpanjang manual. [Pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking), termasuk pada model di mana pemikiran aktif secara default seperti Claude Opus 5, mendukung penggunaan alat yang dipaksa.
 </Note>
 
 <Note>
@@ -876,7 +876,7 @@ Pengujian telah menunjukkan bahwa ini seharusnya tidak mengurangi kinerja. Jika 
 <Tip>
   **Pemanggilan alat yang terjamin dengan alat strict**
 
-  Gabungkan `tool_choice: {"type": "any"}` dengan [penggunaan alat strict](/docs/id/agents-and-tools/tool-use/strict-tool-use) untuk menjamin bahwa salah satu alat Anda akan dipanggil DAN bahwa input alat secara ketat mengikuti skema Anda. Setel `strict: true` pada definisi alat Anda untuk mengaktifkan validasi skema.
+  Gabungkan `tool_choice: {"type": "any"}` dengan [penggunaan alat strict](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) untuk menjamin bahwa salah satu alat Anda akan dipanggil DAN bahwa input alat secara ketat mengikuti skema Anda. Setel `strict: true` pada definisi alat Anda untuk mengaktifkan validasi skema.
 </Tip>
 
 ### Respons model dengan alat
@@ -910,15 +910,15 @@ Penting untuk dicatat bahwa Claude dapat menggunakan berbagai frasa dan pendekat
 ## Langkah selanjutnya
 
 <CardGroup>
-  <Card href="/docs/id/agents-and-tools/tool-use/handle-tool-calls" title="Menangani pemanggilan alat">
+  <Card href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls" title="Menangani pemanggilan alat">
     Parse blok tool\_use dan format respons tool\_result.
   </Card>
 
-  <Card href="/docs/id/agents-and-tools/tool-use/tool-runner" title="Tool Runner (SDK)">
+  <Card href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner" title="Tool Runner (SDK)">
     Biarkan SDK menangani loop agentik secara otomatis.
   </Card>
 
-  <Card href="/docs/id/agents-and-tools/tool-use/tool-reference" title="Referensi alat">
+  <Card href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference" title="Referensi alat">
     Direktori alat yang disediakan Anthropic dan properti opsional.
   </Card>
 </CardGroup>

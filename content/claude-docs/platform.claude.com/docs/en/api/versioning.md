@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/versioning
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: e692856b0e16e611948e411790e0dc615a66fde02af448d4962a1e8723d29dc6
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 45d247cdbfa26b2872a6ba7331e24d178efde4b2b3d99f3178bc7d05f37784f5
 ---
 
-# Versions
-
-When making API requests, you must send an `anthropic-version` request header. For example, `anthropic-version: 2023-06-01`. If you are using the [client SDKs](/docs/en/cli-sdks-libraries/overview), this is handled for you automatically.
-
+---
+title: Versions
+url: https://platform.claude.com/docs/en/api/versioning
+description: "When making API requests, you must send an `anthropic-version` request header. For example, `anthropic-version: 2023-06-01`. If you are using the [client SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries/overview), this is handled for you automatically."
 ---
 
 For any given version with the Messages API, Anthropic preserves:
@@ -31,7 +31,7 @@ Anthropic recommends using the latest API version whenever possible. Previous ve
 
 * `2023-06-01`
 
-  * New format for [streaming](/docs/en/build-with-claude/streaming) server-sent events (SSE):
+  * New format for [streaming](https://platform.claude.com/docs/en/build-with-claude/streaming) server-sent events (SSE):
 
     * Completions are incremental. For example, `" Hello"`, `" my"`, `" name"`, `" is"`, `" Claude." `instead of `" Hello"`, `" Hello my"`, `" Hello my name"`, `" Hello my name is"`, `" Hello my name is Claude."`.
     * All events are [named events](https://developer.mozilla.org/en-US/Web/API/Server-sent%5Fevents/Using%5Fserver-sent%5Fevents#named%5Fevents), rather than [data-only events](https://developer.mozilla.org/en-US/Web/API/Server-sent%5Fevents/Using%5Fserver-sent%5Fevents#data-only%5Fmessages).

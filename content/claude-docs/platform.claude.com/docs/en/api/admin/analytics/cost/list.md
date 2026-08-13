@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/cost/list
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 0345e9fe9a8377c30350474b96d83692e46fe44066b9b15da89d016c312c4286
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: f7f9a07ecbcfed913713a12d37e41d5407afbeeb5ddf24d4ef2f171f0b61a2b5
+---
+
+---
+title: Get Cost Over Time
+url: https://platform.claude.com/docs/en/api/admin/analytics/cost/list
 ---
 
 ## Get Cost Over Time

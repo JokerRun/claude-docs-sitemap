@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/invites/list
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 3d8968c58e8b6c5a816c4102f58dc7b366f328cbb4da323b6eaee11d72bf50a2
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: ecbd429b6c545e45ee1e329a4277dad2f50c8f4f02effb59c0b984b0b0965563
+---
+
+---
+title: List Invites
+url: https://platform.claude.com/docs/en/api/admin/invites/list
 ---
 
 ## List Invites

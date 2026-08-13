@@ -1,20 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 298d045908c3b73e7dcf829376f9ca6cbdb723e0596a37434ead7d5ae385d703
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: d3ff46a3a7ca8dfe3ccdc831ae00c100fb4188df2916538bede81eb92a7a7ca8
 ---
 
-# TypeScript SDK
-
-Instal dan konfigurasikan Anthropic TypeScript SDK untuk Node.js, Deno, Bun, dan lingkungan browser
-
+---
+title: TypeScript SDK
+url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript
+description: Instal dan konfigurasikan Anthropic TypeScript SDK untuk Node.js, Deno, Bun, dan lingkungan browser
 ---
 
 Pustaka ini menyediakan akses yang mudah ke Anthropic REST API dari TypeScript atau JavaScript.
 
 <Info>
-  Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK yang spesifik untuk TypeScript.
+  Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](https://platform.claude.com/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK yang spesifik untuk TypeScript.
 </Info>
 
 ## Instalasi
@@ -62,7 +62,7 @@ for (const block of message.content) {
 }
 ```
 
-Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](/docs/id/manage-claude/authentication).
+Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication).
 
 ## Tipe request dan response
 
@@ -147,7 +147,7 @@ Sebagai alternatif, Anda dapat menggunakan `client.messages.create({ ..., stream
 
 SDK ini menyediakan helper untuk memudahkan pembuatan dan menjalankan alat di Messages API. Anda dapat menggunakan skema Zod atau JSON Schema untuk mendeskripsikan input ke sebuah alat. Anda kemudian dapat menjalankan alat-alat tersebut menggunakan metode `client.beta.messages.toolRunner()`. Metode ini menangani penerusan input yang dihasilkan oleh model yang dipilih ke alat yang tepat dan meneruskan hasilnya kembali ke model.
 
-Untuk detail lebih lanjut tentang penggunaan alat, lihat [Penggunaan alat dengan Claude](/docs/id/agents-and-tools/tool-use/overview).
+Untuk detail lebih lanjut tentang penggunaan alat, lihat [Penggunaan alat dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview).
 
 ```typescript
 import { betaZodTool } from "@anthropic-ai/sdk/helpers/beta/zod";
@@ -213,14 +213,14 @@ Jika `Error` biasa dilempar, pesannya akan dikonversi menjadi blok konten teks.
 
 ## Penggunaan alat
 
-SDK ini menyediakan dukungan untuk penggunaan alat, yang juga dikenal sebagai function calling. Untuk detail lebih lanjut, lihat [Penggunaan alat dengan Claude](/docs/id/agents-and-tools/tool-use/overview).
+SDK ini menyediakan dukungan untuk penggunaan alat, yang juga dikenal sebagai function calling. Untuk detail lebih lanjut, lihat [Penggunaan alat dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview).
 
 ## Helper MCP
 
 SDK ini menyediakan helper untuk integrasi dengan server [Model Context Protocol (MCP)](https://modelcontextprotocol.io/). Helper ini mengonversi tipe MCP ke tipe Claude API, mengurangi boilerplate saat bekerja dengan alat, prompt, dan resource MCP.
 
 <Tip>
-  Claude API juga mendukung [parameter `mcp_servers`](/docs/id/agents-and-tools/mcp-connector) yang memungkinkan Claude terhubung langsung ke server MCP jarak jauh. Gunakan `mcp_servers` ketika Anda memiliki server jarak jauh yang dapat diakses melalui URL dan hanya memerlukan dukungan alat. Gunakan helper MCP ketika Anda memerlukan server MCP lokal, prompt, resource, atau kontrol lebih besar atas koneksi MCP.
+  Claude API juga mendukung [parameter `mcp_servers`](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector) yang memungkinkan Claude terhubung langsung ke server MCP jarak jauh. Gunakan `mcp_servers` ketika Anda memiliki server jarak jauh yang dapat diakses melalui URL dan hanya memerlukan dukungan alat. Gunakan helper MCP ketika Anda memerlukan server MCP lokal, prompt, resource, atau kontrol lebih besar atas koneksi MCP.
 </Tip>
 
 ```typescript
@@ -286,7 +286,7 @@ Fungsi konversi melempar `UnsupportedMCPValueError` jika nilai MCP tidak didukun
 
 ## Message batches
 
-SDK ini menyediakan dukungan untuk [Message Batches API](/docs/id/build-with-claude/batch-processing) di bawah namespace `client.messages.batches`.
+SDK ini menyediakan dukungan untuk [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing) di bawah namespace `client.messages.batches`.
 
 ### Membuat batch
 
@@ -408,7 +408,7 @@ Kode error adalah sebagai berikut:
 
 ## Request ID
 
-> Untuk informasi lebih lanjut tentang debugging request, lihat [Request ID](/docs/id/api/errors#request-id).
+> Untuk informasi lebih lanjut tentang debugging request, lihat [Request ID](https://platform.claude.com/docs/id/api/errors#request-id).
 
 Semua respons objek dalam SDK menyediakan properti `_request_id` yang ditambahkan dari header respons `request-id` sehingga Anda dapat dengan cepat mencatat request yang gagal dan melaporkannya kembali ke Anthropic.
 
@@ -477,21 +477,21 @@ await client.messages.create(
 
 Saat timeout, `APIConnectionTimeoutError` akan dilempar.
 
-Perhatikan bahwa request yang timeout akan [dicoba ulang dua kali secara default](#retries).
+Perhatikan bahwa request yang timeout akan [dicoba ulang dua kali secara default](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#retries).
 
 ## Request yang panjang
 
 <Warning>
-  Pertimbangkan untuk menggunakan [Messages API](#streaming-responses) streaming untuk request yang berjalan lebih lama.
+  Pertimbangkan untuk menggunakan [Messages API](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#streaming-responses) streaming untuk request yang berjalan lebih lama.
 </Warning>
 
-Hindari mengatur nilai `max_tokens` yang besar tanpa menggunakan streaming. Beberapa jaringan mungkin memutus koneksi yang idle setelah periode waktu tertentu, yang dapat menyebabkan request gagal atau [timeout](#timeouts) tanpa menerima respons dari Anthropic.
+Hindari mengatur nilai `max_tokens` yang besar tanpa menggunakan streaming. Beberapa jaringan mungkin memutus koneksi yang idle setelah periode waktu tertentu, yang dapat menyebabkan request gagal atau [timeout](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#timeouts) tanpa menerima respons dari Anthropic.
 
-SDK ini juga melempar error jika request non-streaming diperkirakan akan berlangsung lebih dari sekitar 10 menit. Memberikan `stream: true` atau [menimpa](#timeouts) opsi `timeout` pada level klien atau request akan menonaktifkan error ini.
+SDK ini juga melempar error jika request non-streaming diperkirakan akan berlangsung lebih dari sekitar 10 menit. Memberikan `stream: true` atau [menimpa](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#timeouts) opsi `timeout` pada level klien atau request akan menonaktifkan error ini.
 
-Latensi request yang diperkirakan lebih lama dari [timeout](#timeouts) untuk request non-streaming akan mengakibatkan klien memutus koneksi dan mencoba ulang tanpa menerima respons.
+Latensi request yang diperkirakan lebih lama dari [timeout](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#timeouts) untuk request non-streaming akan mengakibatkan klien memutus koneksi dan mencoba ulang tanpa menerima respons.
 
-Ketika didukung oleh implementasi `fetch`, SDK mengatur opsi [TCP socket keep-alive](https://tldp.org/HOWTO/TCP-Keepalive-HOWTO/overview.html) untuk mengurangi dampak timeout koneksi idle pada beberapa jaringan. Ini dapat [ditimpa](#configuring-proxies) dengan mengonfigurasi proxy kustom.
+Ketika didukung oleh implementasi `fetch`, SDK mengatur opsi [TCP socket keep-alive](https://tldp.org/HOWTO/TCP-Keepalive-HOWTO/overview.html) untuk mengurangi dampak timeout koneksi idle pada beberapa jaringan. Ini dapat [ditimpa](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#configuring-proxies) dengan mengonfigurasi proxy kustom.
 
 ## Paginasi otomatis
 
@@ -733,11 +733,11 @@ Untuk memodifikasi perilaku proxy, Anda dapat menyediakan `fetchOptions` kustom 
 
 ## Fitur beta
 
-Fitur beta tersedia sebelum rilis umum untuk mendapatkan umpan balik awal dan menguji fungsionalitas baru. Anda dapat memeriksa ketersediaan semua kemampuan dan alat Claude di [ikhtisar membangun dengan Claude](/docs/id/build-with-claude/overview).
+Fitur beta tersedia sebelum rilis umum untuk mendapatkan umpan balik awal dan menguji fungsionalitas baru. Anda dapat memeriksa ketersediaan semua kemampuan dan alat Claude di [ikhtisar membangun dengan Claude](https://platform.claude.com/docs/id/build-with-claude/overview).
 
-Anda dapat mengakses sebagian besar fitur API beta melalui properti beta dari klien. Untuk mengaktifkan fitur beta tertentu, Anda perlu menambahkan [header beta](/docs/id/api/beta-headers) yang sesuai ke field `betas` saat membuat pesan.
+Anda dapat mengakses sebagian besar fitur API beta melalui properti beta dari klien. Untuk mengaktifkan fitur beta tertentu, Anda perlu menambahkan [header beta](https://platform.claude.com/docs/id/api/beta-headers) yang sesuai ke field `betas` saat membuat pesan.
 
-Misalnya, untuk menggunakan [Files API](/docs/id/build-with-claude/files):
+Misalnya, untuk menggunakan [Files API](https://platform.claude.com/docs/id/build-with-claude/files):
 
 ```typescript
 const client = new Anthropic();
@@ -781,11 +781,11 @@ const response = await client.beta.messages.create({
 <Note>
   Untuk panduan penyiapan platform yang terperinci dengan contoh kode, lihat:
 
-  * [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock)
-  * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
-  * [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws)
-  * [Google Cloud](/docs/id/build-with-claude/claude-on-vertex-ai)
-  * [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry)
+  * [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
+  * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
+  * [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
+  * [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai)
+  * [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)
 </Note>
 
 TypeScript SDK mendukung platform berikut:
@@ -814,6 +814,6 @@ Lihat [repositori GitHub](https://github.com/anthropics/anthropic-sdk-typescript
 ## Sumber daya tambahan
 
 * [Repositori GitHub](https://github.com/anthropics/anthropic-sdk-typescript)
-* [Referensi API](/docs/id/api/overview)
-* [Streaming Messages](/docs/id/build-with-claude/streaming)
-* [Penggunaan alat dengan Claude](/docs/id/agents-and-tools/tool-use/overview)
+* [Referensi API](https://platform.claude.com/docs/id/api/overview)
+* [Streaming Messages](https://platform.claude.com/docs/id/build-with-claude/streaming)
+* [Penggunaan alat dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview)

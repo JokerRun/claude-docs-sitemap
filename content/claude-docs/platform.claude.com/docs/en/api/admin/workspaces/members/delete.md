@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/members/delete
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 32ac66dd393b959f0c39ca3424097b7b1a4ebb0626786aa1806b68dab8a9424f
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: c4bb9a6c3fef9242e3c1e4ea13ed9fdc1439a441b561ba988260c350df00763a
+---
+
+---
+title: Delete Workspace Member
+url: https://platform.claude.com/docs/en/api/admin/workspaces/members/delete
 ---
 
 ## Delete Workspace Member

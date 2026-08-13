@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/ultrareview
-fetched_at: 2026-08-12T02:56:30.865670Z
-sha256: dcd4025e9b694b335e40167c07760cfe5ac83613f635abf7b9d562736d4f3e0b
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 3bdc6efe07b89cd98fdf4be7f85651aceea2671e1eedf1aa9f209991044f47ec
 ---
 
 > ## Documentation Index
@@ -113,7 +113,7 @@ Ultrareview is a premium feature that bills against usage credits rather than yo
 | Team and Enterprise | none               | billed as [usage credits](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans) |
 
 * **Free runs**: the three Pro and Max runs are a one-time allotment per account and don't refresh.
-* **Cost per review**: after you use the free runs, or after the free-run period ends, typically \$5 to \$25 in usage credits depending on the size of the change, matching the estimate the launch dialog shows before each run.
+* **Cost per review**: after you use the free runs, typically \$5 to \$25 in usage credits depending on the size of the change, matching the estimate the launch dialog shows before each run.
 * **When a run counts**: once the cloud session starts. A review you stop early or that fails to complete still uses a free run; a paid review bills only for the portion that ran.
 
 Because ultrareview always bills as usage credits outside the free runs, your account or organization must have usage credits turned on before you can launch a paid review. If usage credits aren't turned on, Claude Code blocks the launch, and how you turn them on depends on your billing access:

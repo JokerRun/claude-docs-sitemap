@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/settings/retrieve
-fetched_at: 2026-07-08T03:08:53.943475Z
-sha256: 2573d53709e5402a4db31107a7041d429cac7e1c46d1c395c2a5fdfde9441b84
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: e15c49400d23519456d2f17b41e48eb50de7bc79607dace1c277a5edf534a400
+---
+
+---
+title: Get effective organization settings
+url: https://platform.claude.com/docs/en/api/compliance/organizations/settings/retrieve
 ---
 
 ## Get effective organization settings

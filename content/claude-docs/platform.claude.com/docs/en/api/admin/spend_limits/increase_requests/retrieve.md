@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/increase_requests/retrieve
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 536895e1fbb112d0e64c158d2e09bc360b53480eeb974f61dba2cebbeb9356e3
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: d4d650188576532ef26e7d321d782f8cdfa249ba74d0de53b7ad9efb0dd2408a
+---
+
+---
+title: Get Spend Limit Increase Request
+url: https://platform.claude.com/docs/en/api/admin/spend_limits/increase_requests/retrieve
 ---
 
 ## Get Spend Limit Increase Request

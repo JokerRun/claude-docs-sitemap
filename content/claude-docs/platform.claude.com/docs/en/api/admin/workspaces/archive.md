@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/archive
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 5ac013c38d805870dc24c74399e266bb964cd2c3cfeebed8d28a7b0b2fe6807a
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 941ff9bb143e76ed421e4256b3aa02246347416f5bd23c0852db9e178781b58a
+---
+
+---
+title: Archive Workspace
+url: https://platform.claude.com/docs/en/api/admin/workspaces/archive
 ---
 
 ## Archive Workspace

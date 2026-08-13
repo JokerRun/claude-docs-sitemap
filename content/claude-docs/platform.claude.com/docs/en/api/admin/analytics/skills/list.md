@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/skills/list
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 35ff49b24784ce19c9f061327ab6b297e39015bf24e6c856cae249cae3623aca
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 2d563a376266dca550dcd783f6fdd6d5c652bacf5302914434291504505c862e
+---
+
+---
+title: Get Skill Usage
+url: https://platform.claude.com/docs/en/api/admin/analytics/skills/list
 ---
 
 ## Get Skill Usage

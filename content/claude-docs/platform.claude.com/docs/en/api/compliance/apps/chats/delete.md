@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/delete
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 42bbdea86d1e251075312a36344dfb215b1a5e655abf6581c2e6468183882b37
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: b5aaa9001816e4859334f9cd4148fe4afac90df64f6dc07d749bac90bce37360
+---
+
+---
+title: Delete chat
+url: https://platform.claude.com/docs/en/api/compliance/apps/chats/delete
 ---
 
 ## Delete chat

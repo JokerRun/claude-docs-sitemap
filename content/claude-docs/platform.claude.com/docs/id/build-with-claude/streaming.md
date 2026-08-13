@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: afdb3438ec3883e5c48c2197867625867693a037c82a731d3fdadc4ed4a67ae0
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: f70b23f5c1cd0f7842427a407b40bab2a1822ff1249e177545fb3eb3ec13077c
 ---
 
-# Streaming pesan
-
-Streaming respons Messages API secara bertahap dengan server-sent events, termasuk delta teks, penggunaan alat, dan pemikiran diperpanjang.
-
+---
+title: Streaming pesan
+url: https://platform.claude.com/docs/id/build-with-claude/streaming
+description: Streaming respons Messages API secara bertahap dengan server-sent events, termasuk delta teks, penggunaan alat, dan pemikiran diperpanjang.
 ---
 
 Saat membuat Message, Anda dapat mengatur `"stream": true` untuk melakukan streaming respons secara bertahap menggunakan [server-sent events](https://developer.mozilla.org/en-US/Web/API/Server-sent%5Fevents/Using%5Fserver-sent%5Fevents) (SSE).
@@ -305,7 +305,7 @@ Setiap server-sent event menyertakan tipe event bernama dan data JSON terkait. S
 Setiap stream menggunakan alur event berikut:
 
 1. `message_start`: berisi objek `Message` dengan `content` kosong.
-2. Serangkaian blok konten, yang masing-masing memiliki `content_block_start`, satu atau lebih event `content_block_delta`, dan event `content_block_stop`. Setiap blok konten memiliki `index` yang sesuai dengan indeksnya dalam array `content` Message akhir. Satu pengecualian: selama respons [fallback sisi server](/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback), blok konten `fallback` tiba di setiap batas model sebagai pasangan `content_block_start` dan `content_block_stop` tanpa delta di antaranya.
+2. Serangkaian blok konten, yang masing-masing memiliki `content_block_start`, satu atau lebih event `content_block_delta`, dan event `content_block_stop`. Setiap blok konten memiliki `index` yang sesuai dengan indeksnya dalam array `content` Message akhir. Satu pengecualian: selama respons [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback), blok konten `fallback` tiba di setiap batas model sebagai pasangan `content_block_start` dan `content_block_stop` tanpa delta di antaranya.
 3. Satu atau lebih event `message_delta`, yang menunjukkan perubahan tingkat atas pada objek `Message` akhir.
 4. Event `message_stop` terakhir.
 
@@ -319,7 +319,7 @@ Stream event juga dapat menyertakan sejumlah event `ping`.
 
 ### Event error
 
-API terkadang dapat mengirimkan [error](/docs/id/api/errors) dalam stream event. Misalnya, selama periode penggunaan tinggi, Anda mungkin menerima `overloaded_error`, yang biasanya akan sesuai dengan HTTP 529 dalam konteks non-streaming:
+API terkadang dapat mengirimkan [error](https://platform.claude.com/docs/id/api/errors) dalam stream event. Misalnya, selama periode penggunaan tinggi, Anda mungkin menerima `overloaded_error`, yang biasanya akan sesuai dengan HTTP 529 dalam konteks non-streaming:
 
 ```sse Example error
 event: error
@@ -328,7 +328,7 @@ data: {"type": "error", "error": {"type": "overloaded_error", "message": "Overlo
 
 ### Event lainnya
 
-Sesuai dengan [kebijakan versi](/docs/id/api/versioning), tipe event baru dapat ditambahkan, dan kode Anda harus menangani tipe event yang tidak dikenal dengan baik.
+Sesuai dengan [kebijakan versi](https://platform.claude.com/docs/id/api/versioning), tipe event baru dapat ditambahkan, dan kode Anda harus menangani tipe event yang tidak dikenal dengan baik.
 
 ## Tipe delta blok konten
 
@@ -347,7 +347,7 @@ data: {"type": "content_block_delta","index": 0,"delta": {"type": "text_delta", 
 
 Delta untuk blok konten `tool_use` sesuai dengan pembaruan untuk bidang `input` dari blok tersebut. Untuk mendukung granularitas maksimum, delta tersebut adalah *string JSON parsial*, sedangkan `tool_use.input` akhir selalu berupa *objek*.
 
-Anda dapat mengakumulasi delta string dan mem-parsing JSON setelah Anda menerima event `content_block_stop`, dengan menggunakan pustaka seperti [Pydantic](https://docs.pydantic.dev/latest/concepts/json/#partial-json-parsing) untuk melakukan parsing JSON parsial, atau dengan menggunakan [SDK](/docs/id/cli-sdks-libraries/overview), yang menyediakan helper untuk mengakses nilai inkremental yang telah di-parsing.
+Anda dapat mengakumulasi delta string dan mem-parsing JSON setelah Anda menerima event `content_block_stop`, dengan menggunakan pustaka seperti [Pydantic](https://docs.pydantic.dev/latest/concepts/json/#partial-json-parsing) untuk melakukan parsing JSON parsial, atau dengan menggunakan [SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview), yang menyediakan helper untuk mengakses nilai inkremental yang telah di-parsing.
 
 Delta blok konten `tool_use` terlihat seperti:
 
@@ -360,11 +360,11 @@ Catatan: Model saat ini hanya mendukung pengeluaran satu properti kunci dan nila
 
 ### Delta thinking
 
-Saat menggunakan [thinking](/docs/id/build-with-claude/thinking#streaming-thinking) dengan streaming diaktifkan, Anda akan menerima konten thinking melalui event `thinking_delta`. Delta ini sesuai dengan bidang `thinking` dari blok konten `thinking`.
+Saat menggunakan [thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#streaming-thinking) dengan streaming diaktifkan, Anda akan menerima konten thinking melalui event `thinking_delta`. Delta ini sesuai dengan bidang `thinking` dari blok konten `thinking`.
 
 Untuk konten thinking, event `signature_delta` khusus dikirim tepat sebelum event `content_block_stop`. Signature ini digunakan untuk memverifikasi integritas blok thinking.
 
-Ketika `display: "omitted"` diatur pada konfigurasi thinking, tidak ada event `thinking_delta` yang dikirim. Blok thinking terbuka, menerima satu `signature_delta`, dan tertutup. Lihat [Mengontrol tampilan thinking](/docs/id/build-with-claude/thinking#controlling-thinking-display).
+Ketika `display: "omitted"` diatur pada konfigurasi thinking, tidak ada event `thinking_delta` yang dikirim. Blok thinking terbuka, menerima satu `signature_delta`, dan tertutup. Lihat [Mengontrol tampilan thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#controlling-thinking-display).
 
 Delta thinking yang umum terlihat seperti:
 
@@ -382,7 +382,7 @@ data: {"type": "content_block_delta", "index": 0, "delta": {"type": "signature_d
 
 ## Respons stream HTTP lengkap
 
-Gunakan [SDK klien](/docs/id/cli-sdks-libraries/overview) saat menggunakan mode streaming. Namun, jika Anda membangun integrasi API langsung, Anda perlu menangani event-event ini sendiri.
+Gunakan [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) saat menggunakan mode streaming. Namun, jika Anda membangun integrasi API langsung, Anda perlu menangani event-event ini sendiri.
 
 Respons stream terdiri dari:
 
@@ -398,7 +398,7 @@ Respons stream terdiri dari:
 
 4. Event `message_stop`
 
-Mungkin juga ada event `ping` yang tersebar di seluruh respons. Lihat [Tipe event](#event-types) untuk detail lebih lanjut tentang formatnya.
+Mungkin juga ada event `ping` yang tersebar di seluruh respons. Lihat [Tipe event](https://platform.claude.com/docs/id/build-with-claude/streaming#event-types) untuk detail lebih lanjut tentang formatnya.
 
 ### Permintaan streaming dasar
 
@@ -572,7 +572,7 @@ data: {"type": "message_stop"}
 ### Permintaan streaming dengan penggunaan alat
 
 <Tip>
-  Penggunaan alat mendukung [streaming berbutir halus](/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming) untuk nilai parameter. Aktifkan per alat dengan `eager_input_streaming`.
+  Penggunaan alat mendukung [streaming berbutir halus](https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming) untuk nilai parameter. Aktifkan per alat dengan `eager_input_streaming`.
 </Tip>
 
 Permintaan ini meminta Claude untuk menggunakan alat guna melaporkan cuaca.
@@ -1516,23 +1516,23 @@ Untuk model Claude 4.6 dan setelahnya, strategi tangkap-dan-lanjutkan yang sama 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Stop reason dan fallback" icon="list" href="/docs/id/build-with-claude/handling-stop-reasons">
+  <Card title="Stop reason dan fallback" icon="list" href="https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons">
     Tangani setiap nilai `stop_reason` setelah stream selesai.
   </Card>
 
-  <Card title="Streaming alat berbutir halus" icon="wrench" href="/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming">
+  <Card title="Streaming alat berbutir halus" icon="wrench" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming">
     Streaming JSON input alat tanpa buffering sisi server untuk latensi yang lebih rendah.
   </Card>
 
-  <Card title="Thinking" icon="brain" href="/docs/id/build-with-claude/thinking">
+  <Card title="Thinking" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/thinking">
     Streaming output thinking dengan event `thinking_delta` dan `signature_delta`.
   </Card>
 
-  <Card title="SDK klien" icon="code" href="/docs/id/cli-sdks-libraries/overview">
+  <Card title="SDK klien" icon="code" href="https://platform.claude.com/docs/id/cli-sdks-libraries/overview">
     Gunakan SDK resmi, yang menangani streaming, akumulasi, dan koneksi ulang untuk Anda.
   </Card>
 
-  <Card title="Pemrosesan batch" icon="stack" href="/docs/id/build-with-claude/batch-processing">
+  <Card title="Pemrosesan batch" icon="stack" href="https://platform.claude.com/docs/id/build-with-claude/batch-processing">
     Proses permintaan dalam volume besar secara asinkron ketika Anda tidak memerlukan respons real-time.
   </Card>
 </CardGroup>

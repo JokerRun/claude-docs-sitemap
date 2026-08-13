@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/retrieve
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 497000edd2f8ed53c0532b007d5c340e73ecf9cdc0b5a6d70ab995930028b182
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: aa9495526cf8fe93a56a6c90c57cb66a0fbbc01185e284ae96aeb07f391e8188
+---
+
+---
+title: Get Session Resource
+url: https://platform.claude.com/docs/en/api/beta/sessions/resources/retrieve
 ---
 
 ## Get Session Resource
@@ -25,7 +30,7 @@ Get Session Resource
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -90,6 +95,8 @@ Get Session Resource
     - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
+
+    - `"mid-conversation-tool-changes-2026-07-01"`
 
 ### Returns
 

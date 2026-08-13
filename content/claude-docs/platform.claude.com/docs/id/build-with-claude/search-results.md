@@ -1,23 +1,23 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/search-results
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 4561e38f85b3d478e222ea5746f6e60677aecd8ba126aedbc15dbb85d6b27489
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 37503d503448b9823820af6dbed4223aeacad327f8b27cf6ca164f52b51c92bb
 ---
 
-# Hasil pencarian
-
-Aktifkan sitasi alami untuk aplikasi RAG dengan menyediakan hasil pencarian beserta atribusi sumber
-
+---
+title: Hasil pencarian
+url: https://platform.claude.com/docs/id/build-with-claude/search-results
+description: Aktifkan sitasi alami untuk aplikasi RAG dengan menyediakan hasil pencarian beserta atribusi sumber
 ---
 
 <Note>
-  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
+  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 Blok konten hasil pencarian memungkinkan Claude mengutip konten Anda sendiri dengan cara yang sama seperti mengutip hasil pencarian web: setiap sitasi membawa sumber dan judul yang Anda berikan. Gunakan blok ini dalam aplikasi RAG (Retrieval-Augmented Generation) di mana Claude perlu mengatribusikan jawaban ke dokumen Anda.
 
-Semua [model aktif](/docs/id/about-claude/models/overview) mendukung hasil pencarian dengan sitasi, dengan pengecualian Claude Haiku 3. Tidak diperlukan header beta: hasil pencarian adalah bagian dari Messages API standar.
+Semua [model aktif](https://platform.claude.com/docs/id/about-claude/models/overview) mendukung hasil pencarian dengan sitasi, dengan pengecualian Claude Haiku 3. Tidak diperlukan header beta: hasil pencarian adalah bagian dari Messages API standar.
 
 ## Cara kerjanya
 
@@ -62,10 +62,10 @@ Hasil pencarian menggunakan struktur berikut:
 
 ### Field opsional
 
-| Field           | Tipe   | Deskripsi                                                                                                                                                                                                                                                                                          |
-| --------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `citations`     | object | Konfigurasi sitasi dengan field Boolean `enabled`. Sitasi dinonaktifkan secara default; setiap contoh di halaman ini menetapkan `"enabled": true` secara eksplisit. Semua hasil pencarian dalam satu permintaan harus menggunakan pengaturan yang sama (lihat [Kontrol sitasi](#citation-control)) |
-| `cache_control` | object | Pengaturan kontrol cache (misalnya, `{"type": "ephemeral"}`)                                                                                                                                                                                                                                       |
+| Field           | Tipe   | Deskripsi                                                                                                                                                                                                                                                                                                                                                              |
+| --------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `citations`     | object | Konfigurasi sitasi dengan field Boolean `enabled`. Sitasi dinonaktifkan secara default; setiap contoh di halaman ini menetapkan `"enabled": true` secara eksplisit. Semua hasil pencarian dalam satu permintaan harus menggunakan pengaturan yang sama (lihat [Kontrol sitasi](https://platform.claude.com/docs/id/build-with-claude/search-results#citation-control)) |
+| `cache_control` | object | Pengaturan kontrol cache (misalnya, `{"type": "ephemeral"}`)                                                                                                                                                                                                                                                                                                           |
 
 Setiap item dalam array `content` harus berupa blok teks dengan:
 
@@ -76,7 +76,7 @@ Hasil pencarian hanya menampung teks. Gambar dan media lainnya tidak didukung di
 
 ## Metode 1: Hasil pencarian dari pemanggilan alat
 
-Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG dinamis: alat mengambil konten saat runtime, dan Claude mengutipnya dalam respons. Contoh berikut memaksa pemanggilan alat dengan [`tool_choice`](/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use), sehingga langkah pengambilan berjalan setiap saat.
+Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG dinamis: alat mengambil konten saat runtime, dan Claude mengutipnya dalam respons. Contoh berikut memaksa pemanggilan alat dengan [`tool_choice`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use), sehingga langkah pengambilan berjalan setiap saat.
 
 ### Contoh: Alat basis pengetahuan
 
@@ -1257,7 +1257,7 @@ Setiap sitasi mencakup:
 | `start_block_index`   | integer          | Indeks berbasis 0 dari blok pertama yang dikutip dalam array `content` hasil pencarian.                                                                                       |
 | `end_block_index`     | integer          | Indeks akhir eksklusif dari rentang blok yang dikutip dalam array `content` hasil pencarian. Selalu lebih besar dari `start_block_index`.                                     |
 
-Indeks blok mengidentifikasi irisan dari array `content` hasil pencarian, dan `cited_text` adalah teks lengkap dari irisan tersebut. Blok teks adalah unit terkecil yang dapat dikutip: Claude mengutip blok secara utuh, bukan substring di dalam sebuah blok. Untuk mendapatkan sitasi yang lebih terperinci, pecah konten hasil pencarian Anda menjadi blok-blok yang lebih kecil (lihat [Beberapa blok konten](#multiple-content-blocks)).
+Indeks blok mengidentifikasi irisan dari array `content` hasil pencarian, dan `cited_text` adalah teks lengkap dari irisan tersebut. Blok teks adalah unit terkecil yang dapat dikutip: Claude mengutip blok secara utuh, bukan substring di dalam sebuah blok. Untuk mendapatkan sitasi yang lebih terperinci, pecah konten hasil pencarian Anda menjadi blok-blok yang lebih kecil (lihat [Beberapa blok konten](https://platform.claude.com/docs/id/build-with-claude/search-results#multiple-content-blocks)).
 
 ## Beberapa blok konten
 
@@ -1300,7 +1300,7 @@ Sitasi yang merujuk pada blok batas laju terlihat seperti:
 }
 ```
 
-Ketika hasil pencarian ini dikutip, `start_block_index` dan `end_block_index` mengidentifikasi blok mana yang dicakup oleh sitasi, dan `cited_text` berisi tepat teks dari blok-blok tersebut. Memecah konten menjadi blok-blok yang lebih kecil dan terfokus memberi Claude batas sitasi yang lebih terperinci; menggabungkan konten menjadi satu blok berarti setiap sitasi mengembalikan teks lengkap. Ini adalah model yang sama yang digunakan oleh [dokumen konten kustom](/docs/id/build-with-claude/citations#custom-content-documents) dalam fitur Citations.
+Ketika hasil pencarian ini dikutip, `start_block_index` dan `end_block_index` mengidentifikasi blok mana yang dicakup oleh sitasi, dan `cited_text` berisi tepat teks dari blok-blok tersebut. Memecah konten menjadi blok-blok yang lebih kecil dan terfokus memberi Claude batas sitasi yang lebih terperinci; menggabungkan konten menjadi satu blok berarti setiap sitasi mengembalikan teks lengkap. Ini adalah model yang sama yang digunakan oleh [dokumen konten kustom](https://platform.claude.com/docs/id/build-with-claude/citations#custom-content-documents) dalam fitur Citations.
 
 ## Penggunaan lanjutan
 
@@ -2094,7 +2094,7 @@ Tambahkan `cache_control` pada blok hasil pencarian untuk menyimpannya dalam cac
 }
 ```
 
-Lihat [Caching prompt](/docs/id/build-with-claude/prompt-caching) untuk panjang minimum yang dapat di-cache dan persyaratan lainnya.
+Lihat [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk panjang minimum yang dapat di-cache dan persyaratan lainnya.
 
 ### Kontrol sitasi
 
@@ -2153,28 +2153,28 @@ Ketika `citations.enabled` disetel ke `true`, Claude melampirkan referensi sitas
 * Blok konten hasil pencarian tersedia di Claude API, Amazon Bedrock, dan Google Cloud.
 * Hanya konten teks yang didukung di dalam hasil pencarian (tidak ada gambar atau media lainnya).
 * Blok `search_result` hanya dapat muncul dalam pesan pengguna (termasuk di dalam hasil alat). Pesan asisten dengan hasil pencarian akan ditolak.
-* Ketika [alat pencarian web](/docs/id/agents-and-tools/tool-use/web-search-tool) diaktifkan dalam permintaan yang sama, sitasi harus diaktifkan pada semua blok `search_result`.
+* Ketika [alat pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool) diaktifkan dalam permintaan yang sama, sitasi harus diaktifkan pada semua blok `search_result`.
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Penolakan streaming" icon="lock" href="/docs/id/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals">
+  <Card title="Penolakan streaming" icon="lock" href="https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals">
     Deteksi dan tangani alasan berhenti berupa penolakan dalam respons streaming, dan coba ulang permintaan yang ditolak pada model cadangan.
   </Card>
 
-  <Card title="Sitasi" icon="book" href="/docs/id/build-with-claude/citations">
+  <Card title="Sitasi" icon="book" href="https://platform.claude.com/docs/id/build-with-claude/citations">
     Landaskan respons Claude pada dokumen sumber Anda. Sitasi mengembalikan bagian teks persis yang mendukung setiap klaim, sehingga Anda dapat memverifikasi jawaban dan menampilkan sumber kepada pengguna Anda.
   </Card>
 
-  <Card title="Alat pencarian web" icon="browser" href="/docs/id/agents-and-tools/tool-use/web-search-tool">
+  <Card title="Alat pencarian web" icon="browser" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool">
     Beri Claude akses ke konten web terkini dengan sumber yang dikutip, pemfilteran dinamis opsional, dan kontrol domain.
   </Card>
 
-  <Card title="Referensi Messages API" icon="code" href="/docs/id/api/messages/create">
+  <Card title="Referensi Messages API" icon="code" href="https://platform.claude.com/docs/id/api/messages/create">
     Lihat dokumentasi Messages API lengkap, termasuk tipe blok konten.
   </Card>
 
-  <Card title="Caching prompt" icon="database" href="/docs/id/build-with-claude/prompt-caching">
+  <Card title="Caching prompt" icon="database" href="https://platform.claude.com/docs/id/build-with-claude/prompt-caching">
     Simpan hasil pencarian dalam cache dengan `cache_control` untuk mengurangi biaya dan latensi pada permintaan berulang.
   </Card>
 </CardGroup>

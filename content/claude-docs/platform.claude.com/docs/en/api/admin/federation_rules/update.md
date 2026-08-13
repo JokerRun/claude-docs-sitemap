@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/federation_rules/update
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: c0f4bc16b9e383d10e76cc00a8747ce024e5b3b6f975489359def3c835548d77
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 25fbd48ce4f0db26e6de5d4eb84d44924a9fbcb8caac8089873023a7db59337f
+---
+
+---
+title: Update Federation Rule
+url: https://platform.claude.com/docs/en/api/admin/federation_rules/update
 ---
 
 ## Update Federation Rule

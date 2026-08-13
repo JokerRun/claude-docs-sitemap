@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/slash-commands
-fetched_at: 2026-08-11T02:45:59.001861Z
-sha256: 63394cfc278702ec72b08da7a3456cc4edda4013e3777879545c0c65747b0388
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: e5c597afe5e5ef0370896a12d51f01e32f80f23697c1d99b8bd2e7b5a463b810
 ---
 
 > ## Documentation Index
@@ -225,15 +225,15 @@ This is useful in [streaming input mode](/docs/en/agent-sdk/streaming-vs-single-
 In addition to using built-in slash commands, you can create your own custom commands that are available through the SDK. You define custom commands as markdown files in specific directories, the same way you configure subagents.
 
 <Note>
-  The `.claude/commands/` directory is the legacy format. The recommended format is `.claude/skills/<name>/SKILL.md`, which supports the same slash-command invocation (`/name`) plus autonomous invocation by Claude. See [Skills](/docs/en/agent-sdk/skills) for the current format. The CLI continues to support both formats, and the examples below remain accurate for `.claude/commands/`.
+  Custom commands have been merged into skills. A file in `.claude/commands/` and a skill at `.claude/skills/<name>/SKILL.md` both create `/name` and work the same way. For new work, prefer skills, which add features like a directory for supporting files; see [Skills](/docs/en/agent-sdk/skills) for SDK usage. The CLI supports both locations, and the examples below remain accurate for `.claude/commands/`.
 </Note>
 
 ### File Locations
 
 Save custom slash commands in one of these directories, depending on their scope:
 
-* **Project commands**: `.claude/commands/` - Available only in the current project (legacy; prefer `.claude/skills/`)
-* **Personal commands**: `~/.claude/commands/` - Available across all your projects (legacy; prefer `~/.claude/skills/`)
+* **Project commands**: `.claude/commands/` - Available only in the current project. For new work, prefer `.claude/skills/`.
+* **Personal commands**: `~/.claude/commands/` - Available across all your projects. For new work, prefer `~/.claude/skills/`.
 
 ### File Format
 

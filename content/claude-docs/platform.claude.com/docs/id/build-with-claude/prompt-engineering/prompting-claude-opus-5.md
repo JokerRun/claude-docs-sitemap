@@ -1,22 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 2e530ecb0d84704f4792992620d29797edff5d1f84e06b415d51956b4c4fd7c4
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 3fc8e5dd3961f40ac5bd845e5e474355e4a3da61e0c26ed2f42ea479391008a3
 ---
 
-# Prompting Claude Opus 5
-
-Perbedaan perilaku dan pola prompting untuk Claude Opus 5, mencakup verbositas respons, narasi agentik, pembatasan cakupan tugas, delegasi subagen, koreksi diri, dan artefak output saat thinking dinonaktifkan.
-
+---
+title: Prompting Claude Opus 5
+url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5
+description: Perbedaan perilaku dan pola prompting untuk Claude Opus 5, mencakup verbositas respons, narasi agentik, pembatasan cakupan tugas, delegasi subagen, koreksi diri, dan artefak output saat thinking dinonaktifkan.
 ---
 
-Panduan ini mencakup pola prompting yang spesifik untuk Claude Opus 5. Untuk kemampuan model dan perubahan API, lihat [Apa yang baru di Claude Opus 5](/docs/id/about-claude/models/whats-new-opus-5). Untuk teknik yang berlaku di semua model Claude saat ini, lihat [Praktik terbaik prompting](/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
+Panduan ini mencakup pola prompting yang spesifik untuk Claude Opus 5. Untuk kemampuan model dan perubahan API, lihat [Apa yang baru di Claude Opus 5](https://platform.claude.com/docs/id/about-claude/models/whats-new-opus-5). Untuk teknik yang berlaku di semua model Claude saat ini, lihat [Praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
 
 Claude Opus 5 dibangun untuk pekerjaan coding agentik yang kompleks dan pekerjaan enterprise, dengan kekuatan khusus pada tugas agentik jangka panjang. Model ini bekerja dengan baik secara langsung pada prompt Claude Opus 4.8 yang sudah ada. Pola-pola berikut mencakup perilaku yang paling sering memerlukan penyetelan.
 
 <Note>
-  Untuk perubahan API saat bermigrasi dari Claude Opus 4.8 (thinking aktif secara default, dan menonaktifkan thinking dibatasi pada effort `high`), lihat [panduan migrasi](/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-4-8-to-claude-opus-5).
+  Untuk perubahan API saat bermigrasi dari Claude Opus 4.8 (thinking aktif secara default, dan menonaktifkan thinking dibatasi pada effort `high`), lihat [panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-4-8-to-claude-opus-5).
 </Note>
 
 ## Peningkatan kemampuan
@@ -25,15 +25,15 @@ Dibandingkan dengan Claude Opus 4.8, peningkatan yang paling relevan untuk promp
 
 * **Coding agentik:** Claude Opus 5 paling kuat pada tugas coding yang sulit: fitur multi-file, refactor yang lebih besar, dan pekerjaan fitur end-to-end. Model ini menyelesaikan tugas secara penuh alih-alih meninggalkan stub atau placeholder, dan bekerja paling baik ketika diberikan spesifikasi tugas lengkap di awal dan dibiarkan berjalan. Model ini juga bekerja dengan baik pada tugas yang lebih mudah seperti pengeditan satu giliran, di mana perbedaan dari model sebelumnya lebih kecil.
 * **Tinjauan kode dan pencarian bug:** Claude Opus 5 meninjau kode dengan presisi dan recall yang tinggi: model ini menemukan bug nyata dengan tingkat yang tinggi per lintasan, dan temuan tambahannya sebagian besar adalah masalah nyata alih-alih false positive. Akurasi tetap terjaga pada pengaturan effort yang lebih rendah, yang mendukung lintasan cepat saat waktu tinjauan dan lintasan yang lebih menyeluruh kemudian. Jika prompt tinjauan Anda mengatakan "hanya laporkan masalah dengan tingkat keparahan tinggi" atau "bersikaplah konservatif," model mungkin mengikuti instruksi tersebut secara harfiah dan melaporkan lebih sedikit; mintalah model untuk melaporkan semuanya dan lakukan penyaringan dalam lintasan terpisah sebagai gantinya.
-* **Efisiensi pada effort yang lebih rendah:** [Effort](/docs/id/build-with-claude/effort) `low` dan `medium` menghasilkan kualitas yang kuat dengan sebagian kecil dari token dan latensi dibandingkan pengaturan yang lebih tinggi. Mulailah dengan default (`high`) dan sesuaikan berdasarkan eval Anda: gunakan `low` dan `medium` secara leluasa sebagai kontrol utama Anda untuk biaya token dan waktu respons di mana pun kualitas tetap terjaga, dan naikkan ke `xhigh` untuk pekerjaan coding dan agentik yang menuntut. Jika Anda membawa default effort dari model sebelumnya, jalankan kembali sapuan effort pada eval Anda sendiri. Lihat [Effort](/docs/id/build-with-claude/effort#recommended-effort-levels-for-claude-opus-5) untuk rekomendasi lengkap.
+* **Efisiensi pada effort yang lebih rendah:** [Effort](https://platform.claude.com/docs/id/build-with-claude/effort) `low` dan `medium` menghasilkan kualitas yang kuat dengan sebagian kecil dari token dan latensi dibandingkan pengaturan yang lebih tinggi. Mulailah dengan default (`high`) dan sesuaikan berdasarkan eval Anda: gunakan `low` dan `medium` secara leluasa sebagai kontrol utama Anda untuk biaya token dan waktu respons di mana pun kualitas tetap terjaga, dan naikkan ke `xhigh` untuk pekerjaan coding dan agentik yang menuntut. Jika Anda membawa default effort dari model sebelumnya, jalankan kembali sapuan effort pada eval Anda sendiri. Lihat [Effort](https://platform.claude.com/docs/id/build-with-claude/effort#recommended-effort-levels-for-claude-opus-5) untuk rekomendasi lengkap.
 * **Vision:** Claude Opus 5 kuat dalam pemahaman bagan, dokumen, dan diagram, serta dalam replikasi visual UI dan frontend. Validasi ulang setiap solusi vision di sisi prompt yang Anda setel untuk model sebelumnya; solusi tersebut mungkin tidak lagi diperlukan. Kinerja vision paling kuat ketika model memiliki alat untuk menganalisis, memotong, dan memverifikasi pekerjaannya secara visual dan iteratif, dan penggunaan alat adalah tuas yang lebih hemat biaya daripada thinking saja.
-* **Pekerjaan konteks panjang:** Claude Opus 5 memiliki [jendela konteks 1M token](/docs/id/build-with-claude/context-windows) sebagai default sekaligus maksimum, dan kemampuan mengikuti instruksi, pemanggilan alat, dan penalarannya tetap konsisten di sepanjang jendela tersebut.
+* **Pekerjaan konteks panjang:** Claude Opus 5 memiliki [jendela konteks 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) sebagai default sekaligus maksimum, dan kemampuan mengikuti instruksi, pemanggilan alat, dan penalarannya tetap konsisten di sepanjang jendela tersebut.
 * **Tugas perkantoran dan dokumen:** Claude Opus 5 menghasilkan dan bekerja dengan spreadsheet multi-sheet yang kompleks dengan formula yang tidak sepele, dan menghasilkan slide deck yang terstruktur dengan baik. Berikan prompt dengan gaya atau templat spesifik apa pun yang perlu diikutinya.
-* **Koordinasi multi-agen:** Claude Opus 5 mengoordinasikan tim subagen dengan baik, dengan pola writer-verifier yang efektif dan sedikit kasus agen yang saling menimpa pekerjaan satu sama lain. Untuk beban kerja yang sensitif terhadap biaya, batasi delegasi; lihat [Mengontrol pemunculan subagen](#controlling-subagent-spawning).
+* **Koordinasi multi-agen:** Claude Opus 5 mengoordinasikan tim subagen dengan baik, dengan pola writer-verifier yang efektif dan sedikit kasus agen yang saling menimpa pekerjaan satu sama lain. Untuk beban kerja yang sensitif terhadap biaya, batasi delegasi; lihat [Mengontrol pemunculan subagen](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5#controlling-subagent-spawning).
 
 ## Panjang respons dan verbositas
 
-Respons default yang ditampilkan kepada pengguna dari Claude Opus 5 lebih panjang daripada model Opus sebelumnya. [Parameter effort](/docs/id/build-with-claude/effort) mengontrol seberapa banyak model [berpikir](/docs/id/build-with-claude/thinking-steering-and-cost) alih-alih seberapa banyak yang dikatakannya: menurunkan effort dapat mengurangi volume thinking tanpa secara andal memperpendek respons yang terlihat. Untuk mengontrol panjang respons, berikan prompt secara eksplisit.
+Respons default yang ditampilkan kepada pengguna dari Claude Opus 5 lebih panjang daripada model Opus sebelumnya. [Parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort) mengontrol seberapa banyak model [berpikir](https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost) alih-alih seberapa banyak yang dikatakannya: menurunkan effort dapat mengurangi volume thinking tanpa secara andal memperpendek respons yang terlihat. Untuk mengontrol panjang respons, berikan prompt secara eksplisit.
 
 Instruksi keringkasan yang singkat sudah efektif. Misalnya, untuk produk multi-giliran yang ditampilkan kepada pengguna:
 
@@ -97,7 +97,7 @@ Only correct an earlier statement when the error would change the user's code, c
 
 ## Berjalan dengan thinking dinonaktifkan
 
-Claude Opus 5 berjalan dengan [thinking](/docs/id/build-with-claude/thinking) aktif secara default, dan thinking hanya dapat dinonaktifkan pada [effort](/docs/id/build-with-claude/effort) `high` atau di bawahnya; lihat [panduan migrasi](/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-4-8-to-claude-opus-5). Dengan thinking dinonaktifkan, dua artefak kadang-kadang dapat muncul dalam output model yang terlihat. Mitigasi utama untuk keduanya adalah tetap mengaktifkan thinking dan mengontrol biaya token dengan tingkat effort yang lebih rendah alih-alih menonaktifkan thinking: untuk sebagian besar tugas, thinking yang diaktifkan pada effort `low` berkinerja lebih baik daripada thinking yang dinonaktifkan dengan biaya serupa.
+Claude Opus 5 berjalan dengan [thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) aktif secara default, dan thinking hanya dapat dinonaktifkan pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) `high` atau di bawahnya; lihat [panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-4-8-to-claude-opus-5). Dengan thinking dinonaktifkan, dua artefak kadang-kadang dapat muncul dalam output model yang terlihat. Mitigasi utama untuk keduanya adalah tetap mengaktifkan thinking dan mengontrol biaya token dengan tingkat effort yang lebih rendah alih-alih menonaktifkan thinking: untuk sebagian besar tugas, thinking yang diaktifkan pada effort `low` berkinerja lebih baik daripada thinking yang dinonaktifkan dengan biaya serupa.
 
 **Panggilan alat sebagai teks.** Dengan thinking dinonaktifkan, model kadang-kadang menulis panggilan alat ke dalam teks yang ditampilkan kepada pengguna alih-alih mengeluarkan blok `tool_use` yang terstruktur. Giliran selesai secara normal dan panggilan tidak pernah berjalan, dan dalam loop agentik teks yang bocor tetap berada dalam riwayat percakapan, sehingga giliran berikutnya juga terpengaruh. Ini paling umum terjadi pada beban kerja yang banyak menggunakan alat seperti pencarian.
 

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/archive
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: f652f5d7ad56b8883670aa924e1d95a43b46619b2770494450cbce8f396a8fdd
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: f05cc88c317a11a03dd1ffebe88b0de7685e69a32d1e3a198c5e07b4ff2d6f3d
+---
+
+---
+title: Archive a memory store
+url: https://platform.claude.com/docs/en/api/beta/memory_stores/archive
 ---
 
 ## Archive a memory store
@@ -23,7 +28,7 @@ Archive a memory store
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -88,6 +93,8 @@ Archive a memory store
     - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
+
+    - `"mid-conversation-tool-changes-2026-07-01"`
 
 ### Returns
 

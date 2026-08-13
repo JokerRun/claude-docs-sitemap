@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/list
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: aefee4d50997ab04883f691987821f63237c90aa2f80f023a7b0cfd2e0ed8617
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 1e70a65d9560484b9a92a9d476837122ad467d2c270ed5937093fe522b3242ba
+---
+
+---
+title: List Tunnels
+url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/list
 ---
 
 ## List Tunnels

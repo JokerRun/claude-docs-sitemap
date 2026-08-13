@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/collaborators
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 700c20b91119d82cf0575b37070080bbc8b51f873e7f1fd1f1cf2d103cec7aa1
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 9c0b9a9afa049df26bb41ccb72922ff34adb6d55c5cb3c75117918503aff0a2b
+---
+
+---
+title: Collaborators
+url: https://platform.claude.com/docs/en/api/compliance/apps/projects/collaborators
 ---
 
 # Collaborators

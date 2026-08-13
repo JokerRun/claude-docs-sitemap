@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/tunnel_certificates/retrieve
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 53b6f23c0f5af1bb7e04962bf684a23771b52b6275f45e36e20c5ab08a44ec57
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: d568db52f9c7a0ae88199313604dd7aaa80847c8a357c7c661c5a4a605325271
+---
+
+---
+title: Get Tunnel Certificate
+url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/tunnel_certificates/retrieve
 ---
 
 ## Get Tunnel Certificate

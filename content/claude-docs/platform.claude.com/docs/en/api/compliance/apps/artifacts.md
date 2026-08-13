@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/artifacts
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 466ecfe0862ea60e49c7f01862e224a902a675657ca2b26b790dd737c9048d05
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: aadf4f925972dcbc6715d1a9007588765ea55c4eadabf13e625f98ddf7d5f4d9
+---
+
+---
+title: Artifacts
+url: https://platform.claude.com/docs/en/api/compliance/apps/artifacts
 ---
 
 # Artifacts

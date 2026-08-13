@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 498eeb37bcecd44a7256d75e9c3903d99c204a0901df0919f5cc184ef31166ce
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: c024ab902c41e67cf05a8df969dddc7e477f26378c4c887b965dc8b6b2603ef7
 ---
 
-# Tutorial: Membangun agen yang menggunakan alat
-
-Panduan langkah demi langkah dari satu panggilan alat hingga loop agentik yang siap produksi.
-
+---
+title: "Tutorial: Membangun agen yang menggunakan alat"
+url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent
+description: Panduan langkah demi langkah dari satu panggilan alat hingga loop agentik yang siap produksi.
 ---
 
 Tutorial ini membangun agen manajemen kalender dalam lima ring konsentris. Setiap ring adalah program lengkap yang dapat dijalankan dan menambahkan tepat satu konsep ke ring sebelumnya. Pada akhirnya Anda akan menulis loop agentik secara manual dan kemudian menggantinya dengan abstraksi Tool Runner SDK.
@@ -21,7 +21,7 @@ Alat contohnya adalah `create_calendar_event`. Skemanya menggunakan objek bersar
 
 ## Ring 1: Satu alat, satu giliran
 
-Program penggunaan alat terkecil yang mungkin: satu alat, satu pesan pengguna, satu panggilan alat, satu hasil. Kode ini diberi komentar secara rinci sehingga Anda dapat memetakan setiap baris ke [siklus hidup penggunaan alat](/docs/id/agents-and-tools/tool-use/how-tool-use-works).
+Program penggunaan alat terkecil yang mungkin: satu alat, satu pesan pengguna, satu panggilan alat, satu hasil. Kode ini diberi komentar secara rinci sehingga Anda dapat memetakan setiap baris ke [siklus hidup penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/how-tool-use-works).
 
 Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menentukan bahwa panggilan alat diperlukan, respons kembali dengan `stop_reason: "tool_use"` dan blok konten `tool_use` yang berisi nama alat, `id` unik, dan `input` terstruktur. Kode Anda menjalankan alat tersebut, lalu mengirimkan hasilnya kembali dalam blok `tool_result` yang `tool_use_id`-nya cocok dengan `id` dari panggilan tersebut.
 
@@ -2932,7 +2932,7 @@ Ketika Claude memiliki beberapa panggilan alat independen yang harus dilakukan, 
 I checked your calendar for next Monday and found an existing meeting from 2pm to 3pm. I've scheduled the planning session for 10am to 11am to avoid the conflict.
 ```
 
-Untuk informasi lebih lanjut tentang eksekusi bersamaan dan jaminan urutan, lihat [Penggunaan alat paralel](/docs/id/agents-and-tools/tool-use/parallel-tool-use).
+Untuk informasi lebih lanjut tentang eksekusi bersamaan dan jaminan urutan, lihat [Penggunaan alat paralel](https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use).
 
 ## Ring 4: Penanganan error
 
@@ -4018,7 +4018,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
 I tried to schedule the all-hands but the calendar only allows 10 attendees per event. I can split this into two sessions, or you can let me know which 10 people to prioritize.
 ```
 
-Flag `is_error` adalah satu-satunya perbedaan dari hasil yang berhasil. Claude melihat flag tersebut dan teks error-nya, lalu merespons sesuai. Lihat [Menangani panggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls) untuk referensi penanganan error lengkap.
+Flag `is_error` adalah satu-satunya perbedaan dari hasil yang berhasil. Claude melihat flag tersebut dan teks error-nya, lalu merespons sesuai. Lihat [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls) untuk referensi penanganan error lengkap.
 
 ## Ring 5: Abstraksi Tool Runner SDK
 
@@ -4027,7 +4027,7 @@ Ring 2 hingga 4 menulis loop yang sama secara manual: panggil API, periksa `stop
 Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat dijalankan dan menurunkan skema input dari signature-nya; tab di bawah menunjukkan bentuk idiomatik untuk setiap bahasa.
 
 <Note>
-  Tool Runner tersedia di ketujuh SDK: Python, TypeScript, C#, Go, Java, PHP, dan Ruby. Lihat [Tool Runner](/docs/id/agents-and-tools/tool-use/tool-runner) untuk referensi lengkap. Tab cURL dan CLI menampilkan catatan alih-alih kode; pertahankan loop Ring 4 untuk skrip berbasis curl atau CLI.
+  Tool Runner tersedia di ketujuh SDK: Python, TypeScript, C#, Go, Java, PHP, dan Ruby. Lihat [Tool Runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner) untuk referensi lengkap. Tab cURL dan CLI menampilkan catatan alih-alih kode; pertahankan loop Ring 4 untuk skrip berbasis curl atau CLI.
 </Note>
 
 <CodeGroup>
@@ -4667,15 +4667,15 @@ Anda memulai dengan satu panggilan alat yang di-hardcode dan berakhir dengan age
 ## Langkah selanjutnya
 
 <CardGroup>
-  <Card href="/docs/id/agents-and-tools/tool-use/define-tools" title="Mendefinisikan alat">
+  <Card href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools" title="Mendefinisikan alat">
     Spesifikasi skema dan praktik terbaik.
   </Card>
 
-  <Card href="/docs/id/agents-and-tools/tool-use/tool-runner" title="Tool Runner">
+  <Card href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner" title="Tool Runner">
     Referensi lengkap abstraksi SDK.
   </Card>
 
-  <Card href="/docs/id/agents-and-tools/tool-use/troubleshooting-tool-use" title="Pemecahan masalah">
+  <Card href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/troubleshooting-tool-use" title="Pemecahan masalah">
     Perbaiki error penggunaan alat yang umum.
   </Card>
 </CardGroup>

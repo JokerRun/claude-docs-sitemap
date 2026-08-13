@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/federation_rules/workspaces/list
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: c986f7b0d2ebae3965a7e769e9dfcb216001da550a4e46e456ce5f20696c166c
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 6ac3e3d27c557c2e350f844c6222470166f27aa4ebdb161bf530841cf9172ef3
+---
+
+---
+title: List Federation Rule Workspaces
+url: https://platform.claude.com/docs/en/api/admin/federation_rules/workspaces/list
 ---
 
 ## List Federation Rule Workspaces

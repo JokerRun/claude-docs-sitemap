@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/github
-fetched_at: 2026-08-07T03:04:51.007486Z
-sha256: 0db322325615f4f2e95c7260bc6ed1f4f893af65747e1a4f7c349315dd01a26c
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 9cf23e7ab1f5838669ba184bc98cbbed2f75a363834da56715237bca684df22a
 ---
 
-# Mengakses GitHub
-
-Hubungkan agen Anda ke repositori GitHub untuk melakukan clone, membaca, dan membuat pull request.
-
+---
+title: Mengakses GitHub
+url: https://platform.claude.com/docs/id/managed-agents/github
+description: Hubungkan agen Anda ke repositori GitHub untuk melakukan clone, membaca, dan membuat pull request.
 ---
 
 Anda dapat memasang (mount) repositori GitHub ke sandbox sesi Anda dan terhubung ke GitHub MCP untuk membuat pull request.
@@ -16,7 +16,7 @@ Anda dapat memasang (mount) repositori GitHub ke sandbox sesi Anda dan terhubung
 Repositori GitHub di-cache, sehingga sesi berikutnya yang menggunakan repositori yang sama akan dimulai lebih cepat.
 
 <Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](/docs/id/api/beta-headers#endpoint-specific-headers).
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## GitHub MCP dan sumber daya sesi
@@ -24,7 +24,7 @@ Repositori GitHub di-cache, sehingga sesi berikutnya yang menggunakan repositori
 Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimpan URL server tetapi tidak menyimpan token autentikasi:
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   agent_id=$(curl -fsS https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -235,7 +235,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
 Kemudian buat sesi yang memasang repositori GitHub:
 
 <CodeGroup>
-  ```bash curl
+  ```bash cURL
   session_id=$(curl -fsS https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -386,16 +386,18 @@ Kemudian buat sesi yang memasang repositori GitHub:
 
 `resources[].authorization_token` mengautentikasi operasi clone repositori dan tidak ditampilkan kembali dalam respons API.
 
+Memasang repositori juga memuat semua skill yang disimpan di direktori `.claude/skills` pada root repositori tersebut. Skill ditemukan satu kali per sesi, dari kondisi repositori yang di-checkout saat sesi dimulai. Lihat [Memuat skill dari repositori GitHub](https://platform.claude.com/docs/id/managed-agents/skills#load-skills-from-a-github-repository).
+
 ## Izin token
 
 Saat menyediakan token GitHub, gunakan izin minimum yang diperlukan:
 
-| Tindakan                | Scope yang diperlukan              |
-| ----------------------- | ---------------------------------- |
-| Clone repositori privat | `repo`                             |
-| Membuat PR              | `repo`                             |
-| Membaca issue           | `repo` (privat) atau `public_repo` |
-| Membuat issue           | `repo` (privat) atau `public_repo` |
+| Tindakan          | Scope yang diperlukan              |
+| ----------------- | ---------------------------------- |
+| Clone repo privat | `repo`                             |
+| Membuat PR        | `repo`                             |
+| Membaca issue     | `repo` (privat) atau `public_repo` |
+| Membuat issue     | `repo` (privat) atau `public_repo` |
 
 <Warning>
   Gunakan fine-grained personal access token dengan izin minimum yang diperlukan. Hindari menggunakan token dengan akses luas ke akun GitHub Anda.
@@ -406,7 +408,7 @@ Saat menyediakan token GitHub, gunakan izin minimum yang diperlukan:
 Pasang beberapa repositori dengan menambahkan entri ke array `resources`:
 
 <CodeGroup>
-  ```bash curl
+  ```bash cURL
   resources='[
     {
       "type": "github_repository",
@@ -569,7 +571,7 @@ Pasang beberapa repositori dengan menambahkan entri ke array `resources`:
 Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan merotasi token otorisasinya. Setiap sumber daya memiliki `id` yang dikembalikan pada saat pembuatan sesi (atau melalui `resources.list`) yang Anda gunakan untuk pembaruan. Repositori terpasang selama masa hidup sesi; untuk mengubah repositori mana yang dipasang, buat sesi baru.
 
 <CodeGroup>
-  ```bash curl
+  ```bash cURL
   # Daftar resource pada sesi
   repo_resource_id=$(curl -fsS "https://api.anthropic.com/v1/sessions/$session_id/resources" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -634,12 +636,12 @@ Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan
   ```
 
   ```csharp C#
-  // List resources on the session
+  // Daftar sumber daya pada sesi
   var listed = await client.Beta.Sessions.Resources.List(session.ID);
   var repoResourceId = (await listed.Paginate().FirstAsync()).ID;
   Console.WriteLine(repoResourceId); // "sesrsc_01ABC..."
 
-  // Rotate the authorization token
+  // Rotasi token otorisasi
   await client.Beta.Sessions.Resources.Update(repoResourceId, new()
   {
       SessionID = session.ID,
@@ -648,7 +650,7 @@ Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan
   ```
 
   ```go Go
-  // List resources on the session
+  // Daftar resource pada session
   listed, err := client.Beta.Sessions.Resources.List(ctx, session.ID, anthropic.BetaSessionResourceListParams{})
   if err != nil {
   	panic(err)
@@ -656,7 +658,7 @@ Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan
   repoResourceID := listed.Data[0].ID
   fmt.Println(repoResourceID) // "sesrsc_01ABC..."
 
-  // Rotate the authorization token
+  // Rotasi token otorisasi
   _, err = client.Beta.Sessions.Resources.Update(ctx, repoResourceID, anthropic.BetaSessionResourceUpdateParams{
   	SessionID:          session.ID,
   	AuthorizationToken: "ghp_your_new_github_token",
@@ -713,7 +715,7 @@ Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan
 Dengan server GitHub MCP, agen dapat membuat branch, melakukan commit perubahan, dan melakukan push:
 
 <CodeGroup>
-  ```bash curl
+  ```bash cURL
   curl -fsS "https://api.anthropic.com/v1/sessions/$session_id/events" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -876,15 +878,15 @@ Dengan server GitHub MCP, agen dapat membuat branch, melakukan commit perubahan,
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Stream event sesi" icon="lightning" href="/docs/id/managed-agents/events-and-streaming">
+  <Card title="Stream event sesi" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/events-and-streaming">
     Lakukan streaming event dan arahkan agen saat membuka pull request
   </Card>
 
-  <Card title="Konektor MCP" icon="link" href="/docs/id/managed-agents/mcp-connector">
+  <Card title="Konektor MCP" icon="link" href="https://platform.claude.com/docs/id/managed-agents/mcp-connector">
     Hubungkan lebih banyak server MCP untuk memberikan alat tambahan kepada agen
   </Card>
 
-  <Card title="Menambahkan file" icon="file" href="/docs/id/managed-agents/files">
+  <Card title="Menambahkan file" icon="file" href="https://platform.claude.com/docs/id/managed-agents/files">
     Pasang file di sandbox bersama dengan repositori Anda
   </Card>
 </CardGroup>

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/increase_requests/approve
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 2ce6a579d6c3d7d98d54444780686bf330d7d57e9bb84bdc2de2445632528f95
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: f9975711b508fdaecae8ba3c0ea88dc5434e39ae3be0a79b21fa5bc2fa6b174e
+---
+
+---
+title: Approve Spend Limit Increase Request
+url: https://platform.claude.com/docs/en/api/admin/spend_limits/increase_requests/approve
 ---
 
 ## Approve Spend Limit Increase Request

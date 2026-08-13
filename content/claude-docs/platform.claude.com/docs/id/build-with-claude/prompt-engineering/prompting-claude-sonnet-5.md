@@ -1,22 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 473ee69f5211ec8c8170297937df222a5884efbb4cdb1613d973ed794355e8f2
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 8d878140accebf78822b9e6d4f880fab47c98a877236ee32f502ebeeee3f7eb3
 ---
 
-# Prompting Claude Sonnet 5
-
-Perbedaan perilaku dan pola prompting untuk Claude Sonnet 5, mencakup effort, default adaptive thinking, penggunaan alat, dan migrasi dari Claude Sonnet 4.6.
-
+---
+title: Prompting Claude Sonnet 5
+url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5
+description: Perbedaan perilaku dan pola prompting untuk Claude Sonnet 5, mencakup effort, default adaptive thinking, penggunaan alat, dan migrasi dari Claude Sonnet 4.6.
 ---
 
-Panduan ini mencakup pola prompting yang spesifik untuk Claude Sonnet 5. Untuk kemampuan model dan perubahan API, lihat [Apa yang baru di Claude Sonnet 5](/docs/id/about-claude/models/whats-new-sonnet-5). Untuk teknik yang berlaku di semua model Claude saat ini, lihat [Praktik terbaik prompting](/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
+Panduan ini mencakup pola prompting yang spesifik untuk Claude Sonnet 5. Untuk kemampuan model dan perubahan API, lihat [Apa yang baru di Claude Sonnet 5](https://platform.claude.com/docs/id/about-claude/models/whats-new-sonnet-5). Untuk teknik yang berlaku di semua model Claude saat ini, lihat [Praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
 
 Claude Sonnet 5 memiliki kekuatan khusus dalam coding dan tugas agentik. Model ini bekerja dengan baik secara langsung pada prompt Claude Sonnet 4.6 yang sudah ada. Pola dalam panduan ini mencakup perilaku yang paling sering memerlukan penyetelan.
 
 <Note>
-  Untuk perubahan parameter API saat bermigrasi dari Claude Sonnet 4.6 (adaptive thinking aktif secara default, parameter sampling tidak diterima, extended thinking manual dihapus, dan tokenizer baru), lihat [panduan migrasi](/docs/id/about-claude/models/migration-guide#migrating-from-claude-sonnet-4-6-to-claude-sonnet-5).
+  Untuk perubahan parameter API saat bermigrasi dari Claude Sonnet 4.6 (adaptive thinking aktif secara default, parameter sampling tidak diterima, extended thinking manual dihapus, dan tokenizer baru), lihat [panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide#migrating-from-claude-sonnet-4-6-to-claude-sonnet-5).
 </Note>
 
 ## Panjang respons dan verbositas
@@ -33,7 +33,7 @@ Jika Anda melihat jenis verbositas tertentu (seperti penjelasan berlebihan), And
 
 ## Mengkalibrasi effort dan kedalaman pemikiran
 
-[Parameter effort](/docs/id/build-with-claude/effort) memungkinkan Anda menyetel kecerdasan Claude versus pengeluaran token, menukar kemampuan untuk kecepatan yang lebih tinggi dan biaya yang lebih rendah. Pada Claude Sonnet 5, effort secara default adalah `high`, sama seperti pada Claude Sonnet 4.6. Untuk tugas coding dan agentik yang paling sulit, naikkan effort ke `xhigh`. Bereksperimenlah dengan level effort lainnya untuk lebih menyetel penggunaan token dan kecerdasan:
+[Parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort) memungkinkan Anda menyetel kecerdasan Claude versus pengeluaran token, menukar kemampuan untuk kecepatan yang lebih tinggi dan biaya yang lebih rendah. Pada Claude Sonnet 5, effort secara default adalah `high`, sama seperti pada Claude Sonnet 4.6. Untuk tugas coding dan agentik yang paling sulit, naikkan effort ke `xhigh`. Bereksperimenlah dengan level effort lainnya untuk lebih menyetel penggunaan token dan kecerdasan:
 
 * **`max`:** Kemampuan maksimum absolut tanpa batasan pada pengeluaran token.
 * **`xhigh`:** Effort ekstra tinggi adalah pengaturan yang direkomendasikan untuk kasus penggunaan coding dan agentik yang paling sulit.
@@ -51,7 +51,7 @@ Jika Anda mengamati penalaran yang dangkal pada masalah kompleks, naikkan effort
 This task involves multistep reasoning. Think carefully through the problem before responding.
 ```
 
-Pada Claude Sonnet 5, [adaptive thinking](/docs/id/build-with-claude/thinking) aktif secara default. Permintaan tanpa field `thinking` berjalan dengan adaptive thinking. Ini adalah perubahan dari Claude Sonnet 4.6, di mana permintaan yang sama berjalan tanpa thinking. Untuk mematikan thinking sepenuhnya, kirimkan `thinking: {type: "disabled"}`. Karena `max_tokens` adalah batas keras pada total output (thinking ditambah teks respons), tinjau kembali nilainya untuk beban kerja yang berjalan tanpa thinking pada Claude Sonnet 4.6. Jika sebelumnya Anda menggunakan thinking nonaktif dengan Claude Sonnet 4.6, coba thinking aktif dengan level effort yang lebih rendah untuk Claude Sonnet 5.
+Pada Claude Sonnet 5, [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) aktif secara default. Permintaan tanpa field `thinking` berjalan dengan adaptive thinking. Ini adalah perubahan dari Claude Sonnet 4.6, di mana permintaan yang sama berjalan tanpa thinking. Untuk mematikan thinking sepenuhnya, kirimkan `thinking: {type: "disabled"}`. Karena `max_tokens` adalah batas keras pada total output (thinking ditambah teks respons), tinjau kembali nilainya untuk beban kerja yang berjalan tanpa thinking pada Claude Sonnet 4.6. Jika sebelumnya Anda menggunakan thinking nonaktif dengan Claude Sonnet 4.6, coba thinking aktif dengan level effort yang lebih rendah untuk Claude Sonnet 5.
 
 Perilaku pemicu untuk adaptive thinking dapat diarahkan. Jika Anda menemukan model mengeluarkan blok thinking lebih sering dari yang Anda inginkan, yang dapat terjadi dengan prompt sistem yang besar atau kompleks, tambahkan panduan untuk mengarahkannya. Seperti biasa, ukur efek dari setiap perubahan prompting terhadap kinerja. Contoh:
 
@@ -64,7 +64,7 @@ Sebaliknya, jika Anda menjalankan beban kerja yang sulit pada `medium` dan melih
 Extended thinking manual (`thinking: {type: "enabled", budget_tokens: N}`) tidak didukung pada Claude Sonnet 5 dan mengembalikan error 400. Fitur ini telah dideprekasi pada Claude Sonnet 4.6 dan sekarang dihapus. Gunakan adaptive thinking dengan parameter effort sebagai gantinya.
 
 <Note>
-  Jika Anda menjalankan Claude Sonnet 5 pada effort `high`, `xhigh`, atau `max`, sisakan ruang pada `max_tokens` agar model memiliki ruang untuk thinking dan pemanggilan alat. Pada tugas yang panjang, adaptive thinking dapat menggunakan sebagian besar anggaran; jika anggaran ketat, Anda mungkin melihat respons yang hampir seluruhnya berupa thinking diikuti oleh jawaban yang terpotong dan `stop_reason: "max_tokens"`. Menaikkan `max_tokens` atau menurunkan ke effort `medium` menyelesaikan masalah ini. Karena Claude Sonnet 5 menggunakan [tokenizer baru](/docs/id/about-claude/models/whats-new-sonnet-5#new-tokenizer) yang menghasilkan sekitar 30% lebih banyak token untuk teks yang sama, batas `max_tokens` yang disetel untuk Claude Sonnet 4.6 dapat memotong output yang setara. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja.
+  Jika Anda menjalankan Claude Sonnet 5 pada effort `high`, `xhigh`, atau `max`, sisakan ruang pada `max_tokens` agar model memiliki ruang untuk thinking dan pemanggilan alat. Pada tugas yang panjang, adaptive thinking dapat menggunakan sebagian besar anggaran; jika anggaran ketat, Anda mungkin melihat respons yang hampir seluruhnya berupa thinking diikuti oleh jawaban yang terpotong dan `stop_reason: "max_tokens"`. Menaikkan `max_tokens` atau menurunkan ke effort `medium` menyelesaikan masalah ini. Karena Claude Sonnet 5 menggunakan [tokenizer baru](https://platform.claude.com/docs/id/about-claude/models/whats-new-sonnet-5#new-tokenizer) yang menghasilkan sekitar 30% lebih banyak token untuk teks yang sama, batas `max_tokens` yang disetel untuk Claude Sonnet 4.6 dapat memotong output yang setara. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja.
 </Note>
 
 ## Pemicu penggunaan alat
@@ -160,6 +160,6 @@ Lakukan iterasi pada prompt terhadap subset dari eval atau kasus uji Anda untuk 
 
 ## Computer use
 
-Claude Sonnet 5 mendukung versi alat `computer_20251124`. Kemampuan [computer use](/docs/id/agents-and-tools/tool-use/computer-use-tool) bekerja di berbagai resolusi, hingga resolusi maksimum 2576px / 3.75MP. Pengujian internal computer use menunjukkan bahwa mengirim gambar pada 1080p memberikan keseimbangan yang baik antara kinerja dan biaya.
+Claude Sonnet 5 mendukung versi alat `computer_20251124`. Kemampuan [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) bekerja di berbagai resolusi, hingga resolusi maksimum 2576px / 3.75MP. Pengujian internal computer use menunjukkan bahwa mengirim gambar pada 1080p memberikan keseimbangan yang baik antara kinerja dan biaya.
 
 Untuk beban kerja yang sangat sensitif terhadap biaya, 720p atau 1366×768 adalah opsi berbiaya lebih rendah dengan kinerja yang kuat. Lakukan pengujian Anda sendiri untuk menemukan pengaturan ideal untuk kasus penggunaan Anda; bereksperimen dengan pengaturan effort juga dapat membantu menyetel perilaku model.

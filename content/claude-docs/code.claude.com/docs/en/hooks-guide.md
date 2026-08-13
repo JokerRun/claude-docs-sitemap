@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-08-12T02:56:30.865670Z
-sha256: 63e840904b75a9ffaa4e469a2d631a00f921054ebd68ca09df2e40cbeaf044f7
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 2b962612e67bf824e0e2359a73f30b2f2fa0ef2ddf83edadb9f396aca92dffe3
 ---
 
 > ## Documentation Index
@@ -761,8 +761,6 @@ The tabs below show a few more matchers on different event types.
     ```
   </Tab>
 </Tabs>
-
-For full matcher syntax, see the [Hooks reference](/docs/en/hooks#configuration).
 
 #### Filter by tool name and arguments with the `if` field
 

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/members
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 184dc3c3203cb310e22a94c145ed5abd290f8566be7e6c8c3d4850d7081befab
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 7f669c8815b8735ac33c938f9ef4a910df5856ea9c0c6047733423bff0cfbc2a
+---
+
+---
+title: Members
+url: https://platform.claude.com/docs/en/api/admin/workspaces/members
 ---
 
 # Members

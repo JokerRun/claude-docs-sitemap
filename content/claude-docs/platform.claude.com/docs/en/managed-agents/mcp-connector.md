@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/mcp-connector
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 2da5e8a4b96f312727d6c4e9db81305a5a986d3a88bed06cc05a43744ecb7d83
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 4dc2dc2889fec00803bb63abd13eff381b6af1a044ce445acb56237ad82c79aa
 ---
 
-# MCP connector
-
-Connect MCP servers to your agents for access to external tools and data sources.
-
+---
+title: MCP connector
+url: https://platform.claude.com/docs/en/managed-agents/mcp-connector
+description: Connect MCP servers to your agents for access to external tools and data sources.
 ---
 
 Claude Managed Agents supports connecting [Model Context Protocol (MCP)](https://modelcontextprotocol.io) servers to your agents. This gives the agent access to external tools, data sources, and services through a standardized protocol.
@@ -16,12 +16,12 @@ Claude Managed Agents supports connecting [Model Context Protocol (MCP)](https:/
 MCP configuration is split across two steps:
 
 1. **Agent creation** declares which MCP servers the agent connects to, by name and URL.
-2. **Session creation** supplies authentication for those servers by referencing a pre-registered vault (see [Authenticate with vaults](/docs/en/managed-agents/vaults)).
+2. **Session creation** supplies authentication for those servers by referencing a pre-registered vault (see [Authenticate with vaults](https://platform.claude.com/docs/en/managed-agents/vaults)).
 
 This separation keeps secrets out of reusable agent definitions while letting each session authenticate with its own credentials.
 
 <Note>
-  Managed Agents API requests require the `managed-agents-2026-04-01` beta header, except memory store endpoints, which use `agent-memory-2026-07-22` instead. The SDK sets the correct beta header automatically. See [Beta headers](/docs/en/api/beta-headers#endpoint-specific-headers).
+  Managed Agents API requests require the `managed-agents-2026-04-01` beta header, except memory store endpoints, which use `agent-memory-2026-07-22` instead. The SDK sets the correct beta header automatically. See [Beta headers](https://platform.claude.com/docs/en/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Declare MCP servers on the agent
@@ -31,7 +31,7 @@ Specify MCP servers in the `mcp_servers` array when creating an agent. Each serv
 Each declared server also needs a matching `mcp_toolset` entry in the `tools` array. The toolset's `mcp_server_name` must match the server's `name`.
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   agent_response=$(curl -sS --fail-with-body https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -224,18 +224,18 @@ Each declared server also needs a matching `mcp_toolset` entry in the `tools` ar
 </CodeGroup>
 
 <Tip>
-  The MCP toolset defaults to a permission policy of `always_ask`, which requires user approval before each tool call. See [permission policies](/docs/en/managed-agents/permission-policies) to configure this behavior.
+  The MCP toolset defaults to a permission policy of `always_ask`, which requires user approval before each tool call. See [permission policies](https://platform.claude.com/docs/en/managed-agents/permission-policies) to configure this behavior.
 </Tip>
 
 ### `mcp_servers` field reference
 
 Each entry in the `mcp_servers` array defines one connection.
 
-| Field  | Description                                                                                                                                                                                                                                  |
-| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type` | Required. Must be `"url"`.                                                                                                                                                                                                                   |
-| `name` | Required. A unique name for this server within the agent (1–255 characters). Used as the `mcp_server_name` in the `tools` array and surfaced on MCP tool events in the [session event stream](/docs/en/managed-agents/events-and-streaming). |
-| `url`  | Required. The endpoint of the remote MCP server (up to 2,048 characters). See [Supported MCP server types](/docs/en/managed-agents/reference#supported-mcp-server-types) for transport requirements.                                         |
+| Field  | Description                                                                                                                                                                                                                                                             |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type` | Required. Must be `"url"`.                                                                                                                                                                                                                                              |
+| `name` | Required. A unique name for this server within the agent (1–255 characters). Used as the `mcp_server_name` in the `tools` array and surfaced on MCP tool events in the [session event stream](https://platform.claude.com/docs/en/managed-agents/events-and-streaming). |
+| `url`  | Required. The endpoint of the remote MCP server (up to 2,048 characters). See [Supported MCP server types](https://platform.claude.com/docs/en/managed-agents/reference#supported-mcp-server-types) for transport requirements.                                         |
 
 Constraints:
 
@@ -273,7 +273,7 @@ To disable specific tools while keeping the rest enabled, omit `default_config` 
 }
 ```
 
-See [configuring the toolset](/docs/en/managed-agents/tools#configuring-the-toolset) for the general `default_config` / `configs` pattern, and [MCP toolset permissions](/docs/en/managed-agents/permission-policies#mcp-toolset-permissions) for setting `permission_policy` on MCP tools and handling confirmation requests.
+See [configuring the toolset](https://platform.claude.com/docs/en/managed-agents/tools#configuring-the-toolset) for the general `default_config` / `configs` pattern, and [MCP toolset permissions](https://platform.claude.com/docs/en/managed-agents/permission-policies#mcp-toolset-permissions) for setting `permission_policy` on MCP tools and handling confirmation requests.
 
 ### MCP tool output handling
 
@@ -281,10 +281,10 @@ When an MCP tool output exceeds 100,000 characters (about 25,000 tokens), it is 
 
 ## Provide authentication at session creation
 
-When starting a session, pass `vault_ids` to provide credentials for your MCP servers. Vaults are collections of credentials that you register once and reference by ID. See [Authenticate with vaults](/docs/en/managed-agents/vaults) for how to create vaults and manage credentials.
+When starting a session, pass `vault_ids` to provide credentials for your MCP servers. Vaults are collections of credentials that you register once and reference by ID. See [Authenticate with vaults](https://platform.claude.com/docs/en/managed-agents/vaults) for how to create vaults and manage credentials.
 
 <CodeGroup>
-  ```bash curl
+  ```bash cURL
   session_response=$(curl -sS --fail-with-body https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -372,11 +372,11 @@ When starting a session, pass `vault_ids` to provide credentials for your MCP se
   ```
 </CodeGroup>
 
-Credentials are matched by URL, so the vault must contain a credential whose `mcp_server_url` refers to the same server as the `url` declared in `mcp_servers`. Both URLs are normalized before matching (scheme and host lowercased, default ports and trailing slashes stripped), so differences in host casing, a default port, or a trailing slash don't prevent a match; a different path, subdomain, or non-default port does. If none matches, the connection is attempted unauthenticated. See [Add a credential](/docs/en/managed-agents/vaults#add-a-credential) for the `static_bearer` and `mcp_oauth` credential types.
+Credentials are matched by URL, so the vault must contain a credential whose `mcp_server_url` refers to the same server as the `url` declared in `mcp_servers`. Both URLs are normalized before matching (scheme and host lowercased, default ports and trailing slashes stripped), so differences in host casing, a default port, or a trailing slash don't prevent a match; a different path, subdomain, or non-default port does. If none matches, the connection is attempted unauthenticated. See [Add a credential](https://platform.claude.com/docs/en/managed-agents/vaults#add-a-credential) for the `static_bearer` and `mcp_oauth` credential types.
 
 ### Handle connection and authentication failures
 
-Session creation does not validate MCP connectivity or credentials. If an MCP server is unreachable or rejects the supplied credential, the session still starts and interaction remains possible. A [`session.error`](/docs/en/managed-agents/events-and-streaming) event is emitted with the `mcp_server_name` of the affected server and a `retry_status`:
+Session creation does not validate MCP connectivity or credentials. If an MCP server is unreachable or rejects the supplied credential, the session still starts and interaction remains possible. A [`session.error`](https://platform.claude.com/docs/en/managed-agents/events-and-streaming) event is emitted with the `mcp_server_name` of the affected server and a `retry_status`:
 
 | Error type                        | Meaning                                                                                                                                                                                                      |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -388,15 +388,15 @@ You can decide whether to block further interaction on this error, trigger a cre
 ## Next steps
 
 <CardGroup cols={2}>
-  <Card title="Permission policies" icon="check" href="/docs/en/managed-agents/permission-policies">
+  <Card title="Permission policies" icon="check" href="https://platform.claude.com/docs/en/managed-agents/permission-policies">
     Control when agent and MCP tools run.
   </Card>
 
-  <Card title="Session event stream" icon="lightning" href="/docs/en/managed-agents/events-and-streaming">
+  <Card title="Session event stream" icon="lightning" href="https://platform.claude.com/docs/en/managed-agents/events-and-streaming">
     Send events, stream responses, and interrupt or redirect your session mid-execution.
   </Card>
 
-  <Card title="Supported MCP server types" icon="book" href="/docs/en/managed-agents/reference#supported-mcp-server-types">
+  <Card title="Supported MCP server types" icon="book" href="https://platform.claude.com/docs/en/managed-agents/reference#supported-mcp-server-types">
     Transport requirements for remote MCP servers.
   </Card>
 </CardGroup>

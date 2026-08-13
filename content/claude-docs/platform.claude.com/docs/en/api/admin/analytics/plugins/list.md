@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/plugins/list
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 432c35ac61a76a643544098aaffaa57a1ac606fcdc42432d6cafe36bfd7be353
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 553ba191c279fd80c3924c9447c7cabd42be2a7f6c31e74ecdef123e2706b308
+---
+
+---
+title: Get Plugin Usage
+url: https://platform.claude.com/docs/en/api/admin/analytics/plugins/list
 ---
 
 ## Get Plugin Usage

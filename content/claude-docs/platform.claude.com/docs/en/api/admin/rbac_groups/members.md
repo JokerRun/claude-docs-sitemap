@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rbac_groups/members
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 0e6191cd3b5cc4b638aa5acfca251e50430e0bbf77d7faee72201da46436d8c4
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: ca6739aaf14063ad5fbcb12129495cfc1a18a0629904c2ca068bdfd0c93e15c5
+---
+
+---
+title: Members
+url: https://platform.claude.com/docs/en/api/admin/rbac_groups/members
 ---
 
 # Members

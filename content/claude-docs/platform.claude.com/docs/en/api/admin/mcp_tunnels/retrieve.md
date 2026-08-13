@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/retrieve
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 89cb8b88c1e48ec502f146aa4e1a0ad95696d3b58937256ed98b03c6e17b069b
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 4a159c6d6c4085c889158924f0aa5845655d375b4ef7144049f9098ee96b5155
+---
+
+---
+title: Get Tunnel
+url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/retrieve
 ---
 
 ## Get Tunnel

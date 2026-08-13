@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/connectors
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 0a125e243e4f7e3386dc69cc3ed7cd69e9ed27312a5bd2c644b94ab588ed8876
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: edd250af7b7c7f08fed1edec502e41b098c44c86e82c0601a2880dce0419840e
+---
+
+---
+title: Connectors
+url: https://platform.claude.com/docs/en/api/admin/analytics/connectors
 ---
 
 # Connectors

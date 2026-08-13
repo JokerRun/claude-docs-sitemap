@@ -1,21 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fallback-credit
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: f26024467523de5e6899edb563b8e12f60a6364295c627e000b633a65c3ec554
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 65553db96f2f4a910483a8a28ff859d1b15e6d1011796b85cef2336da17fbcd4
 ---
 
-# Kredit fallback
-
-Hindari membayar biaya prompt-cache dua kali saat Anda mencoba ulang permintaan Claude Fable 5 yang ditolak pada model lain.
-
+---
+title: Kredit fallback
+url: https://platform.claude.com/docs/id/build-with-claude/fallback-credit
+description: Hindari membayar biaya prompt-cache dua kali saat Anda mencoba ulang permintaan Claude Fable 5 yang ditolak pada model lain.
 ---
 
 Cache prompt bersifat per-model. Ketika Claude Fable 5 menolak sebuah permintaan dan Anda mencoba ulang pada model lain, prefiks percakapan yang sudah di-cache untuk Claude Fable 5 harus ditulis ke dalam cache model baru dari awal. Penulisan cache lebih mahal daripada pembacaan cache. Kredit fallback menghilangkan biaya tambahan tersebut. Penolakan membawa token kredit, Anda menyertakan kembali token tersebut pada percobaan ulang, dan percobaan ulang ditagih seolah-olah percakapan sudah berada di model baru sejak awal.
 
-Anda hanya memerlukan halaman ini ketika Anda membangun percobaan ulang sendiri: melalui HTTP mentah atau dengan logika percobaan ulang kustom. [Fallback sisi server](/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) dan [middleware SDK](/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) menerapkan kredit fallback secara otomatis. Jika Anda menggunakan salah satunya, lewati halaman ini.
+Anda hanya memerlukan halaman ini ketika Anda membangun percobaan ulang sendiri: melalui HTTP mentah atau dengan logika percobaan ulang kustom. [Fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) dan [middleware SDK](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) menerapkan kredit fallback secara otomatis. Jika Anda menggunakan salah satunya, lewati halaman ini.
 
-[Penolakan dan fallback](/docs/id/build-with-claude/refusals-and-fallback) membahas cara mendeteksi penolakan dan memilih pendekatan fallback. [Caching prompt](/docs/id/build-with-claude/prompt-caching) menjelaskan pembacaan cache dan penulisan cache jika istilah-istilah tersebut masih baru bagi Anda.
+[Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) membahas cara mendeteksi penolakan dan memilih pendekatan fallback. [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) menjelaskan pembacaan cache dan penulisan cache jika istilah-istilah tersebut masih baru bagi Anda.
 
 ## Alur dasar
 
@@ -51,7 +51,7 @@ Field `fallback_has_prefill_claim` memberi tahu Anda apakah percobaan ulang dapa
 
 ## Contoh
 
-Contoh berikut membuat permintaan yang mungkin ditolak dan menukarkan token kredit pada percobaan ulang terhadap Claude Opus 4.8. Ketika sebuah percobaan ulang ditolak, contoh ini menurun melalui tangga penolakan: urutan bentuk percobaan ulang yang semakin sederhana yang dibahas di [Ketika percobaan ulang ditolak](#when-a-retry-is-rejected).
+Contoh berikut membuat permintaan yang mungkin ditolak dan menukarkan token kredit pada percobaan ulang terhadap Claude Opus 4.8. Ketika sebuah percobaan ulang ditolak, contoh ini menurun melalui tangga penolakan: urutan bentuk percobaan ulang yang semakin sederhana yang dibahas di [Ketika percobaan ulang ditolak](https://platform.claude.com/docs/id/build-with-claude/fallback-credit#when-a-retry-is-rejected).
 
 <CodeGroup>
   ```bash cURL
@@ -569,12 +569,12 @@ Contoh berikut membuat permintaan yang mungkin ditolak dan menukarkan token kred
 
 ## Di mana ini berfungsi
 
-Kredit fallback berada dalam tahap beta di Claude API, Amazon Bedrock, Claude Platform di AWS, Google Cloud, dan Microsoft Foundry. Penolakan di [Message Batches](/docs/id/build-with-claude/batch-processing) tidak menerbitkan token kredit, dan penukaran hanya berlaku untuk permintaan Messages API langsung: token yang dikirimkan pada permintaan batch diterima tetapi diabaikan.
+Kredit fallback berada dalam tahap beta di Claude API, Amazon Bedrock, Claude Platform di AWS, Google Cloud, dan Microsoft Foundry. Penolakan di [Message Batches](https://platform.claude.com/docs/id/build-with-claude/batch-processing) tidak menerbitkan token kredit, dan penukaran hanya berlaku untuk permintaan Messages API langsung: token yang dikirimkan pada permintaan batch diterima tetapi diabaikan.
 
 Model percobaan ulang harus merupakan salah satu target fallback yang diizinkan dari model yang menolak. Target yang diizinkan untuk Claude Fable 5 adalah Claude Opus 4.8 (`claude-opus-4-8`) dan Claude Opus 5 (`claude-opus-5`).
 
 <Accordion title="Mencari target fallback yang diizinkan secara terprogram">
-  Pada Claude API dan Claude Platform di AWS, daftar target dipublikasikan sebagai `allowed_fallback_models` pada setiap entri model di [Models API](/docs/id/api/models/list) ketika header beta `server-side-fallback-2026-07-01` diatur. Daftar tersebut belum terlihat hanya dengan header `fallback-credit-*` saja. Daftar ini tidak diekspos di Amazon Bedrock, Google Cloud, atau Microsoft Foundry.
+  Pada Claude API dan Claude Platform di AWS, daftar target dipublikasikan sebagai `allowed_fallback_models` pada setiap entri model di [Models API](https://platform.claude.com/docs/id/api/models/list) ketika header beta `server-side-fallback-2026-07-01` diatur. Daftar tersebut belum terlihat hanya dengan header `fallback-credit-*` saja. Daftar ini tidak diekspos di Amazon Bedrock, Google Cloud, atau Microsoft Foundry.
 </Accordion>
 
 ## Memeriksa bahwa kredit telah diterapkan
@@ -634,7 +634,7 @@ Bagian-bagian di bawah ini membahas kasus tepi dan aturan penukaran lengkap. Seb
 </Accordion>
 
 <Accordion title="Ketika fallback_has_prefill_claim tidak ada">
-  Field ini bernilai `null` hanya ketika token juga `null`, sehingga nilai yang Anda amati saat memegang token tidak pernah `null`. Field ini masih dapat muncul sebagai tidak ada (`None` dalam SDK bertipe) di Amazon Bedrock, Google Cloud, dan Microsoft Foundry selama dukungan mereka untuk field ini diluncurkan. Dalam kasus itu, perlakukan bentuk percobaan ulang sebagai tidak diketahui alih-alih sebagai `false`. Coba bentuk pesan-assistant-yang-ditambahkan terlebih dahulu, dan andalkan penanganan penolakan di [Ketika percobaan ulang ditolak](#when-a-retry-is-rejected), yang beralih ke body tanpa perubahan.
+  Field ini bernilai `null` hanya ketika token juga `null`, sehingga nilai yang Anda amati saat memegang token tidak pernah `null`. Field ini masih dapat muncul sebagai tidak ada (`None` dalam SDK bertipe) di Amazon Bedrock, Google Cloud, dan Microsoft Foundry selama dukungan mereka untuk field ini diluncurkan. Dalam kasus itu, perlakukan bentuk percobaan ulang sebagai tidak diketahui alih-alih sebagai `false`. Coba bentuk pesan-assistant-yang-ditambahkan terlebih dahulu, dan andalkan penanganan penolakan di [Ketika percobaan ulang ditolak](https://platform.claude.com/docs/id/build-with-claude/fallback-credit#when-a-retry-is-rejected), yang beralih ke body tanpa perubahan.
 </Accordion>
 
 <Accordion title="Menyertakan kembali content dari respons yang ditolak">
@@ -645,7 +645,7 @@ Bagian-bagian di bawah ini membahas kasus tepi dan aturan penukaran lengkap. Seb
   * Jika blok terakhir yang Anda kirim adalah blok `text`, hapus spasi kosong di akhirnya.
   * Hilangkan blok `tool_use` sisi klien apa pun yang tidak memiliki `tool_result` yang cocok.
 
-  Jika konten yang disertakan kembali mencakup blok `fallback` dari [fallback sisi server](/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) sebelumnya, pertahankan blok tersebut tepat di tempat ia muncul. Blok ini diterima pada permintaan apa pun tanpa header beta. API menggunakan posisinya untuk memvalidasi blok thinking di sekitarnya, sehingga permintaan yang menyertakan kembali blok thinking dari kedua sisi batas tersebut akan ditolak jika blok tersebut dihilangkan atau dipindahkan.
+  Jika konten yang disertakan kembali mencakup blok `fallback` dari [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) sebelumnya, pertahankan blok tersebut tepat di tempat ia muncul. Blok ini diterima pada permintaan apa pun tanpa header beta. API menggunakan posisinya untuk memvalidasi blok thinking di sekitarnya, sehingga permintaan yang menyertakan kembali blok thinking dari kedua sisi batas tersebut akan ditolak jika blok tersebut dihilangkan atau dipindahkan.
 </Accordion>
 
 <Accordion title="Cakupan dan masa berlaku token">
@@ -668,19 +668,19 @@ Bagian-bagian di bawah ini membahas kasus tepi dan aturan penukaran lengkap. Seb
 ## Langkah selanjutnya
 
 <CardGroup>
-  <Card title="Penolakan dan fallback" icon="shield" href="/docs/id/build-with-claude/refusals-and-fallback">
+  <Card title="Penolakan dan fallback" icon="shield" href="https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback">
     Deteksi penolakan dan pilih antara fallback sisi server, middleware SDK, dan percobaan ulang manual.
   </Card>
 
-  <Card title="Caching prompt" icon="bolt" href="/docs/id/build-with-claude/prompt-caching">
+  <Card title="Caching prompt" icon="bolt" href="https://platform.claude.com/docs/id/build-with-claude/prompt-caching">
     Bagaimana pembacaan cache dan penulisan cache ditagih.
   </Card>
 
-  <Card title="Alasan berhenti dan fallback" icon="code" href="/docs/id/build-with-claude/handling-stop-reasons">
+  <Card title="Alasan berhenti dan fallback" icon="code" href="https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons">
     Setiap nilai `stop_reason` dan cara menanganinya.
   </Card>
 
-  <Card title="Middleware SDK" icon="settings" href="/docs/id/cli-sdks-libraries/middleware">
+  <Card title="Middleware SDK" icon="settings" href="https://platform.claude.com/docs/id/cli-sdks-libraries/middleware">
     Helper SDK yang menerapkan kredit fallback secara otomatis.
   </Card>
 </CardGroup>

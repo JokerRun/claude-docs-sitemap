@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/skills
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: b3db62c572cf5ca2811a3dea0b44eb0b129afadb7ff18303b1c8d803b2adf3af
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 99cdc9d8df9c00b4e78ef6dadde96b67a5f3618d7d22a021dc1a70876999f105
+---
+
+---
+title: Skills
+url: https://platform.claude.com/docs/en/api/admin/analytics/skills
 ---
 
 # Skills

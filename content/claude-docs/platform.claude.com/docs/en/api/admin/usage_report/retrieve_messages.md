@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/usage_report/retrieve_messages
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: eb3e83a52a125f77d575d153bcfdd79fa47b469eb71c42b2c145c3da0e8a20bb
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: b33a30a2a5a0ce58f994b5f6782cbc165f3fe3280b9d595b46aaec7439ef0a4d
+---
+
+---
+title: Get Messages Usage Report
+url: https://platform.claude.com/docs/en/api/admin/usage_report/retrieve_messages
 ---
 
 ## Get Messages Usage Report

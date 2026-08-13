@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/retrieve
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: c6b1dce33e90a2ae5eac04e21547ca36783076b2d7833fe110d8a543034daad0
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: d5d668d3dad41402dba182f5e8d5576da88c472fc1c9acd5e4cdb8900d783e0e
+---
+
+---
+title: Get Credential
+url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/retrieve
 ---
 
 ## Get Credential
@@ -25,7 +30,7 @@ Get Credential
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -90,6 +95,8 @@ Get Credential
     - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
+
+    - `"mid-conversation-tool-changes-2026-07-01"`
 
 ### Returns
 

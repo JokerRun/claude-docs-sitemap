@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/webhooks
-fetched_at: 2026-07-23T03:08:39.550142Z
-sha256: 7429848dac8d4b06168f49ecd16d0b6b0422d3772caa6a5fa5b0f9fb1ab36b37
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: bbb23ee8105ac1c156cd3e1e3e3a87024e18ba23a766d3c43d7a483b3c46a65d
+---
+
+---
+title: Webhooks
+url: https://platform.claude.com/docs/en/api/beta/webhooks
 ---
 
 # Webhooks
@@ -925,6 +930,20 @@ sha256: 7429848dac8d4b06168f49ecd16d0b6b0422d3772caa6a5fa5b0f9fb1ab36b37
 
       - `workspace_id: string`
 
+    - `BetaWebhookSessionBudgetReachedEventData object { id, organization_id, type, workspace_id }`
+
+      - `id: string`
+
+        ID of the session that triggered the event.
+
+      - `organization_id: string`
+
+      - `type: "session.budget_reached"`
+
+        - `"session.budget_reached"`
+
+      - `workspace_id: string`
+
   - `type: "event"`
 
     Object type. Always `event` for webhook payloads.
@@ -933,7 +952,7 @@ sha256: 7429848dac8d4b06168f49ecd16d0b6b0422d3772caa6a5fa5b0f9fb1ab36b37
 
 ### Beta Webhook Event Data
 
-- `BetaWebhookEventData = BetaWebhookSessionCreatedEventData or BetaWebhookSessionPendingEventData or BetaWebhookSessionRunningEventData or 40 more`
+- `BetaWebhookEventData = BetaWebhookSessionCreatedEventData or BetaWebhookSessionPendingEventData or BetaWebhookSessionRunningEventData or 41 more`
 
   - `BetaWebhookSessionCreatedEventData object { id, organization_id, type, workspace_id }`
 
@@ -1565,6 +1584,20 @@ sha256: 7429848dac8d4b06168f49ecd16d0b6b0422d3772caa6a5fa5b0f9fb1ab36b37
 
     - `workspace_id: string`
 
+  - `BetaWebhookSessionBudgetReachedEventData object { id, organization_id, type, workspace_id }`
+
+    - `id: string`
+
+      ID of the session that triggered the event.
+
+    - `organization_id: string`
+
+    - `type: "session.budget_reached"`
+
+      - `"session.budget_reached"`
+
+    - `workspace_id: string`
+
 ### Beta Webhook Memory Store Archived Event Data
 
 - `BetaWebhookMemoryStoreArchivedEventData object { id, organization_id, type, workspace_id }`
@@ -1626,6 +1659,22 @@ sha256: 7429848dac8d4b06168f49ecd16d0b6b0422d3772caa6a5fa5b0f9fb1ab36b37
   - `type: "session.archived"`
 
     - `"session.archived"`
+
+  - `workspace_id: string`
+
+### Beta Webhook Session Budget Reached Event Data
+
+- `BetaWebhookSessionBudgetReachedEventData object { id, organization_id, type, workspace_id }`
+
+  - `id: string`
+
+    ID of the session that triggered the event.
+
+  - `organization_id: string`
+
+  - `type: "session.budget_reached"`
+
+    - `"session.budget_reached"`
 
   - `workspace_id: string`
 
@@ -2650,6 +2699,20 @@ sha256: 7429848dac8d4b06168f49ecd16d0b6b0422d3772caa6a5fa5b0f9fb1ab36b37
       - `type: "memory_store.deleted"`
 
         - `"memory_store.deleted"`
+
+      - `workspace_id: string`
+
+    - `BetaWebhookSessionBudgetReachedEventData object { id, organization_id, type, workspace_id }`
+
+      - `id: string`
+
+        ID of the session that triggered the event.
+
+      - `organization_id: string`
+
+      - `type: "session.budget_reached"`
+
+        - `"session.budget_reached"`
 
       - `workspace_id: string`
 

@@ -1,34 +1,34 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/scheduled-deployments
-fetched_at: 2026-07-24T03:08:28.781260Z
-sha256: 8b475dcd73b7a67f7e688610507911de3d7b641bf8e9d85e47e7d63367836b09
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 4a94f69f92470bf1afcf93ea02c052d5bd91189501d6df3eea3565ce5829adf4
 ---
 
-# Deployment terjadwal
-
-Buat dan kelola deployment dengan Claude API: jalankan agen pada jadwal cron berulang dan periksa riwayat eksekusinya.
-
+---
+title: Deployment terjadwal
+url: https://platform.claude.com/docs/id/managed-agents/scheduled-deployments
+description: "Buat dan kelola deployment dengan Claude API: jalankan agen pada jadwal cron berulang dan periksa riwayat eksekusinya."
 ---
 
-Sebuah **scheduled deployment** (deployment terjadwal) memungkinkan sebuah [agen](/docs/id/managed-agents/agent-setup) untuk memulai [sesi](/docs/id/managed-agents/sessions) secara otonom, memungkinkan penyelesaian tugas dengan irama yang dapat diprediksi. Anda membuat dan mengelola deployment dengan Deployments API, bagian dari Claude API.
+Sebuah **scheduled deployment** (deployment terjadwal) memungkinkan [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) untuk memulai [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) secara otonom, sehingga penyelesaian tugas dapat dilakukan dengan ritme yang dapat diprediksi. Anda membuat dan mengelola deployment dengan Deployments API, bagian dari Claude API.
 
 Untuk konteks peluncuran dan contoh apa yang dijalankan tim secara terjadwal, lihat [scheduled deployments and vaults in Claude Managed Agents](https://claude.com/blog/whats-new-in-claude-managed-agents) di blog.
 
 <Note>
-  Semua permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`. SDK mengatur header beta secara otomatis.
+  Semua permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`. SDK menetapkan header beta secara otomatis.
 </Note>
 
 ## Membuat deployment terjadwal
 
-Saat membuat deployment, Anda meneruskan [konfigurasi sesi](/docs/id/managed-agents/sessions) yang diperlukan untuk eksekusi, selain sebuah `schedule`.
+Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.claude.com/docs/id/managed-agents/sessions) yang diperlukan untuk eksekusi, selain sebuah `schedule`.
 
-* Deployment memerlukan [konfigurasi agen](/docs/id/managed-agents/agent-setup) dan [konfigurasi lingkungan](/docs/id/managed-agents/environments), dan secara opsional menerima [file](/docs/id/managed-agents/files), [GitHub](/docs/id/managed-agents/github), [memory store](/docs/id/managed-agents/memory), dan [vault](/docs/id/managed-agents/vaults).
-* Deployment juga memerlukan setidaknya satu event awal, `user.message` atau `user.define_outcome`, yang memulai pekerjaan setiap sesi.
+* Deployment memerlukan [konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) dan [konfigurasi environment](https://platform.claude.com/docs/id/managed-agents/environments), dan secara opsional menerima [file](https://platform.claude.com/docs/id/managed-agents/files), [GitHub](https://platform.claude.com/docs/id/managed-agents/github), [memory store](https://platform.claude.com/docs/id/managed-agents/memory), dan [vault](https://platform.claude.com/docs/id/managed-agents/vaults).
+* Deployment juga memerlukan setidaknya satu event awal, yaitu `user.message` atau `user.define_outcome`, yang memulai pekerjaan setiap sesi.
 * Dalam `schedule`, Anda mendefinisikan `expression` cron dan `timezone`. Granularitas maksimum yang didukung adalah pada tingkat menit.
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   DEPLOYMENT_ID=$(
     curl --fail-with-body -sS "https://api.anthropic.com/v1/deployments?beta=true" \
       -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -228,7 +228,7 @@ Saat membuat deployment, Anda meneruskan [konfigurasi sesi](/docs/id/managed-age
   ```
 </CodeGroup>
 
-Respons menyertakan objek deployment dengan `schedule.upcoming_runs_at` yang terisi dengan waktu pemicuan berikutnya yang akan datang, untuk mengonfirmasi bahwa jadwal Anda telah diatur dengan benar.
+Respons mencakup objek deployment dengan `schedule.upcoming_runs_at` yang terisi dengan waktu eksekusi berikutnya yang akan datang, untuk mengonfirmasi bahwa jadwal Anda telah diatur dengan benar.
 
 ```json
 {
@@ -253,28 +253,52 @@ Timestamp eksekusi yang akan datang mencerminkan jadwal persis yang dikonfiguras
 
 Maksimum **1.000 deployment terjadwal** didukung per organisasi. Hubungi dukungan Anthropic jika Anda membutuhkan lebih banyak.
 
-Lihat [referensi Create Deployment](/docs/id/api/beta/deployments/create) untuk parameter lengkap dan skema respons.
+Lihat [referensi Create Deployment](https://platform.claude.com/docs/id/api/beta/deployments/create) untuk parameter lengkap dan skema respons.
 
 ### Semantik cron dan zona waktu
 
-* **Expression:** Cron POSIX standar (`minute hour day-of-month month day-of-week`). Anda dapat menghasilkan dan memvalidasi ekspresi cron ini di [Claude Console](https://platform.claude.com/workspaces/default/deployments).
+* **Expression:** Cron POSIX standar (`minute hour day-of-month month day-of-week`). Anda dapat membuat dan memvalidasi ekspresi cron ini di [Claude Console](https://platform.claude.com/workspaces/default/deployments).
 * **Timezone:** Pengidentifikasi zona waktu IANA (misalnya, `"America/Los_Angeles"`).
-* **DST:** Jadwal cron menggunakan pencocokan jam dinding literal, sehingga `"0 20 * * *"` di `America/New_York` terpicu pada pukul 8malam waktu setempat terlepas dari apakah EST atau EDT yang berlaku.
+* **DST:** Jadwal cron menggunakan pencocokan waktu jam dinding literal, sehingga `"0 20 * * *"` di `America/New_York` dijalankan pada pukul 8PM waktu lokal terlepas dari apakah EST atau EDT sedang berlaku.
 
 <Note>
-  Waktu jam dinding yang tidak ada pada hari spring-forward (seperti pukul 2 pagi) tidak akan dipicu. Waktu jam dinding yang terjadi dua kali pada hari fall-back akan terpicu dua kali. Jadwalkan di luar jendela pukul 1–3 pagi waktu setempat, atau gunakan UTC, ketika eksekusi yang terlewat atau terduplikasi tidak dapat diterima.
+  Waktu jam dinding yang tidak ada pada hari spring-forward (seperti pukul 2 pagi) tidak dipicu. Waktu jam dinding yang terjadi dua kali pada hari fall-back dijalankan dua kali. Jadwalkan di luar jendela pukul 1–3 pagi waktu lokal, atau gunakan UTC, jika eksekusi yang terlewat atau duplikat tidak dapat diterima.
 </Note>
 
-## Eksekusi deployment
+### Menetapkan anggaran pada setiap eksekusi
 
-Deployment dapat gagal terpicu karena berbagai alasan: misalnya, jika sumber daya `environment` telah diarsipkan, atau jika pembuatan sesi dibatasi oleh batas laju. Setiap upaya mengeksekusi deployment menghasilkan catatan **deployment run** (eksekusi deployment), memungkinkan Anda melacak keberhasilan dan kegagalan secara independen dari siklus hidup sesi.
+Teruskan objek `budget` opsional saat Anda membuat atau memperbarui deployment. Objek ini memiliki bentuk yang sama dengan [anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets). Deployment menyalin batas tersebut ke setiap sesi yang dimulainya, sehingga anggaran membatasi setiap eksekusi secara terpisah alih-alih bertindak sebagai batas kumulatif di seluruh eksekusi: deployment dengan batas `"2000"` dapat menghabiskan hingga sekitar $20 pada setiap eksekusi.
 
-Deployment yang berhasil menghasilkan sesi aktif, dan eksekusi deployment yang berhasil berisi `session_id` terkait. Untuk mengikuti siklus hidup sesi, lacak event sesi melalui [event stream](/docs/id/managed-agents/events-and-streaming) atau [webhook](/docs/id/managed-agents/webhooks). Perubahan siklus hidup deployment dan hasil dari setiap eksekusi terjadwal juga dikirimkan sebagai event webhook, yang tercantum di tab Deployment events dan Deployment run events pada [Supported event types](/docs/id/managed-agents/webhooks#supported-event-types).
+Sesi yang dimulai oleh deployment berperilaku persis seperti sesi beranggaran lainnya: sesi akan dijeda dengan `budget_reached` ketika biaya daftarnya sendiri [mencapai batas](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget). Mengubah anggaran deployment berlaku untuk eksekusi yang dimulai setelahnya; sesi yang sudah berjalan mempertahankan batas yang dimulainya, yang dapat Anda [ubah melalui sesi itu sendiri](https://platform.claude.com/docs/id/managed-agents/session-operations#updating-the-session-budget). Tidak seperti anggaran sesi, anggaran deployment dapat dihapus dengan `"budget": null` dan ditetapkan lagi nanti.
 
-Daftar semua eksekusi deployment untuk sebuah deployment sebagai berikut:
+Contoh berikut menetapkan anggaran pada deployment yang sudah ada:
+
+```bash cURL
+curl --fail-with-body -sS "https://api.anthropic.com/v1/deployments/$DEPLOYMENT_ID?beta=true" \
+  -H "x-api-key: $ANTHROPIC_API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-beta: managed-agents-2026-04-01" \
+  -H "content-type: application/json" \
+  -d @- <<'EOF'
+{
+  "budget": {
+    "type": "limit",
+    "max_list_cost": {"amount": "2000", "currency": "USD"}
+  }
+}
+EOF
+```
+
+## Deployment run
+
+Deployment dapat gagal dipicu karena berbagai alasan: misalnya, jika sumber daya `environment` telah diarsipkan, atau jika pembuatan sesi terkena batas laju. Setiap upaya mengeksekusi deployment menghasilkan catatan **deployment run**, memungkinkan Anda melacak keberhasilan dan kegagalan secara independen dari siklus hidup sesi.
+
+Deployment yang berhasil menghasilkan sesi aktif, dan deployment run yang berhasil berisi `session_id` terkait. Untuk mengikuti siklus hidup sesi, lacak event sesi melalui [event stream](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) atau [webhook](https://platform.claude.com/docs/id/managed-agents/webhooks). Perubahan siklus hidup deployment dan hasil dari setiap eksekusi terjadwal juga dikirimkan sebagai event webhook, yang tercantum di tab Deployment events dan Deployment run events pada [Jenis event yang didukung](https://platform.claude.com/docs/id/managed-agents/webhooks#supported-event-types).
+
+Daftarkan semua deployment run untuk sebuah deployment sebagai berikut:
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   curl --fail-with-body -sS "https://api.anthropic.com/v1/deployment_runs?beta=true&deployment_id=$DEPLOYMENT_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -360,10 +384,10 @@ Daftar semua eksekusi deployment untuk sebuah deployment sebagai berikut:
   ```
 </CodeGroup>
 
-Anda juga dapat memfilter eksekusi deployment yang memiliki error:
+Anda juga dapat memfilter deployment run yang memiliki error:
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   curl --fail-with-body -sS "https://api.anthropic.com/v1/deployment_runs?beta=true&deployment_id=$DEPLOYMENT_ID&has_error=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -446,7 +470,7 @@ Anda juga dapat memfilter eksekusi deployment yang memiliki error:
   ```
 </CodeGroup>
 
-Eksekusi yang gagal menyertakan `error` dengan `type` yang menjelaskan mengapa pembuatan sesi ditolak (misalnya, `environment_archived_error`, `agent_archived_error`, atau `session_rate_limited_error`). Lihat [referensi List Deployment Runs](/docs/id/api/beta/deployment_runs/list) untuk semua parameter filter dan skema respons.
+Eksekusi yang gagal mencakup `error` dengan `type` yang menjelaskan mengapa pembuatan sesi ditolak (misalnya, `environment_archived_error`, `agent_archived_error`, atau `session_rate_limited_error`). Lihat [referensi List Deployment Runs](https://platform.claude.com/docs/id/api/beta/deployment_runs/list) untuk semua parameter filter dan skema respons.
 
 ```json
 {
@@ -464,16 +488,16 @@ Eksekusi yang gagal menyertakan `error` dengan `type` yang menjelaskan mengapa p
 }
 ```
 
-Untuk mengambil satu eksekusi berdasarkan ID, panggil [`GET /v1/deployment_runs/{deployment_run_id}`](/docs/id/api/beta/deployment_runs/retrieve). Sebuah [event webhook `deployment_run`](/docs/id/managed-agents/webhooks#supported-event-types) membawa ID eksekusi sebagai `data.id`-nya.
+Untuk mengambil satu eksekusi berdasarkan ID, panggil [`GET /v1/deployment_runs/{deployment_run_id}`](https://platform.claude.com/docs/id/api/beta/deployment_runs/retrieve). Sebuah [event webhook `deployment_run`](https://platform.claude.com/docs/id/managed-agents/webhooks#supported-event-types) membawa ID eksekusi sebagai `data.id`-nya.
 
 ## Mengelola siklus hidup deployment
 
-Setiap perubahan siklus hidup memancarkan [event webhook](/docs/id/managed-agents/webhooks#supported-event-types), sehingga Anda dapat bereaksi terhadap deployment yang dijeda, dilanjutkan, atau diarsipkan tanpa polling; lihat tab Deployment events.
+Setiap perubahan siklus hidup memancarkan [event webhook](https://platform.claude.com/docs/id/managed-agents/webhooks#supported-event-types), sehingga Anda dapat bereaksi terhadap deployment yang dijeda, dilanjutkan, atau diarsipkan tanpa polling; lihat tab Deployment events.
 
-**Pause** menekan pemicu terjadwal untuk ke depannya; sesi yang sedang berjalan dari eksekusi deployment sebelumnya tetap dieksekusi. Eksekusi manual melalui endpoint `run` masih diizinkan saat dijeda. Menjeda mengatur `paused_reason` menjadi `{"type": "manual"}`; melanjutkan akan menghapusnya.
+**Pause** menekan pemicu terjadwal untuk ke depannya; sesi yang sedang berjalan dari deployment run sebelumnya tetap dieksekusi. Eksekusi manual melalui endpoint `run` tetap diizinkan saat dijeda. Menjeda menetapkan `paused_reason` ke `{"type": "manual"}`; melanjutkan akan menghapusnya.
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   curl --fail-with-body -sS -X POST "https://api.anthropic.com/v1/deployments/$DEPLOYMENT_ID/pause?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -515,10 +539,10 @@ Setiap perubahan siklus hidup memancarkan [event webhook](/docs/id/managed-agent
   ```
 </CodeGroup>
 
-**Unpause** melanjutkan jadwal dari kemunculan terjadwal berikutnya. Pemicu yang terlewat tidak akan diisi ulang.
+**Unpause** melanjutkan jadwal dari kemunculan terjadwal berikutnya. Pemicu yang terlewat tidak diisi ulang.
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   curl --fail-with-body -sS -X POST "https://api.anthropic.com/v1/deployments/$DEPLOYMENT_ID/unpause?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -560,10 +584,10 @@ Setiap perubahan siklus hidup memancarkan [event webhook](/docs/id/managed-agent
   ```
 </CodeGroup>
 
-**Archive**, tidak seperti **pause**, bersifat terminal: jadwal berakhir dan deployment tidak dapat dimodifikasi.
+**Archive**, tidak seperti **pause**, bersifat terminal: jadwal dihentikan dan deployment tidak dapat dimodifikasi.
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   curl --fail-with-body -sS -X POST "https://api.anthropic.com/v1/deployments/$DEPLOYMENT_ID/archive?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -607,16 +631,16 @@ Setiap perubahan siklus hidup memancarkan [event webhook](/docs/id/managed-agent
 
 ### Perilaku kegagalan
 
-Respons batas laju pembuatan sesi langsung dicatat sebagai eksekusi `session_rate_limited_error` tanpa percobaan ulang; jadwal akan mencoba lagi pada kemunculan terjadwal berikutnya. Batas laju pada panggilan API yang mendasari di dalam sesi ditangani oleh sesi itu sendiri.
+Respons batas laju pembuatan sesi dicatat segera sebagai eksekusi `session_rate_limited_error` tanpa percobaan ulang; jadwal mencoba lagi pada kemunculan terjadwal berikutnya. Batas laju pada panggilan API yang mendasari dalam sebuah sesi ditangani oleh sesi itu sendiri.
 
-Jika agen dari sebuah deployment telah diarsipkan, deployment tersebut secara otomatis diarsipkan dalam operasi yang sama. Jika agen telah dihapus, pemicu terjadwal berikutnya mendeteksi agen yang hilang dan secara otomatis mengarsipkan deployment. Dalam kedua kasus tersebut, tidak ada eksekusi deployment yang dicatat. Jika subagen yang direferensikan oleh agen telah diarsipkan, pemicu berikutnya mencatat eksekusi yang gagal dengan `error.type: "agent_archived_error"` dan deployment secara otomatis dijeda sehingga Anda dapat memperbarui agen dan melanjutkan. Error pembuatan sesi lain yang tidak dapat dipulihkan, seperti environment atau vault yang diarsipkan, berperilaku dengan cara yang sama: pemicu mencatat eksekusi yang gagal dan deployment secara otomatis dijeda. `paused_reason.error.type` dari deployment mencerminkan `error.type` dari eksekusi yang gagal.
+Jika agen deployment telah diarsipkan, deployment secara otomatis diarsipkan dalam operasi yang sama. Jika agen telah dihapus, pemicu terjadwal berikutnya mendeteksi agen yang hilang dan secara otomatis mengarsipkan deployment. Dalam kedua kasus tersebut tidak ada deployment run yang dicatat. Jika subagen yang direferensikan oleh agen telah diarsipkan, pemicu berikutnya mencatat eksekusi yang gagal dengan `error.type: "agent_archived_error"` dan deployment secara otomatis dijeda sehingga Anda dapat memperbarui agen dan melanjutkan. Error pembuatan sesi lain yang tidak dapat dipulihkan, seperti environment atau vault yang diarsipkan, berperilaku dengan cara yang sama: pemicu mencatat eksekusi yang gagal dan deployment secara otomatis dijeda. `paused_reason.error.type` deployment mencerminkan `error.type` dari eksekusi yang gagal.
 
 ## Memicu eksekusi manual
 
-Untuk menjalankan deployment di luar jadwalnya, panggil [endpoint `run`](/docs/id/api/beta/deployments/run). Ini membuat sesi secara langsung dan menulis eksekusi deployment dengan `trigger_context.type: "manual"`. Ini memungkinkan Anda menguji deployment sebelum berkomitmen pada jadwal.
+Untuk menjalankan deployment di luar jadwalnya, panggil [endpoint `run`](https://platform.claude.com/docs/id/api/beta/deployments/run). Ini membuat sesi segera dan menulis deployment run dengan `trigger_context.type: "manual"`. Ini memungkinkan Anda menguji deployment sebelum berkomitmen pada jadwal.
 
 <CodeGroup defaultLanguage="CLI">
-  ```bash curl
+  ```bash cURL
   curl --fail-with-body -sS -X POST "https://api.anthropic.com/v1/deployments/$DEPLOYMENT_ID/run?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/activities/list
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 7a32845998a068c85aa5a7e0abd8fef0fce297e3216ecce58727c8101e1804d5
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 6b17fb12338d2152a71d28f0c0391a70462b63bb4c057228ef7e5cc00a4cd059
+---
+
+---
+title: Query compliance activities
+url: https://platform.claude.com/docs/en/api/compliance/activities/list
 ---
 
 ## Query compliance activities

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps
-fetched_at: 2026-07-08T03:08:53.943475Z
-sha256: 5a670f73fe637e2bc344e7c53f6d3263aa15f6fdb038a35f1d466b7a70529824
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 4fd18326094b1edc495ffeef95264b0f1cd7e101e1b734b76dbf8d131f1742ae
+---
+
+---
+title: Apps
+url: https://platform.claude.com/docs/en/api/compliance/apps
 ---
 
 # Apps

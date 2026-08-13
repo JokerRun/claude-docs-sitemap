@@ -1,22 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: b7195f7777fdb64d9d4eedac54771e61575c0cbd743959f2f219742cff50064a
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: f1c2f405b7b44107c21cc1ff7aca7101b675899dbb97dd84b033cf94d16a904a
 ---
 
-# Memulai dengan Agent Skills di API
-
-Pelajari cara menggunakan Agent Skills untuk membuat dokumen dengan Claude API dalam waktu kurang dari 10 menit.
-
+---
+title: Memulai dengan Agent Skills di API
+url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart
+description: Pelajari cara menggunakan Agent Skills untuk membuat dokumen dengan Claude API dalam waktu kurang dari 10 menit.
 ---
 
 Tutorial ini menunjukkan cara menggunakan Agent Skills untuk membuat presentasi PowerPoint. Anda akan mempelajari cara mengaktifkan Skills, membuat permintaan, dan mengakses file yang dihasilkan.
 
 ## Prasyarat
 
-* [Kunci API Claude](/settings/keys) atau [ant CLI](/docs/id/cli-sdks-libraries/cli/authentication) yang sudah login
-* [SDK klien](/docs/id/cli-sdks-libraries/overview) untuk bahasa Anda, atau `curl` dan `jq`
+* [Kunci API Claude](https://platform.claude.com/settings/keys) atau [ant CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication) yang sudah login
+* [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk bahasa Anda, atau `curl` dan `jq`
 * Pemahaman dasar tentang cara membuat permintaan API
 
 ## Gambaran umum Agent Skills
@@ -365,7 +365,7 @@ Gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbarukan. Ten
 
 Permintaan ini mencakup bagian-bagian berikut:
 
-* **`model`:** [Model yang mendukung alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool#model-compatibility)
+* **`model`:** [Model yang mendukung alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#model-compatibility)
 * **`container.skills`:** Menentukan Skills mana yang dapat digunakan Claude
 * **`type: "anthropic"`:** Menunjukkan bahwa ini adalah Skill yang dikelola Anthropic
 * **`skill_id: "pptx"`:** Pengidentifikasi Skill PowerPoint
@@ -374,7 +374,7 @@ Permintaan ini mencakup bagian-bagian berikut:
 * **Header beta:** `skills-2025-10-02`
 
 <Note>
-  Contoh-contoh di halaman ini menggunakan versi alat `code_execution_20260521`, yang tersedia secara umum dan hanya memerlukan header beta `skills-2025-10-02`. Kode pada Langkah 3 mem-parsing tipe hasil yang dikembalikan oleh versi alat saat ini. Skills juga bekerja dengan versi [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) yang lebih lama seperti `code_execution_20250825`: versi alat eksekusi kode apa pun yang berlaku saat ini memenuhi persyaratan Skills. Jika Anda menggunakan versi yang berbeda, pastikan `type` alat dan header beta apa pun tetap konsisten dengan halaman alat eksekusi kode, dan selalu sertakan `skills-2025-10-02`.
+  Contoh-contoh di halaman ini menggunakan versi alat `code_execution_20260521`, yang tersedia secara umum dan hanya memerlukan header beta `skills-2025-10-02`. Kode pada Langkah 3 mem-parsing tipe hasil yang dikembalikan oleh versi alat saat ini. Skills juga bekerja dengan versi [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) yang lebih lama seperti `code_execution_20250825`: versi alat eksekusi kode apa pun yang berlaku saat ini memenuhi persyaratan Skills. Jika Anda menggunakan versi yang berbeda, pastikan `type` alat dan header beta apa pun tetap konsisten dengan halaman alat eksekusi kode, dan selalu sertakan `skills-2025-10-02`.
 </Note>
 
 Ketika Anda membuat permintaan ini, Claude secara otomatis mencocokkan tugas Anda dengan Skill yang relevan. Karena Anda meminta presentasi, Claude menentukan bahwa Skill PowerPoint relevan dan memuat instruksi lengkapnya: tingkat kedua dari progressive disclosure. Kemudian Claude menjalankan kode Skill tersebut untuk membuat presentasi Anda.
@@ -618,7 +618,7 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. `r
 </CodeGroup>
 
 <Note>
-  Untuk detail lengkap tentang bekerja dengan file yang dihasilkan, lihat [Mengambil file yang dihasilkan](/docs/id/agents-and-tools/tool-use/code-execution-tool#retrieve-generated-files) di dokumentasi alat eksekusi kode.
+  Untuk detail lengkap tentang bekerja dengan file yang dihasilkan, lihat [Mengambil file yang dihasilkan](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#retrieve-generated-files) di dokumentasi alat eksekusi kode.
 </Note>
 
 ## Coba contoh lainnya
@@ -1240,15 +1240,15 @@ Coba variasi berikut:
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Praktik terbaik penulisan Skill" icon="edit" href="/docs/id/agents-and-tools/agent-skills/best-practices">
+  <Card title="Praktik terbaik penulisan Skill" icon="edit" href="https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices">
     Pelajari cara menulis Skills yang efektif yang dapat ditemukan dan digunakan Claude dengan sukses.
   </Card>
 
-  <Card title="Menggunakan Agent Skills dengan API" icon="book" href="/docs/id/build-with-claude/skills-guide">
+  <Card title="Menggunakan Agent Skills dengan API" icon="book" href="https://platform.claude.com/docs/id/build-with-claude/skills-guide">
     Pelajari cara menggunakan Agent Skills untuk memperluas kemampuan Claude melalui API.
   </Card>
 
-  <Card title="Buat Skills kustom" icon="code" href="/docs/id/api/skills/create-skill">
+  <Card title="Buat Skills kustom" icon="code" href="https://platform.claude.com/docs/id/api/skills/create-skill">
     Unggah Skills Anda sendiri untuk tugas-tugas khusus.
   </Card>
 

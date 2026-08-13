@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/delete
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 6b72ab613ca3c3322b54d56fccd41ebe54c9e41cab11104cf3bea6e5ba5fc419
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 53ba0eda8b3f6b2b90d49485b18f90f02d00a6a22ec1ec2c2c25c0c5deee8492
+---
+
+---
+title: Delete project document
+url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/delete
 ---
 
 ## Delete project document

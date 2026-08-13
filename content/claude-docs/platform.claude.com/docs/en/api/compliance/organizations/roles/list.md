@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/list
-fetched_at: 2026-06-27T03:14:28.973816Z
-sha256: a8cc210b2670b59a8fdfa3a34037a6fe811d33daf72d910c84614e365d332238
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 7160677b453ea027e6f28cc5769b29f84d4c1b8ccb06d4b5b7693ae739f7b8a1
+---
+
+---
+title: List Compliance Roles
+url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/list
 ---
 
 ## List Compliance Roles

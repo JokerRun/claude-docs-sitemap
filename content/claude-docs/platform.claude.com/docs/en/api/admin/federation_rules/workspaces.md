@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/federation_rules/workspaces
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: 66337f2638739b9f0befdc7c571df20967c36de21c170347221ba9f2b370884a
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 66cc32579d43049a40ac203c2a79168ba447cf05fe5401ad14b09dc5329c5e98
+---
+
+---
+title: Workspaces
+url: https://platform.claude.com/docs/en/api/admin/federation_rules/workspaces
 ---
 
 # Workspaces

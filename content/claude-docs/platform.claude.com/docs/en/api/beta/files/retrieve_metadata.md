@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/retrieve_metadata
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 1adcae9d1215f7541056a2a30a87065ebbf810fb24e986892c01b970b2286e1f
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 475198c6712afd8bdc2f7eee7a6c2b95d775eb96d032c342b786fbfdab052ebf
+---
+
+---
+title: Get File Metadata
+url: https://platform.claude.com/docs/en/api/beta/files/retrieve_metadata
 ---
 
 ## Get File Metadata
@@ -25,7 +30,7 @@ Get File Metadata
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -90,6 +95,8 @@ Get File Metadata
     - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
+
+    - `"mid-conversation-tool-changes-2026-07-01"`
 
 ### Returns
 

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files/delete
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 041cef6b29a2e34b5b7ccb80fa0f50b4cb7ae46cf95a15668f1e6b45b87f260e
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 4e2f6d8ef6cea6431039226ec6104ef392b8575e4237644e57b7a3fb412e7dd3
+---
+
+---
+title: Delete file
+url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files/delete
 ---
 
 ## Delete file

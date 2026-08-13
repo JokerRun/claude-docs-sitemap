@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/retrieve
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: 70ed4c8459b2fb4f2e5e01679677d1077b0f7777e86ddf2f2d643c89d72eeeaa
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 07b3d3c1bb46961b5499455205575dfbc78c3ca98d9bede97a6decef1c861446
+---
+
+---
+title: Get User Profile
+url: https://platform.claude.com/docs/en/api/beta/user_profiles/retrieve
 ---
 
 ## Get User Profile
@@ -23,7 +28,7 @@ Get User Profile
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -88,6 +93,8 @@ Get User Profile
     - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
+
+    - `"mid-conversation-tool-changes-2026-07-01"`
 
 ### Returns
 

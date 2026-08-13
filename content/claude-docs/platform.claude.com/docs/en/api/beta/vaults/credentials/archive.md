@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/archive
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: f9c9bf35be7d0f66480bf0b16cd9a44bfe5d7bd4f59f3fb905c975381dd3c993
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 4111fd08c8b879831565d27f656307d178a9227b2fbdc11e50ec503d6acdff96
+---
+
+---
+title: Archive Credential
+url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/archive
 ---
 
 ## Archive Credential
@@ -25,7 +30,7 @@ Archive Credential
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 29 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -90,6 +95,8 @@ Archive Credential
     - `"fallback-credit-2026-07-01"`
 
     - `"agent-memory-2026-07-22"`
+
+    - `"mid-conversation-tool-changes-2026-07-01"`
 
 ### Returns
 

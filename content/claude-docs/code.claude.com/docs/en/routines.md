@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/routines
-fetched_at: 2026-08-12T02:56:30.865670Z
-sha256: 42db4139025ce50198e80910cb9df2bd2f0118655d2079a2acb9c8ab3f919edd
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 137c0eda8a7e929260c4b253ab3504a68e63f1794fdb38642f69aa39e7fd3abd
 ---
 
 > ## Documentation Index
@@ -69,7 +69,7 @@ Routines belong to your individual claude.ai account. They are not shared with t
   <Step title="Name the routine and write the prompt">
     Give the routine a descriptive name and write the prompt Claude runs each time. The prompt is the most important part: the routine runs autonomously, so the prompt must be self-contained and explicit about what to do and what success looks like.
 
-    When a trigger fires, the session receives the routine's saved prompt as its assigned task and carries it out, rather than treating it as untrusted content that arrived mid-conversation. The trigger attests only that the prompt was stored ahead of time by an authorized session on your account, so the fired prompt is not live user input and can't act as approval or consent for actions during the run. Content the session fetches during the run keeps its normal handling. Before v2.1.214, the session received the same prompt framed as an untrusted background notification and could refuse to act on it.
+    When a trigger fires, the session receives the routine's saved prompt as its assigned task and carries it out, rather than treating it as untrusted content that arrived mid-conversation. The trigger attests only that the prompt was stored ahead of time by an authorized session on your account, so the fired prompt is not live user input and can't act as approval or consent for actions during the run. Content the session fetches during the run keeps its normal handling. Before v2.1.213, the session received the same prompt framed as an untrusted background notification and could refuse to act on it.
 
     The prompt input includes a model selector. Claude uses the selected model on every run.
   </Step>

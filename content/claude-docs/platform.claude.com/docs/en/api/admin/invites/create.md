@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/invites/create
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 20e880c61af6f8ae464cf39b31065921c3f5699d0bfcaa4099fcd4a60c04b613
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: ce9ce60b1ea749b1d3179ffe99be5ae4417f707a379352d0ca65ba4b4331a6be
+---
+
+---
+title: Create Invite
+url: https://platform.claude.com/docs/en/api/admin/invites/create
 ---
 
 ## Create Invite

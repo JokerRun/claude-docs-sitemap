@@ -1,20 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/increase-consistency
-fetched_at: 2026-08-12T02:56:30.865670Z
-sha256: 609d31c0964359a4470c09ef4ff04f5154b1bc913f40626b7ef271a95733d666
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: f9199d8b674997104b7a90e287ef34fa276039529aea6eb01cb12527a4753066
 ---
 
-# Increase output consistency
-
-Make Claude's outputs more consistent by specifying exact formats, prefilling responses, constraining with examples, and grounding answers in retrieval.
-
+---
+title: Increase output consistency
+url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/increase-consistency
+description: Make Claude's outputs more consistent by specifying exact formats, prefilling responses, constraining with examples, and grounding answers in retrieval.
 ---
 
 <Tip>
   **For guaranteed JSON schema conformance**
 
-  If you need Claude to always output valid JSON that conforms to a specific schema, use [Structured Outputs](/docs/en/build-with-claude/structured-outputs) instead of the prompt engineering techniques below. Structured outputs provide guaranteed schema compliance and are specifically designed for this use case.
+  If you need Claude to always output valid JSON that conforms to a specific schema, use [Structured Outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs) instead of the prompt engineering techniques below. Structured outputs provide guaranteed schema compliance and are specifically designed for this use case.
 
   The techniques below are useful for general output consistency or when you need flexibility beyond strict JSON schemas.
 </Tip>
@@ -71,7 +71,7 @@ Precisely define your desired output format using JSON, XML, or custom templates
 
   . Use 
 
-  [structured outputs](/docs/en/build-with-claude/structured-outputs)
+  [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
 
    on models that support it, or system prompt instructions, instead.
 </Note>
@@ -329,7 +329,7 @@ Break down complex tasks into smaller, consistent subtasks. Each subtask gets Cl
 
 For role-based applications, maintaining consistent character requires deliberate prompting.
 
-* **Use system prompts to set the role:** Use [system prompts](/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role) to define Claude's role and personality. This sets a strong foundation for consistent responses.
+* **Use system prompts to set the role:** Use [system prompts](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role) to define Claude's role and personality. This sets a strong foundation for consistent responses.
   <Tip>
     When setting up the character, provide detailed information about the personality, background, and any specific traits or quirks. This helps the model better emulate and generalize the character's traits.
   </Tip>

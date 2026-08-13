@@ -1,26 +1,26 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart
-fetched_at: 2026-07-25T03:07:29.726338Z
-sha256: f00c9d958ba74083fae0300ef600d10312427b64b9aea8945a524898856dd52b
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: b81267bbd33b29b31f875b704a0cb6468813ebb58870d9677c088fda010d2043
 ---
 
-# Mulai cepat CLI
-
-Instal alat command-line ant, lakukan autentikasi, dan kirim permintaan pertama Anda ke Claude API.
-
+---
+title: Panduan cepat CLI
+url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart
+description: Instal alat baris perintah ant, lakukan autentikasi, dan kirim permintaan pertama Anda ke Claude API.
 ---
 
-CLI `ant` menyediakan akses ke Claude API dari terminal Anda. Setiap sumber daya API tersedia sebagai subperintah, dengan pemformatan output, penyaringan respons, dan input file YAML atau JSON.
+CLI `ant` menyediakan akses ke Claude API dari terminal Anda. Setiap sumber daya API diekspos sebagai subperintah, dengan pemformatan output, pemfilteran respons, dan input file YAML atau JSON.
 
-<Frame caption="CLI ant dalam aksi.">
-  [](/docs/videos/ant-cli-demo.webm)
+<Frame caption="CLI ant sedang beraksi.">
+  [](https://platform.claude.com/docs/videos/ant-cli-demo.webm)
 </Frame>
 
-Dibandingkan dengan `curl`, `ant` membangun body permintaan dari flag bertipe atau YAML yang di-pipe alih-alih JSON yang ditulis manual, dan menyisipkan isi file ke dalam field string dengan referensi `@path`. CLI ini mengekstrak field respons dengan kueri `--transform` bawaan, sehingga Anda tidak memerlukan alat terpisah seperti `jq`, dan melakukan paginasi endpoint daftar secara otomatis.
+Dibandingkan dengan `curl`, `ant` membangun body permintaan dari flag bertipe atau YAML yang di-pipe alih-alih JSON yang ditulis manual, dan menyisipkan konten file ke dalam field string dengan referensi `@path`. CLI ini mengekstrak field respons dengan kueri `--transform` bawaan, sehingga Anda tidak memerlukan alat terpisah seperti `jq`, dan melakukan paginasi endpoint daftar secara otomatis.
 
 <Info>
-  Untuk parameter spesifik endpoint dan skema respons, lihat [referensi API](/docs/id/api/cli/messages/create). Halaman ini membantu Anda mendapatkan perintah yang berfungsi. Untuk semua hal lain yang dapat dilakukan CLI, lihat [Menggunakan CLI](/docs/id/cli-sdks-libraries/cli/using) dan [Scripting dan otomatisasi CLI](/docs/id/cli-sdks-libraries/cli/scripting).
+  Untuk parameter spesifik endpoint dan skema respons, lihat [referensi API](https://platform.claude.com/docs/id/api/cli/messages/create). Halaman ini membantu Anda menjalankan perintah yang berfungsi. Untuk semua hal lain yang dapat dilakukan CLI, lihat [Menggunakan CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using) dan [Scripting dan otomatisasi CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting).
 </Info>
 
 ## Instalasi
@@ -36,7 +36,7 @@ Dibandingkan dengan `curl`, `ant` membangun body permintaan dari flag bertipe at
     Untuk lingkungan Linux, unduh binary rilis secara langsung.
 
     ```bash
-    VERSION=1.21.0
+    VERSION=1.22.1
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -72,19 +72,19 @@ ant --version
 
 ## Autentikasi
 
-`ant auth login` membuka alur OAuth berbasis browser terhadap Claude Console dan menyimpan kredensial yang dihasilkan secara lokal, sehingga Anda dapat memanggil API tanpa membuat atau mengelola kunci API (API key).
+`ant auth login` membuka alur OAuth berbasis browser ke Claude Console dan menyimpan kredensial yang dihasilkan secara lokal, sehingga Anda dapat memanggil API tanpa membuat atau mengelola kunci API.
 
 ```bash CLI
 ant auth login
 ```
 
 <Note>
-  Untuk cara autentikasi lainnya (variabel lingkungan kunci API, host headless, beberapa workspace, profil bernama, dan Workload Identity Federation), lihat [Opsi autentikasi CLI](/docs/id/cli-sdks-libraries/cli/authentication).
+  Untuk cara autentikasi lainnya (variabel lingkungan kunci API, host headless, beberapa workspace, profil bernama, dan Workload Identity Federation), lihat [Opsi autentikasi CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication).
 </Note>
 
 ## Kirim permintaan pertama Anda
 
-Dengan binary yang sudah terinstal dan terautentikasi, panggil [Messages API](/docs/id/api/cli/messages/create):
+Dengan binary yang telah terinstal dan terautentikasi, panggil [Messages API](https://platform.claude.com/docs/id/api/cli/messages/create):
 
 ```bash
 ant messages create \
@@ -110,11 +110,11 @@ ant messages create \
 }
 ```
 
-Responsnya adalah objek API lengkap, ditampilkan dengan format rapi (pretty-printed) karena stdout adalah terminal.
+Respons yang diberikan adalah objek API lengkap, dicetak dengan format rapi karena stdout adalah terminal.
 
 ## Shell completion
 
-CLI menyertakan skrip completion untuk bash, zsh, fish, dan PowerShell. Hasilkan dan instal salah satunya untuk shell Anda:
+CLI ini menyertakan skrip completion untuk bash, zsh, fish, dan PowerShell. Buat dan instal satu untuk shell Anda:
 
 <Tabs>
   <Tab title="zsh">
@@ -148,15 +148,15 @@ CLI menyertakan skrip completion untuk bash, zsh, fish, dan PowerShell. Hasilkan
 ## Langkah selanjutnya
 
 <CardGroup cols={3}>
-  <Card title="Opsi autentikasi CLI" icon="lock" href="/docs/id/cli-sdks-libraries/cli/authentication">
+  <Card title="Opsi autentikasi CLI" icon="lock" href="https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication">
     Kunci API, host headless, beberapa workspace, dan profil bernama
   </Card>
 
-  <Card title="Menggunakan CLI" icon="terminal" href="/docs/id/cli-sdks-libraries/cli/using">
+  <Card title="Menggunakan CLI" icon="terminal" href="https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using">
     Struktur perintah, format output, transformasi GJSON, dan body permintaan
   </Card>
 
-  <Card title="Scripting dan otomatisasi CLI" icon="code" href="/docs/id/cli-sdks-libraries/cli/scripting">
-    Sumber daya API dengan kontrol versi, pola scripting, dan penggunaan dari Claude Code
+  <Card title="Scripting dan otomatisasi CLI" icon="code" href="https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting">
+    Kontrol versi sumber daya API, pola scripting, dan penggunaan dari Claude Code
   </Card>
 </CardGroup>

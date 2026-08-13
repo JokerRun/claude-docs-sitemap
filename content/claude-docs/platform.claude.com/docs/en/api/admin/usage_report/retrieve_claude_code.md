@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/usage_report/retrieve_claude_code
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: c41a7c29f93d8bd4c6fce3dcfd22cb0ba23e93633c0e6ba2ea35fa239d0a84da
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 26691fe24f733d81336ce2a102b2d42836e2c0eb035f5a6470529c0d7b5970ca
+---
+
+---
+title: Get Claude Code Usage Report
+url: https://platform.claude.com/docs/en/api/admin/usage_report/retrieve_claude_code
 ---
 
 ## Get Claude Code Usage Report

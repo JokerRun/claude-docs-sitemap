@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/federation_issuers/create
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: 95ea2c6a71da04bc7c99f07dd625430150698079a883a4e821db99118e2ebec3
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 7f2430a2361cd9a3e638d08874b56522fbdef23aeac9339db9143b0a811046e5
+---
+
+---
+title: Create Federation Issuer
+url: https://platform.claude.com/docs/en/api/admin/federation_issuers/create
 ---
 
 ## Create Federation Issuer

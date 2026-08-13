@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/delete
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: fbc18af4dbdfd184b81fc0d4f1ea019e8a84816e315fcb5fa8a1ea4180da82be
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 8998e1b23b64f7bd2538cd99b694bfd2593fa2a8df1133bf2b30010da244d410
+---
+
+---
+title: Delete a Message Batch
+url: https://platform.claude.com/docs/en/api/messages/batches/delete
 ---
 
 ## Delete a Message Batch

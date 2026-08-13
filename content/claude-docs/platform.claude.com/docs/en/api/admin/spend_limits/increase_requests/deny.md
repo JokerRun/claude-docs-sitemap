@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/increase_requests/deny
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: efb149bf51222d6f2f7a852cbad85228d3e7dbc68128eb030a65a9ef8401bc7b
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: d368e2af6c7e8e0ec23bf38ebc00e9a5f1e9989a9608918c0b762e20c1085726
+---
+
+---
+title: Deny Spend Limit Increase Request
+url: https://platform.claude.com/docs/en/api/admin/spend_limits/increase_requests/deny
 ---
 
 ## Deny Spend Limit Increase Request

@@ -1,21 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 8f8cf214d6b76e2240e67142e7e8d51ca6871103181ae477e362dabdf562414a
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 3d98eac44d997283318a9e1de8ed6ca02a6f318d47dab114160c0cb0a99f1312
 ---
 
-# Opsi autentikasi CLI
-
-Autentikasi CLI ant dengan login interaktif, kunci API, profil bernama, dan Workload Identity Federation.
-
+---
+title: Opsi autentikasi CLI
+url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication
+description: Autentikasi CLI ant dengan login interaktif, kunci API, profil bernama, dan Workload Identity Federation.
 ---
 
-CLI `ant` mendukung beberapa sumber kredensial. [Quickstart](/docs/id/cli-sdks-libraries/cli/quickstart#authentication) membahas jalur cepat satu perintah (`ant auth login`). Halaman ini membahas setiap opsi secara lengkap.
+CLI `ant` mendukung beberapa sumber kredensial. [Quickstart](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart#authentication) membahas jalur cepat satu perintah (`ant auth login`). Halaman ini membahas setiap opsi secara lengkap.
 
 ## Login interaktif
 
-`ant auth login` memungkinkan Anda memanggil API tanpa membuat atau mengelola kunci API. Perintah ini membuka alur OAuth berbasis browser terhadap Claude Console dan menyimpan kredensial yang dihasilkan di bawah `$ANTHROPIC_CONFIG_DIR` (lihat [Direktori konfigurasi](/docs/id/manage-claude/wif-reference#configuration-directory) untuk default spesifik OS). Pada host jarak jauh atau di lingkungan mana pun tanpa browser lokal, berikan `--no-browser` untuk mencetak URL otorisasi dan tempelkan kode yang dikembalikan ke terminal.
+`ant auth login` memungkinkan Anda memanggil API tanpa membuat atau mengelola kunci API. Perintah ini membuka alur OAuth berbasis browser terhadap Claude Console dan menyimpan kredensial yang dihasilkan di bawah `$ANTHROPIC_CONFIG_DIR` (lihat [Direktori konfigurasi](https://platform.claude.com/docs/id/manage-claude/wif-reference#configuration-directory) untuk default spesifik OS). Pada host jarak jauh atau di lingkungan mana pun tanpa browser lokal, berikan `--no-browser` untuk mencetak URL otorisasi dan tempelkan kode yang dikembalikan ke terminal.
 
 ```bash CLI
 ant auth login
@@ -31,15 +31,15 @@ ant auth login --workspace-id wrkspc_01...
 ant auth login --profile <profile-name>
 ```
 
-Selama alur browser, Anda memilih organisasi lalu sebuah [workspace](/docs/id/manage-claude/workspaces). Token yang diterbitkan [dicakup ke workspace tersebut](/docs/id/manage-claude/workspaces#api-keys-and-resource-scoping), sehingga CLI hanya dapat melihat sumber daya yang termasuk di dalamnya. Berikan `--workspace-id` untuk mengikat langsung dan melewati pemilih. Untuk bekerja di lebih dari satu workspace, lihat [Beralih antar workspace](#switch-between-workspaces).
+Selama alur browser, Anda memilih organisasi lalu sebuah [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces). Token yang diterbitkan [dicakup ke workspace tersebut](https://platform.claude.com/docs/id/manage-claude/workspaces#api-keys-and-resource-scoping), sehingga CLI hanya dapat melihat sumber daya yang termasuk di dalamnya. Berikan `--workspace-id` untuk mengikat langsung dan melewati pemilih. Untuk bekerja di lebih dari satu workspace, lihat [Beralih antar workspace](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication#switch-between-workspaces).
 
-Login interaktif ditujukan untuk pengembangan lokal dan scripting di mesin Anda sendiri. Untuk beban kerja non-interaktif seperti CI, server, dan kontainer, gunakan [Workload Identity Federation](/docs/id/manage-claude/workload-identity-federation) sebagai gantinya.
+Login interaktif ditujukan untuk pengembangan lokal dan scripting di mesin Anda sendiri. Untuk beban kerja non-interaktif seperti CI, server, dan kontainer, gunakan [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation) sebagai gantinya.
 
 Login menulis kredensial ke `credentials/<profile>.json`. Login pertama untuk sebuah profil juga membuat `configs/<profile>.json` dan menetapkannya sebagai profil aktif. Untuk menghapus kredensial yang tersimpan, jalankan `ant auth logout`, atau `ant auth logout --all` untuk menghapus setiap profil.
 
 ## Akses admin
 
-Secara default, `ant auth login` meminta token yang dicakup ke workspace. Untuk mengelola sumber daya yang didokumentasikan di halaman [Admin API](/docs/id/manage-claude/admin-api), minta scope `org:admin` di bawah profil khusus:
+Secara default, `ant auth login` meminta token yang dicakup ke workspace. Untuk mengelola sumber daya yang didokumentasikan di halaman [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api), minta scope `org:admin` di bawah profil khusus:
 
 ```bash CLI
 ant auth login --profile admin --scope "org:admin"
@@ -102,7 +102,7 @@ Workspace
   (active) * Workspace                                      wrkspc_01... (Engineering)
 ```
 
-Baca baris `(active)` untuk melihat sumber kredensial dan workspace mana yang terpilih. Perintah ini melaporkan status alih-alih melakukan pemeriksaan kesehatan, jadi jangan membuat skrip berdasarkan status keluarnya. Untuk urutan lengkap sumber kredensial, lihat [Prioritas kredensial](/docs/id/manage-claude/wif-reference#credential-precedence).
+Baca baris `(active)` untuk melihat sumber kredensial dan workspace mana yang terpilih. Perintah ini melaporkan status alih-alih melakukan pemeriksaan kesehatan, jadi jangan membuat skrip berdasarkan status keluarnya. Untuk urutan lengkap sumber kredensial, lihat [Prioritas kredensial](https://platform.claude.com/docs/id/manage-claude/wif-reference#credential-precedence).
 
 ## Beralih antar workspace
 
@@ -121,7 +121,7 @@ ant --profile other-ws models list
 ANTHROPIC_PROFILE=other-ws ant models list
 ```
 
-Jalankan [`ant auth status`](#check-authentication-status) untuk mengonfirmasi profil dan workspace mana yang aktif.
+Jalankan [`ant auth status`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication#check-authentication-status) untuk mengonfirmasi profil dan workspace mana yang aktif.
 
 <Note>
   Profil hanya diperiksa ketika tidak ada kunci API yang diatur. Jika `ANTHROPIC_API_KEY` ada di lingkungan Anda, variabel tersebut mengesampingkan setiap profil dan semua perintah ini menggunakan workspace apa pun yang menjadi cakupan kunci tersebut. Hapus pengaturannya sebelum beralih profil.
@@ -139,20 +139,20 @@ ant profile set workspace_id wrkspc_01... --profile other-ws
 
 Kunci yang dapat ditulis untuk `ant profile set` adalah `workspace_id`, `base_url`, `organization_id`, `scope`, `client_id`, dan `console_url`. Mengatur `workspace_id` mencatat workspace target dalam konfigurasi profil tetapi tidak mengikat ulang kredensial yang sudah diterbitkan; jalankan `ant auth login` lagi di bawah profil tersebut untuk menerbitkan token bagi workspace baru.
 
-Untuk skema file profil dan blok federasi, lihat [File konfigurasi profil](/docs/id/manage-claude/wif-reference#profile-configuration-file). Untuk Workload Identity Federation, lihat [Ikhtisar autentikasi](/docs/id/manage-claude/authentication) dan [Referensi WIF](/docs/id/manage-claude/wif-reference).
+Untuk skema file profil dan blok federasi, lihat [File konfigurasi profil](https://platform.claude.com/docs/id/manage-claude/wif-reference#profile-configuration-file). Untuk Workload Identity Federation, lihat [Ikhtisar autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication) dan [Referensi WIF](https://platform.claude.com/docs/id/manage-claude/wif-reference).
 
 ## Langkah selanjutnya
 
 <CardGroup cols={3}>
-  <Card title="Menggunakan CLI" icon="terminal" href="/docs/id/cli-sdks-libraries/cli/using">
+  <Card title="Menggunakan CLI" icon="terminal" href="https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using">
     Struktur perintah, format output, transformasi GJSON, dan body permintaan
   </Card>
 
-  <Card title="Scripting dan otomatisasi CLI" icon="code" href="/docs/id/cli-sdks-libraries/cli/scripting">
+  <Card title="Scripting dan otomatisasi CLI" icon="code" href="https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting">
     Kontrol versi sumber daya API, pola scripting, dan penggunaan dari Claude Code
   </Card>
 
-  <Card title="Workload Identity Federation" icon="cloud" href="/docs/id/manage-claude/workload-identity-federation">
+  <Card title="Workload Identity Federation" icon="cloud" href="https://platform.claude.com/docs/id/manage-claude/workload-identity-federation">
     Autentikasi non-interaktif untuk CI, server, dan kontainer
   </Card>
 </CardGroup>

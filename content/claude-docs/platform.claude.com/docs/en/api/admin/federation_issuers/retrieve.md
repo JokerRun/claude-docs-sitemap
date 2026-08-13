@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/federation_issuers/retrieve
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: 4a83df6eae54d35a949b1d2104d4e57df83fd4bf7253cd3a8909c590e131fe1d
+fetched_at: 2026-08-13T02:58:08.547465Z
+sha256: 6e38a0f6c026fa2335649334eb8292e73b40c53398560dfe7dad2befba20685f
+---
+
+---
+title: Get Federation Issuer
+url: https://platform.claude.com/docs/en/api/admin/federation_issuers/retrieve
 ---
 
 ## Get Federation Issuer
