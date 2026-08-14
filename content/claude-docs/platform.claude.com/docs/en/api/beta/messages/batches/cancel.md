@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/cancel
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: adfef02c042b35490b45bc7f1754cd8fb658d2dbab81df20bb1e3b9e7541f8f5
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: a3eb5bd7b8b81b22bad18a7e3b95ea45d5d35aea05e77cf66584b04b80e5c271
 ---
 
 ---
@@ -112,11 +112,11 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     The format and length of IDs may change over time.
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     RFC 3339 datetime string representing the time at which the Message Batch was archived and its results became unavailable.
 
-  - `cancel_initiated_at: string`
+  - `cancel_initiated_at: string or null`
 
     RFC 3339 datetime string representing the time at which cancellation was initiated for the Message Batch. Specified only if cancellation was initiated.
 
@@ -124,7 +124,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     RFC 3339 datetime string representing the time at which the Message Batch was created.
 
-  - `ended_at: string`
+  - `ended_at: string or null`
 
     RFC 3339 datetime string representing the time at which processing for the Message Batch ended. Specified only once processing ends.
 
@@ -178,7 +178,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
       This is zero until processing of the entire Message Batch has ended.
 
-  - `results_url: string`
+  - `results_url: string or null`
 
     URL to a `.jsonl` file containing the results of the Message Batch requests. Specified only once processing ends.
 

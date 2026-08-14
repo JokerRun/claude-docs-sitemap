@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/network-config
-fetched_at: 2026-08-12T02:56:30.865670Z
-sha256: 67b70229ab726b7df06a30abd14862231aa3ffac6b7bc75279c9c08bc45c53fc
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 0a3b5a0092da6b97a52dc383a50f8f8a07d39552453ca0a541eca32155aa0542
 ---
 
 > ## Documentation Index
@@ -109,7 +109,12 @@ export CLAUDE_CODE_CLIENT_KEY=/path/to/client-key.pem
 export CLAUDE_CODE_CLIENT_KEY_PASSPHRASE="your-passphrase"
 ```
 
-Claude Code reads the certificate and key files at startup and re-reads them each time it applies settings, including when settings change during a session. To rotate the certificate and key, replace the files at the same paths.
+Claude Code reads the certificate and key files at startup and re-reads them each time it applies settings. It doesn't watch those paths during a session, so it keeps presenting the loaded pair until it applies settings again.
+
+To rotate the certificate and key:
+
+* **Running session**: replace the files at the same paths, then restart Claude Code so it picks up the new pair. A mid-session settings application, such as a remote managed-settings sync or running `/login`, also re-reads the files, but no such event is guaranteed to happen before the old pair expires and you see connection errors, so restart to be certain.
+* **Future sessions**: replace the files before the current pair expires so Claude Code doesn't load an already-expired pair on its next start.
 
 In [cloud sessions](/docs/en/claude-code-on-the-web), the hosting environment manages the connection to the API, so Claude Code ignores the following variables when they come from a settings file `env` block:
 

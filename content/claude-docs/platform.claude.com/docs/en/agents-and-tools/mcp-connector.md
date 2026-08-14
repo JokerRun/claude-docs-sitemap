@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 9bf9a738f07c78028032c7519c2620a0e7ac11111536da48196cf5a18ff4991d
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: f1520621389a46970bd2fac6ce21c27a1b1e1b8a0b99456b591faa397155e2ed
 ---
 
 ---
@@ -26,12 +26,12 @@ Claude's Model Context Protocol (MCP) connector feature enables you to connect t
 
 ## Key features
 
-* **Direct API integration**: Connect to MCP servers without implementing an MCP client
-* **Tool calling support**: Access MCP tools through the Messages API
-* **Flexible tool configuration**: Enable all tools, allowlist specific tools, or denylist unwanted tools
-* **Per-tool configuration**: Configure individual tools with custom settings
-* **OAuth authentication**: Support for OAuth Bearer tokens for authenticated servers
-* **Multiple servers**: Connect to multiple MCP servers in a single request
+* **Direct API integration:** Connect to MCP servers without implementing an MCP client
+* **Tool calling support:** Access MCP tools through the Messages API
+* **Flexible tool configuration:** Enable all tools, allowlist specific tools, or denylist unwanted tools
+* **Per-tool configuration:** Configure individual tools with custom settings
+* **OAuth authentication:** Support for OAuth Bearer tokens for authenticated servers
+* **Multiple servers:** Connect to multiple MCP servers in a single request
 
 ## When Claude uses MCP tools
 
@@ -50,8 +50,8 @@ You can steer how readily Claude calls MCP tools through your system prompt. See
 
 The MCP connector uses two components:
 
-1. **MCP Server Definition** (`mcp_servers` array): Defines server connection details (URL, authentication)
-2. **MCP Toolset** (`tools` array): Configures which tools to enable and how to configure them
+1. **MCP server definition** (`mcp_servers` array): Defines server connection details (URL, authentication)
+2. **MCP toolset** (`tools` array): Configures which tools to enable and how to configure them
 
 ### Basic example
 
@@ -181,7 +181,7 @@ This example enables all tools from an MCP server with default configuration:
       {
           new BetaMcpToolset("example-mcp")
       },
-      Betas = new List<string> { "mcp-client-2025-11-20" }
+      Betas = [AnthropicBeta.McpClient2025_11_20]
   };
 
   var message = await client.Beta.Messages.Create(parameters);
@@ -240,7 +240,7 @@ This example enables all tools from an MCP server with default configuration:
           .addTool(BetaMcpToolset.builder()
               .mcpServerName("example-mcp")
               .build())
-          .addBeta("mcp-client-2025-11-20")
+          .addBeta(AnthropicBeta.MCP_CLIENT_2025_11_20)
           .build();
 
       BetaMessage response = client.beta().messages().create(params);
@@ -322,12 +322,12 @@ Each MCP server in the `mcp_servers` array defines the connection details:
 
 ### Field descriptions
 
-| Property              | Type   | Required | Description                                                                                                                                                     |
-| --------------------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`                | string | Yes      | Currently only "url" is supported.                                                                                                                              |
-| `url`                 | string | Yes      | The URL of the MCP server. Must start with https\://.                                                                                                           |
-| `name`                | string | Yes      | A unique identifier for this MCP server. Must be referenced by exactly one MCPToolset in the `tools` array.                                                     |
-| `authorization_token` | string | No       | OAuth authorization token if required by the MCP server. See [MCP specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization). |
+| Property              | Type   | Required | Description                                                                                                                                                                                                                                                                                                            |
+| --------------------- | ------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`                | string | Yes      | Currently only "url" is supported.                                                                                                                                                                                                                                                                                     |
+| `url`                 | string | Yes      | The URL of the MCP server. Must start with https\://.                                                                                                                                                                                                                                                                  |
+| `name`                | string | Yes      | A unique identifier for this MCP server. Must be referenced by exactly one MCPToolset in the `tools` array.                                                                                                                                                                                                            |
+| `authorization_token` | string | No       | OAuth authorization token if required by the MCP server. See [Authentication](https://platform.claude.com/docs/en/agents-and-tools/mcp-connector#authentication) for how to obtain one, or the [MCP specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization) for protocol details. |
 
 ## MCP toolset configuration
 
@@ -407,7 +407,7 @@ Results in:
 
 ### Enable all tools with default configuration
 
-The simplest pattern - enable all tools from a server:
+The simplest pattern: enable all tools from a server:
 
 ```json
 {
@@ -491,10 +491,10 @@ In this example:
 
 The API enforces these validation rules:
 
-* **Server must exist**: The `mcp_server_name` in an MCPToolset must match a server defined in the `mcp_servers` array
-* **Server must be used**: Every MCP server defined in `mcp_servers` must be referenced by exactly one MCPToolset
-* **Unique toolset per server**: Each MCP server can only be referenced by one MCPToolset
-* **Unknown tool names**: If a tool name in `configs` doesn't exist on the MCP server, a backend warning is logged but no error is returned (MCP servers may have dynamic tool availability)
+* **Server must exist:** The `mcp_server_name` in an MCPToolset must match a server defined in the `mcp_servers` array
+* **Server must be used:** Every MCP server defined in `mcp_servers` must be referenced by exactly one MCPToolset
+* **Unique toolset per server:** Each MCP server can only be referenced by one MCPToolset
+* **Unknown tool names:** If a tool name in `configs` doesn't exist on the MCP server, a backend warning is logged but no error is returned (MCP servers may have dynamic tool availability)
 
 ## Response content types
 
@@ -588,15 +588,15 @@ The MCP inspector can guide you through the process of obtaining an access token
    npx @modelcontextprotocol/inspector
    ```
 
-2. In the sidebar on the left, for "Transport type", select either "SSE" or "Streamable HTTP".
+2. In the sidebar on the left, for **Transport type**, select either **SSE** or **Streamable HTTP**.
 
 3. Enter the URL of the MCP server.
 
-4. In the right area, click the "Open Auth Settings" button after "Need to configure authentication?".
+4. In the right area, click **Open Auth Settings** after **Need to configure authentication?**.
 
-5. Click "Quick OAuth Flow" and authorize on the OAuth screen.
+5. Click **Quick OAuth Flow** and authorize on the OAuth screen.
 
-6. Follow the steps in the "OAuth Flow Progress" section of the inspector and click "Continue" until you reach "Authentication complete".
+6. Follow the steps in the **OAuth Flow Progress** section of the inspector and click **Continue** until you reach **Authentication complete**.
 
 7. Copy the `access_token` value.
 
@@ -1397,9 +1397,9 @@ If you're using the deprecated `mcp-client-2025-04-04` beta header, follow this 
 
 ### Key changes
 
-1. **New beta header**: Change from `mcp-client-2025-04-04` to `mcp-client-2025-11-20`
-2. **Tool configuration moved**: Tool configuration now lives in the `tools` array as MCPToolset objects, not in the MCP server definition
-3. **More flexible configuration**: New pattern supports allowlisting, denylisting, and per-tool configuration
+1. **New beta header:** Change from `mcp-client-2025-04-04` to `mcp-client-2025-11-20`
+2. **Tool configuration moved:** Tool configuration now lives in the `tools` array as MCPToolset objects, not in the MCP server definition
+3. **More flexible configuration:** New pattern supports allowlisting, denylisting, and per-tool configuration
 
 ### Migration steps
 
@@ -1501,6 +1501,6 @@ The previous version of the MCP connector included tool configuration directly i
 
 | Property                           | Type    | Description                                                        |
 | ---------------------------------- | ------- | ------------------------------------------------------------------ |
-| `tool_configuration`               | object  | **Deprecated**: Use MCPToolset in the `tools` array instead        |
-| `tool_configuration.enabled`       | boolean | **Deprecated**: Use `default_config.enabled` in MCPToolset         |
-| `tool_configuration.allowed_tools` | array   | **Deprecated**: Use allowlist pattern with `configs` in MCPToolset |
+| `tool_configuration`               | object  | **Deprecated:** Use MCPToolset in the `tools` array instead        |
+| `tool_configuration.enabled`       | boolean | **Deprecated:** Use `default_config.enabled` in MCPToolset         |
+| `tool_configuration.allowed_tools` | array   | **Deprecated:** Use allowlist pattern with `configs` in MCPToolset |

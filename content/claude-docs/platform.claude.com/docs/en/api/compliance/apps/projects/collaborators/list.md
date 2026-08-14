@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/collaborators/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: f3a478a303b58843064fc01bbf86be2c9c52bcbf2988984f751ff7dfbc57d2e8
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 2225031d85eebc9a5faedaab86d46e32c08a4b9cacddd3c50d904aceb27e57b7
 ---
 
 ---
@@ -73,7 +73,7 @@ role.
 
       - `"user"`
 
-    - `user_id: string`
+    - `user_id: string or null`
 
       Identifier of the user granted access (tagged ID), or null if their account has since been deleted
 
@@ -171,7 +171,7 @@ role.
 
   Whether more records exist beyond the current result set
 
-- `next_page: string`
+- `next_page: string or null`
 
   To get the next page, use the 'next_page' from the current response as the 'page' in your next request
 

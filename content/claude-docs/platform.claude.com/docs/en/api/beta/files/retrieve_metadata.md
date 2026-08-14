@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/retrieve_metadata
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 475198c6712afd8bdc2f7eee7a6c2b95d775eb96d032c342b786fbfdab052ebf
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 726bdbaf3a3e157d1feb9efd621b1242462a6262afb30d4acf9437fda611959b
 ---
 
 ---
@@ -136,7 +136,7 @@ Get File Metadata
 
     Whether the file can be downloaded.
 
-  - `scope: optional BetaFileScope`
+  - `scope: optional BetaFileScope or null`
 
     The scope of this file, indicating the context in which it was created (e.g., a session).
 

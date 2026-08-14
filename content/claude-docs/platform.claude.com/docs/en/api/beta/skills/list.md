@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: c3a1ca1bdcd45b3e24ce4ea1ebd0207fce66d61787d6b09ebb17d9f319913bd3
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 618c479a6a30b6c439086d58235ad4c0fd6eeeabe9136a9dc876add7e577919d
 ---
 
 ---
@@ -131,13 +131,13 @@ List Skills
 
     ISO 8601 timestamp of when the skill was created.
 
-  - `display_title: string`
+  - `display_title: string or null`
 
     Display title for the skill.
 
     This is a human-readable label that is not included in the prompt sent to the model.
 
-  - `latest_version: string`
+  - `latest_version: string or null`
 
     The latest version identifier for the skill.
 
@@ -168,7 +168,7 @@ List Skills
 
   If `true`, there are additional results that can be fetched using the `next_page` token.
 
-- `next_page: string`
+- `next_page: string or null`
 
   Token for fetching the next page of results.
 

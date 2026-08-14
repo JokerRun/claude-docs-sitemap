@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/service_accounts/archive
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 6a3f30f7b4a009a4df1d8dbc69f811678941981bc8bd4e33b0fbaafc971f25e3
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 083603f9bb1f095d82bfdc093d8b72c3fe3375d30be257dcd4398b1ab3835517
 ---
 
 ---
@@ -51,11 +51,11 @@ accepted.
 
     Tagged ID of the service account.
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     If set, this service account is archived.
 
-  - `archived_by_actor_id: string`
+  - `archived_by_actor_id: string or null`
 
     Tagged ID (`user_`/`svac_`) of the actor that archived this service account.
 
@@ -63,11 +63,11 @@ accepted.
 
     When this service account was created.
 
-  - `created_by_actor_id: string`
+  - `created_by_actor_id: string or null`
 
     Tagged ID (`user_`/`svac_`) of the actor that created this service account.
 
-  - `description: string`
+  - `description: string or null`
 
     Optional free-text description.
 
@@ -91,7 +91,7 @@ accepted.
 
     When this service account was last updated.
 
-  - `updated_by_actor_id: string`
+  - `updated_by_actor_id: string or null`
 
     Tagged ID (`user_`/`svac_`) of the actor that last updated this service account.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/stats
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 395a0682f4c1239545fe7ebc09b5f20fb7c87afd1c60bc2bfd442e7f28222d0b
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 9552f1d45ac19d0d6eedf91b2f2c6bc74578e6fc0280e18cb5767372cf0e74d2
 ---
 
 ---
@@ -108,7 +108,7 @@ Get statistics about the work queue for an environment.
 
     Number of work items waiting to be picked up (lag from consumer group)
 
-  - `oldest_queued_at: string`
+  - `oldest_queued_at: string or null`
 
     RFC 3339 timestamp of oldest item in the work stream (includes both queued and pending items), null if stream empty
 
@@ -122,7 +122,7 @@ Get statistics about the work queue for an environment.
 
     - `"work_queue_stats"`
 
-  - `workers_polling: number`
+  - `workers_polling: number or null`
 
     Number of workers that have polled for work in the last 30 seconds. Requires worker_id to be sent with poll requests.
 

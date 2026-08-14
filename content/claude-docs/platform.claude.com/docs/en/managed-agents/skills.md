@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/skills
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 0cfb709f7360f259f80881594e5df51c33430def355c22bea4781729e71396d1
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 0a7bac55e20d6fc1afccf222e1674515ec168083276d5a21a25e8e4b7e076693
 ---
 
 ---
@@ -302,7 +302,7 @@ Each entry in the `skills` array uses the following fields:
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "Financial Analyst",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: "claude-opus-5",
+  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5,
   	},
   	System: anthropic.String("You are a financial analysis agent."),
   	Skills: []anthropic.BetaManagedAgentsSkillParamsUnion{

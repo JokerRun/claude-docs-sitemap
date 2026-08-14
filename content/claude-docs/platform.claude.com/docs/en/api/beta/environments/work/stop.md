@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/stop
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 3c0d91913af26f16a979b96e71a4799cd646c383965f4a9b397c78f9ec64d1dd
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 45530037afd8931a7b3700ac87ede4ed5fecea690b3e3d7ee4e310ad4b2f309c
 ---
 
 ---
@@ -120,7 +120,7 @@ Stop a work item, initiating graceful or forced shutdown.
 
     Work identifier (e.g., 'work_...')
 
-  - `acknowledged_at: string`
+  - `acknowledged_at: string or null`
 
     RFC 3339 timestamp when the work item was acknowledged and assigned to a self-hosted sandbox
 
@@ -146,7 +146,7 @@ Stop a work item, initiating graceful or forced shutdown.
 
     Environment identifier this work belongs to (e.g., `env_...`)
 
-  - `latest_heartbeat_at: string`
+  - `latest_heartbeat_at: string or null`
 
     RFC 3339 timestamp of the most recent heartbeat
 
@@ -154,11 +154,11 @@ Stop a work item, initiating graceful or forced shutdown.
 
     User-provided metadata key-value pairs associated with this work item
 
-  - `secret: string`
+  - `secret: string or null`
 
     Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
-  - `started_at: string`
+  - `started_at: string or null`
 
     RFC 3339 timestamp when work execution started
 
@@ -176,11 +176,11 @@ Stop a work item, initiating graceful or forced shutdown.
 
     - `"stopped"`
 
-  - `stop_requested_at: string`
+  - `stop_requested_at: string or null`
 
     RFC 3339 timestamp when stop was requested
 
-  - `stopped_at: string`
+  - `stopped_at: string or null`
 
     RFC 3339 timestamp when work execution stopped
 

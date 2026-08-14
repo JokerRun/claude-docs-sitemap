@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/service_accounts/workspaces/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 4011abe1481c68913d865df592ee6ba956be6f50723aee3d3fd2755fda3f8f7e
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 23f6dfc616717e5cc09aacd62e6c2bbacea5d1dd5eed4f224b18c8760fc46235
 ---
 
 ---
@@ -54,11 +54,11 @@ empty list.
 
 - `data: array of object { created_by_actor_id, implicit, service_account_id, 3 more }`
 
-  - `created_by_actor_id: string`
+  - `created_by_actor_id: string or null`
 
     Tagged ID (`user_...`/`svac_...`) of the actor who created this membership.
 
-  - `implicit: boolean`
+  - `implicit: boolean or null`
 
     True when this is the implicit default-workspace membership every service account has when no explicit membership exists. Implicit memberships have role workspace_user and cannot be removed.
 
@@ -88,7 +88,7 @@ empty list.
 
     - `"workspace_user"`
 
-- `next_page: string`
+- `next_page: string or null`
 
   Opaque cursor for the next page, or null if no more results.
 

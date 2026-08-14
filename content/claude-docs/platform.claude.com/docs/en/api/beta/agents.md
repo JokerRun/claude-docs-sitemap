@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: b8c5919fdafe21a06717a67a925da9fbd5b9cf3f55b5cce9fb553c0171351d47
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 890f89cfe149e6afacae2597d15466f1fd44960daecea31f033b5e1e1d9d3a4e
 ---
 
 ---
@@ -176,7 +176,7 @@ Create Agent
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `effort: optional "low" or "medium" or "high" or 2 more or BetaManagedAgentsEffortLow or BetaManagedAgentsEffortMedium or 3 more`
+    - `effort: optional "low" or "medium" or "high" or 2 more or BetaManagedAgentsEffortLow or BetaManagedAgentsEffortMedium or 3 more or null`
 
       How hard Claude works on each inference call. Accepts a bare level string (`"high"`) or `{"type": "high"}`. On create, omitting it resolves the per-model default; on update, omitting it leaves the stored value unchanged.
 
@@ -234,11 +234,11 @@ Create Agent
 
           - `"max"`
 
-    - `inference_geo: optional string`
+    - `inference_geo: optional string or null`
 
       Geographic region for model inference. When unset, requests fall through to the workspace's default_inference_geo. On update, `model` is whole-object replacement — omitting inference_geo clears it.
 
-    - `speed: optional "standard" or "fast"`
+    - `speed: optional "standard" or "fast" or null`
 
       Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
 
@@ -250,7 +250,7 @@ Create Agent
 
   Human-readable name for the agent.
 
-- `description: optional string`
+- `description: optional string or null`
 
   Description of what the agent does.
 
@@ -274,7 +274,7 @@ Create Agent
 
   Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
 
-- `multiagent: optional BetaManagedAgentsMultiagentParams`
+- `multiagent: optional BetaManagedAgentsMultiagentParams or null`
 
   A coordinator topology: the session's primary thread orchestrates work by spawning session threads, each running an agent drawn from the `agents` roster.
 
@@ -340,7 +340,7 @@ Create Agent
 
       - `"anthropic"`
 
-    - `version: optional string`
+    - `version: optional string or null`
 
       Version to pin. Defaults to latest if omitted.
 
@@ -356,11 +356,11 @@ Create Agent
 
       - `"custom"`
 
-    - `version: optional string`
+    - `version: optional string or null`
 
       Version to pin. Defaults to latest if omitted.
 
-- `system: optional string`
+- `system: optional string or null`
 
   System prompt for the agent.
 
@@ -400,11 +400,11 @@ Create Agent
 
         - `"web_search"`
 
-      - `enabled: optional boolean`
+      - `enabled: optional boolean or null`
 
         Whether this tool is enabled and available to Claude. Overrides the default_config setting.
 
-      - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
+      - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or null`
 
         Permission policy for tool execution.
 
@@ -424,15 +424,15 @@ Create Agent
 
             - `"always_ask"`
 
-    - `default_config: optional BetaManagedAgentsAgentToolsetDefaultConfigParams`
+    - `default_config: optional BetaManagedAgentsAgentToolsetDefaultConfigParams or null`
 
       Default configuration for all tools in a toolset.
 
-      - `enabled: optional boolean`
+      - `enabled: optional boolean or null`
 
         Whether tools are enabled and available to Claude by default. Defaults to true if not specified.
 
-      - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
+      - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or null`
 
         Permission policy for tool execution.
 
@@ -464,11 +464,11 @@ Create Agent
 
         Name of the MCP tool to configure. 1-128 characters.
 
-      - `enabled: optional boolean`
+      - `enabled: optional boolean or null`
 
         Whether this tool is enabled. Overrides the `default_config` setting.
 
-      - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
+      - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or null`
 
         Permission policy for tool execution.
 
@@ -480,15 +480,15 @@ Create Agent
 
           Tool calls require user confirmation before execution.
 
-    - `default_config: optional BetaManagedAgentsMCPToolsetDefaultConfigParams`
+    - `default_config: optional BetaManagedAgentsMCPToolsetDefaultConfigParams or null`
 
       Default configuration for all tools from an MCP server.
 
-      - `enabled: optional boolean`
+      - `enabled: optional boolean or null`
 
         Whether tools are enabled by default. Defaults to true if not specified.
 
-      - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
+      - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or null`
 
         Permission policy for tool execution.
 
@@ -516,9 +516,9 @@ Create Agent
 
         - `"object"`
 
-      - `properties: optional map[unknown]`
+      - `properties: optional map[unknown] or null`
 
-      - `required: optional array of string`
+      - `required: optional array of string or null`
 
     - `name: string`
 
@@ -536,7 +536,7 @@ Create Agent
 
   - `id: string`
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 
@@ -544,7 +544,7 @@ Create Agent
 
     A timestamp in RFC 3339 format
 
-  - `description: string`
+  - `description: string or null`
 
   - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
@@ -684,7 +684,7 @@ Create Agent
 
       - `"fast"`
 
-  - `multiagent: BetaManagedAgentsMultiagent`
+  - `multiagent: BetaManagedAgentsMultiagent or null`
 
     Resolved coordinator topology with a concrete agent roster.
 
@@ -748,7 +748,7 @@ Create Agent
 
       - `version: string`
 
-  - `system: string`
+  - `system: string or null`
 
   - `tools: array of BetaManagedAgentsAgentToolset20260401 or BetaManagedAgentsMCPToolset or BetaManagedAgentsCustomTool`
 
@@ -878,9 +878,9 @@ Create Agent
 
           - `"object"`
 
-        - `properties: optional map[unknown]`
+        - `properties: optional map[unknown] or null`
 
-        - `required: optional array of string`
+        - `required: optional array of string or null`
 
       - `name: string`
 
@@ -1112,7 +1112,7 @@ List Agents
 
   - `id: string`
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 
@@ -1120,7 +1120,7 @@ List Agents
 
     A timestamp in RFC 3339 format
 
-  - `description: string`
+  - `description: string or null`
 
   - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
@@ -1260,7 +1260,7 @@ List Agents
 
       - `"fast"`
 
-  - `multiagent: BetaManagedAgentsMultiagent`
+  - `multiagent: BetaManagedAgentsMultiagent or null`
 
     Resolved coordinator topology with a concrete agent roster.
 
@@ -1324,7 +1324,7 @@ List Agents
 
       - `version: string`
 
-  - `system: string`
+  - `system: string or null`
 
   - `tools: array of BetaManagedAgentsAgentToolset20260401 or BetaManagedAgentsMCPToolset or BetaManagedAgentsCustomTool`
 
@@ -1454,9 +1454,9 @@ List Agents
 
           - `"object"`
 
-        - `properties: optional map[unknown]`
+        - `properties: optional map[unknown] or null`
 
-        - `required: optional array of string`
+        - `required: optional array of string or null`
 
       - `name: string`
 
@@ -1476,7 +1476,7 @@ List Agents
 
     The agent's current version. Starts at 1 and increments when the agent is modified.
 
-- `next_page: optional string`
+- `next_page: optional string or null`
 
   Opaque cursor for the next page. Null when no more results.
 
@@ -1670,7 +1670,7 @@ Get Agent
 
   - `id: string`
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 
@@ -1678,7 +1678,7 @@ Get Agent
 
     A timestamp in RFC 3339 format
 
-  - `description: string`
+  - `description: string or null`
 
   - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
@@ -1818,7 +1818,7 @@ Get Agent
 
       - `"fast"`
 
-  - `multiagent: BetaManagedAgentsMultiagent`
+  - `multiagent: BetaManagedAgentsMultiagent or null`
 
     Resolved coordinator topology with a concrete agent roster.
 
@@ -1882,7 +1882,7 @@ Get Agent
 
       - `version: string`
 
-  - `system: string`
+  - `system: string or null`
 
   - `tools: array of BetaManagedAgentsAgentToolset20260401 or BetaManagedAgentsMCPToolset or BetaManagedAgentsCustomTool`
 
@@ -2012,9 +2012,9 @@ Get Agent
 
           - `"object"`
 
-        - `properties: optional map[unknown]`
+        - `properties: optional map[unknown] or null`
 
-        - `required: optional array of string`
+        - `required: optional array of string or null`
 
       - `name: string`
 
@@ -2207,11 +2207,11 @@ Update Agent
 
 ### Body Parameters
 
-- `description: optional string`
+- `description: optional string or null`
 
   Description. Omit to preserve; send empty string or null to clear.
 
-- `mcp_servers: optional array of BetaManagedAgentsURLMCPServerParams`
+- `mcp_servers: optional array of BetaManagedAgentsURLMCPServerParams or null`
 
   MCP servers. Full replacement. Omit to preserve; send empty array or `null` to clear. Names must be unique. Maximum 20. Every server must be referenced by an `mcp_toolset` in the agent's resulting `tools`; unreferenced servers are rejected. See the [MCP connector guide](https://platform.claude.com/docs/en/managed-agents/mcp-connector).
 
@@ -2227,7 +2227,7 @@ Update Agent
 
     Endpoint URL for the MCP server.
 
-- `metadata: optional map[string]`
+- `metadata: optional map[string] or null`
 
   Metadata patch. Set a key to a string to upsert it, or to null to delete it. Omit the field to preserve. The stored bag is limited to 16 keys (up to 64 chars each) with values up to 512 chars.
 
@@ -2311,7 +2311,7 @@ Update Agent
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `effort: optional "low" or "medium" or "high" or 2 more or BetaManagedAgentsEffortLow or BetaManagedAgentsEffortMedium or 3 more`
+    - `effort: optional "low" or "medium" or "high" or 2 more or BetaManagedAgentsEffortLow or BetaManagedAgentsEffortMedium or 3 more or null`
 
       How hard Claude works on each inference call. Accepts a bare level string (`"high"`) or `{"type": "high"}`. On create, omitting it resolves the per-model default; on update, omitting it leaves the stored value unchanged.
 
@@ -2369,11 +2369,11 @@ Update Agent
 
           - `"max"`
 
-    - `inference_geo: optional string`
+    - `inference_geo: optional string or null`
 
       Geographic region for model inference. When unset, requests fall through to the workspace's default_inference_geo. On update, `model` is whole-object replacement — omitting inference_geo clears it.
 
-    - `speed: optional "standard" or "fast"`
+    - `speed: optional "standard" or "fast" or null`
 
       Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
 
@@ -2381,7 +2381,7 @@ Update Agent
 
       - `"fast"`
 
-- `multiagent: optional BetaManagedAgentsMultiagentParams`
+- `multiagent: optional BetaManagedAgentsMultiagentParams or null`
 
   A coordinator topology: the session's primary thread orchestrates work by spawning session threads, each running an agent drawn from the `agents` roster.
 
@@ -2435,7 +2435,7 @@ Update Agent
 
   Human-readable name. Must be non-empty. Omit to preserve. Cannot be cleared.
 
-- `skills: optional array of BetaManagedAgentsSkillParams`
+- `skills: optional array of BetaManagedAgentsSkillParams or null`
 
   Skills. Full replacement. Omit to preserve; send empty array or null to clear.
 
@@ -2451,7 +2451,7 @@ Update Agent
 
       - `"anthropic"`
 
-    - `version: optional string`
+    - `version: optional string or null`
 
       Version to pin. Defaults to latest if omitted.
 
@@ -2467,15 +2467,15 @@ Update Agent
 
       - `"custom"`
 
-    - `version: optional string`
+    - `version: optional string or null`
 
       Version to pin. Defaults to latest if omitted.
 
-- `system: optional string`
+- `system: optional string or null`
 
   System prompt. Omit to preserve; send empty string or null to clear.
 
-- `tools: optional array of BetaManagedAgentsAgentToolset20260401Params or BetaManagedAgentsMCPToolsetParams or BetaManagedAgentsCustomToolParams`
+- `tools: optional array of BetaManagedAgentsAgentToolset20260401Params or BetaManagedAgentsMCPToolsetParams or BetaManagedAgentsCustomToolParams or null`
 
   Tool configurations available to the agent. Full replacement. Omit to preserve; send empty array or null to clear. Maximum of 128 tools across all toolsets allowed.
 
@@ -2511,11 +2511,11 @@ Update Agent
 
         - `"web_search"`
 
-      - `enabled: optional boolean`
+      - `enabled: optional boolean or null`
 
         Whether this tool is enabled and available to Claude. Overrides the default_config setting.
 
-      - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
+      - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or null`
 
         Permission policy for tool execution.
 
@@ -2535,15 +2535,15 @@ Update Agent
 
             - `"always_ask"`
 
-    - `default_config: optional BetaManagedAgentsAgentToolsetDefaultConfigParams`
+    - `default_config: optional BetaManagedAgentsAgentToolsetDefaultConfigParams or null`
 
       Default configuration for all tools in a toolset.
 
-      - `enabled: optional boolean`
+      - `enabled: optional boolean or null`
 
         Whether tools are enabled and available to Claude by default. Defaults to true if not specified.
 
-      - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
+      - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or null`
 
         Permission policy for tool execution.
 
@@ -2575,11 +2575,11 @@ Update Agent
 
         Name of the MCP tool to configure. 1-128 characters.
 
-      - `enabled: optional boolean`
+      - `enabled: optional boolean or null`
 
         Whether this tool is enabled. Overrides the `default_config` setting.
 
-      - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
+      - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or null`
 
         Permission policy for tool execution.
 
@@ -2591,15 +2591,15 @@ Update Agent
 
           Tool calls require user confirmation before execution.
 
-    - `default_config: optional BetaManagedAgentsMCPToolsetDefaultConfigParams`
+    - `default_config: optional BetaManagedAgentsMCPToolsetDefaultConfigParams or null`
 
       Default configuration for all tools from an MCP server.
 
-      - `enabled: optional boolean`
+      - `enabled: optional boolean or null`
 
         Whether tools are enabled by default. Defaults to true if not specified.
 
-      - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
+      - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or null`
 
         Permission policy for tool execution.
 
@@ -2627,9 +2627,9 @@ Update Agent
 
         - `"object"`
 
-      - `properties: optional map[unknown]`
+      - `properties: optional map[unknown] or null`
 
-      - `required: optional array of string`
+      - `required: optional array of string or null`
 
     - `name: string`
 
@@ -2651,7 +2651,7 @@ Update Agent
 
   - `id: string`
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 
@@ -2659,7 +2659,7 @@ Update Agent
 
     A timestamp in RFC 3339 format
 
-  - `description: string`
+  - `description: string or null`
 
   - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
@@ -2799,7 +2799,7 @@ Update Agent
 
       - `"fast"`
 
-  - `multiagent: BetaManagedAgentsMultiagent`
+  - `multiagent: BetaManagedAgentsMultiagent or null`
 
     Resolved coordinator topology with a concrete agent roster.
 
@@ -2863,7 +2863,7 @@ Update Agent
 
       - `version: string`
 
-  - `system: string`
+  - `system: string or null`
 
   - `tools: array of BetaManagedAgentsAgentToolset20260401 or BetaManagedAgentsMCPToolset or BetaManagedAgentsCustomTool`
 
@@ -2993,9 +2993,9 @@ Update Agent
 
           - `"object"`
 
-        - `properties: optional map[unknown]`
+        - `properties: optional map[unknown] or null`
 
-        - `required: optional array of string`
+        - `required: optional array of string or null`
 
       - `name: string`
 
@@ -3200,7 +3200,7 @@ Archive Agent
 
   - `id: string`
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 
@@ -3208,7 +3208,7 @@ Archive Agent
 
     A timestamp in RFC 3339 format
 
-  - `description: string`
+  - `description: string or null`
 
   - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
@@ -3348,7 +3348,7 @@ Archive Agent
 
       - `"fast"`
 
-  - `multiagent: BetaManagedAgentsMultiagent`
+  - `multiagent: BetaManagedAgentsMultiagent or null`
 
     Resolved coordinator topology with a concrete agent roster.
 
@@ -3412,7 +3412,7 @@ Archive Agent
 
       - `version: string`
 
-  - `system: string`
+  - `system: string or null`
 
   - `tools: array of BetaManagedAgentsAgentToolset20260401 or BetaManagedAgentsMCPToolset or BetaManagedAgentsCustomTool`
 
@@ -3542,9 +3542,9 @@ Archive Agent
 
           - `"object"`
 
-        - `properties: optional map[unknown]`
+        - `properties: optional map[unknown] or null`
 
-        - `required: optional array of string`
+        - `required: optional array of string or null`
 
       - `name: string`
 
@@ -3674,7 +3674,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
   - `id: string`
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 
@@ -3682,7 +3682,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
     A timestamp in RFC 3339 format
 
-  - `description: string`
+  - `description: string or null`
 
   - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
@@ -3822,7 +3822,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
       - `"fast"`
 
-  - `multiagent: BetaManagedAgentsMultiagent`
+  - `multiagent: BetaManagedAgentsMultiagent or null`
 
     Resolved coordinator topology with a concrete agent roster.
 
@@ -3886,7 +3886,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
       - `version: string`
 
-  - `system: string`
+  - `system: string or null`
 
   - `tools: array of BetaManagedAgentsAgentToolset20260401 or BetaManagedAgentsMCPToolset or BetaManagedAgentsCustomTool`
 
@@ -4016,9 +4016,9 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
           - `"object"`
 
-        - `properties: optional map[unknown]`
+        - `properties: optional map[unknown] or null`
 
-        - `required: optional array of string`
+        - `required: optional array of string or null`
 
       - `name: string`
 
@@ -4126,11 +4126,11 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
     - `"web_search"`
 
-  - `enabled: optional boolean`
+  - `enabled: optional boolean or null`
 
     Whether this tool is enabled and available to Claude. Overrides the default_config setting.
 
-  - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
+  - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or null`
 
     Permission policy for tool execution.
 
@@ -4184,11 +4184,11 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
   Default configuration for all tools in a toolset.
 
-  - `enabled: optional boolean`
+  - `enabled: optional boolean or null`
 
     Whether tools are enabled and available to Claude by default. Defaults to true if not specified.
 
-  - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
+  - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or null`
 
     Permission policy for tool execution.
 
@@ -4395,11 +4395,11 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
       - `"web_search"`
 
-    - `enabled: optional boolean`
+    - `enabled: optional boolean or null`
 
       Whether this tool is enabled and available to Claude. Overrides the default_config setting.
 
-    - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
+    - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or null`
 
       Permission policy for tool execution.
 
@@ -4419,15 +4419,15 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
           - `"always_ask"`
 
-  - `default_config: optional BetaManagedAgentsAgentToolsetDefaultConfigParams`
+  - `default_config: optional BetaManagedAgentsAgentToolsetDefaultConfigParams or null`
 
     Default configuration for all tools in a toolset.
 
-    - `enabled: optional boolean`
+    - `enabled: optional boolean or null`
 
       Whether tools are enabled and available to Claude by default. Defaults to true if not specified.
 
-    - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
+    - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or null`
 
       Permission policy for tool execution.
 
@@ -4520,7 +4520,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
     - `"anthropic"`
 
-  - `version: optional string`
+  - `version: optional string or null`
 
     Version to pin. Defaults to latest if omitted.
 
@@ -4552,7 +4552,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
     - `"custom"`
 
-  - `version: optional string`
+  - `version: optional string or null`
 
     Version to pin. Defaults to latest if omitted.
 
@@ -4572,9 +4572,9 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
       - `"object"`
 
-    - `properties: optional map[unknown]`
+    - `properties: optional map[unknown] or null`
 
-    - `required: optional array of string`
+    - `required: optional array of string or null`
 
   - `name: string`
 
@@ -4592,9 +4592,9 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
     - `"object"`
 
-  - `properties: optional map[unknown]`
+  - `properties: optional map[unknown] or null`
 
-  - `required: optional array of string`
+  - `required: optional array of string or null`
 
 ### Beta Managed Agents Custom Tool Params
 
@@ -4614,9 +4614,9 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
       - `"object"`
 
-    - `properties: optional map[unknown]`
+    - `properties: optional map[unknown] or null`
 
-    - `required: optional array of string`
+    - `required: optional array of string or null`
 
   - `name: string`
 
@@ -4730,11 +4730,11 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
     Name of the MCP tool to configure. 1-128 characters.
 
-  - `enabled: optional boolean`
+  - `enabled: optional boolean or null`
 
     Whether this tool is enabled. Overrides the `default_config` setting.
 
-  - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
+  - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or null`
 
     Permission policy for tool execution.
 
@@ -4842,11 +4842,11 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
   Default configuration for all tools from an MCP server.
 
-  - `enabled: optional boolean`
+  - `enabled: optional boolean or null`
 
     Whether tools are enabled by default. Defaults to true if not specified.
 
-  - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
+  - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or null`
 
     Permission policy for tool execution.
 
@@ -4888,11 +4888,11 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
       Name of the MCP tool to configure. 1-128 characters.
 
-    - `enabled: optional boolean`
+    - `enabled: optional boolean or null`
 
       Whether this tool is enabled. Overrides the `default_config` setting.
 
-    - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
+    - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or null`
 
       Permission policy for tool execution.
 
@@ -4912,15 +4912,15 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
           - `"always_ask"`
 
-  - `default_config: optional BetaManagedAgentsMCPToolsetDefaultConfigParams`
+  - `default_config: optional BetaManagedAgentsMCPToolsetDefaultConfigParams or null`
 
     Default configuration for all tools from an MCP server.
 
-    - `enabled: optional boolean`
+    - `enabled: optional boolean or null`
 
       Whether tools are enabled by default. Defaults to true if not specified.
 
-    - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
+    - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or null`
 
       Permission policy for tool execution.
 
@@ -5200,7 +5200,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
     - `string`
 
-  - `effort: optional "low" or "medium" or "high" or 2 more or BetaManagedAgentsEffortLow or BetaManagedAgentsEffortMedium or 3 more`
+  - `effort: optional "low" or "medium" or "high" or 2 more or BetaManagedAgentsEffortLow or BetaManagedAgentsEffortMedium or 3 more or null`
 
     How hard Claude works on each inference call. Accepts a bare level string (`"high"`) or `{"type": "high"}`. On create, omitting it resolves the per-model default; on update, omitting it leaves the stored value unchanged.
 
@@ -5258,11 +5258,11 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
         - `"max"`
 
-  - `inference_geo: optional string`
+  - `inference_geo: optional string or null`
 
     Geographic region for model inference. When unset, requests fall through to the workspace's default_inference_geo. On update, `model` is whole-object replacement — omitting inference_geo clears it.
 
-  - `speed: optional "standard" or "fast"`
+  - `speed: optional "standard" or "fast" or null`
 
     Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
 
@@ -5378,7 +5378,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
   - `id: string`
 
-  - `description: string`
+  - `description: string or null`
 
   - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
@@ -5544,7 +5544,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
       - `version: string`
 
-  - `system: string`
+  - `system: string or null`
 
   - `tools: array of BetaManagedAgentsAgentToolset20260401 or BetaManagedAgentsMCPToolset or BetaManagedAgentsCustomTool`
 
@@ -5674,9 +5674,9 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
           - `"object"`
 
-        - `properties: optional map[unknown]`
+        - `properties: optional map[unknown] or null`
 
-        - `required: optional array of string`
+        - `required: optional array of string or null`
 
       - `name: string`
 
@@ -5708,7 +5708,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
       - `"anthropic"`
 
-    - `version: optional string`
+    - `version: optional string or null`
 
       Version to pin. Defaults to latest if omitted.
 
@@ -5724,7 +5724,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
       - `"custom"`
 
-    - `version: optional string`
+    - `version: optional string or null`
 
       Version to pin. Defaults to latest if omitted.
 
@@ -5852,7 +5852,7 @@ List Agent Versions
 
   - `id: string`
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 
@@ -5860,7 +5860,7 @@ List Agent Versions
 
     A timestamp in RFC 3339 format
 
-  - `description: string`
+  - `description: string or null`
 
   - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
@@ -6000,7 +6000,7 @@ List Agent Versions
 
       - `"fast"`
 
-  - `multiagent: BetaManagedAgentsMultiagent`
+  - `multiagent: BetaManagedAgentsMultiagent or null`
 
     Resolved coordinator topology with a concrete agent roster.
 
@@ -6064,7 +6064,7 @@ List Agent Versions
 
       - `version: string`
 
-  - `system: string`
+  - `system: string or null`
 
   - `tools: array of BetaManagedAgentsAgentToolset20260401 or BetaManagedAgentsMCPToolset or BetaManagedAgentsCustomTool`
 
@@ -6194,9 +6194,9 @@ List Agent Versions
 
           - `"object"`
 
-        - `properties: optional map[unknown]`
+        - `properties: optional map[unknown] or null`
 
-        - `required: optional array of string`
+        - `required: optional array of string or null`
 
       - `name: string`
 
@@ -6216,7 +6216,7 @@ List Agent Versions
 
     The agent's current version. Starts at 1 and increments when the agent is modified.
 
-- `next_page: optional string`
+- `next_page: optional string or null`
 
   Opaque cursor for the next page. Null when no more results.
 

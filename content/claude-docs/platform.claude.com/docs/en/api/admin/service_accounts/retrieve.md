@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/service_accounts/retrieve
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: cbe979219ffc59ac25b6b008feca19bb3ea35635f099090cea4f0a2a6c9841d9
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 46ea5c7f1e369b95b7e22fb1a11ffc9a9d6fd775556f9b4083746b6e8c228653
 ---
 
 ---
@@ -43,11 +43,11 @@ Retrieve a service account by its ID (`svac_...`).
 
     Tagged ID of the service account.
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     If set, this service account is archived.
 
-  - `archived_by_actor_id: string`
+  - `archived_by_actor_id: string or null`
 
     Tagged ID (`user_`/`svac_`) of the actor that archived this service account.
 
@@ -55,11 +55,11 @@ Retrieve a service account by its ID (`svac_...`).
 
     When this service account was created.
 
-  - `created_by_actor_id: string`
+  - `created_by_actor_id: string or null`
 
     Tagged ID (`user_`/`svac_`) of the actor that created this service account.
 
-  - `description: string`
+  - `description: string or null`
 
     Optional free-text description.
 
@@ -83,7 +83,7 @@ Retrieve a service account by its ID (`svac_...`).
 
     When this service account was last updated.
 
-  - `updated_by_actor_id: string`
+  - `updated_by_actor_id: string or null`
 
     Tagged ID (`user_`/`svac_`) of the actor that last updated this service account.
 

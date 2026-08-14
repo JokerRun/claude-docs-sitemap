@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rbac_roles/permissions/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: bc929fe9c71f5e9421e5c1ad6c39738a5c7d3e849b24fa0b22405a8d079df3db
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 60df33ac65a7caf80426177b0b7e1bb175d5c439fbb0450d986adf2c18e8ebb4
 ---
 
 ---
@@ -161,7 +161,7 @@ The RBAC Roles API is in beta and available to Claude Enterprise organizations o
 
   Indicates whether there are more results beyond this page.
 
-- `next_page: string`
+- `next_page: string or null`
 
   Opaque cursor for the next page. Pass as the `page` parameter on the next
   request.

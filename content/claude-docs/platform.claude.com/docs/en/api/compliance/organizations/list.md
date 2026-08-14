@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 00d7ed3ca03293f94b238c3cc487c515afade425a6dd650f7123ad1159521f3c
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: a61a903fd29ce0fa7ab3712c995369f0ffb586cd965f4294ffa1827ae8d15382
 ---
 
 ---
@@ -56,7 +56,7 @@ Returns organizations sorted by creation date in ascending order. Use
 
   Whether more records exist beyond the current result set
 
-- `next_page: optional string`
+- `next_page: optional string or null`
 
   Token to retrieve the next page. Use this as the 'page' parameter in your next request
 

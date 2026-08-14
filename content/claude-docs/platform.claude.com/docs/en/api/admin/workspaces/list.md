@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 13d353522dc919a8870ea3d654614af96bf6181672c9b39cf5c82f3b95959ba7
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: daae851232d3f73e0bc0052c14d0de821d8ac604e7128c155d58fc0df880698b
 ---
 
 ---
@@ -44,7 +44,7 @@ List Workspaces
 
     ID of the Workspace.
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     RFC 3339 datetime string indicating when the Workspace was archived, or `null` if the Workspace is not archived.
 
@@ -87,7 +87,7 @@ List Workspaces
 
     Hex color code representing the Workspace in the Anthropic Console.
 
-  - `external_key_id: string`
+  - `external_key_id: string or null`
 
     ID of the customer-managed encryption key (CMEK) configuration to use for this
     Workspace. Setting this field requires CMEK to be enabled for your
@@ -113,7 +113,7 @@ List Workspaces
 
     - `"workspace"`
 
-- `first_id: string`
+- `first_id: string or null`
 
   First ID in the `data` list. Can be used as the `before_id` for the previous page.
 
@@ -121,7 +121,7 @@ List Workspaces
 
   Indicates if there are more results in the requested page direction.
 
-- `last_id: string`
+- `last_id: string or null`
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
 

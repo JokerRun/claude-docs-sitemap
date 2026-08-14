@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/archive
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: bde145562ba862b1934bc0e6a00deb40ffee16d77b57341a32c9fb7390b4c1e6
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: b9ed9c30d72c3a9d5822bd3ccbdb395061c51d88695446bab53c32503b4fe45a
 ---
 
 ---
@@ -110,7 +110,7 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
 
     Unique identifier for the certificate, prefixed with `tcrt_`.
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 
@@ -118,7 +118,7 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
 
     A timestamp in RFC 3339 format
 
-  - `expires_at: string`
+  - `expires_at: string or null`
 
     A timestamp in RFC 3339 format
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rbac_groups/update
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: f56fdf2a7647982ada86be3a01afa5d4a52ead63eb7c22842a00df6590fe48e0
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: b568ab13de13ade0013e288e8b457a9d2566423e420fa5302162b569ec46adcf
 ---
 
 ---
@@ -34,7 +34,7 @@ The RBAC Groups API is in beta and available to Claude Enterprise organizations 
 
 ### Body Parameters
 
-- `name: optional string`
+- `name: optional string or null`
 
   Name of the RBAC Group. Not uniqueness-enforced.
 
@@ -54,7 +54,7 @@ The RBAC Groups API is in beta and available to Claude Enterprise organizations 
 
     Name of the RBAC Group. Not uniqueness-enforced.
 
-  - `roles: array of string`
+  - `roles: array of string or null`
 
     RBAC Role IDs attached to this RBAC Group. Role attachment is managed in the admin settings and is read-only on this API. `null` means role data was temporarily unavailable — retry to distinguish from an empty list.
 

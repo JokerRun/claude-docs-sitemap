@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 2be99bf873f619798e9ae4e9a8c14cc8737bfe478a54eef4fb0ba8669e92ad70
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 23f1b7f2e78d2c68fe86e9f5a2793f0ba9baac890facf66f23ec95e99ef4ee17
 ---
 
 ---
@@ -168,7 +168,7 @@ List memories
 
       A timestamp in RFC 3339 format
 
-    - `content: optional string`
+    - `content: optional string or null`
 
       The memory's UTF-8 text content. Populated when `view=full`; `null` when `view=basic`. Maximum 100 kB (102,400 bytes).
 
@@ -184,7 +184,7 @@ List memories
 
       - `"memory_prefix"`
 
-- `next_page: optional string`
+- `next_page: optional string or null`
 
   Opaque cursor for the next page (a `page_...` value), or `null` if there are no more results. Pass as `page` on the next request.
 

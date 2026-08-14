@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/rotate_token
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 524b24396d5ff4ba24d23c55e6e14f9dff666fdb6a4067ebb2ccd96be1ae5518
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 97b6030de71b9120277bf6fa64a8e8cb2366a072971600ff50ca3c910ca579c2
 ---
 
 ---
@@ -38,7 +38,7 @@ restarted after rotation must use the new value. An optional
 
 ### Body Parameters
 
-- `reason: optional string`
+- `reason: optional string or null`
 
   Optional free-text reason for the rotation, recorded for audit.
 

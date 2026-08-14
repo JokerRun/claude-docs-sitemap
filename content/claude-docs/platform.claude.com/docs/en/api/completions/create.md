@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions/create
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: ed01ca51bfd9b5afc568e27591aaa8d1a6b7078b0fdb1faa24b6a8540db33dbf
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 0b26a889c96343d82f18852b054c18d18b84eac3e5f390eb9c25d07db4458098
 ---
 
 ---
@@ -202,7 +202,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   An object describing metadata about the request.
 
-  - `user_id: optional string`
+  - `user_id: optional string or null`
 
     An external identifier for the user who is associated with the request.
 
@@ -334,7 +334,7 @@ Future models and features will not be compatible with Text Completions. See our
 
     - `string`
 
-  - `stop_reason: string`
+  - `stop_reason: string or null`
 
     The reason that we stopped.
 

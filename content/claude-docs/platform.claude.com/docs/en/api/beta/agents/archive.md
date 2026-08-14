@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/archive
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 3042198130e7b194e9baaab0b4c6a73e4bdd2c9e7af74cf235327d1217b2190f
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 7ace85a6dfdb18f3b46f18daa2b49946be62aee8a0074b01db312b78c3380932
 ---
 
 ---
@@ -104,7 +104,7 @@ Archive Agent
 
   - `id: string`
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 
@@ -112,7 +112,7 @@ Archive Agent
 
     A timestamp in RFC 3339 format
 
-  - `description: string`
+  - `description: string or null`
 
   - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
@@ -252,7 +252,7 @@ Archive Agent
 
       - `"fast"`
 
-  - `multiagent: BetaManagedAgentsMultiagent`
+  - `multiagent: BetaManagedAgentsMultiagent or null`
 
     Resolved coordinator topology with a concrete agent roster.
 
@@ -316,7 +316,7 @@ Archive Agent
 
       - `version: string`
 
-  - `system: string`
+  - `system: string or null`
 
   - `tools: array of BetaManagedAgentsAgentToolset20260401 or BetaManagedAgentsMCPToolset or BetaManagedAgentsCustomTool`
 
@@ -446,9 +446,9 @@ Archive Agent
 
           - `"object"`
 
-        - `properties: optional map[unknown]`
+        - `properties: optional map[unknown] or null`
 
-        - `required: optional array of string`
+        - `required: optional array of string or null`
 
       - `name: string`
 

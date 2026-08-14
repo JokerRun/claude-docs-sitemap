@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rate_limits/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 407c25ac628e465372dd5d4916f019d5bf28b71cc60a971f13ebda56cc6429ff
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 38dac0580f9d7b5332cc03968801850073e4021c820f040df1cdb4cd1ce5b3f4
 ---
 
 ---
@@ -84,7 +84,7 @@ and contains the set of limiter values that apply to it.
 
       The configured limit value for this limiter type.
 
-  - `models: array of string`
+  - `models: array of string or null`
 
     Model names this entry's limits apply to, including aliases. `null` when `group_type` is not `"model_group"`.
 
@@ -94,7 +94,7 @@ and contains the set of limiter values that apply to it.
 
     - `"rate_limit"`
 
-- `next_page: string`
+- `next_page: string or null`
 
   Token to provide in as `page` in the subsequent request to retrieve the next page of data.
 

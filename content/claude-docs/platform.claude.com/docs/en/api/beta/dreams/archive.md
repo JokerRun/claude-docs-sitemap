@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/archive
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 877736a96959a3f9fe76f284c6ef298bed3098dd9f318ee6cbb9ada00c908821
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: e1ea42af519dc1f9110a8faa5d19ead823da0d5a53c1493284cb309f73d122ee
 ---
 
 ---
@@ -104,7 +104,7 @@ Archive a Dream
 
   - `id: string`
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 
@@ -112,11 +112,11 @@ Archive a Dream
 
     A timestamp in RFC 3339 format
 
-  - `ended_at: string`
+  - `ended_at: string or null`
 
     A timestamp in RFC 3339 format
 
-  - `error: BetaDreamError`
+  - `error: BetaDreamError or null`
 
     Failure detail for a Dream whose `status` is `failed`.
 
@@ -146,7 +146,7 @@ Archive a Dream
 
         - `"sessions"`
 
-  - `instructions: string`
+  - `instructions: string or null`
 
   - `model: BetaDreamModelConfig`
 
@@ -172,7 +172,7 @@ Archive a Dream
 
       - `"memory_store"`
 
-  - `session_id: string`
+  - `session_id: string or null`
 
   - `status: BetaDreamStatus`
 

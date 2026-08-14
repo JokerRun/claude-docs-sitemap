@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/create
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: d372d8b57c7a4a292826f849cb8a8af1615bbcfbe078594333e5692f75f9bc05
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: c8a260509ab00bb96ba7183fa5277edd3279d96ba729413ae45439ea751f3c05
 ---
 
 ---
@@ -104,13 +104,13 @@ Create Skill
 
   ISO 8601 timestamp of when the skill was created.
 
-- `display_title: string`
+- `display_title: string or null`
 
   Display title for the skill.
 
   This is a human-readable label that is not included in the prompt sent to the model.
 
-- `latest_version: string`
+- `latest_version: string or null`
 
   The latest version identifier for the skill.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/create
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 7c7a36ed1d28d96bdb8379993c95d238efd21cbe9a084270f266f5aa387acb73
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 8b52beb085a67d85a29c0346e2b74249a8028b075c5868c5ee3d6d9e447d3a67
 ---
 
 ---
@@ -224,7 +224,7 @@ Create Session
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `effort: optional "low" or "medium" or "high" or 2 more or BetaManagedAgentsEffortLow or BetaManagedAgentsEffortMedium or 3 more`
+        - `effort: optional "low" or "medium" or "high" or 2 more or BetaManagedAgentsEffortLow or BetaManagedAgentsEffortMedium or 3 more or null`
 
           How hard Claude works on each inference call. Accepts a bare level string (`"high"`) or `{"type": "high"}`. On create, omitting it resolves the per-model default; on update, omitting it leaves the stored value unchanged.
 
@@ -282,11 +282,11 @@ Create Session
 
               - `"max"`
 
-        - `inference_geo: optional string`
+        - `inference_geo: optional string or null`
 
           Geographic region for model inference. When unset, requests fall through to the workspace's default_inference_geo. On update, `model` is whole-object replacement — omitting inference_geo clears it.
 
-        - `speed: optional "standard" or "fast"`
+        - `speed: optional "standard" or "fast" or null`
 
           Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
 
@@ -310,7 +310,7 @@ Create Session
 
           - `"anthropic"`
 
-        - `version: optional string`
+        - `version: optional string or null`
 
           Version to pin. Defaults to latest if omitted.
 
@@ -326,11 +326,11 @@ Create Session
 
           - `"custom"`
 
-        - `version: optional string`
+        - `version: optional string or null`
 
           Version to pin. Defaults to latest if omitted.
 
-    - `system: optional string`
+    - `system: optional string or null`
 
       Replacement system prompt. Up to 100,000 characters. Set to null to clear the agent's system prompt; omit to preserve it.
 
@@ -370,11 +370,11 @@ Create Session
 
             - `"web_search"`
 
-          - `enabled: optional boolean`
+          - `enabled: optional boolean or null`
 
             Whether this tool is enabled and available to Claude. Overrides the default_config setting.
 
-          - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
+          - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or null`
 
             Permission policy for tool execution.
 
@@ -394,15 +394,15 @@ Create Session
 
                 - `"always_ask"`
 
-        - `default_config: optional BetaManagedAgentsAgentToolsetDefaultConfigParams`
+        - `default_config: optional BetaManagedAgentsAgentToolsetDefaultConfigParams or null`
 
           Default configuration for all tools in a toolset.
 
-          - `enabled: optional boolean`
+          - `enabled: optional boolean or null`
 
             Whether tools are enabled and available to Claude by default. Defaults to true if not specified.
 
-          - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
+          - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or null`
 
             Permission policy for tool execution.
 
@@ -434,11 +434,11 @@ Create Session
 
             Name of the MCP tool to configure. 1-128 characters.
 
-          - `enabled: optional boolean`
+          - `enabled: optional boolean or null`
 
             Whether this tool is enabled. Overrides the `default_config` setting.
 
-          - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
+          - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or null`
 
             Permission policy for tool execution.
 
@@ -450,15 +450,15 @@ Create Session
 
               Tool calls require user confirmation before execution.
 
-        - `default_config: optional BetaManagedAgentsMCPToolsetDefaultConfigParams`
+        - `default_config: optional BetaManagedAgentsMCPToolsetDefaultConfigParams or null`
 
           Default configuration for all tools from an MCP server.
 
-          - `enabled: optional boolean`
+          - `enabled: optional boolean or null`
 
             Whether tools are enabled by default. Defaults to true if not specified.
 
-          - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
+          - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or null`
 
             Permission policy for tool execution.
 
@@ -486,9 +486,9 @@ Create Session
 
             - `"object"`
 
-          - `properties: optional map[unknown]`
+          - `properties: optional map[unknown] or null`
 
-          - `required: optional array of string`
+          - `required: optional array of string or null`
 
         - `name: string`
 
@@ -674,11 +674,11 @@ Create Session
 
           - `"document"`
 
-        - `context: optional string`
+        - `context: optional string or null`
 
           Additional context about the document for the model.
 
-        - `title: optional string`
+        - `title: optional string or null`
 
           The title of the document.
 
@@ -734,7 +734,7 @@ Create Session
 
       - `"user.define_outcome"`
 
-    - `max_iterations: optional number`
+    - `max_iterations: optional number or null`
 
       Eval→revision cycles before giving up. Default 3, max 20.
 
@@ -762,7 +762,7 @@ Create Session
 
       Github URL of the repository
 
-    - `checkout: optional BetaManagedAgentsBranchCheckout or BetaManagedAgentsCommitCheckout`
+    - `checkout: optional BetaManagedAgentsBranchCheckout or BetaManagedAgentsCommitCheckout or null`
 
       Branch or commit to check out. Defaults to the repository's default branch.
 
@@ -786,7 +786,7 @@ Create Session
 
           - `"commit"`
 
-    - `mount_path: optional string`
+    - `mount_path: optional string or null`
 
       Mount path in the container. Defaults to `/workspace/<repo-name>`.
 
@@ -802,7 +802,7 @@ Create Session
 
       - `"file"`
 
-    - `mount_path: optional string`
+    - `mount_path: optional string or null`
 
       Mount path in the container. Defaults to `/mnt/session/uploads/<file_id>`.
 
@@ -818,7 +818,7 @@ Create Session
 
       - `"memory_store"`
 
-    - `access: optional "read_write" or "read_only"`
+    - `access: optional "read_write" or "read_only" or null`
 
       Access mode for an attached memory store.
 
@@ -826,11 +826,11 @@ Create Session
 
       - `"read_only"`
 
-    - `instructions: optional string`
+    - `instructions: optional string or null`
 
       Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
 
-- `title: optional string`
+- `title: optional string or null`
 
   Human-readable session title.
 
@@ -852,7 +852,7 @@ Create Session
 
     - `id: string`
 
-    - `description: string`
+    - `description: string or null`
 
     - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
@@ -990,7 +990,7 @@ Create Session
 
         - `"fast"`
 
-    - `multiagent: BetaManagedAgentsSessionMultiagentCoordinator`
+    - `multiagent: BetaManagedAgentsSessionMultiagentCoordinator or null`
 
       Resolved coordinator topology with full agent definitions for each roster member.
 
@@ -1004,7 +1004,7 @@ Create Session
 
           - `id: string`
 
-          - `description: string`
+          - `description: string or null`
 
           - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
@@ -1046,7 +1046,7 @@ Create Session
 
               - `version: string`
 
-          - `system: string`
+          - `system: string or null`
 
           - `tools: array of BetaManagedAgentsAgentToolset20260401 or BetaManagedAgentsMCPToolset or BetaManagedAgentsCustomTool`
 
@@ -1176,9 +1176,9 @@ Create Session
 
                   - `"object"`
 
-                - `properties: optional map[unknown]`
+                - `properties: optional map[unknown] or null`
 
-                - `required: optional array of string`
+                - `required: optional array of string or null`
 
               - `name: string`
 
@@ -1220,7 +1220,7 @@ Create Session
 
         A resolved user-created custom skill.
 
-    - `system: string`
+    - `system: string or null`
 
     - `tools: array of BetaManagedAgentsAgentToolset20260401 or BetaManagedAgentsMCPToolset or BetaManagedAgentsCustomTool`
 
@@ -1238,11 +1238,11 @@ Create Session
 
     - `version: number`
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 
-  - `budget: BetaManagedAgentsBudgetLimit`
+  - `budget: BetaManagedAgentsBudgetLimit or null`
 
     A hard spend ceiling. The session stops issuing new model requests once the tracked list cost reaches `max_list_cost`.
 
@@ -1276,7 +1276,7 @@ Create Session
 
     Per-outcome evaluation state. One entry per define_outcome event sent to the session.
 
-    - `completed_at: string`
+    - `completed_at: string or null`
 
       A timestamp in RFC 3339 format
 
@@ -1284,7 +1284,7 @@ Create Session
 
       What the agent should produce.
 
-    - `explanation: string`
+    - `explanation: string or null`
 
       Grader's verdict text from the most recent evaluation. For satisfied, explains why criteria are met; for needs_revision (intermediate), what's missing; for failed, why unrecoverable.
 
@@ -1326,7 +1326,7 @@ Create Session
 
       - `url: string`
 
-      - `checkout: optional BetaManagedAgentsBranchCheckout or BetaManagedAgentsCommitCheckout`
+      - `checkout: optional BetaManagedAgentsBranchCheckout or BetaManagedAgentsCommitCheckout or null`
 
         - `BetaManagedAgentsBranchCheckout object { name, type }`
 
@@ -1380,7 +1380,7 @@ Create Session
 
         - `"memory_store"`
 
-      - `access: optional "read_write" or "read_only"`
+      - `access: optional "read_write" or "read_only" or null`
 
         Access mode for an attached memory store.
 
@@ -1392,15 +1392,15 @@ Create Session
 
         Description of the memory store, snapshotted at attach time. Rendered into the agent's system prompt. Empty string when the store has no description.
 
-      - `instructions: optional string`
+      - `instructions: optional string or null`
 
         Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
 
-      - `mount_path: optional string`
+      - `mount_path: optional string or null`
 
         Filesystem path where the store is mounted in the session container, e.g. /mnt/memory/user-preferences. Derived from the store's name. Output-only.
 
-      - `name: optional string`
+      - `name: optional string or null`
 
         Display name of the memory store, snapshotted at attach time. Later edits to the store's name do not propagate to this resource.
 
@@ -1428,7 +1428,7 @@ Create Session
 
     - `"terminated"`
 
-  - `title: string`
+  - `title: string or null`
 
   - `type: "session"`
 
@@ -1466,7 +1466,7 @@ Create Session
 
       Total input tokens consumed across all turns.
 
-    - `list_cost: optional BetaMonetaryAmount`
+    - `list_cost: optional BetaMonetaryAmount or null`
 
       A monetary amount in a specific currency.
 
@@ -1474,7 +1474,7 @@ Create Session
 
       Total output tokens generated across all turns.
 
-    - `server_tool_use: optional BetaManagedAgentsServerToolUsage`
+    - `server_tool_use: optional BetaManagedAgentsServerToolUsage or null`
 
       Cumulative count of server-executed tool invocations, broken down by tool.
 
@@ -1490,7 +1490,7 @@ Create Session
 
     Vault IDs attached to the session at creation. Empty when no vaults were supplied.
 
-  - `deployment_id: optional string`
+  - `deployment_id: optional string or null`
 
     Deployment ID when the session was created from a deployment reference. Null otherwise.
 

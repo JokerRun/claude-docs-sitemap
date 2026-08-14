@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/retrieve
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: ac232bd4fa82c3325fa96a32f62edfd8ea05253811892ddfbba76e9b44927ca4
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 77c6724914af71a416ad7db8b10e52cc846e687ad65dc28400d4ff815a7444f5
 ---
 
 ---
@@ -110,7 +110,7 @@ Fetches a tunnel certificate by ID.
 
     Unique identifier for the certificate, prefixed with `tcrt_`.
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 
@@ -118,7 +118,7 @@ Fetches a tunnel certificate by ID.
 
     A timestamp in RFC 3339 format
 
-  - `expires_at: string`
+  - `expires_at: string or null`
 
     A timestamp in RFC 3339 format
 

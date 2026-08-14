@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/usage-cost-api
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: e73f84795967936d3a8b00f23a238c57a7c4f790f577673cf64375562efb9899
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 6d96289f57699196bfdd08ec549aae8d1c8333fbf05664260c224431b66ccd31
 ---
 
 ---
@@ -88,7 +88,7 @@ bucket_width=1d" \
 <Tip>
   **Set a User-Agent header for integrations**
 
-  If you're building an integration, set your User-Agent header to help us understand usage patterns:
+  If you're building an integration, set your User-Agent header to help Anthropic understand usage patterns:
 
   ```text wrap
   User-Agent: YourApp/1.0.0 (https://yourapp.com)

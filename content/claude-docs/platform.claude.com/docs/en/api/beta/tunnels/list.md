@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 20ced1c63b56201454119f2f70d85cc7190cc1973bd2208c506c602213732e8f
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: cdc9148c0cd6079c84810576b6ee100b5bd4e2031e77b54cc6ef5b15ea7b2239
 ---
 
 ---
@@ -118,7 +118,7 @@ Lists tunnels. Results are ordered by creation time, newest first; archived tunn
 
     Unique identifier for the tunnel, prefixed with `tnl_`.
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 
@@ -126,7 +126,7 @@ Lists tunnels. Results are ordered by creation time, newest first; archived tunn
 
     A timestamp in RFC 3339 format
 
-  - `display_name: string`
+  - `display_name: string or null`
 
     Human-readable name for the tunnel (1-255 characters). Null if unset.
 
@@ -138,7 +138,7 @@ Lists tunnels. Results are ordered by creation time, newest first; archived tunn
 
     - `"tunnel"`
 
-- `next_page: string`
+- `next_page: string or null`
 
   Pagination cursor for the next page, or null if no more results.
 

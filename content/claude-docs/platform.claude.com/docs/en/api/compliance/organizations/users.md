@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/users
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 6a2e9effd82f39b61e6b75f8167c0857989c4969e408d318cc8ad0e1207475ec
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: bebe15423c1435af2d72482fbe47cd4eacfa4f05b325433e0bd8071dc6396b8b
 ---
 
 ---
@@ -86,7 +86,7 @@ List current user members of an organization.
 
   Whether more records exist beyond the current result set
 
-- `next_page: string`
+- `next_page: string or null`
 
   Token to retrieve the next page. Use this as the 'page' parameter in your next request
 

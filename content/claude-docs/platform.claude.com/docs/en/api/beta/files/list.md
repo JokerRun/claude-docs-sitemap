@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 20114ec6a562e328f8b714ec5f61477300f78611067508d9e355bd08f4de2586
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 84b20729652ad21b2b1e74bb716ca6ddcac4f5a0ea19c5dce3641af83318d397
 ---
 
 ---
@@ -152,7 +152,7 @@ List Files
 
     Whether the file can be downloaded.
 
-  - `scope: optional BetaFileScope`
+  - `scope: optional BetaFileScope or null`
 
     The scope of this file, indicating the context in which it was created (e.g., a session).
 
@@ -166,7 +166,7 @@ List Files
 
       - `"session"`
 
-- `first_id: optional string`
+- `first_id: optional string or null`
 
   ID of the first file in this page of results.
 
@@ -174,7 +174,7 @@ List Files
 
   Whether there are more results available.
 
-- `last_id: optional string`
+- `last_id: optional string or null`
 
   ID of the last file in this page of results.
 

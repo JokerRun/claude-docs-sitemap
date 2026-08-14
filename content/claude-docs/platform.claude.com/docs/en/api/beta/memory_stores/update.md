@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/update
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 523b69f9185cb3a33ab5211ccf304ee4819e7972b2ab770ee4a66b4ba50bbad0
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 5b8700e8022ee9eea67cafe3a29a1550f653d0823e5cb43b9192e3a55d02a7e4
 ---
 
 ---
@@ -98,15 +98,15 @@ Update a memory store
 
 ### Body Parameters
 
-- `description: optional string`
+- `description: optional string or null`
 
   New description for the store, up to 1024 characters. Pass an empty string to clear it.
 
-- `metadata: optional map[string]`
+- `metadata: optional map[string] or null`
 
   Metadata patch. Set a key to a string to upsert it, or to null to delete it. Omit the field to preserve. The stored bag is limited to 16 keys (up to 64 chars each) with values up to 512 chars.
 
-- `name: optional string`
+- `name: optional string or null`
 
   New human-readable name for the store. 1–255 characters; no control characters. Renaming changes the slug used for the store's `mount_path` in sessions created after the update.
 
@@ -136,7 +136,7 @@ Update a memory store
 
     A timestamp in RFC 3339 format
 
-  - `archived_at: optional string`
+  - `archived_at: optional string or null`
 
     A timestamp in RFC 3339 format
 

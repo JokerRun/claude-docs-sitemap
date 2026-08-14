@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/versions/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 7818f2fd10a796716d951edf10ea7fdfa4f466d7e1b0de7bd0b591b0995392e8
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 5d4b93e60623d44b6f3a28f48ae1214a3b6d51e8681157d06c3bfc03004961cb
 ---
 
 ---
@@ -114,7 +114,7 @@ List Agent Versions
 
   - `id: string`
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 
@@ -122,7 +122,7 @@ List Agent Versions
 
     A timestamp in RFC 3339 format
 
-  - `description: string`
+  - `description: string or null`
 
   - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
@@ -262,7 +262,7 @@ List Agent Versions
 
       - `"fast"`
 
-  - `multiagent: BetaManagedAgentsMultiagent`
+  - `multiagent: BetaManagedAgentsMultiagent or null`
 
     Resolved coordinator topology with a concrete agent roster.
 
@@ -326,7 +326,7 @@ List Agent Versions
 
       - `version: string`
 
-  - `system: string`
+  - `system: string or null`
 
   - `tools: array of BetaManagedAgentsAgentToolset20260401 or BetaManagedAgentsMCPToolset or BetaManagedAgentsCustomTool`
 
@@ -456,9 +456,9 @@ List Agent Versions
 
           - `"object"`
 
-        - `properties: optional map[unknown]`
+        - `properties: optional map[unknown] or null`
 
-        - `required: optional array of string`
+        - `required: optional array of string or null`
 
       - `name: string`
 
@@ -478,7 +478,7 @@ List Agent Versions
 
     The agent's current version. Starts at 1 and increments when the agent is modified.
 
-- `next_page: optional string`
+- `next_page: optional string or null`
 
   Opaque cursor for the next page. Null when no more results.
 

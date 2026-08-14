@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/permissions
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 8e2b7350b1c09909f19907154bca82063bd3b5e5c037cae35738daeb7e7ea329
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: d6902c62f73a3f74f2935bccff6bc1228c66dc26c2650a69da86465d4f0e7c66
 ---
 
 ---
@@ -64,7 +64,7 @@ List Compliance Role Permissions
 
   Whether more records exist beyond the current result set
 
-- `next_page: string`
+- `next_page: string or null`
 
   Token to retrieve the next page. Use this as the 'page' parameter in your next request
 

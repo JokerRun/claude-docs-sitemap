@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/upload
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 4af7f23fd1ef7c1f71e2d785fe407d5a859ad15a3757190f48088ad7c97b4df0
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 7ba95d3edabc10ff068d3e8968c9e2cbe8746dd07cb9319f796fca1156d69d99
 ---
 
 ---
@@ -130,7 +130,7 @@ Upload File
 
     Whether the file can be downloaded.
 
-  - `scope: optional BetaFileScope`
+  - `scope: optional BetaFileScope or null`
 
     The scope of this file, indicating the context in which it was created (e.g., a session).
 

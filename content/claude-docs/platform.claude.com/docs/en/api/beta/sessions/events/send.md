@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/send
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 4ca5ca334786ed4411830f513fa845781e2056717ae7a208399acd2689a2dcad
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: affed6417e85d85bf5e4ced97208b52e2967bc9a4ff7753987edffe521bbaaea
 ---
 
 ---
@@ -244,11 +244,11 @@ Send Events
 
           - `"document"`
 
-        - `context: optional string`
+        - `context: optional string or null`
 
           Additional context about the document for the model.
 
-        - `title: optional string`
+        - `title: optional string or null`
 
           The title of the document.
 
@@ -272,7 +272,7 @@ Send Events
 
       - `"user.interrupt"`
 
-    - `session_thread_id: optional string`
+    - `session_thread_id: optional string or null`
 
       If absent, interrupts every non-archived thread in a multiagent session (or the primary alone in a single-agent session). If present, interrupts only the named thread.
 
@@ -296,7 +296,7 @@ Send Events
 
       - `"user.tool_confirmation"`
 
-    - `deny_message: optional string`
+    - `deny_message: optional string or null`
 
       Optional message providing context for a 'deny' decision. Only allowed when result is 'deny'.
 
@@ -364,7 +364,7 @@ Send Events
 
           - `"search_result"`
 
-    - `is_error: optional boolean`
+    - `is_error: optional boolean or null`
 
       Whether the tool execution resulted in an error.
 
@@ -408,7 +408,7 @@ Send Events
 
       - `"user.define_outcome"`
 
-    - `max_iterations: optional number`
+    - `max_iterations: optional number or null`
 
       Eval→revision cycles before giving up. Default 3, max 20.
 
@@ -444,7 +444,7 @@ Send Events
 
         A block containing a web search result.
 
-    - `is_error: optional boolean`
+    - `is_error: optional boolean or null`
 
       Whether the tool execution resulted in an error.
 
@@ -624,11 +624,11 @@ Send Events
 
             - `"document"`
 
-          - `context: optional string`
+          - `context: optional string or null`
 
             Additional context about the document for the model.
 
-          - `title: optional string`
+          - `title: optional string or null`
 
             The title of the document.
 
@@ -644,7 +644,7 @@ Send Events
 
         - `"user.message"`
 
-      - `processed_at: optional string`
+      - `processed_at: optional string or null`
 
         A timestamp in RFC 3339 format
 
@@ -660,11 +660,11 @@ Send Events
 
         - `"user.interrupt"`
 
-      - `processed_at: optional string`
+      - `processed_at: optional string or null`
 
         A timestamp in RFC 3339 format
 
-      - `session_thread_id: optional string`
+      - `session_thread_id: optional string or null`
 
         If absent, interrupts every non-archived thread in a multiagent session (or the primary alone in a single-agent session). If present, interrupts only the named thread.
 
@@ -692,15 +692,15 @@ Send Events
 
         - `"user.tool_confirmation"`
 
-      - `deny_message: optional string`
+      - `deny_message: optional string or null`
 
         Optional message providing context for a 'deny' decision. Only allowed when result is 'deny'.
 
-      - `processed_at: optional string`
+      - `processed_at: optional string or null`
 
         A timestamp in RFC 3339 format
 
-      - `session_thread_id: optional string`
+      - `session_thread_id: optional string or null`
 
         When set, the confirmation routes to this subagent's thread rather than the primary. Echo this from the `session_thread_id` on the `agent.tool_use` or `agent.mcp_tool_use` event that prompted the approval.
 
@@ -772,15 +772,15 @@ Send Events
 
             - `"search_result"`
 
-      - `is_error: optional boolean`
+      - `is_error: optional boolean or null`
 
         Whether the tool execution resulted in an error.
 
-      - `processed_at: optional string`
+      - `processed_at: optional string or null`
 
         A timestamp in RFC 3339 format
 
-      - `session_thread_id: optional string`
+      - `session_thread_id: optional string or null`
 
         Routes this result to a subagent thread. Copy from the `agent.custom_tool_use` event's `session_thread_id`.
 
@@ -796,7 +796,7 @@ Send Events
 
         What the agent should produce. Copied from the input event.
 
-      - `max_iterations: number`
+      - `max_iterations: number or null`
 
         Evaluate-then-revise cycles before giving up. Default 3, max 20.
 
@@ -876,15 +876,15 @@ Send Events
 
           A block containing a web search result.
 
-      - `is_error: optional boolean`
+      - `is_error: optional boolean or null`
 
         Whether the tool execution resulted in an error.
 
-      - `processed_at: optional string`
+      - `processed_at: optional string or null`
 
         A timestamp in RFC 3339 format
 
-      - `session_thread_id: optional string`
+      - `session_thread_id: optional string or null`
 
         Routes this result to a subagent thread. Copy from the `agent.tool_use` event's `session_thread_id`.
 
@@ -912,7 +912,7 @@ Send Events
 
         - `"system.message"`
 
-      - `processed_at: optional string`
+      - `processed_at: optional string or null`
 
         A timestamp in RFC 3339 format
 

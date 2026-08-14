@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 3fe4ed5446149e7d46f2cf1612195d4f6cebcf4079dc8c9cf36a6517cc5e3d85
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: dcedf64f39763466803b0b2d905b3355708db61bc2e4d873e5649a3e6d775376
 ---
 
 ---
@@ -140,7 +140,7 @@ List memory stores
 
     A timestamp in RFC 3339 format
 
-  - `archived_at: optional string`
+  - `archived_at: optional string or null`
 
     A timestamp in RFC 3339 format
 
@@ -152,7 +152,7 @@ List memory stores
 
     Arbitrary key-value tags for your own bookkeeping (such as the end user a store belongs to). Up to 16 pairs; keys 1–64 characters; values up to 512 characters. Returned on retrieve/list but not filterable.
 
-- `next_page: optional string`
+- `next_page: optional string or null`
 
   Opaque cursor for the next page (a `page_...` value). Pass as `page` on the next request. `null` when there are no more results.
 

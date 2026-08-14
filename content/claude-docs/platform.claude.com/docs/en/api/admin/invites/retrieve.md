@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/invites/retrieve
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: df01523a918f0e1dcee5117be4f555211ce37933427c793f0b4d10a43d2417b9
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 979dc277cf8ee04bf53b57c6905bee5fa6c74a02173de839b2c853b78973d08c
 ---
 
 ---
@@ -30,7 +30,7 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
 
     ID of the Invite.
 
-  - `accepted_at: string`
+  - `accepted_at: string or null`
 
     RFC 3339 datetime string indicating when the Invite was accepted, or null.
 

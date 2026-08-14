@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/plugins/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 553ba191c279fd80c3924c9447c7cabd42be2a7f6c31e74ecdef123e2706b308
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 9c1635fa0567d200383461884e245c2ed42fbbdfcfa4cc5eef0e573d00a89c41
 ---
 
 ---
@@ -88,7 +88,7 @@ range-rollup mode like /skills.
 
       Claude Code activity metrics for a single plugin on a given day.
 
-      - `distinct_session_plugin_used_count: number`
+      - `distinct_session_plugin_used_count: number or null`
 
         Number of distinct Claude Code sessions in which the plugin was invoked. Null on aggregated rows where a distinct count cannot be computed.
 
@@ -96,7 +96,7 @@ range-rollup mode like /skills.
 
       Cowork activity metrics for a single plugin on a given day.
 
-      - `distinct_session_plugin_used_count: number`
+      - `distinct_session_plugin_used_count: number or null`
 
         Number of distinct Cowork sessions in which the plugin was invoked. Null on aggregated rows where a distinct count cannot be computed.
 
@@ -104,7 +104,7 @@ range-rollup mode like /skills.
 
       Number of distinct users with recorded install or invocation activity for the plugin on the requested day (install-only users count), or, in date-range mode, over the requested window — recomputed as an exact distinct count over the window's per-member daily rows, never a sum of per-day values.
 
-    - `install_count: number`
+    - `install_count: number or null`
 
       Number of distinct users who installed the plugin on the requested day, or, in date-range mode, over the requested window — recomputed as an exact distinct count over the window's per-member daily rows, never a sum of per-day values.
 
@@ -116,27 +116,27 @@ range-rollup mode like /skills.
 
       Name of the plugin
 
-    - `plugin_id: optional string`
+    - `plugin_id: optional string or null`
 
       Stable plugin identifier when available (e.g. serena@claude-plugins-official). Null for third-party Claude Code plugins (redacted at the source) and Cowork slash commands that carry only a hashed id.
 
-    - `product: optional string`
+    - `product: optional string or null`
 
-      Product that produced this row's activity: one of chat, claude_code, cowork, or office_agent (the canonical Cost & Usage product naming; an office_agent row's per-surface breakdown is in its office_metrics). On /plugins only cowork and claude_code occur (the only surfaces with plugin attribution); /artifacts and /apps/chat/projects do not support the product dimension (a product group_by[] or filter[] there is rejected). Present only when the request grouped by product.
+      Product that produced this row's activity: one of chat, claude_code, cowork, or office_agent (the canonical Cost & Usage product naming; an office_agent row's per-surface breakdown is in its office_metrics). On /plugins only cowork and claude_code occur (the only surfaces with plugin attribution); /artifacts and /apps/chat/projects do not support the product dimension (a product `group_by[]` or `filter[]` there is rejected). Present only when the request grouped by product.
 
-    - `rbac_group_id: optional string`
+    - `rbac_group_id: optional string or null`
 
-      Tagged RBAC group identifier (rbac_group_...), matching the spend-limits API spelling. Present only when the request grouped by rbac_group_id.
+      Tagged RBAC group identifier (`rbac_group_...`), matching the spend-limits API spelling. Present only when the request grouped by `rbac_group_id`.
 
-    - `rbac_group_name: optional string`
+    - `rbac_group_name: optional string or null`
 
-      Resolved RBAC group display name, alongside rbac_group_id when name resolution is available. Null if the group has been deleted or its name could not be resolved; rbac_group_id remains the stable key.
+      Resolved RBAC group display name, alongside `rbac_group_id` when name resolution is available. Null if the group has been deleted or its name could not be resolved; `rbac_group_id` remains the stable key.
 
-    - `user_id: optional string`
+    - `user_id: optional string or null`
 
-      Tagged user identifier (e.g. user_...). Present only when the request grouped by user_id.
+      Tagged user identifier (e.g. `user_...`). Present only when the request grouped by `user_id`.
 
-  - `next_page: string`
+  - `next_page: string or null`
 
     Opaque cursor for the next page, or null if no more results
 

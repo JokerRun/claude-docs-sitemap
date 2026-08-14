@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: aba1995979e51aea931774497e81b1f85b9ced665236bc5f8fb3a2838c6d764b
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 959806d2b21d2842a7b83fb2974dd28c6ee45155ab914656885d694f565ded58
 ---
 
 ---
@@ -116,7 +116,7 @@ List Vaults
 
     Unique identifier for the vault.
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 
@@ -140,7 +140,7 @@ List Vaults
 
     A timestamp in RFC 3339 format
 
-- `next_page: optional string`
+- `next_page: optional string or null`
 
   Pagination token for the next page, or null if no more results.
 

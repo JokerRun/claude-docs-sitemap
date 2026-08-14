@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/retrieve
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 0d8cacbf37442a1c8c4241580d0a98fa8cc62c79152f84cf7b4c61bc4a5ff874
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 5edb17148a8d2e6a45f2d08d85d5a68977fd3d3092b18f071a8bb1214828ebf9
 ---
 
 ---
@@ -118,7 +118,7 @@ Get Session Thread
 
       - `id: string`
 
-      - `description: string`
+      - `description: string or null`
 
       - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
@@ -284,7 +284,7 @@ Get Session Thread
 
           - `version: string`
 
-      - `system: string`
+      - `system: string or null`
 
       - `tools: array of BetaManagedAgentsAgentToolset20260401 or BetaManagedAgentsMCPToolset or BetaManagedAgentsCustomTool`
 
@@ -414,9 +414,9 @@ Get Session Thread
 
               - `"object"`
 
-            - `properties: optional map[unknown]`
+            - `properties: optional map[unknown] or null`
 
-            - `required: optional array of string`
+            - `required: optional array of string or null`
 
           - `name: string`
 
@@ -442,7 +442,7 @@ Get Session Thread
 
         - `"advisor"`
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 
@@ -450,7 +450,7 @@ Get Session Thread
 
     A timestamp in RFC 3339 format
 
-  - `parent_thread_id: string`
+  - `parent_thread_id: string or null`
 
     Parent thread that spawned this thread. Null for the primary thread.
 
@@ -458,7 +458,7 @@ Get Session Thread
 
     The session this thread belongs to.
 
-  - `stats: BetaManagedAgentsSessionThreadStats`
+  - `stats: BetaManagedAgentsSessionThreadStats or null`
 
     Timing statistics for a session thread.
 
@@ -494,7 +494,7 @@ Get Session Thread
 
     A timestamp in RFC 3339 format
 
-  - `usage: BetaManagedAgentsSessionThreadUsage`
+  - `usage: BetaManagedAgentsSessionThreadUsage or null`
 
     Cumulative token usage for a session thread across all turns.
 
@@ -522,7 +522,7 @@ Get Session Thread
 
       Total input tokens consumed across all turns.
 
-    - `list_cost: optional BetaMonetaryAmount`
+    - `list_cost: optional BetaMonetaryAmount or null`
 
       A monetary amount in a specific currency.
 
@@ -540,7 +540,7 @@ Get Session Thread
 
       Total output tokens generated across all turns.
 
-    - `server_tool_use: optional BetaManagedAgentsServerToolUsage`
+    - `server_tool_use: optional BetaManagedAgentsServerToolUsage or null`
 
       Cumulative count of server-executed tool invocations, broken down by tool.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/chat_projects/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 4ff879c58b2f8ee3b249ef3ccc715a1eff761286ad4a187b63954eaed73c1b6a
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 234f148d8daa10f50f335ec2f2d5ee318f870f1d436eefd42f4f92bf9cd995ea
 ---
 
 ---
@@ -92,17 +92,17 @@ plan. Requires an API key with the `read:analytics` scope.
 
       Name of the project
 
-    - `created_at: optional string`
+    - `created_at: optional string or null`
 
       Project creation timestamp, RFC 3339. Null if the project was deleted before attribution was recorded.
 
-    - `created_by: optional AnalyticsUser`
+    - `created_by: optional AnalyticsUser or null`
 
       User identifier.
 
       - `id: string`
 
-        Tagged user identifier (e.g. user_...)
+        Tagged user identifier (e.g. `user_...`)
 
       - `email_address: string`
 
@@ -114,27 +114,27 @@ plan. Requires an API key with the `read:analytics` scope.
 
         - `"user"`
 
-    - `distinct_conversation_count: optional number`
+    - `distinct_conversation_count: optional number or null`
 
       Number of distinct conversations in the project. Null on aggregated rows where a distinct count cannot be computed.
 
-    - `product: optional string`
+    - `product: optional string or null`
 
-      Product that produced this row's activity: one of chat, claude_code, cowork, or office_agent (the canonical Cost & Usage product naming; an office_agent row's per-surface breakdown is in its office_metrics). On /plugins only cowork and claude_code occur (the only surfaces with plugin attribution); /artifacts and /apps/chat/projects do not support the product dimension (a product group_by[] or filter[] there is rejected). Present only when the request grouped by product.
+      Product that produced this row's activity: one of chat, claude_code, cowork, or office_agent (the canonical Cost & Usage product naming; an office_agent row's per-surface breakdown is in its office_metrics). On /plugins only cowork and claude_code occur (the only surfaces with plugin attribution); /artifacts and /apps/chat/projects do not support the product dimension (a product `group_by[]` or `filter[]` there is rejected). Present only when the request grouped by product.
 
-    - `rbac_group_id: optional string`
+    - `rbac_group_id: optional string or null`
 
-      Tagged RBAC group identifier (rbac_group_...), matching the spend-limits API spelling. Present only when the request grouped by rbac_group_id.
+      Tagged RBAC group identifier (`rbac_group_...`), matching the spend-limits API spelling. Present only when the request grouped by `rbac_group_id`.
 
-    - `rbac_group_name: optional string`
+    - `rbac_group_name: optional string or null`
 
-      Resolved RBAC group display name, alongside rbac_group_id when name resolution is available. Null if the group has been deleted or its name could not be resolved; rbac_group_id remains the stable key.
+      Resolved RBAC group display name, alongside `rbac_group_id` when name resolution is available. Null if the group has been deleted or its name could not be resolved; `rbac_group_id` remains the stable key.
 
-    - `user_id: optional string`
+    - `user_id: optional string or null`
 
-      Tagged user identifier (e.g. user_...). Present only when the request grouped by user_id.
+      Tagged user identifier (e.g. `user_...`). Present only when the request grouped by `user_id`.
 
-  - `next_page: string`
+  - `next_page: string or null`
 
     Opaque cursor for the next page, or null if no more results
 

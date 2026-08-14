@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 5825c816794936f842eba66fe47e237a81440269cd101d88eafeade0b4473f4b
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 9b6c30d55f11737692784d5bf287021cbff08ed7102a21a2ba3950391968a970
 ---
 
 ---
@@ -585,7 +585,13 @@ The following examples read a text file and send its contents as plain text:
   };
 
   var message = await client.Messages.Create(parameters);
-  Console.WriteLine(message);
+  foreach (var block in message.Content)
+  {
+      if (block.TryPickText(out var textBlock))
+      {
+          Console.WriteLine(textBlock.Text);
+      }
+  }
   ```
 
   ```go Go
@@ -759,7 +765,7 @@ Retrieve a list of your uploaded files. The endpoint is paginated: each request 
   $client = new Client();
 
   $files = $client->beta->files->list();
-  print_r($files);
+  echo $files;
   ```
 
   ```ruby Ruby

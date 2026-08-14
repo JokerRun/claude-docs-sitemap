@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 5bbd86a8edfece20a4c59b6e0c10ff69961505b39dc907364ac711c32cdab5c5
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 4af14eac456ba952ff0ee0fb0664b9d51bee244eb9a4fdef9ace0066f84fd6e6
 ---
 
 ---
@@ -136,7 +136,7 @@ The simplest way to start is with automatic caching:
   if err != nil {
   	log.Fatal(err)
   }
-  fmt.Println(response.Usage)
+  fmt.Println(response.Usage.RawJSON())
   ```
 
   ```java Java
@@ -406,7 +406,7 @@ Automatic caching is the simplest way to enable prompt caching. Instead of placi
   if err != nil {
   	log.Fatal(err)
   }
-  fmt.Println(response.Usage)
+  fmt.Println(response.Usage.RawJSON())
   ```
 
   ```java Java
@@ -1570,7 +1570,7 @@ The following code snippets showcase various prompt caching patterns. These exam
       ```
 
       ```bash CLI
-      ant messages create <<'YAML'
+      ant messages create --transform usage <<'YAML'
       model: claude-opus-5
       max_tokens: 1024
       system:
@@ -1639,7 +1639,7 @@ The following code snippets showcase various prompt caching patterns. These exam
           }
         ]
       });
-      console.log(response);
+      console.log(response.usage);
       ```
 
       ```csharp C#
@@ -1675,7 +1675,7 @@ The following code snippets showcase various prompt caching patterns. These exam
       };
 
       var message = await client.Messages.Create(parameters);
-      Console.WriteLine(message);
+      Console.WriteLine(message.Usage);
       ```
 
       ```go Go
@@ -1700,7 +1700,7 @@ The following code snippets showcase various prompt caching patterns. These exam
       if err != nil {
       	log.Fatal(err)
       }
-      fmt.Println(response.Usage)
+      fmt.Println(response.Usage.RawJSON())
       ```
 
       ```java Java
@@ -1731,7 +1731,7 @@ The following code snippets showcase various prompt caching patterns. These exam
             .build();
 
           Message message = client.messages().create(params);
-          System.out.println(message);
+          System.out.println(message.usage());
         }
       }
       ```
@@ -1761,7 +1761,7 @@ The following code snippets showcase various prompt caching patterns. These exam
           ],
       );
 
-      echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
+      echo json_encode($message->usage), PHP_EOL;
       ```
 
       ```ruby Ruby
@@ -1788,7 +1788,7 @@ The following code snippets showcase various prompt caching patterns. These exam
           }
         ]
       )
-      puts message
+      puts message.usage
       ```
     </CodeGroup>
 
@@ -1894,7 +1894,7 @@ The following code snippets showcase various prompt caching patterns. These exam
       ```
 
       ```bash CLI
-      ant messages create <<'YAML'
+      ant messages create --transform usage <<'YAML'
       model: claude-opus-5
       max_tokens: 1024
       system:
@@ -1968,7 +1968,7 @@ The following code snippets showcase various prompt caching patterns. These exam
               },
           ],
       )
-      print(response.model_dump_json())
+      print(response.usage.model_dump_json())
       ```
 
       ```typescript TypeScript
@@ -2016,7 +2016,7 @@ The following code snippets showcase various prompt caching patterns. These exam
           }
         ]
       });
-      console.log(response);
+      console.log(response.usage);
       ```
 
       ```csharp C#
@@ -2066,7 +2066,7 @@ The following code snippets showcase various prompt caching patterns. These exam
       };
 
       var message = await client.Messages.Create(parameters);
-      Console.WriteLine(message);
+      Console.WriteLine(message.Usage);
       ```
 
       ```go Go
@@ -2099,7 +2099,7 @@ The following code snippets showcase various prompt caching patterns. These exam
       if err != nil {
       	log.Fatal(err)
       }
-      fmt.Println(response)
+      fmt.Println(response.Usage.RawJSON())
       ```
 
       ```java Java
@@ -2142,7 +2142,7 @@ The following code snippets showcase various prompt caching patterns. These exam
             .build();
 
           Message message = client.messages().create(params);
-          System.out.println(message);
+          System.out.println(message.usage());
         }
       }
       ```
@@ -2188,7 +2188,7 @@ The following code snippets showcase various prompt caching patterns. These exam
           ],
       );
 
-      echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
+      echo json_encode($message->usage), PHP_EOL;
       ```
 
       ```ruby Ruby
@@ -2231,7 +2231,7 @@ The following code snippets showcase various prompt caching patterns. These exam
           }
         ]
       )
-      puts message
+      puts message.usage
       ```
     </CodeGroup>
 
@@ -2353,7 +2353,7 @@ The following code snippets showcase various prompt caching patterns. These exam
       ```
 
       ```bash CLI
-      ant messages create <<'YAML'
+      ant messages create --transform usage <<'YAML'
       model: claude-opus-5
       max_tokens: 1024
       tools:
@@ -2530,7 +2530,7 @@ The following code snippets showcase various prompt caching patterns. These exam
               },
           ],
       )
-      print(response.model_dump_json())
+      print(response.usage.model_dump_json())
       ```
 
       ```typescript TypeScript
@@ -2630,7 +2630,7 @@ The following code snippets showcase various prompt caching patterns. These exam
           }
         ]
       });
-      console.log(response);
+      console.log(response.usage);
       ```
 
       ```csharp C#
@@ -2738,7 +2738,7 @@ The following code snippets showcase various prompt caching patterns. These exam
       };
 
       var message = await client.Messages.Create(parameters);
-      Console.WriteLine(message);
+      Console.WriteLine(message.Usage);
       ```
 
       ```go Go
@@ -2813,7 +2813,7 @@ The following code snippets showcase various prompt caching patterns. These exam
       if err != nil {
       	log.Fatal(err)
       }
-      fmt.Println(response)
+      fmt.Println(response.Usage.RawJSON())
       ```
 
       ```java Java
@@ -2929,7 +2929,7 @@ The following code snippets showcase various prompt caching patterns. These exam
             .build();
 
           Message message = client.messages().create(params);
-          System.out.println(message);
+          System.out.println(message.usage());
         }
       }
       ```
@@ -3130,7 +3130,7 @@ The following code snippets showcase various prompt caching patterns. These exam
           }
         ]
       )
-      puts message
+      puts message.usage
       ```
     </CodeGroup>
 

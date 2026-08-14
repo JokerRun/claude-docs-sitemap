@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/archive
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: f05cc88c317a11a03dd1ffebe88b0de7685e69a32d1e3a198c5e07b4ff2d6f3d
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 3dc0fb04d20026a9e4381d8ae55a5a4fc12fc2a9d0d915a8b53ec6eae3d469f5
 ---
 
 ---
@@ -122,7 +122,7 @@ Archive a memory store
 
     A timestamp in RFC 3339 format
 
-  - `archived_at: optional string`
+  - `archived_at: optional string or null`
 
     A timestamp in RFC 3339 format
 

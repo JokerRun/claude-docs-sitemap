@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/batch-processing
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 55ce2a61b2a8c53ead82c0b530f750b50bfc0f6e35b41f6d891fec263d471145
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 99b2a1886fed040e4e6cdeed0887e941e15e838e25ff1e82943db9c3b815bea2
 ---
 
 ---
@@ -1385,7 +1385,7 @@ Example of implementing prompt caching in a batch:
   if err != nil {
   	log.Fatal(err)
   }
-  log.Printf("%+v\n", messageBatch)
+  fmt.Println(messageBatch)
   ```
 
   ```java Java
@@ -1852,7 +1852,7 @@ For ZDR eligibility across all features, see [API and data retention](https://pl
   </Accordion>
 
   <Accordion title="How does the Message Batches API affect pricing?">
-    The Message Batches API offers a 50% discount on all usage compared to standard API prices. This applies to input tokens, output tokens, and any special tokens. For more on pricing, visit the [pricing page](https://claude.com/pricing#anthropic-api).
+    The Message Batches API offers a 50% discount on all usage compared to standard API prices. This applies to input tokens, output tokens, and any special tokens. For more on pricing, visit [Pricing](https://claude.com/pricing#anthropic-api).
   </Accordion>
 
   <Accordion title="Can I update a batch after it's been submitted?">

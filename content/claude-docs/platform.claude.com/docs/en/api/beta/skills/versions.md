@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 809e214954b3907320946d4d8ed8a01b996b90678b155ad640450c0023a6b4d6
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 0a009fa3eb7801557ae5d5ffd470b1f0e19ecd54894a558cecb5cccb7c3a8712
 ---
 
 ---
@@ -330,7 +330,7 @@ List Skill Versions
 
   Indicates if there are more results in the requested page direction.
 
-- `next_page: string`
+- `next_page: string or null`
 
   Token to provide in as `page` in the subsequent request to retrieve the next page of data.
 

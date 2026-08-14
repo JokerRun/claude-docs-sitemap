@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/update
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 058a7fb040cc3bcdc36d8cee998e1b26271d998e5dfcfb28000900b346ad140e
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 27fae7517bed668a3720803ace8711af075651c0ba3fdf46652c068a5d70e2be
 ---
 
 ---
@@ -28,17 +28,17 @@ encrypted data requires the original key identity to decrypt.
 
 ### Body Parameters
 
-- `display_name: optional string`
+- `display_name: optional string or null`
 
   Human-friendly display name.
 
-- `geo: optional "us"`
+- `geo: optional "us" or null`
 
   Data residency geo. Only `us` is supported.
 
   - `"us"`
 
-- `provider_config: optional object { kms_arn, type, region, role_arn }  or object { key_name, type }  or object { key_name, tenant_id, type, 2 more }`
+- `provider_config: optional object { kms_arn, type, region, role_arn }  or object { key_name, type }  or object { key_name, tenant_id, type, 2 more }  or null`
 
   KMS provider identity and auth coordinates.
 
@@ -52,11 +52,11 @@ encrypted data requires the original key identity to decrypt.
 
       - `"aws"`
 
-    - `region: optional string`
+    - `region: optional string or null`
 
       AWS region. Derived from kms_arn if omitted.
 
-    - `role_arn: optional string`
+    - `role_arn: optional string or null`
 
       IAM role ARN. Deprecated — Anthropic reaches the KMS key via a managed intermediate role; this field is ignored.
 
@@ -90,7 +90,7 @@ encrypted data requires the original key identity to decrypt.
 
       Key Vault data-plane URI — https://<vault-name>.vault.azure.net or https://<hsm-name>.managedhsm.azure.net.
 
-    - `client_id: optional string`
+    - `client_id: optional string or null`
 
       Azure AD application (client) ID. Omit to use Anthropic's multitenant app. Provide only if using a single-tenant app registration in the customer's directory.
 
@@ -100,9 +100,25 @@ encrypted data requires the original key identity to decrypt.
 
   Identifier of the external key config. A tagged ID prefixed `ekey_`, or — for organizations on the Claude Platform on AWS — the AWS KMS key ARN.
 
+- `attachment: object { type }  or object { type }`
+
+  Whether any workspace uses this config to encrypt its data — counting live and archived workspaces (an archived workspace's data remains encrypted under the config), excluding deleted ones. Only an attached config is used by the encryption path; an `unattached` config is inert and can be deleted.
+
+  - `Attached object { type }`
+
+    - `type: "attached"`
+
+      - `"attached"`
+
+  - `Unattached object { type }`
+
+    - `type: "unattached"`
+
+      - `"unattached"`
+
 - `created_at: string`
 
-- `display_name: string`
+- `display_name: string or null`
 
   Human-friendly display name. Null if none was set.
 
@@ -124,11 +140,11 @@ encrypted data requires the original key identity to decrypt.
 
       - `"aws"`
 
-    - `region: optional string`
+    - `region: optional string or null`
 
       AWS region. Derived from kms_arn if omitted.
 
-    - `role_arn: optional string`
+    - `role_arn: optional string or null`
 
       IAM role ARN. Deprecated — Anthropic reaches the KMS key via a managed intermediate role; this field is ignored.
 
@@ -160,7 +176,7 @@ encrypted data requires the original key identity to decrypt.
 
       Key Vault data-plane URI — https://<vault-name>.vault.azure.net or https://<hsm-name>.managedhsm.azure.net.
 
-    - `client_id: optional string`
+    - `client_id: optional string or null`
 
       Azure AD application (client) ID. Omit to use Anthropic's multitenant app. Provide only if using a single-tenant app registration in the customer's directory.
 
@@ -185,6 +201,9 @@ curl https://api.anthropic.com/v1/organizations/external_keys/$EXTERNAL_KEY_ID \
 ```json
 {
   "id": "ekey_01SDCCSbTxrXDpWc1phhtcfK",
+  "attachment": {
+    "type": "attached"
+  },
   "created_at": "2024-10-30T23:58:27.427722Z",
   "display_name": "prod-us-key",
   "geo": "us",

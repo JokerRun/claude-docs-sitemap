@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 7ade5ac4d59a1ee914ba8c3d89bb0037ce6bafa509630aaa2d38dd6c7f42bdc4
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 2c5f85045d8a7cb1eb6b38bcd34f7c839957e9a2ab66deb124aefa4b20d99389
 ---
 
 ---
@@ -48,7 +48,7 @@ For the full code execution tool version matrix, see the [code execution tool mo
 
 ## Quick start
 
-Here's an example where Claude programmatically queries a database multiple times and aggregates results:
+Here's an example where Claude programmatically queries a database multiple times and aggregates results. Adding `allowed_callers: ["code_execution_20260120"]` to a tool definition is what makes that tool callable from within code execution (see [The `allowed_callers` field](https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling#the-allowed-callers-field)):
 
 <CodeGroup>
   ```bash cURL
@@ -370,7 +370,7 @@ The response stops with `stop_reason: "tool_use"`, a `container` ID, and a `tool
 
 ## How programmatic tool calling works
 
-When you configure a tool to be callable from code execution and Claude decides to use that tool:
+When you configure a tool to be callable from code execution and Claude determines that tool is needed:
 
 1. Claude writes Python code that invokes the tool as a function, potentially including multiple tool calls and pre/post-processing logic
 2. Claude runs this code in a sandboxed container through code execution

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: b4e2a59c59dd640ee4973526a6b7b1fb0711131fab84ba0f720c80f5a2f88874
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 359323fc1d06ebab204667efa78d3294696be168d920376f18526074c9ea6fcb
 ---
 
 ---
@@ -121,6 +121,12 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
+- `roles: optional array of string`
+
+  Filter to items whose `role` equals one of the supplied values. Repeatable; values are OR'ed together.
+
+  Accepted values depend on the organization type: Console and API organizations accept `user`, `developer`, `billing`, `admin`, and `claude_code_user`; Claude Enterprise organizations (beta) accept `user`, `owner`, `primary_owner`, `membership_admin`, and `managed`.
+
 ### Returns
 
 - `data: array of User`
@@ -171,7 +177,7 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
 
     - `"user"`
 
-- `first_id: string`
+- `first_id: string or null`
 
   First ID in the `data` list. Can be used as the `before_id` for the previous page.
 
@@ -179,7 +185,7 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
 
   Indicates if there are more results in the requested page direction.
 
-- `last_id: string`
+- `last_id: string or null`
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
 

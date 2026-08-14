@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/sessions
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 5f4e5ab98add6cdfc658c8c52e2ba44ace34b1cf4d7f4502edcdf5ac61e1aa9d
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 965cd1a1131fa3783fcce08bb6e43d4f2addd6e17e49ac0da9a6ddc4beb3082b
 ---
 
 ---
@@ -19,7 +19,7 @@ A session is an agent instance within an environment. Each session references an
 
 ## Creating a session
 
-A session requires an `agent` ID and an `environment` ID. Agents are versioned resources; passing in the `agent` ID as a string starts the session with the latest agent version.
+A session requires an `agent` ID and an `environment` ID. Agents are versioned resources; passing in the `agent` ID as a string creates the session with the latest agent version.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL

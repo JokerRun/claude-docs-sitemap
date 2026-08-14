@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 314cb6ff9111d4f4cc1a7310d6d8eedb40c38820fb341cce93513a71279d39bf
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 814989a7dc741aa519258b3a1b6037851b45a3dccd4fd94718cb1316419e5938
 ---
 
 ---
@@ -89,7 +89,7 @@ are sorted chronologically (time ascending) by created_at.
 
     Project creation timestamp
 
-  - `deleted_at: string`
+  - `deleted_at: string or null`
 
     Timestamp when the project was deleted by an end user, or null otherwise
 
@@ -113,13 +113,13 @@ are sorted chronologically (time ascending) by created_at.
 
     Project last update timestamp
 
-  - `user: object { id, email_address }`
+  - `user: object { id, email_address }  or null`
 
     The user who created a project or project document.
 
     Fields that reference this type are null when the creator's account has
-    been deleted or the creator is no longer a member of any organization
-    under the parent organization.
+    been deleted or the creator is no longer a member of an organization the
+    key may read.
 
     - `id: string`
 
@@ -133,7 +133,7 @@ are sorted chronologically (time ascending) by created_at.
 
   Whether more records exist beyond the current result set
 
-- `next_page: string`
+- `next_page: string or null`
 
   Token to retrieve the next page. Use this as the 'page' parameter in your next request
 

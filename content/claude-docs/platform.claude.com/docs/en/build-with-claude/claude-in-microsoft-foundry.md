@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 193e25e4337afbd594bb8af56409914803014232c6a3c2c9f82773528f420ba0
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 48b2f4a286b0095b0302756feb8006080cf56ad75bb49587b47823882c330d23
 ---
 
 ---
@@ -339,7 +339,7 @@ The Foundry SDKs require an API key and either a resource name or base URL. The 
 
       client.messages().create(params).content().stream()
           .flatMap(block -> block.text().stream())
-          .forEach(textBlock -> System.out.println(textBlock.text()));
+          .forEach(textBlock -> IO.println(textBlock.text()));
   }
   ```
 
@@ -574,7 +574,7 @@ Entra ID authentication lets you manage access with Azure RBAC, integrate with y
 
       client.messages().create(params).content().stream()
           .flatMap(block -> block.text().stream())
-          .forEach(textBlock -> System.out.println(textBlock.text()));
+          .forEach(textBlock -> IO.println(textBlock.text()));
   }
   ```
 

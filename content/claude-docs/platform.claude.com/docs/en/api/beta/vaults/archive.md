@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/archive
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 7f15b4f86795e8bd9834c3045cca63b8f4e812b9f3c8e7096515ea5d09222e7d
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: e66fbd9efa05490e8881220b2ee6e296967e9c6158b0db7df21496798e5eb347
 ---
 
 ---
@@ -106,7 +106,7 @@ Archive Vault
 
     Unique identifier for the vault.
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 

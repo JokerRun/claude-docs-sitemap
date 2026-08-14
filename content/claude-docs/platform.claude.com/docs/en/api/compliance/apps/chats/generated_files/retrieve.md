@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/generated_files/retrieve
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 4080fb67104ee78d850d0c50fe0eaac9b237d672b7949522be1c482935d31786
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 67d4785ad56447e581571b300372c4a91fe90c6d3806fa04d353601b21459243
 ---
 
 ---
@@ -38,7 +38,7 @@ Use the sibling `/content` endpoint to download the bytes.
 
   The chat this generated file belongs to
 
-- `created_at: string`
+- `created_at: string or null`
 
   File creation timestamp, when available
 
@@ -46,15 +46,15 @@ Use the sibling `/content` endpoint to download the bytes.
 
   Display name of the generated file
 
-- `md5: string`
+- `md5: string or null`
 
   Lowercase hex MD5 of the stored file. Null when no stored hash is available. The sibling `/content` endpoint also sets a `Content-MD5` header (base64 per RFC 1864) computed over the exact served bytes.
 
-- `mime_type: string`
+- `mime_type: string or null`
 
   MIME type of the stored file, when available
 
-- `size_bytes: number`
+- `size_bytes: number or null`
 
   Size in bytes of the stored file, when available
 

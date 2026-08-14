@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/generated_files
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 752a27eab1fec7330b2a4ee5c2341abfc042d34a3462dd6f3f3f29a4d1f97581
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: e3b35a4dffef77cb43a556e73f92500457f21ee5868d359f53f5c84935c45489
 ---
 
 ---
@@ -40,7 +40,7 @@ Use the sibling `/content` endpoint to download the bytes.
 
   The chat this generated file belongs to
 
-- `created_at: string`
+- `created_at: string or null`
 
   File creation timestamp, when available
 
@@ -48,15 +48,15 @@ Use the sibling `/content` endpoint to download the bytes.
 
   Display name of the generated file
 
-- `md5: string`
+- `md5: string or null`
 
   Lowercase hex MD5 of the stored file. Null when no stored hash is available. The sibling `/content` endpoint also sets a `Content-MD5` header (base64 per RFC 1864) computed over the exact served bytes.
 
-- `mime_type: string`
+- `mime_type: string or null`
 
   MIME type of the stored file, when available
 
-- `size_bytes: number`
+- `size_bytes: number or null`
 
   Size in bytes of the stored file, when available
 
@@ -126,7 +126,7 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/generated-files/$CLAUDE_
 
     The chat this generated file belongs to
 
-  - `created_at: string`
+  - `created_at: string or null`
 
     File creation timestamp, when available
 
@@ -134,14 +134,14 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/generated-files/$CLAUDE_
 
     Display name of the generated file
 
-  - `md5: string`
+  - `md5: string or null`
 
     Lowercase hex MD5 of the stored file. Null when no stored hash is available. The sibling `/content` endpoint also sets a `Content-MD5` header (base64 per RFC 1864) computed over the exact served bytes.
 
-  - `mime_type: string`
+  - `mime_type: string or null`
 
     MIME type of the stored file, when available
 
-  - `size_bytes: number`
+  - `size_bytes: number or null`
 
     Size in bytes of the stored file, when available

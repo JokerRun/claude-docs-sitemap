@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/tunnel_certificates/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 5488cf86674310c502642becfb87082aab259b011850f164d05eafe752ea4522
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: f96238cac5a59201f1466973261936803c10a34794ffea5f9c51d3393325af26
 ---
 
 ---
@@ -58,7 +58,7 @@ Archived certificates are excluded unless `include_archived` is set.
 
     ID of the Tunnel Certificate.
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     RFC 3339 datetime string indicating when the certificate was archived, or
     `null` if it is not archived.
@@ -67,7 +67,7 @@ Archived certificates are excluded unless `include_archived` is set.
 
     RFC 3339 datetime string indicating when the certificate was registered.
 
-  - `expires_at: string`
+  - `expires_at: string or null`
 
     RFC 3339 datetime string indicating when the certificate expires, or
     `null` if it does not expire.
@@ -86,7 +86,7 @@ Archived certificates are excluded unless `include_archived` is set.
 
     - `"tunnel_certificate"`
 
-- `next_page: string`
+- `next_page: string or null`
 
   Opaque cursor for the next page, or `null` if there are no more results.
 

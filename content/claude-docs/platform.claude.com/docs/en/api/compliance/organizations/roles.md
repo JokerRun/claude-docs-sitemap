@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 08213feb838fe55463d2a3d75f02fdbdb87b296530b52c857ca587a36d07e159
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 02f1e7c0579c6226e69d6d2d291a8fc3b98302f9c24ab625f9679f0653693a0d
 ---
 
 ---
@@ -48,7 +48,7 @@ List Compliance Roles
 
     Role identifier (tagged ID)
 
-  - `created_at: string`
+  - `created_at: string or null`
 
     Role creation timestamp (ISO 8601)
 
@@ -60,7 +60,7 @@ List Compliance Roles
 
     Role name
 
-  - `updated_at: string`
+  - `updated_at: string or null`
 
     Role last-updated timestamp (ISO 8601)
 
@@ -68,7 +68,7 @@ List Compliance Roles
 
   Whether more records exist beyond the current result set
 
-- `next_page: string`
+- `next_page: string or null`
 
   Token to retrieve the next page. Use this as the 'page' parameter in your next request
 
@@ -123,7 +123,7 @@ Get Compliance Role
 
   Role identifier (tagged ID)
 
-- `created_at: string`
+- `created_at: string or null`
 
   Role creation timestamp (ISO 8601)
 
@@ -135,7 +135,7 @@ Get Compliance Role
 
   Role name
 
-- `updated_at: string`
+- `updated_at: string or null`
 
   Role last-updated timestamp (ISO 8601)
 
@@ -170,7 +170,7 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles/$ROLE
 
     Role identifier (tagged ID)
 
-  - `created_at: string`
+  - `created_at: string or null`
 
     Role creation timestamp (ISO 8601)
 
@@ -182,7 +182,7 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles/$ROLE
 
     Role name
 
-  - `updated_at: string`
+  - `updated_at: string or null`
 
     Role last-updated timestamp (ISO 8601)
 
@@ -196,7 +196,7 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles/$ROLE
 
     Role identifier (tagged ID)
 
-  - `created_at: string`
+  - `created_at: string or null`
 
     Role creation timestamp (ISO 8601)
 
@@ -208,7 +208,7 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles/$ROLE
 
     Role name
 
-  - `updated_at: string`
+  - `updated_at: string or null`
 
     Role last-updated timestamp (ISO 8601)
 
@@ -266,7 +266,7 @@ List Compliance Role Permissions
 
   Whether more records exist beyond the current result set
 
-- `next_page: string`
+- `next_page: string or null`
 
   Token to retrieve the next page. Use this as the 'page' parameter in your next request
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/create
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 70ebe3569a5ac1995d98aa4496e5176e1396edb19005123b3c436c1198a80c3a
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: fcecb763e702866ba8dd0dffc2721ae5c5dcb85272e3819dc403f57264952946
 ---
 
 ---
@@ -96,7 +96,7 @@ Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel;
 
 ### Body Parameters
 
-- `display_name: optional string`
+- `display_name: optional string or null`
 
   Optional human-readable name for the tunnel (1-255 characters).
 
@@ -110,7 +110,7 @@ Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel;
 
     Unique identifier for the tunnel, prefixed with `tnl_`.
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 
@@ -118,7 +118,7 @@ Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel;
 
     A timestamp in RFC 3339 format
 
-  - `display_name: string`
+  - `display_name: string or null`
 
     Human-readable name for the tunnel (1-255 characters). Null if unset.
 

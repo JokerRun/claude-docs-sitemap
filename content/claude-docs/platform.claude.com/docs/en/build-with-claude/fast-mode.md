@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fast-mode
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 8330c5980de433462d7154ce44249884e1f60770412d31f09aff6fbdc2d3102e
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 820a9a71a8d731479d4f330b0eb6429e23b370391c27a672bcb5599321f2c2d8
 ---
 
 ---
@@ -137,7 +137,13 @@ Fast mode runs the same model with a faster inference configuration. There is no
       ],
   });
 
-  Console.WriteLine(response);
+  foreach (var block in response.Content)
+  {
+      if (block.TryPickText(out var textBlock))
+      {
+          Console.WriteLine(textBlock.Text);
+      }
+  }
   ```
 
   ```go Go
@@ -503,15 +509,12 @@ Because setting `max_retries` to `0` also disables retries for other transient e
   const client = new Anthropic();
 
   async function createMessageWithFastFallback(
-    params: Anthropic.Beta.MessageCreateParams,
+    params: Anthropic.Beta.MessageCreateParamsNonStreaming,
     requestOptions?: Anthropic.RequestOptions,
     maxAttempts: number = 3
   ): Promise<Anthropic.Beta.Messages.BetaMessage> {
     try {
-      return (await client.beta.messages.create(
-        params,
-        requestOptions
-      )) as Anthropic.Beta.Messages.BetaMessage;
+      return await client.beta.messages.create(params, requestOptions);
     } catch (e) {
       if (e instanceof Anthropic.RateLimitError && params.speed === "fast") {
         const { speed, ...rest } = params;
@@ -730,7 +733,7 @@ Because setting `max_retries` to `0` also disables retries for other transient e
   ```
 
   ```ruby Ruby
-  anthropic = Anthropic::Client.new
+  client = Anthropic::Client.new
 
   def create_message_with_fast_fallback(client, request_options: {}, max_attempts: 3, **params)
     client.beta.messages.create(**params, request_options: request_options)
@@ -744,7 +747,7 @@ Because setting `max_retries` to `0` also disables retries for other transient e
   end
 
   message = create_message_with_fast_fallback(
-    anthropic,
+    client,
     model: "claude-opus-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello" }],

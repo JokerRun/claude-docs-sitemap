@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/retrieve
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: d5f4783c50a698b476bc46b8eafb7112e44914ea1ab51c84c8f750df505964ac
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 81891331f73693cc6dd2e70425e358abedf787271faed18e25044da950c58379
 ---
 
 ---
@@ -30,7 +30,7 @@ Get Workspace
 
     ID of the Workspace.
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     RFC 3339 datetime string indicating when the Workspace was archived, or `null` if the Workspace is not archived.
 
@@ -73,7 +73,7 @@ Get Workspace
 
     Hex color code representing the Workspace in the Anthropic Console.
 
-  - `external_key_id: string`
+  - `external_key_id: string or null`
 
     ID of the customer-managed encryption key (CMEK) configuration to use for this
     Workspace. Setting this field requires CMEK to be enabled for your

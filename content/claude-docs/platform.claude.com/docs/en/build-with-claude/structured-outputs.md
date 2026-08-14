@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/structured-outputs
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 05aaca15899a976394fb387fc75ea88baaddb31f10dc8c63dc2329be609b12f6
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 1440ba74d6eb67920a9748b13c5e6abb42fda52e0609c6fe848b1c75b20d4f2a
 ---
 
 ---
@@ -404,10 +404,9 @@ Instead of writing raw JSON schemas, you can use familiar schema definition tool
 
 <CodeGroup exclude="shell:cURL">
   ```bash CLI
-  { read -r _ NAME; read -r _ EMAIL; } < <(
-    ant messages create \
-      --transform 'content.#(type=="text").text|@fromstr|{name,email}' \
-      --format yaml <<'YAML'
+  ant messages create \
+    --transform 'content.#(type=="text").text|@fromstr|{name,email}' \
+    --format yaml <<'YAML'
   model: claude-opus-5
   max_tokens: 1024
   messages:
@@ -429,8 +428,6 @@ Instead of writing raw JSON schemas, you can use familiar schema definition tool
         required: [name, email, plan_interest, demo_requested]
         additionalProperties: false
   YAML
-  )
-  printf '%s (%s)\n' "$NAME" "$EMAIL"
   ```
 
   ```python Python

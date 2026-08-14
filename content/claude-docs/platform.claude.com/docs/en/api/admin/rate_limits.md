@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rate_limits
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 4f9dde457969280f80d0f31ac3366d3322717546b020cfd8816eddbf51343f39
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 441bc1721eaef86967e3e54e3930cf79842b512432fe78a7739b7627d824e6f5
 ---
 
 ---
@@ -86,7 +86,7 @@ and contains the set of limiter values that apply to it.
 
       The configured limit value for this limiter type.
 
-  - `models: array of string`
+  - `models: array of string or null`
 
     Model names this entry's limits apply to, including aliases. `null` when `group_type` is not `"model_group"`.
 
@@ -96,7 +96,7 @@ and contains the set of limiter values that apply to it.
 
     - `"rate_limit"`
 
-- `next_page: string`
+- `next_page: string or null`
 
   Token to provide in as `page` in the subsequent request to retrieve the next page of data.
 
@@ -174,7 +174,7 @@ curl https://api.anthropic.com/v1/organizations/rate_limits \
 
         The configured limit value for this limiter type.
 
-    - `models: array of string`
+    - `models: array of string or null`
 
       Model names this entry's limits apply to, including aliases. `null` when `group_type` is not `"model_group"`.
 
@@ -184,6 +184,6 @@ curl https://api.anthropic.com/v1/organizations/rate_limits \
 
       - `"rate_limit"`
 
-  - `next_page: string`
+  - `next_page: string or null`
 
     Token to provide in as `page` in the subsequent request to retrieve the next page of data.

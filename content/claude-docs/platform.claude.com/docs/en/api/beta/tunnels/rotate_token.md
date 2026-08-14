@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/rotate_token
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: f7a160d9e8f097df6c7542022d743d754179bb852b93be9afbd05e942ba74128
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 09fa5f6d63047fdfdc06953ff875353a987a04a46c98c8b9bbad8188827e8485
 ---
 
 ---
@@ -100,7 +100,7 @@ Rotates a tunnel's connector token. Rotation invalidates the current token for n
 
 ### Body Parameters
 
-- `reason: optional string`
+- `reason: optional string or null`
 
   Optional free-text reason for the rotation, recorded for audit.
 

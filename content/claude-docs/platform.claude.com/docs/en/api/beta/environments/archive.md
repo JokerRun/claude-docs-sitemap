@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/archive
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 7ae934527f34771c600dde0c1d5bcd45d4145b4b33d4cb28787b55275e4bd767
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 00ffbd78176871bd4b3bd223f4b9c762742b832ac19a2a3c4e99584e3b73156c
 ---
 
 ---
@@ -106,7 +106,7 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
     Environment identifier (e.g., 'env_...')
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     RFC 3339 timestamp when environment was archived, or null if not archived
 

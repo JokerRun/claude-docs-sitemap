@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 477639d35b4782622e0e48569031659746d957ae4467d66fca9ae2f4140d0ec8
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 1a1f25700d539bfb333b0408b09b21ae0e4b0248b5ccf9f1bbb3d2cd3739eda5
 ---
 
 ---
@@ -287,7 +287,7 @@ that gives you the confidence to enjoy every electron-powered mile.
 """
 ```
 
-Now that you have your static content, add at least 4-5 sample "good" interactions to guide Claude's responses. These examples should be representative of your ideal customer interaction and can include guardrails, tool calls, etc.
+Now that you have your static content, add at least 4-5 sample "good" interactions to guide Claude's responses. These examples should be representative of your ideal customer interaction and can include elements such as guardrails and tool calls.
 
 ```python
 EXAMPLES = """

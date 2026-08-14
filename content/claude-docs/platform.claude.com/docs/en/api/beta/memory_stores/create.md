@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/create
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 3a8c131c1c46dfb0d17f4aca73854efe13be08f78430afece0e15b57b1cd6296
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: c866e4b60daec6bb4a183bdec8221c50a0c695be8d580432f2dd535da0428027
 ---
 
 ---
@@ -132,7 +132,7 @@ Create a memory store
 
     A timestamp in RFC 3339 format
 
-  - `archived_at: optional string`
+  - `archived_at: optional string or null`
 
     A timestamp in RFC 3339 format
 

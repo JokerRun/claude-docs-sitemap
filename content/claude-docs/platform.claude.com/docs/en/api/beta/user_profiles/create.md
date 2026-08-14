@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: d07085fcfd1be802895cff278206a1861f16d88f940e75cbebf117c778933a56
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 2241e0e272cd791d0a67cc18f9309eaf9a85b70f2f75df92e0f082168251e8a7
 ---
 
 ---
@@ -94,7 +94,7 @@ Create User Profile
 
 ### Body Parameters
 
-- `external_id: optional string`
+- `external_id: optional string or null`
 
   Platform's own identifier for this user. Not enforced unique. Maximum 255 characters.
 
@@ -102,7 +102,7 @@ Create User Profile
 
   Free-form key-value data to attach to this user profile. Maximum 16 keys, with keys up to 64 characters and values up to 512 characters. Values must be non-empty strings.
 
-- `name: optional string`
+- `name: optional string or null`
 
   Display name of the entity this profile represents. Required when relationship is `resold` (the resold-to company's name); optional otherwise. Maximum 255 characters.
 
@@ -166,11 +166,11 @@ Create User Profile
 
     A timestamp in RFC 3339 format
 
-  - `external_id: optional string`
+  - `external_id: optional string or null`
 
     Platform's own identifier for this user. Not enforced unique.
 
-  - `name: optional string`
+  - `name: optional string or null`
 
     Display name of the entity this profile represents. For `resold` this is the resold-to company's name.
 

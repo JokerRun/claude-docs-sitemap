@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/retrieve
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 4a159c6d6c4085c889158924f0aa5845655d375b4ef7144049f9098ee96b5155
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: a1e0118747e2dc793fa2de4efdc8bdbc50cdc6d9ed9eae8802bb5bfb36be8f36
 ---
 
 ---
@@ -38,7 +38,7 @@ Retrieve a single tunnel in the caller's organization by ID.
 
   ID of the Tunnel.
 
-- `archived_at: string`
+- `archived_at: string or null`
 
   RFC 3339 datetime string indicating when the Tunnel was archived, or
   `null` if it is not archived.
@@ -47,7 +47,7 @@ Retrieve a single tunnel in the caller's organization by ID.
 
   RFC 3339 datetime string indicating when the Tunnel was created.
 
-- `display_name: string`
+- `display_name: string or null`
 
   Human-readable name for the Tunnel (1–255 characters), or `null` if unset.
 
@@ -63,7 +63,7 @@ Retrieve a single tunnel in the caller's organization by ID.
 
   - `"tunnel"`
 
-- `workspace_id: string`
+- `workspace_id: string or null`
 
   ID of the Workspace this Tunnel belongs to, or `null` for the default
   Workspace. Immutable after creation.

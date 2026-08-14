@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 23bc51841c85e1c45fe667109eb3df5a1d252adb543dba8c2ebb5bbfff9e4156
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 2fca728c9acd13393fb56d5a25ab432b34b65ee3450f218f2dc5879e77d09117
 ---
 
 ---
@@ -44,11 +44,11 @@ download the bytes.
 
   File creation timestamp
 
-- `filename: string`
+- `filename: string or null`
 
   Display name of the file, if set
 
-- `md5: string`
+- `md5: string or null`
 
   Lowercase hex MD5 of the file's preferred downloadable variant, as recorded at upload time. Null when no stored hash is available. The sibling `/content` endpoint also sets a `Content-MD5` header (base64 per RFC 1864) computed over the exact served bytes; when the two disagree, the header is authoritative.
 
@@ -56,11 +56,11 @@ download the bytes.
 
   Chat message IDs this file is attached to. A file can be referenced by multiple messages.
 
-- `mime_type: string`
+- `mime_type: string or null`
 
   MIME type of the file's preferred downloadable variant (e.g. 'application/pdf'). May be null for files with no downloadable content (e.g. code-interpreter outputs).
 
-- `size_bytes: number`
+- `size_bytes: number or null`
 
   Size in bytes of the file's preferred downloadable variant, if known
 
@@ -182,11 +182,11 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/files/$CLAUDE_FILE_ID/co
 
     File creation timestamp
 
-  - `filename: string`
+  - `filename: string or null`
 
     Display name of the file, if set
 
-  - `md5: string`
+  - `md5: string or null`
 
     Lowercase hex MD5 of the file's preferred downloadable variant, as recorded at upload time. Null when no stored hash is available. The sibling `/content` endpoint also sets a `Content-MD5` header (base64 per RFC 1864) computed over the exact served bytes; when the two disagree, the header is authoritative.
 
@@ -194,11 +194,11 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/files/$CLAUDE_FILE_ID/co
 
     Chat message IDs this file is attached to. A file can be referenced by multiple messages.
 
-  - `mime_type: string`
+  - `mime_type: string or null`
 
     MIME type of the file's preferred downloadable variant (e.g. 'application/pdf'). May be null for files with no downloadable content (e.g. code-interpreter outputs).
 
-  - `size_bytes: number`
+  - `size_bytes: number or null`
 
     Size in bytes of the file's preferred downloadable variant, if known
 

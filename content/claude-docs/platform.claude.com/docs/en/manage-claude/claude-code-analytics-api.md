@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/claude-code-analytics-api
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 6666f16f3b6d77d54e03a0ebbd6882edcf548ee0ec42fd39d00a999c49f1bdb5
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 1273548acc4f69c99bfa2da0b9f21780db06f99da63e688590c13cd3430e05a4
 ---
 
 ---
@@ -46,13 +46,13 @@ curl "https://api.anthropic.com/v1/organizations/usage_report/claude_code?\
 starting_at=2025-09-08&\
 limit=20" \
   -H "anthropic-version: 2023-06-01" \
-  -H "x-api-key: $ADMIN_API_KEY"
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
 <Tip>
   **Set a User-Agent header for integrations**
 
-  If you're building an integration, set your User-Agent header to help us understand usage patterns:
+  If you're building an integration, set your User-Agent header to help Anthropic understand usage patterns:
 
   ```text wrap
   User-Agent: YourApp/1.0.0 (https://yourapp.com)
@@ -82,7 +82,7 @@ For complete parameter details and response schemas, see the [Claude Code Analyt
 curl "https://api.anthropic.com/v1/organizations/usage_report/claude_code?\
 starting_at=2025-09-08" \
   -H "anthropic-version: 2023-06-01" \
-  -H "x-api-key: $ADMIN_API_KEY"
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
 #### Get analytics with pagination
@@ -93,14 +93,14 @@ curl "https://api.anthropic.com/v1/organizations/usage_report/claude_code?\
 starting_at=2025-09-08&\
 limit=20" \
   -H "anthropic-version: 2023-06-01" \
-  -H "x-api-key: $ADMIN_API_KEY"
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 
 # Subsequent request using cursor from response
 curl "https://api.anthropic.com/v1/organizations/usage_report/claude_code?\
 starting_at=2025-09-08&\
 page=page_MjAyNS0wNS0xNFQwMDowMDowMFo=" \
   -H "anthropic-version: 2023-06-01" \
-  -H "x-api-key: $ADMIN_API_KEY"
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
 ### Request parameters

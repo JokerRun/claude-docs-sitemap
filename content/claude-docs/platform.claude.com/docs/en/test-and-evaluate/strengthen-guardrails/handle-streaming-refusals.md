@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 97cddeede58c14902e7cbc6238ae55a1d244985f55d8450640fe6bc89c96c28d
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: aeee95d8e9d84e06965e4f4cc553a23888968238cb629c658722fc56ff724509
 ---
 
 ---
@@ -116,7 +116,7 @@ Here's how to detect and handle streaming refusals in your application:
 
   ```typescript TypeScript
   const client = new Anthropic();
-  let messages: any[] = [];
+  let messages: Anthropic.MessageParam[] = [];
 
   function resetConversation() {
     // Reset conversation context after refusal
@@ -156,9 +156,12 @@ Here's how to detect and handle streaming refusals in your application:
 
   try
   {
-      await foreach (var msg in client.Messages.CreateStreaming(parameters))
+      await foreach (var streamEvent in client.Messages.CreateStreaming(parameters))
       {
-          if (msg.Type == "message_delta" && msg.Delta?.StopReason == "refusal")
+          if (
+              streamEvent.TryPickDelta(out var deltaEvent)
+              && deltaEvent.Delta.StopReason == StopReason.Refusal
+          )
           {
               ResetConversation();
               break;
@@ -200,7 +203,7 @@ Here's how to detect and handle streaming refusals in your application:
   		event := stream.Current()
   		switch eventVariant := event.AsAny().(type) {
   		case anthropic.MessageDeltaEvent:
-  			if eventVariant.Delta.StopReason == "refusal" {
+  			if eventVariant.Delta.StopReason == anthropic.StopReasonRefusal {
   				resetConversation()
   				break streamLoop
   			}
@@ -269,11 +272,9 @@ Here's how to detect and handle streaming refusals in your application:
       );
 
       foreach ($stream as $event) {
-          if (isset($event->type) && $event->type === 'message_delta') {
-              if (isset($event->delta->stopReason) && $event->delta->stopReason === 'refusal') {
-                  resetConversation($messages);
-                  break;
-              }
+          if ($event->type === 'message_delta' && $event->delta->stopReason === 'refusal') {
+              resetConversation($messages);
+              break;
           }
       }
   } catch (Exception $e) {

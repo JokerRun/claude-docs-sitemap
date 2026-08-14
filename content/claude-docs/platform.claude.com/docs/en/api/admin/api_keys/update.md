@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys/update
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 8678b297719e4a94af74f510a640ce2cb0f0a17ff245c5052e22ae3655ade595
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: d175f7edf0d30a78d3c337044a3454bd70ddf03eabb915683b27853b891f4553
 ---
 
 ---
@@ -24,11 +24,11 @@ Update API Key
 
 ### Body Parameters
 
-- `name: optional string`
+- `name: optional string or null`
 
   Name of the API key.
 
-- `status: optional "active" or "archived" or "inactive"`
+- `status: optional "active" or "archived" or "inactive" or null`
 
   Status of the API key.
 
@@ -50,9 +50,11 @@ Update API Key
 
     RFC 3339 datetime string indicating when the API Key was created.
 
-  - `created_by: object { id, type }`
+  - `created_by: object { id, type }  or null`
 
-    The ID and type of the actor that created the API key.
+    The ID and type of the actor that created the API key, or `null` when the
+    creator is not recorded (legacy, workload-identity-federated, or
+    system-created keys).
 
     - `id: string`
 
@@ -62,7 +64,7 @@ Update API Key
 
       Type of the actor that created the object.
 
-  - `expires_at: string`
+  - `expires_at: string or null`
 
     RFC 3339 datetime string indicating when the API Key expires, or `null` if it never expires.
 
@@ -70,11 +72,11 @@ Update API Key
 
     Name of the API key.
 
-  - `partial_key_hint: string`
+  - `partial_key_hint: string or null`
 
     Partially redacted hint for the API key.
 
-  - `principal: object { id, type }`
+  - `principal: object { id, type }  or null`
 
     The ID and type of the principal the API key acts as, or `null` if the key is not bound to a principal.
 
@@ -110,7 +112,7 @@ Update API Key
 
     - `"api_key"`
 
-  - `workspace_id: string`
+  - `workspace_id: string or null`
 
     ID of the Workspace associated with the API key, or `null` if the API key belongs to the default Workspace.
 

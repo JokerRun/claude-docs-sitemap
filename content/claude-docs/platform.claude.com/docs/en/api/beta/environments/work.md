@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 059e0e5abbe61041eac269339da6a39edf62bd215054c1d522a483713fd56348
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 63706539f877363c4f0a532be4a2c39ff7e8bee3ac4f1e6fcebba5414267c62e
 ---
 
 ---
@@ -116,7 +116,7 @@ Retrieve detailed information about a specific work item.
 
     Work identifier (e.g., 'work_...')
 
-  - `acknowledged_at: string`
+  - `acknowledged_at: string or null`
 
     RFC 3339 timestamp when the work item was acknowledged and assigned to a self-hosted sandbox
 
@@ -142,7 +142,7 @@ Retrieve detailed information about a specific work item.
 
     Environment identifier this work belongs to (e.g., `env_...`)
 
-  - `latest_heartbeat_at: string`
+  - `latest_heartbeat_at: string or null`
 
     RFC 3339 timestamp of the most recent heartbeat
 
@@ -150,11 +150,11 @@ Retrieve detailed information about a specific work item.
 
     User-provided metadata key-value pairs associated with this work item
 
-  - `secret: string`
+  - `secret: string or null`
 
     Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
-  - `started_at: string`
+  - `started_at: string or null`
 
     RFC 3339 timestamp when work execution started
 
@@ -172,11 +172,11 @@ Retrieve detailed information about a specific work item.
 
     - `"stopped"`
 
-  - `stop_requested_at: string`
+  - `stop_requested_at: string or null`
 
     RFC 3339 timestamp when stop was requested
 
-  - `stopped_at: string`
+  - `stopped_at: string or null`
 
     RFC 3339 timestamp when work execution stopped
 
@@ -336,7 +336,7 @@ Long poll for work items in the queue.
 
     Work identifier (e.g., 'work_...')
 
-  - `acknowledged_at: string`
+  - `acknowledged_at: string or null`
 
     RFC 3339 timestamp when the work item was acknowledged and assigned to a self-hosted sandbox
 
@@ -362,7 +362,7 @@ Long poll for work items in the queue.
 
     Environment identifier this work belongs to (e.g., `env_...`)
 
-  - `latest_heartbeat_at: string`
+  - `latest_heartbeat_at: string or null`
 
     RFC 3339 timestamp of the most recent heartbeat
 
@@ -370,11 +370,11 @@ Long poll for work items in the queue.
 
     User-provided metadata key-value pairs associated with this work item
 
-  - `secret: string`
+  - `secret: string or null`
 
     Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
-  - `started_at: string`
+  - `started_at: string or null`
 
     RFC 3339 timestamp when work execution started
 
@@ -392,11 +392,11 @@ Long poll for work items in the queue.
 
     - `"stopped"`
 
-  - `stop_requested_at: string`
+  - `stop_requested_at: string or null`
 
     RFC 3339 timestamp when stop was requested
 
-  - `stopped_at: string`
+  - `stopped_at: string or null`
 
     RFC 3339 timestamp when work execution stopped
 
@@ -544,7 +544,7 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
     Work identifier (e.g., 'work_...')
 
-  - `acknowledged_at: string`
+  - `acknowledged_at: string or null`
 
     RFC 3339 timestamp when the work item was acknowledged and assigned to a self-hosted sandbox
 
@@ -570,7 +570,7 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
     Environment identifier this work belongs to (e.g., `env_...`)
 
-  - `latest_heartbeat_at: string`
+  - `latest_heartbeat_at: string or null`
 
     RFC 3339 timestamp of the most recent heartbeat
 
@@ -578,11 +578,11 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
     User-provided metadata key-value pairs associated with this work item
 
-  - `secret: string`
+  - `secret: string or null`
 
     Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
-  - `started_at: string`
+  - `started_at: string or null`
 
     RFC 3339 timestamp when work execution started
 
@@ -600,11 +600,11 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
     - `"stopped"`
 
-  - `stop_requested_at: string`
+  - `stop_requested_at: string or null`
 
     RFC 3339 timestamp when stop was requested
 
-  - `stopped_at: string`
+  - `stopped_at: string or null`
 
     RFC 3339 timestamp when work execution stopped
 
@@ -919,7 +919,7 @@ Stop a work item, initiating graceful or forced shutdown.
 
     Work identifier (e.g., 'work_...')
 
-  - `acknowledged_at: string`
+  - `acknowledged_at: string or null`
 
     RFC 3339 timestamp when the work item was acknowledged and assigned to a self-hosted sandbox
 
@@ -945,7 +945,7 @@ Stop a work item, initiating graceful or forced shutdown.
 
     Environment identifier this work belongs to (e.g., `env_...`)
 
-  - `latest_heartbeat_at: string`
+  - `latest_heartbeat_at: string or null`
 
     RFC 3339 timestamp of the most recent heartbeat
 
@@ -953,11 +953,11 @@ Stop a work item, initiating graceful or forced shutdown.
 
     User-provided metadata key-value pairs associated with this work item
 
-  - `secret: string`
+  - `secret: string or null`
 
     Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
-  - `started_at: string`
+  - `started_at: string or null`
 
     RFC 3339 timestamp when work execution started
 
@@ -975,11 +975,11 @@ Stop a work item, initiating graceful or forced shutdown.
 
     - `"stopped"`
 
-  - `stop_requested_at: string`
+  - `stop_requested_at: string or null`
 
     RFC 3339 timestamp when stop was requested
 
-  - `stopped_at: string`
+  - `stopped_at: string or null`
 
     RFC 3339 timestamp when work execution stopped
 
@@ -1137,7 +1137,7 @@ List work items in an environment.
 
       Work identifier (e.g., 'work_...')
 
-    - `acknowledged_at: string`
+    - `acknowledged_at: string or null`
 
       RFC 3339 timestamp when the work item was acknowledged and assigned to a self-hosted sandbox
 
@@ -1163,7 +1163,7 @@ List work items in an environment.
 
       Environment identifier this work belongs to (e.g., `env_...`)
 
-    - `latest_heartbeat_at: string`
+    - `latest_heartbeat_at: string or null`
 
       RFC 3339 timestamp of the most recent heartbeat
 
@@ -1171,11 +1171,11 @@ List work items in an environment.
 
       User-provided metadata key-value pairs associated with this work item
 
-    - `secret: string`
+    - `secret: string or null`
 
       Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
-    - `started_at: string`
+    - `started_at: string or null`
 
       RFC 3339 timestamp when work execution started
 
@@ -1193,11 +1193,11 @@ List work items in an environment.
 
       - `"stopped"`
 
-    - `stop_requested_at: string`
+    - `stop_requested_at: string or null`
 
       RFC 3339 timestamp when stop was requested
 
-    - `stopped_at: string`
+    - `stopped_at: string or null`
 
       RFC 3339 timestamp when work execution stopped
 
@@ -1207,7 +1207,7 @@ List work items in an environment.
 
       - `"work"`
 
-  - `next_page: string`
+  - `next_page: string or null`
 
     Opaque cursor for fetching the next page of results
 
@@ -1360,7 +1360,7 @@ Update work item metadata with merge semantics.
 
     Work identifier (e.g., 'work_...')
 
-  - `acknowledged_at: string`
+  - `acknowledged_at: string or null`
 
     RFC 3339 timestamp when the work item was acknowledged and assigned to a self-hosted sandbox
 
@@ -1386,7 +1386,7 @@ Update work item metadata with merge semantics.
 
     Environment identifier this work belongs to (e.g., `env_...`)
 
-  - `latest_heartbeat_at: string`
+  - `latest_heartbeat_at: string or null`
 
     RFC 3339 timestamp of the most recent heartbeat
 
@@ -1394,11 +1394,11 @@ Update work item metadata with merge semantics.
 
     User-provided metadata key-value pairs associated with this work item
 
-  - `secret: string`
+  - `secret: string or null`
 
     Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
-  - `started_at: string`
+  - `started_at: string or null`
 
     RFC 3339 timestamp when work execution started
 
@@ -1416,11 +1416,11 @@ Update work item metadata with merge semantics.
 
     - `"stopped"`
 
-  - `stop_requested_at: string`
+  - `stop_requested_at: string or null`
 
     RFC 3339 timestamp when stop was requested
 
-  - `stopped_at: string`
+  - `stopped_at: string or null`
 
     RFC 3339 timestamp when work execution stopped
 
@@ -1568,7 +1568,7 @@ Get statistics about the work queue for an environment.
 
     Number of work items waiting to be picked up (lag from consumer group)
 
-  - `oldest_queued_at: string`
+  - `oldest_queued_at: string or null`
 
     RFC 3339 timestamp of oldest item in the work stream (includes both queued and pending items), null if stream empty
 
@@ -1582,7 +1582,7 @@ Get statistics about the work queue for an environment.
 
     - `"work_queue_stats"`
 
-  - `workers_polling: number`
+  - `workers_polling: number or null`
 
     Number of workers that have polled for work in the last 30 seconds. Requires worker_id to be sent with poll requests.
 
@@ -1623,7 +1623,7 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/stats \
 
     Work identifier (e.g., 'work_...')
 
-  - `acknowledged_at: string`
+  - `acknowledged_at: string or null`
 
     RFC 3339 timestamp when the work item was acknowledged and assigned to a self-hosted sandbox
 
@@ -1649,7 +1649,7 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/stats \
 
     Environment identifier this work belongs to (e.g., `env_...`)
 
-  - `latest_heartbeat_at: string`
+  - `latest_heartbeat_at: string or null`
 
     RFC 3339 timestamp of the most recent heartbeat
 
@@ -1657,11 +1657,11 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/stats \
 
     User-provided metadata key-value pairs associated with this work item
 
-  - `secret: string`
+  - `secret: string or null`
 
     Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
-  - `started_at: string`
+  - `started_at: string or null`
 
     RFC 3339 timestamp when work execution started
 
@@ -1679,11 +1679,11 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/stats \
 
     - `"stopped"`
 
-  - `stop_requested_at: string`
+  - `stop_requested_at: string or null`
 
     RFC 3339 timestamp when stop was requested
 
-  - `stopped_at: string`
+  - `stopped_at: string or null`
 
     RFC 3339 timestamp when work execution stopped
 
@@ -1745,7 +1745,7 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/stats \
 
       Work identifier (e.g., 'work_...')
 
-    - `acknowledged_at: string`
+    - `acknowledged_at: string or null`
 
       RFC 3339 timestamp when the work item was acknowledged and assigned to a self-hosted sandbox
 
@@ -1771,7 +1771,7 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/stats \
 
       Environment identifier this work belongs to (e.g., `env_...`)
 
-    - `latest_heartbeat_at: string`
+    - `latest_heartbeat_at: string or null`
 
       RFC 3339 timestamp of the most recent heartbeat
 
@@ -1779,11 +1779,11 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/stats \
 
       User-provided metadata key-value pairs associated with this work item
 
-    - `secret: string`
+    - `secret: string or null`
 
       Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
-    - `started_at: string`
+    - `started_at: string or null`
 
       RFC 3339 timestamp when work execution started
 
@@ -1801,11 +1801,11 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/stats \
 
       - `"stopped"`
 
-    - `stop_requested_at: string`
+    - `stop_requested_at: string or null`
 
       RFC 3339 timestamp when stop was requested
 
-    - `stopped_at: string`
+    - `stopped_at: string or null`
 
       RFC 3339 timestamp when work execution stopped
 
@@ -1815,7 +1815,7 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/stats \
 
       - `"work"`
 
-  - `next_page: string`
+  - `next_page: string or null`
 
     Opaque cursor for fetching the next page of results
 
@@ -1831,7 +1831,7 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/stats \
 
     Number of work items waiting to be picked up (lag from consumer group)
 
-  - `oldest_queued_at: string`
+  - `oldest_queued_at: string or null`
 
     RFC 3339 timestamp of oldest item in the work stream (includes both queued and pending items), null if stream empty
 
@@ -1845,7 +1845,7 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/stats \
 
     - `"work_queue_stats"`
 
-  - `workers_polling: number`
+  - `workers_polling: number or null`
 
     Number of workers that have polled for work in the last 30 seconds. Requires worker_id to be sent with poll requests.
 

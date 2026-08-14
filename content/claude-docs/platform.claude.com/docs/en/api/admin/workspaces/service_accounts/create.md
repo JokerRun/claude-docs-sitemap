@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/service_accounts/create
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 035cecf6fc9064e0a681aff720285190f2cd443c16caa6994fea274d3c6e0d81
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 734d7442fa28cb0932c9e0cfea07bac07ebafa7f1b3092b5b2dc2924f3b82ff2
 ---
 
 ---
@@ -60,11 +60,11 @@ Console session; Admin API keys are not accepted.
 
 ### Returns
 
-- `created_by_actor_id: string`
+- `created_by_actor_id: string or null`
 
   Tagged ID (`user_...`/`svac_...`) of the actor who created this membership.
 
-- `implicit: boolean`
+- `implicit: boolean or null`
 
   True when this is the implicit default-workspace membership every service account has when no explicit membership exists. Implicit memberships have role workspace_user and cannot be removed.
 

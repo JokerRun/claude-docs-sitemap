@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/php
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: de0993598fda739703bc50b4ba9fa29d2276966db558b7685f5e61b542d35be1
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 8c991e794cf532ef0068bb5cf6309def94575c52bb6793934dc95bd6e263b501
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/php
 description: Install and configure the Anthropic PHP SDK with value objects and builder patterns
 ---
 
-The Anthropic PHP library provides convenient access to the Anthropic REST API from any PHP 8.1.0+ application.
+The Anthropic PHP library provides convenient access to the Claude API from any PHP 8.1.0+ application.
 
 <Info>
   The PHP SDK is currently in beta. APIs might change between versions.

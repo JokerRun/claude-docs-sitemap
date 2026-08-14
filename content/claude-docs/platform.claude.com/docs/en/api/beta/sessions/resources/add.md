@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/add
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 8322063dbb5011894aff1be8fae64a31565d4308195c50f72a6737a9c0211c25
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: a949190bd490eb8144e45ca1fd486ffa383d28058ed477152aa65642885a0b4d
 ---
 
 ---
@@ -106,7 +106,7 @@ Add Session Resource
 
   - `"file"`
 
-- `mount_path: optional string`
+- `mount_path: optional string or null`
 
   Mount path in the container. Defaults to `/mnt/session/uploads/<file_id>`.
 

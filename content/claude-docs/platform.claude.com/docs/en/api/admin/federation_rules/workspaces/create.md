@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/federation_rules/workspaces/create
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 571e5321c07d9c8d125e8c87fc116613dd61887028f576215e29100c30b6a978
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: faade7a4a922f15a81c0540e5d3c4121dd94b4ecbf889f0b9f8b4db40fcdb0bb
 ---
 
 ---
@@ -51,7 +51,7 @@ scopes require a Console session. Admin API keys are not accepted.
 
   When this workspace was enabled for the rule.
 
-- `created_by_actor_id: string`
+- `created_by_actor_id: string or null`
 
   Tagged ID (`user_...` or `svac_...`) of the actor that enabled this workspace for the rule, if known.
 
@@ -67,7 +67,7 @@ scopes require a Console session. Admin API keys are not accepted.
 
   Tagged ID of the workspace this rule is enabled for.
 
-- `workspace_name: string`
+- `workspace_name: string or null`
 
   Workspace display name. Populated when listing; null in the enable response.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/collaborators
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 9c0b9a9afa049df26bb41ccb72922ff34adb6d55c5cb3c75117918503aff0a2b
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: ddbabf1bc6848186e5f6c484cafb47ee73ef83e8dd254d25ce7a3945ee2b2e6c
 ---
 
 ---
@@ -75,7 +75,7 @@ role.
 
       - `"user"`
 
-    - `user_id: string`
+    - `user_id: string or null`
 
       Identifier of the user granted access (tagged ID), or null if their account has since been deleted
 
@@ -173,7 +173,7 @@ role.
 
   Whether more records exist beyond the current result set
 
-- `next_page: string`
+- `next_page: string or null`
 
   To get the next page, use the 'next_page' from the current response as the 'page' in your next request
 
@@ -235,7 +235,7 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID/collabora
 
       - `"user"`
 
-    - `user_id: string`
+    - `user_id: string or null`
 
       Identifier of the user granted access (tagged ID), or null if their account has since been deleted
 

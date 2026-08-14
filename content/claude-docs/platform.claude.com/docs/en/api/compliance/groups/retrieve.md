@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/groups/retrieve
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 6d2efb78fd1e6e228b74c5d12ed1fd26fb16240074fb45b65c9e8c21e0a2c3d3
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: e19146250d87a8a37856f0314d2cb7df445a763b3bf52298e2d08077e95393da
 ---
 
 ---
@@ -32,7 +32,7 @@ Get Compliance Group
 
   Group identifier (tagged ID)
 
-- `created_at: string`
+- `created_at: string or null`
 
   Group creation timestamp (ISO 8601)
 
@@ -44,7 +44,7 @@ Get Compliance Group
 
   Group name
 
-- `roles: array of string`
+- `roles: array of string or null`
 
   Role IDs assigned to this group.
 
@@ -52,7 +52,7 @@ Get Compliance Group
 
   How the group was created ('direct' or 'scim')
 
-- `updated_at: string`
+- `updated_at: string or null`
 
   Group last-updated timestamp (ISO 8601)
 

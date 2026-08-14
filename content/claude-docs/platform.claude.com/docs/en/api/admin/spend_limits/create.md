@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/create
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 7c13879d4f5d42812bceb2b455a2edcb8e150965fdcfd8545e7d0ba96a985112
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 843860b95337a26247d41a20e397e208cbaa1d96e7574458656ad268cd5dce7c
 ---
 
 ---
@@ -22,7 +22,9 @@ group, and organization-level defaults are configured in claude.ai.
 
 ### Body Parameters
 
-- `amount: string`
+- `amount: string or null`
+
+  Limit amount as a non-negative integer decimal string in the minor unit of the organization's billing currency (cents for USD): "50000" is $500.00. `null` sets an explicit no-limit override for this scope and `period` only — each period resolves independently, so caps for other periods still apply.
 
 - `scope: object { type, user_id }`
 
@@ -46,11 +48,15 @@ group, and organization-level defaults are configured in claude.ai.
 
   - `id: string`
 
-  - `amount: string`
+  - `amount: string or null`
+
+    Limit amount as a non-negative integer decimal string in the minor unit of `currency` (cents for USD): "50000" is $500.00. `null` means no numeric cap is configured at this scope — see the effective report for whether a limit applies.
 
   - `created_at: string`
 
   - `currency: string`
+
+    ISO 4217 code of the organization's billing currency; the unit for `amount`.
 
   - `period: "daily" or "monthly" or "weekly"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/memory
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: d552822f7cd2419b7f0e99f22d223caf190f8ba0bab70e10ae0d9903bc7d732d
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 732ab5245ad655c05047039568a1da945bdc4c0bd1bb662c0a5174395071ef32
 ---
 
 ---
@@ -953,8 +953,8 @@ Daftarkan riwayat versi untuk sebuah store, yang terbaru lebih dulu. Contoh ini 
       store.id,
       memory_id=mem.id,
   )
-  for v in versions:
-      print(f"{v.id}: {v.operation}")
+  for version in versions:
+      print(f"{version.id}: {version.operation}")
 
   version_id = versions.data[1].id
   ```
@@ -1035,8 +1035,8 @@ Daftarkan riwayat versi untuk sebuah store, yang terbaru lebih dulu. Contoh ini 
     store.id,
     memory_id: mem.id
   )
-  versions.auto_paging_each do |v|
-    puts "#{v.id}: #{v.operation}"
+  versions.auto_paging_each do |version|
+    puts "#{version.id}: #{version.operation}"
   end
 
   version_id = versions.data[1].id
@@ -1219,8 +1219,8 @@ Daftarkan store dalam workspace. Store yang diarsipkan dikecualikan secara defau
   ```
 
   ```python Python
-  for s in client.beta.memory_stores.list(include_archived=True):
-      print(s.id, s.name, s.archived_at)
+  for memory_store in client.beta.memory_stores.list(include_archived=True):
+      print(memory_store.id, memory_store.name, memory_store.archived_at)
   ```
 
   ```typescript TypeScript
@@ -1267,8 +1267,8 @@ Daftarkan store dalam workspace. Store yang diarsipkan dikecualikan secara defau
   ```
 
   ```ruby Ruby
-  client.beta.memory_stores.list(include_archived: true).auto_paging_each do |s|
-    puts "#{s.id} #{s.name} #{s.archived_at}"
+  client.beta.memory_stores.list(include_archived: true).auto_paging_each do |memory_store|
+    puts "#{memory_store.id} #{memory_store.name} #{memory_store.archived_at}"
   end
   ```
 </CodeGroup>

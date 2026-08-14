@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/cancel
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 6960560402e909a6c2a7371b5ba2c8f32689689d596e976c687dedf4aaac9d4a
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 4a5b5c741a70ed507f3a612965d94197fe49844814e62c1e69a70dff96a6a3e2
 ---
 
 ---
@@ -104,7 +104,7 @@ Cancel a Dream
 
   - `id: string`
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 
@@ -112,11 +112,11 @@ Cancel a Dream
 
     A timestamp in RFC 3339 format
 
-  - `ended_at: string`
+  - `ended_at: string or null`
 
     A timestamp in RFC 3339 format
 
-  - `error: BetaDreamError`
+  - `error: BetaDreamError or null`
 
     Failure detail for a Dream whose `status` is `failed`.
 
@@ -146,7 +146,7 @@ Cancel a Dream
 
         - `"sessions"`
 
-  - `instructions: string`
+  - `instructions: string or null`
 
   - `model: BetaDreamModelConfig`
 
@@ -172,7 +172,7 @@ Cancel a Dream
 
       - `"memory_store"`
 
-  - `session_id: string`
+  - `session_id: string or null`
 
   - `status: BetaDreamStatus`
 

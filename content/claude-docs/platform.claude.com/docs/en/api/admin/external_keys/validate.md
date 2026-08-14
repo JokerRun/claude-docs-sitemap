@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/validate
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: b404d5f71ea1540f47dee9415bdf13e92a1e50408ff08c9770d31bd9cf0f2e26
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 0a1bc4e750ef22d2fbfd5ee3b660af9c834965b966035fe5f14104fd6ccb3606
 ---
 
 ---
@@ -29,7 +29,7 @@ message if it failed or timed out.
 
 ### Returns
 
-- `error: string`
+- `error: string or null`
 
   Error message when status is `failure`. Null otherwise.
 

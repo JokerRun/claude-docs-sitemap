@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/invites/create
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: ce9ce60b1ea749b1d3179ffe99be5ae4417f707a379352d0ca65ba4b4331a6be
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 33ea349d7bf79f830fb82df49bcaa7b0f6c545e09f13dad28fab26ef59b62f25
 ---
 
 ---
@@ -52,7 +52,7 @@ On plans that draw members from a finite pool of purchased seats, the invite aut
 
     ID of the Invite.
 
-  - `accepted_at: string`
+  - `accepted_at: string or null`
 
     RFC 3339 datetime string indicating when the Invite was accepted, or null.
 

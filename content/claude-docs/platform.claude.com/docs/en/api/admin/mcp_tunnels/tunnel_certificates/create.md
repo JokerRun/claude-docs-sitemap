@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/tunnel_certificates/create
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 0838ae12cfb8ce5238ac7a98a55b7de4b46cb5b587e27a56f036eee4f444e0c7
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: c048f8cee9457e90dbe80cacd3d33b5692a10044258251d1c91adb6d72578a97
 ---
 
 ---
@@ -50,7 +50,7 @@ holds at most two non-archived certificates.
 
   ID of the Tunnel Certificate.
 
-- `archived_at: string`
+- `archived_at: string or null`
 
   RFC 3339 datetime string indicating when the certificate was archived, or
   `null` if it is not archived.
@@ -59,7 +59,7 @@ holds at most two non-archived certificates.
 
   RFC 3339 datetime string indicating when the certificate was registered.
 
-- `expires_at: string`
+- `expires_at: string or null`
 
   RFC 3339 datetime string indicating when the certificate expires, or
   `null` if it does not expire.

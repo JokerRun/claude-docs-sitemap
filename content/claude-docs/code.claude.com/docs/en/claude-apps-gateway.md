@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway
-fetched_at: 2026-08-12T02:56:30.865670Z
-sha256: b322573e9cae48018900ef7fe8285f1c6db6c6a9bd2575978134dd538119764a
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 2820cb85380cea363f5645fe657b58a74fe07bf2fac910af406112a67ed1132e
 ---
 
 > ## Documentation Index
@@ -379,12 +379,14 @@ Once a developer has signed in, every Claude Code invocation on that machine use
 
 The device flow separates the polling CLI from the approving browser, so a remote development box with no display still works: the developer runs `/login` over SSH on the remote machine and opens the verification link in the browser on their laptop.
 
-### What's enforced on developers
+<h3 id="whats-enforced-on-developers">
+  What's enforced on developers
+</h3>
 
-These guarantees apply to every signed-in gateway session.
+These guarantees apply to every session signed in through `/login`. The embedded sessions Claude Desktop launches get their policy as described in [Deliver policy to Claude Desktop sessions](#deliver-policy-to-claude-desktop-sessions), and the telemetry bullet says where their exports go.
 
 * **Model access**: requests for models the policy doesn't grant return 400, and the `/model` picker is filtered to the policy's `availableModels` allowlist. Set [`enforceAvailableModels: true`](/docs/en/model-config#default-model-behavior) in the policy so the Default option resolves to a model inside `availableModels` instead of to Claude Code's built-in default; without it, Default stays selectable and is rejected at request time if that model isn't granted.
-* **Telemetry destination**: the CLI sends its OTLP/HTTP exports to the gateway regardless of any locally set `OTEL_EXPORTER_OTLP_ENDPOINT`, and the gateway relays them to the destinations in [`telemetry.forward_to`](/docs/en/claude-apps-gateway-config#telemetry). With no destination configured for a signal, the gateway accepts and discards it, so if you already collect Claude Code telemetry directly, add your collector as a `forward_to` destination.
+* **Telemetry destination**: in sessions signed in through `/login`, the CLI sends its OTLP/HTTP exports to the gateway regardless of any locally set `OTEL_EXPORTER_OTLP_ENDPOINT`, and the gateway relays them to the destinations in [`telemetry.forward_to`](/docs/en/claude-apps-gateway-config#telemetry). In the embedded sessions [Claude Desktop launches](#connect-claude-desktop), the CLI sends its exports to the configured `OTEL_EXPORTER_OTLP_ENDPOINT`. The CLI attaches the gateway session token to those exports only when that endpoint points at the gateway itself. With no destination configured for a signal, the gateway accepts and discards it, so if you already collect Claude Code telemetry directly, add your collector as a `forward_to` destination.
 * **Credentials**: the gateway token is the session's only credential. `ANTHROPIC_AUTH_TOKEN`, `ANTHROPIC_API_KEY`, `apiKeyHelper`, [Anthropic profiles](/docs/en/authentication#anthropic-profiles-and-federation-credentials), and any earlier claude.ai login are ignored while signed in, so developers don't need to log out of claude.ai first.
 * **Managed settings**: locked keys can't be overridden locally. The CLI applies the policy at startup and on each hourly poll.
 * **Startup**: signed-in sessions exit at startup with an error after about 10 seconds when the gateway is unreachable, rather than starting without their settings.

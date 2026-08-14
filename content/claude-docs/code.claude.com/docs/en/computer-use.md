@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/computer-use
-fetched_at: 2026-08-12T02:56:30.865670Z
-sha256: 579619573d88e70f8dda4c2f6e0418b80825098f0743faa544542b76c8f021a1
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 566ebcc950c55310845f98f78f24f97981eccd60e20a831fa9b95668e18a06ae
 ---
 
 > ## Documentation Index
@@ -39,7 +39,7 @@ Claude has several ways to interact with an app or service. Computer use is the 
 * If the task is browser work and you have [Claude in Chrome](/docs/en/chrome) set up, Claude uses that.
 * If none of those apply, Claude uses computer use.
 
-Screen control is reserved for things nothing else can reach: native apps, simulators, and tools without an API. In the Desktop app, running or testing an iOS app opens the dedicated [iOS Simulator pane](/docs/en/desktop-ios-simulator) rather than screen control; from the CLI, computer use is how Claude reaches the iOS Simulator.
+Screen control is reserved for things nothing else can reach: native apps, simulators such as the iOS Simulator, and tools without an API.
 
 ## Enable computer use
 

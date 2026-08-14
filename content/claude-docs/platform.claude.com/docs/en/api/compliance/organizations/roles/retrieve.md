@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/retrieve
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: e1061d9c7118f0f689b8f86986c71c3c9dbb81b65dbec08ad9ad823a882113a0
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 62847f88a90d8631bdf3359573763e3d088c4bb0d15c11bebc321822399116d2
 ---
 
 ---
@@ -36,7 +36,7 @@ Get Compliance Role
 
   Role identifier (tagged ID)
 
-- `created_at: string`
+- `created_at: string or null`
 
   Role creation timestamp (ISO 8601)
 
@@ -48,7 +48,7 @@ Get Compliance Role
 
   Role name
 
-- `updated_at: string`
+- `updated_at: string or null`
 
   Role last-updated timestamp (ISO 8601)
 

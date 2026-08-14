@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/retrieve
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: ddb92eb577987263d69d1683be4d77873a77847048d7faad6bc7050790560452
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: c0b5f49a1fdb38b13eace2b5bd9e2cd3bb21c0492dee9b15a024e1034bcd2881
 ---
 
 ---
@@ -150,7 +150,7 @@ Retrieve a memory
 
     A timestamp in RFC 3339 format
 
-  - `content: optional string`
+  - `content: optional string or null`
 
     The memory's UTF-8 text content. Populated when `view=full`; `null` when `view=basic`. Maximum 100 kB (102,400 bytes).
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 7160677b453ea027e6f28cc5769b29f84d4c1b8ccb06d4b5b7693ae739f7b8a1
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 37fad080d24bd0a6b33d270c7a81916226f0827348324da2cad60ae56e6ade71
 ---
 
 ---
@@ -46,7 +46,7 @@ List Compliance Roles
 
     Role identifier (tagged ID)
 
-  - `created_at: string`
+  - `created_at: string or null`
 
     Role creation timestamp (ISO 8601)
 
@@ -58,7 +58,7 @@ List Compliance Roles
 
     Role name
 
-  - `updated_at: string`
+  - `updated_at: string or null`
 
     Role last-updated timestamp (ISO 8601)
 
@@ -66,7 +66,7 @@ List Compliance Roles
 
   Whether more records exist beyond the current result set
 
-- `next_page: string`
+- `next_page: string or null`
 
   Token to retrieve the next page. Use this as the 'page' parameter in your next request
 

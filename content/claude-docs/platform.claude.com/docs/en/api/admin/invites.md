@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/invites
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 207a3848fe1fe3d9061d17dc0ddd9ce067f07fb592204ed4f811e3a94387c598
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 394d0750c23ac94c779984bf3bc4228adeec565147bd56936a83aab519dcef38
 ---
 
 ---
@@ -54,7 +54,7 @@ On plans that draw members from a finite pool of purchased seats, the invite aut
 
     ID of the Invite.
 
-  - `accepted_at: string`
+  - `accepted_at: string or null`
 
     RFC 3339 datetime string indicating when the Invite was accepted, or null.
 
@@ -167,7 +167,7 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
 
     ID of the Invite.
 
-  - `accepted_at: string`
+  - `accepted_at: string or null`
 
     RFC 3339 datetime string indicating when the Invite was accepted, or null.
 
@@ -271,11 +271,31 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
 
   ID of the object to use as a cursor for pagination. When provided, returns the page of results immediately before this object.
 
+- `email: optional string`
+
+  Filter by the email address the Invite was sent to. Matches the same way as the Users list's `email` filter (normalized, case-insensitive).
+
 - `limit: optional number`
 
   Number of items to return per page.
 
   Defaults to `20`. Ranges from `1` to `1000`.
+
+- `roles: optional array of string`
+
+  Filter to items whose `role` equals one of the supplied values. Repeatable; values are OR'ed together.
+
+  Accepted values depend on the organization type: Console and API organizations accept `user`, `developer`, `billing`, `admin`, and `claude_code_user`; Claude Enterprise organizations (beta) accept `user`, `owner`, `primary_owner`, `membership_admin`, and `managed`.
+
+- `statuses: optional array of "accepted" or "expired" or "pending"`
+
+  Filter by Invite status. Repeatable; values are OR'ed together. Omit to return `pending`, `accepted`, and `expired` Invites alike.
+
+  - `"accepted"`
+
+  - `"expired"`
+
+  - `"pending"`
 
 ### Returns
 
@@ -285,7 +305,7 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
 
     ID of the Invite.
 
-  - `accepted_at: string`
+  - `accepted_at: string or null`
 
     RFC 3339 datetime string indicating when the Invite was accepted, or null.
 
@@ -347,7 +367,7 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
 
     - `"invite"`
 
-- `first_id: string`
+- `first_id: string or null`
 
   First ID in the `data` list. Can be used as the `before_id` for the previous page.
 
@@ -355,7 +375,7 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
 
   Indicates if there are more results in the requested page direction.
 
-- `last_id: string`
+- `last_id: string or null`
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
 
@@ -446,7 +466,7 @@ curl https://api.anthropic.com/v1/organizations/invites/$INVITE_ID \
 
     ID of the Invite.
 
-  - `accepted_at: string`
+  - `accepted_at: string or null`
 
     RFC 3339 datetime string indicating when the Invite was accepted, or null.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/claude_api_primer
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 315567717f43738f9746ca8b2afc7e109f4da1e9eaff60320f34037619dbdc26
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: d479d22027cea9d39174890cb995efb1e3baae520c154f288e9791748bdd5eec
 ---
 
 ---
@@ -299,7 +299,7 @@ When thinking is on, Claude creates `thinking` content blocks where it outputs i
       ],
   )
 
-  # The response will contain summarized thinking blocks and text blocks
+  # The response contains summarized thinking blocks and text blocks
   for block in response.content:
       if block.type == "thinking":
           print(f"\nThinking summary: {block.thinking}")
@@ -624,7 +624,7 @@ tool_choice = {"type": "tool", "name": "get_weather"}
 
 When working with the `tool_choice` parameter, there are four possible options:
 
-* `auto` allows Claude to decide whether to call any provided tools or not (default).
+* `auto` allows Claude to determine whether to call any provided tools or not (default).
 * `any` tells Claude that it must use one of the provided tools.
 * `tool` forces Claude to always use a particular tool.
 * `none` prevents Claude from using any tools.
@@ -635,7 +635,7 @@ Tools do not necessarily need to be client functions. You can use tools anytime 
 
 ### Chain of thought
 
-When using tools, Claude often shows its "chain of thought," that is, the step-by-step reasoning it uses to break down the problem and decide which tools to use.
+When using tools, Claude often shows its "chain of thought," that is, the step-by-step reasoning it uses to break down the problem and determine which tools to use.
 
 ```json
 {

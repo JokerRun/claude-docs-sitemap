@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/groups/members/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 63d5e8288a0a9dde611956758c8f3b0bd06ac059c9eaa93fbb08fbe0389f5011
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 857c0f6cf3ef76e6de5c967c5b576ff03c9deb79738e50d0863ce00da7969aea
 ---
 
 ---
@@ -42,7 +42,7 @@ List Compliance Group Members
 
   List of group members
 
-  - `created_at: string`
+  - `created_at: string or null`
 
     Membership creation timestamp (ISO 8601)
 
@@ -50,7 +50,7 @@ List Compliance Group Members
 
     Member email address
 
-  - `updated_at: string`
+  - `updated_at: string or null`
 
     Membership last-updated timestamp (ISO 8601)
 
@@ -62,7 +62,7 @@ List Compliance Group Members
 
   Whether more records exist beyond the current result set
 
-- `next_page: string`
+- `next_page: string or null`
 
   Token to retrieve the next page. Use this as the 'page' parameter in your next request
 

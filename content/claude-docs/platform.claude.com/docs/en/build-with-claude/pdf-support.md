@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/pdf-support
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 30246c837430dc5995cf1a4e59ad332fd46daefc482f87cafa1677102bce58f1
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 3f47b6c643a07f17143ab599c9d653727fcf5a8af49e55722b040c61a5dbdefd
 ---
 
 ---
@@ -938,7 +938,7 @@ For PDFs you'll use repeatedly, or when you want to avoid encoding overhead, use
   // Use the uploaded file in a message
   MessageCreateParams params = MessageCreateParams.builder()
     .model(Model.CLAUDE_OPUS_5)
-    .addBeta("files-api-2025-04-14")
+    .addBeta(AnthropicBeta.FILES_API_2025_04_14)
     .maxTokens(1024)
     .addUserMessageOfBetaContentBlockParams(
       List.of(

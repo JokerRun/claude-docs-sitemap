@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/members/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 573992b986523c00014c27b2a874608b62b584320426f4e6a41ba2e86e17795b
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: adb20f8e4fd755be537c16898da0ebaa711d8d5f288fac04d2cc0b319d6f1e94
 ---
 
 ---
@@ -72,7 +72,7 @@ List Workspace Members
 
     - `"workspace_user"`
 
-- `first_id: string`
+- `first_id: string or null`
 
   First ID in the `data` list. Can be used as the `before_id` for the previous page.
 
@@ -80,7 +80,7 @@ List Workspace Members
 
   Indicates if there are more results in the requested page direction.
 
-- `last_id: string`
+- `last_id: string or null`
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
 

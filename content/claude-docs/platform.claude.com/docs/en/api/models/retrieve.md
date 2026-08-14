@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models/retrieve
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 2fdbf19b15cc90c50b6a724ebd2defa38ed771d53ebd4ff159831f590b0716cf
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: c41cae9eecbf93570ae0348623bb340dff5fa191b23356877f979c6137ba6571
 ---
 
 ---
@@ -108,7 +108,7 @@ The Models API response can be used to determine information about a specific mo
 
     Unique model identifier.
 
-  - `capabilities: ModelCapabilities`
+  - `capabilities: ModelCapabilities or null`
 
     Model capability information.
 
@@ -132,15 +132,15 @@ The Models API response can be used to determine information about a specific mo
 
       Context management support and available strategies.
 
-      - `clear_thinking_20251015: CapabilitySupport`
+      - `clear_thinking_20251015: CapabilitySupport or null`
 
         Indicates whether a capability is supported.
 
-      - `clear_tool_uses_20250919: CapabilitySupport`
+      - `clear_tool_uses_20250919: CapabilitySupport or null`
 
         Indicates whether a capability is supported.
 
-      - `compact_20260112: CapabilitySupport`
+      - `compact_20260112: CapabilitySupport or null`
 
         Indicates whether a capability is supported.
 
@@ -172,7 +172,7 @@ The Models API response can be used to determine information about a specific mo
 
         Whether this capability is supported by the model.
 
-      - `xhigh: CapabilitySupport`
+      - `xhigh: CapabilitySupport or null`
 
         Indicates whether a capability is supported.
 
@@ -216,11 +216,11 @@ The Models API response can be used to determine information about a specific mo
 
     A human-readable name for the model.
 
-  - `max_input_tokens: number`
+  - `max_input_tokens: number or null`
 
     Maximum input context window size in tokens for this model.
 
-  - `max_tokens: number`
+  - `max_tokens: number or null`
 
     Maximum value for the `max_tokens` parameter when using this model.
 

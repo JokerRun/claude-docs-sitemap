@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/create
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: e32675bf2ad8fd3acd3ef7ebcc66d88d4e20f16cea39238b09130bd985dec507
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 08f5ebc286a70998ca5fa100b24baac84636de05da3fb2b0df31799c91bc0426
 ---
 
 ---
@@ -108,7 +108,7 @@ Create a memory
 
 ### Body Parameters
 
-- `content: string`
+- `content: string or null`
 
   UTF-8 text content for the new memory. Maximum 100 kB (102,400 bytes). Required; pass `""` explicitly to create an empty memory.
 
@@ -158,7 +158,7 @@ Create a memory
 
     A timestamp in RFC 3339 format
 
-  - `content: optional string`
+  - `content: optional string or null`
 
     The memory's UTF-8 text content. Populated when `view=full`; `null` when `view=basic`. Maximum 100 kB (102,400 bytes).
 

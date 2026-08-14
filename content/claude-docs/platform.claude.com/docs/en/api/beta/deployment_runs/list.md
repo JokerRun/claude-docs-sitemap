@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployment_runs/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 9a84ce6adb6156cbeea28efe50fe2939e953e741723e3da965e57e295c293677
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 4cf3ede150d6a2ce9b673e43287a65f9149e3550f15ddbfa0856757ad9cc8516
 ---
 
 ---
@@ -164,7 +164,7 @@ List Deployment Runs
 
     ID of the deployment that produced this run.
 
-  - `error: BetaManagedAgentsEnvironmentArchivedRunError or BetaManagedAgentsAgentArchivedRunError or BetaManagedAgentsEnvironmentNotFoundRunError or 13 more`
+  - `error: BetaManagedAgentsEnvironmentArchivedRunError or BetaManagedAgentsAgentArchivedRunError or BetaManagedAgentsEnvironmentNotFoundRunError or 13 more or null`
 
     Why the run failed to create a session. The type identifies the failure; message is human-readable detail.
 
@@ -360,7 +360,7 @@ List Deployment Runs
 
         - `"mcp_egress_blocked_error"`
 
-  - `session_id: string`
+  - `session_id: string or null`
 
     Populated on success. Null on creation failure. Exactly one of session_id or error is non-null.
 
@@ -392,7 +392,7 @@ List Deployment Runs
 
     - `"deployment_run"`
 
-- `next_page: optional string`
+- `next_page: optional string or null`
 
   Opaque cursor for the next page. Null when no more results.
 

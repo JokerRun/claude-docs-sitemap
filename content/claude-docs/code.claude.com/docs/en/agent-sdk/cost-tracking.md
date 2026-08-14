@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/cost-tracking
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 6af0973e906c8cf222bde2eb24729c0bcfe7580a00d435b0d38b8a97c540d4d1
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: d3d6e3e907d9315cc21b96fab176341dcbe6d32978cd5c19860a1be048539e32
 ---
 
 > ## Documentation Index
@@ -77,7 +77,7 @@ The running totals start over each time your app sends one of those three comman
 
 To total the whole call, add the last result from before each `/clear` to the call's final result. Every other result, including the `/clear` turn's own, is superseded by a later one.
 
-In TypeScript, the SDK also emits an [`SDKConversationResetMessage`](/docs/en/agent-sdk/typescript#sdkconversationresetmessage) at each reset, so you can detect resets from the stream. The Python SDK drops that message before it reaches your app, so in Python, count the resets yourself from the `/clear` turns your app sends.
+In TypeScript, the SDK also emits an [`SDKConversationResetMessage`](/docs/en/agent-sdk/typescript#sdkconversationresetmessage) at each reset, so you can detect resets from the stream. In Python, the SDK likewise emits a `ConversationResetMessage`. Before Python SDK v0.2.137, the Python iterator dropped that message, so on those versions count the resets yourself from the `/clear` turns your app sends.
 
 `maxBudgetUsd`, or `max_budget_usd` in Python, is compared against the same running total, so a `/clear` also starts the budget over.
 

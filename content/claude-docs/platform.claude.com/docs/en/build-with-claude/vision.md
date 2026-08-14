@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/vision
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: c056f72c8384cdfe882e453e643672fffcf37c852f1a98488e59f5bacde95677
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 3242a01766ed71074007d71652ebd7dc426feb8fa417e0c66f56b7f87da38d26
 ---
 
 ---
@@ -210,14 +210,15 @@ On the API, provide images to Claude as `image` content blocks using one of thre
 
   ```java Java
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-  String imageData = ""; // Base64-encoded image data as string
+  String imageData =
+    "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4z8AAAAMBAQDJ/pLvAAAAAElFTkSuQmCC";
 
   List<ContentBlockParam> contentBlockParams = List.of(
     ContentBlockParam.ofImage(
       ImageBlockParam.builder()
         .source(
           Base64ImageSource.builder()
-            .mediaType(Base64ImageSource.MediaType.IMAGE_JPEG)
+            .mediaType(Base64ImageSource.MediaType.IMAGE_PNG)
             .data(imageData)
             .build()
         )
@@ -235,7 +236,7 @@ On the API, provide images to Claude as `image` content blocks using one of thre
         .build()
     );
 
-  System.out.println(message);
+  IO.println(message);
   ```
 
   ```php PHP

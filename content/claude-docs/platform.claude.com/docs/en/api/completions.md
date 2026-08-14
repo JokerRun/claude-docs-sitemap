@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 59ef9f9346225829d46a1997bcf8573cd488635cc7c1a32ae0dd65a4aebd6c3e
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 943d70b4d49c91979ae3b86b706a21bca557bc3bfcf5b5c3d310072360ae9097
 ---
 
 ---
@@ -204,7 +204,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   An object describing metadata about the request.
 
-  - `user_id: optional string`
+  - `user_id: optional string or null`
 
     An external identifier for the user who is associated with the request.
 
@@ -336,7 +336,7 @@ Future models and features will not be compatible with Text Completions. See our
 
     - `string`
 
-  - `stop_reason: string`
+  - `stop_reason: string or null`
 
     The reason that we stopped.
 
@@ -473,7 +473,7 @@ curl https://api.anthropic.com/v1/complete \
 
     - `string`
 
-  - `stop_reason: string`
+  - `stop_reason: string or null`
 
     The reason that we stopped.
 

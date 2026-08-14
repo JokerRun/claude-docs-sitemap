@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/content-moderation
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 1823e5c2e4d2b1af35c230308179102c35e4a14b7cf32f5e0e8f96705a880f69
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: d24fa29f96004d2b6b40549b71bc76e609bbfeca9c98d6b46335c41a505f7746
 ---
 
 ---
@@ -14,9 +14,9 @@ description: Content moderation is a critical aspect of maintaining a safe, resp
 > Visit the [content moderation cookbook](https://platform.claude.com/cookbook/misc-building-moderation-filter) to see an example content moderation implementation using Claude.
 
 <Tip>
-  This guide is focused on moderating user-generated content within your application. If you're looking for guidance on moderating interactions with Claude, refer to the 
+  This guide is focused on moderating user-generated content within your application. If you're looking for guidance on moderating interactions with Claude, refer to 
 
-  [guardrails guide](https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations)
+  [Mitigate jailbreaks and prompt injections](https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks)
 
   .
 </Tip>
@@ -2748,7 +2748,7 @@ In this example, the `batch_moderate_messages` function handles the moderation o
     View a fully implemented code-based example of how to use Claude for content moderation.
   </Card>
 
-  <Card title="Guardrails guide" icon="link" href="https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations">
-    Explore the guardrails guide for techniques to moderate interactions with Claude.
+  <Card title="Mitigate jailbreaks" icon="link" href="https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks">
+    Explore guardrail techniques to moderate interactions with Claude.
   </Card>
 </CardGroup>

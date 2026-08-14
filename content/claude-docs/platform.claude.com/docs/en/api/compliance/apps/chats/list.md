@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 3e2048733bc9852d2649871a40025b4e3df370b3c6b1781c98fe1f2827e5cf8d
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 1b5c184658f098e0ddf2085ed6cea90c37277e0b7e501d259f7f616a174db9f4
 ---
 
 ---
@@ -106,7 +106,7 @@ by the `order_by` key, with ties broken by id.
 
     Creation timestamp
 
-  - `deleted_at: string`
+  - `deleted_at: string or null`
 
     Deletion timestamp if deleted
 
@@ -114,7 +114,7 @@ by the `order_by` key, with ties broken by id.
 
     URL to view this chat in claude.ai
 
-  - `model: string`
+  - `model: string or null`
 
     Model selected for this chat (e.g. 'claude-opus-4-7'). May be null for legacy chats that never had a model recorded.
 
@@ -130,7 +130,7 @@ by the `order_by` key, with ties broken by id.
 
     Organization UUID this chat belongs to
 
-  - `project_id: string`
+  - `project_id: string or null`
 
     Project ID this chat belongs to
 
@@ -138,7 +138,7 @@ by the `order_by` key, with ties broken by id.
 
     Last update timestamp
 
-  - `user: object { id, email_address }`
+  - `user: object { id, email_address }  or null`
 
     User information for compliance responses.
 
@@ -150,7 +150,7 @@ by the `order_by` key, with ties broken by id.
 
       User's email address
 
-- `first_id: string`
+- `first_id: string or null`
 
   Opaque pagination cursor for the first chat in the current result set. Pass as `before_id` on the next request to page backwards. Backward pagination is only supported for per-user queries (`user_ids[]` set); org-wide queries do not accept `before_id`. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
 
@@ -158,7 +158,7 @@ by the `order_by` key, with ties broken by id.
 
   Whether more records exist beyond the current result set
 
-- `last_id: string`
+- `last_id: string or null`
 
   Opaque pagination cursor for the last chat in the current result set. Pass as `after_id` on the next request to page forwards. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
 

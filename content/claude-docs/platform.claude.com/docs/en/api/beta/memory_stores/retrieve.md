@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/retrieve
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 292e32800c0c6d77e875b7253227f27d26cbc34cf6e27735b4c580b8e3b81b15
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 0029413cc55d7fad1497ee2759322e3044b4f5fd1939c0f0af6efb50f2d87088
 ---
 
 ---
@@ -122,7 +122,7 @@ Retrieve a memory store
 
     A timestamp in RFC 3339 format
 
-  - `archived_at: optional string`
+  - `archived_at: optional string or null`
 
     A timestamp in RFC 3339 format
 

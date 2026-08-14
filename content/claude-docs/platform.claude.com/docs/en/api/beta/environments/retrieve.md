@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/retrieve
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: d9422a39accd545fc1f1276d99409deb364ec029232ebcd6477a8eb45f42688d
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 23979aced5e274b8eac3c0cb22c745de2b09bbabafda3238d99de6aecc29b489
 ---
 
 ---
@@ -106,7 +106,7 @@ Retrieve a specific environment by ID.
 
     Environment identifier (e.g., 'env_...')
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     RFC 3339 timestamp when environment was archived, or null if not archived
 

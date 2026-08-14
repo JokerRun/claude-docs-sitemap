@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: f75323084954caf1e2457f41510da5f3e87d718959f6b2814386bceddc288c30
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: b19341949dc0359ede329de0343d2289eb9f4f47c17638fe27e4bfa88d400341
 ---
 
 ---
@@ -383,7 +383,7 @@ For example, suppose a booking system needs `passengers: int`. Without strict mo
   </Step>
 
   <Step title="Handle tool calls">
-    When Claude uses the tool, the `input` field in the tool\_use block strictly follows your `input_schema`, and the `name` is always valid.
+    When Claude uses the tool, the `input` field in the `tool_use` block strictly follows your `input_schema`, and the `name` is always valid.
   </Step>
 </Steps>
 
@@ -1124,7 +1124,7 @@ For example, suppose a booking system needs `passengers: int`. Without strict mo
 
 Strict tool use compiles tool `input_schema` definitions into grammars using the same pipeline as [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs). Tool schemas are temporarily cached for up to 24 hours since last use. Prompts and responses are not retained beyond the API response.
 
-Strict tool use is HIPAA eligible, but **PHI must not be included in tool schema definitions**. The API caches compiled schemas separately from message content, and these cached schemas do not receive the same PHI protections as prompts and responses. Do not include PHI in `input_schema` property names, `enum` values, `const` values, or `pattern` regular expressions. PHI should only appear in message content (prompts and responses), where it is protected under HIPAA safeguards.
+Strict tool use is HIPAA eligible, but **protected health information (PHI) must not be included in tool schema definitions**. The API caches compiled schemas separately from message content, and these cached schemas do not receive the same PHI protections as prompts and responses. Do not include PHI in `input_schema` property names, `enum` values, `const` values, or `pattern` regular expressions. PHI should only appear in message content (prompts and responses), where it is protected under HIPAA safeguards.
 
 For ZDR and HIPAA eligibility across all features, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
 

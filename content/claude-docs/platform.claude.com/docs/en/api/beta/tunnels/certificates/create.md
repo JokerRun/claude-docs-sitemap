@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/create
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 2c3537663e46880c8221ed8df685532ce76134bbfee9248b1c7c5134d003464b
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 2f073485a2d362b5e56abf0991c9ef8298c017b73fed28c4564151b4f2694d9b
 ---
 
 ---
@@ -114,7 +114,7 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
 
     Unique identifier for the certificate, prefixed with `tcrt_`.
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 
@@ -122,7 +122,7 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
 
     A timestamp in RFC 3339 format
 
-  - `expires_at: string`
+  - `expires_at: string or null`
 
     A timestamp in RFC 3339 format
 

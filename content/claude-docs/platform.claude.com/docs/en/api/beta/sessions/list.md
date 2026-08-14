@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: df659bf2fcccf0b3fb604c836dec94ca242db168e6289313dc69f4a5263aa155
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: b7f6f600bc57901a6d180442e1eb8e3d585e7d6c6702018192ab62379e71a55a
 ---
 
 ---
@@ -172,7 +172,7 @@ List Sessions
 
     - `id: string`
 
-    - `description: string`
+    - `description: string or null`
 
     - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
@@ -310,7 +310,7 @@ List Sessions
 
         - `"fast"`
 
-    - `multiagent: BetaManagedAgentsSessionMultiagentCoordinator`
+    - `multiagent: BetaManagedAgentsSessionMultiagentCoordinator or null`
 
       Resolved coordinator topology with full agent definitions for each roster member.
 
@@ -324,7 +324,7 @@ List Sessions
 
           - `id: string`
 
-          - `description: string`
+          - `description: string or null`
 
           - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
@@ -366,7 +366,7 @@ List Sessions
 
               - `version: string`
 
-          - `system: string`
+          - `system: string or null`
 
           - `tools: array of BetaManagedAgentsAgentToolset20260401 or BetaManagedAgentsMCPToolset or BetaManagedAgentsCustomTool`
 
@@ -496,9 +496,9 @@ List Sessions
 
                   - `"object"`
 
-                - `properties: optional map[unknown]`
+                - `properties: optional map[unknown] or null`
 
-                - `required: optional array of string`
+                - `required: optional array of string or null`
 
               - `name: string`
 
@@ -540,7 +540,7 @@ List Sessions
 
         A resolved user-created custom skill.
 
-    - `system: string`
+    - `system: string or null`
 
     - `tools: array of BetaManagedAgentsAgentToolset20260401 or BetaManagedAgentsMCPToolset or BetaManagedAgentsCustomTool`
 
@@ -558,11 +558,11 @@ List Sessions
 
     - `version: number`
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 
-  - `budget: BetaManagedAgentsBudgetLimit`
+  - `budget: BetaManagedAgentsBudgetLimit or null`
 
     A hard spend ceiling. The session stops issuing new model requests once the tracked list cost reaches `max_list_cost`.
 
@@ -596,7 +596,7 @@ List Sessions
 
     Per-outcome evaluation state. One entry per define_outcome event sent to the session.
 
-    - `completed_at: string`
+    - `completed_at: string or null`
 
       A timestamp in RFC 3339 format
 
@@ -604,7 +604,7 @@ List Sessions
 
       What the agent should produce.
 
-    - `explanation: string`
+    - `explanation: string or null`
 
       Grader's verdict text from the most recent evaluation. For satisfied, explains why criteria are met; for needs_revision (intermediate), what's missing; for failed, why unrecoverable.
 
@@ -646,7 +646,7 @@ List Sessions
 
       - `url: string`
 
-      - `checkout: optional BetaManagedAgentsBranchCheckout or BetaManagedAgentsCommitCheckout`
+      - `checkout: optional BetaManagedAgentsBranchCheckout or BetaManagedAgentsCommitCheckout or null`
 
         - `BetaManagedAgentsBranchCheckout object { name, type }`
 
@@ -700,7 +700,7 @@ List Sessions
 
         - `"memory_store"`
 
-      - `access: optional "read_write" or "read_only"`
+      - `access: optional "read_write" or "read_only" or null`
 
         Access mode for an attached memory store.
 
@@ -712,15 +712,15 @@ List Sessions
 
         Description of the memory store, snapshotted at attach time. Rendered into the agent's system prompt. Empty string when the store has no description.
 
-      - `instructions: optional string`
+      - `instructions: optional string or null`
 
         Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
 
-      - `mount_path: optional string`
+      - `mount_path: optional string or null`
 
         Filesystem path where the store is mounted in the session container, e.g. /mnt/memory/user-preferences. Derived from the store's name. Output-only.
 
-      - `name: optional string`
+      - `name: optional string or null`
 
         Display name of the memory store, snapshotted at attach time. Later edits to the store's name do not propagate to this resource.
 
@@ -748,7 +748,7 @@ List Sessions
 
     - `"terminated"`
 
-  - `title: string`
+  - `title: string or null`
 
   - `type: "session"`
 
@@ -786,7 +786,7 @@ List Sessions
 
       Total input tokens consumed across all turns.
 
-    - `list_cost: optional BetaMonetaryAmount`
+    - `list_cost: optional BetaMonetaryAmount or null`
 
       A monetary amount in a specific currency.
 
@@ -794,7 +794,7 @@ List Sessions
 
       Total output tokens generated across all turns.
 
-    - `server_tool_use: optional BetaManagedAgentsServerToolUsage`
+    - `server_tool_use: optional BetaManagedAgentsServerToolUsage or null`
 
       Cumulative count of server-executed tool invocations, broken down by tool.
 
@@ -810,15 +810,15 @@ List Sessions
 
     Vault IDs attached to the session at creation. Empty when no vaults were supplied.
 
-  - `deployment_id: optional string`
+  - `deployment_id: optional string or null`
 
     Deployment ID when the session was created from a deployment reference. Null otherwise.
 
-- `next_page: optional string`
+- `next_page: optional string or null`
 
   Opaque cursor for the next page. Null when no more results.
 
-- `prev_page: optional string`
+- `prev_page: optional string or null`
 
   Opaque cursor for the previous page. Null when on the first page. Pass as the `page` parameter to navigate backward.
 

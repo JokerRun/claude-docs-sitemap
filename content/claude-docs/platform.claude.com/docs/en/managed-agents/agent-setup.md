@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/agent-setup
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 8c3ca84df42bbdafddf6fb143ad6a89e65030ab9f62643e51dfa09d876deb949
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 8b1c057e508460e075ab26c5ba33e262e3cc46a3214565cea4bd279fbc6f80d8
 ---
 
 ---
@@ -187,6 +187,7 @@ The response echoes your configuration and adds `id`, `type`, `version`, `create
   ],
   "skills": [],
   "mcp_servers": [],
+  "multiagent": null,
   "metadata": {},
   "version": 1,
   "created_at": "2026-04-03T18:24:10.412Z",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/results
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 631c7847438860f00b695af2ba9ed22b2fa07c8239cf47bd98079a8faa3ee0ad
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: fe55eb9180f89f04cacb2822b118d9886ef7ef3a82a5c88766000bf48fd19637
 ---
 
 ---
@@ -54,7 +54,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           The format and length of IDs may change over time.
 
-        - `container: Container`
+        - `container: Container or null`
 
           Information about the container used in the request (for the code execution tool)
 
@@ -97,7 +97,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           - `TextBlock object { citations, text, type }`
 
-            - `citations: array of TextCitation`
+            - `citations: array of TextCitation or null`
 
               Citations supporting the text block.
 
@@ -109,11 +109,11 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                 - `document_index: number`
 
-                - `document_title: string`
+                - `document_title: string or null`
 
                 - `end_char_index: number`
 
-                - `file_id: string`
+                - `file_id: string or null`
 
                 - `start_char_index: number`
 
@@ -127,11 +127,11 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                 - `document_index: number`
 
-                - `document_title: string`
+                - `document_title: string or null`
 
                 - `end_page_number: number`
 
-                - `file_id: string`
+                - `file_id: string or null`
 
                 - `start_page_number: number`
 
@@ -149,7 +149,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                 - `document_index: number`
 
-                - `document_title: string`
+                - `document_title: string or null`
 
                 - `end_block_index: number`
 
@@ -157,7 +157,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                   Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
 
-                - `file_id: string`
+                - `file_id: string or null`
 
                 - `start_block_index: number`
 
@@ -173,7 +173,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                 - `encrypted_index: string`
 
-                - `title: string`
+                - `title: string or null`
 
                 - `type: "web_search_result_location"`
 
@@ -207,7 +207,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                   0-based index of the first cited block in the source's `content` array.
 
-                - `title: string`
+                - `title: string or null`
 
                 - `type: "search_result_location"`
 
@@ -375,7 +375,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                 - `encrypted_content: string`
 
-                - `page_age: string`
+                - `page_age: string or null`
 
                 - `title: string`
 
@@ -439,7 +439,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                 - `content: DocumentBlock`
 
-                  - `citations: CitationsConfig`
+                  - `citations: CitationsConfig or null`
 
                     Citation configuration for the document
 
@@ -471,7 +471,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                         - `"text"`
 
-                  - `title: string`
+                  - `title: string or null`
 
                     The title of the document
 
@@ -479,7 +479,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                     - `"document"`
 
-                - `retrieved_at: string`
+                - `retrieved_at: string or null`
 
                   ISO 8601 timestamp when the content was retrieved
 
@@ -631,7 +631,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                   - `"file_not_found"`
 
-                - `error_message: string`
+                - `error_message: string or null`
 
                 - `type: "text_editor_code_execution_tool_result_error"`
 
@@ -649,11 +649,11 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                   - `"pdf"`
 
-                - `num_lines: number`
+                - `num_lines: number or null`
 
-                - `start_line: number`
+                - `start_line: number or null`
 
-                - `total_lines: number`
+                - `total_lines: number or null`
 
                 - `type: "text_editor_code_execution_view_result"`
 
@@ -669,15 +669,15 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               - `TextEditorCodeExecutionStrReplaceResultBlock object { lines, new_lines, new_start, 3 more }`
 
-                - `lines: array of string`
+                - `lines: array of string or null`
 
-                - `new_lines: number`
+                - `new_lines: number or null`
 
-                - `new_start: number`
+                - `new_start: number or null`
 
-                - `old_lines: number`
+                - `old_lines: number or null`
 
-                - `old_start: number`
+                - `old_start: number or null`
 
                 - `type: "text_editor_code_execution_str_replace_result"`
 
@@ -705,7 +705,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                   - `"execution_time_exceeded"`
 
-                - `error_message: string`
+                - `error_message: string or null`
 
                 - `type: "tool_search_tool_result_error"`
 
@@ -823,11 +823,11 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           - `"assistant"`
 
-        - `stop_details: RefusalStopDetails`
+        - `stop_details: RefusalStopDetails or null`
 
           Structured information about a refusal.
 
-          - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+          - `category: "cyber" or "bio" or "frontier_llm" or 2 more or null`
 
             The policy category that triggered a refusal.
 
@@ -851,7 +851,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               The request could be related to an area that was determined as harmful. Benign work might sometimes trigger this category.
 
-          - `explanation: string`
+          - `explanation: string or null`
 
             Human-readable explanation of the refusal.
 
@@ -861,7 +861,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `"refusal"`
 
-        - `stop_reason: StopReason`
+        - `stop_reason: StopReason or null`
 
           The reason that we stopped.
 
@@ -891,7 +891,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           - `"model_context_window_exceeded"`
 
-        - `stop_sequence: string`
+        - `stop_sequence: string or null`
 
           Which custom stop sequence was generated, if any.
 
@@ -917,7 +917,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           Total input tokens in a request is the summation of `input_tokens`, `cache_creation_input_tokens`, and `cache_read_input_tokens`.
 
-          - `cache_creation: CacheCreation`
+          - `cache_creation: CacheCreation or null`
 
             Breakdown of cached tokens by TTL
 
@@ -929,15 +929,15 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               The number of input tokens used to create the 5 minute cache entry.
 
-          - `cache_creation_input_tokens: number`
+          - `cache_creation_input_tokens: number or null`
 
             The number of input tokens used to create the cache entry.
 
-          - `cache_read_input_tokens: number`
+          - `cache_read_input_tokens: number or null`
 
             The number of input tokens read from the cache.
 
-          - `inference_geo: string`
+          - `inference_geo: string or null`
 
             The geographic region where inference was performed for this request.
 
@@ -949,7 +949,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             The number of output tokens which were used.
 
-          - `output_tokens_details: OutputTokensDetails`
+          - `output_tokens_details: OutputTokensDetails or null`
 
             Breakdown of output tokens by category.
 
@@ -969,7 +969,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
               generation count by a small number of tokens. Always ≤ `output_tokens`;
               `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
-          - `server_tool_use: ServerToolUsage`
+          - `server_tool_use: ServerToolUsage or null`
 
             The number of server tool requests.
 
@@ -981,7 +981,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               The number of web search tool requests.
 
-          - `service_tier: "standard" or "priority" or "batch"`
+          - `service_tier: "standard" or "priority" or "batch" or null`
 
             If the request used the priority, standard, or batch tier.
 
@@ -1073,7 +1073,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               - `"overloaded_error"`
 
-        - `request_id: string`
+        - `request_id: string or null`
 
         - `type: "error"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/create
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: a44f1f5bf9adfd38e3bd1853322c892dd32a70fda6d3a8531c06874412ec8b11
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 9c6dca10a23e464b51765f02d9bf1f7fe2782c920ca1742a82ca334be850a553
 ---
 
 ---
@@ -112,7 +112,7 @@ Create Vault
 
     Unique identifier for the vault.
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 

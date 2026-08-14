@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: ff3459f1287046cf26184a8f43f8379519c9ae8089ff2864e659acf9a9fa2899
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: b0474bd421fa76ea027a60ce4f62a9c8d155ae74b7902229856b79ea0e3100ca
 ---
 
 ---
@@ -854,8 +854,7 @@ systematically until you have completed this task.
 * **Emphasize incremental progress:** Explicitly ask Claude to keep track of its progress and focus on incremental work.
 
 <Accordion title="Example: State tracking">
-  ```json
-  // Structured state file (tests.json)
+  ```json tests.json
   {
     "tests": [
       { "id": 1, "name": "authentication_flow", "status": "passing" },

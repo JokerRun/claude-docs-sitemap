@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/groups/members
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: f5c3c670298585199a97cf083cbf576a7c6dc578a22fa9342282394bbe40bb1d
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: f483a8af3c9a17dcc2b35be36968cb1bcb04bca0e1f616a0db529348108387cb
 ---
 
 ---
@@ -44,7 +44,7 @@ List Compliance Group Members
 
   List of group members
 
-  - `created_at: string`
+  - `created_at: string or null`
 
     Membership creation timestamp (ISO 8601)
 
@@ -52,7 +52,7 @@ List Compliance Group Members
 
     Member email address
 
-  - `updated_at: string`
+  - `updated_at: string or null`
 
     Membership last-updated timestamp (ISO 8601)
 
@@ -64,7 +64,7 @@ List Compliance Group Members
 
   Whether more records exist beyond the current result set
 
-- `next_page: string`
+- `next_page: string or null`
 
   Token to retrieve the next page. Use this as the 'page' parameter in your next request
 
@@ -100,7 +100,7 @@ curl https://api.anthropic.com/v1/compliance/groups/$GROUP_ID/members \
 
   Group member for compliance responses.
 
-  - `created_at: string`
+  - `created_at: string or null`
 
     Membership creation timestamp (ISO 8601)
 
@@ -108,7 +108,7 @@ curl https://api.anthropic.com/v1/compliance/groups/$GROUP_ID/members \
 
     Member email address
 
-  - `updated_at: string`
+  - `updated_at: string or null`
 
     Membership last-updated timestamp (ISO 8601)
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/federation_rules/workspaces/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 6ac3e3d27c557c2e350f844c6222470166f27aa4ebdb161bf530841cf9172ef3
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: f19a8c0c95de2cc0cbeca7d4e5fbfb0b6cdb8a0a2342615047a0c9b53e96b7cf
 ---
 
 ---
@@ -54,7 +54,7 @@ rules with `applies_to_all_workspaces` or a legacy single
 
     When this workspace was enabled for the rule.
 
-  - `created_by_actor_id: string`
+  - `created_by_actor_id: string or null`
 
     Tagged ID (`user_...` or `svac_...`) of the actor that enabled this workspace for the rule, if known.
 
@@ -70,11 +70,11 @@ rules with `applies_to_all_workspaces` or a legacy single
 
     Tagged ID of the workspace this rule is enabled for.
 
-  - `workspace_name: string`
+  - `workspace_name: string or null`
 
     Workspace display name. Populated when listing; null in the enable response.
 
-- `next_page: string`
+- `next_page: string or null`
 
   Opaque cursor for the next page; null when there are no more results.
 

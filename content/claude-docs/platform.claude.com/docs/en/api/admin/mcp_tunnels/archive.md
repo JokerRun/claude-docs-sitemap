@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/archive
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: f2bae8d46b3050f1e20503dd7ef21903aab4276351125e0491435959532c085c
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: b36d55d8f0ea742ab4f328c732643c48929438b4e6b68c681f75fba9af182551
 ---
 
 ---
@@ -43,7 +43,7 @@ tunnel returns the existing record unchanged.
 
   ID of the Tunnel.
 
-- `archived_at: string`
+- `archived_at: string or null`
 
   RFC 3339 datetime string indicating when the Tunnel was archived, or
   `null` if it is not archived.
@@ -52,7 +52,7 @@ tunnel returns the existing record unchanged.
 
   RFC 3339 datetime string indicating when the Tunnel was created.
 
-- `display_name: string`
+- `display_name: string or null`
 
   Human-readable name for the Tunnel (1–255 characters), or `null` if unset.
 
@@ -68,7 +68,7 @@ tunnel returns the existing record unchanged.
 
   - `"tunnel"`
 
-- `workspace_id: string`
+- `workspace_id: string or null`
 
   ID of the Workspace this Tunnel belongs to, or `null` for the default
   Workspace. Immutable after creation.

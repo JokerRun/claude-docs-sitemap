@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/tunnel_certificates/retrieve
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: d568db52f9c7a0ae88199313604dd7aaa80847c8a357c7c661c5a4a605325271
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 5f6371b1cdb160656ed02781584aaefc441e86724aeccf4f44cf16456f7d25f7
 ---
 
 ---
@@ -42,7 +42,7 @@ Retrieve a single certificate registered on a tunnel by ID.
 
   ID of the Tunnel Certificate.
 
-- `archived_at: string`
+- `archived_at: string or null`
 
   RFC 3339 datetime string indicating when the certificate was archived, or
   `null` if it is not archived.
@@ -51,7 +51,7 @@ Retrieve a single certificate registered on a tunnel by ID.
 
   RFC 3339 datetime string indicating when the certificate was registered.
 
-- `expires_at: string`
+- `expires_at: string or null`
 
   RFC 3339 datetime string indicating when the certificate expires, or
   `null` if it does not expire.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/retrieve
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 65f5cfb77a51c52b31e96e0e11bce0f1bc7c74ea4cc97ec288618813b7a8ae80
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 115faffda77407b139825d894e6b43d9d0d3e8890568beae7863551645b7bf33
 ---
 
 ---
@@ -44,7 +44,7 @@ Get detailed information for a specific project.
 
   Project creation timestamp
 
-- `deleted_at: string`
+- `deleted_at: string or null`
 
   Timestamp when the project was deleted by an end user, or null otherwise
 
@@ -76,13 +76,13 @@ Get detailed information for a specific project.
 
   Project last update timestamp
 
-- `user: object { id, email_address }`
+- `user: object { id, email_address }  or null`
 
   The user who created a project or project document.
 
   Fields that reference this type are null when the creator's account has
-  been deleted or the creator is no longer a member of any organization
-  under the parent organization.
+  been deleted or the creator is no longer a member of an organization the
+  key may read.
 
   - `id: string`
 

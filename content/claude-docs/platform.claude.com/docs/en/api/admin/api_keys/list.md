@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 08bbdd9d955129b46d17c488af6d73eca4420026aec50d4460eeeaa86be28df1
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 153619787a6341773dd10b676605c6f89503db09837a82af80081cc7bfc727c6
 ---
 
 ---
@@ -64,9 +64,11 @@ List API Keys
 
     RFC 3339 datetime string indicating when the API Key was created.
 
-  - `created_by: object { id, type }`
+  - `created_by: object { id, type }  or null`
 
-    The ID and type of the actor that created the API key.
+    The ID and type of the actor that created the API key, or `null` when the
+    creator is not recorded (legacy, workload-identity-federated, or
+    system-created keys).
 
     - `id: string`
 
@@ -76,7 +78,7 @@ List API Keys
 
       Type of the actor that created the object.
 
-  - `expires_at: string`
+  - `expires_at: string or null`
 
     RFC 3339 datetime string indicating when the API Key expires, or `null` if it never expires.
 
@@ -84,11 +86,11 @@ List API Keys
 
     Name of the API key.
 
-  - `partial_key_hint: string`
+  - `partial_key_hint: string or null`
 
     Partially redacted hint for the API key.
 
-  - `principal: object { id, type }`
+  - `principal: object { id, type }  or null`
 
     The ID and type of the principal the API key acts as, or `null` if the key is not bound to a principal.
 
@@ -124,11 +126,11 @@ List API Keys
 
     - `"api_key"`
 
-  - `workspace_id: string`
+  - `workspace_id: string or null`
 
     ID of the Workspace associated with the API key, or `null` if the API key belongs to the default Workspace.
 
-- `first_id: string`
+- `first_id: string or null`
 
   First ID in the `data` list. Can be used as the `before_id` for the previous page.
 
@@ -136,7 +138,7 @@ List API Keys
 
   Indicates if there are more results in the requested page direction.
 
-- `last_id: string`
+- `last_id: string or null`
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
 

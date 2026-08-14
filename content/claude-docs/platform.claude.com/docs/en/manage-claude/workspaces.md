@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/workspaces
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 0e25aa559f59844d1c0df6786a00a89d0843de613dc24fba1ba68bb71bf245f1
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: e1f397520ca9cc8b38d6eaffdb563dcf2bfc7d060fb61f694489ca7315ac346a
 ---
 
 ---
@@ -151,6 +151,7 @@ Programmatically manage workspaces using the [Admin API](https://platform.claude
 # Create a workspace
 curl -X POST "https://api.anthropic.com/v1/organizations/workspaces" \
   -H "anthropic-version: 2023-06-01" \
+  -H "content-type: application/json" \
   -H "x-api-key: $ANTHROPIC_ADMIN_KEY" \
   -d '{"name": "Production"}'
 
@@ -175,6 +176,7 @@ Add, update, or remove members from a workspace:
 # Add a member to a workspace
 curl -X POST "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/members" \
   -H "anthropic-version: 2023-06-01" \
+  -H "content-type: application/json" \
   -H "x-api-key: $ANTHROPIC_ADMIN_KEY" \
   -d '{
     "user_id": "user_xxx",
@@ -184,6 +186,7 @@ curl -X POST "https://api.anthropic.com/v1/organizations/workspaces/{workspace_i
 # Update a member's role
 curl -X POST "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/members/{user_id}" \
   -H "anthropic-version: 2023-06-01" \
+  -H "content-type: application/json" \
   -H "x-api-key: $ANTHROPIC_ADMIN_KEY" \
   -d '{"workspace_role": "workspace_admin"}'
 
@@ -453,7 +456,7 @@ Create workspaces for specific projects or products to track usage and costs sep
   </Step>
 
   <Step title="Use meaningful names">
-    Name workspaces clearly to indicate their purpose (for example, "Production - Customer Chatbot", "Dev - Internal Tools").
+    Name workspaces clearly to indicate their purpose (for example, "Production - Customer Chatbot" or "Dev - Internal Tools").
   </Step>
 
   <Step title="Set appropriate limits">

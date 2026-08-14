@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 7b16d1bd1980f23332eabe3c7b2e022e574f3cb435d4d9fde70fff2b20c02d8d
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: e6060fea4dfcc35938641eb787f731bd1cacf6fdcca91ed6f83ab4fa8c32c33c
 ---
 
 ---
@@ -162,15 +162,15 @@ List User Profiles
 
     A timestamp in RFC 3339 format
 
-  - `external_id: optional string`
+  - `external_id: optional string or null`
 
     Platform's own identifier for this user. Not enforced unique.
 
-  - `name: optional string`
+  - `name: optional string or null`
 
     Display name of the entity this profile represents. For `resold` this is the resold-to company's name.
 
-- `next_page: string`
+- `next_page: string or null`
 
   Cursor for the next page, or `null` when there are no more results.
 

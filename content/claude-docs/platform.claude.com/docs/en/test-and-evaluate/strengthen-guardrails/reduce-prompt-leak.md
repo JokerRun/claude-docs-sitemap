@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-prompt-leak
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: bcb3092fa6f2df4682a20c5d94b8b07eecfa2fda0b3e78cc57b98001349de12c
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: db1608f147d42fb10038364945b7a688221c9eb567bcf17fac2570c3ca672d51
 ---
 
 ---
@@ -56,11 +56,11 @@ If you decide to implement leak-resistant techniques, be sure to test your promp
   ```
 </Accordion>
 
-* **Use post-processing**: Filter Claude's outputs for keywords that might indicate a leak. Techniques include using regular expressions, keyword filtering, or other text processing methods.
+* **Use post-processing:** Filter Claude's outputs for keywords that might indicate a leak. Techniques include using regular expressions, keyword filtering, or other text processing methods.
   <Note>
     You can also use a prompted LLM to filter outputs for more nuanced leaks.
   </Note>
-* **Avoid unnecessary proprietary details**: If Claude doesn't need it to perform the task, don't include it. Extra content distracts Claude from focusing on "no leak" instructions.
-* **Regular audits**: Periodically review your prompts and Claude's outputs for potential leaks.
+* **Avoid unnecessary proprietary details:** If Claude doesn't need it to perform the task, don't include it. Extra content distracts Claude from focusing on "no leak" instructions.
+* **Regular audits:** Periodically review your prompts and Claude's outputs for potential leaks.
 
 Remember, the goal is not just to prevent leaks but to maintain Claude's performance. Overly complex leak-prevention can degrade results. Balance is key.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/service_accounts/update
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 6b242708f45f53d6c1227af1c32684714731e5f570d08d5d41390558031132c4
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: d6452ceb6c8d82c8cc53e2371f3bb5b98261668faf23219e281977ae98a48b3f
 ---
 
 ---
@@ -38,11 +38,11 @@ API keys are not accepted.
 
 ### Body Parameters
 
-- `description: optional string`
+- `description: optional string or null`
 
   Replaces the description. Omit to leave unchanged; send `null` to clear (the field is stored as an empty string).
 
-- `organization_role: optional "admin" or "developer"`
+- `organization_role: optional "admin" or "developer" or null`
 
   Replaces the org-level role. Omit or send `null` to leave unchanged.
 
@@ -63,11 +63,11 @@ API keys are not accepted.
 
     Tagged ID of the service account.
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     If set, this service account is archived.
 
-  - `archived_by_actor_id: string`
+  - `archived_by_actor_id: string or null`
 
     Tagged ID (`user_`/`svac_`) of the actor that archived this service account.
 
@@ -75,11 +75,11 @@ API keys are not accepted.
 
     When this service account was created.
 
-  - `created_by_actor_id: string`
+  - `created_by_actor_id: string or null`
 
     Tagged ID (`user_`/`svac_`) of the actor that created this service account.
 
-  - `description: string`
+  - `description: string or null`
 
     Optional free-text description.
 
@@ -103,7 +103,7 @@ API keys are not accepted.
 
     When this service account was last updated.
 
-  - `updated_by_actor_id: string`
+  - `updated_by_actor_id: string or null`
 
     Tagged ID (`user_`/`svac_`) of the actor that last updated this service account.
 

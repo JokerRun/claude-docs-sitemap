@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/service_accounts/retrieve
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 0eb74a67a64c54a64a0fca371009618a891db8ffd47629032b265b4f986f9311
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 7cf865def0871f668223f27891f9a32eb81b361b752c489795d0a9538b980acd
 ---
 
 ---
@@ -43,11 +43,11 @@ account returns 404.
 
 ### Returns
 
-- `created_by_actor_id: string`
+- `created_by_actor_id: string or null`
 
   Tagged ID (`user_...`/`svac_...`) of the actor who created this membership.
 
-- `implicit: boolean`
+- `implicit: boolean or null`
 
   True when this is the implicit default-workspace membership every service account has when no explicit membership exists. Implicit memberships have role workspace_user and cannot be removed.
 

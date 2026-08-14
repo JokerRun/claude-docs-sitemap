@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rbac_groups/members
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: ca6739aaf14063ad5fbcb12129495cfc1a18a0629904c2ca068bdfd0c93e15c5
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 074e92c83de18e22e5b95255046e60f2f9734a813f88c56bad02eb9c080a3ffe
 ---
 
 ---
@@ -78,7 +78,7 @@ The RBAC Groups API is in beta and available to Claude Enterprise organizations 
 
   Indicates if there are more results in the requested page direction.
 
-- `next_page: string`
+- `next_page: string or null`
 
   Token to provide in as `page` in the subsequent request to retrieve the next page of data.
 

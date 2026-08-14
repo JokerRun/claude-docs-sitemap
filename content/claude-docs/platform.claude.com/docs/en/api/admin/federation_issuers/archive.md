@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/federation_issuers/archive
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: cd40154c25994948f16fde44944dca8d3b349f4f7702e1c3057157c1bb77eacb
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 221ab936b817f1c91e5d647c75a8920dd4a6f70caef56f2caa4b13c7252d6824
 ---
 
 ---
@@ -51,11 +51,11 @@ accepted.
 
     Tagged ID of the federation issuer.
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     If set, all rules referencing this issuer reject token exchange.
 
-  - `archived_by_actor_id: string`
+  - `archived_by_actor_id: string or null`
 
     Tagged ID (`user_`/`svac_`) of the actor that archived this issuer.
 
@@ -67,7 +67,7 @@ accepted.
 
     When this issuer was created.
 
-  - `created_by_actor_id: string`
+  - `created_by_actor_id: string or null`
 
     Tagged ID (`user_`/`svac_`) of the actor that created this issuer.
 
@@ -87,11 +87,11 @@ accepted.
 
         - `"discovery"`
 
-      - `ca_cert_pem: optional string`
+      - `ca_cert_pem: optional string or null`
 
         Optional custom CA (PEM) for TLS verification of the JWKS fetch.
 
-      - `discovery_base: optional string`
+      - `discovery_base: optional string or null`
 
         Set when the discovery URL differs from `issuer_url`.
 
@@ -107,7 +107,7 @@ accepted.
 
         JWKS endpoint.
 
-      - `ca_cert_pem: optional string`
+      - `ca_cert_pem: optional string or null`
 
         Optional custom CA (PEM) for TLS verification of the JWKS fetch.
 
@@ -123,7 +123,7 @@ accepted.
 
         - `"inline"`
 
-  - `jwks_polling_disabled_at: string`
+  - `jwks_polling_disabled_at: string or null`
 
     If set, Anthropic's JWKS poller has paused polling for this issuer after repeated fetch failures. Re-enable by sending `jwks_polling_disabled: false` via the issuer update endpoint (POST) once the upstream JWKS endpoint is fixed. An OAuth caller cannot send this when the issuer backs a rule with any scope other than `workspace:developer` or `workspace:inference`; use a Console session.
 
@@ -135,7 +135,7 @@ accepted.
 
     Admin-chosen slug identifier.
 
-  - `poll_status: object { consecutive_failures, last_fetched_at, next_poll_at }`
+  - `poll_status: object { consecutive_failures, last_fetched_at, next_poll_at }  or null`
 
     Status of automatic JWKS polling for a federation issuer.
 
@@ -147,11 +147,11 @@ accepted.
 
       Consecutive fetch failures since the last success.
 
-    - `last_fetched_at: string`
+    - `last_fetched_at: string or null`
 
       When the last successful fetch completed.
 
-    - `next_poll_at: string`
+    - `next_poll_at: string or null`
 
       When the next fetch is scheduled. Null if paused.
 
@@ -163,7 +163,7 @@ accepted.
 
     When this issuer was last updated.
 
-  - `updated_by_actor_id: string`
+  - `updated_by_actor_id: string or null`
 
     Tagged ID (`user_`/`svac_`) of the actor that last updated this issuer.
 

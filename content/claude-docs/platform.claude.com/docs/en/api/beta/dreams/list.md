@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: a5a6c115807d86b14cfe188d49c4711a56f7a70058856f28a38e517beecc7487
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 06cbab12f982f1a33db899cb228a787de4e3e446bf264adb5f169e6ea795c623
 ---
 
 ---
@@ -134,7 +134,7 @@ List Dreams
 
   - `id: string`
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 
@@ -142,11 +142,11 @@ List Dreams
 
     A timestamp in RFC 3339 format
 
-  - `ended_at: string`
+  - `ended_at: string or null`
 
     A timestamp in RFC 3339 format
 
-  - `error: BetaDreamError`
+  - `error: BetaDreamError or null`
 
     Failure detail for a Dream whose `status` is `failed`.
 
@@ -176,7 +176,7 @@ List Dreams
 
         - `"sessions"`
 
-  - `instructions: string`
+  - `instructions: string or null`
 
   - `model: BetaDreamModelConfig`
 
@@ -202,7 +202,7 @@ List Dreams
 
       - `"memory_store"`
 
-  - `session_id: string`
+  - `session_id: string or null`
 
   - `status: BetaDreamStatus`
 
@@ -242,7 +242,7 @@ List Dreams
 
       Total output tokens generated across every pipeline stage.
 
-- `next_page: string`
+- `next_page: string or null`
 
 ### Example
 

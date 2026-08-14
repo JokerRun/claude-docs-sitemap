@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/increase_requests/approve
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: f9975711b508fdaecae8ba3c0ea88dc5434e39ae3be0a79b21fa5bc2fa6b174e
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 82680f014861ec03eb2639c8fcb004c998e694de142b789c1f57ee2e2aabdca8
 ---
 
 ---
@@ -33,7 +33,7 @@ the member was blocked on. Anthropic emails the requester unless
 
   New per-user spend limit as a non-negative integer decimal string (minor units).
 
-- `period: optional "daily" or "monthly" or "weekly"`
+- `period: optional "daily" or "monthly" or "weekly" or null`
 
   - `"daily"`
 
@@ -55,9 +55,9 @@ the member was blocked on. Anthropic emails the requester unless
 
   - `deleted: boolean`
 
-  - `email_address: string`
+  - `email_address: string or null`
 
-  - `name: string`
+  - `name: string or null`
 
   - `type: "user_actor"`
 
@@ -75,9 +75,9 @@ the member was blocked on. Anthropic emails the requester unless
 
   - `"weekly"`
 
-- `resolved_at: string`
+- `resolved_at: string or null`
 
-- `resolved_by: object { deleted, email_address, name, 2 more }  or object { scoped_api_key_id, type }`
+- `resolved_by: object { deleted, email_address, name, 2 more }  or object { scoped_api_key_id, type }  or null`
 
   A user within the organization. `name` and `email_address` are
   null when the underlying account is unavailable or has been deleted;
@@ -91,9 +91,9 @@ the member was blocked on. Anthropic emails the requester unless
 
     - `deleted: boolean`
 
-    - `email_address: string`
+    - `email_address: string or null`
 
-    - `name: string`
+    - `name: string or null`
 
     - `type: "user_actor"`
 
@@ -115,11 +115,15 @@ the member was blocked on. Anthropic emails the requester unless
 
   - `id: string`
 
-  - `amount: string`
+  - `amount: string or null`
+
+    Limit amount as a non-negative integer decimal string in the minor unit of `currency` (cents for USD): "50000" is $500.00. `null` means no numeric cap is configured at this scope — see the effective report for whether a limit applies.
 
   - `created_at: string`
 
   - `currency: string`
+
+    ISO 4217 code of the organization's billing currency; the unit for `amount`.
 
   - `period: "daily" or "monthly" or "weekly"`
 
@@ -175,7 +179,7 @@ the member was blocked on. Anthropic emails the requester unless
 
   - `updated_at: string`
 
-- `spend_summary: SpendSummary`
+- `spend_summary: SpendSummary or null`
 
   Per-member effective-limit report row (GET /spend_limits/effective).
 
@@ -187,9 +191,9 @@ the member was blocked on. Anthropic emails the requester unless
 
     - `deleted: boolean`
 
-    - `email_address: string`
+    - `email_address: string or null`
 
-    - `name: string`
+    - `name: string or null`
 
     - `type: "user_actor"`
 
@@ -197,9 +201,13 @@ the member was blocked on. Anthropic emails the requester unless
 
     - `user_id: string`
 
-  - `amount: string`
+  - `amount: string or null`
+
+    Effective limit amount as a non-negative integer decimal string in the minor unit of `currency` (cents for USD). `null` means no limit applies for this row's `period` — each period resolves independently, so another period may still cap this member.
 
   - `currency: string`
+
+    ISO 4217 code of the organization's billing currency; the unit for `amount` and `period_to_date_spend`.
 
   - `period: "daily" or "monthly" or "weekly"`
 
@@ -210,6 +218,8 @@ the member was blocked on. Anthropic emails the requester unless
     - `"weekly"`
 
   - `period_to_date_spend: string`
+
+    The member's spend so far in the current period, as a non-negative decimal string in the minor unit of `currency` (cents for USD). May carry fractional minor units up to three decimal places (e.g. `"12050.5"`) — metered usage is not rounded to whole cents. Reads as `"0"` when the spend reading is temporarily unavailable.
 
   - `scope: object { type, user_id }`
 
@@ -332,7 +342,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/$S
     "amount": "50000",
     "currency": "USD",
     "period": "monthly",
-    "period_to_date_spend": "period_to_date_spend",
+    "period_to_date_spend": "12050.5",
     "scope": {
       "type": "user",
       "user_id": "user_id"

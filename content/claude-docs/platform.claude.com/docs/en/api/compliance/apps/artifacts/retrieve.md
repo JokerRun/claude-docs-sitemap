@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/artifacts/retrieve
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: a3533e5ed422882d1d88499d526c20a29e528f718e20b57a9b25351fe5397e6c
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 3f79ab9ca3808aef720aea0258726a5aaa079c3516ee5485cf1e0554a85a92c4
 ---
 
 ---
@@ -37,7 +37,7 @@ without downloading every artifact.
 
   Artifact ID e.g. 'claude_artifact_abc123'
 
-- `artifact_type: string`
+- `artifact_type: string or null`
 
   MIME-like artifact type e.g. 'application/vnd.ant.code'
 
@@ -57,7 +57,7 @@ without downloading every artifact.
 
   Size in bytes of the artifact content (UTF-8 encoded)
 
-- `title: string`
+- `title: string or null`
 
   Artifact title
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/mcp_oauth_validate
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 2aa4b59257c4a0c2ecf8867588b09f96025228a53e9ff4e71db55497614cb58e
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 99a47b3c5cd77431cfd347d9703e8f808a3344c2a60d21b49d5273459e3472bf
 ---
 
 ---
@@ -112,11 +112,11 @@ Validate Credential
 
     Whether the credential has a refresh token configured.
 
-  - `mcp_probe: BetaManagedAgentsMCPProbe`
+  - `mcp_probe: BetaManagedAgentsMCPProbe or null`
 
     The failing step of an MCP validation probe.
 
-    - `http_response: BetaManagedAgentsRefreshHTTPResponse`
+    - `http_response: BetaManagedAgentsRefreshHTTPResponse or null`
 
       An HTTP response captured during a credential validation probe.
 
@@ -140,11 +140,11 @@ Validate Credential
 
       The MCP method that failed (for example `initialize` or `tools/list`).
 
-  - `refresh: BetaManagedAgentsRefreshObject`
+  - `refresh: BetaManagedAgentsRefreshObject or null`
 
     Outcome of a refresh-token exchange attempted during credential validation.
 
-    - `http_response: BetaManagedAgentsRefreshHTTPResponse`
+    - `http_response: BetaManagedAgentsRefreshHTTPResponse or null`
 
       An HTTP response captured during a credential validation probe.
 

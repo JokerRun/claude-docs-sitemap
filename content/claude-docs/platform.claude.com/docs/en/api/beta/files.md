@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 5854b33b427900b87a36b955ca3884bfddc932937986d8be182a73bf5baff026
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: e97fda23390e79022a0d2737784e87f9ed62e784d37d1b993433bda97b3b84b2
 ---
 
 ---
@@ -132,7 +132,7 @@ Upload File
 
     Whether the file can be downloaded.
 
-  - `scope: optional BetaFileScope`
+  - `scope: optional BetaFileScope or null`
 
     The scope of this file, indicating the context in which it was created (e.g., a session).
 
@@ -317,7 +317,7 @@ List Files
 
     Whether the file can be downloaded.
 
-  - `scope: optional BetaFileScope`
+  - `scope: optional BetaFileScope or null`
 
     The scope of this file, indicating the context in which it was created (e.g., a session).
 
@@ -331,7 +331,7 @@ List Files
 
       - `"session"`
 
-- `first_id: optional string`
+- `first_id: optional string or null`
 
   ID of the first file in this page of results.
 
@@ -339,7 +339,7 @@ List Files
 
   Whether there are more results available.
 
-- `last_id: optional string`
+- `last_id: optional string or null`
 
   ID of the last file in this page of results.
 
@@ -600,7 +600,7 @@ Get File Metadata
 
     Whether the file can be downloaded.
 
-  - `scope: optional BetaFileScope`
+  - `scope: optional BetaFileScope or null`
 
     The scope of this file, indicating the context in which it was created (e.g., a session).
 
@@ -834,7 +834,7 @@ curl https://api.anthropic.com/v1/files/$FILE_ID \
 
     Whether the file can be downloaded.
 
-  - `scope: optional BetaFileScope`
+  - `scope: optional BetaFileScope or null`
 
     The scope of this file, indicating the context in which it was created (e.g., a session).
 

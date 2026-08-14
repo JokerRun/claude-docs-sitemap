@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/retrieve
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 296b8c71fd1a1974dd0b703208aa1a0aae49783a5552be3bfb198bfd2860678d
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: bf8fcb65e87e762e9bcb3218a6ecff5787233e5371301302db1d35e88856080b
 ---
 
 ---
@@ -108,7 +108,7 @@ Fetches a tunnel by ID.
 
     Unique identifier for the tunnel, prefixed with `tnl_`.
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 
@@ -116,7 +116,7 @@ Fetches a tunnel by ID.
 
     A timestamp in RFC 3339 format
 
-  - `display_name: string`
+  - `display_name: string or null`
 
     Human-readable name for the tunnel (1-255 characters). Null if unset.
 

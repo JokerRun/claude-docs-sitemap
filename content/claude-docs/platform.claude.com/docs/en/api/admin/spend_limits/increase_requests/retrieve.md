@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/increase_requests/retrieve
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: d4d650188576532ef26e7d321d782f8cdfa249ba74d0de53b7ad9efb0dd2408a
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: ea04b254617b8cfbe1cf3bedf0843c26beff38ab84bb5eef806d62dffd053a9c
 ---
 
 ---
@@ -39,9 +39,9 @@ requester at the request's period.
 
     - `deleted: boolean`
 
-    - `email_address: string`
+    - `email_address: string or null`
 
-    - `name: string`
+    - `name: string or null`
 
     - `type: "user_actor"`
 
@@ -59,9 +59,9 @@ requester at the request's period.
 
     - `"weekly"`
 
-  - `resolved_at: string`
+  - `resolved_at: string or null`
 
-  - `resolved_by: object { deleted, email_address, name, 2 more }  or object { scoped_api_key_id, type }`
+  - `resolved_by: object { deleted, email_address, name, 2 more }  or object { scoped_api_key_id, type }  or null`
 
     A user within the organization. `name` and `email_address` are
     null when the underlying account is unavailable or has been deleted;
@@ -75,9 +75,9 @@ requester at the request's period.
 
       - `deleted: boolean`
 
-      - `email_address: string`
+      - `email_address: string or null`
 
-      - `name: string`
+      - `name: string or null`
 
       - `type: "user_actor"`
 
@@ -95,7 +95,7 @@ requester at the request's period.
 
         - `"scoped_api_key_actor"`
 
-  - `spend_summary: SpendSummary`
+  - `spend_summary: SpendSummary or null`
 
     Per-member effective-limit report row (GET /spend_limits/effective).
 
@@ -107,9 +107,9 @@ requester at the request's period.
 
       - `deleted: boolean`
 
-      - `email_address: string`
+      - `email_address: string or null`
 
-      - `name: string`
+      - `name: string or null`
 
       - `type: "user_actor"`
 
@@ -117,9 +117,13 @@ requester at the request's period.
 
       - `user_id: string`
 
-    - `amount: string`
+    - `amount: string or null`
+
+      Effective limit amount as a non-negative integer decimal string in the minor unit of `currency` (cents for USD). `null` means no limit applies for this row's `period` — each period resolves independently, so another period may still cap this member.
 
     - `currency: string`
+
+      ISO 4217 code of the organization's billing currency; the unit for `amount` and `period_to_date_spend`.
 
     - `period: "daily" or "monthly" or "weekly"`
 
@@ -130,6 +134,8 @@ requester at the request's period.
       - `"weekly"`
 
     - `period_to_date_spend: string`
+
+      The member's spend so far in the current period, as a non-negative decimal string in the minor unit of `currency` (cents for USD). May carry fractional minor units up to three decimal places (e.g. `"12050.5"`) — metered usage is not rounded to whole cents. Reads as `"0"` when the spend reading is temporarily unavailable.
 
     - `scope: object { type, user_id }`
 
@@ -234,7 +240,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/$S
     "amount": "50000",
     "currency": "USD",
     "period": "monthly",
-    "period_to_date_spend": "period_to_date_spend",
+    "period_to_date_spend": "12050.5",
     "scope": {
       "type": "user",
       "user_id": "user_id"

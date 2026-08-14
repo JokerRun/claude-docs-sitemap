@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: c4f9fda7fb2848e82456f78fb66b77437818090135d9d055d70171d8209bb689
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 97fe1f5290b04c1cf955472a41ca7187277ec10bc0ed6691f24ecfc4fe99f81c
 ---
 
 ---
@@ -193,8 +193,6 @@ The following examples show how to print a list of all the Claude models availab
   ```
 
   ```csharp C#
-  using System;
-  using System.Threading.Tasks;
   using Amazon;
   using Amazon.Bedrock;
   using Amazon.Bedrock.Model;
@@ -400,8 +398,9 @@ The following examples show how to generate text from Claude on Bedrock:
 
     Console.WriteLine(
         string.Join("", response.Content
-            .Where(c => c.Value is TextBlock)
-            .Select(c => (c.Value as TextBlock)!.Text)));
+            .Select(block => block.Value)
+            .OfType<TextBlock>()
+            .Select(textBlock => textBlock.Text)));
     ```
   </Tab>
 
@@ -430,7 +429,7 @@ The following examples show how to generate text from Claude on Bedrock:
     	if err != nil {
     		panic(err)
     	}
-    	fmt.Printf("%+v\n", message.Content)
+    	fmt.Println(message.Content)
     ```
   </Tab>
 

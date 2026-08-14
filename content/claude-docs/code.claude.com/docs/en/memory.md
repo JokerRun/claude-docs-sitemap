@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/memory
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 2501989d713a4d5ec03e7c237dd6f3a6ecb9e497536989294b2c141b7bc3086a
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 714ee359ae36615df0a70335ebc6bc78c42e01dcc32e616c736ded37c666d2b6
 ---
 
 > ## Documentation Index
@@ -372,7 +372,7 @@ To store auto memory in a different location, set `autoMemoryDirectory` in your 
 }
 ```
 
-The value must be an absolute path or start with `~/`. When set in a project's `.claude/settings.json` or `.claude/settings.local.json`, the value is honored only after you accept the workspace trust dialog for that folder, the same gate that governs hooks.
+The value must be an absolute path or start with `~/`. When you set it in a project's `.claude/settings.json` or `.claude/settings.local.json`, Claude Code honors it under the same [workspace trust rule as hooks in settings files](/docs/en/permissions#what-runs-before-you-trust-a-folder).
 
 The directory contains a `MEMORY.md` entrypoint and optional topic files:
 

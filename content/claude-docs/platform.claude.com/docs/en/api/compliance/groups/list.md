@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/groups/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 250fba5492aa32714563a109165996fc958c8c6e700951148800ab90328968f7
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 109228d824f95585918aec44ebd9d8d5fd635fdaa2ea4f27bfd41e1afe2e5b41
 ---
 
 ---
@@ -44,7 +44,7 @@ List Compliance Groups
 
     Group identifier (tagged ID)
 
-  - `created_at: string`
+  - `created_at: string or null`
 
     Group creation timestamp (ISO 8601)
 
@@ -56,7 +56,7 @@ List Compliance Groups
 
     Group name
 
-  - `roles: array of string`
+  - `roles: array of string or null`
 
     Role IDs assigned to this group.
 
@@ -64,7 +64,7 @@ List Compliance Groups
 
     How the group was created ('direct' or 'scim')
 
-  - `updated_at: string`
+  - `updated_at: string or null`
 
     Group last-updated timestamp (ISO 8601)
 
@@ -72,7 +72,7 @@ List Compliance Groups
 
   Whether more records exist beyond the current result set
 
-- `next_page: string`
+- `next_page: string or null`
 
   Token to retrieve the next page. Use this as the 'page' parameter in your next request
 

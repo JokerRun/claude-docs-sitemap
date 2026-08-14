@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/java
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: f8f55d7ad36136ad912508547f46b726ea530cd6f60ee23108f87795efc1588c
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 76360549422e5ec9696a58c58207a24f80f9b9ea0183c12cf4c56f9a1184e38b
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/java
 description: Install and configure the Anthropic Java SDK with builder patterns and async support
 ---
 
-The Anthropic Java SDK provides convenient access to the Anthropic REST API from applications written in Java. It uses the builder pattern for creating requests and supports both synchronous and asynchronous operations.
+The Anthropic Java SDK provides convenient access to the Claude API from applications written in Java. It uses the builder pattern for creating requests and supports both synchronous and asynchronous operations.
 
 <Info>
   For API feature documentation with code examples, see the [API reference](https://platform.claude.com/docs/en/api/overview). This page covers Java-specific SDK features and configuration.
@@ -1273,7 +1273,7 @@ void main() {
 
 ## Semantic versioning
 
-This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:
+This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backward-incompatible changes may be released as minor versions:
 
 1. Changes to library internals which are technically public but not intended or documented for external use.
 2. Changes that aren't expected to impact the vast majority of users in practice.

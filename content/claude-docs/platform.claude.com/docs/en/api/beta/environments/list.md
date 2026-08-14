@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/list
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 162da1f186342b58080e36e45d8d50b40bb531d03aea5a5470530ead32910899
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: df73298cae9b5a76dbd47402906c32b2eeefcce81e034febcb330ec2cd102c32
 ---
 
 ---
@@ -116,7 +116,7 @@ List environments with pagination support.
 
     Environment identifier (e.g., 'env_...')
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     RFC 3339 timestamp when environment was archived, or null if not archived
 
@@ -248,7 +248,7 @@ List environments with pagination support.
 
     - `"account"`
 
-- `next_page: string`
+- `next_page: string or null`
 
   Token for fetching the next page of results. If `null`, there are no more results available. Pass this value to the `page` parameter in the next request.
 

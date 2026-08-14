@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys/retrieve
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 3b04594aeff81cbe8ef44a3a490d709feff7c4969e2b60256c8f87ada60ae7de
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: 7c455ec86ffb10955617289ba68a3e19d2ed6bd553332573f477382b12c09497
 ---
 
 ---
@@ -34,9 +34,11 @@ Retrieve information about a single API key in your organization, looked up by i
 
     RFC 3339 datetime string indicating when the API Key was created.
 
-  - `created_by: object { id, type }`
+  - `created_by: object { id, type }  or null`
 
-    The ID and type of the actor that created the API key.
+    The ID and type of the actor that created the API key, or `null` when the
+    creator is not recorded (legacy, workload-identity-federated, or
+    system-created keys).
 
     - `id: string`
 
@@ -46,7 +48,7 @@ Retrieve information about a single API key in your organization, looked up by i
 
       Type of the actor that created the object.
 
-  - `expires_at: string`
+  - `expires_at: string or null`
 
     RFC 3339 datetime string indicating when the API Key expires, or `null` if it never expires.
 
@@ -54,11 +56,11 @@ Retrieve information about a single API key in your organization, looked up by i
 
     Name of the API key.
 
-  - `partial_key_hint: string`
+  - `partial_key_hint: string or null`
 
     Partially redacted hint for the API key.
 
-  - `principal: object { id, type }`
+  - `principal: object { id, type }  or null`
 
     The ID and type of the principal the API key acts as, or `null` if the key is not bound to a principal.
 
@@ -94,7 +96,7 @@ Retrieve information about a single API key in your organization, looked up by i
 
     - `"api_key"`
 
-  - `workspace_id: string`
+  - `workspace_id: string or null`
 
     ID of the Workspace associated with the API key, or `null` if the API key belongs to the default Workspace.
 

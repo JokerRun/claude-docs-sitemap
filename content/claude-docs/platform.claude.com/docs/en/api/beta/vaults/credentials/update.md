@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/update
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: e95d2d8fd8d6f33b8c9b384b8cb323097fde0d6872e257a65dfbc4801b976ea3
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: e266f2815a1471ee574141caee4beab76f41370cd7264aa033704f675ac43af7
 ---
 
 ---
@@ -112,23 +112,23 @@ Update Credential
 
       - `"mcp_oauth"`
 
-    - `access_token: optional string`
+    - `access_token: optional string or null`
 
       Updated OAuth access token.
 
-    - `expires_at: optional string`
+    - `expires_at: optional string or null`
 
       A timestamp in RFC 3339 format
 
-    - `refresh: optional BetaManagedAgentsMCPOAuthRefreshUpdateParams`
+    - `refresh: optional BetaManagedAgentsMCPOAuthRefreshUpdateParams or null`
 
       Parameters for updating OAuth refresh token configuration.
 
-      - `refresh_token: optional string`
+      - `refresh_token: optional string or null`
 
         Updated OAuth refresh token.
 
-      - `scope: optional string`
+      - `scope: optional string or null`
 
         Updated OAuth scope for the refresh request.
 
@@ -144,7 +144,7 @@ Update Credential
 
             - `"client_secret_basic"`
 
-          - `client_secret: optional string`
+          - `client_secret: optional string or null`
 
             Updated OAuth client secret.
 
@@ -156,7 +156,7 @@ Update Credential
 
             - `"client_secret_post"`
 
-          - `client_secret: optional string`
+          - `client_secret: optional string or null`
 
             Updated OAuth client secret.
 
@@ -168,7 +168,7 @@ Update Credential
 
       - `"static_bearer"`
 
-    - `token: optional string`
+    - `token: optional string or null`
 
       Updated static bearer token value.
 
@@ -192,7 +192,7 @@ Update Credential
 
         Substitute when the placeholder appears in a request header value.
 
-    - `networking: optional BetaManagedAgentsCredentialNetworkingParams`
+    - `networking: optional BetaManagedAgentsCredentialNetworkingParams or null`
 
       Updated networking scope. Full replacement.
 
@@ -216,15 +216,15 @@ Update Credential
 
           - `"limited"`
 
-    - `secret_value: optional string`
+    - `secret_value: optional string or null`
 
       Updated secret value.
 
-- `display_name: optional string`
+- `display_name: optional string or null`
 
   Updated human-readable name for the credential. 1-255 characters.
 
-- `metadata: optional map[string]`
+- `metadata: optional map[string] or null`
 
   Metadata patch. Set a key to a string to upsert it, or to null to delete it. Omitted keys are preserved.
 
@@ -238,7 +238,7 @@ Update Credential
 
     Unique identifier for the credential.
 
-  - `archived_at: string`
+  - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 
@@ -258,11 +258,11 @@ Update Credential
 
         - `"mcp_oauth"`
 
-      - `expires_at: optional string`
+      - `expires_at: optional string or null`
 
         A timestamp in RFC 3339 format
 
-      - `refresh: optional BetaManagedAgentsMCPOAuthRefreshResponse`
+      - `refresh: optional BetaManagedAgentsMCPOAuthRefreshResponse or null`
 
         OAuth refresh token configuration returned in credential responses.
 
@@ -302,11 +302,11 @@ Update Credential
 
               - `"client_secret_post"`
 
-        - `resource: optional string`
+        - `resource: optional string or null`
 
           OAuth resource indicator.
 
-        - `scope: optional string`
+        - `scope: optional string or null`
 
           OAuth scope for the refresh request.
 
@@ -390,7 +390,7 @@ Update Credential
 
     Identifier of the vault this credential belongs to.
 
-  - `display_name: optional string`
+  - `display_name: optional string or null`
 
     Human-readable name for the credential.
 

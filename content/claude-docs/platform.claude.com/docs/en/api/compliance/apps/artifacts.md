@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/artifacts
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: aadf4f925972dcbc6715d1a9007588765ea55c4eadabf13e625f98ddf7d5f4d9
+fetched_at: 2026-08-14T02:57:38.618353Z
+sha256: a206f922a0b025b0a251c8b4723584435400c2d68269e9503a050cc3e29a5611
 ---
 
 ---
@@ -39,7 +39,7 @@ without downloading every artifact.
 
   Artifact ID e.g. 'claude_artifact_abc123'
 
-- `artifact_type: string`
+- `artifact_type: string or null`
 
   MIME-like artifact type e.g. 'application/vnd.ant.code'
 
@@ -59,7 +59,7 @@ without downloading every artifact.
 
   Size in bytes of the artifact content (UTF-8 encoded)
 
-- `title: string`
+- `title: string or null`
 
   Artifact title
 
@@ -129,7 +129,7 @@ curl https://api.anthropic.com/v1/compliance/apps/artifacts/$ARTIFACT_VERSION_ID
 
     Artifact ID e.g. 'claude_artifact_abc123'
 
-  - `artifact_type: string`
+  - `artifact_type: string or null`
 
     MIME-like artifact type e.g. 'application/vnd.ant.code'
 
@@ -149,7 +149,7 @@ curl https://api.anthropic.com/v1/compliance/apps/artifacts/$ARTIFACT_VERSION_ID
 
     Size in bytes of the artifact content (UTF-8 encoded)
 
-  - `title: string`
+  - `title: string or null`
 
     Artifact title
 
