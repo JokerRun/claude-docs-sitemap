@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 2313a6d67f22a9d4ea4edcb0ac9d813869303b6e73b48b1f42613c62cfd0b7fa
+fetched_at: 2026-08-15T02:25:10.047250Z
+sha256: 0887a3fede7b071e1045a39f496070de4c46a7135a0758d083e5a1c4bfd95e5d
 ---
 
 ---
@@ -586,7 +586,7 @@ The Python environment can process various file types uploaded through the Files
 
 ### Retrieve generated files
 
-When Claude creates files during code execution, each created file's ID appears in the code execution tool result, and you can download it with the [Files API](https://platform.claude.com/docs/en/build-with-claude/files):
+When Claude saves files to its output directory during code execution (see [How generated files are captured](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool#how-generated-files-are-captured)), each file's ID appears in the code execution tool result, and you can download it with the [Files API](https://platform.claude.com/docs/en/build-with-claude/files):
 
 <CodeGroup>
   ```bash cURL
@@ -936,6 +936,18 @@ When Claude creates files during code execution, each created file's ID appears 
   ```
 </CodeGroup>
 
+#### How generated files are captured
+
+Each `bash_code_execution` call gets a new, empty directory, available to the command as `$OUTPUT_DIR`. When the command finishes, the files at the top level of that directory are captured and returned as the `file_id` entries in the result's `content` list. Files written anywhere else stay in the container and aren't returned.
+
+The tool description tells Claude to share files by copying them into `$OUTPUT_DIR`. If your application depends on receiving a file, prompt Claude to copy it into `$OUTPUT_DIR` and list the directory in the same command, so the `ls` output confirms the capture (Claude doesn't see the `content` list):
+
+```bash
+python /tmp/make_report.py && cp /tmp/report.pdf "$OUTPUT_DIR/" && ls "$OUTPUT_DIR"
+```
+
+A file Claude wrote elsewhere is still in the container, so you can [reuse the container](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool#container-reuse) and ask Claude to copy it into `$OUTPUT_DIR`.
+
 ## Tool definition
 
 The code execution tool requires no additional parameters:
@@ -1070,7 +1082,7 @@ Bash command results (`bash_code_execution_result`) include:
 * `stdout`: Output from successful execution
 * `stderr`: Error messages if execution fails
 * `return_code`: 0 for success, non-zero for failure
-* `content`: A list with an entry for each file the command created. Each entry carries the `file_id` to [retrieve the file](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool#retrieve-generated-files) with the Files API
+* `content`: A list with an entry for each file the command left in `$OUTPUT_DIR` (see [How generated files are captured](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool#how-generated-files-are-captured)). Each entry carries the `file_id` to [retrieve the file](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool#retrieve-generated-files) with the Files API
 
 File operation results have their own fields:
 

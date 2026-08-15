@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/workflows
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 6f01e5aed80d4b7b199082cdbc04a2f2f18b977b14536d14717882215f357078
+fetched_at: 2026-08-15T02:25:10.047250Z
+sha256: afbe8d3bf0156f26f35a2db99690c7a947fc1d16709c08a03dea3f3cfca2ca1b
 ---
 
 > ## Documentation Index
@@ -177,8 +177,8 @@ Whether you see this prompt depends on your [permission mode](/docs/en/permissio
 
 | Permission mode                            | When you're prompted                                                                                                                                    |
 | :----------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Default, accept edits                      | Every run, unless you've selected **Yes, and don't ask again** for that workflow in this project                                                        |
 | Auto                                       | First launch only. Any **Yes** records consent in your user settings, and later launches start without prompting. Skipped entirely when ultracode is on |
+| Manual, accept edits                       | Every run, unless you've selected **Yes, and don't ask again** for that workflow in this project                                                        |
 | Bypass permissions, `claude -p`, Agent SDK | Never. The run starts immediately                                                                                                                       |
 
 In the Desktop app, an approval card shows the workflow name, the phase list, and a token-usage caution, with **Once**, **Always**, and **Deny** actions. The progress view appears in the Background tasks side pane.

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins-reference
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 6d8052733021ebfd022b5256eb6de04820bd08b522c84226e7e545450a67397a
+fetched_at: 2026-08-15T02:25:10.047250Z
+sha256: 8d7a7c0649dec858c9d48072af247092ec0c82678ed70b3d4251748c822124ed
 ---
 
 > ## Documentation Index
@@ -645,7 +645,7 @@ For all path fields:
   * Claude Code takes the skill's invocation name from the frontmatter `name` field in `SKILL.md`, so the name stays stable whatever the install directory is named
   * If `name` isn't set in the frontmatter, Claude Code falls back to the directory basename
 
-A plugin that has a `SKILL.md` at its root, no `skills/` subdirectory, and no `skills` manifest field is automatically loaded as a single-skill plugin in Claude Code v2.1.142 and later. You do not need to set `"skills": ["./"]` in `plugin.json` for this layout.
+A plugin that has a `SKILL.md` at its root, no `skills/` subdirectory, and no `skills` manifest field is automatically loaded as a single-skill plugin. You do not need to set `"skills": ["./"]` in `plugin.json` for this layout.
 
 **Path examples**:
 

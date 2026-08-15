@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/terminal-config
-fetched_at: 2026-08-12T02:56:30.865670Z
-sha256: 793827c21dd9e4fdde72ade4410d18c015d772a6cc3c646a24fec5e8e46800b4
+fetched_at: 2026-08-15T02:25:10.047250Z
+sha256: 8d3e94ec93a926b600777c0aa10e44790b8ce14da7e928604984fba409074c46
 ---
 
 > ## Documentation Index
@@ -213,7 +213,7 @@ The reference below covers the tokens you can set in `overrides`. The interactiv
 
   | Token          | Controls                                           |
   | :------------- | :------------------------------------------------- |
-  | `promptBorder` | Input box border in the default permission mode    |
+  | `promptBorder` | Input box border in Manual mode                    |
   | `planMode`     | Plan mode accent and border                        |
   | `autoAccept`   | Accept-edits mode accent and border                |
   | `bashBorder`   | Input box border when entering a `!` shell command |

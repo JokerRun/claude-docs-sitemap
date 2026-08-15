@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/permissions
-fetched_at: 2026-08-12T02:56:30.865670Z
-sha256: b00680ea12974a78e0c60bb52118eb9dfc1bc68351186077b7fe1bd02a63958a
+fetched_at: 2026-08-15T02:25:10.047250Z
+sha256: 98cb7cece1c75d29212f2bb547baa46bbf3386cc82158ea71871231255939d92
 ---
 
 > ## Documentation Index
@@ -271,7 +271,7 @@ Auto-approves tool uses without prompting, except the cases listed in the warnin
 
 #### Plan mode (`plan`)
 
-Claude explores the codebase and produces a plan without editing your source files. Read-only tools run as in default mode.
+Claude explores the codebase and produces a plan without editing your source files. Read-only tools run as they do in the `default` permission mode.
 
 File edits are never auto-approved in plan mode, even when an allow rule matches. They prompt through your `canUseTool` callback instead. On Claude Code v2.1.212 or later, shell commands that modify files, such as `touch` and `rm`, reach your `canUseTool` callback the same way.
 

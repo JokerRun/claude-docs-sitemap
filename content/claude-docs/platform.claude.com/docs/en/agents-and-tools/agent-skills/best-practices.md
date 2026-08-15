@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 501bd8d724f5dcb06540697a2ac6638853a5b4a4c5d5660c765b233fb83f178b
+fetched_at: 2026-08-15T02:25:10.047250Z
+sha256: 542eee1e150ff7e2853099dd9e24b94626817d5a50ba50af4a4c35101a355f13
 ---
 
 ---
@@ -277,17 +277,21 @@ As your Skill grows, you can bundle additional content that Claude loads only wh
 
 The complete Skill directory structure might look like this:
 
-```text
-pdf/
-├── SKILL.md              # Main instructions (loaded when triggered)
-├── FORMS.md              # Form-filling guide (loaded as needed)
-├── reference.md          # API reference (loaded as needed)
-├── examples.md           # Usage examples (loaded as needed)
-└── scripts/
-    ├── analyze_form.py   # Utility script (executed, not loaded)
-    ├── fill_form.py      # Form filling script
-    └── validate.py       # Validation script
-```
+* `pdf/`
+
+  * `SKILL.md`: Main instructions (loaded when triggered)
+
+  * `FORMS.md`: Form-filling guide (loaded as needed)
+
+  * `reference.md`: API reference (loaded as needed)
+
+  * `examples.md`: Usage examples (loaded as needed)
+
+  * `scripts/`
+
+    * `analyze_form.py`: Utility script (executed, not loaded)
+    * `fill_form.py`: Form filling script
+    * `validate.py`: Validation script
 
 #### Pattern 1: High-level guide with references
 
@@ -321,15 +325,16 @@ Claude loads FORMS.md, REFERENCE.md, or EXAMPLES.md only when needed.
 
 For Skills with multiple domains, organize content by domain to avoid loading irrelevant context. When a user asks about sales metrics, Claude only needs to read sales-related schemas, not finance or marketing data. This keeps token usage low and context focused.
 
-```text
-bigquery-skill/
-├── SKILL.md (overview and navigation)
-└── reference/
-    ├── finance.md (revenue, billing metrics)
-    ├── sales.md (opportunities, pipeline)
-    ├── product.md (API usage, features)
-    └── marketing.md (campaigns, attribution)
-```
+* `bigquery-skill/`
+
+  * `SKILL.md` (overview and navigation)
+
+  * `reference/`
+
+    * `finance.md` (revenue, billing metrics)
+    * `sales.md` (opportunities, pipeline)
+    * `product.md` (API usage, features)
+    * `marketing.md` (campaigns, attribution)
 
 ````markdown SKILL.md
 # BigQuery Data Analysis
@@ -1068,14 +1073,15 @@ Skills run in a code execution environment with filesystem access, bash commands
 
 **Example:**
 
-```text
-bigquery-skill/
-├── SKILL.md (overview, points to reference files)
-└── reference/
-    ├── finance.md (revenue metrics)
-    ├── sales.md (pipeline data)
-    └── product.md (usage analytics)
-```
+* `bigquery-skill/`
+
+  * `SKILL.md` (overview, points to reference files)
+
+  * `reference/`
+
+    * `finance.md` (revenue metrics)
+    * `sales.md` (pipeline data)
+    * `product.md` (usage analytics)
 
 When the user asks about revenue, Claude reads SKILL.md, sees the reference to `reference/finance.md`, and calls bash to read just that file. The sales.md and product.md files remain on the filesystem, consuming zero context tokens until needed. This filesystem-based model is what enables progressive disclosure. Claude can navigate and selectively load exactly what each task requires.
 

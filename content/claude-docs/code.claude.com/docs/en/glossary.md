@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: bbaaba09eca2527cd1530c4ea62624c7a48924c4a5505d109bf0f8b2b1587f01
+fetched_at: 2026-08-15T02:25:10.047250Z
+sha256: 50c6e1b99bca2769cf216bdc98e809c0a6e58c496c936de1b49d74e6a12ff78b
 ---
 
 > ## Documentation Index
@@ -19,7 +19,7 @@ This glossary defines Claude Code terminology. Each entry links to the page wher
 
 ### Agent teams
 
-Multiple independent Claude Code sessions coordinated by a team lead, with a shared task list and peer-to-peer messaging. Unlike [subagents](#subagent), which run within a single session and report only to the parent, teammates each have their own context window and you can interact with any of them directly. Agent teams are experimental and must be enabled by setting `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`.
+Multiple independent Claude Code sessions coordinated by a team lead, with a shared task list and peer-to-peer messaging. Unlike [subagents](#subagent), which run within a single session and report only to the parent, teammates each have their own context window and you can interact with any of them directly. Agent teams are experimental and disabled by default; see [Enable agent teams](/docs/en/agent-teams#enable-agent-teams).
 
 Learn more: [Run agent teams](/docs/en/agent-teams)
 

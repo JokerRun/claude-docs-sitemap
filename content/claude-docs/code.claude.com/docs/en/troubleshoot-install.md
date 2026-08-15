@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshoot-install
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: d54ac86bb32e4c7b65be011ac544230bc2a93594d8a9c57aa3f4cf1b73d3047b
+fetched_at: 2026-08-15T02:25:10.047250Z
+sha256: 00ee610707c923d4014190aa678b73475c3cd442322d39d39d36843bbc63a84e
 ---
 
 > ## Documentation Index
@@ -512,42 +512,7 @@ Errors like `curl: (35) TLS connect error`, `schannel: next InitializeSecurityCo
 
 ### `Failed to fetch version from downloads.claude.ai`
 
-The installer couldn't reach the download server. This typically means `downloads.claude.ai` is blocked on your network.
-
-**Solutions:**
-
-1. **Test connectivity directly**:
-
-   ```bash theme={null}
-   curl -sI https://downloads.claude.ai/claude-code-releases/latest
-   ```
-
-   An `HTTP/2 200` line means the server is reachable. Other results point to the cause:
-
-   * `403`: usually a proxy or network filter blocking the host, or Claude Code is [not available in your region](https://www.anthropic.com/supported-countries)
-   * `5xx`: usually a temporary service issue; wait a few minutes and retry
-
-2. **If behind a proxy**, set `HTTPS_PROXY` so the installer can route through it. See [proxy configuration](/docs/en/network-config#proxy-configuration) for details.
-   ```bash theme={null}
-   export HTTPS_PROXY=http://proxy.example.com:8080
-   curl -fsSL https://claude.ai/install.sh | bash
-   ```
-
-3. **If on a restricted network**, try a different network or VPN, or use an alternative install method:
-
-   On macOS:
-
-   ```bash theme={null}
-   brew install --cask claude-code
-   ```
-
-   On Windows:
-
-   ```powershell theme={null}
-   winget install Anthropic.ClaudeCode
-   ```
-
-   Then run `claude --version` to confirm: the command prints a version number such as `2.1.211 (Claude Code)`. If the shell reports `claude` isn't found, open a new terminal window and retry: the session you installed from keeps its old `PATH`.
+The installer couldn't reach the download server. This typically means `downloads.claude.ai` is blocked on your network. See [Check network connectivity](#check-network-connectivity).
 
 ### Wrong install command on Windows
 
@@ -640,8 +605,6 @@ bash: line 183: 34803 Killed    "$binary_path" install ${TARGET:+"$TARGET"}
 Installation was killed before it could finish (exit code 137). This usually means the system ran out of memory.
 Claude Code needs roughly 512MB of free memory to install. Free up memory, then run this script again.
 ```
-
-Before v2.1.200, the script exited with only the shell's bare `Killed` line and no explanation.
 
 Installing needs roughly 512 MB of free memory, and running Claude Code needs more. See the [system requirements](/docs/en/setup#system-requirements).
 

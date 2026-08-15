@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/prompt-caching
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: f976287416aa0b53f9e37aba0b0899a05e539b869a33cf25b158871d36b4cd52
+fetched_at: 2026-08-15T02:25:10.047250Z
+sha256: 4fe1c64dbd68e414465ea8ec82f121879c1cbec6047fe1d77fc97d9d12038fba
 ---
 
 > ## Documentation Index
@@ -172,7 +172,7 @@ Your project-root and user-level CLAUDE.md files are read once at session start 
 
 ### Changing permission mode
 
-Switching between [permission modes](/docs/en/permission-modes), such as from default to accept edits, does not change the system prompt or tool definitions, so mode changes are cache-safe. The exception is plan mode with the [`opusplan`](/docs/en/model-config#opusplan-model-setting) model setting, which switches the model between Opus and Sonnet as you enter or leave plan mode. That makes the mode toggle a [model switch](#switching-models).
+Switching between [permission modes](/docs/en/permission-modes), such as from Manual to accept edits, does not change the system prompt or tool definitions, so mode changes are cache-safe. The exception is plan mode with the [`opusplan`](/docs/en/model-config#opusplan-model-setting) model setting, which switches the model between Opus and Sonnet as you enter or leave plan mode. That makes the mode toggle a [model switch](#switching-models).
 
 ### Invoking skills and commands
 

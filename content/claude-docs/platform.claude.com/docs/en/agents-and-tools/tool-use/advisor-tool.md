@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: f27119029fc349b87832abcc98e44d564ee04374cb1fb961338ee21796172dce
+fetched_at: 2026-08-15T02:25:10.047250Z
+sha256: e0bf1a11e4ee248233a8ed753a9a9a55470ac5707795e6c1a03c0b19608b3f72
 ---
 
 ---
@@ -13,7 +13,7 @@ description: Pair a faster executor model with a higher-intelligence advisor mod
 
 The advisor tool lets a faster, lower-cost **executor model** consult a higher-intelligence **advisor model** mid-generation for strategic guidance. The advisor reads the full conversation, produces a plan or course correction, and the executor continues with the task.
 
-This pattern fits long-horizon agentic workloads (coding agents, computer use, multistep research pipelines) where most turns are mechanical but having an excellent plan is crucial. You get close to advisor-solo quality while the bulk of token generation happens at executor-model rates.
+This pattern fits long-horizon agentic workloads (coding agents, computer use, multistep research pipelines) where most turns are mechanical but having an excellent plan is crucial. You get close to advisor-solo quality while the bulk of token generation happens at executor-model rates. For measured results, including how the benefit shrinks as the executor's own capability approaches the advisor's, see [Optimizing for cost and intelligence](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence).
 
 ```mermaid
 sequenceDiagram

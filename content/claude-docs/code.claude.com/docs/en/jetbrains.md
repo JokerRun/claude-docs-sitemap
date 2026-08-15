@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/jetbrains
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: d32a0dc3a7f30b7b13855aa96dfc70cfaeedd0158705508fda4c3f108f943474
+fetched_at: 2026-08-15T02:25:10.047250Z
+sha256: c310fb1fe91448cb57681922f2c2c56e1d4cb207d4b83aa65ef486c390e9782f
 ---
 
 > ## Documentation Index
@@ -51,10 +51,6 @@ The plugin runs the `claude` command in your IDE's integrated terminal and conne
 If `claude` is installed somewhere your IDE can't find, set the full path in the plugin's [Claude command setting](#general-settings).
 
 Claude Code works with any paid Claude subscription (Pro, Max, Team, or Enterprise) or a Claude Console account, and no API key is required. You'll be prompted to [log in](/docs/en/authentication#log-in-to-claude-code) the first time you run `claude`.
-
-<Note>
-  After installing the plugin, you may need to restart your IDE completely for it to take effect.
-</Note>
 
 ## Usage
 
@@ -204,7 +200,7 @@ When Claude Code runs in a JetBrains IDE in [`acceptEdits` permission mode](/doc
 
 When running in JetBrains IDEs, consider:
 
-* Using manual approval mode for edits
+* Using Manual mode for edits, because `acceptEdits` and auto mode both approve edits inside your working directory without asking, except in [protected paths](/docs/en/permission-modes#protected-paths)
 * Taking extra care to ensure Claude is only used with trusted prompts
 * Being aware of which files Claude Code has access to modify
 

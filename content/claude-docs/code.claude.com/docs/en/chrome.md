@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/chrome
-fetched_at: 2026-08-12T02:56:30.865670Z
-sha256: b8ca03b32b50c6b19b3b5e786f56c6f6a51f05dbc4a64f108772d911961f06a7
+fetched_at: 2026-08-15T02:25:10.047250Z
+sha256: 888919f1518b622f77aa4ae4a4ce33f0d85bc8da4cacdd6e482ffc82199f2b9d
 ---
 
 > ## Documentation Index
@@ -72,7 +72,7 @@ Chrome integration also requires signing in with `/login`. If you authenticate w
     type "hooks", and tell me what results appear
     ```
 
-    Before Claude's first browser action, Claude Code asks for permission to use the `claude-in-chrome` skill. Approve it and Claude opens a new tab and starts the task.
+    If Claude Code asks for permission before a browser action, approve it. The dialog starts with `Claude in Chrome wants to` and offers an option to allow all actions on that site for the session. Claude opens a new tab and starts the task.
   </Step>
 </Steps>
 

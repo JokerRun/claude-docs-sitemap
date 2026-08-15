@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/channels-reference
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 150700c7f7953e1b069a86ac1b65316ca15ec35f0c7c2a127aff273d70146e70
+fetched_at: 2026-08-15T02:25:10.047250Z
+sha256: ef65e4579f182ebd6e10eb20cbd54cf4d343521302999a40ed35d1c84f6acfc6
 ---
 
 > ## Documentation Index
@@ -732,6 +732,8 @@ Test the verdict path in three terminals. The first is your Claude Code session,
 ```bash theme={null}
 claude --dangerously-load-development-channels server:webhook
 ```
+
+This walkthrough tests the permission dialog itself, so once the session is open, press `Shift+Tab` until the status bar shows `⏸ manual mode on`. In auto mode the classifier would decide the `reply` call instead of you, and no dialog would open for the remote side to answer.
 
 In the second, stream the outbound side so you can see Claude's replies and any permission prompts as they fire:
 

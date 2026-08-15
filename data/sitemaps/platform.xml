@@ -3905,6 +3905,10 @@
 <priority>0.8</priority>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence</loc>
+<priority>0.8</priority>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/en/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5</loc>
 <priority>1</priority>
 </url>

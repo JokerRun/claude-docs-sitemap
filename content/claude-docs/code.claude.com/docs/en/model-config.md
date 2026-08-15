@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/model-config
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: ff93509b15c937135d2a5397ce116b556bc1f996c0e782aea0e7e2f446cf932c
+fetched_at: 2026-08-15T02:25:10.047250Z
+sha256: b7471509414ca218e1e3252730553986afbb7c885969cc0309ed703414b7a7f3
 ---
 
 > ## Documentation Index
@@ -73,7 +73,7 @@ Fable 5 is not the default model. Select it with `/model fable`. Requests that i
 
 To get the most from Fable 5:
 
-* **Describe the outcome, not the steps**: hand it the result you want and let it plan the path. To keep it working until that outcome holds, [set a goal](/docs/en/goal).
+* **Describe the outcome, not the steps**: hand it the result you want and let it plan the path. To keep it working toward that outcome, [set a goal](/docs/en/goal).
 * **Hand it ambiguous problems**: root-cause investigations, outage debugging, and architecture decisions are where the extra investigation and verification pay off.
 * **Skip the verification reminders**: it verifies its own work with less prompting, so reminders to test or check are usually unnecessary.
 * **Size up larger tasks**: give it work you would normally break into pieces. It holds long sessions without losing the thread.

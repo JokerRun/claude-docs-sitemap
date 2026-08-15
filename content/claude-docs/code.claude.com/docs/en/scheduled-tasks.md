@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/scheduled-tasks
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: bcc1748b473d3548550504191e2b1dfbb13365ee2b9a07e2105eab35c56494d2
+fetched_at: 2026-08-15T02:25:10.047250Z
+sha256: 6e804be52523ac46f8699add63edd352177cc2681d7ea914102fbf82d10dea1f
 ---
 
 > ## Documentation Index
@@ -13,7 +13,7 @@ sha256: bcc1748b473d3548550504191e2b1dfbb13365ee2b9a07e2105eab35c56494d2
 
 > Use /loop and the cron scheduling tools to run prompts repeatedly, poll for status, or set one-time reminders within a Claude Code session.
 
-Scheduled tasks let Claude re-run a prompt automatically on an interval. Use them to poll a deployment, babysit a PR, check back on a long-running build, or remind yourself to do something later in the session. To react to events as they happen instead of polling, see [Channels](/docs/en/channels): your CI can push the failure into the session directly. To keep the session working turn after turn until a condition is met rather than on an interval, see [`/goal`](/docs/en/goal).
+Scheduled tasks let Claude re-run a prompt automatically on an interval. Use them to poll a deployment, babysit a PR, check back on a long-running build, or remind yourself to do something later in the session. To react to events as they happen instead of polling, see [Channels](/docs/en/channels): your CI can push the failure into the session directly. To keep the session working turn after turn toward a condition rather than on an interval, see [`/goal`](/docs/en/goal).
 
 Tasks are session-scoped: they live in the current conversation and stop when you start a new one. Resuming with `--resume` or `--continue` brings back any task that hasn't [expired](#seven-day-expiry): a recurring task created within the last 7 days, or a one-shot whose scheduled time hasn't passed yet. For scheduling that survives independently of any session, use [Routines](/docs/en/routines) to create a routine on the cloud, set up a [Desktop scheduled task](/docs/en/desktop-scheduled-tasks), or use [GitHub Actions](/docs/en/github-actions).
 

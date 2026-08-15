@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/features-overview
-fetched_at: 2026-08-08T02:41:37.599145Z
-sha256: 8c4745e7b079d847707d5293daab66304e81a09fe66b815a1685402e98bb07c7
+fetched_at: 2026-08-15T02:25:10.047250Z
+sha256: 6758de286fba8866554134f32620ed883399a7a279ba7e39162abe50a6c6c4f6
 ---
 
 > ## Documentation Index
@@ -167,8 +167,6 @@ Some features can seem similar. For a deeper walkthrough of choosing between the
     **MCP** gives Claude purpose-built tools for an external system, with the connection and authentication handled by the server.
 
     **Skills** give Claude knowledge about how to use those tools effectively, plus workflows you can trigger with `/<name>`. A skill might include your team's database schema and query patterns, or a `/post-to-slack` workflow with your team's message formatting rules.
-
-    Example: An MCP server connects Claude to your database. A skill teaches Claude your data model, common query patterns, and which tables to use for different tasks.
   </Tab>
 
   <Tab title="Hook vs Skill">
