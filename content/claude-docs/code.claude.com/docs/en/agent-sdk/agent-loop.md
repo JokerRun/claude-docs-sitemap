@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/agent-loop
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: ca8ff5096ac85de1325c735187b1b9fbdeae789a1ef8d4bfff8362c7ba947822
+fetched_at: 2026-08-16T02:31:05.626262Z
+sha256: a270ce0539dd5fbb7c31221ab45cf5f6bf1e1da07e9edc54f8c169c4b15747f3
 ---
 
 > ## Documentation Index
@@ -155,6 +155,8 @@ The SDK includes the same tools that power Claude Code:
 | **Web**             | `WebSearch`, `WebFetch`                                         | Search the web, fetch and parse pages                                       |
 | **Discovery**       | `ToolSearch`                                                    | Dynamically find and load tools on-demand instead of preloading all of them |
 | **Orchestration**   | `Agent`, `Skill`, `AskUserQuestion`, `TaskCreate`, `TaskUpdate` | Spawn subagents, invoke skills, ask the user, track tasks                   |
+
+On the [models that don't get the task-tracking tools](/docs/en/agent-sdk/todo-tracking#model-availability), Claude Code provides `TaskCreate` and `TaskUpdate` only when you opt in.
 
 Beyond built-in tools, you can:
 

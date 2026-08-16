@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-08-15T02:25:10.047250Z
-sha256: 93bb49229d4b3913a603173e2b7511cefc4c93b5f22af5c3227dddc2a78dced1
+fetched_at: 2026-08-16T02:31:05.626262Z
+sha256: 2d12e3861770c65b0db9a3bf3cea34e90925ad3fa5622203246a98eb53a2e5d2
 ---
 
 > ## Documentation Index
@@ -2262,7 +2262,7 @@ SubagentStop hooks use the same decision control format as [Stop hooks](#stop-de
 
 ### TaskCreated
 
-Runs when a task is being created via the `TaskCreate` tool. Use this to enforce naming conventions, require task descriptions, or prevent certain tasks from being created.
+Runs when a task is being created via the `TaskCreate` tool. Use this to enforce naming conventions, require task descriptions, or prevent certain tasks from being created. In a [session without the Task tools](/docs/en/tools-reference#task-tool-availability), this event doesn't fire.
 
 TaskCreated hooks don't support matchers and fire on every occurrence.
 

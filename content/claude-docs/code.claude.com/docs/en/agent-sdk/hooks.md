@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/hooks
-fetched_at: 2026-08-12T02:56:30.865670Z
-sha256: 7bb0f19b59bdf48476b1e461404b3c0cde34e6395b5579ec7efb4533f771638b
+fetched_at: 2026-08-16T02:31:05.626262Z
+sha256: 670232ad9a27d6caec50b2cf016dbfc58881da590957d0a647c087ac34b03b59
 ---
 
 > ## Documentation Index
@@ -174,7 +174,7 @@ The SDK provides hooks for different stages of agent execution. Some hooks are a
 | `Setup`                                                | No         | Yes            | Session setup/maintenance                                                                                                               | Run initialization tasks                                                                                                                                  |
 | `TeammateIdle`                                         | No         | Yes            | Teammate becomes idle                                                                                                                   | Reassign work or notify                                                                                                                                   |
 | `TaskCreated`                                          | No         | Yes            | A task is created via the `TaskCreate` tool                                                                                             | Enforce task naming conventions                                                                                                                           |
-| `TaskCompleted`                                        | No         | Yes            | Background task completes                                                                                                               | Aggregate results from parallel tasks                                                                                                                     |
+| [`TaskCompleted`](/docs/en/hooks#taskcompleted)             | No         | Yes            | A task is marked completed                                                                                                              | Require passing tests before a task closes                                                                                                                |
 | `Elicitation`                                          | No         | Yes            | An MCP server requests user input mid-task                                                                                              | Respond to MCP input requests programmatically                                                                                                            |
 | `ElicitationResult`                                    | No         | Yes            | A user responds to an MCP elicitation                                                                                                   | Modify or block the response before it returns to the server                                                                                              |
 | `ConfigChange`                                         | No         | Yes            | Configuration file changes                                                                                                              | Reload settings dynamically                                                                                                                               |
