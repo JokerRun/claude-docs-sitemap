@@ -4,7 +4,7 @@
   lastmod: '2026-08-05T00:23:25.048Z'
 - source: code
   loc: https://code.claude.com/docs/en/admin-setup
-  lastmod: '2026-08-13T19:57:23.630Z'
+  lastmod: '2026-08-16T14:25:26.486Z'
 - source: code
   loc: https://code.claude.com/docs/en/advisor
   lastmod: '2026-08-12T19:32:53.901Z'
@@ -28,7 +28,7 @@
   lastmod: '2026-08-10T23:54:23.882Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/hooks
-  lastmod: '2026-08-15T15:11:50.792Z'
+  lastmod: '2026-08-16T14:29:44.958Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/hosting
   lastmod: '2026-08-12T04:52:12.393Z'
@@ -64,7 +64,7 @@
   lastmod: '2026-08-10T22:52:54.900Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/session-storage
-  lastmod: '2026-08-12T19:24:48.152Z'
+  lastmod: '2026-08-16T14:27:16.669Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/sessions
   lastmod: '2026-08-12T19:24:48.157Z'
@@ -97,7 +97,7 @@
   lastmod: '2026-08-04T20:26:00.508Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/typescript
-  lastmod: '2026-08-15T15:11:50.811Z'
+  lastmod: '2026-08-16T14:31:37.396Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/typescript-v2-preview
   lastmod: '2026-08-04T20:26:00.511Z'
@@ -151,22 +151,22 @@
   lastmod: '2026-08-14T21:44:35.327Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-apps-gateway
-  lastmod: '2026-08-13T17:42:20.131Z'
+  lastmod: '2026-08-16T14:25:26.481Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-apps-gateway-config
-  lastmod: '2026-08-14T22:15:45.812Z'
+  lastmod: '2026-08-16T14:25:26.487Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-apps-gateway-deploy
-  lastmod: '2026-08-13T23:18:46.078Z'
+  lastmod: '2026-08-16T14:25:26.484Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-apps-gateway-on-aws
-  lastmod: '2026-08-13T17:42:20.133Z'
+  lastmod: '2026-08-16T14:25:26.483Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-apps-gateway-on-gcp
   lastmod: '2026-08-07T20:23:45.021Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-apps-gateway-spend-limits
-  lastmod: '2026-08-11T15:11:51.158Z'
+  lastmod: '2026-08-16T14:25:26.483Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-code-on-the-web
   lastmod: '2026-08-15T15:11:50.787Z'
@@ -250,7 +250,7 @@
   lastmod: '2026-08-13T23:46:22.031Z'
 - source: code
   loc: https://code.claude.com/docs/en/env-vars
-  lastmod: '2026-08-15T04:45:48.702Z'
+  lastmod: '2026-08-16T14:29:44.971Z'
 - source: code
   loc: https://code.claude.com/docs/en/errors
   lastmod: '2026-08-15T15:11:50.803Z'
@@ -295,10 +295,10 @@
   lastmod: '2026-08-13T23:46:21.961Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks
-  lastmod: '2026-08-15T04:45:48.524Z'
+  lastmod: '2026-08-16T14:29:44.967Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks-guide
-  lastmod: '2026-08-14T22:10:18.863Z'
+  lastmod: '2026-08-16T14:29:44.958Z'
 - source: code
   loc: https://code.claude.com/docs/en/how-claude-code-works
   lastmod: '2026-08-14T19:13:24.635Z'
@@ -325,7 +325,7 @@
   lastmod: '2026-08-13T23:46:21.989Z'
 - source: code
   loc: https://code.claude.com/docs/en/llm-gateway-protocol
-  lastmod: '2026-08-13T22:10:36.573Z'
+  lastmod: '2026-08-16T14:25:26.482Z'
 - source: code
   loc: https://code.claude.com/docs/en/llm-gateway-rollout
   lastmod: '2026-08-11T19:50:27.115Z'
@@ -367,7 +367,7 @@
   lastmod: '2026-08-15T00:25:08.670Z'
 - source: code
   loc: https://code.claude.com/docs/en/permissions
-  lastmod: '2026-08-15T00:25:08.629Z'
+  lastmod: '2026-08-16T14:27:16.674Z'
 - source: code
   loc: https://code.claude.com/docs/en/platforms
   lastmod: '2026-08-07T04:09:50.999Z'
@@ -427,7 +427,7 @@
   lastmod: '2026-08-14T22:10:18.856Z'
 - source: code
   loc: https://code.claude.com/docs/en/self-hosted-environments-deploy
-  lastmod: '2026-08-15T00:35:00.634Z'
+  lastmod: '2026-08-16T14:33:48.508Z'
 - source: code
   loc: https://code.claude.com/docs/en/self-hosted-environments-identity
   lastmod: '2026-08-07T04:09:50.910Z'
@@ -442,13 +442,13 @@
   lastmod: '2026-08-11T19:51:18.632Z'
 - source: code
   loc: https://code.claude.com/docs/en/server-managed-settings
-  lastmod: '2026-08-13T19:57:23.632Z'
+  lastmod: '2026-08-16T14:25:26.489Z'
 - source: code
   loc: https://code.claude.com/docs/en/sessions
   lastmod: '2026-08-15T00:25:08.624Z'
 - source: code
   loc: https://code.claude.com/docs/en/settings
-  lastmod: '2026-08-15T01:23:33.178Z'
+  lastmod: '2026-08-16T14:30:41.230Z'
 - source: code
   loc: https://code.claude.com/docs/en/setup
   lastmod: '2026-07-28T23:00:58.325Z'
@@ -472,7 +472,7 @@
   lastmod: '2026-08-12T02:13:01.424Z'
 - source: code
   loc: https://code.claude.com/docs/en/tools-reference
-  lastmod: '2026-08-15T04:45:48.437Z'
+  lastmod: '2026-08-16T14:28:29.785Z'
 - source: code
   loc: https://code.claude.com/docs/en/troubleshoot-install
   lastmod: '2026-08-14T19:13:24.634Z'

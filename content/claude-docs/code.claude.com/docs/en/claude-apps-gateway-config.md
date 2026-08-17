@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-config
-fetched_at: 2026-08-15T02:25:10.047250Z
-sha256: 119bc623dfcd53182cefff7cece6207abe9082c15d20644b3b938ff9a2e7f75a
+fetched_at: 2026-08-17T02:30:46.917153Z
+sha256: b999747100d71248236b9ba0afacbcddf1aaf80ee9911539265619c36d3a1c96
 ---
 
 > ## Documentation Index
@@ -320,12 +320,7 @@ upstreams:
     auth:
       api_key: ${ANTHROPIC_API_KEY}
 
-# Per-upstream model IDs are keyed on the upstream's `name:`; an upstream
-# without a `name:` defaults to its provider string (e.g. `bedrock`). For a
-# built-in Claude model, an upstream you leave out of the map still serves it
-# with that provider's default ID; list the upstream to override the ID, for
-# example with a provisioned-throughput ARN. Only a custom `id` that isn't a
-# built-in model skips the upstreams missing from its map.
+# Per-upstream model IDs are keyed on the upstream's `name:`.
 models:
   - id: claude-opus-4-8
     label: Claude Opus 4.8

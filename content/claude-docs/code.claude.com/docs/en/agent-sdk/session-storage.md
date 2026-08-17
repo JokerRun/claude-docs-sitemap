@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/session-storage
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 57a05dc245ea98f763d3a6219451569d3736e2339899745f767717587d6bf6f7
+fetched_at: 2026-08-17T02:30:46.917153Z
+sha256: 71272961db6923f0e7891fa125ae4375e0bd0fd9c3b5e725a0c29ffa304158b4
 ---
 
 > ## Documentation Index
@@ -290,7 +290,7 @@ When the store returns the transcript, the SDK writes it into a temporary config
 
 The SDK also seeds the temporary directory with files from your real config directory. What it copies differs by language:
 
-* **TypeScript**: credentials, `.claude.json`, and your user `settings.json`. From `settings.json` it strips the three keys that misbehave under a temporary config directory: `enabledPlugins`, `extraKnownMarketplaces`, and any `CLAUDE_CONFIG_DIR` in the file's `env` block. Auth configured in settings, such as [`apiKeyHelper`](/docs/en/settings#available-settings), works when you resume from the store. Before Agent SDK v0.3.222, the TypeScript SDK copied only credentials and `.claude.json`.
+* **TypeScript**: credentials, `.claude.json`, and your user `settings.json`. From `settings.json` it strips the keys that misbehave under a temporary config directory: `enabledPlugins`, `extraKnownMarketplaces`, its [`additionalMarketplaces`](/docs/en/settings#extraknownmarketplaces) alias, and any `CLAUDE_CONFIG_DIR` in the file's `env` block. Before Agent SDK v0.3.232, the SDK didn't strip the alias. Auth configured in settings, such as [`apiKeyHelper`](/docs/en/settings#available-settings), works when you resume from the store. Before Agent SDK v0.3.222, the TypeScript SDK copied only credentials and `.claude.json`.
 * **Python**: credentials and `.claude.json` only, so an app that authenticates through `apiKeyHelper` in your user `settings.json` fails with `Not logged in` when resuming from a store. An `apiKeyHelper` in managed or project settings still works, because Claude Code reads those files from locations that `CLAUDE_CONFIG_DIR` doesn't affect.
 
 When the store has nothing for the session, the SDK runs under your real config directory instead, and the outcome depends on which option you passed:

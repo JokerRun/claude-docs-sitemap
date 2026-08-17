@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/admin-setup
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: eb9f46c90e5a46927ad8241910af83324d20b053a20e8c93f9dbc9c5d45faa49
+fetched_at: 2026-08-17T02:30:46.917153Z
+sha256: 1ef344678ef4b0bd36502cf5069bd47ca4240112bad0596dfd56281c773b8fad
 ---
 
 > ## Documentation Index
@@ -72,8 +72,6 @@ The plist and HKLM registry locations work with any provider and resist tamperin
 By default, WSL reads only the Linux file path at `/etc/claude-code`. To extend your Windows registry and `C:\Program Files\ClaudeCode` policy to WSL on the same machine, set [`wslInheritsWindowsSettings: true`](/docs/en/settings#available-settings) in either of those admin-only Windows sources.
 
 Whichever mechanism you choose, managed values take precedence over user and project settings, apart from a few security-sensitive [exceptions](/docs/en/settings#exceptions-to-managed-settings-precedence). Array settings such as `permissions.allow` and `permissions.deny` merge entries from all sources, so developers can extend managed lists but not remove from them. For `fallbackModel` and `availableModels`, the managed value replaces lower layers rather than merging.
-
-See [Server-managed settings](/docs/en/server-managed-settings) and [Settings files and precedence](/docs/en/settings#settings-files).
 
 ### WSL sessions in Claude Code Desktop
 
