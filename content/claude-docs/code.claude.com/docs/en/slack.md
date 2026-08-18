@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/slack
-fetched_at: 2026-08-12T02:56:30.865670Z
-sha256: 8ae170bcc43023f2669d3bd109856cd70423b6cfde14280c99637919e9712316
+fetched_at: 2026-08-18T02:27:20.489890Z
+sha256: 4373bdf9df4931f360dad2756c309935b3e3882dbf298012e0134028a2be2c37
 ---
 
 > ## Documentation Index
@@ -118,10 +118,6 @@ This context helps Claude understand the problem, select the appropriate reposit
 6. **Review**: Click "View Session" to see the full transcript, or "Create PR" to open a pull request
 
 ## User interface elements
-
-### App Home
-
-The App Home tab shows your connection status and allows you to connect or disconnect your Claude account from Slack.
 
 ### Message actions
 

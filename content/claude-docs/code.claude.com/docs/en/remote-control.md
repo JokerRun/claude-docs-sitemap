@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/remote-control
-fetched_at: 2026-08-15T02:25:10.047250Z
-sha256: 0f9b14f1ea657e96339dd25a3b6694c34030a0aaa89478f5a8f219dd57e896eb
+fetched_at: 2026-08-18T02:27:20.489890Z
+sha256: 7d5d8a1657469c7dcebaddd7852685349054a0bb68489e5ddaa1c858d97f8c37
 ---
 
 > ## Documentation Index
@@ -161,8 +161,6 @@ The remote session title is chosen in this order:
 If you didn't set an explicit name, Claude Code updates the title to reflect your prompt once you send one. Claude Code matches auto-generated titles to the language of your conversation, or to the [`language`](/docs/en/settings#available-settings) setting if one is configured; the language matching requires Claude Code v2.1.176 or later.
 
 When you rename a session from claude.ai or the Claude app, Claude Code also updates the local title shown in `claude --resume`. Claude Code applies the same rename to the session name shown on the prompt bar, and in the `claude agents` listing when the session [runs in the background](/docs/en/agent-view). Before v2.1.221, renaming from the session list at claude.ai or in the Claude app updated only the title, and the CLI kept its previous session name; `/rename`, which runs in the CLI itself, set the name on any version.
-
-If the environment already has an active session, you'll be asked whether to continue it or start a new one.
 
 If you don't have the Claude app yet, use the `/mobile` command inside Claude Code to display a download QR code for [iOS](https://apps.apple.com/us/app/claude-by-anthropic/id6473753684) or [Android](https://play.google.com/store/apps/details?id=com.anthropic.claude).
 

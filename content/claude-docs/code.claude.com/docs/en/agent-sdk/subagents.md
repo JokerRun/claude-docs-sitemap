@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/subagents
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 19ef97bfccffef7bff1ed5f82868de5842a49484b8073c228396a4899fb91961
+fetched_at: 2026-08-18T02:27:20.489890Z
+sha256: e08018409381c1e4e25f81d5a39055381c43731b199b21c049d66c782e94a5b0
 ---
 
 > ## Documentation Index
@@ -742,6 +742,7 @@ Claude Code watches `~/.claude/agents/` and `.claude/agents/` and picks up a new
 * **New `agents` directory**: the watcher covers only directories that existed when the session started, so the first file in a new directory needs a session restart. This is the most common cause.
 * **Invalid frontmatter or a duplicate `name`**: check the file's YAML, and whether an existing agent already uses the `name`.
 * **`--disable-slash-commands`**: sessions started with this flag don't watch these directories and always need a restart to load new files.
+* **A file under an added directory**: Claude Code loads `.claude/agents/` from directories added with the `add_dirs` (Python) or `additionalDirectories` (TypeScript) option, or the CLI's `--add-dir` or `/add-dir`, but doesn't watch them, so a new or edited file there needs a session restart.
 * **A programmatic agent with the same name**: `agents` passed to `query()` override a filesystem agent with the same name.
 
 For the file format, see [how to write subagent files](/docs/en/sub-agents#write-subagent-files).

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/tools-reference
-fetched_at: 2026-08-17T02:30:46.917153Z
-sha256: 08c2d20d461f61cb494c03cb41fee6d018489ca2eca4909a493a7b18f370a654
+fetched_at: 2026-08-18T02:27:20.489890Z
+sha256: 9aca2d27e25265521267b3d592af98d3f350e04e3bc9198d384fa743d1b1c5c1
 ---
 
 > ## Documentation Index
@@ -121,12 +121,12 @@ If every entry in a subagent's `tools` list fails to match a usable tool, the Ag
 
 Launching the subagent doesn't itself prompt for permission. Claude Code checks the subagent's own tool calls against your permission rules as it runs.
 
-Where a subagent's permission prompts appear depends on whether it runs in the foreground or the background. Claude Code runs subagents in the background by default. For the cases where one runs in the foreground, see [Run subagents in foreground or background](/docs/en/sub-agents#run-subagents-in-foreground-or-background).
+Where you see a subagent's permission prompts depends on whether it runs in the foreground or the background. Claude Code runs subagents in the background by default, apart from the [cases that run in the foreground](/docs/en/sub-agents#run-subagents-in-foreground-or-background).
 
 * **Foreground subagents** show the same permission prompts you would see in the main conversation, at the moment each tool call happens.
 * **Background subagents** surface permission prompts in your main session as of v2.1.186. The prompt names which subagent is asking, and pressing Esc denies that one tool call without stopping the subagent. Before v2.1.186, background subagents auto-denied any tool call that would otherwise prompt and continued without that tool.
 
-To limit what a subagent can reach in the first place, narrow its `tools` field, leave Bash off the list, or set deny rules in your settings, as described in [Control subagent capabilities](/docs/en/sub-agents#control-subagent-capabilities).
+To [limit what a subagent can reach](/docs/en/sub-agents#control-subagent-capabilities) in the first place, narrow its `tools` field, for example by leaving Bash off the list, or set deny rules in your settings.
 
 ## AskUserQuestion tool behavior
 

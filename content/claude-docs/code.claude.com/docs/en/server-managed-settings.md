@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/server-managed-settings
-fetched_at: 2026-08-17T02:30:46.917153Z
-sha256: de56de057bcd2f13c6e01d3f6efe6244370965e62029345fcb7f0d62c17a4d21
+fetched_at: 2026-08-18T02:27:20.489890Z
+sha256: 6acda2a8441151513e81394692eb683df3603ee080a31c1da52d35a6ee05a732
 ---
 
 > ## Documentation Index
@@ -213,6 +213,7 @@ The `claude auth` subcommands such as `claude auth login` are exempt from this c
 Certain settings that could pose security risks require explicit user approval before Claude Code applies them:
 
 * **Shell command settings**: settings that execute shell commands
+* **Sandbox binary settings**: `sandbox.bwrapPath`, `sandbox.socatPath`, and `sandbox.ripgrep`. Each of these settings points at an executable, and Claude Code runs that executable
 * **Custom environment variables**: delivered `env` variables that require the user's approval, such as proxy and base-URL variables; see [Environment variables and the approval dialog](#environment-variables-and-the-approval-dialog)
 * **Hook configurations**: any hook definition
 * **Managed CLAUDE.md content**: a `claudeMd` value delivered through managed settings

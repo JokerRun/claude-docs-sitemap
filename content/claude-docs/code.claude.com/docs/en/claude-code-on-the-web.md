@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-08-16T02:31:05.626262Z
-sha256: e9dcd4c6efcc46658ba87bda8c16bcedfff802cc11355902cb573ba6421f0cd5
+fetched_at: 2026-08-18T02:27:20.489890Z
+sha256: 28d533d04055ab44d598949462421fde9dd6814e1eefe28c4d1ab3e9bcc7194f
 ---
 
 > ## Documentation Index
@@ -56,8 +56,6 @@ Cloud sessions need access to your GitHub repositories to clone code and push br
 
 Either method works. [`/schedule`](/docs/en/routines) checks for either form of access and prompts you to run `/web-setup` if neither is configured. See [Connect from your terminal](/docs/en/web-quickstart#connect-from-your-terminal) for the `/web-setup` walkthrough.
 
-The GitHub App is required for [Auto-fix](#auto-fix-pull-requests), which uses the App to receive PR webhooks. If you connect with `/web-setup` and later want Auto-fix, install the App on those repositories.
-
 Team and Enterprise Owners can disable `/web-setup` with the Quick web setup toggle at [claude.ai/admin-settings/claude-code](https://claude.ai/admin-settings/claude-code).
 
 <Note>
@@ -105,8 +103,6 @@ In plan mode, Claude reads files, runs commands to explore, and proposes a plan 
 ```bash theme={null}
 claude --cloud "Execute the migration plan in docs/migration-plan.md"
 ```
-
-This pattern gives you control over the strategy while letting Claude execute autonomously in the cloud.
 
 **Run tasks in parallel**: each `--cloud` command creates its own cloud session that runs independently. You can start multiple tasks and they'll all run simultaneously in separate sessions:
 

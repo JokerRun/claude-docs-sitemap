@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-dependencies
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: e5d67519dc18746a5a0e6ef33e13298050afb0ae717c9edc762910e6af772289
+fetched_at: 2026-08-18T02:27:20.489890Z
+sha256: 83c24f0f9915f66d24011167fc164a90c5badc1832495932717ff2d34dd93868
 ---
 
 > ## Documentation Index
@@ -160,7 +160,7 @@ When you uninstall the last plugin that constrains a dependency, the dependency 
 
 ## Enable or disable a plugin with dependencies
 
-Enabling a plugin also enables the plugins it depends on, and disabling a plugin is blocked if another enabled plugin still needs it. Both behaviors require Claude Code v2.1.143 or later. Earlier versions enable or disable only the named plugin and surface a `dependency-unsatisfied` error on the next load.
+Enabling a plugin also enables the plugins it depends on, and disabling a plugin is blocked if another enabled plugin still needs it.
 
 When you enable a plugin, Claude Code also enables its dependencies at the same scope. If a dependency has its own dependencies, Claude Code enables those too. The success message lists what else was enabled along with the plugin you named. If a dependency can't be enabled, the command refuses and tells you what's blocking and how to fix it:
 
