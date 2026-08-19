@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/plugins
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 26994bfcc00f70c3a5065b891902032b679d6752a3ad0d889b6214f9e1ecc20a
+fetched_at: 2026-08-19T02:28:54.965606Z
+sha256: c8b179ee93ae6f4ee0a7b01b688153988c893a1cbca544859adea71097d296c0
 ---
 
 > ## Documentation Index
@@ -339,6 +339,6 @@ If plugin skills don't work:
 
 * [Plugins](/docs/en/plugins) - Complete plugin development guide
 * [Plugins reference](/docs/en/plugins-reference) - Technical specifications
-* [Commands](/docs/en/agent-sdk/slash-commands) - Using commands in the SDK
+* [Commands](/docs/en/agent-sdk/skills#dispatch-commands-by-name) - Dispatching commands in the SDK
 * [Subagents](/docs/en/agent-sdk/subagents) - Working with specialized agents
 * [Skills](/docs/en/agent-sdk/skills) - Using Agent Skills

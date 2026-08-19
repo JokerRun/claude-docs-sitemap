@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek-azure-key-vault
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: d4daf34cb610b7e2c57373baa7fe50bcbfc5fb13a0331c5d2f2f2da3a9d2e871
+fetched_at: 2026-08-19T02:28:54.965606Z
+sha256: 4e7feb68773ee3d6b0daa0d618cbed212ffbc057d73f4eebec9aaac4fc2a32b9
 ---
 
 ---
@@ -206,7 +206,7 @@ How you register the key depends on which product you use.
       </Step>
 
       <Step title="Attach the key to a workspace">
-        Once the key is validated, attach it to a workspace to enable CMEK for that workspace's data.
+        Once the key is validated, attach it to a new workspace before you send any requests to that workspace. For a workspace that already receives requests, the key can take [up to a day to take effect](https://platform.claude.com/docs/en/manage-claude/cmek#how-it-works).
 
         ```bash
         curl -sS -X POST https://api.anthropic.com/v1/organizations/workspaces/<workspace-id> \

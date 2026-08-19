@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek-google-cloud-kms
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 4a37f583dd12626f751fe441f806132e1251d7242cb8cad4867edf47033d4548
+fetched_at: 2026-08-19T02:28:54.965606Z
+sha256: e9286ec4fa8a20b2bf2853a0b349031185c09a5b20f58db51ac533a221e3e35b
 ---
 
 ---
@@ -198,6 +198,8 @@ How you register the key depends on which product you use.
       </Step>
 
       <Step title="Attach the key to a workspace">
+        Once the key is validated, attach it to a new workspace before you send any requests to that workspace. For a workspace that already receives requests, the key can take [up to a day to take effect](https://platform.claude.com/docs/en/manage-claude/cmek#how-it-works).
+
         ```bash
         curl -sS -X POST https://api.anthropic.com/v1/organizations/workspaces/<workspace-id> \
           -H "x-api-key: <anthropic-admin-api-key>" \

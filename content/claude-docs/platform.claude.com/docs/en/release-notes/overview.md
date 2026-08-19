@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/overview
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 4eebb61915c3db72b2735385190393b5194e43f60fa17562e14494a16dea67ea
+fetched_at: 2026-08-19T02:28:54.965606Z
+sha256: b37e0bd3d987a2e6c4e6be8b364086961e297b7893d64602de82ec5754885f14
 ---
 
 ---
@@ -16,6 +16,10 @@ description: Updates to the Claude Platform, including the Claude API, client SD
 
   For updates to Claude Code, see the [complete CHANGELOG.md](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) in the `claude-code` repository.
 </Tip>
+
+### August 18, 2026
+
+* Workbench is now [**Playground**](https://platform.claude.com/playground) in the Claude Console. Playground supports every Messages API parameter and includes templates that demonstrate API features such as code execution and web search. It shows the full SDK request and the API response for each run, to help you understand the API and build with it. For more, see the [Claude Help Center](https://support.claude.com/en/articles/8606378-how-do-i-use-playground) or try it at [platform.claude.com/playground](https://platform.claude.com/playground).
 
 ### August 11, 2026
 

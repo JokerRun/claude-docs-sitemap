@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop
-fetched_at: 2026-08-18T02:27:20.489890Z
-sha256: 7a7483edf2705a57f686f7500b95e1f3648a7f48087b74630e49922de572ea1f
+fetched_at: 2026-08-19T02:28:54.965606Z
+sha256: 2f2c7eb04dc016d1156dca5281b956e1ad1378b7be528872ededc4dae1676a70
 ---
 
 > ## Documentation Index
@@ -77,7 +77,7 @@ The prompt box supports two ways to bring in external context:
 
 ### Choose a permission mode
 
-Permission modes control how much autonomy Claude has during a session: whether it asks before editing files, running commands, or both. You can switch modes at any time using the mode selector next to the send button. To approve each change yourself, switch to Manual.
+Permission modes control how much autonomy Claude has during a session: whether it asks before editing files, running commands, or both. You can switch permission modes at any time using the mode selector next to the send button. To approve each change yourself, switch to Manual.
 
 To set a default mode for new local sessions, add `permissions.defaultMode` to your [settings file](/docs/en/settings#settings-files). The desktop app reads the same settings files as the CLI. A mode you pick in the selector is remembered per folder and takes precedence over `defaultMode` for that folder, except Plan, which applies to the current session only.
 
@@ -245,7 +245,7 @@ Press **Cmd+/** on macOS or **Ctrl+/** on Windows to see all shortcuts available
 | `Cmd` `Shift` `E`                     | Open effort menu                 |
 | `1`–`9`                               | Select item in an open menu      |
 
-These shortcuts apply only to the Code tab. The terminal-based [interactive mode shortcuts](/docs/en/interactive-mode#keyboard-shortcuts), such as `Shift+Tab` to cycle modes, do not apply in Desktop.
+These shortcuts apply only to the Code tab. The terminal-based [interactive mode shortcuts](/docs/en/interactive-mode#keyboard-shortcuts), such as `Shift+Tab` to cycle permission modes, do not apply in Desktop.
 
 ### Check usage
 
@@ -367,10 +367,11 @@ Through this surface, Claude sees only the sessions the desktop app runs itself:
 
 When Claude messages another session through this surface, Claude Code shows it there as a card labeled with the sending session's title and a link back, so you can always tell where a message came from. If the receiving session is mid-task, Claude Code holds the message and Claude reads it once the current work finishes. Claude can't deliver to an archived session, and tells you when a message doesn't go through.
 
-Claude Code applies three safety behaviors across sessions:
+Claude Code applies four safety behaviors across sessions:
 
 * Before archiving any session, Claude asks you first. You see the approval card in every permission mode, including Auto and Bypass permissions.
 * Through this surface, Claude can't send cross-session messages from a session nobody is watching, such as a scheduled-task run, and can't deliver messages into one.
+* Claude Code checks each message from this surface against the receiving session's [inbound controls](/docs/en/cross-session-messaging#control-inbound-messages). If you set [`crossSessionInbound`](/docs/en/settings#available-settings) to `refuse` in the receiving session, Claude Code drops messages from this surface. The check runs even when the receiving session doesn't have [cross-session messaging](/docs/en/cross-session-messaging#availability) itself. Before v2.1.234, Claude Code dropped every message from this surface to a receiving session without cross-session messaging.
 * Claude Code quotes each incoming message and attributes it to the session that sent it, and Claude still follows the receiving session's own permission settings when acting on one.
 
 Claude can also suggest new sessions. When it notices something worth fixing that's out of scope for the current task, it offers the work as a task chip in the chat. Click the chip to start that work in a new session with its own worktree; Claude continues your current session uninterrupted.

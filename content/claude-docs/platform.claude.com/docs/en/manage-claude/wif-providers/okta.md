@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/okta
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 7fb8615a272c5627b5965f9ca26de879ff2fe418d036a7a6f1193ac24170bed7
+fetched_at: 2026-08-19T02:28:54.965606Z
+sha256: 2106555740d19f1f1327662d6f9553363c51191758fbc078f919a32e1339897c
 ---
 
 ---
@@ -463,7 +463,7 @@ Each SDK tab shows the callable pattern: the Anthropic SDK calls your identity-t
 
 ## Verify the setup
 
-A successful exchange returns an `access_token` beginning with `sk-ant-oat01-` and an `expires_in` value in seconds. On `400 invalid_grant`, see [Troubleshoot a failed exchange](https://platform.claude.com/docs/en/manage-claude/wif-reference#troubleshoot-a-failed-exchange); the most common Okta-side cause is an `issuer_url` mismatch (it must include the `/oauth2/<auth-server-id>` path; the Okta org authorization server is not usable).
+A successful exchange returns an `access_token` beginning with `sk-ant-oat01-` and an `expires_in` value in seconds. If the exchange fails with the opaque `401` `authentication_error` response (message `Authentication failed`), check the [authentication history page](https://platform.claude.com/settings/workload-identity-federation?tab=history) for the deny reason and see [Troubleshoot a failed exchange](https://platform.claude.com/docs/en/manage-claude/wif-reference#troubleshoot-a-failed-exchange); the most common Okta-side cause is an `issuer_url` mismatch (it must include the `/oauth2/<auth-server-id>` path; the Okta org authorization server is not usable).
 
 ## Scope your rule
 

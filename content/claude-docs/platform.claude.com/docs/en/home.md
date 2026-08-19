@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/home
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 5afa0fe29b5cfcfec1e91bd4143c51b03a3c96e06170c7dd0e43e05ea5232864
+fetched_at: 2026-08-19T02:28:54.965606Z
+sha256: 8246dc49fade25c067beaff3b2ec2503633db98279d57d7674a91fb464dd6589
 ---
 
 ---
@@ -102,7 +102,7 @@ with Claude"
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="message" href="https://platform.claude.com/playground">
-            Try the Workbench
+            Try the API in Playground
           </HomeJourneyLink>
         </HomeJourneyStep>
 

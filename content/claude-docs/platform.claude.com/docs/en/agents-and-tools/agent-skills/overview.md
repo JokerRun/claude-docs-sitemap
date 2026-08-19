@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview
-fetched_at: 2026-08-15T02:25:10.047250Z
-sha256: 4f7b241829ad6a1358475dfc59e33de0669f7d0b00e634acd2da66c3c6e9b321
+fetched_at: 2026-08-19T02:28:54.965606Z
+sha256: f3a9e69a05e4d41157561ced529eb795dc420d99103faf2a3488d364f5eacf03
 ---
 
 ---
@@ -247,7 +247,7 @@ Use Skills only from trusted sources: those you created yourself or obtained fro
 * **Data exposure:** Skills with access to sensitive data could be designed to leak information to external systems
 * **Treat like installing software:** Be especially careful when integrating Skills into production systems with access to sensitive data or critical operations
 
-For organization-scale governance, vetting, and deployment guidance, see [Skills for enterprise](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise).
+For organization-scale governance, vetting, and deployment guidance, see [Skills for enterprise](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise). Claude Enterprise organizations can also turn on [Skill content scanning](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise#skill-content-scanning) for custom Skills uploaded in claude.ai and Claude Cowork. Scanning doesn't cover Skills uploaded through the Skills API or the Claude Console.
 
 ## Available Skills
 
@@ -277,6 +277,8 @@ For complete examples of custom Skills, see the [Skills cookbook](https://platfo
 Agent Skills is not covered by ZDR arrangements. Skill definitions and execution data are retained according to Anthropic's standard data retention policy.
 
 For ZDR eligibility across all features, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
+
+For audit logging of Skills API operations, see [Audit logging](https://platform.claude.com/docs/en/build-with-claude/skills-guide#audit-logging) in Using Agent Skills with the API.
 
 ## Limitations and constraints
 

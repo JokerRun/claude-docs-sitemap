@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 9b6c30d55f11737692784d5bf287021cbff08ed7102a21a2ba3950391968a970
+fetched_at: 2026-08-19T02:28:54.965606Z
+sha256: 9cb3e722238635102bd70c5006d3c5d362a60022d1718e59d89c4bd7dde2c8b6
 ---
 
 ---
@@ -39,6 +39,8 @@ The Files API provides a create-once, use-many-times approach for working with f
 
 <Warning id="workspace-scoped-access">
   **Uploaded files are accessible to your entire workspace, not scoped to an end user, conversation, or session.** Any API key in the same workspace can access any file uploaded there, and all of your keys share your organization's Default Workspace unless you have assigned them to separate [workspaces](https://platform.claude.com/docs/en/manage-claude/workspaces#api-keys-and-resource-scoping). Never accept `file_id` values from end users or other untrusted sources: a user-supplied file ID would let one user of your application read content that another user uploaded. Treat file IDs as server-side references, and keep the mapping between your users and their files in your application.
+
+  If you are building a multi-tenant application on the Files API, create a separate [workspace](https://platform.claude.com/docs/en/manage-claude/workspaces) for each tenant. The workspace is the isolation boundary for files, so a workspace per tenant gives each tenant's data hard isolation from every other tenant. Each organization can have up to 100 workspaces; contact your account team if you need more.
 </Warning>
 
 ## How to use the Files API
@@ -985,7 +987,7 @@ Download files that were created by [skills](https://platform.claude.com/docs/en
 ### Storage limits
 
 * **Maximum file size:** 500 MB per file
-* **Total storage:** 500 GB per organization
+* **Total storage:** 1 TB per organization
 
 ### File lifecycle
 
@@ -995,6 +997,10 @@ Download files that were created by [skills](https://platform.claude.com/docs/en
 * Deleted files cannot be recovered
 * Files are inaccessible through the API shortly after deletion, but they may persist in active Messages API calls and associated tool uses
 * Files that users delete will be deleted in accordance with Anthropic's [data retention policy](https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data). For ZDR eligibility across all features, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention)
+
+### Audit logging
+
+If your organization has the [Compliance API](https://platform.claude.com/docs/en/manage-claude/compliance-api) enabled, its [Activity Feed](https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed) records Files API operations made with a Claude API key or from the Claude Console: each upload (`POST /v1/files`), content download (`GET /v1/files/{file_id}/content`), and deletion (`DELETE /v1/files/{file_id}`) appears as a `platform_file_uploaded`, `platform_file_content_downloaded`, or `platform_file_deleted` activity. Listing files and retrieving file metadata are not recorded. Operations that occur while the Compliance API is off are not recorded and cannot be recovered later, so [set up the Compliance API](https://platform.claude.com/docs/en/manage-claude/compliance-api-access) before you rely on this audit trail. On [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws#monitoring-and-logging), audit file operations with AWS CloudTrail data events instead.
 
 ## Error handling
 
@@ -1006,7 +1012,7 @@ Common errors when using the Files API include:
 * **Exceeds context window size (400):** The file is larger than the context window size (for example, using a 500 MB plain text file in a `/v1/messages` request)
 * **Invalid filename (400):** The file name doesn't meet the length requirements (1-255 characters) or contains forbidden characters (`<`, `>`, `:`, `"`, `|`, `?`, `*`, `\`, `/`, or Unicode characters 0-31)
 * **File too large (413):** File exceeds the 500 MB limit
-* **Storage limit exceeded (400):** Your organization has reached the 500 GB storage limit
+* **Storage limit exceeded (400):** Your organization has reached the 1 TB storage limit
 
 ```json Output
 {
@@ -1033,10 +1039,7 @@ File content used in Messages requests is priced as input tokens.
 
 ### Rate limits
 
-During the beta period:
-
-* File-related API calls are limited to approximately 100 requests per minute
-* [Contact us](mailto:sales@anthropic.com) if you need higher limits for your use case
+File-related API calls are limited to approximately 500 requests per minute. To request a higher limit, [contact sales](mailto:sales@anthropic.com).
 
 ## Next steps
 

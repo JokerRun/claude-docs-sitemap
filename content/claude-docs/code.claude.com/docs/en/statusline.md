@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/statusline
-fetched_at: 2026-08-18T02:27:20.489890Z
-sha256: 67f836556ddc69bd6505672fe5a65f227f73f4c48316fe96d424261d677ad128
+fetched_at: 2026-08-19T02:28:54.965606Z
+sha256: 546fbc9424f28d62b3c55972b3fd1c8b61b9cb0b442b280928bebf3b1ea01114
 ---
 
 > ## Documentation Index
@@ -1079,7 +1079,7 @@ Community projects like [ccstatusline](https://github.com/sirmalloc/ccstatusline
 
 * Terminal.app does not support clickable links
 
-* If link text appears but isn't clickable, Claude Code may not have detected hyperlink support in your terminal. This commonly affects Windows Terminal and other emulators not in the auto-detection list. Set the `FORCE_HYPERLINK` environment variable to override detection before launching Claude Code:
+* If link text appears but isn't clickable, Claude Code may not have detected hyperlink support in your terminal. Set the `FORCE_HYPERLINK` environment variable to override detection before launching Claude Code:
 
   ```bash theme={null}
   FORCE_HYPERLINK=1 claude

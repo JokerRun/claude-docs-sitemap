@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/admin-api
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: b4216b894f51d048e8bcffcdcce4f1903fe2a81a27b5e0ddb355eb0d8507704b
+fetched_at: 2026-08-19T02:28:54.965606Z
+sha256: fccb182841bede8aa232ccf9024076ce87bf2e65847e699fc161c96f6d3be274
 ---
 
 ---
@@ -95,13 +95,13 @@ This is useful for:
 
 There are five organization-level roles. See more details in the [API Console roles and permissions](https://support.claude.com/en/articles/10186004-api-console-roles-and-permissions) article.
 
-| Role               | Permissions                                                                   |
-| ------------------ | ----------------------------------------------------------------------------- |
-| user               | Can use Workbench                                                             |
-| claude\_code\_user | Can use Workbench and [Claude Code](https://code.claude.com/docs/en/overview) |
-| developer          | Can use Workbench and manage API keys                                         |
-| billing            | Can use Workbench and manage billing details                                  |
-| admin              | Can do all of the preceding, plus manage users                                |
+| Role               | Permissions                                                                    |
+| ------------------ | ------------------------------------------------------------------------------ |
+| user               | Can use Playground                                                             |
+| claude\_code\_user | Can use Playground and [Claude Code](https://code.claude.com/docs/en/overview) |
+| developer          | Can use Playground and manage API keys                                         |
+| billing            | Can use Playground and manage billing details                                  |
+| admin              | Can do all of the preceding, plus manage users                                 |
 
 Organization owners and primary owners have all admin permissions and can additionally manage admins. All references to the admin role on this page also apply to owners and primary owners.
 

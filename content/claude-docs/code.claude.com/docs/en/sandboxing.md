@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-08-18T02:27:20.489890Z
-sha256: 962734001ef4569e9ff8235587a202bfc19bc00c2b51b4437cda18b0d593e838
+fetched_at: 2026-08-19T02:28:54.965606Z
+sha256: d4b9736740b8d928ad83f824bdc1f64feae1ab3216c0c549c589499cf96bcc74
 ---
 
 > ## Documentation Index
@@ -486,6 +486,7 @@ Network access is controlled through a proxy server running outside the sandbox:
 * **Domain restrictions**: no domains are pre-allowed by default. The first time a command needs a new domain, Claude Code prompts for approval, or in [auto mode](/docs/en/permission-modes#eliminate-prompts-with-auto-mode) sends the request to the classifier. When you're prompted, choosing Yes allows the host for the rest of the current session, so later connections to the same host do not prompt again. Pre-allow domains with [`allowedDomains`](/docs/en/settings#sandbox-settings) to avoid the prompt entirely. `WebFetch` allow rules also pre-allow domains, as described in [Permission rules](#permission-rules).
 * **Strict allowlist**: if you set [`strictAllowlist`](/docs/en/settings#sandbox-settings) to `true` in user, managed, or CLI `--settings` settings, Claude Code denies sandboxed commands access to any host outside the allowlist instead of prompting. The allowlist is the same one the sandbox otherwise prompts against: `allowedDomains` plus domains from `WebFetch(domain:...)` allow rules, or only the managed settings entries when `allowManagedDomainsOnly` is set. Claude Code enforces this for sandboxed commands only; in-process tools such as `WebFetch` still follow their [permission rules](#permission-rules). Setting it in a repository's `.claude/settings.json` or `.claude/settings.local.json` has no effect. Requires Claude Code v2.1.219 or later.
 * **Managed lockdown**: if [`allowManagedDomainsOnly`](/docs/en/settings#sandbox-settings) is set in managed settings, non-allowed domains are blocked automatically instead of prompting, and only `allowedDomains` and `WebFetch(domain:...)` allow rules from managed settings are honored.
+* **Corporate proxy**: when your network requires outbound traffic to go through a corporate proxy, set `HTTPS_PROXY`, `HTTP_PROXY`, and `NO_PROXY` as [proxy configuration](/docs/en/network-config#proxy-configuration) describes, in the `env` block of your settings so that [background agents](/docs/en/network-config#set-network-variables-in-settings-not-the-shell) get them too, or in the environment you launch Claude Code from. Claude Code enforces the domain allowlist and then tunnels allowed connections through that upstream proxy.
 * **Custom proxy support**: advanced users can implement custom rules on outgoing traffic
 * **Comprehensive coverage**: restrictions apply to all scripts, programs, and subprocesses spawned by commands
 

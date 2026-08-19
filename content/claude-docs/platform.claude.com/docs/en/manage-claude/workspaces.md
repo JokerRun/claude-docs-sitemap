@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/workspaces
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: e1f397520ca9cc8b38d6eaffdb563dcf2bfc7d060fb61f694489ca7315ac346a
+fetched_at: 2026-08-19T02:28:54.965606Z
+sha256: 9b61b914684f5527578e853fe2c758900a3f134a43cd039abbbe57a92a11306c
 ---
 
 ---
@@ -45,7 +45,7 @@ Members can have different roles in each workspace, allowing fine-grained access
 
 | Role                        | Permissions                                                                                     |
 | --------------------------- | ----------------------------------------------------------------------------------------------- |
-| Workspace User              | Use the Anthropic Workbench only                                                                |
+| Workspace User              | Use Playground only                                                                             |
 | Workspace Limited Developer | Create and manage API keys, use the API. Cannot access session tracing views or download files. |
 | Workspace Developer         | Create and manage API keys, use the API                                                         |
 | Workspace Admin             | Full control over workspace settings and members                                                |

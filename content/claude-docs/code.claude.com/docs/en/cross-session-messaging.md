@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cross-session-messaging
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 256b5079ec301ec1bad917f32d05baedc42498883014c8446a1ddc3f33f82d41
+fetched_at: 2026-08-19T02:28:54.965606Z
+sha256: 4906354c778df040a93eb79efa13356f6540a4ecf9241e3e3aa919ea06ba7712
 ---
 
 > ## Documentation Index
@@ -70,7 +70,7 @@ For what the message Claude writes looks like when it arrives, including an exam
 
 The receiving Claude reads the message between tool calls during an active turn, so a running tool is never interrupted. When the receiving session is idle, Claude Code starts a new turn with the message.
 
-Between two ordinary interactive sessions with default settings, Claude Code delivers the message. Delivery isn't guaranteed in every configuration, though. The receiving session checks each arriving message against its own [inbound controls](#control-inbound-messages), and the check ends in one of three outcomes:
+Between two ordinary interactive sessions with default settings, Claude Code delivers the message. Delivery isn't guaranteed in every configuration, though. Claude Code refuses a message [over the size cap](#limitations) in the sending session, before it leaves. The receiving session checks each arriving message against its own [inbound controls](#control-inbound-messages), and the check ends in one of three outcomes:
 
 * **Delivered**: Claude Code passes the message to the receiving Claude.
 * **Held**: Claude Code sets the message aside undelivered. A held message reaches Claude only when you approve it or a later mode or settings change allows it.
@@ -272,6 +272,7 @@ In a session with messaging, `/status` also shows a `Peer address` row with the 
 The limits here are properties of the messaging channel itself and apply wherever the feature runs. For platform and provider gaps, see [Availability](#availability) instead.
 
 * **Plain text only**: Claude sends only plain text across sessions. Structured [agent team](/docs/en/agent-teams) protocol messages stay within a team.
+* **Same-machine message size is capped**: Claude Code refuses a message to a session on this machine once its serialized form passes about a million characters. The refusal [names the exact sizes](/docs/en/errors#message-too-large-for-cross-session-delivery). Nothing reaches the receiving session.
 * **Message loops are throttled**: Claude Code rate-limits repeated messages per sender, drops identical repeats arriving within a short window, and caps accepted messages waiting for Claude to read them at 50 per session. A message loop between two sessions therefore stops on its own.
 
 ## Related resources

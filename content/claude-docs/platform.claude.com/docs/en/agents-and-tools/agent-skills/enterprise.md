@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: de38cb2a0a0e4fd777a979be4604da73f93052bb29132f763beb79a0e1840190
+fetched_at: 2026-08-19T02:28:54.965606Z
+sha256: 7a83e80ce335ab329ed9f1c674fa3747b3b0d46656c9de6835932cc168976e36
 ---
 
 ---
@@ -50,6 +50,12 @@ Before deploying any Skill from a third party or internal contributor, complete 
 <Warning>
   Never deploy Skills from untrusted sources without a full audit. A malicious Skill can direct Claude to execute arbitrary code, access sensitive files, or transmit data externally. Treat Skill installation with the same rigor as installing software on production systems.
 </Warning>
+
+### Skill content scanning
+
+Claude Enterprise organizations can turn on automated security scanning for custom Skills in claude.ai and Claude Cowork. The feature is in beta. After you turn on **Skill and plugin security scanning** at [claude.ai > Organization settings > Skills](https://claude.ai/admin-settings/skills), Skills that members then upload or edit in claude.ai or Cowork are scanned for signs of malicious behavior, such as hidden code execution, sending your data to an outside service, or instructions that tamper with Claude's safeguards. A Skill that fails the scan, or whose scan hasn't finished, is blocked from use. A Skill that passes with a warning stays usable behind a caution notice. If scanning is available to your organization, turn it on. It complements, but doesn't replace, the [review checklist](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise#review-checklist).
+
+Scanning doesn't cover the Claude API. Skills you upload through the Skills API (`/v1/skills`), including from the Claude Console, aren't scanned, so for API deployments, rely on the review checklist and [version pinning](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise#versioning-strategy). Scanning also doesn't apply to Skills that were already in your organization when you turned it on, or to organizations with certain data handling configurations, such as customer-managed encryption keys (CMEK), zero data retention (ZDR), or HIPAA readiness. For setup steps, exclusions, and result types, see [Get started with skill and plugin scanning](https://support.claude.com/en/articles/15927065-get-started-with-skill-and-plugin-scanning) in the Claude Help Center.
 
 ## Evaluating Skills before deployment
 
@@ -165,7 +171,7 @@ The Skills API provides workspace-scoped distribution. Skills uploaded through t
 
 ### Versioning strategy
 
-* **Production:** Pin Skills to specific versions. Run the full evaluation suite before promoting a new version. Treat every update as a new deployment requiring full security review.
+* **Production:** Pin Skills to specific versions. If you omit `version`, requests use the latest version, so a new version uploaded by anyone in the workspace immediately changes what production agents run. Run the full evaluation suite before promoting a new version. Treat every update as a new deployment requiring full security review.
 * **Development and testing:** Use latest versions to validate changes before production promotion.
 * **Rollback plan:** Maintain the previous version as a fallback. If a new version fails evaluations in production, revert to the last known-good version immediately.
 * **Integrity verification:** Compute checksums of reviewed Skills and verify them at deployment time. Use signed commits in your Skill repository to ensure provenance.

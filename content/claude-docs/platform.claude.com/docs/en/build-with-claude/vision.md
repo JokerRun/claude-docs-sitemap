@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/vision
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 3242a01766ed71074007d71652ebd7dc426feb8fa417e0c66f56b7f87da38d26
+fetched_at: 2026-08-19T02:28:54.965606Z
+sha256: a7ec458bd897341ac6fc6dcd9601108665a8ea1e4825155060b2e0202c7fe523
 ---
 
 ---
@@ -20,7 +20,7 @@ This guide describes how to send images to Claude, the limits and costs that app
 Use Claude's vision capabilities through:
 
 * [claude.ai](https://claude.ai/). Upload an image like you would a file, or drag and drop an image directly into the chat window.
-* The [Workbench](https://platform.claude.com/playground) in the Claude Console. Add images directly to any User message block.
+* [Playground](https://platform.claude.com/playground) in the Claude Console. Add images directly to any User message block.
 * API request. See the following examples.
 
 On the API, provide images to Claude as `image` content blocks using one of three source types:
