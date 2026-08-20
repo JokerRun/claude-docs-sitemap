@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/define-outcomes
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 7455bd010c0509efaad569eed15c6365c23422540e648fcfdd8ecb7650587ffb
+fetched_at: 2026-08-20T02:28:31.280657Z
+sha256: 4bbd8ea7ba556d167c23bc36477769e74eb908bf60ca9b5d270aeef32935d03c
 ---
 
 ---
@@ -62,7 +62,7 @@ Example rubric:
 Pass the rubric as inline text on `user.define_outcome` (see [Create a session with an outcome](https://platform.claude.com/docs/en/managed-agents/define-outcomes#create-a-session-with-an-outcome)), or upload it through the Files API for reuse across sessions.
 
 <Note>
-  Uploading through the Files API requires a beta header that grants Files API access. Your Managed Agents beta header grants this on its own, so you don't need to send `files-api-2025-04-14` alongside it. The curl example passes its headers explicitly.
+  Uploading through the Files API doesn't require a beta header. The cURL example sends the `managed-agents-2026-04-01` header it uses throughout this walkthrough, which the Files API also accepts.
 </Note>
 
 <CodeGroup>

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 37897e0deab05447a92714045067fed5b43e703f9b4d079c6bc6d5fe89b51423
+fetched_at: 2026-08-20T02:28:31.280657Z
+sha256: f3664077c262ee3c9b512d0dc7f0bbae0e1ab6d1ef5f2627d8b0edcfe4de9f5d
 ---
 
 > ## Documentation Index
@@ -802,7 +802,7 @@ Logged when a tool permission decision is made (accept/reject).
   * `"config"`: Decided automatically without prompting, based on project settings, allow or deny rules in the user's personal settings, enterprise managed policy, `--allowedTools` or `--disallowedTools` flags, the active permission mode, a session-scoped grant from an earlier prompt in the same interactive CLI session, or because the tool is inherently safe. The event doesn't indicate which of these sources matched. Claude Code also reports `"config"` when the permission prompt request itself fails, for example when the Agent SDK's [`canUseTool`](/docs/en/agent-sdk/typescript#canusetool) callback or the [`--permission-prompt-tool`](/docs/en/cli-reference#cli-flags) tool returns an invalid result, or when the input stream closes while the request is pending. Before v2.1.216, Claude Code reported these failures as `"user_reject"`.
   * `"hook"`: A `PreToolUse` or `PermissionRequest` hook returned the decision.
   * `"user_permanent"`: Emitted when the user chose "Yes, and don't ask again for ..." at a permission prompt, which saves an allow rule to their personal settings. In the interactive CLI this is emitted only for that choice itself; later calls that match the saved rule emit `"config"` instead. In Agent SDK or non-interactive `-p` sessions, both the initial choice and later rule matches emit `"user_permanent"`. Treated as an accept.
-  * `"user_temporary"`: Emitted when the user chose "Yes" at a permission prompt for a one-time approval, or chose one of the "... during this session" options on a file edit or read prompt. In the interactive CLI this is emitted only for the choice itself; later calls allowed by that session-scoped grant emit `"config"` instead. In Agent SDK or non-interactive `-p` sessions, both the choice and later matches emit `"user_temporary"`. Treated as an accept.
+  * `"user_temporary"`: Emitted when the user chose "Yes" at a permission prompt for a one-time approval, or chose an option that grants access for the rest of the session on a file edit or read prompt. In the interactive CLI this is emitted only for the choice itself; later calls allowed by that session-scoped grant emit `"config"` instead. In Agent SDK or non-interactive `-p` sessions, both the choice and later matches emit `"user_temporary"`. Treated as an accept.
   * `"user_abort"`: Emitted when the user dismissed the permission prompt without answering. In Agent SDK and non-interactive `-p` sessions, this includes interrupting the turn while a `canUseTool` or `--permission-prompt-tool` permission request is pending; before v2.1.216, Claude Code reported that interrupt as `"user_reject"`. Treated as a reject.
   * `"user_reject"`: Emitted when the user chose "No" when prompted. In the interactive CLI this is emitted only for that choice itself; calls that match a deny rule in the user's personal settings emit `"config"` instead. In Agent SDK or non-interactive `-p` sessions, calls that match a deny rule in personal settings emit `"user_reject"`. Treated as a reject.
 * `tool_parameters` (when `OTEL_LOG_TOOL_DETAILS=1`): JSON string containing tool-specific parameters. Same shape as the [Tool result event](#tool-result-event), minus post-execution fields such as `git_commit_id`. Values may differ from `tool_result` for an accepted call if the permission decision rewrites the tool input via `updatedInput`. Use this attribute to see which command was rejected when `decision` is `"reject"`.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/rate-limits
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 27738d20da88c513b81371950df63b658fd4726c0e9a13bc44a6de320278584a
+fetched_at: 2026-08-20T02:28:31.280657Z
+sha256: e54c5365f0a127593003770d25bbf1cba51ab2fcb7fb887102350f8f49c954be
 ---
 
 ---
@@ -199,6 +199,10 @@ The Message Batches API has its own set of rate limits which are shared across a
 | ------------------------------------------------------------------ | ------------------------- |
 | Create endpoints (for example, agents, sessions, and environments) | 300 requests per minute   |
 | Read endpoints (for example, retrieve, list, and stream)           | 1,200 requests per minute |
+
+### Files API
+
+[Files API](https://platform.claude.com/docs/en/build-with-claude/files) requests have their own per-organization limit, shared across upload, list, retrieve, download, and delete operations and separate from the Messages API limits described earlier on this page. See [Files API rate limits](https://platform.claude.com/docs/en/build-with-claude/files#rate-limits) for the current value.
 
 ### Fast mode rate limits
 

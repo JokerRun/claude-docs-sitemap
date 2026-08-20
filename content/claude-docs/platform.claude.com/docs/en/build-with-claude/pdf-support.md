@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/pdf-support
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 3f47b6c643a07f17143ab599c9d653727fcf5a8af49e55722b040c61a5dbdefd
+fetched_at: 2026-08-20T02:28:31.280657Z
+sha256: 9ed41f58d45b90d6ee6e2db8243bd52d38ff4c2c375f87b92e821d98ee34a186
 ---
 
 ---
@@ -711,7 +711,7 @@ If you need to send PDFs from your local system or when a URL isn't available:
 
 #### Option 3: Files API
 
-For PDFs you'll use repeatedly, or when you want to avoid encoding overhead, use the [Files API](https://platform.claude.com/docs/en/build-with-claude/files) (beta):
+For PDFs you'll use repeatedly, or when you want to avoid encoding overhead, use the [Files API](https://platform.claude.com/docs/en/build-with-claude/files). These examples send the `anthropic-beta: files-api-2025-04-14` header, which the API accepts but doesn't require:
 
 <CodeGroup>
   ```bash cURL

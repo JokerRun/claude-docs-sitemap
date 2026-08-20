@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/skills
-fetched_at: 2026-08-15T02:25:10.047250Z
-sha256: 7aa632fae2c60bb35a64fad0afe48d41f8bbe8c500501d7092ebea245c0fdc5f
+fetched_at: 2026-08-20T02:28:31.280657Z
+sha256: 6b4bda14fa7c55cce495394c3ab8244a03bbeaf15bd7964f5a44ac8ad090ef42
 ---
 
 ---
@@ -28,7 +28,7 @@ To learn how to author custom skills, see [Agent Skills](https://platform.claude
 
 A custom skill is a directory containing a `SKILL.md` file plus any supporting files, uploaded to your workspace as a zip archive or as individual files. Creating the skill returns the `skill_*` ID you reference when attaching it to an agent. Anthropic pre-built skills are already available in every workspace and don't require this step. To use only pre-built skills, skip to [Attach skills to an agent](https://platform.claude.com/docs/en/managed-agents/skills#attach-skills-to-an-agent).
 
-When you call the Skills API directly with cURL, pass the `anthropic-beta: skills-2025-10-02` header explicitly. The CLI and SDKs send it automatically.
+The Skills API doesn't require a beta header. The cURL example still sends `anthropic-beta: skills-2025-10-02`, and the CLI and SDK `beta` commands add it automatically; requests that include it continue to work unchanged.
 
 These examples omit the optional `display_title` field, so the skill's title is derived from `SKILL.md`. An explicitly passed `display_title` must be unique among the custom skills in your workspace.
 

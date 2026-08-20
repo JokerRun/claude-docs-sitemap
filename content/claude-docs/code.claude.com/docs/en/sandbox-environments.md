@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandbox-environments
-fetched_at: 2026-08-18T02:27:20.489890Z
-sha256: dafa3744ca87561de4ac1343d25e2282297f9dab6423a124bff93781b8cd8c93
+fetched_at: 2026-08-20T02:28:31.280657Z
+sha256: b2d76369288b394d23bfd31cd39a4f4176d317bf0ee8c054af29d3abe0ce5372
 ---
 
 > ## Documentation Index
@@ -168,7 +168,7 @@ Use this approach when you want full VM isolation without provisioning infrastru
 
 ## Enforce isolation across an organization
 
-Individual developers can opt into any approach above. What an organization can enforce, and with which tools, depends on the approach:
+Individual developers can opt into any of the sandboxing approaches on this page. What an organization can enforce, and with which tools, depends on the approach:
 
 * **Built-in Bash sandbox**: the only approach Claude Code enforces itself. Deliver the `sandbox` settings keys through [managed settings](/docs/en/settings#settings-files), either as a file managed by your MDM or through [server-managed settings](/docs/en/server-managed-settings) on Claude.ai. See [Enforce sandboxing with managed settings](/docs/en/sandboxing#enforce-sandboxing-with-managed-settings) for the keys to deploy and how to keep developers from widening the policy.
 * **Dev containers**: commit the [example dev container](/docs/en/devcontainer) to your repositories to standardize the environment across a team. This is a convention rather than an enforcement boundary, because Claude Code does not require a container. If developers should not be able to run Claude Code outside it, enforce that with your organization's device management or software allowlisting tools.
@@ -176,7 +176,7 @@ Individual developers can opt into any approach above. What an organization can 
 
 ## See also
 
-These pages cover configuration and policy details for the approaches above.
+These pages cover configuration and policy details for the sandboxing approaches on this page.
 
 * [Sandboxing](/docs/en/sandboxing): configure the built-in sandboxed Bash tool
 * [Dev container](/docs/en/devcontainer): the preconfigured Docker development container

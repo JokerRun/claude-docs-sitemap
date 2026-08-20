@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/github-actions
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: d4d7be8dd3f2bcc1d692336921a9d1b9c534582c69f7cd0a08f9acf495c96d21
+fetched_at: 2026-08-20T02:28:31.280657Z
+sha256: 0ca99e2a65d0522aae03d28a6b18c10a1355f268f3332beb3dc287e7b070968e
 ---
 
 > ## Documentation Index
@@ -153,7 +153,7 @@ For details on how the Claude Code GitHub Action limits what Claude can do with 
 The Claude Code GitHub Action detects how to run from your workflow configuration:
 
 * **Interactive mode**: when the workflow provides no `prompt` input, Claude waits for the trigger phrase, `@claude` by default, in an issue or pull request comment, in a pull request review, or in the body or title of a newly opened issue, then responds to that request. Progress and results appear as a comment on the triggering issue or PR.
-* **Automation mode**: when the workflow provides a `prompt` input, Claude runs without waiting for a mention, subject only to the [access checks](#who-can-trigger-runs). By default, results appear in the workflow run log rather than a comment. Claude can post to the issue or pull request when the prompt directs it to and it has a tool that can post, as in the [code-review example](#run-a-skill).
+* **Automation mode**: when the workflow provides a `prompt` input, Claude runs without waiting for a mention, subject only to the [checks on who can trigger runs](#who-can-trigger-runs). By default, results appear in the workflow run log rather than a comment. Claude can post to the issue or pull request when the prompt directs it to and it has a tool that can post, as in the [code-review example](#run-a-skill).
 
 ### Who can trigger runs
 

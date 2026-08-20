@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/session-storage
-fetched_at: 2026-08-17T02:30:46.917153Z
-sha256: 71272961db6923f0e7891fa125ae4375e0bd0fd9c3b5e725a0c29ffa304158b4
+fetched_at: 2026-08-20T02:28:31.280657Z
+sha256: 455304fa0ea851dec08097ba501c89e123851e9375e975426ceb8ecc588cce6d
 ---
 
 > ## Documentation Index
@@ -93,7 +93,11 @@ A `SessionStore` is an object with two required methods, `append` and `load`, an
   ```
 </CodeGroup>
 
-`SessionKey` addresses one transcript. `projectKey` is a stable, filesystem-safe encoding of the working directory, `sessionId` is the session UUID, and `subpath` is set when the entry belongs to a subagent transcript or sidecar file rather than the main conversation. Because `projectKey` encodes the working directory, resume or continue from the store from a working directory matching the original run's. Treat `subpath` as an opaque key suffix; it follows the on-disk layout, for example `subagents/agent-<id>`. When `subpath` is undefined the key refers to the main transcript.
+`SessionKey` addresses one transcript. `projectKey` is a stable, filesystem-safe encoding of the working directory, `sessionId` is the session UUID, and `subpath` is set when the entry belongs to a subagent transcript or sidecar file rather than the main conversation.
+
+Because `projectKey` encodes the working directory, resume or continue from the store from a working directory matching the original run's. In TypeScript, if you set [`CLAUDE_CODE_PROJECT_DIR_NAME`](/docs/en/sessions#name-the-project-directory-yourself) beside `CLAUDE_CONFIG_DIR` in a query's [`env` option](/docs/en/agent-sdk/typescript#options), the SDK keys that query's entries, and its `resume` and `continue` lookups, by that name instead. Requires Agent SDK v0.3.234 or later.
+
+Treat `subpath` as an opaque key suffix; it follows the on-disk layout, for example `subagents/agent-<id>`. When `subpath` is undefined the key refers to the main transcript.
 
 | Method                 | Required | Called when                                                                                                                                                                                                                                                                                               |
 | :--------------------- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permissions
-fetched_at: 2026-08-18T02:27:20.489890Z
-sha256: c3deb05caa79dc39df2fe38bc9f8eb7f3377282cbe13b16907bc929b3c15b7c4
+fetched_at: 2026-08-20T02:28:31.280657Z
+sha256: 89f064c3f87f8e15f6bae5cd357fb05b37d8763a14cfe40b5195b4ecb33a0984
 ---
 
 > ## Documentation Index
@@ -30,6 +30,8 @@ Claude Code uses a tiered permission system to balance power and safety. The tab
 When you choose "Yes, and don't ask again" and the approval saves permanently, such as for a Bash command or a WebFetch domain, Claude Code saves the rule to `.claude/settings.local.json` at the root of the git repository, resolved through [worktrees](/docs/en/worktrees) to the main checkout. The rule applies to future sessions anywhere in that repository, including sessions started in subdirectories and in worktrees. A file-modification approval isn't saved to the file: as the table shows, it lasts until the session ends. Outside a git repository, and when the repository root is your home directory, Claude Code saves the rule in the directory you started it from.
 
 Before v2.1.211, Claude Code always saved the rule in the starting directory, so an approval granted in a worktree or subdirectory didn't apply to the rest of the repository. Rules that earlier versions saved in a subdirectory or worktree still apply to sessions started there.
+
+Sometimes a permission prompt offers only a one-time approval, with no "don't ask again" option and no option to allow the action for the rest of the session. Claude Code offers those options only when the prompt can show you everything they would allow, so a rule you save from a prompt covers only what its option named. Claude Code leaves the options out when the command or edit is too large to show in full, or when the option's label can't fit every command or path the rule would cover. Approve the action once, or add the rule yourself in [`/permissions`](#manage-permissions).
 
 On a Bash or PowerShell permission prompt, press `Ctrl+E` to show an explanation of the command: what it does, why Claude is running it, and what could go wrong, labeled **Low risk**, **Med risk**, or **High risk**. Claude Code sends the command and Claude's own description of the call to the model to generate the explanation only when you press `Ctrl+E`, not on every prompt. Showing the explanation doesn't run the command; press `Ctrl+E` again to hide it.
 
@@ -206,6 +208,8 @@ Exec wrappers such as `watch`, `setsid`, `ionice`, and `flock` can't be auto-app
 
 Claude Code recognizes a built-in set of Bash commands as read-only and runs them without a permission prompt in every mode. These include `ls`, `cat`, `echo`, `pwd`, `head`, `tail`, `grep`, `find`, `wc`, `which`, `diff`, `stat`, `du`, `cd`, and read-only forms of `git`. The set is not configurable; to require a prompt for one of these commands, add an `ask` or `deny` rule for it.
 
+A redirect such as `ls > out.txt` adds a check on the target. See [Redirections](#redirections).
+
 Unquoted glob patterns are permitted for commands whose every flag is read-only, so `ls *.ts` and `wc -l src/*.py` run without a prompt.
 
 In Manual mode, commands from this set still prompt in these cases:
@@ -238,6 +242,10 @@ A `cd` into a path inside your working directory or an [additional directory](#w
 
   Note that using WebFetch alone doesn't prevent network access. If Bash is allowed, Claude can still use `curl`, `wget`, or other tools to reach any URL.
 </Warning>
+
+#### Redirections
+
+Claude Code checks the target of an output redirection, such as `>`, `>>`, or `2>`, as a file write. The check covers your `Edit` allow and deny rules, [protected paths](/docs/en/permission-modes#protected-paths), and the [working directories](#working-directories). A rule such as `Bash(git commit *)` allows the command, not the target. A `/dev/null` target isn't checked. A target that starts with `~` or contains a glob character needs approval.
 
 ### PowerShell
 

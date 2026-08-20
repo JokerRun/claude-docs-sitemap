@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/environments
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 351d8b74376929bfa21d8fdacb2bbb202815339f1837f07a06011c3fe1115cd0
+fetched_at: 2026-08-20T02:28:31.280657Z
+sha256: 9fc1ba4fbb6f40b805a3aa164b25702e592c0fb0b380b87fe78ddc4461fb7a9a
 ---
 
 ---
@@ -390,7 +390,7 @@ Supported package managers:
 
 ### Networking
 
-The `networking` field controls the sandbox's outbound network access. It does not affect the allowed domains for the `web_search` or `web_fetch` tools.
+The `networking` field controls the sandbox's outbound network access. It does not affect the `web_search` or `web_fetch` tools, which run on Anthropic's servers; to restrict the sites those tools can reach, set `allowed_domains` or `blocked_domains` on the tool's entry in the agent toolset. See [Restrict web search and web fetch domains](https://platform.claude.com/docs/en/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
 
 | Mode           | Description                                                                                                                                                  |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |

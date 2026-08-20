@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise
-fetched_at: 2026-08-19T02:28:54.965606Z
-sha256: 7a83e80ce335ab329ed9f1c674fa3747b3b0d46656c9de6835932cc168976e36
+fetched_at: 2026-08-20T02:28:31.280657Z
+sha256: dbbd6b433898c561e78a1ee161bfcee4e996aec0e4442bfeaa26c1cf587eda67
 ---
 
 ---
@@ -122,7 +122,7 @@ Evaluation results signal when to act:
 
 As a general guideline, limit the number of Skills loaded simultaneously to maintain reliable recall accuracy. Each Skill's metadata (name and description) competes for attention in the system prompt. With too many Skills active, Claude may fail to select the right Skill or miss relevant ones entirely. Use your evaluation suite to measure recall accuracy as you add Skills, and stop adding when performance degrades.
 
-Note that API requests support a maximum of 8 Skills for each request (see [Using Skills with the API](https://platform.claude.com/docs/en/build-with-claude/skills-guide)). If a role requires more Skills than a single request supports, consider consolidating narrow Skills into broader ones or routing requests to different Skill sets based on task type.
+Note that API requests support a maximum of 20 Skills for each request (see [Using Skills with the API](https://platform.claude.com/docs/en/build-with-claude/skills-guide)). If a role requires more Skills than a single request supports, consider consolidating narrow Skills into broader ones or routing requests to different Skill sets based on task type.
 
 ### Start specific, consolidate later
 

@@ -3893,6 +3893,10 @@
 <priority>0.8</priority>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/en/about-claude/additional-resources</loc>
+<priority>0.8</priority>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/en/about-claude/models/overview</loc>
 <priority>1</priority>
 </url>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/permission-policies
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: c6243d61bea3096b6f2c429758f7058744c9280e1fc9d30e1a898e53226ac851
+fetched_at: 2026-08-20T02:28:31.280657Z
+sha256: 87c2a652878388d7d398d71a95b42db0f47f7cd077dc23ed41468e0ed3846d2a
 ---
 
 ---
@@ -548,9 +548,8 @@ Use the `configs` array to override the default for individual tools. The `name`
           },
           Configs =
           [
-              new()
+              new BetaManagedAgentsBashToolConfigParams
               {
-                  Name = "bash",
                   PermissionPolicy = new BetaManagedAgentsAlwaysAskPolicy { Type = "always_ask" },
               },
           ],
@@ -569,11 +568,12 @@ Use the `configs` array to override the default for individual tools. The `name`
   				},
   			},
   		},
-  		Configs: []anthropic.BetaManagedAgentsAgentToolConfigParams{{
-  			Name: anthropic.BetaManagedAgentsAgentToolConfigParamsNameBash,
-  			PermissionPolicy: anthropic.BetaManagedAgentsAgentToolConfigParamsPermissionPolicyUnion{
-  				OfAlwaysAsk: &anthropic.BetaManagedAgentsAlwaysAskPolicyParam{
-  					Type: anthropic.BetaManagedAgentsAlwaysAskPolicyTypeAlwaysAsk,
+  		Configs: []anthropic.BetaManagedAgentsAgentToolConfigUnionParamsUnion{{
+  			OfBetaManagedAgentsBashToolConfigs: &anthropic.BetaManagedAgentsBashToolConfigParams{
+  				PermissionPolicy: anthropic.BetaManagedAgentsBashToolConfigParamsPermissionPolicyUnion{
+  					OfAlwaysAsk: &anthropic.BetaManagedAgentsAlwaysAskPolicyParam{
+  						Type: anthropic.BetaManagedAgentsAlwaysAskPolicyTypeAlwaysAsk,
+  					},
   				},
   			},
   		}},
@@ -600,8 +600,7 @@ Use the `configs` array to override the default for individual tools. The `name`
                       .build()
               )
               .addConfig(
-                  BetaManagedAgentsAgentToolConfigParams.builder()
-                      .name(BetaManagedAgentsAgentToolConfigParams.Name.BASH)
+                  BetaManagedAgentsBashToolConfigParams.builder()
                       .permissionPolicy(
                           BetaManagedAgentsAlwaysAskPolicy.builder()
                               .type(BetaManagedAgentsAlwaysAskPolicy.Type.ALWAYS_ASK)
@@ -615,7 +614,7 @@ Use the `configs` array to override the default for individual tools. The `name`
   ```
 
   ```php PHP
-  use Anthropic\Beta\Agents\BetaManagedAgentsAgentToolConfigParams;
+  use Anthropic\Beta\Agents\BetaManagedAgentsBashToolConfigParams;
   use Anthropic\Beta\Agents\BetaManagedAgentsAgentToolset20260401Params;
   use Anthropic\Beta\Agents\BetaManagedAgentsAgentToolsetDefaultConfigParams;
   use Anthropic\Beta\Agents\BetaManagedAgentsAlwaysAllowPolicy;
@@ -628,8 +627,7 @@ Use the `configs` array to override the default for individual tools. The `name`
               permissionPolicy: BetaManagedAgentsAlwaysAllowPolicy::with(type: 'always_allow'),
           ),
           configs: [
-              BetaManagedAgentsAgentToolConfigParams::with(
-                  name: 'bash',
+              BetaManagedAgentsBashToolConfigParams::with(
                   permissionPolicy: BetaManagedAgentsAlwaysAskPolicy::with(type: 'always_ask'),
               ),
           ],

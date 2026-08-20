@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: a5959db11d27e4621c77ab593fcbc607171214fb5cd27786af1a4ee6223c3c51
+fetched_at: 2026-08-20T02:28:31.280657Z
+sha256: 48e7218e23e2cd0d0ea697537d871368e6a39078d1e227c4df298730e1c17f5a
 ---
 
 ---
@@ -1077,6 +1077,10 @@ Invalid domain formats are rejected at request time with a 400 `invalid_request_
 <Warning>
   Unicode characters in domain names can bypass domain filters through homograph attacks: `аmazon.com` (with a Cyrillic `а`) looks identical to `amazon.com` but is a different domain. Use ASCII-only domain names in allow and block lists, and audit existing entries for non-ASCII characters.
 </Warning>
+
+[Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview) uses the same `allowed_domains` and `blocked_domains` fields on the `web_search` and `web_fetch` entries of the agent toolset. On Managed Agents, each list holds at most 64 entries, domains listed for `web_fetch` cannot include a path, and fields specific to the Messages API tools, such as `max_uses`, `citations`, and `cache_control`, are not available. See [Restrict web search and web fetch domains](https://platform.claude.com/docs/en/managed-agents/tools#restrict-web-search-and-web-fetch-domains) for the full rules.
+
+Organization-level web search and web fetch settings in the Claude Console apply to Messages API requests only; they do not apply to Managed Agents sessions, which use only the per-tool lists on the agent toolset.
 
 ## Dynamic filtering with code execution
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/session-operations
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 316b069fe610e68256de69ac33ab54b01fdaf45ed37a0c1ddb4a933be11e8614
+fetched_at: 2026-08-20T02:28:31.280657Z
+sha256: 6014abe9dd525c3f9a3b48b5ab11a44f8ca4cbc06c17263eaa4a156663784e9d
 ---
 
 ---
@@ -30,7 +30,7 @@ Sessions progress through these statuses. See [Start a session](https://platform
 
 ## Updating the agent configuration
 
-You can update a session's `agent.tools` and `agent.mcp_servers`, including permission policies, mid-session without creating a new agent version. Updates are session-local and do not propagate back to the underlying agent.
+You can update a session's `agent.tools` and `agent.mcp_servers`, including permission policies and per-tool web settings such as [domain filters](https://platform.claude.com/docs/en/managed-agents/tools#restrict-web-search-and-web-fetch-domains), mid-session without creating a new agent version. Updates are session-local and do not propagate back to the underlying agent. Updated `allowed_domains` and `blocked_domains` apply to the rest of the session.
 
 Only the agent's `tools` and `mcp_servers` can change after a session is created. To run a session with `model`, `system`, or `skills` values other than the agent's, use [agent configuration overrides](https://platform.claude.com/docs/en/managed-agents/sessions#override-agent-configuration-for-a-session) when you create the session. The agent's model configuration, including its [`inference_geo`](https://platform.claude.com/docs/en/manage-claude/data-residency) pin, also can't change mid-session: set the pin when you save the agent, or set or clear it for a single session with a `model` override when you create it. The agent's configured `system` field is fixed for the session's lifetime. On models that support it, you can still append system-level guidance mid-session by sending a [`system.message` event](https://platform.claude.com/docs/en/managed-agents/events-and-streaming#sending-system-messages).
 

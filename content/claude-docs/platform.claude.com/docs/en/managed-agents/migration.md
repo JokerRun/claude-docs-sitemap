@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/migration
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 8359d7e71a98d7d8dd26cc6aaad703f00c106737cbe3376ab60ed011a4ca53b7
+fetched_at: 2026-08-20T02:28:31.280657Z
+sha256: 868e92c60b617b2367ab7d91b072481ecd5ffb5ec9ccc2fd3d487b149571e873
 ---
 
 ---
@@ -605,6 +605,7 @@ If you built an agent by calling `messages.create` in a `while` loop, running to
 
 * **System prompt and model:** Same fields, now on the agent definition.
 * **Custom tools:** Still declared with JSON Schema. Execution moves from inline handling to responding to `agent.custom_tool_use` events. See [Session event stream](https://platform.claude.com/docs/en/managed-agents/events-and-streaming).
+* **Web search and web fetch settings:** Same `allowed_domains`, `blocked_domains`, `max_content_tokens`, and `user_location` fields, now set once on the `web_search` and `web_fetch` entries of the agent toolset's `configs` array instead of on every request. The `max_uses`, `citations`, and `cache_control` fields are not available. See [Restrict web search and web fetch domains](https://platform.claude.com/docs/en/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
 * **Context:** You can still inject context through the system prompt, [file resources](https://platform.claude.com/docs/en/managed-agents/files), or [skills](https://platform.claude.com/docs/en/managed-agents/skills).
 
 ## From the Claude Agent SDK

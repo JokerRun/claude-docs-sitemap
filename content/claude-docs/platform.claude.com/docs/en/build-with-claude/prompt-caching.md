@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 4af14eac456ba952ff0ee0fb0664b9d51bee244eb9a4fdef9ace0066f84fd6e6
+fetched_at: 2026-08-20T02:28:31.280657Z
+sha256: 3ce76cbe15423204c0abd1613dcd8806f61559e0ed254beb652b4fdbc8cea579
 ---
 
 ---
@@ -3317,66 +3317,6 @@ For ZDR eligibility across all features, see [API and data retention](https://pl
       ```python Python
       client.beta.prompt_caching.messages.create(**params)
       ```
-
-      ```typescript TypeScript
-      const client = new Anthropic();
-
-      const response = await client.beta.promptCaching.messages.create({
-        model: "claude-opus-5",
-        max_tokens: 1024,
-        system: [
-          {
-            type: "text",
-            text: "You are an expert on this large document...",
-            cache_control: { type: "ephemeral" }
-          }
-        ],
-        messages: [{ role: "user", content: "Summarize the key points" }]
-      });
-
-      console.log(response);
-      ```
-
-      ```php PHP
-      $client = new Client();
-
-      $message = $client->beta->promptCaching->messages->create(
-          maxTokens: 1024,
-          messages: [
-              ['role' => 'user', 'content' => 'Summarize the key points']
-          ],
-          model: 'claude-opus-5',
-          system: [
-              [
-                  'type' => 'text',
-                  'text' => 'You are an expert on this large document...',
-                  'cache_control' => ['type' => 'ephemeral']
-              ]
-          ],
-      );
-
-      echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
-      ```
-
-      ```ruby Ruby
-      client = Anthropic::Client.new
-
-      message = client.beta.prompt_caching.messages.create(
-        model: "claude-opus-5",
-        max_tokens: 1024,
-        system: [
-          {
-            type: "text",
-            text: "You are an expert on this large document...",
-            cache_control: { type: "ephemeral" }
-          }
-        ],
-        messages: [
-          { role: "user", content: "Summarize the key points" }
-        ]
-      )
-      puts message.content.find { it.type == :text }.text
-      ```
     </CodeGroup>
 
     Use:
@@ -3384,66 +3324,6 @@ For ZDR eligibility across all features, see [API and data retention](https://pl
     <CodeGroup>
       ```python Python
       client.messages.create(**params)
-      ```
-
-      ```typescript TypeScript
-      const client = new Anthropic();
-
-      const response = await client.messages.create({
-        model: "claude-opus-5",
-        max_tokens: 1024,
-        system: [
-          {
-            type: "text",
-            text: "You are an expert on this large document...",
-            cache_control: { type: "ephemeral" }
-          }
-        ],
-        messages: [{ role: "user", content: "Summarize the key points" }]
-      });
-
-      console.log(response);
-      ```
-
-      ```php PHP
-      $client = new Client();
-
-      $message = $client->messages->create(
-          maxTokens: 1024,
-          messages: [
-              ['role' => 'user', 'content' => 'Summarize the key points']
-          ],
-          model: 'claude-opus-5',
-          system: [
-              [
-                  'type' => 'text',
-                  'text' => 'You are an expert on this large document...',
-                  'cache_control' => ['type' => 'ephemeral']
-              ]
-          ],
-      );
-
-      echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
-      ```
-
-      ```ruby Ruby
-      client = Anthropic::Client.new
-
-      message = client.messages.create(
-        model: "claude-opus-5",
-        max_tokens: 1024,
-        system: [
-          {
-            type: "text",
-            text: "You are an expert on this large document...",
-            cache_control: { type: "ephemeral" }
-          }
-        ],
-        messages: [
-          { role: "user", content: "Summarize the key points" }
-        ]
-      )
-      puts message
       ```
     </CodeGroup>
   </Accordion>

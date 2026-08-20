@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-08-04T03:08:17.915636Z
-sha256: f4f92084c021ff3bcd249f58cbb9dd0f8a32cc80972db181bf9134c964bc0872
+fetched_at: 2026-08-20T02:28:31.280657Z
+sha256: 53eda076c094255abfcc79b4365bf2ed53eb25314cfe5ebdb794e851128103d6
 ---
 
 > ## Documentation Index
@@ -344,7 +344,7 @@ Actions available in the `Scroll` context when [fullscreen rendering](/docs/en/f
 | `scroll:fullPageUp`         | (unbound)            | Scroll up the full viewport height                                                                        |
 | `scroll:fullPageDown`       | (unbound)            | Scroll down the full viewport height                                                                      |
 | `selection:copy`            | Ctrl+Shift+C / Cmd+C | Copy the selected text to the clipboard                                                                   |
-| `selection:clear`           | (unbound)            | Clear the active text selection                                                                           |
+| `selection:clear`           | (unbound)            | Clear the active text selection. Requires v2.1.234 or later                                               |
 | `selection:extendLeft`      | Shift+Left           | Extend the active selection one column left                                                               |
 | `selection:extendRight`     | Shift+Right          | Extend the active selection one column right                                                              |
 | `selection:extendUp`        | Shift+Up             | Extend the active selection one row up. Scrolls the viewport when the selection reaches the top edge      |

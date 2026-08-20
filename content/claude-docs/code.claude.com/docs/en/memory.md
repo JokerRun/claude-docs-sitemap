@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/memory
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 714ee359ae36615df0a70335ebc6bc78c42e01dcc32e616c736ded37c666d2b6
+fetched_at: 2026-08-20T02:28:31.280657Z
+sha256: ac9efcab29939e429226c6331890d50ed22e64fe78f64befb237011667b78cff
 ---
 
 > ## Documentation Index
@@ -363,6 +363,8 @@ To disable auto memory via environment variable, set `CLAUDE_CODE_DISABLE_AUTO_M
 ### Storage location
 
 Each project gets its own memory directory at `~/.claude/projects/<project>/memory/`. The `<project>` path is derived from the git repository, so all worktrees and subdirectories within the same repo share one auto memory directory. Outside a git repo, the project root is used instead.
+
+If you set [`CLAUDE_CODE_PROJECT_DIR_NAME`](/docs/en/sessions#name-the-project-directory-yourself) beside `CLAUDE_CONFIG_DIR`, Claude Code uses that name as the `<project>` directory under `<config dir>/projects/` instead, whichever repository you launch it in, so projects launched with that config directory share one auto memory directory. Requires Claude Code v2.1.234 or later.
 
 To store auto memory in a different location, set `autoMemoryDirectory` in your `settings.json`. It is read from any [settings scope](/docs/en/settings#settings-precedence): user, project, local, policy, or `--settings`.
 

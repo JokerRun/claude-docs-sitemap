@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/scheduled-deployments
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: beb5001b7f1e0d937e6bee8ea47efca516e6370d057595ae59337f283cbee64a
+fetched_at: 2026-08-20T02:28:31.280657Z
+sha256: 0e2fb32a505c9d10e793415b145910122d83044830af173934dc1eb6e2b76b5d
 ---
 
 ---
@@ -23,7 +23,7 @@ For the launch context and examples of what teams run on schedules, see [schedul
 
 When creating a deployment, you pass the [session configurations](https://platform.claude.com/docs/en/managed-agents/sessions) required for execution, in addition to a `schedule`.
 
-* Deployments require [agent configuration](https://platform.claude.com/docs/en/managed-agents/agent-setup) and [environment configuration](https://platform.claude.com/docs/en/managed-agents/environments), and optionally accept [files](https://platform.claude.com/docs/en/managed-agents/files), [GitHub](https://platform.claude.com/docs/en/managed-agents/github), [memory stores](https://platform.claude.com/docs/en/managed-agents/memory), and [vaults](https://platform.claude.com/docs/en/managed-agents/vaults).
+* Deployments require [agent configuration](https://platform.claude.com/docs/en/managed-agents/agent-setup) and [environment configuration](https://platform.claude.com/docs/en/managed-agents/environments), and optionally accept [files](https://platform.claude.com/docs/en/managed-agents/files), [GitHub](https://platform.claude.com/docs/en/managed-agents/github), [memory stores](https://platform.claude.com/docs/en/managed-agents/memory), and [vaults](https://platform.claude.com/docs/en/managed-agents/vaults). A deployment that targets a [self-hosted environment](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes#use-memory-stores) can attach memory stores; `file` and `github_repository` resources require a cloud environment. The Claude Console deployment form does not currently offer memory stores for self-hosted environments; attach them through the API or an SDK instead.
 * Deployments also require at least one initial event, a `user.message` or `user.define_outcome`, that starts each session's work.
 * In the `schedule`, you define a cron `expression` and a `timezone`. Maximum granularity supported is at the minute level.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/claude_api_primer
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: d479d22027cea9d39174890cb995efb1e3baae520c154f288e9791748bdd5eec
+fetched_at: 2026-08-20T02:28:31.280657Z
+sha256: 584a287a204754021389e49cc0883ecab22ebadae2375b7254f4bccfaef6e8b3
 ---
 
 ---
@@ -28,7 +28,7 @@ For fast, cost-effective tasks: Claude Haiku 4.5: claude-haiku-4-5-20251001
 
 ### Basic request and response
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL, typescript, csharp, go, java, php, ruby">
   ```bash CLI
   ant messages create \
     --model claude-opus-5 \
@@ -73,7 +73,7 @@ For fast, cost-effective tasks: Claude Haiku 4.5: claude-haiku-4-5-20251001
 
 The Messages API is stateless, which means that you always send the full conversational history to the API. You can use this pattern to build up a conversation over time. Earlier conversational turns don't necessarily need to actually originate from Claude. You can use synthetic `assistant` messages.
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL, typescript, csharp, go, java, php, ruby">
   ```bash CLI
   ant messages create <<'YAML'
   model: claude-opus-5
@@ -112,7 +112,7 @@ You can prefill part of Claude's response in the last position of the input mess
   Claude 4.6 and later models and Claude Mythos Preview do not support assistant message prefill; requests to those models must end with a user message. The examples below use a model that supports prefill.
 </Note>
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL, typescript, csharp, go, java, php, ruby">
   ```bash CLI
   ant messages create <<'YAML'
   model: claude-sonnet-4-5
@@ -147,7 +147,7 @@ You can prefill part of Claude's response in the last position of the input mess
 
 Claude can read both text and images in requests. Both `base64` and `url` source types are supported for images, along with the `image/jpeg`, `image/png`, `image/gif`, and `image/webp` media types.
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL, typescript, csharp, go, java, php, ruby">
   ```bash CLI
   IMAGE_URL="https://platform.claude.com/docs/images/vision-example.jpg"
 
@@ -267,7 +267,7 @@ Thinking is supported in the following models:
 
 When thinking is on, Claude creates `thinking` content blocks where it outputs its internal reasoning. The API response includes `thinking` content blocks, followed by `text` content blocks.
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL, typescript, csharp, go, java, php, ruby">
   ```bash CLI
   ant messages create \
     --transform content --format yaml <<'YAML'
@@ -321,7 +321,7 @@ Important limitations:
 
 ### Preserving thinking blocks
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL, typescript, csharp, go, java, php, ruby">
   ```bash CLI
   # First request: capture the assistant content array (thinking + tool_use
   # blocks, signatures intact) as compact JSON.
@@ -455,7 +455,7 @@ Interleaved thinking enables Claude to think between tool calls, reasoning about
 
 On older models that use manual extended thinking (Claude 4, 4.5, and Sonnet 4.6 models), enable interleaved thinking by adding the beta header `interleaved-thinking-2025-05-14` to your API request:
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL, typescript, csharp, go, java, php, ruby">
   ```bash CLI
   ant beta:messages create --beta interleaved-thinking-2025-05-14 <<'YAML'
   model: claude-sonnet-4-6
@@ -726,7 +726,7 @@ When creating a Message, you can set `"stream": true` to incrementally stream th
 
 ### Streaming with SDKs
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL, typescript, csharp, go, java, php, ruby">
   ```bash CLI
   ant messages create --stream --format jsonl \
     --model claude-opus-5 \

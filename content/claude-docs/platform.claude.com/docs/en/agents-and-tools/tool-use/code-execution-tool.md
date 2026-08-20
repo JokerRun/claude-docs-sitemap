@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-08-15T02:25:10.047250Z
-sha256: 0887a3fede7b071e1045a39f496070de4c46a7135a0758d083e5a1c4bfd95e5d
+fetched_at: 2026-08-20T02:28:31.280657Z
+sha256: 0713a10fa23dc51b4ba4313cb32c37aebaac9a295f5d1144c28506f0eecaf731
 ---
 
 ---
@@ -285,7 +285,7 @@ If you want Claude to run code for a borderline request, ask explicitly (for exa
 To analyze your own data files (such as CSV, Excel, or images), upload them through the Files API and reference them in your request:
 
 <Note>
-  Using the Files API with code execution requires the Files API beta header: `"anthropic-beta": "files-api-2025-04-14"`
+  This workflow doesn't require a beta header: uploading and downloading files through the Files API and referencing them in `container_upload` blocks are all generally available. The examples on this page send `anthropic-beta: files-api-2025-04-14`, which the API accepts but doesn't require.
 </Note>
 
 The Python environment can process various file types uploaded through the Files API, including:

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/reference
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 45c2fa8a14fc2ccb019fa9026c95a36426ab7eab5944f144b6002694fc0802ef
+fetched_at: 2026-08-20T02:28:31.280657Z
+sha256: a017f506ec9a4bc77464d293622ae9b470ebf5ae059af80c057cf9b5f493262d
 ---
 
 ---
@@ -109,6 +109,8 @@ These are the `ant beta:worker` CLI flags for the pre-built worker that drives a
 | `--unrestricted-paths` | Allow the file tools to read and write paths outside `--workdir`. The workdir check is a guardrail for the file tools only, not a sandbox; it does not constrain bash.                |
 | `--max-idle`           | How long to wait after the session goes idle with an `end_turn` [stop reason](https://platform.claude.com/docs/en/api/handling-stop-reasons) before shutting down. Defaults to `60s`. |
 | `--log-format`         | Log output format. Use `json` for structured log ingestion. Defaults to `text`.                                                                                                       |
+
+The CLI worker does not mount [memory stores](https://platform.claude.com/docs/en/managed-agents/memory): a session that attaches one still runs, but the agent finds nothing at the store's `mount_path` and no changes sync back to the store. To use memory stores in sessions on a self-hosted environment, run the SDK worker instead; see [Use memory stores](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes#use-memory-stores).
 
 ## Supported MCP server types
 
