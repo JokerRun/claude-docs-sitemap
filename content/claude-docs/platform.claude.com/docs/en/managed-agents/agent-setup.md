@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/agent-setup
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 8b1c057e508460e075ab26c5ba33e262e3cc46a3214565cea4bd279fbc6f80d8
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: e3c04dda6121710fbfc71ac0b60c671312b21a8b2b3a6173942e731620423525
 ---
 
 ---
@@ -59,17 +59,24 @@ The examples use curl, the `ant` CLI, or one of the SDKs. If you haven't set one
   AGENT_VERSION=$(jq -r '.version' <<< "$agent")
   ```
 
-  ```bash CLI
-  agent=$(ant beta:agents create \
-    --name "Coding Assistant" \
-    --model '{id: claude-opus-5}' \
-    --system "You are a helpful coding agent." \
-    --tool '{type: agent_toolset_20260401}' \
-    --format json)
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    agent=$(ant beta:agents create --format json < coding-assistant.agent.yaml)
 
-  AGENT_ID=$(jq -r '.id' <<< "$agent")
-  AGENT_VERSION=$(jq -r '.version' <<< "$agent")
-  ```
+    AGENT_ID=$(jq -r '.id' <<< "$agent")
+    ```
+
+    <File filename="coding-assistant.agent.yaml">
+      ```yaml
+      name: Coding Assistant
+      model:
+        id: claude-opus-5
+      system: You are a helpful coding agent.
+      tools:
+        - type: agent_toolset_20260401
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   agent = client.beta.agents.create(
@@ -228,15 +235,23 @@ The following example pins an agent to US inference and prints the `inference_ge
   echo "Inference geo: $(jq -r '.model.inference_geo' <<< "$agent")"
   ```
 
-  ```bash CLI
-  agent=$(ant beta:agents create \
-    --name "Geo-pinned assistant" \
-    --model '{id: claude-opus-5, inference_geo: us}' \
-    --system "You are a helpful assistant." \
-    --format json)
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    agent=$(ant beta:agents create --format json < geo-pinned.agent.yaml)
 
-  echo "Inference geo: $(jq -r '.model.inference_geo' <<< "$agent")"
-  ```
+    echo "Inference geo: $(jq -r '.model.inference_geo' <<< "$agent")"
+    ```
+
+    <File filename="geo-pinned.agent.yaml">
+      ```yaml
+      name: Geo-pinned assistant
+      model:
+        id: claude-opus-5
+        inference_geo: us
+      system: You are a helpful assistant.
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   agent = client.beta.agents.create(
@@ -359,12 +374,22 @@ Updating an agent generates a new version when the configuration changes. The `v
   echo "New version: $(jq -r '.version' <<< "$updated_agent")"
   ```
 
-  ```bash CLI
-  ant beta:agents update \
-    --agent-id "$AGENT_ID" \
-    --version "$AGENT_VERSION" \
-    --system "You are a helpful coding agent. Always write tests."
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant beta:agents update --agent-id "$AGENT_ID" < coding-assistant.agent.yaml
+    ```
+
+    <File filename="coding-assistant.agent.yaml">
+      ```yaml
+      name: Coding Assistant
+      model:
+        id: claude-opus-5
+      system: You are a helpful coding agent. Always write tests.
+      tools:
+        - type: agent_toolset_20260401
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   updated_agent = client.beta.agents.update(

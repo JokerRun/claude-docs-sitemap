@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions/create
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 0b26a889c96343d82f18852b054c18d18b84eac3e5f390eb9c25d07db4458098
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 26fa8a1eff7656ab54477aea4727e6a5a4b8a1fd281c3e82c007f1001f0cc32b
 ---
 
 ---
@@ -28,7 +28,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -73,6 +73,8 @@ Future models and features will not be compatible with Text Completions. See our
     - `"output-300k-2026-03-24"`
 
     - `"user-profiles-2026-03-24"`
+
+    - `"user-profiles-2026-08-18"`
 
     - `"advisor-tool-2026-03-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/admin-setup
-fetched_at: 2026-08-19T02:28:54.965606Z
-sha256: 3e9e27ed05533ba5d0d69efd9c887f4c94f7f291b74e8e2869755cabe4b58377
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: afdd0ec00b9f874c2481efa9b2323ea95676836fce52f774a912523e8f2b4147
 ---
 
 > ## Documentation Index
@@ -54,7 +54,7 @@ Managed settings define organization policy. Claude Code checks the four sources
 * Claude Code honors a small set of [cross-source lock keys](/docs/en/settings#precedence-within-the-managed-tier), such as the sandbox allowlist locks, when any admin-controlled source sets them.
 * Claude Code [merges the `env` block per key across the admin-controlled sources](/docs/en/server-managed-settings#per-key-exceptions-across-managed-sources), apart from the telemetry-unit and credential-paired routing exceptions covered there. Only admin-controlled sources contribute to the merge, developer-writable settings can't, and [`CLAUDE_CODE_DISABLE_ADMIN_ENV_UNION=1`](/docs/en/env-vars) restores the winner-only composition. Requires Claude Code v2.1.223 or later.
 
-When a [`policyHelper`](/docs/en/settings#compute-managed-settings-with-a-policy-helper) is configured, its output is the only managed configuration Claude Code reads: the lock-key checks read it alone, and no per-key `env` merge happens.
+When an MDM or file-based source wins and configures a [`policyHelper`](/docs/en/settings#compute-managed-settings-with-a-policy-helper), the helper's output is the only managed configuration Claude Code reads: the lock-key checks read it alone, and no per-key `env` merge happens.
 
 | Mechanism               | Delivery                                                                                                                                                                                              | Priority | Platforms      |
 | :---------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- | :------------- |

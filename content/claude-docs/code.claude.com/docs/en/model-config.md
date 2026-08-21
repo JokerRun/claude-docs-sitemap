@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/model-config
-fetched_at: 2026-08-20T02:28:31.280657Z
-sha256: 2ecaaa6e9bcbcd28e74c6acca5d3a2bc1fb95a3fe1f2e316b51c26594e016352
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 2a3fc17f1f3afe13468ed51e14b500e358764a625d4b4a237481bc1d6498d814
 ---
 
 > ## Documentation Index
@@ -101,7 +101,7 @@ In [non-interactive mode](/docs/en/headless) with the `-p` flag and through the 
 
 You can configure your model in several ways, listed in order of priority:
 
-1. **During session**: use `/model <alias|name>` to switch immediately, or run `/model` with no argument to open the picker. The picker asks for confirmation when the conversation has prior output, since the next response re-reads the full history without cached context
+1. **During session**: use `/model <alias|name>` to switch immediately, or run `/model` with no argument to open the picker. See [when Claude Code asks you to confirm the switch](/docs/en/prompt-caching#switching-models)
 2. **At startup**: launch with `claude --model <alias|name>`
 3. **Environment variable**: set `ANTHROPIC_MODEL=<alias|name>`
 4. **Settings**: configure permanently in your settings file using the `model` field

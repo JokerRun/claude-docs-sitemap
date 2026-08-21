@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/create
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 3a43354aa63f8ae218a81985f419f8c5b5442c1598f797bd66f747c74e1fff50
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: c42bccf6bf1fc7fb16137280c9f028f15be566cc47c278c2aad4361518730152
 ---
 
 ---
@@ -24,7 +24,7 @@ Create Deployment
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -69,6 +69,8 @@ Create Deployment
     - `"output-300k-2026-03-24"`
 
     - `"user-profiles-2026-03-24"`
+
+    - `"user-profiles-2026-08-18"`
 
     - `"advisor-tool-2026-03-01"`
 

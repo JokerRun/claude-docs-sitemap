@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek
-fetched_at: 2026-08-19T02:28:54.965606Z
-sha256: cbcfd2c05b5cdb02c859584f1ea9ac12c4cabe25477ec5ffb01fcbb511aee3e4
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: a3b9f67afd6ddcedcad65bcbbb01f3f5f07081fa7b674ae8f070dd06ab567367
 ---
 
 ---
@@ -134,6 +134,7 @@ The following Claude Platform APIs and tools store data at rest under your key w
 |                       | Structured outputs (not available for Claude Fable 5 or Claude Mythos models in CMEK organizations) |
 |                       | Advisor tool                                                                                        |
 |                       | Computer use                                                                                        |
+|                       | Browser use                                                                                         |
 |                       | Context management                                                                                  |
 
 ## Limited preservation outside your key

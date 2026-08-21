@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/working-with-messages
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: d30bb0fe2ed51f20afcd4222d23f4d392c69562675b64933c62321cc3e33ba14
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 078cbd282c4482bee0bfd014ecb4144c6cbcbe587aced5699378d8dd8b017df9
 ---
 
 ---
@@ -1051,6 +1051,10 @@ Claude can read both text and images in requests. You can supply images using th
 
   <Card title="Computer use tool" icon="computer" href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool">
     Control desktop computer environments with the Messages API.
+  </Card>
+
+  <Card title="Browser use tool" icon="browser" href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool">
+    Let Claude navigate, read, and interact with webpages in a browser you run.
   </Card>
 
   <Card title="Structured outputs" icon="code-brackets" href="https://platform.claude.com/docs/en/build-with-claude/structured-outputs">

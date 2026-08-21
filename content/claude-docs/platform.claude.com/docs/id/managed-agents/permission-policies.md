@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/permission-policies
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 5b24ea8dd48aa1a6c97c09ab5032b18e56210f601c93795ff1168999b391499a
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: eb8e052eda0ae4ea8880695df09ca8a8b7795d6974d19b3e16a3cc28460c1ef6
 ---
 
 ---
@@ -19,18 +19,18 @@ Kebijakan izin mengontrol apakah alat yang dieksekusi server (toolset agen bawaa
 
 ## Jenis kebijakan izin
 
-| Kebijakan      | Perilaku                                                                                                                                                                                                                               |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `always_allow` | Alat dieksekusi secara otomatis tanpa konfirmasi.                                                                                                                                                                                      |
-| `always_ask`   | Sesi dijeda dan menunggu persetujuan Anda sebelum mengeksekusi. Lihat [Merespons permintaan konfirmasi](https://platform.claude.com/docs/id/managed-agents/permission-policies#respond-to-confirmation-requests) untuk alur event-nya. |
+| Kebijakan      | Perilaku                                                                                                                                                                                                                           |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `always_allow` | Alat dieksekusi secara otomatis tanpa konfirmasi.                                                                                                                                                                                  |
+| `always_ask`   | Sesi dijeda dan menunggu persetujuan Anda sebelum mengeksekusi. Lihat [Merespons permintaan konfirmasi](https://platform.claude.com/docs/id/managed-agents/permission-policies#respond-to-confirmation-requests) untuk alur event. |
 
 Setiap jenis toolset memiliki default-nya sendiri: toolset agen secara default menggunakan `always_allow`, dan toolset MCP secara default menggunakan `always_ask`.
 
-Kebijakan izin mengontrol kapan alat yang diaktifkan berjalan. Untuk menghapus alat dari agen sepenuhnya, nonaktifkan alat tersebut. Lihat [Menonaktifkan alat tertentu](https://platform.claude.com/docs/id/managed-agents/tools#disabling-specific-tools).
+Kebijakan izin mengontrol kapan alat yang diaktifkan dijalankan. Untuk menghapus alat dari agen sepenuhnya, nonaktifkan alat tersebut. Lihat [Menonaktifkan alat tertentu](https://platform.claude.com/docs/id/managed-agents/tools#disabling-specific-tools).
 
 ## Menetapkan kebijakan untuk toolset
 
-Anda menetapkan kebijakan izin dalam konfigurasi `tools` agen saat Anda membuat agen, dan Anda dapat mengubahnya nanti dengan [memperbarui agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-an-agent). Sesi yang sedang berjalan mempertahankan konfigurasi toolset yang digunakan saat sesi dibuat. Pembaruan berlaku untuk sesi yang dibuat setelahnya.
+Anda menetapkan kebijakan izin dalam konfigurasi `tools` agen saat Anda membuat agen, dan Anda dapat mengubahnya nanti dengan [memperbarui agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-an-agent). Sesi yang sedang berjalan mempertahankan konfigurasi toolset yang digunakan saat sesi tersebut dibuat. Pembaruan berlaku untuk sesi yang dibuat setelahnya.
 
 ### Izin toolset agen
 
@@ -57,17 +57,23 @@ Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_t
     }')
   ```
 
-  ```bash CLI
-  ant beta:agents create <<'YAML'
-  name: Coding Assistant
-  model: claude-opus-5
-  tools:
-    - type: agent_toolset_20260401
-      default_config:
-        permission_policy:
-          type: always_ask
-  YAML
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant beta:agents create < agent.yaml
+    ```
+
+    <File filename="agent.yaml">
+      ```yaml
+      name: Coding Assistant
+      model: claude-opus-5
+      tools:
+        - type: agent_toolset_20260401
+          default_config:
+            permission_policy:
+              type: always_ask
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   agent = client.beta.agents.create(
@@ -105,12 +111,12 @@ Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_t
   var agent = await client.Beta.Agents.Create(new()
   {
       Name = "Coding Assistant",
-      Model = new("claude-opus-5"),
+      Model = BetaManagedAgentsModel.ClaudeOpus5,
       Tools =
       [
           new BetaManagedAgentsAgentToolset20260401Params
           {
-              Type = "agent_toolset_20260401",
+              Type = BetaManagedAgentsAgentToolset20260401ParamsType.AgentToolset20260401,
               DefaultConfig = new()
               {
                   PermissionPolicy = new BetaManagedAgentsAlwaysAskPolicy { Type = "always_ask" },
@@ -205,15 +211,15 @@ Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_t
   ```
 </CodeGroup>
 
-`default_config` bersifat opsional. Jika Anda menghilangkannya, toolset agen diaktifkan dengan kebijakan izin default, yaitu `always_allow`.
+`default_config` bersifat opsional. Jika Anda menghilangkannya, toolset agen diaktifkan dengan kebijakan izin default, `always_allow`.
 
 ### Izin toolset MCP
 
-Toolset MCP secara default menggunakan `always_ask`. Ini memastikan bahwa alat baru yang ditambahkan ke server MCP tidak dieksekusi di aplikasi Anda tanpa persetujuan. Untuk menyetujui alat secara otomatis dari server MCP yang tepercaya, tetapkan `default_config.permission_policy` pada entri `mcp_toolset`.
+Toolset MCP secara default menggunakan `always_ask`. Ini memastikan bahwa alat baru yang ditambahkan ke server MCP tidak dieksekusi di aplikasi Anda tanpa persetujuan. Untuk menyetujui alat secara otomatis dari server MCP tepercaya, tetapkan `default_config.permission_policy` pada entri `mcp_toolset`.
 
-`mcp_server_name` harus cocok dengan `name` dari sebuah server dalam array `mcp_servers`.
+`mcp_server_name` harus cocok dengan `name` dari server dalam array `mcp_servers`.
 
-Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan tanpa konfirmasi:
+Contoh ini menghubungkan server MCP GitHub dan mengizinkan alatnya berjalan tanpa konfirmasi:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -241,23 +247,29 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
     }')
   ```
 
-  ```bash CLI
-  ant beta:agents create <<'YAML'
-  name: Dev Assistant
-  model: claude-opus-5
-  mcp_servers:
-    - type: url
-      name: github
-      url: https://mcp.example.com/github
-  tools:
-    - type: agent_toolset_20260401
-    - type: mcp_toolset
-      mcp_server_name: github
-      default_config:
-        permission_policy:
-          type: always_allow
-  YAML
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant beta:agents create < agent.yaml
+    ```
+
+    <File filename="agent.yaml">
+      ```yaml
+      name: Dev Assistant
+      model: claude-opus-5
+      mcp_servers:
+        - type: url
+          name: github
+          url: https://mcp.example.com/github
+      tools:
+        - type: agent_toolset_20260401
+        - type: mcp_toolset
+          mcp_server_name: github
+          default_config:
+            permission_policy:
+              type: always_allow
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   agent = client.beta.agents.create(
@@ -303,20 +315,25 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
   var agent = await client.Beta.Agents.Create(new()
   {
       Name = "Dev Assistant",
-      Model = new("claude-opus-5"),
+      Model = BetaManagedAgentsModel.ClaudeOpus5,
       McpServers =
       [
-          new() { Type = "url", Name = "github", Url = "https://mcp.example.com/github" },
+          new()
+          {
+              Type = BetaManagedAgentsUrlMcpServerParamsType.Url,
+              Name = "github",
+              Url = "https://mcp.example.com/github",
+          },
       ],
       Tools =
       [
           new BetaManagedAgentsAgentToolset20260401Params
           {
-              Type = "agent_toolset_20260401",
+              Type = BetaManagedAgentsAgentToolset20260401ParamsType.AgentToolset20260401,
           },
           new BetaManagedAgentsMcpToolsetParams
           {
-              Type = "mcp_toolset",
+              Type = BetaManagedAgentsMcpToolsetParamsType.McpToolset,
               McpServerName = "github",
               DefaultConfig = new()
               {
@@ -456,9 +473,9 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
   ```
 </CodeGroup>
 
-## Menimpa kebijakan alat individual
+## Mengganti kebijakan alat individual
 
-Gunakan array `configs` untuk menimpa default pada alat individual. Nilai `name` untuk toolset agen tercantum di [Alat yang tersedia](https://platform.claude.com/docs/id/managed-agents/tools#available-tools). Contoh ini mengizinkan seluruh toolset agen secara default tetapi memerlukan konfirmasi sebelum perintah bash apa pun berjalan:
+Gunakan array `configs` untuk mengganti default untuk alat individual. Nilai `name` untuk toolset agen tercantum di [Alat yang tersedia](https://platform.claude.com/docs/id/managed-agents/tools#available-tools). Contoh ini mengizinkan seluruh toolset agen secara default tetapi memerlukan konfirmasi sebelum perintah bash apa pun dijalankan:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -536,16 +553,15 @@ Gunakan array `configs` untuk menimpa default pada alat individual. Nilai `name`
   [
       new BetaManagedAgentsAgentToolset20260401Params
       {
-          Type = "agent_toolset_20260401",
+          Type = BetaManagedAgentsAgentToolset20260401ParamsType.AgentToolset20260401,
           DefaultConfig = new()
           {
               PermissionPolicy = new BetaManagedAgentsAlwaysAllowPolicy { Type = "always_allow" },
           },
           Configs =
           [
-              new()
+              new BetaManagedAgentsBashToolConfigParams
               {
-                  Name = "bash",
                   PermissionPolicy = new BetaManagedAgentsAlwaysAskPolicy { Type = "always_ask" },
               },
           ],
@@ -564,11 +580,12 @@ Gunakan array `configs` untuk menimpa default pada alat individual. Nilai `name`
   				},
   			},
   		},
-  		Configs: []anthropic.BetaManagedAgentsAgentToolConfigParams{{
-  			Name: anthropic.BetaManagedAgentsAgentToolConfigParamsNameBash,
-  			PermissionPolicy: anthropic.BetaManagedAgentsAgentToolConfigParamsPermissionPolicyUnion{
-  				OfAlwaysAsk: &anthropic.BetaManagedAgentsAlwaysAskPolicyParam{
-  					Type: anthropic.BetaManagedAgentsAlwaysAskPolicyTypeAlwaysAsk,
+  		Configs: []anthropic.BetaManagedAgentsAgentToolConfigUnionParamsUnion{{
+  			OfBetaManagedAgentsBashToolConfigs: &anthropic.BetaManagedAgentsBashToolConfigParams{
+  				PermissionPolicy: anthropic.BetaManagedAgentsBashToolConfigParamsPermissionPolicyUnion{
+  					OfAlwaysAsk: &anthropic.BetaManagedAgentsAlwaysAskPolicyParam{
+  						Type: anthropic.BetaManagedAgentsAlwaysAskPolicyTypeAlwaysAsk,
+  					},
   				},
   			},
   		}},
@@ -595,8 +612,7 @@ Gunakan array `configs` untuk menimpa default pada alat individual. Nilai `name`
                       .build()
               )
               .addConfig(
-                  BetaManagedAgentsAgentToolConfigParams.builder()
-                      .name(BetaManagedAgentsAgentToolConfigParams.Name.BASH)
+                  BetaManagedAgentsBashToolConfigParams.builder()
                       .permissionPolicy(
                           BetaManagedAgentsAlwaysAskPolicy.builder()
                               .type(BetaManagedAgentsAlwaysAskPolicy.Type.ALWAYS_ASK)
@@ -610,7 +626,7 @@ Gunakan array `configs` untuk menimpa default pada alat individual. Nilai `name`
   ```
 
   ```php PHP
-  use Anthropic\Beta\Agents\BetaManagedAgentsAgentToolConfigParams;
+  use Anthropic\Beta\Agents\BetaManagedAgentsBashToolConfigParams;
   use Anthropic\Beta\Agents\BetaManagedAgentsAgentToolset20260401Params;
   use Anthropic\Beta\Agents\BetaManagedAgentsAgentToolsetDefaultConfigParams;
   use Anthropic\Beta\Agents\BetaManagedAgentsAlwaysAllowPolicy;
@@ -623,8 +639,7 @@ Gunakan array `configs` untuk menimpa default pada alat individual. Nilai `name`
               permissionPolicy: BetaManagedAgentsAlwaysAllowPolicy::with(type: 'always_allow'),
           ),
           configs: [
-              BetaManagedAgentsAgentToolConfigParams::with(
-                  name: 'bash',
+              BetaManagedAgentsBashToolConfigParams::with(
                   permissionPolicy: BetaManagedAgentsAlwaysAskPolicy::with(type: 'always_ask'),
               ),
           ],
@@ -650,18 +665,18 @@ Gunakan array `configs` untuk menimpa default pada alat individual. Nilai `name`
   ```
 </CodeGroup>
 
-Teruskan konfigurasi `tools` ini dalam permintaan pembuatan agen (tab CLI menunjukkan perintah lengkapnya). Toolset MCP mendukung penimpaan per-alat yang sama, dengan `name` diatur ke nama alat yang dilaporkan oleh server MCP. Lihat [Mengonfigurasi alat MCP mana yang tersedia](https://platform.claude.com/docs/id/managed-agents/mcp-connector#configure-which-mcp-tools-are-available).
+Kirimkan konfigurasi `tools` ini dalam permintaan pembuatan agen (tab CLI menunjukkan perintah lengkapnya). Toolset MCP mendukung penggantian per-alat yang sama, dengan `name` ditetapkan ke nama alat yang dilaporkan oleh server MCP. Lihat [Mengonfigurasi alat MCP mana yang tersedia](https://platform.claude.com/docs/id/managed-agents/mcp-connector#configure-which-mcp-tools-are-available).
 
 ## Merespons permintaan konfirmasi
 
 Ketika agen memanggil alat dengan kebijakan `always_ask`:
 
-1. Sesi memancarkan event `agent.tool_use` atau `agent.mcp_tool_use`.
-2. Sesi dijeda dengan event `session.status_idle` yang `stop_reason.type`-nya adalah `requires_action`. ID event yang memblokir ada di array `stop_reason.event_ids`. Sesi menunggu tanpa batas waktu untuk sebuah respons.
-3. Kirim event `user.tool_confirmation` untuk setiap event yang memblokir, dengan meneruskan ID event dalam parameter `tool_use_id`. Atur `result` ke `"allow"` atau `"deny"`. Gunakan `deny_message` untuk menjelaskan penolakan. Anda dapat mengirim beberapa konfirmasi dalam satu permintaan `events`.
-4. Setelah semua event yang memblokir diselesaikan, sesi bertransisi kembali ke `running`. Alat yang diizinkan dieksekusi. Alat yang ditolak tidak berjalan, dan agen menerima tool result yang menyatakan bahwa panggilan tersebut ditolak, termasuk `deny_message` Anda.
+1. Sesi mengeluarkan event `agent.tool_use` atau `agent.mcp_tool_use`.
+2. Sesi dijeda dengan event `session.status_idle` yang `stop_reason.type`-nya adalah `requires_action`. ID event yang memblokir ada dalam array `stop_reason.event_ids`. Sesi menunggu respons tanpa batas waktu.
+3. Kirim event `user.tool_confirmation` untuk setiap event yang memblokir, dengan meneruskan ID event dalam parameter `tool_use_id`. Tetapkan `result` ke `"allow"` atau `"deny"`. Gunakan `deny_message` untuk menjelaskan penolakan. Anda dapat mengirim beberapa konfirmasi dalam satu permintaan `events`.
+4. Setelah semua event yang memblokir diselesaikan, sesi beralih kembali ke `running`. Alat yang diizinkan akan dieksekusi. Alat yang ditolak tidak dijalankan, dan agen menerima hasil alat yang menyatakan bahwa panggilan ditolak, termasuk `deny_message` Anda.
 
-Dalam contoh berikut, ID event tool-use berasal dari array `stop_reason.event_ids` pada event `session.status_idle`. Pelajari lebih lanjut tentang menerima event di panduan [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events), atau [berlangganan webhook](https://platform.claude.com/docs/id/managed-agents/webhooks) untuk mendapatkan notifikasi ketika sesi dijeda untuk menunggu input.
+Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.event_ids` pada event `session.status_idle`. Pelajari lebih lanjut tentang menerima event dalam panduan [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events), atau [berlangganan webhook](https://platform.claude.com/docs/id/managed-agents/webhooks) untuk mendapatkan notifikasi ketika sesi dijeda untuk menunggu input.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -772,7 +787,7 @@ Dalam contoh berikut, ID event tool-use berasal dari array `stop_reason.event_id
       [
           new BetaManagedAgentsUserToolConfirmationEventParams
           {
-              Type = "user.tool_confirmation",
+              Type = BetaManagedAgentsUserToolConfirmationEventParamsType.UserToolConfirmation,
               ToolUseID = agentToolUseEvent.ID,
               Result = "allow",
           },
@@ -786,7 +801,7 @@ Dalam contoh berikut, ID event tool-use berasal dari array `stop_reason.event_id
       [
           new BetaManagedAgentsUserToolConfirmationEventParams
           {
-              Type = "user.tool_confirmation",
+              Type = BetaManagedAgentsUserToolConfirmationEventParamsType.UserToolConfirmation,
               ToolUseID = mcpToolUseEvent.ID,
               Result = "deny",
               DenyMessage = "Don't create issues in the production project. Use the staging project.",
@@ -926,6 +941,6 @@ Kebijakan izin tidak berlaku untuk alat kustom. Ketika agen memanggil alat kusto
   </Card>
 
   <Card title="Aliran event sesi" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/events-and-streaming">
-    Kirim event, streaming respons, dan interupsi atau alihkan sesi Anda di tengah eksekusi.
+    Kirim event, stream respons, dan interupsi atau alihkan sesi Anda di tengah eksekusi.
   </Card>
 </CardGroup>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/ruby
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 7837ea68db9d5c7fd79ec592667953437dda6540893436d05613bfff187a39c7
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 3660091b35e27e6280cbb83a4443da1ed37b187ccd0ec4daf94df8e56aa59264
 ---
 
 ---
@@ -244,14 +244,14 @@ anthropic = Anthropic::Client.new
 require "pathname"
 
 # Use `Pathname` to send the filename and/or avoid paging a large file into memory:
-file_metadata = anthropic.beta.files.upload(file: Pathname("/path/to/file"))
+file_metadata = anthropic.files.upload(file: Pathname("/path/to/file"))
 
 # Alternatively, pass file contents or a `StringIO` directly:
-file_metadata = anthropic.beta.files.upload(file: File.read("/path/to/file"))
+file_metadata = anthropic.files.upload(file: File.read("/path/to/file"))
 
 # Or, to control the filename and/or content type:
 file = Anthropic::FilePart.new(File.read("/path/to/file"), filename: "/path/to/file", content_type: "...")
-file_metadata = anthropic.beta.files.upload(file: file)
+file_metadata = anthropic.files.upload(file: file)
 
 puts(file_metadata.id)
 ```

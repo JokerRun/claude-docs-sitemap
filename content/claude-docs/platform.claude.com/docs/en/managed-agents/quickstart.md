@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/quickstart
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 0e16bb5919f38c928a03566ba965c29e82c6670b2f7500eb6961334412a95031
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 1e9c64464daf6bb06fe951a4d587c087b3beb43642b7d50a5fdf38ef22ecbd0b
 ---
 
 ---
@@ -44,7 +44,7 @@ This guide walks you through creating an agent, setting up an environment, start
     For Linux environments, download the release binary directly.
 
     ```bash
-    VERSION=1.22.1
+    VERSION=1.26.1
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -95,7 +95,7 @@ ant --version
 
   <Tab title="Java">
     ```groovy Gradle
-    implementation("com.anthropic:anthropic-java:2.53.0")
+    implementation("com.anthropic:anthropic-java:2.57.0")
     ```
   </Tab>
 
@@ -168,16 +168,24 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       echo "Agent ID: $AGENT_ID, version: $AGENT_VERSION"
       ```
 
-      ```bash CLI
-      AGENT_ID=$(ant beta:agents create \
-        --name "Coding Assistant" \
-        --model '{id: claude-opus-5}' \
-        --system "You are a helpful coding assistant. Write clean, well-documented code." \
-        --tool '{type: agent_toolset_20260401}' \
-        --transform id --raw-output)
+      <MultiFileExample language="cli" label="CLI">
+        ```bash CLI
+        AGENT_ID=$(ant beta:agents create --transform id --raw-output < coding-assistant.agent.yaml)
 
-      echo "Agent ID: $AGENT_ID"
-      ```
+        echo "Agent ID: $AGENT_ID"
+        ```
+
+        <File filename="coding-assistant.agent.yaml">
+          ```yaml
+          name: Coding Assistant
+          model:
+            id: claude-opus-5
+          system: You are a helpful coding assistant. Write clean, well-documented code.
+          tools:
+            - type: agent_toolset_20260401
+          ```
+        </File>
+      </MultiFileExample>
 
       ```python Python
       from anthropic import Anthropic
@@ -365,14 +373,23 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       echo "Environment ID: $ENVIRONMENT_ID"
       ```
 
-      ```bash CLI
-      ENVIRONMENT_ID=$(ant beta:environments create \
-        --name "quickstart-env" \
-        --config '{type: cloud, networking: {type: unrestricted}}' \
-        --transform id --raw-output)
+      <MultiFileExample language="cli" label="CLI">
+        ```bash CLI
+        ENVIRONMENT_ID=$(ant beta:environments create --transform id --raw-output < quickstart.environment.yaml)
 
-      echo "Environment ID: $ENVIRONMENT_ID"
-      ```
+        echo "Environment ID: $ENVIRONMENT_ID"
+        ```
+
+        <File filename="quickstart.environment.yaml">
+          ```yaml
+          name: quickstart-env
+          config:
+            type: cloud
+            networking:
+              type: unrestricted
+          ```
+        </File>
+      </MultiFileExample>
 
       ```python Python
       environment = client.beta.environments.create(

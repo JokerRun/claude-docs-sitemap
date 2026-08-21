@@ -1,24 +1,24 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/skills
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: f613df721c29d60dceec827b4b2d58800f142211fec8dfc2144c3bdd2f2ccd06
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: ee86136cbff24159abdbb024a9e7e542a39ba9c55ca17aecaa5a03551002f119
 ---
 
 ---
 title: Skills
 url: https://platform.claude.com/docs/id/managed-agents/skills
-description: Lampirkan keahlian berbasis sistem file yang dapat digunakan kembali ke agen Anda untuk alur kerja spesifik domain.
+description: Lampirkan keahlian berbasis filesystem yang dapat digunakan kembali ke agen Anda untuk alur kerja spesifik domain.
 ---
 
-Skills adalah sumber daya berbasis sistem file yang dapat digunakan kembali yang memberikan keahlian spesifik domain kepada agen Anda: alur kerja, konteks, dan praktik terbaik yang mengubah agen serbaguna menjadi spesialis. Setiap skill yang Anda tambahkan menimbulkan biaya kecil pada "context window" (jendela konteks) sesi, menambahkan instruksi dan metadata yang membantu model menggunakan skill tersebut. Pelajari lebih lanjut di ikhtisar [Agent Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview).
+Skills adalah sumber daya berbasis filesystem yang dapat digunakan kembali yang memberikan keahlian spesifik domain kepada agen Anda: alur kerja, konteks, dan praktik terbaik yang mengubah agen serbaguna menjadi spesialis. Setiap skill yang Anda tambahkan menimbulkan biaya kecil pada jendela konteks sesi, menambahkan instruksi dan metadata yang membantu model menggunakan skill tersebut. Pelajari lebih lanjut di ikhtisar [Agent Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview).
 
-Skills mencapai agen Anda melalui dua cara: lampirkan melalui array `skills` milik agen, atau [muat dari repositori GitHub](https://platform.claude.com/docs/id/managed-agents/skills#load-skills-from-a-github-repository) yang di-mount pada sesi. Skills yang dilampirkan terdiri dari dua jenis. Semua skills bekerja dengan cara yang sama: agen Anda memanggilnya secara otomatis ketika relevan dengan tugas.
+Skills mencapai agen Anda melalui dua cara: lampirkan melalui array `skills` agen, atau [muat dari repositori GitHub](https://platform.claude.com/docs/id/managed-agents/skills#load-skills-from-a-github-repository) yang di-mount pada sesi. Skill yang dilampirkan terdiri dari dua jenis. Semua skill bekerja dengan cara yang sama: agen Anda memanggilnya secara otomatis ketika relevan dengan tugas.
 
-* **Skills bawaan Anthropic:** Tugas dokumen umum seperti penanganan PowerPoint, Excel, Word, dan PDF (`pptx`, `xlsx`, `docx`, `pdf`).
-* **Skills kustom:** Skills yang Anda tulis dan unggah ke workspace Anda.
+* **Skill bawaan Anthropic:** Tugas dokumen umum seperti penanganan PowerPoint, Excel, Word, dan PDF (`pptx`, `xlsx`, `docx`, `pdf`).
+* **Skill kustom:** Skill yang Anda buat dan unggah ke workspace Anda.
 
-Untuk mempelajari cara menulis skills kustom, lihat [Agent Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview) dan [Praktik terbaik penulisan skill](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices). Untuk mengunggah skill kustom ke workspace Anda, lihat [Membuat skill kustom](https://platform.claude.com/docs/id/managed-agents/skills#create-a-custom-skill).
+Untuk mempelajari cara membuat skill kustom, lihat [Agent Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview) dan [Praktik terbaik penulisan skill](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices). Untuk mengunggah skill kustom ke workspace Anda, lihat [Membuat skill kustom](https://platform.claude.com/docs/id/managed-agents/skills#create-a-custom-skill).
 
 <Note>
   Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
@@ -26,11 +26,11 @@ Untuk mempelajari cara menulis skills kustom, lihat [Agent Skills](https://platf
 
 ## Membuat skill kustom
 
-Skill kustom adalah direktori yang berisi file `SKILL.md` beserta file pendukung lainnya, diunggah ke workspace Anda sebagai arsip zip atau sebagai file individual. Membuat skill akan mengembalikan ID `skill_*` yang Anda referensikan saat melampirkannya ke agen. Skills bawaan Anthropic sudah tersedia di setiap workspace dan tidak memerlukan langkah ini. Untuk hanya menggunakan skills bawaan, lewati ke [Melampirkan skills ke agen](https://platform.claude.com/docs/id/managed-agents/skills#attach-skills-to-an-agent).
+Skill kustom adalah direktori yang berisi file `SKILL.md` beserta file pendukung lainnya, diunggah ke workspace Anda sebagai arsip zip atau sebagai file individual. Membuat skill akan mengembalikan ID `skill_*` yang Anda referensikan saat melampirkannya ke agen. Skill bawaan Anthropic sudah tersedia di setiap workspace dan tidak memerlukan langkah ini. Untuk hanya menggunakan skill bawaan, lewati ke [Melampirkan skill ke agen](https://platform.claude.com/docs/id/managed-agents/skills#attach-skills-to-an-agent).
 
-Ketika Anda memanggil Skills API secara langsung dengan cURL, sertakan header `anthropic-beta: skills-2025-10-02` secara eksplisit. CLI dan SDK mengirimkannya secara otomatis.
+Skills API tidak memerlukan header beta. Contoh cURL tetap mengirimkan `anthropic-beta: skills-2025-10-02`, dan perintah `beta` pada CLI dan SDK menambahkannya secara otomatis; permintaan yang menyertakannya tetap berfungsi tanpa perubahan.
 
-Contoh-contoh ini menghilangkan field opsional `display_title`, sehingga judul skill diturunkan dari `SKILL.md`. `display_title` yang diteruskan secara eksplisit harus unik di antara skills kustom dalam workspace Anda.
+Contoh-contoh ini menghilangkan field opsional `display_title`, sehingga judul skill diturunkan dari `SKILL.md`. `display_title` yang diberikan secara eksplisit harus unik di antara skill kustom dalam workspace Anda.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -192,23 +192,23 @@ Contoh-contoh ini menghilangkan field opsional `display_title`, sehingga judul s
   ```
 </CodeGroup>
 
-Untuk membuat daftar, mengambil, menghapus, dan membuat versi skills kustom, lihat [Mengelola skills kustom](https://platform.claude.com/docs/id/build-with-claude/skills-guide#managing-custom-skills). Untuk skema permintaan dan respons lengkap, lihat [referensi API Create Skill](https://platform.claude.com/docs/id/api/beta/skills/create). Bundel skill diunggah langsung ke Skills API, bukan melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files).
+Untuk membuat daftar, mengambil, menghapus, dan membuat versi skill kustom, lihat [Mengelola skill kustom](https://platform.claude.com/docs/id/build-with-claude/skills-guide#managing-custom-skills). Untuk skema permintaan dan respons lengkap, lihat [referensi API Create Skill](https://platform.claude.com/docs/id/api/beta/skills/create). Bundel skill diunggah langsung ke Skills API, bukan melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files).
 
-## Melampirkan skills ke agen
+## Melampirkan skill ke agen
 
-Lampirkan skills saat membuat agen. Setiap [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) mendukung hingga 500 skills, dihitung sebagai himpunan yang telah dideduplikasi di seluruh agen dalam sesi (lihat [Orkestrasi multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration)).
+Lampirkan skill saat membuat agen. Setiap [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) mendukung hingga 500 skill, dihitung sebagai himpunan yang telah dideduplikasi di seluruh agen dalam sesi (lihat [Orkestrasi multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration)).
 
 <Note>
-  Me-mount lebih banyak skills meningkatkan waktu yang diperlukan sandbox sesi untuk memulai. Lampirkan hanya skills yang dibutuhkan setiap agen untuk tugasnya.
+  Me-mount lebih banyak skill meningkatkan waktu yang diperlukan sandbox sesi untuk memulai. Lampirkan hanya skill yang dibutuhkan setiap agen untuk tugasnya.
 </Note>
 
 Setiap entri dalam array `skills` menggunakan field berikut:
 
-| Field      | Deskripsi                                                                                                                                                                                                                                                                           |
-| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`     | Bernilai `anthropic` untuk skills bawaan atau `custom` untuk skills yang ditulis di workspace.                                                                                                                                                                                      |
-| `skill_id` | Pengidentifikasi skill. Untuk skills Anthropic, gunakan nama pendek (misalnya, `xlsx`). Untuk skills kustom, gunakan ID `skill_*` yang dikembalikan saat pembuatan (lihat [Membuat skill kustom](https://platform.claude.com/docs/id/managed-agents/skills#create-a-custom-skill)). |
-| `version`  | Sematkan ke versi tertentu atau gunakan `latest`. Opsional. Default-nya adalah `latest` jika dihilangkan. Berlaku untuk skills Anthropic maupun kustom.                                                                                                                             |
+| Field      | Deskripsi                                                                                                                                                                                                                                                                         |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`     | Bisa `anthropic` untuk skill bawaan atau `custom` untuk skill yang dibuat di workspace.                                                                                                                                                                                           |
+| `skill_id` | Pengidentifikasi skill. Untuk skill Anthropic, gunakan nama pendek (misalnya, `xlsx`). Untuk skill kustom, gunakan ID `skill_*` yang dikembalikan saat pembuatan (lihat [Membuat skill kustom](https://platform.claude.com/docs/id/managed-agents/skills#create-a-custom-skill)). |
+| `version`  | Sematkan ke versi tertentu atau gunakan `latest`. Opsional. Default ke `latest` jika dihilangkan. Berlaku untuk skill Anthropic maupun kustom.                                                                                                                                    |
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -230,19 +230,25 @@ Setiap entri dalam array `skills` menggunakan field berikut:
   )
   ```
 
-  ```bash CLI
-  ant beta:agents create <<'YAML'
-  name: Financial Analyst
-  model: claude-opus-5
-  system: You are a financial analysis agent.
-  skills:
-    - type: anthropic
-      skill_id: xlsx
-    - type: custom
-      skill_id: skill_01AbCdEfGhIjKlMnOpQrStUv
-      version: latest
-  YAML
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant beta:agents create < agent.yaml
+    ```
+
+    <File filename="agent.yaml">
+      ```yaml
+      name: Financial Analyst
+      model: claude-opus-5
+      system: You are a financial analysis agent.
+      skills:
+        - type: anthropic
+          skill_id: xlsx
+        - type: custom
+          skill_id: skill_01AbCdEfGhIjKlMnOpQrStUv
+          version: latest
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   agent = client.beta.agents.create(
@@ -302,7 +308,7 @@ Setiap entri dalam array `skills` menggunakan field berikut:
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "Financial Analyst",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: "claude-opus-5",
+  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5,
   	},
   	System: anthropic.String("You are a financial analysis agent."),
   	Skills: []anthropic.BetaManagedAgentsSkillParamsUnion{
@@ -373,32 +379,36 @@ Setiap entri dalam array `skills` menggunakan field berikut:
   ```
 </CodeGroup>
 
-## Memuat skills dari repositori GitHub
+## Memuat skill dari repositori GitHub
 
-Skills juga dapat berada di dalam codebase Anda. Ketika sebuah sesi me-mount repositori melalui [resource `github_repository`](https://platform.claude.com/docs/id/managed-agents/github), direktori `.claude/skills` di root repositori dipindai saat sesi dimulai, dan setiap skill yang ditemukan di sana menjadi tersedia untuk agen. Tidak diperlukan unggahan dan tidak diperlukan entri dalam array `skills` milik agen. Agen melihat nama, deskripsi, dan path setiap skill yang ditemukan di dalam sandbox, dan membaca `SKILL.md` milik skill tersebut ketika sebuah tugas cocok, termasuk skrip dan sumber daya apa pun yang disertakan skill tersebut. Penemuan ini bergantung pada tool `read` milik agen dari [toolset agen](https://platform.claude.com/docs/id/managed-agents/tools), yang diaktifkan secara default; agen dengan `read` yang dinonaktifkan tidak memuat skills repositori.
+Skill juga dapat berada di dalam codebase Anda. Ketika sebuah sesi me-mount repositori melalui [resource `github_repository`](https://platform.claude.com/docs/id/managed-agents/github), direktori `.claude/skills` di root repositori dipindai saat sesi dimulai, dan setiap skill yang ditemukan di sana menjadi tersedia untuk agen. Tidak diperlukan unggahan dan tidak diperlukan entri dalam array `skills` agen. Agen melihat nama, deskripsi, dan path setiap skill yang ditemukan di dalam sandbox, dan membaca `SKILL.md` skill tersebut ketika sebuah tugas cocok, termasuk skrip dan sumber daya apa pun yang disertakan skill tersebut. Penemuan ini bergantung pada alat `read` agen dari [toolset agen](https://platform.claude.com/docs/id/managed-agents/tools), yang diaktifkan secara default; agen dengan `read` yang dinonaktifkan tidak memuat skill repositori.
 
 <Warning>
-  Skills repositori adalah instruksi agen, sehingga repositori yang di-mount merupakan bagian dari batas kepercayaan agen Anda. Siapa pun yang dapat melakukan commit ke repositori (pull request eksternal yang di-merge, dependensi yang disusupi, seorang kontributor) dapat menambahkan atau mengubah skill, platform memuatnya saat sesi dimulai tanpa langkah peninjauan, dan tool sesi seperti `bash` dan `web_fetch` memberikan instruksi tersebut jangkauan nyata. Mount hanya repositori yang Anda percaya, dan tinjau `.claude/skills` sebelum me-mount repositori yang menerima kontribusi dari luar.
+  Skill repositori adalah instruksi agen, sehingga repositori yang di-mount merupakan bagian dari batas kepercayaan agen Anda. Siapa pun yang dapat melakukan commit ke repositori (pull request eksternal yang di-merge, dependensi yang disusupi, seorang kontributor) dapat menambahkan atau mengubah skill, platform memuatnya saat sesi dimulai tanpa langkah peninjauan, dan alat sesi seperti `bash` dan `web_fetch` memberikan jangkauan nyata pada instruksi tersebut. Mount hanya repositori yang Anda percaya, dan tinjau `.claude/skills` sebelum me-mount repositori yang menerima kontribusi dari luar.
 </Warning>
 
 <Note>
   Penemuan skill repositori berjalan di sandbox cloud. [Sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes) tidak mendukung resource repositori GitHub.
 </Note>
 
-Penemuan menemukan skills tepat di `.claude/skills/<skill-name>/SKILL.md`, satu tingkat direktori di dalam root repositori:
+Penemuan menemukan skill tepat di `.claude/skills/<skill-name>/SKILL.md`, satu tingkat direktori di dalam root repositori:
 
-```text wrap
-your-repo/
-├── .claude/
-│   └── skills/
-│       ├── code-review/
-│       │   └── SKILL.md
-│       └── release-process/
-│           ├── SKILL.md
-│           └── scripts/
-│               └── run_checks.sh
-└── src/
-```
+* `your-repo/`
+
+  * `.claude/`
+
+    * `skills/`
+
+      * `code-review/`
+        * `SKILL.md`
+
+      * `release-process/`
+
+        * `SKILL.md`
+        * `scripts/`
+          * `run_checks.sh`
+
+  * `src/`
 
 Lokasi yang tidak cocok dengan tata letak ini tidak ditemukan saat sesi dimulai:
 
@@ -406,11 +416,11 @@ Lokasi yang tidak cocok dengan tata letak ini tidak ditemukan saat sesi dimulai:
 * `.claude/skills/tools/code-review/SKILL.md`: bersarang lebih dari satu tingkat direktori
 * `skills/code-review/SKILL.md`: direktori `skills` di luar `.claude`
 
-Direktori `.claude/skills` di tempat lain dalam repositori, seperti di dalam subdirektori paket, tidak diumumkan saat sesi dimulai; skills tersebut masih dapat muncul ketika agen membaca file di bawah subtree tersebut.
+Direktori `.claude/skills` di tempat lain dalam repositori, seperti di dalam subdirektori paket, tidak diumumkan saat sesi dimulai; skill tersebut masih dapat muncul ketika agen membaca file di bawah subtree tersebut.
 
-Skills repositori menggunakan format `SKILL.md` yang sama dengan skills kustom yang Anda unggah. Untuk format dan panduan penulisan, lihat [Agent Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview) dan [Praktik terbaik penulisan skill](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices).
+Skill repositori menggunakan format `SKILL.md` yang sama dengan skill kustom yang Anda unggah. Untuk format dan panduan penulisan, lihat [Agent Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview) dan [Praktik terbaik penulisan skill](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices).
 
-Untuk memuat skills dari repositori, buat sesi yang me-mount repositori tersebut. Ini adalah permintaan yang sama seperti yang ditunjukkan di [Mengakses GitHub](https://platform.claude.com/docs/id/managed-agents/github#token-permissions); `mount_path` bersifat opsional dan default-nya adalah `/workspace/<repo-name>`:
+Untuk memuat skill dari repositori, buat sesi yang me-mount repositori tersebut. Ini adalah permintaan yang sama seperti yang ditunjukkan di [Mengakses GitHub](https://platform.claude.com/docs/id/managed-agents/github#token-permissions); `mount_path` bersifat opsional dan default ke `/workspace/<repo-name>`:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -562,11 +572,11 @@ Untuk memuat skills dari repositori, buat sesi yang me-mount repositori tersebut
   ```
 </CodeGroup>
 
-Untuk repositori privat, `authorization_token` milik resource harus memiliki akses ke repositori tersebut. Ini adalah alur personal access token yang sama yang digunakan untuk mount repositori apa pun; lihat [Mengakses GitHub](https://platform.claude.com/docs/id/managed-agents/github#token-permissions).
+Untuk repositori privat, `authorization_token` resource harus memiliki akses ke repositori. Ini adalah alur personal access token yang sama yang digunakan untuk mount repositori apa pun; lihat [Mengakses GitHub](https://platform.claude.com/docs/id/managed-agents/github#token-permissions).
 
-Skills yang ditemukan mengikuti keadaan checkout dari repositori: branch atau commit `checkout` ketika resource menetapkannya, jika tidak maka branch default repositori. Pemindaian berjalan sekali, saat sesi dimulai. Commit yang di-push di tengah sesi tidak diambil; untuk memuat skills yang diperbarui, mulai sesi baru.
+Skill yang ditemukan mengikuti status checkout repositori: branch atau commit `checkout` ketika resource menetapkannya, jika tidak maka branch default repositori. Pemindaian berjalan sekali, saat sesi dimulai. Commit yang di-push di tengah sesi tidak diambil; untuk memuat skill yang diperbarui, mulai sesi baru.
 
-Skills repositori bekerja berdampingan dengan skills yang dilampirkan melalui array `skills` milik agen. Jika sebuah skill repositori memiliki nama yang sama dengan skill yang dilampirkan, atau dengan skill dari repositori lain yang di-mount, keduanya tersedia; masing-masing diumumkan dengan path-nya sendiri.
+Skill repositori bekerja berdampingan dengan skill yang dilampirkan melalui array `skills` agen. Jika skill repositori memiliki nama yang sama dengan skill yang dilampirkan, atau dengan skill dari repositori lain yang di-mount, keduanya tersedia; masing-masing diumumkan dengan path-nya sendiri.
 
 ## Langkah selanjutnya
 

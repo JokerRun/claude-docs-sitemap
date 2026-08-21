@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/list
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 84b20729652ad21b2b1e74bb716ca6ddcac4f5a0ea19c5dce3641af83318d397
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: a2c675cce41a758fa6d4568a9c48037677868991c4a54973726411c7e2b5ca21
 ---
 
 ---
@@ -44,7 +44,7 @@ List Files
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -90,6 +90,8 @@ List Files
 
     - `"user-profiles-2026-03-24"`
 
+    - `"user-profiles-2026-08-18"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -114,7 +116,7 @@ List Files
 
 ### Returns
 
-- `data: array of FileMetadata`
+- `data: array of BetaFileMetadata`
 
   List of file metadata objects.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/archive
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: d5127940588dc6611e0023b2851f98a48ef43f1e90cb5b69c7af33c933474be8
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: ff37bd6e86e9c0c76ec42e5c634ae17e393b4a60fe97fced79e38b3cdf8830f1
 ---
 
 ---
@@ -28,7 +28,7 @@ Archive Session
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -73,6 +73,8 @@ Archive Session
     - `"output-300k-2026-03-24"`
 
     - `"user-profiles-2026-03-24"`
+
+    - `"user-profiles-2026-08-18"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -778,7 +780,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/archive \
       }
     ],
     "model": {
-      "id": "claude-sonnet-4-6",
+      "id": "claude-opus-5",
       "effort": {
         "type": "low"
       },
@@ -798,7 +800,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/archive \
             }
           ],
           "model": {
-            "id": "claude-sonnet-4-6",
+            "id": "claude-opus-5",
             "effort": {
               "type": "low"
             },

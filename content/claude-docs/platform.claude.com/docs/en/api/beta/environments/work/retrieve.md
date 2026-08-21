@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/retrieve
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: d3e537c03420fe8d21369549b6360d026c32fc1004621f56f339e1a717a4b38d
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 74651ed11ce1241705b0fbb07cf6771957aea3b2781332bde45341179b9c00fd
 ---
 
 ---
@@ -32,7 +32,7 @@ Retrieve detailed information about a specific work item.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -77,6 +77,8 @@ Retrieve detailed information about a specific work item.
     - `"output-300k-2026-03-24"`
 
     - `"user-profiles-2026-03-24"`
+
+    - `"user-profiles-2026-08-18"`
 
     - `"advisor-tool-2026-03-01"`
 

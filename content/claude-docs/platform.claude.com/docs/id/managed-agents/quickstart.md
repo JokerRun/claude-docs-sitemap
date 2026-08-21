@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 527213e5f9ff3a371559b592fc951465926d224e0c49da3a7b88f8ad7033069e
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: a19605674976b3b556e284c319e44fede80b8f01147113fe8577437efd002e54
 ---
 
 ---
@@ -28,8 +28,8 @@ Panduan ini memandu Anda dalam membuat agen, menyiapkan environment, memulai ses
 
 ## Prasyarat
 
-* Sebuah [akun Claude Console](https://platform.claude.com)
-* Sebuah [kunci API](https://platform.claude.com/settings/keys)
+* [Akun Claude Console](https://platform.claude.com)
+* [Kunci API](https://platform.claude.com/settings/keys)
 
 ## Instal CLI
 
@@ -168,16 +168,24 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       echo "Agent ID: $AGENT_ID, version: $AGENT_VERSION"
       ```
 
-      ```bash CLI
-      AGENT_ID=$(ant beta:agents create \
-        --name "Coding Assistant" \
-        --model '{id: claude-opus-5}' \
-        --system "You are a helpful coding assistant. Write clean, well-documented code." \
-        --tool '{type: agent_toolset_20260401}' \
-        --transform id --raw-output)
+      <MultiFileExample language="cli" label="CLI">
+        ```bash CLI
+        AGENT_ID=$(ant beta:agents create --transform id --raw-output < coding-assistant.agent.yaml)
 
-      echo "Agent ID: $AGENT_ID"
-      ```
+        echo "Agent ID: $AGENT_ID"
+        ```
+
+        <File filename="coding-assistant.agent.yaml">
+          ```yaml
+          name: Coding Assistant
+          model:
+            id: claude-opus-5
+          system: You are a helpful coding assistant. Write clean, well-documented code.
+          tools:
+            - type: agent_toolset_20260401
+          ```
+        </File>
+      </MultiFileExample>
 
       ```python Python
       from anthropic import Anthropic
@@ -339,7 +347,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
   </Step>
 
   <Step title="Buat environment">
-    Sebuah "environment" (lingkungan) mendefinisikan sandbox tempat agen Anda berjalan.
+    Environment mendefinisikan sandbox tempat agen Anda berjalan.
 
     <CodeGroup defaultLanguage="CLI">
       ```bash cURL
@@ -365,14 +373,23 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       echo "Environment ID: $ENVIRONMENT_ID"
       ```
 
-      ```bash CLI
-      ENVIRONMENT_ID=$(ant beta:environments create \
-        --name "quickstart-env" \
-        --config '{type: cloud, networking: {type: unrestricted}}' \
-        --transform id --raw-output)
+      <MultiFileExample language="cli" label="CLI">
+        ```bash CLI
+        ENVIRONMENT_ID=$(ant beta:environments create --transform id --raw-output < quickstart.environment.yaml)
 
-      echo "Environment ID: $ENVIRONMENT_ID"
-      ```
+        echo "Environment ID: $ENVIRONMENT_ID"
+        ```
+
+        <File filename="quickstart.environment.yaml">
+          ```yaml
+          name: quickstart-env
+          config:
+            type: cloud
+            networking:
+              type: unrestricted
+          ```
+        </File>
+      </MultiFileExample>
 
       ```python Python
       environment = client.beta.environments.create(
@@ -579,7 +596,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
   </Step>
 
   <Step title="Kirim pesan dan lakukan streaming respons">
-    Buka stream, kirim event pengguna, lalu proses event saat event tersebut tiba:
+    Buka stream, kirim event pengguna, lalu proses event saat diterima:
 
     <CodeGroup>
       ```bash cURL
@@ -826,7 +843,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       ```
     </CodeGroup>
 
-    Agen menulis skrip Python, menjalankannya di sandbox, dan memverifikasi bahwa file output telah dibuat. Output Anda terlihat seperti ini:
+    Agen menulis skrip Python, menjalankannya di sandbox, dan memverifikasi bahwa file output telah dibuat. Output Anda akan terlihat seperti ini:
 
     ```text wrap
     I'll create a Python script that generates the first 20 Fibonacci numbers and saves them to a file.
@@ -849,7 +866,7 @@ Saat Anda mengirim event pengguna, Claude Managed Agents:
 2. **Menjalankan loop agen:** Claude menentukan alat mana yang akan digunakan berdasarkan pesan Anda.
 3. **Menjalankan alat:** Penulisan file, perintah bash, dan pemanggilan alat lainnya berjalan di dalam sandbox.
 4. **Melakukan streaming event:** Anda menerima pembaruan real-time saat agen bekerja.
-5. **Menjadi idle:** Agen mengeluarkan event `session.status_idle` saat tidak ada lagi yang perlu dilakukan.
+5. **Menjadi idle:** Agen mengeluarkan event `session.status_idle` ketika tidak ada lagi yang perlu dilakukan.
 
 ## Bangun aplikasi lengkap
 
@@ -857,11 +874,11 @@ Setiap quickstart ini memasangkan Claude Managed Agents dengan framework chat po
 
 <CardGroup cols={3}>
   <Card title="Chat SDK" icon="github-logo" href="https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/chat-sdk">
-    Seorang analis riset dalam chat browser yang dibangun dengan Chat SDK dari Vercel. Setiap percakapan adalah satu sesi persisten yang melakukan streaming balasannya sementara feed langsung menampilkan pemanggilan alat. Mengganti adapter Chat SDK memindahkan handler yang sama ke Slack, Teams, Discord, atau WhatsApp.
+    Analis riset dalam chat browser yang dibangun dengan Chat SDK dari Vercel. Setiap percakapan adalah satu sesi persisten yang melakukan streaming balasannya sementara feed langsung menampilkan pemanggilan alat. Mengganti adapter Chat SDK memindahkan handler yang sama ke Slack, Teams, Discord, atau WhatsApp.
   </Card>
 
   <Card title="assistant-ui" icon="github-logo" href="https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/assistant-ui">
-    Seorang analis spreadsheet dalam chat yang dibangun dari primitif assistant-ui. Sesi adalah daftar thread, satu reducer mengubah log event sesi menjadi pesan dan kartu alat, dan setiap perintah bash merender gerbang Allow/Deny inline sebelum dijalankan.
+    Analis spreadsheet dalam chat yang dibangun dari primitif assistant-ui. Sesi adalah daftar thread, satu reducer mengubah log event sesi menjadi pesan dan kartu alat, dan setiap perintah bash merender gerbang Allow/Deny inline sebelum dijalankan.
   </Card>
 
   <Card title="CopilotKit (AG-UI)" icon="github-logo" href="https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/copilot-kit-ag-ui">

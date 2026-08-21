@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/skills-guide
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 6474a26b28e8843fcbacd61246d919b4604952f56ef9b27bd94ee834d7d2c6a5
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: fa32d261cb43a2e39090bd7c7ae4e278b9892a6c1531f9a296b7d5b6577a201a
 ---
 
 ---
@@ -32,17 +32,17 @@ Agent Skills memperluas kemampuan Claude melalui folder terorganisir yang berisi
   </Card>
 
   <Card title="Praktik terbaik penulisan Skill" icon="hammer" href="https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices">
-    Pelajari cara menulis Skill yang efektif agar dapat ditemukan dan digunakan Claude dengan sukses.
+    Pelajari cara menulis Skill yang efektif agar Claude dapat menemukan dan menggunakannya dengan sukses.
   </Card>
 </CardGroup>
 
 ## Ikhtisar
 
 <Note>
-  Untuk melihat secara mendetail arsitektur dan penerapan Agent Skills di dunia nyata, baca postingan blog engineering: [Equipping agents for the real world with Agent Skills](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills).
+  Untuk melihat secara mendetail arsitektur dan penerapan Agent Skills di dunia nyata, baca postingan blog teknik: [Equipping agents for the real world with Agent Skills](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills).
 </Note>
 
-Skill terintegrasi dengan Messages API melalui [code execution tool](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool). Baik menggunakan Skill bawaan yang dikelola oleh Anthropic maupun Skill kustom yang telah Anda unggah, bentuk integrasinya identik: keduanya memerlukan eksekusi kode dan menggunakan struktur `container` yang sama.
+Skill terintegrasi dengan Messages API melalui [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool). Baik menggunakan Skill bawaan yang dikelola oleh Anthropic maupun Skill kustom yang telah Anda unggah, bentuk integrasinya identik: keduanya memerlukan eksekusi kode dan menggunakan struktur `container` yang sama.
 
 ### Menggunakan Skill
 
@@ -54,27 +54,22 @@ Anda dapat menggunakan Skill dari dua sumber:
 | ---------------- | ------------------------------------------ | -------------------------------------------------------------------------------------------------- |
 | **Nilai type**   | `anthropic`                                | `custom`                                                                                           |
 | **Skill ID**     | Nama pendek: `pptx`, `xlsx`, `docx`, `pdf` | Dihasilkan otomatis: `skill_01AbCdEfGhIjKlMnOpQrStUv`                                              |
-| **Format versi** | Berbasis tanggal: `20251013` atau `latest` | Timestamp epoch: `1759178010641129` atau `latest`                                                  |
+| **Format versi** | Berbasis tanggal: `20251013` atau `latest` | ID versi: `skver_01AbCdEfGhIjKlMnOpQrStUv` atau `latest`                                           |
 | **Pengelolaan**  | Dibuat dan dikelola oleh Anthropic         | Unggah dan kelola melalui [Skills API](https://platform.claude.com/docs/id/api/beta/skills/create) |
 | **Ketersediaan** | Tersedia untuk semua pengguna              | Privat untuk workspace Anda                                                                        |
 
-Kedua sumber skill dikembalikan oleh [endpoint List Skills](https://platform.claude.com/docs/id/api/beta/skills/list) (gunakan parameter `source` untuk memfilter). Bentuk integrasi dan lingkungan eksekusinya identik. Satu-satunya perbedaan adalah dari mana Skill berasal dan bagaimana Skill dikelola.
+Kedua sumber Skill dikembalikan oleh [endpoint List Skills](https://platform.claude.com/docs/id/api/beta/skills/list) (gunakan parameter `source` untuk memfilter). Bentuk integrasi dan lingkungan eksekusinya identik. Satu-satunya perbedaan adalah dari mana Skill berasal dan bagaimana Skill dikelola.
 
 ### Prasyarat
 
 Untuk menggunakan Skill, Anda memerlukan:
 
 1. **Kunci API Claude** dari [Claude Console](https://platform.claude.com/settings/keys)
+2. **[Alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool)** diaktifkan dalam permintaan Anda
 
-2. **Header beta:**
+Skill tersedia secara umum di Claude API dan tidak memerlukan header `anthropic-beta`, baik untuk Skills API maupun untuk `container.skills` dalam permintaan Messages. Contoh-contoh dalam panduan ini tetap mengirimkan header beta `skills-2025-10-02` (ditambah `code-execution-2025-08-25` dalam permintaan Messages) dan menggunakan namespace `beta` dari SDK. Kedua header tetap merupakan opt-in yang valid, sehingga contoh-contoh tersebut berfungsi sebagaimana tertulis, dan Anda dapat menghilangkannya dalam permintaan Anda sendiri.
 
-   * `code-execution-2025-08-25` - Mengaktifkan eksekusi kode (diperlukan untuk Skill)
-   * `skills-2025-10-02` - Mengaktifkan Skills API
-   * `files-api-2025-04-14` - Diperlukan hanya ketika Anda menggunakan [Files API](https://platform.claude.com/docs/id/build-with-claude/files) untuk mengunggah file input atau mengunduh file yang dihasilkan oleh Skill
-
-3. **[Code execution tool](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool)** diaktifkan dalam permintaan Anda
-
-Skill memerlukan code execution tool, jadi gunakan model dari [daftar kompatibilitas modelnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#model-compatibility).
+Skill memerlukan alat eksekusi kode, jadi gunakan model dari [daftar kompatibilitas modelnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#model-compatibility).
 
 ***
 
@@ -82,9 +77,9 @@ Skill memerlukan code execution tool, jadi gunakan model dari [daftar kompatibil
 
 ### Parameter container
 
-Skill ditentukan menggunakan parameter `container` di Messages API. Anda dapat menyertakan hingga 8 Skill untuk setiap permintaan.
+Skill ditentukan menggunakan parameter `container` di Messages API. Anda dapat menyertakan hingga 20 Skill untuk setiap permintaan.
 
-Strukturnya identik untuk Skill Anthropic maupun kustom. Tentukan `type` dan `skill_id` yang diperlukan, dan secara opsional sertakan `version` untuk mengunci ke versi tertentu:
+Strukturnya identik untuk Skill Anthropic maupun kustom. Tentukan `type` dan `skill_id` yang wajib, dan secara opsional sertakan `version` untuk mengunci ke versi tertentu:
 
 <CodeGroup>
   ```bash cURL
@@ -339,7 +334,7 @@ Ketika Skill membuat dokumen (Excel, PowerPoint, PDF, Word), Skill mengembalikan
 3. Gunakan Files API untuk mengunduh konten file yang sebenarnya.
 4. Simpan secara lokal atau proses sesuai kebutuhan.
 
-Untuk menyediakan file input agar dapat diproses oleh Skill, [unggah file tersebut dengan Files API](https://platform.claude.com/docs/id/build-with-claude/files#uploading-a-file) dan referensikan dalam permintaan Anda dengan [blok container upload](https://platform.claude.com/docs/id/build-with-claude/files#container-upload-blocks).
+Untuk menyediakan file input agar dapat diproses oleh Skill, [unggah file tersebut dengan Files API](https://platform.claude.com/docs/id/build-with-claude/files#uploading-a-file) dan referensikan dalam permintaan Anda dengan [blok unggahan container](https://platform.claude.com/docs/id/build-with-claude/files#container-upload-blocks).
 
 **Contoh: membuat dan mengunduh file Excel**
 
@@ -979,7 +974,7 @@ Untuk menyediakan file input agar dapat diproses oleh Skill, [unggah file terseb
   Untuk detail lengkap, lihat [Files API](https://platform.claude.com/docs/id/build-with-claude/files).
 </Note>
 
-### Percakapan multi-turn
+### Percakapan multi-giliran
 
 Objek `container` dalam respons membawa `id` container dan timestamp `expires_at` (lihat [Penggunaan ulang container](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#container-reuse) untuk detail masa aktif). Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID container:
 
@@ -1440,8 +1435,8 @@ Skill mungkin melakukan operasi yang memerlukan beberapa giliran. Tangani stop r
       }]
     }')
 
-  # Jika stop_reason adalah "pause_turn", lanjutkan di container yang sama, dengan menambahkan
-  # array content dari respons sebelumnya ke messages sebagai giliran assistant.
+  # Jika stop_reason adalah "pause_turn", lanjutkan dalam kontainer yang sama, dengan menambahkan
+  # array konten dari respons sebelumnya ke messages sebagai giliran asisten.
   # Ulangi permintaan lanjutan ini hingga stop_reason bukan lagi "pause_turn".
   STOP_REASON=$(echo "$RESPONSE" | jq -r '.stop_reason')
   CONTAINER_ID=$(echo "$RESPONSE" | jq -r '.container.id')
@@ -1666,7 +1661,7 @@ Skill mungkin melakukan operasi yang memerlukan beberapa giliran. Tangani stop r
           break;
       }
 
-      // Tambahkan konten dari giliran yang dijeda dan lanjutkan
+      // Tambahkan konten giliran yang dijeda dan lanjutkan
       var assistantContent = JsonSerializer.SerializeToElement(
           response.Content.Select(block => block.Json).ToArray()
       );
@@ -2251,13 +2246,19 @@ Gabungkan beberapa Skill dalam satu permintaan untuk menangani alur kerja yang k
 
 ## Mengelola Skill kustom
 
+<Warning id="workspace-scoped-access">
+  **Skill kustom dapat diakses oleh seluruh workspace Anda, tidak dibatasi pada pengguna akhir, percakapan, atau sesi tertentu.** Kunci API apa pun di workspace yang sama dapat membaca, memanggil, dan menghapus setiap Skill kustom yang diunggah di sana, dan semua kunci Anda berbagi Default Workspace organisasi Anda kecuali Anda telah menetapkannya ke [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces#api-keys-and-resource-scoping) terpisah.
+
+  Jika Anda membangun platform multi-tenant di atas Skills API, buat [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) terpisah untuk setiap tenant. Workspace adalah batas isolasi untuk Skill kustom, sehingga satu workspace per tenant memberikan isolasi ketat bagi Skill setiap tenant dari tenant lainnya. Setiap organisasi dapat memiliki hingga 100 workspace secara default (lihat [Cara kerja workspace](https://platform.claude.com/docs/id/manage-claude/workspaces#how-workspaces-work)); jika Anda memerlukan lebih banyak untuk isolasi tenant, hubungi tim akun Anda.
+</Warning>
+
 ### Membuat Skill
 
-Bundel Skill adalah direktori yang berisi file `SKILL.md` di tingkat teratas dengan frontmatter YAML `name` dan `description`, ditambah skrip atau sumber daya pendukung apa pun. Lihat [Memulai dengan Agent Skills di API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart) untuk membuatnya, dan daftar **Persyaratan** setelah contoh-contoh berikut untuk batasan lengkapnya.
+Bundel Skill adalah direktori yang berisi file `SKILL.md` di tingkat atas dengan frontmatter YAML `name` dan `description`, ditambah skrip atau sumber daya pendukung apa pun. Lihat [Memulai dengan Agent Skills di API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart) untuk membuatnya, dan daftar **Persyaratan** setelah contoh-contoh untuk batasan lengkapnya.
 
 Unggah Skill kustom Anda agar tersedia di workspace Anda. Anda dapat mengunggah arsip zip atau objek file individual. SDK Python juga menyediakan helper `files_from_dir` yang menerima path direktori.
 
-File diidentifikasi berdasarkan nama file yang Anda lampirkan. Unggahan per-file harus mempertahankan direktori tingkat teratas yang sama dalam path-nya (sufiks `;filename=` dalam contoh cURL dan argumen nama file dalam contoh SDK). Arsip zip harus berisi direktori skill sebagai satu-satunya entri tingkat teratas. Untuk skill dalam panduan ini, buat arsip dengan `zip -r financial_skill.zip financial_skill/` dan gantikan placeholder `example_skill.zip` dalam opsi unggah zip dengan file tersebut.
+File diidentifikasi berdasarkan nama file yang Anda lampirkan (sufiks `;filename=` dalam contoh cURL dan argumen nama file dalam contoh SDK). Untuk skill dalam panduan ini, buat zip dengan `zip -r financial_skill.zip financial_skill/` dan gantikan placeholder `example_skill.zip` dalam opsi unggah zip dengan file tersebut.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -2269,14 +2270,29 @@ File diidentifikasi berdasarkan nama file yang Anda lampirkan. Unggahan per-file
     -F "files[]=@financial_skill/analyze.py;filename=financial_skill/analyze.py"
   ```
 
-  ```bash CLI
-  ant beta:skills create \
-    --file example_skill.zip \
-    --beta skills-2025-10-02
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    zip -r financial_skill.zip financial_skill/
+    ant beta:skills create \
+      --file financial_skill.zip \
+      --beta skills-2025-10-02
+    ```
 
-  # Unggahan per-file memerlukan nama file dengan kualifikasi path, yang saat ini
-  # tidak dapat diatur oleh CLI. Unggah arsip zip sebagai gantinya.
-  ```
+    <File filename="financial_skill/SKILL.md">
+      ```markdown
+      ---
+      name: financial-skill
+      description: Docs example skill.
+      ---
+      ```
+    </File>
+
+    <File filename="financial_skill/analyze.py">
+      ```python
+      print("financial analysis helper")
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   from anthropic.lib import files_from_dir
@@ -2527,24 +2543,20 @@ File diidentifikasi berdasarkan nama file yang Anda lampirkan. Unggahan per-file
 
 **Persyaratan:**
 
-* Harus menyertakan file `SKILL.md` di tingkat teratas
+* Harus menyertakan file `SKILL.md` di root unggahan (atau di bagian atas satu folder pembungkus)
 
-* Semua file harus menentukan direktori root yang sama dalam path-nya
-
-* Nama direktori tingkat teratas harus cocok dengan `name` di frontmatter `SKILL.md` (tidak sensitif terhadap huruf besar/kecil dan garis bawah: `Financial_Skill` cocok dengan `financial-skill`)
-
-* `display_title` bersifat opsional: jika dihilangkan, nilainya diturunkan dari `name` di `SKILL.md`; nilai eksplisit harus unik di antara skill kustom dalam workspace Anda
+* `display_name` bersifat opsional: jika dihilangkan, nilainya diturunkan dari `name` di `SKILL.md`; nilai eksplisit boleh hingga 255 karakter dan tidak perlu unik dalam workspace
 
 * Total ukuran unggahan harus di bawah 30 MB (tidak terkompresi)
 
 * Persyaratan frontmatter YAML:
 
   * `name`: Maksimum 64 karakter, hanya huruf kecil/angka/tanda hubung, tanpa tag XML, tanpa kata yang dicadangkan ("anthropic", "claude")
-  * `description`: Maksimum 1024 karakter, tidak boleh kosong, tanpa tag XML
+  * `description`: Maksimum 1024 karakter, tidak kosong, tanpa tag XML
 
 Untuk skema permintaan/respons lengkap, lihat [referensi API Create Skill](https://platform.claude.com/docs/id/api/beta/skills/create).
 
-### Mendaftar Skill
+### Membuat daftar Skill
 
 Ambil semua Skill yang tersedia untuk workspace Anda, termasuk Skill bawaan Anthropic dan Skill kustom Anda. Gunakan parameter `source` untuk memfilter berdasarkan jenis skill:
 
@@ -2797,128 +2809,44 @@ Dapatkan detail tentang Skill tertentu:
 
 ### Menghapus Skill
 
-Untuk menghapus Skill, Anda harus terlebih dahulu menghapus semua versinya:
+Menghapus Skill juga menghapus semua versinya. Penghapusan berantai ini adalah perilaku khusus GA, jadi tidak seperti contoh lain dalam panduan ini, contoh-contoh berikut memanggil permukaan GA secara langsung alih-alih namespace `beta`.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  # Langkah 1: Buat daftar versi, lalu hapus masing-masing
-  curl "https://api.anthropic.com/v1/skills/skill_01AbCdEfGhIjKlMnOpQrStUv/versions" \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: skills-2025-10-02"
-
-  # Ulangi untuk setiap versi yang dikembalikan oleh daftar
-  curl -X DELETE "https://api.anthropic.com/v1/skills/skill_01AbCdEfGhIjKlMnOpQrStUv/versions/1759178010641129" \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: skills-2025-10-02"
-
-  # Langkah 2: Hapus Skill
   curl -X DELETE "https://api.anthropic.com/v1/skills/skill_01AbCdEfGhIjKlMnOpQrStUv" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: skills-2025-10-02"
+    -H "anthropic-version: 2023-06-01"
   ```
 
   ```bash CLI
-  # Langkah 1: Daftar versi-versinya, lalu hapus masing-masing
-  ant beta:skills:versions list \
-    --skill-id skill_01AbCdEfGhIjKlMnOpQrStUv \
-    --transform version \
-    --raw-output
-
-  # Ulangi untuk setiap id versi yang dikembalikan oleh daftar
-  ant beta:skills:versions delete \
-    --skill-id skill_01AbCdEfGhIjKlMnOpQrStUv \
-    --version 1759178010641129 >/dev/null
-
-  # Langkah 2: Hapus Skill
-  ant beta:skills delete \
+  ant skills delete \
     --skill-id skill_01AbCdEfGhIjKlMnOpQrStUv >/dev/null
   ```
 
   ```python Python
   client = anthropic.Anthropic()
 
-  # Langkah 1: Hapus semua versi
-  for version in client.beta.skills.versions.list(
-      skill_id="skill_01AbCdEfGhIjKlMnOpQrStUv"
-  ):
-      client.beta.skills.versions.delete(
-          skill_id="skill_01AbCdEfGhIjKlMnOpQrStUv",
-          version=version.version,
-      )
-
-  # Langkah 2: Hapus Skill
-  client.beta.skills.delete(skill_id="skill_01AbCdEfGhIjKlMnOpQrStUv")
+  client.skills.delete(skill_id="skill_01AbCdEfGhIjKlMnOpQrStUv")
   ```
 
   ```typescript TypeScript
   const client = new Anthropic();
 
-  // Langkah 1: Hapus semua versi
-  for await (const version of client.beta.skills.versions.list(
-    "skill_01AbCdEfGhIjKlMnOpQrStUv"
-  )) {
-    await client.beta.skills.versions.delete(version.version, {
-      skill_id: "skill_01AbCdEfGhIjKlMnOpQrStUv"
-    });
-  }
-
-  // Langkah 2: Hapus Skill
-  await client.beta.skills.delete("skill_01AbCdEfGhIjKlMnOpQrStUv");
+  await client.skills.delete("skill_01AbCdEfGhIjKlMnOpQrStUv");
   ```
 
   ```csharp C#
-  using Anthropic.Models.Beta.Skills.Versions;
-  // ...
   AnthropicClient client = new();
 
-  // Langkah 1: Hapus semua versi
-  await foreach (var version in (await client.Beta.Skills.Versions.List("skill_01AbCdEfGhIjKlMnOpQrStUv")).Paginate())
-  {
-      await client.Beta.Skills.Versions.Delete(
-          version.Version,
-          new VersionDeleteParams { SkillID = "skill_01AbCdEfGhIjKlMnOpQrStUv" }
-      );
-  }
-
-  // Langkah 2: Hapus Skill
-  await client.Beta.Skills.Delete("skill_01AbCdEfGhIjKlMnOpQrStUv");
+  await client.Skills.Delete("skill_01AbCdEfGhIjKlMnOpQrStUv");
   ```
 
   ```go Go
   client := anthropic.NewClient()
 
-  // Langkah 1: Hapus semua versi
-  versions := client.Beta.Skills.Versions.ListAutoPaging(
+  _, err := client.Skills.Delete(
   	context.TODO(),
   	"skill_01AbCdEfGhIjKlMnOpQrStUv",
-  	anthropic.BetaSkillVersionListParams{},
-  )
-
-  for versions.Next() {
-  	version := versions.Current()
-  	_, err := client.Beta.Skills.Versions.Delete(
-  		context.TODO(),
-  		version.Version,
-  		anthropic.BetaSkillVersionDeleteParams{
-  			SkillID: "skill_01AbCdEfGhIjKlMnOpQrStUv",
-  		},
-  	)
-  	if err != nil {
-  		log.Fatal(err)
-  	}
-  }
-  if versions.Err() != nil {
-  	log.Fatal(versions.Err())
-  }
-
-  // Langkah 2: Hapus Skill
-  _, err := client.Beta.Skills.Delete(
-  	context.TODO(),
-  	"skill_01AbCdEfGhIjKlMnOpQrStUv",
-  	anthropic.BetaSkillDeleteParams{},
   )
   if err != nil {
   	log.Fatal(err)
@@ -2926,46 +2854,17 @@ Untuk menghapus Skill, Anda harus terlebih dahulu menghapus semua versinya:
   ```
 
   ```java Java
-  import com.anthropic.models.beta.skills.versions.VersionListPage;
-  import com.anthropic.models.beta.skills.versions.VersionDeleteParams;
-  // ...
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-      // Langkah 1: Hapus semua versi
-      VersionListPage versions = client.beta().skills().versions().list("skill_01AbCdEfGhIjKlMnOpQrStUv");
-
-      for (var version : versions.autoPager()) {
-          client.beta().skills().versions().delete(
-              version.version(),
-              VersionDeleteParams.builder()
-                  .skillId("skill_01AbCdEfGhIjKlMnOpQrStUv")
-                  .build()
-          );
-      }
-
-      // Langkah 2: Hapus Skill
-      client.beta().skills().delete("skill_01AbCdEfGhIjKlMnOpQrStUv");
+      client.skills().delete("skill_01AbCdEfGhIjKlMnOpQrStUv");
   }
   ```
 
   ```php PHP
   $client = new Client();
 
-  // Langkah 1: Hapus semua versi
-  $versions = $client->beta->skills->versions->list(
-      skillID: 'skill_01AbCdEfGhIjKlMnOpQrStUv',
-  );
-
-  foreach ($versions->pagingEachItem() as $version) {
-      $client->beta->skills->versions->delete(
-          skillID: 'skill_01AbCdEfGhIjKlMnOpQrStUv',
-          version: $version->version,
-      );
-  }
-
-  // Langkah 2: Hapus Skill
-  $client->beta->skills->delete(
+  $client->skills->delete(
       skillID: 'skill_01AbCdEfGhIjKlMnOpQrStUv',
   );
   ```
@@ -2973,24 +2872,13 @@ Untuk menghapus Skill, Anda harus terlebih dahulu menghapus semua versinya:
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  # Langkah 1: Hapus semua versi
-  client.beta.skills.versions.list("skill_01AbCdEfGhIjKlMnOpQrStUv").auto_paging_each do |version|
-    client.beta.skills.versions.delete(
-      version.version,
-      skill_id: "skill_01AbCdEfGhIjKlMnOpQrStUv"
-    )
-  end
-
-  # Langkah 2: Hapus Skill
-  client.beta.skills.delete("skill_01AbCdEfGhIjKlMnOpQrStUv")
+  client.skills.delete("skill_01AbCdEfGhIjKlMnOpQrStUv")
   ```
 </CodeGroup>
 
-Mencoba menghapus Skill yang masih memiliki versi akan mengembalikan error 400.
+### Pembuatan versi
 
-### Versioning
-
-Skill mendukung versioning untuk mengelola pembaruan dengan aman:
+Skill mendukung pembuatan versi untuk mengelola pembaruan dengan aman:
 
 **Skill Anthropic:**
 
@@ -3000,11 +2888,11 @@ Skill mendukung versioning untuk mengelola pembaruan dengan aman:
 
 **Skill Kustom:**
 
-* Timestamp epoch yang dihasilkan otomatis: `1759178010641129`
+* ID versi yang dihasilkan otomatis: `skver_01AbCdEfGhIjKlMnOpQrStUv`
 * Gunakan `"latest"` untuk selalu mendapatkan versi terbaru
 * Buat versi baru saat memperbarui file Skill
 
-Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Skill setiap kali, di bawah nama direktori tingkat teratas yang sama seperti saat pembuatan. File yang Anda hilangkan tidak akan dibawa ke versi baru. Contoh berikut mengunggah ulang bundel `financial_skill/` lengkap dari [Membuat Skill](https://platform.claude.com/docs/id/build-with-claude/skills-guide#creating-a-skill).
+Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Skill setiap kali. File yang Anda hilangkan tidak akan dibawa ke versi baru, dan `name` di `SKILL.md` versi baru harus cocok dengan nama Skill yang sudah ada. Contoh berikut mengunggah ulang bundel `financial_skill/` lengkap dari [Membuat Skill](https://platform.claude.com/docs/id/build-with-claude/skills-guide#creating-a-skill).
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -3557,7 +3445,7 @@ Claude memuat instruksi Skill lengkap hanya ketika diperlukan.
 
 ## Kasus penggunaan
 
-Skill cocok untuk pekerjaan organisasi maupun personal. Organisasi menggunakannya untuk menerapkan format merek pada dokumen, menyusun catatan dan laporan berdasarkan template perusahaan, dan menjalankan prosedur analitis khusus perusahaan. Individu menggunakannya untuk template dokumen kustom, pipeline data khusus, serta konvensi pembuatan kode atau deployment.
+Skill cocok untuk pekerjaan organisasi maupun pribadi. Organisasi menggunakannya untuk menerapkan format merek pada dokumen, menyusun catatan dan laporan berdasarkan templat perusahaan, dan menjalankan prosedur analitis khusus perusahaan. Individu menggunakannya untuk templat dokumen kustom, pipeline data khusus, serta konvensi pembuatan kode atau deployment.
 
 ### Contoh: pemodelan keuangan
 
@@ -3609,13 +3497,13 @@ Gabungkan Skill Excel dan Skill analisis DCF kustom:
   ```
 
   ```bash CLI
-  # Buat Skill analisis DCF kustom
+  # Create custom DCF analysis Skill
   DCF_SKILL_ID=$(ant beta:skills create \
     --file dcf_skill.zip \
     --transform id \
     --raw-output)
 
-  # Gunakan dengan Excel untuk membuat model keuangan
+  # Use with Excel to create financial model
   ant beta:messages create \
     --beta code-execution-2025-08-25,skills-2025-10-02 <<YAML
   model: claude-opus-5
@@ -3807,7 +3695,7 @@ Gabungkan Skill Excel dan Skill analisis DCF kustom:
       // Skill analisis DCF kustom (ID diperoleh dari respons create Skills API)
       String dcfSkillId = "skill_01AbCdEfGhIjKlMnOpQrStUv";
 
-      // Gunakan dengan Excel Skill untuk membuat model keuangan
+      // Gunakan bersama Excel Skill untuk membuat model keuangan
       MessageCreateParams params = MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5)
           .maxTokens(4096L)
@@ -3903,14 +3791,14 @@ Gabungkan Skill Excel dan Skill analisis DCF kustom:
 
 ### Batasan permintaan
 
-* **Maksimum Skill per permintaan:** 8
+* **Maksimum Skill per permintaan:** 20
 
-* **Maksimum ukuran unggahan Skill:** 30 MB (semua file digabungkan, tidak terkompresi)
+* **Ukuran unggahan Skill maksimum:** 30 MB (semua file digabungkan, tidak terkompresi)
 
 * **Persyaratan frontmatter YAML:**
 
   * `name`: Maksimum 64 karakter, hanya huruf kecil/angka/tanda hubung, tanpa tag XML, tanpa kata yang dicadangkan ("anthropic", "claude")
-  * `description`: Maksimum 1024 karakter, tidak boleh kosong, tanpa tag XML
+  * `description`: Maksimum 1024 karakter, tidak kosong, tanpa tag XML
 
 ### Kendala lingkungan
 
@@ -3920,7 +3808,7 @@ Skill berjalan di container eksekusi kode dengan batasan berikut:
 * **Tanpa instalasi paket saat runtime:** Hanya paket yang sudah terinstal yang tersedia
 * **Lingkungan terisolasi:** Container baru dibuat kecuali Anda menentukan ID container yang sudah ada
 
-Lihat [Code execution tool](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk paket yang tersedia.
+Lihat [Alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk paket yang tersedia.
 
 ***
 
@@ -3944,7 +3832,7 @@ Gabungkan Skill ketika tugas melibatkan beberapa jenis dokumen atau domain:
 
 Tab SDK di bagian ini menunjukkan nilai `container` yang harus disertakan dalam permintaan Messages. Tab cURL dan CLI menunjukkan permintaan lengkap.
 
-**Untuk produksi:** kunci ke versi tertentu, sehingga pembaruan Skill tidak pernah mengubah perilaku yang telah Anda deploy. ID versi berasal dari respons create-version di [Versioning](https://platform.claude.com/docs/id/build-with-claude/skills-guide#versioning) atau dari [API List Skill Versions](https://platform.claude.com/docs/id/api/beta/skills/versions/list). ID selalu berupa string: beri tanda kutip pada ID timestamp epoch dalam JSON atau YAML.
+**Untuk produksi:** kunci ke versi tertentu, sehingga pembaruan Skill tidak pernah mengubah perilaku yang telah Anda deploy. Jika Anda menghilangkan `version` atau mengaturnya ke `"latest"`, permintaan menggunakan versi terbaru dari Skill, sehingga versi yang diunggah oleh siapa pun di [workspace](https://platform.claude.com/docs/id/build-with-claude/skills-guide#workspace-scoped-access) langsung mengubah apa yang dijalankan oleh agen produksi Anda. ID versi berasal dari respons create-version di [Pembuatan versi](https://platform.claude.com/docs/id/build-with-claude/skills-guide#versioning) atau dari [API List Skill Versions](https://platform.claude.com/docs/id/api/beta/skills/versions/list). ID selalu berupa string: beri tanda kutip pada ID timestamp epoch dalam JSON atau YAML.
 
 <CodeGroup>
   ```bash cURL
@@ -4133,7 +4021,7 @@ Tab SDK di bagian ini menunjukkan nilai `container` yang harus disertakan dalam 
   ```
 
   ```python Python
-  # Gunakan versi terbaru untuk pengembangan aktif
+  # Gunakan latest untuk pengembangan aktif
   container = {
       "skills": [
           {
@@ -4161,7 +4049,7 @@ Tab SDK di bagian ini menunjukkan nilai `container` yang harus disertakan dalam 
   ```csharp C#
   using Anthropic.Models.Beta.Messages;
 
-  // Gunakan latest untuk pengembangan aktif
+  // Gunakan versi terbaru untuk pengembangan aktif
   var container = new BetaContainerParams
   {
       Skills =
@@ -4196,7 +4084,7 @@ Tab SDK di bagian ini menunjukkan nilai `container` yang harus disertakan dalam 
   import com.anthropic.models.beta.messages.BetaSkillParams;
 
   void main() {
-      // Gunakan latest untuk pengembangan aktif
+      // Gunakan versi terbaru untuk pengembangan aktif
       BetaContainerParams container = BetaContainerParams.builder()
           .addSkill(BetaSkillParams.builder()
               .type(BetaSkillParams.Type.CUSTOM)
@@ -4232,11 +4120,11 @@ Tab SDK di bagian ini menunjukkan nilai `container` yang harus disertakan dalam 
 
 ### Pertimbangan caching prompt
 
-Jika Anda menggunakan [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching), mengubah daftar Skill dalam container Anda akan merusak cache. Skill dirender ke dalam prompt sistem dalam urutan tetap, sehingga daftar yang sama menghasilkan prefiks yang dapat di-cache yang sama:
+Jika Anda menggunakan [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching), mengubah daftar Skill dalam container Anda akan merusak cache. Skill dirender ke dalam prompt sistem dalam urutan tetap, sehingga daftar yang sama menghasilkan prefiks yang sama dan dapat di-cache:
 
 <CodeGroup>
   ```bash cURL
-  # Skill di-render ke dalam prompt sistem dengan urutan tetap yang ramah cache
+  # Skill dirender ke dalam prompt sistem dalam urutan tetap yang ramah cache
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -4254,7 +4142,7 @@ Jika Anda menggunakan [Caching prompt](https://platform.claude.com/docs/id/build
       "tools": [{"type": "code_execution_20250825", "name": "code_execution"}]
     }'
 
-  # Mengubah daftar Skill ([xlsx] vs [xlsx, pptx]) mengubah prefiks: cache miss, sedangkan daftar yang identik menghasilkan cache hit
+  # Mengubah daftar Skill ([xlsx] vs [xlsx, pptx]) mengubah prefiks: cache miss, sedangkan daftar yang identik adalah cache hit
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -4318,7 +4206,7 @@ Jika Anda menggunakan [Caching prompt](https://platform.claude.com/docs/id/build
   ```python Python
   client = anthropic.Anthropic()
 
-  # Skill di-render ke dalam prompt sistem dengan urutan tetap yang ramah cache
+  # Skill dirender ke dalam prompt sistem dengan urutan tetap yang ramah cache
   response1 = client.beta.messages.create(
       model="claude-opus-5",
       max_tokens=4096,
@@ -4333,7 +4221,7 @@ Jika Anda menggunakan [Caching prompt](https://platform.claude.com/docs/id/build
       tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
   )
 
-  # Mengubah daftar Skill ([xlsx] vs [xlsx, pptx]) mengubah prefiks: cache miss, sedangkan daftar yang identik menghasilkan cache hit
+  # Mengubah daftar Skill ([xlsx] vs [xlsx, pptx]) mengubah prefiks: cache miss, sedangkan daftar yang identik adalah cache hit
   response2 = client.beta.messages.create(
       model="claude-opus-5",
       max_tokens=4096,
@@ -4359,7 +4247,7 @@ Jika Anda menggunakan [Caching prompt](https://platform.claude.com/docs/id/build
   ```typescript TypeScript
   const client = new Anthropic();
 
-  // Skill dirender ke dalam prompt sistem dengan urutan tetap yang ramah cache
+  // Skill dirender ke dalam prompt sistem dalam urutan tetap yang ramah cache
   const response1 = await client.beta.messages.create({
     model: "claude-opus-5",
     max_tokens: 4096,
@@ -4450,7 +4338,7 @@ Jika Anda menggunakan [Caching prompt](https://platform.claude.com/docs/id/build
   ```go Go
   client := anthropic.NewClient()
 
-  // Skill dirender ke dalam prompt sistem dengan urutan tetap yang ramah cache
+  // Skill dirender ke dalam prompt sistem dalam urutan tetap yang ramah cache
   response1, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
   	Model:     "claude-opus-5",
   	MaxTokens: 4096,
@@ -4526,7 +4414,7 @@ Jika Anda menggunakan [Caching prompt](https://platform.claude.com/docs/id/build
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-      // Skills dirender ke dalam prompt sistem dengan urutan tetap yang ramah cache
+      // Skill dirender ke dalam prompt sistem dalam urutan tetap yang ramah cache
       MessageCreateParams params1 = MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5)
           .maxTokens(4096L)
@@ -4548,7 +4436,7 @@ Jika Anda menggunakan [Caching prompt](https://platform.claude.com/docs/id/build
       BetaMessage response1 = client.beta().messages().create(params1);
       System.out.println(response1);
 
-      // Mengubah daftar Skills ([xlsx] vs [xlsx, pptx]) mengubah prefiks: cache miss, sedangkan daftar yang identik menghasilkan cache hit
+      // Mengubah daftar Skill ([xlsx] vs [xlsx, pptx]) mengubah prefiks: cache miss, sedangkan daftar yang identik adalah cache hit
       MessageCreateParams params2 = MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5)
           .maxTokens(4096L)
@@ -4580,7 +4468,7 @@ Jika Anda menggunakan [Caching prompt](https://platform.claude.com/docs/id/build
   ```php PHP
   $client = new Client();
 
-  // Skills dirender ke dalam prompt sistem dengan urutan tetap yang ramah cache
+  // Skill dirender ke dalam prompt sistem dengan urutan tetap yang ramah cache
   $response1 = $client->beta->messages->create(
       maxTokens: 4096,
       messages: [
@@ -4602,7 +4490,7 @@ Jika Anda menggunakan [Caching prompt](https://platform.claude.com/docs/id/build
   );
   echo $response1;
 
-  // Mengubah daftar Skills ([xlsx] vs [xlsx, pptx]) mengubah prefiks: cache miss, sedangkan daftar yang identik menghasilkan cache hit
+  // Mengubah daftar Skill ([xlsx] vs [xlsx, pptx]) mengubah prefiks: cache miss, sedangkan daftar yang identik adalah cache hit
   $response2 = $client->beta->messages->create(
       maxTokens: 4096,
       messages: [
@@ -4674,7 +4562,7 @@ Tangani error terkait Skill dengan baik:
 
 <CodeGroup>
   ```bash cURL
-  # Alur penanganan error ini tidak cocok diterjemahkan ke perintah shell sekali jalan;
+  # Alur penanganan error ini tidak cocok diterapkan pada perintah shell sekali jalan;
   # salah satu opsi SDK akan lebih sesuai. Permintaan yang gagal
   # mengembalikan HTTP 400 dengan JSON error yang .error.message-nya menyebutkan
   # masalah Skill tersebut.
@@ -4703,7 +4591,7 @@ Tangani error terkait Skill dengan baik:
     case "$RESULT" in
       *skill*)
         printf 'Skill error: %s\n' "$RESULT"
-        # Tangani error khusus skill
+        # Tangani error spesifik skill
         ;;
       *)
         printf '%s\n' "$RESULT" >&2
@@ -4736,7 +4624,7 @@ Tangani error terkait Skill dengan baik:
   except anthropic.BadRequestError as e:
       if "skill" in str(e):
           print(f"Skill error: {e}")
-          # Tangani error khusus skill
+          # Tangani error spesifik skill
       else:
           raise
   ```
@@ -4761,7 +4649,7 @@ Tangani error terkait Skill dengan baik:
   } catch (error) {
     if (error instanceof Anthropic.BadRequestError && error.message.includes("skill")) {
       console.error(`Skill error: ${error.message}`);
-      // Tangani error khusus skill
+      // Tangani error spesifik skill
     } else {
       throw error;
     }
@@ -4956,6 +4844,10 @@ Agent Skills tidak tercakup dalam pengaturan ZDR. Definisi Skill dan data ekseku
 
 Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 
+## Pencatatan audit
+
+Jika organisasi Anda telah mengaktifkan [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api), [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed)-nya mencatat pembuatan dan penghapusan Skill serta versi Skill yang dilakukan dengan kunci API Claude atau dari Claude Console. Operasi yang terjadi saat Compliance API dinonaktifkan tidak dicatat dan tidak dapat dipulihkan kemudian, jadi [siapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access) sebelum Anda mengandalkan jejak audit ini.
+
 ## Langkah selanjutnya
 
 <CardGroup cols={3}>
@@ -4964,10 +4856,10 @@ Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platfor
   </Card>
 
   <Card title="Praktik terbaik penulisan Skill" icon="edit" href="https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices">
-    Pelajari cara menulis Skill yang efektif agar dapat ditemukan dan digunakan Claude dengan sukses.
+    Pelajari cara menulis Skill yang efektif agar Claude dapat menemukan dan menggunakannya dengan sukses.
   </Card>
 
-  <Card title="Code execution tool" icon="terminal" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool">
+  <Card title="Alat eksekusi kode" icon="terminal" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool">
     Jalankan kode Python dan bash dalam container sandbox untuk menganalisis data, menghasilkan file, dan melakukan iterasi pada solusi.
   </Card>
 </CardGroup>

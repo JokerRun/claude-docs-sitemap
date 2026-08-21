@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: b19341949dc0359ede329de0343d2289eb9f4f47c17638fe27e4bfa88d400341
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 96c6f3246a419d99bad3266755ca942160e56cbbc24fb4c84c0a6bc86eaaed9a
 ---
 
 ---
@@ -387,6 +387,8 @@ For example, suppose a booking system needs `passengers: int`. Without strict mo
   </Step>
 </Steps>
 
+The [computer use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool) and [browser use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool) toolset entries (`computer_toolset_20260801` and `browser_toolset_20260801`) don't accept `strict: true`; a request that sets it on either entry is rejected.
+
 ## Common use cases
 
 <AccordionGroup>
@@ -584,7 +586,7 @@ For example, suppose a booking system needs `passengers: int`. Without strict mo
       if err != nil {
       	log.Fatal(err)
       }
-      fmt.Println(response)
+      fmt.Println(response.RawJSON())
       ```
 
       ```java Java
@@ -969,7 +971,7 @@ For example, suppose a booking system needs `passengers: int`. Without strict mo
       if err != nil {
       	log.Fatal(err)
       }
-      fmt.Println(response)
+      fmt.Println(response.RawJSON())
       ```
 
       ```java Java

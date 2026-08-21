@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/csharp
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 657972edfa15e2a5d8ab9a8828ad540a7854403ef2f66fdaa037ec5ad9bed1c5
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 244dcd65b8275d9a9390b638e0fd356fb587ad9c858281a4b5d1f85263e47a4c
 ---
 
 ---
@@ -361,11 +361,11 @@ These methods return `HttpResponse`:
 
 ```csharp
 using System;
-using Anthropic.Models.Beta.Files;
+using Anthropic.Models.Files;
 
 FileDownloadParams parameters = new() { FileID = "file_id" };
 
-var response = await client.Beta.Files.Download(parameters);
+var response = await client.Files.Download(parameters);
 
 Console.WriteLine(response);
 ```
@@ -375,7 +375,7 @@ To save the response content to a file, or any [`Stream`](https://learn.microsof
 ```csharp
 using System.IO;
 
-using var response = await client.Beta.Files.Download(parameters);
+using var response = await client.Files.Download(parameters);
 using var contentStream = await response.ReadAsStream();
 using var fileStream = File.Open(path, FileMode.OpenOrCreate);
 await contentStream.CopyToAsync(fileStream); // Or any other Stream

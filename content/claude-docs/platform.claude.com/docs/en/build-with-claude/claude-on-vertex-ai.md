@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 3aa045689d886fb40218f6a211bcb10c120de299be91bb89b98bbbbdaa7672a1
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 3ee5c842437170b9450cddeb9bacd6157a759aed1fc27848f89816eabf9ffe24
 ---
 
 ---
@@ -52,20 +52,20 @@ First, install Anthropic's [client SDK](https://platform.claude.com/docs/en/cli-
   <Tab title="Java">
     <CodeGroup exclude="shell, python, typescript, csharp, go, php, ruby">
       ```groovy Gradle
-      implementation("com.anthropic:anthropic-java:2.53.0")
-      implementation("com.anthropic:anthropic-java-vertex:2.53.0")
+      implementation("com.anthropic:anthropic-java:2.57.0")
+      implementation("com.anthropic:anthropic-java-vertex:2.57.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>2.53.0</version>
+          <version>2.57.0</version>
       </dependency>
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java-vertex</artifactId>
-          <version>2.53.0</version>
+          <version>2.57.0</version>
       </dependency>
       ```
 
@@ -369,6 +369,7 @@ For the full feature list with Google Cloud availability, see [Features overview
 * API endpoints (Message Batches, Models, Admin, Compliance, Usage and Cost)
 * Claude Managed Agents
 * Server-side fallback (the [`fallbacks` parameter](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback#server-side-fallback); use the [client-side fallback pattern](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback#client-side-fallback) instead)
+* [Computer use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool) and [browser use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool) toolsets (`computer_toolset_20260801` and `browser_toolset_20260801` are not currently available on Google Cloud; the beta computer use tool versions remain available)
 
 ### Context window
 

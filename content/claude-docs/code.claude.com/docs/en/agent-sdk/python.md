@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-08-20T02:28:31.280657Z
-sha256: 1fce99cdcfd670e5468145546bbaee8eec329379f0ca818b4fa776995acc31b2
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: da407558fcc4af45dd513262e23dfb834f2080baf1fd49750da6262f1f9d02dd
 ---
 
 > ## Documentation Index
@@ -2866,7 +2866,7 @@ When Monitor runs a command, it follows the same permission rules as Bash; a Web
 
   On other models, Claude Code provides the Task tools by default and `TodoWrite` only when you set `CLAUDE_CODE_ENABLE_TASKS=0`.
 
-  See [Model availability](/docs/en/agent-sdk/todo-tracking#model-availability) to opt in and [Migrate to Task tools](/docs/en/agent-sdk/todo-tracking#migrate-to-task-tools) to update your monitoring code.
+  See [Model availability](/docs/en/agent-sdk/todo-tracking#model-availability) to opt in.
 </Note>
 
 **Input:**

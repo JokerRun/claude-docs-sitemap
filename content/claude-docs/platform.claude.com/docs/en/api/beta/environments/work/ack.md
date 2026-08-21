@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/ack
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: b3a6a1ce573cc073a5b6b9e644889f8a10a359b85eae121f208b8566fec273e2
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 3437299423c19095f91b8f2a96ac73f86f0ea83ab57a3f77f14cd36e1402390d
 ---
 
 ---
@@ -32,7 +32,7 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -77,6 +77,8 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
     - `"output-300k-2026-03-24"`
 
     - `"user-profiles-2026-03-24"`
+
+    - `"user-profiles-2026-08-18"`
 
     - `"advisor-tool-2026-03-01"`
 

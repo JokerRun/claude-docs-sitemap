@@ -1,19 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 17ad8b7fd4fd15361ee9da4d7f197a451e67f458bc625e0d87a0aebc1fa93011
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 7a6679e4f43e0cd8c3488ff700524aa2c66c8009c4b4c289fbf89e8d7068c474
 ---
 
 ---
-title: Penyiapan lingkungan cloud
+title: Penyiapan environment cloud
 url: https://platform.claude.com/docs/id/managed-agents/environments
 description: Sesuaikan sandbox cloud untuk sesi Anda.
 ---
 
-Environment (lingkungan) mendefinisikan konfigurasi sandbox tempat agen Anda berjalan. Anda membuat environment sekali, lalu mereferensikan ID-nya setiap kali Anda memulai sesi. Beberapa sesi dapat berbagi environment yang sama, tetapi setiap sesi mendapatkan sandbox terisolasi miliknya sendiri (container Linux yang baru).
+Environment mendefinisikan konfigurasi sandbox tempat agen Anda berjalan. Anda membuat environment satu kali, lalu mereferensikan ID-nya setiap kali Anda memulai sesi. Beberapa sesi dapat berbagi environment yang sama, tetapi setiap sesi mendapatkan sandbox terisolasinya sendiri (kontainer Linux yang baru).
 
-Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di infrastruktur Anda sendiri, lihat [Sandbox yang di-hosting sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes).
+Halaman ini membahas environment dengan `type: cloud`. Untuk menjalankan sandbox pada infrastruktur Anda sendiri, lihat [Sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes).
 
 <Note>
   Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
@@ -43,11 +43,21 @@ Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di inf
   echo "Environment ID: $environment_id"
   ```
 
-  ```bash CLI
-  ant beta:environments create \
-    --name "python-dev" \
-    --config '{type: cloud, networking: {type: unrestricted}}'
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant beta:environments create < python-dev.environment.yaml
+    ```
+
+    <File filename="python-dev.environment.yaml">
+      ```yaml
+      name: python-dev
+      config:
+        type: cloud
+        networking:
+          type: unrestricted
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   environment = client.beta.environments.create(
@@ -135,11 +145,11 @@ Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di inf
   ```
 </CodeGroup>
 
-Gunakan `name` yang unik dan deskriptif agar Anda dapat membedakan environment satu sama lain.
+Gunakan `name` yang unik dan deskriptif agar Anda dapat membedakan antar environment.
 
 ## Menggunakan environment dalam sesi
 
-Berikan ID environment sebagai string saat [membuat sesi](https://platform.claude.com/docs/id/managed-agents/sessions).
+Teruskan ID environment sebagai string saat [membuat sesi](https://platform.claude.com/docs/id/managed-agents/sessions).
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -221,9 +231,9 @@ Berikan ID environment sebagai string saat [membuat sesi](https://platform.claud
 
 ## Opsi konfigurasi
 
-### Paket
+### Packages
 
-Field `packages` menginstal paket terlebih dahulu ke dalam sandbox sebelum agen dimulai. Paket diinstal oleh package manager masing-masing dan di-cache di seluruh sesi yang berbagi environment yang sama. Ketika beberapa package manager ditentukan, mereka berjalan dalam urutan alfabetis (apt, cargo, gem, go, npm, pip). Anda dapat secara opsional menyematkan versi tertentu. Paket yang tidak disematkan akan menginstal versi terbaru.
+Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dimulai. Paket diinstal oleh package manager masing-masing dan di-cache di seluruh sesi yang berbagi environment yang sama. Ketika beberapa package manager ditentukan, mereka dijalankan dalam urutan alfabetis (apt, cargo, gem, go, npm, pip). Anda dapat secara opsional menyematkan versi tertentu. Paket yang tidak disematkan akan menginstal versi terbaru.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -248,22 +258,28 @@ Field `packages` menginstal paket terlebih dahulu ke dalam sandbox sebelum agen 
   )
   ```
 
-  ```bash CLI
-  ant beta:environments create <<'YAML'
-  name: data-analysis
-  config:
-    type: cloud
-    packages:
-      pip:
-        - pandas
-        - numpy
-        - scikit-learn
-      npm:
-        - express
-    networking:
-      type: unrestricted
-  YAML
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant beta:environments create < environment.yaml
+    ```
+
+    <File filename="environment.yaml">
+      ```yaml
+      name: data-analysis
+      config:
+        type: cloud
+        packages:
+          pip:
+            - pandas
+            - numpy
+            - scikit-learn
+          npm:
+            - express
+        networking:
+          type: unrestricted
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   environment = client.beta.environments.create(
@@ -388,16 +404,16 @@ Package manager yang didukung:
 | `npm`   | Node.js (npm)          | `"express@4.18.0"`                          |
 | `pip`   | Python (pip)           | `"pandas==2.2.0"`                           |
 
-### Jaringan
+### Networking
 
-Field `networking` mengontrol akses jaringan keluar dari sandbox. Field ini tidak memengaruhi domain yang diizinkan untuk alat `web_search` atau `web_fetch`.
+Field `networking` mengontrol akses jaringan keluar dari sandbox. Field ini tidak memengaruhi alat `web_search` atau `web_fetch`, yang berjalan di server Anthropic; untuk membatasi situs yang dapat dijangkau oleh alat-alat tersebut, atur `allowed_domains` atau `blocked_domains` pada entri alat tersebut di toolset agen. Lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
 
 | Mode           | Deskripsi                                                                                                                                                               |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `unrestricted` | Akses jaringan keluar penuh, kecuali untuk blocklist keamanan umum. Ini adalah default.                                                                                 |
+| `unrestricted` | Akses jaringan keluar penuh, kecuali untuk daftar blokir keamanan umum. Ini adalah default.                                                                             |
 | `limited`      | Membatasi akses jaringan sandbox ke host yang ada di `allowed_hosts`. Atur `allow_package_managers` dan `allow_mcp_servers` ke `true` untuk mengizinkan akses tambahan. |
 
-Contoh berikut membuat environment dengan jaringan `limited`:
+Contoh berikut membuat environment dengan networking `limited`:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -420,19 +436,25 @@ Contoh berikut membuat environment dengan jaringan `limited`:
     }'
   ```
 
-  ```bash CLI
-  ant beta:environments create <<'YAML'
-  name: api-access
-  config:
-    type: cloud
-    networking:
-      type: limited
-      allowed_hosts:
-        - api.example.com
-      allow_mcp_servers: true
-      allow_package_managers: true
-  YAML
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant beta:environments create < environment.yaml
+    ```
+
+    <File filename="environment.yaml">
+      ```yaml
+      name: api-access
+      config:
+        type: cloud
+        networking:
+          type: limited
+          allowed_hosts:
+            - api.example.com
+          allow_mcp_servers: true
+          allow_package_managers: true
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   environment = client.beta.environments.create(
@@ -551,20 +573,20 @@ Contoh berikut membuat environment dengan jaringan `limited`:
 </CodeGroup>
 
 <Info>
-  Untuk deployment produksi, gunakan jaringan `limited` dengan daftar `allowed_hosts` yang eksplisit. Ikuti prinsip hak akses minimum (principle of least privilege) dengan hanya memberikan akses jaringan minimum yang dibutuhkan agen Anda, dan audit domain yang diizinkan secara berkala.
+  Untuk deployment produksi, gunakan networking `limited` dengan daftar `allowed_hosts` yang eksplisit. Ikuti prinsip hak istimewa minimum (least privilege) dengan hanya memberikan akses jaringan minimum yang dibutuhkan agen Anda, dan audit domain yang diizinkan secara berkala.
 </Info>
 
-Saat menggunakan jaringan `limited`:
+Saat menggunakan networking `limited`:
 
 * `allowed_hosts` menentukan domain yang dapat dijangkau oleh sandbox. Tentukan hostname polos atau pola wildcard (seperti `*.example.com`). Jangan sertakan skema URL, port, atau path.
 * `allow_mcp_servers` mengizinkan akses keluar ke endpoint server MCP yang dikonfigurasi pada agen, di luar yang tercantum dalam array `allowed_hosts`. Default-nya adalah `false`.
-* `allow_package_managers` mengizinkan akses keluar ke registry paket publik (seperti PyPI dan npm) di luar yang tercantum dalam array `allowed_hosts`. Default-nya adalah `false`.
+* `allow_package_managers` mengizinkan akses keluar ke registri paket publik (seperti PyPI dan npm) di luar yang tercantum dalam array `allowed_hosts`. Default-nya adalah `false`.
 
 ## Siklus hidup environment
 
-* Environment tetap ada sampai diarsipkan atau dihapus secara eksplisit.
+* Environment tetap ada hingga diarsipkan atau dihapus secara eksplisit.
 * Setiap sesi mendapatkan instance sandbox-nya sendiri, bahkan ketika beberapa sesi mereferensikan environment yang sama. Sesi tidak berbagi state filesystem.
-* Environment tidak memiliki versi. Jika Anda sering memperbarui environment, simpan catatan perubahan Anda sendiri agar Anda dapat mengetahui konfigurasi mana yang digunakan oleh setiap sesi.
+* Environment tidak memiliki versi. Jika Anda sering memperbarui environment, simpan catatan perubahan Anda sendiri agar Anda dapat mengetahui konfigurasi mana yang digunakan setiap sesi.
 
 ## Mengelola environment
 
@@ -605,7 +627,7 @@ Saat menggunakan jaringan `limited`:
   # Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
   ant beta:environments archive --environment-id "$ENVIRONMENT_ID"
 
-  # Hapus environment (hanya jika tidak ada sesi yang merujuknya)
+  # Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
   ant beta:environments delete --environment-id "$ENVIRONMENT_ID"
   ```
 
@@ -716,7 +738,7 @@ Sandbox cloud menyertakan runtime umum secara bawaan. Lihat [Referensi sandbox c
     Paket, database, dan utilitas yang sudah terinstal dan tersedia di sandbox cloud.
   </Card>
 
-  <Card title="Mulai sesi" icon="play" href="https://platform.claude.com/docs/id/managed-agents/sessions">
+  <Card title="Memulai sesi" icon="play" href="https://platform.claude.com/docs/id/managed-agents/sessions">
     Buat sesi untuk menjalankan agen Anda dan mulai menjalankan tugas.
   </Card>
 </CardGroup>

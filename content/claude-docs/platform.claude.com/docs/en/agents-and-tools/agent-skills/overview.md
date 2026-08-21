@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview
-fetched_at: 2026-08-20T02:28:31.280657Z
-sha256: c161721ff90020eb3e9ba8755f70371f1c70a1b1aeba3c0b1545087479a6949c
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: a3efd2985aa5d1e706f195cf817aebbd8144e95698cf120497fc5a93622ea8f1
 ---
 
 ---
@@ -156,7 +156,7 @@ Skills are available across Claude's agent products:
 
 The Claude API supports both pre-built Agent Skills and custom Skills. Both work identically: specify the relevant `skill_id` in the `container` parameter along with the [code execution tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool).
 
-**Prerequisites:** Using Skills through the API requires the [code execution tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool), whose container Skills run in. On the Claude API, neither the Skills API nor the `container.skills` parameter requires a beta header, and requests that still send `skills-2025-10-02` continue to work.
+**Prerequisites:** Using Skills through the API requires the [code execution tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool), whose container Skills run in.
 
 Use pre-built Agent Skills by referencing their `skill_id` (`pptx`, `xlsx`, `docx`, or `pdf`), or create and upload your own through the Skills API (`/v1/skills` endpoints). Custom Skills are shared workspace-wide: all workspace members can access them.
 

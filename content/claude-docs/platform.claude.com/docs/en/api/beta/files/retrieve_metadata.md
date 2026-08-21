@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/retrieve_metadata
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 726bdbaf3a3e157d1feb9efd621b1242462a6262afb30d4acf9437fda611959b
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 322b343c8a3d8bcef219a5e230601ae315000e06d4324cb6f70bddb34f3176bf
 ---
 
 ---
@@ -30,7 +30,7 @@ Get File Metadata
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,6 +76,8 @@ Get File Metadata
 
     - `"user-profiles-2026-03-24"`
 
+    - `"user-profiles-2026-08-18"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -100,7 +102,7 @@ Get File Metadata
 
 ### Returns
 
-- `FileMetadata object { id, created_at, filename, 5 more }`
+- `BetaFileMetadata object { id, created_at, filename, 5 more }`
 
   - `id: string`
 

@@ -1,34 +1,34 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/mcp-connector
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: f3eb989b7e5eb6f256ea253af3ab366a089ed9542b81fc19ecd93561bac5f379
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: ab187443153c7834025cff0a422019a697e01cef584c369f2aae244bf4540aa9
 ---
 
 ---
 title: Konektor MCP
 url: https://platform.claude.com/docs/id/managed-agents/mcp-connector
-description: Hubungkan server MCP ke agen Anda untuk akses ke alat eksternal dan sumber data.
+description: Hubungkan server MCP ke agen Anda untuk mengakses alat eksternal dan sumber data.
 ---
 
 Claude Managed Agents mendukung penghubungan server [Model Context Protocol (MCP)](https://modelcontextprotocol.io) ke agen Anda. Ini memberi agen akses ke alat eksternal, sumber data, dan layanan melalui protokol yang terstandarisasi.
 
 Konfigurasi MCP dibagi menjadi dua langkah:
 
-1. **Pembuatan agen** mendeklarasikan server MCP mana yang terhubung dengan agen, berdasarkan nama dan URL.
-2. **Pembuatan sesi** menyediakan autentikasi untuk server tersebut dengan mereferensikan vault yang telah terdaftar sebelumnya (lihat [Autentikasi dengan vault](https://platform.claude.com/docs/id/managed-agents/vaults)).
+1. **Pembuatan agen** mendeklarasikan server MCP mana yang terhubung ke agen, berdasarkan nama dan URL.
+2. **Pembuatan sesi** menyediakan autentikasi untuk server tersebut dengan mereferensikan vault yang telah didaftarkan sebelumnya (lihat [Autentikasi dengan vault](https://platform.claude.com/docs/id/managed-agents/vaults)).
 
-Pemisahan ini menjaga rahasia tetap berada di luar definisi agen yang dapat digunakan kembali sambil memungkinkan setiap sesi melakukan autentikasi dengan kredensialnya sendiri.
+Pemisahan ini menjaga rahasia tetap di luar definisi agen yang dapat digunakan kembali, sekaligus memungkinkan setiap sesi melakukan autentikasi dengan kredensialnya sendiri.
 
 <Note>
   Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
-## Deklarasikan server MCP pada agen
+## Mendeklarasikan server MCP pada agen
 
 Tentukan server MCP dalam array `mcp_servers` saat membuat agen. Setiap server memerlukan `type`, `name` yang unik, dan `url`. Tidak ada token autentikasi yang diberikan pada tahap ini.
 
-Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang cocok dalam array `tools`. `mcp_server_name` pada toolset harus cocok dengan `name` server.
+Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang sesuai dalam array `tools`. Nilai `mcp_server_name` pada toolset harus cocok dengan `name` server.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -58,15 +58,27 @@ Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang cocok
   agent_id=$(jq -r '.id' <<<"$agent_response")
   ```
 
-  ```bash CLI
-  AGENT_ID=$(ant beta:agents create \
-    --name "GitHub Assistant" \
-    --model '{id: claude-opus-5}' \
-    --mcp-server '{type: url, name: github, url: "https://api.githubcopilot.com/mcp/"}' \
-    --tool '{type: agent_toolset_20260401}' \
-    --tool '{type: mcp_toolset, mcp_server_name: github}' \
-    --transform id --raw-output)
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    AGENT_ID=$(ant beta:agents create --transform id --raw-output < github-assistant.agent.yaml)
+    ```
+
+    <File filename="github-assistant.agent.yaml">
+      ```yaml
+      name: GitHub Assistant
+      model:
+        id: claude-opus-5
+      mcp_servers:
+        - type: url
+          name: github
+          url: https://api.githubcopilot.com/mcp/
+      tools:
+        - type: agent_toolset_20260401
+        - type: mcp_toolset
+          mcp_server_name: github
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   agent = client.beta.agents.create(
@@ -231,22 +243,22 @@ Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang cocok
 
 Setiap entri dalam array `mcp_servers` mendefinisikan satu koneksi.
 
-| Field  | Deskripsi                                                                                                                                                                                                                                                      |
-| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type` | Wajib. Harus berupa `"url"`.                                                                                                                                                                                                                                   |
-| `name` | Wajib. Nama unik untuk server ini dalam agen (1–255 karakter). Digunakan sebagai `mcp_server_name` dalam array `tools` dan ditampilkan pada event alat MCP dalam [aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming). |
-| `url`  | Wajib. Endpoint dari server MCP jarak jauh (hingga 2.048 karakter). Lihat [Tipe server MCP yang didukung](https://platform.claude.com/docs/id/managed-agents/reference#supported-mcp-server-types) untuk persyaratan transport.                                |
+| Field  | Deskripsi                                                                                                                                                                                                                                                   |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type` | Wajib. Harus bernilai `"url"`.                                                                                                                                                                                                                              |
+| `name` | Wajib. Nama unik untuk server ini dalam agen (1–255 karakter). Digunakan sebagai `mcp_server_name` dalam array `tools` dan ditampilkan pada event alat MCP di [stream event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming). |
+| `url`  | Wajib. Endpoint dari server MCP jarak jauh (hingga 2.048 karakter). Lihat [Tipe server MCP yang didukung](https://platform.claude.com/docs/id/managed-agents/reference#supported-mcp-server-types) untuk persyaratan transport.                             |
 
 Batasan:
 
 * Sebuah agen dapat mendeklarasikan hingga 20 server MCP. Nama server harus unik dalam array.
-* Setiap entri `mcp_servers` harus direferensikan oleh sebuah `mcp_toolset` dalam array `tools`, dan setiap `mcp_toolset` harus mereferensikan server yang telah dideklarasikan. API menolak definisi agen dengan server yang tidak direferensikan atau toolset yang menggantung.
+* Setiap entri `mcp_servers` harus direferensikan oleh sebuah `mcp_toolset` dalam array `tools`, dan setiap `mcp_toolset` harus mereferensikan server yang telah dideklarasikan. API akan menolak definisi agen dengan server yang tidak direferensikan atau toolset yang menggantung.
 
-## Konfigurasikan alat MCP mana yang tersedia
+## Mengonfigurasi alat MCP mana yang tersedia
 
-Entri `mcp_toolset` mendukung bentuk `default_config` dan `configs` yang sama dengan toolset agen bawaan, diterapkan pada alat yang diekspos oleh server MCP. `name` dalam setiap entri `configs` adalah nama alat polos sebagaimana dilaporkan oleh server.
+Entri `mcp_toolset` mendukung objek `default_config` dan array `configs`, yang diterapkan pada alat yang diekspos oleh server MCP. Setiap entri `configs` hanya menerima `name`, `enabled`, dan `permission_policy`. Tidak seperti entri dalam toolset agen bawaan, entri alat MCP tidak menerima field `type`, dan [pengaturan web](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains) yang tersedia pada `web_search` dan `web_fetch` tidak berlaku untuk alat MCP. Nilai `name` dalam setiap entri `configs` adalah nama alat polos sebagaimana dilaporkan oleh server.
 
-Secara default semua alat yang diekspos oleh server MCP diaktifkan. Untuk mengaktifkan hanya alat tertentu, atur `default_config.enabled` ke `false` dan aktifkan secara eksplisit alat yang Anda inginkan:
+Secara default, semua alat yang diekspos oleh server MCP diaktifkan. Untuk mengaktifkan hanya alat tertentu, atur `default_config.enabled` ke `false` dan aktifkan secara eksplisit alat yang Anda inginkan:
 
 ```json
 {
@@ -277,9 +289,9 @@ Lihat [mengonfigurasi toolset](https://platform.claude.com/docs/id/managed-agent
 
 ### Penanganan output alat MCP
 
-Ketika output alat MCP melebihi 100.000 karakter (sekitar 25.000 token), output tersebut secara otomatis ditulis ke sebuah file di dalam sandbox. Model menerima pratinjau yang dipotong beserta path file dan dapat membaca konten lengkapnya dari sana.
+Ketika output alat MCP melebihi 100.000 karakter (sekitar 25.000 token), output tersebut secara otomatis ditulis ke file dalam sandbox. Model menerima pratinjau yang dipotong beserta path file dan dapat membaca konten lengkapnya dari sana.
 
-## Sediakan autentikasi saat pembuatan sesi
+## Menyediakan autentikasi saat pembuatan sesi
 
 Saat memulai sesi, berikan `vault_ids` untuk menyediakan kredensial bagi server MCP Anda. Vault adalah kumpulan kredensial yang Anda daftarkan sekali dan referensikan berdasarkan ID. Lihat [Autentikasi dengan vault](https://platform.claude.com/docs/id/managed-agents/vaults) untuk cara membuat vault dan mengelola kredensial.
 
@@ -372,28 +384,28 @@ Saat memulai sesi, berikan `vault_ids` untuk menyediakan kredensial bagi server 
   ```
 </CodeGroup>
 
-Kredensial dicocokkan berdasarkan URL, sehingga vault harus berisi kredensial yang `mcp_server_url`-nya merujuk ke server yang sama dengan `url` yang dideklarasikan dalam `mcp_servers`. Kedua URL dinormalisasi sebelum pencocokan (skema dan host diubah menjadi huruf kecil, port default dan garis miring di akhir dihapus), sehingga perbedaan dalam kapitalisasi host, port default, atau garis miring di akhir tidak menghalangi kecocokan; path, subdomain, atau port non-default yang berbeda akan menghalanginya. Jika tidak ada yang cocok, koneksi dicoba tanpa autentikasi. Lihat [Tambahkan kredensial](https://platform.claude.com/docs/id/managed-agents/vaults#add-a-credential) untuk tipe kredensial `static_bearer` dan `mcp_oauth`.
+Kredensial dicocokkan berdasarkan URL, sehingga vault harus berisi kredensial yang `mcp_server_url`-nya merujuk ke server yang sama dengan `url` yang dideklarasikan dalam `mcp_servers`. Kedua URL dinormalisasi sebelum pencocokan (scheme dan host diubah menjadi huruf kecil, port default dan garis miring di akhir dihapus), sehingga perbedaan dalam kapitalisasi host, port default, atau garis miring di akhir tidak mencegah kecocokan; path, subdomain, atau port non-default yang berbeda akan mencegahnya. Jika tidak ada yang cocok, koneksi akan dicoba tanpa autentikasi. Lihat [Menambahkan kredensial](https://platform.claude.com/docs/id/managed-agents/vaults#add-a-credential) untuk tipe kredensial `static_bearer` dan `mcp_oauth`.
 
-### Tangani kegagalan koneksi dan autentikasi
+### Menangani kegagalan koneksi dan autentikasi
 
-Pembuatan sesi tidak memvalidasi konektivitas atau kredensial MCP. Jika server MCP tidak dapat dijangkau atau menolak kredensial yang diberikan, sesi tetap dimulai dan interaksi tetap dimungkinkan. Event [`session.error`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) dikeluarkan dengan `mcp_server_name` dari server yang terpengaruh dan sebuah `retry_status`:
+Pembuatan sesi tidak memvalidasi konektivitas atau kredensial MCP. Jika server MCP tidak dapat dijangkau atau menolak kredensial yang diberikan, sesi tetap dimulai dan interaksi tetap dimungkinkan. Event [`session.error`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) akan dipancarkan dengan `mcp_server_name` dari server yang terpengaruh dan sebuah `retry_status`:
 
 | Tipe error                        | Arti                                                                                                                                                                                                     |
 | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `mcp_connection_failed_error`     | Server MCP tidak dapat dijangkau (error jaringan, timeout, atau kegagalan HTTP non-autentikasi).                                                                                                         |
 | `mcp_authentication_failed_error` | Autentikasi dengan server MCP gagal: server menolak kredensial dari vault yang dilampirkan, memerlukan autentikasi ketika tidak ada kredensial yang cocok dikonfigurasi, atau refresh token OAuth gagal. |
 
-Anda dapat memutuskan apakah akan memblokir interaksi lebih lanjut pada error ini, memicu rotasi kredensial, atau membiarkan sesi berlanjut tanpa alat dari server yang terpengaruh. Koneksi dicoba ulang pada transisi `session.status_idle` ke `session.status_running` berikutnya.
+Anda dapat memutuskan apakah akan memblokir interaksi lebih lanjut pada error ini, memicu rotasi kredensial, atau membiarkan sesi berlanjut tanpa alat dari server yang terpengaruh. Koneksi akan dicoba ulang pada transisi `session.status_idle` ke `session.status_running` berikutnya.
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
   <Card title="Kebijakan izin" icon="check" href="https://platform.claude.com/docs/id/managed-agents/permission-policies">
-    Kontrol kapan alat agen dan MCP berjalan.
+    Kontrol kapan alat agen dan MCP dijalankan.
   </Card>
 
-  <Card title="Aliran event sesi" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/events-and-streaming">
-    Kirim event, streaming respons, dan interupsi atau alihkan sesi Anda di tengah eksekusi.
+  <Card title="Stream event sesi" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/events-and-streaming">
+    Kirim event, stream respons, dan interupsi atau alihkan sesi Anda di tengah eksekusi.
   </Card>
 
   <Card title="Tipe server MCP yang didukung" icon="book" href="https://platform.claude.com/docs/id/managed-agents/reference#supported-mcp-server-types">

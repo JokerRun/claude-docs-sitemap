@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: cc8cf5977f198b48a79dbb7003bef7c75a65c5c02cae89e5114bba04353b424b
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 4f169dcc458ddaef2ddb1d709537349e67e265f077e3df5b39d89596071c04f4
 ---
 
 ---
@@ -264,7 +264,7 @@ To handle `restart: true`, kill the shell process, start a new one, and return a
 
 `bash_20250124` is the current version of the tool, and it requires no beta header. Every model from Claude Sonnet 3.7 ([retired](https://platform.claude.com/docs/en/about-claude/model-deprecations)) onward accepts it, including all current Claude models.
 
-The original `bash_20241022` version is part of the computer use beta, and the October 2024 Claude Sonnet 3.5 release ([retired](https://platform.claude.com/docs/en/about-claude/model-deprecations)) is the only model that accepts it. Requests that use it need the `anthropic-beta: computer-use-2024-10-22` header, and the SDKs expose it only in their beta namespaces. New integrations should use `bash_20250124`.
+The original `bash_20241022` version works only with the October 2024 Claude Sonnet 3.5 model ([retired](https://platform.claude.com/docs/en/about-claude/model-deprecations)). Requests that use it need the `anthropic-beta: computer-use-2024-10-22` header, and the SDKs expose it only in their beta namespaces. New integrations should use `bash_20250124`.
 
 ## Example: Multistep automation
 

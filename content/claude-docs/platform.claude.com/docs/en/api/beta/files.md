@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: e97fda23390e79022a0d2737784e87f9ed62e784d37d1b993433bda97b3b84b2
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 1c0826fb4f489ed4beabce783e9eddd060f5f9e9dec840953d82426b3d411c3f
 ---
 
 ---
@@ -26,7 +26,7 @@ Upload File
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Upload File
 
     - `"user-profiles-2026-03-24"`
 
+    - `"user-profiles-2026-08-18"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -96,7 +98,7 @@ Upload File
 
 ### Returns
 
-- `FileMetadata object { id, created_at, filename, 5 more }`
+- `BetaFileMetadata object { id, created_at, filename, 5 more }`
 
   - `id: string`
 
@@ -209,7 +211,7 @@ List Files
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -255,6 +257,8 @@ List Files
 
     - `"user-profiles-2026-03-24"`
 
+    - `"user-profiles-2026-08-18"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -279,7 +283,7 @@ List Files
 
 ### Returns
 
-- `data: array of FileMetadata`
+- `data: array of BetaFileMetadata`
 
   List of file metadata objects.
 
@@ -397,7 +401,7 @@ Download File
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -442,6 +446,8 @@ Download File
     - `"output-300k-2026-03-24"`
 
     - `"user-profiles-2026-03-24"`
+
+    - `"user-profiles-2026-08-18"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -494,7 +500,7 @@ Get File Metadata
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -540,6 +546,8 @@ Get File Metadata
 
     - `"user-profiles-2026-03-24"`
 
+    - `"user-profiles-2026-08-18"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -564,7 +572,7 @@ Get File Metadata
 
 ### Returns
 
-- `FileMetadata object { id, created_at, filename, 5 more }`
+- `BetaFileMetadata object { id, created_at, filename, 5 more }`
 
   - `id: string`
 
@@ -661,7 +669,7 @@ Delete File
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -707,6 +715,8 @@ Delete File
 
     - `"user-profiles-2026-03-24"`
 
+    - `"user-profiles-2026-08-18"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -731,7 +741,7 @@ Delete File
 
 ### Returns
 
-- `DeletedFile object { id, type }`
+- `BetaDeletedFile object { id, type }`
 
   - `id: string`
 
@@ -766,23 +776,9 @@ curl https://api.anthropic.com/v1/files/$FILE_ID \
 
 ## Domain Types
 
-### Beta File Scope
+### Beta Deleted File
 
-- `BetaFileScope object { id, type }`
-
-  - `id: string`
-
-    The ID of the scoping resource (e.g., the session ID).
-
-  - `type: "session"`
-
-    The type of scope (e.g., `"session"`).
-
-    - `"session"`
-
-### Deleted File
-
-- `DeletedFile object { id, type }`
+- `BetaDeletedFile object { id, type }`
 
   - `id: string`
 
@@ -796,9 +792,9 @@ curl https://api.anthropic.com/v1/files/$FILE_ID \
 
     - `"file_deleted"`
 
-### File Metadata
+### Beta File Metadata
 
-- `FileMetadata object { id, created_at, filename, 5 more }`
+- `BetaFileMetadata object { id, created_at, filename, 5 more }`
 
   - `id: string`
 
@@ -847,3 +843,17 @@ curl https://api.anthropic.com/v1/files/$FILE_ID \
       The type of scope (e.g., `"session"`).
 
       - `"session"`
+
+### Beta File Scope
+
+- `BetaFileScope object { id, type }`
+
+  - `id: string`
+
+    The ID of the scoping resource (e.g., the session ID).
+
+  - `type: "session"`
+
+    The type of scope (e.g., `"session"`).
+
+    - `"session"`

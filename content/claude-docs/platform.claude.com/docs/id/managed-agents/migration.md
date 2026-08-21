@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/migration
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 8722076d1df2dffe070cc9b308dd5c978ba2dfb62ffe51b3217270391628ed3b
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 5913c855cfb34a5d123306f809f5afcee9e23474ba812b02b2c2cf3555c057b4
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/managed-agents/migration
 description: Pindahkan agen yang sudah ada yang dibangun di atas Messages API atau Claude Agent SDK ke Claude Managed Agents.
 ---
 
-Claude Managed Agents menggantikan loop agen yang Anda tulis sendiri dengan infrastruktur terkelola. Halaman ini membahas apa saja yang berubah ketika Anda bermigrasi dari loop kustom yang dibangun di atas [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) atau dari [Claude Agent SDK](https://code.claude.com/docs/id/agent-sdk/overview).
+Claude Managed Agents menggantikan loop agen yang Anda tulis sendiri dengan infrastruktur terkelola. Halaman ini membahas apa yang berubah ketika Anda bermigrasi dari loop kustom yang dibangun di atas [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) atau dari [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview).
 
 <Note>
   Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
@@ -19,7 +19,7 @@ Claude Managed Agents menggantikan loop agen yang Anda tulis sendiri dengan infr
 
 ## Dari loop agen Messages API
 
-Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, mengeksekusi panggilan alat sendiri, dan menambahkan hasilnya ke riwayat percakapan, sebagian besar kode tersebut tidak lagi diperlukan.
+Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, menjalankan panggilan alat sendiri, dan menambahkan hasilnya ke riwayat percakapan, sebagian besar kode tersebut tidak lagi diperlukan.
 
 ### Apa yang tidak lagi Anda kelola
 
@@ -28,7 +28,7 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
 | Anda memelihara array riwayat percakapan dan mengirimkannya kembali pada setiap giliran.                            | Sesi menyimpan riwayat di sisi server. Kirim event, terima event.                                                              |
 | Anda mengiterasi blok konten `tool_use`, menjalankan setiap alat, dan mengulang kembali dengan pesan `tool_result`. | Alat bawaan berjalan di dalam sandbox secara otomatis. Anda hanya menangani alat kustom melalui event `agent.custom_tool_use`. |
 | Anda menyediakan sandbox sendiri untuk menjalankan kode yang dihasilkan agen.                                       | Sandbox sesi menangani eksekusi kode, operasi file, dan bash.                                                                  |
-| Anda menentukan kapan loop selesai.                                                                                 | Sesi mengeluarkan `session.status_idle` ketika agen tidak memiliki hal lain untuk dilakukan.                                   |
+| Anda memutuskan kapan loop selesai.                                                                                 | Sesi mengeluarkan `session.status_idle` ketika agen tidak memiliki hal lain untuk dilakukan.                                   |
 
 ### Perbandingan kode
 
@@ -307,32 +307,40 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
   kill "${stream_pid}" 2>/dev/null || true
   ```
 
-  ```bash CLI
-  { read -r _ agent_id; read -r _ agent_version; } < <(ant beta:agents create \
-    --name "Task Runner" \
-    --model claude-opus-5 \
-    --tool '{type: agent_toolset_20260401}' \
-    --transform '{id,version}' --format yaml)
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    { read -r _ agent_id; read -r _ agent_version; } < <(ant beta:agents create \
+      --transform '{id,version}' --format yaml < task-runner.agent.yaml)
 
-  session_id=$(ant beta:sessions create \
-    --agent "{type: agent, id: $agent_id, version: $agent_version}" \
-    --environment-id "$environment_id" \
-    --transform id --raw-output)
+    session_id=$(ant beta:sessions create \
+      --agent "{type: agent, id: $agent_id, version: $agent_version}" \
+      --environment-id "$environment_id" \
+      --transform id --raw-output)
 
-  # Buka stream terlebih dahulu, lalu kirim pesan pengguna
-  exec {stream}< <(ant beta:sessions:events stream \
-    --session-id "$session_id" \
-    --transform type --raw-output)
+    # Buka stream terlebih dahulu, lalu kirim pesan pengguna
+    exec {stream}< <(ant beta:sessions:events stream \
+      --session-id "$session_id" \
+      --transform type --raw-output)
 
-  ant beta:sessions:events send \
-    --session-id "$session_id" \
-    --event "{type: user.message, content: [{type: text, text: \"$task\"}]}" \
-  > /dev/null
+    ant beta:sessions:events send \
+      --session-id "$session_id" \
+      --event "{type: user.message, content: [{type: text, text: \"$task\"}]}" \
+    > /dev/null
 
-  # Tunggu hingga sesi menjadi idle (grep keluar pada kecocokan pertama)
-  grep -m1 -x 'session.status_idle' <&"$stream" > /dev/null
-  exec {stream}<&-
-  ```
+    # Tunggu hingga sesi menjadi idle (grep keluar pada kecocokan pertama)
+    grep -m1 -x 'session.status_idle' <&"$stream" > /dev/null
+    exec {stream}<&-
+    ```
+
+    <File filename="task-runner.agent.yaml">
+      ```yaml
+      name: Task Runner
+      model: claude-opus-5
+      tools:
+        - type: agent_toolset_20260401
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   agent = client.beta.agents.create(
@@ -603,26 +611,27 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
 
 ### Apa yang masih Anda kendalikan
 
-* **Prompt sistem dan model:** Field yang sama, sekarang berada pada definisi agen.
-* **Alat kustom:** Masih dideklarasikan dengan JSON Schema. Eksekusi berpindah dari penanganan inline menjadi merespons event `agent.custom_tool_use`. Lihat [Stream event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming).
+* **Prompt sistem dan model:** Field yang sama, sekarang pada definisi agen.
+* **Alat kustom:** Masih dideklarasikan dengan JSON Schema. Eksekusi berpindah dari penanganan inline menjadi merespons event `agent.custom_tool_use`. Lihat [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming).
+* **Pengaturan web search dan web fetch:** Field `allowed_domains`, `blocked_domains`, `max_content_tokens`, dan `user_location` yang sama, sekarang diatur sekali pada entri `web_search` dan `web_fetch` dari array `configs` toolset agen, bukan pada setiap permintaan. Field `max_uses`, `citations`, dan `cache_control` tidak tersedia. Lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
 * **Konteks:** Anda masih dapat menyuntikkan konteks melalui prompt sistem, [resource file](https://platform.claude.com/docs/id/managed-agents/files), atau [skill](https://platform.claude.com/docs/id/managed-agents/skills).
 
 ## Dari Claude Agent SDK
 
-Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/agent-sdk/overview), Anda sudah bekerja dengan agen, alat, dan sesi sebagai konsep. Perbedaannya adalah di mana mereka berjalan: SDK dieksekusi dalam proses yang Anda operasikan, sedangkan Managed Agents berjalan di infrastruktur Anthropic. Sebagian besar migrasi adalah memetakan objek konfigurasi SDK ke padanannya di sisi API.
+Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview), Anda sudah bekerja dengan agen, alat, dan sesi sebagai konsep. Perbedaannya adalah di mana mereka berjalan: SDK berjalan dalam proses yang Anda operasikan, sedangkan Managed Agents berjalan di infrastruktur Anthropic. Sebagian besar migrasi adalah memetakan objek konfigurasi SDK ke padanannya di sisi API.
 
 ### Apa yang berubah
 
-| Agent SDK                                                                 | Managed Agents                                                                                                                                                                                                                                                         |
-| ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ClaudeAgentOptions(...)` dibuat per eksekusi                             | `client.beta.agents.create(...)` satu kali; Agent dipersistenkan dan diberi versi di sisi server. Lihat [Penyiapan agen](https://platform.claude.com/docs/id/managed-agents/agent-setup).                                                                              |
-| `async with ClaudeSDKClient(...)` atau `query(...)`                       | `client.beta.sessions.create(...)` lalu kirim dan terima [event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming).                                                                                                                             |
-| Fungsi dengan dekorator `@tool` yang di-dispatch secara otomatis oleh SDK | Deklarasikan sebagai `{"type": "custom", ...}` pada Agent; klien Anda menangani event `agent.custom_tool_use` dan membalas dengan `user.custom_tool_result`. Lihat [Alat](https://platform.claude.com/docs/id/managed-agents/tools).                                   |
-| Alat bawaan berjalan di proses Anda terhadap filesystem Anda              | `{"type": "agent_toolset_20260401"}` menjalankan alat yang sama di dalam sandbox sesi terhadap `/workspace`.                                                                                                                                                           |
-| `cwd`, `add_dirs` menunjuk ke path lokal                                  | Unggah atau mount [file](https://platform.claude.com/docs/id/managed-agents/files) sebagai resource sesi.                                                                                                                                                              |
-| `system_prompt` dan hierarki `CLAUDE.md`                                  | Satu string `system` pada Agent. Setiap pembaruan menghasilkan versi baru di sisi server; pin sesi ke versi tertentu untuk mempromosikan atau melakukan rollback tanpa deploy. Lihat [Penyiapan agen](https://platform.claude.com/docs/id/managed-agents/agent-setup). |
-| `mcp_servers` dikonfigurasi dan diautentikasi di satu tempat              | Deklarasikan server pada Agent; sediakan kredensial melalui [Vault](https://platform.claude.com/docs/id/managed-agents/vaults) pada Session.                                                                                                                           |
-| `permission_mode`, `can_use_tool`                                         | [`permission_policy`](https://platform.claude.com/docs/id/managed-agents/permission-policies) per alat; kirim event `user.tool_confirmation` untuk alat `always_ask`.                                                                                                  |
+| Agent SDK                                                                 | Managed Agents                                                                                                                                                                                                                                                                            |
+| ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ClaudeAgentOptions(...)` dibuat per eksekusi                             | `client.beta.agents.create(...)` sekali; Agent disimpan dan diberi versi di sisi server. Lihat [Penyiapan agen](https://platform.claude.com/docs/id/managed-agents/agent-setup).                                                                                                          |
+| `async with ClaudeSDKClient(...)` atau `query(...)`                       | `client.beta.sessions.create(...)` lalu kirim dan terima [event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming).                                                                                                                                                |
+| Fungsi dengan dekorator `@tool` yang di-dispatch secara otomatis oleh SDK | Deklarasikan sebagai `{"type": "custom", ...}` pada Agent; klien Anda menangani event `agent.custom_tool_use` dan membalas dengan `user.custom_tool_result`. Lihat [Alat](https://platform.claude.com/docs/id/managed-agents/tools).                                                      |
+| Alat bawaan berjalan dalam proses Anda terhadap filesystem Anda           | `{"type": "agent_toolset_20260401"}` menjalankan alat yang sama di dalam sandbox sesi terhadap `/workspace`.                                                                                                                                                                              |
+| `cwd`, `add_dirs` menunjuk ke path lokal                                  | Unggah atau mount [file](https://platform.claude.com/docs/id/managed-agents/files) sebagai resource sesi.                                                                                                                                                                                 |
+| `system_prompt` dan hierarki `CLAUDE.md`                                  | Satu string `system` pada Agent. Setiap pembaruan yang mengubah agen menghasilkan versi baru di sisi server; pin sesi ke versi tertentu untuk mempromosikan atau melakukan rollback tanpa deploy. Lihat [Penyiapan agen](https://platform.claude.com/docs/id/managed-agents/agent-setup). |
+| `mcp_servers` dikonfigurasi dan diautentikasi di satu tempat              | Deklarasikan server pada Agent; sediakan kredensial melalui [Vault](https://platform.claude.com/docs/id/managed-agents/vaults) pada Session.                                                                                                                                              |
+| `permission_mode`, `can_use_tool`                                         | [`permission_policy`](https://platform.claude.com/docs/id/managed-agents/permission-policies) per alat; kirim event `user.tool_confirmation` untuk alat `always_ask`.                                                                                                                     |
 
 ### Perbandingan kode
 
@@ -735,25 +744,27 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
               }
           ],
       )
-      for ev in stream:
-          if ev.type == "agent.message":
-              print("".join(block.text for block in ev.content if block.type == "text"))
-          elif ev.type == "agent.custom_tool_use":
-              result = get_weather(**ev.input)
+      for event in stream:
+          if event.type == "agent.message":
+              print(
+                  "".join(block.text for block in event.content if block.type == "text")
+              )
+          elif event.type == "agent.custom_tool_use":
+              result = get_weather(**event.input)
               client.beta.sessions.events.send(
                   session.id,
                   events=[
                       {
                           "type": "user.custom_tool_result",
-                          "custom_tool_use_id": ev.id,
+                          "custom_tool_use_id": event.id,
                           "content": [{"type": "text", "text": result}],
                       }
                   ],
               )
           elif (
-              ev.type == "session.status_idle"
-              and ev.stop_reason
-              and ev.stop_reason.type == "end_turn"
+              event.type == "session.status_idle"
+              and event.stop_reason
+              and event.stop_reason.type == "end_turn"
           ):
               break
   ```
@@ -1293,11 +1304,11 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
   ```
 </CodeGroup>
 
-Agent dan Environment dibuat satu kali dan digunakan kembali di seluruh sesi. Fungsi alat masih berjalan di proses Anda; perbedaannya adalah Anda membaca event `agent.custom_tool_use` dan mengirim hasilnya secara eksplisit, alih-alih SDK yang melakukan dispatch untuk Anda.
+Agent dan Environment dibuat sekali dan digunakan kembali di seluruh sesi. Fungsi alat masih berjalan dalam proses Anda; perbedaannya adalah Anda membaca event `agent.custom_tool_use` dan mengirim hasilnya secara eksplisit, bukan SDK yang melakukan dispatch untuk Anda.
 
 ### Fitur yang berpindah ke klien Anda
 
-Konsekuensi dari Anthropic yang menjalankan loop agen adalah beberapa hal yang sebelumnya ditangani SDK secara otomatis kini menjadi tanggung jawab klien Anda.
+Konsekuensi dari Anthropic yang menjalankan loop agen adalah beberapa hal yang sebelumnya ditangani SDK secara otomatis menjadi tanggung jawab klien Anda.
 
 | Fitur SDK                         | Pendekatan Managed Agents                                                                                                                                                |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -1313,11 +1324,11 @@ Konsekuensi dari Anthropic yang menjalankan loop agen adalah beberapa hal yang s
 3. Ganti loop Anda dengan [`sessions.create`](https://platform.claude.com/docs/id/managed-agents/sessions) dan [`sessions.events.stream`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming).
 4. Untuk file lokal apa pun yang dibaca agen, unggah melalui [Files API](https://platform.claude.com/docs/id/managed-agents/files) dan mount sebagai `resources`.
 5. Untuk handler alat kustom apa pun, pindahkan eksekusi ke dalam event loop Anda sebagai respons terhadap event `agent.custom_tool_use`.
-6. Verifikasi dengan sesi uji sebelum mengarahkan traffic produksi ke alur baru.
+6. Verifikasi dengan sesi uji sebelum mengarahkan trafik produksi ke alur baru.
 
 ## Migrasi antar versi model
 
-Ketika model Claude baru dirilis, memigrasikan integrasi Claude Managed Agents biasanya hanya perubahan satu field: perbarui `model` pada [definisi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) Anda dan perubahan tersebut akan berlaku pada sesi berikutnya yang Anda buat.
+Ketika model Claude baru dirilis, migrasi integrasi Claude Managed Agents biasanya hanya perubahan satu field: perbarui `model` pada [definisi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) Anda dan perubahan tersebut berlaku pada sesi berikutnya yang Anda buat.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -1328,12 +1339,21 @@ Ketika model Claude baru dirilis, memigrasikan integrasi Claude Managed Agents b
     --json "$(jq -n --argjson version "$AGENT_VERSION" '{version: $version, model: "claude-opus-5"}')"
   ```
 
-  ```bash CLI
-  ant beta:agents update \
-    --agent-id "$AGENT_ID" \
-    --version "$AGENT_VERSION" \
-    --model claude-opus-5
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant beta:agents update --agent-id "$AGENT_ID" < agent.yaml
+    ```
+
+    <File filename="agent.yaml">
+      ```yaml
+      name: Task Runner
+      model: claude-opus-5
+      system: You are a task automation agent. Complete the task you are given end to end.
+      tools:
+        - type: agent_toolset_20260401
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   client.beta.agents.update(

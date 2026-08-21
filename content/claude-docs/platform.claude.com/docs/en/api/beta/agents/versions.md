@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/versions
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 4b32b386be46a613e603da69bcdd32b6466958f49edb8fbb5c448bb4bf1d4c2b
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 2887ea77efe2e3902a07047e1d2b0d1fe649f1f6292bda282f74a2904ee3c65e
 ---
 
 ---
@@ -40,7 +40,7 @@ List Agent Versions
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -85,6 +85,8 @@ List Agent Versions
     - `"output-300k-2026-03-24"`
 
     - `"user-profiles-2026-03-24"`
+
+    - `"user-profiles-2026-08-18"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -514,7 +516,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/versions \
         "foo": "bar"
       },
       "model": {
-        "id": "claude-sonnet-4-6",
+        "id": "claude-opus-5",
         "effort": {
           "type": "low"
         },

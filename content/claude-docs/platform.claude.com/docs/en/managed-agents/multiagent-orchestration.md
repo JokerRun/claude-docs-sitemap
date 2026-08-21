@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 9cbb93a026c4d84fac22aa9d730dd15e139ccf19328253a4119736919952db67
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 0086131670b4d61ab4cf4eaa2f8bc3a6d1f53de077f51a0b343c128ffb0ca9f0
 ---
 
 ---
@@ -70,22 +70,28 @@ When [defining your agent](https://platform.claude.com/docs/en/managed-agents/ag
   )
   ```
 
-  ```bash CLI
-  ant beta:agents create <<YAML
-  name: Engineering Lead
-  model: claude-opus-5
-  system: You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.
-  tools:
-    - type: agent_toolset_20260401
-  multiagent:
-    type: coordinator
-    agents:
-      - type: agent
-        id: $REVIEWER_AGENT_ID
-      - type: agent
-        id: $TEST_WRITER_AGENT_ID
-  YAML
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant beta:agents create < coordinator.agent.yaml
+    ```
+
+    <File filename="coordinator.agent.yaml">
+      ```yaml
+      name: Engineering Lead
+      model: claude-opus-5
+      system: You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.
+      tools:
+        - type: agent_toolset_20260401
+      multiagent:
+        type: coordinator
+        agents:
+          - type: agent
+            id: $REVIEWER_AGENT_ID # replace before running command
+          - type: agent
+            id: $TEST_WRITER_AGENT_ID # replace before running command
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   coordinator = client.beta.agents.create(
@@ -427,40 +433,50 @@ MCP servers are agent-scoped (each agent definition declares its own servers and
   echo "$session_id"
   ```
 
-  ```bash CLI
-  research_agent_id=$(ant beta:agents create --transform id --raw-output <<YAML
-  name: researcher
-  model: claude-haiku-4-5
-  mcp_servers:
-    - type: url
-      name: github
-      url: https://api.githubcopilot.com/mcp/
-  tools:
-    - type: mcp_toolset
-      mcp_server_name: github
-  YAML
-  )
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    research_agent_id=$(ant beta:agents create --transform id --raw-output < researcher.agent.yaml)
+    ```
 
-  coordinator_id=$(ant beta:agents create --transform id --raw-output <<YAML
-  name: coordinator
-  model: claude-opus-5
-  tools:
-    - type: agent_toolset_20260401
-  multiagent:
-    type: coordinator
-    agents:
-      - type: agent
-        id: $research_agent_id
-  YAML
-  )
+    <File filename="researcher.agent.yaml">
+      ```yaml
+      name: researcher
+      model: claude-haiku-4-5
+      mcp_servers:
+        - type: url
+          name: github
+          url: https://api.githubcopilot.com/mcp/
+      tools:
+        - type: mcp_toolset
+          mcp_server_name: github
+      ```
+    </File>
 
-  session_id=$(ant beta:sessions create \
-    --agent "$coordinator_id" \
-    --environment-id "$environment_id" \
-    --vault-id "$vault_id" \
-    --transform id --raw-output)
-  echo "$session_id"
-  ```
+    <File filename="subagent-coordinator.agent.yaml">
+      ```yaml
+      name: coordinator
+      model: claude-opus-5
+      tools:
+        - type: agent_toolset_20260401
+      multiagent:
+        type: coordinator
+        agents:
+          - type: agent
+            id: $research_agent_id # replace before running command
+      ```
+    </File>
+
+    ```bash CLI
+    coordinator_id=$(ant beta:agents create --transform id --raw-output < subagent-coordinator.agent.yaml)
+
+    session_id=$(ant beta:sessions create \
+      --agent "$coordinator_id" \
+      --environment-id "$environment_id" \
+      --vault-id "$vault_id" \
+      --transform id --raw-output)
+    echo "$session_id"
+    ```
+  </MultiFileExample>
 
   ```python Python
   research_agent = client.beta.agents.create(

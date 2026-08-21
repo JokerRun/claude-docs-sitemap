@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/vision-coordinates
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 353199d346065edad97ed0e2f99fc92f5bc00d0dfb0f8272104e1638a44b3c9c
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: ccb90b21bf1e39c53fe969515fb8cef472eccaeb77f0dd62c8ad1118def36f57
 ---
 
 ---
@@ -454,6 +454,8 @@ First check which resolution tier your model is on (see [Resolution and token co
 ## Rescale coordinates when you cannot pre-resize
 
 If you cannot pre-resize (for example, when the image comes from an upstream system you can't modify), use the resize helper from [Resize your image before uploading](https://platform.claude.com/docs/en/build-with-claude/vision-coordinates#resize-your-image-before-uploading) to recover the dimensions Claude saw, then map the coordinates Claude returns into normalized coordinates or back onto your original image. Claude resizes oversized images rather than rejecting them, up to the API's [request limits](https://platform.claude.com/docs/en/build-with-claude/vision#request-limits). Beyond those limits the request fails with a validation error instead. Pass the tier limits that match the model you called: the wrong tier's limits recover the wrong resized dimensions and silently shift every coordinate. This approach requires knowing the pixel dimensions of the image you uploaded, so it does not apply to PDF uploads.
+
+Screenshots and zoom images that you return to the [computer use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool#handle-coordinate-scaling-for-higher-resolutions) and [browser use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool#targets-and-coordinates) toolsets are an exception to automatic resizing. The API rejects a `tool_result` image that exceeds the model's limits with a validation error instead of resizing it. Resize those images in your application before returning them, then scale the coordinates Claude returns back to your screen's dimensions.
 
 <CodeGroup>
   ```bash cURL

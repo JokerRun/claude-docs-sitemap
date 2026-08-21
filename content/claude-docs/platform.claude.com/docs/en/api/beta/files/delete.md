@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/delete
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: f2343118b71cc4fb6af50ec881f62ad88c95e2a468346349fc5faadb82d17a2f
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: f4193f910a511ed9529fa521d9bac882a801935248cca59f33dfff8240d71bd6
 ---
 
 ---
@@ -30,7 +30,7 @@ Delete File
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,6 +76,8 @@ Delete File
 
     - `"user-profiles-2026-03-24"`
 
+    - `"user-profiles-2026-08-18"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -100,7 +102,7 @@ Delete File
 
 ### Returns
 
-- `DeletedFile object { id, type }`
+- `BetaDeletedFile object { id, type }`
 
   - `id: string`
 

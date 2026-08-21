@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/retrieve
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 23979aced5e274b8eac3c0cb22c745de2b09bbabafda3238d99de6aecc29b489
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 1f64f89f71f3b3aae01d7cfe9496e6a56267559bf77e807dfcca19510525455b
 ---
 
 ---
@@ -28,7 +28,7 @@ Retrieve a specific environment by ID.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -73,6 +73,8 @@ Retrieve a specific environment by ID.
     - `"output-300k-2026-03-24"`
 
     - `"user-profiles-2026-03-24"`
+
+    - `"user-profiles-2026-08-18"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -208,9 +210,9 @@ Retrieve a specific environment by ID.
 
     RFC 3339 timestamp when environment was created
 
-  - `description: string`
+  - `description: string or null`
 
-    User-provided description for the environment
+    User-provided description for the environment; null when unset
 
   - `metadata: map[string]`
 

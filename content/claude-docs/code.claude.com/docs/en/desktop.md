@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop
-fetched_at: 2026-08-19T02:28:54.965606Z
-sha256: 2f2c7eb04dc016d1156dca5281b956e1ad1378b7be528872ededc4dae1676a70
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: d4975d3c35c9c40e3ca6a05c238f964545eccc022c21ef94f255243f7d269061
 ---
 
 > ## Documentation Index
@@ -371,7 +371,7 @@ Claude Code applies four safety behaviors across sessions:
 
 * Before archiving any session, Claude asks you first. You see the approval card in every permission mode, including Auto and Bypass permissions.
 * Through this surface, Claude can't send cross-session messages from a session nobody is watching, such as a scheduled-task run, and can't deliver messages into one.
-* Claude Code checks each message from this surface against the receiving session's [inbound controls](/docs/en/cross-session-messaging#control-inbound-messages). If you set [`crossSessionInbound`](/docs/en/settings#available-settings) to `refuse` in the receiving session, Claude Code drops messages from this surface. The check runs even when the receiving session doesn't have [cross-session messaging](/docs/en/cross-session-messaging#availability) itself. Before v2.1.234, Claude Code dropped every message from this surface to a receiving session without cross-session messaging.
+* Claude Code checks each message from this surface against the receiving session's [inbound controls](/docs/en/cross-session-messaging#control-inbound-messages), even when the receiving session doesn't have [cross-session messaging](/docs/en/cross-session-messaging#availability) itself. If you set [`crossSessionInbound`](/docs/en/settings#available-settings) to `refuse` in the receiving session, Claude Code drops messages from this surface. Claude Code reports the refusal to the Claude desktop app. Before v2.1.234, Claude Code dropped every message from this surface to a receiving session without cross-session messaging.
 * Claude Code quotes each incoming message and attributes it to the session that sent it, and Claude still follows the receiving session's own permission settings when acting on one.
 
 Claude can also suggest new sessions. When it notices something worth fixing that's out of scope for the current task, it offers the work as a task chip in the chat. Click the chip to start that work in a new session with its own worktree; Claude continues your current session uninterrupted.

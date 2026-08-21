@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/citations
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: b16d1720acffa367097d8f29f91cfa1c77470162b8befb82633fccf928f8b7ff
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 9606eb66774ee8615f81b0b3069f98676f65b1f61c8ab2fb768a5704df502df3
 ---
 
 ---
@@ -755,7 +755,6 @@ Dokumen teks biasa secara otomatis dipecah menjadi kalimat. Anda dapat menyediak
       curl -X POST https://api.anthropic.com/v1/messages \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
-        -H "anthropic-beta: files-api-2025-04-14" \
         -H "content-type: application/json" \
         -d @- <<EOF
       {
@@ -784,7 +783,7 @@ Dokumen teks biasa secara otomatis dipecah menjadi kalimat. Anda dapat menyediak
       ```
 
       ```bash CLI
-      ant beta:messages create --beta files-api-2025-04-14 <<YAML
+      ant messages create <<YAML
       model: claude-opus-5
       max_tokens: 1024
       messages:
@@ -804,7 +803,7 @@ Dokumen teks biasa secara otomatis dipecah menjadi kalimat. Anda dapat menyediak
       ```
 
       ```python Python
-      cited_response = client.beta.messages.create(
+      cited_response = client.messages.create(
           model="claude-opus-5",
           max_tokens=1024,
           messages=[
@@ -822,13 +821,12 @@ Dokumen teks biasa secara otomatis dipecah menjadi kalimat. Anda dapat menyediak
                   ],
               }
           ],
-          betas=["files-api-2025-04-14"],
       )
       print(cited_response)
       ```
 
       ```typescript TypeScript
-      const citedResponse = await client.beta.messages.create({
+      const citedResponse = await client.messages.create({
         model: "claude-opus-5",
         max_tokens: 1024,
         messages: [
@@ -849,33 +847,31 @@ Dokumen teks biasa secara otomatis dipecah menjadi kalimat. Anda dapat menyediak
             ],
           },
         ],
-        betas: ["files-api-2025-04-14"],
       });
       console.log(citedResponse);
       ```
 
       ```csharp C#
-      var citedResponse = await client.Beta.Messages.Create(
+      var citedResponse = await client.Messages.Create(
           new MessageCreateParams
           {
-              Model = Messages::Model.ClaudeOpus5,
+              Model = Model.ClaudeOpus5,
               MaxTokens = 1024,
-              Betas = [AnthropicBeta.FilesApi2025_04_14],
               Messages =
               [
-                  new BetaMessageParam
+                  new MessageParam
                   {
                       Role = Role.User,
-                      Content = new List<BetaContentBlockParam>
+                      Content = new List<ContentBlockParam>
                       {
-                          new BetaRequestDocumentBlock
+                          new DocumentBlockParam
                           {
-                              Source = new BetaFileDocumentSource { FileID = fileId },
+                              Source = new FileDocumentSource { FileID = fileId },
                               Title = "Document Title",
                               Context = "Context about the document that will not be cited from",
-                              Citations = new BetaCitationsConfigParam { Enabled = true },
+                              Citations = new CitationsConfigParam { Enabled = true },
                           },
-                          new BetaTextBlockParam { Text = "Summarize this document." },
+                          new TextBlockParam { Text = "Summarize this document." },
                       }
                   }
               ]
@@ -885,24 +881,23 @@ Dokumen teks biasa secara otomatis dipecah menjadi kalimat. Anda dapat menyediak
       ```
 
       ```go Go
-      citedMsg, err := client.Beta.Messages.New(context.Background(),
-      	anthropic.BetaMessageNewParams{
+      citedMsg, err := client.Messages.New(context.Background(),
+      	anthropic.MessageNewParams{
       		Model:     anthropic.ModelClaudeOpus5,
       		MaxTokens: 1024,
-      		Betas:     []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
-      		Messages: []anthropic.BetaMessageParam{
-      			anthropic.NewBetaUserMessage(
-      				anthropic.BetaContentBlockParamUnion{
-      					OfDocument: &anthropic.BetaRequestDocumentBlockParam{
-      						Source: anthropic.BetaRequestDocumentBlockSourceUnionParam{
-      							OfFile: &anthropic.BetaFileDocumentSourceParam{FileID: fileID},
+      		Messages: []anthropic.MessageParam{
+      			anthropic.NewUserMessage(
+      				anthropic.ContentBlockParamUnion{
+      					OfDocument: &anthropic.DocumentBlockParam{
+      						Source: anthropic.DocumentBlockParamSourceUnion{
+      							OfFile: &anthropic.FileDocumentSourceParam{FileID: fileID},
       						},
       						Title:     anthropic.String("Document Title"),
       						Context:   anthropic.String("Context about the document that will not be cited from"),
-      						Citations: anthropic.BetaCitationsConfigParam{Enabled: anthropic.Bool(true)},
+      						Citations: anthropic.CitationsConfigParam{Enabled: anthropic.Bool(true)},
       					},
       				},
-      				anthropic.NewBetaTextBlock("Summarize this document."),
+      				anthropic.NewTextBlock("Summarize this document."),
       			),
       		},
       	})
@@ -915,26 +910,26 @@ Dokumen teks biasa secara otomatis dipecah menjadi kalimat. Anda dapat menyediak
       ```java Java
       MessageCreateParams citedParams = MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5)
-          .addBeta("files-api-2025-04-14")
           .maxTokens(1024)
-          .addUserMessageOfBetaContentBlockParams(List.of(
-              BetaContentBlockParam.ofDocument(BetaRequestDocumentBlock.builder()
-                  .source(BetaFileDocumentSource.builder().fileId(fileId).build())
+          .addUserMessageOfBlockParams(List.of(
+              ContentBlockParam.ofDocument(DocumentBlockParam.builder()
+                  .fileSource(fileId)
                   .title("Document Title")
                   .context("Context about the document that will not be cited from")
-                  .citations(BetaCitationsConfigParam.builder().enabled(true).build())
+                  .citations(CitationsConfigParam.builder().enabled(true).build())
                   .build()),
-              BetaContentBlockParam.ofText(BetaTextBlockParam.builder()
+              ContentBlockParam.ofText(TextBlockParam.builder()
                   .text("Summarize this document.")
                   .build())
           ))
           .build();
 
-      BetaMessage citedMessage = client.beta().messages().create(citedParams);
+      Message citedMessage = client.messages().create(citedParams);
       System.out.println(citedMessage);
       ```
 
       ```php PHP
+      // The PHP SDK supports file_id document and image sources only through $client->beta->messages with the files beta.
       $citedResponse = $client->beta->messages->create(
           maxTokens: 1024,
           messages: [
@@ -960,10 +955,9 @@ Dokumen teks biasa secara otomatis dipecah menjadi kalimat. Anda dapat menyediak
       ```
 
       ```ruby Ruby
-      cited_response = client.beta.messages.create(
+      cited_response = client.messages.create(
         model: "claude-opus-5",
         max_tokens: 1024,
-        betas: ["files-api-2025-04-14"],
         messages: [
           {
             role: "user",
@@ -1586,7 +1580,6 @@ Dokumen PDF dapat disediakan sebagai data yang dienkode base64, URL, atau dengan
       curl -X POST https://api.anthropic.com/v1/messages \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
-        -H "anthropic-beta: files-api-2025-04-14" \
         -H "content-type: application/json" \
         -d @- <<EOF
       {
@@ -1615,7 +1608,7 @@ Dokumen PDF dapat disediakan sebagai data yang dienkode base64, URL, atau dengan
       ```
 
       ```bash CLI
-      ant beta:messages create --beta files-api-2025-04-14 <<YAML
+      ant messages create <<YAML
       model: claude-opus-5
       max_tokens: 1024
       messages:
@@ -1635,7 +1628,7 @@ Dokumen PDF dapat disediakan sebagai data yang dienkode base64, URL, atau dengan
       ```
 
       ```python Python
-      cited_response = client.beta.messages.create(
+      cited_response = client.messages.create(
           model="claude-opus-5",
           max_tokens=1024,
           messages=[
@@ -1653,13 +1646,12 @@ Dokumen PDF dapat disediakan sebagai data yang dienkode base64, URL, atau dengan
                   ],
               }
           ],
-          betas=["files-api-2025-04-14"],
       )
       print(cited_response)
       ```
 
       ```typescript TypeScript
-      const citedResponse = await client.beta.messages.create({
+      const citedResponse = await client.messages.create({
         model: "claude-opus-5",
         max_tokens: 1024,
         messages: [
@@ -1680,33 +1672,31 @@ Dokumen PDF dapat disediakan sebagai data yang dienkode base64, URL, atau dengan
             ],
           },
         ],
-        betas: ["files-api-2025-04-14"],
       });
       console.log(citedResponse);
       ```
 
       ```csharp C#
-      var citedResponse = await client.Beta.Messages.Create(
+      var citedResponse = await client.Messages.Create(
           new MessageCreateParams
           {
-              Model = Messages::Model.ClaudeOpus5,
+              Model = Model.ClaudeOpus5,
               MaxTokens = 1024,
-              Betas = [AnthropicBeta.FilesApi2025_04_14],
               Messages =
               [
-                  new BetaMessageParam
+                  new MessageParam
                   {
                       Role = Role.User,
-                      Content = new List<BetaContentBlockParam>
+                      Content = new List<ContentBlockParam>
                       {
-                          new BetaRequestDocumentBlock
+                          new DocumentBlockParam
                           {
-                              Source = new BetaFileDocumentSource { FileID = fileId },
+                              Source = new FileDocumentSource { FileID = fileId },
                               Title = "Document Title",
                               Context = "Context about the document that will not be cited from",
-                              Citations = new BetaCitationsConfigParam { Enabled = true },
+                              Citations = new CitationsConfigParam { Enabled = true },
                           },
-                          new BetaTextBlockParam { Text = "Summarize this document." },
+                          new TextBlockParam { Text = "Summarize this document." },
                       }
                   }
               ]
@@ -1716,24 +1706,23 @@ Dokumen PDF dapat disediakan sebagai data yang dienkode base64, URL, atau dengan
       ```
 
       ```go Go
-      citedMsg, err := client.Beta.Messages.New(context.Background(),
-      	anthropic.BetaMessageNewParams{
+      citedMsg, err := client.Messages.New(context.Background(),
+      	anthropic.MessageNewParams{
       		Model:     anthropic.ModelClaudeOpus5,
       		MaxTokens: 1024,
-      		Betas:     []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
-      		Messages: []anthropic.BetaMessageParam{
-      			anthropic.NewBetaUserMessage(
-      				anthropic.BetaContentBlockParamUnion{
-      					OfDocument: &anthropic.BetaRequestDocumentBlockParam{
-      						Source: anthropic.BetaRequestDocumentBlockSourceUnionParam{
-      							OfFile: &anthropic.BetaFileDocumentSourceParam{FileID: fileID},
+      		Messages: []anthropic.MessageParam{
+      			anthropic.NewUserMessage(
+      				anthropic.ContentBlockParamUnion{
+      					OfDocument: &anthropic.DocumentBlockParam{
+      						Source: anthropic.DocumentBlockParamSourceUnion{
+      							OfFile: &anthropic.FileDocumentSourceParam{FileID: fileID},
       						},
       						Title:     anthropic.String("Document Title"),
       						Context:   anthropic.String("Context about the document that will not be cited from"),
-      						Citations: anthropic.BetaCitationsConfigParam{Enabled: anthropic.Bool(true)},
+      						Citations: anthropic.CitationsConfigParam{Enabled: anthropic.Bool(true)},
       					},
       				},
-      				anthropic.NewBetaTextBlock("Summarize this document."),
+      				anthropic.NewTextBlock("Summarize this document."),
       			),
       		},
       	})
@@ -1746,26 +1735,26 @@ Dokumen PDF dapat disediakan sebagai data yang dienkode base64, URL, atau dengan
       ```java Java
       MessageCreateParams citedParams = MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5)
-          .addBeta("files-api-2025-04-14")
           .maxTokens(1024)
-          .addUserMessageOfBetaContentBlockParams(List.of(
-              BetaContentBlockParam.ofDocument(BetaRequestDocumentBlock.builder()
-                  .source(BetaFileDocumentSource.builder().fileId(fileId).build())
+          .addUserMessageOfBlockParams(List.of(
+              ContentBlockParam.ofDocument(DocumentBlockParam.builder()
+                  .fileSource(fileId)
                   .title("Document Title")
                   .context("Context about the document that will not be cited from")
-                  .citations(BetaCitationsConfigParam.builder().enabled(true).build())
+                  .citations(CitationsConfigParam.builder().enabled(true).build())
                   .build()),
-              BetaContentBlockParam.ofText(BetaTextBlockParam.builder()
+              ContentBlockParam.ofText(TextBlockParam.builder()
                   .text("Summarize this document.")
                   .build())
           ))
           .build();
 
-      BetaMessage citedMessage = client.beta().messages().create(citedParams);
+      Message citedMessage = client.messages().create(citedParams);
       System.out.println(citedMessage);
       ```
 
       ```php PHP
+      // The PHP SDK supports file_id document and image sources only through $client->beta->messages with the files beta.
       $citedResponse = $client->beta->messages->create(
           maxTokens: 1024,
           messages: [
@@ -1791,10 +1780,9 @@ Dokumen PDF dapat disediakan sebagai data yang dienkode base64, URL, atau dengan
       ```
 
       ```ruby Ruby
-      cited_response = client.beta.messages.create(
+      cited_response = client.messages.create(
         model: "claude-opus-5",
         max_tokens: 1024,
-        betas: ["files-api-2025-04-14"],
         messages: [
           {
             role: "user",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/list
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 21e59018cb8513ee730061573f461dad6ee434c36f3158ac525b815193afb2ce
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: e4eff797561de3b20db336a6ca1340a554ad32133ff6689ae130b75db77b48f7
 ---
 
 ---
@@ -42,7 +42,7 @@ List Credentials
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -87,6 +87,8 @@ List Credentials
     - `"output-300k-2026-03-24"`
 
     - `"user-profiles-2026-03-24"`
+
+    - `"user-profiles-2026-08-18"`
 
     - `"advisor-tool-2026-03-01"`
 

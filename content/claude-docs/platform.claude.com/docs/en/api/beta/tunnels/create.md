@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/create
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: fcecb763e702866ba8dd0dffc2721ae5c5dcb85272e3819dc403f57264952946
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 4ca9dbb2aa57a7898718faff90a4123a096eabca1f0014384fe4250e45806d4c
 ---
 
 ---
@@ -26,7 +26,7 @@ Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel;
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -71,6 +71,8 @@ Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel;
     - `"output-300k-2026-03-24"`
 
     - `"user-profiles-2026-03-24"`
+
+    - `"user-profiles-2026-08-18"`
 
     - `"advisor-tool-2026-03-01"`
 

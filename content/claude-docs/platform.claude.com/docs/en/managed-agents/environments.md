@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/environments
-fetched_at: 2026-08-20T02:28:31.280657Z
-sha256: 9fc1ba4fbb6f40b805a3aa164b25702e592c0fb0b380b87fe78ddc4461fb7a9a
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 02ad36b92b97980934b99c274e26f452587df8cabfc7ea30b5180e541c6d37f6
 ---
 
 ---
@@ -43,11 +43,21 @@ This page covers `type: cloud` environments. To run sandboxes on your own infras
   echo "Environment ID: $environment_id"
   ```
 
-  ```bash CLI
-  ant beta:environments create \
-    --name "python-dev" \
-    --config '{type: cloud, networking: {type: unrestricted}}'
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant beta:environments create < python-dev.environment.yaml
+    ```
+
+    <File filename="python-dev.environment.yaml">
+      ```yaml
+      name: python-dev
+      config:
+        type: cloud
+        networking:
+          type: unrestricted
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   environment = client.beta.environments.create(
@@ -248,22 +258,28 @@ The `packages` field pre-installs packages into the sandbox before the agent sta
   )
   ```
 
-  ```bash CLI
-  ant beta:environments create <<'YAML'
-  name: data-analysis
-  config:
-    type: cloud
-    packages:
-      pip:
-        - pandas
-        - numpy
-        - scikit-learn
-      npm:
-        - express
-    networking:
-      type: unrestricted
-  YAML
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant beta:environments create < environment.yaml
+    ```
+
+    <File filename="environment.yaml">
+      ```yaml
+      name: data-analysis
+      config:
+        type: cloud
+        packages:
+          pip:
+            - pandas
+            - numpy
+            - scikit-learn
+          npm:
+            - express
+        networking:
+          type: unrestricted
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   environment = client.beta.environments.create(
@@ -420,19 +436,25 @@ The following example creates an environment with `limited` networking:
     }'
   ```
 
-  ```bash CLI
-  ant beta:environments create <<'YAML'
-  name: api-access
-  config:
-    type: cloud
-    networking:
-      type: limited
-      allowed_hosts:
-        - api.example.com
-      allow_mcp_servers: true
-      allow_package_managers: true
-  YAML
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant beta:environments create < environment.yaml
+    ```
+
+    <File filename="environment.yaml">
+      ```yaml
+      name: api-access
+      config:
+        type: cloud
+        networking:
+          type: limited
+          allowed_hosts:
+            - api.example.com
+          allow_mcp_servers: true
+          allow_package_managers: true
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   environment = client.beta.environments.create(

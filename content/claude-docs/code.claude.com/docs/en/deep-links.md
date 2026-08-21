@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/deep-links
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 6b2cd0bd94de10449ed8c5709cb26d04612a1cde93b8eeb29fdb89e83591012e
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: fb78a55e6c411a3cc1d3f62f3aa9765ad416a41f9715641736f6595a35919d13
 ---
 
 > ## Documentation Index
@@ -37,9 +37,7 @@ The `claude-cli://` prefix is a custom URL scheme that Claude Code registers wit
 
 The link itself can be hosted anywhere, but the session always opens locally on the computer where you clicked. See [Registration and supported platforms](#registration-and-supported-platforms) for which terminal emulator opens on each operating system.
 
-<Note>
-  The platform that displays the link must allow custom URL schemes. GitHub-rendered Markdown allows `http` and `https` but strips schemes like `claude-cli://` in READMEs, issues, pull requests, and wikis. Only the link text shows, with no link behind it and the URL hidden. See [Troubleshooting](#the-link-renders-as-plain-text-instead-of-being-clickable) for a workaround.
-</Note>
+The platform that displays the link must allow custom URL schemes. For what GitHub does with them and the workaround, see [The link renders as plain text instead of being clickable](#the-link-renders-as-plain-text-instead-of-being-clickable).
 
 ### What a launched session shows
 

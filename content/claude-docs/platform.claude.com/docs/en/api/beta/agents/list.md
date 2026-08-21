@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/list
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 74e61f7be468fc61123bb074e0341660492de46afcd0fca01dde5be0891a2e8b
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: d538c58b03a70154207f9bfbbb16201d061f55b0c24cc3d01e454f5b7e712fc9
 ---
 
 ---
@@ -46,7 +46,7 @@ List Agents
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -91,6 +91,8 @@ List Agents
     - `"output-300k-2026-03-24"`
 
     - `"user-profiles-2026-03-24"`
+
+    - `"user-profiles-2026-08-18"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -520,7 +522,7 @@ curl https://api.anthropic.com/v1/agents \
         "foo": "bar"
       },
       "model": {
-        "id": "claude-sonnet-4-6",
+        "id": "claude-opus-5",
         "effort": {
           "type": "low"
         },

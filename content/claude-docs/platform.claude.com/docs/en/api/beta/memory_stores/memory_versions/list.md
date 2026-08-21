@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/list
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: d89cf156d1467fff22fd0862f2fdf3bdfce69d1ff57b2e507efb40d52f4469cd
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 5b3579e1f909b5c5bdc877a2acac6dc2c4ed69956bc20c6f60266368da4f43d1
 ---
 
 ---
@@ -56,6 +56,10 @@ List memory versions
 
   Query parameter for page
 
+- `service_account_id: optional string`
+
+  Query parameter for service_account_id
+
 - `session_id: optional string`
 
   Query parameter for session_id
@@ -76,7 +80,7 @@ List memory versions
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -121,6 +125,8 @@ List memory versions
     - `"output-300k-2026-03-24"`
 
     - `"user-profiles-2026-03-24"`
+
+    - `"user-profiles-2026-08-18"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -231,6 +237,18 @@ List memory versions
       - `user_id: string`
 
         ID of the user who performed the write (a `user_...` value).
+
+    - `BetaManagedAgentsServiceAccountActor object { service_account_id, type }`
+
+      Attribution for a write made by a workload authenticated as a service account, for example via Workload Identity Federation.
+
+      - `service_account_id: string`
+
+        ID of the service account that performed the write (a `svac_...` value).
+
+      - `type: "service_account_actor"`
+
+        - `"service_account_actor"`
 
   - `path: optional string or null`
 

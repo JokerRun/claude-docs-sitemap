@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 487ca5147f986ba6ef7285d2d80f5b13d1e5819a801fac532eb4de9ef25d060b
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 3ea0f37bd84fa50a6374889526f27d23cc423c5e26f50bf0af04bd579455b02d
 ---
 
 ---
@@ -77,7 +77,7 @@ Berikan rubrik sebagai teks inline pada `user.define_outcome` (lihat [Buat sesi 
   ```
 
   ```bash CLI
-  RUBRIC_ID=$(ant beta:files upload \
+  RUBRIC_ID=$(ant files upload \
     --file /tmp/rubric.md \
     --transform id --raw-output)
   ```
@@ -92,16 +92,16 @@ Berikan rubrik sebagai teks inline pada `user.define_outcome` (lihat [Buat sesi 
 
   RUBRIC = """# DCF Model Rubric
 
-  ## Proyeksi Pendapatan
+  ## Revenue Projections
   - Uses historical revenue data from the last 5 fiscal years
   - Projects revenue for at least 5 years forward
 
-  ## Kualitas Output
+  ## Output Quality
   - All figures are in a single .xlsx file with clearly labeled sheets
   """
   Path("/tmp/rubric.md").write_text(RUBRIC)
 
-  rubric = client.beta.files.upload(file=Path("/tmp/rubric.md"))
+  rubric = client.files.upload(file=Path("/tmp/rubric.md"))
   print(f"Uploaded rubric: {rubric.id}")
   ```
 
@@ -124,7 +124,7 @@ Berikan rubrik sebagai teks inline pada `user.define_outcome` (lihat [Buat sesi 
   `;
   await writeFile("/tmp/rubric.md", RUBRIC);
 
-  const rubric = await client.beta.files.upload({
+  const rubric = await client.files.upload({
     file: await toFile(readFile("/tmp/rubric.md"), "/tmp/rubric.md"),
   });
   console.log(`Uploaded rubric: ${rubric.id}`);
@@ -134,9 +134,9 @@ Berikan rubrik sebagai teks inline pada `user.define_outcome` (lihat [Buat sesi 
   using Anthropic;
   using Anthropic.Models.Beta.Agents;
   using Anthropic.Models.Beta.Environments;
-  using Anthropic.Models.Beta.Files;
   using Anthropic.Models.Beta.Sessions;
   using Anthropic.Models.Beta.Sessions.Events;
+  using Anthropic.Models.Files;
 
   var client = new AnthropicClient();
 
@@ -152,7 +152,7 @@ Berikan rubrik sebagai teks inline pada `user.define_outcome` (lihat [Buat sesi 
       """;
   await File.WriteAllTextAsync("/tmp/rubric.md", Rubric);
 
-  var rubric = await client.Beta.Files.Upload(new()
+  var rubric = await client.Files.Upload(new()
   {
       File = File.OpenRead("/tmp/rubric.md"),
   });
@@ -195,7 +195,7 @@ Berikan rubrik sebagai teks inline pada `user.define_outcome` (lihat [Buat sesi 
   		panic(err)
   	}
 
-  	uploaded, err := client.Beta.Files.Upload(ctx, anthropic.BetaFileUploadParams{
+  	uploaded, err := client.Files.Upload(ctx, anthropic.FileUploadParams{
   		File: anthropic.File(f, "rubric.md", "text/markdown"),
   	})
   	if err != nil {
@@ -214,12 +214,12 @@ Berikan rubrik sebagai teks inline pada `user.define_outcome` (lihat [Buat sesi 
   import com.anthropic.models.beta.environments.BetaCloudConfigParams;
   import com.anthropic.models.beta.environments.EnvironmentCreateParams;
   import com.anthropic.models.beta.files.FileListParams;
-  import com.anthropic.models.beta.files.FileUploadParams;
   import com.anthropic.models.beta.sessions.SessionCreateParams;
   import com.anthropic.models.beta.sessions.events.BetaManagedAgentsTextRubricParams;
   import com.anthropic.models.beta.sessions.events.BetaManagedAgentsUserDefineOutcomeEventParams;
   import com.anthropic.models.beta.sessions.events.BetaManagedAgentsUserInterruptEventParams;
   import com.anthropic.models.beta.sessions.events.EventSendParams;
+  import com.anthropic.models.files.FileUploadParams;
 
   import java.io.InputStream;
   import java.nio.file.Files;
@@ -241,7 +241,7 @@ Berikan rubrik sebagai teks inline pada `user.define_outcome` (lihat [Buat sesi 
           """;
       Files.writeString(Path.of("/tmp/rubric.md"), RUBRIC);
 
-      var rubric = client.beta().files().upload(
+      var rubric = client.files().upload(
           FileUploadParams.builder()
               .file(Path.of("/tmp/rubric.md"))
               .build());
@@ -249,19 +249,20 @@ Berikan rubrik sebagai teks inline pada `user.define_outcome` (lihat [Buat sesi 
   ```
 
   ```php PHP
+  // The PHP SDK exposes the Files API under the beta namespace; field names can differ from other SDKs.
   use Anthropic\Client;
   use Anthropic\Core\FileParam;
 
   $client = new Client();
 
   $rubricText = <<<'MD'
-  # Rubrik Model DCF
+  # DCF Model Rubric
 
-  ## Proyeksi Pendapatan
+  ## Revenue Projections
   - Uses historical revenue data from the last 5 fiscal years
   - Projects revenue for at least 5 years forward
 
-  ## Kualitas Output
+  ## Output Quality
   - All figures are in a single .xlsx file with clearly labeled sheets
   MD;
   file_put_contents('/tmp/rubric.md', $rubricText);
@@ -279,18 +280,18 @@ Berikan rubrik sebagai teks inline pada `user.define_outcome` (lihat [Buat sesi 
   client = Anthropic::Client.new
 
   RUBRIC = <<~MD
-    # Rubrik Model DCF
+    # DCF Model Rubric
 
-    ## Proyeksi Pendapatan
+    ## Revenue Projections
     - Uses historical revenue data from the last 5 fiscal years
     - Projects revenue for at least 5 years forward
 
-    ## Kualitas Output
+    ## Output Quality
     - All figures are in a single .xlsx file with clearly labeled sheets
   MD
   File.write("/tmp/rubric.md", RUBRIC)
 
-  rubric = client.beta.files.upload(file: Pathname.new("/tmp/rubric.md"))
+  rubric = client.files.upload(file: Pathname.new("/tmp/rubric.md"))
   puts "Uploaded rubric: #{rubric.id}"
   ```
 </CodeGroup>
@@ -338,34 +339,34 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
   ```
 
   ```bash CLI
-  # Membuat sesi
+  # Create a session
   SESSION_ID=$(ant beta:sessions create \
     --agent "$AGENT_ID" \
     --environment-id "$ENVIRONMENT_ID" \
     --title "Financial analysis on Costco" \
     --transform id --raw-output)
 
-  # Mendefinisikan hasil — agen mulai bekerja begitu diterima
+  # Define the outcome — agent starts working on receipt
   ant beta:sessions:events send \
     --session-id "$SESSION_ID" <<YAML
   events:
     - type: user.define_outcome
       description: Build a DCF model for Costco in .xlsx
       rubric: {type: file, file_id: $RUBRIC_ID}
-      # atau: rubric: {type: text, content: "..."}
+      # or: rubric: {type: text, content: "..."}
       max_iterations: 5  # optional; default 3, max 20
   YAML
   ```
 
   ```python Python
-  # Buat sesi
+  # Create a session
   session = client.beta.sessions.create(
       agent=agent.id,
       environment_id=environment.id,
       title="Financial analysis on Costco",
   )
 
-  # Definisikan hasil — agen mulai bekerja begitu diterima
+  # Define the outcome — agent starts working on receipt
   client.beta.sessions.events.send(
       session_id=session.id,
       events=[
@@ -373,7 +374,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
               "type": "user.define_outcome",
               "description": "Build a DCF model for Costco in .xlsx",
               "rubric": {"type": "text", "content": RUBRIC},
-              # atau: "rubric": {"type": "file", "file_id": rubric.id},
+              # or: "rubric": {"type": "file", "file_id": rubric.id},
               "max_iterations": 5,  # optional; default 3, max 20
           }
       ],
@@ -381,21 +382,21 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
   ```
 
   ```typescript TypeScript
-  // Membuat sesi
+  // Create a session
   const session = await client.beta.sessions.create({
     agent: agent.id,
     environment_id: environment.id,
     title: "Financial analysis on Costco",
   });
 
-  // Mendefinisikan hasil — agen mulai bekerja saat diterima
+  // Define the outcome — agent starts working on receipt
   await client.beta.sessions.events.send(session.id, {
     events: [
       {
         type: "user.define_outcome",
         description: "Build a DCF model for Costco in .xlsx",
         rubric: { type: "text", content: RUBRIC },
-        // atau: rubric: { type: "file", file_id: rubric.id },
+        // or: rubric: { type: "file", file_id: rubric.id },
         max_iterations: 5, // optional; default 3, max 20
       },
     ],
@@ -403,7 +404,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
   ```
 
   ```csharp C#
-  // Buat sesi
+  // Create a session
   var session = await client.Beta.Sessions.Create(new()
   {
       Agent = agent.ID,
@@ -411,7 +412,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
       Title = "Financial analysis on Costco",
   });
 
-  // Definisikan hasil — agen mulai bekerja saat diterima
+  // Define the outcome — agent starts working on receipt
   await client.Beta.Sessions.Events.Send(session.ID, new()
   {
       Events =
@@ -425,7 +426,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
                   Type = BetaManagedAgentsTextRubricParamsType.Text,
                   Content = Rubric,
               },
-              // atau: Rubric = new BetaManagedAgentsFileRubricParams
+              // or: Rubric = new BetaManagedAgentsFileRubricParams
               //     { Type = BetaManagedAgentsFileRubricParamsType.File, FileID = rubric.ID },
               MaxIterations = 5, // optional; default 3, max 20
           },
@@ -434,7 +435,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
   ```
 
   ```go Go
-  // Membuat sesi
+  // Create a session
   session, err := client.Beta.Sessions.New(ctx, anthropic.BetaSessionNewParams{
   	Agent: anthropic.BetaSessionNewParamsAgentUnion{
   		OfString: anthropic.String(agent.ID),
@@ -446,7 +447,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
   	panic(err)
   }
 
-  // Mendefinisikan outcome — agen mulai bekerja begitu diterima
+  // Define the outcome — agent starts working on receipt
   _, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   		OfUserDefineOutcome: &anthropic.BetaManagedAgentsUserDefineOutcomeEventParams{
@@ -458,7 +459,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
   					Content: rubric,
   				},
   			},
-  			// atau: OfFile: &anthropic.BetaManagedAgentsFileRubricParams{
+  			// or: OfFile: &anthropic.BetaManagedAgentsFileRubricParams{
   			//     Type: anthropic.BetaManagedAgentsFileRubricParamsTypeFile, FileID: uploaded.ID},
   			MaxIterations: anthropic.Int(5), // optional; default 3, max 20
   		},
@@ -470,7 +471,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
   ```
 
   ```java Java
-  // Membuat sesi
+  // Create a session
   var session = client.beta().sessions().create(
       SessionCreateParams.builder()
           .agent(agent.id())
@@ -478,7 +479,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
           .title("Financial analysis on Costco")
           .build());
 
-  // Mendefinisikan hasil — agen mulai bekerja begitu diterima
+  // Define the outcome — agent starts working on receipt
   client.beta().sessions().events().send(
       session.id(),
       EventSendParams.builder()
@@ -489,7 +490,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
                   .type(BetaManagedAgentsTextRubricParams.Type.TEXT)
                   .content(RUBRIC)
                   .build())
-              // atau: .rubric(BetaManagedAgentsFileRubricParams.builder()
+              // or: .rubric(BetaManagedAgentsFileRubricParams.builder()
               //     .type(BetaManagedAgentsFileRubricParams.Type.FILE).fileId(rubric.id()).build())
               .maxIterations(5) // optional; default 3, max 20
               .build())
@@ -497,14 +498,14 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
   ```
 
   ```php PHP
-  // Buat sesi
+  // Create a session
   $session = $client->beta->sessions->create(
       agent: $agent->id,
       environmentID: $environment->id,
       title: 'Financial analysis on Costco',
   );
 
-  // Definisikan hasil — agen mulai bekerja saat diterima
+  // Define the outcome — agent starts working on receipt
   $client->beta->sessions->events->send(
       $session->id,
       events: [
@@ -512,7 +513,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
               'type' => 'user.define_outcome',
               'description' => 'Build a DCF model for Costco in .xlsx',
               'rubric' => ['type' => 'text', 'content' => $rubricText],
-              // atau: 'rubric' => ['type' => 'file', 'file_id' => $rubric->id],
+              // or: 'rubric' => ['type' => 'file', 'file_id' => $rubric->id],
               'max_iterations' => 5, // optional; default 3, max 20
           ],
       ],
@@ -520,14 +521,14 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
   ```
 
   ```ruby Ruby
-  # Membuat sesi
+  # Create a session
   session = client.beta.sessions.create(
     agent: agent.id,
     environment_id: environment.id,
     title: "Financial analysis on Costco"
   )
 
-  # Mendefinisikan outcome — agen mulai bekerja begitu diterima
+  # Define the outcome — agent starts working on receipt
   client.beta.sessions.events.send_(
     session.id,
     events: [
@@ -535,7 +536,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
         type: "user.define_outcome",
         description: "Build a DCF model for Costco in .xlsx",
         rubric: {type: "text", content: RUBRIC},
-        # atau: rubric: {type: "file", file_id: rubric.id},
+        # or: rubric: {type: "file", file_id: rubric.id},
         max_iterations: 5 # optional; default 3, max 20
       }
     ]
@@ -750,36 +751,36 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah se
   ```
 
   ```bash CLI
-  # Menampilkan daftar file yang dihasilkan oleh sesi ini
-  # Pemfilteran scope_id memerlukan beta managed-agents pada permintaan files
+  # List files produced by this session
+  # scope_id filtering requires the managed-agents beta on the files request
   ant beta:files list --scope-id "$SESSION_ID" \
     --beta managed-agents-2026-04-01
 
-  # Mengunduh file
+  # Download a file
   FILE_ID=$(ant beta:files list --scope-id "$SESSION_ID" \
     --beta managed-agents-2026-04-01 \
     --transform 'data[0].id' --raw-output)
   if [[ -n $FILE_ID ]]; then
-    ant beta:files download --file-id "$FILE_ID" --output /tmp/output.txt
+    ant files download --file-id "$FILE_ID" --output /tmp/output.txt
   fi
   ```
 
   ```python Python
-  # Daftar file yang dihasilkan oleh sesi ini
-  # pemfilteran scope_id memerlukan beta managed-agents pada permintaan files
+  # List files produced by this session
+  # scope_id filtering requires the managed-agents beta on the files request
   files = client.beta.files.list(scope_id=session.id, betas=["managed-agents-2026-04-01"])
   for file in files:
       print(file.id, file.filename)
 
-  # Unduh file
+  # Download a file
   if files.data:
-      content = client.beta.files.download(files.data[0].id)
+      content = client.files.download(files.data[0].id)
       content.write_to_file("/tmp/output.txt")
   ```
 
   ```typescript TypeScript
-  // Menampilkan daftar file yang dihasilkan oleh sesi ini
-  // Pemfilteran scope_id memerlukan beta managed-agents pada permintaan files
+  // List files produced by this session
+  // scope_id filtering requires the managed-agents beta on the files request
   const files = await client.beta.files.list({
     scope_id: session.id,
     betas: ["managed-agents-2026-04-01"],
@@ -788,16 +789,16 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah se
     console.log(file.id, file.filename);
   }
 
-  // Mengunduh file
+  // Download a file
   if (files.data.length > 0) {
-    const content = await client.beta.files.download(files.data[0].id);
+    const content = await client.files.download(files.data[0].id);
     await writeFile("/tmp/output.txt", new Uint8Array(await content.arrayBuffer()));
   }
   ```
 
   ```csharp C#
-  // Daftar file yang dihasilkan oleh sesi ini
-  // (pemfilteran scope_id memerlukan beta managed-agents pada permintaan files)
+  // List files produced by this session
+  // (scope_id filtering requires the managed-agents beta on the files request)
   var files = await client.Beta.Files.List(new()
   {
       ScopeID = session.ID,
@@ -808,18 +809,18 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah se
       Console.WriteLine($"{file.ID} {file.Filename}");
   }
 
-  // Unduh file
+  // Download a file
   if (files.Items.Count > 0)
   {
-      using var download = await client.Beta.Files.Download(files.Items[0].ID);
+      using var download = await client.Files.Download(files.Items[0].ID);
       await using var output = File.Create("/tmp/output.txt");
       await (await download.ReadAsStream()).CopyToAsync(output);
   }
   ```
 
   ```go Go
-  // Menampilkan daftar file yang dihasilkan oleh sesi ini
-  // (pemfilteran scope_id memerlukan beta managed-agents pada permintaan files)
+  // List files produced by this session
+  // (scope_id filtering requires the managed-agents beta on the files request)
   files, err := client.Beta.Files.List(ctx, anthropic.BetaFileListParams{
   	ScopeID: anthropic.String(session.ID),
   	Betas:   []anthropic.AnthropicBeta{anthropic.AnthropicBetaManagedAgents2026_04_01},
@@ -831,9 +832,9 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah se
   	fmt.Println(file.ID, file.Filename)
   }
 
-  // Mengunduh file
+  // Download a file
   if len(files.Data) > 0 {
-  	resp, err := client.Beta.Files.Download(ctx, files.Data[0].ID, anthropic.BetaFileDownloadParams{})
+  	resp, err := client.Files.Download(ctx, files.Data[0].ID)
   	if err != nil {
   		panic(err)
   	}
@@ -850,8 +851,8 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah se
   ```
 
   ```java Java
-  // Menampilkan daftar file yang dihasilkan oleh sesi ini
-  // (pemfilteran scope_id memerlukan beta managed-agents pada permintaan files)
+  // List files produced by this session
+  // (scope_id filtering requires the managed-agents beta on the files request)
   var files = client.beta().files().list(
       FileListParams.builder()
           .scopeId(session.id())
@@ -861,9 +862,9 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah se
       IO.println(file.id() + " " + file.filename());
   }
 
-  // Mengunduh file
+  // Download a file
   if (!files.data().isEmpty()) {
-      try (HttpResponse response = client.beta().files().download(files.data().getFirst().id())) {
+      try (HttpResponse response = client.files().download(files.data().getFirst().id())) {
           try (InputStream body = response.body()) {
               Files.copy(body, Path.of("/tmp/output.txt"), StandardCopyOption.REPLACE_EXISTING);
           }
@@ -872,14 +873,15 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah se
   ```
 
   ```php PHP
-  // Daftar file yang dihasilkan oleh sesi ini
-  // Pemfilteran scope_id memerlukan beta managed-agents pada permintaan files
+  // The PHP SDK exposes the Files API under the beta namespace; field names can differ from other SDKs.
+  // List files produced by this session
+  // scope_id filtering requires the managed-agents beta on the files request
   $files = $client->beta->files->list(scopeID: $session->id, betas: ['managed-agents-2026-04-01']);
   foreach ($files->data as $file) {
       echo "{$file->id} {$file->filename}\n";
   }
 
-  // Unduh file
+  // Download a file
   if (count($files->data) > 0) {
       $content = $client->beta->files->download($files->data[0]->id);
       file_put_contents('/tmp/output.txt', $content);
@@ -887,14 +889,14 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah se
   ```
 
   ```ruby Ruby
-  # Menampilkan daftar file yang dihasilkan oleh sesi ini
-  # Pemfilteran scope_id memerlukan beta managed-agents pada permintaan files
+  # List files produced by this session
+  # scope_id filtering requires the managed-agents beta on the files request
   files = client.beta.files.list(scope_id: session.id, betas: ["managed-agents-2026-04-01"])
   files.data.each { |file| puts "#{file.id} #{file.filename}" }
 
-  # Mengunduh file
+  # Download a file
   if (first = files.data.first)
-    content = client.beta.files.download(first.id)
+    content = client.files.download(first.id)
     File.binwrite("/tmp/output.txt", content.read)
   end
   ```

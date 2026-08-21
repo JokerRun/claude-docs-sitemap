@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployment_runs/retrieve
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 230624cb5a2c81046a245df269204a629e3c21cdf54fe132d8586538c972feb0
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: b4b3f6a710bb8981d8e8fb5c4c2b1a30df0bcf7966cfb61adff4aea687c4a16c
 ---
 
 ---
@@ -28,7 +28,7 @@ Get Deployment Run
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -73,6 +73,8 @@ Get Deployment Run
     - `"output-300k-2026-03-24"`
 
     - `"user-profiles-2026-03-24"`
+
+    - `"user-profiles-2026-08-18"`
 
     - `"advisor-tool-2026-03-01"`
 

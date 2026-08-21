@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/citations
-fetched_at: 2026-08-20T02:28:31.280657Z
-sha256: 5ca531361a269863338524c7b30a6e266af2aad8b0be0c597b7bd5998dcbf6ae
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 1a3457a9a454f82889a907a132cc656a0bfb6f1a0e56912d32a73d7f60627229
 ---
 
 ---
@@ -746,16 +746,13 @@ Plain text documents are automatically chunked into sentences. You can provide t
   </Tab>
 
   <Tab title="Files API">
-    <Note>
-      These examples reference the uploaded file as a `document` source. They use the SDK `beta` client path and send the `anthropic-beta: files-api-2025-04-14` header, which the API accepts but does not require. See [Files API](https://platform.claude.com/docs/en/build-with-claude/files) for upload details.
-    </Note>
+    These examples reference a file uploaded through the [Files API](https://platform.claude.com/docs/en/build-with-claude/files) as a `document` source.
 
     <CodeGroup>
       ```bash cURL
       curl -X POST https://api.anthropic.com/v1/messages \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
-        -H "anthropic-beta: files-api-2025-04-14" \
         -H "content-type: application/json" \
         -d @- <<EOF
       {
@@ -784,7 +781,7 @@ Plain text documents are automatically chunked into sentences. You can provide t
       ```
 
       ```bash CLI
-      ant beta:messages create --beta files-api-2025-04-14 <<YAML
+      ant messages create <<YAML
       model: claude-opus-5
       max_tokens: 1024
       messages:
@@ -804,7 +801,7 @@ Plain text documents are automatically chunked into sentences. You can provide t
       ```
 
       ```python Python
-      cited_response = client.beta.messages.create(
+      cited_response = client.messages.create(
           model="claude-opus-5",
           max_tokens=1024,
           messages=[
@@ -822,13 +819,12 @@ Plain text documents are automatically chunked into sentences. You can provide t
                   ],
               }
           ],
-          betas=["files-api-2025-04-14"],
       )
       print(cited_response)
       ```
 
       ```typescript TypeScript
-      const citedResponse = await client.beta.messages.create({
+      const citedResponse = await client.messages.create({
         model: "claude-opus-5",
         max_tokens: 1024,
         messages: [
@@ -849,33 +845,31 @@ Plain text documents are automatically chunked into sentences. You can provide t
             ],
           },
         ],
-        betas: ["files-api-2025-04-14"],
       });
       console.log(citedResponse);
       ```
 
       ```csharp C#
-      var citedResponse = await client.Beta.Messages.Create(
+      var citedResponse = await client.Messages.Create(
           new MessageCreateParams
           {
-              Model = Messages::Model.ClaudeOpus5,
+              Model = Model.ClaudeOpus5,
               MaxTokens = 1024,
-              Betas = [AnthropicBeta.FilesApi2025_04_14],
               Messages =
               [
-                  new BetaMessageParam
+                  new MessageParam
                   {
                       Role = Role.User,
-                      Content = new List<BetaContentBlockParam>
+                      Content = new List<ContentBlockParam>
                       {
-                          new BetaRequestDocumentBlock
+                          new DocumentBlockParam
                           {
-                              Source = new BetaFileDocumentSource { FileID = fileId },
+                              Source = new FileDocumentSource { FileID = fileId },
                               Title = "Document Title",
                               Context = "Context about the document that will not be cited from",
-                              Citations = new BetaCitationsConfigParam { Enabled = true },
+                              Citations = new CitationsConfigParam { Enabled = true },
                           },
-                          new BetaTextBlockParam { Text = "Summarize this document." },
+                          new TextBlockParam { Text = "Summarize this document." },
                       }
                   }
               ]
@@ -885,24 +879,23 @@ Plain text documents are automatically chunked into sentences. You can provide t
       ```
 
       ```go Go
-      citedMsg, err := client.Beta.Messages.New(context.Background(),
-      	anthropic.BetaMessageNewParams{
+      citedMsg, err := client.Messages.New(context.Background(),
+      	anthropic.MessageNewParams{
       		Model:     anthropic.ModelClaudeOpus5,
       		MaxTokens: 1024,
-      		Betas:     []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
-      		Messages: []anthropic.BetaMessageParam{
-      			anthropic.NewBetaUserMessage(
-      				anthropic.BetaContentBlockParamUnion{
-      					OfDocument: &anthropic.BetaRequestDocumentBlockParam{
-      						Source: anthropic.BetaRequestDocumentBlockSourceUnionParam{
-      							OfFile: &anthropic.BetaFileDocumentSourceParam{FileID: fileID},
+      		Messages: []anthropic.MessageParam{
+      			anthropic.NewUserMessage(
+      				anthropic.ContentBlockParamUnion{
+      					OfDocument: &anthropic.DocumentBlockParam{
+      						Source: anthropic.DocumentBlockParamSourceUnion{
+      							OfFile: &anthropic.FileDocumentSourceParam{FileID: fileID},
       						},
       						Title:     anthropic.String("Document Title"),
       						Context:   anthropic.String("Context about the document that will not be cited from"),
-      						Citations: anthropic.BetaCitationsConfigParam{Enabled: anthropic.Bool(true)},
+      						Citations: anthropic.CitationsConfigParam{Enabled: anthropic.Bool(true)},
       					},
       				},
-      				anthropic.NewBetaTextBlock("Summarize this document."),
+      				anthropic.NewTextBlock("Summarize this document."),
       			),
       		},
       	})
@@ -915,26 +908,26 @@ Plain text documents are automatically chunked into sentences. You can provide t
       ```java Java
       MessageCreateParams citedParams = MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5)
-          .addBeta("files-api-2025-04-14")
           .maxTokens(1024)
-          .addUserMessageOfBetaContentBlockParams(List.of(
-              BetaContentBlockParam.ofDocument(BetaRequestDocumentBlock.builder()
-                  .source(BetaFileDocumentSource.builder().fileId(fileId).build())
+          .addUserMessageOfBlockParams(List.of(
+              ContentBlockParam.ofDocument(DocumentBlockParam.builder()
+                  .fileSource(fileId)
                   .title("Document Title")
                   .context("Context about the document that will not be cited from")
-                  .citations(BetaCitationsConfigParam.builder().enabled(true).build())
+                  .citations(CitationsConfigParam.builder().enabled(true).build())
                   .build()),
-              BetaContentBlockParam.ofText(BetaTextBlockParam.builder()
+              ContentBlockParam.ofText(TextBlockParam.builder()
                   .text("Summarize this document.")
                   .build())
           ))
           .build();
 
-      BetaMessage citedMessage = client.beta().messages().create(citedParams);
+      Message citedMessage = client.messages().create(citedParams);
       System.out.println(citedMessage);
       ```
 
       ```php PHP
+      // The PHP SDK supports file_id document and image sources only through $client->beta->messages with the files beta.
       $citedResponse = $client->beta->messages->create(
           maxTokens: 1024,
           messages: [
@@ -960,10 +953,9 @@ Plain text documents are automatically chunked into sentences. You can provide t
       ```
 
       ```ruby Ruby
-      cited_response = client.beta.messages.create(
+      cited_response = client.messages.create(
         model: "claude-opus-5",
         max_tokens: 1024,
-        betas: ["files-api-2025-04-14"],
         messages: [
           {
             role: "user",
@@ -1577,16 +1569,13 @@ PDF documents can be provided as base64-encoded data, a URL, or by `file_id`. PD
   </Tab>
 
   <Tab title="Files API">
-    <Note>
-      These examples reference the uploaded file as a `document` source. They use the SDK `beta` client path and send the `anthropic-beta: files-api-2025-04-14` header, which the API accepts but does not require. See [Files API](https://platform.claude.com/docs/en/build-with-claude/files) for upload details.
-    </Note>
+    These examples reference a file uploaded through the [Files API](https://platform.claude.com/docs/en/build-with-claude/files) as a `document` source.
 
     <CodeGroup>
       ```bash cURL
       curl -X POST https://api.anthropic.com/v1/messages \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
-        -H "anthropic-beta: files-api-2025-04-14" \
         -H "content-type: application/json" \
         -d @- <<EOF
       {
@@ -1615,7 +1604,7 @@ PDF documents can be provided as base64-encoded data, a URL, or by `file_id`. PD
       ```
 
       ```bash CLI
-      ant beta:messages create --beta files-api-2025-04-14 <<YAML
+      ant messages create <<YAML
       model: claude-opus-5
       max_tokens: 1024
       messages:
@@ -1635,7 +1624,7 @@ PDF documents can be provided as base64-encoded data, a URL, or by `file_id`. PD
       ```
 
       ```python Python
-      cited_response = client.beta.messages.create(
+      cited_response = client.messages.create(
           model="claude-opus-5",
           max_tokens=1024,
           messages=[
@@ -1653,13 +1642,12 @@ PDF documents can be provided as base64-encoded data, a URL, or by `file_id`. PD
                   ],
               }
           ],
-          betas=["files-api-2025-04-14"],
       )
       print(cited_response)
       ```
 
       ```typescript TypeScript
-      const citedResponse = await client.beta.messages.create({
+      const citedResponse = await client.messages.create({
         model: "claude-opus-5",
         max_tokens: 1024,
         messages: [
@@ -1680,33 +1668,31 @@ PDF documents can be provided as base64-encoded data, a URL, or by `file_id`. PD
             ],
           },
         ],
-        betas: ["files-api-2025-04-14"],
       });
       console.log(citedResponse);
       ```
 
       ```csharp C#
-      var citedResponse = await client.Beta.Messages.Create(
+      var citedResponse = await client.Messages.Create(
           new MessageCreateParams
           {
-              Model = Messages::Model.ClaudeOpus5,
+              Model = Model.ClaudeOpus5,
               MaxTokens = 1024,
-              Betas = [AnthropicBeta.FilesApi2025_04_14],
               Messages =
               [
-                  new BetaMessageParam
+                  new MessageParam
                   {
                       Role = Role.User,
-                      Content = new List<BetaContentBlockParam>
+                      Content = new List<ContentBlockParam>
                       {
-                          new BetaRequestDocumentBlock
+                          new DocumentBlockParam
                           {
-                              Source = new BetaFileDocumentSource { FileID = fileId },
+                              Source = new FileDocumentSource { FileID = fileId },
                               Title = "Document Title",
                               Context = "Context about the document that will not be cited from",
-                              Citations = new BetaCitationsConfigParam { Enabled = true },
+                              Citations = new CitationsConfigParam { Enabled = true },
                           },
-                          new BetaTextBlockParam { Text = "Summarize this document." },
+                          new TextBlockParam { Text = "Summarize this document." },
                       }
                   }
               ]
@@ -1716,24 +1702,23 @@ PDF documents can be provided as base64-encoded data, a URL, or by `file_id`. PD
       ```
 
       ```go Go
-      citedMsg, err := client.Beta.Messages.New(context.Background(),
-      	anthropic.BetaMessageNewParams{
+      citedMsg, err := client.Messages.New(context.Background(),
+      	anthropic.MessageNewParams{
       		Model:     anthropic.ModelClaudeOpus5,
       		MaxTokens: 1024,
-      		Betas:     []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
-      		Messages: []anthropic.BetaMessageParam{
-      			anthropic.NewBetaUserMessage(
-      				anthropic.BetaContentBlockParamUnion{
-      					OfDocument: &anthropic.BetaRequestDocumentBlockParam{
-      						Source: anthropic.BetaRequestDocumentBlockSourceUnionParam{
-      							OfFile: &anthropic.BetaFileDocumentSourceParam{FileID: fileID},
+      		Messages: []anthropic.MessageParam{
+      			anthropic.NewUserMessage(
+      				anthropic.ContentBlockParamUnion{
+      					OfDocument: &anthropic.DocumentBlockParam{
+      						Source: anthropic.DocumentBlockParamSourceUnion{
+      							OfFile: &anthropic.FileDocumentSourceParam{FileID: fileID},
       						},
       						Title:     anthropic.String("Document Title"),
       						Context:   anthropic.String("Context about the document that will not be cited from"),
-      						Citations: anthropic.BetaCitationsConfigParam{Enabled: anthropic.Bool(true)},
+      						Citations: anthropic.CitationsConfigParam{Enabled: anthropic.Bool(true)},
       					},
       				},
-      				anthropic.NewBetaTextBlock("Summarize this document."),
+      				anthropic.NewTextBlock("Summarize this document."),
       			),
       		},
       	})
@@ -1746,26 +1731,26 @@ PDF documents can be provided as base64-encoded data, a URL, or by `file_id`. PD
       ```java Java
       MessageCreateParams citedParams = MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5)
-          .addBeta("files-api-2025-04-14")
           .maxTokens(1024)
-          .addUserMessageOfBetaContentBlockParams(List.of(
-              BetaContentBlockParam.ofDocument(BetaRequestDocumentBlock.builder()
-                  .source(BetaFileDocumentSource.builder().fileId(fileId).build())
+          .addUserMessageOfBlockParams(List.of(
+              ContentBlockParam.ofDocument(DocumentBlockParam.builder()
+                  .fileSource(fileId)
                   .title("Document Title")
                   .context("Context about the document that will not be cited from")
-                  .citations(BetaCitationsConfigParam.builder().enabled(true).build())
+                  .citations(CitationsConfigParam.builder().enabled(true).build())
                   .build()),
-              BetaContentBlockParam.ofText(BetaTextBlockParam.builder()
+              ContentBlockParam.ofText(TextBlockParam.builder()
                   .text("Summarize this document.")
                   .build())
           ))
           .build();
 
-      BetaMessage citedMessage = client.beta().messages().create(citedParams);
+      Message citedMessage = client.messages().create(citedParams);
       System.out.println(citedMessage);
       ```
 
       ```php PHP
+      // The PHP SDK supports file_id document and image sources only through $client->beta->messages with the files beta.
       $citedResponse = $client->beta->messages->create(
           maxTokens: 1024,
           messages: [
@@ -1791,10 +1776,9 @@ PDF documents can be provided as base64-encoded data, a URL, or by `file_id`. PD
       ```
 
       ```ruby Ruby
-      cited_response = client.beta.messages.create(
+      cited_response = client.messages.create(
         model: "claude-opus-5",
         max_tokens: 1024,
-        betas: ["files-api-2025-04-14"],
         messages: [
           {
             role: "user",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/list
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 83f7ef80f4486f59aa903797afe7215e54354eb91105767256b0ab1b92fc1974
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: f751a9ed4cb1177051e03afd78edce3574cc83b45f2e5252c85c07bb04f6e09d
 ---
 
 ---
@@ -44,7 +44,7 @@ List Skill Versions
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -89,6 +89,8 @@ List Skill Versions
     - `"output-300k-2026-03-24"`
 
     - `"user-profiles-2026-03-24"`
+
+    - `"user-profiles-2026-08-18"`
 
     - `"advisor-tool-2026-03-01"`
 

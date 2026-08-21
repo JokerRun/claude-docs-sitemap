@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models/list
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 5b0b3af2e85f452e1db358849e107d35f5d8f8b0c02f220f8aadf7f0a450f9f9
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 12e3dda39ed2c5d4717093b7e74bce2b065da8094273066d4353a5e426f2c2a8
 ---
 
 ---
@@ -42,7 +42,7 @@ The Models API response can be used to determine which models are available for 
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -87,6 +87,8 @@ The Models API response can be used to determine which models are available for 
     - `"output-300k-2026-03-24"`
 
     - `"user-profiles-2026-03-24"`
+
+    - `"user-profiles-2026-08-18"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -268,7 +270,7 @@ curl https://api.anthropic.com/v1/models \
 {
   "data": [
     {
-      "id": "claude-opus-4-6",
+      "id": "claude-opus-5",
       "capabilities": {
         "batch": {
           "supported": true
@@ -330,8 +332,8 @@ curl https://api.anthropic.com/v1/models \
           }
         }
       },
-      "created_at": "2026-02-04T00:00:00Z",
-      "display_name": "Claude Opus 4.6",
+      "created_at": "2026-07-24T00:00:00Z",
+      "display_name": "Claude Opus 5",
       "max_input_tokens": 0,
       "max_tokens": 0,
       "type": "model"

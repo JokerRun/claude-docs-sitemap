@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/download
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 20a062b021f40e0b243721b5629b2a74851f8f102c5caf2e1eda2b2e8d8bde4e
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 791d15cc7ef5193e54a18ed106b2f6c2fbc2483d19937da80ce5b30a452ace49
 ---
 
 ---
@@ -30,7 +30,7 @@ Download File
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -75,6 +75,8 @@ Download File
     - `"output-300k-2026-03-24"`
 
     - `"user-profiles-2026-03-24"`
+
+    - `"user-profiles-2026-08-18"`
 
     - `"advisor-tool-2026-03-01"`
 

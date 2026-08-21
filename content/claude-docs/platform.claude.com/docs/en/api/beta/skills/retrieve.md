@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/retrieve
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 71a94e547ed286d3e47ac8832a4aa3c6e587793302528f2e113eb8ba40ba68d1
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: aa6b9c1a0d7e5703560ba5a0a00448431baa6264a8f6e16298d46b3007ecee0c
 ---
 
 ---
@@ -32,7 +32,7 @@ Get Skill
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -77,6 +77,8 @@ Get Skill
     - `"output-300k-2026-03-24"`
 
     - `"user-profiles-2026-03-24"`
+
+    - `"user-profiles-2026-08-18"`
 
     - `"advisor-tool-2026-03-01"`
 

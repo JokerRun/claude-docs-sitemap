@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-connector
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 484f12a23265ffec49cd8061ac8221f1c73b640ec6ac48048cc2a662b1b79418
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: b5b6f138a3f68be7576e799937ab4ede71ebcfbaaaf7bf235f0dc7f72f13f814
 ---
 
 ---
@@ -1139,7 +1139,7 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
       mcp_resource_to_file,
   )
 
-  # Sebagai blok konten dalam sebuah pesan
+  # As a content block in a message
   resource = await mcp_client.read_resource(uri="file:///path/to/doc.txt")
   response = await client.beta.messages.create(
       model="claude-opus-5",
@@ -1156,11 +1156,11 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   )
   print(response)
 
-  # Sebagai unggahan file
+  # As a file upload
   file_resource = await mcp_client.read_resource(
       uri="file:///path/to/data.json",
   )
-  uploaded = await client.beta.files.upload(
+  uploaded = await client.files.upload(
       file=mcp_resource_to_file(file_resource),
   )
   print(uploaded.id)
@@ -1169,7 +1169,7 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   ```typescript TypeScript
   import { mcpResourceToContent, mcpResourceToFile } from "@anthropic-ai/sdk/helpers/beta/mcp";
 
-  // Sebagai blok konten dalam sebuah pesan
+  // As a content block in a message
   const resource = await mcpClient.readResource({ uri: "file:///path/to/doc.txt" });
   const response = await anthropic.beta.messages.create({
     model: "claude-opus-5",
@@ -1186,14 +1186,14 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   });
   console.log(response);
 
-  // Sebagai unggahan file
+  // As a file upload
   const fileResource = await mcpClient.readResource({ uri: "file:///path/to/data.json" });
-  const uploaded = await anthropic.beta.files.upload({ file: mcpResourceToFile(fileResource) });
+  const uploaded = await anthropic.files.upload({ file: mcpResourceToFile(fileResource) });
   console.log(uploaded.id);
   ```
 
   ```csharp C#
-  // Sebagai blok konten dalam sebuah pesan
+  // As a content block in a message
   var resource = await mcpClient.ReadResourceAsync("file:///path/to/doc.txt");
   var response = await anthropic.Beta.Messages.Create(
       new MessageCreateParams
@@ -1218,24 +1218,24 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
 
   Console.WriteLine(response);
 
-  // Sebagai unggahan file
+  // As a file upload
   var fileResource = await mcpClient.ReadResourceAsync("file:///path/to/data.json");
   var (filename, data, mediaType) = BetaMcp.ResourceToFile(fileResource);
 
-  // Bangun bagian file secara eksplisit agar nama file dan tipe MIME resource
-  // terbawa ke dalam unggahan.
+  // Build the file part explicitly so the resource's filename and MIME type
+  // carry through to the upload.
   var file = new BinaryContent { Stream = new MemoryStream(data), FileName = filename };
   if (mediaType is not null)
   {
       file.ContentType = new(mediaType);
   }
 
-  var uploaded = await anthropic.Beta.Files.Upload(new FileUploadParams { File = file });
+  var uploaded = await anthropic.Files.Upload(new FileUploadParams { File = file });
   Console.WriteLine(uploaded.ID);
   ```
 
   ```go Go
-  // Sebagai blok konten dalam pesan
+  // As a content block in a message
   resource, err := session.ReadResource(ctx, &mcpsdk.ReadResourceParams{URI: "file:///path/to/doc.txt"})
   if err != nil {
   	log.Fatal(err)
@@ -1250,9 +1250,9 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   	MaxTokens: 1024,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(
-  			// ResourceToBlock mengembalikan union konten tool-result; konten
-  			// pesan adalah tipe union terpisah, jadi bungkus ulang varian bersama
-  			// (mcp.ToMessage melakukan hal yang sama secara internal).
+  			// ResourceToBlock returns the tool-result content union; message
+  			// content is a separate union type, so re-wrap the shared variants
+  			// (mcp.ToMessage does the same internally).
   			anthropic.BetaContentBlockParamUnion{
   				OfText:     block.OfText,
   				OfImage:    block.OfImage,
@@ -1267,7 +1267,7 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   }
   fmt.Println(response.RawJSON())
 
-  // Sebagai unggahan file
+  // As a file upload
   fileResult, err := session.ReadResource(ctx, &mcpsdk.ReadResourceParams{URI: "file:///path/to/data.json"})
   if err != nil {
   	log.Fatal(err)
@@ -1276,7 +1276,7 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   if err != nil {
   	log.Fatal(err)
   }
-  uploaded, err := client.Beta.Files.Upload(ctx, anthropic.BetaFileUploadParams{File: fileReader})
+  uploaded, err := client.Files.Upload(ctx, anthropic.FileUploadParams{File: fileReader})
   if err != nil {
   	log.Fatal(err)
   }
@@ -1284,7 +1284,7 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   ```
 
   ```java Java
-  // Sebagai blok konten dalam sebuah pesan
+  // As a content block in a message
   McpSchema.ReadResourceResult resource = mcpClient.readResource(
           new McpSchema.ReadResourceRequest("file:///path/to/doc.txt"));
 
@@ -1301,14 +1301,14 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
 
   IO.println(response);
 
-  // Sebagai unggahan file
+  // As a file upload
   McpSchema.ReadResourceResult fileResource = mcpClient.readResource(
           new McpSchema.ReadResourceRequest("file:///path/to/data.json"));
 
   McpResourceFile resourceFile = BetaMcp.mcpResourceFiles(fileResource).getFirst();
 
-  // Bangun bagian file secara eksplisit agar nama file dan tipe MIME dari resource
-  // terbawa ke unggahan.
+  // Build the file part explicitly so the resource's filename and MIME type
+  // carry through to the upload.
   MultipartField.Builder<InputStream> fileField = MultipartField.<InputStream>builder()
           .value(new ByteArrayInputStream(resourceFile.content()))
           .filename(resourceFile.filename());
@@ -1316,7 +1316,7 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
       fileField.contentType(resourceFile.mimeType());
   }
 
-  var uploaded = anthropic.beta().files().upload(FileUploadParams.builder()
+  var uploaded = anthropic.files().upload(FileUploadParams.builder()
           .file(fileField.build())
           .build());
 
@@ -1324,7 +1324,8 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   ```
 
   ```php PHP
-  // Sebagai blok konten dalam sebuah pesan
+  // The PHP SDK exposes the Files API under the beta namespace; field names can differ from other SDKs.
+  // As a content block in a message
   $resource = $mcp->readResource('file:///path/to/doc.txt');
 
   $response = $anthropic->beta->messages->create(
@@ -1343,14 +1344,14 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
 
   echo $response, "\n";
 
-  // Sebagai unggahan file
+  // As a file upload
   $fileResource = $mcp->readResource('file:///path/to/data.json');
   $file = $anthropic->beta->files->upload(file: BetaMcp::resourceToFile($fileResource));
   echo $file->id, "\n";
   ```
 
   ```ruby Ruby
-  # Sebagai blok konten dalam sebuah pesan
+  # As a content block in a message
   resource = mcp_client.read_resource(uri: "file:///path/to/doc.txt")
 
   response = anthropic.beta.messages.create(
@@ -1369,10 +1370,10 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
 
   puts response
 
-  # Sebagai unggahan file
+  # As a file upload
   file_resource = mcp_client.read_resource(uri: "file:///path/to/data.json")
   file = Anthropic::Mcp.resource_to_files(file_resource).first
-  uploaded_file = anthropic.beta.files.upload(file: file)
+  uploaded_file = anthropic.files.upload(file: file)
   puts uploaded_file.id
   ```
 </CodeGroup>

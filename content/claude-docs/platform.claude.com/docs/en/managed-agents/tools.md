@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/tools
-fetched_at: 2026-08-20T02:28:31.280657Z
-sha256: 489ca39bad3cf9490a8a1dda01dcab13fcda5c129ae28d8ed53cecadfcaa1f45
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 794cd5ab1e708eb14f4d3d6945dc731c4a9c974f805268ebf5d5f16f267fbc18
 ---
 
 ---
@@ -136,8 +136,8 @@ Config entries for `web_search` and `web_fetch` also accept domain filters and o
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
   		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
   			Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
-  			Configs: []anthropic.BetaManagedAgentsAgentToolConfigUnionParamsUnion{{
-  				OfBetaManagedAgentsWebFetchToolConfigs: &anthropic.BetaManagedAgentsWebFetchToolConfigParams{
+  			Configs: []anthropic.BetaManagedAgentsAgentToolConfigParamsUnion{{
+  				OfWebFetch: &anthropic.BetaManagedAgentsWebFetchToolConfigParams{
   					Enabled: anthropic.Bool(false),
   				},
   			}},
@@ -453,15 +453,15 @@ The following request creates an agent with this toolset and prints the `configs
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
   		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
   			Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
-  			Configs: []anthropic.BetaManagedAgentsAgentToolConfigUnionParamsUnion{
-  				{OfBetaManagedAgentsWebSearchToolConfigs: &anthropic.BetaManagedAgentsWebSearchToolConfigParams{
+  			Configs: []anthropic.BetaManagedAgentsAgentToolConfigParamsUnion{
+  				{OfWebSearch: &anthropic.BetaManagedAgentsWebSearchToolConfigParams{
   					AllowedDomains: []string{"docs.example.com", "arxiv.org"},
   					UserLocation: anthropic.BetaManagedAgentsUserLocationParam{
   						Country:  anthropic.String("US"),
   						Timezone: anthropic.String("America/Los_Angeles"),
   					},
   				}},
-  				{OfBetaManagedAgentsWebFetchToolConfigs: &anthropic.BetaManagedAgentsWebFetchToolConfigParams{
+  				{OfWebFetch: &anthropic.BetaManagedAgentsWebFetchToolConfigParams{
   					BlockedDomains:   []string{"ads.example.com"},
   					MaxContentTokens: anthropic.Int(50000),
   				}},
@@ -698,25 +698,31 @@ If your sessions run in a self-hosted sandbox, the environment worker can [serve
   )
   ```
 
-  ```bash CLI
-  ant beta:agents create <<'YAML'
-  name: Weather Agent
-  model: claude-opus-5
-  tools:
-    - type: agent_toolset_20260401
-    - type: custom
-      name: get_weather
-      description: Get current weather for a location
-      input_schema:
-        type: object
-        properties:
-          location:
-            type: string
-            description: City name
-        required:
-          - location
-  YAML
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant beta:agents create < agent.yaml
+    ```
+
+    <File filename="agent.yaml">
+      ```yaml
+      name: Weather Agent
+      model: claude-opus-5
+      tools:
+        - type: agent_toolset_20260401
+        - type: custom
+          name: get_weather
+          description: Get current weather for a location
+          input_schema:
+            type: object
+            properties:
+              location:
+                type: string
+                description: City name
+            required:
+              - location
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   agent = client.beta.agents.create(

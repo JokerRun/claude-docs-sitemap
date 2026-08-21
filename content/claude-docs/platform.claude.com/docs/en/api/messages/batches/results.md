@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/results
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: fe55eb9180f89f04cacb2822b118d9886ef7ef3a82a5c88766000bf48fd19637
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 1f0c9f7cc1414e35d1ba34dee5b5291ba858a66a0c9a046a87d7f3fe82a2d3b9
 ---
 
 ---
@@ -65,6 +65,26 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
           - `expires_at: string`
 
             The time at which the container will expire.
+
+          - `skills: array of ContainerSkill or null`
+
+            Skills loaded in the container
+
+            - `skill_id: string`
+
+              Skill ID
+
+            - `type: "anthropic" or "custom"`
+
+              Type of skill - either 'anthropic' (built-in) or 'custom' (user-defined)
+
+              - `"anthropic"`
+
+              - `"custom"`
+
+            - `version: string`
+
+              Skill version or 'latest' for most recent version
 
         - `content: array of ContentBlock`
 
@@ -251,7 +271,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               - `"redacted_thinking"`
 
-          - `ToolUseBlock object { id, caller, input, 2 more }`
+          - `ToolUseBlock object { id, caller, input, 3 more }`
 
             - `id: string`
 
@@ -292,6 +312,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
             - `type: "tool_use"`
 
               - `"tool_use"`
+
+            - `toolset_name: optional string or null`
+
+              For a toolset member tool_use, the toolset family.
 
           - `ServerToolUseBlock object { id, caller, input, 2 more }`
 

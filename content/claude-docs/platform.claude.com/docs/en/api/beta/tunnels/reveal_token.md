@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/reveal_token
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 1c0ec48477c6822c708141a2d32c67d97af82e186e8ada93c6e015706a5f4700
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: cddc4448fa20de984f31b735ee3fb48a63d920309681850d9d4f6d42e6310c15
 ---
 
 ---
@@ -30,7 +30,7 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -75,6 +75,8 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
     - `"output-300k-2026-03-24"`
 
     - `"user-profiles-2026-03-24"`
+
+    - `"user-profiles-2026-08-18"`
 
     - `"advisor-tool-2026-03-01"`
 

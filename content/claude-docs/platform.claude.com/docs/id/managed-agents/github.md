@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/github
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 9cf23e7ab1f5838669ba184bc98cbbed2f75a363834da56715237bca684df22a
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: f87a0172f36e0da0c25cee347d666144a9d571100bae039a22a2bb8e570c4929
 ---
 
 ---
@@ -54,16 +54,28 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
   )
   ```
 
-  ```bash CLI
-  AGENT_ID=$(ant beta:agents create \
-    --name "Code Reviewer" \
-    --model '{id: claude-opus-5}' \
-    --system "You are a code review assistant with access to GitHub." \
-    --mcp-server '{type: url, name: github, url: https://api.githubcopilot.com/mcp/}' \
-    --tool '{type: agent_toolset_20260401}' \
-    --tool '{type: mcp_toolset, mcp_server_name: github}' \
-    --transform id --raw-output)
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    AGENT_ID=$(ant beta:agents create --transform id --raw-output < code-reviewer.agent.yaml)
+    ```
+
+    <File filename="code-reviewer.agent.yaml">
+      ```yaml
+      name: Code Reviewer
+      model:
+        id: claude-opus-5
+      system: You are a code review assistant with access to GitHub.
+      mcp_servers:
+        - type: url
+          name: github
+          url: https://api.githubcopilot.com/mcp/
+      tools:
+        - type: agent_toolset_20260401
+        - type: mcp_toolset
+          mcp_server_name: github
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   agent = client.beta.agents.create(
@@ -386,7 +398,7 @@ Kemudian buat sesi yang memasang repositori GitHub:
 
 `resources[].authorization_token` mengautentikasi operasi clone repositori dan tidak ditampilkan kembali dalam respons API.
 
-Memasang repositori juga memuat semua skill yang disimpan di direktori `.claude/skills` pada root repositori tersebut. Skill ditemukan satu kali per sesi, dari kondisi repositori yang di-checkout saat sesi dimulai. Lihat [Memuat skill dari repositori GitHub](https://platform.claude.com/docs/id/managed-agents/skills#load-skills-from-a-github-repository).
+Memasang repositori juga memuat semua skill yang disimpan di direktori `.claude/skills` pada root repositori tersebut. Skill ditemukan satu kali per sesi, dari status repositori yang di-checkout saat sesi dimulai. Lihat [Memuat skill dari repositori GitHub](https://platform.claude.com/docs/id/managed-agents/skills#load-skills-from-a-github-repository).
 
 ## Izin token
 
@@ -592,7 +604,7 @@ Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan
   ```
 
   ```bash CLI
-  # Daftar resource pada session
+  # Daftar resource pada sesi
   ant beta:sessions:resources list --session-id "$SESSION_ID"
 
   # Rotasi token otorisasi pada resource tertentu

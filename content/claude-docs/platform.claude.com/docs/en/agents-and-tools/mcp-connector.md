@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: f1520621389a46970bd2fac6ce21c27a1b1e1b8a0b99456b591faa397155e2ed
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 1e21ae953ad5085dc9073514671723ce7d250f16461a8e36bd1f88e1fa034f7e
 ---
 
 ---
@@ -671,7 +671,7 @@ Install both the Anthropic SDK and the MCP SDK:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java-mcp:2.53.0")
+        implementation("com.anthropic:anthropic-java-mcp:2.57.0")
         ```
       </Tab>
 
@@ -680,7 +680,7 @@ Install both the Anthropic SDK and the MCP SDK:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-mcp</artifactId>
-            <version>2.53.0</version>
+            <version>2.57.0</version>
         </dependency>
         ```
       </Tab>
@@ -1160,7 +1160,7 @@ Convert MCP resources into content blocks to include in messages, or into file o
   file_resource = await mcp_client.read_resource(
       uri="file:///path/to/data.json",
   )
-  uploaded = await client.beta.files.upload(
+  uploaded = await client.files.upload(
       file=mcp_resource_to_file(file_resource),
   )
   print(uploaded.id)
@@ -1188,7 +1188,7 @@ Convert MCP resources into content blocks to include in messages, or into file o
 
   // As a file upload
   const fileResource = await mcpClient.readResource({ uri: "file:///path/to/data.json" });
-  const uploaded = await anthropic.beta.files.upload({ file: mcpResourceToFile(fileResource) });
+  const uploaded = await anthropic.files.upload({ file: mcpResourceToFile(fileResource) });
   console.log(uploaded.id);
   ```
 
@@ -1230,7 +1230,7 @@ Convert MCP resources into content blocks to include in messages, or into file o
       file.ContentType = new(mediaType);
   }
 
-  var uploaded = await anthropic.Beta.Files.Upload(new FileUploadParams { File = file });
+  var uploaded = await anthropic.Files.Upload(new FileUploadParams { File = file });
   Console.WriteLine(uploaded.ID);
   ```
 
@@ -1276,7 +1276,7 @@ Convert MCP resources into content blocks to include in messages, or into file o
   if err != nil {
   	log.Fatal(err)
   }
-  uploaded, err := client.Beta.Files.Upload(ctx, anthropic.BetaFileUploadParams{File: fileReader})
+  uploaded, err := client.Files.Upload(ctx, anthropic.FileUploadParams{File: fileReader})
   if err != nil {
   	log.Fatal(err)
   }
@@ -1316,7 +1316,7 @@ Convert MCP resources into content blocks to include in messages, or into file o
       fileField.contentType(resourceFile.mimeType());
   }
 
-  var uploaded = anthropic.beta().files().upload(FileUploadParams.builder()
+  var uploaded = anthropic.files().upload(FileUploadParams.builder()
           .file(fileField.build())
           .build());
 
@@ -1324,6 +1324,7 @@ Convert MCP resources into content blocks to include in messages, or into file o
   ```
 
   ```php PHP
+  // The PHP SDK exposes the Files API under the beta namespace; field names can differ from other SDKs.
   // As a content block in a message
   $resource = $mcp->readResource('file:///path/to/doc.txt');
 
@@ -1372,7 +1373,7 @@ Convert MCP resources into content blocks to include in messages, or into file o
   # As a file upload
   file_resource = mcp_client.read_resource(uri: "file:///path/to/data.json")
   file = Anthropic::Mcp.resource_to_files(file_resource).first
-  uploaded_file = anthropic.beta.files.upload(file: file)
+  uploaded_file = anthropic.files.upload(file: file)
   puts uploaded_file.id
   ```
 </CodeGroup>

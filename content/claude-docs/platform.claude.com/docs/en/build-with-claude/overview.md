@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/overview
-fetched_at: 2026-08-20T02:28:31.280657Z
-sha256: 8bdcd9479b45f6ae0769be3c208e6f1cc7423d3bf1e87b866eb2eeda520ccaff
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 68a4954eefd71f8d7c257d5f7ff9470460c92c35beb846df6e7dd4be4cd473d5
 ---
 
 ---
@@ -76,12 +76,13 @@ Built-in tools that Claude invokes through `tool_use`. Server-side tools are run
 
 ### Client-side tools
 
-| Feature                                                                                         | Description                                                                                                                                                        | ZDR          | Availability                                                                                      |
-| ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------ | ------------------------------------------------------------------------------------------------- |
-| [Bash](https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool)                 | Execute bash commands and scripts to interact with the system shell and perform command-line operations.                                                           | ZDR eligible | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAi />                     |
-| [Computer use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool) | Control computer interfaces by taking screenshots and issuing mouse and keyboard commands.                                                                         | ZDR eligible | <PlatformAvailability claudeApiBeta claudePlatformAwsBeta bedrockBeta vertexAiBeta azureAiBeta /> |
-| [Memory](https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool)             | Enable Claude to store and retrieve information across conversations. Build knowledge bases over time, maintain project context, and learn from past interactions. | ZDR eligible | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAi />                     |
-| [Text editor](https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool)   | Create and edit text files with a built-in text editor interface for file manipulation tasks.                                                                      | ZDR eligible | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAi />                     |
+| Feature                                                                                         | Description                                                                                                                                                        | ZDR          | Availability                                                                                  |
+| ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------ | --------------------------------------------------------------------------------------------- |
+| [Bash](https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool)                 | Execute bash commands and scripts to interact with the system shell and perform command-line operations.                                                           | ZDR eligible | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAi />                 |
+| [Browser use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool)   | Navigate, read, and interact with webpages in your own browser environment.                                                                                        | ZDR eligible | <PlatformAvailability claudeApi />                                                            |
+| [Computer use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool) | Control computer interfaces by taking screenshots and issuing mouse and keyboard commands.                                                                         | ZDR eligible | <PlatformAvailability claudeApi claudePlatformAwsBeta bedrockBeta vertexAiBeta azureAiBeta /> |
+| [Memory](https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool)             | Enable Claude to store and retrieve information across conversations. Build knowledge bases over time, maintain project context, and learn from past interactions. | ZDR eligible | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAi />                 |
+| [Text editor](https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool)   | Create and edit text files with a built-in text editor interface for file manipulation tasks.                                                                      | ZDR eligible | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAi />                 |
 
 ## Tool infrastructure
 

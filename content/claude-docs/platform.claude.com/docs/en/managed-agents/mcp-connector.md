@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/mcp-connector
-fetched_at: 2026-08-20T02:28:31.280657Z
-sha256: d44a05e80424670445065299acf7c2fe2ba27db6caacc6e10f389a41d2695a27
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: d08d7f7fa255770a41e60a1e2de9b47508a29a9a328a6122ff761c2938622eda
 ---
 
 ---
@@ -58,15 +58,27 @@ Each declared server also needs a matching `mcp_toolset` entry in the `tools` ar
   agent_id=$(jq -r '.id' <<<"$agent_response")
   ```
 
-  ```bash CLI
-  AGENT_ID=$(ant beta:agents create \
-    --name "GitHub Assistant" \
-    --model '{id: claude-opus-5}' \
-    --mcp-server '{type: url, name: github, url: "https://api.githubcopilot.com/mcp/"}' \
-    --tool '{type: agent_toolset_20260401}' \
-    --tool '{type: mcp_toolset, mcp_server_name: github}' \
-    --transform id --raw-output)
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    AGENT_ID=$(ant beta:agents create --transform id --raw-output < github-assistant.agent.yaml)
+    ```
+
+    <File filename="github-assistant.agent.yaml">
+      ```yaml
+      name: GitHub Assistant
+      model:
+        id: claude-opus-5
+      mcp_servers:
+        - type: url
+          name: github
+          url: https://api.githubcopilot.com/mcp/
+      tools:
+        - type: agent_toolset_20260401
+        - type: mcp_toolset
+          mcp_server_name: github
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   agent = client.beta.agents.create(

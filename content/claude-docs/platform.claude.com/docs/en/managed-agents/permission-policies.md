@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/permission-policies
-fetched_at: 2026-08-20T02:28:31.280657Z
-sha256: 87c2a652878388d7d398d71a95b42db0f47f7cd077dc23ed41468e0ed3846d2a
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: f14b9e2f1f3a338fa31728e74d0adc824cc318c924a2d869d88ae199124a926f
 ---
 
 ---
@@ -57,17 +57,23 @@ When creating an agent, you can apply a policy to every tool in `agent_toolset_2
     }')
   ```
 
-  ```bash CLI
-  ant beta:agents create <<'YAML'
-  name: Coding Assistant
-  model: claude-opus-5
-  tools:
-    - type: agent_toolset_20260401
-      default_config:
-        permission_policy:
-          type: always_ask
-  YAML
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant beta:agents create < agent.yaml
+    ```
+
+    <File filename="agent.yaml">
+      ```yaml
+      name: Coding Assistant
+      model: claude-opus-5
+      tools:
+        - type: agent_toolset_20260401
+          default_config:
+            permission_policy:
+              type: always_ask
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   agent = client.beta.agents.create(
@@ -241,23 +247,29 @@ This example connects a GitHub MCP server and allows its tools to run without co
     }')
   ```
 
-  ```bash CLI
-  ant beta:agents create <<'YAML'
-  name: Dev Assistant
-  model: claude-opus-5
-  mcp_servers:
-    - type: url
-      name: github
-      url: https://mcp.example.com/github
-  tools:
-    - type: agent_toolset_20260401
-    - type: mcp_toolset
-      mcp_server_name: github
-      default_config:
-        permission_policy:
-          type: always_allow
-  YAML
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant beta:agents create < agent.yaml
+    ```
+
+    <File filename="agent.yaml">
+      ```yaml
+      name: Dev Assistant
+      model: claude-opus-5
+      mcp_servers:
+        - type: url
+          name: github
+          url: https://mcp.example.com/github
+      tools:
+        - type: agent_toolset_20260401
+        - type: mcp_toolset
+          mcp_server_name: github
+          default_config:
+            permission_policy:
+              type: always_allow
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   agent = client.beta.agents.create(
@@ -568,8 +580,8 @@ Use the `configs` array to override the default for individual tools. The `name`
   				},
   			},
   		},
-  		Configs: []anthropic.BetaManagedAgentsAgentToolConfigUnionParamsUnion{{
-  			OfBetaManagedAgentsBashToolConfigs: &anthropic.BetaManagedAgentsBashToolConfigParams{
+  		Configs: []anthropic.BetaManagedAgentsAgentToolConfigParamsUnion{{
+  			OfBash: &anthropic.BetaManagedAgentsBashToolConfigParams{
   				PermissionPolicy: anthropic.BetaManagedAgentsBashToolConfigParamsPermissionPolicyUnion{
   					OfAlwaysAsk: &anthropic.BetaManagedAgentsAlwaysAskPolicyParam{
   						Type: anthropic.BetaManagedAgentsAlwaysAskPolicyTypeAlwaysAsk,

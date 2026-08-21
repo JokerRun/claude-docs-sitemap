@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/search-results
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 17708a29c2e793fa30f5d9c6cae4177032acb8cb517ec2d88196a01b2e6bfecf
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 481d74932296b2da17ba8d5e067c580fbc1ed972f20489f2ce8318bb02c28df6
 ---
 
 ---
@@ -2166,7 +2166,7 @@ When `citations.enabled` is set to `true`, Claude attaches citation references t
     Ground Claude's responses in your source documents. Citations return the exact passages that support each claim, so you can verify answers and surface sources to your users.
   </Card>
 
-  <Card title="Web search tool" icon="browser" href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool">
+  <Card title="Web search tool" icon="magnifying-glass" href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool">
     Give Claude access to current web content with cited sources, optional dynamic filtering, and domain controls.
   </Card>
 

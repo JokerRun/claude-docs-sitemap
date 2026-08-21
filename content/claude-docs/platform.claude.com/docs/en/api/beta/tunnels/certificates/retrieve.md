@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/retrieve
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 77c6724914af71a416ad7db8b10e52cc846e687ad65dc28400d4ff815a7444f5
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: d5020c5cc02c0c23c16baf33c3e1fc1e07f3ef31956a0e6e4b121e5f2bbe1ce4
 ---
 
 ---
@@ -32,7 +32,7 @@ Fetches a tunnel certificate by ID.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -77,6 +77,8 @@ Fetches a tunnel certificate by ID.
     - `"output-300k-2026-03-24"`
 
     - `"user-profiles-2026-03-24"`
+
+    - `"user-profiles-2026-08-18"`
 
     - `"advisor-tool-2026-03-01"`
 

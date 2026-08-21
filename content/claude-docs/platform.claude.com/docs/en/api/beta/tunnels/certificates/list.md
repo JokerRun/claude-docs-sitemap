@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/list
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: d9bcfd4eb2099fda320973128da409c447a498bba5535a46a5b18caa8feac84e
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 246c14919ea1e2bb46cf48f3951afafe66043fdb204bc1abbf810a090b546b44
 ---
 
 ---
@@ -44,7 +44,7 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -89,6 +89,8 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
     - `"output-300k-2026-03-24"`
 
     - `"user-profiles-2026-03-24"`
+
+    - `"user-profiles-2026-08-18"`
 
     - `"advisor-tool-2026-03-01"`
 

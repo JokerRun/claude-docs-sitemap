@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/vaults
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: f74b7dc7ebd038ecc0e272baec9116b748b9670df22b74b25f1cd98be26a7a24
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 1c652494ba286bb59083107a9d4b422ee2625f9cb244dd0e979801815ff7b9ea
 ---
 
 ---
@@ -44,13 +44,20 @@ A vault is the collection of `credentials` associated with an end user. Give it 
   echo "$vault_id"  # "vlt_01ABC..."
   ```
 
-  ```bash CLI
-  VAULT_ID=$(ant beta:vaults create \
-    --display-name "Alice" \
-    --metadata '{external_user_id: usr_abc123}' \
-    --transform id --raw-output)
-  echo "$VAULT_ID"  # "vlt_01ABC..."
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    VAULT_ID=$(ant beta:vaults create --transform id --raw-output < alice.vault.yaml)
+    echo "$VAULT_ID"  # "vlt_01ABC..."
+    ```
+
+    <File filename="alice.vault.yaml">
+      ```yaml
+      display_name: Alice
+      metadata:
+        external_user_id: usr_abc123
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   vault = client.beta.vaults.create(

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/github
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: ab3d4dafb157927459b850d76bbb78c8f30cdea0d81928d492055c8e4e5565de
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: c3c637893d4d865e14a491ee260f5713e29b0a1ed3fa007d4ed63f44a2221f44
 ---
 
 ---
@@ -54,16 +54,28 @@ First, create an agent that declares the GitHub MCP server. The agent definition
   )
   ```
 
-  ```bash CLI
-  AGENT_ID=$(ant beta:agents create \
-    --name "Code Reviewer" \
-    --model '{id: claude-opus-5}' \
-    --system "You are a code review assistant with access to GitHub." \
-    --mcp-server '{type: url, name: github, url: https://api.githubcopilot.com/mcp/}' \
-    --tool '{type: agent_toolset_20260401}' \
-    --tool '{type: mcp_toolset, mcp_server_name: github}' \
-    --transform id --raw-output)
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    AGENT_ID=$(ant beta:agents create --transform id --raw-output < code-reviewer.agent.yaml)
+    ```
+
+    <File filename="code-reviewer.agent.yaml">
+      ```yaml
+      name: Code Reviewer
+      model:
+        id: claude-opus-5
+      system: You are a code review assistant with access to GitHub.
+      mcp_servers:
+        - type: url
+          name: github
+          url: https://api.githubcopilot.com/mcp/
+      tools:
+        - type: agent_toolset_20260401
+        - type: mcp_toolset
+          mcp_server_name: github
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   agent = client.beta.agents.create(

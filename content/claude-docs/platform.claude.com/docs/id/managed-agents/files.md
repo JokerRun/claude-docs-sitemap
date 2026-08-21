@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/files
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: f0b5aca49d0173328efd79af80419023141d4caee54b514d22c6ab25e5b6d390
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 6c4421e25ae41244c6e8af1405ebd3ce6abd9df5ac563e3b77bb3ca2b39a1653
 ---
 
 ---
@@ -31,18 +31,18 @@ Pertama, unggah file menggunakan [Files API](https://platform.claude.com/docs/id
   ```
 
   ```bash CLI
-  FILE_ID=$(ant beta:files upload \
+  FILE_ID=$(ant files upload \
     --file data.csv \
     --transform id --raw-output)
   ```
 
   ```python Python
-  file = client.beta.files.upload(file=Path("data.csv"))
+  file = client.files.upload(file=Path("data.csv"))
   print(f"File ID: {file.id}")
   ```
 
   ```typescript TypeScript
-  const file = await client.beta.files.upload({
+  const file = await client.files.upload({
     file: await toFile(readFile("data.csv"), "data.csv", { type: "text/csv" }),
   });
   console.log(`File ID: ${file.id}`);
@@ -50,7 +50,7 @@ Pertama, unggah file menggunakan [Files API](https://platform.claude.com/docs/id
 
   ```csharp C#
   await using var stream = File.OpenRead(csvPath);
-  var file = await client.Beta.Files.Upload(new() { File = stream });
+  var file = await client.Files.Upload(new() { File = stream });
   Console.WriteLine($"File ID: {file.ID}");
   ```
 
@@ -61,7 +61,7 @@ Pertama, unggah file menggunakan [Files API](https://platform.claude.com/docs/id
   }
   defer csvFile.Close()
 
-  file, err := client.Beta.Files.Upload(ctx, anthropic.BetaFileUploadParams{
+  file, err := client.Files.Upload(ctx, anthropic.FileUploadParams{
   	File: csvFile,
   })
   if err != nil {
@@ -71,13 +71,14 @@ Pertama, unggah file menggunakan [Files API](https://platform.claude.com/docs/id
   ```
 
   ```java Java
-  var file = client.beta().files().upload(
+  var file = client.files().upload(
       FileUploadParams.builder().file(dataCsv).build()
   );
   IO.println("File ID: " + file.id());
   ```
 
   ```php PHP
+  // The PHP SDK exposes the Files API under the beta namespace; field names can differ from other SDKs.
   $file = $client->beta->files->upload(
       FileParam::fromResource(fopen($csvPath, 'r'), filename: 'data.csv', contentType: 'text/csv'),
   );
@@ -85,7 +86,7 @@ Pertama, unggah file menggunakan [Files API](https://platform.claude.com/docs/id
   ```
 
   ```ruby Ruby
-  file = client.beta.files.upload(file: Pathname(csv_path))
+  file = client.files.upload(file: Pathname(csv_path))
   puts "File ID: #{file.id}"
   ```
 </CodeGroup>

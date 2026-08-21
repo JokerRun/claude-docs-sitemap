@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/agent-setup
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 45cd1f551bd9521bd8bca731f838ae433d31c7eb0fc71d772a8442654d58408f
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 5bc9c7c31c762ae6c837bace9fd7f50837142dec977fd3cfd3b60365fcff9416
 ---
 
 ---
@@ -33,13 +33,13 @@ Buat agen sekali sebagai sumber daya yang dapat digunakan kembali dan referensik
 | `description` | Deskripsi tentang apa yang dilakukan agen.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | `metadata`    | Pasangan key-value arbitrer untuk pelacakan Anda sendiri.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 
-Anda juga dapat menimpa `model`, `system`, `tools`, `mcp_servers`, dan `skills` untuk satu sesi tanpa mengubah agen. Tingkat `effort` yang diatur di dalam override `model` per-sesi tidak diterapkan, dan karena override tersebut menggantikan objek `model` agen secara penuh, sesi yang dibuat dengan override `model` berjalan pada tingkat effort default model; untuk berjalan pada tingkat effort tertentu, atur `effort` pada agen dan jangan menimpa `model` untuk sesi tersebut. Lihat [Menimpa konfigurasi agen untuk sesi](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session).
+Anda juga dapat menimpa `model`, `system`, `tools`, `mcp_servers`, dan `skills` untuk satu sesi tanpa mengubah agen. Tingkat `effort` yang ditetapkan di dalam override `model` per-sesi tidak diterapkan, dan karena override menggantikan objek `model` agen secara penuh, sesi yang dibuat dengan override `model` berjalan pada tingkat effort default model; untuk berjalan pada tingkat effort tertentu, tetapkan `effort` pada agen dan jangan menimpa `model` untuk sesi tersebut. Lihat [Menimpa konfigurasi agen untuk sesi](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session).
 
 ## Buat agen
 
-Contoh berikut mendefinisikan agen coding yang menggunakan Claude Opus 5 dengan akses ke toolset agen bawaan. Toolset tersebut memungkinkan agen menulis kode, membaca file, mencari di web, dan lainnya. Lihat [referensi alat agen](https://platform.claude.com/docs/id/managed-agents/tools) untuk daftar lengkap alat yang didukung.
+Contoh berikut mendefinisikan agen coding yang menggunakan Claude Opus 5 dengan akses ke toolset agen bawaan. Toolset ini memungkinkan agen menulis kode, membaca file, mencari di web, dan lainnya. Lihat [referensi alat agen](https://platform.claude.com/docs/id/managed-agents/tools) untuk daftar lengkap alat yang didukung.
 
-Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda belum menyiapkannya, [quickstart](https://platform.claude.com/docs/id/managed-agents/quickstart#install-the-cli) membahas instalasi dan penyiapan klien.
+Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda belum menyiapkannya, [quickstart](https://platform.claude.com/docs/id/managed-agents/quickstart#install-the-cli) mencakup instalasi dan penyiapan klien.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -59,17 +59,24 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
   AGENT_VERSION=$(jq -r '.version' <<< "$agent")
   ```
 
-  ```bash CLI
-  agent=$(ant beta:agents create \
-    --name "Coding Assistant" \
-    --model '{id: claude-opus-5}' \
-    --system "You are a helpful coding agent." \
-    --tool '{type: agent_toolset_20260401}' \
-    --format json)
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    agent=$(ant beta:agents create --format json < coding-assistant.agent.yaml)
 
-  AGENT_ID=$(jq -r '.id' <<< "$agent")
-  AGENT_VERSION=$(jq -r '.version' <<< "$agent")
-  ```
+    AGENT_ID=$(jq -r '.id' <<< "$agent")
+    ```
+
+    <File filename="coding-assistant.agent.yaml">
+      ```yaml
+      name: Coding Assistant
+      model:
+        id: claude-opus-5
+      system: You are a helpful coding agent.
+      tools:
+        - type: agent_toolset_20260401
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   agent = client.beta.agents.create(
@@ -187,6 +194,7 @@ Respons mengembalikan konfigurasi Anda dan menambahkan field `id`, `type`, `vers
   ],
   "skills": [],
   "mcp_servers": [],
+  "multiagent": null,
   "metadata": {},
   "version": 1,
   "created_at": "2026-04-03T18:24:10.412Z",
@@ -202,12 +210,12 @@ Respons mengembalikan konfigurasi Anda dan menambahkan field `id`, `type`, `vers
 </Tip>
 
 <Tip>
-  Untuk mengatur tingkat effort model, berikan `model` sebagai objek, misalnya: `{"id": "claude-opus-5", "effort": "high"}`. Field `effort` menerima string tingkat (`low`, `medium`, `high`, `xhigh`, atau `max`) atau objek seperti `{"type": "high"}`. Lihat [Tingkat effort](https://platform.claude.com/docs/id/build-with-claude/effort#effort-levels) untuk mengetahui apa yang dilakukan setiap tingkat.
+  Untuk menetapkan tingkat effort model, berikan `model` sebagai objek, misalnya: `{"id": "claude-opus-5", "effort": "high"}`. Field `effort` menerima string tingkat (`low`, `medium`, `high`, `xhigh`, atau `max`) atau objek seperti `{"type": "high"}`. Lihat [Tingkat effort](https://platform.claude.com/docs/id/build-with-claude/effort#effort-levels) untuk mengetahui apa yang dilakukan setiap tingkat.
 </Tip>
 
 ### Sematkan inference geo
 
-Seperti `speed` dan `effort`, `inference_geo` diatur melalui bentuk objek dari `model`: berikan `model` sebagai objek dan atur `inference_geo` bersama dengan `id`. Field ini menerima `"us"` atau `"global"`. Ketika tidak diatur, setiap permintaan model mengikuti inference geo default workspace pada saat permintaan tersebut dilayani. Lihat [Residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency) untuk kontrol geo tingkat workspace dan harga.
+Seperti `speed` dan `effort`, `inference_geo` ditetapkan melalui bentuk objek dari `model`: berikan `model` sebagai objek dan tetapkan `inference_geo` bersama dengan `id`. Field ini menerima `"us"` atau `"global"`. Ketika tidak ditetapkan, setiap permintaan model mengikuti inference geo default workspace pada saat permintaan dilayani. Lihat [Residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency) untuk kontrol geo tingkat workspace dan harga.
 
 Contoh berikut menyematkan agen ke inferensi US dan mencetak nilai `inference_geo` yang dikembalikan dalam objek `model` pada respons:
 
@@ -227,15 +235,23 @@ Contoh berikut menyematkan agen ke inferensi US dan mencetak nilai `inference_ge
   echo "Inference geo: $(jq -r '.model.inference_geo' <<< "$agent")"
   ```
 
-  ```bash CLI
-  agent=$(ant beta:agents create \
-    --name "Geo-pinned assistant" \
-    --model '{id: claude-opus-5, inference_geo: us}' \
-    --system "You are a helpful assistant." \
-    --format json)
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    agent=$(ant beta:agents create --format json < geo-pinned.agent.yaml)
 
-  echo "Inference geo: $(jq -r '.model.inference_geo' <<< "$agent")"
-  ```
+    echo "Inference geo: $(jq -r '.model.inference_geo' <<< "$agent")"
+    ```
+
+    <File filename="geo-pinned.agent.yaml">
+      ```yaml
+      name: Geo-pinned assistant
+      model:
+        id: claude-opus-5
+        inference_geo: us
+      system: You are a helpful assistant.
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   agent = client.beta.agents.create(
@@ -332,13 +348,13 @@ Contoh berikut menyematkan agen ke inferensi US dan mencetak nilai `inference_ge
   ```
 </CodeGroup>
 
-Pin `inference_geo` divalidasi terhadap [`allowed_inference_geos`](https://platform.claude.com/docs/id/manage-claude/data-residency#workspace-level-restrictions) workspace ketika agen disimpan, ketika sesi dibuat darinya, dan pada setiap giliran yang dilayani sesi. Jika allowlist workspace menyempit sehingga pin tidak lagi diizinkan, sesi baru tidak dapat dibuat dari agen dan sesi yang sedang berjalan menolak giliran lebih lanjut; pin tidak pernah dikecualikan, karena workspace mengandalkannya untuk kepatuhan dan residensi data.
+Pin `inference_geo` divalidasi terhadap [`allowed_inference_geos`](https://platform.claude.com/docs/id/manage-claude/data-residency#workspace-level-restrictions) workspace saat agen disimpan, saat sesi dibuat darinya, dan pada setiap giliran yang dilayani sesi. Jika allowlist workspace menyempit sehingga pin tidak lagi diizinkan, sesi baru tidak dapat dibuat dari agen dan sesi yang sedang berjalan menolak giliran lebih lanjut; pin tidak pernah dikecualikan, karena workspace mengandalkannya untuk kepatuhan dan residensi data.
 
-Mengatur `inference_geo` pada model yang tidak mendukung penyematan inferensi geografis mengembalikan error 400; lihat [Ketersediaan model](https://platform.claude.com/docs/id/manage-claude/data-residency#model-availability) untuk model yang mendukungnya. Dalam konfigurasi `multiagent`, pin koordinator dan setiap anggota roster harus semuanya diatur ke nilai yang sama atau semuanya tidak diatur; lihat [Orkestrasi multiagent](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration). Untuk mengubah atau menghapus pin nanti, perbarui objek `model` agen; menyediakan `model` tanpa `inference_geo` akan menghapusnya, seperti yang dijelaskan di bawah [Semantik pembaruan](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-semantics).
+Menetapkan `inference_geo` pada model yang tidak mendukung penyematan inferensi geografis mengembalikan error 400; lihat [Ketersediaan model](https://platform.claude.com/docs/id/manage-claude/data-residency#model-availability) untuk model yang mendukungnya. Dalam konfigurasi `multiagent`, pin koordinator dan setiap anggota roster harus semuanya ditetapkan ke nilai yang sama atau semuanya tidak ditetapkan; lihat [Orkestrasi multiagent](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration). Untuk mengubah atau menghapus pin nanti, perbarui objek `model` agen; memberikan `model` tanpa `inference_geo` akan menghapusnya, seperti dijelaskan di bawah [Semantik pembaruan](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-semantics).
 
 ## Perbarui agen
 
-Memperbarui agen menghasilkan versi baru ketika konfigurasi berubah. Field `version` bersifat opsional: sediakan untuk konkurensi optimistis (ketidakcocokan mengembalikan 409), atau hilangkan untuk menerapkan pembaruan tanpa syarat (penulisan terakhir menang). Pembaruan pada agen yang diarsipkan ditolak.
+Memperbarui agen menghasilkan versi baru ketika konfigurasi berubah. Field `version` bersifat opsional: berikan untuk konkurensi optimistis (ketidakcocokan mengembalikan 409), atau hilangkan untuk menerapkan pembaruan tanpa syarat (penulisan terakhir menang). Pembaruan pada agen yang diarsipkan akan ditolak.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -358,12 +374,22 @@ Memperbarui agen menghasilkan versi baru ketika konfigurasi berubah. Field `vers
   echo "New version: $(jq -r '.version' <<< "$updated_agent")"
   ```
 
-  ```bash CLI
-  ant beta:agents update \
-    --agent-id "$AGENT_ID" \
-    --version "$AGENT_VERSION" \
-    --system "You are a helpful coding agent. Always write tests."
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant beta:agents update --agent-id "$AGENT_ID" < coding-assistant.agent.yaml
+    ```
+
+    <File filename="coding-assistant.agent.yaml">
+      ```yaml
+      name: Coding Assistant
+      model:
+        id: claude-opus-5
+      system: You are a helpful coding agent. Always write tests.
+      tools:
+        - type: agent_toolset_20260401
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   updated_agent = client.beta.agents.update(
@@ -439,7 +465,7 @@ Memperbarui agen menghasilkan versi baru ketika konfigurasi berubah. Field `vers
   ```
 </CodeGroup>
 
-Contoh sebelumnya menyediakan `version` dari respons create, sehingga pembaruan hanya diterapkan jika tidak ada yang mengubah agen sejak Anda membacanya. Untuk menerapkan pembaruan tanpa syarat, hilangkan `version` dari permintaan:
+Contoh sebelumnya memberikan `version` dari respons create, sehingga pembaruan hanya diterapkan jika tidak ada yang mengubah agen sejak Anda membacanya. Untuk menerapkan pembaruan tanpa syarat, hilangkan `version` dari permintaan:
 
 <CodeGroup defaultLanguage="cURL">
   ```bash cURL
@@ -458,21 +484,21 @@ Contoh sebelumnya menyediakan `version` dari respons create, sehingga pembaruan 
 
 ### Semantik pembaruan
 
-* **`version`** bersifat opsional dan harus minimal 1 ketika disediakan. Ketika disediakan, permintaan mengembalikan 409 jika tidak cocok dengan versi agen saat ini, bahkan ketika field yang Anda kirim sudah cocok dengan nilai yang tersimpan; baca ulang agen dan coba lagi. Ketika dihilangkan, pembaruan diterapkan tanpa syarat dan pembaruan terbaru secara diam-diam menggantikan pembaruan konkuren lainnya, tanpa error ke pemanggil mana pun. Menyediakan `version` adalah default yang direkomendasikan untuk pemanggil interaktif, dan menghilangkannya cocok untuk loop apply deklaratif, seperti job CI yang menyinkronkan definisi agen yang di-check-in, di mana loop tersebut memiliki agen.
+* **`version`** bersifat opsional dan harus minimal 1 jika diberikan. Jika diberikan, permintaan mengembalikan 409 jika tidak cocok dengan versi agen saat ini, bahkan ketika field yang Anda kirim sudah cocok dengan nilai yang tersimpan; baca ulang agen dan coba lagi. Jika dihilangkan, pembaruan diterapkan tanpa syarat dan pembaruan terbaru secara diam-diam menggantikan pembaruan konkuren mana pun, tanpa error ke pemanggil mana pun. Memberikan `version` adalah default yang direkomendasikan untuk pemanggil interaktif, dan menghilangkannya cocok untuk loop apply deklaratif, seperti job CI yang menyinkronkan definisi agen yang di-check-in, di mana loop tersebut memiliki agen.
 
 * **Field yang dihilangkan dipertahankan.** Anda hanya perlu menyertakan field yang ingin Anda ubah.
 
-* **Field skalar** (`model`, `system`, `name`, `description`) diganti dengan nilai baru. `system` dan `description` dapat dihapus dengan memberikan `null`. `model` dan `name` bersifat wajib dan tidak dapat dihapus. Di dalam objek `model` yang Anda sediakan, `effort` adalah satu-satunya pengecualian: jika `id` model tidak berubah, menghilangkan `effort` membiarkan tingkat effort yang tersimpan tidak berubah. Jika Anda mengubah `id` model, `effort` yang dihilangkan direset ke default model baru. Field `model` lainnya diganti bersama dengan objek: menyediakan `model` tanpa `inference_geo` menghapus pin inference geo agen.
+* **Field skalar** (`model`, `system`, `name`, `description`) diganti dengan nilai baru. `system` dan `description` dapat dihapus dengan memberikan `null`. `model` dan `name` bersifat wajib dan tidak dapat dihapus. Di dalam objek `model` yang Anda berikan, `effort` adalah satu-satunya pengecualian: jika `id` model tidak berubah, menghilangkan `effort` membiarkan tingkat effort yang tersimpan tidak berubah. Jika Anda mengubah `id` model, `effort` yang dihilangkan direset ke default model baru. Field `model` lainnya diganti bersama dengan objek: memberikan `model` tanpa `inference_geo` menghapus pin inference geo agen.
 
 * **Field array** (`tools`, `mcp_servers`, `skills`) sepenuhnya diganti oleh array baru. Untuk menghapus field array sepenuhnya, berikan `null` atau array kosong.
 
 * **`multiagent`** diganti secara keseluruhan, termasuk roster `agents`-nya. Berikan `null` untuk menghapusnya.
 
-* **Metadata** digabungkan pada tingkat key. Key yang Anda sediakan ditambahkan atau diperbarui. Key yang Anda hilangkan dipertahankan. Untuk menghapus key tertentu, atur nilainya ke `null`.
+* **Metadata** digabungkan pada tingkat key. Key yang Anda berikan ditambahkan atau diperbarui. Key yang Anda hilangkan dipertahankan. Untuk menghapus key tertentu, tetapkan nilainya ke `null`.
 
 * **Deteksi no-op.** Jika pembaruan tidak menghasilkan perubahan relatif terhadap versi saat ini, tidak ada versi baru yang dibuat dan versi yang ada dikembalikan.
 
-* **Roster koordinator tidak diperbarui.** Koordinator yang mereferensikan agen ini dalam roster `multiagent.agents` mereka mempertahankan versi yang disematkan ketika koordinator dibuat atau terakhir diperbarui, bahkan jika referensi tersebut menghilangkan `version`. Untuk mendelegasikan ke versi baru, [perbarui koordinator](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#configure-the-coordinator) sehingga rosternya mereferensikannya.
+* **Roster koordinator tidak diperbarui.** Koordinator yang mereferensikan agen ini dalam roster `multiagent.agents` mereka mempertahankan versi yang disematkan saat koordinator dibuat atau terakhir diperbarui, bahkan jika referensi menghilangkan `version`. Untuk mendelegasikan ke versi baru, [perbarui koordinator](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#configure-the-coordinator) sehingga rosternya mereferensikannya.
 
 ## Siklus hidup agen
 
@@ -550,7 +576,7 @@ Ambil riwayat versi lengkap untuk melacak bagaimana agen telah berubah dari wakt
 
 ### Arsipkan agen
 
-Pengarsipan membuat agen menjadi read-only dan tidak dapat dibatalkan. Sesi yang ada terus berjalan, tetapi sesi baru tidak dapat mereferensikan agen. Respons mengatur `archived_at` ke timestamp pengarsipan.
+Pengarsipan membuat agen menjadi read-only dan tidak dapat dibatalkan. Sesi yang ada terus berjalan, tetapi sesi baru tidak dapat mereferensikan agen. Respons menetapkan `archived_at` ke timestamp pengarsipan.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL

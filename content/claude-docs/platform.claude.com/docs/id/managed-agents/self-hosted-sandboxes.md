@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 8bed35b2cbb2b09e4027eb086a597ed6b7a039daca6c38c3ef8192623706478e
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 6cff243e784cf87da209de4d93c878586d5a9cb57304ec7baa2ad934972f2de9
 ---
 
 ---
@@ -85,11 +85,19 @@ Anda memerlukan:
         }'
       ```
 
-      ```bash CLI
-      ant beta:environments create \
-        --name self-hosted \
-        --config '{"type": "self_hosted"}'
-      ```
+      <MultiFileExample language="cli" label="CLI">
+        ```bash CLI
+        ant beta:environments create < environment.yaml
+        ```
+
+        <File filename="environment.yaml">
+          ```yaml
+          name: self-hosted
+          config:
+            type: self_hosted
+          ```
+        </File>
+      </MultiFileExample>
 
       ```python Python
       client = anthropic.Anthropic()

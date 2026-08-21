@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/update
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 7c1dff220e566141b9dbba950f08a399b732c49f5dd1882c30b88625d8633a13
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: c7268118472991227c9e6bdfe9d17dd2cd771f4a595d86720c66472aae712a05
 ---
 
 ---
@@ -32,7 +32,7 @@ Update work item metadata with merge semantics.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -77,6 +77,8 @@ Update work item metadata with merge semantics.
     - `"output-300k-2026-03-24"`
 
     - `"user-profiles-2026-03-24"`
+
+    - `"user-profiles-2026-08-18"`
 
     - `"advisor-tool-2026-03-01"`
 

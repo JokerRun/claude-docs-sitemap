@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/list
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 750f6ac686c23f520253f65c3dbd84347a4746aa38aabc395e26a7d941c4883b
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 37508e274cb1c9d342e6d5f1b9086dbb58a18efef6341679c4ef9002e5287616
 ---
 
 ---
@@ -38,7 +38,7 @@ List Session Resources
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -83,6 +83,8 @@ List Session Resources
     - `"output-300k-2026-03-24"`
 
     - `"user-profiles-2026-03-24"`
+
+    - `"user-profiles-2026-08-18"`
 
     - `"advisor-tool-2026-03-01"`
 

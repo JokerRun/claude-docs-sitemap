@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop-scheduled-tasks
-fetched_at: 2026-08-08T02:41:37.599145Z
-sha256: 52f27066a1be5ad79b076b2dcb9de78de2676f8b57b381252becf9acb334fb1d
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: a3818d29e5f008491e8b8db09cc127e1bd0bf987fb17ceab9582007597c571a4
 ---
 
 > ## Documentation Index
@@ -43,7 +43,7 @@ Claude Code offers three ways to schedule recurring or one-off work:
 
 ## Create a scheduled task
 
-Click **Routines** in the sidebar, then click **New routine** and choose **Local**. Configure these fields:
+In the [**Code** tab](/docs/en/desktop), click **Routines** in the sidebar, then click **New routine** and choose **Local**. Configure these fields:
 
 | Field        | Description                                                                                                                                                                                                                                                                    |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -92,7 +92,7 @@ Connector tools [your organization set to `ask`](/docs/en/mcp#organization-contr
 
 ## Manage scheduled tasks
 
-Click a task in the **Routines** list to open its detail page. From here you can:
+In the **Code** tab, click a task in the **Routines** list to open its detail page. From here you can:
 
 * **Run now**: start the task immediately without waiting for the next scheduled time
 * **Status**: toggle between Active and Paused to pause or resume scheduled runs without deleting the task

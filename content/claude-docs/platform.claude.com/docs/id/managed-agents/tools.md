@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 2dea0b009cbef49185794bd39fbd8061185678c692da916624c6d6d0f1560ba3
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 4ec5e97da1eb0ce0d7d7e6c043a7d75a3029b3c1e39f05cb4ac849a76fb0b692
 ---
 
 ---
@@ -13,7 +13,7 @@ description: Konfigurasikan alat yang tersedia untuk agen Anda.
 
 Claude Managed Agents menyediakan serangkaian alat bawaan yang dapat digunakan Claude secara otonom dalam sebuah [sesi](https://platform.claude.com/docs/id/managed-agents/sessions). Anda mengontrol alat mana yang tersedia dengan menentukannya dalam konfigurasi agen.
 
-Claude Managed Agents juga mendukung alat kustom yang didefinisikan pengguna. Aplikasi Anda mengeksekusi alat-alat ini secara terpisah dan mengembalikan hasilnya ke Claude, yang menggunakannya untuk melanjutkan tugas. Untuk memberikan alat dari server MCP kepada agen, gunakan [konektor MCP](https://platform.claude.com/docs/id/managed-agents/mcp-connector) sebagai gantinya.
+Claude Managed Agents juga mendukung alat kustom yang ditentukan pengguna. Aplikasi Anda mengeksekusi alat-alat ini secara terpisah dan mengembalikan hasilnya ke Claude, yang kemudian menggunakannya untuk melanjutkan tugas. Untuk memberikan agen alat dari server MCP, gunakan [konektor MCP](https://platform.claude.com/docs/id/managed-agents/mcp-connector) sebagai gantinya.
 
 <Note>
   Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
@@ -21,24 +21,26 @@ Claude Managed Agents juga mendukung alat kustom yang didefinisikan pengguna. Ap
 
 ## Alat yang tersedia
 
-Toolset agen mencakup alat-alat berikut. Semuanya diaktifkan secara default ketika Anda menyertakan toolset dalam konfigurasi agen Anda. Gunakan nilai-nilai di kolom Nama untuk mereferensikan alat dalam array `configs`.
+Toolset agen mencakup alat-alat berikut. Semuanya diaktifkan secara default ketika Anda menyertakan toolset dalam konfigurasi agen Anda. Setiap entri dalam array `configs` diidentifikasi oleh `name`-nya, menggunakan nilai-nilai di kolom Nama, dan menerima field `type` opsional dengan nilai yang sama. Entri `web_search` dan `web_fetch` menerima pengaturan tambahan; lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
 
-| Alat       | Nama         | Deskripsi                                             |
-| ---------- | ------------ | ----------------------------------------------------- |
-| Bash       | `bash`       | Mengeksekusi perintah bash dalam sesi shell           |
-| Read       | `read`       | Membaca file dari filesystem sandbox                  |
-| Write      | `write`      | Menulis file ke filesystem sandbox                    |
-| Edit       | `edit`       | Melakukan penggantian string dalam sebuah file        |
-| Glob       | `glob`       | Pencocokan pola file yang cepat menggunakan pola glob |
-| Grep       | `grep`       | Pencarian teks menggunakan pola regex                 |
-| Web fetch  | `web_fetch`  | Mengambil konten dari sebuah URL                      |
-| Web search | `web_search` | Mencari informasi di web                              |
+| Alat       | Nama         | Deskripsi                                        |
+| ---------- | ------------ | ------------------------------------------------ |
+| Bash       | `bash`       | Mengeksekusi perintah bash dalam sesi shell      |
+| Read       | `read`       | Membaca file dari filesystem sandbox             |
+| Write      | `write`      | Menulis file ke filesystem sandbox               |
+| Edit       | `edit`       | Melakukan penggantian string dalam file          |
+| Glob       | `glob`       | Pencocokan pola file cepat menggunakan pola glob |
+| Grep       | `grep`       | Pencarian teks menggunakan pola regex            |
+| Web fetch  | `web_fetch`  | Mengambil konten dari URL                        |
+| Web search | `web_search` | Mencari informasi di web                         |
 
-Ketika output alat melebihi 100.000 karakter (sekitar 25.000 token), output tersebut secara otomatis ditulis ke sebuah file di [sandbox](https://platform.claude.com/docs/id/managed-agents/environments). Model menerima pratinjau yang dipotong beserta jalur file dan dapat membaca konten lengkapnya dari sana.
+Ketika output alat melebihi 100.000 karakter (sekitar 25.000 token), output tersebut secara otomatis ditulis ke file di [sandbox](https://platform.claude.com/docs/id/managed-agents/environments). Model menerima pratinjau yang dipotong beserta path file dan dapat membaca konten lengkapnya dari sana.
 
 ## Mengonfigurasi toolset
 
-Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Gunakan array `configs` untuk menonaktifkan alat tertentu atau menimpa pengaturannya. Setiap entri config juga dapat menetapkan `permission_policy` yang mengontrol apakah panggilan alat tersebut disetujui secara otomatis atau memerlukan konfirmasi. Lihat [Kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) untuk jenis kebijakan yang tersedia.
+Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Gunakan array `configs` untuk menonaktifkan alat tertentu atau menimpa pengaturannya. Setiap entri config juga dapat menetapkan `permission_policy` yang mengontrol apakah panggilan alat disetujui secara otomatis atau memerlukan konfirmasi. Lihat [Kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) untuk jenis kebijakan yang tersedia.
+
+Entri config untuk `web_search` dan `web_fetch` juga menerima filter domain dan pengaturan web lainnya; lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -118,7 +120,7 @@ Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Guna
               Type = "agent_toolset_20260401",
               Configs =
               [
-                  new() { Name = "web_fetch", Enabled = false },
+                  new BetaManagedAgentsWebFetchToolConfigParams { Enabled = false },
               ],
           },
       ],
@@ -134,9 +136,10 @@ Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Guna
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
   		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
   			Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
-  			Configs: []anthropic.BetaManagedAgentsAgentToolConfigParams{{
-  				Name:    anthropic.BetaManagedAgentsAgentToolConfigParamsNameWebFetch,
-  				Enabled: anthropic.Bool(false),
+  			Configs: []anthropic.BetaManagedAgentsAgentToolConfigUnionParamsUnion{{
+  				OfBetaManagedAgentsWebFetchToolConfigs: &anthropic.BetaManagedAgentsWebFetchToolConfigParams{
+  					Enabled: anthropic.Bool(false),
+  				},
   			}},
   		},
   	}},
@@ -155,8 +158,7 @@ Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Guna
       .model(BetaManagedAgentsModel.CLAUDE_OPUS_5)
       .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
           .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
-          .addConfig(BetaManagedAgentsAgentToolConfigParams.builder()
-              .name(BetaManagedAgentsAgentToolConfigParams.Name.WEB_FETCH)
+          .addConfig(BetaManagedAgentsWebFetchToolConfigParams.builder()
               .enabled(false)
               .build())
           .build())
@@ -164,8 +166,8 @@ Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Guna
   ```
 
   ```php PHP
-  use Anthropic\Beta\Agents\BetaManagedAgentsAgentToolConfigParams;
   use Anthropic\Beta\Agents\BetaManagedAgentsAgentToolset20260401Params;
+  use Anthropic\Beta\Agents\BetaManagedAgentsWebFetchToolConfigParams;
 
   $agent = $client->beta->agents->create(
       name: 'Coding Assistant',
@@ -174,7 +176,7 @@ Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Guna
           BetaManagedAgentsAgentToolset20260401Params::with(
               type: 'agent_toolset_20260401',
               configs: [
-                  BetaManagedAgentsAgentToolConfigParams::with(name: 'web_fetch', enabled: false),
+                  BetaManagedAgentsWebFetchToolConfigParams::with(enabled: false),
               ],
           ),
       ],
@@ -199,7 +201,7 @@ Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Guna
 
 ### Menonaktifkan alat tertentu
 
-Untuk menonaktifkan sebuah alat, atur `enabled: false` pada entri config-nya di objek toolset dalam array `tools` agen Anda:
+Untuk menonaktifkan alat, atur `enabled: false` di entri config-nya dalam objek toolset pada array `tools` agen Anda:
 
 ```json
 {
@@ -213,7 +215,7 @@ Untuk menonaktifkan sebuah alat, atur `enabled: false` pada entri config-nya di 
 
 ### Mengaktifkan hanya alat tertentu
 
-Objek `default_config` menetapkan baseline untuk setiap alat dalam set tersebut, dan entri `configs` per-alat akan menimpanya. Untuk memulai dengan semuanya nonaktif dan hanya mengaktifkan yang Anda butuhkan, atur `default_config.enabled` ke `false`:
+Objek `default_config` menetapkan baseline untuk setiap alat dalam set, dan entri `configs` per-alat menimpanya. Untuk memulai dengan semuanya nonaktif dan hanya mengaktifkan yang Anda butuhkan, atur `default_config.enabled` ke `false`:
 
 ```json
 {
@@ -227,13 +229,441 @@ Objek `default_config` menetapkan baseline untuk setiap alat dalam set tersebut,
 }
 ```
 
+### Membatasi domain web search dan web fetch
+
+Untuk mengontrol situs mana yang dapat dijangkau oleh alat web agen, atur `allowed_domains` (alat hanya dapat menjangkau host ini) atau `blocked_domains` (alat tidak pernah dapat menjangkau host ini) pada entri `web_search` dan `web_fetch` dalam array `configs` toolset. Setiap alat membawa daftarnya sendiri, sehingga `web_search` dan `web_fetch` dapat memiliki pembatasan yang berbeda. Domain yang terdaftar mencakup host tersebut dan semua subdomainnya. Saat runtime, panggilan `web_fetch` untuk URL yang tidak diizinkan oleh daftarnya mengembalikan hasil error ke agen (`is_error: true` pada event `agent.tool_result`, dengan konten yang menyebutkan kode error `url_not_allowed`), dan `web_search` menghilangkan hasil yang tidak diizinkan oleh daftarnya.
+
+Toolset berikut membatasi `web_search` ke dua situs dan melokalkan hasilnya, serta memblokir satu host untuk `web_fetch` sambil membatasi berapa banyak konten yang diambil masuk ke konteks:
+
+```json
+{
+  "type": "agent_toolset_20260401",
+  "configs": [
+    {
+      "type": "web_search",
+      "name": "web_search",
+      "allowed_domains": ["docs.example.com", "arxiv.org"],
+      "user_location": {
+        "type": "approximate",
+        "country": "US",
+        "timezone": "America/Los_Angeles"
+      }
+    },
+    {
+      "type": "web_fetch",
+      "name": "web_fetch",
+      "blocked_domains": ["ads.example.com"],
+      "max_content_tokens": 50000
+    }
+  ]
+}
+```
+
+<Note>
+  Dalam SDK Python, TypeScript, Go, Java, C#, Ruby, dan PHP, setiap entri `configs` diketik per alat: sebuah union dengan satu anggota per alat bawaan, dibedakan oleh `type`. `type` bersifat opsional ketika Anda membuat entri (server menyimpulkannya dari `name`) dan selalu ada pada respons. Pengetikan ini tidak mengubah JSON yang diserialisasi oleh entri, sehingga permintaan yang entrinya hanya menetapkan `name`, `enabled`, dan `permission_policy` tetap valid dengan atau tanpa `type`. Dalam SDK di mana Anda membuat entri dari nilai bertipe alih-alih dictionary atau hash biasa (Go, Java, C#, dan PHP), tipe elemen dari `configs` adalah union itu sendiri: bangun setiap entri dari tipe anggota per-alatnya.
+</Note>
+
+Permintaan berikut membuat agen dengan toolset ini dan mencetak array `configs` dari respons:
+
+<CodeGroup defaultLanguage="CLI">
+  ```bash cURL
+  agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "content-type: application/json" \
+    -d @- <<'EOF'
+  {
+    "name": "Research Agent",
+    "model": "claude-opus-5",
+    "tools": [
+      {
+        "type": "agent_toolset_20260401",
+        "configs": [
+          {
+            "type": "web_search",
+            "name": "web_search",
+            "allowed_domains": ["docs.example.com", "arxiv.org"],
+            "user_location": {
+              "type": "approximate",
+              "country": "US",
+              "timezone": "America/Los_Angeles"
+            }
+          },
+          {
+            "type": "web_fetch",
+            "name": "web_fetch",
+            "blocked_domains": ["ads.example.com"],
+            "max_content_tokens": 50000
+          }
+        ]
+      }
+    ]
+  }
+  EOF
+  )
+  jq '.tools[0].configs' <<< "$agent"
+  ```
+
+  ```bash CLI
+  ant beta:agents create --transform tools.0.configs <<'YAML'
+  name: Research Agent
+  model: claude-opus-5
+  tools:
+    - type: agent_toolset_20260401
+      configs:
+        - type: web_search
+          name: web_search
+          allowed_domains: [docs.example.com, arxiv.org]
+          user_location:
+            type: approximate
+            country: US
+            timezone: America/Los_Angeles
+        - type: web_fetch
+          name: web_fetch
+          blocked_domains: [ads.example.com]
+          max_content_tokens: 50000
+  YAML
+  ```
+
+  ```python Python
+  client = Anthropic()
+
+  agent = client.beta.agents.create(
+      name="Research Agent",
+      model="claude-opus-5",
+      tools=[
+          {
+              "type": "agent_toolset_20260401",
+              "configs": [
+                  {
+                      "name": "web_search",
+                      "allowed_domains": ["docs.example.com", "arxiv.org"],
+                      "user_location": {
+                          "type": "approximate",
+                          "country": "US",
+                          "timezone": "America/Los_Angeles",
+                      },
+                  },
+                  {
+                      "name": "web_fetch",
+                      "blocked_domains": ["ads.example.com"],
+                      "max_content_tokens": 50_000,
+                  },
+              ],
+          }
+      ],
+  )
+
+  for tool in agent.tools:
+      if tool.type == "agent_toolset_20260401":
+          print(json.dumps([config.to_dict() for config in tool.configs], indent=2))
+  ```
+
+  ```typescript TypeScript
+  const client = new Anthropic();
+
+  const agent = await client.beta.agents.create({
+    name: "Research Agent",
+    model: "claude-opus-5",
+    tools: [
+      {
+        type: "agent_toolset_20260401",
+        configs: [
+          {
+            name: "web_search",
+            allowed_domains: ["docs.example.com", "arxiv.org"],
+            user_location: {
+              type: "approximate",
+              country: "US",
+              timezone: "America/Los_Angeles"
+            }
+          },
+          {
+            name: "web_fetch",
+            blocked_domains: ["ads.example.com"],
+            max_content_tokens: 50_000
+          }
+        ]
+      }
+    ]
+  });
+
+  for (const tool of agent.tools) {
+    if (tool.type === "agent_toolset_20260401") {
+      console.log(JSON.stringify(tool.configs, null, 2));
+    }
+  }
+  ```
+
+  ```csharp C#
+  using Anthropic.Models.Beta.Agents;
+
+  AnthropicClient client = new();
+
+  var agent = await client.Beta.Agents.Create(new()
+  {
+      Name = "Research Agent",
+      Model = BetaManagedAgentsModel.ClaudeOpus5,
+      Tools =
+      [
+          new BetaManagedAgentsAgentToolset20260401Params
+          {
+              Type = BetaManagedAgentsAgentToolset20260401ParamsType.AgentToolset20260401,
+              Configs =
+              [
+                  new BetaManagedAgentsWebSearchToolConfigParams
+                  {
+                      AllowedDomains = ["docs.example.com", "arxiv.org"],
+                      UserLocation = new()
+                      {
+                          Country = "US",
+                          Timezone = "America/Los_Angeles",
+                      },
+                  },
+                  new BetaManagedAgentsWebFetchToolConfigParams
+                  {
+                      BlockedDomains = ["ads.example.com"],
+                      MaxContentTokens = 50_000,
+                  },
+              ],
+          },
+      ],
+  });
+
+  JsonSerializerOptions jsonOptions = new() { WriteIndented = true };
+  foreach (var tool in agent.Tools)
+  {
+      if (tool.TryPickBetaManagedAgentsAgentToolset20260401(out var toolset))
+      {
+          Console.WriteLine(JsonSerializer.Serialize(toolset.Configs, jsonOptions));
+      }
+  }
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+  ctx := context.Background()
+
+  agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
+  	Name: "Research Agent",
+  	Model: anthropic.BetaManagedAgentsModelConfigParams{
+  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5,
+  	},
+  	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
+  		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
+  			Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
+  			Configs: []anthropic.BetaManagedAgentsAgentToolConfigUnionParamsUnion{
+  				{OfBetaManagedAgentsWebSearchToolConfigs: &anthropic.BetaManagedAgentsWebSearchToolConfigParams{
+  					AllowedDomains: []string{"docs.example.com", "arxiv.org"},
+  					UserLocation: anthropic.BetaManagedAgentsUserLocationParam{
+  						Country:  anthropic.String("US"),
+  						Timezone: anthropic.String("America/Los_Angeles"),
+  					},
+  				}},
+  				{OfBetaManagedAgentsWebFetchToolConfigs: &anthropic.BetaManagedAgentsWebFetchToolConfigParams{
+  					BlockedDomains:   []string{"ads.example.com"},
+  					MaxContentTokens: anthropic.Int(50000),
+  				}},
+  			},
+  		},
+  	}},
+  })
+  if err != nil {
+  	panic(err)
+  }
+
+  for _, tool := range agent.Tools {
+  	switch toolset := tool.AsAny().(type) {
+  	case anthropic.BetaManagedAgentsAgentToolset20260401:
+  		configs := make([]json.RawMessage, len(toolset.Configs))
+  		for i, config := range toolset.Configs {
+  			configs[i] = json.RawMessage(config.RawJSON())
+  		}
+  		output, err := json.MarshalIndent(configs, "", "  ")
+  		if err != nil {
+  			panic(err)
+  		}
+  		fmt.Println(string(output))
+  	}
+  }
+  ```
+
+  ```java Java
+  import com.anthropic.models.beta.agents.AgentCreateParams;
+  import com.anthropic.models.beta.agents.BetaManagedAgentsAgentToolset20260401Params;
+  import com.anthropic.models.beta.agents.BetaManagedAgentsModel;
+  import com.anthropic.models.beta.agents.BetaManagedAgentsUserLocation;
+  import com.anthropic.models.beta.agents.BetaManagedAgentsWebFetchToolConfigParams;
+  import com.anthropic.models.beta.agents.BetaManagedAgentsWebSearchToolConfigParams;
+
+  void main() {
+      var client = AnthropicOkHttpClient.fromEnv();
+
+      var agent = client.beta().agents().create(AgentCreateParams.builder()
+          .name("Research Agent")
+          .model(BetaManagedAgentsModel.CLAUDE_OPUS_5)
+          .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
+              .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
+              .addConfig(BetaManagedAgentsWebSearchToolConfigParams.builder()
+                  .allowedDomains(List.of("docs.example.com", "arxiv.org"))
+                  .userLocation(BetaManagedAgentsUserLocation.builder()
+                      .country("US")
+                      .timezone("America/Los_Angeles")
+                      .build())
+                  .build())
+              .addConfig(BetaManagedAgentsWebFetchToolConfigParams.builder()
+                  .blockedDomains(List.of("ads.example.com"))
+                  .maxContentTokens(50_000)
+                  .build())
+              .build())
+          .build());
+
+      for (var tool : agent.tools()) {
+          if (tool.isAgentToolset20260401()) {
+              var configs = tool.asAgentToolset20260401().configs();
+              IO.println(ObjectMappers.jsonMapper().valueToTree(configs));
+          }
+      }
+  }
+  ```
+
+  ```php PHP
+  use Anthropic\Beta\Agents\BetaManagedAgentsAgentToolset20260401;
+  use Anthropic\Beta\Agents\BetaManagedAgentsAgentToolset20260401Params;
+  use Anthropic\Beta\Agents\BetaManagedAgentsUserLocation;
+  use Anthropic\Beta\Agents\BetaManagedAgentsWebFetchToolConfigParams;
+  use Anthropic\Beta\Agents\BetaManagedAgentsWebSearchToolConfigParams;
+  // ...
+
+  $client = new Client();
+
+  $agent = $client->beta->agents->create(
+      name: 'Research Agent',
+      model: 'claude-opus-5',
+      tools: [
+          BetaManagedAgentsAgentToolset20260401Params::with(
+              type: 'agent_toolset_20260401',
+              configs: [
+                  BetaManagedAgentsWebSearchToolConfigParams::with(
+                      allowedDomains: ['docs.example.com', 'arxiv.org'],
+                      userLocation: BetaManagedAgentsUserLocation::with(
+                          country: 'US',
+                          timezone: 'America/Los_Angeles',
+                      ),
+                  ),
+                  BetaManagedAgentsWebFetchToolConfigParams::with(
+                      blockedDomains: ['ads.example.com'],
+                      maxContentTokens: 50_000,
+                  ),
+              ],
+          ),
+      ],
+  );
+
+  foreach ($agent->tools as $tool) {
+      if ($tool instanceof BetaManagedAgentsAgentToolset20260401) {
+          echo json_encode($tool->configs, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES), PHP_EOL;
+      }
+  }
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+
+  agent = client.beta.agents.create(
+    name: "Research Agent",
+    model: "claude-opus-5",
+    tools: [
+      {
+        type: :agent_toolset_20260401,
+        configs: [
+          {
+            name: :web_search,
+            allowed_domains: ["docs.example.com", "arxiv.org"],
+            user_location: {type: :approximate, country: "US", timezone: "America/Los_Angeles"}
+          },
+          {
+            name: :web_fetch,
+            blocked_domains: ["ads.example.com"],
+            max_content_tokens: 50_000
+          }
+        ]
+      }
+    ]
+  )
+
+  case agent.tools.first
+  in Anthropic::Models::Beta::BetaManagedAgentsAgentToolset20260401 => toolset
+    puts JSON.pretty_generate(toolset.configs.map(&:to_h))
+  end
+  ```
+</CodeGroup>
+
+Di Claude Console, atur domain yang diizinkan atau diblokir dari baris `web_search` dan `web_fetch` pada kartu **Built-in tools** di formulir agen; atur `max_content_tokens` dan `user_location` di tampilan **Raw** dari konfigurasi agen.
+
+Selain `enabled` dan `permission_policy`, entri alat web menerima pengaturan berikut:
+
+| Pengaturan           | Berlaku untuk             | Deskripsi                                                                                                                                                                                                                           |
+| -------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `allowed_domains`    | `web_search`, `web_fetch` | Satu-satunya host yang dapat dijangkau alat. Tidak dapat digabungkan dengan `blocked_domains` pada entri yang sama.                                                                                                                 |
+| `blocked_domains`    | `web_search`, `web_fetch` | Host yang tidak dapat dijangkau alat.                                                                                                                                                                                               |
+| `max_content_tokens` | `web_fetch`               | Membatasi jumlah konten halaman yang diambil yang disertakan dalam konteks. Harus berupa bilangan bulat positif. Lihat [batas konten](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#content-limits). |
+| `user_location`      | `web_search`              | Melokalkan hasil pencarian. Sebuah objek dengan field yang sama seperti parameter [`user_location`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#localization) pada Messages API.                  |
+
+<Note>
+  Pengaturan [`networking`](https://platform.claude.com/docs/id/managed-agents/environments#networking) environment mengontrol lalu lintas keluar sandbox itu sendiri. Pengaturan tersebut tidak memengaruhi `web_search` atau `web_fetch`, yang berjalan di server Anthropic terlepas dari apakah environment adalah sandbox cloud atau self-hosted. Daftar `allowed_domains` dan `blocked_domains` per-alat adalah cara untuk membatasi apa yang dapat dijangkau alat-alat ini.
+</Note>
+
+<Note>
+  Pengaturan web search dan web fetch tingkat organisasi di Claude Console berlaku untuk Messages API dan tidak berlaku untuk sesi Managed Agents. Untuk membatasi alat web agen, konfigurasikan `allowed_domains` atau `blocked_domains` pada toolset-nya sebagai gantinya.
+</Note>
+
+#### Aturan daftar domain
+
+* Atur `allowed_domains` atau `blocked_domains` pada sebuah entri, bukan keduanya. Entri yang menetapkan keduanya akan ditolak.
+* Setiap daftar berisi 1 hingga 64 domain, masing-masing 1 hingga 255 karakter. Daftar kosong ditolak: untuk tidak menerapkan pembatasan, hilangkan field tersebut atau kirim `null`.
+* Setiap domain adalah nama domain yang dapat didaftarkan, atau subdomain darinya, ditulis sebagai hostname biasa: huruf ASCII, angka, tanda hubung, garis bawah, dan titik, tanpa skema, port, kredensial, wildcard, atau spasi, tanpa label yang diawali atau diakhiri dengan tanda hubung, dan tanpa path selain sufiks path `web_search` opsional yang dijelaskan kemudian dalam daftar ini. Gunakan `example.com`, bukan `https://example.com`, `example.com:443`, atau `*.example.com`. Hostname dibandingkan tanpa memperhatikan huruf besar/kecil, dan satu `/` di akhir diabaikan.
+* Domain yang terdaftar cocok dengan host tersebut dan subdomainnya: `example.com` mencakup `docs.example.com`, tetapi `docs.example.com` tidak mencakup `example.com` atau `api.example.com`. Awalan `www.` adalah subdomain seperti yang lainnya, sehingga `www.example.com` tidak mencakup `example.com`; daftarkan domain dasarnya untuk mencakup keduanya.
+* Alamat IP tidak diterima dalam bentuk apa pun, baik IPv4, IPv6, dalam kurung siku, maupun singkatan numerik seperti `127.1`. Daftarkan nama domain situs sebagai gantinya.
+* Top-level domain atau sufiks registri polos seperti `com`, `co.uk`, atau `gov.uk` ditolak, begitu pula nama label tunggal seperti `intranet`. Daftarkan domain lengkap seperti `example.co.uk`.
+* `localhost` dan host yang diakhiri dengan `.localhost`, `.local`, `.internal`, `.localdomain`, atau `.invalid` ditolak.
+* Gunakan bentuk `xn--` (Punycode) untuk nama domain internasional; domain yang berisi karakter non-ASCII ditolak.
+* Domain `web_fetch` tidak dapat menyertakan path: gunakan `example.com`, bukan `example.com/*`. Domain `web_search` dapat membawa sufiks path seperti `example.com/blog`, di mana path tidak dapat berisi spasi, `?`, `#`, atau karakter `$ , | ^ !` mana pun. Lebih baik gunakan hostname biasa untuk `web_search` juga, karena penyedia pencarian mencocokkan sufiks path sebagai pola URL alih-alih sebagai aturan host yang ketat.
+* Domain duplikat dalam satu daftar ditolak. `www.example.com` dan `example.com` dihitung sebagai domain yang berbeda; lihat aturan pencocokan sebelumnya untuk apa yang dicakup masing-masing.
+
+#### Kapan pengaturan divalidasi
+
+Pelanggaran format dan batas ditolak dengan 400 `invalid_request_error` ketika Anda [membuat agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#create-an-agent) atau [memperbarui agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-an-agent), dan ketika Anda membuat atau memperbarui sesi yang menyediakan `tools`. Misalnya, pesan untuk entri yang menetapkan kedua daftar menyertakan `Only one of allowed_domains or blocked_domains may be set.`, dan pesan untuk daftar kosong menyertakan `allowed_domains: Empty list of domains is ambiguous. Provide at least one domain or null.` Pesan untuk domain yang melanggar aturan format menyebutkan daftarnya dan posisi berbasis nol, misalnya `allowed_domains.0: IP addresses are not supported; provide a plain hostname like "example.com"`.
+
+Permintaan yang sama juga menolak tiga pengaturan yang bergantung pada penyedia search dan fetch: domain dalam `allowed_domains` yang tidak diizinkan diakses oleh crawler Anthropic, `user_location.country` yang tidak didukung oleh penyedia pencarian (pesan diakhiri dengan `user_location.country: not a country the search provider supports`), dan `user_location.timezone` yang bukan nama IANA yang valid. Sesi memeriksa konfigurasi lagi ketika pertama kali menginisialisasi alat; jika pengaturan yang diterima sebelumnya tidak lagi valid pada saat itu, sesi memancarkan event [`session.error`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) dan kembali ke `idle` tanpa mencoba ulang. Perbaiki pengaturan dengan [memperbarui alat sesi](https://platform.claude.com/docs/id/managed-agents/session-operations#updating-the-agent-configuration), perbarui agen juga agar sesi baru dimulai dengan konfigurasi yang telah diperbaiki, lalu kirim `user.message` baru untuk melanjutkan.
+
+#### Sesi multiagent, outcome, dan pembaruan di tengah sesi
+
+Dalam [sesi multiagent](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), setiap daftar domain yang berlaku untuk sebuah thread diterapkan pada saat yang sama: agen dalam roster koordinator terikat oleh `allowed_domains` dan `blocked_domains` miliknya sendiri, oleh daftar milik agen mana pun yang memanggilnya, dan oleh daftar koordinator saat ini.
+
+* Allowlist digabungkan menjadi domain yang dicakup oleh semuanya, dan blocklist dijumlahkan, sehingga agen roster dapat mempersempit apa yang dijangkau alat tetapi tidak pernah memperluasnya. Misalnya, agen roster yang menetapkan `blocked_domains` mempertahankan `allowed_domains` koordinator dan memblokir host tersebut di dalamnya, dan agen roster yang menetapkan `allowed_domains` miliknya sendiri hanya dapat menjangkau host yang dicakup oleh daftarnya dan daftar koordinator.
+* Jika allowlist gabungan tidak memiliki domain yang sama, alat tetap tersedia untuk agen tersebut tetapi setiap panggilan gagal dengan error `url_not_allowed` yang menyatakan bahwa tidak ada domain yang diizinkan, dan deskripsi alat memberi tahu model demikian. Jaga agar allowlist setiap agen roster berada di dalam allowlist koordinator untuk menghindari hal ini.
+* `max_content_tokens` dan `user_location` tidak digabungkan: sebuah thread menggunakan nilai dari konfigurasi alatnya sendiri jika diatur, jika tidak dari agen yang memanggilnya, jika tidak dari konfigurasi koordinator saat ini.
+* Entri roster `{"type": "self"}` tidak memiliki pengaturan web sendiri dan mengikuti pengaturan koordinator saat ini.
+* Grader dalam [sesi berbasis outcome](https://platform.claude.com/docs/id/managed-agents/define-outcomes) berjalan tanpa `web_search` dan `web_fetch`, terlepas dari pengaturan ini.
+* Anda dapat mengubah daftar pada sesi idle dengan [memperbarui alatnya](https://platform.claude.com/docs/id/managed-agents/session-operations#updating-the-agent-configuration). Daftar baru berlaku untuk sisa sesi; dalam sesi multiagent, setiap thread menerapkannya dari giliran berikutnya, sementara daftar milik agen roster sendiri tetap seperti yang ditetapkan oleh definisi agennya saat sesi dibuat.
+
+#### Perbedaan dari alat Messages API
+
+Pengaturan ini menggunakan kosakata `allowed_domains` dan `blocked_domains` yang sama seperti [pemfilteran domain](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#domain-filtering) pada alat server Messages API, dengan perbedaan berikut pada Managed Agents:
+
+* Setiap daftar dibatasi hingga 64 domain.
+* Domain yang terdaftar untuk `web_fetch` tidak dapat menyertakan path.
+* `max_uses`, `citations`, dan `cache_control` tidak tersedia pada toolset.
+
 ## Alat kustom
 
-Selain alat bawaan, Anda dapat mendefinisikan alat kustom. Alat kustom analog dengan [alat klien yang didefinisikan pengguna](https://platform.claude.com/docs/id/agents-and-tools/tool-use/how-tool-use-works#user-defined-tools-client-executed) di Messages API.
+Selain alat bawaan, Anda dapat mendefinisikan alat kustom. Alat kustom analog dengan [alat klien yang ditentukan pengguna](https://platform.claude.com/docs/id/agents-and-tools/tool-use/how-tool-use-works#user-defined-tools-client-executed) di Messages API.
 
-Setiap alat kustom mendefinisikan sebuah kontrak: Anda menentukan operasi apa yang tersedia dan apa yang dikembalikannya, dan Claude menentukan kapan dan bagaimana memanggilnya. Model tidak pernah mengeksekusi apa pun sendiri. Model mengeluarkan permintaan terstruktur, kode Anda menjalankan operasinya, dan hasilnya mengalir kembali ke dalam percakapan. Lihat [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls) untuk cara menerima panggilan alat kustom dan mengembalikan hasil selama sesi berlangsung.
+Setiap alat kustom mendefinisikan sebuah kontrak: Anda menentukan operasi apa yang tersedia dan apa yang dikembalikannya, dan Claude menentukan kapan dan bagaimana memanggilnya. Model tidak pernah mengeksekusi apa pun sendiri. Model memancarkan permintaan terstruktur, kode Anda menjalankan operasi, dan hasilnya mengalir kembali ke dalam percakapan. Lihat [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls) untuk cara menerima panggilan alat kustom dan mengembalikan hasil selama sesi.
 
-Jika sesi Anda berjalan di sandbox yang di-hosting sendiri, environment worker dapat [menyajikan alat kustom dari sandbox Anda](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#serve-custom-tools-from-your-sandbox), termasuk alat yang membungkus server MCP di dalam jaringan Anda.
+Jika sesi Anda berjalan di sandbox self-hosted, environment worker dapat [menyajikan alat kustom dari sandbox Anda](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#serve-custom-tools-from-your-sandbox), termasuk alat yang membungkus server MCP di dalam jaringan Anda.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -268,25 +698,31 @@ Jika sesi Anda berjalan di sandbox yang di-hosting sendiri, environment worker d
   )
   ```
 
-  ```bash CLI
-  ant beta:agents create <<'YAML'
-  name: Weather Agent
-  model: claude-opus-5
-  tools:
-    - type: agent_toolset_20260401
-    - type: custom
-      name: get_weather
-      description: Get current weather for a location
-      input_schema:
-        type: object
-        properties:
-          location:
-            type: string
-            description: City name
-        required:
-          - location
-  YAML
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant beta:agents create < agent.yaml
+    ```
+
+    <File filename="agent.yaml">
+      ```yaml
+      name: Weather Agent
+      model: claude-opus-5
+      tools:
+        - type: agent_toolset_20260401
+        - type: custom
+          name: get_weather
+          description: Get current weather for a location
+          input_schema:
+            type: object
+            properties:
+              location:
+                type: string
+                description: City name
+            required:
+              - location
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   agent = client.beta.agents.create(
@@ -471,14 +907,14 @@ Jika sesi Anda berjalan di sandbox yang di-hosting sendiri, environment worker d
   ```
 </CodeGroup>
 
-Setelah Anda mendefinisikan alat kustom pada agen, agen akan memanggilnya selama sesi berlangsung.
+Setelah Anda mendefinisikan alat kustom pada agen, agen akan memanggilnya selama sesi.
 
 ### Praktik terbaik untuk definisi alat kustom
 
-* **Berikan deskripsi yang sangat detail.** Ini sejauh ini merupakan faktor terpenting dalam kinerja alat. Deskripsi Anda harus menjelaskan apa yang dilakukan alat tersebut dan kapan menggunakannya (dan kapan tidak). Jelaskan arti setiap parameter dan bagaimana parameter tersebut memengaruhi perilaku alat. Sebutkan setiap peringatan atau batasan penting. Semakin banyak konteks yang dapat Anda berikan kepada Claude tentang alat Anda, semakin baik Claude dalam menentukan kapan dan bagaimana menggunakannya. Usahakan tiga hingga empat kalimat untuk setiap deskripsi alat, lebih banyak jika alatnya kompleks.
-* **Konsolidasikan operasi terkait ke dalam lebih sedikit alat.** Daripada membuat alat terpisah untuk setiap aksi (`create_pr`, `review_pr`, `merge_pr`), kelompokkan menjadi satu alat dengan parameter `action`. Alat yang lebih sedikit namun lebih mumpuni mengurangi ambiguitas pemilihan dan membuat permukaan alat Anda lebih mudah dinavigasi oleh Claude.
-* **Gunakan namespacing yang bermakna dalam nama alat.** Ketika alat Anda mencakup beberapa layanan atau sumber daya, awali nama dengan sumber dayanya (misalnya, `db_query` atau `storage_read`). Ini membuat pemilihan alat menjadi tidak ambigu seiring bertambahnya pustaka Anda.
-* **Rancang respons alat agar hanya mengembalikan informasi bernilai tinggi.** Kembalikan pengidentifikasi semantik yang stabil (misalnya, slug atau UUID) daripada referensi internal yang tidak jelas, dan sertakan hanya field yang dibutuhkan Claude untuk menentukan langkah berikutnya. Respons yang membengkak memboroskan konteks dan mempersulit Claude untuk mengekstrak hal yang penting.
+* **Berikan deskripsi yang sangat detail.** Ini adalah faktor terpenting dalam performa alat. Deskripsi Anda harus menjelaskan apa yang dilakukan alat dan kapan menggunakannya (dan kapan tidak). Jelaskan apa arti setiap parameter dan bagaimana pengaruhnya terhadap perilaku alat. Sebutkan peringatan atau batasan penting apa pun. Semakin banyak konteks yang dapat Anda berikan kepada Claude tentang alat Anda, semakin baik Claude dalam menentukan kapan dan bagaimana menggunakannya. Targetkan tiga hingga empat kalimat untuk setiap deskripsi alat, lebih banyak jika alatnya kompleks.
+* **Konsolidasikan operasi terkait ke dalam lebih sedikit alat.** Daripada membuat alat terpisah untuk setiap tindakan (`create_pr`, `review_pr`, `merge_pr`), kelompokkan ke dalam satu alat dengan parameter `action`. Alat yang lebih sedikit namun lebih mumpuni mengurangi ambiguitas pemilihan dan membuat permukaan alat Anda lebih mudah dinavigasi oleh Claude.
+* **Gunakan namespacing yang bermakna dalam nama alat.** Ketika alat Anda mencakup beberapa layanan atau sumber daya, beri prefiks nama dengan sumber dayanya (misalnya, `db_query` atau `storage_read`). Ini membuat pemilihan alat tidak ambigu seiring bertambahnya pustaka Anda.
+* **Rancang respons alat untuk hanya mengembalikan informasi bernilai tinggi.** Kembalikan pengidentifikasi yang semantik dan stabil (misalnya, slug atau UUID) alih-alih referensi internal yang tidak jelas, dan sertakan hanya field yang dibutuhkan Claude untuk menentukan langkah berikutnya. Respons yang membengkak membuang konteks dan mempersulit Claude untuk mengekstrak apa yang penting.
 
 ## Langkah selanjutnya
 
@@ -492,6 +928,6 @@ Setelah Anda mendefinisikan alat kustom pada agen, agen akan memanggilnya selama
   </Card>
 
   <Card title="Aliran event sesi" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/events-and-streaming">
-    Kirim event, streaming respons, dan interupsi atau alihkan sesi Anda di tengah eksekusi.
+    Kirim event, stream respons, dan interupsi atau alihkan sesi Anda di tengah eksekusi.
   </Card>
 </CardGroup>

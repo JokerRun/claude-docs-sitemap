@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/events/stream
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 40534b166d7f78ee30b42628e2bb9a5e8d3a73600a641407f9d5fca24b1600be
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: a0714868e27b8ac7cd1cfab0cb9f33906f13cb32f6e7b6b89abe4f897c779f9d
 ---
 
 ---
@@ -40,7 +40,7 @@ Stream Session Thread Events
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -85,6 +85,8 @@ Stream Session Thread Events
     - `"output-300k-2026-03-24"`
 
     - `"user-profiles-2026-03-24"`
+
+    - `"user-profiles-2026-08-18"`
 
     - `"advisor-tool-2026-03-01"`
 

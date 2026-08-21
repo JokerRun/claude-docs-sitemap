@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/results
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 72773264730071ee4bdfc06898268909a60cfd1ecd934a1846ea5da49ed87d28
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 1f40be53c32f386a007201d801009544612e9122225d7e6179e401b2ebecf608
 ---
 
 ---
@@ -34,7 +34,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -79,6 +79,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"output-300k-2026-03-24"`
 
     - `"user-profiles-2026-03-24"`
+
+    - `"user-profiles-2026-08-18"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -347,7 +349,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               - `"redacted_thinking"`
 
-          - `BetaToolUseBlock object { id, input, name, 2 more }`
+          - `BetaToolUseBlock object { id, input, name, 3 more }`
 
             - `id: string`
 
@@ -388,6 +390,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
                 - `type: "code_execution_20260120"`
 
                   - `"code_execution_20260120"`
+
+            - `toolset_name: optional string or null`
+
+              For a toolset member tool_use, the toolset family.
 
           - `BetaServerToolUseBlock object { id, input, name, 2 more }`
 

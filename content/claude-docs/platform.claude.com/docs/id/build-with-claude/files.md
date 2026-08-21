@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 4e24d0ccf215908a9fb88ceff24fdb0dfa9a1fcaf9f93d73d30648fbdfcd5c6d
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 4a5db2c03726446eb5b3dd2405ea0b360bdf01c18bef3d081354c2755f8fc45d
 ---
 
 ---
@@ -56,13 +56,12 @@ Unggah file untuk direferensikan dalam panggilan API di masa mendatang:
   FILE_ID=$(curl -X POST https://api.anthropic.com/v1/files \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: files-api-2025-04-14" \
     -F "file=@/path/to/document.pdf" | jq -r '.id')
   echo "$FILE_ID"
   ```
 
   ```bash CLI
-  FILE_ID=$(ant beta:files upload \
+  FILE_ID=$(ant files upload \
     --file /path/to/document.pdf \
     --transform id \
     --raw-output)
@@ -70,7 +69,7 @@ Unggah file untuk direferensikan dalam panggilan API di masa mendatang:
   ```
 
   ```python Python
-  uploaded = client.beta.files.upload(
+  uploaded = client.files.upload(
       file=("document.pdf", open("/path/to/document.pdf", "rb"), "application/pdf"),
   )
   file_id = uploaded.id
@@ -78,7 +77,7 @@ Unggah file untuk direferensikan dalam panggilan API di masa mendatang:
   ```
 
   ```typescript TypeScript
-  const uploaded = await client.beta.files.upload({
+  const uploaded = await client.files.upload({
     file: await toFile(
       fs.createReadStream("/path/to/document.pdf"),
       undefined,
@@ -89,7 +88,7 @@ Unggah file untuk direferensikan dalam panggilan API di masa mendatang:
   ```
 
   ```csharp C#
-  var uploaded = await client.Beta.Files.Upload(
+  var uploaded = await client.Files.Upload(
       new FileUploadParams
       {
           File = new BinaryContent
@@ -111,8 +110,8 @@ Unggah file untuk direferensikan dalam panggilan API di masa mendatang:
   }
   defer f.Close()
 
-  response, err := client.Beta.Files.Upload(context.Background(),
-  	anthropic.BetaFileUploadParams{
+  response, err := client.Files.Upload(context.Background(),
+  	anthropic.FileUploadParams{
   		File: anthropic.File(f, "document.pdf", "application/pdf"),
   	})
   if err != nil {
@@ -124,7 +123,7 @@ Unggah file untuk direferensikan dalam panggilan API di masa mendatang:
   ```
 
   ```java Java
-  FileMetadata file = client.beta().files().upload(
+  FileMetadata file = client.files().upload(
       FileUploadParams.builder()
           .file(MultipartField.<InputStream>builder()
               .value(Files.newInputStream(Path.of("/path/to/document.pdf")))
@@ -139,6 +138,7 @@ Unggah file untuk direferensikan dalam panggilan API di masa mendatang:
   ```
 
   ```php PHP
+  // The PHP SDK exposes the Files API under the beta namespace; field names can differ from other SDKs.
   $file = $client->beta->files->upload(
       FileParam::fromResource(fopen('/path/to/document.pdf', 'rb'), contentType: 'application/pdf'),
   );
@@ -148,7 +148,7 @@ Unggah file untuk direferensikan dalam panggilan API di masa mendatang:
   ```
 
   ```ruby Ruby
-  file = client.beta.files.upload(
+  file = client.files.upload(
     file: Anthropic::FilePart.new(
       Pathname("/path/to/document.pdf"),
       content_type: "application/pdf"
@@ -185,7 +185,6 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
   curl -X POST https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: files-api-2025-04-14" \
     -H "content-type: application/json" \
     -d @- <<EOF
   {
@@ -214,7 +213,7 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
   ```
 
   ```bash CLI
-  ant beta:messages create --beta files-api-2025-04-14 <<YAML
+  ant messages create <<YAML
   model: claude-opus-5
   max_tokens: 1024
   messages:
@@ -230,7 +229,7 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
   ```
 
   ```python Python
-  response = client.beta.messages.create(
+  response = client.messages.create(
       model="claude-opus-5",
       max_tokens=1024,
       messages=[
@@ -248,13 +247,12 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
               ],
           }
       ],
-      betas=["files-api-2025-04-14"],
   )
   print(response)
   ```
 
   ```typescript TypeScript
-  const response = await client.beta.messages.create({
+  const response = await client.messages.create({
     model: "claude-opus-5",
     max_tokens: 1024,
     messages: [
@@ -275,30 +273,28 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
         ],
       },
     ],
-    betas: ["files-api-2025-04-14"],
   });
 
   console.log(response);
   ```
 
   ```csharp C#
-  var response = await client.Beta.Messages.Create(
+  var response = await client.Messages.Create(
       new MessageCreateParams
       {
-          Model = Messages::Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5,
           MaxTokens = 1024,
-          Betas = [AnthropicBeta.FilesApi2025_04_14],
           Messages =
           [
-              new BetaMessageParam
+              new MessageParam
               {
                   Role = Role.User,
-                  Content = new List<BetaContentBlockParam>
+                  Content = new List<ContentBlockParam>
                   {
-                      new BetaTextBlockParam { Text = "Please summarize this document for me." },
-                      new BetaRequestDocumentBlock
+                      new TextBlockParam { Text = "Please summarize this document for me." },
+                      new DocumentBlockParam
                       {
-                          Source = new BetaFileDocumentSource { FileID = fileId }
+                          Source = new FileDocumentSource { FileID = fileId }
                       }
                   }
               }
@@ -309,15 +305,14 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
   ```
 
   ```go Go
-  msg, err := client.Beta.Messages.New(context.Background(),
-  	anthropic.BetaMessageNewParams{
+  msg, err := client.Messages.New(context.Background(),
+  	anthropic.MessageNewParams{
   		Model:     anthropic.ModelClaudeOpus5,
   		MaxTokens: 1024,
-  		Betas:     []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
-  		Messages: []anthropic.BetaMessageParam{
-  			anthropic.NewBetaUserMessage(
-  				anthropic.NewBetaTextBlock("Please summarize this document for me."),
-  				anthropic.NewBetaDocumentBlock(anthropic.BetaFileDocumentSourceParam{
+  		Messages: []anthropic.MessageParam{
+  			anthropic.NewUserMessage(
+  				anthropic.NewTextBlock("Please summarize this document for me."),
+  				anthropic.NewDocumentBlock(anthropic.FileDocumentSourceParam{
   					FileID: fileID,
   				}),
   			),
@@ -333,25 +328,23 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
   ```java Java
   MessageCreateParams params = MessageCreateParams.builder()
       .model(Model.CLAUDE_OPUS_5)
-      .addBeta("files-api-2025-04-14")
       .maxTokens(1024)
-      .addUserMessageOfBetaContentBlockParams(List.of(
-          BetaContentBlockParam.ofText(BetaTextBlockParam.builder()
+      .addUserMessageOfBlockParams(List.of(
+          ContentBlockParam.ofText(TextBlockParam.builder()
               .text("Please summarize this document for me.")
               .build()),
-          BetaContentBlockParam.ofDocument(BetaRequestDocumentBlock.builder()
-              .source(BetaFileDocumentSource.builder()
-                  .fileId(fileId)
-                  .build())
+          ContentBlockParam.ofDocument(DocumentBlockParam.builder()
+              .fileSource(fileId)
               .build())
       ))
       .build();
 
-  BetaMessage message = client.beta().messages().create(params);
+  Message message = client.messages().create(params);
   System.out.println(message);
   ```
 
   ```php PHP
+  // The PHP SDK supports file_id document and image sources only through $client->beta->messages with the files beta.
   $response = $client->beta->messages->create(
       maxTokens: 1024,
       messages: [
@@ -377,10 +370,9 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
   ```
 
   ```ruby Ruby
-  response = client.beta.messages.create(
+  response = client.messages.create(
     model: "claude-opus-5",
     max_tokens: 1024,
-    betas: ["files-api-2025-04-14"],
     messages: [
       {
         role: "user",
@@ -778,36 +770,31 @@ Ambil informasi tentang file tertentu:
   ```bash cURL
   curl "https://api.anthropic.com/v1/files/$FILE_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: files-api-2025-04-14"
+    -H "anthropic-version: 2023-06-01"
   ```
 
   ```bash CLI
-  ant beta:files retrieve-metadata \
+  ant files retrieve-metadata \
     --file-id "$FILE_ID"
   ```
 
   ```python Python
-  file = client.beta.files.retrieve_metadata(file_id)
+  file = client.files.retrieve_metadata(file_id)
   print(file)
   ```
 
   ```typescript TypeScript
-  const file = await client.beta.files.retrieveMetadata(uploaded.id);
+  const file = await client.files.retrieveMetadata(uploaded.id);
   console.log(file);
   ```
 
   ```csharp C#
-  var file = await client.Beta.Files.RetrieveMetadata(fileId);
+  var file = await client.Files.RetrieveMetadata(fileId);
   Console.WriteLine(file);
   ```
 
   ```go Go
-  metadata, err := client.Beta.Files.GetMetadata(
-  	context.TODO(),
-  	fileID,
-  	anthropic.BetaFileGetMetadataParams{},
-  )
+  metadata, err := client.Files.GetMetadata(context.TODO(), fileID)
   if err != nil {
   	log.Fatal(err)
   }
@@ -816,18 +803,19 @@ Ambil informasi tentang file tertentu:
   ```
 
   ```java Java
-  FileMetadata metadata = client.beta().files().retrieveMetadata(fileId);
+  FileMetadata metadata = client.files().retrieveMetadata(fileId);
 
   System.out.println(metadata);
   ```
 
   ```php PHP
+  // The PHP SDK exposes the Files API under the beta namespace; field names can differ from other SDKs.
   $file = $client->beta->files->retrieveMetadata($fileId);
   echo $file;
   ```
 
   ```ruby Ruby
-  file = client.beta.files.retrieve_metadata(file_id)
+  file = client.files.retrieve_metadata(file_id)
   puts file
   ```
 </CodeGroup>
@@ -840,48 +828,44 @@ Hapus file dari workspace Anda:
   ```bash cURL
   curl -X DELETE "https://api.anthropic.com/v1/files/$FILE_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: files-api-2025-04-14"
+    -H "anthropic-version: 2023-06-01"
   ```
 
   ```bash CLI
-  ant beta:files delete \
+  ant files delete \
     --file-id "$FILE_ID"
   ```
 
   ```python Python
-  client.beta.files.delete(file_id)
+  client.files.delete(file_id)
   ```
 
   ```typescript TypeScript
-  await client.beta.files.delete(uploaded.id);
+  await client.files.delete(uploaded.id);
   ```
 
   ```csharp C#
-  await client.Beta.Files.Delete(fileId);
+  await client.Files.Delete(fileId);
   ```
 
   ```go Go
-  _, err = client.Beta.Files.Delete(
-  	context.TODO(),
-  	fileID,
-  	anthropic.BetaFileDeleteParams{},
-  )
+  _, err = client.Files.Delete(context.TODO(), fileID)
   if err != nil {
   	log.Fatal(err)
   }
   ```
 
   ```java Java
-  client.beta().files().delete(fileId);
+  client.files().delete(fileId);
   ```
 
   ```php PHP
+  // The PHP SDK exposes the Files API under the beta namespace; field names can differ from other SDKs.
   $client->beta->files->delete($fileId);
   ```
 
   ```ruby Ruby
-  client.beta.files.delete(file_id)
+  client.files.delete(file_id)
   ```
 </CodeGroup>
 
@@ -894,31 +878,30 @@ Unduh file yang dibuat oleh [skills](https://platform.claude.com/docs/id/build-w
   curl -X GET "https://api.anthropic.com/v1/files/$FILE_ID/content" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: files-api-2025-04-14" \
     --output downloaded_file.txt
   ```
 
   ```bash CLI
-  ant beta:files download \
+  ant files download \
     --file-id "$FILE_ID" \
     --output downloaded_file.txt
   ```
 
   ```python Python
-  file_content = client.beta.files.download(file_id)
+  file_content = client.files.download(file_id)
 
   file_content.write_to_file("downloaded_file.txt")
   ```
 
   ```typescript TypeScript
-  const content = await client.beta.files.download(uploaded.id);
+  const content = await client.files.download(uploaded.id);
 
   const bytes = Buffer.from(await content.arrayBuffer());
   await fsp.writeFile("downloaded_file.txt", bytes);
   ```
 
   ```csharp C#
-  using var fileContent = await client.Beta.Files.Download(fileId);
+  using var fileContent = await client.Files.Download(fileId);
   await using var source = await fileContent.ReadAsStream();
   await using var destination = File.Create("downloaded_file.txt");
   await source.CopyToAsync(destination);
@@ -926,11 +909,7 @@ Unduh file yang dibuat oleh [skills](https://platform.claude.com/docs/id/build-w
 
   ```go Go
   func downloadFile(client anthropic.Client, fileID string) error {
-  	resp, err := client.Beta.Files.Download(
-  		context.TODO(),
-  		fileID,
-  		anthropic.BetaFileDownloadParams{},
-  	)
+  	resp, err := client.Files.Download(context.TODO(), fileID)
   	if err != nil {
   		return err
   	}
@@ -949,7 +928,7 @@ Unduh file yang dibuat oleh [skills](https://platform.claude.com/docs/id/build-w
   ```
 
   ```java Java
-  try (HttpResponse response = client.beta().files().download(fileId)) {
+  try (HttpResponse response = client.files().download(fileId)) {
       try (InputStream body = response.body()) {
           Files.copy(body, Path.of("downloaded_file.txt"),
               StandardCopyOption.REPLACE_EXISTING);
@@ -958,13 +937,14 @@ Unduh file yang dibuat oleh [skills](https://platform.claude.com/docs/id/build-w
   ```
 
   ```php PHP
+  // The PHP SDK exposes the Files API under the beta namespace; field names can differ from other SDKs.
   $fileContent = $client->beta->files->download($fileId);
 
   file_put_contents("downloaded_file.txt", $fileContent);
   ```
 
   ```ruby Ruby
-  file_content = client.beta.files.download(file_id)
+  file_content = client.files.download(file_id)
 
   File.binwrite("downloaded_file.txt", file_content.read)
   ```

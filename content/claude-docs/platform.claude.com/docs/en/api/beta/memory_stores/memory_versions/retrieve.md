@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/retrieve
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 1240a330fdd7255027b4bee5fe172b569d67e9669ea4326dae0a95f93131b0d2
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: 68ac0f2f44452a5701f7ef1f5ed555a3c2f0ec2ff1f29a0ea81399a3bbec6b03
 ---
 
 ---
@@ -40,7 +40,7 @@ Retrieve a memory version
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 30 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -85,6 +85,8 @@ Retrieve a memory version
     - `"output-300k-2026-03-24"`
 
     - `"user-profiles-2026-03-24"`
+
+    - `"user-profiles-2026-08-18"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -195,6 +197,18 @@ Retrieve a memory version
       - `user_id: string`
 
         ID of the user who performed the write (a `user_...` value).
+
+    - `BetaManagedAgentsServiceAccountActor object { service_account_id, type }`
+
+      Attribution for a write made by a workload authenticated as a service account, for example via Workload Identity Federation.
+
+      - `service_account_id: string`
+
+        ID of the service account that performed the write (a `svac_...` value).
+
+      - `type: "service_account_actor"`
+
+        - `"service_account_actor"`
 
   - `path: optional string or null`
 

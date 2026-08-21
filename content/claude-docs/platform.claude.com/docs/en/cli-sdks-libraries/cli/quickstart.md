@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/quickstart
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 02b99dff8d0b2c68181be06b245a431a69ccabc6fdeedf93257276015265d03c
+fetched_at: 2026-08-21T02:32:13.524433Z
+sha256: a857575b334097b4d83005a9a7bb7c83f9e4f53a1dac2aac2e3734986071b232
 ---
 
 ---
@@ -36,7 +36,7 @@ Compared to `curl`, `ant` builds request bodies from typed flags or piped YAML i
     For Linux environments, download the release binary directly.
 
     ```bash
-    VERSION=1.22.1
+    VERSION=1.26.1
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -50,7 +50,7 @@ Compared to `curl`, `ant` builds request bodies from typed flags or piped YAML i
   </Tab>
 
   <Tab title="Go">
-    You can also install the CLI from source using `go install`. Requires Go 1.22 or later.
+    You can also install the CLI from source using `go install`. Requires Go 1.25 or later.
 
     ```bash
     go install github.com/anthropics/anthropic-cli/cmd/ant@latest
