@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 3a478f9a6563fb3e6b1a46fe98bd963e5138d95d96facf79491fd1a8ee169233
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 84faec5c6b829f03efb3f55893bb6c043a30084db5e34820609af9619704c655
 ---
 
 > ## Documentation Index
@@ -77,7 +77,14 @@ Background [subagents](/docs/en/sub-agents) and workflows are exempt from the fi
 
 ### Stop a run with SIGTERM
 
-If you stop a `claude -p` run with SIGTERM, for example from `kill` or a process supervisor, Claude Code terminates the process tree of any running Bash command, runs [`SessionEnd` hooks](/docs/en/hooks#sessionend), and exits with code 143. It doesn't interrupt the in-progress turn or record a result for it: a command that was running is recorded as killed, a permission prompt that was waiting for an answer is left unanswered, and no new tool, model request, or hook other than `SessionEnd` is started once the process has begun exiting, so resuming the session picks up from that point. An SDK host that closes the session ends Claude Code's input first, which cancels a waiting prompt before any signal arrives; to end the turn cleanly yourself, send SIGINT, or the SDK's `interrupt()`, before stopping the process.
+If you stop a `claude -p` run with SIGTERM, for example with `kill` or from a process supervisor, Claude Code exits with code 143. Claude Code leaves the turn that was in progress unfinished and records no result for it. To end the turn instead, send SIGINT, or call the Agent SDK's `interrupt()`, before you stop the process.
+
+On SIGTERM, Claude Code terminates the process tree of any Bash command that is still running. Claude Code then runs [`SessionEnd` hooks](/docs/en/hooks#sessionend) and exits. While exiting, Claude Code starts no new tool call, sends no new model request, and runs no hook other than `SessionEnd`. If the run was in the middle of a command or waiting on a permission prompt when the signal arrived, Claude Code handles that step as follows:
+
+* **Running a command**: Claude Code records the command as killed in the session.
+* **Waiting for an answer to a permission prompt**: if you send SIGTERM to the process, Claude Code leaves the prompt unanswered. If your program closes the session through the Agent SDK, the SDK ends Claude Code's input before sending any signal, and Claude Code cancels the prompt as soon as the input ends.
+
+When you [resume the session](#continue-conversations), Claude Code continues the turn that SIGTERM left unfinished.
 
 ## Examples
 
@@ -276,7 +283,7 @@ claude -p "Look at my staged changes and create an appropriate commit" \
   --allowedTools "Bash(git diff *),Bash(git log *),Bash(git status *),Bash(git commit *)"
 ```
 
-The `--allowedTools` flag uses [permission rule syntax](/docs/en/settings#permission-rule-syntax). The trailing ` *` enables prefix matching, so `Bash(git diff *)` allows any command starting with `git diff`. The space before `*` is important: without it, `Bash(git diff*)` would also match `git diff-index`.
+The `--allowedTools` flag uses [permission rule syntax](/docs/en/settings-reference#permission-rule-syntax). The trailing ` *` enables prefix matching, so `Bash(git diff *)` allows any command starting with `git diff`. The space before `*` is important: without it, `Bash(git diff*)` would also match `git diff-index`.
 
 <Note>
   User-invoked [skills](/docs/en/skills) and custom commands work in `-p` mode: include `/skill-name` in the prompt string and Claude Code expands it before running. Built-in commands that only run in the terminal interface, such as `/login`, aren't available in `-p` mode. `/model`, `/effort`, `/fast`, `/color`, and `/rename` accept the value as an argument, for example `/model sonnet`, and `/mcp` with no argument prints a text summary of server status; these forms require Claude Code v2.1.205 or later and follow each command's [availability notes](/docs/en/commands#all-commands). To change a setting from a `-p` invocation, pass `key=value` to `/config`, for example `/config thinking=false`.
@@ -298,7 +305,7 @@ See [system prompt flags](/docs/en/cli-reference#system-prompt-flags) for more o
 
 ### Continue conversations
 
-Use `--continue` to continue the most recent conversation, or `--resume` with a session ID to continue a specific conversation. This example runs a review, then sends follow-up prompts:
+Use `--continue` to continue the most recent conversation, or `--resume` with a session ID to continue a specific conversation. `--continue` skips [background sessions](/docs/en/sessions#resume-a-session). This example runs a review, then sends follow-up prompts:
 
 ```bash theme={null}
 # First request

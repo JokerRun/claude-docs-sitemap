@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/structured-outputs
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 1440ba74d6eb67920a9748b13c5e6abb42fda52e0609c6fe848b1c75b20d4f2a
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: a1528596faaa627c7fb139c775bfc68634777c99be02f4dab92659af7b0b6d8b
 ---
 
 ---
@@ -26,7 +26,7 @@ Structured outputs constrain Claude's responses to follow a specific schema, ens
 You can use these features independently or together in the same request.
 
 <Tip>
-  **Migrating from beta?** The `output_format` parameter has moved to `output_config.format`, and beta headers are no longer required. The old beta header (`structured-outputs-2025-11-13`) and `output_format` parameter will continue working for a transition period. See the following code examples for the updated API shape.
+  **Migrating from beta?** The `output_format` parameter has moved to `output_config.format`, and beta headers are no longer required. The API continues to accept the old beta header (`structured-outputs-2025-11-13`) and the `output_format` request field for a transition period, but the Python SDK (v1.0 and later) does not accept `output_format={...}` on `client.beta.messages.create()` or `count_tokens()` and raises a `TypeError`; use `output_config` instead. See the following code examples for the updated API shape.
 </Tip>
 
 ## Why use structured outputs

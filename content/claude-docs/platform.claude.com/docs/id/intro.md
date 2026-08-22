@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/intro
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: f2ce65e7c5519c722ee2b921f1df0be654c7017b961ca997eea33a094e081b89
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 6bdfe399faecf737c5213acf7a47aca2f5e64eb4698de8f0262ab78c5566eea7
 ---
 
 ---
 title: Pengantar Claude
 url: https://platform.claude.com/docs/id/intro
-description: Claude adalah platform AI yang sangat berkinerja tinggi, tepercaya, dan cerdas yang dibangun oleh Anthropic. Claude unggul dalam tugas-tugas yang melibatkan bahasa, penalaran, analisis, pengodean, dan banyak lagi.
+description: Claude adalah platform AI yang berkinerja tinggi, tepercaya, dan cerdas yang dibangun oleh Anthropic. Claude unggul dalam tugas-tugas yang melibatkan bahasa, penalaran, analisis, pengodean, dan banyak lagi.
 ---
 
 <Tip>
@@ -31,15 +31,16 @@ description: Claude adalah platform AI yang sangat berkinerja tinggi, tepercaya,
 
 Anthropic menawarkan dua cara untuk membangun dengan Claude, masing-masing cocok untuk kasus penggunaan yang berbeda:
 
-|                           | Messages API                                                                                            | Claude Managed Agents                                                                            |
-| ------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| **Apa itu**               | Akses langsung untuk memberikan prompt ke model                                                         | Kerangka agen yang sudah dibangun dan dapat dikonfigurasi, berjalan di infrastruktur terkelola   |
-| **Paling cocok untuk**    | Loop agen kustom dan kontrol yang sangat terperinci                                                     | Tugas yang berjalan lama dan pekerjaan asinkron                                                  |
-| **Pelajari lebih lanjut** | [Dokumentasi Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) | [Dokumentasi Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) |
+|                        | Messages API                                 | Claude Managed Agents                                                                    |
+| ---------------------- | -------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| **Apa itu**            | Akses prompting model secara langsung        | Harness agen siap pakai yang dapat dikonfigurasi dan berjalan di infrastruktur terkelola |
+| **Paling cocok untuk** | Loop agen kustom dan kontrol yang terperinci | Tugas yang berjalan lama dan pekerjaan asinkron                                          |
 
-## Jalur yang direkomendasikan untuk pengembang baru
+Untuk mempelajari lebih lanjut tentang masing-masing, lihat [Menggunakan Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) dan [ikhtisar Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview).
 
-Ikuti langkah-langkah ini untuk beralih dari nol hingga memiliki integrasi Claude yang berfungsi.
+## Jalur yang direkomendasikan untuk developer baru
+
+Ikuti langkah-langkah berikut untuk beranjak dari nol hingga memiliki integrasi Claude yang berfungsi.
 
 <Steps>
   <Step title="Lakukan panggilan API pertama Anda">
@@ -49,25 +50,25 @@ Ikuti langkah-langkah ini untuk beralih dari nol hingga memiliki integrasi Claud
   </Step>
 
   <Step title="Amankan kredensial Anda">
-    Tetapkan masa kedaluwarsa saat Anda membuat kunci API. Jauhkan kunci tersebut dari kontrol sumber, kode sisi klien, dan prompt. Periksa apakah beban kerja Anda dapat menggunakan Workload Identity Federation alih-alih kunci statis.
+    Tetapkan masa kedaluwarsa saat Anda membuat "API key" (kunci API). Jauhkan kunci tersebut dari kontrol sumber, kode sisi klien, dan prompt. Periksa apakah beban kerja Anda dapat menggunakan Workload Identity Federation sebagai pengganti kunci statis.
 
     [Baca panduan autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication)
   </Step>
 
   <Step title="Pahami Messages API">
-    Pelajari struktur inti permintaan dan respons, termasuk percakapan multi-giliran, prompt sistem, dan alasan penghentian.
+    Pelajari struktur inti permintaan dan respons, termasuk percakapan multi-giliran, "system prompt" (prompt sistem), dan alasan berhenti (stop reason).
 
     [Baca panduan Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
   </Step>
 
   <Step title="Pilih model yang tepat">
-    Bandingkan model Claude berdasarkan kemampuan dan biaya untuk memilih yang paling sesuai dengan kasus penggunaan Anda.
+    Bandingkan model-model Claude berdasarkan kemampuan dan biaya untuk memilih yang paling sesuai dengan kasus penggunaan Anda.
 
     [Lihat ikhtisar model](https://platform.claude.com/docs/id/about-claude/models/overview)
   </Step>
 
   <Step title="Jelajahi fitur dan alat">
-    Temukan apa yang dapat dilakukan Claude: pemikiran diperpanjang, pencarian web, penanganan file, output terstruktur, dan banyak lagi.
+    Temukan apa yang dapat dilakukan Claude: "extended thinking" (pemikiran diperpanjang), pencarian web, penanganan file, output terstruktur, dan banyak lagi.
 
     [Telusuri ikhtisar fitur](https://platform.claude.com/docs/id/build-with-claude/overview)
   </Step>
@@ -77,15 +78,15 @@ Ikuti langkah-langkah ini untuk beralih dari nol hingga memiliki integrasi Claud
 
 ## Mengembangkan dengan Claude
 
-Anthropic menyediakan alat pengembang untuk membantu Anda membangun dan menskalakan aplikasi dengan Claude.
+Anthropic menyediakan alat developer untuk membantu Anda membangun dan menskalakan aplikasi dengan Claude.
 
 <CardGroup cols={3}>
   <Card title="Developer Console" icon="computer" href="https://platform.claude.com/">
-    Buat prototipe dan uji prompt di browser Anda dengan Workbench.
+    Jelajahi dan pahami API di browser Anda dengan Playground.
   </Card>
 
   <Card title="Referensi API" icon="code" href="https://platform.claude.com/docs/id/api/overview">
-    Jelajahi dokumentasi lengkap API Claude dan SDK klien.
+    Jelajahi dokumentasi lengkap Claude API dan SDK klien.
   </Card>
 
   <Card title="Claude Cookbook" icon="chef-hat" href="https://platform.claude.com/cookbook">
@@ -97,14 +98,14 @@ Anthropic menyediakan alat pengembang untuk membantu Anda membangun dan menskala
 
 ## Kemampuan utama
 
-Claude dapat membantu banyak tugas yang melibatkan teks, kode, dan gambar.
+Claude dapat membantu berbagai tugas yang melibatkan teks, kode, dan gambar.
 
 <CardGroup cols={2}>
   <Card title="Pembuatan teks dan kode" icon="text-aa" href="https://platform.claude.com/docs/id/build-with-claude/overview">
     Merangkum teks, menjawab pertanyaan, mengekstrak data, menerjemahkan teks, serta menjelaskan dan menghasilkan kode.
   </Card>
 
-  <Card title="Visi" icon="image" href="https://platform.claude.com/docs/id/build-with-claude/vision">
+  <Card title="Vision" icon="image" href="https://platform.claude.com/docs/id/build-with-claude/vision">
     Memproses dan menganalisis input visual serta menghasilkan teks dan kode dari gambar.
   </Card>
 </CardGroup>
@@ -115,7 +116,7 @@ Claude dapat membantu banyak tugas yang melibatkan teks, kode, dan gambar.
 
 <CardGroup cols={2}>
   <Card title="Pusat Bantuan" icon="help" href="https://support.claude.com/en/">
-    Temukan jawaban atas pertanyaan umum seputar akun dan penagihan.
+    Temukan jawaban atas pertanyaan yang sering diajukan tentang akun dan penagihan.
   </Card>
 
   <Card title="Status Layanan" icon="chart" href="https://status.claude.com">

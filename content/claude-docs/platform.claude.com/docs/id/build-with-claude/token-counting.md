@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 7914cf90cb5ccd9cb6f42b37affe133dc6f3c131db579923ff55ebf21f6ab6aa
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: be6b65e28a67a404d0969baaa9bfd58836147a93ea04f406b1dcc29407e619be
 ---
 
 ---
@@ -38,7 +38,7 @@ Endpoint [penghitungan token](https://platform.claude.com/docs/id/api/messages-c
 Semua [model aktif](https://platform.claude.com/docs/id/about-claude/models/overview) mendukung penghitungan token, termasuk Claude Opus 5 dan Claude Sonnet 5.
 
 <Note>
-  Model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview menggunakan tokenizer yang lebih baru. Teks input yang sama menghasilkan sekitar 30 persen lebih banyak token dibandingkan pada model sebelumnya. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Hitung ulang prompt terhadap model yang akan Anda gunakan, alih-alih menggunakan kembali jumlah yang diukur terhadap model sebelumnya.
+  Model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview menggunakan tokenizer yang lebih baru. Teks input yang sama menghasilkan sekitar 30 persen lebih banyak token dibandingkan model sebelumnya. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Hitung ulang prompt terhadap model yang akan Anda gunakan, alih-alih menggunakan kembali jumlah yang diukur terhadap model sebelumnya.
 </Note>
 
 ### Menghitung token dalam pesan dasar
@@ -779,6 +779,8 @@ Semua [model aktif](https://platform.claude.com/docs/id/about-claude/models/over
 { "input_tokens": 1028 }
 ```
 
+Blok gambar yang disematkan yang menetapkan [`"oversized_image": "error"`](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#oversized-image-error) akan ditolak pada saat penghitungan persis seperti Messages API akan menolaknya.
+
 ### Menghitung token dalam pesan dengan pemikiran
 
 <Note>
@@ -1401,7 +1403,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/about-claude/models/over
 
 ## Jumlah token pada Claude Fable 5 dan Claude Mythos 5
 
-Claude Fable 5 dan Claude Mythos 5 menggunakan tokenizer yang diperkenalkan dengan Claude Opus 4.7, yang menghasilkan sekitar 30 persen lebih banyak token dibandingkan model sebelum Claude Opus 4.7 untuk teks yang sama. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Endpoint penghitungan token mengembalikan jumlah berdasarkan tokenizer dari `model` yang Anda berikan, jadi untuk mengukur perbedaan pada beban kerja Anda, hitung permintaan yang sama dua kali: sekali dengan model Anda saat ini dan sekali dengan `model: "claude-fable-5"` (atau `"claude-mythos-5"`), lalu bandingkan kedua nilai `input_tokens` tersebut.
+Claude Fable 5 dan Claude Mythos 5 menggunakan tokenizer yang diperkenalkan dengan Claude Opus 4.7, yang menghasilkan sekitar 30 persen lebih banyak token dibandingkan model sebelum Claude Opus 4.7 untuk teks yang sama. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Endpoint penghitungan token mengembalikan jumlah berdasarkan tokenizer dari `model` yang Anda berikan, jadi untuk mengukur perbedaan pada beban kerja Anda, hitung permintaan yang sama dua kali: sekali dengan model Anda saat ini dan sekali dengan `model: "claude-fable-5"` (atau `"claude-mythos-5"`), lalu bandingkan kedua nilai `input_tokens`.
 
 <Note>
   **Penagihan dan migrasi:** Penggunaan dan penagihan pada Claude Fable 5 dan Claude Mythos 5 mencerminkan jumlah dari tokenizer ini. Jika Anda bermigrasi dari model sebelum Claude Opus 4.7, konten yang sama mengonsumsi sekitar 30 persen lebih banyak token. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Saat memigrasikan beban kerja ke Claude Fable 5 dan Claude Mythos 5, jangan gunakan kembali jumlah token yang diukur pada model sebelum Claude Opus 4.7 untuk memperkirakan biaya atau kesesuaian jendela konteks. Hitung prompt Anda dengan `model: "claude-fable-5"` (atau `"claude-mythos-5"`).
@@ -1451,6 +1453,6 @@ Penghitungan token **gratis untuk digunakan** tetapi tunduk pada batas laju perm
   </Card>
 
   <Card title="Caching prompt" icon="database" href="https://platform.claude.com/docs/id/build-with-claude/prompt-caching">
-    Kurangi biaya dan latensi pada prompt berulang dengan melakukan caching pada prefiks prompt.
+    Kurangi biaya dan latensi pada prompt berulang dengan melakukan caching prefiks prompt.
   </Card>
 </CardGroup>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 0af5cdf98ccc522daa742e9c744c16d3d6956cdf0ce1e16b927fac81b83ec968
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: b72be0231d6dcc1c945caa2a43012065b9bd8b85fb8a4b4b7f7782dcd169387e
 ---
 
 ---
@@ -179,7 +179,7 @@ Agent not found.
 
 ## Menggunakan CLI dari Claude Code
 
-[Claude Code](https://code.claude.com/docs/id/overview) dapat menggunakan CLI `ant` secara langsung. Dengan CLI terpasang dan terautentikasi, Anda dapat meminta Claude Code untuk mengoperasikan sumber daya API Anda secara langsung. Sebagai contoh:
+[Claude Code](https://code.claude.com/docs/en/overview) dapat menggunakan CLI `ant` secara langsung. Dengan CLI terpasang dan terautentikasi, Anda dapat meminta Claude Code untuk mengoperasikan sumber daya API Anda secara langsung. Sebagai contoh:
 
 * "Daftar sesi agen terbaru saya dan rangkum mana yang mengalami error."
 * "Unggah setiap PDF di `./reports` ke Files API dan cetak ID yang dihasilkan."

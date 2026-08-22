@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 53cbda53efb4b520477f99e3d863b2a3ec84eced479eff6e5863c633232ae1ea
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 755b92a06aa539adcea79ce6c729166e83200b6e01fa79318bf810c89dd65062
 ---
 
 ---
@@ -5078,7 +5078,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `version: string`
 
-              Skill version or 'latest' for most recent version
+              The resolved version: a skill version ID for custom skills.
 
         - `content: array of BetaContentBlock`
 
@@ -6969,7 +6969,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
             - `version: string`
 
-              Skill version or 'latest' for most recent version
+              The resolved version: a skill version ID for custom skills.
 
         - `content: array of BetaContentBlock`
 
@@ -8659,7 +8659,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
           - `version: string`
 
-            Skill version or 'latest' for most recent version
+            The resolved version: a skill version ID for custom skills.
 
       - `content: array of BetaContentBlock`
 
@@ -10311,7 +10311,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
         - `version: string`
 
-          Skill version or 'latest' for most recent version
+          The resolved version: a skill version ID for custom skills.
 
     - `content: array of BetaContentBlock`
 

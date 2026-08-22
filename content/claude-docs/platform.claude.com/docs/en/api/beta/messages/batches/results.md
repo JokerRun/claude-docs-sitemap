@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/results
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 1f40be53c32f386a007201d801009544612e9122225d7e6179e401b2ebecf608
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 254370b4e4de6b09a31776f5431da06eb63cde5ceb1a9748324520221e497dfb
 ---
 
 ---
@@ -162,7 +162,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `version: string`
 
-              Skill version or 'latest' for most recent version
+              The resolved version: a skill version ID for custom skills.
 
         - `content: array of BetaContentBlock`
 

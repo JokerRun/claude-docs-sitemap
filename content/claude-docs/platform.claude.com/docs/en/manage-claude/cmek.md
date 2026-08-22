@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: a3b9f67afd6ddcedcad65bcbbb01f3f5f07081fa7b674ae8f070dd06ab567367
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 14b7e66e14b5b57e048d16bebb2ccfde3bf686d60da385002ff1fd0fdf0620a8
 ---
 
 ---
@@ -115,7 +115,7 @@ These features remain available, but their data is not encrypted under your key.
 * Claude Code Desktop, Claude Code on the web, and Claude in Slack. Anthropic recommends disabling any of these that are not appropriate for your use case in the admin console.
 * Beta and research preview features may not be covered by CMEK and can break in CMEK organizations, for example, Claude Security and Claude Design.
 * On-demand data export under **Settings** > **Privacy**.
-* [Personal preferences - Instructions for Claude section](https://claude.ai/new#settings/general). These are set at the account level and shared across all of a user's organizations.
+* [Personal preferences - Instructions for Claude section](https://claude.ai/new#settings/general) and Cowork Global instructions. These are set at the account level and shared across all of a user's organizations.
 
 On both products, account data for users in your organization (such as names, email addresses, and profile pictures) is not encrypted under your key.
 

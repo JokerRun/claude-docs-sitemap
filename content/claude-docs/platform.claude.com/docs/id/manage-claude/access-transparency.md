@@ -1,35 +1,35 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/access-transparency
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 2c39ee5646c6d2e4f18038cae3b89df163a787c440bcdf850a90a8d20e9e1458
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: bc16db408eb9e66b5258677340af80ffb333ed6e121065b660e7a1c58b60621c
 ---
 
 ---
 title: Access Transparency
 url: https://platform.claude.com/docs/id/manage-claude/access-transparency
-description: Terima catatan audit akses manusia ke data organisasi Anda oleh personel Anthropic melalui Compliance API.
+description: Terima catatan audit atas akses manusia terhadap data organisasi Anda oleh personel Anthropic melalui Compliance API.
 ---
 
-Pelajari bagaimana Access Transparency membuat catatan akses manusia ke data organisasi Anda oleh personel Anthropic, apa saja yang dicakupnya, dan cara menerima event melalui Compliance API.
+Pelajari bagaimana Access Transparency membuat catatan atas akses manusia terhadap data organisasi Anda oleh personel Anthropic, apa saja yang dicakupnya, dan cara menerima event melalui Compliance API.
 
 <Note>
   Ketika Access Transparency diaktifkan untuk organisasi Anda:
 
-  * Setiap tampilan manusia atas data Anda yang disimpan (lihat [konten yang dicakup](https://platform.claude.com/docs/id/manage-claude/access-transparency#what-access-transparency-covers)) oleh karyawan Anthropic menulis aktivitas `anthropic_access` ke [Compliance API Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) Anda.
-  * Akses hanya terjadi untuk tinjauan keamanan atau respons insiden. Lihat [Kode alasan](https://platform.claude.com/docs/id/manage-claude/access-transparency#reason-codes).
+  * Setiap tampilan manusia atas data Anda yang disimpan (lihat [konten yang dicakup](https://platform.claude.com/docs/id/manage-claude/access-transparency#what-access-transparency-covers)) oleh karyawan Anthropic akan menulis aktivitas `anthropic_access` ke [Activity Feed Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) Anda.
+  * Akses hanya terjadi untuk peninjauan keamanan atau respons insiden. Lihat [Kode alasan](https://platform.claude.com/docs/id/manage-claude/access-transparency#reason-codes).
 
-  Access Transparency tersedia untuk pelanggan yang memenuhi syarat berdasarkan permintaan dan tidak bersifat layanan mandiri. Untuk kelayakan, lihat ketentuan kontrak Anda atau hubungi perwakilan akun Anthropic Anda.
+  Access Transparency tersedia bagi pelanggan yang memenuhi syarat berdasarkan permintaan dan tidak bersifat swalayan. Untuk kelayakan, lihat ketentuan kontrak Anda atau hubungi perwakilan akun Anthropic Anda.
 </Note>
 
 ## Cara kerja Access Transparency
 
-Personel Anthropic mengakses konten pelanggan hanya dalam kondisi yang telah ditentukan. Access Transparency dirancang untuk membuat akses tersebut terlihat oleh Anda. Desainnya bertumpu pada prinsip-prinsip berikut:
+Personel Anthropic mengakses konten pelanggan hanya dalam kondisi yang telah ditetapkan. Access Transparency dirancang untuk membuat akses tersebut terlihat oleh Anda. Rancangan ini bertumpu pada prinsip-prinsip berikut:
 
 * **Akses manusia hanya terjadi berdasarkan kode alasan yang dipublikasikan.**
-* **Tampilan manusia atas konten Anda yang dicakup akan dicatat.** Perangkat internal Anthropic yang dapat menjangkau konten Anda yang dicakup diinstrumentasi untuk memancarkan event pada setiap tampilan.
-* **Event merepresentasikan akses manusia, bukan pemrosesan otomatis.** Sistem keamanan otomatis Anthropic memproses konten Anda dalam pipeline yang diamankan tanpa akses manusia interaktif; pemrosesan tersebut tidak menghasilkan event `anthropic_access`. Satu-satunya event yang dapat dimulai oleh pemrosesan otomatis adalah catatan preservasi `cmek_preserve` (lihat [Preservasi konten CMEK](https://platform.claude.com/docs/id/manage-claude/access-transparency#cmek-content-preservation)).
-* **Event tiba di feed Anda yang sudah ada.** Aktivitas dapat diakses melalui [Compliance API Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) Anda. Kredensial, audit, ekspor, dan integrasi SIEM yang sudah ada untuk Compliance API akan tetap berlaku.
+* **Tampilan manusia atas konten Anda yang dicakup akan dicatat.** Perangkat internal Anthropic yang dapat menjangkau konten Anda yang dicakup telah diinstrumentasi untuk memancarkan event pada setiap tampilan.
+* **Event merepresentasikan akses manusia, bukan pemrosesan otomatis.** Sistem keamanan otomatis Anthropic memproses konten Anda dalam pipeline yang diamankan tanpa akses manusia interaktif; pemrosesan tersebut tidak menghasilkan event `anthropic_access`. Satu-satunya event yang dapat dipicu oleh pemrosesan otomatis adalah catatan preservasi `cmek_preserve` (lihat [Preservasi konten CMEK](https://platform.claude.com/docs/id/manage-claude/access-transparency#cmek-content-preservation)).
+* **Event tiba di feed Anda yang sudah ada.** Aktivitas dapat diakses melalui [Activity Feed Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) Anda. Kredensial, audit, ekspor, dan integrasi SIEM yang sudah ada untuk Compliance API akan tetap berlaku.
 
 ## Apa yang dicakup Access Transparency
 
@@ -38,12 +38,12 @@ Personel Anthropic mengakses konten pelanggan hanya dalam kondisi yang telah dit
 
 ## Apa yang tidak dicakup Access Transparency
 
-* **Pemrosesan otomatis:** Penyajian model, pengklasifikasi keamanan, dan pipeline deteksi penyalahgunaan memproses konten Anda sebagai bagian dari operasi normal dan tidak menghasilkan event `anthropic_access`. Preservasi yang dimulai oleh pemrosesan otomatis memang menghasilkan event `cmek_preserve` (lihat [Preservasi konten CMEK](https://platform.claude.com/docs/id/manage-claude/access-transparency#cmek-content-preservation)).
+* **Pemrosesan otomatis:** Penyajian model, pengklasifikasi keamanan, dan pipeline deteksi penyalahgunaan memproses konten Anda sebagai bagian dari operasi normal dan tidak menghasilkan event `anthropic_access`. Preservasi yang dipicu oleh pemrosesan otomatis memang menghasilkan event `cmek_preserve` (lihat [Preservasi konten CMEK](https://platform.claude.com/docs/id/manage-claude/access-transparency#cmek-content-preservation)).
 * **Aktivitas organisasi Anda sendiri:** Panggilan API, tindakan admin, dan pembacaan Compliance API Anda dicakup oleh tipe event [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) standar.
-* **Claude for Enterprise dan Claude Apps:** Kursi claude.ai Enterprise, Claude for Work, Cowork, dan Claude in Chrome tidak dicakup.
+* **Claude for Enterprise dan Claude Apps:** Seat claude.ai Enterprise, Claude for Work, Cowork, dan Claude in Chrome tidak dicakup.
 * **Produk konsumen Claude:** Paket Claude Free, Pro, atau Max.
 * **Platform yang dioperasikan mitra:** Amazon Bedrock dan Google Cloud; lihat kontrol transparansi platform tersebut.
-* **Apa pun yang tidak dicakup ZDR:** Produk yang tidak dicakup oleh ZDR (misalnya, Files API, aplikasi stateful yang dihosting Anthropic, dan Batch API) tidak dicakup oleh Access Transparency. Lihat [dokumentasi ZDR](https://code.claude.com/docs/en/zero-data-retention#what-zdr-does-not-cover) untuk detail tambahan.
+* **Apa pun yang tidak dicakup ZDR:** Produk yang tidak dicakup oleh ZDR (misalnya, Files API, aplikasi stateful yang di-hosting Anthropic, dan Batch API) tidak dicakup oleh Access Transparency. Lihat [dokumentasi ZDR](https://code.claude.com/docs/en/zero-data-retention#what-zdr-does-not-cover) untuk detail tambahan.
 
 ## Memulai
 
@@ -55,7 +55,7 @@ Untuk mengaktifkan Access Transparency:
   </Step>
 
   <Step title="Anthropic meninjau kelayakan">
-    Anthropic mengonfirmasi bahwa organisasi Anda memenuhi kriteria kelayakan dan mengaktifkan kemampuan ini di tingkat organisasi.
+    Anthropic mengonfirmasi bahwa organisasi Anda memenuhi kriteria kelayakan dan mengaktifkan kapabilitas ini di tingkat organisasi.
   </Step>
 
   <Step title="Terima event melalui Compliance API">
@@ -63,11 +63,11 @@ Untuk mengaktifkan Access Transparency:
   </Step>
 </Steps>
 
-Access Transparency diaktifkan di tingkat organisasi dan mencakup semua workspace. Pendaftaran per-workspace saat ini tidak tersedia.
+Access Transparency diaktifkan di tingkat organisasi dan mencakup semua workspace. Pendaftaran per workspace saat ini belum tersedia.
 
 ## Menerima event Access Transparency
 
-Event Access Transparency dikirimkan sebagai tipe aktivitas `anthropic_access` pada Compliance API Activity Feed. Filter dengan `activity_types[]`:
+Event Access Transparency dikirimkan sebagai tipe aktivitas `anthropic_access` pada Activity Feed Compliance API. Filter dengan `activity_types[]`:
 
 ```bash
 curl --fail-with-body -sS -G \
@@ -77,24 +77,24 @@ curl --fail-with-body -sS -G \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
 ```
 
-Paginasi, pemfilteran rentang tanggal (`created_at.gte` / `.lt`), dan amplop respons (`has_more`, `first_id`, `last_id`) dibagikan dengan bagian lain dari Activity Feed. Lihat [Kueri Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed).
+Paginasi, pemfilteran rentang tanggal (`created_at.gte` / `.lt`), dan envelope respons (`has_more`, `first_id`, `last_id`) digunakan bersama dengan bagian lain Activity Feed. Lihat [Mengkueri Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed).
 
-Setiap aktivitas `anthropic_access` membawa field Activity standar ditambah yang berikut:
+Setiap aktivitas `anthropic_access` membawa field Activity standar ditambah field berikut:
 
-| Field                     | Tipe             | Deskripsi                                                                                                                                          |
-| ------------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`                      | string           | Pengidentifikasi unik untuk aktivitas ini                                                                                                          |
-| `accessed_at`             | string RFC 3339  | Kapan akses terjadi. Mungkin lebih awal daripada saat aktivitas menjadi terlihat di feed Anda                                                      |
-| `created_at`              | string RFC 3339  | Kapan aktivitas menjadi terlihat di feed Anda                                                                                                      |
-| `actor`                   | object           | Selalu `{ "type": "anthropic_actor", "email_address": null }`. Identitas karyawan individu tidak diungkapkan                                       |
-| `accessor_department`     | string           | Tim Anthropic yang melakukan akses (misalnya, `Safeguards`)                                                                                        |
-| `reason_code`             | enum             | Lihat [Kode alasan](https://platform.claude.com/docs/id/manage-claude/access-transparency#reason-codes)                                            |
-| `resource_details.type`   | enum             | Tipe sumber daya, saat ini hanya `message`. Dapat diperluas untuk tipe sumber daya di masa mendatang                                               |
-| `resource_details.id`     | string atau null | Pengidentifikasi konten yang diakses                                                                                                               |
-| `resource_details.parent` | string atau null | Pengidentifikasi induk konten, misalnya ID percakapan yang berisi pesan. Saat ini `null` atau dihilangkan sampai sumber daya dengan induk didukung |
-| `organization_id`         | string           | Organisasi pemilik konten. Format ID bertag (`org_...`)                                                                                            |
-| `organization_uuid`       | string           | Organisasi pemilik konten. Format UUID                                                                                                             |
-| `workspace_id`            | string atau null | Workspace pemilik konten                                                                                                                           |
+| Field                     | Tipe             | Deskripsi                                                                                                                                              |
+| ------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `id`                      | string           | Pengidentifikasi unik untuk aktivitas ini                                                                                                              |
+| `accessed_at`             | string RFC 3339  | Kapan akses terjadi. Mungkin lebih awal daripada saat aktivitas menjadi terlihat di feed Anda                                                          |
+| `created_at`              | string RFC 3339  | Kapan aktivitas menjadi terlihat di feed Anda                                                                                                          |
+| `actor`                   | object           | Selalu `{ "type": "anthropic_actor", "email_address": null }`. Identitas karyawan individual tidak diungkapkan                                         |
+| `accessor_department`     | string           | Tim Anthropic yang melakukan akses (misalnya, `Safeguards`)                                                                                            |
+| `reason_code`             | enum             | Lihat [Kode alasan](https://platform.claude.com/docs/id/manage-claude/access-transparency#reason-codes)                                                |
+| `resource_details.type`   | enum             | Tipe resource, saat ini hanya `message`. Dapat diperluas untuk tipe resource di masa mendatang                                                         |
+| `resource_details.id`     | string atau null | Pengidentifikasi konten yang diakses                                                                                                                   |
+| `resource_details.parent` | string atau null | Pengidentifikasi induk konten, misalnya ID percakapan yang berisi sebuah pesan. Saat ini `null` atau dihilangkan hingga resource dengan induk didukung |
+| `organization_id`         | string           | Organisasi pemilik konten. Format ID bertag (`org_...`)                                                                                                |
+| `organization_uuid`       | string           | Organisasi pemilik konten. Format UUID                                                                                                                 |
+| `workspace_id`            | string atau null | Workspace pemilik konten                                                                                                                               |
 
 Contoh pesan JSON:
 
@@ -115,11 +115,11 @@ Contoh pesan JSON:
 
 ## Preservasi konten CMEK
 
-Dalam kasus yang jarang terjadi, Anthropic mempreservasi konten tertentu melampaui jendela retensi standar (misalnya, ketika tinjauan keamanan mengonfirmasi konten yang sangat berbahaya yang harus disimpan untuk investigasi yang sedang berlangsung). Preservasi itu sendiri adalah tindakan yang dicatat dan terlihat oleh pelanggan:
+Dalam kasus yang jarang terjadi, Anthropic mempreservasi konten tertentu melampaui jendela retensi standar (misalnya, ketika peninjauan keamanan mengonfirmasi konten yang sangat berbahaya yang harus disimpan untuk investigasi yang sedang berlangsung). Preservasi itu sendiri merupakan tindakan yang dicatat dan terlihat oleh pelanggan:
 
-* **Event preservasi ditulis ke feed Anda.** Ketika konten dipreservasi, event dengan tipe `cmek_preserve` ditulis ke Compliance API Activity Feed Anda. Event preservasi membawa field yang sama dengan event `anthropic_access`; hanya tipe event yang berbeda, sehingga parser yang menangani salah satunya dapat menangani keduanya. Lihat [Kode alasan](https://platform.claude.com/docs/id/manage-claude/access-transparency#reason-codes).
-* **Event preservasi ditulis terlepas dari bagaimana preservasi dimulai.** Preservasi biasanya mengikuti tinjauan manusia atas konten, tetapi event ditulis baik preservasi dimulai oleh peninjau manusia maupun oleh pipeline keamanan otomatis: catatan tersebut mencerminkan bahwa status retensi konten Anda berubah, terlepas dari siapa yang mengubahnya.
-* **Untuk organisasi CMEK, preservasi adalah pergerakan kunci yang terlihat.** Konten yang dipreservasi dienkripsi ulang di luar kunci yang dikelola pelanggan Anda sehingga investigasi dapat berlanjut secara independen dari kunci Anda. Event preservasi adalah catatan Anda bahwa hal ini terjadi. Semua konten lain yang disimpan tetap berada di bawah kunci Anda.
+* **Event preservasi ditulis ke feed Anda.** Ketika konten dipreservasi, sebuah event dengan tipe `cmek_preserve` ditulis ke Activity Feed Compliance API Anda. Event preservasi membawa field yang sama dengan event `anthropic_access`; hanya tipe event yang berbeda, sehingga parser yang menangani salah satunya dapat menangani keduanya. Lihat [Kode alasan](https://platform.claude.com/docs/id/manage-claude/access-transparency#reason-codes).
+* **Event preservasi ditulis terlepas dari bagaimana preservasi tersebut dipicu.** Preservasi biasanya mengikuti peninjauan manusia atas konten, tetapi event ditulis baik preservasi dipicu oleh peninjau manusia maupun oleh pipeline keamanan otomatis: catatan tersebut mencerminkan bahwa status retensi konten Anda berubah, terlepas dari siapa yang mengubahnya.
+* **Untuk organisasi CMEK, preservasi merupakan perpindahan kunci yang terlihat.** Konten yang dipreservasi dienkripsi ulang di luar kunci yang dikelola pelanggan Anda sehingga investigasi dapat berlanjut secara independen dari kunci Anda. Event preservasi adalah catatan Anda bahwa hal ini terjadi. Semua konten lain yang disimpan tetap berada di bawah kunci Anda.
 
 Filter event preservasi dengan cara yang sama seperti event akses:
 
@@ -157,24 +157,24 @@ Kumpulan kode alasan bersifat tertutup. Anthropic akan memperbarui halaman ini j
 | Kode                             | Arti                                                                              |
 | -------------------------------- | --------------------------------------------------------------------------------- |
 | `safety_review`                  | Konten dilihat sebagai bagian dari investigasi kebijakan penggunaan atau keamanan |
-| `incident_response`              | Konten dilihat saat menyelidiki insiden yang memengaruhi organisasi Anda          |
+| `incident_response`              | Konten dilihat saat menginvestigasi insiden yang memengaruhi organisasi Anda      |
 | `policy_violation_investigation` | Konten dipreservasi selama investigasi pelanggaran kebijakan Trust and Safety     |
 | `csae_report`                    | Konten dipreservasi sebagai bukti untuk laporan keselamatan anak (CSAE)           |
 
-## Kelayakan permukaan
+## Kelayakan surface
 
-Tabel berikut mencantumkan permukaan mana yang dicakup oleh Access Transparency. Cakupan berarti akses manusia ke konten dari permukaan tersebut menghasilkan event `anthropic_access`.
+Tabel berikut mencantumkan surface mana yang dicakup oleh Access Transparency. Cakupan berarti akses manusia terhadap konten dari surface tersebut menghasilkan event `anthropic_access`.
 
-| Permukaan                                       | Dicakup | Detail                                                                                                       |
+| Surface                                         | Dicakup | Detail                                                                                                       |
 | ----------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------ |
 | Claude API (`api.anthropic.com`)                | Ya      | Prompt, completion, dan data yang disematkan langsung dalam input API                                        |
 | Claude Code (menggunakan kunci API)             | Ya      | Lalu lintas API dari Claude Code dicakup sebagai lalu lintas Claude API                                      |
-| Claude Platform di AWS                          | Ya      | Claude Platform di AWS menghasilkan event Access Transparency di dalam Compliance API (bukan AWS CloudTrail) |
-| Claude API (`api.anthropic.com`) (Batch, Files) | Tidak   | Claude API Batch dan Files API tidak dicakup, sama seperti keduanya tidak dicakup oleh ZDR                   |
-| Claude for Enterprise (kursi claude.ai)         | Tidak   | Tidak dicakup                                                                                                |
+| Claude Platform on AWS                          | Ya      | Claude Platform on AWS menghasilkan event Access Transparency di dalam Compliance API (bukan AWS CloudTrail) |
+| Claude API (`api.anthropic.com`) (Batch, Files) | Tidak   | Batch API dan Files API pada Claude API tidak dicakup, sama seperti keduanya tidak dicakup oleh ZDR          |
+| Claude for Enterprise (seat claude.ai)          | Tidak   | Tidak dicakup                                                                                                |
 | Claude for Work                                 | Tidak   | Tidak dicakup                                                                                                |
 | Claude Free, Pro, Max                           | Tidak   | Paket konsumen tidak memenuhi syarat                                                                         |
-| Anthropic Workbench                             | Tidak   | Workbench menyimpan data di penyimpanan data yang tidak dicakup oleh Access Transparency                     |
+| Playground (Claude Console)                     | Tidak   | Tidak dicakup                                                                                                |
 | Microsoft Foundry                               | Tidak   | Tidak tersedia                                                                                               |
 | Amazon Bedrock, Google Cloud                    | Tidak   | Platform yang dioperasikan mitra; lihat kontrol transparansi platform tersebut                               |
 
@@ -182,23 +182,23 @@ Tabel berikut mencantumkan permukaan mana yang dicakup oleh Access Transparency.
 
 ### Waktu cakupan
 
-Access Transparency berlaku sejak diaktifkan untuk organisasi Anda. Konten yang sudah berada dalam jendela retensi Anda saat pengaktifan mungkin juga menghasilkan event saat diakses, tetapi Anthropic tidak menjamin cakupan untuk konten yang ditulis sebelum pengaktifan. Perlakukan tanggal pengaktifan Anda sebagai awal cakupan yang andal. Mungkin ada penundaan hingga dua jam antara pengaktifan Access Transparency dan konten Anda mulai dicakup.
+Access Transparency berlaku sejak diaktifkan untuk organisasi Anda. Konten yang sudah berada dalam jendela retensi Anda saat pengaktifan mungkin juga menghasilkan event ketika diakses, tetapi Anthropic tidak menjamin cakupan untuk konten yang ditulis sebelum pengaktifan. Perlakukan tanggal pengaktifan Anda sebagai awal cakupan yang andal. Mungkin terdapat penundaan hingga dua jam antara pengaktifan Access Transparency dan konten Anda mulai dicakup.
 
 ### Waktu notifikasi
 
-Event `anthropic_access` dan `cmek_preserve` dikirimkan ke feed Compliance API Anda dalam waktu dua hari kerja sejak akses atau preservasi yang dicatatnya. Feed ini tidak boleh diperlakukan sebagai saluran peringatan real-time, dan stempel waktu `accessed_at` mencerminkan kapan akses terjadi, yang mungkin hingga dua hari kerja sebelum aktivitas menjadi terlihat di feed Anda. Field `created_at` mencerminkan waktu event menjadi terlihat.
+Event `anthropic_access` dan `cmek_preserve` dikirimkan ke feed Compliance API Anda dalam dua hari kerja sejak akses atau preservasi yang dicatatnya. Feed ini tidak boleh diperlakukan sebagai saluran peringatan real-time, dan timestamp `accessed_at` mencerminkan kapan akses terjadi, yang mungkin hingga dua hari kerja sebelum aktivitas menjadi terlihat di feed Anda. Field `created_at` mencerminkan waktu ketika event menjadi terlihat.
 
 ### Pemrosesan otomatis tidak menghasilkan event akses
 
-Event `anthropic_access` hanya mencatat akses manusia. Sistem keamanan otomatis dan pengklasifikasi Anthropic terus memproses konten Anda sebagai bagian dari operasi normal, dan pemrosesan tersebut tidak menghasilkan event `anthropic_access`. Satu-satunya event yang dapat dimulai oleh pemrosesan otomatis adalah catatan preservasi `cmek_preserve` (lihat [Preservasi konten CMEK](https://platform.claude.com/docs/id/manage-claude/access-transparency#cmek-content-preservation)). Feed yang kosong berarti tidak ada manusia di Anthropic yang telah melihat konten Anda; ini tidak berarti konten Anda tidak diproses oleh sistem otomatis.
+Event `anthropic_access` hanya mencatat akses manusia. Sistem keamanan otomatis dan pengklasifikasi Anthropic terus memproses konten Anda sebagai bagian dari operasi normal, dan pemrosesan tersebut tidak menghasilkan event `anthropic_access`. Satu-satunya event yang dapat dipicu oleh pemrosesan otomatis adalah catatan preservasi `cmek_preserve` (lihat [Preservasi konten CMEK](https://platform.claude.com/docs/id/manage-claude/access-transparency#cmek-content-preservation)). Feed yang kosong berarti tidak ada manusia di Anthropic yang telah melihat konten Anda; ini tidak berarti konten Anda tidak diproses oleh sistem otomatis.
 
 ### Access Transparency tidak mengubah apa yang dapat diakses Anthropic
 
-Access Transparency mencatat akses; ia tidak memberikan atau membatasinya. Tujuan personel Anthropic dapat mengakses konten Anda diatur oleh perjanjian Anda dengan Anthropic dan [Kebijakan Penggunaan](https://www.anthropic.com/legal/aup), dan tetap sama terlepas dari apakah Access Transparency diaktifkan atau tidak.
+Access Transparency mencatat akses; ia tidak memberikan atau membatasinya. Tujuan-tujuan yang memperbolehkan personel Anthropic mengakses konten Anda diatur oleh perjanjian Anda dengan Anthropic dan [Kebijakan Penggunaan](https://www.anthropic.com/legal/aup), dan tetap sama terlepas dari apakah Access Transparency diaktifkan atau tidak.
 
-### Log penggunaan kunci CMEK bukan catatan per-pembacaan
+### Log penggunaan kunci CMEK bukan catatan per pembacaan
 
-Untuk organisasi yang juga mengaktifkan CMEK, log audit KMS cloud Anda (CloudTrail, Cloud Audit Logs, atau Azure Monitor) mencatat penggunaan kunci Anda oleh Anthropic. Karena kunci di-cache untuk periode singkat selama operasi, satu pembacaan manusia individual tidak selalu menghasilkan entri dekripsi KMS yang berbeda. Gunakan feed Access Transparency sebagai catatan per-akses; log KMS Anda secara independen mengonfirmasi pola penggunaan kunci.
+Untuk organisasi yang juga mengaktifkan CMEK, log audit KMS cloud Anda (CloudTrail, Cloud Audit Logs, atau Azure Monitor) mencatat penggunaan kunci Anda oleh Anthropic. Karena kunci di-cache untuk periode singkat selama operasi, satu pembacaan manusia tidak selalu menghasilkan entri dekripsi KMS yang terpisah. Gunakan feed Access Transparency sebagai catatan per akses; log KMS Anda secara independen mengonfirmasi pola penggunaan kunci.
 
 ## Pertanyaan yang sering diajukan
 
@@ -208,26 +208,26 @@ Untuk organisasi yang juga mengaktifkan CMEK, log audit KMS cloud Anda (CloudTra
   </Accordion>
 
   <Accordion title="Apakah saya akan melihat event setiap kali pengklasifikasi keamanan berjalan pada lalu lintas saya?">
-    Tidak. Pemrosesan otomatis tidak menghasilkan event `anthropic_access`; Anda hanya akan melihat event `anthropic_access` jika peninjau manusia kemudian melihat konten tersebut. Secara terpisah, event `cmek_preserve` ditulis ketika konten dipreservasi, baik preservasi dimulai oleh peninjau manusia maupun pipeline keamanan otomatis.
+    Tidak. Pemrosesan otomatis tidak menghasilkan event `anthropic_access`; Anda hanya akan melihat event `anthropic_access` jika peninjau manusia kemudian melihat konten tersebut. Secara terpisah, event `cmek_preserve` ditulis ketika konten dipreservasi, baik preservasi tersebut dipicu oleh peninjau manusia maupun pipeline keamanan otomatis.
   </Accordion>
 
-  <Accordion title="Kami adalah platform yang menyajikan Claude kepada pengguna akhir kami sendiri. Bisakah kami mengaktifkan Access Transparency?">
+  <Accordion title="Kami adalah platform yang menyajikan Claude kepada pengguna akhir kami sendiri. Dapatkah kami mengaktifkan Access Transparency?">
     Access Transparency tidak tersedia untuk deployment platform. Hubungi perwakilan akun Anthropic Anda untuk mendiskusikan kasus penggunaan Anda.
   </Accordion>
 
-  <Accordion title="Apakah saya akan melihat event untuk akses yang terjadi sebelum kami mendaftar, atau untuk data kami yang lebih lama?">
-    Access Transparency tidak dijamin bersifat retroaktif. Ia mencakup akses manusia ke konten yang ditulis ke Claude API pada atau setelah tanggal pendaftaran Anda. Anda mungkin melihat event untuk akses ke konten yang ditulis sebelum pendaftaran.
+  <Accordion title="Apakah saya akan melihat event untuk akses yang terjadi sebelum kami mendaftar, atau untuk data lama kami?">
+    Access Transparency tidak dijamin berlaku surut. Ia mencakup akses manusia terhadap konten yang ditulis ke Claude API pada atau setelah tanggal pendaftaran Anda. Anda mungkin melihat event untuk akses terhadap konten yang ditulis sebelum pendaftaran.
   </Accordion>
 
-  <Accordion title="Seberapa cepat setelah akses saya akan melihat event tersebut?">
-    Dalam waktu dua hari kerja sejak akses. Konfigurasikan peringatan SIEM atau ekspor terjadwal apa pun dengan jendela lookback yang sesuai alih-alih mengasumsikan kedatangan real-time.
+  <Accordion title="Seberapa cepat setelah akses saya akan melihat event-nya?">
+    Dalam dua hari kerja sejak akses. Konfigurasikan peringatan SIEM atau ekspor terjadwal apa pun dengan jendela lookback yang sesuai, alih-alih mengasumsikan kedatangan real-time.
   </Accordion>
 
   <Accordion title="Bagaimana saya tahu permintaan mana yang dirujuk oleh event anthropic_access?">
-    Gunakan field `resource_details.id`. Field ini berisi ID pesan yang sama (`msg_...`) yang dikembalikan oleh [Messages API](https://platform.claude.com/docs/id/api/messages/create) di field `id` pada setiap body respons. Agar ini berguna, catat `id` di sistem Anda sendiri bersama metadata internal Anda, seperti aplikasi, pengguna akhir, atau percakapan yang menghasilkan permintaan tersebut. Ketika event tiba, gabungkan `resource_details.id`-nya dengan log Anda untuk mengidentifikasi dengan tepat permintaan mana yang dilihat.
+    Gunakan field `resource_details.id`. Field ini berisi ID pesan (`msg_...`) yang sama dengan yang dikembalikan [Messages API](https://platform.claude.com/docs/id/api/messages/create) dalam field `id` pada setiap body respons. Agar ini berguna, catat `id` di sistem Anda sendiri bersama metadata internal Anda, seperti aplikasi, pengguna akhir, atau percakapan yang menghasilkan permintaan tersebut. Ketika sebuah event tiba, gabungkan `resource_details.id`-nya dengan log Anda untuk mengidentifikasi secara tepat permintaan mana yang dilihat.
   </Accordion>
 
-  <Accordion title="Bisakah saya mengaktifkan Access Transparency untuk satu workspace saja?">
+  <Accordion title="Dapatkah saya mengaktifkan Access Transparency untuk satu workspace saja?">
     Access Transparency diaktifkan di tingkat organisasi dan mencakup semua workspace.
   </Accordion>
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 0ed25c803072c6778f2fab5f0540106df733e42991f590d9b5677efc155f7972
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: d580ca5d37e7e3ab5dbfce03170ad72b9aebe6259376d8eebac10586092d3bc8
 ---
 
 ---
@@ -756,9 +756,7 @@ When enabled, the API returns a message with the `compaction` stop reason after 
   # summary so you can adjust the messages before continuing. The continue
   # step doesn't translate well to a one-off CLI command; see the SDK tabs
   # for the full pause-and-continue flow. Single paused request:
-  ant beta:messages create \
-    --beta compact-2026-01-12 \
-    --format jsonl <<'YAML'
+  ant beta:messages create --beta compact-2026-01-12 --format jsonl <<'YAML'
   model: claude-opus-5
   max_tokens: 4096
   messages:

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/cost/list_by_user
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 287802827f82216d47a92d07540905f6c786b60c1940f916aa34dd799781d745
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 58f04a82d288708709037b9ebb6c5ee17bbcfbfd595df606fe4758b70bed5139
 ---
 
 ---
@@ -285,7 +285,7 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 ```http
 curl https://api.anthropic.com/v1/organizations/analytics/user_cost_report \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
 #### Response

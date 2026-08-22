@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/artifacts
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: ee10b072654174a84c0807d2cc91d78a34182bd0301f3e0a5b55c5e43011b96c
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: e6a95e0287ae1e4435a06096c8f2558fdc871742a57d35a803c3931244e8814f
 ---
 
 ---
@@ -107,7 +107,7 @@ via filter[]. Requires an API key with the `read:analytics` scope.
 ```http
 curl https://api.anthropic.com/v1/organizations/analytics/artifacts \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
 #### Response

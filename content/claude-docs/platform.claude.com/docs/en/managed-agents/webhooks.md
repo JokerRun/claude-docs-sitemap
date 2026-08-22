@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/webhooks
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 37f9b6e5bbe5fff954b3adb921fafd5ac69eb8de009c43265fc53282bc67f036
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 5c5fb2a34ebcdd024d64e3a83a8f8d0a66d82b95e7a6e851f9dfcf8d080d9d26
 ---
 
 ---
@@ -19,6 +19,8 @@ Webhook events return the event `type` and `id`, not the full object. When you r
 
 <Tabs>
   <Tab title="Session events">
+    Some of these events are named differently from the matching events on the session's [event stream](https://platform.claude.com/docs/en/managed-agents/events-and-streaming). For example, the stream's `session.status_idle` and `session.status_running` correspond to the `session.status_idled` and `session.status_run_started` webhook events.
+
     | Event                              | Trigger                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
     | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
     | `session.status_run_started`       | Agent execution started. This triggers at every session status transition to `running`.                                                                                                                                                                                                                                                                                                                                                                                                  |

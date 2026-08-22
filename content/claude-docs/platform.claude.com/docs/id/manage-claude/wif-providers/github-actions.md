@@ -1,30 +1,30 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/github-actions
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 7931d91d1cbb9960ae6996cb75d3c7f5c7cd2170993c15fd4d53ccdee872c67e
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: c2bc737e5ff893da6502689f3a570d2e2ee1c846cbff48db293bc131ea575263
 ---
 
 ---
 title: Menggunakan WIF dengan GitHub Actions
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/github-actions
-description: Autentikasi alur kerja GitHub Actions ke Claude API dengan token identitas berumur pendek alih-alih kunci API berumur panjang.
+description: Autentikasi workflow GitHub Actions ke Claude API dengan token identitas berumur pendek alih-alih kunci API berumur panjang.
 ---
 
-Setiap eksekusi alur kerja GitHub Actions dapat meminta token identitas yang ditandatangani dari issuer yang dihosting GitHub di `https://token.actions.githubusercontent.com`. Dengan Workload Identity Federation, alur kerja Anda menukar token tersebut dengan token akses Anthropic berumur pendek, sehingga job CI Anda dapat memanggil Claude API tanpa secret `ANTHROPIC_API_KEY` yang disimpan di repositori Anda.
+Setiap eksekusi workflow GitHub Actions dapat meminta token identitas bertanda tangan dari issuer yang di-host GitHub di `https://token.actions.githubusercontent.com`. Dengan Workload Identity Federation, workflow Anda menukarkan token tersebut dengan token akses Anthropic berumur pendek, sehingga job CI Anda dapat memanggil Claude API tanpa secret `ANTHROPIC_API_KEY` yang disimpan di repositori Anda.
 
-Klaim `sub` pada token mengodekan konteks repositori dan pemicu. Untuk push ke sebuah branch, bentuknya adalah `repo:<owner>/<repo>:ref:refs/heads/<branch>`. Eksekusi pull-request menggunakan `repo:<owner>/<repo>:pull_request`, dan deployment yang dibatasi environment menggunakan `repo:<owner>/<repo>:environment:<name>`. Aturan federasi Anda mencocokkan klaim ini (dan klaim lainnya, seperti `repository_owner` dan `ref`) untuk menentukan eksekusi alur kerja mana yang diizinkan untuk melakukan autentikasi.
+Claim `sub` pada token mengodekan repositori dan konteks pemicu. Untuk push ke sebuah branch, bentuknya adalah `repo:<owner>/<repo>:ref:refs/heads/<branch>`. Eksekusi pull-request menggunakan `repo:<owner>/<repo>:pull_request`, dan deployment yang dibatasi environment menggunakan `repo:<owner>/<repo>:environment:<name>`. Aturan federasi Anda mencocokkan claim ini (dan claim lainnya, seperti `repository_owner` dan `ref`) untuk menentukan eksekusi workflow mana yang diizinkan untuk melakukan autentikasi.
 
 ## Prasyarat
 
-* Pemahaman tentang [konsep WIF](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#concepts): service account, federation issuer, dan federation rule.
-* Repositori GitHub tempat Anda dapat mengedit file alur kerja dan memberikan izin `id-token: write`.
+* Pemahaman tentang [konsep WIF](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#concepts): service account, federation issuer, dan federation rule (aturan federasi).
+* Repositori GitHub tempat Anda dapat mengedit file workflow dan memberikan izin `id-token: write`.
 * Izin untuk membuat service account, federation issuer, dan federation rule di Claude Console untuk organisasi Anthropic Anda.
-* ID organisasi Anthropic Anda. Anda dapat menemukannya di Claude Console di bawah **Settings → Organization**.
+* ID organisasi Anthropic Anda. Anda dapat menemukannya di Claude Console pada **Settings → Organization**.
 
-## Konfigurasikan alur kerja Anda
+## Konfigurasikan workflow Anda
 
-GitHub hanya menerbitkan token identitas untuk job yang secara eksplisit memintanya. Tambahkan izin `id-token: write` di tingkat alur kerja atau job:
+GitHub hanya menerbitkan token identitas untuk job yang secara eksplisit memintanya. Tambahkan izin `id-token: write` di tingkat workflow atau job:
 
 ```yaml
 permissions:
@@ -32,7 +32,7 @@ permissions:
   contents: read
 ```
 
-Di dalam job, runner mengekspos dua variabel lingkungan: `ACTIONS_ID_TOKEN_REQUEST_URL` dan `ACTIONS_ID_TOKEN_REQUEST_TOKEN`. Panggil URL permintaan dengan token permintaan sebagai kredensial bearer dan audience pilihan Anda sebagai parameter kueri, lalu tulis "JSON Web Token" (token web JSON), atau JWT, yang dikembalikan ke sebuah file:
+Di dalam job, runner mengekspos dua variabel lingkungan: `ACTIONS_ID_TOKEN_REQUEST_URL` dan `ACTIONS_ID_TOKEN_REQUEST_TOKEN`. Panggil URL permintaan tersebut dengan request token sebagai kredensial bearer dan audience pilihan Anda sebagai parameter query, lalu tulis "JSON Web Token" (token web JSON), atau JWT, yang dikembalikan ke sebuah file:
 
 ```yaml
 - name: Fetch GitHub OIDC token
@@ -54,7 +54,7 @@ Jika Anda lebih suka JavaScript, `actions/github-script` mengekspos kemampuan ya
       fs.writeFileSync('/tmp/gha-jwt', token);
 ```
 
-Token yang didekode membawa klaim yang mendeskripsikan eksekusi alur kerja. Aturan federasi Anda mencocokkan klaim-klaim ini:
+Token yang telah di-decode membawa claim yang mendeskripsikan eksekusi workflow. Aturan federasi Anda mencocokkan claim-claim ini:
 
 ```json
 {
@@ -71,15 +71,15 @@ Token yang didekode membawa klaim yang mendeskripsikan eksekusi alur kerja. Atur
 }
 ```
 
-Lihat [referensi klaim subject OIDC GitHub](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect#example-subject-claims) untuk daftar lengkap format `sub`.
+Lihat [referensi subject claim OIDC GitHub](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect#example-subject-claims) untuk daftar lengkap format `sub`.
 
 ## Konfigurasikan Anthropic
 
-Di Claude Console, buka **Settings → Workload identity**, klik **Connect workload**, dan pilih tile **GitHub Actions**. Wizard akan memandu Anda melalui pendaftaran issuer, pembuatan service account, dan pembuatan federation rule.
+Di Claude Console, buka **Settings → Workload identity**, klik **Connect workload**, dan pilih tile **GitHub Actions**. Wizard akan memandu Anda mendaftarkan issuer, membuat service account, dan membuat aturan federasi.
 
 Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut baik saat Anda memasukkannya di wizard maupun saat mengirimkannya ke [Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api):
 
-**Federation issuer:** GitHub memublikasikan dokumen discovery OIDC dan JWKS-nya secara publik, jadi gunakan mode discovery. Anthropic menyegarkan kunci secara otomatis ketika GitHub merotasinya.
+**Federation issuer:** GitHub memublikasikan dokumen discovery OIDC dan JWKS-nya secara publik, jadi gunakan mode discovery. Anthropic memperbarui kunci secara otomatis ketika GitHub merotasinya.
 
 ```json
 {
@@ -89,7 +89,7 @@ Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut 
 }
 ```
 
-**Federation rule:** Cocokkan hanya eksekusi alur kerja yang memang Anda percayai. Lihat [Batasi alur kerja mana yang dapat melakukan autentikasi](https://platform.claude.com/docs/id/manage-claude/wif-providers/github-actions#restrict-which-workflows-can-authenticate) untuk cara membatasi cakupan klaim-klaim ini dengan aman.
+**Federation rule:** Cocokkan hanya eksekusi workflow yang memang ingin Anda percayai. Lihat [Batasi workflow mana yang dapat melakukan autentikasi](https://platform.claude.com/docs/id/manage-claude/wif-providers/github-actions#restrict-which-workflows-can-authenticate) untuk cara membatasi cakupan claim ini dengan aman.
 
 ```json
 {
@@ -112,11 +112,11 @@ Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut 
 }
 ```
 
-Buatlah sespesifik mungkin sesuai yang diizinkan oleh workload. Longgarkan `subject_prefix` menjadi `repo:your-org/your-repo:*` (dipasangkan dengan batasan `claims.ref`) hanya jika aturan tersebut harus mencocokkan beberapa jenis event dari repositori yang sama, karena segmen akhir dari `sub` bervariasi antara event `ref:...`, `environment:...`, dan `pull_request`.
+Buatlah sespesifik yang dimungkinkan oleh workload. Longgarkan `subject_prefix` menjadi `repo:your-org/your-repo:*` (dipasangkan dengan batasan `claims.ref`) hanya jika aturan harus mencocokkan beberapa jenis event dari repositori yang sama, karena segmen akhir `sub` bervariasi antara event `ref:...`, `environment:...`, dan `pull_request`.
 
-## Dapatkan dan gunakan token
+## Peroleh dan gunakan token
 
-Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthropic()` membaca `ANTHROPIC_IDENTITY_TOKEN_FILE`, menukar JWT pada permintaan pertama, dan menyegarkan token akses secara otomatis sebelum kedaluwarsa.
+Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthropic()` membaca `ANTHROPIC_IDENTITY_TOKEN_FILE`, menukarkan JWT pada permintaan pertama, dan memperbarui token akses secara otomatis sebelum kedaluwarsa.
 
 <CodeGroup>
   ```yaml Workflow
@@ -184,7 +184,7 @@ Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthr
 
   # Membaca ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
   # ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan ANTHROPIC_IDENTITY_TOKEN_FILE
-  # dari lingkungan job.
+  # dari environment job.
   client = anthropic.Anthropic()
 
   message = client.messages.create(
@@ -200,7 +200,7 @@ Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthr
 
   // Membaca ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
   // ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan ANTHROPIC_IDENTITY_TOKEN_FILE
-  // dari lingkungan job.
+  // dari environment job.
   const client = new Anthropic();
 
   const message = await client.messages.create({
@@ -218,7 +218,7 @@ Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthr
   ```go Go
   // Membaca ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
   // ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan ANTHROPIC_IDENTITY_TOKEN_FILE
-  // dari lingkungan job.
+  // dari environment job.
   client := anthropic.NewClient()
 
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
@@ -274,7 +274,7 @@ Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthr
   ```bash CLI
   # Membaca ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
   # ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan ANTHROPIC_IDENTITY_TOKEN_FILE
-  # dari lingkungan job.
+  # dari environment job.
   ant messages create \
     --model claude-opus-5 \
     --max-tokens 1024 \
@@ -286,7 +286,7 @@ Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthr
 
   // Membaca ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
   // ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan ANTHROPIC_IDENTITY_TOKEN_FILE
-  // dari lingkungan job.
+  // dari environment job.
   $client = new Client();
 
   $message = $client->messages->create(
@@ -303,7 +303,7 @@ Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthr
 
   # Membaca ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
   # ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan ANTHROPIC_IDENTITY_TOKEN_FILE
-  # dari lingkungan job.
+  # dari environment job.
   client = Anthropic::Client.new
 
   message = client.messages.create(
@@ -315,23 +315,23 @@ Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthr
   ```
 </CodeGroup>
 
-Setiap token identitas yang diterbitkan GitHub kedaluwarsa sekitar lima menit setelah diterbitkan. Endpoint permintaan token (`ACTIONS_ID_TOKEN_REQUEST_URL`) tetap valid selama job berlangsung, sehingga Anda dapat mengambil token baru kapan saja. SDK menukar token pada penggunaan pertama dan menyimpan token akses Anthropic yang dihasilkan dalam cache. Untuk job yang berjalan lebih lama dari masa berlaku token Anthropic, SDK membaca ulang `ANTHROPIC_IDENTITY_TOKEN_FILE` pada setiap penyegaran, jadi jalankan kembali langkah pengambilan secara berkala (atau bungkus dalam loop latar belakang) agar file tetap mutakhir. Sebagai alternatif, berikan callback token-provider ke SDK yang memanggil `ACTIONS_ID_TOKEN_REQUEST_URL` secara langsung alih-alih menggunakan jalur file.
+Setiap token identitas yang diterbitkan GitHub kedaluwarsa kira-kira lima menit setelah diterbitkan. Endpoint permintaan token (`ACTIONS_ID_TOKEN_REQUEST_URL`) tetap valid selama seluruh job berlangsung, sehingga Anda dapat mengambil token baru kapan saja. SDK menukarkan token pada penggunaan pertama dan menyimpan token akses Anthropic yang dihasilkan dalam cache. Untuk job yang berjalan lebih lama daripada masa berlaku token Anthropic, SDK membaca ulang `ANTHROPIC_IDENTITY_TOKEN_FILE` pada setiap pembaruan, jadi jalankan ulang langkah pengambilan secara berkala (atau bungkus dalam loop latar belakang) agar file tetap mutakhir. Sebagai alternatif, berikan callback penyedia token ke SDK yang memanggil `ACTIONS_ID_TOKEN_REQUEST_URL` secara langsung alih-alih menggunakan path file.
 
 ## Verifikasi penyiapan
 
-Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Pada `400 invalid_grant`, lihat [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi GitHub Actions adalah format klaim `sub` yang tidak cocok (segmen akhirnya bervariasi antara event `ref:...`, `environment:...`, dan `pull_request`).
+Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Pertukaran yang ditolak mengembalikan `401` `authentication_error` yang tidak transparan dengan pesan tetap `Authentication failed`, apa pun pemeriksaan yang gagal; dalam sebagian besar kasus, alasan penolakan dicatat pada entri percobaan tersebut di [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history), dan [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange) menelusuri pemeriksaan secara berurutan. Penyebab paling umum di sisi GitHub Actions adalah format claim `sub` yang tidak cocok (segmen akhirnya bervariasi antara event `ref:...`, `environment:...`, dan `pull_request`); entri riwayat menampilkan alasan `match_subject_prefix`.
 
-## Batasi alur kerja mana yang dapat melakukan autentikasi
+## Batasi workflow mana yang dapat melakukan autentikasi
 
 <Warning>
-  `subject_prefix` berupa `repo:your-org/*` saja akan mencocokkan setiap repositori di organisasi Anda, dan tanpa batasan `ref` juga akan mencocokkan eksekusi `pull_request` yang dipicu dari fork. Siapa pun yang dapat membuka pull request terhadap repositori yang cocok dapat memperoleh token Anthropic terfederasi.
+  `subject_prefix` berupa `repo:your-org/*` saja akan cocok dengan setiap repositori di organisasi Anda, dan tanpa batasan `ref`, ia juga cocok dengan eksekusi `pull_request` yang dipicu dari fork. Siapa pun yang dapat membuka pull request terhadap repositori yang cocok dapat memperoleh token Anthropic terfederasi.
 </Warning>
 
 Kunci blok `match` pada aturan ke cakupan tersempit yang sesuai dengan kasus penggunaan Anda:
 
 * **Sematkan ke satu repositori:** Gunakan `subject_prefix: "repo:your-org/your-repo:*"` agar repositori lain di organisasi tidak cocok.
 * **Sematkan ke branch yang dilindungi:** Tambahkan `"ref": "refs/heads/main"` (atau branch rilis Anda) di bawah `claims` agar eksekusi pull-request dan feature branch tidak cocok.
-* **Sematkan owner secara eksplisit:** Tambahkan `"repository_owner": "your-org"` di bawah `claims` sebagai pemeriksaan defense-in-depth terhadap kasus tepi penguraian `sub`.
+* **Sematkan owner secara eksplisit:** Tambahkan `"repository_owner": "your-org"` di bawah `claims` sebagai pemeriksaan defense-in-depth terhadap kasus tepi dalam parsing `sub`.
 * **Sematkan ke environment deployment:** Untuk job deploy, cocokkan `subject_prefix: "repo:your-org/your-repo:environment:production"` dan batasi environment tersebut dengan reviewer wajib di GitHub.
 
 ## Langkah selanjutnya

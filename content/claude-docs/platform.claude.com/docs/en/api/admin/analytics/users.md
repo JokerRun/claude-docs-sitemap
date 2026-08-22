@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/users
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: f7f6b4ede8c6f405f34b69a3d9b4453166cb87c594c261f883e14ccdfbd0452b
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 2e4fd8a633276b9690c5feda2f3b492f2c5152c57f49d7850638f231352746f5
 ---
 
 ---
@@ -391,7 +391,7 @@ the `read:analytics` scope.
 ```http
 curl https://api.anthropic.com/v1/organizations/analytics/users \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
 #### Response

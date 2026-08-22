@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 760aeb7038f51a0b5dccc9d6377a129bf51791d5e357ba3d7c61e2698678909c
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: d998d10587b5e5d8d1a35acc3fea7abc385186588061c545d935891c0bc7965e
 ---
 
 ---
@@ -7319,7 +7319,7 @@ Enterprise plan. Requires an API key with the `read:analytics` scope.
 ```http
 curl https://api.anthropic.com/v1/organizations/analytics/summaries \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
 #### Response
@@ -7820,7 +7820,7 @@ key with the `read:analytics` scope.
 ```http
 curl https://api.anthropic.com/v1/organizations/analytics/usage_report \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
 #### Response
@@ -8135,7 +8135,7 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 ```http
 curl https://api.anthropic.com/v1/organizations/analytics/user_usage_report \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
 #### Response
@@ -8665,7 +8665,7 @@ Requires an API key with the `read:analytics` scope.
 ```http
 curl https://api.anthropic.com/v1/organizations/analytics/cost_report \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
 #### Response
@@ -8977,7 +8977,7 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 ```http
 curl https://api.anthropic.com/v1/organizations/analytics/user_cost_report \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
 #### Response
@@ -9658,7 +9658,7 @@ the `read:analytics` scope.
 ```http
 curl https://api.anthropic.com/v1/organizations/analytics/users \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
 #### Response
@@ -10293,7 +10293,7 @@ on a Claude Enterprise plan. Requires an API key with the
 ```http
 curl https://api.anthropic.com/v1/organizations/analytics/skills \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
 #### Response
@@ -10638,7 +10638,7 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 ```http
 curl https://api.anthropic.com/v1/organizations/analytics/connectors \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
 #### Response
@@ -10933,7 +10933,7 @@ plan. Requires an API key with the `read:analytics` scope.
 ```http
 curl https://api.anthropic.com/v1/organizations/analytics/apps/chat/projects \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
 #### Response
@@ -11172,7 +11172,7 @@ range-rollup mode like /skills.
 ```http
 curl https://api.anthropic.com/v1/organizations/analytics/plugins \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
 #### Response
@@ -11365,7 +11365,7 @@ via filter[]. Requires an API key with the `read:analytics` scope.
 ```http
 curl https://api.anthropic.com/v1/organizations/analytics/artifacts \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
 #### Response

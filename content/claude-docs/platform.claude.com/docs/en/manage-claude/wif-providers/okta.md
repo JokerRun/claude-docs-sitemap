@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/okta
-fetched_at: 2026-08-19T02:28:54.965606Z
-sha256: 2106555740d19f1f1327662d6f9553363c51191758fbc078f919a32e1339897c
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: f8d7bd9a6c68149366b1e89c8a3a86d6a96dd705441a157c161a58681378fcda
 ---
 
 ---
@@ -119,13 +119,13 @@ Unlike platform-native providers (AWS, Google Cloud, Kubernetes), which make a t
 
   ```python Python
   import os
-  import httpx
+  import httpx2
   import anthropic
   from anthropic import WorkloadIdentityCredentials
 
 
   def fetch_okta_token() -> str:
-      response = httpx.post(
+      response = httpx2.post(
           f"{os.environ['OKTA_ISSUER']}/v1/token",
           data={
               "grant_type": "client_credentials",

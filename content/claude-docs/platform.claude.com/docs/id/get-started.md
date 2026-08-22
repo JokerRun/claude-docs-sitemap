@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-started
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: ad54a1491361bd8319c7541251ad8a74cebffbb0a99922878c44430f3fce47d7
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: f0a7d253fb177617160af2de2f141f33651655565b61a52ee4050a29f6fdd082
 ---
 
 ---
@@ -22,7 +22,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
   <Tab title="cURL">
     <Steps>
       <Step title="Atur kunci API Anda">
-        Ekspor kunci API Anda sebagai variabel lingkungan. Perintah cURL di bawah ini membacanya dari `$ANTHROPIC_API_KEY`.
+        Ekspor kunci API Anda sebagai variabel lingkungan. Perintah cURL di bawah membacanya dari `$ANTHROPIC_API_KEY`.
 
         ```bash
         export ANTHROPIC_API_KEY="your-api-key-here"
@@ -85,7 +85,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
         brew install anthropics/tap/ant
         ```
 
-        Untuk metode instalasi lainnya, lihat [Instalasi](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart#installation) di panduan cepat CLI.
+        Untuk metode instalasi lainnya, lihat [Instalasi](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart#installation) di panduan memulai cepat CLI.
       </Step>
 
       <Step title="Autentikasi">
@@ -95,13 +95,13 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
         ant auth login
         ```
 
-        Ini akan membuka alur OAuth berbasis browser. Setelah memberikan otorisasi, konfirmasi kredensial Anda dengan:
+        Ini membuka alur OAuth berbasis browser. Setelah memberikan otorisasi, konfirmasikan kredensial Anda dengan:
 
         ```bash
         ant auth status
         ```
 
-        Pada host jarak jauh tanpa browser, berikan `--no-browser` untuk mendapatkan URL yang dapat Anda buka di perangkat lain, lalu tempelkan kode yang dikembalikan ke terminal. Jika `ANTHROPIC_API_KEY` diatur di lingkungan Anda, variabel tersebut akan diutamakan daripada kredensial login. Untuk lingkungan non-interaktif seperti CI, lihat [opsi autentikasi CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication).
+        Pada host jarak jauh tanpa browser, berikan `--no-browser` untuk mendapatkan URL yang dapat Anda buka di perangkat lain, lalu tempelkan kode yang dikembalikan ke terminal. Jika `ANTHROPIC_API_KEY` diatur di lingkungan Anda, variabel tersebut lebih diutamakan daripada kredensial login. Untuk lingkungan non-interaktif seperti CI, lihat [opsi autentikasi CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication).
       </Step>
 
       <Step title="Lakukan panggilan API pertama Anda">
@@ -117,7 +117,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
           }'
         ```
 
-        CLI akan mencetak respons JSON:
+        CLI mencetak respons JSON:
 
         ```json Output
         {
@@ -443,7 +443,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
             }
 
             dependencies {
-                implementation("com.anthropic:anthropic-java:2.53.0")
+                implementation("com.anthropic:anthropic-java:2.57.0")
             }
 
             application {
@@ -469,7 +469,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
                 <dependency>
                   <groupId>com.anthropic</groupId>
                   <artifactId>anthropic-java</artifactId>
-                  <version>2.53.0</version>
+                  <version>2.57.0</version>
                 </dependency>
               </dependencies>
             </project>
@@ -665,7 +665,7 @@ Anda telah melakukan panggilan API pertama Anda. Selanjutnya, pelajari pola Mess
   Pelajari percakapan multi-giliran, prompt sistem, alasan berhenti, dan pola inti lainnya.
 </Card>
 
-Setelah Anda merasa nyaman dengan dasar-dasarnya, jelajahi lebih lanjut:
+Setelah Anda nyaman dengan dasar-dasarnya, jelajahi lebih lanjut:
 
 <CardGroup cols={2}>
   <Card title="Ikhtisar model" icon="brain" href="https://platform.claude.com/docs/id/about-claude/models/overview">
@@ -673,7 +673,7 @@ Setelah Anda merasa nyaman dengan dasar-dasarnya, jelajahi lebih lanjut:
   </Card>
 
   <Card title="Ikhtisar fitur" icon="list" href="https://platform.claude.com/docs/id/build-with-claude/overview">
-    Jelajahi semua kemampuan Claude: alat, manajemen konteks, output terstruktur, dan lainnya.
+    Telusuri semua kemampuan Claude: alat, manajemen konteks, output terstruktur, dan lainnya.
   </Card>
 
   <Card title="SDK Klien" icon="code-brackets" href="https://platform.claude.com/docs/id/cli-sdks-libraries/overview">

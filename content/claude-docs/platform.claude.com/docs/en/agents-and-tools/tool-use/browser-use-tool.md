@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 6fa3a9cf8d60178f6796846b13e1a113a47bf6da89549a6eabfb34d81eba2711
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 6138dd716541898693cbe5082681a06f580ae6477ebf2d0d3608b005cdb1e59c
 ---
 
 ---
@@ -24,7 +24,7 @@ With browser use, Claude reads and acts on live webpages, so everything a page s
 
 ## Quick start
 
-The browser use tool is generally available on the Claude API with no beta header: add one entry of type `browser_toolset_20260801`, with no `name`, to the `tools` array of a [Messages API](https://platform.claude.com/docs/en/api/messages/create) request.
+The browser use tool is available on the Claude API with no beta header: add one entry of type `browser_toolset_20260801`, with no `name`, to the `tools` array of a [Messages API](https://platform.claude.com/docs/en/api/messages/create) request.
 
 <CodeGroup>
   ```bash cURL
@@ -983,8 +983,7 @@ The second part runs a batch in order, dispatches each block to those handlers, 
       $failed = false;
       foreach ($response->content as $block) {
           // This example declares only the browser toolset; route other tools here if you add them.
-          // Read toolset_name through array access: the SDK keeps it as raw data until a release types it.
-          if (!($block instanceof ToolUseBlock) || ($block['toolsetName'] ?? $block['toolset_name'] ?? null) !== 'browser') {
+          if (!($block instanceof ToolUseBlock) || $block->toolsetName !== 'browser') {
               continue;
           }
           $result = ['type' => 'tool_result', 'tool_use_id' => $block->id, 'toolset_name' => 'browser'];

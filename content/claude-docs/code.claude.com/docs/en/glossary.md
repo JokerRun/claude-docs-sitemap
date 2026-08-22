@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 64ae2fd9a68a7bb1d4a29df8294a99a12e632cc0ecddcb760511d89bbeac2aad
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 8fc70bde63878b28e2ec198e653b0a50c57dd637c8aed382c519d7eac9e9f315
 ---
 
 > ## Documentation Index
@@ -169,7 +169,7 @@ Learn more: [Get started with hooks](/docs/en/hooks-guide) · [Hooks reference](
 
 Settings enforced org-wide by IT or DevOps, delivered from Anthropic's servers through the admin console or deployed to devices at an OS-level path outside `~/.claude`. User and project settings cannot override managed settings. Server-managed delivery applies on [eligible configurations](/docs/en/server-managed-settings#platform-availability); see [Security considerations](/docs/en/server-managed-settings#security-considerations). Use this for security policies, compliance requirements, or standardized tooling across a fleet.
 
-Learn more: [Server-managed settings](/docs/en/server-managed-settings) · [Settings files](/docs/en/settings#settings-files)
+Learn more: [Server-managed settings](/docs/en/server-managed-settings) · [Settings files](/docs/en/settings#where-settings-live)
 
 ### MCP (Model Context Protocol)
 
@@ -185,7 +185,7 @@ Learn more: [Model Context Protocol](/docs/en/mcp)
 
 ### MCP Tool Search
 
-A context-saving mechanism that defers MCP tool schemas until needed. Only tool names load at startup; Claude fetches the full schema on demand when it decides to use a specific tool. This keeps idle MCP servers from consuming much context.
+A context-saving mechanism that defers MCP tool schemas until needed. Only tool names and server instructions load at startup; Claude fetches the full schema on demand when it decides to use a specific tool. This keeps idle MCP servers from consuming much context.
 
 Learn more: [Scale with MCP Tool Search](/docs/en/mcp#scale-with-mcp-tool-search)
 
@@ -277,7 +277,7 @@ Learn more: [Work with sessions](/docs/en/how-claude-code-works#work-with-sessio
 
 The hierarchy Claude Code reads configuration from, in precedence order from highest to lowest: [managed policy](#managed-settings), command-line arguments, local settings at `.claude/settings.local.json`, project settings at `.claude/settings.json`, then user settings at `~/.claude/settings.json`. Arrays merge across layers; scalars at a higher layer override lower ones. See [Settings precedence](/docs/en/settings#settings-precedence).
 
-Learn more: [Settings files](/docs/en/settings#settings-files)
+Learn more: [Settings files](/docs/en/settings#where-settings-live)
 
 ### Skill
 

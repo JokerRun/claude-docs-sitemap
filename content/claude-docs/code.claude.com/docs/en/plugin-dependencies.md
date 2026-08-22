@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-dependencies
-fetched_at: 2026-08-18T02:27:20.489890Z
-sha256: 83c24f0f9915f66d24011167fc164a90c5badc1832495932717ff2d34dd93868
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: b14be1930464992027b58ff897760ec49399123575de93b5a2294ea9e324323d
 ---
 
 > ## Documentation Index
@@ -81,7 +81,7 @@ To add a tool to the standard set later, publish a new `backend-standard` versio
 * Enable auto-update for the marketplace in `/plugin`. The next auto-update moves the bundle to the new version and installs any dependencies it adds.
 * Run `claude plugin update backend-standard`, then `/reload-plugins` to install the newly added dependencies.
 
-To roll bundles out across an organization, add the bundle plugin to `enabledPlugins` in [managed settings](/docs/en/settings#enabledplugins).
+To roll bundles out across an organization, add the bundle plugin to `enabledPlugins` in [managed settings](/docs/en/settings-reference#enabledplugins).
 
 ## Depend on a plugin from another marketplace
 

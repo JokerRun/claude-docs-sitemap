@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/tools
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 794cd5ab1e708eb14f4d3d6945dc731c4a9c974f805268ebf5d5f16f267fbc18
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 91373069c56bd71fc3a056186ba47833a5afd86e865d82144d69f17bc419f167
 ---
 
 ---
@@ -655,6 +655,7 @@ These settings use the same `allowed_domains` and `blocked_domains` vocabulary a
 
 * Each list is capped at 64 domains.
 * Domains listed for `web_fetch` cannot include a path.
+* Domains must be ASCII: use the `xn--` (Punycode) form for internationalized domain names. The Messages API accepts Unicode entries, though it recommends against them.
 * `max_uses`, `citations`, and `cache_control` are not available on the toolset.
 
 ## Custom tools

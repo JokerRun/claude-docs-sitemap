@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/scheduled-deployments
-fetched_at: 2026-08-20T02:28:31.280657Z
-sha256: 0e2fb32a505c9d10e793415b145910122d83044830af173934dc1eb6e2b76b5d
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 36043fbab73e9b53a3adb956747f2ef2db22b37392806da78a2bb3c5aa34511c
 ---
 
 ---
@@ -259,7 +259,7 @@ See the [Create Deployment reference](https://platform.claude.com/docs/en/api/be
 
 * **Expression:** Standard POSIX cron (`minute hour day-of-month month day-of-week`). You can generate and validate these cron expressions in the [Claude Console](https://platform.claude.com/workspaces/default/deployments).
 * **Timezone:** IANA timezone identifier (for example, `"America/Los_Angeles"`).
-* **DST:** Cron schedules use literal wall-clock matching, so `"0 20 * * *"` in `America/New_York` fires at 8PM local time regardless of whether EST or EDT is in effect.
+* **DST:** Cron schedules use literal wall-clock matching, so `"0 20 * * *"` in `America/New_York` fires at 8:00 PM local time regardless of whether EST or EDT is in effect.
 
 <Note>
   Wall-clock times that do not exist on a spring-forward day (such as 2 AM) are not triggered. Wall-clock times that occur twice on a fall-back day fire twice. Schedule outside the 1–3 AM local window, or use UTC, when missed or duplicate executions are unacceptable.

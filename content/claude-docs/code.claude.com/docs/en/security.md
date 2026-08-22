@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/security
-fetched_at: 2026-08-19T02:28:54.965606Z
-sha256: 7aba02e7f539d2384954d05443e1ce3ccd4f4b99adf54937b9e623b8fdaa7d25
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: dc778005a5b5d1cbf262df53e537b2b9ebafd112f8d2e8505343ee74b8676bab
 ---
 
 > ## Documentation Index
@@ -131,7 +131,7 @@ For more details on cloud execution, see [Claude Code on the web](/docs/en/claud
 
 ### Team security
 
-* Use [managed settings](/docs/en/settings#settings-files) to enforce organizational standards
+* Use [managed settings](/docs/en/settings#where-settings-live) to enforce organizational standards
 * Share approved permission configurations through version control
 * Train team members on security best practices
 * Monitor Claude Code usage through [OpenTelemetry metrics](/docs/en/monitoring-usage)

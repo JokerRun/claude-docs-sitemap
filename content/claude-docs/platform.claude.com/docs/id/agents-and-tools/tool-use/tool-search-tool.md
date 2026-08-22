@@ -1,30 +1,30 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: bf9457afbc4f2dd9e854cab709bc394c871397571ae265376bdd788f09072052
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 65eb83f1bf5db0823916004e33bf0ee747b67e837d6289f6e9ddd7132cfd6e8f
 ---
 
 ---
-title: Tool search tool
+title: Alat pencarian alat
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool
 description: Skalakan hingga ratusan atau ribuan alat dengan membiarkan Claude mencari katalog alat Anda dan memuat hanya alat yang dibutuhkannya.
 ---
 
-Tool search tool (alat pencarian alat) memungkinkan Claude bekerja dengan ratusan atau ribuan alat dengan menemukan dan memuatnya sesuai permintaan. Alih-alih memuat semua definisi alat ke dalam jendela konteks di awal, Claude mencari katalog alat Anda (termasuk nama alat, deskripsi, nama argumen, dan deskripsi argumen) dan memuat hanya alat yang dibutuhkannya.
+Alat pencarian alat (tool search tool) memungkinkan Claude bekerja dengan ratusan atau ribuan alat dengan menemukan dan memuatnya sesuai permintaan. Alih-alih memuat semua definisi alat ke dalam "context window" (jendela konteks) di awal, Claude mencari katalog alat Anda (termasuk nama alat, deskripsi, nama argumen, dan deskripsi argumen) dan memuat hanya alat yang dibutuhkannya.
 
 Memuat setiap definisi alat di awal menyebabkan dua masalah seiring bertambahnya pustaka alat:
 
-* **Pembengkakan konteks:** Pengaturan multiserver yang umum (GitHub, Slack, Sentry, Grafana, dan Splunk) dapat mengonsumsi \~55k token dalam definisi sebelum Claude melakukan pekerjaan apa pun. Tool search biasanya mengurangi ini lebih dari 85 persen, memuat hanya 3–5 alat yang dibutuhkan Claude untuk permintaan tertentu.
-* **Akurasi pemilihan alat:** Kemampuan Claude untuk memilih alat yang tepat menurun setelah Anda melebihi 30–50 alat yang tersedia. Karena tool search hanya memuat sekumpulan alat relevan yang terfokus sesuai permintaan, akurasi pemilihan tetap tinggi bahkan di antara ribuan alat.
+* **Pembengkakan konteks:** Pengaturan multiserver yang umum (GitHub, Slack, Sentry, Grafana, dan Splunk) dapat menghabiskan \~55k token dalam definisi sebelum Claude melakukan pekerjaan apa pun. Pencarian alat biasanya mengurangi ini lebih dari 85 persen, dengan memuat hanya 3–5 alat yang dibutuhkan Claude untuk permintaan tertentu.
+* **Akurasi pemilihan alat:** Kemampuan Claude untuk memilih alat yang tepat menurun setelah Anda melebihi 30–50 alat yang tersedia. Karena pencarian alat hanya memuat sekumpulan alat relevan yang terfokus sesuai permintaan, akurasi pemilihan tetap tinggi bahkan di antara ribuan alat.
 
-Tool search tersedia secara umum di Claude API. Untuk model yang didukung, lihat [Kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool#model-compatibility).
+Pencarian alat tersedia secara umum di Claude API. Untuk model yang didukung, lihat [Kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool#model-compatibility).
 
 <Tip>
-  Untuk latar belakang tentang tantangan penskalaan yang diselesaikan oleh tool search, lihat [Advanced tool use](https://www.anthropic.com/engineering/advanced-tool-use). Pemuatan sesuai permintaan dari tool search juga merupakan contoh dari prinsip pengambilan just-in-time yang lebih luas yang dijelaskan dalam [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
+  Untuk latar belakang tentang tantangan penskalaan yang dipecahkan oleh pencarian alat, lihat [Advanced tool use](https://www.anthropic.com/engineering/advanced-tool-use). Pemuatan sesuai permintaan pada pencarian alat juga merupakan contoh dari prinsip pengambilan just-in-time yang lebih luas yang dijelaskan dalam [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
 </Tip>
 
-Tool search berjalan sebagai alat sisi server, tetapi Anda juga dapat mengimplementasikan tool search sisi klien Anda sendiri. Lihat [Implementasi tool search kustom](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool#custom-tool-search-implementation) untuk detailnya.
+Pencarian alat berjalan sebagai alat sisi server, tetapi Anda juga dapat mengimplementasikan pencarian alat sisi klien Anda sendiri. Lihat [Implementasi pencarian alat kustom](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool#custom-tool-search-implementation) untuk detailnya.
 
 <Note>
   Bagikan umpan balik tentang fitur ini melalui [formulir umpan balik](https://forms.gle/MhcGFFwLxuwnWTkYA).
@@ -35,16 +35,16 @@ Tool search berjalan sebagai alat sisi server, tetapi Anda juga dapat mengimplem
 </Note>
 
 <Warning>
-  Di Amazon Bedrock, tool search sisi server hanya tersedia melalui [InvokeModel API](https://docs.aws.amazon.com/bedrock/latest/userguide/bedrock-runtime_example_bedrock-runtime_InvokeModel_AnthropicClaude_section.html), bukan Converse API.
+  Di Amazon Bedrock, pencarian alat sisi server hanya tersedia melalui [InvokeModel API](https://docs.aws.amazon.com/bedrock/latest/userguide/bedrock-runtime_example_bedrock-runtime_InvokeModel_AnthropicClaude_section.html), bukan Converse API.
 </Warning>
 
 <Note>
-  Di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), tool search sisi server bekerja identik dengan Claude API. Claude Platform on AWS menggunakan Anthropic Messages API secara langsung, sehingga tidak ada perbedaan InvokeModel atau Converse.
+  Di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), pencarian alat sisi server bekerja secara identik dengan Claude API. Claude Platform on AWS menggunakan Anthropic Messages API secara langsung, sehingga tidak ada perbedaan antara InvokeModel atau Converse.
 </Note>
 
 ## Kompatibilitas model
 
-Kedua varian tool search tersedia pada model-model berikut:
+Kedua varian pencarian alat tersedia pada model-model berikut:
 
 | Model                                          | Versi alat                                                          |
 | ---------------------------------------------- | ------------------------------------------------------------------- |
@@ -59,28 +59,28 @@ Kedua varian tool search tersedia pada model-model berikut:
 | Claude Sonnet 4.5 (claude-sonnet-4-5-20250929) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 | Claude Haiku 4.5 (claude-haiku-4-5-20251001)   | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 
-Claude Opus 4.1 dan model-model sebelumnya tidak mendukung tool search tool.
+Claude Opus 4.1 dan model sebelumnya tidak mendukung alat pencarian alat.
 
-## Cara kerja tool search
+## Cara kerja pencarian alat
 
-Ada dua varian tool search:
+Ada dua varian pencarian alat:
 
-* **Regex** (`tool_search_tool_regex_20251119`): Claude membangun pola regex untuk mencari alat.
+* **Regex** (`tool_search_tool_regex_20251119`): Claude menyusun pola regex untuk mencari alat.
 * **BM25** (`tool_search_tool_bm25_20251119`): Claude menggunakan kueri bahasa alami untuk mencari alat.
 
-Ketika Anda mengaktifkan tool search tool:
+Saat Anda mengaktifkan alat pencarian alat:
 
-1. Anda menyertakan tool search tool (misalnya, `tool_search_tool_regex_20251119` atau `tool_search_tool_bm25_20251119`) dalam daftar `tools` Anda.
-2. Anda menyediakan setiap definisi alat dalam array `tools` dan menyetel `defer_loading: true` pada alat yang tidak boleh dimuat di awal. Setidaknya satu alat, biasanya tool search tool itu sendiri, harus tetap non-deferred.
-3. Awalnya, konteks Claude hanya berisi tool search tool dan alat non-deferred apa pun.
-4. Ketika Claude membutuhkan alat tambahan, ia mencari menggunakan tool search tool.
-5. API menjalankan pencarian dan mengembalikan alat yang cocok sebagai blok `tool_reference` (hingga 5 secara default).
+1. Anda menyertakan alat pencarian alat (misalnya, `tool_search_tool_regex_20251119` atau `tool_search_tool_bm25_20251119`) dalam daftar `tools` Anda.
+2. Anda menyediakan setiap definisi alat dalam array `tools` dan menetapkan `defer_loading: true` pada alat yang tidak boleh dimuat di awal. Setidaknya satu alat, biasanya alat pencarian alat itu sendiri, harus tetap tidak ditangguhkan.
+3. Pada awalnya, konteks Claude hanya berisi alat pencarian alat dan alat apa pun yang tidak ditangguhkan.
+4. Ketika Claude membutuhkan alat tambahan, Claude mencari menggunakan alat pencarian alat.
+5. API menjalankan pencarian dan mengembalikan alat yang cocok sebagai blok `tool_reference` (hingga 5 secara default; Claude dapat menetapkan `limit` dalam input pencariannya).
 6. API secara otomatis memperluas referensi ini menjadi definisi alat lengkap.
 7. Claude memilih dari alat yang ditemukan dan memanggilnya.
 
 ## Mulai cepat
 
-Contoh berikut menyertakan tool search tool dan dua alat yang ditangguhkan (deferred):
+Contoh berikut menyertakan alat pencarian alat dan dua alat yang ditangguhkan:
 
 <CodeGroup>
   ```bash cURL
@@ -372,7 +372,7 @@ Contoh berikut menyertakan tool search tool dan dua alat yang ditangguhkan (defe
   if err != nil {
   	log.Fatal(err)
   }
-  fmt.Println(response)
+  fmt.Println(response.RawJSON())
   ```
 
   ```java Java
@@ -534,11 +534,11 @@ Contoh berikut menyertakan tool search tool dan dua alat yang ditangguhkan (defe
   ```
 </CodeGroup>
 
-Claude mencari katalog, menemukan `get_weather`, dan memanggilnya. Respons berakhir dengan `stop_reason: "tool_use"`. Jalankan alat yang ditemukan dan kembalikan `tool_result` seperti dalam [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls). [Format respons](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool#response-format) menunjukkan blok yang Anda dapatkan kembali dan apa yang harus dikirim selanjutnya.
+Claude mencari katalog, menemukan `get_weather`, dan memanggilnya. Respons berakhir dengan `stop_reason: "tool_use"`. Jalankan alat yang ditemukan dan kembalikan `tool_result` seperti dalam [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls). [Format respons](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool#response-format) menunjukkan blok yang Anda terima kembali dan apa yang harus dikirim selanjutnya.
 
 ## Definisi alat
 
-Tool search tool memiliki dua varian:
+Alat pencarian alat memiliki dua varian:
 
 ```json JSON
 {
@@ -557,11 +557,11 @@ Tool search tool memiliki dua varian:
 <Warning>
   **Format kueri varian regex: regex Python, bukan bahasa alami**
 
-  Dengan `tool_search_tool_regex_20251119`, Claude menulis pola `re.search()` Python, bukan kueri bahasa alami. Pencocokan tidak peka huruf besar/kecil. Pola umum meliputi yang berikut:
+  Dengan `tool_search_tool_regex_20251119`, Claude menulis pola Python `re.search()`, bukan kueri bahasa alami. Pencocokan tidak peka huruf besar/kecil. Pola umum meliputi berikut ini:
 
-  * `"weather"`: mencocokkan nama alat dan deskripsi yang mengandung "weather"
+  * `"weather"`: mencocokkan nama dan deskripsi alat yang mengandung "weather"
   * `"get_.*_data"`: mencocokkan alat seperti `get_user_data` dan `get_weather_data`
-  * `"database.*query|query.*database"`: mencocokkan kedua urutan kata
+  * `"database.*query|query.*database"`: mencocokkan urutan kata mana pun
 
   Panjang pola maksimum: 200 karakter
 </Warning>
@@ -597,16 +597,16 @@ Tandai alat untuk pemuatan sesuai permintaan dengan menambahkan `defer_loading: 
 * Anda tetap mengirim definisi lengkap setiap alat dalam array `tools` pada setiap permintaan, termasuk yang ditangguhkan. API membutuhkannya di sisi server untuk menjalankan pencarian dan memperluas blok `tool_reference`.
 * Alat tanpa `defer_loading` dimuat ke dalam konteks segera.
 * Alat dengan `defer_loading: true` dimuat hanya ketika Claude menemukannya melalui pencarian.
-* Jangan pernah menyetel `defer_loading: true` pada tool search tool itu sendiri.
-* Pertahankan 3–5 alat yang paling sering Anda gunakan sebagai non-deferred sehingga Claude dapat memanggilnya tanpa mencari terlebih dahulu.
+* Jangan pernah menetapkan `defer_loading: true` pada alat pencarian alat itu sendiri.
+* Biarkan 3–5 alat yang paling sering Anda gunakan tidak ditangguhkan agar Claude dapat memanggilnya tanpa mencari terlebih dahulu.
 
-Kedua varian tool search (`regex` dan `bm25`) mencari nama alat, deskripsi, nama argumen, dan deskripsi argumen.
+Kedua varian pencarian alat (`regex` dan `bm25`) mencari nama alat, deskripsi, nama argumen, dan deskripsi argumen.
 
-Secara internal, API mengecualikan alat yang ditangguhkan dari prefiks prompt sistem. Ketika Claude menemukan alat yang ditangguhkan melalui tool search, API menambahkan blok `tool_reference` secara inline dalam percakapan, lalu memperluasnya menjadi definisi alat lengkap sebelum meneruskannya ke Claude. Prefiks tidak tersentuh, sehingga caching prompt tetap terjaga. Grammar untuk [strict mode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) (aturan yang membatasi output panggilan alat agar sesuai dengan skema Anda) dibangun dari toolset lengkap, sehingga `defer_loading` dan strict mode dapat digabungkan tanpa kompilasi ulang grammar.
+Secara internal, API mengecualikan alat yang ditangguhkan dari prefiks prompt sistem. Ketika Claude menemukan alat yang ditangguhkan melalui pencarian alat, API menambahkan blok `tool_reference` secara inline dalam percakapan, lalu memperluasnya menjadi definisi alat lengkap sebelum meneruskannya ke Claude. Prefiks tidak tersentuh, sehingga "prompt caching" (caching prompt) tetap terjaga. Grammar untuk [mode ketat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) (aturan yang membatasi output panggilan alat agar sesuai dengan skema Anda) dibangun dari seluruh kumpulan alat, sehingga `defer_loading` dan mode ketat dapat digabungkan tanpa kompilasi ulang grammar.
 
 ## Format respons
 
-Ketika Claude menggunakan tool search tool, respons menyertakan tipe blok berikut:
+Ketika Claude menggunakan alat pencarian alat, respons menyertakan jenis blok berikut:
 
 ```json JSON
 {
@@ -621,7 +621,8 @@ Ketika Claude menggunakan tool search tool, respons menyertakan tipe blok beriku
       "id": "srvtoolu_01ABC123",
       "name": "tool_search_tool_regex",
       "input": {
-        "pattern": "weather"
+        "pattern": "weather",
+        "limit": 10
       }
     },
     {
@@ -649,24 +650,24 @@ Ketika Claude menggunakan tool search tool, respons menyertakan tipe blok beriku
 
 ### Memahami respons
 
-* **`server_tool_use`:** panggilan Claude ke tool search tool. Pencarian berjalan di server Anthropic. Jangan pernah mengembalikan `tool_result` untuk ID `srvtoolu_...`-nya.
-* **`tool_search_tool_result`:** hasil pencarian, dalam objek `tool_search_tool_search_result` bersarang. Pertahankan dalam riwayat pesan apa adanya.
-* **`tool_references`:** array objek `tool_reference` yang menunjuk ke alat yang ditemukan. API memperluas ini untuk Claude. Anda tidak pernah memperluasnya sendiri.
-* **`tool_use`:** panggilan Claude ke alat yang ditemukan. Jalankan dan kembalikan `tool_result` persis seperti dalam penggunaan alat standar.
+* **`server_tool_use`:** Panggilan Claude ke alat pencarian alat. Pencarian berjalan di server Anthropic. Jangan pernah mengembalikan `tool_result` untuk ID `srvtoolu_...`-nya. `input` berisi pencarian (`pattern` untuk varian regex, `query` untuk BM25) dan dapat menyertakan `limit` opsional, bilangan bulat dari 1 hingga 10.000 yang membatasi berapa banyak alat yang cocok yang dikembalikan pencarian (default: 5).
+* **`tool_search_tool_result`:** hasil pencarian, dalam objek `tool_search_tool_search_result` bersarang. Simpan dalam riwayat pesan apa adanya.
+* **`tool_references`:** array objek `tool_reference` yang menunjuk ke alat yang ditemukan. API memperluasnya untuk Claude. Anda tidak pernah memperluasnya sendiri.
+* **`tool_use`:** Panggilan Claude ke alat yang ditemukan. Jalankan dan kembalikan `tool_result` persis seperti dalam penggunaan alat standar.
 
 API secara otomatis memperluas blok `tool_reference` menjadi definisi alat lengkap sebelum menampilkannya ke Claude. Anda tidak perlu menangani perluasan ini sendiri, selama Anda menyediakan semua definisi alat yang cocok dalam parameter `tools`.
 
 ### Melanjutkan percakapan
 
-Pada permintaan berikutnya, teruskan kembali konten asisten tanpa perubahan, termasuk blok `server_tool_use` dan `tool_search_tool_result`. Tambahkan `tool_result` Anda untuk alat yang ditemukan dalam pesan pengguna, dan kirim array `tools` yang sama: alat pencarian ditambah setiap definisi yang ditangguhkan. Jangan mengembalikan `tool_result` untuk ID `srvtoolu_...`: API menolak permintaan tersebut. API memperluas blok `tool_reference` di seluruh riwayat percakapan, sehingga Claude dapat menggunakan kembali alat yang ditemukan di giliran berikutnya tanpa mencari ulang. Pencarian yang tidak menemukan apa pun mengembalikan `tool_search_tool_search_result` dengan array `tool_references` kosong, bukan error.
+Pada permintaan berikutnya, teruskan kembali konten asisten tanpa perubahan, termasuk blok `server_tool_use` dan `tool_search_tool_result`. Tambahkan `tool_result` Anda untuk alat yang ditemukan dalam pesan pengguna, dan kirim array `tools` yang sama: alat pencarian ditambah setiap definisi yang ditangguhkan. Jangan mengembalikan `tool_result` untuk ID `srvtoolu_...`: API akan menolak permintaan tersebut. API memperluas blok `tool_reference` di seluruh riwayat percakapan, sehingga Claude dapat menggunakan kembali alat yang ditemukan pada giliran berikutnya tanpa mencari ulang. Pencarian yang tidak mencocokkan apa pun mengembalikan `tool_search_tool_search_result` dengan array `tool_references` kosong, bukan error.
 
 ## Integrasi MCP
 
-Jika alat Anda berasal dari server MCP melalui [MCP connector](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector), Anda tidak menyetel `defer_loading` pada definisi alat individual. Sebagai gantinya, setel sekali pada `default_config` entri `mcp_toolset` untuk seluruh server, atau per alat dalam `configs`-nya. Lihat [Konfigurasi toolset MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#mcp-toolset-configuration).
+Jika alat Anda berasal dari server MCP melalui [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector), Anda tidak menetapkan `defer_loading` pada definisi alat individual. Sebagai gantinya, tetapkan sekali pada `default_config` entri `mcp_toolset` untuk seluruh server, atau per alat dalam `configs`-nya. Lihat [Konfigurasi toolset MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#mcp-toolset-configuration).
 
-## Implementasi tool search kustom
+## Implementasi pencarian alat kustom
 
-Anda dapat mengimplementasikan logika tool search Anda sendiri (misalnya, menggunakan embedding atau pencarian semantik) dengan mengembalikan blok `tool_reference` dari alat kustom. Ketika Claude memanggil alat pencarian kustom Anda, kembalikan `tool_result` standar dengan blok `tool_reference` dalam array konten:
+Anda dapat mengimplementasikan logika pencarian alat Anda sendiri (misalnya, menggunakan embedding atau pencarian semantik) dengan mengembalikan blok `tool_reference` dari alat kustom. Ketika Claude memanggil alat pencarian kustom Anda, kembalikan `tool_result` standar dengan blok `tool_reference` dalam array konten:
 
 ```json JSON
 {
@@ -679,15 +680,15 @@ Anda dapat mengimplementasikan logika tool search Anda sendiri (misalnya, menggu
 Setiap alat yang direferensikan harus memiliki definisi alat yang sesuai dalam parameter `tools` tingkat atas, biasanya dengan `defer_loading: true`. Ini memungkinkan Anda menggunakan metode pencarian yang tidak disediakan oleh varian bawaan, seperti pengambilan berbasis embedding, dan API memperluas blok `tool_reference` yang dikembalikan dengan cara yang sama.
 
 <Note>
-  Format `tool_search_tool_result` yang ditunjukkan di bagian [Format respons](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool#response-format) adalah format sisi server yang digunakan secara internal oleh tool search bawaan Anthropic. Untuk implementasi sisi klien kustom, selalu gunakan format `tool_result` standar dengan blok konten `tool_reference` seperti yang ditunjukkan pada contoh sebelumnya.
+  Format `tool_search_tool_result` yang ditampilkan di bagian [Format respons](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool#response-format) adalah format sisi server yang digunakan secara internal oleh pencarian alat bawaan Anthropic. Untuk implementasi sisi klien kustom, selalu gunakan format `tool_result` standar dengan blok konten `tool_reference` seperti yang ditunjukkan dalam contoh sebelumnya.
 </Note>
 
-Untuk contoh lengkap menggunakan embedding, lihat resep [tool search dengan embedding](https://platform.claude.com/cookbook/tool-use-tool-search-with-embeddings).
+Untuk contoh lengkap menggunakan embedding, lihat resep [pencarian alat dengan embedding](https://platform.claude.com/cookbook/tool-use-tool-search-with-embeddings).
 
 ## Penanganan error
 
 <Note>
-  [Contoh penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#providing-tool-use-examples) bekerja dengan tool search: ketika Claude menemukan alat yang ditangguhkan, API memperluas `input_examples`-nya bersama dengan definisinya.
+  [Contoh penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#providing-tool-use-examples) berfungsi dengan pencarian alat: ketika Claude menemukan alat yang ditangguhkan, API memperluas `input_examples`-nya bersama dengan definisinya.
 </Note>
 
 ### Error HTTP (status 400)
@@ -706,7 +707,7 @@ Error ini mencegah API memproses permintaan:
 }
 ```
 
-**Definisi alat hilang:**
+**Definisi alat tidak ada:**
 
 ```json
 {
@@ -720,7 +721,7 @@ Error ini mencegah API memproses permintaan:
 
 ### Error hasil alat (status 200)
 
-Ketika operasi tool search gagal selama eksekusi, API mengembalikan respons 200 dengan error di dalam body:
+Ketika operasi pencarian alat gagal selama eksekusi, API mengembalikan respons 200 dengan error di dalam body:
 
 ```json JSON
 {
@@ -736,17 +737,17 @@ Ketika operasi tool search gagal selama eksekusi, API mengembalikan respons 200 
 
 Field `error_code` memiliki empat nilai yang mungkin:
 
-* `invalid_tool_input`: input pencarian tidak valid, misalnya pola regex yang salah bentuk atau pola yang melebihi batas 200 karakter
-* `unavailable`: pencarian tidak dapat berjalan, misalnya karena waktu habis atau layanan tidak tersedia
-* `too_many_requests`: batas laju terlampaui untuk operasi tool search
+* `invalid_tool_input`: input pencarian tidak valid, misalnya pola regex yang salah format atau pola yang melebihi batas 200 karakter
+* `unavailable`: pencarian tidak dapat dijalankan, misalnya karena waktu habis atau layanan tidak tersedia
+* `too_many_requests`: batas laju terlampaui untuk operasi pencarian alat
 * `execution_time_exceeded`: pencarian melebihi batas waktu eksekusinya
 
 ### Kesalahan umum
 
 <Accordion title="Error 400: semua alat ditangguhkan">
-  **Penyebab:** Anda menyetel `defer_loading: true` pada setiap alat, termasuk tool search tool.
+  **Penyebab:** Anda menetapkan `defer_loading: true` pada setiap alat, termasuk alat pencarian alat.
 
-  **Perbaikan:** Hapus `defer_loading` dari tool search tool:
+  **Perbaikan:** Hapus `defer_loading` dari alat pencarian alat:
 
   ```json
   {
@@ -756,7 +757,7 @@ Field `error_code` memiliki empat nilai yang mungkin:
   ```
 </Accordion>
 
-<Accordion title="Error 400: definisi alat hilang">
+<Accordion title="Error 400: definisi alat tidak ada">
   **Penyebab:** Sebuah `tool_reference` menunjuk ke alat yang tidak ada dalam array `tools` Anda.
 
   **Perbaikan:** Pastikan setiap alat yang dapat ditemukan memiliki definisi lengkap:
@@ -778,9 +779,9 @@ Field `error_code` memiliki empat nilai yang mungkin:
 
   **Langkah debugging:**
 
-  1. Periksa nama alat, deskripsi, nama argumen, dan deskripsi argumen. Claude mencari di semua field ini.
+  1. Periksa nama alat, deskripsi, nama argumen, dan deskripsi argumen. Claude mencari semua field ini.
   2. Uji pola Anda: `import re; re.search(r"your_pattern", "tool_name", re.IGNORECASE)`.
-  3. Pencocokan tidak peka huruf besar/kecil, jadi perbedaan kapitalisasi bukan masalahnya.
+  3. Pencocokan tidak peka huruf besar/kecil, jadi perbedaan huruf besar/kecil bukan masalahnya.
   4. Claude menggunakan pola luas seperti `".*weather.*"`, bukan pencocokan persis.
 
   **Tip:** Tambahkan kata kunci umum ke deskripsi alat untuk meningkatkan kemudahan penemuan.
@@ -788,13 +789,13 @@ Field `error_code` memiliki empat nilai yang mungkin:
 
 ## Caching prompt
 
-Untuk cara `defer_loading` mempertahankan caching prompt, lihat [Penggunaan alat dengan caching prompt](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching).
+Untuk cara `defer_loading` menjaga caching prompt, lihat [Penggunaan alat dengan caching prompt](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching).
 
-Alat dengan `defer_loading: true` tidak dapat juga membawa `cache_control`: API mengembalikan 400. Letakkan breakpoint cache pada alat non-deferred.
+Alat dengan `defer_loading: true` tidak dapat juga membawa `cache_control`: API mengembalikan 400. Letakkan breakpoint cache pada alat yang tidak ditangguhkan.
 
 ## Streaming
 
-Dengan streaming diaktifkan, Anda akan menerima event tool search sebagai bagian dari stream:
+Dengan streaming diaktifkan, Anda akan menerima event pencarian alat sebagai bagian dari stream:
 
 ```sse
 event: content_block_start
@@ -815,62 +816,62 @@ data: {"type": "content_block_start", "index": 2, "content_block": {"type": "too
 
 ## Permintaan batch
 
-Anda dapat menyertakan tool search tool dalam [Messages Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing).
+Anda dapat menyertakan alat pencarian alat dalam [Messages Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing).
 
-## Batasan dan praktik terbaik
+## Batas dan praktik terbaik
 
-### Batasan
+### Batas
 
 * **Maksimum alat yang ditangguhkan:** 10.000 alat dengan `defer_loading: true` per permintaan
-* **Hasil pencarian:** setiap pencarian mengembalikan hingga 5 alat yang cocok secara default
+* **Hasil pencarian:** setiap pencarian mengembalikan hingga 5 alat yang cocok secara default; Claude dapat menetapkan `limit` dalam input pencariannya ke bilangan bulat apa pun dari 1 hingga 10.000
 * **Panjang pola dan kueri:** maksimum 200 karakter untuk pola regex dan 500 karakter untuk kueri BM25
 * **Dukungan model:** lihat [Kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool#model-compatibility)
 
-### Kapan menggunakan tool search
+### Kapan menggunakan pencarian alat
 
-Gunakan tool search ketika salah satu dari hal berikut berlaku:
+Gunakan pencarian alat ketika salah satu dari berikut ini berlaku:
 
 * Anda memiliki 10 alat atau lebih yang tersedia.
-* Definisi alat Anda mengonsumsi lebih dari 10k token.
-* Akurasi pemilihan alat menurun seiring bertambahnya toolset Anda.
+* Definisi alat Anda menghabiskan lebih dari 10k token.
+* Akurasi pemilihan alat menurun seiring bertambahnya kumpulan alat Anda.
 * Anda menggabungkan beberapa server MCP (200+ alat).
 * Pustaka alat Anda bertambah seiring waktu.
 
-Pemanggilan alat standar, tanpa tool search, lebih cocok ketika Anda memiliki kurang dari 10 alat, setiap alat digunakan dalam setiap permintaan, atau definisi alat Anda kecil (kurang dari 100 token total).
+Pemanggilan alat standar, tanpa pencarian alat, lebih cocok ketika Anda memiliki kurang dari 10 alat, setiap alat digunakan dalam setiap permintaan, atau definisi alat Anda kecil (kurang dari 100 token total).
 
 ### Tips optimasi
 
-* Pertahankan 3–5 alat yang paling sering Anda gunakan sebagai non-deferred.
+* Biarkan 3–5 alat yang paling sering Anda gunakan tidak ditangguhkan.
 * Tulis nama dan deskripsi alat yang jelas dan deskriptif.
-* Gunakan namespacing yang konsisten dalam nama alat: beri prefiks berdasarkan layanan atau sumber daya (misalnya, `github_`, `slack_`) sehingga satu pencarian mencocokkan seluruh grup.
-* Gunakan kata kunci dalam deskripsi yang cocok dengan cara pengguna mendeskripsikan tugas.
-* Tambahkan bagian prompt sistem yang mendeskripsikan kategori alat yang tersedia: "Anda dapat mencari alat untuk berinteraksi dengan Slack, GitHub, dan Jira."
+* Gunakan namespace yang konsisten dalam nama alat: beri prefiks berdasarkan layanan atau sumber daya (misalnya, `github_`, `slack_`) sehingga satu pencarian mencocokkan seluruh grup.
+* Gunakan kata kunci dalam deskripsi yang sesuai dengan cara pengguna mendeskripsikan tugas.
+* Tambahkan bagian prompt sistem yang menjelaskan kategori alat yang tersedia: "You can search for tools to interact with Slack, GitHub, and Jira."
 * Pantau alat mana yang ditemukan Claude untuk menyempurnakan deskripsi Anda.
 
 ## Penggunaan
 
-Tool search tidak diukur sebagai alat server terpisah. Objek `usage.server_tool_use` pada respons tidak memiliki field tool search, dan definisi alat yang dimuat oleh pencarian ke dalam konteks dihitung sebagai input\_tokens seperti definisi alat lainnya.
+Pencarian alat tidak diukur sebagai alat server terpisah. Objek `usage.server_tool_use` pada respons tidak memiliki field pencarian alat, dan definisi alat yang dimuat pencarian ke dalam konteks dihitung sebagai token input seperti definisi alat lainnya.
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Memory tool" icon="brain" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool">
-    Biarkan Claude menyimpan dan mengambil informasi di seluruh percakapan dengan mengimplementasikan operasi file memory tool di aplikasi Anda.
+  <Card title="Alat memori" icon="brain" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool">
+    Biarkan Claude menyimpan dan mengambil informasi lintas percakapan dengan mengimplementasikan operasi file alat memori dalam aplikasi Anda.
   </Card>
 
   <Card title="Referensi alat" icon="book" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference">
     Direktori alat yang disediakan Anthropic dan referensi untuk properti definisi alat opsional.
   </Card>
 
-  <Card title="MCP connector" icon="link" href="https://platform.claude.com/docs/id/agents-and-tools/mcp-connector">
+  <Card title="Konektor MCP" icon="link" href="https://platform.claude.com/docs/id/agents-and-tools/mcp-connector">
     Konfigurasikan toolset MCP dengan pemuatan yang ditangguhkan.
   </Card>
 
   <Card title="Penggunaan alat dengan caching prompt" icon="bolt" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching">
-    Cache definisi alat di seluruh giliran dan pahami apa yang membatalkan cache Anda.
+    Cache definisi alat lintas giliran dan pahami apa yang membatalkan cache Anda.
   </Card>
 
-  <Card title="Definisikan alat" icon="hammer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools">
+  <Card title="Mendefinisikan alat" icon="hammer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools">
     Tentukan skema alat, tulis deskripsi yang efektif, dan kontrol kapan Claude memanggil alat Anda.
   </Card>
 </CardGroup>

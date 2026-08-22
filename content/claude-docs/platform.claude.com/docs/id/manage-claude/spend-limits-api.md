@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/spend-limits-api
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: fdd269a58f134a73a9de4230f4ae02dc3a94d707bd1397c12de99cc5d83c2e66
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 7aa721ecd65191555a0b142daf69bcc814fe23e4c8e2515f9603d002853e1b96
 ---
 
 ---
@@ -62,7 +62,7 @@ Field `source` pada baris setiap anggota memberi tahu Anda dari tingkat mana bat
 
 ### Periode
 
-`period` adalah jendela berulang di mana batas pengeluaran diberlakukan dan pengeluaran direset. Sebuah batas pengeluaran diidentifikasi oleh pasangan `(scope, period)`-nya. Saat ini `monthly` adalah satu-satunya periode yang didukung; pengeluaran bulanan direset pada pukul 00UTC pada tanggal pertama setiap bulan kalender. Perlakukan `period` sebagai himpunan terbuka.
+`period` adalah jendela berulang di mana batas pengeluaran diberlakukan dan pengeluaran direset. Sebuah batas pengeluaran diidentifikasi oleh pasangan `(scope, period)`-nya. Saat ini `monthly` adalah satu-satunya periode yang didukung; pengeluaran bulanan direset pada pukul 00:00 UTC pada tanggal pertama setiap bulan kalender. Perlakukan `period` sebagai himpunan terbuka.
 
 ### Jumlah dan mata uang
 

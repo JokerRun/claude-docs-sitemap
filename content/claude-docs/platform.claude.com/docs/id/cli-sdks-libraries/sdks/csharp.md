@@ -1,28 +1,28 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/csharp
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: d1d92094e5e35ba7e16fa86704f465b277e9806d3950504c9d3f58753463fcc1
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 391e25280e8b7721a9b60e3d86cbd85a277acd00318f5cddb8fc3a02ccd351e5
 ---
 
 ---
-title: SDK C#
+title: C# SDK
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/csharp
-description: Instal dan konfigurasikan SDK C# Anthropic untuk aplikasi .NET dengan integrasi IChatClient
+description: Instal dan konfigurasikan Anthropic C# SDK untuk aplikasi .NET dengan integrasi IChatClient
 ---
 
-SDK C# Anthropic menyediakan akses yang mudah ke REST API Anthropic dari aplikasi yang ditulis dalam C#.
+Anthropic C# SDK menyediakan akses yang mudah ke Claude API dari aplikasi yang ditulis dalam C#.
 
 <Info>
-  SDK C# saat ini dalam tahap beta. API dapat berubah antar versi.
+  C# SDK saat ini dalam versi beta. API dapat berubah antar versi.
 </Info>
 
 <Info>
-  Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](https://platform.claude.com/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK yang khusus untuk C#.
+  Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](https://platform.claude.com/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK khusus C#.
 </Info>
 
 <Warning>
-  Mulai versi 10+, paket `Anthropic` kini menjadi SDK Anthropic resmi untuk C#. Versi paket 3.X dan di bawahnya sebelumnya digunakan untuk SDK buatan komunitas tryAGI, yang telah dipindahkan ke [`tryAGI.Anthropic`](https://www.nuget.org/packages/tryagi.Anthropic/). Jika Anda perlu terus menggunakan klien sebelumnya dalam proyek Anda, perbarui referensi paket Anda ke `tryAGI.Anthropic`.
+  Mulai versi 10+, paket `Anthropic` kini menjadi SDK resmi Anthropic untuk C#. Versi paket 3.X dan di bawahnya sebelumnya digunakan untuk SDK buatan komunitas tryAGI, yang telah dipindahkan ke [`tryAGI.Anthropic`](https://www.nuget.org/packages/tryagi.Anthropic/). Jika Anda perlu terus menggunakan klien lama tersebut dalam proyek Anda, perbarui referensi paket Anda ke `tryAGI.Anthropic`.
 </Warning>
 
 ## Instalasi
@@ -35,7 +35,7 @@ dotnet add package Anthropic
 
 ## Persyaratan
 
-Pustaka ini memerlukan .NET Standard 2.0 atau yang lebih baru.
+Library ini memerlukan .NET Standard 2.0 atau yang lebih baru.
 
 ## Penggunaan
 
@@ -128,9 +128,9 @@ Metode `WithOptions` tidak memengaruhi klien atau layanan asli.
 
 ## Streaming
 
-SDK mendefinisikan metode yang mengembalikan stream "chunk" respons, di mana setiap chunk dapat diproses secara individual segera setelah tiba alih-alih menunggu respons lengkap. Metode streaming umumnya sesuai dengan respons [SSE](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) atau [JSONL](https://jsonlines.org).
+SDK mendefinisikan metode yang mengembalikan stream "chunk" respons, di mana setiap chunk dapat diproses secara individual segera setelah tiba alih-alih menunggu respons lengkap. Metode streaming umumnya berkorespondensi dengan respons [SSE](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) atau [JSONL](https://jsonlines.org).
 
-Metode streaming selalu memiliki akhiran `Streaming` pada namanya, bahkan jika tidak memiliki varian non-streaming.
+Metode streaming selalu memiliki akhiran `Streaming` pada namanya, meskipun tidak memiliki varian non-streaming.
 
 Metode streaming ini mengembalikan [`IAsyncEnumerable`](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1):
 
@@ -158,11 +158,11 @@ await foreach (var message in client.Messages.CreateStreaming(parameters))
 }
 ```
 
-## Penanganan kesalahan
+## Penanganan error
 
-SDK melemparkan tipe exception unchecked kustom:
+SDK melempar tipe exception unchecked kustom:
 
-* `AnthropicApiException`: Kelas dasar untuk kesalahan API. Lihat tabel ini untuk mengetahui subkelas exception mana yang dilemparkan untuk setiap kode status HTTP:
+* `AnthropicApiException`: Kelas dasar untuk error API. Lihat tabel ini untuk mengetahui subkelas exception mana yang dilempar untuk setiap kode status HTTP:
 
 | Status  | Exception                                |
 | ------- | ---------------------------------------- |
@@ -175,13 +175,13 @@ SDK melemparkan tipe exception unchecked kustom:
 | 5xx     | `Anthropic5xxException`                  |
 | lainnya | `AnthropicUnexpectedStatusCodeException` |
 
-Selain itu, semua kesalahan 4xx mewarisi dari `Anthropic4xxException`.
+Selain itu, semua error 4xx mewarisi dari `Anthropic4xxException`.
 
-* `AnthropicSseException`: dilemparkan untuk kesalahan yang ditemui selama streaming SSE setelah respons HTTP awal yang berhasil.
+* `AnthropicSseException`: dilempar untuk error yang ditemui selama streaming SSE setelah respons HTTP awal yang berhasil.
 
-* `AnthropicIOException`: Kesalahan jaringan I/O.
+* `AnthropicIOException`: Error jaringan I/O.
 
-* `AnthropicInvalidDataException`: Kegagalan dalam menginterpretasikan data yang berhasil diurai. Misalnya, saat mengakses properti yang seharusnya wajib, tetapi API secara tidak terduga menghilangkannya dari respons.
+* `AnthropicInvalidDataException`: Kegagalan menginterpretasikan data yang berhasil di-parse. Misalnya, saat mengakses properti yang seharusnya wajib, tetapi API secara tak terduga menghilangkannya dari respons.
 
 * `AnthropicException`: Kelas dasar untuk semua exception.
 
@@ -189,9 +189,9 @@ Selain itu, semua kesalahan 4xx mewarisi dari `Anthropic4xxException`.
 
 SDK secara otomatis mencoba ulang 2 kali secara default, dengan exponential backoff singkat di antara permintaan.
 
-Hanya tipe kesalahan berikut yang dicoba ulang:
+Hanya tipe error berikut yang dicoba ulang:
 
-* Kesalahan koneksi (misalnya, karena masalah konektivitas jaringan)
+* Error koneksi (misalnya, karena masalah konektivitas jaringan)
 * 408 Request Timeout
 * 409 Conflict
 * 429 Rate Limit
@@ -199,7 +199,7 @@ Hanya tipe kesalahan berikut yang dicoba ulang:
 
 API juga dapat secara eksplisit menginstruksikan SDK untuk mencoba ulang atau tidak mencoba ulang suatu permintaan.
 
-Untuk mengatur jumlah percobaan ulang kustom, konfigurasikan klien menggunakan properti `MaxRetries`:
+Untuk menetapkan jumlah percobaan ulang kustom, konfigurasikan klien menggunakan properti `MaxRetries`:
 
 ```csharp
 using Anthropic;
@@ -221,11 +221,11 @@ var message = await client
 Console.WriteLine(message);
 ```
 
-## Batas waktu
+## Timeout
 
-Permintaan akan habis waktunya setelah 10 menit secara default.
+Permintaan mengalami timeout setelah 10 menit secara default.
 
-Untuk mengatur batas waktu kustom, konfigurasikan klien menggunakan opsi `Timeout`:
+Untuk menetapkan timeout kustom, konfigurasikan klien menggunakan opsi `Timeout`:
 
 ```csharp
 using System;
@@ -250,11 +250,11 @@ Console.WriteLine(message);
 
 ## Paginasi
 
-SDK mendefinisikan metode yang mengembalikan daftar hasil yang dipaginasi. SDK menyediakan cara yang mudah untuk mengakses hasil baik satu halaman pada satu waktu maupun item demi item di semua halaman.
+SDK mendefinisikan metode yang mengembalikan daftar hasil yang dipaginasi. SDK menyediakan cara yang mudah untuk mengakses hasil baik satu halaman sekaligus maupun item demi item di seluruh halaman.
 
 ### Paginasi otomatis
 
-Untuk melakukan iterasi melalui semua hasil di semua halaman, gunakan metode `Paginate`, yang secara otomatis mengambil lebih banyak halaman sesuai kebutuhan. Metode ini mengembalikan [`IAsyncEnumerable`](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1):
+Untuk mengiterasi semua hasil di seluruh halaman, gunakan metode `Paginate`, yang secara otomatis mengambil halaman tambahan sesuai kebutuhan. Metode ini mengembalikan [`IAsyncEnumerable`](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1):
 
 ```csharp
 using System;
@@ -288,9 +288,9 @@ while (true)
 
 ## Validasi respons
 
-Dalam kasus yang jarang terjadi, API dapat mengembalikan respons yang tidak sesuai dengan tipe yang diharapkan. Secara default, SDK tidak melemparkan exception dalam kasus ini. SDK hanya melemparkan `AnthropicInvalidDataException` jika Anda mengakses properti tersebut secara langsung.
+Dalam kasus yang jarang terjadi, API dapat mengembalikan respons yang tidak sesuai dengan tipe yang diharapkan. Secara default, SDK tidak melempar exception dalam kasus ini. SDK hanya melempar `AnthropicInvalidDataException` jika Anda mengakses properti tersebut secara langsung.
 
-Jika Anda lebih suka memeriksa bahwa respons sepenuhnya bertipe dengan benar di awal, maka panggil `Validate`:
+Jika Anda lebih suka memeriksa bahwa respons sepenuhnya bertipe dengan benar sejak awal, panggil `Validate`:
 
 ```csharp
 var message = await client.Messages.Create(parameters);
@@ -321,7 +321,7 @@ Console.WriteLine(message);
 
 ## Integrasi IChatClient
 
-SDK menyediakan implementasi antarmuka `IChatClient` dari pustaka `Microsoft.Extensions.AI.Abstractions`. Ini memungkinkan `AnthropicClient` (dan `Anthropic.Services.IBetaService`) digunakan dengan pustaka lain yang terintegrasi dengan abstraksi inti ini. Misalnya, alat dalam pustaka MCP C# SDK (`ModelContextProtocol`) dapat digunakan secara langsung dengan `AnthropicClient` yang diekspos melalui `IChatClient`.
+SDK menyediakan implementasi antarmuka `IChatClient` dari library `Microsoft.Extensions.AI.Abstractions`. Ini memungkinkan `AnthropicClient` (dan `Anthropic.Services.IBetaService`) digunakan bersama library lain yang terintegrasi dengan abstraksi inti ini. Misalnya, alat dalam library MCP C# SDK (`ModelContextProtocol`) dapat digunakan secara langsung dengan `AnthropicClient` yang diekspos melalui `IChatClient`.
 
 ```csharp
 using Anthropic;
@@ -355,17 +355,17 @@ Misalnya, `client.Messages.Create` harus dipanggil dengan instance `MessageCreat
 
 ### Respons biner
 
-SDK mendefinisikan metode yang mengembalikan respons biner, yang digunakan untuk respons API yang tidak perlu diurai, seperti data non-JSON.
+SDK mendefinisikan metode yang mengembalikan respons biner, yang digunakan untuk respons API yang tidak harus di-parse, seperti data non-JSON.
 
 Metode ini mengembalikan `HttpResponse`:
 
 ```csharp
 using System;
-using Anthropic.Models.Beta.Files;
+using Anthropic.Models.Files;
 
 FileDownloadParams parameters = new() { FileID = "file_id" };
 
-var response = await client.Beta.Files.Download(parameters);
+var response = await client.Files.Download(parameters);
 
 Console.WriteLine(response);
 ```
@@ -375,7 +375,7 @@ Untuk menyimpan konten respons ke file, atau [`Stream`](https://learn.microsoft.
 ```csharp
 using System.IO;
 
-using var response = await client.Beta.Files.Download(parameters);
+using var response = await client.Files.Download(parameters);
 using var contentStream = await response.ReadAsStream();
 using var fileStream = File.Open(path, FileMode.OpenOrCreate);
 await contentStream.CopyToAsync(fileStream); // Or any other Stream
@@ -383,7 +383,7 @@ await contentStream.CopyToAsync(fileStream); // Or any other Stream
 
 ### Respons mentah
 
-SDK mendefinisikan metode yang mendeserialisasi respons menjadi instance dari kelas C#. Untuk mengakses header respons, kode status, atau body respons mentah, awali pemanggilan metode HTTP apa pun pada klien atau layanan dengan `WithRawResponse`:
+SDK mendefinisikan metode yang mendeserialisasi respons menjadi instance kelas C#. Untuk mengakses header respons, kode status, atau body respons mentah, awali pemanggilan metode HTTP apa pun pada klien atau layanan dengan `WithRawResponse`:
 
 ```csharp
 var response = await client.WithRawResponse.Messages.Create(parameters);
@@ -393,7 +393,7 @@ var headers = response.Headers;
 
 `HttpResponseMessage` mentah juga dapat diakses melalui properti `RawMessage`.
 
-Untuk respons non-streaming, Anda dapat mendeserialisasi respons menjadi instance dari kelas C# jika diperlukan:
+Untuk respons non-streaming, Anda dapat mendeserialisasi respons menjadi instance kelas C# jika diperlukan:
 
 ```csharp
 using System;
@@ -419,10 +419,10 @@ await foreach (var item in response.Enumerate())
 ### Logging
 
 <Warning>
-  Semua pesan log hanya ditujukan untuk debugging. Format dan konten pesan log dapat berubah antar rilis.
+  Semua pesan log ditujukan hanya untuk debugging. Format dan konten pesan log dapat berubah antar rilis.
 </Warning>
 
-Aktifkan debug logging dengan mengatur variabel lingkungan:
+Aktifkan debug logging dengan menetapkan variabel lingkungan:
 
 ```bash
 export ANTHROPIC_LOG=debug
@@ -430,7 +430,7 @@ export ANTHROPIC_LOG=debug
 
 ### Fungsionalitas API yang tidak terdokumentasi
 
-SDK diketik untuk penggunaan yang mudah dari API yang terdokumentasi. Namun, SDK juga mendukung bekerja dengan bagian API yang tidak terdokumentasi atau belum didukung.
+SDK memiliki tipe untuk penggunaan yang mudah atas API yang terdokumentasi. Namun, SDK juga mendukung bekerja dengan bagian API yang tidak terdokumentasi atau belum didukung.
 
 ## Integrasi platform
 
@@ -439,16 +439,16 @@ SDK diketik untuk penggunaan yang mudah dari API yang terdokumentasi. Namun, SDK
 
   * [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
   * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
-  * [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
+  * [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
   * [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai)
   * [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)
 </Note>
 
-SDK C# mendukung platform berikut melalui paket NuGet terpisah:
+C# SDK mendukung platform berikut melalui paket NuGet terpisah:
 
 * **Agent Platform:** `Anthropic.Vertex`. Lihat [Claude di Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai) untuk penyiapan klien.
 * **Bedrock:** `Anthropic.Bedrock`. Gunakan `AnthropicBedrockMantleClient` untuk endpoint Bedrock Messages-API, atau `AnthropicBedrockClient` (jalur `bedrock-runtime`). `AnthropicBedrockMantleClient` menerima objek konfigurasi `MantleAwsClientOptions` opsional; `AnthropicBedrockClient` menerima `AnthropicBedrockCredentialsHelper.FromEnv()` atau kredensial eksplisit.
-* **Claude Platform di AWS:** `Anthropic.Aws`. Gunakan `AnthropicAwsClient`; atur `WorkspaceId` pada klien atau variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID` (lihat [Workspaces](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#workspaces)). Tersedia dalam beta.
+* **Claude Platform on AWS:** `Anthropic.Aws`. Gunakan `AnthropicAwsClient`; tetapkan `WorkspaceId` pada klien atau variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID` (lihat [Workspaces](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#workspaces)). Tersedia dalam versi beta.
 * **Foundry:** `Anthropic.Foundry`. Gunakan `AnthropicFoundryClient` dengan `DefaultAnthropicFoundryCredentials.FromEnv()` atau kredensial eksplisit.
 
 Gunakan `AnthropicBedrockMantleClient` untuk proyek baru; `AnthropicBedrockClient` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
@@ -456,15 +456,15 @@ Gunakan `AnthropicBedrockMantleClient` untuk proyek baru; `AnthropicBedrockClien
 ## Semantic versioning
 
 <Warning>
-  Meskipun paket ini diberi versi 10+, paket ini saat ini dalam tahap beta. Selama periode beta, perubahan yang merusak kompatibilitas dapat terjadi pada rilis minor atau patch. Setelah pustaka mencapai rilis stabil, konvensi SemVer akan diikuti dengan lebih ketat. Bagikan masukan dengan [mengajukan issue](https://github.com/anthropics/anthropic-sdk-csharp/issues/new).
+  Meskipun paket ini diberi versi 10+, paket ini saat ini dalam versi beta. Selama periode beta, perubahan yang merusak kompatibilitas dapat terjadi pada rilis minor atau patch. Setelah library mencapai rilis stabil, konvensi SemVer akan diikuti dengan lebih ketat. Sampaikan masukan dengan [mengajukan issue](https://github.com/anthropics/anthropic-sdk-csharp/issues/new).
 </Warning>
 
-Paket ini umumnya mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang dapat dirilis sebagai versi minor:
+Paket ini secara umum mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang dapat dirilis sebagai versi minor:
 
-1. Perubahan pada internal pustaka yang secara teknis bersifat publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal.
-2. Perubahan yang tidak diperkirakan akan berdampak pada sebagian besar pengguna dalam praktiknya.
+1. Perubahan pada internal library yang secara teknis publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal.
+2. Perubahan yang dalam praktiknya tidak diperkirakan berdampak pada sebagian besar pengguna.
 
-Kompatibilitas ke belakang ditangani dengan serius untuk memastikan Anda dapat mengandalkan pengalaman pembaruan yang lancar.
+Kompatibilitas ke belakang ditangani dengan serius untuk memastikan Anda dapat mengandalkan pengalaman upgrade yang lancar.
 
 ## Sumber daya tambahan
 

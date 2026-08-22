@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/beta-headers
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 1b098e03b02674a3bee364d83b43898d9380817a692c8bdbad3730e8531c4dec
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 8cecafe260c771ba70865d0d3cf45f2984707c031c7861a89fa8491c82cd8eaa
 ---
 
 ---
@@ -11,10 +11,10 @@ url: https://platform.claude.com/docs/id/api/beta-headers
 description: Akses fitur eksperimental sebelum ketersediaan umum dengan header `anthropic-beta` atau parameter `betas` pada SDK.
 ---
 
-Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model baru sebelum menjadi bagian dari API standar.
+Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model baru sebelum fitur tersebut menjadi bagian dari API standar.
 
 <Info>
-  Setiap [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) menyediakan namespace `beta` untuk memanggil API dengan fitur beta diaktifkan.
+  Setiap [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) menyediakan namespace `beta` untuk memanggil API dengan fitur beta yang diaktifkan.
 </Info>
 
 ## Cara menggunakan header beta
@@ -31,14 +31,14 @@ content-type: application/json
 
 Dokumentasi setiap fitur menyebutkan nama beta yang tepat untuk dikirim. [Ikhtisar API](https://platform.claude.com/docs/id/api/overview) mencantumkan API yang saat ini dalam tahap beta.
 
-Contoh berikut menunjukkan permintaan yang sama dengan cURL, CLI `ant`, dan SDK. SDK menerima nama beta dalam parameter `betas` dan mengirimkan header `anthropic-beta` untuk Anda:
+Contoh berikut menunjukkan permintaan yang sama dengan cURL, CLI `ant`, dan SDK, menggunakan beta [context editing](https://platform.claude.com/docs/id/build-with-claude/context-editing) (pengeditan konteks) sebagai contoh. SDK menerima nama beta dalam parameter `betas` dan mengirimkan header `anthropic-beta` untuk Anda:
 
 <CodeGroup>
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: files-api-2025-04-14" \
+    -H "anthropic-beta: context-management-2025-06-27" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5",
@@ -51,7 +51,7 @@ Contoh berikut menunjukkan permintaan yang sama dengan cURL, CLI `ant`, dan SDK.
 
   ```bash CLI
   ant beta:messages create \
-    --beta files-api-2025-04-14 \
+    --beta context-management-2025-06-27 \
     --model claude-opus-5 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello, Claude"}'
@@ -64,7 +64,7 @@ Contoh berikut menunjukkan permintaan yang sama dengan cURL, CLI `ant`, dan SDK.
       model="claude-opus-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello, Claude"}],
-      betas=["files-api-2025-04-14"],
+      betas=["context-management-2025-06-27"],
   )
 
   print(response.content)
@@ -77,7 +77,7 @@ Contoh berikut menunjukkan permintaan yang sama dengan cURL, CLI `ant`, dan SDK.
     model: "claude-opus-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello, Claude" }],
-    betas: ["files-api-2025-04-14"]
+    betas: ["context-management-2025-06-27"]
   });
 
   console.log(msg.content);
@@ -92,7 +92,7 @@ Contoh berikut menunjukkan permintaan yang sama dengan cURL, CLI `ant`, dan SDK.
           Model = "claude-opus-5",
           MaxTokens = 1024,
           Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
-          Betas = ["files-api-2025-04-14"],
+          Betas = ["context-management-2025-06-27"],
       }
   );
 
@@ -108,7 +108,7 @@ Contoh berikut menunjukkan permintaan yang sama dengan cURL, CLI `ant`, dan SDK.
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Hello, Claude")),
   	},
-  	Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
+  	Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaContextManagement2025_06_27},
   })
   if err != nil {
   	panic(err)
@@ -124,7 +124,7 @@ Contoh berikut menunjukkan permintaan yang sama dengan cURL, CLI `ant`, dan SDK.
     .model(Model.CLAUDE_OPUS_5)
     .maxTokens(1024)
     .addUserMessage("Hello, Claude")
-    .addBeta(AnthropicBeta.FILES_API_2025_04_14)
+    .addBeta(AnthropicBeta.CONTEXT_MANAGEMENT_2025_06_27)
     .build();
 
   BetaMessage message = client.beta().messages().create(params);
@@ -138,7 +138,7 @@ Contoh berikut menunjukkan permintaan yang sama dengan cURL, CLI `ant`, dan SDK.
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello, Claude']],
       model: 'claude-opus-5',
-      betas: ['files-api-2025-04-14'],
+      betas: ['context-management-2025-06-27'],
   );
 
   echo $message;
@@ -151,7 +151,7 @@ Contoh berikut menunjukkan permintaan yang sama dengan cURL, CLI `ant`, dan SDK.
     model: "claude-opus-5",
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello, Claude"}],
-    betas: ["files-api-2025-04-14"]
+    betas: ["context-management-2025-06-27"]
   )
 
   puts(message.content)
@@ -161,9 +161,9 @@ Contoh berikut menunjukkan permintaan yang sama dengan cURL, CLI `ant`, dan SDK.
 <Warning>
   Fitur beta bersifat eksperimental dan mungkin:
 
-  * Memiliki perubahan yang merusak kompatibilitas (breaking changes) dengan pemberitahuan
-  * Dihentikan (deprecated) atau dihapus
-  * Memiliki batas laju atau harga yang berbeda
+  * Mengalami perubahan yang merusak kompatibilitas dengan pemberitahuan
+  * Dihentikan atau dihapus
+  * Memiliki "rate limit" (batas laju) atau harga yang berbeda
   * Tidak tersedia di semua wilayah
 </Warning>
 
@@ -179,13 +179,13 @@ Saat menggunakan SDK, cantumkan setiap fitur dalam parameter `betas` (misalnya, 
 
 ### Header khusus endpoint
 
-Beberapa API beta terbatas pada endpoint tertentu dan memerlukan header beta khusus fitur pada setiap permintaan:
+Beberapa API beta dibatasi pada endpoint tertentu dan memerlukan header beta khusus fitur pada setiap permintaan:
 
 | Endpoint                                         | Header beta                 |
 | ------------------------------------------------ | --------------------------- |
 | `/v1/agents`, `/v1/sessions`, `/v1/environments` | `managed-agents-2026-04-01` |
 | `/v1/tunnels`                                    | `mcp-tunnels-2026-06-22`    |
-| `/v1/memory_stores` dan sub-resource             | `agent-memory-2026-07-22`   |
+| `/v1/memory_stores` dan sub-resource-nya         | `agent-memory-2026-07-22`   |
 
 Namespace `beta` pada SDK menambahkan header ini secara otomatis. Tambahkan sendiri hanya saat membuat permintaan HTTP mentah. Lihat [ikhtisar Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), [Menggunakan memori agen](https://platform.claude.com/docs/id/managed-agents/memory), dan [referensi MCP tunnels](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference#tunnels-api) untuk detailnya.
 
@@ -193,7 +193,7 @@ Header khusus endpoint yang berlaku untuk endpoint yang sama tidak selalu dapat 
 
 ### Konvensi penamaan versi
 
-Nama fitur beta biasanya mengikuti pola `feature-name-YYYY-MM-DD`, di mana tanggal menunjukkan kapan beta tersebut dirilis. Selalu gunakan nama fitur beta yang tepat seperti yang didokumentasikan.
+Nama fitur beta biasanya mengikuti pola `feature-name-YYYY-MM-DD`, di mana tanggal menunjukkan kapan beta tersebut dirilis. Selalu gunakan nama fitur beta yang tepat sesuai dokumentasi.
 
 ## Penanganan error
 
@@ -218,7 +218,7 @@ Untuk pembaruan fitur beta, lihat [catatan rilis](https://platform.claude.com/do
 
 <CardGroup cols={2}>
   <Card title="Error" icon="info" href="https://platform.claude.com/docs/id/api/errors">
-    Pahami kode status HTTP, bentuk respons error, dan ID permintaan yang dikembalikan oleh Claude API, serta tangani error dengan exception bertipe dari SDK.
+    Pahami kode status HTTP, bentuk respons error, dan ID permintaan yang dikembalikan Claude API, serta tangani error dengan exception bertipe pada SDK.
   </Card>
 
   <Card title="Ikhtisar API" icon="compass" href="https://platform.claude.com/docs/id/api/overview">

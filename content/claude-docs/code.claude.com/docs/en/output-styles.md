@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/output-styles
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 7f28ae3292fe686e7aaf37f6f199ea1fcca60cedfdf8bd79b45d1476836b989e
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 283cfd6d06680d859ea856ffc9498ccfaa9e8fd1e04f96d6adcee7d720eddee9
 ---
 
 > ## Documentation Index
@@ -62,7 +62,7 @@ A custom output style is a Markdown file: frontmatter for metadata, then the ins
 
     * User: `~/.claude/output-styles`
     * Project: `.claude/output-styles`
-    * Managed policy: `.claude/output-styles` inside the [managed settings directory](/docs/en/settings#settings-files)
+    * Managed policy: `.claude/output-styles` inside the [managed settings directory](/docs/en/managed-settings#delivery-mechanisms)
 
     Project output styles load from every `.claude/output-styles/` between the working directory and the repository root. When more than one of these nested directories defines a style with the same name, Claude Code uses the one closest to the working directory.
   </Step>

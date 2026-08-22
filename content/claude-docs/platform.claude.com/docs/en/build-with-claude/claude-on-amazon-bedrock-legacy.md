@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 5fa2ee7e7cdfc7af6002747a6cb7ca8de121103041fe076d3962f8aef0a23730
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: eedf095cc973f0f8714ceb1c36ec7c523631f4d706a0face9bf15e6c9ee29477
 ---
 
 ---
@@ -333,8 +333,9 @@ The following examples show how to generate text from Claude on Bedrock:
         # Temporary credentials can be used with aws_session_token.
         # Read more at https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html.
         aws_session_token="<session_token>",
-        # aws_region changes the aws region to which the request is made. By default, the SDK reads AWS_REGION,
-        # and if that's not present, defaults to us-east-1. Note that the SDK does not read ~/.aws/config for the region.
+        # aws_region changes the aws region to which the request is made. If it is not provided, the SDK reads
+        # AWS_REGION / AWS_DEFAULT_REGION, then the region configured for your boto3 session or AWS profile
+        # (including ~/.aws/config), and raises ValueError if no region can be resolved.
         aws_region="us-west-2",
     )
 

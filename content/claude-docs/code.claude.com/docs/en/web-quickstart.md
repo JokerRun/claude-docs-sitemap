@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/web-quickstart
-fetched_at: 2026-08-15T02:25:10.047250Z
-sha256: 2adf11ab3ffe956b2ffbf034f27cfa234f34d4c49ff0990b127b9cc8f4c8e743
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 7d76bc361d6ec9beb08c4a88b9ffc2a5ef6f451ac79c031acd768cf1a13569e8
 ---
 
 > ## Documentation Index
@@ -196,7 +196,9 @@ Enterprise organizations may need an Owner to enable Claude Code on the web. Con
 
 If `/web-setup` responds with "Not signed in to Claude. Run /login first.", the CLI doesn't have a valid claude.ai sign-in. This can also happen when a previous sign-in has expired. Run `/login`, sign in with your claude.ai account, then run `/web-setup` again.
 
-### `/web-setup` shows "No commands match" or "Unknown command"
+<h3 id="web-setup-shows-no-commands-match-or-unknown-command">
+  `/web-setup` shows "No commands match" or "Unknown command"
+</h3>
 
 `/web-setup` runs inside the Claude Code CLI, not your shell. Launch `claude` first, then type `/web-setup` at the prompt.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 1e21ae953ad5085dc9073514671723ce7d250f16461a8e36bd1f88e1fa034f7e
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: efd377840fac2d346234750af190ce2abef6337e709beeb5e75eb1bebc4f8e9c
 ---
 
 ---
@@ -1324,7 +1324,6 @@ Convert MCP resources into content blocks to include in messages, or into file o
   ```
 
   ```php PHP
-  // The PHP SDK exposes the Files API under the beta namespace; field names can differ from other SDKs.
   // As a content block in a message
   $resource = $mcp->readResource('file:///path/to/doc.txt');
 
@@ -1346,7 +1345,7 @@ Convert MCP resources into content blocks to include in messages, or into file o
 
   // As a file upload
   $fileResource = $mcp->readResource('file:///path/to/data.json');
-  $file = $anthropic->beta->files->upload(file: BetaMcp::resourceToFile($fileResource));
+  $file = $anthropic->files->upload(file: BetaMcp::resourceToFile($fileResource));
   echo $file->id, "\n";
   ```
 

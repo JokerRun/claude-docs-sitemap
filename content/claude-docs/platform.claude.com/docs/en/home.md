@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/home
-fetched_at: 2026-08-19T02:28:54.965606Z
-sha256: 8246dc49fade25c067beaff3b2ec2503633db98279d57d7674a91fb464dd6589
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: e6b06abefbe425947db7f232b9c3acaf4a0a9edfe9ff8e3ed870b869d216cc48
 ---
 
 ---
@@ -44,7 +44,7 @@ with Claude"
           API reference
         </HomeCardLink>
 
-        <HomeCardLink icon="code-brackets" href="https://platform.claude.com/docs/en/api/client-sdks">
+        <HomeCardLink icon="code-brackets" href="https://platform.claude.com/docs/en/cli-sdks-libraries/overview">
           Client SDKs
         </HomeCardLink>
       </HomePlatformCard>
@@ -97,7 +97,7 @@ with Claude"
             Choose a model
           </HomeJourneyLink>
 
-          <HomeJourneyLink icon="code-brackets" href="https://platform.claude.com/docs/en/api/client-sdks">
+          <HomeJourneyLink icon="code-brackets" href="https://platform.claude.com/docs/en/cli-sdks-libraries/overview">
             Install an SDK
           </HomeJourneyLink>
 

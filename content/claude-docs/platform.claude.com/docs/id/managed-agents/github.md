@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/github
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: f87a0172f36e0da0c25cee347d666144a9d571100bae039a22a2bb8e570c4929
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 92c5b0689269ab6ff39d7fdd3cae9bd21f094fea0d96bc39f46626528214a358
 ---
 
 ---
@@ -604,10 +604,10 @@ Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan
   ```
 
   ```bash CLI
-  # Daftar resource pada sesi
+  # List resources on the session
   ant beta:sessions:resources list --session-id "$SESSION_ID"
 
-  # Rotasi token otorisasi pada resource tertentu
+  # Rotate the authorization token on a specific resource
   ant beta:sessions:resources update \
     --session-id "$SESSION_ID" \
     --resource-id "$RESOURCE_ID" \
@@ -752,9 +752,7 @@ Dengan server GitHub MCP, agen dapat membuat branch, melakukan commit perubahan,
   ```
 
   ```bash CLI
-  ant beta:sessions:events send \
-    --session-id "$SESSION_ID" \
-    > /dev/null <<'EOF'
+  ant beta:sessions:events send --session-id "$SESSION_ID" > /dev/null <<'EOF'
   events:
     - type: user.message
       content:

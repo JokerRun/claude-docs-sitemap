@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/analytics-api
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 6d34fdb1e6de3d6e74b404cfcd3388cf3a6b3ce8b96053831fe9350b27429b2b
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 3efe77382920786d0c3151c0ec3cafc4ce2b6348dcf759fdbf5f668af1aa926f
 ---
 
 ---
@@ -88,7 +88,7 @@ For endpoint details, parameters, and response schemas, see the [Claude Enterpri
 
 Claude Enterprise Analytics API data is available for dates on or after January 1, 2026.
 
-**Engagement and adoption endpoints** (user activity, summaries, projects, skills, connectors) return a per-day snapshot for the date you specify. Data for a given day is aggregated at 10UTC the following day and is typically available with a 1-day lag. Exact freshness varies by query, so rather than assuming a fixed lag, check the error response: requesting a date that is not yet available returns a 400 error naming the most recent available day. If data is not available well past the typical lag, it usually indicates a data pipeline failure on Anthropic's side; contact support if the gap persists.
+**Engagement and adoption endpoints** (user activity, summaries, projects, skills, connectors) return a per-day snapshot for the date you specify. Data for a given day is aggregated at 10:00 UTC the following day and is typically available with a 1-day lag. Exact freshness varies by query, so rather than assuming a fixed lag, check the error response: requesting a date that is not yet available returns a 400 error naming the most recent available day. If data is not available well past the typical lag, it usually indicates a data pipeline failure on Anthropic's side; contact support if the gap persists.
 
 **Cost and usage endpoints** follow a different freshness model. Data is typically available within four hours of the underlying usage but may take up to 24 hours. Values for a given date can be revised for up to 30 days as late events arrive and reconciliation runs. For invoicing-grade totals, query dates at least 30 days in the past.
 

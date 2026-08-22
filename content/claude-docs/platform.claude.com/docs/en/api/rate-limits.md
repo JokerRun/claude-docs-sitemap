@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/rate-limits
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: a682f27ae2f49140970edf67bc142b0952df3a7d1acf1f4d4ad6657f9c2cf242
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: eb5e5d666be8c2dfb4df052398c39db6c46ba3dc705359b2837fdbc45f4b6afa
 ---
 
 ---
@@ -51,7 +51,7 @@ Organizations on the Custom tier have no monthly spend cap; limits are arranged 
 
 ### Reaching your spend cap
 
-Once you reach your tier's spend cap, API usage pauses until 00UTC on the first day of the next month, unless you request a higher limit sooner. While usage is paused, API requests return HTTP 429:
+Once you reach your tier's spend cap, API usage pauses until 00:00 UTC on the first day of the next month, unless you request a higher limit sooner. While usage is paused, API requests return HTTP 429:
 
 ```json
 {

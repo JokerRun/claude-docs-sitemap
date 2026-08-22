@@ -1,20 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fast-mode
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 6c1da3bec5067f2ce325786d9a6181a7bf77adac36488c52a661828a06380bfa
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 4e8bc86f629c4ef4b64dc5678e99cb4961811dd1d4760c92924e0fa775d0faca
 ---
 
 ---
-title: Fast mode (pratinjau riset)
+title: Mode cepat (pratinjau riset)
 url: https://platform.claude.com/docs/id/build-with-claude/fast-mode
-description: Dapatkan hingga 2,5x lebih banyak token output per detik dari model Claude Opus yang didukung.
+description: Dapatkan token output per detik hingga 2,5x lebih tinggi dari model Claude Opus yang didukung.
 ---
 
-Fast mode menghasilkan hingga 2,5x lebih banyak token output per detik dari Claude Opus 5 dan Claude Opus 4.8 dengan harga premium. Atur `speed: "fast"` dengan header beta `fast-mode-2026-02-01` pada permintaan Anda untuk mengaktifkannya.
+Mode cepat (fast mode) memberikan token output per detik hingga 2,5x lebih tinggi dari Claude Opus 5 dan Claude Opus 4.8 dengan harga premium. Tetapkan `speed: "fast"` dengan header beta `fast-mode-2026-02-01` pada permintaan Anda untuk ikut serta.
 
 <Note>
-  Fast mode berada dalam tahap pratinjau riset. Hubungi manajer akun Anda untuk meminta akses. Jika Anda tidak memiliki manajer akun, [bergabunglah dengan daftar tunggu](https://claude.com/fast-mode) untuk fast mode.
+  Mode cepat sedang dalam pratinjau riset. Hubungi manajer akun Anda untuk meminta akses. Jika Anda tidak memiliki manajer akun, [bergabunglah dengan daftar tunggu](https://claude.com/fast-mode) untuk mode cepat.
 </Note>
 
 <Note>
@@ -23,29 +23,29 @@ Fast mode menghasilkan hingga 2,5x lebih banyak token output per detik dari Clau
 
 ## Model yang didukung
 
-Fast mode didukung pada model berikut:
+Mode cepat didukung pada model berikut:
 
 * Claude Opus 5 (claude-opus-5)
 * Claude Opus 4.8 (claude-opus-4-8)
 
 <Note>
-  Fast mode untuk Claude Opus 5 dan Claude Opus 4.8 tersedia sebagai pratinjau riset hanya di Claude API, termasuk [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview). Fitur ini tidak tersedia di Amazon Bedrock, Google Cloud, atau Microsoft Foundry.
+  Mode cepat untuk Claude Opus 5 dan Claude Opus 4.8 hanya tersedia sebagai pratinjau riset di Claude API, termasuk [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview). Mode ini tidak tersedia di Amazon Bedrock, Google Cloud, atau Microsoft Foundry.
 </Note>
 
 <Note>
-  Fast mode tidak tersedia di Claude Opus 4.7. Permintaan ke `claude-opus-4-7` dengan `speed: "fast"` akan mengembalikan error; tidak seperti Claude Opus 4.6 (lihat catatan berikut), permintaan tidak akan beralih ke kecepatan standar. Model itu sendiri tetap tersedia pada kecepatan standar. Untuk terus menggunakan fast mode, migrasikan ke [Claude Opus 5](https://platform.claude.com/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-47) atau Claude Opus 4.8.
+  Mode cepat tidak tersedia pada Claude Opus 4.7. Permintaan ke `claude-opus-4-7` dengan `speed: "fast"` mengembalikan error; tidak seperti Claude Opus 4.6 (lihat catatan berikut), permintaan tidak beralih ke kecepatan standar. Model itu sendiri tetap tersedia pada kecepatan standar. Untuk terus menggunakan mode cepat, migrasikan ke [Claude Opus 5](https://platform.claude.com/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-47) atau Claude Opus 4.8.
 </Note>
 
 <Note>
-  Fast mode tidak tersedia di Claude Opus 4.6. Permintaan ke `claude-opus-4-6` dengan `speed: "fast"` tidak mengembalikan error: permintaan tersebut berjalan pada kecepatan standar dan ditagih dengan [tarif standar](https://platform.claude.com/docs/id/about-claude/pricing) alih-alih tarif premium fast mode, dan respons melaporkan [`usage.speed: "standard"`](https://platform.claude.com/docs/id/build-with-claude/fast-mode#checking-which-speed-was-used). Untuk terus menggunakan fast mode, migrasikan ke [Claude Opus 5](https://platform.claude.com/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-46) atau Claude Opus 4.8.
+  Mode cepat tidak tersedia pada Claude Opus 4.6. Permintaan ke `claude-opus-4-6` dengan `speed: "fast"` tidak mengembalikan error: permintaan tersebut berjalan pada kecepatan standar dan ditagih dengan [tarif standar](https://platform.claude.com/docs/id/about-claude/pricing) alih-alih tarif premium mode cepat, dan respons melaporkan [`usage.speed: "standard"`](https://platform.claude.com/docs/id/build-with-claude/fast-mode#checking-which-speed-was-used). Untuk terus menggunakan mode cepat, migrasikan ke [Claude Opus 5](https://platform.claude.com/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-46) atau Claude Opus 4.8.
 </Note>
 
-## Cara kerja fast mode
+## Cara kerja mode cepat
 
-Fast mode menjalankan model yang sama dengan konfigurasi inferensi yang lebih cepat. Tidak ada perubahan pada kecerdasan atau kemampuan.
+Mode cepat menjalankan model yang sama dengan konfigurasi inferensi yang lebih cepat. Tidak ada perubahan pada kecerdasan atau kemampuan.
 
-* Hingga 2,5x lebih banyak token output per detik dibandingkan dengan kecepatan standar
-* Manfaat kecepatan difokuskan pada "output tokens per second" (token output per detik), atau OTPS, bukan "time to first token" (waktu ke token pertama), atau TTFT
+* Token output per detik hingga 2,5x lebih tinggi dibandingkan kecepatan standar
+* Manfaat kecepatan berfokus pada "output tokens per second" (token output per detik), atau OTPS, bukan "time to first token" (waktu hingga token pertama), atau TTFT
 * Bobot dan perilaku model yang sama (bukan model yang berbeda)
 * Kompatibel dengan [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming), di mana peningkatan OTPS paling terlihat
 
@@ -137,7 +137,13 @@ Fast mode menjalankan model yang sama dengan konfigurasi inferensi yang lebih ce
       ],
   });
 
-  Console.WriteLine(response);
+  foreach (var block in response.Content)
+  {
+      if (block.TryPickText(out var textBlock))
+      {
+          Console.WriteLine(textBlock.Text);
+      }
+  }
   ```
 
   ```go Go
@@ -218,39 +224,39 @@ Fast mode menjalankan model yang sama dengan konfigurasi inferensi yang lebih ce
 
 ## Harga
 
-Fast mode dihargai dengan pengali pada tarif standar di seluruh jendela konteks penuh, termasuk permintaan dengan lebih dari 200k token input. Tabel berikut menunjukkan harga fast mode untuk model yang didukung:
+Mode cepat dihargai dengan pengali atas tarif standar di seluruh "context window" (jendela konteks), termasuk permintaan dengan lebih dari 200 ribu token input. Tabel berikut menunjukkan harga mode cepat untuk model yang didukung:
 
 | Model                           | Input          | Output         |
 | ------------------------------- | -------------- | -------------- |
 | Claude Opus 5 / Claude Opus 4.8 | $10 USD / MTok | $50 USD / MTok |
 
-Harga fast mode berlaku secara kumulatif dengan pengubah harga lainnya:
+Harga mode cepat bertumpuk dengan pengubah harga lainnya:
 
-* [Pengali caching prompt](https://platform.claude.com/docs/id/about-claude/pricing#prompt-caching) berlaku di atas harga fast mode
-* Pengali [residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency) berlaku di atas harga fast mode
+* [Pengali caching prompt](https://platform.claude.com/docs/id/about-claude/pricing#prompt-caching) berlaku di atas harga mode cepat
+* Pengali [residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency) berlaku di atas harga mode cepat
 
 Untuk detail harga lengkap, lihat halaman [Harga](https://platform.claude.com/docs/id/about-claude/pricing#fast-mode-pricing).
 
 ## Batas laju
 
-Fast mode memiliki batas laju khusus yang terpisah dari batas laju Opus standar. Ketika batas laju fast mode Anda terlampaui, API mengembalikan error `429` dengan header `retry-after` yang menunjukkan kapan kapasitas akan tersedia.
+Mode cepat memiliki "rate limit" (batas laju) khusus yang terpisah dari batas laju Opus standar. Ketika batas laju mode cepat Anda terlampaui, API mengembalikan error `429` dengan header `retry-after` yang menunjukkan kapan kapasitas akan tersedia.
 
-Respons menyertakan header yang menunjukkan status batas laju fast mode Anda:
+Respons menyertakan header yang menunjukkan status batas laju mode cepat Anda:
 
-| Header                                   | Deskripsi                                         |
-| ---------------------------------------- | ------------------------------------------------- |
-| `anthropic-fast-input-tokens-limit`      | Token input fast mode maksimum per menit          |
-| `anthropic-fast-input-tokens-remaining`  | Token input fast mode yang tersisa                |
-| `anthropic-fast-input-tokens-reset`      | Waktu ketika batas token input fast mode direset  |
-| `anthropic-fast-output-tokens-limit`     | Token output fast mode maksimum per menit         |
-| `anthropic-fast-output-tokens-remaining` | Token output fast mode yang tersisa               |
-| `anthropic-fast-output-tokens-reset`     | Waktu ketika batas token output fast mode direset |
+| Header                                   | Deskripsi                                          |
+| ---------------------------------------- | -------------------------------------------------- |
+| `anthropic-fast-input-tokens-limit`      | Token input mode cepat maksimum per menit          |
+| `anthropic-fast-input-tokens-remaining`  | Token input mode cepat yang tersisa                |
+| `anthropic-fast-input-tokens-reset`      | Waktu ketika batas token input mode cepat direset  |
+| `anthropic-fast-output-tokens-limit`     | Token output mode cepat maksimum per menit         |
+| `anthropic-fast-output-tokens-remaining` | Token output mode cepat yang tersisa               |
+| `anthropic-fast-output-tokens-reset`     | Waktu ketika batas token output mode cepat direset |
 
-Untuk batas laju spesifik per tier, lihat halaman [Batas laju](https://platform.claude.com/docs/id/api/rate-limits).
+Untuk batas laju spesifik per tingkat, lihat halaman [Batas laju](https://platform.claude.com/docs/id/api/rate-limits).
 
-## Memeriksa kecepatan mana yang digunakan
+## Memeriksa kecepatan yang digunakan
 
-Objek `usage` dalam respons menyertakan field `speed` yang menunjukkan kecepatan mana yang digunakan, baik `"fast"` atau `"standard"`. Meminta `speed: "fast"` pada [model yang tidak mendukung fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode#supported-models) akan mengembalikan error, begitu juga ketika melampaui batas laju atau kapasitas fast mode (error `429` atau `529`). Ketika permintaan dengan `speed: "fast"` berhasil, `usage.speed` bernilai `"fast"`. Jika Anda menggunakan Claude Opus 4.6 dan meminta fast mode, perilakunya unik. Alih-alih mengembalikan error seperti model lain yang tidak mendukung fast mode, model ini secara diam-diam beralih ke kecepatan standar. Meskipun tidak ada error dengan Opus 4.6, field `speed` secara akurat menunjukkan `"standard"`.
+Objek `usage` pada respons menyertakan field `speed` yang menunjukkan kecepatan yang digunakan, yaitu `"fast"` atau `"standard"`. Meminta `speed: "fast"` pada [model yang tidak mendukung mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode#supported-models) mengembalikan error, begitu pula jika melampaui batas laju atau kapasitas mode cepat (`429` atau `529`). Ketika permintaan dengan `speed: "fast"` berhasil, `usage.speed` bernilai `"fast"`. Jika Anda menggunakan Claude Opus 4.6 dan meminta mode cepat, perilakunya unik. Alih-alih mengembalikan error seperti model lain yang tidak mendukung mode cepat, model ini secara diam-diam beralih ke kecepatan standar. Meskipun tidak ada error pada Opus 4.6, field `speed` secara akurat menunjukkan `"standard"`.
 
 <CodeGroup>
   ```bash cURL
@@ -400,33 +406,33 @@ Objek `usage` dalam respons menyertakan field `speed` yang menunjukkan kecepatan
 }
 ```
 
-Untuk melacak penggunaan dan biaya fast mode di seluruh organisasi Anda, lihat [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api).
+Untuk melacak penggunaan dan biaya mode cepat di seluruh organisasi Anda, lihat [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api).
 
 ## Percobaan ulang dan fallback
 
 ### Percobaan ulang otomatis
 
-Ketika batas laju fast mode terlampaui, API mengembalikan error `429` dengan header `retry-after`. SDK Anthropic secara otomatis mencoba ulang permintaan ini hingga 2 kali secara default (dapat dikonfigurasi dengan `max_retries`), menunggu selama penundaan yang ditentukan server sebelum setiap percobaan ulang. Karena fast mode menggunakan pengisian ulang token secara berkelanjutan, penundaan `retry-after` biasanya singkat dan permintaan berhasil setelah kapasitas tersedia.
+Ketika batas laju mode cepat terlampaui, API mengembalikan error `429` dengan header `retry-after`. SDK Anthropic secara otomatis mencoba ulang permintaan ini hingga 2 kali secara default (dapat dikonfigurasi dengan `max_retries`), menunggu jeda yang ditentukan server sebelum setiap percobaan ulang. Karena mode cepat menggunakan pengisian ulang token berkelanjutan, jeda `retry-after` biasanya singkat dan permintaan berhasil setelah kapasitas tersedia.
 
 ### Beralih ke kecepatan standar
 
 <Note>
-  Bagian ini membahas fallback sisi klien yang bersifat opt-in ketika fast mode dibatasi lajunya. Ini terpisah dari perilaku pada [Claude Opus 4.6](https://platform.claude.com/docs/id/build-with-claude/fast-mode#supported-models), di mana fast mode tidak tersedia dan permintaan berjalan pada kecepatan standar secara otomatis.
+  Bagian ini membahas fallback sisi klien yang bersifat opt-in ketika mode cepat terkena batas laju. Ini terpisah dari perilaku pada [Claude Opus 4.6](https://platform.claude.com/docs/id/build-with-claude/fast-mode#supported-models), di mana mode cepat tidak tersedia dan permintaan berjalan pada kecepatan standar secara otomatis.
 </Note>
 
-Jika Anda lebih memilih untuk beralih ke kecepatan standar daripada menunggu kapasitas fast mode, tangkap error batas laju dan coba ulang tanpa `speed: "fast"`. Atur `max_retries` ke `0` pada permintaan fast awal untuk melewati percobaan ulang otomatis dan langsung gagal pada error batas laju.
+Jika Anda lebih memilih beralih ke kecepatan standar daripada menunggu kapasitas mode cepat, tangkap error batas laju dan coba ulang tanpa `speed: "fast"`. Tetapkan `max_retries` ke `0` pada permintaan cepat awal untuk melewati percobaan ulang otomatis dan langsung gagal pada error batas laju.
 
 <Note>
-  Beralih dari kecepatan fast ke standar akan menghasilkan cache miss pada [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching). Permintaan pada kecepatan yang berbeda tidak berbagi prefiks yang di-cache.
+  Beralih dari kecepatan cepat ke standar akan mengakibatkan [prompt cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) miss. Permintaan pada kecepatan yang berbeda tidak berbagi prefiks yang di-cache.
 </Note>
 
-Karena mengatur `max_retries` ke `0` juga menonaktifkan percobaan ulang untuk error sementara lainnya (overloaded, internal server error), contoh berikut mengirim ulang permintaan asli dengan percobaan ulang default untuk kasus-kasus tersebut.
+Karena menetapkan `max_retries` ke `0` juga menonaktifkan percobaan ulang untuk error sementara lainnya (kelebihan beban, error server internal), contoh berikut mengirim ulang permintaan asli dengan percobaan ulang default untuk kasus-kasus tersebut.
 
 <CodeGroup exclude="shell:cURL">
   ```bash CLI
-  # `ant` mencoba ulang 429/5xx secara otomatis dan tidak punya override max_retries per permintaan,
-  # jadi pada 429 mode cepat, fallback berjalan setelah percobaan ulang bawaan
-  # habis. --transform-error menampilkan error.type untuk percabangan.
+  # `ant` mengulang 429/5xx secara otomatis dan tidak memiliki override max_retries
+  # per permintaan, jadi pada 429 mode cepat, fallback berjalan setelah percobaan
+  # ulang bawaan habis. --transform-error menampilkan error.type untuk percabangan.
   create_message_with_fast_fallback() {
     local speed="$1" max_attempts="${2:-3}" body out
     body=${3:-$(cat)}
@@ -503,15 +509,12 @@ Karena mengatur `max_retries` ke `0` juga menonaktifkan percobaan ulang untuk er
   const client = new Anthropic();
 
   async function createMessageWithFastFallback(
-    params: Anthropic.Beta.MessageCreateParams,
+    params: Anthropic.Beta.MessageCreateParamsNonStreaming,
     requestOptions?: Anthropic.RequestOptions,
     maxAttempts: number = 3
   ): Promise<Anthropic.Beta.Messages.BetaMessage> {
     try {
-      return (await client.beta.messages.create(
-        params,
-        requestOptions
-      )) as Anthropic.Beta.Messages.BetaMessage;
+      return await client.beta.messages.create(params, requestOptions);
     } catch (e) {
       if (e instanceof Anthropic.RateLimitError && params.speed === "fast") {
         const { speed, ...rest } = params;
@@ -730,7 +733,7 @@ Karena mengatur `max_retries` ke `0` juga menonaktifkan percobaan ulang untuk er
   ```
 
   ```ruby Ruby
-  anthropic = Anthropic::Client.new
+  client = Anthropic::Client.new
 
   def create_message_with_fast_fallback(client, request_options: {}, max_attempts: 3, **params)
     client.beta.messages.create(**params, request_options: request_options)
@@ -744,7 +747,7 @@ Karena mengatur `max_retries` ke `0` juga menonaktifkan percobaan ulang untuk er
   end
 
   message = create_message_with_fast_fallback(
-    anthropic,
+    client,
     model: "claude-opus-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello" }],
@@ -757,29 +760,29 @@ Karena mengatur `max_retries` ke `0` juga menonaktifkan percobaan ulang untuk er
 
 ## Pertimbangan
 
-* **Caching prompt:** Beralih antara kecepatan fast dan standar akan membatalkan cache prompt. Permintaan pada kecepatan yang berbeda tidak berbagi prefiks yang di-cache.
-* **Model yang didukung:** Fast mode didukung pada Claude Opus 5 dan Claude Opus 4.8. Lihat [Model yang didukung](https://platform.claude.com/docs/id/build-with-claude/fast-mode#supported-models).
-* **TTFT:** Manfaat fast mode difokuskan pada output tokens per second (OTPS), bukan time to first token (TTFT).
-* **Batch API:** Fast mode tidak tersedia dengan [Batch API](https://platform.claude.com/docs/id/build-with-claude/batch-processing).
-* **Priority Tier:** Fast mode tidak tersedia dengan komitmen [Priority Tier](https://platform.claude.com/docs/id/api/service-tiers).
-* **Claude Platform on AWS:** Fast mode saat ini tidak tersedia di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws).
+* **Caching prompt:** Beralih antara kecepatan cepat dan standar membatalkan prompt cache. Permintaan pada kecepatan yang berbeda tidak berbagi prefiks yang di-cache.
+* **Model yang didukung:** Mode cepat didukung pada Claude Opus 5 dan Claude Opus 4.8. Lihat [Model yang didukung](https://platform.claude.com/docs/id/build-with-claude/fast-mode#supported-models).
+* **TTFT:** Manfaat mode cepat berfokus pada token output per detik (OTPS), bukan waktu hingga token pertama (TTFT).
+* **Batch API:** Mode cepat tidak tersedia dengan [Batch API](https://platform.claude.com/docs/id/build-with-claude/batch-processing).
+* **Priority Tier:** Mode cepat tidak tersedia dengan komitmen [Priority Tier](https://platform.claude.com/docs/id/api/service-tiers).
+* **Claude Platform on AWS:** Mode cepat saat ini tidak tersedia di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws).
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
   <Card title="Output terstruktur" icon="code-brackets" href="https://platform.claude.com/docs/id/build-with-claude/structured-outputs">
-    Dapatkan hasil JSON yang tervalidasi dari alur kerja agen.
+    Dapatkan hasil JSON tervalidasi dari alur kerja agen.
   </Card>
 
   <Card title="Harga" icon="calculator" href="https://platform.claude.com/docs/id/about-claude/pricing#fast-mode-pricing">
-    Pelajari tentang struktur harga Anthropic untuk model dan fitur.
+    Pelajari struktur harga Anthropic untuk model dan fitur.
   </Card>
 
   <Card title="Effort" icon="gauge" href="https://platform.claude.com/docs/id/build-with-claude/effort">
-    Kontrol berapa banyak token yang digunakan Claude saat merespons dengan parameter effort, menyeimbangkan antara kelengkapan respons dan efisiensi token.
+    Kendalikan berapa banyak token yang digunakan Claude saat merespons dengan parameter effort, menyeimbangkan antara ketelitian respons dan efisiensi token.
   </Card>
 
   <Card title="Streaming pesan" icon="arrow-right" href="https://platform.claude.com/docs/id/build-with-claude/streaming">
-    Stream respons Messages API secara bertahap dengan server-sent events, termasuk delta teks, penggunaan alat, dan pemikiran diperpanjang.
+    Lakukan streaming respons Messages API secara bertahap dengan server-sent events, termasuk teks, penggunaan alat, dan delta pemikiran diperpanjang.
   </Card>
 </CardGroup>

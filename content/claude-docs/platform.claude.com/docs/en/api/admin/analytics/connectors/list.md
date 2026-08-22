@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/connectors/list
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: ab7b309b25a51a7e2c424fea925f63be96e421894cbd96bcef01b45c27f17663
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: ab56228cd677cfb01824b483fcb2ab0d799846be2b3a5a16dfa625be8a9d7dce
 ---
 
 ---
@@ -186,7 +186,7 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 ```http
 curl https://api.anthropic.com/v1/organizations/analytics/connectors \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
 #### Response

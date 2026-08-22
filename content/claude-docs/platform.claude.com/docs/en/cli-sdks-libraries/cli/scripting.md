@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/scripting
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 1866092431a75321fffc10d063fc61a53c99deb746381e6a040d56565dbb14dc
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 63d4177731325eec034a693b28b5fc2fb4324a8c6b3062b9ba5a72877bd40fdd
 ---
 
 ---
@@ -155,8 +155,7 @@ The CLI is designed to compose with standard shell tooling.
 `--transform id --raw-output` on a list endpoint emits one bare ID per line, so standard tools such as `head` and `xargs` apply directly. Capture the first result, then pass it to a follow-up command:
 
 ```bash
-FIRST_AGENT=$(ant beta:agents list \
-  --transform id --raw-output | head -1)
+FIRST_AGENT=$(ant beta:agents list --transform id --raw-output | head -1)
 
 ant beta:agents:versions list \
   --agent-id "$FIRST_AGENT" \

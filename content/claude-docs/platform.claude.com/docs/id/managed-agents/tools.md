@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 4ec5e97da1eb0ce0d7d7e6c043a7d75a3029b3c1e39f05cb4ac849a76fb0b692
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: bee266ed9946f68a1ebf432428e4911f3f8ab4f65a5bc08ca45db9181cbaaa09
 ---
 
 ---
@@ -11,9 +11,9 @@ url: https://platform.claude.com/docs/id/managed-agents/tools
 description: Konfigurasikan alat yang tersedia untuk agen Anda.
 ---
 
-Claude Managed Agents menyediakan serangkaian alat bawaan yang dapat digunakan Claude secara otonom dalam sebuah [sesi](https://platform.claude.com/docs/id/managed-agents/sessions). Anda mengontrol alat mana yang tersedia dengan menentukannya dalam konfigurasi agen.
+Claude Managed Agents menyediakan serangkaian alat bawaan yang dapat digunakan Claude secara otonom di dalam sebuah [sesi](https://platform.claude.com/docs/id/managed-agents/sessions). Anda mengontrol alat mana yang tersedia dengan menentukannya dalam konfigurasi agen.
 
-Claude Managed Agents juga mendukung alat kustom yang ditentukan pengguna. Aplikasi Anda mengeksekusi alat-alat ini secara terpisah dan mengembalikan hasilnya ke Claude, yang kemudian menggunakannya untuk melanjutkan tugas. Untuk memberikan agen alat dari server MCP, gunakan [konektor MCP](https://platform.claude.com/docs/id/managed-agents/mcp-connector) sebagai gantinya.
+Claude Managed Agents juga mendukung alat kustom yang didefinisikan pengguna. Aplikasi Anda mengeksekusi alat-alat ini secara terpisah dan mengembalikan hasilnya ke Claude, yang menggunakannya untuk melanjutkan tugas. Untuk memberi agen alat dari server MCP, gunakan [konektor MCP](https://platform.claude.com/docs/id/managed-agents/mcp-connector) sebagai gantinya.
 
 <Note>
   Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
@@ -21,24 +21,24 @@ Claude Managed Agents juga mendukung alat kustom yang ditentukan pengguna. Aplik
 
 ## Alat yang tersedia
 
-Toolset agen mencakup alat-alat berikut. Semuanya diaktifkan secara default ketika Anda menyertakan toolset dalam konfigurasi agen Anda. Setiap entri dalam array `configs` diidentifikasi oleh `name`-nya, menggunakan nilai-nilai di kolom Nama, dan menerima field `type` opsional dengan nilai yang sama. Entri `web_search` dan `web_fetch` menerima pengaturan tambahan; lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
+Toolset agen mencakup alat-alat berikut. Semuanya diaktifkan secara default saat Anda menyertakan toolset dalam konfigurasi agen Anda. Setiap entri dalam array `configs` diidentifikasi berdasarkan `name`-nya, menggunakan nilai pada kolom Nama, dan menerima field `type` opsional dengan nilai yang sama. Entri `web_search` dan `web_fetch` menerima pengaturan tambahan; lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
 
-| Alat       | Nama         | Deskripsi                                        |
-| ---------- | ------------ | ------------------------------------------------ |
-| Bash       | `bash`       | Mengeksekusi perintah bash dalam sesi shell      |
-| Read       | `read`       | Membaca file dari filesystem sandbox             |
-| Write      | `write`      | Menulis file ke filesystem sandbox               |
-| Edit       | `edit`       | Melakukan penggantian string dalam file          |
-| Glob       | `glob`       | Pencocokan pola file cepat menggunakan pola glob |
-| Grep       | `grep`       | Pencarian teks menggunakan pola regex            |
-| Web fetch  | `web_fetch`  | Mengambil konten dari URL                        |
-| Web search | `web_search` | Mencari informasi di web                         |
+| Alat       | Nama         | Deskripsi                                             |
+| ---------- | ------------ | ----------------------------------------------------- |
+| Bash       | `bash`       | Mengeksekusi perintah bash dalam sesi shell           |
+| Read       | `read`       | Membaca file dari filesystem sandbox                  |
+| Write      | `write`      | Menulis file ke filesystem sandbox                    |
+| Edit       | `edit`       | Melakukan penggantian string dalam file               |
+| Glob       | `glob`       | Pencocokan pola file yang cepat menggunakan pola glob |
+| Grep       | `grep`       | Pencarian teks menggunakan pola regex                 |
+| Web fetch  | `web_fetch`  | Mengambil konten dari URL                             |
+| Web search | `web_search` | Mencari informasi di web                              |
 
-Ketika output alat melebihi 100.000 karakter (sekitar 25.000 token), output tersebut secara otomatis ditulis ke file di [sandbox](https://platform.claude.com/docs/id/managed-agents/environments). Model menerima pratinjau yang dipotong beserta path file dan dapat membaca konten lengkapnya dari sana.
+Ketika output alat melebihi 100.000 karakter (sekitar 25.000 token), output tersebut secara otomatis ditulis ke file di [sandbox](https://platform.claude.com/docs/id/managed-agents/environments). Model menerima pratinjau terpotong beserta path file dan dapat membaca konten lengkapnya dari sana.
 
 ## Mengonfigurasi toolset
 
-Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Gunakan array `configs` untuk menonaktifkan alat tertentu atau menimpa pengaturannya. Setiap entri config juga dapat menetapkan `permission_policy` yang mengontrol apakah panggilan alat disetujui secara otomatis atau memerlukan konfirmasi. Lihat [Kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) untuk jenis kebijakan yang tersedia.
+Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Gunakan array `configs` untuk menonaktifkan alat tertentu atau menimpa pengaturannya. Setiap entri config juga dapat menetapkan `permission_policy` yang mengontrol apakah panggilan alat tersebut disetujui otomatis atau memerlukan konfirmasi. Lihat [Kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) untuk jenis kebijakan yang tersedia.
 
 Entri config untuk `web_search` dan `web_fetch` juga menerima filter domain dan pengaturan web lainnya; lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
 
@@ -136,8 +136,8 @@ Entri config untuk `web_search` dan `web_fetch` juga menerima filter domain dan 
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
   		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
   			Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
-  			Configs: []anthropic.BetaManagedAgentsAgentToolConfigUnionParamsUnion{{
-  				OfBetaManagedAgentsWebFetchToolConfigs: &anthropic.BetaManagedAgentsWebFetchToolConfigParams{
+  			Configs: []anthropic.BetaManagedAgentsAgentToolConfigParamsUnion{{
+  				OfWebFetch: &anthropic.BetaManagedAgentsWebFetchToolConfigParams{
   					Enabled: anthropic.Bool(false),
   				},
   			}},
@@ -201,7 +201,7 @@ Entri config untuk `web_search` dan `web_fetch` juga menerima filter domain dan 
 
 ### Menonaktifkan alat tertentu
 
-Untuk menonaktifkan alat, atur `enabled: false` di entri config-nya dalam objek toolset pada array `tools` agen Anda:
+Untuk menonaktifkan sebuah alat, tetapkan `enabled: false` pada entri config-nya di objek toolset dalam array `tools` agen Anda:
 
 ```json
 {
@@ -215,7 +215,7 @@ Untuk menonaktifkan alat, atur `enabled: false` di entri config-nya dalam objek 
 
 ### Mengaktifkan hanya alat tertentu
 
-Objek `default_config` menetapkan baseline untuk setiap alat dalam set, dan entri `configs` per-alat menimpanya. Untuk memulai dengan semuanya nonaktif dan hanya mengaktifkan yang Anda butuhkan, atur `default_config.enabled` ke `false`:
+Objek `default_config` menetapkan baseline untuk setiap alat dalam set, dan entri `configs` per alat menimpanya. Untuk memulai dengan semuanya nonaktif dan hanya mengaktifkan yang Anda butuhkan, tetapkan `default_config.enabled` ke `false`:
 
 ```json
 {
@@ -231,9 +231,9 @@ Objek `default_config` menetapkan baseline untuk setiap alat dalam set, dan entr
 
 ### Membatasi domain web search dan web fetch
 
-Untuk mengontrol situs mana yang dapat dijangkau oleh alat web agen, atur `allowed_domains` (alat hanya dapat menjangkau host ini) atau `blocked_domains` (alat tidak pernah dapat menjangkau host ini) pada entri `web_search` dan `web_fetch` dalam array `configs` toolset. Setiap alat membawa daftarnya sendiri, sehingga `web_search` dan `web_fetch` dapat memiliki pembatasan yang berbeda. Domain yang terdaftar mencakup host tersebut dan semua subdomainnya. Saat runtime, panggilan `web_fetch` untuk URL yang tidak diizinkan oleh daftarnya mengembalikan hasil error ke agen (`is_error: true` pada event `agent.tool_result`, dengan konten yang menyebutkan kode error `url_not_allowed`), dan `web_search` menghilangkan hasil yang tidak diizinkan oleh daftarnya.
+Untuk mengontrol situs mana yang dapat dijangkau oleh alat web agen, tetapkan `allowed_domains` (alat hanya dapat menjangkau host ini) atau `blocked_domains` (alat tidak pernah dapat menjangkau host ini) pada entri `web_search` dan `web_fetch` dalam array `configs` toolset. Setiap alat memiliki daftarnya sendiri, sehingga `web_search` dan `web_fetch` dapat memiliki pembatasan yang berbeda. Domain yang terdaftar mencakup host tersebut dan semua subdomainnya. Saat runtime, panggilan `web_fetch` untuk URL yang tidak diizinkan oleh daftarnya mengembalikan hasil error ke agen (`is_error: true` pada event `agent.tool_result`, dengan konten yang menyebutkan kode error `url_not_allowed`), dan `web_search` menghilangkan hasil yang tidak diizinkan oleh daftarnya.
 
-Toolset berikut membatasi `web_search` ke dua situs dan melokalkan hasilnya, serta memblokir satu host untuk `web_fetch` sambil membatasi berapa banyak konten yang diambil masuk ke konteks:
+Toolset berikut membatasi `web_search` ke dua situs dan melokalkan hasilnya, serta memblokir satu host untuk `web_fetch` sambil membatasi seberapa banyak konten yang diambil masuk ke dalam konteks:
 
 ```json
 {
@@ -260,7 +260,7 @@ Toolset berikut membatasi `web_search` ke dua situs dan melokalkan hasilnya, ser
 ```
 
 <Note>
-  Dalam SDK Python, TypeScript, Go, Java, C#, Ruby, dan PHP, setiap entri `configs` diketik per alat: sebuah union dengan satu anggota per alat bawaan, dibedakan oleh `type`. `type` bersifat opsional ketika Anda membuat entri (server menyimpulkannya dari `name`) dan selalu ada pada respons. Pengetikan ini tidak mengubah JSON yang diserialisasi oleh entri, sehingga permintaan yang entrinya hanya menetapkan `name`, `enabled`, dan `permission_policy` tetap valid dengan atau tanpa `type`. Dalam SDK di mana Anda membuat entri dari nilai bertipe alih-alih dictionary atau hash biasa (Go, Java, C#, dan PHP), tipe elemen dari `configs` adalah union itu sendiri: bangun setiap entri dari tipe anggota per-alatnya.
+  Dalam SDK Python, TypeScript, Go, Java, C#, Ruby, dan PHP, setiap entri `configs` memiliki tipe per alat: sebuah union dengan satu anggota per alat bawaan, yang dibedakan berdasarkan `type`. `type` bersifat opsional saat Anda membuat entri (server menyimpulkannya dari `name`) dan selalu ada pada respons. Pengetikan ini tidak mengubah JSON hasil serialisasi entri, sehingga permintaan yang entrinya hanya menetapkan `name`, `enabled`, dan `permission_policy` valid dengan atau tanpa `type`. Dalam SDK tempat Anda membuat entri dari nilai bertipe alih-alih dictionary atau hash biasa (Go, Java, C#, dan PHP), tipe elemen `configs` adalah union itu sendiri: buat setiap entri dari tipe anggota per alatnya.
 </Note>
 
 Permintaan berikut membuat agen dengan toolset ini dan mencetak array `configs` dari respons:
@@ -453,15 +453,15 @@ Permintaan berikut membuat agen dengan toolset ini dan mencetak array `configs` 
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
   		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
   			Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
-  			Configs: []anthropic.BetaManagedAgentsAgentToolConfigUnionParamsUnion{
-  				{OfBetaManagedAgentsWebSearchToolConfigs: &anthropic.BetaManagedAgentsWebSearchToolConfigParams{
+  			Configs: []anthropic.BetaManagedAgentsAgentToolConfigParamsUnion{
+  				{OfWebSearch: &anthropic.BetaManagedAgentsWebSearchToolConfigParams{
   					AllowedDomains: []string{"docs.example.com", "arxiv.org"},
   					UserLocation: anthropic.BetaManagedAgentsUserLocationParam{
   						Country:  anthropic.String("US"),
   						Timezone: anthropic.String("America/Los_Angeles"),
   					},
   				}},
-  				{OfBetaManagedAgentsWebFetchToolConfigs: &anthropic.BetaManagedAgentsWebFetchToolConfigParams{
+  				{OfWebFetch: &anthropic.BetaManagedAgentsWebFetchToolConfigParams{
   					BlockedDomains:   []string{"ads.example.com"},
   					MaxContentTokens: anthropic.Int(50000),
   				}},
@@ -600,7 +600,7 @@ Permintaan berikut membuat agen dengan toolset ini dan mencetak array `configs` 
   ```
 </CodeGroup>
 
-Di Claude Console, atur domain yang diizinkan atau diblokir dari baris `web_search` dan `web_fetch` pada kartu **Built-in tools** di formulir agen; atur `max_content_tokens` dan `user_location` di tampilan **Raw** dari konfigurasi agen.
+Di Claude Console, tetapkan domain yang diizinkan atau diblokir dari baris `web_search` dan `web_fetch` pada kartu **Built-in tools** di formulir agen; tetapkan `max_content_tokens` dan `user_location` di tampilan **Raw** dari konfigurasi agen.
 
 Selain `enabled` dan `permission_policy`, entri alat web menerima pengaturan berikut:
 
@@ -609,10 +609,10 @@ Selain `enabled` dan `permission_policy`, entri alat web menerima pengaturan ber
 | `allowed_domains`    | `web_search`, `web_fetch` | Satu-satunya host yang dapat dijangkau alat. Tidak dapat digabungkan dengan `blocked_domains` pada entri yang sama.                                                                                                                 |
 | `blocked_domains`    | `web_search`, `web_fetch` | Host yang tidak dapat dijangkau alat.                                                                                                                                                                                               |
 | `max_content_tokens` | `web_fetch`               | Membatasi jumlah konten halaman yang diambil yang disertakan dalam konteks. Harus berupa bilangan bulat positif. Lihat [batas konten](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#content-limits). |
-| `user_location`      | `web_search`              | Melokalkan hasil pencarian. Sebuah objek dengan field yang sama seperti parameter [`user_location`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#localization) pada Messages API.                  |
+| `user_location`      | `web_search`              | Melokalkan hasil pencarian. Sebuah objek dengan field yang sama seperti parameter [`user_location`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#localization) Messages API.                       |
 
 <Note>
-  Pengaturan [`networking`](https://platform.claude.com/docs/id/managed-agents/environments#networking) environment mengontrol lalu lintas keluar sandbox itu sendiri. Pengaturan tersebut tidak memengaruhi `web_search` atau `web_fetch`, yang berjalan di server Anthropic terlepas dari apakah environment adalah sandbox cloud atau self-hosted. Daftar `allowed_domains` dan `blocked_domains` per-alat adalah cara untuk membatasi apa yang dapat dijangkau alat-alat ini.
+  Pengaturan [`networking`](https://platform.claude.com/docs/id/managed-agents/environments#networking) suatu environment mengontrol lalu lintas keluar milik sandbox itu sendiri. Pengaturan tersebut tidak memengaruhi `web_search` atau `web_fetch`, yang berjalan di server Anthropic baik environment tersebut berupa sandbox cloud maupun self-hosted. Daftar `allowed_domains` dan `blocked_domains` per alat adalah cara untuk membatasi apa yang dapat dijangkau alat-alat ini.
 </Note>
 
 <Note>
@@ -621,49 +621,49 @@ Selain `enabled` dan `permission_policy`, entri alat web menerima pengaturan ber
 
 #### Aturan daftar domain
 
-* Atur `allowed_domains` atau `blocked_domains` pada sebuah entri, bukan keduanya. Entri yang menetapkan keduanya akan ditolak.
-* Setiap daftar berisi 1 hingga 64 domain, masing-masing 1 hingga 255 karakter. Daftar kosong ditolak: untuk tidak menerapkan pembatasan, hilangkan field tersebut atau kirim `null`.
-* Setiap domain adalah nama domain yang dapat didaftarkan, atau subdomain darinya, ditulis sebagai hostname biasa: huruf ASCII, angka, tanda hubung, garis bawah, dan titik, tanpa skema, port, kredensial, wildcard, atau spasi, tanpa label yang diawali atau diakhiri dengan tanda hubung, dan tanpa path selain sufiks path `web_search` opsional yang dijelaskan kemudian dalam daftar ini. Gunakan `example.com`, bukan `https://example.com`, `example.com:443`, atau `*.example.com`. Hostname dibandingkan tanpa memperhatikan huruf besar/kecil, dan satu `/` di akhir diabaikan.
-* Domain yang terdaftar cocok dengan host tersebut dan subdomainnya: `example.com` mencakup `docs.example.com`, tetapi `docs.example.com` tidak mencakup `example.com` atau `api.example.com`. Awalan `www.` adalah subdomain seperti yang lainnya, sehingga `www.example.com` tidak mencakup `example.com`; daftarkan domain dasarnya untuk mencakup keduanya.
+* Tetapkan `allowed_domains` atau `blocked_domains` pada sebuah entri, bukan keduanya. Entri yang menetapkan keduanya akan ditolak.
+* Setiap daftar memuat 1 hingga 64 domain, masing-masing 1 hingga 255 karakter. Daftar kosong ditolak: untuk tidak menerapkan pembatasan, hilangkan field tersebut atau kirim `null`.
+* Setiap domain adalah nama domain yang dapat didaftarkan, atau subdomain darinya, ditulis sebagai hostname biasa: huruf ASCII, angka, tanda hubung, garis bawah, dan titik, tanpa skema, port, kredensial, wildcard, atau spasi, tanpa label yang diawali atau diakhiri tanda hubung, dan tanpa path selain sufiks path `web_search` opsional yang dijelaskan nanti dalam daftar ini. Gunakan `example.com`, bukan `https://example.com`, `example.com:443`, atau `*.example.com`. Hostname dibandingkan tanpa memperhatikan huruf besar/kecil, dan satu `/` di akhir diabaikan.
+* Domain yang terdaftar cocok dengan host tersebut dan subdomainnya: `example.com` mencakup `docs.example.com`, tetapi `docs.example.com` tidak mencakup `example.com` atau `api.example.com`. Awalan `www.` adalah subdomain seperti yang lainnya, sehingga `www.example.com` tidak mencakup `example.com`; daftarkan domain polos untuk mencakup keduanya.
 * Alamat IP tidak diterima dalam bentuk apa pun, baik IPv4, IPv6, dalam kurung siku, maupun singkatan numerik seperti `127.1`. Daftarkan nama domain situs sebagai gantinya.
-* Top-level domain atau sufiks registri polos seperti `com`, `co.uk`, atau `gov.uk` ditolak, begitu pula nama label tunggal seperti `intranet`. Daftarkan domain lengkap seperti `example.co.uk`.
-* `localhost` dan host yang diakhiri dengan `.localhost`, `.local`, `.internal`, `.localdomain`, atau `.invalid` ditolak.
-* Gunakan bentuk `xn--` (Punycode) untuk nama domain internasional; domain yang berisi karakter non-ASCII ditolak.
-* Domain `web_fetch` tidak dapat menyertakan path: gunakan `example.com`, bukan `example.com/*`. Domain `web_search` dapat membawa sufiks path seperti `example.com/blog`, di mana path tidak dapat berisi spasi, `?`, `#`, atau karakter `$ , | ^ !` mana pun. Lebih baik gunakan hostname biasa untuk `web_search` juga, karena penyedia pencarian mencocokkan sufiks path sebagai pola URL alih-alih sebagai aturan host yang ketat.
-* Domain duplikat dalam satu daftar ditolak. `www.example.com` dan `example.com` dihitung sebagai domain yang berbeda; lihat aturan pencocokan sebelumnya untuk apa yang dicakup masing-masing.
+* Top-level domain polos atau sufiks registri seperti `com`, `co.uk`, atau `gov.uk` ditolak, begitu pula nama satu label seperti `intranet`. Daftarkan domain lengkap seperti `example.co.uk`.
+* `localhost` dan host yang berakhiran `.localhost`, `.local`, `.internal`, `.localdomain`, atau `.invalid` ditolak.
+* Gunakan bentuk `xn--` (Punycode) untuk nama domain internasional; domain yang mengandung karakter non-ASCII ditolak.
+* Domain `web_fetch` tidak dapat menyertakan path: gunakan `example.com`, bukan `example.com/*`. Domain `web_search` dapat membawa sufiks path seperti `example.com/blog`, di mana path tidak boleh mengandung spasi, `?`, `#`, atau karakter apa pun dari `$ , | ^ !`. Utamakan hostname biasa untuk `web_search` juga, karena penyedia pencarian mencocokkan sufiks path sebagai pola URL, bukan sebagai aturan host yang ketat.
+* Domain duplikat dalam satu daftar ditolak. `www.example.com` dan `example.com` dihitung sebagai domain yang berbeda; lihat aturan pencocokan sebelumnya untuk mengetahui apa yang dicakup masing-masing.
 
 #### Kapan pengaturan divalidasi
 
-Pelanggaran format dan batas ditolak dengan 400 `invalid_request_error` ketika Anda [membuat agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#create-an-agent) atau [memperbarui agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-an-agent), dan ketika Anda membuat atau memperbarui sesi yang menyediakan `tools`. Misalnya, pesan untuk entri yang menetapkan kedua daftar menyertakan `Only one of allowed_domains or blocked_domains may be set.`, dan pesan untuk daftar kosong menyertakan `allowed_domains: Empty list of domains is ambiguous. Provide at least one domain or null.` Pesan untuk domain yang melanggar aturan format menyebutkan daftarnya dan posisi berbasis nol, misalnya `allowed_domains.0: IP addresses are not supported; provide a plain hostname like "example.com"`.
+Pelanggaran format dan batas ditolak dengan 400 `invalid_request_error` saat Anda [membuat agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#create-an-agent) atau [memperbarui agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-an-agent), dan saat Anda membuat atau memperbarui sesi yang menyediakan `tools`. Misalnya, pesan untuk entri yang menetapkan kedua daftar mencakup `Only one of allowed_domains or blocked_domains may be set.`, dan pesan untuk daftar kosong mencakup `allowed_domains: Empty list of domains is ambiguous. Provide at least one domain or null.` Pesan untuk domain yang melanggar aturan format menyebutkan daftarnya dan posisi berbasis nol, misalnya `allowed_domains.0: IP addresses are not supported; provide a plain hostname like "example.com"`.
 
-Permintaan yang sama juga menolak tiga pengaturan yang bergantung pada penyedia search dan fetch: domain dalam `allowed_domains` yang tidak diizinkan diakses oleh crawler Anthropic, `user_location.country` yang tidak didukung oleh penyedia pencarian (pesan diakhiri dengan `user_location.country: not a country the search provider supports`), dan `user_location.timezone` yang bukan nama IANA yang valid. Sesi memeriksa konfigurasi lagi ketika pertama kali menginisialisasi alat; jika pengaturan yang diterima sebelumnya tidak lagi valid pada saat itu, sesi memancarkan event [`session.error`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) dan kembali ke `idle` tanpa mencoba ulang. Perbaiki pengaturan dengan [memperbarui alat sesi](https://platform.claude.com/docs/id/managed-agents/session-operations#updating-the-agent-configuration), perbarui agen juga agar sesi baru dimulai dengan konfigurasi yang telah diperbaiki, lalu kirim `user.message` baru untuk melanjutkan.
+Permintaan yang sama juga menolak tiga pengaturan yang bergantung pada penyedia pencarian dan pengambilan: domain dalam `allowed_domains` yang tidak diizinkan untuk diakses oleh crawler Anthropic, `user_location.country` yang tidak didukung penyedia pencarian (pesannya berakhir dengan `user_location.country: not a country the search provider supports`), dan `user_location.timezone` yang bukan nama IANA yang valid. Sesi memeriksa konfigurasi lagi saat pertama kali menginisialisasi alat; jika pengaturan yang sebelumnya diterima tidak lagi valid pada saat itu, sesi memancarkan event [`session.error`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) dan kembali ke `idle` tanpa mencoba ulang. Perbaiki pengaturan dengan [memperbarui alat sesi](https://platform.claude.com/docs/id/managed-agents/session-operations#updating-the-agent-configuration), perbarui juga agen agar sesi baru dimulai dengan konfigurasi yang telah diperbaiki, lalu kirim `user.message` baru untuk melanjutkan.
 
-#### Sesi multiagent, outcome, dan pembaruan di tengah sesi
+#### Sesi multiagen, outcome, dan pembaruan di tengah sesi
 
-Dalam [sesi multiagent](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), setiap daftar domain yang berlaku untuk sebuah thread diterapkan pada saat yang sama: agen dalam roster koordinator terikat oleh `allowed_domains` dan `blocked_domains` miliknya sendiri, oleh daftar milik agen mana pun yang memanggilnya, dan oleh daftar koordinator saat ini.
+Dalam [sesi multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), setiap daftar domain yang berlaku untuk sebuah thread diberlakukan secara bersamaan: agen dalam roster koordinator terikat oleh `allowed_domains` dan `blocked_domains` miliknya sendiri, oleh milik agen mana pun yang memanggilnya, dan oleh daftar koordinator saat ini.
 
-* Allowlist digabungkan menjadi domain yang dicakup oleh semuanya, dan blocklist dijumlahkan, sehingga agen roster dapat mempersempit apa yang dijangkau alat tetapi tidak pernah memperluasnya. Misalnya, agen roster yang menetapkan `blocked_domains` mempertahankan `allowed_domains` koordinator dan memblokir host tersebut di dalamnya, dan agen roster yang menetapkan `allowed_domains` miliknya sendiri hanya dapat menjangkau host yang dicakup oleh daftarnya dan daftar koordinator.
-* Jika allowlist gabungan tidak memiliki domain yang sama, alat tetap tersedia untuk agen tersebut tetapi setiap panggilan gagal dengan error `url_not_allowed` yang menyatakan bahwa tidak ada domain yang diizinkan, dan deskripsi alat memberi tahu model demikian. Jaga agar allowlist setiap agen roster berada di dalam allowlist koordinator untuk menghindari hal ini.
-* `max_content_tokens` dan `user_location` tidak digabungkan: sebuah thread menggunakan nilai dari konfigurasi alatnya sendiri jika diatur, jika tidak dari agen yang memanggilnya, jika tidak dari konfigurasi koordinator saat ini.
+* Allowlist digabungkan menjadi domain yang dicakup oleh semuanya, dan blocklist dijumlahkan, sehingga agen roster dapat mempersempit apa yang dijangkau alat tetapi tidak pernah memperluasnya. Misalnya, agen roster yang menetapkan `blocked_domains` mempertahankan `allowed_domains` koordinator dan memblokir host tersebut di dalamnya, dan agen roster yang menetapkan `allowed_domains` sendiri hanya dapat menjangkau host yang dicakup oleh daftarnya maupun daftar koordinator.
+* Jika allowlist gabungan tidak memiliki domain yang sama, alat tetap tersedia bagi agen tersebut tetapi setiap panggilan gagal dengan error `url_not_allowed` yang menyatakan bahwa tidak ada domain yang diizinkan, dan deskripsi alat memberi tahu model demikian. Jaga agar allowlist setiap agen roster berada di dalam allowlist koordinator untuk menghindari hal ini.
+* `max_content_tokens` dan `user_location` tidak digabungkan: sebuah thread menggunakan nilai dari konfigurasi alatnya sendiri jika ditetapkan, jika tidak dari agen yang memanggilnya, jika tidak dari konfigurasi koordinator saat ini.
 * Entri roster `{"type": "self"}` tidak memiliki pengaturan web sendiri dan mengikuti pengaturan koordinator saat ini.
 * Grader dalam [sesi berbasis outcome](https://platform.claude.com/docs/id/managed-agents/define-outcomes) berjalan tanpa `web_search` dan `web_fetch`, terlepas dari pengaturan ini.
-* Anda dapat mengubah daftar pada sesi idle dengan [memperbarui alatnya](https://platform.claude.com/docs/id/managed-agents/session-operations#updating-the-agent-configuration). Daftar baru berlaku untuk sisa sesi; dalam sesi multiagent, setiap thread menerapkannya dari giliran berikutnya, sementara daftar milik agen roster sendiri tetap seperti yang ditetapkan oleh definisi agennya saat sesi dibuat.
+* Anda dapat mengubah daftar pada sesi yang idle dengan [memperbarui alatnya](https://platform.claude.com/docs/id/managed-agents/session-operations#updating-the-agent-configuration). Daftar baru berlaku untuk sisa sesi; dalam sesi multiagen, setiap thread menerapkannya mulai giliran berikutnya, sementara daftar milik agen roster sendiri tetap seperti yang ditetapkan definisi agennya saat sesi dibuat.
 
 #### Perbedaan dari alat Messages API
 
-Pengaturan ini menggunakan kosakata `allowed_domains` dan `blocked_domains` yang sama seperti [pemfilteran domain](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#domain-filtering) pada alat server Messages API, dengan perbedaan berikut pada Managed Agents:
+Pengaturan ini menggunakan kosakata `allowed_domains` dan `blocked_domains` yang sama dengan [pemfilteran domain](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#domain-filtering) pada alat server Messages API, dengan perbedaan berikut pada Managed Agents:
 
 * Setiap daftar dibatasi hingga 64 domain.
-* Domain yang terdaftar untuk `web_fetch` tidak dapat menyertakan path.
+* Domain yang didaftarkan untuk `web_fetch` tidak dapat menyertakan path.
 * `max_uses`, `citations`, dan `cache_control` tidak tersedia pada toolset.
 
 ## Alat kustom
 
-Selain alat bawaan, Anda dapat mendefinisikan alat kustom. Alat kustom analog dengan [alat klien yang ditentukan pengguna](https://platform.claude.com/docs/id/agents-and-tools/tool-use/how-tool-use-works#user-defined-tools-client-executed) di Messages API.
+Selain alat bawaan, Anda dapat mendefinisikan alat kustom. Alat kustom serupa dengan [alat klien yang didefinisikan pengguna](https://platform.claude.com/docs/id/agents-and-tools/tool-use/how-tool-use-works#user-defined-tools-client-executed) di Messages API.
 
-Setiap alat kustom mendefinisikan sebuah kontrak: Anda menentukan operasi apa yang tersedia dan apa yang dikembalikannya, dan Claude menentukan kapan dan bagaimana memanggilnya. Model tidak pernah mengeksekusi apa pun sendiri. Model memancarkan permintaan terstruktur, kode Anda menjalankan operasi, dan hasilnya mengalir kembali ke dalam percakapan. Lihat [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls) untuk cara menerima panggilan alat kustom dan mengembalikan hasil selama sesi.
+Setiap alat kustom mendefinisikan sebuah kontrak: Anda menentukan operasi apa yang tersedia dan apa yang dikembalikannya, dan Claude menentukan kapan dan bagaimana memanggilnya. Model tidak pernah mengeksekusi apa pun sendiri. Model memancarkan permintaan terstruktur, kode Anda menjalankan operasinya, dan hasilnya mengalir kembali ke dalam percakapan. Lihat [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls) untuk cara menerima panggilan alat kustom dan mengembalikan hasil selama sesi.
 
-Jika sesi Anda berjalan di sandbox self-hosted, environment worker dapat [menyajikan alat kustom dari sandbox Anda](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#serve-custom-tools-from-your-sandbox), termasuk alat yang membungkus server MCP di dalam jaringan Anda.
+Jika sesi Anda berjalan di sandbox self-hosted, worker environment dapat [menyajikan alat kustom dari sandbox Anda](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#serve-custom-tools-from-your-sandbox), termasuk alat yang membungkus server MCP di dalam jaringan Anda.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -907,14 +907,14 @@ Jika sesi Anda berjalan di sandbox self-hosted, environment worker dapat [menyaj
   ```
 </CodeGroup>
 
-Setelah Anda mendefinisikan alat kustom pada agen, agen akan memanggilnya selama sesi.
+Setelah Anda mendefinisikan alat kustom pada agen, agen memanggilnya selama sesi.
 
 ### Praktik terbaik untuk definisi alat kustom
 
-* **Berikan deskripsi yang sangat detail.** Ini adalah faktor terpenting dalam performa alat. Deskripsi Anda harus menjelaskan apa yang dilakukan alat dan kapan menggunakannya (dan kapan tidak). Jelaskan apa arti setiap parameter dan bagaimana pengaruhnya terhadap perilaku alat. Sebutkan peringatan atau batasan penting apa pun. Semakin banyak konteks yang dapat Anda berikan kepada Claude tentang alat Anda, semakin baik Claude dalam menentukan kapan dan bagaimana menggunakannya. Targetkan tiga hingga empat kalimat untuk setiap deskripsi alat, lebih banyak jika alatnya kompleks.
+* **Berikan deskripsi yang sangat detail.** Ini adalah faktor terpenting dalam kinerja alat. Deskripsi Anda harus menjelaskan apa yang dilakukan alat dan kapan menggunakannya (dan kapan tidak). Jelaskan arti setiap parameter dan bagaimana parameter tersebut memengaruhi perilaku alat. Sebutkan peringatan atau keterbatasan penting apa pun. Semakin banyak konteks yang dapat Anda berikan kepada Claude tentang alat Anda, semakin baik Claude dalam menentukan kapan dan bagaimana menggunakannya. Targetkan tiga hingga empat kalimat untuk setiap deskripsi alat, lebih banyak jika alatnya kompleks.
 * **Konsolidasikan operasi terkait ke dalam lebih sedikit alat.** Daripada membuat alat terpisah untuk setiap tindakan (`create_pr`, `review_pr`, `merge_pr`), kelompokkan ke dalam satu alat dengan parameter `action`. Alat yang lebih sedikit namun lebih mumpuni mengurangi ambiguitas pemilihan dan membuat permukaan alat Anda lebih mudah dinavigasi oleh Claude.
-* **Gunakan namespacing yang bermakna dalam nama alat.** Ketika alat Anda mencakup beberapa layanan atau sumber daya, beri prefiks nama dengan sumber dayanya (misalnya, `db_query` atau `storage_read`). Ini membuat pemilihan alat tidak ambigu seiring bertambahnya pustaka Anda.
-* **Rancang respons alat untuk hanya mengembalikan informasi bernilai tinggi.** Kembalikan pengidentifikasi yang semantik dan stabil (misalnya, slug atau UUID) alih-alih referensi internal yang tidak jelas, dan sertakan hanya field yang dibutuhkan Claude untuk menentukan langkah berikutnya. Respons yang membengkak membuang konteks dan mempersulit Claude untuk mengekstrak apa yang penting.
+* **Gunakan namespace yang bermakna dalam nama alat.** Ketika alat Anda mencakup beberapa layanan atau sumber daya, awali nama dengan sumber dayanya (misalnya, `db_query` atau `storage_read`). Ini membuat pemilihan alat tidak ambigu seiring bertambahnya pustaka Anda.
+* **Rancang respons alat agar hanya mengembalikan informasi bersinyal tinggi.** Kembalikan pengenal yang semantik dan stabil (misalnya, slug atau UUID) alih-alih referensi internal yang tidak jelas, dan sertakan hanya field yang dibutuhkan Claude untuk menentukan langkah berikutnya. Respons yang membengkak memboroskan konteks dan mempersulit Claude mengekstrak hal yang penting.
 
 ## Langkah selanjutnya
 
@@ -928,6 +928,6 @@ Setelah Anda mendefinisikan alat kustom pada agen, agen akan memanggilnya selama
   </Card>
 
   <Card title="Aliran event sesi" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/events-and-streaming">
-    Kirim event, stream respons, dan interupsi atau alihkan sesi Anda di tengah eksekusi.
+    Kirim event, streaming respons, dan interupsi atau alihkan sesi Anda di tengah eksekusi.
   </Card>
 </CardGroup>

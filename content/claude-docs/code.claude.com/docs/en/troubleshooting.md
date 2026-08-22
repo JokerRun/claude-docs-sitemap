@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshooting
-fetched_at: 2026-08-19T02:28:54.965606Z
-sha256: cce81af0a27e251016386854857b98282a856c72e62bbf583719452e66784824
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: f1426c4b36894db28ef285f7dc2c7654d7d33c1f89e77f93caeb5f13a41b681b
 ---
 
 > ## Documentation Index
@@ -44,7 +44,7 @@ Claude Code is designed to work with most development environments, but may cons
 3. Consider adding large build directories to your `.gitignore` file
 4. Restart with [`claude --safe-mode`](/docs/en/cli-reference#cli-flags) to check whether a plugin, MCP server, or hook is the source. It disables all customizations for the session; if usage drops, see [Debug your configuration](/docs/en/debug-your-config#test-against-a-clean-configuration) to find which one
 
-If memory usage stays high after these steps, run `/heapdump` to write two files to `~/Desktop`: a JavaScript heap snapshot named `<session-id>.heapsnapshot` and a memory breakdown named `<session-id>-diagnostics.json`. The command doesn't appear in the command menu; type it in full. On Linux without a Desktop folder, the files are written to your home directory.
+If memory usage stays high after these steps, run `/heapdump` to write two files to `~/Desktop`: a JavaScript heap snapshot named `<session-id>.heapsnapshot` and a memory breakdown named `<session-id>-diagnostics.json`. Claude Code [hides the command from the command menu](/docs/en/commands#how-the-command-menu-matches-what-you-type); type it in full. On Linux without a Desktop folder, the files are written to your home directory.
 
 <Warning>
   The `.heapsnapshot` file contains every string in the process, including your full conversation and credentials. Don't attach it to a public issue or share it.
@@ -125,7 +125,7 @@ If the Search tool, `@file` mentions, custom agents, or custom skills aren't fin
   </Tab>
 </Tabs>
 
-Then set `USE_BUILTIN_RIPGREP` to `0`, either in your shell [environment](/docs/en/env-vars) or in the `env` block of your [`settings.json`](/docs/en/settings#available-settings):
+Then set `USE_BUILTIN_RIPGREP` to `0`, either in your shell [environment](/docs/en/env-vars) or in the `env` block of your [`settings.json`](/docs/en/settings-reference#all-settings):
 
 ```json theme={null}
 {

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/working-with-messages
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 078cbd282c4482bee0bfd014ecb4144c6cbcbe587aced5699378d8dd8b017df9
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 16e8551f84b42d7a9499707b8071e73aaaadddee7e4bbcf1f6c8edabbc4784ff
 ---
 
 ---
@@ -599,12 +599,12 @@ Claude can read both text and images in requests. You can supply images using th
 
   ```python Python
   import base64
-  import httpx
+  import httpx2
 
   # Option 1: Base64-encoded image
   image_url = "https://platform.claude.com/docs/images/vision-example.jpg"
   image_media_type = "image/jpeg"
-  image_data = base64.standard_b64encode(httpx.get(image_url).content).decode("utf-8")
+  image_data = base64.standard_b64encode(httpx2.get(image_url).content).decode("utf-8")
 
   message = anthropic.Anthropic().messages.create(
       model="claude-opus-5",

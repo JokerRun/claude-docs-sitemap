@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/overview
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: d9c41059c7571ec7ab3ddeec2c71513c10eaa977eee686b2b1679a0e7be090ec
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 813ac771c0ceb63d13b1876338b1a79310326e7f200b6925eaa3c8ef5dfff2e0
 ---
 
 ---
@@ -30,8 +30,6 @@ For step-by-step setup instructions, see [Get started](https://platform.claude.c
 
 The Claude API includes the following APIs:
 
-**General Availability:**
-
 * **[Messages API](https://platform.claude.com/docs/en/api/messages/create)**: Send messages to Claude for conversational interactions (`POST /v1/messages`)
 * **[Message Batches API](https://platform.claude.com/docs/en/api/messages/batches/create)**: Process large volumes of Messages requests asynchronously with 50% cost reduction (`POST /v1/messages/batches`)
 * **[Token Counting API](https://platform.claude.com/docs/en/api/messages-count-tokens)**: Count tokens in a message before sending to manage costs and rate limits (`POST /v1/messages/count_tokens`)
@@ -39,7 +37,7 @@ The Claude API includes the following APIs:
 * **[Files API](https://platform.claude.com/docs/en/api/files/upload)**: Upload and manage files for use across multiple API calls (`POST /v1/files`, `GET /v1/files`)
 * **[Skills API](https://platform.claude.com/docs/en/api/skills/create)**: Create and manage custom agent skills (`POST /v1/skills`, `GET /v1/skills`)
 
-**Beta:**
+The following APIs are in beta:
 
 * **[Agents API](https://platform.claude.com/docs/en/managed-agents/agent-setup)**: Define reusable, versioned agent configurations for Claude Managed Agents (`POST /v1/agents`, `GET /v1/agents`)
 * **[Sessions API](https://platform.claude.com/docs/en/managed-agents/sessions)**: Run stateful agent sessions in managed cloud sandboxes (`POST /v1/sessions`, `GET /v1/sessions/{id}/events/stream`)

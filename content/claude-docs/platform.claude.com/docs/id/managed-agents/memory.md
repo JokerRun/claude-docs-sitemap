@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/memory
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 732ab5245ad655c05047039568a1da945bdc4c0bd1bb662c0a5174395071ef32
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 9d5f417a52997cf7f51fedaa41ec354fce2e9c5706457f22579e27edd3c6ff32
 ---
 
 ---
 title: Menggunakan memori agen
 url: https://platform.claude.com/docs/id/managed-agents/memory
-description: Berikan agen Anda memori persisten yang bertahan di seluruh sesi menggunakan memory store.
+description: Berikan agen Anda memori persisten yang bertahan lintas sesi menggunakan memory store.
 ---
 
-Setiap sesi Managed Agents dimulai dengan konteks baru secara default. Ketika sesi berakhir, semua state yang dibangun agen akan hilang. Memory store memungkinkan agen membawa informasi di seluruh sesi: preferensi pengguna, konvensi proyek, kesalahan sebelumnya, dan konteks domain.
+Setiap sesi Managed Agents dimulai dengan konteks baru secara default. Ketika sebuah sesi berakhir, semua state yang telah dibangun agen akan hilang. "Memory store" (penyimpanan memori) memungkinkan agen membawa informasi lintas sesi: preferensi pengguna, konvensi proyek, kesalahan sebelumnya, dan konteks domain.
 
 <Note>
   Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
@@ -20,14 +20,14 @@ Setiap sesi Managed Agents dimulai dengan konteks baru secara default. Ketika se
 <Note>
   Jangan menggabungkan `agent-memory-2026-07-22` dengan `managed-agents-2026-04-01` pada permintaan memory store: mengirim keduanya akan mengembalikan error `400`. Jika kode Anda menetapkan header beta secara eksplisit, ganti `managed-agents-2026-04-01` dengan `agent-memory-2026-07-22` pada panggilan memory store alih-alih menambahkan nilai kedua. Endpoint sesi, termasuk melampirkan memory store ke sesi, tetap menggunakan `managed-agents-2026-04-01`.
 
-  Pada 22 Juli 2026, header `managed-agents-2026-04-01` akan mengadopsi perilaku daftar yang sama pada `GET /v1/memory_stores/{memory_store_id}/memories`; mengirim `agent-memory-2026-07-22` membuat Anda memilih perilaku tersebut sekarang. Kursor halaman dari permintaan yang dibuat tanpa header tersebut tidak valid dengannya, jadi mulai ulang dari halaman pertama.
+  `GET /v1/memory_stores/{memory_store_id}/memories` berperilaku sama di bawah header mana pun: hasil dikembalikan dalam urutan yang stabil dan ditentukan server, serta `path_prefix` dan `depth` berlaku dengan cara yang sama.
 </Note>
 
 ## Ikhtisar
 
-**Memory store** adalah kumpulan dokumen teks dengan cakupan workspace yang dioptimalkan untuk Claude. Ketika Anda melampirkan store ke sebuah sesi, store tersebut dipasang (mount) sebagai direktori di dalam sandbox sesi. Agen membaca dan menulisnya dengan alat file yang sama yang digunakan untuk sisa filesystem, dan catatan yang menjelaskan setiap mount secara otomatis ditambahkan ke prompt sistem, memberi tahu agen di mana harus mencari. [Toolset agen](https://platform.claude.com/docs/id/managed-agents/tools) diperlukan untuk interaksi ini; pastikan untuk mengaktifkannya selama [pembuatan agen](https://platform.claude.com/docs/id/managed-agents/agent-setup).
+**Memory store** adalah kumpulan dokumen teks dengan cakupan workspace yang dioptimalkan untuk Claude. Ketika Anda melampirkan sebuah store ke sesi, store tersebut di-mount sebagai direktori di dalam sandbox sesi. Agen membaca dan menulisnya dengan alat file yang sama yang digunakannya untuk bagian filesystem lainnya, dan sebuah catatan yang menjelaskan setiap mount secara otomatis ditambahkan ke "system prompt" (prompt sistem), yang memberi tahu agen di mana harus mencari. [Toolset agen](https://platform.claude.com/docs/id/managed-agents/tools) diperlukan untuk interaksi ini; pastikan untuk mengaktifkannya saat [pembuatan agen](https://platform.claude.com/docs/id/managed-agents/agent-setup). Pada [sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores), direktori tersebut bukan mount langsung. Sebagai gantinya, environment worker milik SDK mengunduh setiap store yang dilampirkan ke dalam sandbox Anda sebelum alat agen berjalan dan menjaga salinan tersebut tetap sinkron dengan store.
 
-Setiap **memori** dalam sebuah store dialamatkan dengan path dan dapat dibaca serta diedit langsung melalui API atau Console, memungkinkan penyetelan, impor, dan ekspor.
+Setiap **memori** dalam sebuah store dialamatkan dengan sebuah path dan dapat dibaca serta diedit langsung melalui API atau Claude Console, sehingga memungkinkan penyetelan, impor, dan ekspor.
 
 Setiap perubahan pada memori membuat **versi memori** yang tidak dapat diubah (immutable), memberi Anda jejak audit dan pemulihan point-in-time untuk semua yang ditulis agen.
 
@@ -125,9 +125,9 @@ Berikan store sebuah `name` dan `description`. Deskripsi tersebut diteruskan ke 
   ```
 </CodeGroup>
 
-`id` memory store (`memstore_...`) adalah yang Anda teruskan saat melampirkan store ke sebuah sesi.
+`id` memory store (`memstore_...`) adalah yang Anda teruskan saat melampirkan store ke sesi.
 
-### Mengisinya dengan konten (opsional)
+### Mengisinya dengan konten awal (opsional)
 
 Muat store terlebih dahulu dengan materi referensi sebelum agen apa pun berjalan:
 
@@ -210,14 +210,14 @@ Muat store terlebih dahulu dengan materi referensi sebelum agen apa pun berjalan
 </CodeGroup>
 
 <Tip>
-  Memori individual dalam store dibatasi hingga 100 kB (\~25k token). Sebuah store menampung maksimum 2.000 memori. Susun memori sebagai banyak file kecil yang terfokus, bukan beberapa file besar.
+  Memori individual di dalam store dibatasi hingga 100 kB (\~25 ribu token). Sebuah store menampung maksimum 2.000 memori. Susun memori sebagai banyak file kecil yang terfokus, bukan beberapa file besar.
 </Tip>
 
 ## Melampirkan memory store ke sesi
 
-Memory store dilampirkan dalam array `resources[]` sesi saat sesi dibuat. Tidak seperti sumber daya file dan repositori, memory store hanya dapat dilampirkan pada saat pembuatan sesi; menambahkan atau menghapusnya dari sesi yang sedang berjalan tidak didukung.
+Memory store dilampirkan dalam array `resources[]` milik sesi ketika [sesi dibuat](https://platform.claude.com/docs/id/managed-agents/sessions#creating-a-session). Tidak seperti resource file, memory store hanya dapat dilampirkan pada saat pembuatan sesi; menambahkan atau menghapusnya dari sesi yang sedang berjalan tidak didukung. Anda melampirkan memory store dengan cara yang sama untuk sesi di cloud dan [environment self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores); environment self-hosted hanya menerima resource `memory_store`.
 
-Secara opsional sertakan `instructions` untuk memberikan panduan khusus sesi tentang bagaimana agen harus menggunakan store ini. Ini ditampilkan kepada agen bersama dengan `name` dan `description` store, dan dibatasi hingga 4.096 karakter.
+Secara opsional, sertakan `instructions` untuk memberikan panduan khusus sesi tentang bagaimana agen harus menggunakan store ini. Ini ditampilkan kepada agen bersama `name` dan `description` store, dan dibatasi hingga 4.096 karakter.
 
 Anda juga dapat mengonfigurasi `access`. Nilai defaultnya adalah `read_write` (ditampilkan secara eksplisit dalam contoh berikut), tetapi `read_only` juga didukung.
 
@@ -373,22 +373,28 @@ Anda juga dapat mengonfigurasi `access`. Nilai defaultnya adalah `read_write` (d
 </CodeGroup>
 
 <Warning>
-  Memory store dilampirkan dengan akses `read_write` secara default. Jika agen memproses input yang tidak tepercaya (prompt yang diberikan pengguna, konten web yang diambil, atau output alat pihak ketiga), prompt injection yang berhasil dapat menulis konten berbahaya ke dalam store. Sesi berikutnya kemudian membaca konten tersebut sebagai memori tepercaya. Gunakan `read_only` untuk materi referensi, pencarian bersama, dan store apa pun yang tidak perlu dimodifikasi oleh agen.
+  Memory store dilampirkan dengan akses `read_write` secara default. Jika agen memproses input yang tidak tepercaya (prompt dari pengguna, konten web yang diambil, atau output alat pihak ketiga), prompt injection yang berhasil dapat menulis konten berbahaya ke dalam store. Sesi-sesi berikutnya kemudian membaca konten tersebut sebagai memori tepercaya. Gunakan `read_only` untuk materi referensi, lookup bersama, dan store apa pun yang tidak perlu dimodifikasi oleh agen.
 </Warning>
 
-Maksimum **8 memory store** didukung per sesi. Lampirkan beberapa store ketika bagian memori yang berbeda memiliki pemilik atau aturan akses yang berbeda. Alasan umum:
+Maksimum **8 memory store** didukung per sesi. Lampirkan beberapa store ketika bagian-bagian memori yang berbeda memiliki pemilik atau aturan akses yang berbeda. Alasan umum:
 
 * **Materi referensi bersama:** satu store read-only yang dilampirkan ke banyak sesi (standar, konvensi, pengetahuan domain), dipisahkan dari store read-write milik masing-masing sesi.
 * **Pemetaan ke struktur produk Anda:** satu store per pengguna akhir, per tim, atau per proyek, sambil berbagi satu konfigurasi agen.
-* **Siklus hidup yang berbeda:** store yang bertahan lebih lama dari satu sesi mana pun, atau yang ingin Anda arsipkan dengan jadwalnya sendiri.
+* **Siklus hidup yang berbeda:** store yang bertahan lebih lama dari sesi tunggal mana pun, atau store yang ingin Anda arsipkan sesuai jadwalnya sendiri.
 
 ### Bagaimana agen mengakses memori
 
-Setiap store yang dilampirkan dipasang di dalam sandbox sesi sebagai direktori di bawah `/mnt/memory/`. Nama direktori adalah nama tampilan store yang disanitasi menjadi slug yang aman untuk filesystem (huruf kecil; rangkaian karakter non-alfanumerik menjadi satu tanda hubung), jadi store bernama "Demo Memory" dipasang di `/mnt/memory/demo-memory/`. Path yang tepat dikembalikan dalam field `mount_path` pada sumber daya memory-store sesi; baca dari sana alih-alih membangunnya sendiri. Agen membaca dan menulis store dengan [toolset agen](https://platform.claude.com/docs/id/managed-agents/tools) standar. Penulisan di bawah mount path dipersistenkan kembali ke store dan tetap sinkron di seluruh sesi yang membagikannya; penulisan ke path lain di bawah `/mnt/memory/` masuk ke scratch lokal container dan hilang ketika sesi berakhir. Deskripsi singkat dari setiap mount (nama tampilan, mount path, mode akses, `description` store, dan `instructions` apa pun) secara otomatis ditambahkan ke prompt sistem.
+Setiap store yang dilampirkan di-mount di dalam sandbox sesi sebagai direktori di bawah `/mnt/memory/`. Nama direktori adalah nama tampilan store yang disanitasi menjadi slug yang aman untuk filesystem (huruf kecil; rangkaian karakter non-alfanumerik menjadi satu tanda hubung), sehingga store bernama "Demo Memory" di-mount di `/mnt/memory/demo-memory/`. Path persisnya dikembalikan dalam field `mount_path` pada resource memory-store milik sesi; baca dari sana alih-alih menyusunnya sendiri. Agen membaca dan menulis store dengan [toolset agen](https://platform.claude.com/docs/id/managed-agents/tools) standar. Penulisan di bawah mount path dipersistenkan kembali ke store dan tetap sinkron di seluruh sesi yang berbagi store tersebut; penulisan ke path lain mana pun di bawah `/mnt/memory/` akan gagal, karena sandbox me-mount direktori induk tersebut sebagai read-only. Deskripsi singkat setiap mount (nama tampilan, mount path, mode akses, `description` store, dan `instructions` apa pun) secara otomatis ditambahkan ke prompt sistem.
 
-`access` diberlakukan di tingkat filesystem: mount `read_only` menolak penulisan, sementara penulisan ke mount `read_write` menghasilkan [versi memori](https://platform.claude.com/docs/id/managed-agents/memory#audit-memory-changes) yang diatribusikan ke sesi tersebut.
+`access` ditegakkan di tingkat filesystem: mount `read_only` menolak penulisan, sedangkan penulisan ke mount `read_write` menghasilkan [versi memori](https://platform.claude.com/docs/id/managed-agents/memory#audit-memory-changes) yang diatribusikan ke sesi tersebut.
 
-Pembacaan dan penulisan agen muncul di [event stream](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) sebagai event `agent.tool_use` dan `agent.tool_result` biasa untuk alat mana pun yang menyentuh mount tersebut.
+<Note>
+  Pada [sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores), direktori setiap store adalah salinan lokal yang dikelola oleh worker SDK, bukan mount langsung. Worker merekonsiliasi setiap salinan dengan store-nya setelah pemanggilan alat, paling banyak sekali per interval sinkronisasi (15 detik secara default), dan sekali lagi ketika sesi berakhir. Alat `write` dan `edit` milik agen hanya mengubah salinan lokal; worker mengunggah perubahan tersebut pada sinkronisasi berikutnya, sehingga sesi lain yang berjalan di sandbox self-hosted baru melihat perubahan setelah kedua worker melakukan sinkronisasi. Path di bawah `/mnt/memory/` di luar direktori store bukanlah ruang scratch di sana: alat file milik worker menolak menulis ke path tersebut, dan apa pun yang ditulis oleh perintah shell di sana tidak pernah disinkronkan ke store.
+
+  Untuk store `read_only`, alat `write` dan `edit` milik worker menolak perubahan di bawah direktori tersebut dan worker tidak pernah mengunggah apa pun darinya. Untuk mengetahui bagaimana worker menyelesaikan konflik penulisan, dan apa yang masih dapat diubah oleh alat `bash` dalam salinan lokal store read-only, lihat [Store read-only dan konflik](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#read-only-stores-and-conflicts).
+</Note>
+
+Pembacaan dan penulisan agen muncul dalam [event stream](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) sebagai event `agent.tool_use` dan `agent.tool_result` biasa untuk alat mana pun yang menyentuh mount tersebut.
 
 ## Melihat dan mengedit memori
 
@@ -396,10 +402,10 @@ Memory store dapat dikelola langsung melalui API. Gunakan ini untuk membangun al
 
 ### Mendaftar memori
 
-Daftarkan memori dalam sebuah store. Hasil dikembalikan dalam urutan stabil yang ditentukan server.
+Daftar memori dalam sebuah store. Hasil dikembalikan dalam urutan yang stabil dan ditentukan server.
 
-* `path_prefix` membatasi daftar ke satu direktori. Harus diakhiri dengan `/` dan mencocokkan segmen path utuh, jadi `path_prefix=/notes/` mengembalikan `/notes/todo.md` tetapi tidak `/notes-archive/todo.md`.
-* `depth` mengontrol seberapa dalam daftar berjalan di bawah `path_prefix`: hilangkan (atau berikan `0`) untuk mendaftar seluruh subtree, atau berikan `1` untuk mendaftar hanya anak langsung. Nilai lain mengembalikan error `400`.
+* `path_prefix` membatasi daftar ke satu direktori. Nilainya harus diakhiri dengan `/` dan mencocokkan segmen path secara utuh, sehingga `path_prefix=/notes/` mengembalikan `/notes/todo.md` tetapi tidak `/notes-archive/todo.md`.
+* `depth` mengontrol seberapa dalam daftar menelusuri di bawah `path_prefix`: hilangkan (atau teruskan `0`) untuk mendaftar seluruh subtree, atau teruskan `1` untuk mendaftar hanya anak langsungnya. Nilai lain mengembalikan error `400`.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -495,7 +501,7 @@ Lihat [referensi List memories](https://platform.claude.com/docs/id/api/beta/mem
 
 ### Membaca memori
 
-Mengambil memori individual mengembalikan konten lengkap.
+Mengambil memori individual mengembalikan konten lengkapnya.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -658,7 +664,7 @@ Lihat [referensi Create a memory](https://platform.claude.com/docs/id/api/beta/m
 
 ### Memperbarui memori
 
-`memories.update` memodifikasi memori yang sudah ada berdasarkan ID. Anda dapat mengubah `content`, `path` (penggantian nama), atau keduanya. Contoh ini mengganti nama memori ke path arsip:
+`memories.update` memodifikasi memori yang sudah ada berdasarkan ID. Anda dapat mengubah `content`, `path` (penggantian nama), atau keduanya. Contoh berikut mengganti nama memori ke path arsip:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -742,7 +748,7 @@ Lihat [referensi Update a memory](https://platform.claude.com/docs/id/api/beta/m
 
 #### Pengeditan konten yang aman (optimistic concurrency)
 
-Untuk menghindari menimpa penulisan yang bersamaan, berikan prasyarat `content_sha256`. Pembaruan hanya diterapkan jika hash konten yang tersimpan masih cocok dengan yang Anda baca; jika tidak cocok, baca ulang memori dan coba lagi terhadap state yang baru.
+Untuk menghindari menimpa penulisan yang terjadi bersamaan, teruskan prakondisi `content_sha256`. Pembaruan hanya diterapkan jika hash konten yang tersimpan masih cocok dengan yang Anda baca; jika tidak cocok, baca ulang memori dan coba lagi terhadap state terbaru.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -914,11 +920,11 @@ Untuk menghindari menimpa penulisan yang bersamaan, berikan prasyarat `content_s
 
 Lihat [referensi Delete a memory](https://platform.claude.com/docs/id/api/beta/memory_stores/memories/delete) untuk parameter lengkap dan skema respons.
 
-## Audit perubahan memori
+## Mengaudit perubahan memori
 
-Setiap mutasi pada memori membuat **versi memori** yang tidak dapat diubah (`memver_...`). Gunakan endpoint versi untuk mengaudit siapa mengubah apa dan kapan, untuk memeriksa atau memulihkan snapshot sebelumnya, dan untuk membersihkan konten sensitif dari riwayat dengan redact.
+Setiap mutasi pada memori membuat **versi memori** yang tidak dapat diubah (`memver_...`). Gunakan endpoint versi untuk mengaudit siapa yang mengubah apa dan kapan, untuk memeriksa atau memulihkan snapshot sebelumnya, dan untuk membersihkan konten sensitif dari riwayat dengan redact.
 
-Versi dimiliki oleh store (bukan memori individual) dan tetap ada bahkan setelah memori itu sendiri dihapus, sehingga jejak audit tetap lengkap. Versi disimpan selama 30 hari; namun, versi terbaru selalu disimpan terlepas dari usianya, jadi memori yang jarang berubah mungkin mempertahankan riwayat lebih dari 30 hari. Panggilan `memories.retrieve` langsung selalu mengembalikan versi terbaru; endpoint versi memberi Anda riwayat yang disimpan.
+Versi dimiliki oleh store (bukan memori individual) dan tetap bertahan bahkan setelah memori itu sendiri dihapus, sehingga jejak audit tetap lengkap. Versi disimpan selama 30 hari; namun, versi-versi terbaru selalu disimpan terlepas dari usianya, sehingga memori yang jarang berubah mungkin mempertahankan riwayat lebih dari 30 hari. Panggilan `memories.retrieve` langsung selalu mengembalikan versi terbaru; endpoint versi memberi Anda riwayat yang disimpan.
 
 Tidak ada endpoint pemulihan khusus; untuk melakukan rollback, ambil versi yang Anda inginkan dan tulis kembali `content`-nya dengan `memories.update` (atau `memories.create` jika memori induknya telah dihapus, karena versi bertahan lebih lama dari induknya).
 
@@ -926,7 +932,7 @@ Versi memori lama mungkin dihapus setelah 30 hari. Untuk mempertahankan riwayat 
 
 ### Mendaftar versi
 
-Daftarkan riwayat versi untuk sebuah store, yang terbaru lebih dulu. Contoh ini memfilter ke riwayat satu memori:
+Daftar riwayat versi untuk sebuah store, yang terbaru lebih dulu. Contoh berikut memfilter ke riwayat satu memori:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -1125,7 +1131,7 @@ Lihat [referensi Retrieve a memory version](https://platform.claude.com/docs/id/
 
 ### Meredaksi versi
 
-Redact membersihkan konten dari versi historis sambil mempertahankan jejak audit (siapa melakukan apa, kapan). Gunakan untuk alur kerja kepatuhan seperti menghapus rahasia yang bocor, PII, atau permintaan penghapusan pengguna.
+Redact membersihkan konten dari versi historis sambil mempertahankan jejak audit (siapa melakukan apa, kapan). Gunakan untuk alur kerja kepatuhan seperti menghapus secret yang bocor, PII, atau permintaan penghapusan dari pengguna.
 
 Versi yang merupakan head saat ini dari memori yang masih aktif tidak dapat diredaksi. Tulis versi baru terlebih dahulu (atau hapus memorinya), lalu redaksi versi yang lama.
 
@@ -1204,7 +1210,7 @@ Selain [`create`](https://platform.claude.com/docs/id/api/beta/memory_stores/cre
 
 ### Mendaftar store
 
-Daftarkan store dalam workspace. Store yang diarsipkan dikecualikan secara default; berikan `include_archived: true` untuk menyertakannya.
+Daftar store dalam workspace. Store yang diarsipkan dikecualikan secara default; teruskan `include_archived: true` untuk menyertakannya.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -1277,7 +1283,7 @@ Lihat [referensi List memory stores](https://platform.claude.com/docs/id/api/bet
 
 ### Mengarsipkan store
 
-Pengarsipan membuat store menjadi read-only dan mencegahnya dilampirkan ke sesi baru. Pengarsipan bersifat satu arah; tidak ada unarchive.
+Pengarsipan membuat store menjadi read-only dan mencegahnya dilampirkan ke sesi baru. Pengarsipan bersifat satu arah; tidak ada pembatalan arsip.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -1327,14 +1333,14 @@ Lihat [referensi Archive a memory store](https://platform.claude.com/docs/id/api
 
 Untuk menghapus store secara permanen beserta semua memori dan versinya, gunakan [`memory_stores.delete`](https://platform.claude.com/docs/id/api/beta/memory_stores/delete).
 
-## Praktik terbaik untuk manajemen memori
+## Praktik terbaik untuk pengelolaan memori
 
-Ketika sebuah store mencapai batas 2.000 memorinya, penulisan ke memori baru akan gagal: baik panggilan `memories.create` langsung maupun penulisan file agen ke path yang belum dipetakan. Memori yang sudah ada tetap dapat dibaca dan diedit. Praktik berikut membantu Anda tetap jauh di bawah batas dan pulih dengan baik jika Anda mencapainya.
+Ketika sebuah store mencapai batas 2.000 memori, penulisan ke memori baru akan gagal: baik panggilan `memories.create` langsung maupun penulisan file oleh agen ke path yang belum terpetakan. Memori yang sudah ada tetap dapat dibaca dan diedit. Praktik-praktik berikut membantu Anda tetap jauh di bawah batas dan pulih dengan baik jika Anda mencapainya.
 
-* **Gunakan store yang terfokus.** Alih-alih satu store besar serbaguna, gunakan store yang lebih kecil dan dibuat untuk tujuan tertentu: satu per pengguna, satu untuk pengetahuan domain bersama, dan satu untuk konteks khusus proyek. Setiap store memiliki batas 2.000 memorinya sendiri, jadi menjaga store tetap terbatas cakupannya mengurangi kemungkinan salah satunya penuh.
+* **Gunakan store yang terfokus.** Alih-alih satu store besar serbaguna, gunakan store yang lebih kecil dan dibuat untuk tujuan tertentu: satu per pengguna, satu untuk pengetahuan domain bersama, dan satu untuk konteks khusus proyek. Setiap store memiliki batas 2.000 memorinya sendiri, sehingga menjaga cakupan store tetap terbatas mengurangi kemungkinan salah satunya penuh.
 
-* **Padatkan atau pangkas sebelum store penuh.** Hapus memori yang usang atau berlebihan dengan `memories.delete`. Anda juga dapat menjalankan [sesi dreaming](https://platform.claude.com/docs/id/managed-agents/dreams), yang mengonsolidasikan konten yang terfragmentasi ke dalam store output baru yang terpisah alih-alih memodifikasi yang asli. Alihkan sesi Anda ke store output tersebut, lalu arsipkan atau hapus yang asli.
+* **Ringkas atau pangkas sebelum store penuh.** Hapus memori yang usang atau redundan dengan `memories.delete`. Anda juga dapat menjalankan [sesi dreaming](https://platform.claude.com/docs/id/managed-agents/dreams), yang mengonsolidasikan konten yang terfragmentasi ke dalam store output baru yang terpisah alih-alih memodifikasi yang asli. Alihkan sesi Anda ke store output tersebut, lalu arsipkan atau hapus yang asli.
 
-* **Lampirkan store baru ketika masuk akal.** Jika sebuah store telah tumbuh melampaui cakupan yang berguna, lampirkan yang baru untuk konten baru dan lampirkan yang asli dengan akses `read_only`. Agen dapat membaca dari keduanya sambil hanya menulis ke yang baru.
+* **Lampirkan store baru ketika masuk akal.** Jika sebuah store telah tumbuh melampaui cakupan yang berguna, lampirkan store baru untuk konten baru dan lampirkan store asli dengan akses `read_only`. Agen dapat membaca dari keduanya sambil hanya menulis ke store yang baru.
 
 * **Batasi akses tulis jika sesuai.** Sesi yang hanya membaca materi referensi bersama tidak memerlukan `read_write`. Menjaga akses tulis terbatas pada sesi yang benar-benar menambahkan memori baru memudahkan pelacakan dari mana pertumbuhan berasal.

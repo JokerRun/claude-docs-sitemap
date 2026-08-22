@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 5938ebbf18217cf496fdc45a06cc64ce96ae2f6d5f21b6230f2c6b7a96cb95fb
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: db04c59098955d6f262f3c64053a341690a96faba7b419527d86c750bca4b45f
 ---
 
 ---
@@ -1095,7 +1095,7 @@ When you take over for an iteration, the runner does not append the assistant me
 
 ### Automatic context management
 
-For long-running agentic tasks, the Python, TypeScript, and Ruby tool runners support automatic [compaction](https://platform.claude.com/docs/en/build-with-claude/context-editing#client-side-compaction-sdk), which generates summaries when token usage exceeds a threshold so the conversation can continue beyond context window limits. All three SDKs have deprecated this client-side option in favor of server-side [context editing](https://platform.claude.com/docs/en/build-with-claude/context-editing), which is available in every SDK. The Go, Java, C#, and PHP tool runners don't include client-side compaction.
+For long-running agentic tasks, the TypeScript and Ruby tool runners support automatic [compaction](https://platform.claude.com/docs/en/build-with-claude/context-editing#client-side-compaction-sdk), which generates summaries when token usage exceeds a threshold so the conversation can continue beyond context window limits. Both SDKs have deprecated this client-side option in favor of [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction), which works with every SDK's tool runner through the `context_management` request parameter. The Python SDK (v1.0 and later) and the Go, Java, C#, and PHP tool runners don't include client-side compaction.
 
 ### Debugging tool execution
 

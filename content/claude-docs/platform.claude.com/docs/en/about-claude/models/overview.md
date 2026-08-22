@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/overview
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 4726a6944dfc908fef03d51ffd96b1d6f424b77f3e248121d8c0a6df08d395f9
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: c4b23d31f9f3bd850ebc63bacf05417a2780f945dc15c78f9dcf853f55af0d12
 ---
 
 ---
@@ -23,7 +23,7 @@ Once you've picked a model, [learn how to make your first API call](https://plat
 
 Claude Fable 5 (`claude-fable-5`) is Anthropic's most capable widely released model. Claude Mythos 5 (`claude-mythos-5`) shares Claude Fable 5's specs and pricing and joins the invitation-only Claude Mythos Preview (`claude-mythos-preview`) within [Project Glasswing](https://anthropic.com/glasswing). See [Introducing Claude Fable 5 and Claude Mythos 5](https://platform.claude.com/docs/en/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5) for launch details and API changes.
 
-Claude Fable 5 is generally available on the Claude API, Amazon Bedrock, Claude Platform on AWS, Google Cloud, and Microsoft Foundry beginning June 9, 2026. Claude Mythos 5 is not generally available: it is offered in limited availability to approved customers in [Project Glasswing](https://anthropic.com/glasswing), beginning the same day. For access, contact your Anthropic, AWS, or Google Cloud account team.
+Claude Fable 5 is available on the Claude API, Amazon Bedrock, Claude Platform on AWS, Google Cloud, and Microsoft Foundry beginning June 9, 2026. Claude Mythos 5 is offered only to approved customers in [Project Glasswing](https://anthropic.com/glasswing), beginning the same day. For access, contact your Anthropic, AWS, or Google Cloud account team.
 
 ### Latest models comparison
 

@@ -1,57 +1,57 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/pdf-support
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 5595ee89b03a0c01c86d8e9f093263994c25257348c67d007890f13a90d85a48
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: a5504082d4cca807e1f24396c01805c18cee2a700cefcdc58689b4ae77b57407
 ---
 
 ---
 title: Dukungan PDF
 url: https://platform.claude.com/docs/id/build-with-claude/pdf-support
-description: "Proses PDF dengan Claude: ekstrak teks, analisis grafik, dan pahami konten visual dari dokumen Anda."
+description: "Proses PDF dengan Claude: ekstrak teks, analisis bagan, dan pahami konten visual dari dokumen Anda."
 ---
 
 ## Compatibility
 - [ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention): eligible (excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))
 - Platforms: Claude API, Claude Platform on AWS, Amazon Bedrock, Google Cloud, Microsoft Foundry
 
-Anda dapat bertanya kepada Claude tentang teks, gambar, grafik, dan tabel apa pun dalam PDF yang Anda berikan. Beberapa contoh kasus penggunaan:
+Anda dapat bertanya kepada Claude tentang teks, gambar, bagan, dan tabel apa pun dalam PDF yang Anda berikan. Beberapa contoh kasus penggunaan:
 
-* Menganalisis laporan keuangan dan memahami grafik/tabel
+* Menganalisis laporan keuangan dan memahami bagan/tabel
 * Mengekstrak informasi penting dari dokumen hukum
 * Membantu penerjemahan dokumen
-* Mengonversi informasi dokumen menjadi format terstruktur
+* Mengonversi informasi dokumen ke dalam format terstruktur
 
-## Sebelum Anda mulai
+## Sebelum Anda memulai
 
 ### Periksa persyaratan PDF
 
 Claude bekerja dengan PDF standar apa pun. Pastikan ukuran permintaan Anda memenuhi persyaratan berikut:
 
-| Persyaratan                     | Batas                                                                                                           |
-| ------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| Ukuran permintaan maksimum      | 32 MB ([bervariasi berdasarkan platform](https://platform.claude.com/docs/id/api/overview#request-size-limits)) |
-| Halaman maksimum per permintaan | 600 (100 jika jendela konteks permintaan di bawah 1 juta token)                                                 |
-| Format                          | PDF standar (tanpa kata sandi/enkripsi)                                                                         |
+| Persyaratan                     | Batas                                                                                                       |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Ukuran permintaan maksimum      | 32 MB ([bervariasi menurut platform](https://platform.claude.com/docs/id/api/overview#request-size-limits)) |
+| Halaman maksimum per permintaan | 600 (100 ketika jendela konteks permintaan di bawah 1M token)                                               |
+| Format                          | PDF standar (tanpa kata sandi/enkripsi)                                                                     |
 
-Kedua batas tersebut berlaku untuk seluruh payload permintaan, termasuk konten lain yang dikirim bersama PDF. Untuk PDF berukuran besar, pertimbangkan untuk mengunggah dengan [Files API](https://platform.claude.com/docs/id/build-with-claude/files) dan mereferensikannya melalui `file_id` agar payload permintaan tetap kecil.
+Kedua batas tersebut berlaku untuk seluruh payload permintaan, termasuk konten lain apa pun yang dikirim bersama PDF. Untuk PDF berukuran besar, pertimbangkan untuk mengunggahnya dengan [Files API](https://platform.claude.com/docs/id/build-with-claude/files) dan mereferensikannya melalui `file_id` agar payload permintaan tetap kecil.
 
 <Tip>
-  PDF yang padat (banyak halaman dengan font kecil, tabel kompleks, atau grafik berat) dapat memenuhi jendela konteks sebelum mencapai batas halaman. Permintaan dengan PDF besar juga dapat gagal sebelum mencapai batas halaman, bahkan saat menggunakan Files API. Coba pisahkan dokumen menjadi beberapa bagian; untuk file besar, karena setiap halaman diproses sebagai gambar, menurunkan resolusi gambar yang disematkan juga dapat membantu.
+  PDF yang padat (banyak halaman dengan font kecil, tabel kompleks, atau grafis yang berat) dapat memenuhi "context window" (jendela konteks) sebelum mencapai batas halaman. Permintaan dengan PDF berukuran besar juga dapat gagal sebelum mencapai batas halaman, bahkan saat menggunakan Files API. Cobalah membagi dokumen menjadi beberapa bagian; untuk file berukuran besar, karena setiap halaman diproses sebagai gambar, menurunkan resolusi (downsampling) gambar yang disematkan juga dapat membantu.
 </Tip>
 
-Karena dukungan PDF bergantung pada kemampuan vision Claude, dukungan ini tunduk pada [batasan dan pertimbangan](https://platform.claude.com/docs/id/build-with-claude/vision#limitations) yang sama seperti tugas vision lainnya.
+Karena dukungan PDF bergantung pada kemampuan vision Claude, dukungan ini tunduk pada [keterbatasan dan pertimbangan](https://platform.claude.com/docs/id/build-with-claude/vision#limitations) yang sama seperti tugas vision lainnya.
 
 ### Platform dan model yang didukung
 
-Semua [model aktif](https://platform.claude.com/docs/id/about-claude/models/overview) mendukung pemrosesan PDF. Untuk dukungan PDF melalui Converse API Amazon Bedrock, lihat [Dukungan PDF Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/pdf-support#amazon-bedrock-pdf-support).
+Semua [model aktif](https://platform.claude.com/docs/id/about-claude/models/overview) mendukung pemrosesan PDF. Untuk dukungan PDF melalui Converse API Amazon Bedrock, lihat [dukungan PDF Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/pdf-support#amazon-bedrock-pdf-support).
 
 ### Dukungan PDF Amazon Bedrock
 
 Saat menggunakan dukungan PDF melalui Converse API, bagian dari [Claude di Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), terdapat dua mode pemrosesan dokumen yang berbeda:
 
 <Note>
-  **Penting:** Untuk mengakses kemampuan pemahaman PDF visual penuh dari Claude di Converse API, Anda harus mengaktifkan sitasi. Tanpa sitasi diaktifkan, API akan kembali ke ekstraksi teks dasar saja. Pelajari lebih lanjut tentang [bekerja dengan sitasi](https://platform.claude.com/docs/id/build-with-claude/citations).
+  **Penting:** Untuk mengakses kemampuan pemahaman PDF visual Claude secara penuh di Converse API, Anda harus mengaktifkan citations (kutipan). Tanpa citations diaktifkan, API akan kembali ke ekstraksi teks dasar saja. Pelajari lebih lanjut tentang [bekerja dengan citations](https://platform.claude.com/docs/id/build-with-claude/citations).
 </Note>
 
 #### Mode pemrosesan dokumen
@@ -59,47 +59,47 @@ Saat menggunakan dukungan PDF melalui Converse API, bagian dari [Claude di Amazo
 1. **Converse Document Chat** (Mode asli - Ekstraksi teks saja)
 
    * Menyediakan ekstraksi teks dasar dari PDF
-   * Tidak dapat menganalisis gambar, grafik, atau tata letak visual dalam PDF
+   * Tidak dapat menganalisis gambar, bagan, atau tata letak visual di dalam PDF
    * Menggunakan sekitar 1.000 token untuk PDF 3 halaman
-   * Digunakan secara otomatis ketika sitasi tidak diaktifkan
+   * Digunakan secara otomatis ketika citations tidak diaktifkan
 
 2. **Claude PDF Chat** (Mode baru - Pemahaman visual penuh)
 
-   * Menyediakan analisis visual lengkap dari PDF
-   * Dapat memahami dan menganalisis grafik, diagram, gambar, dan tata letak visual
+   * Menyediakan analisis visual lengkap terhadap PDF
+   * Dapat memahami dan menganalisis bagan, grafik, gambar, dan tata letak visual
    * Memproses setiap halaman sebagai teks dan gambar untuk pemahaman yang komprehensif
    * Menggunakan sekitar 7.000 token untuk PDF 3 halaman
-   * **Memerlukan sitasi diaktifkan** di Converse API
+   * **Memerlukan citations diaktifkan** di Converse API
 
-#### Batasan utama
+#### Keterbatasan utama
 
-* **Converse API:** Analisis PDF visual memerlukan sitasi diaktifkan. Saat ini tidak ada opsi untuk menggunakan analisis visual tanpa sitasi (tidak seperti InvokeModel API).
-* **InvokeModel API:** Memberikan kontrol penuh atas pemrosesan PDF tanpa sitasi yang dipaksakan.
+* **Converse API:** Analisis PDF visual memerlukan citations diaktifkan. Saat ini tidak ada opsi untuk menggunakan analisis visual tanpa citations (berbeda dengan InvokeModel API).
+* **InvokeModel API:** Menyediakan kontrol penuh atas pemrosesan PDF tanpa citations yang dipaksakan.
 
 #### Masalah umum
 
-Jika Claude tidak melihat gambar atau grafik dalam PDF Anda saat menggunakan Converse API, kemungkinan Anda perlu mengaktifkan flag sitasi. Tanpa itu, Converse kembali ke ekstraksi teks dasar saja.
+Jika Claude tidak melihat gambar atau bagan dalam PDF Anda saat menggunakan Converse API, kemungkinan besar Anda perlu mengaktifkan flag citations. Tanpanya, Converse akan kembali ke ekstraksi teks dasar saja.
 
 <Note>
-  Ini adalah kendala yang diketahui pada Converse API. Untuk aplikasi yang memerlukan analisis PDF visual tanpa sitasi, pertimbangkan untuk menggunakan InvokeModel API sebagai gantinya.
+  Ini adalah kendala yang diketahui pada Converse API. Untuk aplikasi yang memerlukan analisis PDF visual tanpa citations, pertimbangkan untuk menggunakan InvokeModel API sebagai gantinya.
 </Note>
 
 <Note>
   File teks biasa seperti .txt, .csv, atau .md dapat digunakan langsung dalam blok dokumen: unggah ke Files API dengan tipe MIME `text/plain` dan referensikan melalui `file_id`. Format biner seperti .xlsx atau .docx tidak didukung dalam blok dokumen dan harus dikonversi ke teks atau PDF terlebih dahulu. Lihat [Bekerja dengan format file lain](https://platform.claude.com/docs/id/build-with-claude/files#working-with-other-file-formats).
 </Note>
 
-## Memproses PDF dengan Claude
+## Proses PDF dengan Claude
 
 ### Kirim permintaan PDF pertama Anda
 
 Mulailah dengan contoh sederhana menggunakan Messages API. Anda dapat memberikan PDF kepada Claude dengan tiga cara:
 
-1. Sebagai referensi URL ke PDF yang di-host secara online
+1. Sebagai referensi URL ke PDF yang dihosting secara online
 2. Sebagai PDF yang dienkode base64 dalam blok konten `document`
 3. Melalui `file_id` dari [Files API](https://platform.claude.com/docs/id/build-with-claude/files)
 
 <Note>
-  Di Amazon Bedrock dan Google Cloud, saat ini hanya sumber yang dienkode base64 yang tersedia. Di Microsoft Foundry, Files API tidak didukung untuk deployment yang di-host di Azure.
+  Di Amazon Bedrock dan Google Cloud, saat ini hanya sumber yang dienkode base64 yang tersedia. Di Microsoft Foundry, Files API tidak didukung untuk deployment yang dihosting di Azure.
 </Note>
 
 #### Opsi 1: Dokumen PDF berbasis URL
@@ -403,7 +403,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
       }]
   }' > request.json
 
-  # Kirim permintaan API menggunakan file JSON tersebut
+  # Kirim permintaan API menggunakan file JSON
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -564,7 +564,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
   }
   pdfBase64 := base64.StdEncoding.EncodeToString(pdfBytes)
 
-  // Alternatif: Muat dari file lokal (tambahkan "os" ke impor)
+  // Alternatif: Muat dari file lokal (tambahkan "os" ke imports)
   // pdfBytes, err := os.ReadFile("document.pdf")
   // pdfBase64 := base64.StdEncoding.EncodeToString(pdfBytes)
 
@@ -682,7 +682,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
   # Alternatif: Muat dari file lokal
   # pdf_data = [File.binread("document.pdf")].pack("m0")
 
-  # Kirim ke Claude menggunakan enkode base64
+  # Kirim ke Claude menggunakan encoding base64
   anthropic = Anthropic::Client.new
   message = anthropic.messages.create(
     model: "claude-opus-5",
@@ -711,7 +711,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
 
 #### Opsi 3: Files API
 
-Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghindari overhead encoding, gunakan [Files API](https://platform.claude.com/docs/id/build-with-claude/files) (beta):
+Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghindari overhead pengodean, gunakan [Files API](https://platform.claude.com/docs/id/build-with-claude/files):
 
 <CodeGroup>
   ```bash cURL
@@ -719,7 +719,6 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
   FILE_ID=$(curl -sS -X POST https://api.anthropic.com/v1/files \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: files-api-2025-04-14" \
     -F "file=@document.pdf" | jq -r '.id')
 
   # Kemudian gunakan file_id yang dikembalikan dalam pesan Anda
@@ -727,7 +726,6 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: files-api-2025-04-14" \
     -d @- <<EOF
   {
     "model": "claude-opus-5",
@@ -752,14 +750,13 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
 
   ```bash CLI
   # Pertama, unggah PDF Anda ke Files API
-  FILE_ID=$(ant beta:files upload \
+  FILE_ID=$(ant files upload \
     --file ./document.pdf \
     --transform id \
     --raw-output)
 
   # Kemudian gunakan file_id yang dikembalikan dalam pesan Anda
-  ant beta:messages create \
-    --beta files-api-2025-04-14 \
+  ant messages create \
     --transform content \
     --format yaml <<YAML
   model: claude-opus-5
@@ -781,13 +778,12 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
 
   # Unggah file PDF
   with open("/path/to/document.pdf", "rb") as f:
-      file_upload = client.beta.files.upload(file=("document.pdf", f, "application/pdf"))
+      file_upload = client.files.upload(file=("document.pdf", f, "application/pdf"))
 
   # Gunakan file yang diunggah dalam pesan
-  message = client.beta.messages.create(
+  message = client.messages.create(
       model="claude-opus-5",
       max_tokens=1024,
-      betas=["files-api-2025-04-14"],
       messages=[
           {
               "role": "user",
@@ -812,17 +808,16 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
   const anthropic = new Anthropic();
 
   // Unggah file PDF
-  const fileUpload = await anthropic.beta.files.upload({
+  const fileUpload = await anthropic.files.upload({
     file: await toFile(fs.createReadStream("/path/to/document.pdf"), undefined, {
       type: "application/pdf"
     })
   });
 
   // Gunakan file yang diunggah dalam pesan
-  const response = await anthropic.beta.messages.create({
+  const response = await anthropic.messages.create({
     model: "claude-opus-5",
     max_tokens: 1024,
-    betas: ["files-api-2025-04-14"],
     messages: [
       {
         role: "user",
@@ -847,12 +842,10 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
   ```
 
   ```csharp C#
-  using Messages = Anthropic.Models.Messages;
-
   var client = new AnthropicClient();
 
   // Unggah file PDF
-  var fileUpload = await client.Beta.Files.Upload(new FileUploadParams
+  var fileUpload = await client.Files.Upload(new FileUploadParams
   {
       File = new BinaryContent
       {
@@ -863,23 +856,22 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
   });
 
   // Gunakan file yang diunggah dalam pesan
-  var message = await client.Beta.Messages.Create(new MessageCreateParams
+  var message = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Messages::Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
-      Betas = [AnthropicBeta.FilesApi2025_04_14],
       Messages =
       [
           new()
           {
               Role = Role.User,
-              Content = new List<BetaContentBlockParam>
+              Content = new List<ContentBlockParam>
               {
-                  new BetaRequestDocumentBlock
+                  new DocumentBlockParam
                   {
-                      Source = new BetaFileDocumentSource { FileID = fileUpload.ID },
+                      Source = new FileDocumentSource { FileID = fileUpload.ID },
                   },
-                  new BetaTextBlockParam("What are the key findings in this document?"),
+                  new TextBlockParam("What are the key findings in this document?"),
               },
           },
       ],
@@ -898,7 +890,7 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
   }
   defer pdfFile.Close()
 
-  fileUpload, err := client.Beta.Files.Upload(context.TODO(), anthropic.BetaFileUploadParams{
+  fileUpload, err := client.Files.Upload(context.TODO(), anthropic.FileUploadParams{
   	File: anthropic.File(pdfFile, "document.pdf", "application/pdf"),
   })
   if err != nil {
@@ -906,16 +898,15 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
   }
 
   // Gunakan file yang diunggah dalam pesan
-  message, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
+  message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
   	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 1024,
-  	Betas:     []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
-  	Messages: []anthropic.BetaMessageParam{
-  		anthropic.NewBetaUserMessage(
-  			anthropic.NewBetaDocumentBlock(anthropic.BetaFileDocumentSourceParam{
+  	Messages: []anthropic.MessageParam{
+  		anthropic.NewUserMessage(
+  			anthropic.NewDocumentBlock(anthropic.FileDocumentSourceParam{
   				FileID: fileUpload.ID,
   			}),
-  			anthropic.NewBetaTextBlock("What are the key findings in this document?"),
+  			anthropic.NewTextBlock("What are the key findings in this document?"),
   		),
   	},
   })
@@ -931,28 +922,20 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
 
   // Unggah file PDF
   FileMetadata file = client
-    .beta()
     .files()
     .upload(FileUploadParams.builder().file(Path.of("/path/to/document.pdf")).build());
 
   // Gunakan file yang diunggah dalam pesan
   MessageCreateParams params = MessageCreateParams.builder()
     .model(Model.CLAUDE_OPUS_5)
-    .addBeta("files-api-2025-04-14")
     .maxTokens(1024)
-    .addUserMessageOfBetaContentBlockParams(
+    .addUserMessageOfBlockParams(
       List.of(
-        BetaContentBlockParam.ofDocument(
-          BetaRequestDocumentBlock.builder()
-            .source(
-              BetaFileDocumentSource.builder()
-                .fileId(file.id())
-                .build()
-            )
-            .build()
+        ContentBlockParam.ofDocument(
+          DocumentBlockParam.builder().fileSource(file.id()).build()
         ),
-        BetaContentBlockParam.ofText(
-          BetaTextBlockParam.builder()
+        ContentBlockParam.ofText(
+          TextBlockParam.builder()
             .text("What are the key findings in this document?")
             .build()
         )
@@ -960,7 +943,7 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
     )
     .build();
 
-  BetaMessage message = client.beta().messages().create(params);
+  Message message = client.messages().create(params);
   System.out.println(message.content());
   ```
 
@@ -1007,16 +990,15 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
 
   # Unggah file PDF
   file_upload = File.open("/path/to/document.pdf", "rb") do |f|
-    anthropic.beta.files.upload(
+    anthropic.files.upload(
       file: Anthropic::FilePart.new(f, filename: "document.pdf", content_type: "application/pdf")
     )
   end
 
   # Gunakan file yang diunggah dalam pesan
-  message = anthropic.beta.messages.create(
+  message = anthropic.messages.create(
     model: "claude-opus-5",
     max_tokens: 1024,
-    betas: ["files-api-2025-04-14"],
     messages: [
       {
         role: "user",
@@ -1037,21 +1019,21 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
 
 ### Cara kerja dukungan PDF
 
-Ketika Anda mengirim PDF ke Claude, langkah-langkah berikut terjadi:
+Saat Anda mengirim PDF ke Claude, langkah-langkah berikut terjadi:
 
 <Steps>
-  <Step title="Sistem mengekstrak konten dokumen.">
+  <Step title="Sistem mengekstrak isi dokumen.">
     * Sistem mengonversi setiap halaman dokumen menjadi gambar.
     * Teks dari setiap halaman diekstrak dan disediakan bersama gambar setiap halaman.
   </Step>
 
   <Step title="Claude menganalisis teks dan gambar untuk memahami dokumen dengan lebih baik.">
-    * Dokumen disediakan sebagai kombinasi teks dan gambar untuk analisis.
-    * Ini memungkinkan pengguna untuk meminta wawasan tentang elemen visual PDF, seperti grafik, diagram, dan konten non-tekstual lainnya.
+    * Dokumen disediakan sebagai kombinasi teks dan gambar untuk dianalisis.
+    * Hal ini memungkinkan pengguna meminta wawasan tentang elemen visual PDF, seperti bagan, diagram, dan konten non-tekstual lainnya.
   </Step>
 
-  <Step title="Claude merespons, mereferensikan konten PDF jika relevan.">
-    Claude dapat mereferensikan konten tekstual dan visual saat merespons. Anda dapat lebih meningkatkan kinerja dengan mengintegrasikan dukungan PDF dengan:
+  <Step title="Claude merespons, dengan mereferensikan isi PDF jika relevan.">
+    Claude dapat mereferensikan konten tekstual maupun visual saat merespons. Anda dapat lebih meningkatkan kinerja dengan mengintegrasikan dukungan PDF dengan:
 
     * [Gunakan caching prompt](https://platform.claude.com/docs/id/build-with-claude/pdf-support#use-prompt-caching): Untuk meningkatkan kinerja pada analisis berulang.
     * [Proses batch dokumen](https://platform.claude.com/docs/id/build-with-claude/pdf-support#process-document-batches): Untuk pemrosesan dokumen bervolume tinggi.
@@ -1061,9 +1043,9 @@ Ketika Anda mengirim PDF ke Claude, langkah-langkah berikut terjadi:
 
 ### Perkirakan biaya Anda
 
-Jumlah token dari file PDF bergantung pada total teks yang diekstrak dari dokumen dan jumlah halaman:
+Jumlah token file PDF bergantung pada total teks yang diekstrak dari dokumen dan jumlah halaman:
 
-* Biaya token teks: Setiap halaman biasanya menggunakan 1.500–3.000 token per halaman tergantung pada kepadatan konten. Harga API standar berlaku tanpa biaya PDF tambahan.
+* Biaya token teks: Setiap halaman biasanya menggunakan 1.500–3.000 token per halaman tergantung kepadatan konten. Harga API standar berlaku tanpa biaya PDF tambahan.
 * Biaya token gambar: Karena setiap halaman dikonversi menjadi gambar, [perhitungan biaya berbasis gambar](https://platform.claude.com/docs/id/build-with-claude/vision#evaluate-image-size) yang sama diterapkan.
 
 Anda dapat menggunakan [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting) untuk memperkirakan biaya untuk PDF spesifik Anda.
@@ -1076,10 +1058,10 @@ Ikuti praktik terbaik berikut untuk hasil optimal:
 
 * Tempatkan PDF sebelum teks dalam permintaan Anda
 * Gunakan font standar
-* Pastikan teks jelas dan mudah dibaca
+* Pastikan teks jelas dan terbaca
 * Putar halaman ke orientasi tegak yang benar
 * Gunakan nomor halaman logis (dari penampil PDF) dalam prompt
-* Pisahkan PDF besar menjadi beberapa bagian jika diperlukan
+* Bagi PDF berukuran besar menjadi beberapa bagian bila diperlukan
 * Aktifkan caching prompt untuk analisis berulang
 
 ### Skalakan implementasi Anda
@@ -1088,7 +1070,7 @@ Untuk pemrosesan bervolume tinggi, pertimbangkan pendekatan berikut:
 
 #### Gunakan caching prompt
 
-Cache PDF dengan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk meningkatkan kinerja pada kueri berulang:
+Cache PDF dengan ["prompt caching" (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk meningkatkan kinerja pada kueri berulang:
 
 <CodeGroup>
   ```bash cURL

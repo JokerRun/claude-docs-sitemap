@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/voice-dictation
-fetched_at: 2026-08-15T02:25:10.047250Z
-sha256: caeace34e205c03229d331dc319abaa02d8d1aec208bc9f5fcc07380b3ad919f
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 6debc97fa1770b2c47af6378e4f6863a6ae13c27f5d127688f39b3540cbfa075
 ---
 
 > ## Documentation Index
@@ -101,7 +101,7 @@ The first tap only starts recording when the prompt input is empty, so you can s
 
 ## Change the dictation language
 
-Voice dictation uses the same [`language` setting](/docs/en/settings) that controls Claude's response language. If that setting is empty, dictation defaults to English. In the VS Code extension, if `language` is empty, dictation uses VS Code's `accessibility.voice.speechLanguage` setting before defaulting to English.
+Voice dictation uses the same [`language` setting](/docs/en/settings-reference#language) that controls Claude's response language. If that setting is empty, dictation defaults to English. In the VS Code extension, if `language` is empty, dictation uses VS Code's `accessibility.voice.speechLanguage` setting before defaulting to English.
 
 <Accordion title="Supported dictation languages">
   | Language   | Code |
@@ -206,6 +206,6 @@ If your terminal app does not appear under System Settings → Privacy & Securit
 ## See also
 
 * [Customize keyboard shortcuts](/docs/en/keybindings): rebind `voice:pushToTalk` and other CLI keyboard actions
-* [Configure settings](/docs/en/settings): full reference for `voice`, `language`, and other settings keys
+* [Settings reference](/docs/en/settings-reference#voice): the `voice`, `language`, and other settings keys
 * [Interactive mode](/docs/en/interactive-mode): keyboard shortcuts, input modes, and session controls
 * [Commands](/docs/en/commands): reference for `/voice`, `/config`, and all other commands

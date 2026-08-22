@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/usage/list_by_user
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 5648e801a00c23a7762fcba5845e352d7cb75c85bef53113d51f5c113f4fd01a
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 67444280c8a868205f0b9c98c37f2b4173feb14fc6f7cbdea7d8a672796fc729
 ---
 
 ---
@@ -283,7 +283,7 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 ```http
 curl https://api.anthropic.com/v1/organizations/analytics/user_usage_report \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
 #### Response

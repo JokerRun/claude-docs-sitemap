@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/embeddings
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 25a94a14c4a00486d301e7914ad884e632b9ac94cc31cdf0826e4e4865025b85
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 97bc792a70e982b8bad1c6d468b11c653ca64b10ad6f917893f00538c257897b
 ---
 
 ---
@@ -285,8 +285,7 @@ If you are looking for a detailed set of recipes on how to do RAG with embedding
     > * Example
     >
     >   * When `input_type="query"`, a query like "When is Apple's conference call scheduled?" will become "**Represent the query for retrieving supporting documents:** When is Apple's conference call scheduled?"
-    >
-    >   * When `input_type="document"`, a query like "Apple's conference call to discuss fourth fiscal quarter results and business updates is scheduled for Thursday, November 2, 2023 at 2p.m. PT / 5p.m. ET." will become "**Represent the document for retrieval:** Apple's conference call to discuss fourth fiscal quarter results and business updates is scheduled for Thursday, November 2, 2023 at 2p.m. PT / 5p.m. ET."
+    >   * When `input_type="document"`, a query like "Apple's conference call to discuss fourth fiscal quarter results and business updates is scheduled for Thursday, November 2, 2023 at 2:00 p.m. PT / 5:00 p.m. ET." will become "**Represent the document for retrieval:** Apple's conference call to discuss fourth fiscal quarter results and business updates is scheduled for Thursday, November 2, 2023 at 2:00 p.m. PT / 5:00 p.m. ET."
 
     `voyage-large-2-instruct`, as the name suggests, is trained to be responsive to additional instructions that are prepended to the input text. For classification, clustering, or other [MTEB](https://huggingface.co/mteb) subtasks, use the [voyage-large-2-instruct instructions](https://github.com/voyage-ai/voyage-large-2-instruct).
   </Accordion>

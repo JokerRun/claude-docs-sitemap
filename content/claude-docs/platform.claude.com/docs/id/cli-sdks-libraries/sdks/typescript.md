@@ -1,20 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: d3ff46a3a7ca8dfe3ccdc831ae00c100fb4188df2916538bede81eb92a7a7ca8
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: c774b5a762c5af6a3d1726d92b03f27b780ce4f29ba7cdc361db7120d261c2cd
 ---
 
 ---
 title: TypeScript SDK
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript
-description: Instal dan konfigurasikan Anthropic TypeScript SDK untuk Node.js, Deno, Bun, dan lingkungan browser
+description: Instal dan konfigurasikan Anthropic TypeScript SDK untuk lingkungan Node.js, Deno, Bun, dan browser
 ---
 
-Pustaka ini menyediakan akses yang mudah ke Anthropic REST API dari TypeScript atau JavaScript.
+Library ini menyediakan akses yang mudah ke Claude API dari TypeScript atau JavaScript.
 
 <Info>
-  Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](https://platform.claude.com/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK yang spesifik untuk TypeScript.
+  Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](https://platform.claude.com/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK khusus TypeScript.
 </Info>
 
 ## Instalasi
@@ -36,11 +36,11 @@ Runtime berikut didukung:
 * Vercel Edge Runtime.
 * Jest 28 atau lebih tinggi dengan lingkungan `"node"` (`"jsdom"` tidak didukung saat ini).
 * Nitro v2.6 atau lebih tinggi.
-* Browser web: dinonaktifkan secara default untuk menghindari terpaparnya kredensial API rahasia Anda (lihat [praktik terbaik kunci API](https://support.claude.com/en/articles/9767949-api-key-best-practices-keeping-your-keys-safe-and-secure)). Aktifkan dukungan browser dengan secara eksplisit mengatur `dangerouslyAllowBrowser` ke `true`.
+* Browser web: dinonaktifkan secara default untuk menghindari terbukanya kredensial API rahasia Anda (lihat [praktik terbaik kunci API](https://support.claude.com/en/articles/9767949-api-key-best-practices-keeping-your-keys-safe-and-secure)). Aktifkan dukungan browser dengan secara eksplisit mengatur `dangerouslyAllowBrowser` ke `true`.
 
 Perhatikan bahwa React Native tidak didukung saat ini.
 
-Jika Anda tertarik dengan lingkungan runtime lainnya, buka atau beri dukungan (upvote) pada issue di [repositori GitHub](https://github.com/anthropics/anthropic-sdk-typescript).
+Jika Anda tertarik dengan lingkungan runtime lain, buka atau berikan upvote pada issue di [repositori GitHub](https://github.com/anthropics/anthropic-sdk-typescript).
 
 ## Penggunaan
 
@@ -66,7 +66,7 @@ Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi
 
 ## Tipe request dan response
 
-Pustaka ini menyertakan definisi TypeScript untuk semua parameter request dan field response. Anda dapat mengimpor dan menggunakannya seperti berikut:
+Library ini menyertakan definisi TypeScript untuk semua parameter request dan field response. Anda dapat mengimpor dan menggunakannya seperti berikut:
 
 ```typescript
 const client = new Anthropic({
@@ -93,9 +93,9 @@ console.log(message.usage);
 // { input_tokens: 25, output_tokens: 13 }
 ```
 
-## Streaming respons
+## Streaming response
 
-SDK menyediakan dukungan untuk streaming respons menggunakan Server Sent Events (SSE).
+SDK menyediakan dukungan untuk "streaming" (streaming) response menggunakan Server Sent Events (SSE).
 
 ```typescript
 const client = new Anthropic();
@@ -115,7 +115,7 @@ Jika Anda perlu membatalkan stream, Anda dapat melakukan `break` dari loop atau 
 
 ## Helper streaming
 
-Pustaka ini menyediakan beberapa kemudahan untuk streaming pesan, misalnya:
+Library ini menyediakan beberapa kemudahan untuk streaming pesan, misalnya:
 
 ```typescript
 const anthropic = new Anthropic();
@@ -139,15 +139,15 @@ const message = await stream.finalMessage();
 console.log(message);
 ```
 
-Streaming dengan `client.messages.stream(...)` mengekspos berbagai helper untuk kenyamanan Anda termasuk event handler dan akumulasi.
+Streaming dengan `client.messages.stream(...)` mengekspos berbagai helper untuk kemudahan Anda termasuk event handler dan akumulasi.
 
-Sebagai alternatif, Anda dapat menggunakan `client.messages.create({ ..., stream: true })` yang hanya mengembalikan async iterable dari event dalam stream dan dengan demikian menggunakan lebih sedikit memori (tidak membangun objek pesan akhir untuk Anda).
+Sebagai alternatif, Anda dapat menggunakan `client.messages.create({ ..., stream: true })` yang hanya mengembalikan async iterable dari event dalam stream sehingga menggunakan lebih sedikit memori (tidak membangun objek pesan akhir untuk Anda).
 
 ## Helper alat
 
-SDK ini menyediakan helper untuk memudahkan pembuatan dan menjalankan alat di Messages API. Anda dapat menggunakan skema Zod atau JSON Schema untuk mendeskripsikan input ke sebuah alat. Anda kemudian dapat menjalankan alat-alat tersebut menggunakan metode `client.beta.messages.toolRunner()`. Metode ini menangani penerusan input yang dihasilkan oleh model yang dipilih ke alat yang tepat dan meneruskan hasilnya kembali ke model.
+SDK ini menyediakan helper untuk memudahkan pembuatan dan menjalankan alat di Messages API. Anda dapat menggunakan skema Zod atau JSON Schema untuk mendeskripsikan input ke sebuah alat. Anda kemudian dapat menjalankan alat tersebut menggunakan metode `client.beta.messages.toolRunner()`. Metode ini menangani penerusan input yang dihasilkan oleh model yang dipilih ke alat yang tepat dan meneruskan hasilnya kembali ke model.
 
-Untuk detail lebih lanjut tentang penggunaan alat, lihat [Penggunaan alat dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview).
+Untuk detail lebih lanjut tentang "tool use" (penggunaan alat), lihat [Penggunaan alat dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview).
 
 ```typescript
 import { betaZodTool } from "@anthropic-ai/sdk/helpers/beta/zod";
@@ -178,7 +178,7 @@ console.log(finalMessage.content);
 
 ### Error alat
 
-Untuk melaporkan error dari sebuah alat kembali ke model, lempar (throw) `ToolError` dari fungsi `run`. Tidak seperti `Error` biasa, `ToolError` menerima blok konten, memungkinkan Anda menyertakan gambar atau konten terstruktur lainnya dalam respons error:
+Untuk melaporkan error dari sebuah alat kembali ke model, lempar `ToolError` dari fungsi `run`. Tidak seperti `Error` biasa, `ToolError` menerima blok konten, memungkinkan Anda menyertakan gambar atau konten terstruktur lainnya dalam response error:
 
 ```typescript
 import { ToolError } from "@anthropic-ai/sdk/lib/tools/BetaRunnableTool";
@@ -213,14 +213,14 @@ Jika `Error` biasa dilempar, pesannya akan dikonversi menjadi blok konten teks.
 
 ## Penggunaan alat
 
-SDK ini menyediakan dukungan untuk penggunaan alat, yang juga dikenal sebagai function calling. Untuk detail lebih lanjut, lihat [Penggunaan alat dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview).
+SDK ini menyediakan dukungan untuk penggunaan alat, juga dikenal sebagai function calling. Untuk detail lebih lanjut, lihat [Penggunaan alat dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview).
 
 ## Helper MCP
 
 SDK ini menyediakan helper untuk integrasi dengan server [Model Context Protocol (MCP)](https://modelcontextprotocol.io/). Helper ini mengonversi tipe MCP ke tipe Claude API, mengurangi boilerplate saat bekerja dengan alat, prompt, dan resource MCP.
 
 <Tip>
-  Claude API juga mendukung [parameter `mcp_servers`](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector) yang memungkinkan Claude terhubung langsung ke server MCP jarak jauh. Gunakan `mcp_servers` ketika Anda memiliki server jarak jauh yang dapat diakses melalui URL dan hanya memerlukan dukungan alat. Gunakan helper MCP ketika Anda memerlukan server MCP lokal, prompt, resource, atau kontrol lebih besar atas koneksi MCP.
+  Claude API juga mendukung [parameter `mcp_servers`](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector) yang memungkinkan Claude terhubung langsung ke server MCP jarak jauh. Gunakan `mcp_servers` ketika Anda memiliki server jarak jauh yang dapat diakses melalui URL dan hanya memerlukan dukungan alat. Gunakan helper MCP ketika Anda memerlukan server MCP lokal, prompt, resource, atau kontrol lebih atas koneksi MCP.
 </Tip>
 
 ```typescript
@@ -277,20 +277,20 @@ await anthropic.beta.messages.create({
 
 // Unggah resource MCP sebagai file
 const fileResource = await mcpClient.readResource({ uri: "file:///path/to/data.json" });
-await anthropic.beta.files.upload({ file: mcpResourceToFile(fileResource) });
+await anthropic.files.upload({ file: mcpResourceToFile(fileResource) });
 ```
 
 ### Penanganan error MCP
 
-Fungsi konversi melempar `UnsupportedMCPValueError` jika nilai MCP tidak didukung oleh Claude API (misalnya, tipe konten yang tidak didukung, tipe MIME yang tidak didukung, resource link non-http/https).
+Fungsi konversi melempar `UnsupportedMCPValueError` jika nilai MCP tidak didukung oleh Claude API (misalnya, tipe konten yang tidak didukung, tipe MIME yang tidak didukung, tautan resource non-http/https).
 
 ## Message batches
 
-SDK ini menyediakan dukungan untuk [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing) di bawah namespace `client.messages.batches`.
+SDK ini menyediakan dukungan untuk [Pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing) di bawah namespace `client.messages.batches`.
 
 ### Membuat batch
 
-Message Batches menerima array request, di mana setiap objek memiliki pengenal `custom_id`, dan `params` request yang sama persis dengan Messages API standar:
+Message Batches menerima array request, di mana setiap objek memiliki pengenal `custom_id`, dan `params` request yang persis sama dengan Messages API standar:
 
 ```typescript
 const batch = await client.messages.batches.create({
@@ -317,7 +317,7 @@ const batch = await client.messages.batches.create({
 
 ### Mendapatkan hasil dari batch
 
-Setelah Message Batch diproses, yang ditandai dengan `.processing_status === 'ended'`, Anda dapat mengakses hasilnya dengan `.batches.results()`
+Setelah Message Batch selesai diproses, ditandai dengan `.processing_status === 'ended'`, Anda dapat mengakses hasilnya dengan `.batches.results()`
 
 ```typescript
 const results = await client.messages.batches.results(batch.id);
@@ -328,13 +328,13 @@ for await (const entry of results) {
 }
 ```
 
-## Unggah file
+## Unggahan file
 
-Parameter request yang berkaitan dengan unggahan file dapat diberikan dalam berbagai bentuk:
+Parameter request yang berhubungan dengan unggahan file dapat diteruskan dalam berbagai bentuk:
 
 * `File` (atau objek dengan struktur yang sama)
 * `Response` dari `fetch` (atau objek dengan struktur yang sama)
-* `fs.ReadStream`
+* sebuah `fs.ReadStream`
 * nilai kembalian dari helper `toFile`
 
 Atur content-type secara eksplisit karena files API tidak akan menyimpulkannya untuk Anda:
@@ -346,33 +346,33 @@ import Anthropic, { toFile } from "@anthropic-ai/sdk";
 const client = new Anthropic();
 
 // Jika Anda memiliki akses ke Node `fs`, gunakan `fs.createReadStream()`:
-await client.beta.files.upload({
+await client.files.upload({
   file: await toFile(fs.createReadStream("/path/to/file"), undefined, {
     type: "application/json"
   })
 });
 
-// Atau jika Anda memiliki API `File` web, Anda dapat meneruskan instance `File`:
-await client.beta.files.upload({
+// Atau jika Anda memiliki web `File` API, Anda dapat meneruskan instance `File`:
+await client.files.upload({
   file: new File(["my bytes"], "file.txt", { type: "text/plain" })
 });
-// Anda juga dapat meneruskan `Response` dari `fetch`:
-await client.beta.files.upload({
+// Anda juga dapat meneruskan `fetch` `Response`:
+await client.files.upload({
   file: await fetch("https://somesite/file")
 });
 
 // Atau `Buffer` / `Uint8Array`
-await client.beta.files.upload({
+await client.files.upload({
   file: await toFile(Buffer.from("my bytes"), "file", { type: "text/plain" })
 });
-await client.beta.files.upload({
+await client.files.upload({
   file: await toFile(new Uint8Array([0, 1, 2]), "file", { type: "text/plain" })
 });
 ```
 
 ## Menangani error
 
-Ketika pustaka tidak dapat terhubung ke API, atau jika API mengembalikan kode status non-sukses (yaitu, respons 4xx atau 5xx), subclass dari `APIError` akan dilempar:
+Ketika library tidak dapat terhubung ke API, atau jika API mengembalikan kode status non-sukses (yaitu, response 4xx atau 5xx), sebuah subclass dari `APIError` akan dilempar:
 
 ```typescript
 const message = await client.messages
@@ -410,7 +410,7 @@ Kode error adalah sebagai berikut:
 
 > Untuk informasi lebih lanjut tentang debugging request, lihat [Request ID](https://platform.claude.com/docs/id/api/errors#request-id).
 
-Semua respons objek dalam SDK menyediakan properti `_request_id` yang ditambahkan dari header respons `request-id` sehingga Anda dapat dengan cepat mencatat request yang gagal dan melaporkannya kembali ke Anthropic.
+Semua response objek di SDK menyediakan properti `_request_id` yang ditambahkan dari header response `request-id` sehingga Anda dapat dengan cepat mencatat request yang gagal dan melaporkannya kembali ke Anthropic.
 
 ```typescript
 const message = await client.messages.create({
@@ -421,14 +421,14 @@ const message = await client.messages.create({
 console.log(message._request_id); // req_018EeWyXxfu5pfWkrYcMdjWG
 ```
 
-## Percobaan ulang
+## Retry
 
 Error tertentu secara otomatis dicoba ulang 2 kali secara default, dengan exponential backoff singkat. Error koneksi (misalnya, karena masalah konektivitas jaringan), 408 Request Timeout, 409 Conflict, 429 Rate Limit, dan error Internal >=500 semuanya dicoba ulang secara default.
 
 Anda dapat menggunakan opsi `maxRetries` untuk mengonfigurasi atau menonaktifkan ini:
 
 ```typescript
-// Konfigurasikan default untuk semua permintaan:
+// Konfigurasikan nilai default untuk semua permintaan:
 const client = new Anthropic({
   maxRetries: 0 // default is 2
 });
@@ -446,7 +446,7 @@ await client.messages.create(
 
 ## Timeout
 
-Secara default, request akan timeout setelah 10 menit. Namun jika Anda telah menentukan nilai `max_tokens` yang besar dan *tidak* melakukan streaming, timeout default akan dihitung secara dinamis menggunakan rumus:
+Secara default request akan timeout setelah 10 menit. Namun jika Anda telah menentukan nilai `max_tokens` yang besar dan *tidak* melakukan streaming, timeout default akan dihitung secara dinamis menggunakan rumus:
 
 ```typescript
 const minimum = 10 * 60;
@@ -454,7 +454,7 @@ const calculated = (60 * 60 * maxTokens) / 128_000;
 return calculated < minimum ? minimum * 1000 : calculated * 1000;
 ```
 
-yang akan menghasilkan timeout hingga 60 menit, diskalakan berdasarkan parameter `max_tokens`, kecuali ditimpa pada level request atau klien.
+yang akan menghasilkan timeout hingga 60 menit, diskalakan berdasarkan parameter `max_tokens`, kecuali ditimpa di tingkat request atau client.
 
 Anda dapat mengonfigurasi ini dengan opsi `timeout`:
 
@@ -475,32 +475,32 @@ await client.messages.create(
 );
 ```
 
-Saat timeout, `APIConnectionTimeoutError` akan dilempar.
+Saat timeout, sebuah `APIConnectionTimeoutError` akan dilempar.
 
 Perhatikan bahwa request yang timeout akan [dicoba ulang dua kali secara default](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#retries).
 
-## Request yang panjang
+## Request panjang
 
 <Warning>
   Pertimbangkan untuk menggunakan [Messages API](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#streaming-responses) streaming untuk request yang berjalan lebih lama.
 </Warning>
 
-Hindari mengatur nilai `max_tokens` yang besar tanpa menggunakan streaming. Beberapa jaringan mungkin memutus koneksi yang idle setelah periode waktu tertentu, yang dapat menyebabkan request gagal atau [timeout](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#timeouts) tanpa menerima respons dari Anthropic.
+Hindari mengatur nilai `max_tokens` yang besar tanpa menggunakan streaming. Beberapa jaringan mungkin memutus koneksi idle setelah jangka waktu tertentu, yang dapat menyebabkan request gagal atau [timeout](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#timeouts) tanpa menerima response dari Anthropic.
 
-SDK ini juga melempar error jika request non-streaming diperkirakan akan berlangsung lebih dari sekitar 10 menit. Memberikan `stream: true` atau [menimpa](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#timeouts) opsi `timeout` pada level klien atau request akan menonaktifkan error ini.
+SDK ini juga melempar error jika request non-streaming diperkirakan berlangsung lebih dari sekitar 10 menit. Meneruskan `stream: true` atau [menimpa](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#timeouts) opsi `timeout` di tingkat client atau request akan menonaktifkan error ini.
 
-Latensi request yang diperkirakan lebih lama dari [timeout](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#timeouts) untuk request non-streaming akan mengakibatkan klien memutus koneksi dan mencoba ulang tanpa menerima respons.
+"Latency" (latensi) request yang diperkirakan lebih lama dari [timeout](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#timeouts) untuk request non-streaming akan mengakibatkan client memutus koneksi dan mencoba ulang tanpa menerima response.
 
-Ketika didukung oleh implementasi `fetch`, SDK mengatur opsi [TCP socket keep-alive](https://tldp.org/HOWTO/TCP-Keepalive-HOWTO/overview.html) untuk mengurangi dampak timeout koneksi idle pada beberapa jaringan. Ini dapat [ditimpa](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#configuring-proxies) dengan mengonfigurasi proxy kustom.
+Jika didukung oleh implementasi `fetch`, SDK mengatur opsi [TCP socket keep-alive](https://tldp.org/HOWTO/TCP-Keepalive-HOWTO/overview.html) untuk mengurangi dampak timeout koneksi idle pada beberapa jaringan. Ini dapat [ditimpa](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#configuring-proxies) dengan mengonfigurasi proxy kustom.
 
-## Paginasi otomatis
+## Auto-pagination
 
-Metode list di Claude API menggunakan paginasi. Anda dapat menggunakan sintaks `for await ... of` untuk melakukan iterasi melalui item di semua halaman:
+Metode list di Claude API menggunakan paginasi. Anda dapat menggunakan sintaks `for await ... of` untuk mengiterasi item di seluruh halaman:
 
 ```typescript
 async function fetchAllMessageBatches() {
   const allMessageBatches = [];
-  // Secara otomatis mengambil lebih banyak halaman sesuai kebutuhan.
+  // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   for await (const messageBatch of client.messages.batches.list({ limit: 20 })) {
     allMessageBatches.push(messageBatch);
   }
@@ -508,7 +508,7 @@ async function fetchAllMessageBatches() {
 }
 ```
 
-Sebagai alternatif, Anda dapat meminta satu halaman pada satu waktu:
+Sebagai alternatif, Anda dapat meminta satu halaman dalam satu waktu:
 
 ```typescript
 let page = await client.messages.batches.list({ limit: 20 });
@@ -525,11 +525,11 @@ while (page.hasNextPage()) {
 
 ## Header default
 
-SDK secara otomatis mengirimkan header `anthropic-version` yang diatur ke `2023-06-01`.
+SDK secara otomatis mengirim header `anthropic-version` yang diatur ke `2023-06-01`.
 
 Jika perlu, Anda dapat menimpanya dengan mengatur header default per request.
 
-Perlu diketahui bahwa melakukan hal tersebut dapat mengakibatkan tipe yang salah dan perilaku tak terduga atau tidak terdefinisi lainnya dalam SDK.
+Perlu diketahui bahwa melakukan hal ini dapat mengakibatkan tipe yang salah dan perilaku tak terduga atau tidak terdefinisi lainnya di SDK.
 
 ```typescript
 const client = new Anthropic();
@@ -548,9 +548,9 @@ const message = await client.messages.create(
 
 ### Mengakses data Response mentah (misalnya, header)
 
-`Response` "mentah" yang dikembalikan oleh `fetch()` dapat diakses melalui metode `.asResponse()` pada tipe `APIPromise` yang dikembalikan oleh semua metode. Metode ini mengembalikan hasil segera setelah header untuk respons yang berhasil diterima dan tidak mengonsumsi body respons, sehingga Anda bebas menulis logika parsing atau streaming kustom.
+`Response` "mentah" yang dikembalikan oleh `fetch()` dapat diakses melalui metode `.asResponse()` pada tipe `APIPromise` yang dikembalikan oleh semua metode. Metode ini mengembalikan hasil segera setelah header untuk response yang sukses diterima dan tidak mengonsumsi body response, sehingga Anda bebas menulis logika parsing atau streaming kustom.
 
-Anda juga dapat menggunakan metode `.withResponse()` untuk mendapatkan `Response` mentah bersama dengan data yang telah di-parse. Tidak seperti `.asResponse()`, metode ini mengonsumsi body, dan mengembalikan hasil setelah di-parse.
+Anda juga dapat menggunakan metode `.withResponse()` untuk mendapatkan `Response` mentah beserta data yang telah di-parse. Tidak seperti `.asResponse()`, metode ini mengonsumsi body, dan mengembalikan hasil setelah body di-parse.
 
 ```typescript
 const client = new Anthropic();
@@ -579,7 +579,7 @@ console.log(message.content);
 ### Logging
 
 <Warning>
-  Semua pesan log hanya ditujukan untuk debugging. Format dan isi pesan log dapat berubah antar rilis.
+  Semua pesan log ditujukan hanya untuk debugging. Format dan isi pesan log dapat berubah antar rilis.
 </Warning>
 
 #### Level log
@@ -587,7 +587,7 @@ console.log(message.content);
 Anda dapat mengonfigurasi level log dengan dua cara:
 
 1. Melalui variabel lingkungan `ANTHROPIC_LOG`
-2. Menggunakan opsi klien `logLevel` (menimpa variabel lingkungan jika diatur)
+2. Menggunakan opsi client `logLevel` (menimpa variabel lingkungan jika diatur)
 
 ```typescript
 const client = new Anthropic({
@@ -595,7 +595,7 @@ const client = new Anthropic({
 });
 ```
 
-Level log yang tersedia, dari yang paling verbose hingga yang paling sedikit:
+Level log yang tersedia, dari yang paling verbose hingga paling tidak verbose:
 
 * `'debug'` - Menampilkan pesan debug, info, peringatan, dan error
 * `'info'` - Menampilkan pesan info, peringatan, dan error
@@ -603,11 +603,11 @@ Level log yang tersedia, dari yang paling verbose hingga yang paling sedikit:
 * `'error'` - Hanya menampilkan error
 * `'off'` - Menonaktifkan semua logging
 
-Pada level `'debug'`, semua request dan respons HTTP dicatat, termasuk header dan body. Beberapa header terkait autentikasi disamarkan, tetapi data sensitif dalam body request dan respons mungkin masih terlihat.
+Pada level `'debug'`, semua request dan response HTTP dicatat, termasuk header dan body. Beberapa header terkait autentikasi disamarkan, tetapi data sensitif dalam body request dan response mungkin masih terlihat.
 
 #### Logger kustom
 
-Secara default, pustaka ini mencatat log ke `globalThis.console`. Anda juga dapat menyediakan logger kustom. Sebagian besar pustaka logging didukung, termasuk [pino](https://www.npmjs.com/package/pino), [winston](https://www.npmjs.com/package/winston), [bunyan](https://www.npmjs.com/package/bunyan), [consola](https://www.npmjs.com/package/consola), [signale](https://www.npmjs.com/package/signale), dan [@std/log](https://jsr.io/@std/log). Jika logger Anda tidak berfungsi, buka sebuah issue.
+Secara default, library ini mencatat log ke `globalThis.console`. Anda juga dapat menyediakan logger kustom. Sebagian besar library logging didukung, termasuk [pino](https://www.npmjs.com/package/pino), [winston](https://www.npmjs.com/package/winston), [bunyan](https://www.npmjs.com/package/bunyan), [consola](https://www.npmjs.com/package/consola), [signale](https://www.npmjs.com/package/signale), dan [@std/log](https://jsr.io/@std/log). Jika logger Anda tidak berfungsi, buka sebuah issue.
 
 Saat menyediakan logger kustom, opsi `logLevel` tetap mengontrol pesan mana yang dikeluarkan; pesan di bawah level yang dikonfigurasi tidak akan dikirim ke logger Anda.
 
@@ -624,11 +624,11 @@ const client = new Anthropic({
 
 ### Membuat request kustom/tidak terdokumentasi
 
-Pustaka ini diberi tipe untuk akses yang mudah ke API yang terdokumentasi. Jika Anda perlu mengakses endpoint, parameter, atau properti respons yang tidak terdokumentasi, pustaka ini tetap dapat digunakan.
+Library ini memiliki tipe untuk akses yang mudah ke API yang terdokumentasi. Jika Anda perlu mengakses endpoint, parameter, atau properti response yang tidak terdokumentasi, library ini tetap dapat digunakan.
 
-#### Endpoint yang tidak terdokumentasi
+#### Endpoint tidak terdokumentasi
 
-Untuk membuat request ke endpoint yang tidak terdokumentasi, Anda dapat menggunakan `client.get`, `client.post`, dan verba HTTP lainnya. Opsi pada klien, seperti percobaan ulang, tetap dihormati saat membuat request ini.
+Untuk membuat request ke endpoint yang tidak terdokumentasi, Anda dapat menggunakan `client.get`, `client.post`, dan verb HTTP lainnya. Opsi pada client, seperti retry, tetap dihormati saat membuat request ini.
 
 ```typescript
 await client.post("/some/path", {
@@ -637,9 +637,9 @@ await client.post("/some/path", {
 });
 ```
 
-#### Parameter request yang tidak terdokumentasi
+#### Parameter request tidak terdokumentasi
 
-Untuk membuat request menggunakan parameter yang tidak terdokumentasi, Anda dapat menggunakan `// @ts-expect-error` pada parameter yang tidak terdokumentasi. Pustaka ini tidak memvalidasi saat runtime bahwa request cocok dengan tipenya, jadi nilai tambahan apa pun yang Anda kirim akan dikirim apa adanya.
+Untuk membuat request menggunakan parameter yang tidak terdokumentasi, Anda dapat menggunakan `// @ts-expect-error` pada parameter yang tidak terdokumentasi tersebut. Library ini tidak memvalidasi saat runtime bahwa request sesuai dengan tipenya, sehingga nilai tambahan apa pun yang Anda kirim akan dikirim apa adanya.
 
 ```typescript
 client.messages.create({
@@ -649,17 +649,17 @@ client.messages.create({
 });
 ```
 
-Untuk request dengan verba `GET`, parameter tambahan apa pun akan berada di query; semua request lainnya akan mengirimkan parameter tambahan di body.
+Untuk request dengan verb `GET`, parameter tambahan apa pun akan berada di query; semua request lainnya akan mengirim parameter tambahan di body.
 
 Jika Anda ingin secara eksplisit mengirim argumen tambahan, Anda dapat melakukannya dengan opsi request `query`, `body`, dan `headers`.
 
-#### Properti respons yang tidak terdokumentasi
+#### Properti response tidak terdokumentasi
 
-Untuk mengakses properti respons yang tidak terdokumentasi, Anda dapat mengakses objek respons dengan `// @ts-expect-error` pada objek respons, atau melakukan cast objek respons ke tipe yang diperlukan. Seperti parameter request, SDK tidak memvalidasi atau menghapus properti tambahan dari respons API.
+Untuk mengakses properti response yang tidak terdokumentasi, Anda dapat mengakses objek response dengan `// @ts-expect-error` pada objek response, atau melakukan cast objek response ke tipe yang diperlukan. Seperti parameter request, SDK tidak memvalidasi atau menghapus properti tambahan dari response API.
 
-### Menyesuaikan klien fetch
+### Menyesuaikan client fetch
 
-Secara default, pustaka ini mengharapkan fungsi `fetch` global telah didefinisikan.
+Secara default, library ini mengharapkan fungsi `fetch` global telah didefinisikan.
 
 Jika Anda ingin menggunakan fungsi `fetch` yang berbeda, Anda dapat melakukan polyfill pada global:
 
@@ -669,7 +669,7 @@ import fetch from "my-fetch";
 globalThis.fetch = fetch;
 ```
 
-Atau meneruskannya ke klien:
+Atau meneruskannya ke client:
 
 ```typescript
 import fetch from "my-fetch";
@@ -679,19 +679,19 @@ const client = new Anthropic({ fetch });
 
 ### Opsi fetch
 
-Jika Anda ingin mengatur opsi `fetch` kustom tanpa menimpa fungsi `fetch`, Anda dapat menyediakan objek `fetchOptions` saat membuat klien atau membuat request. (Opsi spesifik request menimpa opsi klien.)
+Jika Anda ingin mengatur opsi `fetch` kustom tanpa menimpa fungsi `fetch`, Anda dapat menyediakan objek `fetchOptions` saat membuat client atau membuat request. (Opsi khusus request menimpa opsi client.)
 
 ```typescript
 const client = new Anthropic({
   fetchOptions: {
-    // Opsi `RequestInit`
+    // opsi `RequestInit`
   }
 });
 ```
 
 ### Mengonfigurasi proxy
 
-Untuk memodifikasi perilaku proxy, Anda dapat menyediakan `fetchOptions` kustom yang menambahkan opsi proxy spesifik runtime ke request:
+Untuk memodifikasi perilaku proxy, Anda dapat menyediakan `fetchOptions` kustom yang menambahkan opsi proxy khusus runtime ke request:
 
 <Tabs>
   <Tab title="Node.js">
@@ -735,44 +735,30 @@ Untuk memodifikasi perilaku proxy, Anda dapat menyediakan `fetchOptions` kustom 
 
 Fitur beta tersedia sebelum rilis umum untuk mendapatkan umpan balik awal dan menguji fungsionalitas baru. Anda dapat memeriksa ketersediaan semua kemampuan dan alat Claude di [ikhtisar membangun dengan Claude](https://platform.claude.com/docs/id/build-with-claude/overview).
 
-Anda dapat mengakses sebagian besar fitur API beta melalui properti beta dari klien. Untuk mengaktifkan fitur beta tertentu, Anda perlu menambahkan [header beta](https://platform.claude.com/docs/id/api/beta-headers) yang sesuai ke field `betas` saat membuat pesan.
+Anda dapat mengakses sebagian besar fitur API beta melalui properti beta pada client. Untuk mengaktifkan fitur beta tertentu, Anda perlu menambahkan [header beta](https://platform.claude.com/docs/id/api/beta-headers) yang sesuai ke field `betas` saat membuat pesan.
 
-Misalnya, untuk menggunakan [Files API](https://platform.claude.com/docs/id/build-with-claude/files):
+Misalnya, untuk mengaktifkan [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing):
 
 ```typescript
 const client = new Anthropic();
 const response = await client.beta.messages.create({
   model: "claude-opus-5",
   max_tokens: 1024,
-  messages: [
-    {
-      role: "user",
-      content: [
-        { type: "text", text: "Please summarize this document for me." },
-        {
-          type: "document",
-          source: {
-            type: "file",
-            file_id: "file_abc123"
-          }
-        }
-      ]
-    }
-  ],
-  betas: ["files-api-2025-04-14"]
+  messages: [{ role: "user", content: "Hello, Claude" }],
+  betas: ["context-management-2025-06-27"]
 });
 ```
 
 ## Dukungan runtime
 
-<Accordion title="Penggunaan di browser">
-  Mengaktifkan opsi `dangerouslyAllowBrowser` bisa berbahaya karena mengekspos kredensial API rahasia Anda dalam kode sisi klien. Browser web secara inheren kurang aman dibandingkan lingkungan server, pengguna mana pun yang memiliki akses ke browser berpotensi memeriksa, mengekstrak, dan menyalahgunakan kredensial ini. Hal ini dapat menyebabkan akses tidak sah menggunakan kredensial Anda dan berpotensi membahayakan data atau fungsionalitas sensitif.
+<Accordion title="Penggunaan browser">
+  Mengaktifkan opsi `dangerouslyAllowBrowser` dapat berbahaya karena mengekspos kredensial API rahasia Anda dalam kode sisi client. Browser web pada dasarnya kurang aman dibandingkan lingkungan server, pengguna mana pun yang memiliki akses ke browser berpotensi dapat memeriksa, mengekstrak, dan menyalahgunakan kredensial ini. Hal ini dapat menyebabkan akses tidak sah menggunakan kredensial Anda dan berpotensi membahayakan data atau fungsionalitas sensitif.
 
   **Kapan hal ini mungkin tidak berbahaya?**
 
   Dalam skenario tertentu di mana mengaktifkan dukungan browser mungkin tidak menimbulkan risiko signifikan:
 
-  * **Alat internal:** Jika aplikasi digunakan semata-mata dalam lingkungan internal yang terkontrol di mana penggunanya terpercaya, risiko terpaparnya kredensial dapat dimitigasi.
+  * **Alat internal:** Jika aplikasi digunakan hanya dalam lingkungan internal terkontrol di mana penggunanya tepercaya, risiko terbukanya kredensial dapat dimitigasi.
   * **Tujuan pengembangan atau debugging:** Mengaktifkan fitur ini sementara mungkin dapat diterima, asalkan kredensialnya berumur pendek, tidak juga digunakan di lingkungan produksi, atau sering dirotasi.
 </Accordion>
 
@@ -783,29 +769,29 @@ const response = await client.beta.messages.create({
 
   * [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
   * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
-  * [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
+  * [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
   * [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai)
   * [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)
 </Note>
 
 TypeScript SDK mendukung platform berikut:
 
-* **Agent Platform:** `npm install @anthropic-ai/vertex-sdk`: Menyediakan klien `AnthropicVertex`
-* **Bedrock:** `npm install @anthropic-ai/bedrock-sdk`: Menyediakan klien `AnthropicBedrockMantle`, dan `AnthropicBedrock` untuk jalur `bedrock-runtime`
-* **Claude Platform di AWS:** `npm install @anthropic-ai/aws-sdk`: Menyediakan klien `AnthropicAws`. Berikan `workspaceId` ke konstruktor atau atur variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID`. Tersedia dalam beta.
-* **Foundry:** `npm install @anthropic-ai/foundry-sdk`: Menyediakan klien `AnthropicFoundry`
+* **Agent Platform:** `npm install @anthropic-ai/vertex-sdk`: Menyediakan client `AnthropicVertex`
+* **Bedrock:** `npm install @anthropic-ai/bedrock-sdk`: Menyediakan client `AnthropicBedrockMantle`, dan `AnthropicBedrock` untuk jalur `bedrock-runtime`
+* **Claude Platform on AWS:** `npm install @anthropic-ai/aws-sdk`: Menyediakan client `AnthropicAws`. Teruskan `workspaceId` ke constructor atau atur variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID`. Tersedia dalam beta.
+* **Foundry:** `npm install @anthropic-ai/foundry-sdk`: Menyediakan client `AnthropicFoundry`
 
 Gunakan `AnthropicBedrockMantle` untuk proyek baru; `AnthropicBedrock` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
 
 ## Semantic versioning
 
-Paket ini secara umum mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang mungkin dirilis sebagai versi minor:
+Paket ini umumnya mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang mungkin dirilis sebagai versi minor:
 
 1. Perubahan yang hanya memengaruhi tipe statis, tanpa merusak perilaku runtime.
-2. Perubahan pada internal pustaka yang secara teknis publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal.
-3. Perubahan yang tidak diperkirakan akan berdampak pada sebagian besar pengguna dalam praktiknya.
+2. Perubahan pada internal library yang secara teknis publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal.
+3. Perubahan yang tidak diperkirakan berdampak pada sebagian besar pengguna dalam praktiknya.
 
-Kompatibilitas ke belakang ditangani dengan serius untuk memastikan Anda dapat mengandalkan pengalaman upgrade yang mulus.
+Kompatibilitas ke belakang ditangani dengan serius untuk memastikan Anda dapat mengandalkan pengalaman upgrade yang lancar.
 
 ## Pertanyaan yang sering diajukan
 

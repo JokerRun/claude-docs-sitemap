@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 425d2d6f712fd24050201b238e4b96e342ff60832fd1c2656ed4db6fea51a069
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: ee181b55d25da6a9a639fe8d22222cf76ff35e1593be6c34bd221aa915e39fdf
 ---
 
 ---
@@ -11,19 +11,19 @@ url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using
 description: Struktur perintah, format output, transformasi GJSON, body permintaan, dan debugging untuk CLI ant.
 ---
 
-Halaman ini membahas mekanisme input dan output CLI `ant` yang berlaku di semua endpoint. Untuk instalasi dan autentikasi, lihat [Quickstart](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart). Untuk merangkai perintah dan mengelola versi sumber daya, lihat [Scripting dan otomatisasi CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting).
+Halaman ini membahas mekanisme input dan output CLI `ant` yang berlaku di setiap endpoint. Untuk instalasi dan autentikasi, lihat [Quickstart](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart). Untuk merangkai perintah dan mengelola versi sumber daya, lihat [Scripting dan otomatisasi CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting).
 
 ## Struktur perintah
 
-Perintah mengikuti pola `resource action`. Sumber daya bersarang menggunakan tanda titik dua:
+Perintah mengikuti pola `resource action`. Sumber daya bertingkat menggunakan tanda titik dua:
 
 ```text wrap
 ant <resource>[:<subresource>] <action> [flags]
 ```
 
-Jalankan `ant --help` untuk daftar sumber daya lengkap, atau tambahkan `--help` ke subperintah mana pun untuk melihat flag-nya.
+Jalankan `ant --help` untuk daftar sumber daya lengkap, atau tambahkan `--help` ke subperintah apa pun untuk melihat flag-nya.
 
-Sumber daya dalam tahap beta (termasuk agents, sessions, deployments, environments, dan skills) berada di bawah prefiks `beta:`. Perintah dalam namespace ini secara otomatis mengirimkan header `anthropic-beta` yang sesuai untuk sumber daya tersebut, sehingga Anda tidak perlu mengirimkannya sendiri. Gunakan `--beta <header>` hanya untuk menimpa nilai default (misalnya, untuk memilih versi skema yang berbeda).
+Sumber daya dalam versi beta (termasuk agents, sessions, deployments, dan environments) berada di bawah prefiks `beta:`. Perintah dalam namespace ini secara otomatis mengirim header `anthropic-beta` yang sesuai untuk sumber daya tersebut, sehingga Anda tidak perlu menyertakannya sendiri. Gunakan `--beta <header>` hanya untuk menimpa nilai default (misalnya, untuk memilih versi skema yang berbeda).
 
 ```bash
 ant models list
@@ -40,13 +40,13 @@ ant beta:sessions:events list --session-id session_01...
 | `--format`                            | Format output: `auto`, `json`, `jsonl`, `yaml`, `pretty`, `raw`, `explore`                                                                                                                                                              |
 | `--transform`                         | Memfilter atau membentuk ulang respons dengan [path GJSON](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#transform-output-with-gjson)                                                                                |
 | `-r`, `--raw-output`                  | Mencetak hasil string tanpa tanda kutip di sekelilingnya, seperti `jq -r`                                                                                                                                                               |
-| `--base-url`                          | Menimpa URL dasar API                                                                                                                                                                                                                   |
+| `--base-url`                          | Menimpa base URL API                                                                                                                                                                                                                    |
 | `--debug`                             | Mencetak permintaan dan respons HTTP lengkap ke stderr                                                                                                                                                                                  |
 | `--format-error`, `--transform-error` | Sama seperti `--format` dan `--transform` tetapi diterapkan pada [respons error](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting#inspect-errors)                                                                   |
 
 ## Format output
 
-`auto` mencetak JSON dengan format rapi (pretty-print) dan merupakan default untuk perintah yang membuat atau memodifikasi sumber daya. Perintah list dan retrieve secara default menggunakan [explorer interaktif](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#interactive-explorer) saat menulis ke terminal, dan JSON dengan format rapi saat di-pipe. Timpa salah satu default tersebut dengan `--format`:
+`auto` mencetak JSON dengan format rapi (pretty-print) dan merupakan default untuk perintah yang membuat atau memodifikasi sumber daya. Perintah list dan retrieve secara default menggunakan [explorer interaktif](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#interactive-explorer) saat menulis ke terminal, dan JSON berformat rapi saat di-pipe. Timpa salah satu default tersebut dengan `--format`:
 
 ```bash
 ant models retrieve --model-id claude-opus-5 --format yaml
@@ -60,17 +60,17 @@ created_at: "2026-07-24T00:00:00Z"
 ...
 ```
 
-Endpoint list melakukan paginasi otomatis. Dalam format default, setiap item ditulis secara terpisah (satu objek JSON ringkas per baris dalam mode `jsonl`, aliran dokumen YAML dalam mode `yaml`), yang mengalir dengan mulus ke `head`, `grep`, dan filter `--transform`.
+Endpoint list melakukan paginasi otomatis. Dalam format default, setiap item ditulis secara terpisah (satu objek JSON ringkas per baris dalam mode `jsonl`, aliran dokumen YAML dalam mode `yaml`), yang mengalir dengan bersih ke `head`, `grep`, dan filter `--transform`.
 
 ### Explorer interaktif
 
-Explorer adalah TUI lipat-dan-cari untuk menjelajahi respons berukuran besar. Tombol panah memperluas dan menciutkan node, `/` untuk mencari, `q` untuk keluar. Perintah list dan retrieve membukanya secara default saat terhubung ke terminal. Berikan `--format explore` untuk membukanya secara eksplisit:
+Explorer adalah TUI lipat-dan-cari untuk menelusuri respons berukuran besar. Tombol panah memperluas dan menciutkan node, `/` untuk mencari, `q` untuk keluar. Perintah list dan retrieve membukanya secara default saat terhubung ke terminal. Berikan `--format explore` untuk membukanya secara eksplisit:
 
 ```bash
 ant models list --format explore
 ```
 
-## Transformasi output dengan GJSON
+## Mentransformasi output dengan GJSON
 
 Gunakan `--transform` untuk membentuk ulang respons sebelum dicetak. Ekspresinya adalah [path GJSON](https://github.com/tidwall/gjson/blob/master/SYNTAX.md). Untuk endpoint list, transformasi dijalankan terhadap setiap item secara individual, bukan terhadap envelope-nya:
 
@@ -88,7 +88,7 @@ ant beta:agents list \
 
 ### Mengekstrak nilai skalar
 
-Untuk menangkap satu field sebagai string tanpa tanda kutip (misalnya, ID dari sumber daya yang baru dibuat), padukan `--transform` dengan `--raw-output`. Hasilnya dicetak tanpa tanda kutip JSON dan siap untuk ditetapkan ke variabel shell:
+Untuk menangkap satu field sebagai string tanpa tanda kutip (misalnya, ID dari sumber daya yang baru dibuat), pasangkan `--transform` dengan `--raw-output`. Hasilnya dicetak tanpa tanda kutip JSON dan siap ditetapkan ke variabel shell:
 
 ```bash
 AGENT_ID=$(ant beta:agents create \
@@ -109,11 +109,11 @@ agent_011CYm1BLqPXpQRk5khsSXrs
 
 ## Mengirim body permintaan
 
-Mekanisme input yang tepat bergantung pada bentuk datanya: gunakan **flag** untuk field skalar dan nilai terstruktur yang pendek, pipe dokumen melalui **stdin** untuk body bersarang atau multibaris, dan gunakan **referensi `@file`** untuk menarik isi file ke dalam field string atau biner mana pun.
+Mekanisme input yang tepat bergantung pada bentuk datanya: gunakan **flag** untuk field skalar dan nilai terstruktur yang pendek, pipe dokumen **stdin** untuk body bertingkat atau multibaris, dan gunakan **referensi `@file`** untuk menarik isi file ke dalam field string atau biner apa pun.
 
 ### Flag
 
-Field skalar dipetakan langsung ke flag. Field terstruktur menerima sintaks longgar mirip YAML (kunci tanpa tanda kutip, tanda kutip opsional di sekitar string) atau JSON ketat:
+Field skalar dipetakan langsung ke flag. Field terstruktur menerima sintaks longgar mirip YAML (key tanpa tanda kutip, tanda kutip opsional di sekitar string) atau JSON ketat:
 
 ```bash
 ant beta:sessions create \
@@ -134,7 +134,7 @@ ant beta:agents create \
 
 ### Stdin
 
-Pipe dokumen JSON atau YAML ke stdin untuk menyediakan body permintaan lengkap. Field dari stdin digabungkan dengan flag, dengan flag yang diprioritaskan. Di sini `version` adalah token optimistic-locking yang dikembalikan oleh `retrieve` sebelumnya, dan `$AGENT_ID` ditangkap seperti pada [Mengekstrak nilai skalar](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#extract-a-scalar):
+Pipe dokumen JSON atau YAML ke stdin untuk menyediakan body permintaan lengkap. Field dari stdin digabungkan dengan flag, dengan flag yang diutamakan. Di sini `version` adalah token optimistic-locking yang dikembalikan oleh `retrieve` sebelumnya, dan `$AGENT_ID` ditangkap seperti pada [Mengekstrak nilai skalar](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#extract-a-scalar):
 
 ```bash
 echo '{"description": "Updated test agent.", "version": 1}' | \
@@ -159,7 +159,7 @@ YAML
 Flag yang menerima path file, seperti `--file` pada perintah upload, menerima path biasa:
 
 ```bash
-ant beta:files upload --file ./report.pdf
+ant files upload --file ./report.pdf
 ```
 
 Untuk menyisipkan isi file ke dalam field bernilai string, awali path dengan `@`:
@@ -183,11 +183,11 @@ ant messages create \
   --transform 'content.#(type=="text").text' --raw-output
 ```
 
-CLI mendeteksi tipe file dan mengenkode file biner sebagai base64 secara otomatis. Untuk memaksa enkoding tertentu, gunakan `@file://` untuk teks biasa atau `@data://` untuk base64. Escape karakter `@` literal di awal dengan backslash (`\@username`).
+CLI mendeteksi tipe file dan mengodekan file biner sebagai base64 secara otomatis. Untuk memaksa pengodean tertentu, gunakan `@file://` untuk teks biasa atau `@data://` untuk base64. Escape karakter `@` literal di awal dengan backslash (`\@username`).
 
 ## Debugging
 
-Tambahkan `--debug` ke perintah mana pun untuk mencetak permintaan dan respons HTTP yang persis (header dan body) ke stderr. Kunci API akan disamarkan.
+Tambahkan `--debug` ke perintah apa pun untuk mencetak permintaan dan respons HTTP yang persis (header dan body) ke stderr. Kunci API disamarkan.
 
 ```bash
 ant --debug beta:agents list
@@ -204,17 +204,17 @@ X-Api-Key: <REDACTED>
 
 ## Sumber daya yang tersedia
 
-Setiap sumber daya API yang diekspos oleh CLI didokumentasikan dalam [referensi API](https://platform.claude.com/docs/id/api/cli/messages/create). Untuk daftar lokal, jalankan `ant --help`, dan tambahkan `--help` ke subperintah mana pun untuk melihat flag dan parameternya.
+Setiap sumber daya API yang diekspos CLI didokumentasikan dalam [referensi API](https://platform.claude.com/docs/id/api/cli/messages/create). Untuk daftar lokal, jalankan `ant --help`, dan tambahkan `--help` ke subperintah apa pun untuk melihat flag dan parameternya.
 
 ## Langkah selanjutnya
 
 <CardGroup cols={3}>
   <Card title="Scripting dan otomatisasi CLI" icon="code" href="https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting">
-    Kelola versi sumber daya API, pola scripting, dan penggunaan dari Claude Code
+    Mengelola versi sumber daya API, pola scripting, dan penggunaan dari Claude Code
   </Card>
 
   <Card title="Referensi API" icon="book" href="https://platform.claude.com/docs/id/api/cli/messages/create">
-    Parameter spesifik endpoint, field permintaan, dan skema respons
+    Parameter khusus endpoint, field permintaan, dan skema respons
   </Card>
 
   <Card title="Opsi autentikasi CLI" icon="lock" href="https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication">

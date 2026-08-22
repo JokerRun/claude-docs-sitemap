@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/cost/list
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 9793188124b6db99a3b58f59927b9ffcbb709599030ad6679179083b509d8ba5
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 7eb6480d3690fb1d66597aa4ef9891f707b360bc0ed44683dd23f54739959c99
 ---
 
 ---
@@ -240,7 +240,7 @@ Requires an API key with the `read:analytics` scope.
 ```http
 curl https://api.anthropic.com/v1/organizations/analytics/cost_report \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
 #### Response

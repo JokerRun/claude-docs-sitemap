@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 8d8b15663044af15a0725893ee81cbbe19898484584be6eedb64cc457259bdfa
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: f2e4b4beb5b969470f98d654df413a9bc4a8e566ae7f06e39321d1e80c2a0509
 ---
 
 ---
@@ -4007,7 +4007,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       - `version: string`
 
-        Skill version or 'latest' for most recent version
+        The resolved version: a skill version ID for custom skills.
 
   - `content: array of BetaContentBlock`
 
@@ -13981,7 +13981,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `version: string`
 
-      Skill version or 'latest' for most recent version
+      The resolved version: a skill version ID for custom skills.
 
 ### Beta Container Params
 
@@ -19117,7 +19117,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `version: string`
 
-        Skill version or 'latest' for most recent version
+        The resolved version: a skill version ID for custom skills.
 
   - `content: array of BetaContentBlock`
 
@@ -23900,7 +23900,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `version: string`
 
-          Skill version or 'latest' for most recent version
+          The resolved version: a skill version ID for custom skills.
 
     - `stop_details: BetaRefusalStopDetails or null`
 
@@ -24416,7 +24416,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `version: string`
 
-          Skill version or 'latest' for most recent version
+          The resolved version: a skill version ID for custom skills.
 
     - `content: array of BetaContentBlock`
 
@@ -25978,7 +25978,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           - `version: string`
 
-            Skill version or 'latest' for most recent version
+            The resolved version: a skill version ID for custom skills.
 
       - `content: array of BetaContentBlock`
 
@@ -28824,7 +28824,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
   - `version: string`
 
-    Skill version or 'latest' for most recent version
+    The resolved version: a skill version ID for custom skills.
 
 ### Beta Skill Params
 
@@ -40987,7 +40987,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `version: string`
 
-              Skill version or 'latest' for most recent version
+              The resolved version: a skill version ID for custom skills.
 
         - `content: array of BetaContentBlock`
 
@@ -42878,7 +42878,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
             - `version: string`
 
-              Skill version or 'latest' for most recent version
+              The resolved version: a skill version ID for custom skills.
 
         - `content: array of BetaContentBlock`
 
@@ -44568,7 +44568,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
           - `version: string`
 
-            Skill version or 'latest' for most recent version
+            The resolved version: a skill version ID for custom skills.
 
       - `content: array of BetaContentBlock`
 
@@ -46220,7 +46220,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
         - `version: string`
 
-          Skill version or 'latest' for most recent version
+          The resolved version: a skill version ID for custom skills.
 
     - `content: array of BetaContentBlock`
 

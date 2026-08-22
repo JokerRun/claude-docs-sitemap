@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/model-deprecations
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: c60574dc4c5322b6e9ff20f96bf9139bdb036e6b0ee532a3635c956e0b4f1f0f
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: b73d8c62fb2a3907201d9a73fdceda26a0ab1010c253660f9717cf6f89ed7028
 ---
 
 ---
@@ -220,7 +220,7 @@ On September 4, 2024, Anthropic notified developers using Claude 1 and Instant m
 
 ## API parameter deprecations
 
-Anthropic occasionally deprecates request parameters that no longer apply to current models. Deprecated parameters remain in the SDK request types so existing code continues to type-check, but their behavior changes per model.
+Anthropic occasionally deprecates request parameters that no longer apply to current models. How the API treats a deprecated parameter depends on the model, as the following table shows. Most SDKs keep deprecated parameters in their request types so existing code continues to type-check. The Python SDK (v1.0 and later) removes `temperature`, `top_p`, and `top_k`, so passing them raises a `TypeError`.
 
 | Parameter                       | Status                                 | Behavior                                                                                                                                         | Recommended replacement                                                                                                                                     |
 | ------------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |

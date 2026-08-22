@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/code-review
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: c06d9d357c7ac61a998278e5001e1c01a5418d4f5eaa3835d6c8618b7fefb750
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 50426c7b6ef8a73e4c42ae6cc2cecca772f58200a09052eb4c65e37dc23f3c97
 ---
 
 > ## Documentation Index
@@ -355,7 +355,7 @@ Exceptions include the following sessions, where `/code-review` runs only when y
 
 A scheduled task never launches the [cloud review](#escalate-to-ultrareview), so schedule `/code-review` without the `ultra` argument.
 
-To stop both Claude and scheduled tasks from starting the review while keeping `/code-review` available for you to type, add a [`skillOverrides`](/docs/en/skills#override-skill-visibility-from-settings) entry to a [settings file](/docs/en/settings#settings-files) such as `~/.claude/settings.json`:
+To stop both Claude and scheduled tasks from starting the review while keeping `/code-review` available for you to type, add a [`skillOverrides`](/docs/en/skills#override-skill-visibility-from-settings) entry to a [settings file](/docs/en/settings#where-settings-live) such as `~/.claude/settings.json`:
 
 ```json theme={null}
 {

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/data-residency
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 285c14e866fa7dd1dcffd943970434e4eb53a76b67b2aaf2580f75ca4195c9e7
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 185656c6f682c70e3aa62a7222c957ef25e1d9bcd314bd2c837b16339cbd4914
 ---
 
 ---
@@ -11,13 +11,13 @@ url: https://platform.claude.com/docs/id/manage-claude/data-residency
 description: Kelola di mana inferensi model dijalankan dan di mana data disimpan dengan kontrol geografis.
 ---
 
-Kontrol residensi data memungkinkan Anda mengelola di mana data Anda diproses dan disimpan. Dua pengaturan independen mengatur hal ini:
+Kontrol "data residency" (residensi data) memungkinkan Anda mengelola di mana data Anda diproses dan disimpan. Dua pengaturan independen mengatur hal ini:
 
-* **Inference geo:** Mengontrol di mana inferensi model dijalankan, berdasarkan per permintaan. Diatur melalui parameter API `inference_geo` atau sebagai default workspace.
-* **Workspace geo:** Mengontrol di mana data disimpan saat tidak aktif (at rest) dan di mana pemrosesan endpoint (seperti transcoding gambar dan eksekusi kode) terjadi. Dikonfigurasi pada tingkat workspace di [Claude Console](https://platform.claude.com).
+* **Inference geo:** Mengontrol di mana inferensi model dijalankan, per permintaan. Diatur melalui parameter API `inference_geo` atau sebagai default workspace.
+* **Workspace geo:** Mengontrol di mana data disimpan saat tidak digunakan (at rest) dan di mana pemrosesan endpoint (seperti transcoding gambar dan eksekusi kode) terjadi. Dikonfigurasi di tingkat workspace di [Claude Console](https://platform.claude.com).
 
 <Note>
-  [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) mendukung penyematan geografis pada tingkat agen: `inference_geo` pada [konfigurasi model agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#pin-the-inference-geo) menyematkan geografi yang melayani permintaan model untuk sesi yang menjalankan agen tersebut, dengan [override per sesi](https://platform.claude.com/docs/id/managed-agents/sessions#pin-the-inference-geo-for-a-session) saat pembuatan sesi. Agen tanpa penyematan mengikuti inference geo default workspace pada setiap permintaan. Managed Agents juga mematuhi Workspace geo yang dikonfigurasi di Console, dan dengan [sandbox yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes), eksekusi alat dan filesystem sandbox tetap berada pada infrastruktur yang Anda kendalikan.
+  [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) mendukung penyematan geografis di tingkat agen: `inference_geo` pada [konfigurasi model agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#pin-the-inference-geo) menyematkan geografi yang melayani permintaan model untuk sesi yang menjalankan agen tersebut, dengan [override per sesi](https://platform.claude.com/docs/id/managed-agents/sessions#pin-the-inference-geo-for-a-session) saat pembuatan sesi. Agen tanpa penyematan mengikuti inference geo default workspace pada setiap permintaan. Managed Agents juga mematuhi Workspace geo yang dikonfigurasi di Console, dan dengan [sandbox yang di-hosting sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes), eksekusi alat dan sistem file sandbox tetap berada di infrastruktur yang Anda kendalikan; isi dari [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores) yang terlampir tetap disimpan oleh Anthropic dan disalin ke sandbox Anda untuk sesi tersebut.
 </Note>
 
 ## Inference geo
@@ -28,10 +28,10 @@ Kontrol residensi data memungkinkan Anda mengelola di mana data Anda diproses da
 
 Parameter `inference_geo` mengontrol di mana inferensi model dijalankan untuk permintaan API tertentu. Tambahkan parameter ini ke panggilan `POST /v1/messages` mana pun.
 
-| Nilai      | Deskripsi                                                                                                       |
-| ---------- | --------------------------------------------------------------------------------------------------------------- |
-| `"global"` | Default. Inferensi dapat dijalankan di geografi mana pun yang tersedia untuk performa dan ketersediaan optimal. |
-| `"us"`     | Inferensi hanya dijalankan pada infrastruktur berbasis AS.                                                      |
+| Nilai      | Deskripsi                                                                                                            |
+| ---------- | -------------------------------------------------------------------------------------------------------------------- |
+| `"global"` | Default. Inferensi dapat dijalankan di geografi mana pun yang tersedia untuk performa dan ketersediaan yang optimal. |
+| `"us"`     | Inferensi hanya dijalankan di infrastruktur yang berbasis di AS.                                                     |
 
 ### Penggunaan API
 
@@ -216,7 +216,7 @@ Parameter `inference_geo` mengontrol di mana inferensi model dijalankan untuk pe
 
 ### Respons
 
-Objek `usage` dalam respons menyertakan field `inference_geo` yang menunjukkan di mana inferensi dijalankan:
+Objek `usage` pada respons menyertakan field `inference_geo` yang menunjukkan di mana inferensi dijalankan:
 
 ```json Output
 {
@@ -230,10 +230,10 @@ Objek `usage` dalam respons menyertakan field `inference_geo` yang menunjukkan d
 
 ### Ketersediaan model
 
-Parameter `inference_geo` didukung pada model Claude 4.6 dan yang lebih baru. Permintaan dengan `inference_geo` pada Claude Opus 4.5, Claude Sonnet 4.5, Claude Haiku 4.5, atau model sebelumnya akan mengembalikan error 400.
+Parameter `inference_geo` didukung pada model Claude 4.6 dan yang lebih baru. Permintaan dengan `inference_geo` pada Claude Opus 4.5, Claude Sonnet 4.5, Claude Haiku 4.5, atau model yang lebih lama akan mengembalikan error 400.
 
 <Note>
-  Parameter `inference_geo` tersedia pada Claude API (pihak pertama) dan [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws). Pada Amazon Bedrock dan Google Cloud, region inferensi ditentukan oleh URL endpoint atau profil inferensi, sehingga `inference_geo` tidak berlaku. Pada [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), `inference_geo` juga tidak berlaku: deployment yang di-host di Azure dapat menggunakan tipe deployment US Data Zone Standard, yang menjaga inferensi tetap berada di Amerika Serikat. Parameter `inference_geo` juga tidak tersedia melalui [endpoint kompatibilitas OpenAI SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk).
+  Parameter `inference_geo` tersedia di Claude API (pihak pertama) dan [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws). Di Amazon Bedrock dan Google Cloud, region inferensi ditentukan oleh URL endpoint atau profil inferensi, sehingga `inference_geo` tidak berlaku. Di [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), `inference_geo` juga tidak berlaku: deployment yang di-hosting di Azure dapat menggunakan tipe deployment US Data Zone Standard, yang menjaga inferensi tetap berada di Amerika Serikat. Parameter `inference_geo` juga tidak tersedia melalui [endpoint kompatibilitas OpenAI SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk).
 </Note>
 
 ### Pembatasan tingkat workspace
@@ -241,7 +241,7 @@ Parameter `inference_geo` didukung pada model Claude 4.6 dan yang lebih baru. Pe
 Pengaturan workspace juga mendukung pembatasan inference geo mana yang tersedia:
 
 * **`allowed_inference_geos`:** Membatasi geo mana yang dapat digunakan oleh workspace. Jika permintaan menentukan `inference_geo` yang tidak ada dalam daftar ini, API akan mengembalikan error.
-* **`default_inference_geo`:** Menetapkan geo fallback ketika `inference_geo` dihilangkan dari permintaan. Permintaan individual dapat menimpa ini dengan menetapkan `inference_geo` secara eksplisit.
+* **`default_inference_geo`:** Menetapkan geo fallback ketika `inference_geo` tidak disertakan dalam permintaan. Permintaan individual dapat menimpa ini dengan menetapkan `inference_geo` secara eksplisit.
 
 Pengaturan ini dapat dikonfigurasi melalui Console atau [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) di bawah field `data_residency`.
 
@@ -256,7 +256,7 @@ Untuk menetapkan workspace geo, buat workspace baru di [Console](https://platfor
 3. Pilih workspace geo.
 
 <Note>
-  **Claude Platform on AWS:** Workspace geo tidak dapat dikonfigurasi. Sesi Claude Managed Agents pada platform ini berjalan dengan Workspace geo efektif `"us"`, yang saat ini merupakan satu-satunya workspace geo yang tersedia. Lihat [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) untuk pertimbangan residensi data yang spesifik untuk platform tersebut.
+  **Claude Platform on AWS:** Workspace geo tidak dapat dikonfigurasi. Sesi Claude Managed Agents di platform ini berjalan dengan Workspace geo efektif `"us"`, yang saat ini merupakan satu-satunya workspace geo yang tersedia. Lihat [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) untuk pertimbangan residensi data yang spesifik untuk platform tersebut.
 </Note>
 
 ## Harga
@@ -264,15 +264,15 @@ Untuk menetapkan workspace geo, buat workspace baru di [Console](https://platfor
 Harga residensi data bervariasi berdasarkan generasi model:
 
 * **Model Claude 4.6 dan yang lebih baru:** Inferensi khusus AS (`inference_geo: "us"`) dikenakan harga 1,1x dari tarif standar di semua kategori harga token (token input, token output, penulisan cache, dan pembacaan cache).
-* **Routing global** (`inference_geo: "global"`): Harga standar berlaku.
+* **Perutean global** (`inference_geo: "global"`): Harga standar berlaku.
 * **Model lama:** Tidak mendukung `inference_geo` (lihat [Ketersediaan model](https://platform.claude.com/docs/id/manage-claude/data-residency#model-availability)); harga standar berlaku. Permintaan yang menyertakan parameter ini akan mengembalikan error 400.
 
-Harga ini berlaku untuk Claude API (pihak pertama) dan Claude Platform on AWS. Pada Claude in Microsoft Foundry, pengali 1,1x yang sama berlaku untuk deployment yang di-host di Azure yang menggunakan tipe deployment US Data Zone Standard. Platform yang dioperasikan mitra (Bedrock dan Google Cloud) memiliki harga regional mereka sendiri. Lihat [Harga residensi data](https://platform.claude.com/docs/id/about-claude/pricing#data-residency-pricing) untuk detailnya.
+Harga ini berlaku untuk Claude API (pihak pertama) dan Claude Platform on AWS. Di Claude in Microsoft Foundry, pengali 1,1x yang sama berlaku untuk deployment yang di-hosting di Azure yang menggunakan tipe deployment US Data Zone Standard. Platform yang dioperasikan mitra (Bedrock dan Google Cloud) memiliki harga regional masing-masing. Lihat [Harga residensi data](https://platform.claude.com/docs/id/about-claude/pricing#data-residency-pricing) untuk detailnya.
 
 Pengali yang sama berlaku untuk [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview): ketika [konfigurasi model](https://platform.claude.com/docs/id/managed-agents/agent-setup) agen menyematkan `inference_geo` ke `"us"`, permintaan model dalam sesi yang menjalankan agen tersebut dikenakan harga 1,1x dari tarif standar.
 
 <Note>
-  Jika Anda memiliki komitmen [Priority Tier](https://platform.claude.com/docs/id/api/service-tiers), pengali 1,1x untuk inferensi khusus AS juga memengaruhi cara token dihitung terhadap kapasitas Priority Tier Anda. Setiap token yang dikonsumsi dengan `inference_geo: "us"` mengurangi 1,1 token dari TPM yang telah Anda komitmenkan, konsisten dengan cara pengali harga lainnya (seperti caching prompt) memengaruhi tingkat burndown.
+  Jika Anda memiliki komitmen [Priority Tier](https://platform.claude.com/docs/id/api/service-tiers), pengali 1,1x untuk inferensi khusus AS juga memengaruhi cara token dihitung terhadap kapasitas Priority Tier Anda. Setiap token yang dikonsumsi dengan `inference_geo: "us"` mengurangi 1,1 token dari TPM yang Anda komitmenkan, konsisten dengan cara pengali harga lainnya (seperti caching prompt) memengaruhi laju burndown.
 </Note>
 
 ## Dukungan Batch API
@@ -281,38 +281,38 @@ Parameter `inference_geo` didukung pada [Batch API](https://platform.claude.com/
 
 ## Migrasi dari opt-out lama
 
-Jika organisasi Anda sebelumnya memilih keluar (opt-out) dari routing global untuk menjaga inferensi tetap di AS, workspace Anda telah dikonfigurasi secara otomatis dengan `allowed_inference_geos: ["us"]` dan `default_inference_geo: "us"`. Tidak diperlukan perubahan kode. Persyaratan residensi data Anda yang ada terus diberlakukan melalui kontrol geo yang baru.
+Jika organisasi Anda sebelumnya memilih keluar (opt-out) dari perutean global untuk menjaga inferensi tetap di AS, workspace Anda telah dikonfigurasi secara otomatis dengan `allowed_inference_geos: ["us"]` dan `default_inference_geo: "us"`. Tidak diperlukan perubahan kode. Persyaratan residensi data Anda yang sudah ada tetap diberlakukan melalui kontrol geo yang baru.
 
 ### Apa yang berubah
 
-Opt-out lama adalah pengaturan tingkat organisasi yang membatasi semua permintaan ke infrastruktur berbasis AS. Kontrol residensi data yang baru menggantikan ini dengan dua mekanisme:
+Opt-out lama adalah pengaturan tingkat organisasi yang membatasi semua permintaan ke infrastruktur yang berbasis di AS. Kontrol residensi data yang baru menggantikannya dengan dua mekanisme:
 
-* **Kontrol per permintaan:** Parameter `inference_geo` memungkinkan Anda menentukan `"us"` atau `"global"` pada setiap panggilan API, memberikan Anda fleksibilitas tingkat permintaan.
-* **Kontrol workspace:** Pengaturan `default_inference_geo` dan `allowed_inference_geos` di Console memungkinkan Anda menerapkan kebijakan geo di semua kunci dalam workspace.
+* **Kontrol per permintaan:** Parameter `inference_geo` memungkinkan Anda menentukan `"us"` atau `"global"` pada setiap panggilan API, memberi Anda fleksibilitas di tingkat permintaan.
+* **Kontrol workspace:** Pengaturan `default_inference_geo` dan `allowed_inference_geos` di Console memungkinkan Anda memberlakukan kebijakan geo di semua kunci dalam sebuah workspace.
 
 ### Apa yang terjadi pada workspace Anda
 
-Workspace Anda dimigrasikan secara otomatis:
+Workspace Anda telah dimigrasikan secara otomatis:
 
-| Pengaturan lama                   | Padanan baru                                                    |
-| --------------------------------- | --------------------------------------------------------------- |
-| Opt-out routing global (hanya AS) | `allowed_inference_geos: ["us"]`, `default_inference_geo: "us"` |
+| Pengaturan lama                     | Padanan baru                                                    |
+| ----------------------------------- | --------------------------------------------------------------- |
+| Opt-out perutean global (khusus AS) | `allowed_inference_geos: ["us"]`, `default_inference_geo: "us"` |
 
-Semua permintaan API yang menggunakan kunci dari workspace Anda terus berjalan pada infrastruktur berbasis AS. Tidak ada tindakan yang diperlukan untuk mempertahankan perilaku Anda saat ini.
+Semua permintaan API yang menggunakan kunci dari workspace Anda tetap berjalan di infrastruktur yang berbasis di AS. Tidak diperlukan tindakan apa pun untuk mempertahankan perilaku Anda saat ini.
 
-### Jika Anda ingin menggunakan routing global
+### Jika Anda ingin menggunakan perutean global
 
-Jika persyaratan residensi data Anda telah berubah dan Anda ingin memanfaatkan routing global untuk performa dan ketersediaan yang lebih baik, perbarui pengaturan inference geo workspace Anda untuk menyertakan `"global"` dalam geo yang diizinkan dan tetapkan `default_inference_geo` ke `"global"`. Lihat [Pembatasan tingkat workspace](https://platform.claude.com/docs/id/manage-claude/data-residency#workspace-level-restrictions) untuk detailnya.
+Jika persyaratan residensi data Anda telah berubah dan Anda ingin memanfaatkan perutean global untuk performa dan ketersediaan yang lebih baik, perbarui pengaturan inference geo workspace Anda agar menyertakan `"global"` dalam geo yang diizinkan dan tetapkan `default_inference_geo` ke `"global"`. Lihat [Pembatasan tingkat workspace](https://platform.claude.com/docs/id/manage-claude/data-residency#workspace-level-restrictions) untuk detailnya.
 
 ### Dampak harga
 
 Model lama tidak terpengaruh oleh migrasi ini. Untuk harga terkini pada model yang lebih baru, lihat [Harga](https://platform.claude.com/docs/id/manage-claude/data-residency#pricing).
 
-## Batasan saat ini
+## Keterbatasan saat ini
 
-* **Batas laju bersama:** Batas laju dibagi di semua geo.
+* **Batas laju bersama:** "Rate limit" (batas laju) dibagi bersama di semua geo.
 * **Inference geo:** Hanya `"us"` dan `"global"` yang tersedia.
-* **Workspace geo:** Hanya `"us"` yang saat ini tersedia. Workspace geo tidak dapat diubah setelah pembuatan workspace.
+* **Workspace geo:** Hanya `"us"` yang tersedia saat ini. Workspace geo tidak dapat diubah setelah pembuatan workspace.
 
 ## Langkah selanjutnya
 

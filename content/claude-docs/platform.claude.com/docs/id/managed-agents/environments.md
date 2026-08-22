@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 7a6679e4f43e0cd8c3488ff700524aa2c66c8009c4b4c289fbf89e8d7068c474
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: d3d6bc8f0846c871348307404288a861b17f2c206ebbd4609a226215697c4b43
 ---
 
 ---
@@ -168,9 +168,7 @@ Teruskan ID environment sebagai string saat [membuat sesi](https://platform.clau
   ```
 
   ```bash CLI
-  ant beta:sessions create \
-    --agent "$AGENT_ID" \
-    --environment-id "$ENVIRONMENT_ID"
+  ant beta:sessions create --agent "$AGENT_ID" --environment-id "$ENVIRONMENT_ID"
   ```
 
   ```python Python
@@ -618,16 +616,16 @@ Saat menggunakan networking `limited`:
   ```
 
   ```bash CLI
-  # Daftar environment
+  # List environments
   ant beta:environments list
 
-  # Ambil environment tertentu
+  # Retrieve a specific environment
   ant beta:environments retrieve --environment-id "$ENVIRONMENT_ID"
 
-  # Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
+  # Archive an environment (read-only, existing sessions continue)
   ant beta:environments archive --environment-id "$ENVIRONMENT_ID"
 
-  # Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
+  # Delete an environment (only if no sessions reference it)
   ant beta:environments delete --environment-id "$ENVIRONMENT_ID"
   ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/environments
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 02ad36b92b97980934b99c274e26f452587df8cabfc7ea30b5180e541c6d37f6
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 4fa66f7a7f2930cd2414e62b41949cb88bb98123c05e3f18788b26b4b829de29
 ---
 
 ---
@@ -168,9 +168,7 @@ Pass the environment ID as a string when [creating a session](https://platform.c
   ```
 
   ```bash CLI
-  ant beta:sessions create \
-    --agent "$AGENT_ID" \
-    --environment-id "$ENVIRONMENT_ID"
+  ant beta:sessions create --agent "$AGENT_ID" --environment-id "$ENVIRONMENT_ID"
   ```
 
   ```python Python
@@ -397,12 +395,12 @@ Supported package managers:
 
 | Field   | Package manager           | Example                                     |
 | ------- | ------------------------- | ------------------------------------------- |
-| `apt`   | System packages (apt-get) | `"ffmpeg"`                                  |
-| `cargo` | Rust (cargo)              | `"ripgrep@14.0.0"`                          |
+| `apt`   | System packages (apt-get) | `"graphviz"`                                |
+| `cargo` | Rust (cargo)              | `"hyperfine@1.18.0"`                        |
 | `gem`   | Ruby (gem)                | `"rails:7.1.0"`                             |
 | `go`    | Go modules                | `"golang.org/x/tools/cmd/goimports@latest"` |
 | `npm`   | Node.js (npm)             | `"express@4.18.0"`                          |
-| `pip`   | Python (pip)              | `"pandas==2.2.0"`                           |
+| `pip`   | Python (pip)              | `"sqlalchemy==2.0.30"`                      |
 
 ### Networking
 
@@ -729,7 +727,7 @@ When using `limited` networking:
 
 ## Pre-installed runtimes
 
-Cloud sandboxes include common runtimes out of the box. See [Cloud sandbox reference](https://platform.claude.com/docs/en/managed-agents/cloud-sandboxes-reference) for the full list of pre-installed languages, databases, and utilities.
+Cloud sandboxes include common language runtimes, databases, and command-line tools out of the box. See [Cloud sandbox reference](https://platform.claude.com/docs/en/managed-agents/cloud-sandboxes-reference) for the full list.
 
 ## Next steps
 

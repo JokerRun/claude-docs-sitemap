@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/retrieve_summaries
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: a8684db55249d7197cd2d505a854ffc10687df01e2f1757a8b343e7bb59c4de2
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 84b8a9964a097555fedc6a510974fdd6e6145c9b2855653f8b98cfb8582969ed
 ---
 
 ---
@@ -167,7 +167,7 @@ Enterprise plan. Requires an API key with the `read:analytics` scope.
 ```http
 curl https://api.anthropic.com/v1/organizations/analytics/summaries \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
 #### Response

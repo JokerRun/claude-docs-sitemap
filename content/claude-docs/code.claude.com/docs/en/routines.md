@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/routines
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: a2855f70de2fa86b53b5131ee170692404d81acc1c5956aad485fc2bbb219317
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 8a382034efa38be9c3093b11d847d917a6b21e5014a9033ec096397f9ddcf6f8
 ---
 
 > ## Documentation Index
@@ -384,12 +384,14 @@ One-off runs do not count against the daily routine cap. They draw down your reg
 
 ## Troubleshooting
 
-### `/schedule` returns "Unknown command"
+<h3 id="schedule-returns-unknown-command">
+  `/schedule` returns "Unknown command"
+</h3>
 
 The CLI hides `/schedule` when one of its requirements isn't met: the command menu shows `No commands match "/schedule"` while you type, and submitting it returns `Unknown command: /schedule` in every case below except a Console API key or an Anthropic profile with feature-flag fetching enabled. The cause is usually one of the following:
 
 * You are authenticated with a Console API key, an [Anthropic profile or federation credential](/docs/en/authentication#anthropic-profiles-and-federation-credentials), or a cloud provider such as Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry. `/schedule` requires a claude.ai subscription login. With a Console API key or a profile, submitting `/schedule` instead shows `/schedule is available with Claude for Enterprise — ask your admin about migrating from API-key access`. With a cloud-provider login, you still see `Unknown command: /schedule`. If `ANTHROPIC_API_KEY` or `ANTHROPIC_AUTH_TOKEN` is set in your shell, or `apiKeyHelper` is set in `settings.json`, remove it first, since these take precedence over a claude.ai login. A profile or federation credential takes precedence too, so switch that off as well
-* `DISABLE_TELEMETRY`, `DO_NOT_TRACK`, `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`, or `DISABLE_GROWTHBOOK` is set in your shell environment or in the `env` block of a [`settings.json` file](/docs/en/settings#available-settings). These disable feature-flag fetching, which `/schedule` depends on
+* `DISABLE_TELEMETRY`, `DO_NOT_TRACK`, `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`, or `DISABLE_GROWTHBOOK` is set in your shell environment or in the `env` block of a [`settings.json` file](/docs/en/settings-reference#all-settings). These disable feature-flag fetching, which `/schedule` depends on
 * You are inside a Claude Code on the web session. Manage routines from the [web UI](https://claude.ai/code/routines) instead
 * Your organization's policy disables [Claude Code on the web](/docs/en/claude-code-on-the-web), which routines run on
 * An Owner [turned off routines](#routines-are-disabled-by-your-organizations-policy) for your Team or Enterprise organization. Before v2.1.227, the command still appeared in this case, and claude.ai rejected the routine when Claude tried to create or run it

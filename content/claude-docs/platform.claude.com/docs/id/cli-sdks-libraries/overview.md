@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/overview
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 66684603230cbafd89b23df11221980b9551bcc6a667857c9c457ac404c152ce
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: d7b7c7f913c572400c7f11eb28da07eefc02d4e27c3bc13a2fcdf108326ee32f
 ---
 
 ---
@@ -80,11 +80,11 @@ Pustaka dan integrasi mengekspos Claude melalui permukaan API framework lain. Ke
 CLI, SDK klien, dan pustaka ditujukan untuk memanggil Claude API sendiri: Anda mengirim setiap permintaan dan menangani setiap respons. Claude Code, Claude Agent SDK, dan Claude Managed Agents bekerja pada tingkat yang lebih tinggi, menyediakan loop agen, eksekusi alat, dan runtime.
 
 <CardGroup cols={3}>
-  <Card title="Claude Code" href="https://code.claude.com/docs/id/overview">
+  <Card title="Claude Code" href="https://code.claude.com/docs/en/overview">
     Alat coding agentik untuk mendelegasikan tugas coding kepada Claude
   </Card>
 
-  <Card title="Claude Agent SDK" href="https://code.claude.com/docs/id/agent-sdk/overview">
+  <Card title="Claude Agent SDK" href="https://code.claude.com/docs/en/agent-sdk/overview">
     Bangun agen yang berjalan dalam proses yang Anda operasikan
   </Card>
 

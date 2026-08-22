@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/libraries/apple-foundation-models
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 2a8a334dd6c40b0f4d159f75edcd1f7d2e585fc4b8424fed3c5d33c4eefa8767
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 667306974cee2c974a10ca47773883ab9e107758314f3fdf80b6470c5de3f4b5
 ---
 
 ---
@@ -16,7 +16,7 @@ description: Use Claude on Apple platforms through the Foundation Models framewo
 Requests go directly from your app to the Claude API; Apple is not in the request path and does not see prompts or responses. Usage is billed to your Anthropic account at [standard API pricing](https://platform.claude.com/docs/en/about-claude/pricing), so your organization needs an available credit balance or an active billing method. Your app decides when to use Claude and when to use Apple's on-device model: pass whichever model you want to each session.
 
 <Note>
-  **Beta.** This package targets the Foundation Models server-side language model API introduced in the OS 27 betas. APIs might change before general availability.
+  **Beta.** This package targets the Foundation Models server-side language model API introduced in the OS 27 betas. APIs might change during the beta.
 </Note>
 
 <Info>

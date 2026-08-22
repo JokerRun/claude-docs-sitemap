@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/ticket-routing
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: c017b55c3de6c2e9d5f0cabfd6482f3a517d05016a46a13b65a25638de0c89b9
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 0d5c16f1059afcf53e151e6b995074bd9ac9bfcf85cf83cad1e8b61c96962d96
 ---
 
 ---
@@ -349,7 +349,6 @@ def classify_support_request(ticket_contents):
     message = client.messages.create(
         model=DEFAULT_MODEL,
         max_tokens=500,
-        temperature=0,
         messages=[{"role": "user", "content": classification_prompt}],
         stream=False,
     )
@@ -416,7 +415,6 @@ def classify_support_request(request, actual_intent):
     message = client.messages.create(
         model=DEFAULT_MODEL,
         max_tokens=500,
-        temperature=0,
         messages=[{"role": "user", "content": classification_prompt}],
     )
     usage = message.usage  # Get the usage statistics for the API call for how many input and output tokens were used.
@@ -468,7 +466,7 @@ As the number of classes grows, the number of examples required also expands, po
 
 For example, you might have a top-level classifier that broadly categorizes tickets into "Technical Issues," "Billing Questions," and "General Inquiries." Each of these categories can then have its own sub-classifier to further refine the classification.
 
-![](https://platform.claude.com/docs/images/ticket-hierarchy.png)
+![Classifier hierarchy routing tickets to Technical Issues, Billing Questions, or General Inquiries, each with a sub-classifier](https://platform.claude.com/docs/images/ticket-hierarchy.png)
 
 * **Pros - greater nuance and accuracy:** You can create different prompts for each parent path, allowing for more targeted and context-specific classification. This can lead to improved accuracy and more nuanced handling of customer requests.
 

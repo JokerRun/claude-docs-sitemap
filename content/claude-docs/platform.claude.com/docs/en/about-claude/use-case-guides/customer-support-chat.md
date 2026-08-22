@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 1a1f25700d539bfb333b0408b09b21ae0e4b0248b5ccf9f1bbb3d2cd3739eda5
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: f1c94b565d354625a3129f1a0c02d7bf7d39da6d6928235494845823eac49a4b
 ---
 
 ---
@@ -16,7 +16,7 @@ description: Build a customer support chatbot with Claude that answers product q
 To follow this guide, you need:
 
 * A Claude API key (set as the `ANTHROPIC_API_KEY` environment variable)
-* Python 3.9 or later
+* Python 3.10 or later
 
 Install the required packages:
 

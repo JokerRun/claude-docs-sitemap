@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/security-guidance
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 2a9c091b92d65ba780df239aebaafb89d9e31c6330a75b3fd6d36977a7c0e0e5
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 9f9a3f9899edbe67f5d53b95ada52aac8b4a719f9a5e47e1d123e3471777f6af
 ---
 
 > ## Documentation Index
@@ -64,7 +64,7 @@ User-scoped plugins do not carry into [Claude Code on the web](/docs/en/claude-c
 }
 ```
 
-Administrators can enable the plugin organization-wide by setting [`enabledPlugins`](/docs/en/settings#plugin-settings) in [managed settings](/docs/en/admin-setup).
+Administrators can enable the plugin organization-wide by setting [`enabledPlugins`](/docs/en/settings-reference#enabledplugins) in [managed settings](/docs/en/admin-setup).
 
 ## What the plugin checks
 

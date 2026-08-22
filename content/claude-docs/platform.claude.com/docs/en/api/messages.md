@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 82d3d65dd1ebc42ad4bc2bfd12027ba26fadab28a3dcee1f455b4b9119be9547
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 537c1f688295e1ee49fc60d64d084ee96e7e0765402b5dcdde28cfa2fae47345
 ---
 
 ---
@@ -3080,7 +3080,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       - `version: string`
 
-        Skill version or 'latest' for most recent version
+        The resolved version: a skill version ID for custom skills.
 
   - `content: array of ContentBlock`
 
@@ -10760,7 +10760,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `version: string`
 
-      Skill version or 'latest' for most recent version
+      The resolved version: a skill version ID for custom skills.
 
 ### Container Params
 
@@ -10812,7 +10812,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
   - `version: string`
 
-    Skill version or 'latest' for most recent version
+    The resolved version: a skill version ID for custom skills.
 
 ### Container Upload Block
 
@@ -13524,7 +13524,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `version: string`
 
-        Skill version or 'latest' for most recent version
+        The resolved version: a skill version ID for custom skills.
 
   - `content: array of ContentBlock`
 
@@ -18314,7 +18314,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `version: string`
 
-          Skill version or 'latest' for most recent version
+          The resolved version: a skill version ID for custom skills.
 
     - `stop_details: RefusalStopDetails or null`
 
@@ -18478,7 +18478,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `version: string`
 
-          Skill version or 'latest' for most recent version
+          The resolved version: a skill version ID for custom skills.
 
     - `content: array of ContentBlock`
 
@@ -19465,7 +19465,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           - `version: string`
 
-            Skill version or 'latest' for most recent version
+            The resolved version: a skill version ID for custom skills.
 
       - `content: array of ContentBlock`
 
@@ -30731,7 +30731,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `version: string`
 
-              Skill version or 'latest' for most recent version
+              The resolved version: a skill version ID for custom skills.
 
         - `content: array of ContentBlock`
 
@@ -32046,7 +32046,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
             - `version: string`
 
-              Skill version or 'latest' for most recent version
+              The resolved version: a skill version ID for custom skills.
 
         - `content: array of ContentBlock`
 
@@ -33161,7 +33161,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
           - `version: string`
 
-            Skill version or 'latest' for most recent version
+            The resolved version: a skill version ID for custom skills.
 
       - `content: array of ContentBlock`
 
@@ -34238,7 +34238,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
         - `version: string`
 
-          Skill version or 'latest' for most recent version
+          The resolved version: a skill version ID for custom skills.
 
     - `content: array of ContentBlock`
 

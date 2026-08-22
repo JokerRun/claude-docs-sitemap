@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: c5eca60b5c4cd7fdd4ba776b9124aba0eba643218ef423a00aa125718f462f12
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 4b0007ca17bd364cf2b279bdf1b43648e60295c2ff5ed1c277355a537e6ed5b1
 ---
 
 ---
@@ -11,9 +11,9 @@ url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-u
 description: Terapkan kepatuhan JSON Schema pada input alat Claude dengan grammar-constrained sampling.
 ---
 
-Mengatur `strict: true` pada definisi alat menjamin input alat Claude sesuai dengan JSON Schema Anda dengan membatasi sampling token model ke output yang valid terhadap skema (teknik yang disebut "grammar-constrained sampling" atau sampling yang dibatasi tata bahasa). Halaman ini membahas mengapa mode ketat penting untuk agen, cara mengaktifkannya, dan kasus penggunaan umum. Untuk subset JSON Schema yang didukung, lihat [Batasan JSON Schema](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations). Untuk panduan skema non-ketat, lihat [Mendefinisikan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools).
+Menetapkan `strict: true` pada definisi alat menjamin input alat Claude sesuai dengan JSON Schema Anda dengan membatasi sampling token model hanya pada output yang valid menurut skema (sebuah teknik yang disebut "grammar-constrained sampling" (sampling yang dibatasi tata bahasa)). Halaman ini membahas mengapa mode ketat penting untuk agen, cara mengaktifkannya, dan kasus penggunaan umum. Untuk subset JSON Schema yang didukung, lihat [Keterbatasan JSON Schema](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations). Untuk panduan skema non-ketat, lihat [Mendefinisikan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools).
 
-Penggunaan alat ketat memvalidasi parameter alat, memastikan Claude memanggil fungsi Anda dengan argumen yang bertipe benar. Gunakan penggunaan alat ketat ketika Anda perlu:
+"Strict tool use" (penggunaan alat ketat) memvalidasi parameter alat, memastikan Claude memanggil fungsi Anda dengan argumen yang bertipe benar. Gunakan penggunaan alat ketat ketika Anda perlu:
 
 * Memvalidasi parameter alat
 * Membangun alur kerja agentik
@@ -22,7 +22,7 @@ Penggunaan alat ketat memvalidasi parameter alat, memastikan Claude memanggil fu
 
 ## Mengapa penggunaan alat ketat penting untuk agen
 
-Membangun sistem agentik yang andal memerlukan kesesuaian skema yang terjamin. Tanpa mode ketat, Claude mungkin mengembalikan tipe yang tidak kompatibel (`"2"` alih-alih `2`) atau menghilangkan field yang wajib, merusak fungsi Anda dan menyebabkan error runtime.
+Membangun sistem agentik yang andal memerlukan jaminan kesesuaian skema. Tanpa mode ketat, Claude mungkin mengembalikan tipe yang tidak kompatibel (`"2"` alih-alih `2`) atau menghilangkan field yang wajib, sehingga merusak fungsi Anda dan menyebabkan error runtime.
 
 Penggunaan alat ketat menjamin parameter yang type-safe:
 
@@ -30,7 +30,7 @@ Penggunaan alat ketat menjamin parameter yang type-safe:
 * Tidak perlu memvalidasi dan mencoba ulang pemanggilan alat
 * Agen siap produksi yang bekerja secara konsisten dalam skala besar
 
-Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mode ketat, Claude mungkin memberikan `passengers: "two"` atau `passengers: "2"`. Dengan `strict: true`, respons selalu berisi `passengers: 2`.
+Sebagai contoh, misalkan sebuah sistem pemesanan membutuhkan `passengers: int`. Tanpa mode ketat, Claude mungkin memberikan `passengers: "two"` atau `passengers: "2"`. Dengan `strict: true`, respons selalu berisi `passengers: 2`.
 
 ## Mulai cepat
 
@@ -354,7 +354,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
   ```
 </CodeGroup>
 
-**Format respons:** Blok tool use dengan input tervalidasi di `response.content[x].input`
+**Format respons:** Blok penggunaan alat dengan input tervalidasi di `response.content[x].input`
 
 ```json Output
 {
@@ -375,15 +375,15 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
 
 <Steps>
   <Step title="Definisikan skema alat Anda">
-    Buat skema JSON untuk `input_schema` alat Anda. Skema ini menggunakan format JSON Schema standar dengan beberapa batasan (lihat [Batasan JSON Schema](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations)).
+    Buat skema JSON untuk `input_schema` alat Anda. Skema ini menggunakan format JSON Schema standar dengan beberapa keterbatasan (lihat [Keterbatasan JSON Schema](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations)).
   </Step>
 
   <Step title="Tambahkan strict: true">
-    Atur `"strict": true` sebagai properti tingkat atas dalam definisi alat Anda, bersama dengan `name`, `description`, dan `input_schema`.
+    Tetapkan `"strict": true` sebagai properti tingkat atas dalam definisi alat Anda, bersama `name`, `description`, dan `input_schema`.
   </Step>
 
   <Step title="Tangani pemanggilan alat">
-    Ketika Claude menggunakan alat tersebut, field `input` dalam blok tool\_use secara ketat mengikuti `input_schema` Anda, dan `name` selalu valid.
+    Ketika Claude menggunakan alat tersebut, field `input` dalam blok `tool_use` secara ketat mengikuti `input_schema` Anda, dan `name` selalu valid.
   </Step>
 </Steps>
 
@@ -584,7 +584,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
       if err != nil {
       	log.Fatal(err)
       }
-      fmt.Println(response)
+      fmt.Println(response.RawJSON())
       ```
 
       ```java Java
@@ -969,7 +969,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
       if err != nil {
       	log.Fatal(err)
       }
-      fmt.Println(response)
+      fmt.Println(response.RawJSON())
       ```
 
       ```java Java
@@ -1122,11 +1122,11 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
 
 ## Retensi data
 
-Penggunaan alat ketat mengompilasi definisi `input_schema` alat menjadi grammar menggunakan pipeline yang sama dengan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs). Skema alat di-cache sementara hingga 24 jam sejak terakhir digunakan. Prompt dan respons tidak disimpan setelah respons API.
+Penggunaan alat ketat mengompilasi definisi `input_schema` alat menjadi grammar menggunakan pipeline yang sama dengan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs). Skema alat di-cache sementara hingga 24 jam sejak penggunaan terakhir. Prompt dan respons tidak disimpan di luar respons API.
 
-Penggunaan alat ketat memenuhi syarat HIPAA, tetapi **PHI tidak boleh disertakan dalam definisi skema alat**. API menyimpan cache skema yang telah dikompilasi secara terpisah dari konten pesan, dan skema yang di-cache ini tidak menerima perlindungan PHI yang sama seperti prompt dan respons. Jangan sertakan PHI dalam nama properti `input_schema`, nilai `enum`, nilai `const`, atau ekspresi reguler `pattern`. PHI hanya boleh muncul dalam konten pesan (prompt dan respons), di mana PHI dilindungi di bawah perlindungan HIPAA.
+Penggunaan alat ketat memenuhi syarat HIPAA, tetapi **"protected health information" (informasi kesehatan yang dilindungi), atau PHI, tidak boleh disertakan dalam definisi skema alat**. API meng-cache skema yang telah dikompilasi secara terpisah dari konten pesan, dan skema yang di-cache ini tidak menerima perlindungan PHI yang sama seperti prompt dan respons. Jangan sertakan PHI dalam nama properti `input_schema`, nilai `enum`, nilai `const`, atau ekspresi reguler `pattern`. PHI hanya boleh muncul dalam konten pesan (prompt dan respons), di mana PHI dilindungi berdasarkan pengamanan HIPAA.
 
-Untuk kelayakan ZDR dan HIPAA di semua fitur, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+Untuk kelayakan ZDR dan HIPAA di seluruh fitur, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 
 ## Langkah selanjutnya
 

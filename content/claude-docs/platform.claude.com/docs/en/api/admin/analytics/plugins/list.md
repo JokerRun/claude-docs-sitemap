@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/plugins/list
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 9c1635fa0567d200383461884e245c2ed42fbbdfcfa4cc5eef0e573d00a89c41
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: d7213be73c4815188e7a46d787f4faf34c2809cff4cddf55b4843618fa457982
 ---
 
 ---
@@ -145,7 +145,7 @@ range-rollup mode like /skills.
 ```http
 curl https://api.anthropic.com/v1/organizations/analytics/plugins \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
 #### Response

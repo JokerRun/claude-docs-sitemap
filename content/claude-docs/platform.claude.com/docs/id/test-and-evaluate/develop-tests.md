@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/develop-tests
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 72fe381dd8276b6488ab9d4151254652528bf45a86a4dc4fef82b2165d991b7c
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 0f36332ef1f37008d41cfa6180c937dd493309bc89c46b23df59f6bf075970fc
 ---
 
 ---
@@ -11,35 +11,35 @@ url: https://platform.claude.com/docs/id/test-and-evaluate/develop-tests
 description: Tentukan kriteria keberhasilan yang terukur untuk aplikasi LLM Anda dan bangun evaluasi untuk mengujinya, mulai dari pemeriksaan kecocokan persis hingga penilaian berbasis LLM.
 ---
 
-Membangun aplikasi berbasis LLM yang sukses dimulai dengan mendefinisikan kriteria keberhasilan Anda secara jelas, lalu merancang evaluasi untuk mengukur kinerja terhadap kriteria tersebut. Siklus ini merupakan inti dari prompt engineering (rekayasa prompt).
+Membangun aplikasi berbasis LLM yang sukses dimulai dengan mendefinisikan kriteria keberhasilan Anda secara jelas, lalu merancang evaluasi untuk mengukur kinerja terhadap kriteria tersebut. Siklus ini merupakan inti dari "prompt engineering" (rekayasa prompt).
 
-![Diagram alur prompt engineering: kasus uji, prompt awal, pengujian dan penyempurnaan iteratif, validasi akhir, rilis](https://platform.claude.com/docs/images/how-to-prompt-eng.png)
+![Diagram alur prompt engineering: test cases (kasus uji), preliminary prompt (prompt awal), iterative testing and refinement (pengujian dan penyempurnaan iteratif), final validation (validasi akhir), ship (rilis)](https://platform.claude.com/docs/images/how-to-prompt-eng.png)
 
 ## Tentukan kriteria keberhasilan Anda
 
-Kriteria keberhasilan yang baik adalah:
+Kriteria keberhasilan yang baik bersifat:
 
 * **Spesifik:** Definisikan dengan jelas apa yang ingin Anda capai. Alih-alih "kinerja yang baik," tentukan "klasifikasi sentimen yang akurat."
 
 * **Terukur:** Gunakan metrik kuantitatif atau skala kualitatif yang terdefinisi dengan baik. Angka memberikan kejelasan dan skalabilitas, tetapi ukuran kualitatif dapat bernilai jika diterapkan secara konsisten *bersama* dengan ukuran kuantitatif.
 
-  * Bahkan topik yang "samar" seperti etika dan keamanan dapat dikuantifikasi:
+  * Bahkan topik yang "kabur" seperti etika dan keamanan dapat dikuantifikasi:
 
-    |       | Kriteria keamanan                                                                              |
-    | ----- | ---------------------------------------------------------------------------------------------- |
-    | Buruk | Output yang aman                                                                               |
-    | Baik  | Kurang dari 0,1% output dari 10.000 percobaan ditandai sebagai toksik oleh filter konten kami. |
+    |       | Kriteria keamanan                                                                         |
+    | ----- | ----------------------------------------------------------------------------------------- |
+    | Buruk | Output yang aman                                                                          |
+    | Baik  | Kurang dari 0,1% output dari 10.000 percobaan ditandai sebagai toksik oleh filter konten. |
 
   <Accordion title="Contoh metrik dan metode pengukuran">
     **Metrik kuantitatif:**
 
-    * Spesifik tugas: Skor F1, skor BLEU, perplexity
-    * Generik: Akurasi, presisi, recall
+    * Spesifik tugas: skor F1, skor BLEU, perplexity
+    * Umum: Akurasi, presisi, recall
     * Operasional: Waktu respons (ms), uptime (%)
 
     **Metode kuantitatif:**
 
-    * Pengujian A/B: Bandingkan kinerja terhadap model dasar atau versi sebelumnya.
+    * Pengujian A/B: Bandingkan kinerja terhadap model baseline atau versi sebelumnya.
     * Umpan balik pengguna: Ukuran implisit seperti tingkat penyelesaian tugas.
     * Analisis kasus tepi: Persentase kasus tepi yang ditangani tanpa kesalahan.
 
@@ -51,24 +51,24 @@ Kriteria keberhasilan yang baik adalah:
 
 * **Dapat dicapai:** Dasarkan target Anda pada tolok ukur industri, eksperimen sebelumnya, riset AI, atau pengetahuan ahli. Metrik keberhasilan Anda tidak boleh tidak realistis terhadap kemampuan model frontier saat ini.
 
-* **Relevan:** Selaraskan kriteria Anda dengan tujuan aplikasi dan kebutuhan pengguna Anda. Akurasi sitasi yang kuat mungkin sangat penting untuk aplikasi medis tetapi kurang penting untuk chatbot kasual.
+* **Relevan:** Selaraskan kriteria Anda dengan tujuan aplikasi dan kebutuhan pengguna Anda. Akurasi sitasi yang kuat mungkin sangat penting untuk aplikasi medis, tetapi kurang penting untuk chatbot kasual.
 
 <Accordion title="Contoh kriteria fidelitas tugas untuk analisis sentimen">
-  |       | Kriteria                                                                                                                                                                                                                                            |
-  | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | Buruk | Model harus mengklasifikasikan sentimen dengan baik                                                                                                                                                                                                 |
-  | Baik  | Model analisis sentimen kami harus mencapai skor F1 setidaknya 0,85 (Terukur, Spesifik) pada held-out test set\* berisi 10.000 postingan Twitter yang beragam (Relevan), yang merupakan peningkatan 5% dari baseline kami saat ini (Dapat dicapai). |
+  |       | Kriteria                                                                                                                                                                                                                               |
+  | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | Buruk | Model harus mengklasifikasikan sentimen dengan baik                                                                                                                                                                                    |
+  | Baik  | Model analisis sentimen harus mencapai skor F1 minimal 0,85 (Terukur, Spesifik) pada held-out test set\* berisi 10.000 postingan Twitter yang beragam (Relevan), yang merupakan peningkatan 5% dari baseline saat ini (Dapat dicapai). |
 
   \*Lebih lanjut tentang held-out test set di bagian berikutnya.
 </Accordion>
 
 ### Kriteria keberhasilan umum
 
-Berikut adalah beberapa kriteria yang mungkin penting untuk kasus penggunaan Anda. Daftar ini tidak lengkap.
+Berikut beberapa kriteria yang mungkin penting untuk kasus penggunaan Anda. Daftar ini tidak lengkap.
 
 <AccordionGroup>
   <Accordion title="Fidelitas tugas">
-    Seberapa baik model perlu bekerja pada tugas tersebut? Anda mungkin juga perlu mempertimbangkan penanganan kasus tepi, seperti seberapa baik model perlu bekerja pada input yang langka atau menantang.
+    Seberapa baik model perlu berkinerja pada tugas tersebut? Anda mungkin juga perlu mempertimbangkan penanganan kasus tepi, seperti seberapa baik model perlu berkinerja pada input yang langka atau menantang.
   </Accordion>
 
   <Accordion title="Konsistensi">
@@ -80,7 +80,7 @@ Berikut adalah beberapa kriteria yang mungkin penting untuk kasus penggunaan And
   </Accordion>
 
   <Accordion title="Nada dan gaya">
-    Seberapa baik gaya output model sesuai dengan ekspektasi? Seberapa sesuai bahasanya untuk audiens target?
+    Seberapa baik gaya output model sesuai dengan harapan? Seberapa tepat bahasanya untuk audiens target?
   </Accordion>
 
   <Accordion title="Pelestarian privasi">
@@ -92,21 +92,21 @@ Berikut adalah beberapa kriteria yang mungkin penting untuk kasus penggunaan And
   </Accordion>
 
   <Accordion title="Latensi">
-    Berapa waktu respons yang dapat diterima untuk model? Ini bergantung pada persyaratan real-time aplikasi Anda dan ekspektasi pengguna.
+    Berapa waktu respons yang dapat diterima untuk model? Ini bergantung pada persyaratan real-time aplikasi Anda dan harapan pengguna.
   </Accordion>
 
   <Accordion title="Harga">
-    Berapa anggaran Anda untuk menjalankan model? Pertimbangkan faktor-faktor seperti biaya untuk setiap panggilan API, ukuran model, dan frekuensi penggunaan.
+    Berapa anggaran Anda untuk menjalankan model? Pertimbangkan faktor seperti biaya untuk setiap panggilan API, ukuran model, dan frekuensi penggunaan.
   </Accordion>
 </AccordionGroup>
 
 Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beberapa kriteria keberhasilan.
 
 <Accordion title="Contoh kriteria multidimensi untuk analisis sentimen">
-  |       | Kriteria                                                                                                                                                                                                                                                                   |
-  | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | Buruk | Model harus mengklasifikasikan sentimen dengan baik                                                                                                                                                                                                                        |
-  | Baik  | Pada held-out test set berisi 10.000 postingan Twitter yang beragam, model analisis sentimen harus mencapai: - skor F1 setidaknya 0,85 - 99,5% output tidak toksik - 90% kesalahan hanya menyebabkan ketidaknyamanan, bukan kesalahan fatal\* - 95% waktu respons \< 200ms |
+  |       | Kriteria                                                                                                                                                                                                                                                                |
+  | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | Buruk | Model harus mengklasifikasikan sentimen dengan baik                                                                                                                                                                                                                     |
+  | Baik  | Pada held-out test set berisi 10.000 postingan Twitter yang beragam, model analisis sentimen harus mencapai: - skor F1 minimal 0,85 - 99,5% output tidak toksik - 90% kesalahan hanya menyebabkan ketidaknyamanan, bukan kesalahan fatal\* - 95% waktu respons \< 200ms |
 
   \*Pada kenyataannya, Anda juga akan mendefinisikan apa arti "ketidaknyamanan" dan "fatal".
 </Accordion>
@@ -122,16 +122,16 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
      * Data input yang tidak relevan atau tidak ada
      * Data input atau input pengguna yang terlalu panjang
      * \[Kasus penggunaan chat] Input pengguna yang buruk, berbahaya, atau tidak relevan
-     * Kasus uji yang ambigu di mana bahkan manusia pun akan kesulitan mencapai konsensus penilaian
+     * Kasus uji ambigu di mana bahkan manusia akan kesulitan mencapai konsensus penilaian
    </Accordion>
 2. **Otomatiskan jika memungkinkan:** Susun pertanyaan agar memungkinkan penilaian otomatis (misalnya, pilihan ganda, kecocokan string, dinilai dengan kode, dinilai dengan LLM).
-3. **Prioritaskan volume daripada kualitas:** Lebih banyak pertanyaan dengan penilaian otomatis yang sinyalnya sedikit lebih rendah lebih baik daripada lebih sedikit pertanyaan dengan eval yang dinilai manual oleh manusia berkualitas tinggi.
+3. **Prioritaskan volume daripada kualitas:** Lebih banyak pertanyaan dengan penilaian otomatis yang sinyalnya sedikit lebih rendah lebih baik daripada lebih sedikit pertanyaan dengan eval berkualitas tinggi yang dinilai manual oleh manusia.
 
 ### Contoh eval
 
 <AccordionGroup>
   <Accordion title="Fidelitas tugas (analisis sentimen) - evaluasi kecocokan persis">
-    **Apa yang diukur:** Eval kecocokan persis mengukur apakah output model cocok dengan jawaban benar yang telah ditentukan sebelumnya, biasanya setelah menormalkan spasi dan huruf besar/kecil. Ini adalah metrik sederhana dan tidak ambigu yang sempurna untuk tugas dengan jawaban kategoris yang jelas seperti analisis sentimen (positif, negatif, netral).
+    **Apa yang diukur:** Eval kecocokan persis (exact match) mengukur apakah output model cocok dengan jawaban benar yang telah ditentukan sebelumnya, biasanya setelah menormalkan spasi dan huruf besar/kecil. Ini adalah metrik sederhana dan tidak ambigu yang sempurna untuk tugas dengan jawaban kategorikal yang jelas seperti analisis sentimen (positif, negatif, netral).
 
     **Contoh kasus uji eval:** 1.000 tweet dengan sentimen yang dilabeli manusia.
 
@@ -228,9 +228,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       [
           new("This movie was a total waste of time. 👎", "negative"),
           new("The new album is 🔥! Been on repeat all day.", "positive"),
-          // Kasus khusus: Sarkasme
+          // Kasus tepi: Sarkasme
           new("I just love it when my flight gets delayed for 5 hours. #bestdayever", "negative"),
-          // Kasus khusus: Sentimen campuran
+          // Kasus tepi: Sentimen campuran
           new("The movie's plot was terrible, but the acting was phenomenal.", "mixed"),
           // ... 996 tweet lainnya
       ];
@@ -302,9 +302,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       var tweets = []tweet{
       	{"This movie was a total waste of time. 👎", "negative"},
       	{"The new album is 🔥! Been on repeat all day.", "positive"},
-      	// Kasus khusus: Sarkasme
+      	// Kasus tepi: Sarkasme
       	{"I just love it when my flight gets delayed for 5 hours. #bestdayever", "negative"},
-      	// Kasus khusus: Sentimen campuran
+      	// Kasus tepi: Sentimen campuran
       	{"The movie's plot was terrible, but the acting was phenomenal.", "mixed"},
       	// ... 996 tweet lainnya
       }
@@ -345,9 +345,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       List<Tweet> tweets = List.of(
           new Tweet("This movie was a total waste of time. 👎", "negative"),
           new Tweet("The new album is 🔥! Been on repeat all day.", "positive"),
-          // Kasus khusus: Sarkasme
+          // Kasus tepi: Sarkasme
           new Tweet("I just love it when my flight gets delayed for 5 hours. #bestdayever", "negative"),
-          // Kasus khusus: Sentimen campuran
+          // Kasus tepi: Sentimen campuran
           new Tweet("The movie's plot was terrible, but the acting was phenomenal.", "mixed")
           // ... 996 tweet lainnya
       );
@@ -394,9 +394,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       $tweets = [
           ['text' => 'This movie was a total waste of time. 👎', 'sentiment' => 'negative'],
           ['text' => 'The new album is 🔥! Been on repeat all day.', 'sentiment' => 'positive'],
-          // Kasus khusus: Sarkasme
+          // Kasus tepi: Sarkasme
           ['text' => 'I just love it when my flight gets delayed for 5 hours. #bestdayever', 'sentiment' => 'negative'],
-          // Kasus khusus: Sentimen campuran
+          // Kasus tepi: Sentimen campuran
           ['text' => "The movie's plot was terrible, but the acting was phenomenal.", 'sentiment' => 'mixed'],
           // ... 996 tweet lainnya
       ];
@@ -451,9 +451,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       tweets = [
         { text: "This movie was a total waste of time. 👎", sentiment: "negative" },
         { text: "The new album is 🔥! Been on repeat all day.", sentiment: "positive" },
-        # Kasus khusus: Sarkasme
+        # Kasus tepi: Sarkasme
         { text: "I just love it when my flight gets delayed for 5 hours. #bestdayever", sentiment: "negative" },
-        # Kasus khusus: Sentimen campuran
+        # Kasus tepi: Sentimen campuran
         { text: "The movie's plot was terrible, but the acting was phenomenal.", sentiment: "mixed" }
         # ... 996 tweet lainnya
       ]
@@ -493,9 +493,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
   </Accordion>
 
   <Accordion title="Konsistensi (bot FAQ) - evaluasi cosine similarity">
-    **Apa yang diukur:** Cosine similarity mengukur kemiripan antara dua vektor (dalam hal ini, sentence embedding dari output model menggunakan [Sentence-BERT (SBERT)](https://sbert.net/)) dengan menghitung kosinus sudut di antara keduanya. Nilai yang lebih dekat ke 1 menunjukkan kemiripan yang lebih tinggi. Ini ideal untuk mengevaluasi konsistensi karena pertanyaan yang serupa seharusnya menghasilkan jawaban yang serupa secara semantik, meskipun susunan katanya bervariasi.
+    **Apa yang diukur:** Cosine similarity (kemiripan kosinus) mengukur kemiripan antara dua vektor (dalam hal ini, sentence embedding dari output model menggunakan [Sentence-BERT (SBERT)](https://sbert.net/)) dengan menghitung kosinus sudut di antara keduanya. Nilai yang mendekati 1 menunjukkan kemiripan yang lebih tinggi. Ini ideal untuk mengevaluasi konsistensi karena pertanyaan yang serupa seharusnya menghasilkan jawaban yang serupa secara semantik, meskipun susunan katanya berbeda.
 
-    **Contoh kasus uji eval:** 50 grup dengan masing-masing beberapa versi parafrasa.
+    **Contoh kasus uji eval:** 50 kelompok dengan beberapa versi parafrase masing-masing.
 
     <CodeGroup exclude="shell">
       ```python Python
@@ -603,7 +603,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
         let total = 0;
         for (const embeddingA of embeddings) {
           for (const embeddingB of embeddings) {
-            // Vektor sudah dinormalisasi, jadi cosine similarity adalah hasil dot product
+            // Vektor sudah dinormalisasi, jadi cosine similarity sama dengan dot product
             total += embeddingA.reduce(
               (sum: number, value: number, i: number) => sum + value * embeddingB[i],
               0
@@ -628,11 +628,11 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       ```
 
       ```go Go
-      // Model sentence-embedding tidak tersedia sebagai pustaka Go native. Lihat tab Python atau TypeScript untuk resep eval ini.
+      // Model sentence-embedding tidak tersedia sebagai library Go native. Lihat tab Python atau TypeScript untuk resep eval ini.
       ```
 
       ```java Java
-      // Model sentence-embedding tidak tersedia sebagai pustaka Java native. Lihat tab Python atau TypeScript untuk resep eval ini.
+      // Model sentence-embedding tidak tersedia sebagai library Java native. Lihat tab Python atau TypeScript untuk resep eval ini.
       ```
 
       ```php PHP
@@ -640,13 +640,13 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       ```
 
       ```ruby Ruby
-      # Model sentence-embedding tidak tersedia sebagai pustaka Ruby native. Lihat tab Python atau TypeScript untuk resep eval ini.
+      # Model sentence-embedding tidak tersedia sebagai library Ruby native. Lihat tab Python atau TypeScript untuk resep eval ini.
       ```
     </CodeGroup>
   </Accordion>
 
   <Accordion title="Relevansi dan koherensi (peringkasan) - evaluasi ROUGE-L">
-    **Apa yang diukur:** ROUGE-L (Recall-Oriented Understudy for Gisting Evaluation - Longest Common Subsequence) mengevaluasi kualitas ringkasan yang dihasilkan. Metrik ini mengukur panjang longest common subsequence antara ringkasan kandidat dan ringkasan referensi. Skor ROUGE-L yang tinggi menunjukkan bahwa ringkasan yang dihasilkan menangkap informasi kunci dalam urutan yang koheren.
+    **Apa yang diukur:** ROUGE-L (Recall-Oriented Understudy for Gisting Evaluation - Longest Common Subsequence) mengevaluasi kualitas ringkasan yang dihasilkan. Metrik ini mengukur panjang longest common subsequence (suburutan bersama terpanjang) antara ringkasan kandidat dan ringkasan referensi. Skor ROUGE-L yang tinggi menunjukkan bahwa ringkasan yang dihasilkan menangkap informasi kunci dalam urutan yang koheren.
 
     **Contoh kasus uji eval:** 200 artikel dengan ringkasan referensi.
 
@@ -728,9 +728,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
         return textBlock ? textBlock.text : "";
       }
 
-      // ROUGE-L mengukur "longest common subsequence" (subsekuens umum terpanjang), atau LCS, dari kata-kata antara
-      // ringkasan kandidat dan referensi, yang dilaporkan di sini sebagai skor F1. Tokenisasi
-      // disederhanakan menjadi kata yang dipisahkan spasi; skor dapat berbeda dari pustaka rouge Python.
+      // ROUGE-L mengukur longest common subsequence (LCS) kata antara
+      // ringkasan kandidat dan referensi, dilaporkan di sini sebagai skor F1. Tokenisasi
+      // disederhanakan menjadi kata berbasis spasi; skor mungkin berbeda dari library rouge Python.
       function rougeL(candidate: string, reference: string): number {
         const candidateWords = candidate.toLowerCase().trim().split(/\s+/);
         const referenceWords = reference.toLowerCase().trim().split(/\s+/);
@@ -773,10 +773,10 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       [
           new("In a groundbreaking study, researchers at MIT...",
               "MIT scientists discover a new antibiotic..."),
-          // Edge case: Multitopik
+          // Kasus tepi: Multitopik
           new("Jane Doe, a local hero, made headlines last week for saving... In city hall news, the budget... Meteorologists predict...",
               "Community celebrates local hero Jane Doe while city grapples with budget issues."),
-          // Edge case: Judul menyesatkan
+          // Kasus tepi: Judul menyesatkan
           new("You won't believe what this celebrity did! ... extensive charity work ...",
               "Celebrity's extensive charity work surprises fans"),
           // ... 197 artikel lainnya
@@ -795,9 +795,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           return ContentText(message);
       }
 
-      // ROUGE-L mengukur longest common subsequence (LCS) kata antara ringkasan
-      // kandidat dan ringkasan referensi, dilaporkan di sini sebagai skor F1. Tokenisasi
-      // disederhanakan menjadi kata berbatas spasi; skor dapat berbeda dari pustaka rouge Python.
+      // ROUGE-L mengukur longest common subsequence (suburutan bersama terpanjang), atau LCS, dari kata antara
+      // ringkasan kandidat dan referensi, dilaporkan di sini sebagai skor F1. Tokenisasi
+      // disederhanakan menjadi kata berdasarkan spasi; skor mungkin berbeda dari library rouge Python.
       double RougeL(string candidate, string reference)
       {
           var candidateWords = Regex.Split(candidate.ToLowerInvariant().Trim(), @"\s+");
@@ -898,9 +898,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       	return contentText(message)
       }
 
-      // ROUGE-L mengukur "longest common subsequence" (subsekuens umum terpanjang), atau LCS, dari kata antara
-      // ringkasan kandidat dan ringkasan referensi, yang dilaporkan di sini sebagai skor F1. Tokenisasi
-      // disederhanakan menjadi kata yang dipisahkan spasi; skor dapat berbeda dari pustaka rouge Python.
+      // ROUGE-L mengukur longest common subsequence (LCS) kata antara
+      // ringkasan kandidat dan referensi, dilaporkan di sini sebagai skor F1. Tokenisasi
+      // disederhanakan menjadi kata berbasis spasi; skor mungkin berbeda dari library rouge Python.
       func rougeL(candidate, reference string) float64 {
       	candidateWords := strings.Fields(strings.ToLower(candidate))
       	referenceWords := strings.Fields(strings.ToLower(reference))
@@ -981,7 +981,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       // ROUGE-L mengukur longest common subsequence (LCS) kata antara
       // ringkasan kandidat dan referensi, dilaporkan di sini sebagai skor F1. Tokenisasi
-      // disederhanakan menjadi kata yang dipisahkan spasi; skor dapat berbeda dari pustaka Python rouge.
+      // disederhanakan menjadi kata berbasis spasi; skor mungkin berbeda dari library rouge Python.
       double rougeL(String candidate, String reference) {
           var candidateWords = candidate.toLowerCase().strip().split("\\s+");
           var referenceWords = reference.toLowerCase().strip().split("\\s+");
@@ -1053,7 +1053,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       // ROUGE-L mengukur longest common subsequence (LCS) kata antara
       // ringkasan kandidat dan referensi, dilaporkan di sini sebagai skor F1. Tokenisasi
-      // disederhanakan menjadi kata berbasis spasi; skor dapat berbeda dari pustaka Python rouge.
+      // disederhanakan menjadi kata berbasis spasi; skor mungkin berbeda dari library rouge Python.
       function rougeL(string $candidate, string $reference): float
       {
           $candidateWords = preg_split('/\s+/', strtolower(trim($candidate)));
@@ -1135,9 +1135,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
         content_text(message)
       end
 
-      # ROUGE-L mengukur "longest common subsequence" (subsekuens umum terpanjang), atau LCS, dari kata-kata antara
+      # ROUGE-L mengukur longest common subsequence (LCS) kata antara
       # ringkasan kandidat dan referensi, dilaporkan di sini sebagai skor F1. Tokenisasi
-      # disederhanakan menjadi kata yang dipisahkan spasi; skor dapat berbeda dari pustaka rouge Python.
+      # disederhanakan menjadi kata berbasis spasi; skor mungkin berbeda dari library rouge Python.
       def rouge_l(candidate, reference)
         candidate_words = candidate.downcase.split
         reference_words = reference.downcase.split
@@ -1270,7 +1270,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       5: Perfectly ${targetTone}
       Output only the number.`;
 
-        // Secara umum, praktik terbaiknya adalah menggunakan model yang berbeda untuk mengevaluasi dibandingkan model yang digunakan untuk menghasilkan output yang dievaluasi
+        // Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
         const response = await client.messages.create({
           model: "claude-opus-5",
           max_tokens: 50,
@@ -1299,11 +1299,11 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       ```csharp C#
       Inquiry[] inquiries =
       [
-          // Kasus khusus: Pelanggan yang marah
+          // Kasus tepi: Pelanggan yang marah
           new("This is the third time you've messed up my order. I want a refund NOW!", "empathetic"),
-          // Kasus khusus: Masalah yang kompleks
+          // Kasus tepi: Masalah yang kompleks
           new("I tried resetting my password but then my account got locked...", "patient"),
-          // Kasus khusus: Pujian yang terdengar seperti keluhan
+          // Kasus tepi: Pujian sebagai keluhan
           new("I can't believe how good your product is. It's ruined all others for me!", "professional"),
           // ... 97 pertanyaan lainnya
       ];
@@ -1384,9 +1384,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       }
 
       var inquiries = []inquiry{
-      	// Kasus tepi: Pelanggan marah
+      	// Kasus tepi: Pelanggan yang marah
       	{"This is the third time you've messed up my order. I want a refund NOW!", "empathetic"},
-      	// Kasus tepi: Masalah kompleks
+      	// Kasus tepi: Masalah yang kompleks
       	{"I tried resetting my password but then my account got locked...", "patient"},
       	// Kasus tepi: Pujian sebagai keluhan
       	{"I can't believe how good your product is. It's ruined all others for me!", "professional"},
@@ -1447,11 +1447,11 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       record Inquiry(String text, String tone) {}
 
       List<Inquiry> inquiries = List.of(
-          // Edge case: Pelanggan yang marah
+          // Kasus tepi: Pelanggan marah
           new Inquiry("This is the third time you've messed up my order. I want a refund NOW!", "empathetic"),
-          // Edge case: Masalah yang kompleks
+          // Kasus tepi: Masalah kompleks
           new Inquiry("I tried resetting my password but then my account got locked...", "patient"),
-          // Edge case: Pujian sebagai keluhan
+          // Kasus tepi: Pujian sebagai keluhan
           new Inquiry("I can't believe how good your product is. It's ruined all others for me!", "professional")
           // ... 97 pertanyaan lainnya
       );
@@ -1483,7 +1483,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
               5: Perfectly %1$s
               Output only the number.""".formatted(targetTone, modelOutput);
 
-          // Umumnya merupakan praktik terbaik untuk menggunakan model yang berbeda untuk evaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
+          // Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
           var params = MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5)
               .maxTokens(50L)
@@ -1507,11 +1507,11 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       $client = new Client();
 
       $inquiries = [
-          // Kasus khusus: Pelanggan marah
+          // Kasus tepi: Pelanggan marah
           ['text' => "This is the third time you've messed up my order. I want a refund NOW!", 'tone' => 'empathetic'],
-          // Kasus khusus: Masalah kompleks
+          // Kasus tepi: Masalah kompleks
           ['text' => 'I tried resetting my password but then my account got locked...', 'tone' => 'patient'],
-          // Kasus khusus: Pujian sebagai keluhan
+          // Kasus tepi: Pujian sebagai keluhan
           ['text' => "I can't believe how good your product is. It's ruined all others for me!", 'tone' => 'professional'],
           // ... 97 pertanyaan lainnya
       ];
@@ -1541,7 +1541,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           Output only the number.
           PROMPT;
 
-          // Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi dibandingkan model yang digunakan untuk menghasilkan output yang dievaluasi
+          // Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
           $response = $client->messages->create(
               model: Model::CLAUDE_OPUS_5,
               maxTokens: 50,
@@ -1642,9 +1642,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
   </Accordion>
 
   <Accordion title="Pelestarian privasi (chatbot medis) - klasifikasi biner berbasis LLM">
-    **Apa yang diukur:** Klasifikasi biner menentukan apakah suatu input termasuk dalam salah satu dari dua kelas. Di sini, klasifikasi ini digunakan untuk mengklasifikasikan apakah suatu respons mengandung PHI atau tidak. Metode ini dapat memperhitungkan konteks dan mengidentifikasi bentuk PHI yang halus atau implisit yang mungkin terlewat oleh sistem berbasis aturan.
+    **Apa yang diukur:** Klasifikasi biner menentukan apakah suatu input termasuk dalam salah satu dari dua kelas. Di sini, metode ini digunakan untuk mengklasifikasikan apakah suatu respons mengandung PHI atau tidak. Metode ini dapat memperhitungkan konteks dan mengidentifikasi bentuk PHI yang halus atau implisit yang mungkin terlewat oleh sistem berbasis aturan.
 
-    **Contoh kasus uji eval:** 500 kueri pasien yang disimulasikan, beberapa dengan PHI.
+    **Contoh kasus uji eval:** 500 kueri pasien simulasi, beberapa di antaranya mengandung PHI.
 
     <CodeGroup exclude="shell">
       ```python Python
@@ -1769,7 +1769,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       <response>${modelOutput}</response>
       Output only 'yes' or 'no'.`;
 
-        // Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi dibandingkan model yang digunakan untuk menghasilkan output yang dievaluasi
+        // Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
         const response = await client.messages.create({
           model: "claude-opus-5",
           max_tokens: 50,
@@ -1795,11 +1795,11 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       PatientQuery[] patientQueries =
       [
           new("What are the side effects of Lisinopril?", false),
-          // Kasus khusus (edge case): PHI eksplisit
+          // Kasus tepi: PHI eksplisit
           new("Can you tell me why John Doe, DOB 5/12/1980, was prescribed Metformin?", true),
-          // Kasus khusus (edge case): PHI hipotetis
+          // Kasus tepi: PHI hipotetis
           new("If my friend Alice, who was born on July 4, 1985, had diabetes, what...", true),
-          // Kasus khusus (edge case): PHI implisit
+          // Kasus tepi: PHI implisit
           new("I'm worried about my son. He's been prescribed the same medication as his father last year.", true),
           // ... 496 kueri lainnya
       ];
@@ -1837,7 +1837,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
               Output only 'yes' or 'no'.
               """;
 
-          // Umumnya merupakan praktik terbaik untuk menggunakan model evaluasi yang berbeda dari model yang digunakan untuk menghasilkan output yang dievaluasi
+          // Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
           var response = await client.Messages.Create(new MessageCreateParams
           {
               Model = Model.ClaudeOpus5,
@@ -1934,7 +1934,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       <response>%s</response>
       Output only 'yes' or 'no'.`, modelOutput)
 
-      	// Umumnya praktik terbaik adalah menggunakan model evaluasi yang berbeda dari model yang digunakan untuk menghasilkan output yang dievaluasi
+      	// Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
       	response, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
       		Model:     anthropic.ModelClaudeOpus5,
       		MaxTokens: 50,
@@ -1966,11 +1966,11 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       List<PatientQuery> patientQueries = List.of(
           new PatientQuery("What are the side effects of Lisinopril?", false),
-          // Edge case: PHI eksplisit
+          // Kasus tepi: PHI eksplisit
           new PatientQuery("Can you tell me why John Doe, DOB 5/12/1980, was prescribed Metformin?", true),
-          // Edge case: PHI hipotetis
+          // Kasus tepi: PHI hipotetis
           new PatientQuery("If my friend Alice, who was born on July 4, 1985, had diabetes, what...", true),
-          // Edge case: PHI implisit
+          // Kasus tepi: PHI implisit
           new PatientQuery("I'm worried about my son. He's been prescribed the same medication as his father last year.", true)
           // ... 496 kueri lainnya
       );
@@ -2011,7 +2011,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
               <response>%s</response>
               Output only 'yes' or 'no'.""".formatted(modelOutput);
 
-          // Umumnya merupakan praktik terbaik untuk menggunakan model evaluasi yang berbeda dari model yang digunakan untuk menghasilkan output yang dievaluasi
+          // Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
           var params = MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5)
               .maxTokens(50L)
@@ -2082,7 +2082,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           Output only 'yes' or 'no'.
           PROMPT;
 
-          // Umumnya merupakan praktik terbaik untuk menggunakan model evaluasi yang berbeda dari model yang digunakan untuk menghasilkan output yang dievaluasi
+          // Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
           $response = $client->messages->create(
               model: Model::CLAUDE_OPUS_5,
               maxTokens: 50,
@@ -2168,7 +2168,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           Output only 'yes' or 'no'.
         PROMPT
 
-        # Umumnya merupakan praktik terbaik untuk menggunakan model evaluasi yang berbeda dari model yang digunakan untuk menghasilkan output yang dievaluasi
+        # Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
         response = client.messages.create(
           model: Anthropic::Model::CLAUDE_OPUS_5,
           max_tokens: 50,
@@ -2195,7 +2195,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
   </Accordion>
 
   <Accordion title="Pemanfaatan konteks (asisten percakapan) - skala ordinal berbasis LLM">
-    **Apa yang diukur:** Mirip dengan skala Likert, skala ordinal mengukur pada skala tetap yang berurutan (1–5). Ini sempurna untuk mengevaluasi pemanfaatan konteks karena dapat menangkap sejauh mana model mereferensikan dan membangun di atas riwayat percakapan, yang merupakan kunci untuk interaksi yang koheren dan dipersonalisasi.
+    **Apa yang diukur:** Mirip dengan skala Likert, skala ordinal mengukur pada skala tetap yang berurutan (1–5). Ini sempurna untuk mengevaluasi pemanfaatan konteks karena dapat menangkap sejauh mana model mereferensikan dan membangun di atas riwayat percakapan, yang merupakan kunci untuk interaksi yang koheren dan personal.
 
     **Contoh kasus uji eval:** 100 percakapan multi-giliran dengan pertanyaan yang bergantung pada konteks.
 
@@ -2358,7 +2358,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       5: Perfectly utilizes context
       Output only the number and nothing else.`;
 
-        // Umumnya merupakan praktik terbaik untuk menggunakan model yang berbeda untuk mengevaluasi dibandingkan model yang digunakan untuk menghasilkan output yang dievaluasi
+        // Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
         const response = await client.messages.create({
           model: "claude-opus-5",
           max_tokens: 50,
@@ -2393,19 +2393,19 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
               new("user", "Yes, it is. I named her Luna."),
               new("assistant", "Luna is a lovely name! As a first-time dog owner, you might have some questions. What would you like to know about caring for Luna?"),
               // ...
-              // Kasus khusus: Bergantung pada konteks dari jauh sebelumnya
+              // Kasus tepi: Bergantung pada konteks dari jauh sebelumnya
               new("user", "What should I know about caring for a dog of this specific breed?"),
           ],
           [
               new("user", "I'm reading 'To Kill a Mockingbird' for my book club."),
               new("assistant", "Great choice! 'To Kill a Mockingbird' by Harper Lee is a classic that explores themes of racial injustice and moral growth. How are you finding it so far?"),
-              // Kasus khusus: Perubahan topik yang mendadak
+              // Kasus tepi: Pergeseran topik mendadak
               new("user", "It's powerful. Hey, when was Scout's birthday again?"),
               new("assistant", "I apologize, but I don't recall the exact date of Scout's birthday being mentioned in 'To Kill a Mockingbird'. The novel doesn't focus on such specific details. Instead, it centers on Scout's growth and experiences over several years. Is there a particular part of the book or Scout's development that you're interested in discussing?"),
-              // Kasus khusus: Perubahan topik lainnya
+              // Kasus tepi: Pergeseran topik lainnya
               new("user", "Oh, right. Well, can you suggest a recipe for a classic Southern cake?"),
           ],
-          // ... 98 percakapan lainnya
+          // ... 98 percakapan lagi
       ];
 
       var client = new AnthropicClient();
@@ -2493,13 +2493,13 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       	{
       		{"user", "I'm reading 'To Kill a Mockingbird' for my book club."},
       		{"assistant", "Great choice! 'To Kill a Mockingbird' by Harper Lee is a classic that explores themes of racial injustice and moral growth. How are you finding it so far?"},
-      		// Kasus tepi: Perubahan topik yang mendadak
+      		// Kasus tepi: Pergeseran topik mendadak
       		{"user", "It's powerful. Hey, when was Scout's birthday again?"},
       		{"assistant", "I apologize, but I don't recall the exact date of Scout's birthday being mentioned in 'To Kill a Mockingbird'. The novel doesn't focus on such specific details. Instead, it centers on Scout's growth and experiences over several years. Is there a particular part of the book or Scout's development that you're interested in discussing?"},
-      		// Kasus tepi: Perubahan topik lainnya
+      		// Kasus tepi: Pergeseran topik lainnya
       		{"user", "Oh, right. Well, can you suggest a recipe for a classic Southern cake?"},
       	},
-      	// ... 98 percakapan lainnya
+      	// ... 98 percakapan lagi
       }
 
       var client = anthropic.NewClient()
@@ -2551,7 +2551,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       5: Perfectly utilizes context
       Output only the number and nothing else.`, conversationText.String(), modelOutput)
 
-      	// Praktik terbaik umumnya adalah menggunakan model yang berbeda untuk mengevaluasi dibandingkan model yang digunakan untuk menghasilkan output yang dievaluasi
+      	// Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
       	response, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
       		Model:     anthropic.ModelClaudeOpus5,
       		MaxTokens: 50,
@@ -2589,17 +2589,17 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
               new Turn("user", "Yes, it is. I named her Luna."),
               new Turn("assistant", "Luna is a lovely name! As a first-time dog owner, you might have some questions. What would you like to know about caring for Luna?"),
               // ...
-              // Edge case: Bergantung pada konteks dari jauh sebelumnya
+              // Kasus tepi: Bergantung pada konteks dari jauh sebelumnya
               new Turn("user", "What should I know about caring for a dog of this specific breed?")),
           List.of(
               new Turn("user", "I'm reading 'To Kill a Mockingbird' for my book club."),
               new Turn("assistant", "Great choice! 'To Kill a Mockingbird' by Harper Lee is a classic that explores themes of racial injustice and moral growth. How are you finding it so far?"),
-              // Edge case: Pergeseran topik yang tiba-tiba
+              // Kasus tepi: Pergeseran topik mendadak
               new Turn("user", "It's powerful. Hey, when was Scout's birthday again?"),
               new Turn("assistant", "I apologize, but I don't recall the exact date of Scout's birthday being mentioned in 'To Kill a Mockingbird'. The novel doesn't focus on such specific details. Instead, it centers on Scout's growth and experiences over several years. Is there a particular part of the book or Scout's development that you're interested in discussing?"),
-              // Edge case: Pergeseran topik lainnya
+              // Kasus tepi: Pergeseran topik lainnya
               new Turn("user", "Oh, right. Well, can you suggest a recipe for a classic Southern cake?"))
-          // ... 98 percakapan lainnya
+          // ... 98 percakapan lagi
       );
 
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
@@ -2640,7 +2640,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
               5: Perfectly utilizes context
               Output only the number and nothing else.""".formatted(conversationText, modelOutput);
 
-          // Umumnya merupakan praktik terbaik untuk menggunakan model evaluasi yang berbeda dari model yang digunakan untuk menghasilkan output yang dievaluasi
+          // Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
           var params = MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5)
               .maxTokens(50L)
@@ -2676,13 +2676,13 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           [
               ['role' => 'user', 'content' => "I'm reading 'To Kill a Mockingbird' for my book club."],
               ['role' => 'assistant', 'content' => "Great choice! 'To Kill a Mockingbird' by Harper Lee is a classic that explores themes of racial injustice and moral growth. How are you finding it so far?"],
-              // Kasus tepi: Pergeseran topik yang tiba-tiba
+              // Kasus tepi: Pergeseran topik mendadak
               ['role' => 'user', 'content' => "It's powerful. Hey, when was Scout's birthday again?"],
               ['role' => 'assistant', 'content' => "I apologize, but I don't recall the exact date of Scout's birthday being mentioned in 'To Kill a Mockingbird'. The novel doesn't focus on such specific details. Instead, it centers on Scout's growth and experiences over several years. Is there a particular part of the book or Scout's development that you're interested in discussing?"],
               // Kasus tepi: Pergeseran topik lainnya
               ['role' => 'user', 'content' => 'Oh, right. Well, can you suggest a recipe for a classic Southern cake?'],
           ],
-          // ... 98 percakapan lainnya
+          // ... 98 percakapan lagi
       ];
 
       function getCompletion(Client $client, array $conversation): string
@@ -2711,7 +2711,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           Output only the number and nothing else.
           PROMPT;
 
-          // Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi, bukan model yang digunakan untuk menghasilkan output yang dievaluasi
+          // Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
           $response = $client->messages->create(
               model: Model::CLAUDE_OPUS_5,
               maxTokens: 50,
@@ -2764,13 +2764,13 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
         [
           { role: "user", content: "I'm reading 'To Kill a Mockingbird' for my book club." },
           { role: "assistant", content: "Great choice! 'To Kill a Mockingbird' by Harper Lee is a classic that explores themes of racial injustice and moral growth. How are you finding it so far?" },
-          # Kasus tepi: Perubahan topik yang mendadak
+          # Kasus tepi: Pergeseran topik mendadak
           { role: "user", content: "It's powerful. Hey, when was Scout's birthday again?" },
           { role: "assistant", content: "I apologize, but I don't recall the exact date of Scout's birthday being mentioned in 'To Kill a Mockingbird'. The novel doesn't focus on such specific details. Instead, it centers on Scout's growth and experiences over several years. Is there a particular part of the book or Scout's development that you're interested in discussing?" },
-          # Kasus tepi: Perubahan topik lainnya
+          # Kasus tepi: Pergeseran topik lainnya
           { role: "user", content: "Oh, right. Well, can you suggest a recipe for a classic Southern cake?" }
         ]
-        # ... 98 percakapan lainnya
+        # ... 98 percakapan lagi
       ]
 
       def content_text(message)
@@ -2823,36 +2823,36 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 </AccordionGroup>
 
 <Tip>
-  Menulis ratusan kasus uji secara manual bisa sulit! Minta Claude membantu Anda menghasilkan lebih banyak dari sekumpulan contoh kasus uji dasar.
+  Menulis ratusan kasus uji secara manual bisa jadi sulit! Minta Claude membantu Anda menghasilkan lebih banyak dari sekumpulan contoh kasus uji dasar.
 </Tip>
 
 <Tip>
-  Jika Anda tidak tahu metode eval apa yang mungkin berguna untuk menilai kriteria keberhasilan Anda, Anda juga dapat melakukan brainstorming dengan Claude!
+  Jika Anda tidak tahu metode eval apa yang mungkin berguna untuk menilai kriteria keberhasilan Anda, Anda juga dapat bertukar pikiran dengan Claude!
 </Tip>
 
 ***
 
 ## Nilai evaluasi Anda
 
-Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode yang tercepat, paling andal, dan paling skalabel:
+Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode yang paling cepat, paling andal, dan paling skalabel:
 
-1. **Penilaian berbasis kode:** Tercepat dan paling andal, sangat skalabel, tetapi juga kurang bernuansa untuk penilaian yang lebih kompleks yang memerlukan kekakuan berbasis aturan yang lebih sedikit.
+1. **Penilaian berbasis kode:** Paling cepat dan paling andal, sangat skalabel, tetapi kurang bernuansa untuk penilaian yang lebih kompleks yang memerlukan kekakuan berbasis aturan yang lebih rendah.
 
    * Kecocokan persis: `output == golden_answer`
    * Kecocokan string: `key_phrase in output`
 
 2. **Penilaian manusia:** Paling fleksibel dan berkualitas tinggi, tetapi lambat dan mahal. Hindari jika memungkinkan.
 
-3. **Penilaian berbasis LLM:** Cepat dan fleksibel, skalabel dan cocok untuk penilaian yang kompleks. Uji terlebih dahulu untuk memastikan keandalan, lalu skalakan.
+3. **Penilaian berbasis LLM:** Cepat dan fleksibel, skalabel, dan cocok untuk penilaian kompleks. Uji terlebih dahulu untuk memastikan keandalan, lalu skalakan.
 
 ### Tips untuk penilaian berbasis LLM
 
-* **Miliki rubrik yang detail dan jelas:** "Jawaban harus selalu menyebutkan 'Acme Inc.' di kalimat pertama. Jika tidak, jawaban secara otomatis dinilai sebagai 'incorrect.'"
+* **Miliki rubrik yang detail dan jelas:** "Jawaban harus selalu menyebutkan 'Acme Inc.' di kalimat pertama. Jika tidak, jawaban otomatis dinilai sebagai 'salah.'"
   <Note>
-    Suatu kasus penggunaan, atau bahkan kriteria keberhasilan tertentu untuk kasus penggunaan tersebut, mungkin memerlukan beberapa rubrik untuk evaluasi yang holistik.
+    Suatu kasus penggunaan, atau bahkan kriteria keberhasilan spesifik untuk kasus penggunaan tersebut, mungkin memerlukan beberapa rubrik untuk evaluasi holistik.
   </Note>
 * **Empiris atau spesifik:** Misalnya, instruksikan LLM untuk hanya mengeluarkan 'correct' atau 'incorrect', atau menilai dari skala 1–5. Evaluasi yang murni kualitatif sulit dinilai dengan cepat dan dalam skala besar.
-* **Dorong penalaran:** Minta LLM untuk berpikir terlebih dahulu sebelum memutuskan skor evaluasi, lalu buang penalarannya. Ini meningkatkan kinerja evaluasi, terutama untuk tugas yang memerlukan penilaian kompleks.
+* **Dorong penalaran:** Minta LLM untuk bernalar terlebih dahulu sebelum menghasilkan skor evaluasi, lalu buang penalarannya. Ini meningkatkan kinerja evaluasi, terutama untuk tugas yang memerlukan penilaian kompleks.
 
 <Accordion title="Contoh: Penilaian berbasis LLM">
   <CodeGroup exclude="shell">
@@ -3321,10 +3321,10 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Brainstorming kriteria" icon="link" href="https://claude.ai/">
-    Lakukan brainstorming kriteria keberhasilan untuk kasus penggunaan Anda dengan Claude di claude.ai.\
+  <Card title="Bertukar pikiran tentang kriteria" icon="link" href="https://claude.ai/">
+    Bertukar pikiran tentang kriteria keberhasilan untuk kasus penggunaan Anda bersama Claude di claude.ai.\
     \
-    **Tips:** Masukkan halaman ini ke dalam chat sebagai panduan untuk Claude!
+    **Tip:** Masukkan halaman ini ke dalam chat sebagai panduan untuk Claude!
   </Card>
 
   <Card title="Cookbook eval" icon="link" href="https://platform.claude.com/cookbook/misc-building-evals">

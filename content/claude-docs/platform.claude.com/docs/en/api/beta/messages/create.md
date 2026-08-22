@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/create
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 5ddf75aaca5d763265a3195c02e0c7324f70317c1edda596e5745b5fa0f5e98e
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: e237a2abf8b7a8964b8a0acd24e2c8badb95a6e49189d948adf8aa1357a508a1
 ---
 
 ---
@@ -4005,7 +4005,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       - `version: string`
 
-        Skill version or 'latest' for most recent version
+        The resolved version: a skill version ID for custom skills.
 
   - `content: array of BetaContentBlock`
 

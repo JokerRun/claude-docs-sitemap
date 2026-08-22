@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/home
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 72720cbc8ca6344bdf4c667048b006409d282923b956d8f2b0402265b6f8052c
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 999e37b05a8c9ade3b2e83a3544695e87c423e724fb750fa3f75f10f1b8a8817
 ---
 
 ---
 title: Dokumentasi
 url: https://platform.claude.com/docs/id/home
-description: Dokumentasi API Claude
+description: Dokumentasi Claude API
 ---
 
 <HomePage>
@@ -35,7 +35,7 @@ dengan Claude"
     <HomeSectionHeader label="Platform" title="Pilih cara Anda membangun" description="Pilih antarmuka pengembang yang sesuai dengan pendekatan Anda, dan infrastruktur yang cocok dengan stack Anda." />
 
     <HomePlatformCards>
-      <HomePlatformCard title="Messages" description="Akses model secara langsung. Anda menyusun setiap giliran, mengelola state percakapan, dan menulis loop alat Anda sendiri." pictogram="code-terminal">
+      <HomePlatformCard title="Messages" description="Akses model secara langsung. Anda menyusun setiap giliran, mengelola status percakapan, dan menulis loop alat Anda sendiri." pictogram="code-terminal">
         <HomeCardLink icon="play" href="https://platform.claude.com/docs/id/get-started">
           Mulai cepat
         </HomeCardLink>
@@ -49,7 +49,7 @@ dengan Claude"
         </HomeCardLink>
       </HomePlatformCard>
 
-      <HomePlatformCard title="Managed Agents" description="Infrastruktur agen yang dikelola sepenuhnya. Deploy dan kelola agen otonom dalam sesi stateful dengan riwayat event yang persisten." pictogram="clouds">
+      <HomePlatformCard title="Managed Agents" description="Infrastruktur agen yang dikelola sepenuhnya. Deploy dan kelola agen otonom dalam sesi stateful dengan riwayat peristiwa yang persisten." pictogram="clouds">
         <HomeCardLink icon="play" href="https://platform.claude.com/docs/id/managed-agents/quickstart">
           Mulai cepat
         </HomeCardLink>
@@ -80,7 +80,7 @@ dengan Claude"
   </HomeSection>
 
   <HomeSection>
-    <HomeSectionHeader label="Perjalanan pengembang" title="Dari ide hingga produksi" description="Ikuti siklus hidupnya atau langsung menuju yang Anda butuhkan." />
+    <HomeSectionHeader label="Perjalanan pengembang" title="Dari ide hingga produksi" description="Ikuti siklus hidupnya atau langsung menuju apa yang Anda butuhkan." />
 
     <HomeJourney>
       <HomeJourneyTab label="Messages">
@@ -102,7 +102,7 @@ dengan Claude"
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="message" href="https://platform.claude.com/playground">
-            Coba Workbench
+            Coba API di Playground
           </HomeJourneyLink>
         </HomeJourneyStep>
 
@@ -116,7 +116,7 @@ dengan Claude"
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="image" href="https://platform.claude.com/docs/id/build-with-claude/vision">
-            Vision
+            Visi
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="tool" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview">
@@ -200,7 +200,7 @@ dengan Claude"
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="message" href="https://platform.claude.com/docs/id/managed-agents/onboarding">
-            Buat prototipe di Console
+            Bangun di Console
           </HomeJourneyLink>
         </HomeJourneyStep>
 
@@ -220,7 +220,7 @@ dengan Claude"
 
         <HomeJourneyStep title="Jalankan sesi">
           <HomeJourneyLink icon="wifi-high" href="https://platform.claude.com/docs/id/managed-agents/events-and-streaming">
-            Streaming dan event
+            Streaming dan peristiwa
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="code-brackets" href="https://platform.claude.com/docs/id/api/beta/sessions">
@@ -249,9 +249,9 @@ dengan Claude"
     <HomeSectionHeader label="Model" title="Keluarga model Claude" description="Pilih model yang tepat untuk kasus penggunaan Anda." />
 
     <HomeModelCards>
-      <HomeModelCard name="Fable 5" badge="Paling mumpuni" modelId="claude-fable-5" description="Kapabilitas tertinggi untuk penalaran paling menuntut dan pekerjaan agentik jangka panjang." href="https://platform.claude.com/docs/id/about-claude/models/overview" />
+      <HomeModelCard name="Fable 5" badge="Paling mumpuni" modelId="claude-fable-5" description="Kemampuan tertinggi untuk penalaran paling menuntut dan pekerjaan agentik berjangka panjang." href="https://platform.claude.com/docs/id/about-claude/models/overview" />
 
-      <HomeModelCard name="Opus 5" badge="Tingkat lanjut" modelId="claude-opus-5" description="Sangat baik untuk analisis kompleks, coding, dan tugas kreatif yang membutuhkan penalaran mendalam." href="https://platform.claude.com/docs/id/about-claude/models/overview" />
+      <HomeModelCard name="Opus 5" badge="Tingkat lanjut" modelId="claude-opus-5" description="Sangat baik untuk analisis kompleks, pengodean, dan tugas kreatif yang memerlukan penalaran mendalam." href="https://platform.claude.com/docs/id/about-claude/models/overview" />
 
       <HomeModelCard name="Sonnet 5" badge="Keseimbangan terbaik" modelId="claude-sonnet-5" description="Keseimbangan ideal antara kecerdasan dan kecepatan untuk sebagian besar beban kerja produksi." href="https://platform.claude.com/docs/id/about-claude/models/overview" />
 
@@ -272,15 +272,15 @@ dengan Claude"
       </Card>
 
       <Card icon="play" title="Mulai cepat" href="https://github.com/anthropics/anthropic-quickstarts">
-        Aplikasi starter yang siap di-deploy.
+        Aplikasi awal yang siap di-deploy.
       </Card>
 
-      <Card icon="star" title="Yang terbaru" href="https://platform.claude.com/docs/id/release-notes/overview">
+      <Card icon="star" title="Yang baru" href="https://platform.claude.com/docs/id/release-notes/overview">
         Fitur dan pembaruan terbaru.
       </Card>
 
       <Card icon="terminal" title="Claude Code" href="https://code.claude.com/docs">
-        Asisten coding agentik di terminal Anda.
+        Asisten pengodean agentik di terminal Anda.
       </Card>
     </CardGroup>
   </HomeSection>

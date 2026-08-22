@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/spend-limits-api
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 667f7a609505d0d5516ed3e496b20484b7a526f29cc1de5cd13119cb8c33d659
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: efcb47bba1ba143ca67c087ef5b69f698e704ac45ef1ae9520b6e8b7e24fc15f
 ---
 
 ---
@@ -62,7 +62,7 @@ The `source` field on each member's row tells you which level their spend limit 
 
 ### Period
 
-`period` is the recurring window over which the spend limit is enforced and spend resets. A spend limit is identified by its `(scope, period)` pair. Currently `monthly` is the only supported period; monthly spend resets at 00UTC on the first of each calendar month. Treat `period` as an open set.
+`period` is the recurring window over which the spend limit is enforced and spend resets. A spend limit is identified by its `(scope, period)` pair. Currently `monthly` is the only supported period; monthly spend resets at 00:00 UTC on the first of each calendar month. Treat `period` as an open set.
 
 ### Amounts and currency
 

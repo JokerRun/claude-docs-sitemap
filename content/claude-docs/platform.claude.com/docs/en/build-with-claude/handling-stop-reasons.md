@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 26ef37c1864a0cb2972f51e3242abd902944660dda84c7ba51a3bef654488bc1
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 3faa6789a26a4edec5320307532ea67a52e012d77e2f04e0b3eb9d73c91bde4e
 ---
 
 ---
@@ -904,8 +904,7 @@ Claude stopped because it reached the `max_tokens` limit specified in your reque
 
   <CodeGroup exclude="shell:cURL">
     ```bash CLI
-    RESPONSE=$(ant messages create --max-tokens 1024 \
-      --format jsonl < request.yaml)
+    RESPONSE=$(ant messages create --max-tokens 1024 --format jsonl < request.yaml)
 
     # Check if the response was truncated mid tool use
     STOP_REASON=$(jq -r '.stop_reason' <<<"$RESPONSE")

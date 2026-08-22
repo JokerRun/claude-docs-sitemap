@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/chrome
-fetched_at: 2026-08-15T02:25:10.047250Z
-sha256: 888919f1518b622f77aa4ae4a4ce33f0d85bc8da4cacdd6e482ffc82199f2b9d
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 28f6361b5fc60fcec993c891bfa8ac72d1171950417789e6e7469323bc2fc34f
 ---
 
 > ## Documentation Index
@@ -171,7 +171,7 @@ and attach logs/session.log to it
 
 Three restrictions apply to uploads:
 
-* **Permissions**: Claude can upload a file only when the session is allowed to read it, so [permission rules](/docs/en/settings#permission-settings) that deny `Read` access to a file also block uploading it.
+* **Permissions**: Claude can upload a file only when the session is allowed to read it, so [permission rules](/docs/en/settings-reference#permission-settings) that deny `Read` access to a file also block uploading it.
 * **Size**: a single upload can include up to 10 MB of files in total.
 * **Hard links**: Claude refuses files that have multiple hard links, which is common inside package-manager stores like `node_modules`. Copy the file and upload the copy.
 

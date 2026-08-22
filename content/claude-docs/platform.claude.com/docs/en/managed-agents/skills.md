@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/skills
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 2da85e9987534c8e765038da402c657d946a9ed9d32b50d934610600f01d4eda
+fetched_at: 2026-08-22T02:26:42.682918Z
+sha256: 2dfe9176dcda4c432e72c2565673b400ab382254eaef290d275458b6f304674d
 ---
 
 ---
@@ -39,8 +39,7 @@ These examples omit the optional `display_name` field, so the skill's display na
   ```
 
   ```bash CLI
-  ant skills create \
-    --file example_skill.zip
+  ant skills create --file example_skill.zip
   ```
 
   ```python Python
@@ -156,20 +155,19 @@ These examples omit the optional `display_name` field, so the skill's display na
   ```
 
   ```php PHP
-  // The PHP SDK exposes the Skills API under the beta namespace; field names can differ from other SDKs.
   use Anthropic\Client;
   use Anthropic\Core\FileParam;
 
   $client = new Client();
 
-  $skill = $client->beta->skills->create(
+  $skill = $client->skills->create(
       files: [
-          FileParam::fromResource(fopen('example_skill.zip', 'r'))
+          FileParam::fromResource(fopen('example_skill.zip', 'r')),
       ],
   );
 
   echo "Created skill: {$skill->id}\n";
-  echo "Latest version: {$skill->latestVersion}\n";
+  echo "Latest version: {$skill->latestVersionID}\n";
   ```
 
   ```ruby Ruby
@@ -356,8 +354,8 @@ Each entry in the `skills` array uses the following fields:
       model: 'claude-opus-5',
       system: 'You are a financial analysis agent.',
       skills: [
-          ['type' => 'anthropic', 'skill_id' => 'xlsx'],
-          ['type' => 'custom', 'skill_id' => 'skill_01AbCdEfGhIjKlMnOpQrStUv', 'version' => 'latest'],
+          ['type' => 'anthropic', 'skillID' => 'xlsx'],
+          ['type' => 'custom', 'skillID' => 'skill_01AbCdEfGhIjKlMnOpQrStUv', 'version' => 'latest'],
       ],
   );
   ```
