@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/debug-your-config
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: d26b8bf5e6d486b36a585df3e96ed02c648a38769d709fc158a0c4e2401f0e95
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: 955a45a905fa236f717b246c64468ab803260e8e1c054d522108b87867f0b5de
 ---
 
 > ## Documentation Index
@@ -90,7 +90,7 @@ cd /tmp && CLAUDE_CONFIG_DIR=/tmp/claude-clean claude
 
 The clean session has no user or project settings, hooks, MCP servers, plugins, or memory. On the first launch, expect the first-run setup screens, starting with theme selection. If you see them, the clean configuration directory is in effect. Later launches with the same directory skip these screens because Claude Code saves onboarding state there.
 
-* Managed settings still apply if your organization deploys them, since they live at a system path outside `~/.claude`
+* Managed settings still apply if your organization deploys them. Claude Code reads MDM profiles, registry policy, and `managed-settings.json` from locations outside the configuration directory, and [fetches server-managed settings](/docs/en/server-managed-settings#fetch-and-caching-behavior) again for the clean session once it has credentials
 * On Linux and Windows, you'll be prompted to log in again because credentials are stored under the configuration directory
 * On macOS, credentials are in the Keychain and carry over to the clean session
 

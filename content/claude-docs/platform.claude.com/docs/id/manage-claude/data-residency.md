@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/data-residency
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 185656c6f682c70e3aa62a7222c957ef25e1d9bcd314bd2c837b16339cbd4914
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: 308ed5c691bdfbc1f5595eb6c33c19c195c3fc76571c47b418b23f65f597ba9d
 ---
 
 ---
@@ -17,7 +17,7 @@ Kontrol "data residency" (residensi data) memungkinkan Anda mengelola di mana da
 * **Workspace geo:** Mengontrol di mana data disimpan saat tidak digunakan (at rest) dan di mana pemrosesan endpoint (seperti transcoding gambar dan eksekusi kode) terjadi. Dikonfigurasi di tingkat workspace di [Claude Console](https://platform.claude.com).
 
 <Note>
-  [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) mendukung penyematan geografis di tingkat agen: `inference_geo` pada [konfigurasi model agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#pin-the-inference-geo) menyematkan geografi yang melayani permintaan model untuk sesi yang menjalankan agen tersebut, dengan [override per sesi](https://platform.claude.com/docs/id/managed-agents/sessions#pin-the-inference-geo-for-a-session) saat pembuatan sesi. Agen tanpa penyematan mengikuti inference geo default workspace pada setiap permintaan. Managed Agents juga mematuhi Workspace geo yang dikonfigurasi di Console, dan dengan [sandbox yang di-hosting sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes), eksekusi alat dan sistem file sandbox tetap berada di infrastruktur yang Anda kendalikan; isi dari [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores) yang terlampir tetap disimpan oleh Anthropic dan disalin ke sandbox Anda untuk sesi tersebut.
+  [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) mendukung penyematan geografis di tingkat agen: `inference_geo` pada [konfigurasi model agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#pin-the-inference-geo) menyematkan geografi yang melayani permintaan model untuk sesi yang menjalankan agen tersebut, dengan [override per sesi](https://platform.claude.com/docs/id/managed-agents/sessions#pin-the-inference-geo-for-a-session) saat pembuatan sesi. Agen tanpa penyematan mengikuti inference geo default workspace pada setiap permintaan. Managed Agents juga mematuhi Workspace geo yang dikonfigurasi di Console, dan dengan [sandbox yang di-hosting sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes), eksekusi alat dan sistem file sandbox tetap berada di infrastruktur yang Anda kendalikan.
 </Note>
 
 ## Inference geo

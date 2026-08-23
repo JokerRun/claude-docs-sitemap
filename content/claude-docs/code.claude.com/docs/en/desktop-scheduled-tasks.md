@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop-scheduled-tasks
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: a3818d29e5f008491e8b8db09cc127e1bd0bf987fb17ceab9582007597c571a4
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: 02dae68b604e1323731cb298d98712f97c669ebbab8390ab9896396132d4db2f
 ---
 
 > ## Documentation Index
@@ -43,7 +43,7 @@ Claude Code offers three ways to schedule recurring or one-off work:
 
 ## Create a scheduled task
 
-In the [**Code** tab](/docs/en/desktop), click **Routines** in the sidebar, then click **New routine** and choose **Local**. Configure these fields:
+On Claude Desktop before 1.1.5368, local scheduled tasks aren't available. In the [**Code** tab](/docs/en/desktop), click **Routines** in the sidebar, then click **New routine** and choose **Local**. If **Routines** is missing from the sidebar, update the Desktop app, and check whether [routines are turned off for your organization](/docs/en/routines#routines-are-disabled-by-your-organizations-policy). Configure these fields:
 
 | Field        | Description                                                                                                                                                                                                                                                                    |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

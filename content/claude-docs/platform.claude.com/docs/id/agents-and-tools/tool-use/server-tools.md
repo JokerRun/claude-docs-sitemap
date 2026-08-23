@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 99ffb3cef5abe7d442b20156b7915996ea46a6bab90a9c521a8f6c094a0d0c2f
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: 1055f4d37477b237eb4f84f34c61ec83fb8f92f3b7c9ba95064c26a73aa3215f
 ---
 
 ---
@@ -1077,10 +1077,6 @@ Format domain yang tidak valid ditolak pada saat permintaan dengan 400 `invalid_
 <Warning>
   Karakter Unicode dalam nama domain dapat melewati filter domain melalui serangan homograf: `аmazon.com` (dengan `а` Sirilik) terlihat identik dengan `amazon.com` tetapi merupakan domain yang berbeda. Gunakan nama domain khusus ASCII dalam daftar izin dan blokir, dan audit entri yang ada untuk karakter non-ASCII.
 </Warning>
-
-[Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) menggunakan field `allowed_domains` dan `blocked_domains` yang sama pada entri `web_search` dan `web_fetch` dari toolset agen. Pada Managed Agents, setiap daftar menampung paling banyak 64 entri, domain yang didaftarkan untuk `web_fetch` tidak dapat menyertakan path, dan field yang khusus untuk alat Messages API, seperti `max_uses`, `citations`, dan `cache_control`, tidak tersedia. Lihat [Membatasi domain pencarian web dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains) untuk aturan lengkapnya.
-
-Pengaturan pencarian web dan web fetch tingkat organisasi di Claude Console hanya berlaku untuk permintaan Messages API; pengaturan tersebut tidak berlaku untuk sesi Managed Agents, yang hanya menggunakan daftar per alat pada toolset agen.
 
 ## Pemfilteran dinamis dengan eksekusi kode
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/web-quickstart
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 7d76bc361d6ec9beb08c4a88b9ffc2a5ef6f451ac79c031acd768cf1a13569e8
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: 501f7c7d800e9150167a17386e6cfcbd48e81fc8c700d9b5e6bda50614794035
 ---
 
 > ## Documentation Index
@@ -71,7 +71,7 @@ Setup is a one-time process. If you already use the GitHub CLI, you can [do this
   </Step>
 
   <Step title="Confirm your Default environment">
-    When you finish connecting GitHub, onboarding creates a [cloud environment](/docs/en/cloud-environments) named **Default** for you; if onboarding shows an environment form instead, keep its defaults to create the same **Default** environment. The environment controls what network access Claude has during sessions and what runs when a new session is created. **Default** uses [`Trusted` network access](/docs/en/cloud-environments#access-levels): sessions reach [common package registries](/docs/en/cloud-environments#default-allowed-domains) and other allowlisted domains, and nothing else through the session's network. See [Installed tools](/docs/en/cloud-environments#installed-tools) for what's available without any configuration.
+    If you don't have an environment yet, onboarding creates a [cloud environment](/docs/en/cloud-environments) named **Default** for you when you finish connecting GitHub; if onboarding shows an environment form instead, keep its defaults to create the same **Default** environment. The environment controls what network access Claude has during sessions and what runs when a new session is created. **Default** uses [`Trusted` network access](/docs/en/cloud-environments#access-levels): sessions reach [common package registries](/docs/en/cloud-environments#default-allowed-domains) and other allowlisted domains, and nothing else through the session's network. See [Installed tools](/docs/en/cloud-environments#installed-tools) for what's available without any configuration.
 
     For a first project, the **Default** environment works as is. To change its network access, add environment variables, or run a [setup script](/docs/en/cloud-environments#setup-scripts) before sessions start, [edit it or create additional environments](/docs/en/cloud-environments#configure-your-environment).
   </Step>

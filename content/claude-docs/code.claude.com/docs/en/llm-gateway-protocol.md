@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-protocol
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 84cd39b147ee17a7ff44e0249e8521010577e554667412d1c4837dfc9091affb
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: cd636413e9aaa35671b7b563bc82e25c762500f524b7537c5f99d9833ea0f838
 ---
 
 > ## Documentation Index
@@ -39,7 +39,9 @@ Anything not marked forward unchanged is yours to consume or ignore.
 
 ## API formats
 
-A gateway must expose at least one of the following API formats to Claude Code clients. Which format Claude Code speaks is determined by the client's configuration: the variable in the Selected by column of the table below points Claude Code at your gateway in that format. Google Cloud's Agent Platform is Google Cloud's Claude endpoint, formerly Vertex AI; its variable names keep the `VERTEX` spelling.
+A gateway must expose at least one of the following API formats to Claude Code clients. A client picks a format and points Claude Code at your gateway with the variables in the Selected by column of the table below.
+
+Google Cloud's Agent Platform is Google Cloud's Claude endpoint, formerly Vertex AI; its variable names keep the `VERTEX` spelling.
 
 | Format                                   | Selected by                                                   | Endpoints                                                                                                       | Forward unchanged                                                                                        |
 | :--------------------------------------- | :------------------------------------------------------------ | :-------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------- |

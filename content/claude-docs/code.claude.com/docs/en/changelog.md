@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/changelog
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 0bdb149e3227781d07932af419825604ae8a7b29cf741d7d1d58cd95dc45308f
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: 29f1a880760b883bbaa7fc752e97516c022eeb7111618b83f12955ef50c58422
 ---
 
 > ## Documentation Index
@@ -16,6 +16,14 @@ sha256: 0bdb149e3227781d07932af419825604ae8a7b29cf741d7d1d58cd95dc45308f
 This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md).
 
 Run `claude --version` to check your installed version.
+
+<Update label="2.1.241" description="August 23, 2026">
+  * Bug fixes and reliability improvements
+</Update>
+
+<Update label="2.1.240" description="August 22, 2026">
+  * Bug fixes and reliability improvements
+</Update>
 
 <Update label="2.1.239" description="August 21, 2026">
   * Cost estimates (`/cost`, status line, `--max-budget-usd`) now include the 1.1× US-only-inference premium for data-residency workspaces

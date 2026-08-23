@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/routines
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 8a382034efa38be9c3093b11d847d917a6b21e5014a9033ec096397f9ddcf6f8
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: 59ba25268a873f92008ef3fd3f8177609533205fe92bbea3181fa995b6185a73
 ---
 
 > ## Documentation Index
@@ -51,7 +51,7 @@ Each example pairs a trigger type with the kind of work routines are suited to: 
 
 ## Create a routine
 
-Create a routine from the web at [claude.ai/code/routines](https://claude.ai/code/routines), from the Desktop app, or from the CLI. All three surfaces write to the same cloud account, so a routine you create in one shows up in the others immediately. In the Desktop app's **Code** tab, click **Routines** in the sidebar, then **New routine**, and choose **Cloud**; choosing **Local** instead creates a [Desktop scheduled task](/docs/en/desktop-scheduled-tasks), which runs on your machine rather than in the cloud.
+Create a routine from the web at [claude.ai/code/routines](https://claude.ai/code/routines), from the Desktop app, or from the CLI. All three surfaces write to the same cloud account, so a routine you create in one shows up in the others immediately. In the Desktop app's **Code** tab, click **Routines** in the sidebar, then **New routine**, and choose **Cloud**; choosing **Local** instead creates a [Desktop scheduled task](/docs/en/desktop-scheduled-tasks), which runs on your machine rather than in the cloud. If **Routines** is missing from the Desktop sidebar, routines aren't available to your account; see ["Routines are disabled by your organization's policy"](#routines-are-disabled-by-your-organizations-policy).
 
 The creation form sets up the routine's prompt, repositories, environment, connectors, and triggers.
 

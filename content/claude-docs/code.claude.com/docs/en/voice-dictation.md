@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/voice-dictation
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 6debc97fa1770b2c47af6378e4f6863a6ae13c27f5d127688f39b3540cbfa075
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: 35364a1aebd0263f97a623cf2415536681b50f30ae800e61565265b838ea6702
 ---
 
 > ## Documentation Index
@@ -22,7 +22,6 @@ Dictation also works in [agent view](/docs/en/agent-view#peek-and-reply). Hold o
 Voice dictation streams your recorded audio to Anthropic's servers for transcription. Audio is not processed locally. It needs all of the following:
 
 * **A Claude.ai account**: the speech-to-text service is only available when you authenticate with one, and is not available when Claude Code is configured to use an Anthropic API key directly, Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry.
-* **An organization without HIPAA compliance enabled**: `/voice` shows `Voice mode is disabled by your organization's policy` when this restriction applies.
 * **A local microphone**: voice dictation does not work in remote environments such as [Claude Code on the web](/docs/en/claude-code-on-the-web) or SSH sessions.
 * **WSLg, if you run Claude Code in WSL**: WSLg is included with WSL2 when installed from the Microsoft Store on Windows 10 or 11. If WSLg is not available, for example on WSL1, run Claude Code in native Windows instead.
 
@@ -167,7 +166,7 @@ Some keys are not delivered to terminal applications and can't be bound at all. 
 Common issues when voice dictation does not activate or record:
 
 * **`Voice mode requires a Claude.ai account`**: you are authenticated with an API key or a third-party provider. Run `/login` to sign in with a Claude.ai account.
-* **`Voice mode is disabled by your organization's policy`**: your organization's compliance configuration disables voice dictation, as described in [Requirements](#requirements). Contact your organization administrator to confirm whether voice dictation is available for your organization.
+* **`Voice mode is disabled by your organization's policy`**: an administrator policy for your organization turns off voice dictation. Contact your organization administrator to confirm whether voice dictation is available for your organization.
 * **`Microphone access is denied`**: grant microphone permission to your terminal in system settings. On macOS, go to System Settings → Privacy & Security → Microphone and enable your terminal app, then run `/voice` again. On Windows, go to Settings → Privacy & security → Microphone and turn on microphone access for desktop apps, then run `/voice` again. If your terminal isn't listed in the macOS settings, see [Terminal not listed in macOS Microphone settings](#terminal-not-listed-in-macos-microphone-settings).
 * **`No audio recording tool found` on Linux**: the native audio module could not load and no fallback is installed. Install SoX with the command shown in the error message, for example `sudo apt-get install sox`.
 * **`Voice mode requires a microphone, but SoX could not open an audio capture device`**: SoX is installed, but the host has no audio capture device, for example a headless server or a container. Run Claude Code on a machine with a microphone. As of v2.1.195, Claude Code on Linux reports this message in that situation; earlier versions asked you to install SoX even when it was already installed.

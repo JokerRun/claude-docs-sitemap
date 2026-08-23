@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 84faec5c6b829f03efb3f55893bb6c043a30084db5e34820609af9619704c655
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: 02f132525d009deae88590647bcac872eb2e5d6cca39c4ba3008a0f810db8314
 ---
 
 > ## Documentation Index
@@ -45,7 +45,7 @@ Add `--bare` to reduce startup time by skipping auto-discovery of hooks, skills,
 
 Bare mode is useful for CI and scripts where you need the same result on every machine. A hook in a teammate's `~/.claude` or an MCP server in the project's `.mcp.json` won't run, because bare mode never reads them. A directory you name with `--add-dir` is a partial exception: bare mode loads skills from its `.claude/skills/` folder, but still skips its `.claude/commands/` and `.claude/agents/` folders. [Skills from additional directories](/docs/en/skills#skills-from-additional-directories) covers what does and doesn't load.
 
-Without `--bare`, Claude Code runs the hooks in a project's `.claude/settings.json` even in a folder you've never trusted, because a `-p` session shows no workspace trust dialog. It also connects the servers in the project's `.mcp.json`, because a `-p` session can't show the per-server approval prompt either. [What runs before you trust a folder](/docs/en/permissions#what-runs-before-you-trust-a-folder) covers each kind of repository content under `-p` and how to keep it out.
+Without `--bare`, a `-p` session runs the hooks in a project's `.claude/settings.json` and connects the servers in its `.mcp.json`, even in a folder you've never trusted. A `-p` session shows no workspace trust dialog and no per-server approval prompt. [What runs before you trust a folder](/docs/en/permissions#what-runs-before-you-trust-a-folder) covers each kind of repository content under `-p` and how to keep it out.
 
 This example runs a one-off summarize task in bare mode and pre-approves the Read tool so the call completes without a permission prompt. Set `ANTHROPIC_API_KEY` before running it, because bare mode doesn't use your subscription login:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/overview
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 4b579ccd156a99a5e36ad739bd3171b689e95f8c165204d01ffc72e3e086a658
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: 610f7d102628ee255e44453f5306ba4d56fd76917d7addce5d27d5e9a5af6b8a
 ---
 
 ---
@@ -90,7 +90,7 @@ Claude Managed Agents memberi Claude akses ke sekumpulan alat bawaan:
 
 * **Bash:** Menjalankan perintah shell di sandbox
 * **Operasi file:** Membaca, menulis, mengedit, glob, dan grep file di sandbox
-* **Pencarian dan pengambilan web:** Mencari di web dan mengambil konten dari URL, secara opsional dibatasi pada allowlist atau blocklist domain
+* **Pencarian dan pengambilan web:** Mencari di web dan mengambil konten dari URL
 * **Server MCP:** Terhubung ke penyedia alat eksternal
 
 Lihat [Alat](https://platform.claude.com/docs/id/managed-agents/tools) untuk daftar lengkap dan opsi konfigurasi.

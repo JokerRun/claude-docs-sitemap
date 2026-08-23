@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sessions
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 9ee0c5b49671328551e0db3c9306d7ab030dc9bab308bc75f8e6113fbddfa3e6
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: 7e613c6f2f26063eb3284c7928996ff7a5327d0cb25079d632e6717a917583d4
 ---
 
 > ## Documentation Index
@@ -231,6 +231,8 @@ Three rules apply when you set it:
 Once you've named a config directory's project directory, keep launching with that name. If you start Claude Code with the same `CLAUDE_CONFIG_DIR` but without `CLAUDE_CODE_PROJECT_DIR_NAME`, it reads and writes the derived directory again. The sessions stored under your name stay on disk: press `Ctrl+A` in the [session picker](#use-the-session-picker) to list sessions from every project directory under that config directory, the pinned one included, and whichever way you launch, [`claude --resume <session-id>`](#resume-a-session) finds a session stored under either name.
 
 ## See also
+
+These pages cover related session and parallelism mechanics:
 
 * [Worktrees](/docs/en/worktrees): run isolated parallel sessions on separate branches
 * [Checkpointing](/docs/en/checkpointing): rewind code and conversation to an earlier point

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 755e9982ce8715b15485cdb413bdbb2ddb6233b57f5ad7ebebcfd7377c61b2ad
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: f3a7cab92b17f3d96e1d1db349a5ad4f60bd774a59b2cd11163bd71496a1e09c
 ---
 
 > ## Documentation Index
@@ -795,7 +795,7 @@ A cloud session, on [Claude Code on the web](/docs/en/claude-code-on-the-web) or
 
 * **Shared project settings** (`.claude/settings.json`): read, because the file is part of the clone. Commit a setting there to apply it in cloud sessions.
 * **User and project local settings** (`~/.claude/settings.json` and `.claude/settings.local.json`): not read. Both stay on your machine, and the local file isn't in the clone.
-* **Managed settings**: only [server-managed settings](/docs/en/server-managed-settings) reach a cloud session; a `managed-settings.json` file or MDM profile on your device doesn't. A [self-hosted environment](/docs/en/self-hosted-environments) reads the managed settings file in its runner image only when server-managed settings deliver no keys; see [settings precedence](/docs/en/server-managed-settings#settings-precedence) on that page.
+* **Managed settings**: only [server-managed settings](/docs/en/server-managed-settings) reach a cloud session; a `managed-settings.json` file or MDM profile on your device doesn't. A [self-hosted environment](/docs/en/self-hosted-environments) reads the managed settings file in its runner image only when server-managed settings deliver no keys, apart from the [keys Claude Code reads from every admin source](/docs/en/managed-settings#keys-read-from-every-admin-source); see [settings precedence](/docs/en/server-managed-settings#settings-precedence).
 * **`/config`**: on the web, opens the Claude Code section of your claude.ai settings instead of changing a value. To change a setting for a cloud session, set an [environment variable](/docs/en/cloud-environments#set-environment-variables) on the environment or commit the key to the repository's `.claude/settings.json`.
 
 [What carries over from your setup](/docs/en/cloud-environments#what-carries-over-from-your-setup) lists the rest: `CLAUDE.md`, skills, MCP servers, plugins, and credentials.

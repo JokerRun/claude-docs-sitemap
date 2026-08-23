@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/deep-links
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: dbc863316cdabae5e687f63cb3065b6a58cb3212cd2225433c9e4b0563d802d5
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: b2ae72421804bb771a722a88a711ea7fc742dd630cb85e67effa547f626b8299
 ---
 
 > ## Documentation Index
@@ -86,8 +86,7 @@ Use `cwd` when everyone who clicks the link has the project at the same absolute
 
 Use `repo` when the link is shared and each person clones to a different location. Claude Code resolves the slug to a local path as follows:
 
-* Each time you run `claude` in a Git repository, Claude Code records that directory's path against the repository's GitHub `owner/name` slug.
-* When a deep link arrives, `repo` opens whichever matching path you used most recently. Claude Code tracks multiple clones and worktrees separately, so it picks the one you worked in last.
+* `repo` opens the linked repository's clone or worktree where you most recently ran `claude`. Each time you run `claude` in a Git repository, Claude Code records that directory's path against the repository's GitHub `owner/name` slug. Claude Code tracks clones and worktrees separately.
 * The link does not change which branch is checked out. The session opens in whatever state that directory is currently in.
 
 The welcome header shows which path it picked so you can confirm the right clone opened.

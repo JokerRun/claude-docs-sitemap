@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/overview
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 90d25c34fd498466dd542efdce020716da3eda0be48a21fb275f8cfc76436a0d
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: 656ebc6422aa6514f9e09c5a80686653552f08815fd9fb5e805b56293c89f897
 ---
 
 ---
@@ -24,10 +24,6 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 * [Files API](https://platform.claude.com/docs/id/build-with-claude/files) kini tersedia secara umum di Claude API. Permintaan ke endpoint `/v1/files`, dan permintaan Messages API yang mereferensikan file yang diunggah, tidak lagi memerlukan header beta `files-api-2025-04-14`. Permintaan yang dikirim tanpa header tersebut menggunakan format respons GA: [kedaluwarsa file](https://platform.claude.com/docs/id/build-with-claude/files#file-expiration) (atur `expires_in_seconds` saat Anda mengunggah file; objek file melaporkan `expires_at`), serta [paginasi](https://platform.claude.com/docs/id/api/overview#pagination) `page` dan `next_page` ditambah filter `ids[]` saat Anda [mencantumkan file](https://platform.claude.com/docs/id/build-with-claude/files#list-files). Permintaan `/v1/files` yang masih mengirim header beta tetap berfungsi dan mengembalikan format respons sebelumnya.
 * [Agent Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview) dan Skills API (`/v1/skills`) kini tersedia secara umum di Claude API. Permintaan tidak lagi memerlukan header beta `skills-2025-10-02`, termasuk permintaan Messages API yang memuat Skills melalui parameter `container`. Permintaan yang masih mengirim header tersebut tetap berfungsi tanpa perubahan. Lihat [Menggunakan Agent Skills dengan API](https://platform.claude.com/docs/id/build-with-claude/skills-guide).
 * Endpoint manajemen pengguna [Admin API](https://platform.claude.com/docs/id/api/admin) untuk organisasi **Claude Enterprise** (claude.ai) (anggota, undangan, grup, dan peran kustom) kini tersedia secara umum. Header `anthropic-beta: ce-user-management-2026-07-13` tidak lagi diperlukan pada permintaan grup dan peran kustom; permintaan yang masih mengirimnya diterima tanpa perubahan. Lihat [Manajemen pengguna](https://platform.claude.com/docs/id/manage-claude/user-management).
-
-- Anda kini dapat membatasi situs mana yang dapat dijangkau oleh alat `web_search` dan `web_fetch` milik agen Claude Managed Agents. Atur `allowed_domains` atau `blocked_domains` pada entri alat tersebut di array `configs` `agent_toolset_20260401`; `web_fetch` juga menerima `max_content_tokens` dan `web_search` menerima `user_location`. Setiap entri `configs` diidentifikasi oleh `name`-nya dan diberi tipe oleh `type` opsional, dan permintaan yang hanya meneruskan `name`, `enabled`, dan `permission_policy` tetap berfungsi; di SDK bertipe, entri `configs` menjadi tipe per alat. Lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
-- Sesi Claude Managed Agents yang berjalan di [sandbox yang di-hosting sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes) kini dapat melampirkan [memory store](https://platform.claude.com/docs/id/managed-agents/memory). Worker SDK Python, TypeScript, dan Go mengunduh setiap store yang dilampirkan ke dalam sandbox pada `mount_path`-nya dan menyinkronkan perubahan agen kembali ke store. Lihat [Menggunakan memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores).
-- Penampil sesi di Claude Console telah didesain ulang dengan minimap linimasa, transkrip yang dikelompokkan berdasarkan permintaan model, dan panel Inspector untuk detail dan biaya sesi, event mentah, statistik per alat, sumber daya yang di-mount, dan aktivitas per thread. Lihat [Observabilitas Console](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#console-observability).
 
 ### 18 Agustus 2026
 

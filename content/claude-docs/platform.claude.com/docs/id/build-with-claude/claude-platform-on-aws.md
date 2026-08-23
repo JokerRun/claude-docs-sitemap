@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 42dc39370aec718e7b437fabc233ab7983f691da2e7bc5fc5421e5837e1da0a1
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: 833a0387eb555d08a4501d27012cb300ba5ec9d98f6ae835723529d6f91bc680
 ---
 
 ---
@@ -557,10 +557,9 @@ Lihat [tabel perbandingan](https://platform.claude.com/docs/id/build-with-claude
 
 [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) tersedia di Claude Platform on AWS, termasuk [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup), [environment](https://platform.claude.com/docs/id/managed-agents/environments), [sesi](https://platform.claude.com/docs/id/managed-agents/sessions), [credential vault](https://platform.claude.com/docs/id/managed-agents/vaults), [memory store](https://platform.claude.com/docs/id/managed-agents/memory), [webhook](https://platform.claude.com/docs/id/managed-agents/webhooks), [orkestrasi multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), dan [sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes).
 
-Perilaku sesi di Claude Platform on AWS berbeda dari Claude Managed Agents pihak pertama dalam dua hal:
+Perilaku sesi di Claude Platform on AWS berbeda dari Claude Managed Agents pihak pertama dalam satu hal:
 
 * **Autentikasi ulang sesi otonom:** Sebuah sesi dapat berjalan secara otonom, tanpa [event pengguna](https://platform.claude.com/docs/id/managed-agents/reference#event-types) apa pun, hingga 6 jam. Setelah 6 jam, sesi memerlukan autentikasi ulang sebelum berlanjut. Untuk mengautentikasi ulang, kirim event user-role apa pun ke sesi tersebut (lihat [Event dan streaming](https://platform.claude.com/docs/id/managed-agents/events-and-streaming)). Claude Managed Agents pihak pertama tidak memiliki batas waktu berjalan untuk sesi otonom.
-* **[Memory store di environment self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores):** Sesi yang berjalan di environment self-hosted tidak dapat melampirkan memory store; sesi yang menyertakannya ditolak saat pembuatan. Sesi di environment cloud melampirkan memory store seperti biasa. Pada Claude Managed Agents pihak pertama, sesi di environment cloud maupun self-hosted dapat melampirkan memory store.
 
 ### Fitur yang tidak didukung
 

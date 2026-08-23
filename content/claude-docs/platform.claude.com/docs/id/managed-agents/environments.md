@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: d3d6bc8f0846c871348307404288a861b17f2c206ebbd4609a226215697c4b43
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: a647ea4df3426c40c039ccfa60da140486de3fd40007c910f69b255035029ec9
 ---
 
 ---
@@ -404,7 +404,7 @@ Package manager yang didukung:
 
 ### Networking
 
-Field `networking` mengontrol akses jaringan keluar dari sandbox. Field ini tidak memengaruhi alat `web_search` atau `web_fetch`, yang berjalan di server Anthropic; untuk membatasi situs yang dapat dijangkau oleh alat-alat tersebut, atur `allowed_domains` atau `blocked_domains` pada entri alat tersebut di toolset agen. Lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
+Field `networking` mengontrol akses jaringan keluar dari sandbox. Field ini tidak memengaruhi domain yang diizinkan untuk alat `web_search` atau `web_fetch`.
 
 | Mode           | Deskripsi                                                                                                                                                               |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

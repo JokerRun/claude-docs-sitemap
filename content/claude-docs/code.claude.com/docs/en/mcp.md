@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: a1d28e56781c11d48ec954313afbf1b52ce26943a3d449145e88ec253b1993c1
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: 9ea29d271dd355b4baf8d3ab06df92ddc7d05203de2d837716ac01044b3c4c34
 ---
 
 > ## Documentation Index
@@ -665,7 +665,7 @@ Claude Code marks a remote server as needing authentication when the server resp
 
 When a request to an OAuth server you already signed in to returns `401 Unauthorized`, Claude Code refreshes the stored token, reconnects, and retries the request once. It flags the server in `/mcp` only if that retry also fails. Before v2.1.206, a token refresh that failed for a transient reason, such as a network error, flagged an OAuth server as needing authentication for the rest of the session even though its refresh token was still valid.
 
-When a token refresh fails because the server rejects the stored refresh token, Claude Code immediately shows a notice pointing at `/mcp`. The connected server's menu there offers Re-authenticate, so you can sign in again before the next tool call fails.
+When the server rejects the stored refresh token, Claude Code immediately shows a notice pointing at `/mcp`. Open `/mcp` and select **Re-authenticate** on the server to sign in again before the next tool call fails.
 
 A custom server that returns a `WWW-Authenticate` header pointing to its authorization server gets the same automatic discovery as any other remote server.
 

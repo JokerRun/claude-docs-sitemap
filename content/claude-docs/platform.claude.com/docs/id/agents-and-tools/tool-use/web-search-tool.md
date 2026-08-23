@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: b3fbcf287dc1b13449ac0ac229421d5c154255d52140cdf14b6cc77a1d5317d1
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: d8f8592fdba137ab835327d79536cbca42bcd9bdbda3daeba1bc9ae24c9af018
 ---
 
 ---
@@ -244,8 +244,6 @@ Contoh berikut menggunakan `web_search_20260318`:
   Pencarian web diaktifkan untuk organisasi Anda kecuali administrator telah menonaktifkannya di [Claude Console](https://platform.claude.com/settings/privacy), tempat mereka juga dapat membatasi domain mana yang dicari. Jika dinonaktifkan, permintaan yang menyertakan alat ini gagal dengan 400 `invalid_request_error` yang menyatakan bahwa pencarian web tidak diaktifkan, bukan [kode error](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#errors) di dalam hasil pencarian.
 </Note>
 
-Pengaturan tingkat organisasi di Claude Console ini hanya berlaku untuk permintaan Messages API. Sesi [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) hanya menggunakan daftar `allowed_domains` dan `blocked_domains` per alat pada toolset agen; lihat [Membatasi domain pencarian web dan pengambilan web](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
-
 Sediakan alat pencarian web dalam permintaan API Anda:
 
 <CodeGroup>
@@ -455,8 +453,6 @@ Sediakan `allowed_domains` atau `blocked_domains`, bukan keduanya. Jika perminta
 
 Untuk aturan pemfilteran domain selengkapnya, lihat [Pemfilteran domain](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#domain-filtering) dalam panduan Alat server.
 
-Pada [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), atur field ini pada entri `web_search` di toolset agen; lihat [Membatasi domain pencarian web dan pengambilan web](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
-
 ### Lokalisasi
 
 Parameter `user_location` memungkinkan Anda melokalisasi hasil pencarian berdasarkan lokasi pengguna. Sediakan setidaknya salah satu dari `city`, `region`, `country`, atau `timezone`.
@@ -466,8 +462,6 @@ Parameter `user_location` memungkinkan Anda melokalisasi hasil pencarian berdasa
 * `region`: Wilayah atau negara bagian
 * `country`: Kode negara dua huruf [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). API menolak kode negara yang tidak didukung dengan error 400.
 * `timezone`: [ID zona waktu IANA](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
-
-Pada Claude Managed Agents, entri `web_search` di toolset agen menerima objek `user_location` dengan field yang sama. API menolak kode `country` yang tidak didukung dengan error 400 saat Anda membuat atau memperbarui agen, atau saat Anda membuat atau memperbarui sesi yang menyediakan pengaturan tersebut. Lihat [Membatasi domain pencarian web dan pengambilan web](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
 
 ### Penyertaan respons
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: d6997cbf68d4f24f41e1fef461bd1c8ebe827b19257ee4951bc88b1a5320a82e
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: e4425076c790bf18e8c979804cb90639ae23b49199bfc48e67abc540479e8f43
 ---
 
 ---
@@ -13,7 +13,7 @@ description: Jalankan sesi Claude Managed Agents di sandbox self-hosted, sehingg
 
 Secara default, Managed Agents mengeksekusi alat dan kode di dalam [sandbox cloud yang dikelola Anthropic](https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference). "Self-hosted sandboxes" (sandbox yang di-hosting sendiri) mempertahankan orkestrasi di sisi Anthropic tetapi memindahkan eksekusi alat ke infrastruktur yang Anda kendalikan, sehingga kode, filesystem, dan egress jaringan agen tidak pernah meninggalkan lingkungan Anda.
 
-Eksekusi alat tetap berada di host Anda: filesystem yang dibaca dan ditulis agen, proses yang dijalankannya, dan jaringan yang dapat dijangkaunya semuanya berada di bawah kendali Anda. Input dan output alat tetap mengalir ke control plane Anthropic (tempat Claude berjalan) sehingga model dapat melihat hasil dan menentukan langkah selanjutnya. [Skills](https://platform.claude.com/docs/id/managed-agents/skills) agen dan isi [memory store](https://platform.claude.com/docs/id/managed-agents/memory) apa pun yang dilampirkan ke sesi disimpan oleh Anthropic dan disalin ke sandbox Anda untuk sesi tersebut; perubahan yang dibuat agen pada file memori disinkronkan kembali ke store. Lihat [model keamanan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-security) untuk batas aliran data selengkapnya.
+Eksekusi alat tetap berada di host Anda: filesystem yang dibaca dan ditulis agen, proses yang dijalankannya, dan jaringan yang dapat dijangkaunya semuanya berada di bawah kendali Anda. Input dan output alat tetap mengalir ke control plane Anthropic (tempat Claude berjalan) sehingga model dapat melihat hasil dan menentukan langkah selanjutnya. Lihat [model keamanan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-security) untuk batas aliran data selengkapnya.
 
 <Note>
   Sandbox self-hosted mendukung semua model Claude yang tersedia di Managed Agents, termasuk Claude Opus 4.8 dan Claude Opus 5. Model dikonfigurasi pada [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup), bukan pada environment.
@@ -21,13 +21,12 @@ Eksekusi alat tetap berada di host Anda: filesystem yang dibaca dan ditulis agen
 
 ## Perbedaannya dengan environment cloud
 
-|                               | Environment cloud                         | Sandbox self-hosted                                        |
-| ----------------------------- | ----------------------------------------- | ---------------------------------------------------------- |
-| Tempat alat berjalan          | Sandbox yang dikelola Anthropic           | Infrastruktur Anda                                         |
-| Jangkauan jaringan            | Kontrol egress Anthropic                  | Kebijakan jaringan Anda                                    |
-| Mounting file dan repo GitHub | Dikelola oleh Anthropic                   | Dikelola oleh Anda                                         |
-| Memory store                  | Di-mount oleh Anthropic di `/mnt/memory/` | Diunduh ke `/mnt/memory/` dan disinkronkan oleh worker SDK |
-| Siklus hidup                  | Dikelola oleh Anthropic                   | Dikelola oleh Anda                                         |
+|                               | Environment cloud               | Sandbox self-hosted     |
+| ----------------------------- | ------------------------------- | ----------------------- |
+| Tempat alat berjalan          | Sandbox yang dikelola Anthropic | Infrastruktur Anda      |
+| Jangkauan jaringan            | Kontrol egress Anthropic        | Kebijakan jaringan Anda |
+| Mounting file dan repo GitHub | Dikelola oleh Anthropic         | Dikelola oleh Anda      |
+| Siklus hidup                  | Dikelola oleh Anthropic         | Dikelola oleh Anda      |
 
 Self-hosting cocok ketika agen perlu beroperasi pada data yang tidak boleh meninggalkan batas jaringan Anda, menjangkau layanan internal yang tidak dapat dirutekan secara publik, atau berjalan di bawah kontrol kepatuhan dan audit organisasi Anda sendiri.
 
@@ -53,7 +52,6 @@ CLI dan SDK sama-sama menyediakan worker siap pakai. CLI `ant` hanya mendukung p
 
 * **`/workspace`:** direktori kerja default sistem untuk eksekusi alat dan pengunduhan skill. Flag `--workdir` pada CLI secara default menggunakan direktori saat ini; berikan `--workdir /workspace` agar sesuai dengan default sistem. Skills diunduh ke `<workdir>/skills/<name>/`. Jika Anda menggunakan direktori kerja yang berbeda, perbarui prompt sistem agen Anda agar Claude dapat menemukan file skill.
 * **Output:** pada environment self-hosted, prompt sistem sesi menghilangkan instruksi `/mnt/session/outputs` yang digunakan pada sandbox yang dikelola Anthropic, sehingga hasil akhir berada di mana pun agen menulisnya di filesystem sandbox Anda, biasanya di bawah direktori kerja.
-* **`/mnt/memory/`:** memory store yang dilampirkan ke sesi diwujudkan di sini oleh worker SDK, satu direktori per store pada `mount_path` store tersebut (misalnya, `/mnt/memory/user-preferences/`). Worker membuat direktori ini saat mengklaim sesi dan menghapusnya saat sesi berakhir; lihat [Menggunakan memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores).
 
 ## Sebelum Anda mulai
 
@@ -62,13 +60,10 @@ Anda memerlukan:
 * **Agen yang sudah ada.** Jika Anda belum memilikinya, selesaikan [Quickstart](https://platform.claude.com/docs/id/managed-agents/quickstart) terlebih dahulu dan catat ID agennya.
 * **Host Linux** dengan `/bin/bash` di path persis tersebut. Alat bash milik worker memanggilnya secara langsung, tanpa memeriksa `PATH`. SDK TypeScript juga memerlukan `unzip` dan `tar` pada `PATH` serta Node.js 22 atau lebih baru; SDK Python dan Go menggunakan pustaka standarnya untuk ekstraksi arsip dan tidak memiliki persyaratan biner tambahan.
 * **CLI `ant` atau SDK Anthropic** (Python, TypeScript, atau Go) di host worker.
-* **Kredensial:** environment key (dibuat di Console pada langkah-langkah berikut) mengautentikasi worker ke antreannya; kunci API Claude Anda membuat sesi dan membaca statistik antrean dari luar host worker. Pembuatan key hanya dapat dilakukan di Console. Work item yang diklaim juga membawa `secret` per sesi yang digunakan worker untuk me-mount [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores); Anda tidak membuatnya, tetapi dalam pola sandbox-per-sesi Anda sendiri yang meneruskannya ke dalam sandbox (lihat [Menjalankan satu sandbox per sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-one-sandbox-per-session)).
-* **Untuk memory store, host yang sudah disiapkan.** Jika sesi pada environment ini akan melampirkan memory store, siapkan `/mnt/memory` di host worker sebelum Anda memulai worker; lihat [Menyiapkan host](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#prepare-the-host).
+* **Dua kredensial:** environment key (dibuat di Console pada langkah-langkah berikut) mengautentikasi worker ke antreannya; kunci API Claude Anda membuat sesi dan membaca statistik antrean dari luar host worker. Pembuatan key hanya dapat dilakukan di Console.
 
 <Note>
   Pada [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), worker melakukan autentikasi dengan AWS IAM (SigV4) atau [kunci API yang dibuat di AWS Console](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#api-key-authentication), bukan environment key. Lampirkan managed policy [`AnthropicSelfHostedEnvironmentAccess`](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#managed-policies) ke IAM principal yang digunakan worker Anda. Environment key yang dibuat di Claude Console tidak berfungsi dengan endpoint Claude Platform on AWS.
-
-  Memory store tidak dapat dilampirkan ke sesi pada environment self-hosted di Claude Platform on AWS.
 </Note>
 
 <Steps>
@@ -270,7 +265,7 @@ Pilih **always-on** untuk penyiapan paling sederhana: proses yang berjalan lama 
         ENTRYPOINT ["ant", "beta:worker", "run"]
         ```
 
-        Kemudian tulis skrip spawn yang meneruskan detail sesi ke sandbox baru. Poller menyuntikkan `ANTHROPIC_SESSION_ID`, `ANTHROPIC_WORK_ID`, `ANTHROPIC_ENVIRONMENT_ID`, dan `ANTHROPIC_ENVIRONMENT_KEY` ke environment skrip, dan menulis work item yang diklaim ke standard input skrip sebagai JSON, termasuk `secret` per sesi milik work item ketika Anthropic menerbitkannya. `ANTHROPIC_BASE_URL` bersifat opsional dan hanya diteruskan jika diatur di host poller; variabel ini menimpa endpoint API default. Dalam contoh, `/host/outputs` adalah direktori host yang Anda pilih; direktori ini di-bind-mount ke direktori kerja sandbox (`/workspace`) sehingga Anda dapat mengambil hasil sesi setelah sandbox keluar. Pada environment self-hosted, agen menulis hasil di bawah direktori kerja, bukan `/mnt/session/outputs` (lihat [Filesystem sandbox](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#sandbox-filesystem)), sehingga me-mount direktori kerja adalah cara untuk menangkapnya; mount tersebut juga mengambil pohon `skills/` yang diunduh dan file perantara apa pun yang dibuat agen.
+        Kemudian tulis skrip spawn yang meneruskan detail sesi ke sandbox baru. Poller menyuntikkan `ANTHROPIC_SESSION_ID`, `ANTHROPIC_WORK_ID`, `ANTHROPIC_ENVIRONMENT_ID`, dan `ANTHROPIC_ENVIRONMENT_KEY` ke environment skrip. `ANTHROPIC_BASE_URL` bersifat opsional dan hanya diteruskan jika diatur di host poller; variabel ini menimpa endpoint API default. Dalam contoh, `/host/outputs` adalah direktori host yang Anda pilih; direktori ini di-bind-mount ke direktori kerja sandbox (`/workspace`) sehingga Anda dapat mengambil hasil sesi setelah sandbox keluar. Pada environment self-hosted, agen menulis hasil di bawah direktori kerja, bukan `/mnt/session/outputs` (lihat [Filesystem sandbox](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#sandbox-filesystem)), sehingga me-mount direktori kerja adalah cara untuk menangkapnya; mount tersebut juga mengambil pohon `skills/` yang diunduh dan file perantara apa pun yang dibuat agen.
 
         ```bash
         #!/bin/bash
@@ -282,8 +277,6 @@ Pilih **always-on** untuk penyiapan paling sederhana: proses yang berjalan lama 
           -v "/host/outputs/$ANTHROPIC_SESSION_ID":/workspace \
           your-image
         ```
-
-        Entrypoint `ant beta:worker run` tidak me-mount [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores). Jika sesi pada environment ini melampirkan memory store, pertahankan poller, tetapi bangun image per sesi berbasis worker SDK dan perluas skrip spawn untuk meneruskan `secret` milik work item ke dalam sandbox, seperti ditunjukkan di [Menjalankan satu sandbox per sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-one-sandbox-per-session).
 
         Mulai poller yang menunjuk ke skrip tersebut:
 
@@ -303,9 +296,7 @@ Pilih **always-on** untuk penyiapan paling sederhana: proses yang berjalan lama 
         <CodeGroup exclude="shell">
           ```python Python
           import asyncio
-          import contextlib
           import os
-          import signal
           from anthropic import AsyncAnthropic
           from anthropic.lib.environments import EnvironmentWorker
 
@@ -314,20 +305,12 @@ Pilih **always-on** untuk penyiapan paling sederhana: proses yang berjalan lama 
               environment_key = os.environ["ANTHROPIC_ENVIRONMENT_KEY"]
               environment_id = os.environ["ANTHROPIC_ENVIRONMENT_ID"]
               async with AsyncAnthropic(auth_token=environment_key) as client:
-                  worker = EnvironmentWorker(
+                  await EnvironmentWorker(
                       client,
                       environment_id=environment_id,
                       environment_key=environment_key,
                       workdir="/workspace",
-                  )
-                  task = asyncio.create_task(worker.run())
-                  # Membatalkan task, alih-alih mematikan proses, memungkinkan worker menghentikan
-                  # item pekerjaan yang sedang berjalan dan mengunggah file memori yang berubah sebelum keluar.
-                  loop = asyncio.get_running_loop()
-                  for signum in (signal.SIGINT, signal.SIGTERM):
-                      loop.add_signal_handler(signum, task.cancel)
-                  with contextlib.suppress(asyncio.CancelledError):
-                      await task
+                  ).run()
 
 
           asyncio.run(main())
@@ -341,9 +324,6 @@ Pilih **always-on** untuk penyiapan paling sederhana: proses yang berjalan lama 
           const environmentId = process.env.ANTHROPIC_ENVIRONMENT_ID!;
           const client = new Anthropic({ authToken: environmentKey });
           const controller = new AbortController();
-          // Membatalkan pada salah satu sinyal memungkinkan worker mengunggah file memori yang berubah dan menghapus
-          // direktori store-nya sebelum proses keluar.
-          process.once("SIGINT", () => controller.abort());
           process.once("SIGTERM", () => controller.abort());
 
           await new EnvironmentWorker({
@@ -428,53 +408,22 @@ Pilih **always-on** untuk penyiapan paling sederhana: proses yang berjalan lama 
       <Step title="Implementasikan handler webhook">
         `EnvironmentWorker` mengklaim work item, mengunduh skills, mengeksekusi panggilan alat di direktori kerja, mengirim hasilnya kembali, lalu keluar. Panggil saat `session.status_run_started` terpicu.
 
-        Ketika Anda sendiri menyerahkan work item yang diklaim ke `handle_item()`, seperti yang dilakukan handler ini, teruskan `secret` milik work item sebagai `work_secret` (`workSecret` di TypeScript, `WorkSecret` di Go) agar sesi dapat me-mount [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores) apa pun yang dilampirkan padanya. Handler seperti ini menjalankan setiap item yang diklaim dalam satu proses di satu host, sehingga dua sesi yang melampirkan memory store yang sama tidak dapat berjalan melaluinya secara bersamaan (lihat [Menyiapkan host](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#prepare-the-host)); jika sesi Anda berbagi store, luncurkan [satu sandbox per sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-one-sandbox-per-session) sebagai gantinya.
-
         <CodeGroup exclude="shell">
           ```python Python
-          import asyncio
           import os
           import anthropic
-          import standardwebhooks  # installed by the anthropic[webhooks] extra
 
           environment_key = os.environ["ANTHROPIC_ENVIRONMENT_KEY"]
           environment_id = os.environ["ANTHROPIC_ENVIRONMENT_ID"]
           client = anthropic.AsyncAnthropic(
               auth_token=environment_key,
           )
-          # Cancelled by shutdown() so an in-flight work item can upload changed memory files and
-          # remove its store directories before the process exits.
-          inflight: set[asyncio.Task[None]] = set()
 
 
-          # Await this from the host's shutdown hook, such as an ASGI lifespan shutdown (the code after
-          # `yield` in a FastAPI lifespan), which uvicorn runs on SIGTERM. uvicorn lets open requests
-          # finish before that hook runs, so set --timeout-graceful-shutdown to bound the wait.
-          async def shutdown() -> None:
-              for task in inflight:
-                  task.cancel()
-              await asyncio.gather(*inflight, return_exceptions=True)
-
-
-          async def handle(raw: bytes, headers: dict[str, str]) -> tuple[dict[str, str], int]:
-              try:
-                  event = client.beta.webhooks.unwrap(raw.decode(), headers=headers)
-              except standardwebhooks.WebhookVerificationError:
-                  return {"error": "signature verification failed"}, 401
+          async def handle(raw: bytes, headers: dict[str, str]) -> dict:
+              event = client.beta.webhooks.unwrap(raw.decode(), headers=headers)
               if event.data.type != "session.status_run_started":
-                  return {"status": "ignored"}, 200
-              task = asyncio.create_task(run_queued_work())
-              inflight.add(task)
-              task.add_done_callback(inflight.discard)
-              try:
-                  # Shielded: a dropped or timed-out delivery must not cancel the item; shutdown() does.
-                  await asyncio.shield(task)
-              except asyncio.CancelledError:
-                  return {"status": "shutting down"}, 503
-              return {"status": "ok"}, 200
-
-
-          async def run_queued_work() -> None:
+                  return {"status": "ignored"}
               async for work in client.beta.environments.work.poller(
                   environment_id=environment_id,
                   environment_key=environment_key,
@@ -488,9 +437,8 @@ Pilih **always-on** untuk penyiapan paling sederhana: proses yang berjalan lama 
                       environment_id=environment_id,
                       session_id=work.data.id,
                       environment_key=environment_key,
-                      # The per-session secret is what lets the worker mount the session's memory stores.
-                      work_secret=work.secret,
                   )
+              return {"status": "ok"}
           ```
 
           ```typescript TypeScript
@@ -501,16 +449,8 @@ Pilih **always-on** untuk penyiapan paling sederhana: proses yang berjalan lama 
           const client = new Anthropic({
             authToken: environmentKey
           });
-          // Call shutdown.abort() from the host's SIGTERM/SIGINT handler, alongside closing the server,
-          // then wait for in-flight handle() calls before exiting: the abort lets a running work item
-          // upload changed memory files and remove its store directories first.
-          export const shutdown = new AbortController();
 
           export async function handle(req: Request): Promise<Response> {
-            // Never acknowledge a delivery whose work will not run here; a 503 makes the sender retry.
-            if (shutdown.signal.aborted) {
-              return Response.json({ status: "shutting down" }, { status: 503 });
-            }
             const body = await req.text();
             let event;
             try {
@@ -528,22 +468,14 @@ Pilih **always-on** untuk penyiapan paling sederhana: proses yang berjalan lama 
               blockMs: null,
               reclaimOlderThanMs: 2000,
               drain: true,
-              autoStop: false,
-              signal: shutdown.signal
+              autoStop: false
             })) {
               await client.beta.environments.work.worker({ workdir: "/workspace" }).handleItem({
                 workId: work.id,
                 environmentId,
                 sessionId: work.data.id,
-                environmentKey,
-                // The per-session secret is what lets the worker mount the session's memory stores.
-                workSecret: work.secret ?? undefined,
-                signal: shutdown.signal
+                environmentKey
               });
-            }
-            // The poller and handleItem return quietly on abort, so a drain cut short lands here.
-            if (shutdown.signal.aborted) {
-              return Response.json({ status: "shutting down" }, { status: 503 });
             }
             return Response.json({ status: "ok" });
           }
@@ -560,13 +492,10 @@ Pilih **always-on** untuk penyiapan paling sederhana: proses yang berjalan lama 
           import (
           	"context"
           	"encoding/json"
-          	"errors"
           	"io"
           	"log/slog"
           	"net/http"
           	"os"
-          	"os/signal"
-          	"syscall"
 
           	"github.com/anthropics/anthropic-sdk-go"
           	"github.com/anthropics/anthropic-sdk-go/lib/environments"
@@ -584,9 +513,6 @@ Pilih **always-on** untuk penyiapan paling sederhana: proses yang berjalan lama 
           	worker = environments.NewEnvironmentWorker(client, environments.EnvironmentWorkerOptions{
           		Workdir: "/workspace",
           	})
-          	// Dibatalkan pada SIGINT atau SIGTERM (diatur di main) agar work item yang sedang berjalan dapat
-          	// mengunggah file memori yang berubah dan menghapus direktori store-nya sebelum keluar.
-          	shutdown context.Context
           )
 
           func handle(w http.ResponseWriter, r *http.Request) {
@@ -605,18 +531,16 @@ Pilih **always-on** untuk penyiapan paling sederhana: proses yang berjalan lama 
           		return
           	}
 
-          	// Go SDK tidak menyediakan kemudahan RunOne: kuras item yang tertunda
+          	// SDK Go tidak menyediakan fungsi praktis RunOne: kuras item yang tertunda
           	// dengan WorkPoller dan jalankan masing-masing dengan HandleItem.
-          	// Lepaskan dari r.Context(): sesi dapat bertahan lebih lama dari batas waktu pengiriman webhook.
-          	// Konteks shutdown tingkat proses tetap mengakhiri item dengan bersih pada SIGTERM.
-          	ctx := shutdown
+          	// Lepaskan dari r.Context(): sesi dapat bertahan melebihi batas waktu pengiriman webhook.
+          	ctx := context.Background()
           	poller := environments.NewWorkPoller(ctx, client, environments.WorkPollerOptions{
           		EnvironmentID:      environmentID,
           		EnvironmentKey:     environmentKey,
           		BlockMs:            param.Null[int64](),
           		ReclaimOlderThanMs: param.NewOpt[int64](2000),
           		Drain:              true,
-          		AutoStop:           param.NewOpt(false),
           	})
           	defer poller.Close()
           	for poller.Next() {
@@ -626,8 +550,6 @@ Pilih **always-on** untuk penyiapan paling sederhana: proses yang berjalan lama 
           			EnvironmentID:  item.EnvironmentID,
           			SessionID:      item.Data.ID,
           			EnvironmentKey: environmentKey,
-          			// Secret per sesi inilah yang memungkinkan worker memasang memory store milik sesi.
-          			WorkSecret: item.Secret,
           		}); err != nil {
           			slog.Error("handle work item", "work_id", item.ID, "err", err)
           			http.Error(w, "internal error", http.StatusInternalServerError)
@@ -643,23 +565,10 @@ Pilih **always-on** untuk penyiapan paling sederhana: proses yang berjalan lama 
           }
 
           func main() {
-          	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
-          	defer stop()
-          	shutdown = ctx
-
-          	server := &http.Server{Addr: ":8080"}
           	http.HandleFunc("POST /webhook", handle)
-          	go func() {
-          		if err := server.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
-          			slog.Error("http server", "err", err)
-          			os.Exit(1)
-          		}
-          	}()
-          	// Saat ada sinyal, berhenti menerima pengiriman dan kembali hanya setelah handler yang sedang berjalan,
-          	// dan karenanya teardown memori work item mereka, telah selesai.
-          	<-ctx.Done()
-          	if err := server.Shutdown(context.Background()); err != nil {
-          		slog.Error("http shutdown", "err", err)
+          	if err := http.ListenAndServe(":8080", nil); err != nil {
+          		slog.Error("http server", "err", err)
+          		os.Exit(1)
           	}
           }
 
@@ -692,15 +601,14 @@ SDK menyediakan tiga helper dengan tingkat kontrol yang berbeda. `EnvironmentWor
 * **`EnvironmentWorker`:** worker siap pakai. Menangani polling, penyiapan, dan eksekusi dari awal hingga akhir.
 
   * `.run()`: berjalan tanpa batas waktu, mengambil sesi saat tiba.
-  * `.handle_item()`: menangani satu work item yang diklaim lalu keluar. Berikan identifier work, sesi, dan environment secara eksplisit, atau biarkan ia membaca variabel `ANTHROPIC_*` yang diatur `ant beta:worker poll --on-work` untuk proses yang dijalankannya. Agar sesi dapat me-mount [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores)-nya, berikan juga `secret` milik work item sebagai `work_secret` (`workSecret` di TypeScript, `WorkSecret` di Go) atau atur `ANTHROPIC_WORK_SECRET`; `ant beta:worker poll --on-work` tidak mengatur variabel tersebut, jadi baca secret dari JSON work item yang ditulisnya ke standard input skrip Anda, seperti ditunjukkan di [Menjalankan satu sandbox per sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-one-sandbox-per-session).
-  * `memory_sync_interval` (`memorySyncIntervalMs` di TypeScript, `MemorySyncInterval` di Go) dan `memory_sync_deletions` (`memorySyncDeletions`, `MemorySyncDeletions`): seberapa sering memory store yang dilampirkan direkonsiliasi dengan server saat sesi berjalan, dan apakah file yang dihapus agen secara lokal juga dihapus dari store. Lihat [Mengonfigurasi sinkronisasi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#configure-sync) untuk satuan, default, dan cara menonaktifkan dukungan memori.
+  * `.handle_item()`: menangani satu work item yang diklaim lalu keluar. Berikan identifier work, sesi, dan environment secara eksplisit, atau biarkan ia membaca variabel `ANTHROPIC_*` yang diatur `ant beta:worker poll --on-work` untuk proses yang dijalankannya.
 
 * **`work.poller()`:** melakukan polling antrean kerja atas nama Anda dan memberi Anda setiap sesi yang diklaim. Gunakan ini ketika Anda ingin menentukan apa yang terjadi untuk setiap sesi, misalnya meluncurkan sandbox alih-alih menjalankan alat secara in-process.
 
   * `drain`: apakah polling dihentikan setelah antrean kosong alih-alih menunggu pekerjaan baru.
   * `block_ms`: berapa lama menunggu pekerjaan tiba sebelum kembali, dalam milidetik. Harus antara 1 dan 999 (waktu tunggu per polling; helper melakukan polling ulang secara otomatis). Berikan `null` (`None` di Python, `param.Null[int64]()` di Go) untuk pemeriksaan non-blocking; menghilangkan parameter ini akan menggunakan long-poll default 999 ms.
   * `reclaim_older_than_ms`: mengklaim ulang work item yang sudah diklaim tetapi tidak pernah di-acknowledge dalam jumlah milidetik ini.
-  * `auto_stop` (`autoStop` di TypeScript, `AutoStop` di Go): apakah sinyal stop dikirim untuk setiap work item setelah badan loop Anda selesai menanganinya. Matikan ketika proses yang Anda luncurkan untuk sesi, bukan badan loop, yang menjalankan work item hingga selesai.
+  * `auto_stop`: apakah sinyal stop dikirim untuk setiap work item setelah badan loop Anda selesai menanganinya. Poller Go tidak memiliki opsi untuk menonaktifkannya dan selalu mengirim sinyal stop, jadi blokir di badan loop hingga sesi selesai alih-alih melepaskannya.
 
 * **`client.beta.sessions.events.tool_runner()`:** menjalankan panggilan alat untuk satu sesi, dengan ID sesi dan daftar alat yang diberikan. Gunakan ketika Anda sudah mengklaim pekerjaan dan hanya memerlukan lapisan eksekusi.
 
@@ -726,31 +634,12 @@ Gunakan work poller secara langsung ketika Anda ingin meluncurkan proses per ses
   from anthropic import AsyncAnthropic
   from anthropic.types.beta.environments import BetaSelfHostedWork
 
-  SANDBOX_ENV = (
-      "ANTHROPIC_ENVIRONMENT_ID",
-      "ANTHROPIC_ENVIRONMENT_KEY",
-      "ANTHROPIC_WORK_ID",
-      "ANTHROPIC_SESSION_ID",
-      "ANTHROPIC_WORK_SECRET",
-      "ANTHROPIC_BASE_URL",  # forwarded only when set on this host
-  )
-
 
   async def launch_container(work: BetaSelfHostedWork) -> None:
+      # Ganti dengan peluncur sandbox per sesi milik Anda sendiri. Teruskan
+      # ANTHROPIC_ENVIRONMENT_KEY ke sandbox yang diluncurkan, jangan pernah
+      # kunci API Anda.
       print(f"claimed session {work.data.id}")
-      # Ganti `docker run` dengan peluncur sandbox Anda sendiri. Teruskan kunci
-      # environment (jangan pernah kunci API Anda) dan secret per sesi milik item kerja: worker
-      # di dalamnya memerlukan secret tersebut untuk memasang penyimpanan memori sesi.
-      env = os.environ | {
-          "ANTHROPIC_WORK_ID": work.id,
-          "ANTHROPIC_SESSION_ID": work.data.id,
-          "ANTHROPIC_WORK_SECRET": work.secret or "",
-      }
-      forward = [arg for name in SANDBOX_ENV for arg in ("-e", name)]
-      launcher = await asyncio.create_subprocess_exec(
-          "docker", "run", "--rm", "--detach", *forward, "your-sdk-worker-image", env=env
-      )
-      await launcher.wait()
 
 
   async def main() -> None:
@@ -769,43 +658,19 @@ Gunakan work poller secara langsung ketika Anda ingin meluncurkan proses per ses
   ```
 
   ```typescript TypeScript
-  import { spawn } from "node:child_process";
-  import { once } from "node:events";
   import Anthropic from "@anthropic-ai/sdk";
   import { WorkPoller } from "@anthropic-ai/sdk/helpers/beta/environments";
   import type { BetaSelfHostedWork } from "@anthropic-ai/sdk/resources/beta/environments";
-
-  const SANDBOX_ENV = [
-    "ANTHROPIC_ENVIRONMENT_ID",
-    "ANTHROPIC_ENVIRONMENT_KEY",
-    "ANTHROPIC_WORK_ID",
-    "ANTHROPIC_SESSION_ID",
-    "ANTHROPIC_WORK_SECRET",
-    "ANTHROPIC_BASE_URL" // forwarded only when set on this host
-  ];
 
   const environmentKey = process.env.ANTHROPIC_ENVIRONMENT_KEY!;
   const environmentId = process.env.ANTHROPIC_ENVIRONMENT_ID!;
   const client = new Anthropic({ authToken: environmentKey });
 
   async function launchContainer(work: BetaSelfHostedWork): Promise<void> {
+    // Ganti dengan peluncur sandbox per sesi milik Anda sendiri. Teruskan
+    // ANTHROPIC_ENVIRONMENT_KEY ke sandbox yang diluncurkan, jangan pernah
+    // kunci API Anda.
     console.log(`claimed session ${work.data.id}`);
-    // Ganti `docker run` dengan peluncur sandbox Anda sendiri. Teruskan kunci
-    // environment (jangan pernah kunci API Anda) dan secret per sesi milik item kerja:
-    // worker di dalamnya memerlukan secret tersebut untuk memasang penyimpanan memori sesi.
-    const env = {
-      ...process.env,
-      ANTHROPIC_WORK_ID: work.id,
-      ANTHROPIC_SESSION_ID: work.data.id,
-      ANTHROPIC_WORK_SECRET: work.secret ?? ""
-    };
-    const forward = SANDBOX_ENV.flatMap((name) => ["-e", name]);
-    const launcher = spawn(
-      "docker",
-      ["run", "--rm", "--detach", ...forward, "your-sdk-worker-image"],
-      { env, stdio: "inherit" }
-    );
-    await once(launcher, "close");
   }
 
   const poller = new WorkPoller({
@@ -833,40 +698,18 @@ Gunakan work poller secara langsung ketika Anda ingin meluncurkan proses per ses
   	"fmt"
   	"log"
   	"os"
-  	"os/exec"
 
   	"github.com/anthropics/anthropic-sdk-go"
   	"github.com/anthropics/anthropic-sdk-go/lib/environments"
   	"github.com/anthropics/anthropic-sdk-go/option"
-  	"github.com/anthropics/anthropic-sdk-go/packages/param"
   )
 
-  var sandboxEnv = []string{
-  	"ANTHROPIC_ENVIRONMENT_ID",
-  	"ANTHROPIC_ENVIRONMENT_KEY",
-  	"ANTHROPIC_WORK_ID",
-  	"ANTHROPIC_SESSION_ID",
-  	"ANTHROPIC_WORK_SECRET",
-  	"ANTHROPIC_BASE_URL", // forwarded only when set on this host
-  }
-
-  func launchContainer(ctx context.Context, work *anthropic.BetaSelfHostedWork) error {
+  func launchContainer(work *anthropic.BetaSelfHostedWork) {
+  	// Ganti dengan peluncur sandbox per sesi milik Anda sendiri. Poller Go
+  	// memanggil work.Stop saat fungsi ini kembali (tidak ada opsi untuk
+  	// menonaktifkan auto-stop), jadi blokir di sini hingga sesi selesai alih-alih
+  	// melepaskan diri seperti yang dilakukan tab Python dan TypeScript.
   	fmt.Printf("claimed session %s\n", work.Data.ID)
-  	// Ganti `docker run` dengan peluncur sandbox Anda sendiri. Teruskan kunci
-  	// environment (jangan pernah kunci API Anda) dan secret per sesi milik item kerja: worker
-  	// di dalamnya memerlukan secret tersebut untuk memasang penyimpanan memori sesi.
-  	args := []string{"run", "--rm", "--detach"}
-  	for _, name := range sandboxEnv {
-  		args = append(args, "-e", name)
-  	}
-  	launcher := exec.CommandContext(ctx, "docker", append(args, "your-sdk-worker-image")...)
-  	launcher.Env = append(os.Environ(),
-  		"ANTHROPIC_WORK_ID="+work.ID,
-  		"ANTHROPIC_SESSION_ID="+work.Data.ID,
-  		"ANTHROPIC_WORK_SECRET="+work.Secret,
-  	)
-  	launcher.Stdout, launcher.Stderr = os.Stdout, os.Stderr
-  	return launcher.Run()
   }
 
   func main() {
@@ -880,7 +723,6 @@ Gunakan work poller secara langsung ketika Anda ingin meluncurkan proses per ses
   	poller := environments.NewWorkPoller(ctx, client, environments.WorkPollerOptions{
   		EnvironmentID:  environmentID,
   		EnvironmentKey: environmentKey,
-  		AutoStop:       param.NewOpt(false), // the launched sandbox owns the stop call
   	})
   	defer poller.Close()
 
@@ -888,9 +730,7 @@ Gunakan work poller secara langsung ketika Anda ingin meluncurkan proses per ses
   		if err != nil {
   			log.Fatal(err)
   		}
-  		if err := launchContainer(ctx, work); err != nil {
-  			log.Fatal(err)
-  		}
+  		launchContainer(work)
   	}
   }
   ```
@@ -906,14 +746,12 @@ Gunakan work poller secara langsung ketika Anda ingin meluncurkan proses per ses
   ```
 
   ```ruby Ruby
-  # Helper polling pekerjaan saat ini belum tersedia di Ruby SDK.
+  # Helper work-polling saat ini belum tersedia di Ruby SDK.
   # Untuk mengklaim pekerjaan secara langsung, lihat endpoint Environments Work.
   ```
 </CodeGroup>
 
-Apa pun yang meluncurkan sandbox harus meneruskan `secret` milik work item yang diklaim ke dalamnya (misalnya sebagai `ANTHROPIC_WORK_SECRET`) bersama identifier sesi, work, dan environment, agar worker di dalamnya dapat me-mount [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores) sesi; lihat [Menjalankan satu sandbox per sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-one-sandbox-per-session).
-
-**`AgentToolContext`** adalah konteks eksekusi untuk panggilan alat. Ia mendefinisikan direktori kerja dan kebijakan path, serta dapat mengunduh skills sesi. Alat file (`read`, `write`, `edit`, `glob`, `grep`) dibatasi pada direktori kerja ditambah direktori apa pun yang tercantum di `allowed_roots` (`allowedRoots` di TypeScript, `AllowedRoots` di Go), dan `write` serta `edit` juga menolak path di bawah `read_only_roots` (`readOnlyRoots`, `ReadOnlyRoots`). `EnvironmentWorker` sendiri menambahkan direktori memory store sesi ke daftar-daftar ini. Pembatasan ini hanya merupakan pagar pengaman untuk alat file, bukan sandbox; ia tidak membatasi `bash`. **`beta_agent_toolset_20260401(env)`** menerima `AgentToolContext` dan mengembalikan implementasi alat standar (`bash`, `read`, `write`, `edit`, `glob`, `grep`).
+**`AgentToolContext`** adalah konteks eksekusi untuk panggilan alat. Ia mendefinisikan direktori kerja dan kebijakan path, serta dapat mengunduh skills sesi. **`beta_agent_toolset_20260401(env)`** menerima `AgentToolContext` dan mengembalikan implementasi alat standar (`bash`, `read`, `write`, `edit`, `glob`, `grep`).
 
 **Dengan `EnvironmentWorker`:** keduanya dikelola secara otomatis. Berikan factory `tools` untuk menyesuaikan daftar alat:
 
@@ -1120,257 +958,10 @@ Anthropic tidak memasang (mount) file atau repositori GitHub ke dalam sandbox se
 </CodeGroup>
 
 <Note>
-  Sandbox self-hosted hanya mendukung resource `memory_store`; lihat [Menggunakan memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores). Sesi pada environment self-hosted yang menyertakan resource `file` atau `github_repository` ditolak dengan error 400:
-
-  ```text wrap
-  Environment env_... is a self-hosted environment. `resources` are not supported with self-hosted environments.
-  ```
-
-  [Deployment](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments) yang menargetkan environment self-hosted mengikuti aturan yang sama.
+  Sandbox self-hosted tidak mendukung entri `resources`; sesi yang menyertakan resource apa pun pada environment self-hosted akan ditolak.
 </Note>
 
 Lihat [Worker self-hosted](https://platform.claude.com/docs/id/managed-agents/reference#self-hosted-worker) di referensi untuk daftar lengkap flag CLI, dan [Helper SDK](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#sdk-helpers) untuk opsi helper SDK.
-
-## Menggunakan memory store
-
-Sesi pada environment self-hosted melampirkan [memory store](https://platform.claude.com/docs/id/managed-agents/memory) persis seperti sesi pada environment cloud: cantumkan di `resources` saat Anda membuat sesi, seperti ditunjukkan di [Melampirkan memory store ke sesi](https://platform.claude.com/docs/id/managed-agents/memory#attach-a-memory-store-to-a-session). Sebuah sesi menerima hingga 8 memory store. Pada environment self-hosted, worker SDK, bukan infrastruktur Anthropic, yang mewujudkan setiap store untuk agen, sehingga memory store di sana memerlukan `EnvironmentWorker` (atau metode `handle_item()`-nya) dari SDK Python, TypeScript, atau Go.
-
-Worker CLI `ant` (`ant beta:worker poll` dan `ant beta:worker run`) tidak memasang memory store. Untuk menggabungkan poller CLI dengan memory store, jalankan worker SDK di dalam sandbox per sesi seperti dijelaskan di [Menjalankan satu sandbox per sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-one-sandbox-per-session).
-
-Memory store tidak dapat dilampirkan ke sesi pada environment self-hosted di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws).
-
-### Cara worker menangani memori
-
-Ketika worker mengklaim item kerja yang sesinya memiliki memory store terlampir, worker:
-
-1. Mengunduh setiap store terlampir ke `mount_path`-nya di host worker, dengan autentikasi menggunakan `secret` per sesi milik item kerja. `mount_path` adalah direktori yang sama di bawah `/mnt/memory/` yang digunakan sesi cloud (misalnya, `/mnt/memory/user-preferences/` untuk store bernama "User Preferences"), dan prompt sistem sesi mendeskripsikannya kepada agen.
-2. Menambahkan direktori tersebut ke root yang diizinkan untuk alat file, dan direktori store yang dilampirkan dengan `access: "read_only"` ke root read-only-nya, sehingga agen bekerja pada memori dengan alat `read`, `write`, `edit`, `glob`, dan `grep` yang sama seperti yang digunakannya di direktori kerja.
-3. Merekonsiliasi perubahan lokal dan remote setelah pemanggilan alat, paling banyak sekali per interval sinkronisasi (15 detik secara default): memori yang berubah di store ditulis ke disk, dan file yang diubah agen diunggah ke store.
-4. Menjalankan sinkronisasi akhir saat sesi berakhir, menuntaskan unggahan yang masih tertunda hingga 30 detik, lalu menghapus direktori yang dibuatnya. Worker yang dibatalkan saat sesi berjalan melewatkan sinkronisasi akhir tetapi tetap mengunggah file yang berubah dan menghapus direktori sebelum keluar.
-
-Memory store di sisi Anthropic tetap menjadi sumber kebenaran. [Versi memori](https://platform.claude.com/docs/id/managed-agents/memory#audit-memory-changes), redaksi, serta melihat atau mengedit memori di Console berfungsi seperti pada sesi cloud, dan pembacaan serta penulisan memori oleh agen muncul di [event stream](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) sebagai event alat biasa. Karena setiap worker melakukan sinkronisasi berdasarkan interval, perubahan yang ditulis di satu sesi baru terlihat oleh sesi lain yang sedang berjalan setelah keduanya tersinkronisasi, biasanya jauh di bawah satu menit pada interval default; sesi pada sandbox cloud melihat perubahan satu sama lain hampir seketika.
-
-Setiap direktori store berisi file penanda bernama `.anthropic-memory-store` yang mengikat direktori tersebut ke store-nya. Biarkan file itu di tempatnya: worker tidak menyinkronkan direktori yang penandanya hilang atau diubah.
-
-### Menyiapkan host
-
-Memory store pada sandbox self-hosted memerlukan filesystem POSIX di host worker (host Linux dari [Sebelum Anda memulai](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#before-you-begin)); host Windows tidak didukung, karena worker memerlukan `O_NOFOLLOW` saat membuka file memori. Filesystem yang case-sensitive direkomendasikan, agar path memori yang hanya berbeda huruf besar-kecilnya tidak bertabrakan.
-
-Sebelum Anda memulai worker, buat direktori induk dan jadikan dapat ditulis oleh pengguna yang menjalankan worker:
-
-```bash
-sudo mkdir -p /mnt/memory && sudo chown "$USER" /mnt/memory
-```
-
-Jangan membuat direktori per store sendiri. Worker membuat direktori `mount_path` setiap store (misalnya, `/mnt/memory/user-preferences`) saat sesi dimulai, menolak memulai pekerjaan sesi jika sudah ada sesuatu di path tersebut, dan menghapus direktori saat sesi berakhir. Dua aturan operasional berikut berlaku:
-
-* **Jalankan satu sesi per filesystem ketika sesi melampirkan store yang sama.** Dua sesi tidak dapat memasang store yang sama pada satu host secara bersamaan, karena keduanya memerlukan path yang sama. Memberi setiap sesi sandbox-nya sendiri, seperti dijelaskan di [Menjalankan satu sandbox per sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-one-sandbox-per-session), memenuhi aturan ini.
-* **Hentikan worker dengan anggun (gracefully).** Ketika Anda menghentikan worker saat sesi berjalan, `EnvironmentWorker` mengunggah file memori sesi yang berubah dan menghapus direktori store-nya hanya jika worker dibatalkan, bukan dimatikan paksa (killed): proses yang dimatikan paksa tidak menjalankan teardown, dan worker tidak memasang signal handler sendiri. Hubungkan SIGTERM dan SIGINT ke pembatalan di proses yang menjalankannya: abort `signal` yang Anda teruskan ke worker di TypeScript, batalkan context di Go, dan di Python batalkan task yang menjalankan `run()` atau `handle_item()` dari signal handler. Kemudian hentikan worker dengan SIGTERM dan beri waktu setidaknya 30 detik untuk keluar sebelum hard kill apa pun, karena unggahan akhir dapat memakan waktu selama itu. Jika worker dimatikan paksa sebelum teardown-nya berjalan, hapus direktori store yang tersisa di bawah `/mnt/memory/` sebelum sesi berikutnya yang melampirkan store tersebut; setiap edit di dalamnya yang belum tersinkronisasi akan hilang.
-
-### Menjalankan satu sandbox per sesi
-
-Pola sandbox-per-sesi di [Menjalankan worker](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-a-worker) memberi setiap sesi filesystem baru, yang merupakan hal yang diminta oleh [Menyiapkan host](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#prepare-the-host) ketika sesi melampirkan store yang sama. Pertahankan `ant beta:worker poll --on-work` (atau work poller SDK) sebagai poller di host.
-
-Entrypoint `ant beta:worker run` yang ditunjukkan di sana tidak memasang memory store, jadi bangun image per sesi di sekitar worker SDK sebagai gantinya: entrypoint-nya membuat `EnvironmentWorker` dan memanggil `handle_item()` (`handleItem` di TypeScript, `HandleItem` di Go), yang membaca pengenal sesi, kerja, dan environment dari variabel `ANTHROPIC_*` serta `secret` per sesi milik item kerja dari `ANTHROPIC_WORK_SECRET`. Anda juga dapat meneruskan secret secara eksplisit sebagai `work_secret` (`workSecret` di TypeScript, `WorkSecret` di Go).
-
-<CodeGroup exclude="shell">
-  ```python Python
-  import asyncio
-  import contextlib
-  import os
-  import signal
-  from anthropic import AsyncAnthropic
-  from anthropic.lib.environments import EnvironmentWorker
-
-
-  async def main() -> None:
-      async with AsyncAnthropic(auth_token=os.environ["ANTHROPIC_ENVIRONMENT_KEY"]) as client:
-          worker = EnvironmentWorker(client, workdir="/workspace")
-          # Tanpa argumen, handle_item() membaca variabel ANTHROPIC_* yang diteruskan oleh
-          # skrip spawn, termasuk ANTHROPIC_WORK_SECRET.
-          task = asyncio.create_task(worker.handle_item())
-          # Membatalkan task saat container dihentikan memungkinkan worker mengunggah
-          # file memori yang berubah dan menghapus direktori store sebelum keluar.
-          loop = asyncio.get_running_loop()
-          for signum in (signal.SIGINT, signal.SIGTERM):
-              loop.add_signal_handler(signum, task.cancel)
-          with contextlib.suppress(asyncio.CancelledError):
-              await task
-
-
-  asyncio.run(main())
-  ```
-
-  ```typescript TypeScript
-  import Anthropic from "@anthropic-ai/sdk";
-  import { EnvironmentWorker } from "@anthropic-ai/sdk/helpers/beta/environments";
-
-  const client = new Anthropic({ authToken: process.env.ANTHROPIC_ENVIRONMENT_KEY });
-  const controller = new AbortController();
-  // Membatalkan saat container dihentikan memungkinkan worker mengunggah file memori yang berubah
-  // dan menghapus direktori store sebelum keluar.
-  process.once("SIGTERM", () => controller.abort());
-  process.once("SIGINT", () => controller.abort());
-
-  // Tanpa argumen, handleItem() membaca variabel ANTHROPIC_* yang diteruskan oleh skrip
-  // spawn, termasuk ANTHROPIC_WORK_SECRET.
-  await new EnvironmentWorker({
-    client,
-    workdir: "/workspace",
-    signal: controller.signal
-  }).handleItem();
-  ```
-
-  ```csharp C#
-  // EnvironmentWorker saat ini belum tersedia di C# SDK.
-  ```
-
-  ```go Go
-  package main
-
-  import (
-  	"context"
-  	"log"
-  	"os"
-  	"os/signal"
-  	"syscall"
-
-  	"github.com/anthropics/anthropic-sdk-go"
-  	"github.com/anthropics/anthropic-sdk-go/lib/environments"
-  	"github.com/anthropics/anthropic-sdk-go/option"
-  )
-
-  func main() {
-  	// Membatalkan context saat container dihentikan memungkinkan worker mengunggah
-  	// file memori yang berubah dan menghapus direktori store sebelum keluar.
-  	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
-  	defer stop()
-
-  	client := anthropic.NewClient(option.WithAuthToken(os.Getenv("ANTHROPIC_ENVIRONMENT_KEY")))
-  	worker := environments.NewEnvironmentWorker(client, environments.EnvironmentWorkerOptions{
-  		Workdir: "/workspace",
-  	})
-  	// Dengan opsi bernilai nol, HandleItem membaca variabel ANTHROPIC_* yang diteruskan
-  	// oleh skrip spawn, termasuk ANTHROPIC_WORK_SECRET.
-  	if err := worker.HandleItem(ctx, environments.HandleItemOptions{}); err != nil {
-  		log.Fatalf("worker: %v", err)
-  	}
-  }
-
-  ```
-
-  ```java Java
-  // EnvironmentWorker saat ini belum tersedia di Java SDK.
-  ```
-
-  ```php PHP
-  // EnvironmentWorker saat ini belum tersedia di PHP SDK.
-  ```
-
-  ```ruby Ruby
-  # EnvironmentWorker saat ini belum tersedia di Ruby SDK.
-  ```
-</CodeGroup>
-
-`ant beta:worker poll --on-work` tidak mengatur `ANTHROPIC_WORK_SECRET` untuk skrip yang di-spawn-nya, sehingga skrip spawn membaca secret dari JSON item kerja pada standard input-nya dan meneruskannya ke dalam sandbox:
-
-```bash
-#!/bin/bash
-# spawn.sh: dipanggil sekali per item kerja yang diklaim
-# Item kerja yang diklaim tiba sebagai JSON di stdin. Secret-nya adalah
-# kredensial per sesi yang diperlukan oleh endpoint memory store.
-ANTHROPIC_WORK_SECRET="$(jq -r '.secret // empty')"
-export ANTHROPIC_WORK_SECRET
-mkdir -p "/host/outputs/$ANTHROPIC_SESSION_ID"
-exec docker run --rm \
-  -e ANTHROPIC_SESSION_ID -e ANTHROPIC_ENVIRONMENT_KEY \
-  -e ANTHROPIC_WORK_ID -e ANTHROPIC_ENVIRONMENT_ID -e ANTHROPIC_BASE_URL \
-  -e ANTHROPIC_WORK_SECRET \
-  -v "/host/outputs/$ANTHROPIC_SESSION_ID":/workspace \
-  your-sdk-worker-image
-```
-
-Jika Anda mengklaim pekerjaan dengan work poller SDK sebagai gantinya, teruskan `secret` setiap item yang diklaim ke dalam sandbox yang Anda luncurkan dengan cara yang sama. Teruskan hanya ke sandbox yang melayani sesi tersebut, dan jangan pernah mencatatnya di log.
-
-Image sandbox juga memerlukan `/mnt/memory` yang dapat ditulis (lihat [Menyiapkan host](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#prepare-the-host)). Karena setiap sandbox melayani satu sesi dan dibuang setelahnya, tidak ada direktori sisa yang perlu dibersihkan, dan direktori memori tidak perlu di-bind-mount ke host: worker mengunggah isinya ke store sebelum sandbox keluar. Jika Anda menghentikan container sebelum sesinya berakhir, kirim sinyal yang diubah entrypoint menjadi pembatalan (lihat [Menyiapkan host](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#prepare-the-host)) alih-alih mematikannya paksa, agar unggahan tersebut tetap berjalan. Beri container waktu untuk menyelesaikan unggahan juga: Docker mengikuti sinyal stop dengan SIGKILL setelah 10 detik secara default, jadi naikkan batas itu menjadi setidaknya 30 detik seperti yang diminta Menyiapkan host, dengan `--stop-timeout` pada `docker run` atau termination grace period orkestrator Anda.
-
-### Mengonfigurasi sinkronisasi
-
-Dua opsi `EnvironmentWorker` mengontrol perilaku memori:
-
-* **`memory_sync_interval`** (Python, dalam detik; `memorySyncIntervalMs` di TypeScript, dalam milidetik; `MemorySyncInterval` di Go, sebuah duration): seberapa sering store terlampir direkonsiliasi dengan server saat sesi berjalan. Default-nya 15 detik; minimumnya 5 detik. Interval yang lebih pendek mempersempit jendela waktu di mana sesi lain melihat memori yang usang, dengan biaya lebih banyak permintaan memory store. `None` di Python, `null` di TypeScript, atau duration negatif di Go menonaktifkan dukungan memori sepenuhnya: worker tidak mengunduh maupun menyinkronkan store, dan sesi dengan memory store terlampir berjalan tanpanya meskipun prompt sistemnya masih mendeskripsikannya, jadi nonaktifkan dukungan memori hanya pada worker yang sesinya tidak melampirkan memory store. Selama dukungan memori diaktifkan, item kerja yang tiba tanpa `secret` per sesi untuk sesi dengan store terlampir akan gagal alih-alih berjalan tanpa memori (lihat [Memecahkan masalah mount memori](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#troubleshoot-memory-mounts)).
-* **`memory_sync_deletions`** (`memorySyncDeletions` di TypeScript, `MemorySyncDeletions` di Go): apakah file yang dihapus agen secara lokal juga dihapus dari store. Nilainya salah satu dari `"enabled"` (default), `"log_only"`, atau `"disabled"` di Python dan TypeScript, dan salah satu dari konstanta `environments.MemorySyncDeletionsEnabled` (zero value), `environments.MemorySyncDeletionsLogOnly`, atau `environments.MemorySyncDeletionsDisabled` di Go. Saat diaktifkan, worker menghapus memori dari store setelah sinkronisasi berikutnya mengonfirmasi bahwa file masih tidak ada; dalam mode log-only worker menjalankan pemeriksaan yang sama tetapi hanya mencatat apa yang akan dihapusnya, yang memungkinkan Anda mengamati apa yang akan dihapus worker Anda sebelum Anda mempercayai mode enabled; saat dinonaktifkan, worker tidak pernah menghapus dari store. Unggahan dan unduhan tidak terpengaruh oleh pengaturan ini.
-
-Atur opsi ini di tempat Anda membuat worker, baik melalui konstruktor `EnvironmentWorker` atau, di Python dan TypeScript, factory `client.beta.environments.work.worker()` yang digunakan handler webhook.
-
-Misalnya, untuk menyinkronkan setiap 10 detik dan hanya mencatat penghapusan yang akan dilakukan worker:
-
-<CodeGroup exclude="shell">
-  ```python Python
-  worker = EnvironmentWorker(
-      client,
-      environment_id=environment_id,
-      environment_key=environment_key,
-      workdir="/workspace",
-      memory_sync_interval=10,  # seconds
-      memory_sync_deletions="log_only",
-  )
-  ```
-
-  ```typescript TypeScript
-  const worker = new EnvironmentWorker({
-    client,
-    environmentId,
-    environmentKey,
-    workdir: "/workspace",
-    memorySyncIntervalMs: 10_000,
-    memorySyncDeletions: "log_only"
-  });
-  ```
-
-  ```csharp C#
-  // EnvironmentWorker saat ini belum tersedia di C# SDK.
-  ```
-
-  ```go Go
-  worker := environments.NewEnvironmentWorker(client, environments.EnvironmentWorkerOptions{
-  	EnvironmentID:       environmentID,
-  	EnvironmentKey:      environmentKey,
-  	Workdir:             "/workspace",
-  	MemorySyncInterval:  10 * time.Second,
-  	MemorySyncDeletions: environments.MemorySyncDeletionsLogOnly,
-  })
-  ```
-
-  ```java Java
-  // EnvironmentWorker saat ini belum tersedia di Java SDK.
-  ```
-
-  ```php PHP
-  // EnvironmentWorker saat ini belum tersedia di PHP SDK.
-  ```
-
-  ```ruby Ruby
-  # EnvironmentWorker saat ini belum tersedia di Ruby SDK.
-  ```
-</CodeGroup>
-
-### Store read-only dan konflik
-
-Untuk store yang dilampirkan dengan `access: "read_only"`, alat `write` dan `edit` menolak mengubah file di dalam direktorinya, dan worker tidak pernah mengunggah apa pun darinya. Perubahan yang dibuat melalui `bash` tidak diblokir secara lokal: perubahan tersebut tidak pernah disinkronkan ke store, dan perubahan remote berikutnya pada memori itu akan menimpanya. Jika Anda memerlukan salinan lokal itu sendiri tetap tidak berubah selama sesi, nonaktifkan alat `bash` untuk agen tersebut; jangan memasang path store sebagai read-only, karena worker sendiri harus membuat direktori dan menulis memori yang diunduh ke dalamnya.
-
-Konflik diselesaikan dengan memihak store. Ketika agen mengubah file memori yang juga berubah di store sejak sesi terakhir menyinkronkannya, worker mempertahankan versi store pada sinkronisasi berikutnya, menimpa file lokal dengannya, dan mencatat peringatan; alat `write` dan `edit` sendiri berhasil dan tidak ada error yang sampai ke agen. Jika perubahan agen masih berlaku, agen dapat membaca ulang file setelah sinkronisasi dan membuat perubahan itu lagi.
-
-### Memecahkan masalah mount memori
-
-Worker mencatat kegagalan mount dan sinkronisasi latar belakang di log alih-alih melaporkannya ke sesi; hanya penolakan read-only yang sampai ke agen, sebagai error alat (lihat [Store read-only dan konflik](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#read-only-stores-and-conflicts)). Jika memory store tidak dapat dipasang saat worker mengklaim sesi, worker menggagalkan item kerja: sesi tidak memancarkan event error dan tetap idle.
-
-| Gejala                                                                                                                           | Penyebab                                                                                                                                                                                                 | Perbaikan                                                                                                                                                                                                                                                                                                                                                       |
-| -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Log worker berisi `the work item carried no sessions token` (di Go, error `ErrSessionMemoryNoToken`) dan item kerja gagal.       | `secret` per sesi milik item kerja tidak sampai ke worker: memory store pada sandbox self-hosted tidak diaktifkan untuk organisasi Anda, atau skrip spawn Anda tidak meneruskan secret ke dalam sandbox. | Dalam pola sandbox-per-sesi, teruskan `ANTHROPIC_WORK_SECRET` ke dalam sandbox seperti ditunjukkan di [Menjalankan satu sandbox per sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-one-sandbox-per-session). Jika worker melakukan polling dan menjalankan sesi dalam satu proses dan masih mencatat ini, hubungi dukungan. |
-| Log worker berisi `something already exists at the memory store's path`.                                                         | Direktori yang tersisa dari sesi sebelumnya, biasanya sesi yang worker-nya dimatikan paksa sebelum teardown-nya berjalan.                                                                                | Hapus direktori sisa yang disebutkan baris log. Edit di dalamnya yang belum tersinkronisasi akan hilang.                                                                                                                                                                                                                                                        |
-| Log worker berisi `cannot create the memory store's folder` dan `the worker host must make this mount path writable`.            | Pengguna yang menjalankan worker tidak dapat membuat direktori di bawah `/mnt/memory`.                                                                                                                   | Buat `/mnt/memory` dan `chown` ke pengguna tersebut; lihat [Menyiapkan host](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#prepare-the-host).                                                                                                                                                                                        |
-| Sesi berada dalam status `idle` dengan stop reason `requires_action` dan tanpa event error tak lama setelah worker mengklaimnya. | Worker menggagalkan item kerja karena tidak dapat memasang memory store, karena salah satu alasan sebelumnya.                                                                                            | Perbaiki penyebabnya di host, lalu kirim event [`user.interrupt`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events): pekerjaan sesi diantrekan lagi dan worker berikutnya yang mengklaimnya mencoba ulang mount.                                                                                                      |
 
 ## Melayani alat kustom dari sandbox Anda
 

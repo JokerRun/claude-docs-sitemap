@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/admin-setup
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 0d19cce1be27a74bcf6043f79012860098a45e0c75899b980a324d0d71c8d5ba
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: 1a7c146e390774bdb6aadbca2e02fb246b4005c34a9fe28bd0573ea8171e939d
 ---
 
 > ## Documentation Index
@@ -104,7 +104,7 @@ Managed settings can lock down tools, sandbox execution, restrict MCP servers an
 
 Organizations whose members authenticate through claude.ai or the Anthropic API can also govern models without deploying settings: [organization model restrictions](/docs/en/model-config#organization-model-restrictions) disable individual models, an [organization default model](/docs/en/model-config#organization-default-model) sets which model new sessions start on, and [organization effort limits](/docs/en/model-config#organization-effort-limits) cap effort levels per role. All three controls require a Claude Enterprise plan. Model restrictions and effort limits are enforced server-side; the default model is a starting point that users can change, unless the organization enforces it. Enforcement is available to a limited set of organizations; ask your Anthropic account team about availability. None of these controls reach sessions on Amazon Bedrock, Google Cloud's Agent Platform, Microsoft Foundry, or [Claude Platform on AWS](/docs/en/claude-platform-on-aws); on those providers, use `availableModels` above for restrictions and the `model` key in managed settings for a default.
 
-[Claude Code on the web](/docs/en/claude-code-on-the-web) has its own admin surface: on the Cloud environments page in admin settings, owners and admins create [organization-shared environments](/docs/en/cloud-environments#organization-shared-environments) that set the [network access level](/docs/en/cloud-environments#network-access), environment variables, and setup script for members' cloud sessions. Owners and admins choose the organization's default environment separately, at [claude.ai/admin-settings/claude-code](https://claude.ai/admin-settings/claude-code).
+[Claude Code on the web](/docs/en/claude-code-on-the-web) has its own admin surface: on the Cloud environments page in admin settings, Owners create [organization-shared environments](/docs/en/cloud-environments#organization-shared-environments) that set the [network access level](/docs/en/cloud-environments#network-access), environment variables, and setup script for members' cloud sessions. Owners choose the organization's default environment separately, at [claude.ai/admin-settings/claude-code](https://claude.ai/admin-settings/claude-code).
 
 Permission rules and sandboxing cover different layers. Denying WebFetch blocks Claude's fetch tool, but if Bash is allowed, `curl` and `wget` can still reach any URL. Sandboxing closes that gap with a network domain allowlist enforced at the OS level.
 

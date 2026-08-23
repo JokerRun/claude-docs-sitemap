@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 813bb75d4326972f074ef2db6708dca01c73a52f09c68e1eaaf6c5f9d2a29443
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: 70e73375bb07c3f3313afe3c88e44bd86dbc47ae22c46a3df6f391b5f0083243
 ---
 
 ---
@@ -2760,21 +2760,11 @@ Untuk menerapkan batas pengeluaran, tetapkan [anggaran sesi](https://platform.cl
 
 ## Observabilitas Console
 
-Claude Console menyertakan penampil sesi untuk memeriksa apa yang dilakukan agen tanpa menulis kode apa pun. Di sidebar Console, di bawah **Managed Agents**, pilih **Sessions** untuk melihat setiap sesi di workspace beserta status, agen, penggunaan token, biaya, dan waktu pembuatannya, lalu pilih sebuah sesi untuk membukanya. Penampil sesi hanya dapat diakses oleh Developer dan Admin. Penampil ini menampilkan:
+Claude Console menyediakan tampilan timeline visual dari sesi agen Anda. Buka bagian Claude Managed Agents di Console untuk melihat:
 
-* **Minimap timeline:** Ikhtisar aktivitas sesi dari waktu ke waktu yang dapat diperbesar, dengan satu jalur per thread dalam sesi [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration). Pilih sebuah jalur untuk melihat thread tersebut, atau pilih sebuah penanda untuk melompat ke event-nya.
-
-* **Transkrip:** Percakapan yang dikelompokkan berdasarkan permintaan model, termasuk pemikiran, panggilan alat beserta input dan hasilnya, serta teks pesan saat di-streaming. Anda dapat memfilter event dan menyalin atau mengunduhnya sebagai JSON.
-
-* **Inspector:** Panel samping yang dapat diubah ukurannya dengan detail tentang sesi, dalam lima tab:
-
-  * **Session** menampilkan detail dan metadata sesi, biaya kumulatifnya dari waktu ke waktu, dan pengeluaran terhadap [anggaran](https://platform.claude.com/docs/id/managed-agents/budgets) sesi jika ditetapkan.
-  * **Events** mencantumkan setiap event mentah pada thread saat ini sesuai urutan pengirimannya oleh server; pilih sebuah event untuk melihat JSON-nya. Pesan yang di-streaming saat halaman terbuka juga memiliki tampilan **Deltas** dari [delta event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#event-deltas)-nya.
-  * **Tools** mencantumkan alat yang dikonfigurasikan untuk agen sesi, beserta jumlah panggilan, kegagalan, dan durasi median; pilih sebuah alat untuk melihat panggilannya dan melompat ke salah satunya di transkrip.
-  * **Resources** mencantumkan [file](https://platform.claude.com/docs/id/managed-agents/files), [repositori](https://platform.claude.com/docs/id/managed-agents/github), dan [penyimpanan memori](https://platform.claude.com/docs/id/managed-agents/memory) yang di-mount pada path container-nya, termasuk memori di setiap penyimpanan dan perubahan yang dibuat sesi ini terhadapnya, ditambah file yang ditulis agen ke `/mnt/session/outputs` dan [skill](https://platform.claude.com/docs/id/managed-agents/skills) yang dilampirkan ke agen sesi.
-  * **Threads** mencantumkan setiap thread beserta status, ukuran konteks, dan biayanya. Pilih sebuah thread untuk melihat detailnya, seperti agen, model, penggunaan konteks, dan biaya.
-
-Tambahkan `?event={event_id}` ke URL sesi untuk membuka sesi pada event tertentu.
+* **Daftar sesi:** Semua sesi beserta status, waktu pembuatan, dan agennya
+* **Tampilan tracing:** Tampilan kronologis event (konten, timestamp, penggunaan token) dalam sebuah sesi. Tampilan tracing hanya dapat diakses oleh Developer dan Admin.
+* **Eksekusi alat:** Detail setiap panggilan alat dan hasilnya
 
 ## Tips debugging
 

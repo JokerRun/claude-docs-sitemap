@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/scheduled-deployments
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 1d6c2f5812e6bf0973d47c0e1537bd3006b8af4c43896ce28a408725f8a42757
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: 619b36c75babd9312de0cb5430d39d04702daaea8a63972f2e3ea519977dcfec
 ---
 
 ---
@@ -23,7 +23,7 @@ Untuk konteks peluncuran dan contoh apa saja yang dijalankan tim secara terjadwa
 
 Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.claude.com/docs/id/managed-agents/sessions) yang diperlukan untuk eksekusi, selain sebuah `schedule`.
 
-* Deployment memerlukan [konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) dan [konfigurasi environment](https://platform.claude.com/docs/id/managed-agents/environments), dan secara opsional menerima [file](https://platform.claude.com/docs/id/managed-agents/files), [GitHub](https://platform.claude.com/docs/id/managed-agents/github), [memory store](https://platform.claude.com/docs/id/managed-agents/memory), dan [vault](https://platform.claude.com/docs/id/managed-agents/vaults). Deployment yang menargetkan [environment self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores) dapat melampirkan memory store; resource `file` dan `github_repository` memerlukan environment cloud. Formulir deployment di Claude Console saat ini belum menawarkan memory store untuk environment self-hosted; lampirkan melalui API atau SDK sebagai gantinya.
+* Deployment memerlukan [konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) dan [konfigurasi environment](https://platform.claude.com/docs/id/managed-agents/environments), dan secara opsional menerima [file](https://platform.claude.com/docs/id/managed-agents/files), [GitHub](https://platform.claude.com/docs/id/managed-agents/github), [memory store](https://platform.claude.com/docs/id/managed-agents/memory), dan [vault](https://platform.claude.com/docs/id/managed-agents/vaults).
 * Deployment juga memerlukan setidaknya satu event awal, berupa `user.message` atau `user.define_outcome`, yang memulai pekerjaan setiap sesi.
 * Di dalam `schedule`, Anda mendefinisikan `expression` cron dan `timezone`. Granularitas maksimum yang didukung adalah pada tingkat menit.
 

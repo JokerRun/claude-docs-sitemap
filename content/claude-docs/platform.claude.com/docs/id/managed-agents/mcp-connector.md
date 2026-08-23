@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/mcp-connector
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: ab187443153c7834025cff0a422019a697e01cef584c369f2aae244bf4540aa9
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: 1969c17041dccaa254f679ea0202bb5a6cbf5899a06238abd7ebb5f32ff4575e
 ---
 
 ---
@@ -256,7 +256,7 @@ Batasan:
 
 ## Mengonfigurasi alat MCP mana yang tersedia
 
-Entri `mcp_toolset` mendukung objek `default_config` dan array `configs`, yang diterapkan pada alat yang diekspos oleh server MCP. Setiap entri `configs` hanya menerima `name`, `enabled`, dan `permission_policy`. Tidak seperti entri dalam toolset agen bawaan, entri alat MCP tidak menerima field `type`, dan [pengaturan web](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains) yang tersedia pada `web_search` dan `web_fetch` tidak berlaku untuk alat MCP. Nilai `name` dalam setiap entri `configs` adalah nama alat polos sebagaimana dilaporkan oleh server.
+Entri `mcp_toolset` mendukung bentuk `default_config` dan `configs` yang sama seperti toolset agen bawaan, yang diterapkan pada alat yang diekspos oleh server MCP. Nilai `name` dalam setiap entri `configs` adalah nama alat polos sebagaimana dilaporkan oleh server.
 
 Secara default, semua alat yang diekspos oleh server MCP diaktifkan. Untuk mengaktifkan hanya alat tertentu, atur `default_config.enabled` ke `false` dan aktifkan secara eksplisit alat yang Anda inginkan:
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/remote-control
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 89e6027bcfc58ef0e75ea3354a1ec7920b403f5ae8e90736606ab3b10f8dbc21
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: d74839903571b022bb670696288c8fe7e441fbc9f1a1fc27bedb8ad7fb771008
 ---
 
 > ## Documentation Index
@@ -227,7 +227,7 @@ To turn Remote Control off entirely, use the [`disableRemoteControl`](/docs/en/s
 <Note>
   Trusted Devices is currently in beta. Features and functionality may evolve as the experience is refined.
 
-  Trusted Devices is available on Team and Enterprise plans. It is off by default until an admin enables it.
+  Trusted Devices is available on Team and Enterprise plans. It is off by default until an Owner enables it.
 </Note>
 
 Trusted Devices is an organization-wide setting that requires members to verify their device before they can view or steer Remote Control sessions from claude.ai, the Claude mobile apps, or Claude Desktop. It ties Remote Control access to a known device and a recent authentication, not just a signed-in account.
@@ -243,7 +243,7 @@ The setting applies only to Remote Control. Regular Claude chat, Claude Code in 
 
 ### Enable Trusted Devices for your organization
 
-Admins enable the setting from the Claude Code admin console.
+An Owner enables the setting from the Claude Code admin console.
 
 <Steps>
   <Step title="Open Claude Code admin settings">

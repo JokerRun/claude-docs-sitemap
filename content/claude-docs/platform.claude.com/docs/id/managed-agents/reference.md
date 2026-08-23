@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/reference
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 60de983b6094f01dab38b281b41d7f9673b4291c48cb6baf64f7e1d0af840dcd
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: 400488bbce564e3babdecd0bf54bd9f0255a0d1c9c559284ecce98b7bf26ff51
 ---
 
 ---
@@ -109,8 +109,6 @@ Berikut adalah flag CLI `ant beta:worker` untuk worker bawaan yang menggerakkan 
 | `--unrestricted-paths` | Mengizinkan alat file untuk membaca dan menulis path di luar `--workdir`. Pemeriksaan workdir adalah pagar pengaman untuk alat file saja, bukan sandbox; pemeriksaan ini tidak membatasi bash. |
 | `--max-idle`           | Berapa lama menunggu setelah sesi menjadi idle dengan [stop reason](https://platform.claude.com/docs/id/api/handling-stop-reasons) `end_turn` sebelum dimatikan. Default-nya `60s`.            |
 | `--log-format`         | Format output log. Gunakan `json` untuk ingesti log terstruktur. Default-nya `text`.                                                                                                           |
-
-Worker CLI tidak memasang [memory store](https://platform.claude.com/docs/id/managed-agents/memory): sesi yang melampirkannya tetap berjalan, tetapi agen tidak menemukan apa pun di `mount_path` store tersebut dan tidak ada perubahan yang disinkronkan kembali ke store. Untuk menggunakan memory store dalam sesi pada environment self-hosted, jalankan worker SDK sebagai gantinya; lihat [Menggunakan memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores).
 
 ## Tipe server MCP yang didukung
 

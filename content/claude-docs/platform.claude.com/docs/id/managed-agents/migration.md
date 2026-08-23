@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/migration
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 5913c855cfb34a5d123306f809f5afcee9e23474ba812b02b2c2cf3555c057b4
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: 58afa6902eceaf95efc8bd890ff44309ed0a32f0a5ef781bd9b3045410b7fcd5
 ---
 
 ---
@@ -613,7 +613,6 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
 
 * **Prompt sistem dan model:** Field yang sama, sekarang pada definisi agen.
 * **Alat kustom:** Masih dideklarasikan dengan JSON Schema. Eksekusi berpindah dari penanganan inline menjadi merespons event `agent.custom_tool_use`. Lihat [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming).
-* **Pengaturan web search dan web fetch:** Field `allowed_domains`, `blocked_domains`, `max_content_tokens`, dan `user_location` yang sama, sekarang diatur sekali pada entri `web_search` dan `web_fetch` dari array `configs` toolset agen, bukan pada setiap permintaan. Field `max_uses`, `citations`, dan `cache_control` tidak tersedia. Lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
 * **Konteks:** Anda masih dapat menyuntikkan konteks melalui prompt sistem, [resource file](https://platform.claude.com/docs/id/managed-agents/files), atau [skill](https://platform.claude.com/docs/id/managed-agents/skills).
 
 ## Dari Claude Agent SDK

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/memory
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 9d5f417a52997cf7f51fedaa41ec354fce2e9c5706457f22579e27edd3c6ff32
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: 434268967e637aa68e021b22e3f2fa6d5bd9142cb8bb7b29a47c0668405ca756
 ---
 
 ---
@@ -25,7 +25,7 @@ Setiap sesi Managed Agents dimulai dengan konteks baru secara default. Ketika se
 
 ## Ikhtisar
 
-**Memory store** adalah kumpulan dokumen teks dengan cakupan workspace yang dioptimalkan untuk Claude. Ketika Anda melampirkan sebuah store ke sesi, store tersebut di-mount sebagai direktori di dalam sandbox sesi. Agen membaca dan menulisnya dengan alat file yang sama yang digunakannya untuk bagian filesystem lainnya, dan sebuah catatan yang menjelaskan setiap mount secara otomatis ditambahkan ke "system prompt" (prompt sistem), yang memberi tahu agen di mana harus mencari. [Toolset agen](https://platform.claude.com/docs/id/managed-agents/tools) diperlukan untuk interaksi ini; pastikan untuk mengaktifkannya saat [pembuatan agen](https://platform.claude.com/docs/id/managed-agents/agent-setup). Pada [sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores), direktori tersebut bukan mount langsung. Sebagai gantinya, environment worker milik SDK mengunduh setiap store yang dilampirkan ke dalam sandbox Anda sebelum alat agen berjalan dan menjaga salinan tersebut tetap sinkron dengan store.
+**Memory store** adalah kumpulan dokumen teks dengan cakupan workspace yang dioptimalkan untuk Claude. Ketika Anda melampirkan sebuah store ke sesi, store tersebut di-mount sebagai direktori di dalam sandbox sesi. Agen membaca dan menulisnya dengan alat file yang sama yang digunakannya untuk bagian filesystem lainnya, dan sebuah catatan yang menjelaskan setiap mount secara otomatis ditambahkan ke "system prompt" (prompt sistem), yang memberi tahu agen di mana harus mencari. [Toolset agen](https://platform.claude.com/docs/id/managed-agents/tools) diperlukan untuk interaksi ini; pastikan untuk mengaktifkannya saat [pembuatan agen](https://platform.claude.com/docs/id/managed-agents/agent-setup).
 
 Setiap **memori** dalam sebuah store dialamatkan dengan sebuah path dan dapat dibaca serta diedit langsung melalui API atau Claude Console, sehingga memungkinkan penyetelan, impor, dan ekspor.
 
@@ -215,7 +215,7 @@ Muat store terlebih dahulu dengan materi referensi sebelum agen apa pun berjalan
 
 ## Melampirkan memory store ke sesi
 
-Memory store dilampirkan dalam array `resources[]` milik sesi ketika [sesi dibuat](https://platform.claude.com/docs/id/managed-agents/sessions#creating-a-session). Tidak seperti resource file, memory store hanya dapat dilampirkan pada saat pembuatan sesi; menambahkan atau menghapusnya dari sesi yang sedang berjalan tidak didukung. Anda melampirkan memory store dengan cara yang sama untuk sesi di cloud dan [environment self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores); environment self-hosted hanya menerima resource `memory_store`.
+Memory store dilampirkan dalam array `resources[]` milik sesi ketika [sesi dibuat](https://platform.claude.com/docs/id/managed-agents/sessions#creating-a-session). Tidak seperti resource file, memory store hanya dapat dilampirkan pada saat pembuatan sesi; menambahkan atau menghapusnya dari sesi yang sedang berjalan tidak didukung.
 
 Secara opsional, sertakan `instructions` untuk memberikan panduan khusus sesi tentang bagaimana agen harus menggunakan store ini. Ini ditampilkan kepada agen bersama `name` dan `description` store, dan dibatasi hingga 4.096 karakter.
 
@@ -387,12 +387,6 @@ Maksimum **8 memory store** didukung per sesi. Lampirkan beberapa store ketika b
 Setiap store yang dilampirkan di-mount di dalam sandbox sesi sebagai direktori di bawah `/mnt/memory/`. Nama direktori adalah nama tampilan store yang disanitasi menjadi slug yang aman untuk filesystem (huruf kecil; rangkaian karakter non-alfanumerik menjadi satu tanda hubung), sehingga store bernama "Demo Memory" di-mount di `/mnt/memory/demo-memory/`. Path persisnya dikembalikan dalam field `mount_path` pada resource memory-store milik sesi; baca dari sana alih-alih menyusunnya sendiri. Agen membaca dan menulis store dengan [toolset agen](https://platform.claude.com/docs/id/managed-agents/tools) standar. Penulisan di bawah mount path dipersistenkan kembali ke store dan tetap sinkron di seluruh sesi yang berbagi store tersebut; penulisan ke path lain mana pun di bawah `/mnt/memory/` akan gagal, karena sandbox me-mount direktori induk tersebut sebagai read-only. Deskripsi singkat setiap mount (nama tampilan, mount path, mode akses, `description` store, dan `instructions` apa pun) secara otomatis ditambahkan ke prompt sistem.
 
 `access` ditegakkan di tingkat filesystem: mount `read_only` menolak penulisan, sedangkan penulisan ke mount `read_write` menghasilkan [versi memori](https://platform.claude.com/docs/id/managed-agents/memory#audit-memory-changes) yang diatribusikan ke sesi tersebut.
-
-<Note>
-  Pada [sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores), direktori setiap store adalah salinan lokal yang dikelola oleh worker SDK, bukan mount langsung. Worker merekonsiliasi setiap salinan dengan store-nya setelah pemanggilan alat, paling banyak sekali per interval sinkronisasi (15 detik secara default), dan sekali lagi ketika sesi berakhir. Alat `write` dan `edit` milik agen hanya mengubah salinan lokal; worker mengunggah perubahan tersebut pada sinkronisasi berikutnya, sehingga sesi lain yang berjalan di sandbox self-hosted baru melihat perubahan setelah kedua worker melakukan sinkronisasi. Path di bawah `/mnt/memory/` di luar direktori store bukanlah ruang scratch di sana: alat file milik worker menolak menulis ke path tersebut, dan apa pun yang ditulis oleh perintah shell di sana tidak pernah disinkronkan ke store.
-
-  Untuk store `read_only`, alat `write` dan `edit` milik worker menolak perubahan di bawah direktori tersebut dan worker tidak pernah mengunggah apa pun darinya. Untuk mengetahui bagaimana worker menyelesaikan konflik penulisan, dan apa yang masih dapat diubah oleh alat `bash` dalam salinan lokal store read-only, lihat [Store read-only dan konflik](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#read-only-stores-and-conflicts).
-</Note>
 
 Pembacaan dan penulisan agen muncul dalam [event stream](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) sebagai event `agent.tool_use` dan `agent.tool_result` biasa untuk alat mana pun yang menyentuh mount tersebut.
 

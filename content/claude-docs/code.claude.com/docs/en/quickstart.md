@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/quickstart
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: c756c002245832a63748ba6b894cb58f233e131c6b40202b7906fce722f01b4c
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: 6a7a0a38ced1235db962c3cd321c05a4370dc68732c9b41780d47ee489b33e0e
 ---
 
 > ## Documentation Index
@@ -117,7 +117,7 @@ You can log in using any of these account types:
 * [Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry](/docs/en/third-party-integrations) (enterprise cloud providers)
 * A self-hosted [Claude apps gateway](/docs/en/claude-apps-gateway), if your organization runs one: your admin pre-configures the gateway URL, and `/login` opens directly on the **Cloud gateway** screen for you to sign in with corporate SSO
 
-Once logged in, your credentials are stored and you won't need to log in again.
+Once logged in, your credentials are stored and you won't need to log in again. Learn more in [Credential Management](/docs/en/authentication#credential-management).
 
 ## Step 3: Start your first session
 
@@ -131,10 +131,6 @@ claude
 Replace `/path/to/your/project` with the path to the project you want to work on.
 
 You'll see the Claude Code prompt with the version, current model, and working directory shown above it. Type `/help` for available commands or `/resume` to continue a previous conversation.
-
-<Tip>
-  After logging in (Step 2), your credentials are stored on your system. Learn more in [Credential Management](/docs/en/authentication#credential-management).
-</Tip>
 
 ## Step 4: Ask your first question
 

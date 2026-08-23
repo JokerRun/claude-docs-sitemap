@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: b10fc3db8bc77977749a5c7f4a640d63ae4e16abcd629f860dae94dfd1529e0f
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: 7f6f3669f09c5caa91c1ea857a801655689a3c0c9efe09dd85f0618f4069fab9
 ---
 
 ---
@@ -453,8 +453,6 @@ Parameter `max_uses` membatasi jumlah web fetch yang dilakukan. Fetch yang gagal
 
 Untuk pemfilteran domain dengan `allowed_domains` dan `blocked_domains`, lihat [Alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#domain-filtering).
 
-Di [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), atur field ini pada entri `web_fetch` dari toolset agen, di mana setiap domain yang tercantum harus berupa hostname biasa tanpa path; lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
-
 ### Batas konten
 
 Parameter `max_content_tokens` membatasi jumlah konten yang disertakan dalam konteks. Jika konten yang diambil melebihi batas ini, alat akan memotongnya. Ini membantu mengontrol penggunaan token saat mengambil dokumen besar. Batas ini berlaku untuk konten teks, bukan untuk konten biner seperti PDF.
@@ -462,8 +460,6 @@ Parameter `max_content_tokens` membatasi jumlah konten yang disertakan dalam kon
 <Note>
   Batas parameter `max_content_tokens` bersifat perkiraan. Jumlah token input aktual yang digunakan dapat sedikit bervariasi.
 </Note>
-
-Di Claude Managed Agents, entri `web_fetch` dari toolset agen juga menerima `max_content_tokens`; lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
 
 ### Cache bypass
 

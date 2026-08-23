@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/statusline
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: e04b66dffc841a971e6e8b9cb5492d1683eb20db61e41db788d90c8b669d5a1e
+fetched_at: 2026-08-23T02:32:19.757524Z
+sha256: b0811428721bd7c30df85fa7bb8f604c69bd4ee7c4b549a7c8ea88fbe1be9723
 ---
 
 > ## Documentation Index
@@ -141,7 +141,7 @@ These examples use Bash scripts, which work on macOS and Linux. On Windows, see 
 
 ## How status lines work
 
-Claude Code runs your script and pipes [JSON session data](#available-data) to it via stdin. Your script reads the JSON, extracts what it needs, and prints text to stdout. Claude Code displays whatever your script prints.
+Claude Code runs your script with [JSON session data](#available-data) on stdin and displays whatever the script prints to stdout.
 
 **When it updates**
 
