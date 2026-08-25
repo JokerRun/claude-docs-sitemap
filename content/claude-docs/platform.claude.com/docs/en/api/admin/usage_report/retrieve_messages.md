@@ -1,27 +1,24 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/usage_report/retrieve_messages
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: f869c3aedc2eeabd8da93f97d85d7acab57ee58335de948ca844dddf7ea73efe
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 46d374a16967d7893c7e9e87f12dcc9fe38bf6a3e7a39d4cce16b3e7e5970a03
 ---
 
----
-title: Get Messages Usage Report
-url: https://platform.claude.com/docs/en/api/admin/usage_report/retrieve_messages
----
+# Get Messages Usage Report
 
-## Get Messages Usage Report
-
-**get** `/v1/organizations/usage_report/messages`
+**GET** `/v1/organizations/usage_report/messages`
 
 Get Messages Usage Report
 
-### Query Parameters
+## Query parameters
 
 - `starting_at: string`
 
   Time buckets that start on or after this RFC 3339 timestamp will be returned.
   Each time bucket will be snapped to the start of the minute/hour/day in UTC.
+
+  format: date-time
 
 - `account_ids: optional array of string`
 
@@ -34,6 +31,8 @@ Get Messages Usage Report
 - `bucket_width: optional "1d" or "1h" or "1m"`
 
   Time granularity of the response data.
+
+  default: 1d
 
   - `"1d"`
 
@@ -52,6 +51,8 @@ Get Messages Usage Report
 - `ending_at: optional string`
 
   Time buckets that end before this RFC 3339 timestamp will be returned.
+
+  format: date-time
 
 - `group_by: optional array of "account_id" or "api_key_id" or "context_window" or 6 more`
 
@@ -135,7 +136,7 @@ Get Messages Usage Report
 
   Restrict usage returned to the specified workspace ID(s).
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of string`
 
@@ -143,11 +144,11 @@ Get Messages Usage Report
 
   To use multiple betas, use a comma separated list like `beta1,beta2` or specify the header multiple times for each beta.
 
-### Returns
+## Returns
 
-- `MessagesUsageReport object { data, has_more, next_page }`
+- `MessagesUsageReport object`
 
-  - `data: array of object { ending_at, results, starting_at }`
+  - `data: array of object`
 
     List of time buckets for this page, oldest first: one per `bucket_width` interval, including intervals with no usage (their `results` list is empty). A page holds at most `limit` buckets.
 
@@ -155,7 +156,9 @@ Get Messages Usage Report
 
       End of the time bucket (exclusive) in RFC 3339 format.
 
-    - `results: array of object { account_id, api_key_id, cache_creation, 10 more }`
+      format: date-time
+
+    - `results: array of object`
 
       List of usage items for this time bucket.  There may be multiple items if one or more `group_by[]` parameters are specified.
 
@@ -167,7 +170,7 @@ Get Messages Usage Report
 
         ID of the API key used. `null` if not grouping by API key or for usage in the Anthropic Console.
 
-      - `cache_creation: object { ephemeral_1h_input_tokens, ephemeral_5m_input_tokens }`
+      - `cache_creation: object`
 
         The number of input tokens for cache creation.
 
@@ -210,7 +213,7 @@ Get Messages Usage Report
 
         The number of output tokens generated.
 
-      - `server_tool_use: object { web_search_requests }`
+      - `server_tool_use: object`
 
         Server-side tool usage metrics.
 
@@ -250,6 +253,8 @@ Get Messages Usage Report
 
       Start of the time bucket (inclusive) in RFC 3339 format.
 
+      format: date-time
+
   - `has_more: boolean`
 
     Indicates if there are more results.
@@ -258,15 +263,15 @@ Get Messages Usage Report
 
     Opaque cursor for the next page, or `null` when `has_more` is false. Pass it as the `page` parameter in the next request.
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/usage_report/messages \
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

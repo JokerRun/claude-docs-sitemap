@@ -1,28 +1,23 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/retrieve
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: f08f7e53b3a10ae7e2166e7e4f1484163c9f39230abd0ca77872d5d360fe4296
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 3d25e6a410229ecc5e3f8665862eac8f7c46bd934998a89bb5d1313dba692047
 ---
 
----
-title: Get Tunnel
-url: https://platform.claude.com/docs/en/api/beta/tunnels/retrieve
----
+# Get Tunnel
 
-## Get Tunnel
-
-**get** `/v1/tunnels/{tunnel_id}`
+**GET** `/v1/tunnels/{tunnel_id}`
 
 The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window.
 
 Fetches a tunnel by ID.
 
-### Path Parameters
+## Path parameters
 
 - `tunnel_id: string`
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -100,9 +95,9 @@ Fetches a tunnel by ID.
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
-### Returns
+## Returns
 
-- `BetaTunnel object { id, archived_at, created_at, 3 more }`
+- `BetaTunnel object`
 
   An MCP tunnel.
 
@@ -114,9 +109,13 @@ Fetches a tunnel by ID.
 
     A timestamp in RFC 3339 format
 
+    format: date-time
+
   - `created_at: string`
 
     A timestamp in RFC 3339 format
+
+    format: date-time
 
   - `display_name: string or null`
 
@@ -128,18 +127,16 @@ Fetches a tunnel by ID.
 
   - `type: "tunnel"`
 
-    - `"tunnel"`
+## Example
 
-### Example
-
-```http
+```bash
 curl https://api.anthropic.com/v1/tunnels/$TUNNEL_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: mcp-tunnels-2026-06-22' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

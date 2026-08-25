@@ -1,18 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/service_accounts/update
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: d6452ceb6c8d82c8cc53e2371f3bb5b98261668faf23219e281977ae98a48b3f
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 76bf745bf32a2455089d9510b8447d0a7201e8d95b096c0f88cba30e59b524bc
 ---
 
----
-title: Update Service Account
-url: https://platform.claude.com/docs/en/api/admin/service_accounts/update
----
+# Update Service Account
 
-## Update Service Account
-
-**post** `/v1/organizations/service_accounts/{service_account_id}`
+**POST** `/v1/organizations/service_accounts/{service_account_id}`
 
 Update a service account.
 
@@ -22,13 +17,13 @@ Setting `organization_role` to `admin` (even when unchanged) requires an
 interactive credential (a user OAuth token or a Console session). Admin
 API keys are not accepted.
 
-### Path Parameters
+## Path parameters
 
 - `service_account_id: string`
 
   ID of the service account to update.
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of string`
 
@@ -36,11 +31,13 @@ API keys are not accepted.
 
   To use multiple betas, use a comma separated list like `beta1,beta2` or specify the header multiple times for each beta.
 
-### Body Parameters
+## Body parameters
 
 - `description: optional string or null`
 
   Replaces the description. Omit to leave unchanged; send `null` to clear (the field is stored as an empty string).
+
+  maxLength: 2000
 
 - `organization_role: optional "admin" or "developer" or null`
 
@@ -50,9 +47,9 @@ API keys are not accepted.
 
   - `"developer"`
 
-### Returns
+## Returns
 
-- `ServiceAccount object { id, archived_at, archived_by_actor_id, 8 more }`
+- `ServiceAccount object`
 
   Named non-human identity within the caller's organization.
 
@@ -67,6 +64,8 @@ API keys are not accepted.
 
     If set, this service account is archived.
 
+    format: date-time
+
   - `archived_by_actor_id: string or null`
 
     Tagged ID (`user_`/`svac_`) of the actor that archived this service account.
@@ -74,6 +73,8 @@ API keys are not accepted.
   - `created_at: string`
 
     When this service account was created.
+
+    format: date-time
 
   - `created_by_actor_id: string or null`
 
@@ -97,19 +98,21 @@ API keys are not accepted.
 
   - `type: "service_account"`
 
-    - `"service_account"`
+    default: service_account
 
   - `updated_at: string`
 
     When this service account was last updated.
 
+    format: date-time
+
   - `updated_by_actor_id: string or null`
 
     Tagged ID (`user_`/`svac_`) of the actor that last updated this service account.
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUNT_ID \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
@@ -117,7 +120,7 @@ curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUN
     -d '{}'
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

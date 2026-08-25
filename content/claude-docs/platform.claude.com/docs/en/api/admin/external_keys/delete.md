@@ -1,30 +1,27 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/delete
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: fde22d53154614dbc3bace1f5b6bd954235fa71c1aeeb640a04d7dd8f4f708bd
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: b42af66453b6cc472bb39e6d17bc44367f82fb371af5599f6c456bc31e0bea5a
 ---
 
----
-title: Delete External Key
-url: https://platform.claude.com/docs/en/api/admin/external_keys/delete
----
+# Delete External Key
 
-## Delete External Key
-
-**delete** `/v1/organizations/external_keys/{external_key_id}`
+**DELETE** `/v1/organizations/external_keys/{external_key_id}`
 
 Delete an external key config.
 
 The request is rejected if any workspace still references this config.
 
-### Path Parameters
+## Path parameters
 
 - `external_key_id: string`
 
   ID of the External Key.
 
-### Returns
+  maxLength: 2048
+
+## Returns
 
 - `id: string`
 
@@ -32,18 +29,18 @@ The request is rejected if any workspace still references this config.
 
 - `type: "external_key_deleted"`
 
-  - `"external_key_deleted"`
+  default: external_key_deleted
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/external_keys/$EXTERNAL_KEY_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

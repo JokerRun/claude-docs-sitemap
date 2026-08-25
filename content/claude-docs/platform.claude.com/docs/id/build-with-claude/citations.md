@@ -1,21 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/citations
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 0371ebcdc44bfe215e70fe14cd89886ba0b1378c71a69b7a97208b16133bc704
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: fe1ed50d01db0ec56bc0878c2cb85383463afd4e14ede53109fddab4d4f663f4
 ---
 
 ---
 title: Sitasi
 url: https://platform.claude.com/docs/id/build-with-claude/citations
-description: Landaskan respons Claude pada dokumen sumber Anda. Sitasi mengembalikan kutipan persis yang mendukung setiap klaim, sehingga Anda dapat memverifikasi jawaban dan menampilkan sumber kepada pengguna Anda.
+description: Dasarkan respons Claude pada dokumen sumber Anda. Sitasi mengembalikan kutipan persis yang mendukung setiap klaim, sehingga Anda dapat memverifikasi jawaban dan menampilkan sumber kepada pengguna Anda.
 ---
 
 ## Compatibility
 - [ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention): eligible (excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))
 - Platforms: Claude API, Claude Platform on AWS, Amazon Bedrock, Google Cloud, Microsoft Foundry
 
-Claude dapat memberikan "citations" (sitasi) yang terperinci saat menjawab pertanyaan tentang dokumen, membantu Anda melacak dan memverifikasi sumber di balik setiap respons.
+Claude dapat memberikan sitasi terperinci saat menjawab pertanyaan tentang dokumen, membantu Anda melacak dan memverifikasi sumber di balik setiap respons.
 
 Semua [model aktif](https://platform.claude.com/docs/id/about-claude/models/overview) mendukung sitasi.
 
@@ -312,7 +312,7 @@ Contoh berikut menunjukkan cara mengaktifkan sitasi pada dokumen teks biasa deng
 
   Dibandingkan dengan meminta Claude melalui prompt untuk menyebutkan sumber, fitur sitasi menawarkan keunggulan berikut:
 
-  * **Penghematan biaya:** Jika pendekatan berbasis prompt Anda meminta Claude untuk mengeluarkan kutipan langsung, Anda mungkin melihat penghematan biaya karena `cited_text` tidak dihitung sebagai token output Anda.
+  * **Penghematan biaya:** Jika pendekatan berbasis prompt Anda meminta Claude untuk mengeluarkan kutipan langsung, Anda mungkin melihat penghematan biaya karena `cited_text` tidak dihitung sebagai output token Anda.
   * **Keandalan sitasi yang lebih baik:** Karena API mengurai sitasi ke dalam format respons yang dijelaskan di bagian-bagian berikut dan mengekstrak `cited_text` secara langsung, sitasi dijamin berisi penunjuk yang valid ke dokumen yang disediakan.
   * **Kualitas sitasi yang lebih baik:** Dalam evaluasi Anthropic, fitur sitasi secara signifikan lebih mungkin mengutip kutipan yang paling relevan dari dokumen dibandingkan pendekatan yang murni berbasis prompt.
 </Tip>
@@ -327,19 +327,19 @@ Integrasikan sitasi dengan Claude melalui langkah-langkah berikut:
   <Step title="Sediakan dokumen dan aktifkan sitasi">
     * Sertakan dokumen dalam salah satu format yang didukung: dokumen [PDF](https://platform.claude.com/docs/id/build-with-claude/citations#pdf-documents), [teks biasa](https://platform.claude.com/docs/id/build-with-claude/citations#plain-text-documents), atau [konten kustom](https://platform.claude.com/docs/id/build-with-claude/citations#custom-content-documents).
     * Atur `citations.enabled=true` pada setiap dokumen Anda. Saat ini, sitasi harus diaktifkan pada semua dokumen atau tidak sama sekali dalam satu permintaan.
-    * Saat ini hanya sitasi teks yang didukung. Sitasi gambar belum dimungkinkan.
+    * Hanya sitasi teks yang saat ini didukung. Sitasi gambar belum dimungkinkan.
   </Step>
 
   <Step title="Dokumen diproses">
-    * Isi dokumen "dipotong" (chunked) untuk menentukan granularitas minimum dari sitasi yang mungkin. Misalnya, pemotongan per kalimat memungkinkan Claude mengutip satu kalimat atau merangkai beberapa kalimat berurutan untuk mengutip satu paragraf atau bagian yang lebih panjang.
+    * Konten dokumen dipecah menjadi "chunk" (potongan) untuk menentukan granularitas minimum dari sitasi yang mungkin. Misalnya, chunking per kalimat memungkinkan Claude mengutip satu kalimat atau merangkai beberapa kalimat berurutan untuk mengutip sebuah paragraf atau bagian yang lebih panjang.
 
-      * **Untuk PDF:** Teks diekstrak seperti yang dijelaskan dalam [dukungan PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support) dan konten dipotong menjadi kalimat. Mengutip gambar dari PDF saat ini belum didukung.
-      * **Untuk dokumen teks biasa:** Konten dipotong menjadi kalimat yang dapat dikutip.
-      * **Untuk dokumen konten kustom:** Blok konten yang Anda sediakan digunakan apa adanya dan tidak ada pemotongan lebih lanjut yang dilakukan.
+      * **Untuk PDF:** Teks diekstrak seperti yang dijelaskan dalam [dukungan PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support) dan konten dipecah menjadi kalimat. Mengutip gambar dari PDF saat ini tidak didukung.
+      * **Untuk dokumen teks biasa:** Konten dipecah menjadi kalimat yang dapat dikutip.
+      * **Untuk dokumen konten kustom:** Blok konten yang Anda sediakan digunakan apa adanya dan tidak ada chunking lebih lanjut yang dilakukan.
   </Step>
 
   <Step title="Claude memberikan respons dengan sitasi">
-    * Respons kini dapat mencakup beberapa blok teks, di mana setiap blok teks dapat berisi klaim yang dibuat Claude dan daftar sitasi yang mendukung klaim tersebut.
+    * Respons kini dapat mencakup beberapa blok teks di mana setiap blok teks dapat berisi klaim yang dibuat Claude dan daftar sitasi yang mendukung klaim tersebut.
 
     * Sitasi merujuk ke lokasi spesifik dalam dokumen sumber. Format sitasi ini bergantung pada jenis dokumen yang dikutip.
 
@@ -347,16 +347,16 @@ Integrasikan sitasi dengan Claude melalui langkah-langkah berikut:
       * **Untuk dokumen teks biasa:** Sitasi mencakup rentang indeks karakter (berindeks mulai 0).
       * **Untuk dokumen konten kustom:** Sitasi mencakup rentang indeks blok konten (berindeks mulai 0) yang sesuai dengan daftar konten asli yang disediakan.
 
-    * Indeks dokumen disediakan untuk menunjukkan sumber rujukan dan berindeks mulai 0 sesuai dengan daftar semua dokumen dalam permintaan asli Anda.
+    * Indeks dokumen disediakan untuk menunjukkan sumber referensi dan berindeks mulai 0 sesuai dengan daftar semua dokumen dalam permintaan asli Anda.
   </Step>
 </Steps>
 
 <Tip>
-  **Pemotongan otomatis vs konten kustom**
+  **Chunking otomatis vs konten kustom**
 
-  Secara default, dokumen teks biasa dan PDF secara otomatis dipotong menjadi kalimat. Jika Anda memerlukan kontrol lebih atas granularitas sitasi (misalnya, untuk poin-poin berbutir atau transkrip), gunakan dokumen konten kustom sebagai gantinya. Lihat [Jenis dokumen](https://platform.claude.com/docs/id/build-with-claude/citations#document-types) untuk detail lebih lanjut.
+  Secara default, dokumen teks biasa dan PDF secara otomatis dipecah menjadi kalimat. Jika Anda memerlukan kontrol lebih atas granularitas sitasi (misalnya, untuk poin-poin berbutir atau transkrip), gunakan dokumen konten kustom sebagai gantinya. Lihat [Jenis dokumen](https://platform.claude.com/docs/id/build-with-claude/citations#document-types) untuk detail lebih lanjut.
 
-  Misalnya, jika Anda ingin Claude dapat mengutip kalimat tertentu dari potongan RAG Anda, Anda sebaiknya menempatkan setiap potongan RAG ke dalam dokumen teks biasa. Sebaliknya, jika Anda tidak ingin ada pemotongan lebih lanjut, atau jika Anda ingin menyesuaikan pemotongan tambahan apa pun, Anda dapat menempatkan potongan RAG ke dalam dokumen konten kustom.
+  Misalnya, jika Anda ingin Claude dapat mengutip kalimat tertentu dari chunk RAG Anda, Anda sebaiknya menempatkan setiap chunk RAG ke dalam dokumen teks biasa. Sebaliknya, jika Anda tidak ingin ada chunking lebih lanjut, atau jika Anda ingin menyesuaikan chunking tambahan apa pun, Anda dapat menempatkan chunk RAG ke dalam dokumen konten kustom.
 </Tip>
 
 ### Konten yang dapat dikutip versus yang tidak dapat dikutip
@@ -374,13 +374,13 @@ Integrasikan sitasi dengan Claude melalui langkah-langkah berikut:
 
 ### Biaya token
 
-* Mengaktifkan sitasi menimbulkan sedikit peningkatan token input karena penambahan prompt sistem dan pemotongan dokumen.
-* Namun, fitur sitasi sangat efisien dalam hal token output. Secara internal, model mengeluarkan sitasi dalam format terstandar yang kemudian diurai menjadi teks yang dikutip dan indeks lokasi dokumen. Field `cited_text` disediakan untuk kemudahan dan tidak dihitung sebagai token output.
-* Ketika diteruskan kembali pada giliran percakapan berikutnya, `cited_text` juga tidak dihitung sebagai token input.
+* Mengaktifkan sitasi menimbulkan sedikit peningkatan input token karena penambahan prompt sistem dan chunking dokumen.
+* Namun, fitur sitasi sangat efisien dalam hal output token. Secara internal, model mengeluarkan sitasi dalam format terstandar yang kemudian diurai menjadi teks yang dikutip dan indeks lokasi dokumen. Field `cited_text` disediakan untuk kemudahan dan tidak dihitung sebagai output token.
+* Ketika diteruskan kembali pada giliran percakapan berikutnya, `cited_text` juga tidak dihitung sebagai input token.
 
 ### Kompatibilitas fitur
 
-Sitasi bekerja bersama fitur API lainnya termasuk [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching), [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting), dan [pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing).
+Sitasi bekerja bersama dengan fitur API lainnya termasuk ["prompt caching" (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching), [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting), dan [pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing).
 
 <Warning>
   **Sitasi dan structured outputs tidak kompatibel**
@@ -392,7 +392,7 @@ Sitasi bekerja bersama fitur API lainnya termasuk [caching prompt](https://platf
 
 #### Menggunakan caching prompt dengan sitasi
 
-Sitasi dan "prompt caching" (caching prompt) dapat digunakan bersama secara efektif.
+Sitasi dan caching prompt dapat digunakan bersama secara efektif.
 
 Blok sitasi yang dihasilkan dalam respons tidak dapat di-cache secara langsung, tetapi dokumen sumber yang dirujuknya dapat di-cache. Untuk mengoptimalkan kinerja, terapkan `cache_control` pada blok konten dokumen tingkat atas Anda.
 
@@ -430,9 +430,7 @@ Blok sitasi yang dihasilkan dalam respons tidak dapat di-cache secara langsung, 
   ```
 
   ```bash CLI
-  ant messages create \
-    --model claude-opus-5 \
-    --max-tokens 1024 <<'YAML'
+  ant messages create --model claude-opus-5 --max-tokens 1024 <<'YAML'
   messages:
     - role: user
       content:
@@ -712,11 +710,11 @@ Dalam contoh ini:
 
 Tiga jenis dokumen didukung untuk sitasi. Dokumen dapat disediakan langsung dalam pesan (base64, teks, atau URL) atau diunggah melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files) dan dirujuk dengan `file_id`:
 
-| Jenis         | Paling cocok untuk                                                | Pemotongan                | Format sitasi                       |
-| ------------- | ----------------------------------------------------------------- | ------------------------- | ----------------------------------- |
-| Teks biasa    | Dokumen teks sederhana, prosa                                     | Kalimat                   | Indeks karakter (berindeks mulai 0) |
-| PDF           | File PDF dengan konten teks                                       | Kalimat                   | Nomor halaman (berindeks mulai 1)   |
-| Konten kustom | Daftar, transkrip, pemformatan khusus, sitasi yang lebih granular | Tanpa pemotongan tambahan | Indeks blok (berindeks mulai 0)     |
+| Jenis         | Paling cocok untuk                                           | Chunking                | Format sitasi                       |
+| ------------- | ------------------------------------------------------------ | ----------------------- | ----------------------------------- |
+| Teks biasa    | Dokumen teks sederhana, prosa                                | Kalimat                 | Indeks karakter (berindeks mulai 0) |
+| PDF           | File PDF dengan konten teks                                  | Kalimat                 | Nomor halaman (berindeks mulai 1)   |
+| Konten kustom | Daftar, transkrip, format khusus, sitasi yang lebih granular | Tanpa chunking tambahan | Indeks blok (berindeks mulai 0)     |
 
 <Note>
   Untuk jenis file yang tidak didukung oleh blok `document` (misalnya, .docx dan .xlsx), konversikan file ke teks biasa dan sertakan kontennya langsung dalam konten pesan. File yang sudah berupa teks biasa, seperti file .csv dan .md, juga dapat diunggah dengan tipe konten `text/plain` yang eksplisit. Lihat [Bekerja dengan format file lain](https://platform.claude.com/docs/id/build-with-claude/files#working-with-other-file-formats).
@@ -724,11 +722,11 @@ Tiga jenis dokumen didukung untuk sitasi. Dokumen dapat disediakan langsung dala
 
 ### Dokumen teks biasa
 
-Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyediakannya secara inline atau melalui rujukan dengan `file_id`-nya:
+Dokumen teks biasa secara otomatis dipecah menjadi kalimat. Anda dapat menyediakannya secara inline atau melalui referensi dengan `file_id`-nya:
 
 <Tabs>
   <Tab title="Teks inline">
-    Contoh pengantar di bagian atas halaman ini menunjukkan permintaan teks biasa yang lengkap di setiap SDK. Blok dokumen menggunakan sumber `text`:
+    Contoh pengantar di bagian atas halaman ini menunjukkan permintaan teks biasa lengkap di setiap SDK. Blok dokumen menggunakan source `text`:
 
     ```json
     {
@@ -746,9 +744,7 @@ Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyedia
   </Tab>
 
   <Tab title="Files API">
-    <Note>
-      Contoh-contoh ini merujuk file yang diunggah sebagai sumber `document`, dan tidak diperlukan header beta. Lihat [Files API](https://platform.claude.com/docs/id/build-with-claude/files) untuk detail pengunggahan.
-    </Note>
+    Contoh-contoh ini merujuk file yang diunggah melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files) sebagai source `document`.
 
     <CodeGroup>
       ```bash cURL
@@ -997,7 +993,7 @@ Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyedia
 
 ### Dokumen PDF
 
-Dokumen PDF dapat disediakan sebagai data berenkode base64, URL, atau melalui `file_id`. Teks PDF diekstrak dan dipotong menjadi kalimat. Karena sitasi gambar belum didukung, PDF yang merupakan hasil pindaian dokumen dan tidak berisi teks yang dapat diekstrak tidak dapat dikutip.
+Dokumen PDF dapat disediakan sebagai data yang dienkode base64, URL, atau melalui `file_id`. Teks PDF diekstrak dan dipecah menjadi kalimat. Karena sitasi gambar belum didukung, PDF yang merupakan hasil pindaian dokumen dan tidak berisi teks yang dapat diekstrak tidak dapat dikutip.
 
 <Tabs>
   <Tab title="Base64">
@@ -1569,9 +1565,7 @@ Dokumen PDF dapat disediakan sebagai data berenkode base64, URL, atau melalui `f
   </Tab>
 
   <Tab title="Files API">
-    <Note>
-      Contoh-contoh ini merujuk file yang diunggah sebagai sumber `document`, dan tidak diperlukan header beta. Lihat [Files API](https://platform.claude.com/docs/id/build-with-claude/files) untuk detail pengunggahan.
-    </Note>
+    Contoh-contoh ini merujuk file yang diunggah melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files) sebagai source `document`.
 
     <CodeGroup>
       ```bash cURL
@@ -1820,7 +1814,7 @@ Dokumen PDF dapat disediakan sebagai data berenkode base64, URL, atau melalui `f
 
 ### Dokumen konten kustom
 
-Dokumen konten kustom memberi Anda kontrol atas granularitas sitasi. Tidak ada pemotongan tambahan yang dilakukan dan potongan disediakan ke model sesuai dengan blok konten yang diberikan.
+Dokumen konten kustom memberi Anda kontrol atas granularitas sitasi. Tidak ada chunking tambahan yang dilakukan dan chunk disediakan ke model sesuai dengan blok konten yang diberikan.
 
 <CodeGroup>
   ```bash cURL

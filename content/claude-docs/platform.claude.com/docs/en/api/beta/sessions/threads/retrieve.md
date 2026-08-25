@@ -1,28 +1,23 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/retrieve
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 98fc93945f2d787b26e95301f2c2c90cb9028b598c7089e405d91b856a81a6a3
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: e64b897408fb7e388ff9225a2332f38e998c1b43e34a457ba561c32f4750506a
 ---
 
----
-title: Get Session Thread
-url: https://platform.claude.com/docs/en/api/beta/sessions/threads/retrieve
----
+# Get Session Thread
 
-## Get Session Thread
-
-**get** `/v1/sessions/{session_id}/threads/{thread_id}`
+**GET** `/v1/sessions/{session_id}/threads/{thread_id}`
 
 Get Session Thread
 
-### Path Parameters
+## Path parameters
 
 - `session_id: string`
 
 - `thread_id: string`
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -100,9 +95,9 @@ Get Session Thread
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
-### Returns
+## Returns
 
-- `BetaManagedAgentsSessionThread object { id, agent, archived_at, 8 more }`
+- `BetaManagedAgentsSessionThread object`
 
   An execution thread within a `session`. Each session has one primary thread plus zero or more child threads spawned by the coordinator.
 
@@ -114,7 +109,7 @@ Get Session Thread
 
     A session-resolved multiagent roster entry.
 
-    - `BetaManagedAgentsSessionThreadAgent object { id, description, mcp_servers, 7 more }`
+    - `BetaManagedAgentsSessionThreadAgent object`
 
       Resolved `agent` definition for a single `session_thread`. Snapshot of the agent at thread creation time. The multiagent roster is not repeated here; read it from `Session.agent`.
 
@@ -127,8 +122,6 @@ Get Session Thread
         - `name: string`
 
         - `type: "url"`
-
-          - `"url"`
 
         - `url: string`
 
@@ -206,45 +199,35 @@ Get Session Thread
 
           How hard Claude works on each turn. Sets `output_config.effort` on every Messages call the session makes.
 
-          - `BetaManagedAgentsEffortLow object { type }`
+          - `BetaManagedAgentsEffortLow object`
 
             Low effort. Favors latency over reasoning depth.
 
             - `type: "low"`
 
-              - `"low"`
-
-          - `BetaManagedAgentsEffortMedium object { type }`
+          - `BetaManagedAgentsEffortMedium object`
 
             Medium effort. Balances latency and reasoning depth.
 
             - `type: "medium"`
 
-              - `"medium"`
-
-          - `BetaManagedAgentsEffortHigh object { type }`
+          - `BetaManagedAgentsEffortHigh object`
 
             High effort. Favors reasoning depth.
 
             - `type: "high"`
 
-              - `"high"`
-
-          - `BetaManagedAgentsEffortXhigh object { type }`
+          - `BetaManagedAgentsEffortXhigh object`
 
             Extra-high effort. Not all models accept this level.
 
             - `type: "xhigh"`
 
-              - `"xhigh"`
-
-          - `BetaManagedAgentsEffortMax object { type }`
+          - `BetaManagedAgentsEffortMax object`
 
             Maximum effort. Favors reasoning depth over latency.
 
             - `type: "max"`
-
-              - `"max"`
 
         - `inference_geo: optional string`
 
@@ -262,7 +245,7 @@ Get Session Thread
 
       - `skills: array of BetaManagedAgentsAnthropicSkill or BetaManagedAgentsCustomSkill`
 
-        - `BetaManagedAgentsAnthropicSkill object { skill_id, type, version }`
+        - `BetaManagedAgentsAnthropicSkill object`
 
           A resolved Anthropic-managed skill.
 
@@ -270,11 +253,9 @@ Get Session Thread
 
           - `type: "anthropic"`
 
-            - `"anthropic"`
-
           - `version: string`
 
-        - `BetaManagedAgentsCustomSkill object { skill_id, type, version }`
+        - `BetaManagedAgentsCustomSkill object`
 
           A resolved user-created custom skill.
 
@@ -282,19 +263,17 @@ Get Session Thread
 
           - `type: "custom"`
 
-            - `"custom"`
-
           - `version: string`
 
       - `system: string or null`
 
       - `tools: array of BetaManagedAgentsAgentToolset20260401 or BetaManagedAgentsMCPToolset or BetaManagedAgentsCustomTool`
 
-        - `BetaManagedAgentsAgentToolset20260401 object { configs, default_config, type }`
+        - `BetaManagedAgentsAgentToolset20260401 object`
 
           - `configs: array of BetaManagedAgentsAgentToolConfig`
 
-            - `BetaManagedAgentsBashToolConfig object { enabled, name, permission_policy, type }`
+            - `BetaManagedAgentsBashToolConfig object`
 
               Configuration for the bash tool.
 
@@ -302,33 +281,25 @@ Get Session Thread
 
               - `name: "bash"`
 
-                - `"bash"`
-
               - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
 
                 Permission policy for tool execution.
 
-                - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+                - `BetaManagedAgentsAlwaysAllowPolicy object`
 
                   Tool calls are automatically approved without user confirmation.
 
                   - `type: "always_allow"`
 
-                    - `"always_allow"`
-
-                - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+                - `BetaManagedAgentsAlwaysAskPolicy object`
 
                   Tool calls require user confirmation before execution.
 
                   - `type: "always_ask"`
 
-                    - `"always_ask"`
-
               - `type: "bash"`
 
-                - `"bash"`
-
-            - `BetaManagedAgentsEditToolConfig object { enabled, name, permission_policy, type }`
+            - `BetaManagedAgentsEditToolConfig object`
 
               Configuration for the edit tool.
 
@@ -336,25 +307,21 @@ Get Session Thread
 
               - `name: "edit"`
 
-                - `"edit"`
-
               - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
 
                 Permission policy for tool execution.
 
-                - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+                - `BetaManagedAgentsAlwaysAllowPolicy object`
 
                   Tool calls are automatically approved without user confirmation.
 
-                - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+                - `BetaManagedAgentsAlwaysAskPolicy object`
 
                   Tool calls require user confirmation before execution.
 
               - `type: "edit"`
 
-                - `"edit"`
-
-            - `BetaManagedAgentsReadToolConfig object { enabled, name, permission_policy, type }`
+            - `BetaManagedAgentsReadToolConfig object`
 
               Configuration for the read tool.
 
@@ -362,25 +329,21 @@ Get Session Thread
 
               - `name: "read"`
 
-                - `"read"`
-
               - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
 
                 Permission policy for tool execution.
 
-                - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+                - `BetaManagedAgentsAlwaysAllowPolicy object`
 
                   Tool calls are automatically approved without user confirmation.
 
-                - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+                - `BetaManagedAgentsAlwaysAskPolicy object`
 
                   Tool calls require user confirmation before execution.
 
               - `type: "read"`
 
-                - `"read"`
-
-            - `BetaManagedAgentsWriteToolConfig object { enabled, name, permission_policy, type }`
+            - `BetaManagedAgentsWriteToolConfig object`
 
               Configuration for the write tool.
 
@@ -388,25 +351,21 @@ Get Session Thread
 
               - `name: "write"`
 
-                - `"write"`
-
               - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
 
                 Permission policy for tool execution.
 
-                - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+                - `BetaManagedAgentsAlwaysAllowPolicy object`
 
                   Tool calls are automatically approved without user confirmation.
 
-                - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+                - `BetaManagedAgentsAlwaysAskPolicy object`
 
                   Tool calls require user confirmation before execution.
 
               - `type: "write"`
 
-                - `"write"`
-
-            - `BetaManagedAgentsGlobToolConfig object { enabled, name, permission_policy, type }`
+            - `BetaManagedAgentsGlobToolConfig object`
 
               Configuration for the glob tool.
 
@@ -414,25 +373,21 @@ Get Session Thread
 
               - `name: "glob"`
 
-                - `"glob"`
-
               - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
 
                 Permission policy for tool execution.
 
-                - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+                - `BetaManagedAgentsAlwaysAllowPolicy object`
 
                   Tool calls are automatically approved without user confirmation.
 
-                - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+                - `BetaManagedAgentsAlwaysAskPolicy object`
 
                   Tool calls require user confirmation before execution.
 
               - `type: "glob"`
 
-                - `"glob"`
-
-            - `BetaManagedAgentsGrepToolConfig object { enabled, name, permission_policy, type }`
+            - `BetaManagedAgentsGrepToolConfig object`
 
               Configuration for the grep tool.
 
@@ -440,25 +395,21 @@ Get Session Thread
 
               - `name: "grep"`
 
-                - `"grep"`
-
               - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
 
                 Permission policy for tool execution.
 
-                - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+                - `BetaManagedAgentsAlwaysAllowPolicy object`
 
                   Tool calls are automatically approved without user confirmation.
 
-                - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+                - `BetaManagedAgentsAlwaysAskPolicy object`
 
                   Tool calls require user confirmation before execution.
 
               - `type: "grep"`
 
-                - `"grep"`
-
-            - `BetaManagedAgentsWebFetchToolConfig object { enabled, name, permission_policy, 4 more }`
+            - `BetaManagedAgentsWebFetchToolConfig object`
 
               Configuration for the web_fetch tool.
 
@@ -466,23 +417,19 @@ Get Session Thread
 
               - `name: "web_fetch"`
 
-                - `"web_fetch"`
-
               - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
 
                 Permission policy for tool execution.
 
-                - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+                - `BetaManagedAgentsAlwaysAllowPolicy object`
 
                   Tool calls are automatically approved without user confirmation.
 
-                - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+                - `BetaManagedAgentsAlwaysAskPolicy object`
 
                   Tool calls require user confirmation before execution.
 
               - `type: "web_fetch"`
-
-                - `"web_fetch"`
 
               - `allowed_domains: optional array of string`
 
@@ -490,7 +437,9 @@ Get Session Thread
 
               - `max_content_tokens: optional number or null`
 
-            - `BetaManagedAgentsWebSearchToolConfig object { enabled, name, permission_policy, 4 more }`
+                format: int32
+
+            - `BetaManagedAgentsWebSearchToolConfig object`
 
               Configuration for the web_search tool.
 
@@ -498,23 +447,19 @@ Get Session Thread
 
               - `name: "web_search"`
 
-                - `"web_search"`
-
               - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
 
                 Permission policy for tool execution.
 
-                - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+                - `BetaManagedAgentsAlwaysAllowPolicy object`
 
                   Tool calls are automatically approved without user confirmation.
 
-                - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+                - `BetaManagedAgentsAlwaysAskPolicy object`
 
                   Tool calls require user confirmation before execution.
 
               - `type: "web_search"`
-
-                - `"web_search"`
 
               - `allowed_domains: optional array of string`
 
@@ -528,11 +473,11 @@ Get Session Thread
 
                   Location precision. Only "approximate" is supported.
 
-                  - `"approximate"`
-
                 - `city: optional string or null`
 
                   City name.
+
+                  minLength: 1, maxLength: 255
 
                 - `country: optional string or null`
 
@@ -542,9 +487,13 @@ Get Session Thread
 
                   Region or state name.
 
+                  minLength: 1, maxLength: 255
+
                 - `timezone: optional string or null`
 
                   IANA timezone identifier, e.g. "America/Los_Angeles".
+
+                  minLength: 1, maxLength: 255
 
           - `default_config: BetaManagedAgentsAgentToolsetDefaultConfig`
 
@@ -556,19 +505,17 @@ Get Session Thread
 
               Permission policy for tool execution.
 
-              - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+              - `BetaManagedAgentsAlwaysAllowPolicy object`
 
                 Tool calls are automatically approved without user confirmation.
 
-              - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+              - `BetaManagedAgentsAlwaysAskPolicy object`
 
                 Tool calls require user confirmation before execution.
 
           - `type: "agent_toolset_20260401"`
 
-            - `"agent_toolset_20260401"`
-
-        - `BetaManagedAgentsMCPToolset object { configs, default_config, mcp_server_name, type }`
+        - `BetaManagedAgentsMCPToolset object`
 
           - `configs: array of BetaManagedAgentsMCPToolConfig`
 
@@ -580,11 +527,11 @@ Get Session Thread
 
               Permission policy for tool execution.
 
-              - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+              - `BetaManagedAgentsAlwaysAllowPolicy object`
 
                 Tool calls are automatically approved without user confirmation.
 
-              - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+              - `BetaManagedAgentsAlwaysAskPolicy object`
 
                 Tool calls require user confirmation before execution.
 
@@ -598,11 +545,11 @@ Get Session Thread
 
               Permission policy for tool execution.
 
-              - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+              - `BetaManagedAgentsAlwaysAllowPolicy object`
 
                 Tool calls are automatically approved without user confirmation.
 
-              - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+              - `BetaManagedAgentsAlwaysAskPolicy object`
 
                 Tool calls require user confirmation before execution.
 
@@ -610,9 +557,7 @@ Get Session Thread
 
           - `type: "mcp_toolset"`
 
-            - `"mcp_toolset"`
-
-        - `BetaManagedAgentsCustomTool object { description, input_schema, name, type }`
+        - `BetaManagedAgentsCustomTool object`
 
           A custom tool as returned in API responses.
 
@@ -624,8 +569,6 @@ Get Session Thread
 
             - `type: "object"`
 
-              - `"object"`
-
             - `properties: optional map[unknown] or null`
 
             - `required: optional array of string or null`
@@ -634,15 +577,13 @@ Get Session Thread
 
           - `type: "custom"`
 
-            - `"custom"`
-
       - `type: "agent"`
-
-        - `"agent"`
 
       - `version: number`
 
-    - `BetaManagedAgentsAdvisor object { model, type }`
+        format: int32
+
+    - `BetaManagedAgentsAdvisor object`
 
       Platform advisor roster entry: a model the session's primary thread may consult mid-turn.
 
@@ -652,15 +593,17 @@ Get Session Thread
 
       - `type: "advisor"`
 
-        - `"advisor"`
-
   - `archived_at: string or null`
 
     A timestamp in RFC 3339 format
 
+    format: date-time
+
   - `created_at: string`
 
     A timestamp in RFC 3339 format
+
+    format: date-time
 
   - `parent_thread_id: string or null`
 
@@ -678,13 +621,19 @@ Get Session Thread
 
       Cumulative time in seconds the thread spent actively running. Excludes idle time.
 
+      format: double
+
     - `duration_seconds: optional number`
 
       Elapsed time since thread creation in seconds. For archived threads, frozen at the final update.
 
+      format: double
+
     - `startup_seconds: optional number`
 
       Time in seconds for the thread to begin running. Zero for child threads, which start immediately.
+
+      format: double
 
   - `status: BetaManagedAgentsSessionThreadStatus`
 
@@ -700,11 +649,11 @@ Get Session Thread
 
   - `type: "session_thread"`
 
-    - `"session_thread"`
-
   - `updated_at: string`
 
     A timestamp in RFC 3339 format
+
+    format: date-time
 
   - `usage: BetaManagedAgentsSessionThreadUsage or null`
 
@@ -714,6 +663,8 @@ Get Session Thread
 
       Cumulative time in seconds this thread spent in running status. Equal to `stats.active_seconds`; surfaced here so a thread's usage carries every quantity its cost is priced on.
 
+      format: double
+
     - `cache_creation: optional BetaManagedAgentsCacheCreationUsage`
 
       Prompt-cache creation token usage broken down by cache lifetime.
@@ -722,17 +673,25 @@ Get Session Thread
 
         Tokens used to create 1-hour ephemeral cache entries.
 
+        format: int32
+
       - `ephemeral_5m_input_tokens: optional number`
 
         Tokens used to create 5-minute ephemeral cache entries.
+
+        format: int32
 
     - `cache_read_input_tokens: optional number`
 
       Total tokens read from prompt cache.
 
+      format: int32
+
     - `input_tokens: optional number`
 
       Total input tokens consumed across all turns.
+
+      format: int32
 
     - `list_cost: optional BetaMonetaryAmount or null`
 
@@ -746,11 +705,11 @@ Get Session Thread
 
         Uppercase ISO-4217 currency code. `USD` is the only currency currently supported; the accepted set is closed and grows only when a new currency is priced.
 
-        - `"USD"`
-
     - `output_tokens: optional number`
 
       Total output tokens generated across all turns.
+
+      format: int32
 
     - `server_tool_use: optional BetaManagedAgentsServerToolUsage or null`
 
@@ -760,20 +719,24 @@ Get Session Thread
 
         Number of server-executed web fetch requests.
 
+        format: int32
+
       - `web_search_requests: optional number`
 
         Number of server-executed web search requests.
 
-### Example
+        format: int32
 
-```http
+## Example
+
+```bash
 curl https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

@@ -1,18 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/validate
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 0a1bc4e750ef22d2fbfd5ee3b660af9c834965b966035fe5f14104fd6ccb3606
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 70c8134ec41ec83e26878d5c2b79fc9781a1cbf7bb8cac361260e7f8d577c6d4
 ---
 
----
-title: Validate External Key
-url: https://platform.claude.com/docs/en/api/admin/external_keys/validate
----
+# Validate External Key
 
-## Validate External Key
-
-**post** `/v1/organizations/external_keys/{external_key_id}/validate`
+**POST** `/v1/organizations/external_keys/{external_key_id}/validate`
 
 Validate an external key config against the customer's KMS.
 
@@ -21,13 +16,15 @@ KMS key and waits up to 30 seconds for the result. The response status is
 `success` if the roundtrip succeeded, or `failure` with an error
 message if it failed or timed out.
 
-### Path Parameters
+## Path parameters
 
 - `external_key_id: string`
 
   ID of the External Key.
 
-### Returns
+  maxLength: 2048
+
+## Returns
 
 - `error: string or null`
 
@@ -43,18 +40,18 @@ message if it failed or timed out.
 
 - `type: "external_key_validation"`
 
-  - `"external_key_validation"`
+  default: external_key_validation
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/external_keys/$EXTERNAL_KEY_ID/validate \
     -X POST \
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

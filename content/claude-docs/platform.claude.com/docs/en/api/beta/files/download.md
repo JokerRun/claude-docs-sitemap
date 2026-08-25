@@ -1,28 +1,23 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/download
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 791d15cc7ef5193e54a18ed106b2f6c2fbc2483d19937da80ce5b30a452ace49
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 4290baff8a5696a0c2bb9491ed7977f0222755bd13a7f50cfe1cc6f79a250cda
 ---
 
----
-title: Download File
-url: https://platform.claude.com/docs/en/api/beta/files/download
----
+# Download File
 
-## Download File
-
-**get** `/v1/files/{file_id}/content`
+**GET** `/v1/files/{file_id}/content`
 
 Download File
 
-### Path Parameters
+## Path parameters
 
 - `file_id: string`
 
   ID of the File.
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -100,9 +95,9 @@ Download File
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/files/$FILE_ID/content \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: files-api-2025-04-14' \

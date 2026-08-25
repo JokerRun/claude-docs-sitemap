@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/inference-hooks-endpoint
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 9c7bc36a44703f71f6972b574a0d26c21e3bf625079b8b42db9b8ccedd700188
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: abae32e77382a03068ba91b3211858c0ae80dce98adf63b493c8ec515afac6b6
 ---
 
 ---
@@ -695,6 +695,8 @@ Timeouts, non-200 statuses (redirects included), unparseable or oversized respon
 ### Circuit breaker
 
 Sustained webhook failures attributable to your AI security server trip a circuit breaker that stops enforcement: Anthropic stops contacting your server, and failure handling applies to every request. Recovery happens on the admin side: fix the server, then have your administrator turn **Enforce verdicts** back on. See [Circuit breaker](https://platform.claude.com/docs/en/manage-claude/inference-hooks-configuration#circuit-breaker).
+
+Each trip is recorded as an `inference_hooks_circuit_breaker_tripped` activity in the [Activity Feed](https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed), one activity per trip. While the breaker is tripped, no per-request Inference hooks activities are recorded, so the trip activity is the feed's only record of the tripped window.
 
 ### Latency
 

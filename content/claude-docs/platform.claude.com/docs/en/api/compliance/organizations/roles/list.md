@@ -1,44 +1,41 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/list
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 37fad080d24bd0a6b33d270c7a81916226f0827348324da2cad60ae56e6ade71
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 4dbcc97b7f991ce67e51780c48d95adb95969b352c059f31bf7eb5f6353dfa05
 ---
 
----
-title: List Compliance Roles
-url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/list
----
+# List Compliance Roles
 
-## List Compliance Roles
-
-**get** `/v1/compliance/organizations/{org_uuid}/roles`
+**GET** `/v1/compliance/organizations/{org_uuid}/roles`
 
 List Compliance Roles
 
-### Path Parameters
+## Path parameters
 
 - `org_uuid: string`
 
   The organization UUID
 
-### Query Parameters
+## Query parameters
 
 - `limit: optional number`
 
   Maximum results (default: 500, max: 1000)
 
+  default: 500, maximum: 1000, minimum: 1
+
 - `page: optional string`
 
   Opaque pagination token from a previous response's `next_page` field. Pass this to retrieve the next page of results. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
 
-### Header Parameters
+## Headers
 
 - `"x-api-key": optional string`
 
-### Returns
+## Returns
 
-- `data: array of object { id, created_at, description, 2 more }`
+- `data: array of object`
 
   List of roles
 
@@ -70,14 +67,14 @@ List Compliance Roles
 
   Token to retrieve the next page. Use this as the 'page' parameter in your next request
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-operations
-fetched_at: 2026-08-23T02:32:19.757524Z
-sha256: 572ea39336442e451ff862d2a7fb4682d524fb31dc9f469952f92b1e03d63953
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: b282c8456178d3e69b751b4df0c1e748b16d49a8e76d8316fc08e5d3c600266c
 ---
 
 ---
@@ -30,13 +30,13 @@ Sesi berkembang melalui status-status berikut. Lihat [Memulai sesi](https://plat
 
 ## Memperbarui konfigurasi agen
 
-Anda dapat memperbarui `agent.tools` dan `agent.mcp_servers` milik sebuah sesi, termasuk kebijakan izin, di tengah sesi tanpa membuat versi agen baru. Pembaruan bersifat lokal pada sesi dan tidak disebarkan kembali ke agen yang mendasarinya.
+Anda dapat memperbarui `agent.tools` dan `agent.mcp_servers` milik sebuah sesi, termasuk kebijakan izin dan pengaturan web per alat seperti [filter domain](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains), di tengah sesi tanpa membuat versi agen baru. Pembaruan bersifat lokal pada sesi dan tidak disebarkan kembali ke agen yang mendasarinya. `allowed_domains` dan `blocked_domains` yang diperbarui berlaku untuk sisa sesi.
 
 Hanya `tools` dan `mcp_servers` milik agen yang dapat berubah setelah sesi dibuat. Untuk menjalankan sesi dengan nilai `model`, `system`, atau `skills` yang berbeda dari milik agen, gunakan [override konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) saat Anda membuat sesi. Konfigurasi model agen, termasuk pin [`inference_geo`](https://platform.claude.com/docs/id/manage-claude/data-residency)-nya, juga tidak dapat berubah di tengah sesi: tetapkan pin saat Anda menyimpan agen, atau tetapkan atau hapus pin tersebut untuk satu sesi dengan override `model` saat Anda membuatnya. Field `system` yang dikonfigurasi pada agen bersifat tetap selama masa hidup sesi. Pada model yang mendukungnya, Anda masih dapat menambahkan panduan tingkat sistem di tengah sesi dengan mengirimkan [event `system.message`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#sending-system-messages).
 
-Semantik pembaruan `tools` atau `mcp_servers` adalah penggantian penuh: array yang diberikan menjadi nilai baru. Untuk mempertahankan entri yang ada, lakukan `GET` pada sesi, ubah array-nya, lalu `POST` kembali.
+Semantik pembaruan `tools` atau `mcp_servers` adalah penggantian penuh: array yang diberikan menjadi nilai baru. Untuk mempertahankan entri yang sudah ada, lakukan `GET` pada sesi, ubah array-nya, lalu `POST` kembali.
 
-Sesi harus berstatus `idle` untuk memperbarui agen. [Interupsi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events) sesi jika Anda perlu memperbarui agen saat sesi sedang berjalan.
+Sesi harus berstatus `idle` untuk memperbarui agen. Untuk memperbarui agen saat sesi sedang berjalan, kirim [event `user.interrupt`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events) secara tersendiri dan tunggu hingga sesi menjadi `idle`.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -282,7 +282,7 @@ Hasil dari `GET /v1/sessions` dipaginasi. Gunakan parameter query `limit` untuk 
 
 Untuk kembali satu halaman, teruskan `prev_page` sebagai parameter `page`. `prev_page` bernilai `null` ketika Anda berada di halaman pertama.
 
-Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang menghasilkannya. Parameter query `order` menetapkan arah pengurutan hasil, `asc` atau `desc` berdasarkan waktu pembuatan; default-nya adalah `desc` (terbaru lebih dulu). Menggunakan kembali kursor dengan `order` yang berbeda akan mengembalikan kesalahan 400, demikian pula mengubah filter `created_at` sehingga mengecualikan posisi kursor. Parameter query lainnya, termasuk filter-filter yang tersisa dan `limit`, dapat berubah di antara permintaan yang dipaginasi. Untuk field paginasi yang digunakan bersama di seluruh endpoint daftar, lihat [Paginasi](https://platform.claude.com/docs/id/api/overview#pagination).
+Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang menghasilkannya. Parameter query `order` menetapkan arah pengurutan hasil, `asc` atau `desc` berdasarkan waktu pembuatan; default-nya adalah `desc` (terbaru lebih dulu). Menggunakan kembali kursor dengan `order` yang berbeda akan mengembalikan kesalahan 400, demikian pula mengubah filter `created_at` sehingga mengecualikan posisi kursor. Parameter query lainnya, termasuk filter-filter lain dan `limit`, dapat berubah di antara permintaan yang dipaginasi. Untuk field paginasi yang digunakan bersama di seluruh endpoint daftar, lihat [Paginasi](https://platform.claude.com/docs/id/api/overview#pagination).
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -539,7 +539,7 @@ Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang mengha
 
 ## Mengarsipkan sesi
 
-Arsipkan sesi untuk mencegah event baru dikirim sambil tetap mempertahankan riwayatnya. Sesi berstatus `running` tidak dapat diarsipkan; kirim [event interupsi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events) jika Anda perlu mengarsipkannya segera.
+Arsipkan sesi untuk mencegah event baru dikirim sambil tetap mempertahankan riwayatnya. Sesi berstatus `running` tidak dapat diarsipkan; untuk mengarsipkannya, kirim [event `user.interrupt`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events) secara tersendiri dan tunggu hingga sesi menjadi `idle`.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -588,9 +588,9 @@ Arsipkan sesi untuk mencegah event baru dikirim sambil tetap mempertahankan riwa
 
 ## Menghapus sesi
 
-Hapus sesi untuk menghilangkan secara permanen catatan, event, dan sandbox terkaitnya. Sesi berstatus `running` tidak dapat dihapus; kirim [event interupsi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events) jika Anda perlu menghapusnya segera.
+Hapus sesi untuk menghilangkan secara permanen catatan, event, dan sandbox terkaitnya. Sesi berstatus `running` tidak dapat dihapus; untuk menghapusnya, kirim [event `user.interrupt`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events) secara tersendiri dan tunggu hingga sesi menjadi `idle`.
 
-Memory store, vault, skill, environment, dan agen adalah sumber daya independen dan tidak terpengaruh oleh penghapusan sesi. File yang Anda unggah melalui Files API juga tidak terpengaruh, tetapi file yang dihasilkan oleh sesi itu sendiri terikat pada sesi tersebut dan dihapus secara permanen bersama filesystem-nya. Unduh apa pun yang perlu Anda simpan sebelum menghapus sesi.
+Memory store, vault, skill, environment, dan agen adalah sumber daya independen dan tidak terpengaruh oleh penghapusan sesi. File yang Anda unggah melalui Files API juga tidak terpengaruh, tetapi file yang dihasilkan oleh sesi itu sendiri terikat pada sesi tersebut dan dihapus secara permanen bersama sistem filenya. Unduh apa pun yang perlu Anda simpan sebelum menghapus sesi. File output yang ditulis pada akhir giliran terakhir dapat memerlukan beberapa detik setelah sesi menjadi idle untuk muncul di [daftar file sesi](https://platform.claude.com/docs/id/managed-agents/files#listing-and-downloading-session-files), jadi pastikan terlebih dahulu bahwa file yang Anda harapkan sudah terdaftar.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL

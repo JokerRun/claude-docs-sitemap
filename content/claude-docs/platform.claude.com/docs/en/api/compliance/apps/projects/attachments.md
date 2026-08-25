@@ -1,20 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: c196eb0d8ab92b38e8e49bb0d16c375d9086fcfc6acea05c8a7e94c0e359dc02
----
-
----
-title: Attachments
-url: https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 27fd174467e59b257b117e56e70da24e67a4befe34864d94b9a75c6b31f86abd
 ---
 
 # Attachments
 
 ## List project attachments
 
-**get** `/v1/compliance/apps/projects/{project_id}/attachments`
+**GET** `/v1/compliance/apps/projects/{project_id}/attachments`
 
 List files and documents attached to a project.
 
@@ -27,33 +22,35 @@ GET /v1/compliance/apps/chats/files/{claude_file_id}/content endpoint.
 The text content of attached project documents can be fetched using the
 GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
 
-### Path Parameters
+### Path parameters
 
 - `project_id: string`
 
   The project ID (tagged ID, e.g., claude_proj_abc123)
 
-### Query Parameters
+### Query parameters
 
 - `limit: optional number`
 
   Maximum results (default: 20, max: 100)
 
+  default: 20, maximum: 100, minimum: 1
+
 - `page: optional string`
 
   Opaque pagination token from a previous response's `next_page` field. Pass this to retrieve the next page of results. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
 
-### Header Parameters
+### Headers
 
 - `"x-api-key": optional string`
 
 ### Returns
 
-- `data: array of object { id, created_at, filename, 4 more }  or object { id, created_at, filename, 3 more }`
+- `data: array of object or object`
 
   List of attachments sorted chronologically by created_at, tie break by id
 
-  - `ComplianceProjectFileReference object { id, created_at, filename, 4 more }`
+  - `ComplianceProjectFileReference object`
 
     File attachment reference for compliance responses.
 
@@ -64,6 +61,8 @@ GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
     - `created_at: string`
 
       Creation timestamp (RFC 3339 format)
+
+      format: date-time
 
     - `filename: string`
 
@@ -85,9 +84,9 @@ GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
 
       Discriminator marking this as a binary file
 
-      - `"project_file"`
+      default: project_file
 
-  - `ComplianceProjectDocReference object { id, created_at, filename, 3 more }`
+  - `ComplianceProjectDocReference object`
 
     Project document attachment reference for compliance responses.
 
@@ -99,6 +98,8 @@ GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
 
       Creation timestamp (RFC 3339 format)
 
+      format: date-time
+
     - `filename: string`
 
       Display name of the document (e.g., 'document.txt')
@@ -107,17 +108,19 @@ GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
 
       MIME type of the project document, always set to plain text
 
-      - `"text/plain"`
+      default: text/plain
 
     - `type: "project_doc"`
 
       Discriminator marking this as a plain text document
 
-      - `"project_doc"`
+      default: project_doc
 
     - `updated_at: string or null`
 
       Last-modified timestamp of the document. Reserved for future use — currently always null.
+
+      format: date-time
 
 - `has_more: boolean`
 
@@ -129,12 +132,12 @@ GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
 
 ### Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID/attachments \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
-#### Response
+#### Response (200)
 
 ```json
 {
@@ -154,15 +157,15 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID/attachmen
 }
 ```
 
-## Domain Types
+## Domain types
 
 ### Attachment List Response
 
-- `AttachmentListResponse = object { id, created_at, filename, 4 more }  or object { id, created_at, filename, 3 more }`
+- `AttachmentListResponse = object or object`
 
   File attachment reference for compliance responses.
 
-  - `ComplianceProjectFileReference object { id, created_at, filename, 4 more }`
+  - `ComplianceProjectFileReference object`
 
     File attachment reference for compliance responses.
 
@@ -173,6 +176,8 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID/attachmen
     - `created_at: string`
 
       Creation timestamp (RFC 3339 format)
+
+      format: date-time
 
     - `filename: string`
 
@@ -194,9 +199,9 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID/attachmen
 
       Discriminator marking this as a binary file
 
-      - `"project_file"`
+      default: project_file
 
-  - `ComplianceProjectDocReference object { id, created_at, filename, 3 more }`
+  - `ComplianceProjectDocReference object`
 
     Project document attachment reference for compliance responses.
 
@@ -208,6 +213,8 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID/attachmen
 
       Creation timestamp (RFC 3339 format)
 
+      format: date-time
+
     - `filename: string`
 
       Display name of the document (e.g., 'document.txt')
@@ -216,14 +223,16 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID/attachmen
 
       MIME type of the project document, always set to plain text
 
-      - `"text/plain"`
+      default: text/plain
 
     - `type: "project_doc"`
 
       Discriminator marking this as a plain text document
 
-      - `"project_doc"`
+      default: project_doc
 
     - `updated_at: string or null`
 
       Last-modified timestamp of the document. Reserved for future use — currently always null.
+
+      format: date-time

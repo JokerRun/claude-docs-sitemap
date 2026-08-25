@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 11918c55b653bd3d7ea2fa3315ed462881b7ece20c8bb3fbc050b7cbf10cb5b8
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 4d40db0f3acf60ead29db73c23b6302764e8d92e4d033234fdf409e324121870
 ---
 
 ---
@@ -889,7 +889,7 @@ When you use `tools`, the API also automatically includes a special system promp
 
 These token counts are added to your normal input and output tokens to calculate the total cost of a request.
 
-See the [Models overview](https://platform.claude.com/docs/en/about-claude/models/overview#latest-models-comparison) table for current per-model prices.
+See the [Models overview](https://platform.claude.com/docs/en/models/overview#latest-models-comparison) table for current per-model prices.
 
 When you send a tool use prompt, like any other API request, the response includes both input and output token counts in the reported `usage` metrics.
 

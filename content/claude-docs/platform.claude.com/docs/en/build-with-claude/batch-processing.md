@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/batch-processing
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 99b2a1886fed040e4e6cdeed0887e941e15e838e25ff1e82943db9c3b815bea2
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: d8edfe830bf82ac66d8fded82984b20a1b752a8097451138fca65dbc82ca6cfa
 ---
 
 ---
@@ -57,7 +57,7 @@ This is especially useful for bulk operations that don't require immediate resul
 
 ### Supported models
 
-All [active models](https://platform.claude.com/docs/en/about-claude/models/overview) support the Message Batches API.
+All [active models](https://platform.claude.com/docs/en/models/overview) support the Message Batches API.
 
 ### What can be batched
 

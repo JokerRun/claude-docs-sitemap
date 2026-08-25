@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/inference-hooks
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 91c8b23e911214b8fccab72da6705cd86d8d812de5a358ad3d7aa25d7cceba02
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: c7598c11a4e968bca412bc6c8f47afb67b03a6931b736c6a0b0a8b746fca5757
 ---
 
 ---
@@ -36,7 +36,7 @@ The following diagram traces one example (a Cowork request where Claude also cal
 
 A verdict is a small JSON object: `{"action": "allow"}` lets the request proceed, and a deny carries the user-facing reason. For the full verdict schema, see [Return a verdict](https://platform.claude.com/docs/en/manage-claude/inference-hooks-endpoint#return-a-verdict).
 
-Your AI security server sees what the user sees: transcript text, tool calls and their results, and text extracted from attachments. It never receives raw file or image bytes, system prompts, or Anthropic-internal context.
+Your AI security server sees what the user sees: transcript text, tool calls and their results, and text extracted from attachments. It never receives raw file or image bytes, system prompts, or Anthropic-internal context. Anthropic doesn't store prompt or response content as part of Inference hooks; it records only metadata about hook activity, such as verdicts, timestamps, and request identifiers.
 
 If your AI security server is unreachable, returns an error, or doesn't respond within the timeout, your organization's failure handling setting decides the outcome: block the request, or allow it to proceed without inspection.
 

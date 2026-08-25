@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 14b7e66e14b5b57e048d16bebb2ccfde3bf686d60da385002ff1fd0fdf0620a8
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 15c8ec736a4b7a523fd16b678cb86781d5e180ebecdb194bc2e88e47adc05efa
 ---
 
 ---
@@ -93,7 +93,7 @@ Some features are turned off or substantially modified when CMEK is enabled. Thi
 **Claude Enterprise**
 
 * Conversation history search is disabled. Conversation titles are encrypted, so searching by title or content returns no results.
-* Search across large numbers of files is slower.
+* [Project knowledge search](https://support.claude.com/en/articles/11473015-retrieval-augmented-generation-rag-for-projects) (retrieval-augmented generation, or RAG) is disabled. Project knowledge loads directly into each conversation's context instead of being indexed and searched. As a result, a project can use substantially less knowledge than it could without CMEK. Knowledge beyond what can be loaded is left out of the conversation.
 * Certain analytics are degraded: admin analytics for claude.ai skills and connectors (under claude.ai/analytics/usage and through the [Claude Enterprise Analytics API](https://platform.claude.com/docs/en/manage-claude/analytics-api)), Claude smart reports (under claude.ai/analytics/insights), and Claude Code contribution metrics (under claude.ai/analytics/claude-code).
 * Audit log exports are disabled.
 * Signed URLs for temporary file exchanges are disabled. These back organization data exports in claude.ai and Claude Code Remote file flows such as screenshot updates.

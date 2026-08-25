@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/quickstart
-fetched_at: 2026-08-23T02:32:19.757524Z
-sha256: 6a7a0a38ced1235db962c3cd321c05a4370dc68732c9b41780d47ee489b33e0e
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 5103508ee3a996b48abf344d5c6937750483d6bc1140f6b01e7190f90e6cb7f8
 ---
 
 > ## Documentation Index
@@ -278,7 +278,7 @@ Here are the most important commands for daily use. Shell commands run from your
 | Command             | What it does                                           | Example                             |
 | ------------------- | ------------------------------------------------------ | ----------------------------------- |
 | `claude`            | Start interactive mode                                 | `claude`                            |
-| `claude "task"`     | Run a one-time task                                    | `claude "fix the build error"`      |
+| `claude "task"`     | Start interactive mode with an initial prompt          | `claude "fix the build error"`      |
 | `claude -p "query"` | Run one-off query, then exit                           | `claude -p "explain this function"` |
 | `claude -c`         | Continue most recent conversation in current directory | `claude -c`                         |
 | `claude -r`         | Resume a previous conversation                         | `claude -r`                         |

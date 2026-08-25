@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-latency
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: ed3e1d853eeb0128f7874c371f8f4a1d2a0a7e63e074595b9b4262910ca88d2a
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 2835d92f2f1a2b9639b895b5725970d417e37604c422a71b46b27ea8345812db
 ---
 
 ---
@@ -34,7 +34,7 @@ For a more in-depth understanding of these terms, check out the [glossary](https
 
 ### 1. Choose the right model
 
-One of the most direct ways to reduce latency is to select the appropriate model for your use case. Anthropic offers a [range of models](https://platform.claude.com/docs/en/about-claude/models/overview) with different capabilities and performance characteristics. Consider your specific requirements and choose the model that best fits your needs in terms of speed and output quality.
+One of the most direct ways to reduce latency is to select the appropriate model for your use case. Anthropic offers a [range of models](https://platform.claude.com/docs/en/models/overview) with different capabilities and performance characteristics. Consider your specific requirements and choose the model that best fits your needs in terms of speed and output quality.
 
 For speed-critical applications, **Claude Haiku 4.5** offers the fastest response times while maintaining high intelligence:
 
@@ -171,7 +171,7 @@ For speed-critical applications, **Claude Haiku 4.5** offers the fastest respons
   ```
 </CodeGroup>
 
-For more details about model metrics, see the [models overview](https://platform.claude.com/docs/en/about-claude/models/overview) page.
+For more details about model metrics, see the [models overview](https://platform.claude.com/docs/en/models/overview) page.
 
 ### 2. Optimize prompt and output length
 

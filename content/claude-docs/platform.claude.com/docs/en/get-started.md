@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/get-started
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 8e53422fb58087acf7c94867772cb4cf79ab84f00ff7a4a3773d9efd4d867efa
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: d45423ace80d0636c0a0bce2bbd640a3c71cbaaa8324c50700147c522a0f39df
 ---
 
 ---
@@ -668,7 +668,7 @@ You made your first API call. Next, learn the Messages API patterns you'll use i
 Once you're comfortable with the basics, explore further:
 
 <CardGroup cols={2}>
-  <Card title="Models overview" icon="brain" href="https://platform.claude.com/docs/en/about-claude/models/overview">
+  <Card title="Models overview" icon="brain" href="https://platform.claude.com/docs/en/models/overview">
     Compare Claude models by capability and cost.
   </Card>
 

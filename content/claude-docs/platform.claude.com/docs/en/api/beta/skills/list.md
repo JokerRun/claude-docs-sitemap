@@ -1,28 +1,25 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/list
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 7e93232e33b3eed6649860984a8434aff3f5c124ca3a90c3ca082b8d8d8611ea
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: ed9ecffdbabb8c60c1badf429da44f4dcdb52ee8e7d9780db2f7621c14ed1100
 ---
 
----
-title: List Skills
-url: https://platform.claude.com/docs/en/api/beta/skills/list
----
+# List Skills
 
-## List Skills
-
-**get** `/v1/skills`
+**GET** `/v1/skills`
 
 List Skills
 
-### Query Parameters
+## Query parameters
 
 - `limit: optional number`
 
   Number of results to return per page.
 
   Maximum value is 100. Defaults to 20.
+
+  default: 20
 
 - `page: optional string`
 
@@ -39,7 +36,7 @@ List Skills
   * `"custom"`: only return user-created skills
   * `"anthropic"`: only return Anthropic-created skills
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -117,9 +114,9 @@ List Skills
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
-### Returns
+## Returns
 
-- `data: array of object { id, created_at, display_title, 4 more }`
+- `data: array of object`
 
   List of skills.
 
@@ -160,6 +157,8 @@ List Skills
 
     For Skills, this is always `"skill"`.
 
+    default: skill
+
   - `updated_at: string`
 
     ISO 8601 timestamp of when the skill was last updated.
@@ -176,16 +175,16 @@ List Skills
 
   If `null`, there are no more results available. Pass this value to the `page` parameter in the next request to get the next page.
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/skills \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: skills-2025-10-02' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

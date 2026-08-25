@@ -1,32 +1,27 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 2fca728c9acd13393fb56d5a25ab432b34b65ee3450f218f2dc5879e77d09117
----
-
----
-title: Files
-url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: aa8df280d3c8ac3876b34ee03e1e1e7b57e301efe2817f3a7d82a5c6a6fb7a5f
 ---
 
 # Files
 
 ## Get file metadata
 
-**get** `/v1/compliance/apps/chats/files/{claude_file_id}`
+**GET** `/v1/compliance/apps/chats/files/{claude_file_id}`
 
 Retrieves metadata for a file referenced in chat messages, without
 downloading the file content. Use the sibling `/content` endpoint to
 download the bytes.
 
-### Path Parameters
+### Path parameters
 
 - `claude_file_id: string`
 
   The file ID (tagged ID, e.g., claude_file_abc123)
 
-### Header Parameters
+### Headers
 
 - `"x-api-key": optional string`
 
@@ -43,6 +38,8 @@ download the bytes.
 - `created_at: string`
 
   File creation timestamp
+
+  format: date-time
 
 - `filename: string or null`
 
@@ -66,12 +63,12 @@ download the bytes.
 
 ### Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/compliance/apps/chats/files/$CLAUDE_FILE_ID \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
-#### Response
+#### Response (200)
 
 ```json
 {
@@ -92,18 +89,18 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/files/$CLAUDE_FILE_ID \
 
 ## Delete file
 
-**delete** `/v1/compliance/apps/chats/files/{claude_file_id}`
+**DELETE** `/v1/compliance/apps/chats/files/{claude_file_id}`
 
 Permanently deletes a specific file. This is a destructive
 operation that cannot be undone.
 
-### Path Parameters
+### Path parameters
 
 - `claude_file_id: string`
 
   The file ID (tagged ID, e.g., claude_file_abc123)
 
-### Header Parameters
+### Headers
 
 - `"x-api-key": optional string`
 
@@ -117,17 +114,17 @@ operation that cannot be undone.
 
   Constant string confirming deletion
 
-  - `"claude_file_deleted"`
+  default: claude_file_deleted
 
 ### Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/compliance/apps/chats/files/$CLAUDE_FILE_ID \
     -X DELETE \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
-#### Response
+#### Response (200)
 
 ```json
 {
@@ -138,32 +135,32 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/files/$CLAUDE_FILE_ID \
 
 ## Download file content
 
-**get** `/v1/compliance/apps/chats/files/{claude_file_id}/content`
+**GET** `/v1/compliance/apps/chats/files/{claude_file_id}/content`
 
 Downloads the binary content of a file referenced in chat messages.
 
-### Path Parameters
+### Path parameters
 
 - `claude_file_id: string`
 
   The file ID (tagged ID, e.g., claude_file_abc123)
 
-### Header Parameters
+### Headers
 
 - `"x-api-key": optional string`
 
 ### Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/compliance/apps/chats/files/$CLAUDE_FILE_ID/content \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
-## Domain Types
+## Domain types
 
 ### File Retrieve Response
 
-- `FileRetrieveResponse object { id, claude_chat_ids, created_at, 5 more }`
+- `FileRetrieveResponse object`
 
   File metadata for GET /v1/compliance/apps/chats/files/{claude_file_id}.
 
@@ -181,6 +178,8 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/files/$CLAUDE_FILE_ID/co
   - `created_at: string`
 
     File creation timestamp
+
+    format: date-time
 
   - `filename: string or null`
 
@@ -204,7 +203,7 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/files/$CLAUDE_FILE_ID/co
 
 ### File Delete Response
 
-- `FileDeleteResponse object { id, type }`
+- `FileDeleteResponse object`
 
   Response for deleting a compliance file.
 
@@ -216,4 +215,4 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/files/$CLAUDE_FILE_ID/co
 
     Constant string confirming deletion
 
-    - `"claude_file_deleted"`
+    default: claude_file_deleted

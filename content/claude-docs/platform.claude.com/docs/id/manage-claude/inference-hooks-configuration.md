@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 6d2ddf3586055e7adda1d2421812b20721c5649fa23f3cc358e46e29ed1543d1
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 0916df2e7da69da202cae0cafc7b47e690ba40ea757b6305ed454efd4250aadc
 ---
 
 ---
@@ -127,6 +127,8 @@ Panel ini bersifat best-effort: jika Anthropic tidak dapat membaca penghitungnya
 
 Kegagalan webhook berkelanjutan yang disebabkan oleh server keamanan AI Anda akan memicu circuit breaker, yang menghentikan penegakan: server Anda tidak lagi dihubungi, dan pilihan **Failure handling** Anda berlaku untuk setiap permintaan yang diperiksa. Dengan **Block the request** dipilih, pengguna di organisasi Anda diblokir sampai Anda bertindak. Ketika circuit breaker terpicu, administrator juga diberi tahu di pusat notifikasi claude.ai.
 
+Setiap pemicuan juga dicatat di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) organisasi Anda sebagai aktivitas `inference_hooks_circuit_breaker_tripped`, sehingga tim keamanan atau vendor Anda dapat membuat peringatan atas pemicuan dari pemantauan yang sudah mereka jalankan, seperti SIEM yang menyerap feed tersebut. Satu aktivitas dicatat per pemicuan, bukan satu per permintaan yang terdampak. Pencatatan memerlukan Compliance API diaktifkan untuk organisasi Anda; lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access).
+
 Untuk memulihkan, perbaiki server, lalu aktifkan kembali **Enforce verdicts** untuk mereset circuit breaker.
 
 ## Merotasi signing secret Anda
@@ -137,7 +139,7 @@ Permintaan yang ditandatangani dengan secret sebelumnya masih dapat tiba sesaat 
 
 ## Jejak audit
 
-Aktivitas Inference hooks dicatat dalam [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) organisasi Anda: perubahan konfigurasi, penolakan, dan permintaan yang dilanjutkan tanpa pemeriksaan berdasarkan pengaturan penanganan kegagalan Anda. Catatan penolakan membawa pengidentifikasi yang memungkinkan Anda menghubungkan setiap penolakan dengan catatan yang sesuai di sistem Anda sendiri.
+Aktivitas Inference hooks dicatat di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) organisasi Anda: perubahan konfigurasi, penolakan, pemicuan circuit breaker, dan permintaan yang berlanjut tanpa pemeriksaan berdasarkan pengaturan penanganan kegagalan Anda. Selama circuit breaker terpicu, tidak ada aktivitas Inference hooks per permintaan yang dicatat; aktivitas pemicuan adalah catatan feed untuk jendela waktu tersebut. Catatan penolakan membawa pengidentifikasi yang memungkinkan Anda menggabungkan setiap penolakan dengan catatan yang sesuai di sistem Anda sendiri.
 
 ## Menonaktifkan Inference hooks
 

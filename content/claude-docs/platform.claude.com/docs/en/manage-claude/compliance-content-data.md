@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-content-data
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 5ed27fa48cbe578dfc95669ae3ac26afded8ec5fe30e47aa049d99f39ea3e974
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: d79b3923e2387a5ad42381ee45dfb3c35e7fac433035d5b283235c8dd6e3e530
 ---
 
 ---
@@ -73,7 +73,7 @@ That forward walk is also how you keep an export current across runs: persist th
 
 A few constraints apply to these organization-wide queries. Cursors are opaque and bound to the sort key, so an `after_id` issued under one `order_by` value is rejected with a 400 error under the other. Time-filter bounds must match the sort key too: pair `updated_at.*` bounds with `order_by=updated_at`, and `created_at.*` bounds with the default `order_by=created_at`. Backward pagination with `before_id` is not supported, and the `project_ids[]` filter is not available. See [List chats](https://platform.claude.com/docs/en/api/compliance/apps/chats/list) for the full filter reference.
 
-To scope the list to specific users instead (for example, a legal hold on named custodians), pass 1–10 `user_ids[]` values. Obtain the IDs from [List organization users](https://platform.claude.com/docs/en/manage-claude/compliance-org-data#list-organization-users). User-filtered queries always sort by `created_at` (passing `order_by=updated_at` returns a 400 error) and support both `after_id` and `before_id`. Filtering by `project_ids[]` is only available in this user-filtered form.
+To scope the list to specific users instead (for example, a legal hold on named custodians), pass 1–10 `user_ids[]` values. Obtain the IDs from [List organization users](https://platform.claude.com/docs/en/manage-claude/compliance-org-data#list-organization-users). User-filtered queries always sort by `created_at` (passing `order_by=updated_at` returns a 400 error) and support both `after_id` and `before_id`. Filtering by `project_ids[]` is only available in this user-filtered form. Combining `user_ids[]` with any `updated_at.*` bound is deprecated and will be rejected with a 400 error after 2026-09-22; to keep a custodian set current by update time, run the org-wide `order_by=updated_at` walk without `user_ids[]` and select the custodians' chats from its results, and keep the user-filtered listing for `created_at`-ordered exports.
 
 ```bash cURL
 curl --fail-with-body -sS -G \

@@ -1,18 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/artifacts/retrieve
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 3f79ab9ca3808aef720aea0258726a5aaa079c3516ee5485cf1e0554a85a92c4
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 91d32db39bc6ea2c1ec737bb8743a723399cb0fb4a743c534621ac030f1ed89e
 ---
 
----
-title: Get artifact metadata
-url: https://platform.claude.com/docs/en/api/compliance/apps/artifacts/retrieve
----
+# Get artifact metadata
 
-## Get artifact metadata
-
-**get** `/v1/compliance/apps/artifacts/{artifact_version_id}`
+**GET** `/v1/compliance/apps/artifacts/{artifact_version_id}`
 
 Returns metadata for an artifact version, without the content body.
 
@@ -21,17 +16,17 @@ Use the sibling `/content` endpoint to fetch the artifact text. The
 encoding of that text, so a DLP consumer can dedupe or match hashes
 without downloading every artifact.
 
-### Path Parameters
+## Path parameters
 
 - `artifact_version_id: string`
 
   The artifact version ID (tagged ID, e.g., claude_artifact_version_abc123)
 
-### Header Parameters
+## Headers
 
 - `"x-api-key": optional string`
 
-### Returns
+## Returns
 
 - `id: string`
 
@@ -49,6 +44,8 @@ without downloading every artifact.
 
   Artifact version creation timestamp
 
+  format: date-time
+
 - `md5: string`
 
   Lowercase hex MD5 of the artifact content (UTF-8 encoded). Matches the `content` field returned by the sibling `/content` endpoint.
@@ -65,14 +62,14 @@ without downloading every artifact.
 
   Artifact version ID e.g. 'claude_artifact_version_abc123'
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/compliance/apps/artifacts/$ARTIFACT_VERSION_ID \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

@@ -1,28 +1,23 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/invites/delete
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 4be0fa805c20d0a6fa3339894624313297944e09bc18c0f7a256ffe8f4ebc1ec
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: da38b2d5a71d25269ef15e8f592503a60a303a4b4f32f84aeba32142894137f9
 ---
 
----
-title: Delete Invite
-url: https://platform.claude.com/docs/en/api/admin/invites/delete
----
+# Delete Invite
 
-## Delete Invite
-
-**delete** `/v1/organizations/invites/{invite_id}`
+**DELETE** `/v1/organizations/invites/{invite_id}`
 
 For Claude Enterprise organizations, this endpoint's availability is in beta.
 
-### Path Parameters
+## Path parameters
 
 - `invite_id: string`
 
   ID of the Invite.
 
-### Returns
+## Returns
 
 - `id: string`
 
@@ -34,18 +29,18 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
 
   For Invites, this is always `"invite_deleted"`.
 
-  - `"invite_deleted"`
+  default: invite_deleted
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/invites/$INVITE_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

@@ -1,22 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/members/update
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 06bc56a1ed42a32a3f1c8b74df8de76abf3806cb5554a0efd5eedcd1fdf3c152
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 72bbc7cd62cbad4296f7576d4703d23c006f3235275d1a42df0c80283eac0733
 ---
 
----
-title: Update Workspace Member
-url: https://platform.claude.com/docs/en/api/admin/workspaces/members/update
----
+# Update Workspace Member
 
-## Update Workspace Member
-
-**post** `/v1/organizations/workspaces/{workspace_id}/members/{user_id}`
+**POST** `/v1/organizations/workspaces/{workspace_id}/members/{user_id}`
 
 Update Workspace Member
 
-### Path Parameters
+## Path parameters
 
 - `workspace_id: string`
 
@@ -26,7 +21,7 @@ Update Workspace Member
 
   ID of the User.
 
-### Body Parameters
+## Body parameters
 
 - `workspace_role: "workspace_admin" or "workspace_billing" or "workspace_developer" or 2 more`
 
@@ -42,9 +37,9 @@ Update Workspace Member
 
   - `"workspace_user"`
 
-### Returns
+## Returns
 
-- `WorkspaceMember object { type, user_id, workspace_id, workspace_role }`
+- `WorkspaceMember object`
 
   - `type: "workspace_member"`
 
@@ -52,7 +47,7 @@ Update Workspace Member
 
     For Workspace Members, this is always `"workspace_member"`.
 
-    - `"workspace_member"`
+    default: workspace_member
 
   - `user_id: string`
 
@@ -76,9 +71,9 @@ Update Workspace Member
 
     - `"workspace_user"`
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members/$USER_ID \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
@@ -88,7 +83,7 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members
         }'
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

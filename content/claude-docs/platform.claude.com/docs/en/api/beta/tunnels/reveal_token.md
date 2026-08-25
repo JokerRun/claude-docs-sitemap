@@ -1,28 +1,23 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/reveal_token
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: cddc4448fa20de984f31b735ee3fb48a63d920309681850d9d4f6d42e6310c15
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 22981771fc02b6f38a11cea46f6f415a78c49982cd3e43d5dbb6570ff629c3a7
 ---
 
----
-title: Reveal Tunnel Token
-url: https://platform.claude.com/docs/en/api/beta/tunnels/reveal_token
----
+# Reveal Tunnel Token
 
-## Reveal Tunnel Token
-
-**post** `/v1/tunnels/{tunnel_id}/reveal_token`
+**POST** `/v1/tunnels/{tunnel_id}/reveal_token`
 
 The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window.
 
 Reveals a tunnel's connector token. The value is fetched live on each call; Anthropic does not store it. Repeated calls return the same value until the token is rotated. Exposed as POST so the token does not appear in intermediary access logs.
 
-### Path Parameters
+## Path parameters
 
 - `tunnel_id: string`
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -100,9 +95,9 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
-### Returns
+## Returns
 
-- `BetaTunnelToken object { id, tunnel_token, type }`
+- `BetaTunnelToken object`
 
   A tunnel's connector token.
 
@@ -116,11 +111,9 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
 
   - `type: "tunnel_token"`
 
-    - `"tunnel_token"`
+## Example
 
-### Example
-
-```http
+```bash
 curl https://api.anthropic.com/v1/tunnels/$TUNNEL_ID/reveal_token \
     -X POST \
     -H 'anthropic-version: 2023-06-01' \
@@ -128,7 +121,7 @@ curl https://api.anthropic.com/v1/tunnels/$TUNNEL_ID/reveal_token \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

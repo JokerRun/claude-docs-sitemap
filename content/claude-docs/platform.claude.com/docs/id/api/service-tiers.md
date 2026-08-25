@@ -1,42 +1,42 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/service-tiers
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 987310ea8e8add9aa3b39f930a123b968a35928f8b9cc448e0ea3d8552368702
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: bbe0a5bc25bbb2b41922be3e1d9c1eb953cfcd9e10ffa93dce8caac3709b4539
 ---
 
 ---
 title: Tingkat layanan
 url: https://platform.claude.com/docs/id/api/service-tiers
-description: Berbagai tingkat layanan memungkinkan Anda menyeimbangkan ketersediaan, kinerja, dan biaya yang dapat diprediksi berdasarkan kebutuhan aplikasi Anda.
+description: Berbagai tingkat layanan memungkinkan Anda menyeimbangkan ketersediaan, performa, dan biaya yang dapat diprediksi berdasarkan kebutuhan aplikasi Anda.
 ---
 
 <Warning>
-  Komitmen kapasitas Priority Tier tidak lagi tersedia untuk dibeli. Organisasi dengan komitmen yang sudah ada dapat terus menggunakan Priority Tier hingga tanggal berakhir kontrak mereka, dan halaman ini tetap tersedia sebagai referensi bagi mereka. Jika Anda memerlukan kapasitas terjamin, [hubungi tim penjualan](https://claude.com/contact-sales).
+  Komitmen kapasitas Priority Tier tidak lagi tersedia untuk dibeli. Organisasi yang sudah memiliki komitmen dapat terus menggunakan Priority Tier hingga tanggal berakhirnya kontrak mereka, dan halaman ini tetap tersedia sebagai referensi bagi mereka. Jika Anda memerlukan kapasitas yang terjamin, [hubungi tim penjualan](https://claude.com/contact-sales).
 </Warning>
 
-Anthropic menawarkan tiga tingkat layanan:
+Anthropic menawarkan tiga "service tiers" (tingkat layanan):
 
-* **Priority Tier:** Hanya tersedia untuk organisasi dengan komitmen kapasitas yang sudah ada
+* **Priority Tier:** Hanya tersedia bagi organisasi yang sudah memiliki komitmen kapasitas
 * **Standard:** Tingkat default untuk uji coba maupun penskalaan kasus penggunaan sehari-hari
-* **Batch:** Terbaik untuk alur kerja asinkron yang dapat menunggu atau mendapat manfaat dari berada di luar kapasitas normal Anda
+* **Batch:** Paling cocok untuk alur kerja asinkron yang dapat menunggu atau mendapat manfaat dari berada di luar kapasitas normal Anda
 
 ## Tingkat Standard
 
-Tingkat standard adalah tingkat layanan default untuk semua permintaan API. API memprioritaskan permintaan ini bersama semua permintaan lainnya dengan ketersediaan upaya terbaik (best-effort).
+Standard tier adalah tingkat layanan default untuk semua permintaan API. API memprioritaskan permintaan ini bersama semua permintaan lainnya dengan ketersediaan best-effort (upaya terbaik).
 
 ## Priority Tier
 
-API memprioritaskan permintaan di tingkat ini di atas semua permintaan lainnya. Prioritisasi ini membantu meminimalkan [kesalahan "server overloaded"](https://platform.claude.com/docs/id/api/errors#http-errors), bahkan selama waktu puncak.
+API memprioritaskan permintaan dalam tingkat ini di atas semua permintaan lainnya. Prioritas ini membantu meminimalkan [error "server overloaded"](https://platform.claude.com/docs/id/api/errors#http-errors), bahkan pada waktu puncak.
 
 Untuk informasi lebih lanjut, lihat [Komitmen Priority Tier yang sudah ada](https://platform.claude.com/docs/id/api/service-tiers#existing-priority-tier-commitments).
 
-## Bagaimana permintaan ditetapkan ke tingkat tertentu
+## Bagaimana permintaan ditetapkan ke tingkat layanan
 
 Saat menangani permintaan, Anthropic memutuskan untuk menetapkan permintaan ke Priority Tier dalam skenario berikut:
 
-* Organisasi Anda memiliki kapasitas Priority Tier yang cukup untuk token **input** per menit
-* Organisasi Anda memiliki kapasitas Priority Tier yang cukup untuk token **output** per menit
+* Organisasi Anda memiliki kapasitas Priority Tier token **input** per menit yang mencukupi
+* Organisasi Anda memiliki kapasitas Priority Tier token **output** per menit yang mencukupi
 
 Anthropic menghitung penggunaan terhadap kapasitas Priority Tier sebagai berikut:
 
@@ -53,19 +53,19 @@ Anthropic menghitung penggunaan terhadap kapasitas Priority Tier sebagai berikut
 * Untuk permintaan [inferensi khusus AS](https://platform.claude.com/docs/id/manage-claude/data-residency) (`inference_geo: "us"`) pada model Claude 4.6 dan yang lebih baru, token output dihitung sebagai 1,1 token per token
 * Semua token output lainnya dihitung sebagai 1 token per token
 
-Jika tidak, permintaan diproses pada tingkat standard.
+Jika tidak, permintaan diproses pada standard tier.
 
 <Note>
-  Tingkat burndown ini mencerminkan harga relatif dari setiap jenis token. Misalnya, inferensi khusus AS dihargai 1,1x pada model Claude 4.6 dan yang lebih baru, sehingga setiap token yang dikonsumsi dengan `inference_geo: "us"` mengurangi 1,1 token dari kapasitas Priority Tier Anda.
+  Tingkat burndown (pengurangan kapasitas) ini mencerminkan harga relatif dari setiap jenis token. Misalnya, inferensi khusus AS dihargai 1,1x pada model Claude 4.6 dan yang lebih baru, sehingga setiap token yang dikonsumsi dengan `inference_geo: "us"` mengurangi 1,1 token dari kapasitas Priority Tier Anda.
 </Note>
 
 <Note>
-  Permintaan yang ditetapkan ke Priority Tier menarik dari kapasitas Priority Tier maupun batas laju reguler. Jika melayani permintaan tersebut akan melebihi batas laju, permintaan akan ditolak.
+  Permintaan yang ditetapkan ke Priority Tier mengambil dari kapasitas Priority Tier maupun "rate limits" (batas laju) reguler. Jika melayani permintaan tersebut akan melampaui batas laju, permintaan akan ditolak.
 </Note>
 
 ## Menggunakan tingkat layanan
 
-Anda dapat mengontrol tingkat layanan mana yang dapat digunakan untuk sebuah permintaan dengan mengatur parameter `service_tier`:
+Anda dapat mengontrol tingkat layanan mana yang dapat digunakan untuk suatu permintaan dengan mengatur parameter `service_tier`:
 
 <CodeGroup>
   ```bash cURL
@@ -82,9 +82,7 @@ Anda dapat mengontrol tingkat layanan mana yang dapat digunakan untuk sebuah per
   ```
 
   ```bash CLI
-  ant messages create \
-    --transform usage.service_tier \
-    --raw-output <<'YAML'
+  ant messages create --transform usage.service_tier --raw-output <<'YAML'
   model: claude-opus-4-8
   max_tokens: 1024
   messages:
@@ -140,7 +138,7 @@ Anda dapat mengontrol tingkat layanan mana yang dapat digunakan untuk sebuah per
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude!")),
   	},
-  	// Secara otomatis menggunakan Priority Tier jika tersedia, fallback ke standar
+  	// Otomatis gunakan Priority Tier jika tersedia, fallback ke standar
   	ServiceTier: anthropic.MessageNewParamsServiceTierAuto,
   })
   if err != nil {
@@ -156,7 +154,7 @@ Anda dapat mengontrol tingkat layanan mana yang dapat digunakan untuk sebuah per
       .model(Model.CLAUDE_OPUS_4_8)
       .maxTokens(1024L)
       .addUserMessage("Hello, Claude!")
-      // Secara otomatis menggunakan Priority Tier jika tersedia, fallback ke standar
+      // Otomatis gunakan Priority Tier jika tersedia, fallback ke standar
       .serviceTier(MessageCreateParams.ServiceTier.AUTO)
       .build();
 
@@ -191,8 +189,8 @@ Anda dapat mengontrol tingkat layanan mana yang dapat digunakan untuk sebuah per
 
 Parameter `service_tier` menerima nilai-nilai berikut:
 
-* `"auto"` (default) - Menggunakan kapasitas Priority Tier jika tersedia, dan beralih ke kapasitas Anda yang lain jika tidak
-* `"standard_only"` - Hanya menggunakan kapasitas tingkat standard, berguna jika Anda tidak ingin menggunakan kapasitas Priority Tier Anda
+* `"auto"` (default) - Menggunakan kapasitas Priority Tier jika tersedia, dan beralih ke kapasitas Anda yang lain jika tidak tersedia
+* `"standard_only"` - Hanya menggunakan kapasitas standard tier, berguna jika Anda tidak ingin menggunakan kapasitas Priority Tier Anda
 
 Objek `usage` pada respons juga menyertakan tingkat layanan yang ditetapkan untuk permintaan tersebut:
 
@@ -221,21 +219,21 @@ anthropic-priority-output-tokens-remaining: 6000
 anthropic-priority-output-tokens-reset: 2025-01-12T23:12:21Z
 ```
 
-Anda dapat menggunakan keberadaan header ini untuk mendeteksi apakah permintaan Anda memenuhi syarat untuk Priority Tier, bahkan jika sudah melebihi batas.
+Anda dapat menggunakan keberadaan header ini untuk mendeteksi apakah permintaan Anda memenuhi syarat untuk Priority Tier, meskipun permintaan tersebut melampaui batas.
 
 ## Komitmen Priority Tier yang sudah ada
 
 Komitmen Priority Tier terdiri dari:
 
-* Jumlah token input per menit
-* Jumlah token output per menit
+* Sejumlah token input per menit
+* Sejumlah token output per menit
 * Durasi komitmen (1, 3, 6, atau 12 bulan)
 * Versi model tertentu
 
-Priority Tier menargetkan uptime 99,5% dengan sumber daya komputasi yang diprioritaskan. Permintaan di luar kapasitas yang Anda komitmenkan secara otomatis beralih ke tingkat standard.
+Priority Tier menargetkan uptime 99,5% dengan sumber daya komputasi yang diprioritaskan. Permintaan yang melampaui kapasitas komitmen Anda secara otomatis beralih ke standard tier.
 
 ### Model yang didukung
 
 Priority Tier didukung pada semua model Claude yang tersedia kecuali Claude Mythos 5, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 5, dan Claude Sonnet 5.
 
-Lihat [Ikhtisar model](https://platform.claude.com/docs/id/about-claude/models/overview) untuk detail lebih lanjut tentang model yang tersedia.
+Periksa [Ikhtisar model](https://platform.claude.com/docs/id/about-claude/models/overview) untuk detail lebih lanjut tentang model yang tersedia.

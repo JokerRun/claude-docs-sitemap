@@ -1,32 +1,29 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys/update
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: d175f7edf0d30a78d3c337044a3454bd70ddf03eabb915683b27853b891f4553
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: b3e65613d3080187988931cf3d546f4f1315e2168e37044f022e9d489caa5e39
 ---
 
----
-title: Update API Key
-url: https://platform.claude.com/docs/en/api/admin/api_keys/update
----
+# Update API Key
 
-## Update API Key
-
-**post** `/v1/organizations/api_keys/{api_key_id}`
+**POST** `/v1/organizations/api_keys/{api_key_id}`
 
 Update API Key
 
-### Path Parameters
+## Path parameters
 
 - `api_key_id: string`
 
   ID of the API key.
 
-### Body Parameters
+## Body parameters
 
 - `name: optional string or null`
 
   Name of the API key.
+
+  maxLength: 500, minLength: 1
 
 - `status: optional "active" or "archived" or "inactive" or null`
 
@@ -38,9 +35,9 @@ Update API Key
 
   - `"inactive"`
 
-### Returns
+## Returns
 
-- `APIKey object { id, created_at, created_by, 7 more }`
+- `APIKey object`
 
   - `id: string`
 
@@ -50,7 +47,9 @@ Update API Key
 
     RFC 3339 datetime string indicating when the API Key was created.
 
-  - `created_by: object { id, type }  or null`
+    format: date-time
+
+  - `created_by: object or null`
 
     The ID and type of the actor that created the API key, or `null` when the
     creator is not recorded (legacy, workload-identity-federated, or
@@ -68,6 +67,8 @@ Update API Key
 
     RFC 3339 datetime string indicating when the API Key expires, or `null` if it never expires.
 
+    format: date-time
+
   - `name: string`
 
     Name of the API key.
@@ -76,7 +77,7 @@ Update API Key
 
     Partially redacted hint for the API key.
 
-  - `principal: object { id, type }  or null`
+  - `principal: object or null`
 
     The ID and type of the principal the API key acts as, or `null` if the key is not bound to a principal.
 
@@ -110,15 +111,15 @@ Update API Key
 
     For API Keys, this is always `"api_key"`.
 
-    - `"api_key"`
+    default: api_key
 
   - `workspace_id: string or null`
 
     ID of the Workspace associated with the API key, or `null` if the API key belongs to the default Workspace.
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/api_keys/$API_KEY_ID \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
@@ -126,7 +127,7 @@ curl https://api.anthropic.com/v1/organizations/api_keys/$API_KEY_ID \
     -d '{}'
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

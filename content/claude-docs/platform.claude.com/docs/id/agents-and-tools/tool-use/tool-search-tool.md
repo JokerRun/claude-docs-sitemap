@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 65eb83f1bf5db0823916004e33bf0ee747b67e837d6289f6e9ddd7132cfd6e8f
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 02918aa1048812cd5a15a097bc30e4bb01e44a2bb02466ad74baa50b81ec2970
 ---
 
 ---
@@ -18,10 +18,10 @@ Memuat setiap definisi alat di awal menyebabkan dua masalah seiring bertambahnya
 * **Pembengkakan konteks:** Pengaturan multiserver yang umum (GitHub, Slack, Sentry, Grafana, dan Splunk) dapat menghabiskan \~55k token dalam definisi sebelum Claude melakukan pekerjaan apa pun. Pencarian alat biasanya mengurangi ini lebih dari 85 persen, dengan memuat hanya 3–5 alat yang dibutuhkan Claude untuk permintaan tertentu.
 * **Akurasi pemilihan alat:** Kemampuan Claude untuk memilih alat yang tepat menurun setelah Anda melebihi 30–50 alat yang tersedia. Karena pencarian alat hanya memuat sekumpulan alat relevan yang terfokus sesuai permintaan, akurasi pemilihan tetap tinggi bahkan di antara ribuan alat.
 
-Pencarian alat tersedia secara umum di Claude API. Untuk model yang didukung, lihat [Kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool#model-compatibility).
+Untuk model yang mendukung pencarian alat, lihat [Kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool#model-compatibility).
 
 <Tip>
-  Untuk latar belakang tentang tantangan penskalaan yang dipecahkan oleh pencarian alat, lihat [Advanced tool use](https://www.anthropic.com/engineering/advanced-tool-use). Pemuatan sesuai permintaan pada pencarian alat juga merupakan contoh dari prinsip pengambilan just-in-time yang lebih luas yang dijelaskan dalam [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
+  Untuk latar belakang tentang tantangan penskalaan yang diselesaikan oleh pencarian alat, lihat [Advanced tool use](https://www.anthropic.com/engineering/advanced-tool-use). Pemuatan sesuai permintaan pada pencarian alat juga merupakan contoh dari prinsip pengambilan just-in-time yang lebih luas yang dijelaskan dalam [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
 </Tip>
 
 Pencarian alat berjalan sebagai alat sisi server, tetapi Anda juga dapat mengimplementasikan pencarian alat sisi klien Anda sendiri. Lihat [Implementasi pencarian alat kustom](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool#custom-tool-search-implementation) untuk detailnya.
@@ -59,7 +59,7 @@ Kedua varian pencarian alat tersedia pada model-model berikut:
 | Claude Sonnet 4.5 (claude-sonnet-4-5-20250929) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 | Claude Haiku 4.5 (claude-haiku-4-5-20251001)   | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 
-Claude Opus 4.1 dan model sebelumnya tidak mendukung alat pencarian alat.
+Claude Opus 4.1 dan model-model sebelumnya tidak mendukung alat pencarian alat.
 
 ## Cara kerja pencarian alat
 
@@ -85,10 +85,10 @@ Contoh berikut menyertakan alat pencarian alat dan dua alat yang ditangguhkan:
 <CodeGroup>
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
-      --header "x-api-key: $ANTHROPIC_API_KEY" \
-      --header "anthropic-version: 2023-06-01" \
-      --header "content-type: application/json" \
-      --data '{
+      -H "x-api-key: $ANTHROPIC_API_KEY" \
+      -H "anthropic-version: 2023-06-01" \
+      -H "content-type: application/json" \
+      -d '{
           "model": "claude-opus-5",
           "max_tokens": 2048,
           "messages": [
@@ -557,7 +557,7 @@ Alat pencarian alat memiliki dua varian:
 <Warning>
   **Format kueri varian regex: regex Python, bukan bahasa alami**
 
-  Dengan `tool_search_tool_regex_20251119`, Claude menulis pola Python `re.search()`, bukan kueri bahasa alami. Pencocokan tidak peka huruf besar/kecil. Pola umum meliputi berikut ini:
+  Dengan `tool_search_tool_regex_20251119`, Claude menulis pola Python `re.search()`, bukan kueri bahasa alami. Pencocokan tidak peka huruf besar/kecil. Pola umum meliputi yang berikut:
 
   * `"weather"`: mencocokkan nama dan deskripsi alat yang mengandung "weather"
   * `"get_.*_data"`: mencocokkan alat seperti `get_user_data` dan `get_weather_data`
@@ -598,11 +598,13 @@ Tandai alat untuk pemuatan sesuai permintaan dengan menambahkan `defer_loading: 
 * Alat tanpa `defer_loading` dimuat ke dalam konteks segera.
 * Alat dengan `defer_loading: true` dimuat hanya ketika Claude menemukannya melalui pencarian.
 * Jangan pernah menetapkan `defer_loading: true` pada alat pencarian alat itu sendiri.
-* Biarkan 3–5 alat yang paling sering Anda gunakan tidak ditangguhkan agar Claude dapat memanggilnya tanpa mencari terlebih dahulu.
+* Biarkan 3–5 alat yang paling sering Anda gunakan tidak ditangguhkan sehingga Claude dapat memanggilnya tanpa mencari terlebih dahulu.
+
+Toolset computer use dan browser use (`computer_toolset_20260801` dan `browser_toolset_20260801`) menerima `defer_loading` per alat anggota di dalam objek `configs` milik entri, bukan pada entri itu sendiri; permintaan yang menetapkannya di tingkat entri akan ditolak. Karena sebuah toolset ditangguhkan dan diperluas sebagai satu kesatuan, `defer_loading` harus bernilai sama pada setiap anggota yang diaktifkan, dan ketika Claude menemukan toolset melalui pencarian, setiap anggota yang diaktifkan dimuat sekaligus. Lihat [Toolset klien](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets) untuk format `configs`.
 
 Kedua varian pencarian alat (`regex` dan `bm25`) mencari nama alat, deskripsi, nama argumen, dan deskripsi argumen.
 
-Secara internal, API mengecualikan alat yang ditangguhkan dari prefiks prompt sistem. Ketika Claude menemukan alat yang ditangguhkan melalui pencarian alat, API menambahkan blok `tool_reference` secara inline dalam percakapan, lalu memperluasnya menjadi definisi alat lengkap sebelum meneruskannya ke Claude. Prefiks tidak tersentuh, sehingga "prompt caching" (caching prompt) tetap terjaga. Grammar untuk [mode ketat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) (aturan yang membatasi output panggilan alat agar sesuai dengan skema Anda) dibangun dari seluruh kumpulan alat, sehingga `defer_loading` dan mode ketat dapat digabungkan tanpa kompilasi ulang grammar.
+Secara internal, API mengecualikan alat yang ditangguhkan dari prefiks prompt sistem. Ketika Claude menemukan alat yang ditangguhkan melalui pencarian alat, API menambahkan blok `tool_reference` secara inline dalam percakapan, lalu memperluasnya menjadi definisi alat lengkap sebelum meneruskannya ke Claude. Prefiks tidak tersentuh, sehingga "prompt caching" (caching prompt) tetap terjaga. Grammar untuk [mode strict](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) (aturan yang membatasi output panggilan alat agar sesuai dengan skema Anda) dibangun dari toolset lengkap, sehingga `defer_loading` dan mode strict dapat digabungkan tanpa kompilasi ulang grammar.
 
 ## Format respons
 
@@ -663,7 +665,7 @@ Pada permintaan berikutnya, teruskan kembali konten asisten tanpa perubahan, ter
 
 ## Integrasi MCP
 
-Jika alat Anda berasal dari server MCP melalui [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector), Anda tidak menetapkan `defer_loading` pada definisi alat individual. Sebagai gantinya, tetapkan sekali pada `default_config` entri `mcp_toolset` untuk seluruh server, atau per alat dalam `configs`-nya. Lihat [Konfigurasi toolset MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#mcp-toolset-configuration).
+Jika alat Anda berasal dari server MCP melalui [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector), Anda tidak menetapkan `defer_loading` pada definisi alat individual. Sebagai gantinya, tetapkan sekali pada `default_config` milik entri `mcp_toolset` untuk seluruh server, atau per alat dalam `configs`-nya. Lihat [Konfigurasi toolset MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#mcp-toolset-configuration).
 
 ## Implementasi pencarian alat kustom
 
@@ -680,7 +682,7 @@ Anda dapat mengimplementasikan logika pencarian alat Anda sendiri (misalnya, men
 Setiap alat yang direferensikan harus memiliki definisi alat yang sesuai dalam parameter `tools` tingkat atas, biasanya dengan `defer_loading: true`. Ini memungkinkan Anda menggunakan metode pencarian yang tidak disediakan oleh varian bawaan, seperti pengambilan berbasis embedding, dan API memperluas blok `tool_reference` yang dikembalikan dengan cara yang sama.
 
 <Note>
-  Format `tool_search_tool_result` yang ditampilkan di bagian [Format respons](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool#response-format) adalah format sisi server yang digunakan secara internal oleh pencarian alat bawaan Anthropic. Untuk implementasi sisi klien kustom, selalu gunakan format `tool_result` standar dengan blok konten `tool_reference` seperti yang ditunjukkan dalam contoh sebelumnya.
+  Format `tool_search_tool_result` yang ditampilkan di bagian [Format respons](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool#response-format) adalah format sisi server yang digunakan secara internal oleh pencarian alat bawaan Anthropic. Untuk implementasi sisi klien kustom, selalu gunakan format `tool_result` standar dengan blok konten `tool_reference` seperti yang ditunjukkan pada contoh sebelumnya.
 </Note>
 
 Untuk contoh lengkap menggunakan embedding, lihat resep [pencarian alat dengan embedding](https://platform.claude.com/cookbook/tool-use-tool-search-with-embeddings).
@@ -737,9 +739,9 @@ Ketika operasi pencarian alat gagal selama eksekusi, API mengembalikan respons 2
 
 Field `error_code` memiliki empat nilai yang mungkin:
 
-* `invalid_tool_input`: input pencarian tidak valid, misalnya pola regex yang salah format atau pola yang melebihi batas 200 karakter
+* `invalid_tool_input`: input pencarian tidak valid, misalnya pola regex yang salah bentuk atau pola yang melebihi batas 200 karakter
 * `unavailable`: pencarian tidak dapat dijalankan, misalnya karena waktu habis atau layanan tidak tersedia
-* `too_many_requests`: batas laju terlampaui untuk operasi pencarian alat
+* `too_many_requests`: "rate limit" (batas laju) terlampaui untuk operasi pencarian alat
 * `execution_time_exceeded`: pencarian melebihi batas waktu eksekusinya
 
 ### Kesalahan umum
@@ -829,11 +831,11 @@ Anda dapat menyertakan alat pencarian alat dalam [Messages Batches API](https://
 
 ### Kapan menggunakan pencarian alat
 
-Gunakan pencarian alat ketika salah satu dari berikut ini berlaku:
+Gunakan pencarian alat ketika salah satu dari hal berikut berlaku:
 
 * Anda memiliki 10 alat atau lebih yang tersedia.
 * Definisi alat Anda menghabiskan lebih dari 10k token.
-* Akurasi pemilihan alat menurun seiring bertambahnya kumpulan alat Anda.
+* Akurasi pemilihan alat menurun seiring bertambahnya toolset Anda.
 * Anda menggabungkan beberapa server MCP (200+ alat).
 * Pustaka alat Anda bertambah seiring waktu.
 
@@ -845,7 +847,7 @@ Pemanggilan alat standar, tanpa pencarian alat, lebih cocok ketika Anda memiliki
 * Tulis nama dan deskripsi alat yang jelas dan deskriptif.
 * Gunakan namespace yang konsisten dalam nama alat: beri prefiks berdasarkan layanan atau sumber daya (misalnya, `github_`, `slack_`) sehingga satu pencarian mencocokkan seluruh grup.
 * Gunakan kata kunci dalam deskripsi yang sesuai dengan cara pengguna mendeskripsikan tugas.
-* Tambahkan bagian prompt sistem yang menjelaskan kategori alat yang tersedia: "You can search for tools to interact with Slack, GitHub, and Jira."
+* Tambahkan bagian prompt sistem yang mendeskripsikan kategori alat yang tersedia: "You can search for tools to interact with Slack, GitHub, and Jira."
 * Pantau alat mana yang ditemukan Claude untuk menyempurnakan deskripsi Anda.
 
 ## Penggunaan

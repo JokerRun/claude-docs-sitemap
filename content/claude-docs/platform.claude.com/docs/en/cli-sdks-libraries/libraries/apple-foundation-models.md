@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/libraries/apple-foundation-models
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 667306974cee2c974a10ca47773883ab9e107758314f3fdf80b6470c5de3f4b5
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 760ef013b0cc3720a4ae0ea8c28d280463f1c34b6cad01c488989c647f5a0dbc
 ---
 
 ---
@@ -78,7 +78,7 @@ Model identifiers are values of `ClaudeModel`. Use a compiled-in constant, or co
 ClaudeLanguageModel(name: .opus5, auth: auth)
 ```
 
-Constants mirror API model IDs (`.opus5` is `claude-opus-5`) and carry each model's capabilities. New models ship as new constants in package releases; check `ClaudeModel` in Xcode for the current list, and the [Models overview](https://platform.claude.com/docs/en/about-claude/models/overview) to compare models.
+Constants mirror API model IDs (`.opus5` is `claude-opus-5`) and carry each model's capabilities. New models ship as new constants in package releases; check `ClaudeModel` in Xcode for the current list, and the [Models overview](https://platform.claude.com/docs/en/models/overview) to compare models.
 
 ### Capabilities
 

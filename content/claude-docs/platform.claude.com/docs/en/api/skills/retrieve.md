@@ -1,22 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/skills/retrieve
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 09463539d378f81b92f17aed67ed44186613dd1994df0183987878d128da622f
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: c3f600a0d7b20b7a675b03f5c4e00cfabe8aa6960d6ab4a8fc21f249de48260c
 ---
 
----
-title: Get Skill
-url: https://platform.claude.com/docs/en/api/skills/retrieve
----
+# Get Skill
 
-## Get Skill
-
-**get** `/v1/skills/{skill_id}`
+**GET** `/v1/skills/{skill_id}`
 
 Get Skill
 
-### Path Parameters
+## Path parameters
 
 - `skill_id: string`
 
@@ -24,9 +19,9 @@ Get Skill
 
   The format and length of IDs may change over time.
 
-### Returns
+## Returns
 
-- `Skill object { id, created_at, display_name, 4 more }`
+- `Skill object`
 
   - `id: string`
 
@@ -37,6 +32,8 @@ Get Skill
   - `created_at: string`
 
     ISO 8601 timestamp of when the skill was created.
+
+    format: date-time
 
   - `display_name: string`
 
@@ -84,21 +81,23 @@ Get Skill
 
     For Skills, this is always `"skill"`.
 
-    - `"skill"`
+    default: skill
 
   - `updated_at: string`
 
     ISO 8601 timestamp of when the skill was last updated.
 
-### Example
+    format: date-time
 
-```http
+## Example
+
+```bash
 curl https://api.anthropic.com/v1/skills/$SKILL_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

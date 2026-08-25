@@ -1,20 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/skills
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 7515909d5ad82e78128df8903dbb8282cc19f9dcb07e4d772466c8cb28a414e5
----
-
----
-title: Skills
-url: https://platform.claude.com/docs/en/api/admin/analytics/skills
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 4ac221eb230c0f86fead1b9c90057a64937ba984cc38b53cb481c5d0b89c62d9
 ---
 
 # Skills
 
 ## Get Skill Usage
 
-**get** `/v1/organizations/analytics/skills`
+**GET** `/v1/organizations/analytics/skills`
 
 Get per-skill usage for a given day, with cursor-based pagination.
 
@@ -25,23 +20,31 @@ descriptions list the supported dimensions. Available to organizations
 on a Claude Enterprise plan. Requires an API key with the
 `read:analytics` scope.
 
-### Query Parameters
+### Query parameters
 
 - `date: optional string`
 
   UTC date in YYYY-MM-DD format. The day to get skill usage for. Data is typically available with a 1-day lag (varies by query; the error for a too-recent date names the latest available day) and may be revised by a few percent over the following days. No earlier than 2026-01-01.
 
+  format: date
+
 - `ending_date: optional string`
 
   UTC date in YYYY-MM-DD format. End of the date range (exclusive); only valid with starting_date. Data is typically available with a 1-day lag (varies by query; the error for a too-recent date names the latest available day), so this can be at most today — which is also the default when omitted, resolved once when the first page is served and reused for the rest of the pagination sequence. At most 366 days after starting_date.
+
+  format: date
 
 - `filter: optional array of string`
 
   Filters as 'dimension:value', e.g. filter[]=rbac_group_id:<id>. Repeat the param for OR within a dimension and across dimensions for AND. Supported dimensions on this endpoint: product, rbac_group_id, share_status, skill_name, user_id. Value forms: product is one of chat, claude_code, cowork, or office_agent; rbac_group_id takes the tagged id (rbac_group_..., as emitted in responses and by the spend-limits API) or a bare group UUID, and matches users who held the group at any point during each covered UTC day (time-of-usage attribution); share_status is one of organization, private, or public; skill_name matches case-insensitively; user_id takes a tagged user id (user_...), as emitted in responses. An unsupported dimension returns 400. At most 100 entries.
 
+  maxItems: 100
+
 - `group_by: optional array of "product" or "rbac_group_id" or "user_id"`
 
   Dimensions to break results out by (e.g. group_by[]=user_id). Supported on this endpoint: product, rbac_group_id, user_id. Grouped rows carry the requested dimension values as additional fields and paginate like ungrouped responses via next_page; an unsupported dimension returns 400. rbac_group_id attributes a user to every group they held at any point during each covered UTC day, so grouped rows are not an exclusive partition and can sum above org-level totals. At most 100 entries.
+
+  maxItems: 100
 
   - `"product"`
 
@@ -52,6 +55,8 @@ on a Claude Enterprise plan. Requires an API key with the
 - `limit: optional number`
 
   Number of results per page (1-1000, default 100).
+
+  minimum: 1, maximum: 1000
 
 - `order: optional "asc" or "desc"`
 
@@ -73,15 +78,17 @@ on a Claude Enterprise plan. Requires an API key with the
 
   UTC date in YYYY-MM-DD format. Start of a date range (inclusive). Enables rollup mode: one row per entity aggregated over the whole range — addable counters are summed across days, and a distinct count is never summed where summing could double-count (a field's range value is recomputed exactly over the window, approximate via HLL with typical error under 2%, null, or — for the creation-event counts, whose per-day values cannot overlap — a per-day sum that is itself exact; each field's own description says which). Use either date or starting_date, not both. Data is typically available with a 1-day lag (varies by query; the error for a too-recent date names the latest available day) and may be revised by a few percent over the following days. No earlier than 2026-01-01.
 
+  format: date
+
 ### Returns
 
-- `SkillUsage object { data, next_page }`
+- `SkillUsage object`
 
   Response for GET /v1/organizations/analytics/skills.
 
-  - `data: array of object { chat_metrics, claude_code_metrics, cowork_metrics, 14 more }`
+  - `data: array of object`
 
-    - `chat_metrics: object { distinct_conversation_skill_used_count }`
+    - `chat_metrics: object`
 
       Claude.ai activity metrics for a single skill on a given day.
 
@@ -89,7 +96,7 @@ on a Claude Enterprise plan. Requires an API key with the
 
         Number of distinct conversations in which the skill was used. A skill counts as used only when it is explicitly activated — the model (or the user, via the skill's slash command) invokes it, reading its instructions into context as part of that activation. Skills that are merely installed or listed as available, or whose content reaches the context without an activation (preloaded, hook-injected, or read as a plain file), are not counted. Approximate (HLL, typical error <2%) in date-range mode. Null on aggregated rows where a distinct count cannot be computed.
 
-    - `claude_code_metrics: object { distinct_session_skill_used_count }`
+    - `claude_code_metrics: object`
 
       Claude Code activity metrics for a single skill on a given day.
 
@@ -97,7 +104,7 @@ on a Claude Enterprise plan. Requires an API key with the
 
         Number of distinct Claude Code sessions in which the skill was used. A skill counts as used only when it is explicitly activated — the model (or the user, via the skill's slash command) invokes it, reading its instructions into context as part of that activation. Skills that are merely installed or listed as available, or whose content reaches the context without an activation (preloaded, hook-injected, or read as a plain file), are not counted. Approximate (HLL, typical error <2%) in date-range mode. Null on aggregated rows where a distinct count cannot be computed.
 
-    - `cowork_metrics: object { distinct_session_skill_used_count }`
+    - `cowork_metrics: object`
 
       Cowork activity metrics for a single skill on a given day.
 
@@ -109,7 +116,7 @@ on a Claude Enterprise plan. Requires an API key with the
 
       Number of distinct users who used the skill on the requested day, or, in date-range mode, over the requested window — recomputed as an exact distinct count over the window's per-member daily rows, never a sum of per-day values. A skill counts as used only when it is explicitly activated — the model (or the user, via the skill's slash command) invokes it, reading its instructions into context as part of that activation. Skills that are merely installed or listed as available, or whose content reaches the context without an activation (preloaded, hook-injected, or read as a plain file), are not counted.
 
-    - `office_metrics: object { excel, outlook, powerpoint, word }`
+    - `office_metrics: object`
 
       Office Agent activity metrics for a single skill on a given day, broken out by Office product.
 
@@ -144,8 +151,6 @@ on a Claude Enterprise plan. Requires an API key with the
     - `currency: optional "USD" or null`
 
       Currency for this row's monetary fields (estimated_overage_spend and attributed_list_price), as an uppercase ISO-4217 code. Always "USD" when either amount is populated; null whenever both amounts are null.
-
-      - `"USD"`
 
     - `enable_count: optional number or null`
 
@@ -189,13 +194,13 @@ on a Claude Enterprise plan. Requires an API key with the
 
 ### Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/analytics/skills \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
-#### Response
+#### Response (200)
 
 ```json
 {
@@ -243,17 +248,17 @@ curl https://api.anthropic.com/v1/organizations/analytics/skills \
 }
 ```
 
-## Domain Types
+## Domain types
 
 ### Skill Usage
 
-- `SkillUsage object { data, next_page }`
+- `SkillUsage object`
 
   Response for GET /v1/organizations/analytics/skills.
 
-  - `data: array of object { chat_metrics, claude_code_metrics, cowork_metrics, 14 more }`
+  - `data: array of object`
 
-    - `chat_metrics: object { distinct_conversation_skill_used_count }`
+    - `chat_metrics: object`
 
       Claude.ai activity metrics for a single skill on a given day.
 
@@ -261,7 +266,7 @@ curl https://api.anthropic.com/v1/organizations/analytics/skills \
 
         Number of distinct conversations in which the skill was used. A skill counts as used only when it is explicitly activated — the model (or the user, via the skill's slash command) invokes it, reading its instructions into context as part of that activation. Skills that are merely installed or listed as available, or whose content reaches the context without an activation (preloaded, hook-injected, or read as a plain file), are not counted. Approximate (HLL, typical error <2%) in date-range mode. Null on aggregated rows where a distinct count cannot be computed.
 
-    - `claude_code_metrics: object { distinct_session_skill_used_count }`
+    - `claude_code_metrics: object`
 
       Claude Code activity metrics for a single skill on a given day.
 
@@ -269,7 +274,7 @@ curl https://api.anthropic.com/v1/organizations/analytics/skills \
 
         Number of distinct Claude Code sessions in which the skill was used. A skill counts as used only when it is explicitly activated — the model (or the user, via the skill's slash command) invokes it, reading its instructions into context as part of that activation. Skills that are merely installed or listed as available, or whose content reaches the context without an activation (preloaded, hook-injected, or read as a plain file), are not counted. Approximate (HLL, typical error <2%) in date-range mode. Null on aggregated rows where a distinct count cannot be computed.
 
-    - `cowork_metrics: object { distinct_session_skill_used_count }`
+    - `cowork_metrics: object`
 
       Cowork activity metrics for a single skill on a given day.
 
@@ -281,7 +286,7 @@ curl https://api.anthropic.com/v1/organizations/analytics/skills \
 
       Number of distinct users who used the skill on the requested day, or, in date-range mode, over the requested window — recomputed as an exact distinct count over the window's per-member daily rows, never a sum of per-day values. A skill counts as used only when it is explicitly activated — the model (or the user, via the skill's slash command) invokes it, reading its instructions into context as part of that activation. Skills that are merely installed or listed as available, or whose content reaches the context without an activation (preloaded, hook-injected, or read as a plain file), are not counted.
 
-    - `office_metrics: object { excel, outlook, powerpoint, word }`
+    - `office_metrics: object`
 
       Office Agent activity metrics for a single skill on a given day, broken out by Office product.
 
@@ -316,8 +321,6 @@ curl https://api.anthropic.com/v1/organizations/analytics/skills \
     - `currency: optional "USD" or null`
 
       Currency for this row's monetary fields (estimated_overage_spend and attributed_list_price), as an uppercase ISO-4217 code. Always "USD" when either amount is populated; null whenever both amounts are null.
-
-      - `"USD"`
 
     - `enable_count: optional number or null`
 

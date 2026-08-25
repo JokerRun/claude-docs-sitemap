@@ -1,26 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/update
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 25f901bcaf6d794a86036ffacb1bf91dfd303461b892a631fe2a48b49c9b3a4f
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: ba8ec71b7938cea9afba87e0113f0e78f8f783b29bdc68954a7eea2cbe0d2610
 ---
 
----
-title: Update Agent
-url: https://platform.claude.com/docs/en/api/beta/agents/update
----
+# Update Agent
 
-## Update Agent
-
-**post** `/v1/agents/{agent_id}`
+**POST** `/v1/agents/{agent_id}`
 
 Update Agent
 
-### Path Parameters
+## Path parameters
 
 - `agent_id: string`
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -98,11 +93,13 @@ Update Agent
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
-### Body Parameters
+## Body parameters
 
 - `description: optional string or null`
 
   Description. Omit to preserve; send empty string or null to clear.
+
+  maxLength: 2048
 
 - `mcp_servers: optional array of BetaManagedAgentsURLMCPServerParams or null`
 
@@ -112,13 +109,15 @@ Update Agent
 
     Unique name for this server, referenced by mcp_toolset configurations. 1-255 characters.
 
-  - `type: "url"`
+    minLength: 1, maxLength: 255
 
-    - `"url"`
+  - `type: "url"`
 
   - `url: string`
 
     Endpoint URL for the MCP server.
+
+    maxLength: 2048
 
 - `metadata: optional map[string] or null`
 
@@ -194,7 +193,7 @@ Update Agent
 
     - `string`
 
-  - `BetaManagedAgentsModelConfigParams object { id, effort, inference_geo, speed }`
+  - `BetaManagedAgentsModelConfigParams object`
 
     An object that defines additional configuration control over model use
 
@@ -222,45 +221,35 @@ Update Agent
 
         - `"max"`
 
-      - `BetaManagedAgentsEffortLow object { type }`
+      - `BetaManagedAgentsEffortLow object`
 
         Low effort. Favors latency over reasoning depth.
 
         - `type: "low"`
 
-          - `"low"`
-
-      - `BetaManagedAgentsEffortMedium object { type }`
+      - `BetaManagedAgentsEffortMedium object`
 
         Medium effort. Balances latency and reasoning depth.
 
         - `type: "medium"`
 
-          - `"medium"`
-
-      - `BetaManagedAgentsEffortHigh object { type }`
+      - `BetaManagedAgentsEffortHigh object`
 
         High effort. Favors reasoning depth.
 
         - `type: "high"`
 
-          - `"high"`
-
-      - `BetaManagedAgentsEffortXhigh object { type }`
+      - `BetaManagedAgentsEffortXhigh object`
 
         Extra-high effort. Not all models accept this level.
 
         - `type: "xhigh"`
 
-          - `"xhigh"`
-
-      - `BetaManagedAgentsEffortMax object { type }`
+      - `BetaManagedAgentsEffortMax object`
 
         Maximum effort. Favors reasoning depth over latency.
 
         - `type: "max"`
-
-          - `"max"`
 
     - `inference_geo: optional string or null`
 
@@ -284,7 +273,7 @@ Update Agent
 
     - `string`
 
-    - `BetaManagedAgentsAgentParams object { id, type, version }`
+    - `BetaManagedAgentsAgentParams object`
 
       Specification for an Agent. Provide a specific `version` or use the short-form `agent="agent_id"` for the most recent version
 
@@ -292,23 +281,23 @@ Update Agent
 
         The `agent` ID.
 
-      - `type: "agent"`
+        minLength: 1, maxLength: 128
 
-        - `"agent"`
+      - `type: "agent"`
 
       - `version: optional number`
 
         The specific `agent` version to use. Omit to use the latest version. Must be at least 1 if specified.
 
-    - `BetaManagedAgentsMultiagentSelfParams object { type }`
+        format: int32
+
+    - `BetaManagedAgentsMultiagentSelfParams object`
 
       Sentinel roster entry meaning "the agent that owns this configuration". Resolved server-side to a concrete agent reference.
 
       - `type: "self"`
 
-        - `"self"`
-
-    - `BetaManagedAgentsAdvisorParams object { model, type }`
+    - `BetaManagedAgentsAdvisorParams object`
 
       Platform advisor roster entry: a model the session's primary thread may consult mid-turn. At most one per roster; the entry occupies the roster name `anthropic.advisor`.
 
@@ -316,23 +305,23 @@ Update Agent
 
         A Claude model id. The model must be permitted as an advisor for this agent's model — see the sessions/threads/advisor spec.
 
+        minLength: 1, maxLength: 256
+
       - `type: "advisor"`
 
-        - `"advisor"`
-
   - `type: "coordinator"`
-
-    - `"coordinator"`
 
 - `name: optional string`
 
   Human-readable name. Must be non-empty. Omit to preserve. Cannot be cleared.
 
+  maxLength: 256
+
 - `skills: optional array of BetaManagedAgentsSkillParams or null`
 
   Skills. Full replacement. Omit to preserve; send empty array or null to clear.
 
-  - `BetaManagedAgentsAnthropicSkillParams object { skill_id, type, version }`
+  - `BetaManagedAgentsAnthropicSkillParams object`
 
     An Anthropic-managed skill.
 
@@ -340,15 +329,17 @@ Update Agent
 
       Identifier of the Anthropic skill (e.g., "xlsx").
 
-    - `type: "anthropic"`
+      minLength: 1, maxLength: 64
 
-      - `"anthropic"`
+    - `type: "anthropic"`
 
     - `version: optional string or null`
 
       Version to pin. Defaults to latest if omitted.
 
-  - `BetaManagedAgentsCustomSkillParams object { skill_id, type, version }`
+      minLength: 1, maxLength: 64
+
+  - `BetaManagedAgentsCustomSkillParams object`
 
     A user-created custom skill.
 
@@ -356,35 +347,37 @@ Update Agent
 
       Tagged ID of the custom skill (e.g., "skill_01XJ5...").
 
-    - `type: "custom"`
+      minLength: 1, maxLength: 64
 
-      - `"custom"`
+    - `type: "custom"`
 
     - `version: optional string or null`
 
       Version to pin. Defaults to latest if omitted.
 
+      minLength: 1, maxLength: 64
+
 - `system: optional string or null`
 
   System prompt. Omit to preserve; send empty string or null to clear.
+
+  maxLength: 100000
 
 - `tools: optional array of BetaManagedAgentsAgentToolset20260401Params or BetaManagedAgentsMCPToolsetParams or BetaManagedAgentsCustomToolParams or null`
 
   Tool configurations available to the agent. Full replacement. Omit to preserve; send empty array or null to clear. Maximum of 128 tools across all toolsets allowed.
 
-  - `BetaManagedAgentsAgentToolset20260401Params object { type, configs, default_config }`
+  - `BetaManagedAgentsAgentToolset20260401Params object`
 
     Configuration for built-in agent tools. Use this to enable or disable groups of tools available to the agent.
 
     - `type: "agent_toolset_20260401"`
 
-      - `"agent_toolset_20260401"`
-
     - `configs: optional array of BetaManagedAgentsAgentToolConfigParams`
 
       Per-tool configuration overrides.
 
-      - `BetaManagedAgentsBashToolConfigParams object { name, enabled, permission_policy, type }`
+      - `BetaManagedAgentsBashToolConfigParams object`
 
         Configuration override for the bash tool.
 
@@ -392,8 +385,6 @@ Update Agent
 
           Must be "bash".
 
-          - `"bash"`
-
         - `enabled: optional boolean or null`
 
           Whether this tool is enabled and available to Claude. Overrides the default_config setting.
@@ -402,27 +393,21 @@ Update Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object`
 
             Tool calls are automatically approved without user confirmation.
 
             - `type: "always_allow"`
 
-              - `"always_allow"`
-
-          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object`
 
             Tool calls require user confirmation before execution.
 
             - `type: "always_ask"`
 
-              - `"always_ask"`
-
         - `type: optional "bash"`
 
-          - `"bash"`
-
-      - `BetaManagedAgentsEditToolConfigParams object { name, enabled, permission_policy, type }`
+      - `BetaManagedAgentsEditToolConfigParams object`
 
         Configuration override for the edit tool.
 
@@ -430,8 +415,6 @@ Update Agent
 
           Must be "edit".
 
-          - `"edit"`
-
         - `enabled: optional boolean or null`
 
           Whether this tool is enabled and available to Claude. Overrides the default_config setting.
@@ -440,19 +423,17 @@ Update Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object`
 
             Tool calls are automatically approved without user confirmation.
 
-          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object`
 
             Tool calls require user confirmation before execution.
 
         - `type: optional "edit"`
 
-          - `"edit"`
-
-      - `BetaManagedAgentsReadToolConfigParams object { name, enabled, permission_policy, type }`
+      - `BetaManagedAgentsReadToolConfigParams object`
 
         Configuration override for the read tool.
 
@@ -460,8 +441,6 @@ Update Agent
 
           Must be "read".
 
-          - `"read"`
-
         - `enabled: optional boolean or null`
 
           Whether this tool is enabled and available to Claude. Overrides the default_config setting.
@@ -470,19 +449,17 @@ Update Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object`
 
             Tool calls are automatically approved without user confirmation.
 
-          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object`
 
             Tool calls require user confirmation before execution.
 
         - `type: optional "read"`
 
-          - `"read"`
-
-      - `BetaManagedAgentsWriteToolConfigParams object { name, enabled, permission_policy, type }`
+      - `BetaManagedAgentsWriteToolConfigParams object`
 
         Configuration override for the write tool.
 
@@ -490,8 +467,6 @@ Update Agent
 
           Must be "write".
 
-          - `"write"`
-
         - `enabled: optional boolean or null`
 
           Whether this tool is enabled and available to Claude. Overrides the default_config setting.
@@ -500,19 +475,17 @@ Update Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object`
 
             Tool calls are automatically approved without user confirmation.
 
-          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object`
 
             Tool calls require user confirmation before execution.
 
         - `type: optional "write"`
 
-          - `"write"`
-
-      - `BetaManagedAgentsGlobToolConfigParams object { name, enabled, permission_policy, type }`
+      - `BetaManagedAgentsGlobToolConfigParams object`
 
         Configuration override for the glob tool.
 
@@ -520,8 +493,6 @@ Update Agent
 
           Must be "glob".
 
-          - `"glob"`
-
         - `enabled: optional boolean or null`
 
           Whether this tool is enabled and available to Claude. Overrides the default_config setting.
@@ -530,19 +501,17 @@ Update Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object`
 
             Tool calls are automatically approved without user confirmation.
 
-          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object`
 
             Tool calls require user confirmation before execution.
 
         - `type: optional "glob"`
 
-          - `"glob"`
-
-      - `BetaManagedAgentsGrepToolConfigParams object { name, enabled, permission_policy, type }`
+      - `BetaManagedAgentsGrepToolConfigParams object`
 
         Configuration override for the grep tool.
 
@@ -550,8 +519,6 @@ Update Agent
 
           Must be "grep".
 
-          - `"grep"`
-
         - `enabled: optional boolean or null`
 
           Whether this tool is enabled and available to Claude. Overrides the default_config setting.
@@ -560,27 +527,23 @@ Update Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object`
 
             Tool calls are automatically approved without user confirmation.
 
-          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object`
 
             Tool calls require user confirmation before execution.
 
         - `type: optional "grep"`
 
-          - `"grep"`
-
-      - `BetaManagedAgentsWebFetchToolConfigParams object { name, allowed_domains, blocked_domains, 4 more }`
+      - `BetaManagedAgentsWebFetchToolConfigParams object`
 
         Configuration override for the web_fetch tool.
 
         - `name: "web_fetch"`
 
           Must be "web_fetch".
-
-          - `"web_fetch"`
 
         - `allowed_domains: optional array of string`
 
@@ -598,31 +561,29 @@ Update Agent
 
           Maximum number of tokens of fetched text content to include in context per call. Does not apply to binary content such as PDFs.
 
+          format: int32
+
         - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or null`
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object`
 
             Tool calls are automatically approved without user confirmation.
 
-          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object`
 
             Tool calls require user confirmation before execution.
 
         - `type: optional "web_fetch"`
 
-          - `"web_fetch"`
-
-      - `BetaManagedAgentsWebSearchToolConfigParams object { name, allowed_domains, blocked_domains, 4 more }`
+      - `BetaManagedAgentsWebSearchToolConfigParams object`
 
         Configuration override for the web_search tool.
 
         - `name: "web_search"`
 
           Must be "web_search".
-
-          - `"web_search"`
 
         - `allowed_domains: optional array of string`
 
@@ -640,17 +601,15 @@ Update Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object`
 
             Tool calls are automatically approved without user confirmation.
 
-          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object`
 
             Tool calls require user confirmation before execution.
 
         - `type: optional "web_search"`
-
-          - `"web_search"`
 
         - `user_location: optional BetaManagedAgentsUserLocation or null`
 
@@ -660,11 +619,11 @@ Update Agent
 
             Location precision. Only "approximate" is supported.
 
-            - `"approximate"`
-
           - `city: optional string or null`
 
             City name.
+
+            minLength: 1, maxLength: 255
 
           - `country: optional string or null`
 
@@ -674,9 +633,13 @@ Update Agent
 
             Region or state name.
 
+            minLength: 1, maxLength: 255
+
           - `timezone: optional string or null`
 
             IANA timezone identifier, e.g. "America/Los_Angeles".
+
+            minLength: 1, maxLength: 255
 
     - `default_config: optional BetaManagedAgentsAgentToolsetDefaultConfigParams or null`
 
@@ -690,15 +653,15 @@ Update Agent
 
         Permission policy for tool execution.
 
-        - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+        - `BetaManagedAgentsAlwaysAllowPolicy object`
 
           Tool calls are automatically approved without user confirmation.
 
-        - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+        - `BetaManagedAgentsAlwaysAskPolicy object`
 
           Tool calls require user confirmation before execution.
 
-  - `BetaManagedAgentsMCPToolsetParams object { mcp_server_name, type, configs, default_config }`
+  - `BetaManagedAgentsMCPToolsetParams object`
 
     Configuration for tools from an MCP server defined in `mcp_servers`.
 
@@ -706,9 +669,9 @@ Update Agent
 
       Name of the MCP server. Must match a server name from the mcp_servers array. 1-255 characters.
 
-    - `type: "mcp_toolset"`
+      minLength: 1, maxLength: 255
 
-      - `"mcp_toolset"`
+    - `type: "mcp_toolset"`
 
     - `configs: optional array of BetaManagedAgentsMCPToolConfigParams`
 
@@ -718,6 +681,8 @@ Update Agent
 
         Name of the MCP tool to configure. 1-128 characters.
 
+        minLength: 1, maxLength: 128
+
       - `enabled: optional boolean or null`
 
         Whether this tool is enabled. Overrides the `default_config` setting.
@@ -726,11 +691,11 @@ Update Agent
 
         Permission policy for tool execution.
 
-        - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+        - `BetaManagedAgentsAlwaysAllowPolicy object`
 
           Tool calls are automatically approved without user confirmation.
 
-        - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+        - `BetaManagedAgentsAlwaysAskPolicy object`
 
           Tool calls require user confirmation before execution.
 
@@ -746,15 +711,15 @@ Update Agent
 
         Permission policy for tool execution.
 
-        - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+        - `BetaManagedAgentsAlwaysAllowPolicy object`
 
           Tool calls are automatically approved without user confirmation.
 
-        - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+        - `BetaManagedAgentsAlwaysAskPolicy object`
 
           Tool calls require user confirmation before execution.
 
-  - `BetaManagedAgentsCustomToolParams object { description, input_schema, name, type }`
+  - `BetaManagedAgentsCustomToolParams object`
 
     A custom tool that is executed by the API client rather than the agent. When the agent calls this tool, an `agent.custom_tool_use` event is emitted and the session goes idle, waiting for the client to provide the result via a `user.custom_tool_result` event.
 
@@ -762,13 +727,13 @@ Update Agent
 
       Description of what the tool does, shown to the agent to help it decide when to use the tool.
 
+      minLength: 1
+
     - `input_schema: BetaManagedAgentsCustomToolInputSchema`
 
       JSON Schema for custom tool input parameters.
 
       - `type: "object"`
-
-        - `"object"`
 
       - `properties: optional map[unknown] or null`
 
@@ -778,17 +743,19 @@ Update Agent
 
       Unique name for the tool. 1-128 characters; letters, digits, underscores, and hyphens.
 
-    - `type: "custom"`
+      minLength: 1, maxLength: 128
 
-      - `"custom"`
+    - `type: "custom"`
 
 - `version: optional number`
 
   The agent's current version, used to prevent concurrent overwrites. Obtain this value from a create or retrieve response. Must be at least 1 if specified. When supplied, the request fails if it does not match the server's current version; omit to apply the update unconditionally.
 
-### Returns
+  format: int32
 
-- `BetaManagedAgentsAgent object { id, archived_at, created_at, 12 more }`
+## Returns
+
+- `BetaManagedAgentsAgent object`
 
   A Managed Agents `agent`.
 
@@ -798,9 +765,13 @@ Update Agent
 
     A timestamp in RFC 3339 format
 
+    format: date-time
+
   - `created_at: string`
 
     A timestamp in RFC 3339 format
+
+    format: date-time
 
   - `description: string or null`
 
@@ -809,8 +780,6 @@ Update Agent
     - `name: string`
 
     - `type: "url"`
-
-      - `"url"`
 
     - `url: string`
 
@@ -890,45 +859,35 @@ Update Agent
 
       How hard Claude works on each turn. Sets `output_config.effort` on every Messages call the session makes.
 
-      - `BetaManagedAgentsEffortLow object { type }`
+      - `BetaManagedAgentsEffortLow object`
 
         Low effort. Favors latency over reasoning depth.
 
         - `type: "low"`
 
-          - `"low"`
-
-      - `BetaManagedAgentsEffortMedium object { type }`
+      - `BetaManagedAgentsEffortMedium object`
 
         Medium effort. Balances latency and reasoning depth.
 
         - `type: "medium"`
 
-          - `"medium"`
-
-      - `BetaManagedAgentsEffortHigh object { type }`
+      - `BetaManagedAgentsEffortHigh object`
 
         High effort. Favors reasoning depth.
 
         - `type: "high"`
 
-          - `"high"`
-
-      - `BetaManagedAgentsEffortXhigh object { type }`
+      - `BetaManagedAgentsEffortXhigh object`
 
         Extra-high effort. Not all models accept this level.
 
         - `type: "xhigh"`
 
-          - `"xhigh"`
-
-      - `BetaManagedAgentsEffortMax object { type }`
+      - `BetaManagedAgentsEffortMax object`
 
         Maximum effort. Favors reasoning depth over latency.
 
         - `type: "max"`
-
-          - `"max"`
 
     - `inference_geo: optional string`
 
@@ -950,7 +909,7 @@ Update Agent
 
       Agents the coordinator may spawn as session threads, each resolved to a specific version.
 
-      - `BetaManagedAgentsAgentReference object { id, type, version }`
+      - `BetaManagedAgentsAgentReference object`
 
         A resolved agent reference with a concrete version.
 
@@ -958,11 +917,11 @@ Update Agent
 
         - `type: "agent"`
 
-          - `"agent"`
-
         - `version: number`
 
-      - `BetaManagedAgentsAdvisor object { model, type }`
+          format: int32
+
+      - `BetaManagedAgentsAdvisor object`
 
         Platform advisor roster entry: a model the session's primary thread may consult mid-turn.
 
@@ -972,17 +931,13 @@ Update Agent
 
         - `type: "advisor"`
 
-          - `"advisor"`
-
     - `type: "coordinator"`
-
-      - `"coordinator"`
 
   - `name: string`
 
   - `skills: array of BetaManagedAgentsAnthropicSkill or BetaManagedAgentsCustomSkill`
 
-    - `BetaManagedAgentsAnthropicSkill object { skill_id, type, version }`
+    - `BetaManagedAgentsAnthropicSkill object`
 
       A resolved Anthropic-managed skill.
 
@@ -990,11 +945,9 @@ Update Agent
 
       - `type: "anthropic"`
 
-        - `"anthropic"`
-
       - `version: string`
 
-    - `BetaManagedAgentsCustomSkill object { skill_id, type, version }`
+    - `BetaManagedAgentsCustomSkill object`
 
       A resolved user-created custom skill.
 
@@ -1002,19 +955,17 @@ Update Agent
 
       - `type: "custom"`
 
-        - `"custom"`
-
       - `version: string`
 
   - `system: string or null`
 
   - `tools: array of BetaManagedAgentsAgentToolset20260401 or BetaManagedAgentsMCPToolset or BetaManagedAgentsCustomTool`
 
-    - `BetaManagedAgentsAgentToolset20260401 object { configs, default_config, type }`
+    - `BetaManagedAgentsAgentToolset20260401 object`
 
       - `configs: array of BetaManagedAgentsAgentToolConfig`
 
-        - `BetaManagedAgentsBashToolConfig object { enabled, name, permission_policy, type }`
+        - `BetaManagedAgentsBashToolConfig object`
 
           Configuration for the bash tool.
 
@@ -1022,33 +973,25 @@ Update Agent
 
           - `name: "bash"`
 
-            - `"bash"`
-
           - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
 
             Permission policy for tool execution.
 
-            - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+            - `BetaManagedAgentsAlwaysAllowPolicy object`
 
               Tool calls are automatically approved without user confirmation.
 
               - `type: "always_allow"`
 
-                - `"always_allow"`
-
-            - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+            - `BetaManagedAgentsAlwaysAskPolicy object`
 
               Tool calls require user confirmation before execution.
 
               - `type: "always_ask"`
 
-                - `"always_ask"`
-
           - `type: "bash"`
 
-            - `"bash"`
-
-        - `BetaManagedAgentsEditToolConfig object { enabled, name, permission_policy, type }`
+        - `BetaManagedAgentsEditToolConfig object`
 
           Configuration for the edit tool.
 
@@ -1056,25 +999,21 @@ Update Agent
 
           - `name: "edit"`
 
-            - `"edit"`
-
           - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
 
             Permission policy for tool execution.
 
-            - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+            - `BetaManagedAgentsAlwaysAllowPolicy object`
 
               Tool calls are automatically approved without user confirmation.
 
-            - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+            - `BetaManagedAgentsAlwaysAskPolicy object`
 
               Tool calls require user confirmation before execution.
 
           - `type: "edit"`
 
-            - `"edit"`
-
-        - `BetaManagedAgentsReadToolConfig object { enabled, name, permission_policy, type }`
+        - `BetaManagedAgentsReadToolConfig object`
 
           Configuration for the read tool.
 
@@ -1082,25 +1021,21 @@ Update Agent
 
           - `name: "read"`
 
-            - `"read"`
-
           - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
 
             Permission policy for tool execution.
 
-            - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+            - `BetaManagedAgentsAlwaysAllowPolicy object`
 
               Tool calls are automatically approved without user confirmation.
 
-            - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+            - `BetaManagedAgentsAlwaysAskPolicy object`
 
               Tool calls require user confirmation before execution.
 
           - `type: "read"`
 
-            - `"read"`
-
-        - `BetaManagedAgentsWriteToolConfig object { enabled, name, permission_policy, type }`
+        - `BetaManagedAgentsWriteToolConfig object`
 
           Configuration for the write tool.
 
@@ -1108,25 +1043,21 @@ Update Agent
 
           - `name: "write"`
 
-            - `"write"`
-
           - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
 
             Permission policy for tool execution.
 
-            - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+            - `BetaManagedAgentsAlwaysAllowPolicy object`
 
               Tool calls are automatically approved without user confirmation.
 
-            - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+            - `BetaManagedAgentsAlwaysAskPolicy object`
 
               Tool calls require user confirmation before execution.
 
           - `type: "write"`
 
-            - `"write"`
-
-        - `BetaManagedAgentsGlobToolConfig object { enabled, name, permission_policy, type }`
+        - `BetaManagedAgentsGlobToolConfig object`
 
           Configuration for the glob tool.
 
@@ -1134,25 +1065,21 @@ Update Agent
 
           - `name: "glob"`
 
-            - `"glob"`
-
           - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
 
             Permission policy for tool execution.
 
-            - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+            - `BetaManagedAgentsAlwaysAllowPolicy object`
 
               Tool calls are automatically approved without user confirmation.
 
-            - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+            - `BetaManagedAgentsAlwaysAskPolicy object`
 
               Tool calls require user confirmation before execution.
 
           - `type: "glob"`
 
-            - `"glob"`
-
-        - `BetaManagedAgentsGrepToolConfig object { enabled, name, permission_policy, type }`
+        - `BetaManagedAgentsGrepToolConfig object`
 
           Configuration for the grep tool.
 
@@ -1160,25 +1087,21 @@ Update Agent
 
           - `name: "grep"`
 
-            - `"grep"`
-
           - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
 
             Permission policy for tool execution.
 
-            - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+            - `BetaManagedAgentsAlwaysAllowPolicy object`
 
               Tool calls are automatically approved without user confirmation.
 
-            - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+            - `BetaManagedAgentsAlwaysAskPolicy object`
 
               Tool calls require user confirmation before execution.
 
           - `type: "grep"`
 
-            - `"grep"`
-
-        - `BetaManagedAgentsWebFetchToolConfig object { enabled, name, permission_policy, 4 more }`
+        - `BetaManagedAgentsWebFetchToolConfig object`
 
           Configuration for the web_fetch tool.
 
@@ -1186,23 +1109,19 @@ Update Agent
 
           - `name: "web_fetch"`
 
-            - `"web_fetch"`
-
           - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
 
             Permission policy for tool execution.
 
-            - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+            - `BetaManagedAgentsAlwaysAllowPolicy object`
 
               Tool calls are automatically approved without user confirmation.
 
-            - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+            - `BetaManagedAgentsAlwaysAskPolicy object`
 
               Tool calls require user confirmation before execution.
 
           - `type: "web_fetch"`
-
-            - `"web_fetch"`
 
           - `allowed_domains: optional array of string`
 
@@ -1210,7 +1129,9 @@ Update Agent
 
           - `max_content_tokens: optional number or null`
 
-        - `BetaManagedAgentsWebSearchToolConfig object { enabled, name, permission_policy, 4 more }`
+            format: int32
+
+        - `BetaManagedAgentsWebSearchToolConfig object`
 
           Configuration for the web_search tool.
 
@@ -1218,23 +1139,19 @@ Update Agent
 
           - `name: "web_search"`
 
-            - `"web_search"`
-
           - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy`
 
             Permission policy for tool execution.
 
-            - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+            - `BetaManagedAgentsAlwaysAllowPolicy object`
 
               Tool calls are automatically approved without user confirmation.
 
-            - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+            - `BetaManagedAgentsAlwaysAskPolicy object`
 
               Tool calls require user confirmation before execution.
 
           - `type: "web_search"`
-
-            - `"web_search"`
 
           - `allowed_domains: optional array of string`
 
@@ -1248,11 +1165,11 @@ Update Agent
 
               Location precision. Only "approximate" is supported.
 
-              - `"approximate"`
-
             - `city: optional string or null`
 
               City name.
+
+              minLength: 1, maxLength: 255
 
             - `country: optional string or null`
 
@@ -1262,9 +1179,13 @@ Update Agent
 
               Region or state name.
 
+              minLength: 1, maxLength: 255
+
             - `timezone: optional string or null`
 
               IANA timezone identifier, e.g. "America/Los_Angeles".
+
+              minLength: 1, maxLength: 255
 
       - `default_config: BetaManagedAgentsAgentToolsetDefaultConfig`
 
@@ -1276,19 +1197,17 @@ Update Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object`
 
             Tool calls are automatically approved without user confirmation.
 
-          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object`
 
             Tool calls require user confirmation before execution.
 
       - `type: "agent_toolset_20260401"`
 
-        - `"agent_toolset_20260401"`
-
-    - `BetaManagedAgentsMCPToolset object { configs, default_config, mcp_server_name, type }`
+    - `BetaManagedAgentsMCPToolset object`
 
       - `configs: array of BetaManagedAgentsMCPToolConfig`
 
@@ -1300,11 +1219,11 @@ Update Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object`
 
             Tool calls are automatically approved without user confirmation.
 
-          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object`
 
             Tool calls require user confirmation before execution.
 
@@ -1318,11 +1237,11 @@ Update Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object`
 
             Tool calls are automatically approved without user confirmation.
 
-          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object`
 
             Tool calls require user confirmation before execution.
 
@@ -1330,9 +1249,7 @@ Update Agent
 
       - `type: "mcp_toolset"`
 
-        - `"mcp_toolset"`
-
-    - `BetaManagedAgentsCustomTool object { description, input_schema, name, type }`
+    - `BetaManagedAgentsCustomTool object`
 
       A custom tool as returned in API responses.
 
@@ -1344,8 +1261,6 @@ Update Agent
 
         - `type: "object"`
 
-          - `"object"`
-
         - `properties: optional map[unknown] or null`
 
         - `required: optional array of string or null`
@@ -1354,23 +1269,23 @@ Update Agent
 
       - `type: "custom"`
 
-        - `"custom"`
-
   - `type: "agent"`
-
-    - `"agent"`
 
   - `updated_at: string`
 
     A timestamp in RFC 3339 format
 
+    format: date-time
+
   - `version: number`
 
     The agent's current version. Starts at 1 and increments when the agent is modified.
 
-### Example
+    format: int32
 
-```http
+## Example
+
+```bash
 curl https://api.anthropic.com/v1/agents/$AGENT_ID \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
@@ -1383,7 +1298,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID \
         }'
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

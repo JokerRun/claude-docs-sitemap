@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/scheduled-deployments
-fetched_at: 2026-08-23T02:32:19.757524Z
-sha256: 619b36c75babd9312de0cb5430d39d04702daaea8a63972f2e3ea519977dcfec
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: c459d93f4176e39d8f9c581cee7159f5587160706ba3cd0fc683edec2c63684e
 ---
 
 ---
@@ -11,9 +11,9 @@ url: https://platform.claude.com/docs/id/managed-agents/scheduled-deployments
 description: "Buat dan kelola deployment dengan Claude API: jalankan agen pada jadwal cron berulang dan periksa riwayat eksekusinya."
 ---
 
-Sebuah **scheduled deployment** (deployment terjadwal) memungkinkan [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) untuk memulai [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) secara otonom, sehingga tugas dapat diselesaikan dengan ritme yang dapat diprediksi. Anda membuat dan mengelola deployment dengan Deployments API, bagian dari Claude API.
+**Scheduled deployment** (deployment terjadwal) memungkinkan sebuah [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) untuk memulai [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) secara otonom, sehingga tugas dapat diselesaikan dengan ritme yang dapat diprediksi. Anda membuat dan mengelola deployment dengan Deployments API, bagian dari Claude API.
 
-Untuk konteks peluncuran dan contoh apa saja yang dijalankan tim secara terjadwal, lihat [deployment terjadwal dan vault di Claude Managed Agents](https://claude.com/blog/whats-new-in-claude-managed-agents) di blog.
+Untuk konteks peluncuran dan contoh apa yang dijalankan tim secara terjadwal, lihat [scheduled deployments and vaults in Claude Managed Agents](https://claude.com/blog/whats-new-in-claude-managed-agents) di blog.
 
 <Note>
   Semua permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`. SDK menetapkan header beta secara otomatis.
@@ -23,9 +23,9 @@ Untuk konteks peluncuran dan contoh apa saja yang dijalankan tim secara terjadwa
 
 Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.claude.com/docs/id/managed-agents/sessions) yang diperlukan untuk eksekusi, selain sebuah `schedule`.
 
-* Deployment memerlukan [konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) dan [konfigurasi environment](https://platform.claude.com/docs/id/managed-agents/environments), dan secara opsional menerima [file](https://platform.claude.com/docs/id/managed-agents/files), [GitHub](https://platform.claude.com/docs/id/managed-agents/github), [memory store](https://platform.claude.com/docs/id/managed-agents/memory), dan [vault](https://platform.claude.com/docs/id/managed-agents/vaults).
-* Deployment juga memerlukan setidaknya satu event awal, berupa `user.message` atau `user.define_outcome`, yang memulai pekerjaan setiap sesi.
-* Di dalam `schedule`, Anda mendefinisikan `expression` cron dan `timezone`. Granularitas maksimum yang didukung adalah pada tingkat menit.
+* Deployment memerlukan [konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) dan [konfigurasi environment](https://platform.claude.com/docs/id/managed-agents/environments), dan secara opsional menerima [file](https://platform.claude.com/docs/id/managed-agents/files), [GitHub](https://platform.claude.com/docs/id/managed-agents/github), [memory store](https://platform.claude.com/docs/id/managed-agents/memory), dan [vault](https://platform.claude.com/docs/id/managed-agents/vaults). Deployment yang menargetkan [environment self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores) dapat melampirkan memory store; resource `file` dan `github_repository` memerlukan environment cloud. Formulir deployment di Claude Console saat ini tidak menawarkan memory store untuk environment self-hosted; lampirkan melalui API atau SDK sebagai gantinya.
+* Deployment juga memerlukan setidaknya satu event awal, `user.message` atau `user.define_outcome`, yang memulai pekerjaan setiap sesi.
+* Dalam `schedule`, Anda mendefinisikan `expression` cron dan `timezone`. Granularitas maksimum yang didukung adalah pada tingkat menit.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -228,7 +228,7 @@ Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.cla
   ```
 </CodeGroup>
 
-Respons menyertakan objek deployment dengan `schedule.upcoming_runs_at` yang terisi waktu eksekusi berikutnya, untuk mengonfirmasi bahwa jadwal Anda telah diatur dengan benar.
+Respons mencakup objek deployment dengan `schedule.upcoming_runs_at` yang terisi waktu eksekusi berikutnya, untuk mengonfirmasi bahwa jadwal Anda telah ditetapkan dengan benar.
 
 ```json
 {
@@ -258,18 +258,18 @@ Lihat [referensi Create Deployment](https://platform.claude.com/docs/id/api/beta
 ### Semantik cron dan zona waktu
 
 * **Expression:** Cron POSIX standar (`minute hour day-of-month month day-of-week`). Anda dapat membuat dan memvalidasi ekspresi cron ini di [Claude Console](https://platform.claude.com/workspaces/default/deployments).
-* **Timezone:** Pengenal zona waktu IANA (misalnya, `"America/Los_Angeles"`).
-* **DST:** Jadwal cron menggunakan pencocokan waktu jam dinding (wall-clock) secara literal, sehingga `"0 20 * * *"` di `America/New_York` dijalankan pada pukul 20.00 waktu setempat terlepas dari apakah EST atau EDT yang sedang berlaku.
+* **Timezone:** Pengidentifikasi zona waktu IANA (misalnya, `"America/Los_Angeles"`).
+* **DST:** Jadwal cron menggunakan pencocokan waktu jam dinding secara literal, sehingga `"0 20 * * *"` di `America/New_York` dijalankan pada pukul 20.00 waktu setempat terlepas dari apakah EST atau EDT yang berlaku.
 
 <Note>
-  Waktu jam dinding yang tidak ada pada hari pemajuan jam (spring-forward), seperti pukul 2 pagi, tidak dipicu. Waktu jam dinding yang terjadi dua kali pada hari pemunduran jam (fall-back) dijalankan dua kali. Jadwalkan di luar rentang pukul 1–3 pagi waktu setempat, atau gunakan UTC, jika eksekusi yang terlewat atau ganda tidak dapat diterima.
+  Waktu jam dinding yang tidak ada pada hari pergeseran maju (seperti pukul 2 pagi) tidak dipicu. Waktu jam dinding yang terjadi dua kali pada hari pergeseran mundur dijalankan dua kali. Jadwalkan di luar rentang pukul 1–3 pagi waktu setempat, atau gunakan UTC, jika eksekusi yang terlewat atau duplikat tidak dapat diterima.
 </Note>
 
 ### Menetapkan anggaran pada setiap eksekusi
 
-Teruskan objek `budget` opsional saat Anda membuat atau memperbarui deployment. Bentuknya sama dengan [anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets). Deployment menyalin batas tersebut ke setiap sesi yang dimulainya, sehingga anggaran membatasi setiap eksekusi secara terpisah, bukan bertindak sebagai plafon kumulatif di seluruh eksekusi: deployment dengan batas `"2000"` dapat menghabiskan hingga sekitar $20 pada setiap eksekusi.
+Teruskan objek `budget` opsional saat Anda membuat atau memperbarui deployment. Objek ini memiliki bentuk yang sama dengan [anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets). Deployment menyalin batas tersebut ke setiap sesi yang dimulainya, sehingga anggaran membatasi setiap eksekusi secara terpisah, bukan bertindak sebagai plafon kumulatif di seluruh eksekusi: deployment dengan batas `"2000"` dapat menghabiskan hingga sekitar $20 pada setiap eksekusi.
 
-Sesi yang dimulai oleh deployment berperilaku persis seperti sesi beranggaran lainnya: sesi tersebut dijeda dengan `budget_reached` ketika biaya daftarnya sendiri [mencapai batas](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget). Mengubah anggaran deployment berlaku untuk eksekusi yang dimulai setelahnya; sesi yang sudah berjalan mempertahankan batas yang dimilikinya saat dimulai, yang dapat Anda [ubah melalui sesi itu sendiri](https://platform.claude.com/docs/id/managed-agents/session-operations#updating-the-session-budget). Berbeda dengan anggaran sesi, anggaran deployment dapat dihapus dengan `"budget": null` dan ditetapkan kembali nanti.
+Sesi yang dimulai oleh deployment berperilaku persis seperti sesi beranggaran lainnya: sesi dijeda dengan `budget_reached` ketika biaya daftarnya sendiri [mencapai batas](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget). Mengubah anggaran deployment berlaku untuk eksekusi yang dimulai setelahnya; sesi yang sudah berjalan mempertahankan batas yang dimilikinya saat dimulai, yang dapat Anda [ubah melalui sesi itu sendiri](https://platform.claude.com/docs/id/managed-agents/session-operations#updating-the-session-budget). Berbeda dengan anggaran sesi, anggaran deployment dapat dihapus dengan `"budget": null` dan ditetapkan kembali nanti.
 
 Contoh berikut menetapkan anggaran pada deployment yang sudah ada:
 
@@ -293,7 +293,7 @@ EOF
 
 Deployment dapat gagal terpicu karena berbagai alasan: misalnya, jika resource `environment` telah diarsipkan, atau jika pembuatan sesi terkena batas laju. Setiap upaya mengeksekusi deployment menghasilkan catatan **deployment run** (eksekusi deployment), yang memungkinkan Anda melacak keberhasilan dan kegagalan secara independen dari siklus hidup sesi.
 
-Deployment yang berhasil menghasilkan sesi aktif, dan deployment run yang berhasil berisi `session_id` terkait. Untuk mengikuti siklus hidup sesi, lacak event sesi melalui [event stream](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) atau [webhook](https://platform.claude.com/docs/id/managed-agents/webhooks). Perubahan siklus hidup deployment dan hasil dari setiap eksekusi terjadwal juga dikirimkan sebagai event webhook, yang tercantum di tab Deployment events dan Deployment run events pada [Jenis event yang didukung](https://platform.claude.com/docs/id/managed-agents/webhooks#supported-event-types).
+Deployment yang berhasil menghasilkan sesi aktif, dan deployment run yang berhasil berisi `session_id` terkait. Untuk mengikuti siklus hidup sesi, lacak event sesi melalui [event stream](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) atau [webhook](https://platform.claude.com/docs/id/managed-agents/webhooks). Perubahan siklus hidup deployment dan hasil setiap eksekusi terjadwal juga dikirimkan sebagai event webhook, yang tercantum di tab Deployment events dan Deployment run events pada [Jenis event yang didukung](https://platform.claude.com/docs/id/managed-agents/webhooks#supported-event-types).
 
 Daftarkan semua deployment run untuk sebuah deployment sebagai berikut:
 
@@ -539,7 +539,7 @@ Setiap perubahan siklus hidup memancarkan [event webhook](https://platform.claud
   ```
 </CodeGroup>
 
-**Unpause** melanjutkan jadwal dari kejadian terjadwal berikutnya. Pemicu yang terlewat tidak diisi ulang (backfill).
+**Unpause** melanjutkan jadwal dari kejadian terjadwal berikutnya. Pemicu yang terlewat tidak diisi ulang.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -631,13 +631,13 @@ Setiap perubahan siklus hidup memancarkan [event webhook](https://platform.claud
 
 ### Perilaku kegagalan
 
-Respons batas laju pada pembuatan sesi langsung dicatat sebagai eksekusi `session_rate_limited_error` tanpa percobaan ulang; jadwal akan mencoba lagi pada kejadian terjadwal berikutnya. Batas laju pada panggilan API yang mendasari di dalam sesi ditangani oleh sesi itu sendiri.
+Respons batas laju pembuatan sesi langsung dicatat sebagai eksekusi `session_rate_limited_error` tanpa percobaan ulang; jadwal mencoba lagi pada kejadian terjadwal berikutnya. Batas laju pada panggilan API yang mendasari di dalam sesi ditangani oleh sesi itu sendiri.
 
-Jika agen dari sebuah deployment telah diarsipkan, deployment tersebut otomatis diarsipkan dalam operasi yang sama. Jika agen telah dihapus, pemicu terjadwal berikutnya mendeteksi agen yang hilang dan otomatis mengarsipkan deployment. Dalam kedua kasus tersebut, tidak ada deployment run yang dicatat. Jika subagen yang direferensikan oleh agen telah diarsipkan, pemicu berikutnya mencatat eksekusi gagal dengan `error.type: "agent_archived_error"` dan deployment otomatis dijeda sehingga Anda dapat memperbarui agen dan melanjutkannya. Error pembuatan sesi lain yang tidak dapat dipulihkan, seperti environment atau vault yang diarsipkan, berperilaku sama: pemicu mencatat eksekusi gagal dan deployment otomatis dijeda. `paused_reason.error.type` milik deployment mencerminkan `error.type` dari eksekusi yang gagal.
+Jika agen dari sebuah deployment telah diarsipkan, deployment tersebut otomatis diarsipkan dalam operasi yang sama. Jika agen telah dihapus, pemicu terjadwal berikutnya mendeteksi agen yang hilang dan otomatis mengarsipkan deployment. Dalam kedua kasus, tidak ada deployment run yang dicatat. Jika subagen yang direferensikan oleh agen telah diarsipkan, pemicu berikutnya mencatat eksekusi gagal dengan `error.type: "agent_archived_error"` dan deployment otomatis dijeda sehingga Anda dapat memperbarui agen dan melanjutkannya. Error pembuatan sesi lain yang tidak dapat dipulihkan, seperti environment atau vault yang diarsipkan, berperilaku sama: pemicu mencatat eksekusi gagal dan deployment otomatis dijeda. `paused_reason.error.type` milik deployment mencerminkan `error.type` dari eksekusi yang gagal.
 
 ## Memicu eksekusi manual
 
-Untuk menjalankan deployment di luar jadwalnya, panggil [endpoint `run`](https://platform.claude.com/docs/id/api/beta/deployments/run). Ini langsung membuat sesi dan menulis deployment run dengan `trigger_context.type: "manual"`. Hal ini memungkinkan Anda menguji deployment sebelum berkomitmen pada jadwal.
+Untuk menjalankan deployment di luar jadwalnya, panggil [endpoint `run`](https://platform.claude.com/docs/id/api/beta/deployments/run). Ini langsung membuat sesi dan menulis deployment run dengan `trigger_context.type: "manual"`. Ini memungkinkan Anda menguji deployment sebelum berkomitmen pada jadwal.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL

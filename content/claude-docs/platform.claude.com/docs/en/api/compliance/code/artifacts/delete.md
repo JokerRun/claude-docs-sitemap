@@ -1,18 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/code/artifacts/delete
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 5c9fb856c59cc5cee97cb40333ca5fe2051c6afac3450d923864fdb4d3632d36
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 93d52a8c7f4c8c303050233a36c4f292674be19482d1d31594abfafe4f828936
 ---
 
----
-title: Delete Code Artifact
-url: https://platform.claude.com/docs/en/api/compliance/code/artifacts/delete
----
+# Delete Code Artifact
 
-## Delete Code Artifact
-
-**delete** `/v1/compliance/apps/code/artifacts/{artifact_id}`
+**DELETE** `/v1/compliance/apps/code/artifacts/{artifact_id}`
 
 Permanently deletes a Code Artifact and all its versions. This is a
 destructive operation that cannot be undone. A 200 response means the
@@ -23,17 +18,17 @@ Returns 404 for Artifacts that don't exist or belong to another parent
 organization. Returns 404 on a repeated delete of an already-deleted
 Artifact.
 
-### Path Parameters
+## Path parameters
 
 - `artifact_id: string`
 
   The Artifact ID (tagged ID, e.g., cart_abc123)
 
-### Header Parameters
+## Headers
 
 - `"x-api-key": optional string`
 
-### Returns
+## Returns
 
 - `id: string`
 
@@ -43,17 +38,17 @@ Artifact.
 
   Constant string confirming deletion
 
-  - `"code_artifact_deleted"`
+  default: code_artifact_deleted
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/compliance/apps/code/artifacts/$ARTIFACT_ID \
     -X DELETE \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

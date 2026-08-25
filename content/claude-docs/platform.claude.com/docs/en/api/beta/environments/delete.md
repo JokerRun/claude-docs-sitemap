@@ -1,26 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/delete
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 944c317c9443dd60831ce6ac1e73c97590857e88fdf1747a7a85a4a59c473675
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 6642445c148de39dbfee857205b5b66feb2631a7c6b4ca49552054a5b7d65831
 ---
 
----
-title: Delete Environment
-url: https://platform.claude.com/docs/en/api/beta/environments/delete
----
+# Delete Environment
 
-## Delete Environment
-
-**delete** `/v1/environments/{environment_id}`
+**DELETE** `/v1/environments/{environment_id}`
 
 Delete an environment by ID. Returns a confirmation of the deletion.
 
-### Path Parameters
+## Path parameters
 
 - `environment_id: string`
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -98,9 +93,9 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
-### Returns
+## Returns
 
-- `BetaEnvironmentDeleteResponse object { id, type }`
+- `BetaEnvironmentDeleteResponse object`
 
   Response after deleting an environment.
 
@@ -112,11 +107,11 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
     The type of response
 
-    - `"environment_deleted"`
+    default: environment_deleted
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
@@ -124,7 +119,7 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: c24c923fd14799c4cb85ccffc094f113ad133f422df490878b8a996b1dc94302
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 2fc5b3a9d975ccdff3f25e757f0258c3ac37af6a438872bd9558119700eaf6b7
 ---
 
 ---
@@ -15,7 +15,7 @@ Claude dapat menganalisis data, membuat visualisasi, melakukan perhitungan kompl
 
 **Eksekusi kode gratis saat digunakan bersama web search atau web fetch (`web_search_20260209`, `web_fetch_20260209`, atau yang lebih baru).** Ketika salah satu alat tersebut ada dalam permintaan Anda, tidak ada biaya tambahan untuk eksekusi kode dalam permintaan tersebut di luar biaya token standar. Ini mencakup eksekusi kode di balik pemfilteran dinamis maupun kode apa pun yang dijalankan Claude secara langsung. Harga eksekusi kode standar berlaku ketika alat-alat tersebut tidak disertakan.
 
-Eksekusi kode juga mendukung pemfilteran dinamis dalam alat [web search](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool) dan [web fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool): Claude memfilter hasil di dalam lingkungan eksekusi kode sebelum hasil tersebut mencapai "context window" (jendela konteks). Ketika pemfilteran dinamis berjalan, API secara otomatis menyediakan eksekusi kode yang dibutuhkan untuk permintaan tersebut, sehingga Anda tidak perlu menambahkan alat eksekusi kode ke permintaan Anda untuk itu.
+Eksekusi kode juga menjadi penggerak pemfilteran dinamis pada alat [web search](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool) dan [web fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool): Claude memfilter hasil di dalam lingkungan eksekusi kode sebelum hasil tersebut mencapai "context window" (jendela konteks). Ketika pemfilteran dinamis berjalan, API secara otomatis menyediakan eksekusi kode yang dibutuhkan untuk permintaan tersebut, sehingga Anda tidak perlu menambahkan alat eksekusi kode ke permintaan Anda untuk itu.
 
 <Note>
   Hubungi kami melalui [formulir umpan balik](https://forms.gle/LTAU6Xn2puCJMi1n6) untuk membagikan umpan balik Anda tentang fitur ini.
@@ -49,7 +49,7 @@ Setiap versi alat dibangun di atas versi sebelumnya:
 * `code_execution_20260120` menambahkan persistensi state REPL dan [pemanggilan alat terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling) dari dalam sandbox. Claude Haiku 4.5 menerima tipe alat `code_execution_20260120` dan `code_execution_20260521`, tetapi pemanggilan alat terprogram dan persistensi state REPL yang bergantung padanya tidak tersedia pada model tersebut, sehingga versi yang lebih baru berperilaku seperti `code_execution_20250825` di sana.
 * `code_execution_20260521` adalah runtime yang sama dengan `code_execution_20260120`. Perbedaannya adalah deskripsi alat memberi tahu Claude tentang batas waktu nyata (wall-clock) 90 detik pada setiap sel Python dalam pemanggilan alat terprogram, sehingga Claude dapat mengatur anggaran untuk sel yang berjalan lama. Sel yang melebihi batas mengembalikan hasil eksekusi kode normal dengan `return_code` bukan nol dan pesan status `detection_timeout` dalam outputnya. Ini terpisah dari [kode error](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#errors) `execution_time_exceeded`, yang dikembalikan API ketika seluruh pemanggilan alat melebihi waktu eksekusi maksimum.
 
-Ketiga versi alat tersedia secara umum dan tidak memerlukan header `anthropic-beta`. Header beta eksekusi kode lama tetap valid sebagai opt-in.
+Tidak satu pun dari ketiga versi alat memerlukan header `anthropic-beta`. Header beta eksekusi kode lama tetap menjadi opt-in yang valid.
 
 Contoh-contoh di halaman ini menggunakan `code_execution_20250825`, yang mencakup operasi Bash dan file yang didemonstrasikan dan berperilaku sama pada setiap model dalam tabel; gunakan `code_execution_20260120` atau yang lebih baru ketika Anda memerlukan pemanggilan alat terprogram atau persistensi state REPL. Alat [web search](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool) dan [web fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool) saat ini (`web_search_20260209`, `web_fetch_20260209`, dan yang lebih baru) memerlukan `code_execution_20260120` atau yang lebih baru sebagai versi eksekusi kodenya.
 
@@ -259,7 +259,7 @@ Ketika Anda menambahkan alat eksekusi kode ke permintaan API Anda:
 
 7. Claude memberikan hasil beserta grafik, perhitungan, atau analisis yang dihasilkan
 
-Kontainer memiliki Python yang sudah terinstal. Claude menulis Python dengan sub-alat operasi file dan menjalankannya dengan perintah Bash. Dengan `code_execution_20260120` atau yang lebih baru dan [pemanggilan alat terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), state interpreter Python (seperti binding variabel) juga bertahan di berbagai permintaan yang menggunakan ulang kontainer.
+Kontainer memiliki Python yang sudah terinstal. Claude menulis Python dengan sub-alat operasi file dan menjalankannya dengan perintah Bash. Dengan `code_execution_20260120` atau yang lebih baru dan [pemanggilan alat terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), state interpreter Python (seperti pengikatan variabel) juga bertahan di berbagai permintaan yang menggunakan ulang kontainer.
 
 ### Kapan Claude menjalankan kode
 
@@ -268,25 +268,21 @@ Claude menjalankan kode ketika permintaan diuntungkan oleh komputasi atau penang
 * Matematika yang tidak sepele (angka besar, banyak langkah, hasil yang sensitif terhadap presisi)
 * Analisis data, parsing file, atau visualisasi
 * Eksekusi algoritma atau simulasi
-* Permintaan eksplisit untuk "run", "compute", atau "execute"
+* Permintaan eksplisit untuk "menjalankan", "menghitung", atau "mengeksekusi"
 
 Claude menjawab langsung tanpa menjalankan kode untuk:
 
-* Aritmetika sederhana dan fakta matematika yang sudah dikenal luas
+* Aritmetika sederhana dan fakta matematika yang sudah umum diketahui
 * Permintaan faktual, percakapan, atau kreatif
 * Konversi satuan atau terjemahan sederhana
 
-Jika Anda ingin Claude menjalankan kode untuk permintaan yang berada di batas, mintalah secara eksplisit (misalnya, "run code to verify this").
+Jika Anda ingin Claude menjalankan kode untuk permintaan yang berada di batas, mintalah secara eksplisit (misalnya, "jalankan kode untuk memverifikasi ini").
 
 ## Bekerja dengan file
 
 ### Unggah dan analisis file Anda sendiri
 
-Untuk menganalisis file data Anda sendiri (seperti CSV, Excel, atau gambar), unggah melalui Files API dan referensikan dalam permintaan Anda:
-
-<Note>
-  Alur kerja ini tidak memerlukan header beta: mengunggah dan mengunduh file melalui Files API serta mereferensikannya dalam blok `container_upload` semuanya tersedia secara umum.
-</Note>
+Untuk menganalisis file data Anda sendiri (seperti CSV, Excel, atau gambar), unggah melalui Files API dan referensikan dalam permintaan Anda.
 
 Lingkungan Python dapat memproses berbagai jenis file yang diunggah melalui Files API, termasuk:
 
@@ -335,9 +331,7 @@ Lingkungan Python dapat memproses berbagai jenis file yang diunggah melalui File
 
   ```bash CLI
   # Pertama, unggah file dan ambil ID file-nya
-  FILE_ID=$(ant files upload \
-    --file ./data.csv \
-    --transform id --raw-output)
+  FILE_ID=$(ant files upload --file ./data.csv --transform id --raw-output)
 
   # Kemudian gunakan file_id dengan eksekusi kode
   ant messages create <<YAML
@@ -519,25 +513,24 @@ Lingkungan Python dapat memproses berbagai jenis file yang diunggah melalui File
   $client = new Client();
 
   // Unggah file
-  $fileObject = $client->beta->files->upload(
+  $fileObject = $client->files->upload(
       file: FileParam::fromResource(fopen('data.csv', 'r')),
   );
 
   // Gunakan file_id dengan eksekusi kode
-  $response = $client->beta->messages->create(
+  $response = $client->messages->create(
       model: Model::CLAUDE_OPUS_5,
       maxTokens: 4096,
-      betas: [AnthropicBeta::FILES_API_2025_04_14],
       messages: [
           [
               'role' => 'user',
               'content' => [
-                  BetaTextBlockParam::with(text: 'Analyze this CSV data'),
-                  BetaContainerUploadBlockParam::with(fileID: $fileObject->id),
+                  TextBlockParam::with(text: 'Analyze this CSV data'),
+                  ContainerUploadBlockParam::with(fileID: $fileObject->id),
               ],
           ],
       ],
-      tools: [new BetaCodeExecutionTool20250825()],
+      tools: [new CodeExecutionTool20250825()],
   );
 
   echo json_encode($response), PHP_EOL;
@@ -579,9 +572,9 @@ Ketika Claude menyimpan file ke direktori outputnya selama eksekusi kode (lihat 
 
 <CodeGroup>
   ```bash cURL
-  # Mengunduh setiap file yang dihasilkan berarti melakukan loop atas ID file dalam
-  # hasil alat, yang tidak dapat diterjemahkan menjadi satu perintah shell sekali jalan. Gunakan salah satu
-  # contoh SDK sebagai gantinya.
+  # Mengunduh setiap file yang dihasilkan berarti melakukan loop atas ID file dalam hasil
+  # alat, yang tidak dapat diterjemahkan menjadi satu perintah shell sekali jalan. Gunakan
+  # salah satu contoh SDK sebagai gantinya.
   ```
 
   ```bash CLI
@@ -820,7 +813,7 @@ Ketika Claude menyimpan file ke direktori outputnya selama eksekusi kode (lihat 
   $client = new Client();
 
   // Minta eksekusi kode yang membuat file
-  $response = $client->beta->messages->create(
+  $response = $client->messages->create(
       maxTokens: 4096,
       messages: [
           [
@@ -829,8 +822,7 @@ Ketika Claude menyimpan file ke direktori outputnya selama eksekusi kode (lihat 
           ],
       ],
       model: Model::CLAUDE_OPUS_5,
-      betas: [AnthropicBeta::FILES_API_2025_04_14],
-      tools: [new BetaCodeExecutionTool20250825()],
+      tools: [new CodeExecutionTool20250825()],
   );
 
   /**
@@ -838,7 +830,7 @@ Ketika Claude menyimpan file ke direktori outputnya selama eksekusi kode (lihat 
    *
    * @return list<string>
    */
-  function extractFileIds(BetaMessage $response): array
+  function extractFileIds(Message $response): array
   {
       $fileIds = [];
       foreach ($response->content as $block) {
@@ -858,8 +850,8 @@ Ketika Claude menyimpan file ke direktori outputnya selama eksekusi kode (lihat 
 
   // Unduh file yang telah dibuat
   foreach (extractFileIds($response) as $fileId) {
-      $fileMetadata = $client->beta->files->retrieveMetadata($fileId);
-      $fileContent = $client->beta->files->download($fileId);
+      $fileMetadata = $client->files->retrieveMetadata($fileId);
+      $fileContent = $client->files->download($fileId);
 
       file_put_contents($fileMetadata->filename, $fileContent);
       echo "Downloaded: {$fileMetadata->filename}\n";
@@ -919,9 +911,9 @@ Ketika Claude menyimpan file ke direktori outputnya selama eksekusi kode (lihat 
 
 #### Cara file yang dihasilkan ditangkap
 
-Setiap panggilan `bash_code_execution` mendapatkan direktori baru yang kosong, tersedia bagi perintah sebagai `$OUTPUT_DIR`. Ketika perintah selesai, file di tingkat teratas direktori tersebut ditangkap dan dikembalikan sebagai entri `file_id` dalam daftar `content` pada hasil. File yang ditulis di tempat lain tetap berada di kontainer dan tidak dikembalikan.
+Setiap panggilan `bash_code_execution` mendapatkan direktori baru yang kosong, tersedia bagi perintah sebagai `$OUTPUT_DIR`. Ketika perintah selesai, file-file di tingkat teratas direktori tersebut ditangkap dan dikembalikan sebagai entri `file_id` dalam daftar `content` pada hasil. File yang ditulis di tempat lain tetap berada di kontainer dan tidak dikembalikan.
 
-Deskripsi alat memberi tahu Claude untuk membagikan file dengan menyalinnya ke `$OUTPUT_DIR`. Jika aplikasi Anda bergantung pada penerimaan sebuah file, minta Claude untuk menyalinnya ke `$OUTPUT_DIR` dan menampilkan daftar isi direktori dalam perintah yang sama, sehingga output `ls` mengonfirmasi penangkapan tersebut (Claude tidak melihat daftar `content`):
+Deskripsi alat memberi tahu Claude untuk membagikan file dengan menyalinnya ke `$OUTPUT_DIR`. Jika aplikasi Anda bergantung pada penerimaan suatu file, minta Claude untuk menyalinnya ke `$OUTPUT_DIR` dan menampilkan daftar isi direktori dalam perintah yang sama, sehingga output `ls` mengonfirmasi penangkapan tersebut (Claude tidak melihat daftar `content`):
 
 ```bash
 python /tmp/make_report.py && cp /tmp/report.pdf "$OUTPUT_DIR/" && ls "$OUTPUT_DIR"
@@ -1147,7 +1139,7 @@ Kontainer tidak memiliki akses internet, sehingga Claude tidak dapat mengunduh a
 
 ## Penggunaan ulang kontainer
 
-Anda dapat menggunakan ulang kontainer yang ada di berbagai permintaan API dengan memberikan ID kontainer dari respons sebelumnya. Ini memungkinkan Anda mempertahankan file yang dibuat antar permintaan. Dengan `code_execution_20260120` atau yang lebih baru dan [pemanggilan alat terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), state interpreter Python juga bertahan.
+Anda dapat menggunakan ulang kontainer yang ada di berbagai permintaan API dengan memberikan ID kontainer dari respons sebelumnya. Ini memungkinkan Anda mempertahankan file yang dibuat di antara permintaan. Dengan `code_execution_20260120` atau yang lebih baru dan [pemanggilan alat terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), state interpreter Python juga bertahan.
 
 Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak aktif, kontainer di-checkpoint, dan mengirim permintaan dengan ID-nya dalam jendela 30 hari akan memulihkannya. Timestamp `expires_at` dalam objek `container` pada respons adalah nilai bergulir yang lebih pendek dan tidak melaporkan batas 30 hari. Kontainer yang telah kedaluwarsa tidak dapat digunakan ulang. Kirim permintaan lagi tanpa parameter `container` untuk mendapatkan kontainer baru.
 
@@ -1155,7 +1147,7 @@ Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
 
 <CodeGroup>
   ```bash cURL
-  # Permintaan pertama: Buat file dengan angka acak, ambil ID container (menggunakan jq)
+  # Permintaan pertama: Buat file dengan angka acak, sambil menangkap ID container (menggunakan jq)
   CONTAINER_ID=$(curl -s https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -1173,7 +1165,7 @@ Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
       }]
     }' | jq -r '.container.id')
 
-  # Permintaan kedua: Gunakan kembali container untuk membaca file
+  # Permintaan kedua: Gunakan kembali container untuk membaca file tersebut
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -1202,7 +1194,7 @@ Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
     --tool '{type: code_execution_20250825, name: code_execution}' \
     --transform container.id --raw-output)
 
-  # Permintaan kedua: Gunakan kembali container untuk membaca file tersebut
+  # Permintaan kedua: Gunakan kembali container untuk membaca file
   ant messages create \
     --container "$CONTAINER_ID" \
     --model claude-opus-5 \
@@ -1291,7 +1283,7 @@ Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
       Tools = [new CodeExecutionTool20250825()]
   });
 
-  // Permintaan kedua: kirimkan kembali ID container agar Claude menggunakan ulang container yang sama
+  // Permintaan kedua: kirim kembali ID container agar Claude menggunakan ulang container yang sama
   var response2 = await client.Messages.Create(new()
   {
       Container = response1.Container!.ID,
@@ -1439,9 +1431,9 @@ Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
 
 ## Menggunakan eksekusi kode dengan alat eksekusi lain
 
-Ketika Anda menyediakan eksekusi kode bersama alat yang disediakan klien yang juga menjalankan kode (seperti [alat Bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool) atau REPL kustom), Claude beroperasi dalam lingkungan multikomputer. Alat eksekusi kode berjalan dalam kontainer sandbox Anthropic, sementara alat yang disediakan klien Anda berjalan dalam lingkungan terpisah yang Anda kendalikan. Claude terkadang dapat mengacaukan lingkungan-lingkungan ini, mencoba menggunakan alat yang salah atau mengasumsikan state dibagikan di antara keduanya.
+Ketika Anda menyediakan eksekusi kode bersama alat yang disediakan klien yang juga menjalankan kode (seperti [alat Bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool) atau REPL kustom), Claude beroperasi dalam lingkungan multikomputer. Alat eksekusi kode berjalan di kontainer sandbox Anthropic, sementara alat yang disediakan klien Anda berjalan di lingkungan terpisah yang Anda kendalikan. Claude terkadang dapat mengacaukan lingkungan-lingkungan ini, mencoba menggunakan alat yang salah atau mengasumsikan state dibagikan di antara keduanya.
 
-Untuk menghindari hal ini, tambahkan instruksi ke prompt sistem Anda yang memperjelas perbedaannya:
+Untuk menghindari hal ini, tambahkan instruksi ke "system prompt" (prompt sistem) Anda yang memperjelas perbedaannya:
 
 ```text wrap
 When multiple code execution environments are available, be aware that:
@@ -1505,9 +1497,9 @@ Penggunaan eksekusi kode dilacak dalam respons:
 
 ## Upgrade ke versi alat terbaru
 
-Versi alat terbaru adalah `code_execution_20260521`. Untuk berpindah di antara tiga versi saat ini, perbarui string `type` dalam permintaan Anda: ketiganya mengembalikan blok respons yang didokumentasikan dalam [Format respons](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#response-format). Lihat [Kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#model-compatibility) untuk mengetahui apa yang ditambahkan setiap versi dan model mana yang mendukungnya.
+Versi alat terbaru adalah `code_execution_20260521`. Untuk berpindah di antara ketiga versi saat ini, perbarui string `type` dalam permintaan Anda: ketiganya mengembalikan blok respons yang didokumentasikan di [Format respons](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#response-format). Lihat [Kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#model-compatibility) untuk mengetahui apa yang ditambahkan setiap versi dan model mana yang mendukungnya.
 
-Bagian selanjutnya membahas migrasi dari `code_execution_20250522` lama yang hanya mendukung Python ke versi alat saat ini.
+Sisa bagian ini membahas migrasi dari `code_execution_20250522` lama yang hanya Python ke versi alat saat ini.
 
 ### Apa yang berubah
 
@@ -1521,7 +1513,7 @@ Bagian selanjutnya membahas migrasi dari `code_execution_20250522` lama yang han
 ### Kompatibilitas mundur
 
 * Semua eksekusi kode Python yang ada tetap berfungsi persis seperti sebelumnya
-* Tidak ada perubahan yang diperlukan pada alur kerja yang hanya menggunakan Python
+* Tidak ada perubahan yang diperlukan untuk alur kerja yang hanya Python yang sudah ada
 
 ### Langkah upgrade
 
@@ -1555,7 +1547,7 @@ Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platfor
   </Card>
 
   <Card title="Files API" icon="file" href="https://platform.claude.com/docs/id/build-with-claude/files">
-    Unggah file untuk dianalisis dan unduh file yang dibuat oleh eksekusi kode.
+    Unggah file untuk analisis dan unduh file yang dibuat oleh eksekusi kode.
   </Card>
 
   <Card title="Menggunakan Agent Skills dengan API" icon="book" href="https://platform.claude.com/docs/id/build-with-claude/skills-guide">

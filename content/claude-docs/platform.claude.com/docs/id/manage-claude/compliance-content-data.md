@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-content-data
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 0a7475067f2c5cbab13b3791d5bfa3d66d160be30a1c8d7fecf62ca7707bd14b
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: adb11a22e6acf1badcd349331c6de73454357d9fd88543ae5909d6852e062e3a
 ---
 
 ---
@@ -73,7 +73,7 @@ Pergerakan maju tersebut juga merupakan cara Anda menjaga ekspor tetap mutakhir 
 
 Beberapa batasan berlaku untuk kueri seluruh organisasi ini. Kursor bersifat opaque dan terikat pada kunci pengurutan, sehingga `after_id` yang diterbitkan di bawah satu nilai `order_by` akan ditolak dengan error 400 di bawah nilai lainnya. Batas filter waktu juga harus cocok dengan kunci pengurutan: pasangkan batas `updated_at.*` dengan `order_by=updated_at`, dan batas `created_at.*` dengan `order_by=created_at` default. Paginasi mundur dengan `before_id` tidak didukung, dan filter `project_ids[]` tidak tersedia. Lihat [List chats](https://platform.claude.com/docs/id/api/compliance/apps/chats/list) untuk referensi filter lengkap.
 
-Untuk membatasi daftar ke pengguna tertentu (misalnya, legal hold pada kustodian yang disebutkan namanya), teruskan 1–10 nilai `user_ids[]`. Dapatkan ID tersebut dari [Mendaftar pengguna organisasi](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-organization-users). Kueri yang difilter berdasarkan pengguna selalu diurutkan berdasarkan `created_at` (meneruskan `order_by=updated_at` mengembalikan error 400) dan mendukung `after_id` maupun `before_id`. Pemfilteran berdasarkan `project_ids[]` hanya tersedia dalam bentuk yang difilter berdasarkan pengguna ini.
+Untuk membatasi daftar ke pengguna tertentu (misalnya, legal hold pada kustodian yang disebutkan namanya), teruskan 1–10 nilai `user_ids[]`. Dapatkan ID tersebut dari [Mendaftar pengguna organisasi](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-organization-users). Kueri yang difilter berdasarkan pengguna selalu diurutkan berdasarkan `created_at` (meneruskan `order_by=updated_at` mengembalikan error 400) dan mendukung `after_id` maupun `before_id`. Pemfilteran berdasarkan `project_ids[]` hanya tersedia dalam bentuk yang difilter berdasarkan pengguna ini. Menggabungkan `user_ids[]` dengan batas `updated_at.*` apa pun sudah deprecated dan akan ditolak dengan error 400 setelah 2026-09-22; untuk menjaga kumpulan kustodian tetap mutakhir berdasarkan waktu pembaruan, jalankan penelusuran seluruh organisasi `order_by=updated_at` tanpa `user_ids[]` dan pilih chat milik kustodian dari hasilnya, serta pertahankan daftar yang difilter berdasarkan pengguna untuk ekspor yang diurutkan berdasarkan `created_at`.
 
 ```bash cURL
 curl --fail-with-body -sS -G \

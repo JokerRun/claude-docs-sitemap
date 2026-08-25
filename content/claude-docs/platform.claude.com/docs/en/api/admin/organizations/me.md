@@ -1,28 +1,25 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/organizations/me
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: a8d11fa52d0c3675010b39df8c8fd19f17b3274718997d550a44e6be1d555857
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: fe63c8e8bf27c1b7b1e1bec480af25e9d5e957793915126c519e8a3d905b4d29
 ---
 
----
-title: Get Current Organization
-url: https://platform.claude.com/docs/en/api/admin/organizations/me
----
+# Get Current Organization
 
-## Get Current Organization
-
-**get** `/v1/organizations/me`
+**GET** `/v1/organizations/me`
 
 Retrieve information about the organization associated with the authenticated API key.
 
-### Returns
+## Returns
 
-- `Organization object { id, name, type }`
+- `Organization object`
 
   - `id: string`
 
     ID of the Organization.
+
+    format: uuid
 
   - `name: string`
 
@@ -34,17 +31,17 @@ Retrieve information about the organization associated with the authenticated AP
 
     For Organizations, this is always `"organization"`.
 
-    - `"organization"`
+    default: organization
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/me \
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

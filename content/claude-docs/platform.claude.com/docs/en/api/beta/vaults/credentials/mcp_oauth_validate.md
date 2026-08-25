@@ -1,28 +1,23 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/mcp_oauth_validate
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: b6ae3e54674fed5eeebadb0f34a33cd3c186b557e4052cf29ec4c931580614eb
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 8b1cef4fdf7340e082a4deec105b02af3484cb047410af252dcff92f520d23b7
 ---
 
----
-title: Validate Credential
-url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/mcp_oauth_validate
----
+# Validate Credential
 
-## Validate Credential
-
-**post** `/v1/vaults/{vault_id}/credentials/{credential_id}/mcp_oauth_validate`
+**POST** `/v1/vaults/{vault_id}/credentials/{credential_id}/mcp_oauth_validate`
 
 Validate Credential
 
-### Path Parameters
+## Path parameters
 
 - `vault_id: string`
 
 - `credential_id: string`
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -100,9 +95,9 @@ Validate Credential
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
-### Returns
+## Returns
 
-- `BetaManagedAgentsCredentialValidation object { credential_id, has_refresh_token, mcp_probe, 5 more }`
+- `BetaManagedAgentsCredentialValidation object`
 
   Result of live-probing a credential against its configured MCP server.
 
@@ -137,6 +132,8 @@ Validate Credential
       - `status_code: number`
 
         HTTP status code.
+
+        format: int32
 
     - `method: string`
 
@@ -174,19 +171,19 @@ Validate Credential
 
   - `type: "vault_credential_validation"`
 
-    - `"vault_credential_validation"`
-
   - `validated_at: string`
 
     A timestamp in RFC 3339 format
+
+    format: date-time
 
   - `vault_id: string`
 
     Identifier of the vault containing the credential.
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials/$CREDENTIAL_ID/mcp_oauth_validate \
     -X POST \
     -H 'anthropic-version: 2023-06-01' \
@@ -194,7 +191,7 @@ curl https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials/$CREDENTIAL_ID/mc
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

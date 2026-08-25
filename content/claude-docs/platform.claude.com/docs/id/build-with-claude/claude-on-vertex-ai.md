@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 5c34839f12e92f06287a6f1b732857ad055f7543995d9b333f73310605f73cbe
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 71a3ca556196f6f4d41853bb67ae046fc0cde9583a86b3c33f9ec30c247c1b64
 ---
 
 ---
@@ -356,19 +356,20 @@ Untuk daftar fitur lengkap beserta ketersediaannya di Google Cloud, lihat [Ikhti
 * [Messages API](https://platform.claude.com/docs/id/api/messages/create)
 * [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)
 * [Thinking](https://platform.claude.com/docs/id/build-with-claude/thinking)
-* [Penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), termasuk [alat Bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool), [alat Computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool), [alat Memory](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool), dan [alat Text editor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool)
-* [Alat Web search](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool)
+* [Penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), termasuk [alat Bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool), [alat computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool), [alat Memory](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool), dan [alat editor teks](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool)
+* [Alat pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool)
 * [Kutipan](https://platform.claude.com/docs/id/build-with-claude/citations)
 * [Output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)
 
 ### Fitur yang tidak didukung
 
 * Sumber input (sumber URL untuk gambar dan dokumen, Files API)
-* Alat sisi server (code execution, web fetch, advisor)
-* Infrastruktur agen (Agent Skills, konektor MCP, pemanggilan alat terprogram)
+* Alat sisi server (eksekusi kode, web fetch, advisor)
+* Infrastruktur agen (Agent Skills, konektor MCP, pemanggilan alat secara programatik)
 * Endpoint API (Message Batches, Models, Admin, Compliance, Usage and Cost)
 * Claude Managed Agents
 * Fallback sisi server ([parameter `fallbacks`](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback); gunakan [pola fallback sisi klien](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) sebagai gantinya)
+* Toolset [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`computer_toolset_20260801` dan `browser_toolset_20260801` saat ini tidak tersedia di Google Cloud; versi beta alat computer use tetap tersedia)
 
 ### Jendela konteks
 
@@ -939,7 +940,7 @@ Tentukan region tertentu seperti `"us-east5"` atau `"europe-west1"`:
           .messages()
           .create(
               MessageCreateParams.builder()
-                  // Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan sebelumnya; model lebih baru menggunakan endpoint global atau multi-region
+                  // Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan versi sebelumnya; model yang lebih baru menggunakan endpoint global atau multi-region
                   .model(Model.CLAUDE_SONNET_4_6)
                   .maxTokens(100)
                   .addUserMessage("Hey Claude!")

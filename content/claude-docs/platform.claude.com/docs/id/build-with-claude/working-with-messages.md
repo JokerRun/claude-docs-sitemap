@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: d946aff70ad3be1a696a1c01f72f6768567c9e2ae6f13a02ce479943c09bb67c
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 0bc9448afe2dadf1bad9b26d0d7ee27a58329d19e8c56c79d54cc31734a9c12d
 ---
 
 ---
 title: Menggunakan Messages API
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
-description: Pola praktis dan contoh untuk menggunakan Messages API secara efektif
+description: Pola dan contoh praktis untuk menggunakan Messages API secara efektif
 ---
 
 Anthropic menawarkan dua cara untuk membangun dengan Claude, masing-masing cocok untuk kasus penggunaan yang berbeda:
@@ -165,7 +165,7 @@ Respons penolakan (`stop_reason: "refusal"`) juga menyertakan objek `stop_detail
 
 ## Beberapa giliran percakapan
 
-Messages API bersifat stateless (tanpa status), yang berarti Anda selalu mengirim riwayat percakapan lengkap ke API. Anda dapat menggunakan pola ini untuk membangun percakapan dari waktu ke waktu. Giliran percakapan sebelumnya tidak harus benar-benar berasal dari Claude. Anda dapat menggunakan pesan `assistant` sintetis.
+Messages API bersifat stateless, yang berarti Anda selalu mengirim riwayat percakapan lengkap ke API. Anda dapat menggunakan pola ini untuk membangun percakapan dari waktu ke waktu. Giliran percakapan sebelumnya tidak harus benar-benar berasal dari Claude. Anda dapat menggunakan pesan `assistant` sintetis.
 
 <CodeGroup>
   ```bash cURL
@@ -328,20 +328,20 @@ Messages API bersifat stateless (tanpa status), yang berarti Anda selalu mengiri
 }
 ```
 
-### Peran system dalam messages
+### Role system dalam messages
 
 Pada Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), Claude Opus 4.8, dan Claude Opus 5, Anda dapat menyertakan pesan dengan `"role": "system"` setelah giliran user (tunduk pada [aturan penempatan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations)) untuk menambahkan instruksi sistem baru di tengah percakapan. Pesan `system` tidak boleh menjadi entri pertama dalam `messages`; gunakan field `system` tingkat atas untuk instruksi yang berlaku sejak awal.
 
 Pesan sistem di tengah percakapan memiliki otoritas yang sama dengan field `system` tingkat atas, tetapi karena ditambahkan di akhir riwayat pesan, pesan tersebut tidak membatalkan prefiks cache apa pun yang ada sebelumnya. Gunakan field `system` tingkat atas untuk instruksi yang harus berlaku sejak giliran pertama, dan pesan sistem di tengah percakapan untuk instruksi yang baru menjadi relevan kemudian.
 
-Lihat [Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) untuk panduan lengkap, termasuk cara menggabungkannya dengan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
+Lihat [Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) untuk panduan lengkap, termasuk cara menggabungkannya dengan ["prompt caching" (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
 
 ## Melakukan prefill pada respons Claude
 
 Anda dapat mengisi sebagian respons Claude terlebih dahulu (prefill) pada posisi terakhir dari daftar pesan input. Gunakan teknik ini untuk membentuk respons Claude. Contoh berikut menggunakan `"max_tokens": 1` untuk mendapatkan satu jawaban pilihan ganda dari Claude.
 
 <Warning>
-  Prefill tidak didukung pada model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing). Permintaan yang menggunakan prefill dengan model-model ini akan mengembalikan error 400. Gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, atau instruksi prompt sistem, sebagai gantinya. Lihat [panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide) untuk pola migrasi.
+  Prefill tidak didukung pada model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing). Permintaan yang menggunakan prefill dengan model-model ini akan mengembalikan error 400. Sebagai gantinya, gunakan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, atau instruksi "system prompt" (prompt sistem). Lihat [panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide) untuk pola migrasi.
 </Warning>
 
 <CodeGroup>
@@ -540,7 +540,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   }
   EOF
 
-  # Opsi 2: Gambar yang dirujuk melalui URL
+  # Opsi 2: Gambar yang direferensikan melalui URL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -599,12 +599,12 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
 
   ```python Python
   import base64
-  import httpx
+  import httpx2
 
-  # Opsi 1: Gambar berenkode Base64
+  # Opsi 1: Gambar yang dienkode Base64
   image_url = "https://platform.claude.com/docs/images/vision-example.jpg"
   image_media_type = "image/jpeg"
-  image_data = base64.standard_b64encode(httpx.get(image_url).content).decode("utf-8")
+  image_data = base64.standard_b64encode(httpx2.get(image_url).content).decode("utf-8")
 
   message = anthropic.Anthropic().messages.create(
       model="claude-opus-5",
@@ -753,7 +753,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   var message = await client.Messages.Create(parameters);
   Console.WriteLine(message);
 
-  // Opsi 2: Gambar yang direferensikan melalui URL
+  // Opsi 2: Gambar yang dirujuk melalui URL
   var parametersFromUrl = new MessageCreateParams
   {
       Model = Model.ClaudeOpus5,
@@ -784,7 +784,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   ```go Go
   client := anthropic.NewClient()
 
-  // Opsi 1: Gambar yang dienkode Base64
+  // Opsi 1: Gambar berenkode Base64
   imageURL := "https://platform.claude.com/docs/images/vision-example.jpg"
 
   req, err := http.NewRequest("GET", imageURL, nil)
@@ -898,7 +898,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   ```php PHP
   $client = new Client();
 
-  // Opsi 1: Gambar berenkode Base64
+  // Opsi 1: Gambar yang dienkode Base64
   $image_url = 'https://platform.claude.com/docs/images/vision-example.jpg';
   $image_media_type = "image/jpeg";
   $image_data = base64_encode(file_get_contents($image_url));
@@ -960,7 +960,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
 
   client = Anthropic::Client.new
 
-  # Opsi 1: Gambar yang dienkode Base64
+  # Opsi 1: Gambar berenkode Base64
   image_url = "https://platform.claude.com/docs/images/vision-example.jpg"
   image_media_type = "image/jpeg"
   image_data = Base64.strict_encode64(Net::HTTP.get(URI(image_url)))
@@ -1053,7 +1053,11 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
     Kendalikan lingkungan komputer desktop dengan Messages API.
   </Card>
 
-  <Card title="Output terstruktur" icon="code-brackets" href="https://platform.claude.com/docs/id/build-with-claude/structured-outputs">
+  <Card title="Alat browser use" icon="browser" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool">
+    Biarkan Claude menavigasi, membaca, dan berinteraksi dengan halaman web di browser yang Anda jalankan.
+  </Card>
+
+  <Card title="Structured outputs" icon="code-brackets" href="https://platform.claude.com/docs/id/build-with-claude/structured-outputs">
     Dapatkan output JSON yang terjamin dan tervalidasi skema dari Claude.
   </Card>
 

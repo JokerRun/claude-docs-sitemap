@@ -1,38 +1,35 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/list
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: cbb66b6703dbecb74b592c1a12054560e80ead9bc7f6e359a8cda0e1becfc934
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: a256aea5c3a3b876f413a45cf30136c6c3ff28fe48c944bcf1a9cf9abbeb08fd
 ---
 
----
-title: List Work Items
-url: https://platform.claude.com/docs/en/api/beta/environments/work/list
----
+# List Work Items
 
-## List Work Items
-
-**get** `/v1/environments/{environment_id}/work`
+**GET** `/v1/environments/{environment_id}/work`
 
 Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly.
 
 List work items in an environment.
 
-### Path Parameters
+## Path parameters
 
 - `environment_id: string`
 
-### Query Parameters
+## Query parameters
 
 - `limit: optional number`
 
   Maximum number of work items to return
 
+  default: 20, maximum: 1000, minimum: 1
+
 - `page: optional string`
 
   Opaque cursor from previous response for pagination
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -110,9 +107,9 @@ List work items in an environment.
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
-### Returns
+## Returns
 
-- `BetaSelfHostedWorkListResponse object { data, next_page }`
+- `BetaSelfHostedWorkListResponse object`
 
   Response when listing work items with cursor-based pagination.
 
@@ -143,8 +140,6 @@ List work items in an environment.
       - `type: "session"`
 
         Type of work data
-
-        - `"session"`
 
     - `environment_id: string`
 
@@ -192,22 +187,22 @@ List work items in an environment.
 
       The type of object (always 'work')
 
-      - `"work"`
+      default: work
 
   - `next_page: string or null`
 
     Opaque cursor for fetching the next page of results
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

@@ -1,20 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/rate_limits
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 02b5764fe0e5946d56ca272e431038fe660731db765756bebc2a4460ff6b19d0
----
-
----
-title: Rate Limits
-url: https://platform.claude.com/docs/en/api/admin/workspaces/rate_limits
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 84b90610b081b5802722b584c64d1e8c65c3a053caf1c3a1a30c8cc02cf04730
 ---
 
 # Rate Limits
 
 ## List Workspace Rate Limits
 
-**get** `/v1/organizations/workspaces/{workspace_id}/rate_limits`
+**GET** `/v1/organizations/workspaces/{workspace_id}/rate_limits`
 
 List rate-limit overrides configured for a workspace.
 
@@ -22,13 +17,13 @@ Returns only the groups and limiter types that have a workspace-level
 override. Groups without overrides inherit the organization limits and
 are not listed; use `GET /v1/organizations/rate_limits` to see those.
 
-### Path Parameters
+### Path parameters
 
 - `workspace_id: string`
 
   The ID of the workspace.
 
-### Query Parameters
+### Query parameters
 
 - `group_type: optional "batch" or "files" or "model_group" or 3 more`
 
@@ -52,7 +47,7 @@ are not listed; use `GET /v1/organizations/rate_limits` to see those.
 
 ### Returns
 
-- `data: array of object { group_type, limits, models, 3 more }`
+- `data: array of object`
 
   Rate-limit entries for the workspace, one per group that has at least one override.
 
@@ -72,7 +67,7 @@ are not listed; use `GET /v1/organizations/rate_limits` to see those.
 
     - `"web_search"`
 
-  - `limits: array of object { org_limit, type, value }`
+  - `limits: array of object`
 
     The limiter values overridden for this group in this workspace. Limiter types without a workspace override are omitted and inherit the organization value.
 
@@ -100,7 +95,7 @@ are not listed; use `GET /v1/organizations/rate_limits` to see those.
 
     Object type. Always `workspace_rate_limit` for workspace rate-limit entries.
 
-    - `"workspace_rate_limit"`
+    default: workspace_rate_limit
 
   - `workspace_id: string`
 
@@ -112,13 +107,13 @@ are not listed; use `GET /v1/organizations/rate_limits` to see those.
 
 ### Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/rate_limits \
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
-#### Response
+#### Response (200)
 
 ```json
 {
@@ -144,13 +139,13 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/rate_li
 }
 ```
 
-## Domain Types
+## Domain types
 
 ### Rate Limit List Response
 
-- `RateLimitListResponse object { data, next_page }`
+- `RateLimitListResponse object`
 
-  - `data: array of object { group_type, limits, models, 3 more }`
+  - `data: array of object`
 
     Rate-limit entries for the workspace, one per group that has at least one override.
 
@@ -170,7 +165,7 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/rate_li
 
       - `"web_search"`
 
-    - `limits: array of object { org_limit, type, value }`
+    - `limits: array of object`
 
       The limiter values overridden for this group in this workspace. Limiter types without a workspace override are omitted and inherit the organization value.
 
@@ -198,7 +193,7 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/rate_li
 
       Object type. Always `workspace_rate_limit` for workspace rate-limit entries.
 
-      - `"workspace_rate_limit"`
+      default: workspace_rate_limit
 
     - `workspace_id: string`
 

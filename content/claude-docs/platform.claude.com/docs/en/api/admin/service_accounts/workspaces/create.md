@@ -1,18 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/service_accounts/workspaces/create
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 99718f9782a4c3ffc97e22f0c5675d06c8ab63943339ebff19f01aad5a7ba5eb
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 50d139aad5db9058d027cbda32948651c90f72426c3679ecc935207d3416a74b
 ---
 
----
-title: Add Workspace To Service Account
-url: https://platform.claude.com/docs/en/api/admin/service_accounts/workspaces/create
----
+# Add Workspace To Service Account
 
-## Add Workspace To Service Account
-
-**post** `/v1/organizations/service_accounts/{service_account_id}/workspaces`
+**POST** `/v1/organizations/service_accounts/{service_account_id}/workspaces`
 
 Add a service account to a workspace with the given `workspace_role`.
 
@@ -24,13 +19,13 @@ workspaces return 400. Archived service accounts cannot be added and are
 rejected. Requires an OAuth bearer or Console session; Admin API keys
 are not accepted.
 
-### Path Parameters
+## Path parameters
 
 - `service_account_id: string`
 
   ID of the service account.
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of string`
 
@@ -38,7 +33,7 @@ are not accepted.
 
   To use multiple betas, use a comma separated list like `beta1,beta2` or specify the header multiple times for each beta.
 
-### Body Parameters
+## Body parameters
 
 - `workspace_id: string`
 
@@ -56,7 +51,7 @@ are not accepted.
 
   - `"workspace_user"`
 
-### Returns
+## Returns
 
 - `created_by_actor_id: string or null`
 
@@ -72,7 +67,7 @@ are not accepted.
 
 - `type: "service_account_workspace_member"`
 
-  - `"service_account_workspace_member"`
+  default: service_account_workspace_member
 
 - `workspace_id: string`
 
@@ -92,9 +87,9 @@ are not accepted.
 
   - `"workspace_user"`
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUNT_ID/workspaces \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
@@ -105,7 +100,7 @@ curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUN
         }'
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

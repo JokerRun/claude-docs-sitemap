@@ -1,24 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models/list
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 12e3dda39ed2c5d4717093b7e74bce2b065da8094273066d4353a5e426f2c2a8
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 46e73cc0befdbb61e84f53af00c360ec6db60c8c9456cf22509a75f873ad8326
 ---
 
----
-title: List Models
-url: https://platform.claude.com/docs/en/api/models/list
----
+# List Models
 
-## List Models
-
-**get** `/v1/models`
+**GET** `/v1/models`
 
 List available models.
 
 The Models API response can be used to determine which models are available for use in the API. More recently released models are listed first.
 
-### Query Parameters
+## Query parameters
 
 - `after_id: optional string`
 
@@ -34,7 +29,9 @@ The Models API response can be used to determine which models are available for 
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
-### Header Parameters
+  default: 20, maximum: 1000, minimum: 1
+
+## Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -112,7 +109,7 @@ The Models API response can be used to determine which models are available for 
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
-### Returns
+## Returns
 
 - `data: array of ModelInfo`
 
@@ -224,6 +221,8 @@ The Models API response can be used to determine which models are available for 
 
     RFC 3339 datetime string representing the time at which the model was released. May be set to an epoch value if the release date is unknown.
 
+    format: date-time
+
   - `display_name: string`
 
     A human-readable name for the model.
@@ -242,7 +241,7 @@ The Models API response can be used to determine which models are available for 
 
     For Models, this is always `"model"`.
 
-    - `"model"`
+    default: model
 
 - `first_id: string or null`
 
@@ -256,15 +255,15 @@ The Models API response can be used to determine which models are available for 
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/models \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

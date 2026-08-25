@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/beta-headers
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 8cecafe260c771ba70865d0d3cf45f2984707c031c7861a89fa8491c82cd8eaa
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 555bca63507c28061e161d42dea6d843fcf9f95eca2b287463ae21d78cd30434
 ---
 
 ---
 title: Header beta
 url: https://platform.claude.com/docs/id/api/beta-headers
-description: Akses fitur eksperimental sebelum ketersediaan umum dengan header `anthropic-beta` atau parameter `betas` pada SDK.
+description: Akses fitur eksperimental sebelum menjadi bagian dari API standar dengan header `anthropic-beta` atau parameter `betas` pada SDK.
 ---
 
-Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model baru sebelum fitur tersebut menjadi bagian dari API standar.
+"Beta headers" (header beta) memungkinkan Anda mengakses fitur eksperimental dan kemampuan model baru sebelum menjadi bagian dari API standar.
 
 <Info>
   Setiap [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) menyediakan namespace `beta` untuk memanggil API dengan fitur beta yang diaktifkan.
@@ -31,7 +31,7 @@ content-type: application/json
 
 Dokumentasi setiap fitur menyebutkan nama beta yang tepat untuk dikirim. [Ikhtisar API](https://platform.claude.com/docs/id/api/overview) mencantumkan API yang saat ini dalam tahap beta.
 
-Contoh berikut menunjukkan permintaan yang sama dengan cURL, CLI `ant`, dan SDK, menggunakan beta [context editing](https://platform.claude.com/docs/id/build-with-claude/context-editing) (pengeditan konteks) sebagai contoh. SDK menerima nama beta dalam parameter `betas` dan mengirimkan header `anthropic-beta` untuk Anda:
+Contoh berikut menunjukkan permintaan yang sama dengan cURL, CLI `ant`, dan SDK, menggunakan beta [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) sebagai contoh. SDK menerima nama beta dalam parameter `betas` dan mengirimkan header `anthropic-beta` untuk Anda:
 
 <CodeGroup>
   ```bash cURL
@@ -193,7 +193,7 @@ Header khusus endpoint yang berlaku untuk endpoint yang sama tidak selalu dapat 
 
 ### Konvensi penamaan versi
 
-Nama fitur beta biasanya mengikuti pola `feature-name-YYYY-MM-DD`, di mana tanggal menunjukkan kapan beta tersebut dirilis. Selalu gunakan nama fitur beta yang tepat sesuai dokumentasi.
+Nama fitur beta biasanya mengikuti pola `feature-name-YYYY-MM-DD`, di mana tanggal menunjukkan kapan beta tersebut dirilis. Selalu gunakan nama fitur beta yang tepat seperti yang didokumentasikan.
 
 ## Penanganan error
 

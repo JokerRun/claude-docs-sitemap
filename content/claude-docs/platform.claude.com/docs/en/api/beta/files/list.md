@@ -1,22 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/list
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: a2c675cce41a758fa6d4568a9c48037677868991c4a54973726411c7e2b5ca21
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 21cf0668e64de11dc93d0401ccebb2255f9f5db81db1cfcf8cd3f41949acb1e4
 ---
 
----
-title: List Files
-url: https://platform.claude.com/docs/en/api/beta/files/list
----
+# List Files
 
-## List Files
-
-**get** `/v1/files`
+**GET** `/v1/files`
 
 List Files
 
-### Query Parameters
+## Query parameters
 
 - `after_id: optional string`
 
@@ -32,11 +27,13 @@ List Files
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
+  default: 20, maximum: 1000, minimum: 1
+
 - `scope_id: optional string`
 
   Filter by scope ID. Only returns files associated with the specified scope (e.g., a session ID).
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -114,7 +111,7 @@ List Files
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
-### Returns
+## Returns
 
 - `data: array of BetaFileMetadata`
 
@@ -130,17 +127,25 @@ List Files
 
     RFC 3339 datetime string representing when the file was created.
 
+    format: date-time
+
   - `filename: string`
 
     Original filename of the uploaded file.
+
+    maxLength: 500, minLength: 1
 
   - `mime_type: string`
 
     MIME type of the file.
 
+    maxLength: 255, minLength: 1
+
   - `size_bytes: number`
 
     Size of the file in bytes.
+
+    minimum: 0
 
   - `type: "file"`
 
@@ -148,11 +153,11 @@ List Files
 
     For files, this is always `"file"`.
 
-    - `"file"`
-
   - `downloadable: optional boolean`
 
     Whether the file can be downloaded.
+
+    default: false
 
   - `scope: optional BetaFileScope or null`
 
@@ -166,8 +171,6 @@ List Files
 
       The type of scope (e.g., `"session"`).
 
-      - `"session"`
-
 - `first_id: optional string or null`
 
   ID of the first file in this page of results.
@@ -176,20 +179,22 @@ List Files
 
   Whether there are more results available.
 
+  default: false
+
 - `last_id: optional string or null`
 
   ID of the last file in this page of results.
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/files \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: files-api-2025-04-14' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

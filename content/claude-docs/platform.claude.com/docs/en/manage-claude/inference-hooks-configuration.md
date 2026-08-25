@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/inference-hooks-configuration
-fetched_at: 2026-08-15T02:25:10.047250Z
-sha256: 9df8dc3dea7e3fad25aeae3f8bf1ddddc038d3c54b7bd5270e957ef47ef159de
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: b2d525aef9398ddc3538bfea34ca450920e27a1137fb6e029a45ddd20f13ca20
 ---
 
 ---
@@ -127,6 +127,8 @@ The panel is best-effort: if Anthropic cannot read the counters it shows zero fa
 
 Sustained webhook failures attributable to your AI security server trip the circuit breaker, which stops enforcement: your server is no longer contacted, and your **Failure handling** choice applies to every inspected request. With **Block the request** selected, users in your organization are blocked until you act. When the breaker trips, administrators are also notified in the claude.ai notification center.
 
+Each trip is also recorded in your organization's [Activity Feed](https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed) as an `inference_hooks_circuit_breaker_tripped` activity, so your security team or vendor can alert on trips from monitoring they already run, such as a SIEM that ingests the feed. One activity is recorded per trip, not one per affected request. Recording requires the Compliance API to be enabled for your organization; see [Set up the Compliance API](https://platform.claude.com/docs/en/manage-claude/compliance-api-access).
+
 To recover, fix the server, then turn **Enforce verdicts** back on to reset the breaker.
 
 ## Rotate your signing secret
@@ -137,7 +139,7 @@ Requests signed with the previous secret can still arrive briefly after rotation
 
 ## Audit trail
 
-Inference hooks activity is recorded in your organization's [Activity Feed](https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed): configuration changes, denials, and requests that proceeded without inspection under your failure handling setting. Denial records carry identifiers that let you join each denial to the matching record in your own system.
+Inference hooks activity is recorded in your organization's [Activity Feed](https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed): configuration changes, denials, circuit breaker trips, and requests that proceeded without inspection under your failure handling setting. While the circuit breaker is tripped, no per-request Inference hooks activities are recorded; the trip activity is the feed's record of that window. Denial records carry identifiers that let you join each denial to the matching record in your own system.
 
 ## Turn Inference hooks off
 

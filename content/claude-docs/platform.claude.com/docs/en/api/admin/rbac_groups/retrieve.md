@@ -1,30 +1,25 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rbac_groups/retrieve
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 8bd296684db862a208e3adeeb13dd416dd734e86a7c5d50c7a9c8eaad7f2f3bb
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: b27c7c058fd7b087ce217d64b3d6edffa5df692f6d1ba883421432656aae78b2
 ---
 
----
-title: Get RBAC Group
-url: https://platform.claude.com/docs/en/api/admin/rbac_groups/retrieve
----
+# Get RBAC Group
 
-## Get RBAC Group
-
-**get** `/v1/organizations/rbac_groups/{group_id}`
+**GET** `/v1/organizations/rbac_groups/{group_id}`
 
 Retrieve an RBAC Group by ID.
 
 The RBAC Groups API is in beta and available to Claude Enterprise organizations only. Requests must send the `ce-user-management-2026-07-13` value in the `anthropic-beta` header.
 
-### Path Parameters
+## Path parameters
 
 - `group_id: string`
 
   ID of the RBAC Group.
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of string`
 
@@ -32,9 +27,9 @@ The RBAC Groups API is in beta and available to Claude Enterprise organizations 
 
   To use multiple betas, use a comma separated list like `beta1,beta2` or specify the header multiple times for each beta.
 
-### Returns
+## Returns
 
-- `RbacGroup object { id, created_at, name, 4 more }`
+- `RbacGroup object`
 
   - `id: string`
 
@@ -43,6 +38,8 @@ The RBAC Groups API is in beta and available to Claude Enterprise organizations 
   - `created_at: string`
 
     RFC 3339 timestamp of when the RBAC Group was created.
+
+    format: date-time
 
   - `name: string`
 
@@ -66,21 +63,23 @@ The RBAC Groups API is in beta and available to Claude Enterprise organizations 
 
     For RBAC Groups, this is always `"rbac_group"`.
 
-    - `"rbac_group"`
+    default: rbac_group
 
   - `updated_at: string`
 
     RFC 3339 timestamp of when the RBAC Group was last updated.
 
-### Example
+    format: date-time
 
-```http
+## Example
+
+```bash
 curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

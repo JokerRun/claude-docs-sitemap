@@ -1,26 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/delete
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 8126c4e21faebc06e417c444b161f76b40ea397048c6157f030685c79fe87928
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: ce73abbc5f2fd8a4369cd90e0467e16a00a393bfe01d0468c1fc77de424f50f4
 ---
 
----
-title: Delete Session
-url: https://platform.claude.com/docs/en/api/beta/sessions/delete
----
+# Delete Session
 
-## Delete Session
-
-**delete** `/v1/sessions/{session_id}`
+**DELETE** `/v1/sessions/{session_id}`
 
 Delete Session
 
-### Path Parameters
+## Path parameters
 
 - `session_id: string`
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -98,9 +93,9 @@ Delete Session
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
-### Returns
+## Returns
 
-- `BetaManagedAgentsDeletedSession object { id, type }`
+- `BetaManagedAgentsDeletedSession object`
 
   Confirmation that a `session` has been permanently deleted.
 
@@ -108,11 +103,9 @@ Delete Session
 
   - `type: "session_deleted"`
 
-    - `"session_deleted"`
+## Example
 
-### Example
-
-```http
+```bash
 curl https://api.anthropic.com/v1/sessions/$SESSION_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
@@ -120,7 +113,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

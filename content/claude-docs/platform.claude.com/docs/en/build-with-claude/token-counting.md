@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/token-counting
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 086346378dff84ec2165038d274128dd1bf113990c1dab42d4a544b935a5f0a4
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 2e16978e7be3977606476f6ff9ac3fc0ac0364f6ad00dc8fdb59879f0a76664d
 ---
 
 ---
@@ -35,7 +35,7 @@ The [token counting](https://platform.claude.com/docs/en/api/messages-count-toke
 
 ### Supported models
 
-All [active models](https://platform.claude.com/docs/en/about-claude/models/overview) support token counting, including Claude Opus 5 and Claude Sonnet 5.
+All [active models](https://platform.claude.com/docs/en/models/overview) support token counting, including Claude Opus 5 and Claude Sonnet 5.
 
 <Note>
   Claude 4.7 and later models and Claude Mythos Preview use a newer tokenizer. The same input text produces approximately 30 percent more tokens than on earlier models. The exact increase depends on the content and workload shape. Recount prompts against the model you plan to use rather than reusing counts measured against earlier models.

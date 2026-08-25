@@ -1,26 +1,23 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/list
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: bd47053e2fd700b23bc131200981b5869167aac7ac057fb7e947ec0884b3bb14
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 997d7f0bdf83777268145fe5a6dc52ccd6615016fecab3de0e5423f2963c49b3
 ---
 
----
-title: List User Profiles
-url: https://platform.claude.com/docs/en/api/beta/user_profiles/list
----
+# List User Profiles
 
-## List User Profiles
-
-**get** `/v1/user_profiles`
+**GET** `/v1/user_profiles`
 
 List User Profiles
 
-### Query Parameters
+## Query parameters
 
 - `limit: optional number`
 
   Query parameter for limit
+
+  format: int32
 
 - `order: optional "asc" or "desc"`
 
@@ -34,7 +31,7 @@ List User Profiles
 
   Query parameter for page
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -112,7 +109,7 @@ List User Profiles
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
-### Returns
+## Returns
 
 - `data: array of BetaUserProfile`
 
@@ -125,6 +122,8 @@ List User Profiles
   - `created_at: string`
 
     A timestamp in RFC 3339 format
+
+    format: date-time
 
   - `metadata: map[string]`
 
@@ -148,11 +147,11 @@ List User Profiles
 
     Object type. Always `user_profile`.
 
-    - `"user_profile"`
-
   - `updated_at: string`
 
     A timestamp in RFC 3339 format
+
+    format: date-time
 
   - `access_type: optional "application" or "passthrough"`
 
@@ -184,16 +183,16 @@ List User Profiles
 
   Cursor for the next page, or `null` when there are no more results.
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/user_profiles \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: user-profiles-2026-08-18' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

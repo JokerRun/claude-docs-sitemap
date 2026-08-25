@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/intro
-fetched_at: 2026-08-19T02:28:54.965606Z
-sha256: 318b7cbe5bafaa902c6552b4f253779cb7ec0e793bdf37315f682d230a354b2e
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 967c1727dbb4b105a214ecae505cbe931a62c47f108aeafa1bd514871d2b04ff
 ---
 
 ---
@@ -64,7 +64,7 @@ Follow these steps to go from zero to a working Claude integration.
   <Step title="Choose the right model">
     Compare Claude models by capability and cost to pick the best fit for your use case.
 
-    [See the models overview](https://platform.claude.com/docs/en/about-claude/models/overview)
+    [See the models overview](https://platform.claude.com/docs/en/models/overview)
   </Step>
 
   <Step title="Explore features and tools">

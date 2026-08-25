@@ -1,26 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/archive
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 84c37da5ae8d9906bc770081f7ef4af5150d3d116a0a1b0e490168494d43ccfb
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: ff605c0dbc3ecbb668f4c88a79898c9de5b936efb75722bf1f194fbb8a0c11fc
 ---
 
----
-title: Archive Environment
-url: https://platform.claude.com/docs/en/api/beta/environments/archive
----
+# Archive Environment
 
-## Archive Environment
-
-**post** `/v1/environments/{environment_id}/archive`
+**POST** `/v1/environments/{environment_id}/archive`
 
 Archive an environment by ID. Archived environments cannot be used to create new sessions.
 
-### Path Parameters
+## Path parameters
 
 - `environment_id: string`
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -98,9 +93,9 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
-### Returns
+## Returns
 
-- `BetaEnvironment object { id, archived_at, config, 7 more }`
+- `BetaEnvironment object`
 
   Unified Environment resource for both cloud and self-hosted environments.
 
@@ -116,7 +111,7 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
     Environment configuration (either Anthropic Cloud or self-hosted)
 
-    - `BetaCloudConfig object { networking, packages, type }`
+    - `BetaCloudConfig object`
 
       `cloud` environment configuration.
 
@@ -124,7 +119,7 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
         Network configuration policy.
 
-        - `BetaUnrestrictedNetwork object { type }`
+        - `BetaUnrestrictedNetwork object`
 
           Unrestricted network access.
 
@@ -132,9 +127,7 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
             Network policy type
 
-            - `"unrestricted"`
-
-        - `BetaLimitedNetwork object { allow_mcp_servers, allow_package_managers, allowed_hosts, type }`
+        - `BetaLimitedNetwork object`
 
           Limited network access.
 
@@ -153,8 +146,6 @@ Archive an environment by ID. Archived environments cannot be used to create new
           - `type: "limited"`
 
             Network policy type
-
-            - `"limited"`
 
       - `packages: BetaPackages`
 
@@ -188,23 +179,19 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
           Package configuration type
 
-          - `"packages"`
+          default: packages
 
       - `type: "cloud"`
 
         Environment type
 
-        - `"cloud"`
-
-    - `BetaSelfHostedConfig object { type }`
+    - `BetaSelfHostedConfig object`
 
       Configuration for self-hosted environments.
 
       - `type: "self_hosted"`
 
         Environment type
-
-        - `"self_hosted"`
 
   - `created_at: string`
 
@@ -226,7 +213,7 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
     The type of object (always 'environment')
 
-    - `"environment"`
+    default: environment
 
   - `updated_at: string`
 
@@ -240,9 +227,9 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
     - `"account"`
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/archive \
     -X POST \
     -H 'anthropic-version: 2023-06-01' \
@@ -250,7 +237,7 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/archive \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

@@ -1,30 +1,25 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rbac_groups/update
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: b568ab13de13ade0013e288e8b457a9d2566423e420fa5302162b569ec46adcf
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 7f68bcc452d9efff326adf739b9d169091e1b7cb9db6c26be61d7dcb4a878b45
 ---
 
----
-title: Update RBAC Group
-url: https://platform.claude.com/docs/en/api/admin/rbac_groups/update
----
+# Update RBAC Group
 
-## Update RBAC Group
-
-**post** `/v1/organizations/rbac_groups/{group_id}`
+**POST** `/v1/organizations/rbac_groups/{group_id}`
 
 Update an RBAC Group's name. Groups provisioned by an identity provider (source type `"scim"`) cannot be modified via the API.
 
 The RBAC Groups API is in beta and available to Claude Enterprise organizations only. Requests must send the `ce-user-management-2026-07-13` value in the `anthropic-beta` header.
 
-### Path Parameters
+## Path parameters
 
 - `group_id: string`
 
   ID of the RBAC Group.
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of string`
 
@@ -32,15 +27,17 @@ The RBAC Groups API is in beta and available to Claude Enterprise organizations 
 
   To use multiple betas, use a comma separated list like `beta1,beta2` or specify the header multiple times for each beta.
 
-### Body Parameters
+## Body parameters
 
 - `name: optional string or null`
 
   Name of the RBAC Group. Not uniqueness-enforced.
 
-### Returns
+  maxLength: 255, minLength: 1
 
-- `RbacGroup object { id, created_at, name, 4 more }`
+## Returns
+
+- `RbacGroup object`
 
   - `id: string`
 
@@ -49,6 +46,8 @@ The RBAC Groups API is in beta and available to Claude Enterprise organizations 
   - `created_at: string`
 
     RFC 3339 timestamp of when the RBAC Group was created.
+
+    format: date-time
 
   - `name: string`
 
@@ -72,15 +71,17 @@ The RBAC Groups API is in beta and available to Claude Enterprise organizations 
 
     For RBAC Groups, this is always `"rbac_group"`.
 
-    - `"rbac_group"`
+    default: rbac_group
 
   - `updated_at: string`
 
     RFC 3339 timestamp of when the RBAC Group was last updated.
 
-### Example
+    format: date-time
 
-```http
+## Example
+
+```bash
 curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
@@ -90,7 +91,7 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID \
         }'
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

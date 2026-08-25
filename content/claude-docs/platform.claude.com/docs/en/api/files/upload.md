@@ -1,24 +1,33 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/files/upload
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: f7bcfec51c633809fcb0d1aefaad5c977d5b0dbebed458a29a6593cd143958e3
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 3bdcbab410a2b6f85ba56da7793e0480e145c5bd2bdf24634c4bf7fb4b20bb0a
 ---
 
----
-title: Upload File
-url: https://platform.claude.com/docs/en/api/files/upload
----
+# Upload File
 
-## Upload File
-
-**post** `/v1/files`
+**POST** `/v1/files`
 
 Upload File
 
-### Returns
+## Body parameters (form-data)
 
-- `FileMetadata object { id, created_at, filename, 5 more }`
+- `file: string`
+
+  The file to upload
+
+  format: binary
+
+- `expires_in_seconds: optional number`
+
+  Seconds from upload until the file expires and its bytes become permanently unavailable. Must be between 3600 (one hour) and 7776000 (ninety days).
+
+  minimum: 3600, maximum: 7776000
+
+## Returns
+
+- `FileMetadata object`
 
   - `id: string`
 
@@ -30,17 +39,25 @@ Upload File
 
     RFC 3339 datetime string representing when the file was created.
 
+    format: date-time
+
   - `filename: string`
 
     Original filename of the uploaded file.
+
+    maxLength: 500, minLength: 1
 
   - `mime_type: string`
 
     MIME type of the file.
 
+    maxLength: 255, minLength: 1
+
   - `size_bytes: number`
 
     Size of the file in bytes.
+
+    minimum: 0
 
   - `type: "file"`
 
@@ -48,19 +65,21 @@ Upload File
 
     For files, this is always `"file"`.
 
-    - `"file"`
-
   - `downloadable: optional boolean`
 
     Whether the file can be downloaded.
+
+    default: false
 
   - `expires_at: optional string or null`
 
     RFC 3339 datetime string representing when the file will expire and become unavailable for download. Null if the file does not expire. For files uploaded with `expires_in_seconds`, this is the upload time plus that value.
 
-### Example
+    format: date-time
 
-```http
+## Example
+
+```bash
 curl https://api.anthropic.com/v1/files \
     -H 'Content-Type: multipart/form-data' \
     -H 'anthropic-version: 2023-06-01' \
@@ -68,7 +87,7 @@ curl https://api.anthropic.com/v1/files \
     -F 'file=@/path/to/file'
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

@@ -1,22 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/download
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 7d4353cb7559c5f033234487ccf96ded85945ee5d8c471f6e24a1f58e7918e04
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: c3aad4bbc1987d1e298fc46822c7294ccc30940c2f6e8d5bfc2059d83df8660a
 ---
 
----
-title: Download Skill Version Content
-url: https://platform.claude.com/docs/en/api/beta/skills/versions/download
----
+# Download Skill Version Content
 
-## Download Skill Version Content
-
-**get** `/v1/skills/{skill_id}/versions/{version}/content`
+**GET** `/v1/skills/{skill_id}/versions/{version}/content`
 
 Download a skill version's content as a zip archive.
 
-### Path Parameters
+## Path parameters
 
 - `skill_id: string`
 
@@ -30,7 +25,7 @@ Download a skill version's content as a zip archive.
 
   Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -108,9 +103,9 @@ Download a skill version's content as a zip archive.
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions/$VERSION/content \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: skills-2025-10-02' \

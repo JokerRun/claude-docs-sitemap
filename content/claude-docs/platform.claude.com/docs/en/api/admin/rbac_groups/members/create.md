@@ -1,30 +1,25 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rbac_groups/members/create
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 86b4e8d4776e6db6989bd1bdb867078ed44ef8c3ed7e7f7bdceb7c3f1663492d
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: d3f4f6d53663e68d6d7c6823e9414739d2d591c20532b950a39cb0d917d902d1
 ---
 
----
-title: Add RBAC Group Member
-url: https://platform.claude.com/docs/en/api/admin/rbac_groups/members/create
----
+# Add RBAC Group Member
 
-## Add RBAC Group Member
-
-**post** `/v1/organizations/rbac_groups/{group_id}/members`
+**POST** `/v1/organizations/rbac_groups/{group_id}/members`
 
 Add a User to an RBAC Group. Membership of groups provisioned by an identity provider (source type `"scim"`) cannot be modified via the API.
 
 The RBAC Groups API is in beta and available to Claude Enterprise organizations only. Requests must send the `ce-user-management-2026-07-13` value in the `anthropic-beta` header.
 
-### Path Parameters
+## Path parameters
 
 - `group_id: string`
 
   ID of the RBAC Group.
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of string`
 
@@ -32,19 +27,21 @@ The RBAC Groups API is in beta and available to Claude Enterprise organizations 
 
   To use multiple betas, use a comma separated list like `beta1,beta2` or specify the header multiple times for each beta.
 
-### Body Parameters
+## Body parameters
 
 - `user_id: string`
 
   ID of the User.
 
-### Returns
+## Returns
 
-- `RbacGroupMember object { created_at, email, group_id, 2 more }`
+- `RbacGroupMember object`
 
   - `created_at: string`
 
     RFC 3339 timestamp of when the User was added to the RBAC Group.
+
+    format: date-time
 
   - `email: string`
 
@@ -60,15 +57,15 @@ The RBAC Groups API is in beta and available to Claude Enterprise organizations 
 
     For RBAC Group Members, this is always `"rbac_group_member"`.
 
-    - `"rbac_group_member"`
+    default: rbac_group_member
 
   - `user_id: string`
 
     ID of the User.
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID/members \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
@@ -78,7 +75,7 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID/members \
         }'
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/migration
-fetched_at: 2026-08-23T02:32:19.757524Z
-sha256: 58afa6902eceaf95efc8bd890ff44309ed0a32f0a5ef781bd9b3045410b7fcd5
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: b83776757e41aa4bfdcb13d282f0aadc98f96467a1cf4764dfc8aa9ca42271c3
 ---
 
 ---
@@ -19,16 +19,16 @@ Claude Managed Agents menggantikan loop agen yang Anda tulis sendiri dengan infr
 
 ## Dari loop agen Messages API
 
-Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, menjalankan panggilan alat sendiri, dan menambahkan hasilnya ke riwayat percakapan, sebagian besar kode tersebut tidak lagi diperlukan.
+Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, menjalankan pemanggilan alat sendiri, dan menambahkan hasilnya ke riwayat percakapan, sebagian besar kode tersebut tidak lagi diperlukan.
 
 ### Apa yang tidak lagi Anda kelola
 
-| Sebelum                                                                                                             | Sesudah                                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| Anda memelihara array riwayat percakapan dan mengirimkannya kembali pada setiap giliran.                            | Sesi menyimpan riwayat di sisi server. Kirim event, terima event.                                                              |
-| Anda mengiterasi blok konten `tool_use`, menjalankan setiap alat, dan mengulang kembali dengan pesan `tool_result`. | Alat bawaan berjalan di dalam sandbox secara otomatis. Anda hanya menangani alat kustom melalui event `agent.custom_tool_use`. |
-| Anda menyediakan sandbox sendiri untuk menjalankan kode yang dihasilkan agen.                                       | Sandbox sesi menangani eksekusi kode, operasi file, dan bash.                                                                  |
-| Anda memutuskan kapan loop selesai.                                                                                 | Sesi mengeluarkan `session.status_idle` ketika agen tidak memiliki hal lain untuk dilakukan.                                   |
+| Sebelum                                                                                                           | Sesudah                                                                                                                        |
+| ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Anda memelihara array riwayat percakapan dan mengirimkannya kembali pada setiap giliran.                          | Sesi menyimpan riwayat di sisi server. Kirim event, terima event.                                                              |
+| Anda mengiterasi blok konten `tool_use`, menjalankan setiap alat, dan kembali ke loop dengan pesan `tool_result`. | Alat bawaan berjalan di dalam sandbox secara otomatis. Anda hanya menangani alat kustom melalui event `agent.custom_tool_use`. |
+| Anda menyediakan sandbox sendiri untuk menjalankan kode yang dihasilkan agen.                                     | Sandbox sesi menangani eksekusi kode, operasi file, dan bash.                                                                  |
+| Anda memutuskan kapan loop selesai.                                                                               | Sesi memancarkan `session.status_idle` ketika agen tidak memiliki hal lain untuk dikerjakan.                                   |
 
 ### Perbandingan kode
 
@@ -299,9 +299,9 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
     > /dev/null
 
   # Tunggu hingga sesi menjadi idle. grep keluar pada kecocokan pertama, dan
-  # membaca via process substitution berarti shell tidak menunggu
-  # tail (pipeline `tail -f | grep -m1` di foreground akan menggantung: tail
-  # baru mati pada penulisan berikutnya, yang tak pernah datang setelah stream idle).
+  # membaca melalui process substitution berarti shell tidak menunggu
+  # tail (pipeline `tail -f | grep -m1` di latar depan akan macet: tail
+  # hanya mati pada penulisan berikutnya, yang tak pernah terjadi setelah stream idle).
   grep -m1 '"session.status_idle"' <(tail -f -n +1 "${stream_log}") > /dev/null
 
   kill "${stream_pid}" 2>/dev/null || true
@@ -611,26 +611,27 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
 
 ### Apa yang masih Anda kendalikan
 
-* **Prompt sistem dan model:** Field yang sama, sekarang pada definisi agen.
+* **Prompt sistem dan model:** Field yang sama, kini berada pada definisi agen.
 * **Alat kustom:** Masih dideklarasikan dengan JSON Schema. Eksekusi berpindah dari penanganan inline menjadi merespons event `agent.custom_tool_use`. Lihat [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming).
-* **Konteks:** Anda masih dapat menyuntikkan konteks melalui prompt sistem, [resource file](https://platform.claude.com/docs/id/managed-agents/files), atau [skill](https://platform.claude.com/docs/id/managed-agents/skills).
+* **Pengaturan web search dan web fetch:** Field `allowed_domains`, `blocked_domains`, `max_content_tokens`, dan `user_location` yang sama, kini diatur sekali pada entri `web_search` dan `web_fetch` dalam array `configs` milik toolset agen, bukan pada setiap permintaan. Field `max_uses`, `citations`, dan `cache_control` tidak tersedia. Lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
+* **Konteks:** Anda masih dapat menyisipkan konteks melalui prompt sistem, [sumber daya file](https://platform.claude.com/docs/id/managed-agents/files), atau [skills](https://platform.claude.com/docs/id/managed-agents/skills).
 
 ## Dari Claude Agent SDK
 
-Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview), Anda sudah bekerja dengan agen, alat, dan sesi sebagai konsep. Perbedaannya adalah di mana mereka berjalan: SDK berjalan dalam proses yang Anda operasikan, sedangkan Managed Agents berjalan di infrastruktur Anthropic. Sebagian besar migrasi adalah memetakan objek konfigurasi SDK ke padanannya di sisi API.
+Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview), Anda sudah bekerja dengan agen, alat, dan sesi sebagai konsep. Perbedaannya adalah di mana semuanya berjalan: SDK berjalan dalam proses yang Anda operasikan, sedangkan Managed Agents berjalan di infrastruktur Anthropic. Sebagian besar migrasi berupa pemetaan objek konfigurasi SDK ke padanannya di sisi API.
 
 ### Apa yang berubah
 
-| Agent SDK                                                                 | Managed Agents                                                                                                                                                                                                                                                                            |
-| ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ClaudeAgentOptions(...)` dibuat per eksekusi                             | `client.beta.agents.create(...)` sekali; Agent disimpan dan diberi versi di sisi server. Lihat [Penyiapan agen](https://platform.claude.com/docs/id/managed-agents/agent-setup).                                                                                                          |
-| `async with ClaudeSDKClient(...)` atau `query(...)`                       | `client.beta.sessions.create(...)` lalu kirim dan terima [event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming).                                                                                                                                                |
-| Fungsi dengan dekorator `@tool` yang di-dispatch secara otomatis oleh SDK | Deklarasikan sebagai `{"type": "custom", ...}` pada Agent; klien Anda menangani event `agent.custom_tool_use` dan membalas dengan `user.custom_tool_result`. Lihat [Alat](https://platform.claude.com/docs/id/managed-agents/tools).                                                      |
-| Alat bawaan berjalan dalam proses Anda terhadap filesystem Anda           | `{"type": "agent_toolset_20260401"}` menjalankan alat yang sama di dalam sandbox sesi terhadap `/workspace`.                                                                                                                                                                              |
-| `cwd`, `add_dirs` menunjuk ke path lokal                                  | Unggah atau mount [file](https://platform.claude.com/docs/id/managed-agents/files) sebagai resource sesi.                                                                                                                                                                                 |
-| `system_prompt` dan hierarki `CLAUDE.md`                                  | Satu string `system` pada Agent. Setiap pembaruan yang mengubah agen menghasilkan versi baru di sisi server; pin sesi ke versi tertentu untuk mempromosikan atau melakukan rollback tanpa deploy. Lihat [Penyiapan agen](https://platform.claude.com/docs/id/managed-agents/agent-setup). |
-| `mcp_servers` dikonfigurasi dan diautentikasi di satu tempat              | Deklarasikan server pada Agent; sediakan kredensial melalui [Vault](https://platform.claude.com/docs/id/managed-agents/vaults) pada Session.                                                                                                                                              |
-| `permission_mode`, `can_use_tool`                                         | [`permission_policy`](https://platform.claude.com/docs/id/managed-agents/permission-policies) per alat; kirim event `user.tool_confirmation` untuk alat `always_ask`.                                                                                                                     |
+| Agent SDK                                                            | Managed Agents                                                                                                                                                                                                                                                                                 |
+| -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ClaudeAgentOptions(...)` dibuat per eksekusi                        | `client.beta.agents.create(...)` sekali; Agent disimpan dan diberi versi di sisi server. Lihat [Penyiapan agen](https://platform.claude.com/docs/id/managed-agents/agent-setup).                                                                                                               |
+| `async with ClaudeSDKClient(...)` atau `query(...)`                  | `client.beta.sessions.create(...)` lalu kirim dan terima [event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming).                                                                                                                                                     |
+| Fungsi berdekorator `@tool` yang didispatch secara otomatis oleh SDK | Deklarasikan sebagai `{"type": "custom", ...}` pada Agent; klien Anda menangani event `agent.custom_tool_use` dan membalas dengan `user.custom_tool_result`. Lihat [Alat](https://platform.claude.com/docs/id/managed-agents/tools).                                                           |
+| Alat bawaan berjalan dalam proses Anda terhadap sistem file Anda     | `{"type": "agent_toolset_20260401"}` menjalankan alat yang sama di dalam sandbox sesi terhadap `/workspace`.                                                                                                                                                                                   |
+| `cwd`, `add_dirs` menunjuk ke path lokal                             | Unggah atau mount [file](https://platform.claude.com/docs/id/managed-agents/files) sebagai sumber daya sesi.                                                                                                                                                                                   |
+| `system_prompt` dan hierarki `CLAUDE.md`                             | Satu string `system` pada Agent. Setiap pembaruan yang mengubah agen menghasilkan versi baru di sisi server; sematkan sesi ke versi tertentu untuk mempromosikan atau melakukan rollback tanpa deploy. Lihat [Penyiapan agen](https://platform.claude.com/docs/id/managed-agents/agent-setup). |
+| `mcp_servers` dikonfigurasi dan diautentikasi di satu tempat         | Deklarasikan server pada Agent; sediakan kredensial melalui [Vault](https://platform.claude.com/docs/id/managed-agents/vaults) pada Session.                                                                                                                                                   |
+| `permission_mode`, `can_use_tool`                                    | [`permission_policy`](https://platform.claude.com/docs/id/managed-agents/permission-policies) per alat; kirim event `user.tool_confirmation` untuk alat `always_ask`.                                                                                                                          |
 
 ### Perbandingan kode
 
@@ -1303,31 +1304,31 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/en/ag
   ```
 </CodeGroup>
 
-Agent dan Environment dibuat sekali dan digunakan kembali di seluruh sesi. Fungsi alat masih berjalan dalam proses Anda; perbedaannya adalah Anda membaca event `agent.custom_tool_use` dan mengirim hasilnya secara eksplisit, bukan SDK yang melakukan dispatch untuk Anda.
+Agent dan Environment dibuat sekali dan digunakan kembali di berbagai sesi. Fungsi alat tetap berjalan dalam proses Anda; perbedaannya adalah Anda membaca event `agent.custom_tool_use` dan mengirim hasilnya secara eksplisit, bukan SDK yang mendispatchnya untuk Anda.
 
 ### Fitur yang berpindah ke klien Anda
 
-Konsekuensi dari Anthropic yang menjalankan loop agen adalah beberapa hal yang sebelumnya ditangani SDK secara otomatis menjadi tanggung jawab klien Anda.
+Konsekuensi dari Anthropic menjalankan loop agen adalah beberapa hal yang sebelumnya ditangani SDK secara otomatis kini menjadi tanggung jawab klien Anda.
 
 | Fitur SDK                         | Pendekatan Managed Agents                                                                                                                                                |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Plan mode                         | Jalankan sesi khusus perencanaan terlebih dahulu, lalu sesi kedua untuk menjalankan rencana tersebut.                                                                    |
-| Output style, slash command       | Terapkan di klien Anda sebelum mengirim `user.message` atau setelah menerima `agent.message`.                                                                            |
+| Output styles, slash commands     | Terapkan di klien Anda sebelum mengirim `user.message` atau setelah menerima `agent.message`.                                                                            |
 | Hook `PreToolUse` / `PostToolUse` | Klien Anda sudah melihat setiap event `agent.custom_tool_use` sebelum merespons; letakkan logikanya di sana. Untuk alat bawaan, gunakan `permission_policy: always_ask`. |
 | `max_turns`                       | Hitung giliran di sisi klien.                                                                                                                                            |
 
 ## Daftar periksa migrasi
 
 1. [Buat environment](https://platform.claude.com/docs/id/managed-agents/environments) dengan jaringan dan runtime yang dibutuhkan agen Anda.
-2. Pindahkan prompt sistem dan pemilihan alat Anda ke [definisi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup).
+2. Pindahkan prompt sistem dan pilihan alat Anda ke [definisi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup).
 3. Ganti loop Anda dengan [`sessions.create`](https://platform.claude.com/docs/id/managed-agents/sessions) dan [`sessions.events.stream`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming).
 4. Untuk file lokal apa pun yang dibaca agen, unggah melalui [Files API](https://platform.claude.com/docs/id/managed-agents/files) dan mount sebagai `resources`.
-5. Untuk handler alat kustom apa pun, pindahkan eksekusi ke dalam event loop Anda sebagai respons terhadap event `agent.custom_tool_use`.
-6. Verifikasi dengan sesi uji sebelum mengarahkan trafik produksi ke alur baru.
+5. Untuk handler alat kustom apa pun, pindahkan eksekusinya ke dalam loop event Anda sebagai respons terhadap event `agent.custom_tool_use`.
+6. Verifikasi dengan sesi uji sebelum mengarahkan lalu lintas produksi ke alur baru.
 
 ## Migrasi antar versi model
 
-Ketika model Claude baru dirilis, migrasi integrasi Claude Managed Agents biasanya hanya perubahan satu field: perbarui `model` pada [definisi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) Anda dan perubahan tersebut berlaku pada sesi berikutnya yang Anda buat.
+Ketika model Claude baru dirilis, migrasi integrasi Claude Managed Agents biasanya hanya berupa perubahan satu field: perbarui `model` pada [definisi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) Anda dan perubahan tersebut berlaku pada sesi berikutnya yang Anda buat.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -1416,10 +1417,10 @@ Ketika model Claude baru dirilis, migrasi integrasi Claude Managed Agents biasan
   ```
 </CodeGroup>
 
-Sebagian besar perubahan perilaku tingkat model yang didokumentasikan dalam [panduan migrasi Messages API](https://platform.claude.com/docs/id/about-claude/models/migration-guide) tidak memerlukan tindakan dari sisi Anda:
+Sebagian besar perubahan perilaku tingkat model yang didokumentasikan dalam [panduan migrasi Messages API](https://platform.claude.com/docs/id/about-claude/models/migration-guide) tidak memerlukan tindakan dari pihak Anda:
 
 * **Perubahan parameter permintaan** (default `max_tokens`, konfigurasi `thinking`) ditangani oleh runtime Claude Managed Agents. Field ini tidak diekspos pada definisi agen.
-* **Prefilling pesan asisten** tidak ada dalam model sesi berbasis event, sehingga penghapusannya pada model yang lebih baru tidak berdampak apa-apa.
-* **Escaping JSON argumen alat** di-parse oleh runtime sebelum Anda menerima event `agent.custom_tool_use`. Anda melihat data terstruktur, bukan string mentah.
+* **Prefilling pesan asisten** tidak ada dalam model sesi berbasis event, sehingga penghapusannya pada model yang lebih baru tidak berdampak apa pun.
+* **Escaping JSON argumen alat** diparse oleh runtime sebelum Anda menerima event `agent.custom_tool_use`. Anda melihat data terstruktur, bukan string mentah.
 
-Deskripsi perilaku dalam panduan Messages API (apa yang dilakukan model secara berbeda) tetap berlaku. Langkah-langkah migrasi (cara mengubah kode permintaan Anda) tidak berlaku.
+Deskripsi perilaku dalam panduan Messages API (apa yang dilakukan model secara berbeda) tetap berlaku. Langkah-langkah migrasinya (cara mengubah kode permintaan Anda) tidak berlaku.

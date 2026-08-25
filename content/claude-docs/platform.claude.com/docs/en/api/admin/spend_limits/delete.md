@@ -1,18 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/delete
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 7d2790ca4cc8d6cafa376057cc3507e8ebe049bdd1191dc9cf4436640a7615ef
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 814344a69e4eb38d9f43747272f063504a653734a8e0a88adb1b4ace482acc89
 ---
 
----
-title: Delete Spend Limit
-url: https://platform.claude.com/docs/en/api/admin/spend_limits/delete
----
+# Delete Spend Limit
 
-## Delete Spend Limit
-
-**delete** `/v1/organizations/spend_limits/{spend_limit_id}`
+**DELETE** `/v1/organizations/spend_limits/{spend_limit_id}`
 
 Delete a per-user spend limit override.
 
@@ -20,30 +15,30 @@ The member falls back to any inherited spend limit at that period.
 Seat-tier, group, and organization-level rows cannot be deleted via
 this endpoint.
 
-### Path Parameters
+## Path parameters
 
 - `spend_limit_id: string`
 
   ID of the Spend Limit.
 
-### Returns
+## Returns
 
 - `id: string`
 
 - `type: "spend_limit_deleted"`
 
-  - `"spend_limit_deleted"`
+  default: spend_limit_deleted
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/spend_limits/$SPEND_LIMIT_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

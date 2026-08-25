@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/citations
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: a5d637bcfe5bfb3ba38700a10661726944bb7148ab736d7764b3c520672aab6f
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: e4a8ad0dce824af1bfe9ae8b04d0633d6fcc33360fe8503b50430b8c1e514d88
 ---
 
 ---
@@ -17,7 +17,7 @@ description: Ground Claude's responses in your source documents. Citations retur
 
 Claude can provide detailed citations when answering questions about documents, helping you track and verify the sources behind each response.
 
-All [active models](https://platform.claude.com/docs/en/about-claude/models/overview) support citations.
+All [active models](https://platform.claude.com/docs/en/models/overview) support citations.
 
 <Tip>
   Share your feedback and suggestions about the citations feature using the [citations feedback form](https://forms.gle/9n9hSrKnKe3rpowH9).

@@ -1,42 +1,41 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/groups/list
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 109228d824f95585918aec44ebd9d8d5fd635fdaa2ea4f27bfd41e1afe2e5b41
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: d066bc386af1d19c6623b624d35569e740816492d017da9127b07cd7d815adc5
 ---
 
----
-title: List Compliance Groups
-url: https://platform.claude.com/docs/en/api/compliance/groups/list
----
+# List Compliance Groups
 
-## List Compliance Groups
-
-**get** `/v1/compliance/groups`
+**GET** `/v1/compliance/groups`
 
 List Compliance Groups
 
-### Query Parameters
+## Query parameters
 
 - `limit: optional number`
 
   Maximum results (default: 500, max: 1000)
 
+  default: 500, maximum: 1000, minimum: 1
+
 - `name_prefix: optional string`
 
   Filter groups by name prefix
+
+  default: ""
 
 - `page: optional string`
 
   Opaque pagination token from a previous response's `next_page` field. Pass this to retrieve the next page of results. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
 
-### Header Parameters
+## Headers
 
 - `"x-api-key": optional string`
 
-### Returns
+## Returns
 
-- `data: array of object { id, created_at, description, 4 more }`
+- `data: array of object`
 
   List of groups
 
@@ -76,14 +75,14 @@ List Compliance Groups
 
   Token to retrieve the next page. Use this as the 'page' parameter in your next request
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/compliance/groups \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

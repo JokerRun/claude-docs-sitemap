@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-api
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 2d8b59d1f97b9638ac8bb103b43b03da409e114a6fcab3ca33c1403b5a9bc207
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 1405188411957abcef35635b5d2963b6343cb860467a255447fb38a56fe053be
 ---
 
 ---
@@ -81,7 +81,7 @@ Anthropic menyediakan dua API analitik: Claude Enterprise Analytics API dan [Cla
 
 ### Logging OpenTelemetry
 
-[Logging OpenTelemetry Cowork](https://support.claude.com/en/articles/14477985-monitor-claude-cowork-activity-with-opentelemetry) dan [pemantauan Claude Code](https://code.claude.com/docs/en/monitoring-usage) melakukan streaming telemetri per peristiwa, termasuk metadata token, biaya, dan host, ke kolektor yang Anda jalankan saat aktivitas terjadi, sedangkan Compliance API mengembalikan transkrip per sesi yang disimpan dari Anthropic berdasarkan permintaan dan berfungsi dengan Compliance Access Key Anda yang sudah ada. Untuk perbandingan berdampingan, lihat [FAQ Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-faq#data-coverage-and-retention).
+[Logging OpenTelemetry Cowork](https://support.claude.com/en/articles/14477985-monitor-claude-cowork-activity-with-opentelemetry) dan [pemantauan Claude Code](https://code.claude.com/docs/en/monitoring-usage) melakukan streaming telemetri per peristiwa, termasuk metadata token, biaya, dan host, ke kolektor yang Anda jalankan saat aktivitas terjadi, sedangkan Compliance API mengembalikan transkrip per sesi yang disimpan dari Anthropic berdasarkan permintaan dan berfungsi dengan Compliance Access Key Anda yang sudah ada. Logging OpenTelemetry juga dapat merekam prompt dan respons, tetapi Anthropic merekomendasikan Compliance API untuk mengambil konten sesi Cowork dan Claude Code. Untuk tabel yang membandingkan sesi lokal, sesi jarak jauh, dan logging OpenTelemetry, lihat pengantar [Mengambil transkrip sesi](https://platform.claude.com/docs/id/manage-claude/compliance-sessions).
 
 ### Inference hooks
 

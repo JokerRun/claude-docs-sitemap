@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/home
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 999e37b05a8c9ade3b2e83a3544695e87c423e724fb750fa3f75f10f1b8a8817
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: b084cbf203f842c02bfeb1c553c8412c58f94c1a1d6be7296f2d31419f23de10
 ---
 
 ---
@@ -32,7 +32,7 @@ dengan Claude"
   </HomeHero>
 
   <HomeSection>
-    <HomeSectionHeader label="Platform" title="Pilih cara Anda membangun" description="Pilih antarmuka pengembang yang sesuai dengan pendekatan Anda, dan infrastruktur yang cocok dengan stack Anda." />
+    <HomeSectionHeader label="Platform" title="Pilih cara Anda membangun" description="Pilih antarmuka developer yang sesuai dengan pendekatan Anda, dan infrastruktur yang cocok dengan stack Anda." />
 
     <HomePlatformCards>
       <HomePlatformCard title="Messages" description="Akses model secara langsung. Anda menyusun setiap giliran, mengelola status percakapan, dan menulis loop alat Anda sendiri." pictogram="code-terminal">
@@ -44,12 +44,12 @@ dengan Claude"
           Referensi API
         </HomeCardLink>
 
-        <HomeCardLink icon="code-brackets" href="https://platform.claude.com/docs/id/api/client-sdks">
+        <HomeCardLink icon="code-brackets" href="https://platform.claude.com/docs/id/cli-sdks-libraries/overview">
           SDK Klien
         </HomeCardLink>
       </HomePlatformCard>
 
-      <HomePlatformCard title="Managed Agents" description="Infrastruktur agen yang dikelola sepenuhnya. Deploy dan kelola agen otonom dalam sesi stateful dengan riwayat peristiwa yang persisten." pictogram="clouds">
+      <HomePlatformCard title="Managed Agents" description="Infrastruktur agen yang dikelola sepenuhnya. Deploy dan kelola agen otonom dalam sesi stateful dengan riwayat event yang persisten." pictogram="clouds">
         <HomeCardLink icon="play" href="https://platform.claude.com/docs/id/managed-agents/quickstart">
           Mulai cepat
         </HomeCardLink>
@@ -80,7 +80,7 @@ dengan Claude"
   </HomeSection>
 
   <HomeSection>
-    <HomeSectionHeader label="Perjalanan pengembang" title="Dari ide hingga produksi" description="Ikuti siklus hidupnya atau langsung menuju apa yang Anda butuhkan." />
+    <HomeSectionHeader label="Perjalanan developer" title="Dari ide hingga produksi" description="Ikuti siklus hidupnya atau langsung menuju apa yang Anda butuhkan." />
 
     <HomeJourney>
       <HomeJourneyTab label="Messages">
@@ -97,7 +97,7 @@ dengan Claude"
             Pilih model
           </HomeJourneyLink>
 
-          <HomeJourneyLink icon="code-brackets" href="https://platform.claude.com/docs/id/api/client-sdks">
+          <HomeJourneyLink icon="code-brackets" href="https://platform.claude.com/docs/id/cli-sdks-libraries/overview">
             Instal SDK
           </HomeJourneyLink>
 
@@ -158,7 +158,7 @@ dengan Claude"
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="verified" href="https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/increase-consistency">
-            Keamanan dan pagar pembatas
+            Keamanan dan guardrail
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="bolt" href="https://platform.claude.com/docs/id/api/rate-limits">
@@ -220,7 +220,7 @@ dengan Claude"
 
         <HomeJourneyStep title="Jalankan sesi">
           <HomeJourneyLink icon="wifi-high" href="https://platform.claude.com/docs/id/managed-agents/events-and-streaming">
-            Streaming dan peristiwa
+            Streaming dan event
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="code-brackets" href="https://platform.claude.com/docs/id/api/beta/sessions">
@@ -249,9 +249,9 @@ dengan Claude"
     <HomeSectionHeader label="Model" title="Keluarga model Claude" description="Pilih model yang tepat untuk kasus penggunaan Anda." />
 
     <HomeModelCards>
-      <HomeModelCard name="Fable 5" badge="Paling mumpuni" modelId="claude-fable-5" description="Kemampuan tertinggi untuk penalaran paling menuntut dan pekerjaan agentik berjangka panjang." href="https://platform.claude.com/docs/id/about-claude/models/overview" />
+      <HomeModelCard name="Fable 5" badge="Paling mumpuni" modelId="claude-fable-5" description="Kemampuan tertinggi untuk penalaran yang paling menuntut dan pekerjaan agentik berjangka panjang." href="https://platform.claude.com/docs/id/about-claude/models/overview" />
 
-      <HomeModelCard name="Opus 5" badge="Tingkat lanjut" modelId="claude-opus-5" description="Sangat baik untuk analisis kompleks, pengodean, dan tugas kreatif yang memerlukan penalaran mendalam." href="https://platform.claude.com/docs/id/about-claude/models/overview" />
+      <HomeModelCard name="Opus 5" badge="Tingkat lanjut" modelId="claude-opus-5" description="Sangat baik untuk analisis kompleks, coding, dan tugas kreatif yang memerlukan penalaran mendalam." href="https://platform.claude.com/docs/id/about-claude/models/overview" />
 
       <HomeModelCard name="Sonnet 5" badge="Keseimbangan terbaik" modelId="claude-sonnet-5" description="Keseimbangan ideal antara kecerdasan dan kecepatan untuk sebagian besar beban kerja produksi." href="https://platform.claude.com/docs/id/about-claude/models/overview" />
 
@@ -271,7 +271,7 @@ dengan Claude"
         Contoh kode dan pola.
       </Card>
 
-      <Card icon="play" title="Mulai cepat" href="https://github.com/anthropics/anthropic-quickstarts">
+      <Card icon="play" title="Quickstart" href="https://github.com/anthropics/anthropic-quickstarts">
         Aplikasi awal yang siap di-deploy.
       </Card>
 
@@ -280,7 +280,7 @@ dengan Claude"
       </Card>
 
       <Card icon="terminal" title="Claude Code" href="https://code.claude.com/docs">
-        Asisten pengodean agentik di terminal Anda.
+        Asisten coding agentik di terminal Anda.
       </Card>
     </CardGroup>
   </HomeSection>

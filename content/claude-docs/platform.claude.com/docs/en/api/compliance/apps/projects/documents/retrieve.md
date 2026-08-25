@@ -1,32 +1,27 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/retrieve
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 071895f86567214c76d7901b7a747ab8baf4c5bba18ebebffcc59bd508f548f9
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: f318795dcac14b96e5f7a83fbada57ebf52000c8b23c0ab964201f6c06d23304
 ---
 
----
-title: Get project document content
-url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/retrieve
----
+# Get project document content
 
-## Get project document content
-
-**get** `/v1/compliance/apps/projects/documents/{document_id}`
+**GET** `/v1/compliance/apps/projects/documents/{document_id}`
 
 Get detailed information for a specific project document.
 
-### Path Parameters
+## Path parameters
 
 - `document_id: string`
 
   The document ID (tagged ID, e.g., claude_proj_doc_abc123)
 
-### Header Parameters
+## Headers
 
 - `"x-api-key": optional string`
 
-### Returns
+## Returns
 
 - `id: string`
 
@@ -40,11 +35,13 @@ Get detailed information for a specific project document.
 
   Document creation timestamp
 
+  format: date-time
+
 - `filename: string`
 
   Document filename
 
-- `user: object { id, email_address }  or null`
+- `user: object or null`
 
   The user who created a project or project document.
 
@@ -60,14 +57,14 @@ Get detailed information for a specific project document.
 
     User's email address
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/compliance/apps/projects/documents/$DOCUMENT_ID \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

@@ -1,26 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: e439771452ddb52f87a7f38818382d62e15bbf26455e6becf90ae4d42dbc1ec7
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 03e7567b456802098138dfe0812e8081a1813e6cdc23ed4e8d36ad1af4909299
 ---
 
----
-title: Create Enrollment URL
-url: https://platform.claude.com/docs/en/api/beta/user_profiles/create_enrollment_url
----
+# Create Enrollment URL
 
-## Create Enrollment URL
-
-**post** `/v1/user_profiles/{user_profile_id}/enrollment_url`
+**POST** `/v1/user_profiles/{user_profile_id}/enrollment_url`
 
 Create Enrollment URL
 
-### Path Parameters
+## Path parameters
 
 - `user_profile_id: string`
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -98,27 +93,27 @@ Create Enrollment URL
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
-### Returns
+## Returns
 
-- `BetaUserProfileEnrollmentURL object { expires_at, type, url }`
+- `BetaUserProfileEnrollmentURL object`
 
   - `expires_at: string`
 
     A timestamp in RFC 3339 format
 
+    format: date-time
+
   - `type: "enrollment_url"`
 
     Object type. Always `enrollment_url`.
-
-    - `"enrollment_url"`
 
   - `url: string`
 
     Enrollment URL to send to the end user. Valid until `expires_at`.
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/user_profiles/$USER_PROFILE_ID/enrollment_url \
     -X POST \
     -H 'anthropic-version: 2023-06-01' \
@@ -126,7 +121,7 @@ curl https://api.anthropic.com/v1/user_profiles/$USER_PROFILE_ID/enrollment_url 
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

@@ -1,26 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/add
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: e89e9ccb03fdb3272d030ae4ba19cce70eb55394c602ce35f540144babe8f4af
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 454bc6c4ef86c91044c3c7395aaece0da3182fc37ca89fcbff164306655029a2
 ---
 
----
-title: Add Session Resource
-url: https://platform.claude.com/docs/en/api/beta/sessions/resources/add
----
+# Add Session Resource
 
-## Add Session Resource
-
-**post** `/v1/sessions/{session_id}/resources`
+**POST** `/v1/sessions/{session_id}/resources`
 
 Add Session Resource
 
-### Path Parameters
+## Path parameters
 
 - `session_id: string`
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -98,23 +93,25 @@ Add Session Resource
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
-### Body Parameters
+## Body parameters
 
 - `file_id: string`
 
   ID of a previously uploaded file.
 
-- `type: "file"`
+  minLength: 1, maxLength: 128
 
-  - `"file"`
+- `type: "file"`
 
 - `mount_path: optional string or null`
 
   Mount path in the container. Defaults to `/mnt/session/uploads/<file_id>`.
 
-### Returns
+  minLength: 1, maxLength: 4096
 
-- `BetaManagedAgentsFileResource object { id, created_at, file_id, 3 more }`
+## Returns
+
+- `BetaManagedAgentsFileResource object`
 
   - `id: string`
 
@@ -122,21 +119,23 @@ Add Session Resource
 
     A timestamp in RFC 3339 format
 
+    format: date-time
+
   - `file_id: string`
 
   - `mount_path: string`
 
   - `type: "file"`
 
-    - `"file"`
-
   - `updated_at: string`
 
     A timestamp in RFC 3339 format
 
-### Example
+    format: date-time
 
-```http
+## Example
+
+```bash
 curl https://api.anthropic.com/v1/sessions/$SESSION_ID/resources \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
@@ -149,7 +148,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/resources \
         }'
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

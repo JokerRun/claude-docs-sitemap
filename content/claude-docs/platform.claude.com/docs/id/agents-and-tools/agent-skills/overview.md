@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: e24d44304dae933f9a2ab7d8f0bb05ac527408de034836b049be6d42e74d3adf
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: ccb8747f37c838aa025db7ab372c7fd59408b9f7a143ce92ec1685e375148618
 ---
 
 ---
@@ -23,7 +23,7 @@ Skills adalah sumber daya berbasis filesystem yang dapat digunakan kembali dan m
 
 * **Menspesialisasikan Claude:** Sesuaikan kapabilitas untuk tugas khusus domain
 * **Mengurangi pengulangan:** Buat sekali, gunakan secara otomatis
-* **Menggabungkan kapabilitas:** Kombinasikan Skills untuk tugas kompleks yang terdiri dari banyak langkah
+* **Menyusun kapabilitas:** Gabungkan Skills untuk tugas kompleks dengan banyak langkah
 
 <Note>
   Untuk informasi lebih lanjut tentang arsitektur dan penerapan Agent Skills di dunia nyata, lihat postingan blog engineering [Equipping agents for the real world with Agent Skills](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills).
@@ -46,7 +46,7 @@ Anthropic menyediakan Agent Skills siap pakai untuk tugas dokumen umum (PowerPoi
 
 ## Cara kerja Skills
 
-Skills menggunakan lingkungan VM Claude untuk menyediakan kapabilitas yang melampaui apa yang mungkin dilakukan dengan prompt saja. Claude beroperasi di dalam "virtual machine" (mesin virtual) dengan akses filesystem, yang memungkinkan Skills hadir sebagai direktori berisi instruksi, kode yang dapat dieksekusi, dan materi referensi, yang diorganisasikan seperti panduan onboarding yang Anda buat untuk anggota tim baru.
+Skills menggunakan lingkungan VM Claude untuk menyediakan kapabilitas yang melampaui apa yang mungkin dilakukan dengan prompt saja. Claude beroperasi di mesin virtual dengan akses filesystem, yang memungkinkan Skills hadir sebagai direktori berisi instruksi, kode yang dapat dieksekusi, dan materi referensi, yang disusun seperti panduan onboarding yang Anda buat untuk anggota tim baru.
 
 Arsitektur berbasis filesystem ini memungkinkan **"progressive disclosure" (pengungkapan bertahap):** Claude memuat informasi secara bertahap sesuai kebutuhan, alih-alih menghabiskan konteks di awal.
 
@@ -106,7 +106,7 @@ Skills dapat menyertakan materi tambahan:
 
 **Sumber daya:** Materi referensi seperti skema database, dokumentasi API, template, atau contoh
 
-Claude mengakses file-file ini hanya ketika direferensikan. Model filesystem berarti setiap jenis konten memiliki kekuatan yang berbeda: instruksi untuk panduan yang fleksibel, kode untuk keandalan, sumber daya untuk pencarian fakta.
+Claude mengakses file-file ini hanya ketika direferensikan. Model filesystem ini berarti setiap jenis konten memiliki kekuatan yang berbeda: instruksi untuk panduan yang fleksibel, kode untuk keandalan, sumber daya untuk pencarian fakta.
 
 | Level                     | Kapan dimuat          | Biaya token              | Konten                                                                                                                                             |
 | ------------------------- | --------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -120,7 +120,7 @@ Pengungkapan bertahap memastikan hanya konten yang relevan yang menempati jendel
 
 Skills berjalan di lingkungan eksekusi kode tempat Claude memiliki akses filesystem, perintah bash, dan kapabilitas eksekusi kode. Skills hadir sebagai direktori di mesin virtual, dan Claude berinteraksi dengannya menggunakan perintah bash yang sama dengan yang Anda gunakan untuk menavigasi file di komputer Anda.
 
-![Arsitektur Agent Skills - menunjukkan bagaimana Skills terintegrasi dengan konfigurasi agen dan "virtual machine" (mesin virtual)](https://platform.claude.com/docs/images/agent-skills-architecture.png)
+![Arsitektur Agent Skills (Agent Skills Architecture) - menunjukkan bagaimana Skills terintegrasi dengan konfigurasi agen dan mesin virtual (virtual machine)](https://platform.claude.com/docs/images/agent-skills-architecture.png)
 
 **Cara Claude mengakses konten Skill:**
 
@@ -129,7 +129,7 @@ Ketika sebuah Skill dipicu, Claude menggunakan bash untuk membaca SKILL.md dari 
 **Apa yang dimungkinkan oleh arsitektur ini:**
 
 * **Akses file sesuai permintaan:** Claude hanya membaca file yang dibutuhkan setiap tugas. Sebuah Skill dapat menyertakan puluhan file referensi, tetapi jika tugas Anda hanya membutuhkan skema penjualan, itulah satu-satunya file yang dimuat Claude. Sisanya tetap berada di filesystem dan tidak memakan token sama sekali.
-* **Eksekusi skrip yang efisien:** Ketika Claude menjalankan `validate_form.py`, kode skrip tersebut tidak pernah dimuat ke dalam jendela konteks. Hanya outputnya (seperti "Validation passed" atau pesan error tertentu) yang mengonsumsi token, yang membuat skrip jauh lebih efisien daripada meminta Claude menghasilkan kode yang setara secara langsung.
+* **Eksekusi skrip yang efisien:** Ketika Claude menjalankan `validate_form.py`, kode skrip tersebut tidak pernah dimuat ke dalam jendela konteks. Hanya outputnya (seperti "Validation passed" atau pesan kesalahan tertentu) yang mengonsumsi token, yang membuat skrip jauh lebih efisien daripada meminta Claude menghasilkan kode yang setara secara langsung.
 * **Tidak ada batas praktis untuk konten yang disertakan:** File tidak mengonsumsi konteks sampai diakses, sehingga Skills dapat menyertakan dokumentasi API yang komprehensif, dataset besar, atau contoh yang ekstensif. Tidak ada penalti konteks untuk konten yang disertakan tetapi tidak digunakan.
 
 ### Contoh: Memuat Skill pemrosesan PDF
@@ -142,7 +142,7 @@ Berikut cara Claude memuat dan menggunakan Skill kustom `pdf-processing` dari co
 4. **Claude menentukan:** Pengisian formulir tidak diperlukan, sehingga FORMS.md tidak dibaca
 5. **Claude mengeksekusi:** Menggunakan instruksi dari SKILL.md untuk menyelesaikan tugas
 
-![Skills dimuat ke dalam "context window" (jendela konteks) - menunjukkan pemuatan bertahap metadata dan konten skill](https://platform.claude.com/docs/images/agent-skills-context-window.png)
+![Skills dimuat ke dalam jendela konteks (context window) - menunjukkan pemuatan bertahap metadata dan konten skill](https://platform.claude.com/docs/images/agent-skills-context-window.png)
 
 ## Di mana Skills berfungsi
 
@@ -156,9 +156,9 @@ Skills tersedia di seluruh produk agen Claude:
 
 Claude API mendukung Agent Skills siap pakai maupun Skills kustom. Keduanya bekerja secara identik: tentukan `skill_id` yang relevan dalam parameter `container` bersama dengan [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool).
 
-**Prasyarat:** Menggunakan Skills melalui API memerlukan [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool), yang container-nya menjadi tempat Skills berjalan. Di Claude API, baik Skills API maupun parameter `container.skills` tidak memerlukan header beta, dan permintaan yang masih mengirim `skills-2025-10-02` tetap berfungsi.
+**Prasyarat:** Menggunakan Skills melalui API memerlukan [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool), yang container-nya menjadi tempat Skills berjalan.
 
-Gunakan Agent Skills siap pakai dengan mereferensikan `skill_id`-nya (`pptx`, `xlsx`, `docx`, atau `pdf`), atau buat dan unggah milik Anda sendiri melalui Skills API (endpoint `/v1/skills`). Skills kustom dibagikan ke seluruh workspace: semua anggota workspace dapat mengaksesnya.
+Gunakan Agent Skills siap pakai dengan mereferensikan `skill_id`-nya (`pptx`, `xlsx`, `docx`, atau `pdf`), atau buat dan unggah milik Anda sendiri melalui Skills API (endpoint `/v1/skills`). Skills kustom dibagikan di seluruh workspace: semua anggota workspace dapat mengaksesnya.
 
 Skills di API berjalan dalam container sandbox tanpa akses jaringan dan tanpa instalasi paket saat runtime. Lihat [Batasan dan kendala](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#limitations-and-constraints) untuk detailnya.
 
@@ -166,11 +166,11 @@ Untuk mempelajari lebih lanjut, lihat [Menggunakan Agent Skills dengan API](http
 
 ### Claude Code
 
-[Claude Code](https://code.claude.com/docs/en/overview) mendukung Skills kustom. Skills dokumen siap pakai (PowerPoint, Excel, Word, PDF) tidak tersedia di Claude Code, meskipun [Claude API skill](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill) open-source sudah disertakan di dalamnya. Lihat daftar lengkap [perintah dan Skills bawaan](https://code.claude.com/docs/en/commands) yang disertakan bersama Claude Code.
+[Claude Code](https://code.claude.com/docs/en/overview) mendukung Skills kustom. Skills dokumen siap pakai (PowerPoint, Excel, Word, PDF) tidak tersedia di Claude Code, meskipun [Claude API skill](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill) yang open-source sudah disertakan bersamanya. Lihat daftar lengkap [perintah dan Skills bawaan](https://code.claude.com/docs/en/commands) yang disertakan dengan Claude Code.
 
 **Skills kustom:** Buat Skills sebagai direktori dengan file SKILL.md. Claude menemukan dan menggunakannya secara otomatis.
 
-Skills kustom di Claude Code berbasis filesystem dan tidak memerlukan unggahan API: tempatkan di `~/.claude/skills/` (personal) atau `.claude/skills/` (proyek).
+Skills kustom di Claude Code berbasis filesystem dan tidak memerlukan unggahan API: tempatkan di `~/.claude/skills/` (pribadi) atau `.claude/skills/` (proyek).
 
 Untuk mempelajari lebih lanjut, lihat [Menggunakan Skills di Claude Code](https://code.claude.com/docs/en/skills).
 
@@ -178,7 +178,7 @@ Untuk mempelajari lebih lanjut, lihat [Menggunakan Skills di Claude Code](https:
 
 [claude.ai](https://claude.ai) mendukung Agent Skills siap pakai maupun Skills kustom.
 
-**Agent Skills siap pakai:** Skills ini aktif ketika Anda membuat dokumen. Claude menggunakannya tanpa memerlukan penyiapan apa pun.
+**Agent Skills siap pakai:** Skills ini aktif ketika Anda membuat dokumen. Claude menggunakannya tanpa memerlukan penyiapan.
 
 **Skills kustom:** Unggah Skills Anda sendiri sebagai file zip melalui Settings > Features. Tersedia pada paket Pro, Max, Team, dan Enterprise dengan [eksekusi kode diaktifkan](https://support.claude.com/en/articles/12111783-create-and-edit-files-with-claude). Skills kustom bersifat individual untuk setiap pengguna. Skills ini tidak dibagikan ke seluruh organisasi dan tidak dapat dikelola secara terpusat oleh admin.
 
@@ -249,7 +249,7 @@ Untuk panduan tata kelola, pemeriksaan, dan deployment skala organisasi, lihat [
 
 ### Agent Skills siap pakai
 
-Agent Skills siap pakai berikut tersedia untuk langsung digunakan:
+Agent Skills siap pakai berikut tersedia untuk digunakan segera:
 
 * **PowerPoint (pptx):** Membuat presentasi, mengedit slide, menganalisis konten presentasi
 * **Excel (xlsx):** Membuat spreadsheet, menganalisis data, menghasilkan laporan dengan grafik
@@ -260,9 +260,9 @@ Skills ini tersedia di Claude API, [Claude Platform on AWS](https://platform.cla
 
 ### Skills open-source
 
-Anthropic juga memublikasikan Skills open-source di [repositori skills](https://github.com/anthropics/skills):
+Anthropic juga menerbitkan Skills open-source di [repositori skills](https://github.com/anthropics/skills):
 
-* **[Claude API skill](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill):** Menyediakan Claude dengan materi referensi API terkini, dokumentasi SDK, dan praktik terbaik untuk delapan bahasa pemrograman. Disertakan bersama Claude Code dan juga tersedia untuk diinstal dari repositori skills.
+* **[Claude API skill](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill):** Menyediakan Claude dengan materi referensi API terkini, dokumentasi SDK, dan praktik terbaik untuk delapan bahasa pemrograman. Disertakan dengan Claude Code dan juga tersedia untuk diinstal dari repositori skills.
 
 ### Contoh Skills kustom
 
@@ -282,7 +282,7 @@ Claude Platform on AWS dan Microsoft Foundry mengikuti batasan yang sama dengan 
 
 ### Ketersediaan lintas surface
 
-**Skills kustom tidak disinkronkan antar-surface**. Skills yang diunggah ke satu surface tidak otomatis tersedia di surface lain:
+**Skills kustom tidak disinkronkan antar surface**. Skills yang diunggah ke satu surface tidak otomatis tersedia di surface lain:
 
 * Skills yang diunggah ke claude.ai harus diunggah secara terpisah ke API
 * Skills yang diunggah melalui API tidak tersedia di claude.ai
@@ -292,17 +292,17 @@ Kelola dan unggah Skills secara terpisah untuk setiap surface tempat Anda ingin 
 
 ### Cakupan berbagi
 
-Skills memiliki model berbagi yang berbeda tergantung di mana Anda menggunakannya:
+Skills memiliki model berbagi yang berbeda bergantung pada tempat Anda menggunakannya:
 
 * **claude.ai:** Hanya pengguna individual. Setiap anggota tim harus mengunggah secara terpisah.
 * **Claude API:** Seluruh workspace. Semua anggota workspace dapat mengakses Skills yang diunggah.
-* **Claude Code:** Personal (`~/.claude/skills/`) atau berbasis proyek (`.claude/skills/`). Juga dapat dibagikan melalui Claude Code Plugins.
+* **Claude Code:** Pribadi (`~/.claude/skills/`) atau berbasis proyek (`.claude/skills/`). Juga dapat dibagikan melalui Claude Code Plugins.
 
-claude.ai tidak mendukung manajemen admin terpusat atau distribusi Skills kustom ke seluruh organisasi.
+claude.ai tidak mendukung pengelolaan admin terpusat atau distribusi Skills kustom ke seluruh organisasi.
 
 ### Kendala lingkungan runtime
 
-Lingkungan runtime persis yang tersedia untuk Skill Anda bergantung pada surface produk tempat Anda menggunakannya.
+Lingkungan runtime yang tersedia untuk Skill Anda bergantung pada surface produk tempat Anda menggunakannya.
 
 * **claude.ai:**
   * **Akses jaringan bervariasi:** Bergantung pada pengaturan pengguna/admin, Skills mungkin memiliki akses jaringan penuh, sebagian, atau tidak sama sekali. Untuk detail lebih lanjut, lihat artikel dukungan [Create and Edit Files](https://support.claude.com/en/articles/12111783-create-and-edit-files-with-claude#h_6b7e833898).
@@ -310,7 +310,7 @@ Lingkungan runtime persis yang tersedia untuk Skill Anda bergantung pada surface
 * **Claude API:**
 
   * **Tidak ada akses jaringan:** Skills tidak dapat melakukan panggilan API eksternal atau mengakses internet.
-  * **Tidak ada instalasi paket saat runtime:** Hanya paket yang sudah terinstal sebelumnya yang tersedia. Anda tidak dapat menginstal paket baru selama eksekusi.
+  * **Tidak ada instalasi paket saat runtime:** Hanya paket yang sudah terinstal yang tersedia. Anda tidak dapat menginstal paket baru selama eksekusi.
   * **Hanya dependensi yang telah dikonfigurasi sebelumnya:** Periksa dokumentasi [Alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk daftar paket yang tersedia.
 
 * **Claude Code:**

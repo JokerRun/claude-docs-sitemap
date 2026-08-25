@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-connector
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: a1770ca526e13c90cfa3e7e51267f48df02a21f8f8f9c281afb0113e74478c09
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 635f96ecf7008c6efe6acbe3265b654613ae32e6874331d2cd1c45c4b29606b1
 ---
 
 ---
@@ -1324,7 +1324,7 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   ```
 
   ```php PHP
-  // As a content block in a message
+  // Sebagai blok konten dalam pesan
   $resource = $mcp->readResource('file:///path/to/doc.txt');
 
   $response = $anthropic->beta->messages->create(
@@ -1343,7 +1343,7 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
 
   echo $response, "\n";
 
-  // As a file upload
+  // Sebagai unggahan file
   $fileResource = $mcp->readResource('file:///path/to/data.json');
   $file = $anthropic->files->upload(file: BetaMcp::resourceToFile($fileResource));
   echo $file->id, "\n";

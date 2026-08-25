@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-sessions
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: a07c099f856aee3f21744bd18376f6099c2687fc28a40f27c0d4fd2445ceaa16
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 4338a9d15dbc7d1ef94cdc2773b4cc5d28cf1731a9a30b4b915fc723767a678b
 ---
 
 ---
@@ -40,17 +40,22 @@ Perekaman sesi lokal terikat pada diaktifkannya Compliance API untuk organisasi 
 * Sesi lokal di organisasi yang mengaktifkan [kesiapan HIPAA](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#hipaa-readiness). Tidak ada data sesi lokal yang direkam, sehingga endpoint sesi lokal tidak mengembalikan sesi apa pun untuk organisasi tersebut.
 * Sesi lokal yang tunduk pada [zero data retention (ZDR)](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope). Sesi ini dikecualikan dari hasil daftar, dan endpoint retrieve serta messages mengembalikan 404 untuk sesi tersebut.
 
-Tabel berikut merangkum perbedaan antara [sesi lokal](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions) dan [sesi remote](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-remote-sessions).
+Anthropic merekomendasikan Compliance API untuk mengambil konten sesi Cowork dan Claude Code. Tabel berikut membandingkan [sesi lokal](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions) dan [sesi remote](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-remote-sessions) dengan alternatif berbasis OpenTelemetry, yaitu [logging OpenTelemetry Cowork](https://support.claude.com/en/articles/14477985-monitor-claude-cowork-activity-with-opentelemetry) dan [pemantauan Claude Code](https://code.claude.com/docs/en/monitoring-usage).
 
-|                         | Sesi lokal (di mesin pengguna)                                                                                  | Sesi remote (di cloud)                                                    |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| Endpoint                | Endpoint list, retrieve, dan messages di bawah `/v1/compliance/apps/sessions/local`                             | Endpoint list dan messages di bawah `/v1/compliance/apps/sessions/remote` |
-| Prefiks ID              | `clls_`                                                                                                         | `cse_`                                                                    |
-| Filter daftar           | Hanya rentang `created_at`                                                                                      | Organisasi, pengguna, dan rentang `created_at`                            |
-| Field siklus hidup      | Tidak ada: tidak ada `status` atau `updated_at`                                                                 | `status`, `updated_at`                                                    |
-| Retensi                 | 6 tahun secara default, atau periode retensi percakapan kustom organisasi Anda jika periode terbatas ditetapkan | 6 tahun                                                                   |
-| Batas laju              | Hanya batas Compliance API bersama                                                                              | Batas Compliance API bersama ditambah anggaran permintaan kedua           |
-| Penghapusan melalui API | Tidak                                                                                                           | Tidak                                                                     |
+|                                                              | Sesi lokal (di mesin pengguna)                                                                                                                                               | Sesi remote (di cloud)                                                                                                                                                       | Logging OpenTelemetry                                                                                                                |
+| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Pengiriman                                                   | Pull: kueri dan ekspor melalui HTTPS                                                                                                                                         | Pull: kueri dan ekspor melalui HTTPS                                                                                                                                         | Push: di-streaming ke kolektor OTLP Anda                                                                                             |
+| Penyiapan                                                    | Berfungsi dengan Compliance Access Key Anda yang sudah ada                                                                                                                   | Berfungsi dengan Compliance Access Key Anda yang sudah ada                                                                                                                   | Admin mengonfigurasi endpoint OTLP dan pengaturan penangkapan konten                                                                 |
+| Infrastruktur                                                | Di-hosting oleh Anthropic                                                                                                                                                    | Di-hosting oleh Anthropic                                                                                                                                                    | Anda menjalankan kolektor dan penyimpanan                                                                                            |
+| Prefiks ID                                                   | `clls_`                                                                                                                                                                      | `cse_`                                                                                                                                                                       | N/A                                                                                                                                  |
+| Nilai `product_surface`                                      | `cowork`, `claude_code`                                                                                                                                                      | `cowork_remote`                                                                                                                                                              | N/A                                                                                                                                  |
+| Retensi                                                      | 6 tahun secara default, atau periode retensi percakapan kustom organisasi Anda jika periode terbatas ditetapkan; disimpan oleh Anthropic                                     | 6 tahun, disimpan oleh Anthropic                                                                                                                                             | Infrastruktur Anda, kebijakan Anda                                                                                                   |
+| Prompt pengguna dan respons asisten                          | Ya                                                                                                                                                                           | Ya                                                                                                                                                                           | Ya, tergantung pengaturan penangkapan konten                                                                                         |
+| Input alat                                                   | Dipotong hingga 10.000 byte per input secara default; hingga sekitar 1 MiB atas permintaan                                                                                   | Dipotong hingga 10.000 byte per input secara default; hingga sekitar 1 MiB atas permintaan                                                                                   | Ringkasan yang dipotong                                                                                                              |
+| Konten hasil alat                                            | Setiap entri teks dipotong hingga 10.000 byte secara default; hingga sekitar 1 MiB atas permintaan                                                                           | Setiap entri teks dipotong hingga 10.000 byte secara default; hingga sekitar 1 MiB atas permintaan                                                                           | Metadata seperti ukuran dan keberhasilan; Claude Code juga dapat menangkap konten dengan pengaturan opsional yang dibatasi ukurannya |
+| Konten file                                                  | Ya, melalui pemanggilan alat dalam transkrip (hanya teks; konten lain muncul sebagai placeholder)                                                                            | Ya, melalui pemanggilan alat dalam transkrip (hanya teks; konten lain dihilangkan)                                                                                           | Path file; Claude Code juga dapat menangkap konten dengan pengaturan opsional yang dibatasi ukurannya                                |
+| Metadata host dan perangkat (jenis terminal, path workspace) | Tidak                                                                                                                                                                        | Tidak                                                                                                                                                                        | Ya                                                                                                                                   |
+| Penggunaan token dan biaya                                   | Tidak; tersedia melalui [Claude Enterprise Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api#get-access-to-the-claude-enterprise-analytics-api) | Tidak; tersedia melalui [Claude Enterprise Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api#get-access-to-the-claude-enterprise-analytics-api) | Ya                                                                                                                                   |
 
 ## Sesi di mesin pengguna (sesi lokal)
 
@@ -62,7 +67,7 @@ Untuk sesi lokal, Anthropic merekam setiap percakapan di sisi server saat permin
 
 Di organisasi yang menggunakan [kunci enkripsi yang dikelola pelanggan](https://platform.claude.com/docs/id/manage-claude/cmek), sesi lokal didaftarkan dan dapat diambil seperti biasa, tetapi konten transkrip saat ini tidak dikembalikan; setiap pesan dikembalikan dengan kontennya ditandai tidak tersedia (lihat [Mengambil transkrip sesi lokal](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-a-local-session-transcript) untuk cara pesan tersebut ditandai).
 
-Endpoint list mengembalikan metadata sesi, tanpa konten transkrip, untuk setiap organisasi tertaut yang dapat dibaca kunci Anda. Tidak seperti daftar sesi remote, endpoint ini tidak memiliki filter organisasi atau pengguna: batasi hasil berdasarkan waktu dengan parameter `created_at.gte` dan `created_at.lt`. Keduanya menerima timestamp RFC 3339 dengan offset UTC yang wajib, dan ketika keduanya diberikan, `created_at.lt` harus benar-benar setelah `created_at.gte` atau permintaan mengembalikan [400 Bad Request](https://platform.claude.com/docs/id/manage-claude/compliance-errors#400-bad-request). Sesi dan pesan baru muncul dalam hasil setelah jeda pemrosesan singkat, biasanya dalam hitungan menit; sesi yang tidak ada segera setelah dimulai belum tentu tidak direkam. Permintaan berikut mendaftarkan sesi yang dibuat sejak tanggal tertentu.
+Endpoint list mengembalikan metadata sesi, tanpa konten transkrip, untuk setiap organisasi tertaut yang dapat dibaca kunci Anda. Tidak seperti daftar sesi remote, endpoint ini tidak memiliki filter organisasi atau pengguna: batasi hasil berdasarkan waktu dengan parameter `created_at.gte` dan `created_at.lt`. Keduanya menerima timestamp RFC 3339 dengan offset UTC yang wajib, dan ketika keduanya diberikan, `created_at.lt` harus benar-benar setelah `created_at.gte` atau permintaan mengembalikan [400 Bad Request](https://platform.claude.com/docs/id/manage-claude/compliance-errors#400-bad-request). Filter waktu ketiga, `updated_at.gte`, membatasi berdasarkan aktivitas terakhir alih-alih yang pertama: filter ini mengembalikan sesi yang panggilan inferensi terakhirnya berada pada atau setelah waktu yang diberikan dan dapat digabungkan dengan filter `created_at` tanpa mengubah urutan atau paginasi. Gunakan filter ini untuk melakukan polling sesi yang aktif sejak eksekusi sebelumnya, seperti dijelaskan nanti di bagian ini. Sesi dan pesan baru muncul dalam hasil setelah penundaan pemrosesan singkat, biasanya dalam hitungan menit; sesi yang tidak ada segera setelah dimulai belum tentu tidak direkam. Permintaan berikut mendaftarkan sesi yang dibuat sejak tanggal tertentu.
 
 ```bash cURL
 curl --fail-with-body -sS -G \
@@ -85,7 +90,8 @@ curl --fail-with-body -sS -G \
         "email_address": "engineer@example.com"
       },
       "product_surface": "cowork",
-      "created_at": "2026-07-09T14:02:11Z"
+      "created_at": "2026-07-09T14:02:11Z",
+      "updated_at": "2026-07-09T14:02:38Z"
     },
     {
       "type": "compliance_local_session",
@@ -97,7 +103,8 @@ curl --fail-with-body -sS -G \
         "email_address": null
       },
       "product_surface": "claude_code",
-      "created_at": "2026-07-08T09:15:43Z"
+      "created_at": "2026-07-08T09:15:43Z",
+      "updated_at": "2026-07-08T09:52:10Z"
     }
   ],
   "next_page": "page_AAEfQx7mPdLkq9Rt2VwHbZk"
@@ -108,7 +115,7 @@ Hasil diurutkan dalam urutan kronologis terbalik (terbaru lebih dulu) berdasarka
 
 Dalam setiap objek sesi, `user.id` selalu terisi dan tetap ada setelah penghapusan akun; `user.email_address` bernilai `null` ketika akun pengguna telah dihapus atau pengguna tidak lagi menjadi anggota organisasi yang dapat dibaca kunci Anda. `workspace_id` bernilai `null` ketika sesi tidak terkait dengan workspace. Sesi lokal berkorespondensi dengan satu ID sesi klien: memulai percakapan baru di klien, atau menghapus konteksnya, memulai catatan sesi baru. Perlakukan nilai `id` sebagai string opaque; formatnya dapat berubah tanpa pemberitahuan.
 
-Sesi lokal tidak memiliki `status` dan tidak memiliki `updated_at`: sesi lokal tidak memiliki siklus hidup di sisi server, dan visibilitasnya diatur oleh retensi. Sesi lokal direkam sebagai rangkaian panggilan Claude API (panggilan inferensi) yang dibuat klien selama sesi, dan retensi berlaku untuk setiap panggilan yang direkam secara individual. `created_at` adalah timestamp panggilan tertua yang masih disimpan dari sesi tersebut (UTC). Saat panggilan yang lebih lama melewati periode retensi, `created_at` bergeser maju sesuai dengan itu, dan setelah setiap panggilan dalam sesi telah kedaluwarsa, sesi tidak lagi dikembalikan. Karena `created_at` dapat bergeser antar-eksekusi, lakukan deduplikasi berdasarkan `id` ketika Anda menelusuri ulang daftar dari waktu ke waktu. `created_at` sesi tidak bergeser lebih lambat saat sesi berlanjut, dan tidak ada `updated_at`, sehingga sesi yang mendapatkan pesan setelah Anda pertama kali mengekspornya tidak muncul kembali dalam jendela `created_at` berikutnya. Untuk menjaga transkrip tetap mutakhir, daftarkan ulang jendela trailing yang setidaknya sepanjang sesi terlama Anda pada setiap eksekusi dan ambil ulang transkrip sesi yang dikembalikannya, dengan melakukan deduplikasi pesan berdasarkan `id`.
+Sesi lokal memiliki `updated_at` tetapi tidak memiliki `status`: sesi lokal tidak memiliki status siklus hidup di sisi server, dan visibilitasnya diatur oleh retensi. Sesi lokal direkam sebagai rangkaian panggilan Claude API (panggilan inferensi) yang dibuat klien selama sesi, dan retensi berlaku untuk setiap panggilan yang direkam secara individual. `created_at` adalah timestamp panggilan tertua yang masih disimpan dari sesi tersebut dan `updated_at` adalah timestamp panggilan terakhirnya, keduanya UTC. Saat panggilan yang lebih lama melewati periode retensi, `created_at` bergeser maju sesuai dengan itu, dan setelah setiap panggilan dalam sesi telah kedaluwarsa, sesi tidak lagi dikembalikan; `updated_at` melacak panggilan terbaru dan tidak terpengaruh hingga saat itu. Karena `created_at` dapat bergeser antar-eksekusi, lakukan deduplikasi berdasarkan `id` ketika Anda menelusuri ulang daftar dari waktu ke waktu. Untuk menjaga transkrip tetap mutakhir saat sesi mendapatkan pesan baru, lakukan polling dengan filter `updated_at.gte`, dengan jendela berurutan yang saling tumpang tindih. Pada endpoint list, `updated_at` adalah batas bawah: untuk sesi yang masih aktif pada batas halaman atau batas jendela `created_at.lt`, nilainya dapat sesaat tertinggal dari aktivitas terakhir sesi yang sebenarnya, dan panggilan baru hanya dapat dikueri setelah penundaan pemrosesan singkat yang disebutkan sebelumnya. Karena ketertinggalan itu, pada setiap eksekusi tetapkan `updated_at.gte` beberapa menit sebelum waktu mulai eksekusi sebelumnya, bukan tepat pada waktu eksekusi sebelumnya. Batas yang ditetapkan tepat pada waktu sebelumnya secara diam-diam dan permanen menghilangkan sesi yang panggilan terakhirnya masih diindeks pada saat itu, karena setelah batas bergerak melewati panggilan tersebut, tidak ada eksekusi berikutnya yang mengembalikannya. Lakukan deduplikasi sesi yang dikembalikan berdasarkan `id`, ambil ulang transkripnya, dan lakukan deduplikasi pesan berdasarkan `id`. Mengambil sesi, atau pesannya, selalu mencerminkan secara tepat panggilan terbaru yang masih disimpan, sehingga proses rekonsiliasi berkala atas jendela yang lebih lama dapat menjadi pengaman tambahan sebagai alternatif dari memperlebar tumpang tindih.
 
 Daftar ini dibangun dari metadata aktivitas sesi, sehingga dapat mencakup sesi yang konten transkripnya tidak direkam, misalnya sesi yang berjalan sebelum perekaman dimulai untuk organisasi Anda (sejauh yang diizinkan periode retensi Anda); transkrip sesi semacam itu mengembalikan setiap pesan dengan kontennya ditandai tidak tersedia (lihat [Mengambil transkrip sesi lokal](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-a-local-session-transcript)).
 
@@ -132,7 +139,7 @@ Endpoint messages mengembalikan transkrip sesi, yang direkonstruksi dari panggil
 * Gambar, PDF, dan blok biner atau terstruktur lainnya tidak dikembalikan. Masing-masing muncul sebagai blok `text` bertuliskan `[<block type> content not shown]` (misalnya, `[image content not shown]`) dengan `truncated` diatur ke `true`. Item non-teks di dalam hasil alat diganti dengan satu entri `[N non-text item(s) not shown]`, dan `truncated` pada blok hasil alat bernilai `true`.
 * Metadata sitasi pada blok `text` dihilangkan, dan blok yang terpengaruh memiliki `truncated` diatur ke `true`.
 
-File instruksi proyek seperti `CLAUDE.md` muncul sebagai konten role user biasa. Konten skill muncul ketika klien mengirimkannya sebagai konten pesan dan tidak dibedakan dari teks pengguna lainnya. Untuk ringkasan cakupan dan perbandingan dengan logging OpenTelemetry untuk Cowork dan Claude Code, lihat [FAQ Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-faq#data-coverage-and-retention).
+File instruksi proyek seperti `CLAUDE.md` muncul sebagai konten role user biasa. Konten skill muncul ketika klien mengirimkannya sebagai konten pesan dan tidak dibedakan dari teks pengguna lainnya. Untuk ringkasan cakupan, lihat [FAQ Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-faq#data-coverage-and-retention); untuk tabel yang membandingkan sesi lokal dengan sesi remote dan logging OpenTelemetry, lihat pengantar halaman ini.
 
 ```bash cURL
 session_id="clls_01HxKpLmNoPqRsTuVwXyZaBc"
@@ -154,13 +161,15 @@ curl --fail-with-body -sS \
       "email_address": null
     },
     "product_surface": "cowork",
-    "created_at": "2026-07-09T14:02:11Z"
+    "created_at": "2026-07-09T14:02:11Z",
+    "updated_at": "2026-07-09T14:02:38Z"
   },
   "data": [
     {
       "type": "compliance_local_session_message",
       "id": "clsm_01J4KpLmNoPqRsTuVwXyZaBa",
       "role": "user",
+      "model": null,
       "created_at": "2026-07-09T14:02:11Z",
       "provenance": {
         "type": "synthetic_marker"
@@ -177,6 +186,7 @@ curl --fail-with-body -sS \
       "type": "compliance_local_session_message",
       "id": "clsm_01J4KpLmNoPqRsTuVwXyZaBc",
       "role": "user",
+      "model": null,
       "created_at": "2026-07-09T14:02:11Z",
       "provenance": null,
       "content": [
@@ -191,6 +201,7 @@ curl --fail-with-body -sS \
       "type": "compliance_local_session_message",
       "id": "clsm_01J4KpLmNoPqRsTuVwXyZaBd",
       "role": "assistant",
+      "model": "claude-opus-5",
       "created_at": "2026-07-09T14:02:11Z",
       "provenance": null,
       "content": [
@@ -212,6 +223,7 @@ curl --fail-with-body -sS \
       "type": "compliance_local_session_message",
       "id": "clsm_01J4KpLmNoPqRsTuVwXyZaBe",
       "role": "user",
+      "model": null,
       "created_at": "2026-07-09T14:02:38Z",
       "provenance": null,
       "content": [
@@ -234,6 +246,7 @@ curl --fail-with-body -sS \
       "type": "compliance_local_session_message",
       "id": "clsm_01J4KpLmNoPqRsTuVwXyZaBf",
       "role": "assistant",
+      "model": "claude-opus-5",
       "created_at": "2026-07-09T14:02:38Z",
       "provenance": null,
       "content": [
@@ -253,12 +266,12 @@ Respons menyematkan envelope `session` di samping array `data` yang dipaginasi. 
 
 Pesan dikembalikan dari yang terlama lebih dulu secara default; teruskan `order=desc` untuk membalik urutan. Paginasi menggunakan skema `page`/`next_page` yang sama dengan endpoint list, dengan default `limit` 100 dan maks 1.000. Sebuah halaman dapat berakhir lebih awal ketika respons mencapai batas ukurannya, sehingga halaman dengan pesan kurang dari `limit` tidak berarti Anda telah mencapai akhir; teruslah melakukan paginasi hingga `next_page` bernilai `null`. Kursor halaman terikat pada sesi dan urutan sortir tempat kursor tersebut diterbitkan, dan kursor suatu penelusuran kedaluwarsa 24 jam setelah halaman pertamanya: kursor yang kedaluwarsa mengembalikan [400 Bad Request](https://platform.claude.com/docs/id/manage-claude/compliance-errors#400-bad-request) yang memberi tahu Anda untuk memulai ulang tanpa parameter `page`, dan penelusuran yang dimulai ulang mencerminkan batas retensi saat ini. Kursor yang diterbitkan untuk sesi atau `order` yang berbeda juga mengembalikan 400, sebagai kursor tidak valid.
 
-Setiap pesan memiliki `role` (`user` atau `assistant`) dan array `content` berisi blok `text`, `tool_use`, dan `tool_result`. Blok `text` memiliki `text` dan `truncated`. Blok `tool_use` memiliki `id`, `name`, `input`, dan `truncated`, di mana `input` adalah string berenkode JSON, bukan objek. Blok `tool_result` memiliki `tool_use_id`, `name`, `is_error`, array `content` berisi entri `text`, dan `truncated`. Pemanggilan dan hasil alat MCP, serta sebagian besar pemanggilan dan hasil server tool, dinormalisasi ke dalam bentuk `tool_use` dan `tool_result` yang sama ini; tipe blok lainnya muncul sebagai placeholder `[<block type> content not shown]`. `id` pesan stabil selama giliran tersebut masih disimpan. Setiap pesan yang direkonstruksi dari panggilan inferensi yang sama memiliki timestamp panggilan tersebut, sehingga pesan berurutan sering berbagi nilai `created_at`; pertahankan urutan yang dikembalikan daripada mengurutkan ulang berdasarkan timestamp.
+Setiap pesan memiliki `role` (`user` atau `assistant`) dan array `content` berisi blok `text`, `tool_use`, dan `tool_result`. Pesan juga memiliki `model`: pada giliran asisten yang direkam dari Claude API, ini adalah model yang melayani giliran tersebut, dan bernilai `null` pada pesan pengguna dan pada pesan asisten mana pun yang `provenance`-nya diisi, karena riwayat yang dinyatakan klien dan penanda sintetis tidak dihasilkan oleh model dan model yang melayani tidak diketahui untuk konten yang tidak tersedia. Blok `text` memiliki `text` dan `truncated`. Blok `tool_use` memiliki `id`, `name`, `input`, dan `truncated`, di mana `input` adalah string berenkode JSON, bukan objek. Blok `tool_result` memiliki `tool_use_id`, `name`, `is_error`, array `content` berisi entri `text`, dan `truncated`. Pemanggilan dan hasil alat MCP, serta sebagian besar pemanggilan dan hasil server tool, dinormalisasi ke dalam bentuk `tool_use` dan `tool_result` yang sama ini; jenis blok lainnya muncul sebagai placeholder `[<block type> content not shown]`. `id` pesan stabil selama giliran tersebut masih disimpan. Setiap pesan yang direkonstruksi dari panggilan inferensi yang sama memiliki timestamp panggilan tersebut, sehingga pesan berurutan sering berbagi nilai `created_at`; pertahankan urutan yang dikembalikan alih-alih mengurutkan ulang berdasarkan timestamp.
 
 Setiap pesan juga memiliki field `provenance` yang menjelaskan bagaimana kontennya direkam. `provenance` bernilai `null` untuk konten terverifikasi yang direkam oleh Claude API, yang merupakan kasus umum. Jika tidak, field ini adalah objek yang `type`-nya menandai pengecualian:
 
-* `content_unavailable` berarti konten tidak dapat dikembalikan. Array `content` kosong, dan `provenance.reason` menyatakan alasannya. `not_captured` berarti tidak ada konten yang tersedia untuk giliran tersebut; ini tidak membuktikan bahwa tidak ada catatan yang disimpan, karena konten yang ditahan oleh kebijakan akses di sisi penyimpanan dilaporkan dengan alasan yang sama (misalnya, di organisasi yang menggunakan [kunci enkripsi yang dikelola pelanggan](https://platform.claude.com/docs/id/manage-claude/cmek#disabled-or-modified)), dan giliran individual dalam sesi yang sebaliknya direkam dapat tidak tersedia karena alasan penanganan data lainnya dan memiliki alasan yang sama. `cmek_key_revoked` dicadangkan untuk konten yang dienkripsi dengan kunci yang dikelola pelanggan milik organisasi Anda ketika kunci tersebut tidak tersedia (misalnya, dicabut); nilai ini saat ini tidak dikembalikan, jadi tangani untuk kompatibilitas ke depan. `retention_elapsed` berarti konten telah melewati retensi. `oversize` berarti satu pesan melebihi batas ukuran per pesan; pesan tetap dikembalikan, dengan array `content` kosong.
-* `client_asserted` menandai pesan asisten yang disediakan klien sebagai riwayat percakapan dan yang tidak dapat dicocokkan dengan respons yang direkam; kepengarangannya tidak terverifikasi.
+* `content_unavailable` berarti konten tidak dapat dikembalikan. Array `content` kosong, dan `provenance.reason` menyatakan alasannya. `not_captured` berarti tidak ada konten yang tersedia untuk giliran tersebut; ini tidak membuktikan bahwa tidak ada catatan yang disimpan, karena konten yang ditahan oleh kebijakan akses di sisi penyimpanan dilaporkan dengan alasan yang sama (misalnya, di organisasi yang menggunakan [kunci enkripsi yang dikelola pelanggan](https://platform.claude.com/docs/id/manage-claude/cmek#disabled-or-modified)), dan giliran individual dalam sesi yang selebihnya direkam dapat tidak tersedia karena alasan penanganan data lainnya dan memiliki alasan yang sama. `client_aborted` berarti klien menutup koneksi atau membatalkan permintaan sebelum respons selesai, sehingga respons giliran tersebut tidak direkam; output parsial apa pun yang sudah di-streaming ke klien tidak disertakan, dan alasan ini hanya berlaku untuk giliran role assistant. `cmek_key_revoked` dicadangkan untuk konten yang dienkripsi dengan kunci yang dikelola pelanggan milik organisasi Anda ketika kunci tersebut tidak tersedia (misalnya, dicabut); alasan ini saat ini tidak dikembalikan, jadi tangani untuk kompatibilitas ke depan. `retention_elapsed` berarti konten telah melewati retensi. `oversize` berarti satu pesan melebihi batas ukuran per pesan; pesan tetap dikembalikan, dengan array `content` kosong.
+* `client_asserted` menandai pesan asisten yang diberikan klien sebagai riwayat percakapan dan yang tidak dapat dicocokkan dengan respons yang direkam; kepengarangannya tidak terverifikasi.
 * `synthetic_marker` menandai catatan yang dihasilkan oleh endpoint itu sendiri, seperti penanda yang menggantikan prompt sistem. Ketika klien menulis ulang atau memadatkan riwayat percakapannya di tengah sesi (misalnya, setelah pemadatan konteks), transkrip menyisipkan pesan penanda pada titik tersebut dan melanjutkan dengan konten baru yang dikirim klien; ketika organisasi Anda memiliki periode retensi terbatas, riwayat yang ditulis ulang itu sendiri ditahan (penanda kedua mencatat hal ini) dan hanya giliran pengguna terbaru dan yang mengikutinya yang ditampilkan.
 
 Pesan penanda dan pesan client-asserted dimulai dengan blok `text` penjelasan dalam kurung siku yang ditandai `truncated: true`, misalnya `[system prompt content not shown]`. Perlakukan catatan ini sebagai ada tetapi tidak tersedia atau tidak terverifikasi, bukan hilang, dan toleransi tipe dan alasan `provenance` yang tidak dikenali.
@@ -335,7 +348,7 @@ Sebuah sesi dimiliki oleh pengguna atau agen, tidak pernah keduanya. Untuk sesi 
 
 ### Mengambil transkrip sesi remote
 
-Endpoint messages mengembalikan transkrip sesi: prompt pengguna, respons asisten, serta pemanggilan alat dan hasilnya. Blok thinking dan gambar tidak disertakan. Untuk ringkasan cakupan dan perbandingan dengan logging OpenTelemetry Cowork, lihat [FAQ Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-faq#data-coverage-and-retention).
+Endpoint messages mengembalikan transkrip sesi: prompt pengguna, respons asisten, serta pemanggilan alat dan hasilnya. Blok thinking dan gambar tidak disertakan. Untuk ringkasan cakupan, lihat [FAQ Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-faq#data-coverage-and-retention); untuk tabel yang membandingkan sesi remote dengan sesi lokal dan logging OpenTelemetry Cowork, lihat pengantar halaman ini.
 
 ```bash cURL
 session_id="cse_01WpQrStUvXyZaBcDeFgHjK6"
@@ -418,7 +431,7 @@ Endpoint sesi bersifat read-only; sesi lokal dan remote tidak dapat dihapus mela
   </Card>
 
   <Card title="FAQ Compliance API" href="https://platform.claude.com/docs/id/manage-claude/compliance-faq#data-coverage-and-retention">
-    Ringkasan cakupan untuk transkrip sesi dan perbandingan dengan logging OpenTelemetry.
+    Ringkasan field demi field tentang apa yang disertakan dalam transkrip sesi, dan pertanyaan umum lainnya.
   </Card>
 
   <Card title="Menangani error Compliance API" href="https://platform.claude.com/docs/id/manage-claude/compliance-errors">

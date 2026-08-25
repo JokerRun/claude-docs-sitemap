@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/files
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 0cd9ff917bb475cde028e61b328b203ca58c9f1d5a85b705100d962f9695a2de
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 72572b34ada46ff797cb5764f3f70c43b59e731d9a0839932c1370a7939d83cb
 ---
 
 ---
 title: Menambahkan file
 url: https://platform.claude.com/docs/id/managed-agents/files
-description: Unggah file dan mount file tersebut di sandbox Anda untuk dibaca dan diproses.
+description: Unggah file dan pasang di sandbox Anda untuk dibaca dan diproses.
 ---
 
-Anda dapat menyediakan file untuk agen Anda dengan mengunggahnya melalui Files API dan me-mount file tersebut di sandbox sesi.
+Anda dapat menyediakan file untuk agen Anda dengan mengunggahnya melalui Files API dan memasangnya (mounting) di sandbox sesi.
 
 <Note>
   Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
@@ -88,9 +88,9 @@ Pertama, unggah file menggunakan [Files API](https://platform.claude.com/docs/id
   ```
 </CodeGroup>
 
-## Me-mount file dalam sesi
+## Memasang file dalam sesi
 
-Mount file yang telah diunggah ke dalam sandbox dengan menambahkannya ke array `resources` saat membuat sesi:
+Pasang file yang telah diunggah ke dalam sandbox dengan menambahkannya ke array `resources` saat membuat sesi:
 
 <Tip>
   `mount_path` bersifat opsional, tetapi pastikan file yang diunggah memiliki nama yang deskriptif agar agen dapat mengidentifikasinya.
@@ -240,13 +240,13 @@ Mount file yang telah diunggah ke dalam sandbox dengan menambahkannya ke array `
   ```
 </CodeGroup>
 
-Dengan `mount_path` di atas, agen membaca file di `/mnt/session/uploads/data.csv` (lihat [Path file](https://platform.claude.com/docs/id/managed-agents/files#file-paths)).
+Dengan `mount_path` di atas, agen membaca file di `/mnt/session/uploads/data.csv` (lihat [Jalur file](https://platform.claude.com/docs/id/managed-agents/files#file-paths)).
 
 Sebuah `file_id` baru dibuat yang mereferensikan instance file tersebut di dalam sesi. Salinan ini tidak dihitung terhadap [batas penyimpanan](https://platform.claude.com/docs/id/build-with-claude/files) Anda.
 
 ## Beberapa file
 
-Mount beberapa file dengan menambahkan entri ke array `resources`:
+Pasang beberapa file dengan menambahkan entri ke array `resources`:
 
 <CodeGroup>
   ```json cURL
@@ -321,9 +321,9 @@ Mount beberapa file dengan menambahkan entri ke array `resources`:
 
   ```php PHP
   $resources = [
-      ['type' => 'file', 'file_id' => 'file_abc123', 'mount_path' => '/data.csv'],
-      ['type' => 'file', 'file_id' => 'file_def456', 'mount_path' => '/config.json'],
-      ['type' => 'file', 'file_id' => 'file_ghi789', 'mount_path' => '/src/main.py'],
+      ['type' => 'file', 'fileID' => 'file_abc123', 'mountPath' => '/data.csv'],
+      ['type' => 'file', 'fileID' => 'file_def456', 'mountPath' => '/config.json'],
+      ['type' => 'file', 'fileID' => 'file_ghi789', 'mountPath' => '/src/main.py'],
   ];
   ```
 
@@ -340,7 +340,7 @@ Maksimum 500 file didukung per sesi.
 
 ## Mengelola file pada sesi yang sedang berjalan
 
-Anda dapat menambahkan atau menghapus file dari sesi setelah pembuatan menggunakan API resources sesi. Setiap resource memiliki `id` yang dikembalikan saat ditambahkan (atau dicantumkan), yang Anda gunakan untuk penghapusan.
+Anda dapat menambahkan atau menghapus file dari sesi setelah pembuatan menggunakan API resources sesi. Setiap resource memiliki `id` yang dikembalikan saat ditambahkan (atau didaftarkan), yang Anda gunakan untuk penghapusan.
 
 <CodeGroup>
   ```bash cURL
@@ -437,7 +437,7 @@ Anda dapat menambahkan atau menghapus file dari sesi setelah pembuatan menggunak
   ```
 </CodeGroup>
 
-Cantumkan semua resource pada sesi dengan `resources.list`. Untuk menghapus file, panggil `resources.delete` dengan ID resource:
+Daftarkan semua resource pada sesi dengan `resources.list`. Untuk menghapus file, panggil `resources.delete` dengan ID resource:
 
 <CodeGroup>
   ```bash cURL
@@ -540,9 +540,11 @@ Cantumkan semua resource pada sesi dengan `resources.list`. Untuk menghapus file
   ```
 </CodeGroup>
 
-## Mencantumkan dan mengunduh file sesi
+## Mendaftarkan dan mengunduh file sesi
 
-Gunakan [Files API](https://platform.claude.com/docs/id/build-with-claude/files) untuk mencantumkan file yang dicakup ke suatu sesi dan mengunduhnya. Pemfilteran berdasarkan `scope_id` memerlukan header beta `managed-agents-2026-04-01`, sehingga contoh pencantuman menggunakan namespace files `beta` dan meneruskan header tersebut secara eksplisit. Mengunduh file tidak memerlukan header beta.
+Gunakan [Files API](https://platform.claude.com/docs/id/build-with-claude/files) untuk mendaftarkan file yang dicakup ke suatu sesi dan mengunduhnya. File yang ditulis agen ke `/mnt/session/outputs/` muncul dalam daftar tidak lama setelah agen selesai menulisnya, terkadang beberapa detik setelah sesi menjadi idle. Jika file output yang Anda harapkan tidak ada, daftarkan lagi setelah jeda singkat; setelah file tersebut muncul dalam daftar, pengunggahannya telah selesai.
+
+Pemfilteran berdasarkan `scope_id` memerlukan header beta `managed-agents-2026-04-01`, sehingga contoh daftar menggunakan namespace files `beta` dan meneruskan header tersebut secara eksplisit.
 
 <CodeGroup>
   ```bash cURL
@@ -561,8 +563,7 @@ Gunakan [Files API](https://platform.claude.com/docs/id/build-with-claude/files)
 
   ```bash CLI
   # Daftar file yang terkait dengan sebuah sesi
-  ant beta:files list --scope-id sesn_abc123 \
-    --beta managed-agents-2026-04-01
+  ant beta:files list --scope-id sesn_abc123 --beta managed-agents-2026-04-01
 
   # Unduh sebuah file
   ant files download --file-id "$FILE_ID" --output output.txt
@@ -614,7 +615,7 @@ Gunakan [Files API](https://platform.claude.com/docs/id/build-with-claude/files)
   ```
 
   ```go Go
-  // Daftar file yang terkait dengan sesi
+  // Daftar file yang terkait dengan sebuah sesi
   files, err := client.Beta.Files.List(ctx, anthropic.BetaFileListParams{
   	ScopeID: anthropic.String("sesn_abc123"),
   	Betas:   []anthropic.AnthropicBeta{"managed-agents-2026-04-01"},
@@ -623,7 +624,7 @@ Gunakan [Files API](https://platform.claude.com/docs/id/build-with-claude/files)
   	panic(err)
   }
 
-  // Unduh file
+  // Unduh sebuah file
   resp, err := client.Files.Download(ctx, files.Data[0].ID)
   if err != nil {
   	panic(err)
@@ -660,9 +661,12 @@ Gunakan [Files API](https://platform.claude.com/docs/id/build-with-claude/files)
       scopeID: 'sesn_abc123',
       betas: ['managed-agents-2026-04-01'],
   );
+  foreach ($files->getItems() as $file) {
+      echo "{$file->id} {$file->filename}\n";
+  }
 
   // Unduh sebuah file
-  $content = $client->beta->files->download($files->data[0]->id);
+  $content = $client->files->download($files->getItems()[0]->id);
   file_put_contents('output.txt', $content);
   ```
 
@@ -689,13 +693,14 @@ Agen dapat bekerja dengan jenis file apa pun, termasuk:
 * Arsip (`.zip`, `.tar.gz`) - agen dapat mengekstraknya menggunakan bash
 * File biner - agen dapat memprosesnya dengan alat yang sesuai
 
-## Path file
+## Jalur file
 
 <Note>
-  File yang di-mount di sandbox adalah salinan read-only (hanya-baca). Agen dapat membacanya tetapi tidak dapat memodifikasi file asli yang diunggah. Untuk bekerja dengan versi yang dimodifikasi, agen menulis ke path baru di dalam sandbox.
+  File yang dipasang di sandbox adalah salinan hanya-baca. Agen dapat membacanya tetapi tidak dapat memodifikasi file asli yang diunggah. Untuk bekerja dengan versi yang dimodifikasi, agen menulis ke jalur baru di dalam sandbox.
 </Note>
 
-* Path yang Anda tentukan berakar di bawah direktori uploads sesi: `mount_path` berupa `/data.csv` menempatkan file di `/mnt/session/uploads/data.csv` di dalam sandbox
+* Jalur yang Anda tentukan berakar di bawah direktori uploads sesi: `mount_path` berupa `/data.csv` menempatkan file di `/mnt/session/uploads/data.csv` di dalam sandbox
 * Jika Anda menghilangkan `mount_path`, file ditempatkan di `/mnt/session/uploads/<file_id>`
 * Direktori induk dibuat secara otomatis
-* Path harus absolut (dimulai dengan `/`)
+* Jalur harus absolut (dimulai dengan `/`)
+* File yang ditulis agen ke `/mnt/session/outputs/` menjadi tersedia melalui Files API, dicakup ke sesi tersebut; lihat [Mendaftarkan dan mengunduh file sesi](https://platform.claude.com/docs/id/managed-agents/files#listing-and-downloading-session-files)

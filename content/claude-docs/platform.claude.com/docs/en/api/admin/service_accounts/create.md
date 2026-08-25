@@ -1,18 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/service_accounts/create
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 2b9a4b8c2e33a2c47c613fecfcd564ecf6abb91aa3689d046aab6c08678e3552
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 00294a5066b9fab7cab542598feb2fd6d0e7240f320e53ae52cf19e8a661e2b2
 ---
 
----
-title: Create Service Account
-url: https://platform.claude.com/docs/en/api/admin/service_accounts/create
----
+# Create Service Account
 
-## Create Service Account
-
-**post** `/v1/organizations/service_accounts`
+**POST** `/v1/organizations/service_accounts`
 
 Create a service account.
 
@@ -25,7 +20,7 @@ keys are not accepted. Creating an `admin`-role service account requires
 an interactive credential (a user OAuth token or a Console session) — a
 workload may only create `developer`-role service accounts.
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of string`
 
@@ -33,15 +28,19 @@ workload may only create `developer`-role service accounts.
 
   To use multiple betas, use a comma separated list like `beta1,beta2` or specify the header multiple times for each beta.
 
-### Body Parameters
+## Body parameters
 
 - `name: string`
 
   Slug identifier (lowercase, digits, hyphens). Unique within the organization; a duplicate name returns 409.
 
+  maxLength: 255, minLength: 1
+
 - `description: optional string or null`
 
   Optional free-text description.
+
+  maxLength: 2000
 
 - `organization_role: optional "admin" or "developer"`
 
@@ -51,9 +50,9 @@ workload may only create `developer`-role service accounts.
 
   - `"developer"`
 
-### Returns
+## Returns
 
-- `ServiceAccount object { id, archived_at, archived_by_actor_id, 8 more }`
+- `ServiceAccount object`
 
   Named non-human identity within the caller's organization.
 
@@ -68,6 +67,8 @@ workload may only create `developer`-role service accounts.
 
     If set, this service account is archived.
 
+    format: date-time
+
   - `archived_by_actor_id: string or null`
 
     Tagged ID (`user_`/`svac_`) of the actor that archived this service account.
@@ -75,6 +76,8 @@ workload may only create `developer`-role service accounts.
   - `created_at: string`
 
     When this service account was created.
+
+    format: date-time
 
   - `created_by_actor_id: string or null`
 
@@ -98,19 +101,21 @@ workload may only create `developer`-role service accounts.
 
   - `type: "service_account"`
 
-    - `"service_account"`
+    default: service_account
 
   - `updated_at: string`
 
     When this service account was last updated.
 
+    format: date-time
+
   - `updated_by_actor_id: string or null`
 
     Tagged ID (`user_`/`svac_`) of the actor that last updated this service account.
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/service_accounts \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
@@ -120,7 +125,7 @@ curl https://api.anthropic.com/v1/organizations/service_accounts \
         }'
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

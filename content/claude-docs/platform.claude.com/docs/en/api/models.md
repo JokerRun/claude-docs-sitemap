@@ -1,26 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 5e368825a1b07dcbfb100251ebc4f7d551f223f11a1b5409a8a5c3ae5e0d84dd
----
-
----
-title: Models
-url: https://platform.claude.com/docs/en/api/models
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 161dbdf8d3cbcdcd5c1a3d9f0e95643dd413d3de548bebd3e7fe1478bb660172
 ---
 
 # Models
 
 ## List Models
 
-**get** `/v1/models`
+**GET** `/v1/models`
 
 List available models.
 
 The Models API response can be used to determine which models are available for use in the API. More recently released models are listed first.
 
-### Query Parameters
+### Query parameters
 
 - `after_id: optional string`
 
@@ -36,7 +31,9 @@ The Models API response can be used to determine which models are available for 
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
-### Header Parameters
+  default: 20, maximum: 1000, minimum: 1
+
+### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -226,6 +223,8 @@ The Models API response can be used to determine which models are available for 
 
     RFC 3339 datetime string representing the time at which the model was released. May be set to an epoch value if the release date is unknown.
 
+    format: date-time
+
   - `display_name: string`
 
     A human-readable name for the model.
@@ -244,7 +243,7 @@ The Models API response can be used to determine which models are available for 
 
     For Models, this is always `"model"`.
 
-    - `"model"`
+    default: model
 
 - `first_id: string or null`
 
@@ -260,13 +259,13 @@ The Models API response can be used to determine which models are available for 
 
 ### Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/models \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-#### Response
+#### Response (200)
 
 ```json
 {
@@ -349,19 +348,19 @@ curl https://api.anthropic.com/v1/models \
 
 ## Get a Model
 
-**get** `/v1/models/{model_id}`
+**GET** `/v1/models/{model_id}`
 
 Get a specific model.
 
 The Models API response can be used to determine information about a specific model or resolve a model alias to a model ID.
 
-### Path Parameters
+### Path parameters
 
 - `model_id: string`
 
   Model identifier or alias.
 
-### Header Parameters
+### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -441,7 +440,7 @@ The Models API response can be used to determine information about a specific mo
 
 ### Returns
 
-- `ModelInfo object { id, capabilities, created_at, 4 more }`
+- `ModelInfo object`
 
   - `id: string`
 
@@ -551,6 +550,8 @@ The Models API response can be used to determine information about a specific mo
 
     RFC 3339 datetime string representing the time at which the model was released. May be set to an epoch value if the release date is unknown.
 
+    format: date-time
+
   - `display_name: string`
 
     A human-readable name for the model.
@@ -569,17 +570,17 @@ The Models API response can be used to determine information about a specific mo
 
     For Models, this is always `"model"`.
 
-    - `"model"`
+    default: model
 
 ### Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/models/$MODEL_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-#### Response
+#### Response (200)
 
 ```json
 {
@@ -653,11 +654,11 @@ curl https://api.anthropic.com/v1/models/$MODEL_ID \
 }
 ```
 
-## Domain Types
+## Domain types
 
 ### Capability Support
 
-- `CapabilitySupport object { supported }`
+- `CapabilitySupport object`
 
   Indicates whether a capability is supported.
 
@@ -667,7 +668,7 @@ curl https://api.anthropic.com/v1/models/$MODEL_ID \
 
 ### Context Management Capability
 
-- `ContextManagementCapability object { clear_thinking_20251015, clear_tool_uses_20250919, compact_20260112, supported }`
+- `ContextManagementCapability object`
 
   Context management capability details.
 
@@ -693,7 +694,7 @@ curl https://api.anthropic.com/v1/models/$MODEL_ID \
 
 ### Effort Capability
 
-- `EffortCapability object { high, low, max, 3 more }`
+- `EffortCapability object`
 
   Effort (reasoning_effort) capability details.
 
@@ -727,7 +728,7 @@ curl https://api.anthropic.com/v1/models/$MODEL_ID \
 
 ### Model Capabilities
 
-- `ModelCapabilities object { batch, citations, code_execution, 6 more }`
+- `ModelCapabilities object`
 
   Model capability information.
 
@@ -829,7 +830,7 @@ curl https://api.anthropic.com/v1/models/$MODEL_ID \
 
 ### Model Info
 
-- `ModelInfo object { id, capabilities, created_at, 4 more }`
+- `ModelInfo object`
 
   - `id: string`
 
@@ -939,6 +940,8 @@ curl https://api.anthropic.com/v1/models/$MODEL_ID \
 
     RFC 3339 datetime string representing the time at which the model was released. May be set to an epoch value if the release date is unknown.
 
+    format: date-time
+
   - `display_name: string`
 
     A human-readable name for the model.
@@ -957,11 +960,11 @@ curl https://api.anthropic.com/v1/models/$MODEL_ID \
 
     For Models, this is always `"model"`.
 
-    - `"model"`
+    default: model
 
 ### Thinking Capability
 
-- `ThinkingCapability object { supported, types }`
+- `ThinkingCapability object`
 
   Thinking capability details.
 
@@ -987,7 +990,7 @@ curl https://api.anthropic.com/v1/models/$MODEL_ID \
 
 ### Thinking Types
 
-- `ThinkingTypes object { adaptive, enabled }`
+- `ThinkingTypes object`
 
   Supported thinking type configurations.
 

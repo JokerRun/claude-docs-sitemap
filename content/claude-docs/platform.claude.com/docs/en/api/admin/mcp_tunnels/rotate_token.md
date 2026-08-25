@@ -1,18 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/rotate_token
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 97b6030de71b9120277bf6fa64a8e8cb2366a072971600ff50ca3c910ca579c2
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 23b9db00eb5dd0da9bc03809d0c2c9ceb093adeb3022f27db3df2f1dcf51f61f
 ---
 
----
-title: Rotate Tunnel Token
-url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/rotate_token
----
+# Rotate Tunnel Token
 
-## Rotate Tunnel Token
+**POST** `/v1/organizations/tunnels/{tunnel_id}/rotate_token`
 
-**post** `/v1/organizations/tunnels/{tunnel_id}/rotate_token`
+**Deprecated**
 
 **Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and will be removed after a migration window. New integrations should use [`/v1/tunnels`](/docs/en/api/beta/tunnels) with the `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the `workspace:manage_tunnels` scope. Existing integrations continue to work with the `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window.
 
@@ -22,27 +19,27 @@ Established connections are not severed by rotation; a connector
 restarted after rotation must use the new value. An optional
 `reason` is captured for operational context.
 
-### Path Parameters
+## Path parameters
 
 - `tunnel_id: string`
 
   ID of the Tunnel.
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": array of "mcp-tunnels-2026-05-19"`
 
   Required for all Tunnel endpoints.
 
-  - `"mcp-tunnels-2026-05-19"`
-
-### Body Parameters
+## Body parameters
 
 - `reason: optional string or null`
 
   Optional free-text reason for the rotation, recorded for audit.
 
-### Returns
+  maxLength: 1024
+
+## Returns
 
 - `id: string`
 
@@ -57,18 +54,18 @@ restarted after rotation must use the new value. An optional
 
   Object type. Always `tunnel_token` for Tunnel Tokens.
 
-  - `"tunnel_token"`
+  default: tunnel_token
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/rotate_token \
     -X POST \
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

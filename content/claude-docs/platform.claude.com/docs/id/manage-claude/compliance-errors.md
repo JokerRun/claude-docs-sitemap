@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-errors
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: b4fad0f8b65354769974330797736fcb7f32add9ad84d6b5ab3b23ea0ac8edc0
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 0c5d066f8a441e7bfd03adb6a2b3351f80135f82f176905812ba113c4b50e7fd
 ---
 
 ---
@@ -129,7 +129,7 @@ The API key provided is invalid or has been revoked.
 
 ## 403 Forbidden
 
-Kunci dalam `x-api-key` valid tetapi tidak membawa scope yang diperlukan endpoint. Pesan verbatim mencantumkan scope yang dibawa kunci (`Got:`) dan scope yang diperlukan endpoint (`Needed:`), sehingga Anda dapat mengonfirmasi apa yang dibawa kunci tanpa memeriksa ulang Claude Console atau claude.ai. Scope Compliance Access Key tidak dapat diubah setelah pembuatan, sehingga setiap perbaikan scope-tidak-memadai mengarahkan Anda untuk membuat kunci baru, bukan mengedit kunci yang ada.
+Kunci dalam `x-api-key` valid tetapi tidak membawa scope yang diperlukan endpoint. Pesan verbatim mencantumkan scope yang dibawa kunci (`Got:`) dan scope yang diperlukan endpoint (`Needed:`), sehingga Anda dapat mengonfirmasi apa yang dibawa kunci tanpa memeriksa ulang Claude Console atau claude.ai. Scope Compliance Access Key tidak dapat diubah setelah pembuatan, sehingga setiap perbaikan scope-tidak-memadai mengarahkan Anda untuk membuat kunci baru alih-alih mengedit yang sudah ada. Organisasi Claude Console mandiri (yang tidak memiliki organisasi induk) tidak dapat membuat Compliance Access Key, sehingga perbaikan yang memerlukannya tidak berlaku untuknya; organisasi tersebut hanya dapat melakukan query Activity Feed.
 
 ### Scope tidak memadai: Activity Feed
 

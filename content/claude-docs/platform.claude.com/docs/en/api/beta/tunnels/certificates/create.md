@@ -1,28 +1,23 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/create
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 695198f65d7c2643e4f8b6ce20dde1aa69234876563e8b91132fa3af406fa8d1
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 23d0c509049e9c59b4b6bc59a6eb044b4f78fe63ea92be7d02352fc4cb2d9326
 ---
 
----
-title: Create Tunnel Certificate
-url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/create
----
+# Create Tunnel Certificate
 
-## Create Tunnel Certificate
-
-**post** `/v1/tunnels/{tunnel_id}/certificates`
+**POST** `/v1/tunnels/{tunnel_id}/certificates`
 
 The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window.
 
 Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's server certificate against this CA when it terminates the inner TLS session. A tunnel holds at most two non-archived certificates.
 
-### Path Parameters
+## Path parameters
 
 - `tunnel_id: string`
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -100,15 +95,17 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
-### Body Parameters
+## Body parameters
 
 - `ca_certificate_pem: string`
 
   PEM-encoded X.509 CA certificate. Must contain exactly one certificate and no private-key material. Maximum 8KB.
 
-### Returns
+  maxLength: 8192
 
-- `BetaTunnelCertificate object { id, archived_at, created_at, 4 more }`
+## Returns
+
+- `BetaTunnelCertificate object`
 
   A CA certificate attached to a tunnel.
 
@@ -120,13 +117,19 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
 
     A timestamp in RFC 3339 format
 
+    format: date-time
+
   - `created_at: string`
 
     A timestamp in RFC 3339 format
 
+    format: date-time
+
   - `expires_at: string or null`
 
     A timestamp in RFC 3339 format
+
+    format: date-time
 
   - `fingerprint: string`
 
@@ -138,11 +141,9 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
 
   - `type: "tunnel_certificate"`
 
-    - `"tunnel_certificate"`
+## Example
 
-### Example
-
-```http
+```bash
 curl https://api.anthropic.com/v1/tunnels/$TUNNEL_ID/certificates \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
@@ -153,7 +154,7 @@ curl https://api.anthropic.com/v1/tunnels/$TUNNEL_ID/certificates \
         }'
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

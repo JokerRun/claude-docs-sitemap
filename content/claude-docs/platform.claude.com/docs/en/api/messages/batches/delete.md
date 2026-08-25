@@ -1,18 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/delete
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 8998e1b23b64f7bd2538cd99b694bfd2593fa2a8df1133bf2b30010da244d410
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 3bde5bdb9d1c2fa55f86850c3680da86e8691e9709f97f96381dda103c92a6d6
 ---
 
----
-title: Delete a Message Batch
-url: https://platform.claude.com/docs/en/api/messages/batches/delete
----
+# Delete a Message Batch
 
-## Delete a Message Batch
-
-**delete** `/v1/messages/batches/{message_batch_id}`
+**DELETE** `/v1/messages/batches/{message_batch_id}`
 
 Delete a Message Batch.
 
@@ -20,15 +15,15 @@ Message Batches can only be deleted once they've finished processing. If you'd l
 
 Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
-### Path Parameters
+## Path parameters
 
 - `message_batch_id: string`
 
   ID of the Message Batch.
 
-### Returns
+## Returns
 
-- `DeletedMessageBatch object { id, type }`
+- `DeletedMessageBatch object`
 
   - `id: string`
 
@@ -40,18 +35,18 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     For Message Batches, this is always `"message_batch_deleted"`.
 
-    - `"message_batch_deleted"`
+    default: message_batch_deleted
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

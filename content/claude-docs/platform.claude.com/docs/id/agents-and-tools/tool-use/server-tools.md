@@ -1,21 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools
-fetched_at: 2026-08-23T02:32:19.757524Z
-sha256: 1055f4d37477b237eb4f84f34c61ec83fb8f92f3b7c9ba95064c26a73aa3215f
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 08b87f793312641362ccf68d930cb5437886ec61f1cafce0bc989ca357cbf32c
 ---
 
 ---
 title: Alat server
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools
-description: "Bekerja dengan alat yang dieksekusi oleh Anthropic: blok server_tool_use, kelanjutan pause_turn, giliran campuran alat server dan klien, serta pemfilteran domain."
+description: "Bekerja dengan alat yang dieksekusi Anthropic: blok server_tool_use, kelanjutan pause_turn, giliran campuran alat server dan klien, serta pemfilteran domain."
 ---
 
-Alat yang dieksekusi di server memiliki mekanisme yang sama: blok `server_tool_use`, kelanjutan `pause_turn`, giliran yang mencampur alat server dan klien, kelayakan "Zero Data Retention" (Retensi Data Nol), atau ZDR, dan pemfilteran domain. Untuk masing-masing alat, lihat [referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference).
+Alat yang dieksekusi server berbagi mekanisme berikut: blok `server_tool_use`, kelanjutan `pause_turn`, giliran yang mencampur alat server dan klien, kelayakan "Zero Data Retention" (Retensi Data Nol), atau ZDR, dan pemfilteran domain. Untuk alat individual, lihat [referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference).
 
 ## Blok server\_tool\_use
 
-Blok `server_tool_use` muncul dalam respons Claude ketika alat yang dieksekusi di server berjalan. Field `id`-nya menggunakan prefiks `srvtoolu_` untuk membedakannya dari panggilan alat klien:
+Blok `server_tool_use` muncul dalam respons Claude ketika alat yang dieksekusi server berjalan. Field `id`-nya menggunakan prefiks `srvtoolu_` untuk membedakannya dari panggilan alat klien:
 
 ```json
 {
@@ -26,7 +26,7 @@ Blok `server_tool_use` muncul dalam respons Claude ketika alat yang dieksekusi d
 }
 ```
 
-API mengeksekusi alat tersebut secara internal. Anda melihat panggilan dan hasilnya dalam respons, tetapi Anda tidak menangani eksekusinya. Berbeda dengan blok `tool_use` klien, Anda tidak perlu merespons dengan `tool_result`. Blok hasil alat (misalnya, `web_search_tool_result` untuk pencarian web) mengikuti blok `server_tool_use` dalam giliran asisten yang sama, dipasangkan berdasarkan `tool_use_id`. Jika Claude memanggil salah satu alat klien Anda pada saat yang sama, blok `server_tool_use` muncul tanpa hasilnya, dan respons berakhir dengan `stop_reason: "tool_use"`. API menjalankan alat tersebut ketika Anda mengembalikan blok `tool_result` klien dalam permintaan berikutnya.
+API mengeksekusi alat secara internal. Anda melihat panggilan dan hasilnya dalam respons, tetapi Anda tidak menangani eksekusinya. Berbeda dengan blok `tool_use` klien, Anda tidak perlu merespons dengan `tool_result`. Blok hasil alat (misalnya, `web_search_tool_result` untuk pencarian web) mengikuti blok `server_tool_use` dalam giliran asisten yang sama, dipasangkan berdasarkan `tool_use_id`. Jika Claude memanggil salah satu alat klien Anda pada saat yang sama, blok `server_tool_use` muncul tanpa hasilnya, dan respons berakhir dengan `stop_reason: "tool_use"`. API menjalankan alat tersebut ketika Anda mengembalikan blok `tool_result` klien dalam permintaan berikutnya.
 
 ## Loop sisi server dan pause\_turn
 
@@ -131,7 +131,7 @@ Berikut cara menangani stop reason `pause_turn`:
     ]
   });
 
-  // Periksa apakah respons memiliki stop reason pause_turn
+  // Periksa apakah respons memiliki stop_reason pause_turn
   if (response.stop_reason === "pause_turn") {
     // Lanjutkan percakapan dengan konten yang dijeda
     const messages: Anthropic.MessageParam[] = [
@@ -399,20 +399,20 @@ Saat menangani `pause_turn`:
 
 * **Lanjutkan percakapan:** Kirimkan kembali respons yang dijeda apa adanya dalam permintaan berikutnya agar Claude dapat melanjutkan gilirannya.
 * **Pertahankan status alat:** Sertakan alat yang sama dalam permintaan kelanjutan. Giliran yang dijeda dapat berakhir dengan blok `server_tool_use` yang alatnya belum berjalan, dan API mengembalikan error validasi jika alat tersebut tidak ada dalam kelanjutan.
-* **Ulangi sesuai kebutuhan:** Giliran yang dilanjutkan dapat dijeda lagi. Periksa `stop_reason` pada setiap respons dan lanjutkan hingga Anda mendapatkan stop reason yang berbeda, dengan membatasi jumlah kelanjutan seperti yang Anda lakukan pada loop percobaan ulang apa pun.
+* **Ulangi sesuai kebutuhan:** Giliran yang dilanjutkan dapat dijeda lagi. Periksa `stop_reason` pada setiap respons dan lanjutkan hingga Anda mendapatkan stop reason yang berbeda, dengan membatasi jumlah kelanjutan seperti yang Anda lakukan pada loop retry apa pun.
 
 Untuk nilai `stop_reason` lainnya dan pola penanganan umum, lihat [Stop reason dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons).
 
 ## Mencampur alat server dan alat klien dalam satu giliran
 
-Claude dapat memanggil alat server dan alat klien dalam kelompok panggilan alat paralel yang sama, misalnya, `web_fetch` bersama dengan alat yang didefinisikan pengguna. Alat klien adalah alat apa pun yang dieksekusi oleh kode Anda dan yang menghasilkan blok `tool_use`, baik itu didefinisikan pengguna maupun alat klien berskema Anthropic seperti [alat Bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool). Ketika itu terjadi, API tidak menjalankan alat server. API segera mengembalikan respons agar Anda dapat menjalankan alat klien terlebih dahulu:
+Claude dapat memanggil alat server dan alat klien dalam kelompok panggilan alat paralel yang sama, misalnya, `web_fetch` bersama dengan alat yang didefinisikan pengguna. Alat klien adalah alat apa pun yang dieksekusi oleh kode Anda dan yang menghasilkan blok `tool_use`, baik yang didefinisikan pengguna maupun alat klien berskema Anthropic seperti [alat Bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool). Ketika itu terjadi, API tidak menjalankan alat server. API segera mengembalikan respons agar Anda dapat menjalankan alat klien terlebih dahulu:
 
 * `stop_reason` adalah `"tool_use"`, bukan `"pause_turn"`.
 * `content` berisi blok `server_tool_use` dan blok `tool_use` klien, tetapi tidak ada blok hasil untuk alat server: panggilan tersebut belum selesai.
 * Tidak ada penanda lain. Deteksi status ini dengan mencari blok `server_tool_use` yang `id`-nya tidak memiliki blok hasil yang cocok dalam respons. Blok `mcp_tool_use` dari [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector) berperilaku dengan cara yang sama. Panggilan alat server yang sudah memiliki blok hasilnya dalam respons yang sama sudah selesai dan tidak memerlukan apa pun dari Anda.
 
 <Note>
-  Dengan [pemanggilan alat terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), bentuk respons yang sama memiliki arti yang berbeda. Blok `tool_use` klien berasal dari kode yang berjalan di alat `code_execution`, bukan dari Claude secara langsung, dan field `caller`-nya menyebutkan blok `code_execution` yang memanggilnya. Kode tersebut sudah dimulai: kode itu dijeda menunggu blok `tool_result` Anda, dan mengirimkannya akan melanjutkan eksekusi alih-alih memulai alat yang ditangguhkan. Blok hasil milik blok `code_execution` itu sendiri tiba setelah kode selesai, yang dapat memerlukan lebih dari satu putaran hasil alat. Pesan pengguna lanjutan itu sendiri sama dalam kedua kasus; dengan pemanggilan alat terprogram, kirimkan juga kembali `id` dari field `container` respons, seperti yang ditunjukkan halaman tersebut.
+  Dengan [pemanggilan alat terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), bentuk respons yang sama memiliki arti yang berbeda. Blok `tool_use` klien berasal dari kode yang sedang berjalan di alat `code_execution`, bukan dari Claude secara langsung, dan field `caller`-nya menyebutkan blok `code_execution` yang memanggilnya. Kode tersebut sudah dimulai: kode itu dijeda menunggu blok `tool_result` Anda, dan mengirimkannya akan melanjutkan eksekusi alih-alih memulai alat yang ditangguhkan. Blok hasil milik blok `code_execution` itu sendiri tiba setelah kode selesai, yang dapat memerlukan lebih dari satu putaran hasil alat. Pesan pengguna lanjutannya sendiri sama dalam kedua kasus; dengan pemanggilan alat terprogram, kirimkan juga kembali `id` dari field `container` respons, seperti yang ditunjukkan halaman tersebut.
 </Note>
 
 ```json
@@ -487,13 +487,13 @@ API melampirkan hasil Anda ke giliran asisten yang masih terbuka, menjalankan al
 Blok `server_tool_use` dan blok hasilnya dipasangkan berdasarkan `tool_use_id`, bukan berdasarkan posisi: dalam alur ini keduanya tiba dalam dua respons yang berbeda, dan blok `server_tool_use` tidak diulang dalam respons kedua. Pada permintaan selanjutnya, simpan seluruh pertukaran dalam array `messages` Anda secara berurutan: respons pertama sebagai pesan `assistant`, pesan pengguna `tool_result`, lalu respons berikutnya sebagai pesan `assistant` lainnya, dengan cara yang sama seperti Anda mengakumulasi pertukaran penggunaan alat lainnya.
 
 <Warning>
-  Pesan pengguna lanjutan tidak boleh berisi apa pun selain blok `tool_result`. Blok yang ditambahkan setelah hasil, seperti teks, memberi tahu API bahwa giliran asisten telah selesai. Untuk alat server yang dipanggil Claude secara langsung, hal itu membuat giliran memiliki panggilan alat server yang belum terselesaikan, dan permintaan gagal dengan 400 `invalid_request_error`:
+  Pesan pengguna lanjutan tidak boleh berisi apa pun selain blok `tool_result`. Blok yang ditambahkan setelah hasil, seperti teks, memberi tahu API bahwa giliran asisten telah berakhir. Untuk alat server yang dipanggil Claude secara langsung, hal itu membuat giliran memiliki panggilan alat server yang belum terselesaikan, dan permintaan gagal dengan 400 `invalid_request_error`:
 
   ```text wrap
   `web_fetch` tool use with id `srvtoolu_01HxbWnMRmbWyMfUtJKC45rA` was found without a corresponding `web_fetch_tool_result` block
   ```
 
-  Lanjutan yang menempatkan konten sebelum hasil, hanya menjawab sebagian ID `tool_use` klien, atau tidak berisi blok `tool_result` sama sekali akan gagal lebih awal, dengan error alat klien yang dijelaskan di [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls):
+  Pesan lanjutan yang menempatkan konten sebelum hasil, hanya menjawab sebagian ID `tool_use` klien, atau tidak berisi blok `tool_result` sama sekali akan gagal lebih awal, dengan error alat klien yang dijelaskan di [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls):
 
   ```text wrap
   `tool_use` ids were found without `tool_result` blocks immediately after: toolu_01PjgRJLbXrXEMZwDNYLnBqk. Each `tool_use` block must have a corresponding `tool_result` block in the next message.
@@ -502,7 +502,7 @@ Blok `server_tool_use` dan blok hasilnya dipasangkan berdasarkan `tool_use_id`, 
   Untuk memberi Claude input tambahan, kirimkan sebagai pesan pengguna terpisah setelah giliran selesai.
 </Warning>
 
-**Perbedaannya dengan `pause_turn`:** [Respons `pause_turn`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#the-server-side-loop-and-pause-turn) juga dapat berakhir dengan blok `server_tool_use` yang belum berjalan, tetapi respons tersebut tidak pernah meninggalkan blok `tool_use` klien yang menunggu Anda, sehingga Anda melanjutkannya dengan mengirim ulang konten asisten apa adanya. Respons yang meninggalkan blok `tool_use` klien yang menunggu Anda tidak pernah memiliki `stop_reason` berupa `pause_turn`: ketika Claude berhenti untuk memanggil alat Anda, `stop_reason` adalah `tool_use`, dan Anda melanjutkannya dengan mengirim blok `tool_result` klien, bukan dengan mengirim ulang respons. Dalam kedua kasus, API menjalankan alat server yang tertunda di awal permintaan berikutnya.
+**Perbedaannya dengan `pause_turn`:** [Respons `pause_turn`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#the-server-side-loop-and-pause-turn) juga dapat berakhir dengan blok `server_tool_use` yang belum berjalan, tetapi respons tersebut tidak pernah meninggalkan blok `tool_use` klien yang menunggu Anda, sehingga Anda melanjutkannya dengan mengirim ulang konten asisten apa adanya. Respons yang meninggalkan blok `tool_use` klien yang menunggu Anda tidak pernah memiliki `stop_reason` berupa `pause_turn`: ketika Claude berhenti untuk memanggil alat Anda, `stop_reason` adalah `tool_use`, dan Anda melanjutkannya dengan mengirim blok `tool_result` klien, bukan dengan mengirim ulang respons. Dalam kedua kasus, API menjalankan alat server yang tertunda pada awal permintaan berikutnya.
 
 Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang didefinisikan pengguna dan menangani respons campuran:
 
@@ -615,7 +615,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
           ],
       )
       # Jika web_fetch ditunda, ia dijalankan pada permintaan ini dan
-      # web_fetch_tool_result-nya menjadi blok pertama dari continuation.content.
+      # web_fetch_tool_result-nya adalah blok pertama dari continuation.content.
       print(continuation)
   else:
       print(response)
@@ -1023,7 +1023,7 @@ Versi dasar pencarian web (`web_search_20250305`) dan web fetch (`web_fetch_2025
 
 Versi `_20260209` dan yang lebih baru dengan pemfilteran dinamis **tidak** memenuhi syarat ZDR secara default karena pemfilteran dinamis bergantung pada eksekusi kode secara internal.
 
-Untuk menggunakan alat server `_20260209` atau yang lebih baru dengan ZDR, nonaktifkan pemfilteran dinamis dengan menetapkan `"allowed_callers": ["direct"]` pada alat tersebut:
+Untuk menggunakan alat server `_20260209` atau yang lebih baru dengan ZDR, nonaktifkan pemfilteran dinamis dengan mengatur `"allowed_callers": ["direct"]` pada alat:
 
 ```json
 {
@@ -1035,7 +1035,7 @@ Untuk menggunakan alat server `_20260209` atau yang lebih baru dengan ZDR, nonak
 
 Ini membatasi alat hanya untuk pemanggilan langsung, melewati langkah eksekusi kode internal.
 
-`allowed_callers` mengontrol bagaimana sebuah alat dapat dipanggil: secara langsung oleh Claude (`"direct"`), dari dalam kontainer eksekusi kode (misalnya, `"code_execution_20260120"`), atau keduanya. Versi `_20260209` dari alat web secara default hanya menggunakan pemanggil eksekusi kode; versi sebelumnya secara default menggunakan `["direct"]`. Pada model yang tidak mendukung pemanggilan alat terprogram, versi ini memerlukan `allowed_callers: ["direct"]`; tanpanya API mengembalikan error validasi yang meminta Anda menetapkannya.
+`allowed_callers` mengontrol bagaimana alat dapat dipanggil: secara langsung oleh Claude (`"direct"`), dari dalam kontainer eksekusi kode (misalnya, `"code_execution_20260120"`), atau keduanya. Versi `_20260209` dari alat web secara default hanya menggunakan pemanggil eksekusi kode; versi sebelumnya secara default menggunakan `["direct"]`. Pada model yang tidak mendukung pemanggilan alat terprogram, versi ini memerlukan `allowed_callers: ["direct"]`; tanpanya API mengembalikan error validasi yang meminta Anda mengaturnya.
 
 <Note>
   Bahkan ketika web fetch digunakan dalam konfigurasi yang memenuhi syarat ZDR, penerbit situs web mungkin menyimpan parameter apa pun yang diteruskan ke URL jika Claude mengambil konten dari situs mereka.
@@ -1056,7 +1056,7 @@ Alat server yang mengakses web menerima parameter `allowed_domains` dan `blocked
 Saat menggunakan filter domain:
 
 * Domain tidak boleh menyertakan skema HTTP/HTTPS (gunakan `example.com` alih-alih `https://example.com`).
-* Subdomain disertakan secara otomatis (`example.com` mencakup `docs.example.com`).
+* Subdomain secara otomatis disertakan (`example.com` mencakup `docs.example.com`).
 * Subdomain spesifik membatasi hasil hanya pada subdomain tersebut (`docs.example.com` hanya mengembalikan hasil dari subdomain tersebut, bukan dari `example.com` atau `api.example.com`).
 * Subpath didukung untuk pencarian web dan cocok dengan apa pun setelah path (`example.com/blog` cocok dengan `example.com/blog/post-1`).
 * Web fetch hanya mencocokkan domain: entri yang menyertakan path tidak pernah cocok dengan URL web fetch.
@@ -1075,8 +1075,12 @@ Format domain yang tidak valid ditolak pada saat permintaan dengan 400 `invalid_
 </Note>
 
 <Warning>
-  Karakter Unicode dalam nama domain dapat melewati filter domain melalui serangan homograf: `аmazon.com` (dengan `а` Sirilik) terlihat identik dengan `amazon.com` tetapi merupakan domain yang berbeda. Gunakan nama domain khusus ASCII dalam daftar izin dan blokir, dan audit entri yang ada untuk karakter non-ASCII.
+  Karakter Unicode dalam nama domain dapat melewati filter domain melalui serangan homograf: `аmazon.com` (dengan `а` Kiril) terlihat identik dengan `amazon.com` tetapi merupakan domain yang berbeda. Gunakan nama domain khusus ASCII dalam daftar izin dan blokir, dan audit entri yang ada untuk karakter non-ASCII.
 </Warning>
+
+[Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) menggunakan field `allowed_domains` dan `blocked_domains` yang sama pada entri `web_search` dan `web_fetch` dari toolset agen. Pada Managed Agents, setiap daftar menampung maksimal 64 entri, domain yang terdaftar untuk `web_fetch` tidak dapat menyertakan path, dan field khusus untuk alat Messages API, seperti `max_uses`, `citations`, dan `cache_control`, tidak tersedia. Lihat [Membatasi domain pencarian web dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains) untuk aturan lengkapnya.
+
+Pengaturan pencarian web dan web fetch tingkat organisasi di Claude Console hanya berlaku untuk permintaan Messages API; pengaturan tersebut tidak berlaku untuk sesi Managed Agents, yang hanya menggunakan daftar per alat pada toolset agen.
 
 ## Pemfilteran dinamis dengan eksekusi kode
 
@@ -1090,7 +1094,7 @@ Versi `_20260209` dan yang lebih baru dari pencarian web dan web fetch menggunak
 
 Event alat server di-streaming sebagai bagian dari alur "server-sent events" (event yang dikirim server), atau SSE, yang normal. Blok `server_tool_use` yang dipanggil Claude secara langsung di-streaming seperti blok `tool_use` klien: event `content_block_start` diikuti oleh event `input_json_delta`. Blok hasil tiba secara lengkap dalam satu event `content_block_start`, tanpa delta.
 
-Lihat [Streaming](https://platform.claude.com/docs/id/build-with-claude/streaming) untuk referensi event lengkap. Halaman masing-masing alat mendokumentasikan nama event khusus alat jika berbeda.
+Lihat [Streaming](https://platform.claude.com/docs/id/build-with-claude/streaming) untuk referensi event lengkap. Halaman alat individual mendokumentasikan nama event khusus alat jika berbeda.
 
 ## Permintaan batch
 
@@ -1102,10 +1106,10 @@ Beban kerja batch yang umum mencakup memperkaya dataset dengan informasi dari we
 
 <CardGroup cols={2}>
   <Card title="Pemecahan masalah penggunaan alat" icon="wrench" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/troubleshooting-tool-use">
-    Perbaiki error penggunaan alat yang paling umum dengan tabel diagnostik gejala-ke-perbaikan.
+    Perbaiki error penggunaan alat yang paling umum dengan tabel diagnostik dari gejala ke perbaikan.
   </Card>
 
-  <Card title="Alat pencarian web" icon="browser" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool">
+  <Card title="Alat pencarian web" icon="magnifying-glass" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool">
     Cari di web dan kutip hasilnya.
   </Card>
 

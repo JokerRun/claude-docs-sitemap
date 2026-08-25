@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision-coordinates
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: dc8f5063e1006f757f64b355c40566deecb31910862c20560f826279d05a0ac0
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 05364f33e084414e0ce20f9f77282503aea08bdf93a6855fa96b2e55e57873f3
 ---
 
 ---
@@ -11,54 +11,54 @@ url: https://platform.claude.com/docs/id/build-with-claude/vision-coordinates
 description: Bagaimana Claude mengubah ukuran gambar, dan cara bekerja dengan koordinat piksel yang dikembalikannya untuk bounding box, titik, dan elemen UI.
 ---
 
-Claude dapat menemukan dan memberi label pada region dalam sebuah gambar (misalnya, mengembalikan "bounding box" (kotak pembatas) untuk tabel, kolom formulir, elemen grafik, atau komponen UI). Panduan ini membahas bagaimana Claude mengubah ukuran gambar sebelum memprosesnya dan cara bekerja dengan koordinat piksel yang dikembalikannya, sehingga kotak dan titik selaras dengan gambar asli Anda.
+Claude dapat menemukan dan melabeli wilayah pada sebuah gambar (misalnya, mengembalikan "bounding box" (kotak pembatas) untuk tabel, bidang formulir, elemen grafik, atau komponen UI). Panduan ini membahas bagaimana Claude mengubah ukuran gambar sebelum memprosesnya dan cara bekerja dengan koordinat piksel yang dikembalikannya, sehingga kotak dan titik selaras dengan gambar asli Anda.
 
-Anda akan membutuhkan ini untuk pipeline OCR, ekstraksi formulir, parsing grafik, penentuan lokasi elemen UI, dan tugas apa pun di mana Anda bertindak pada region tertentu dari sebuah gambar. Untuk pengiriman gambar, format yang didukung, dan batas resolusi per model, lihat [Vision](https://platform.claude.com/docs/id/build-with-claude/vision).
+Anda akan membutuhkan ini untuk pipeline OCR, ekstraksi formulir, penguraian grafik, penentuan lokasi elemen UI, dan tugas apa pun di mana Anda bertindak pada wilayah tertentu dari sebuah gambar. Untuk pengiriman gambar, format yang didukung, dan batas resolusi per model, lihat [Vision](https://platform.claude.com/docs/id/build-with-claude/vision).
 
 <Note>
-  **Claude bekerja paling baik dengan koordinat piksel absolut.** Minta koordinat tersebut secara eksplisit dalam prompt Anda. Misalnya: *"Return the bounding box of each table as `[x1, y1, x2, y2]` (top-left and bottom-right corners) in pixel coordinates."* Claude tidak bekerja dengan baik ketika Anda meminta koordinat yang dinormalisasi, misalnya: *"Return bounding box coordinates between `0` and `1000`."* Selalu minta koordinat piksel dan lakukan normalisasi dalam kode Anda sendiri jika diperlukan. Untuk mendapatkan koordinat sebagai JSON yang dapat dibaca mesin alih-alih prosa, definisikan skema dengan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs), misalnya sebuah objek dengan array `[x1, y1, x2, y2]` per elemen yang terdeteksi.
+  **Claude bekerja paling baik dengan koordinat piksel absolut.** Mintalah secara eksplisit dalam prompt Anda. Misalnya: *"Kembalikan bounding box setiap tabel sebagai `[x1, y1, x2, y2]` (sudut kiri atas dan kanan bawah) dalam koordinat piksel."* Claude tidak bekerja dengan baik ketika Anda meminta koordinat yang dinormalisasi, misalnya: *"Kembalikan koordinat bounding box antara `0` dan `1000`."* Selalu minta koordinat piksel dan lakukan normalisasi dalam kode Anda sendiri jika diperlukan. Untuk mendapatkan koordinat sebagai JSON yang dapat dibaca mesin alih-alih prosa, definisikan skema dengan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs), misalnya sebuah objek dengan array `[x1, y1, x2, y2]` per elemen yang terdeteksi.
 </Note>
 
-Koordinat mengikuti konvensi gambar standar: titik asal `(0, 0)` berada di sudut kiri atas gambar, dengan x bertambah ke kanan dan y bertambah ke bawah. Koordinat yang dikembalikan Claude adalah posisi piksel dalam gambar yang dilihat Claude: gambar Anda setelah Claude mengubah ukurannya agar sesuai dengan resolusi native model (lihat [Bagaimana Claude mengubah ukuran dan menambahkan padding pada gambar](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#how-claude-resizes-and-pads-images)). Untuk mendapatkan koordinat yang dapat Anda gunakan secara langsung, ubah ukuran gambar Anda terlebih dahulu sehingga koordinat dipetakan satu-ke-satu ke gambar yang Anda miliki (lihat [Ubah ukuran gambar Anda sebelum mengunggah](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#resize-your-image-before-uploading)), atau skalakan ulang koordinat yang dikembalikan Claude (lihat [Skalakan ulang koordinat ketika Anda tidak dapat mengubah ukuran terlebih dahulu](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#rescale-coordinates-when-you-cannot-pre-resize)).
+Koordinat mengikuti konvensi gambar standar: titik asal `(0, 0)` adalah sudut kiri atas gambar, dengan x bertambah ke kanan dan y bertambah ke bawah. Koordinat yang dikembalikan Claude adalah posisi piksel pada gambar yang dilihat Claude: gambar Anda setelah Claude mengubah ukurannya agar sesuai dengan resolusi native model (lihat [Bagaimana Claude mengubah ukuran dan menambahkan padding pada gambar](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#how-claude-resizes-and-pads-images)). Untuk mendapatkan koordinat yang dapat Anda gunakan secara langsung, ubah ukuran gambar Anda terlebih dahulu sehingga koordinat dipetakan satu-ke-satu ke gambar yang Anda miliki (lihat [Ubah ukuran gambar Anda sebelum mengunggah](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#resize-your-image-before-uploading)), atau skalakan ulang koordinat yang dikembalikan Claude (lihat [Skalakan ulang koordinat ketika Anda tidak dapat mengubah ukuran terlebih dahulu](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#rescale-coordinates-when-you-cannot-pre-resize)).
 
 <Note>
-  Penalaran spasial Claude memiliki batasan (lihat [Keterbatasan](https://platform.claude.com/docs/id/build-with-claude/vision#limitations)). Akurasi koordinat paling baik ketika Anda menyatakan format koordinat yang diharapkan dalam prompt Anda dan memeriksa hasil secara visual sebelum memproses dalam skala besar. Elemen kecil kehilangan presisi ketika gambar diperkecil: untuk target yang halus, potong region yang diminati dan kirim potongan tersebut (geser koordinat yang dikembalikan dengan titik asal potongan), atau gunakan model tier resolusi tinggi. Untuk [dukungan PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support), halaman dirasterisasi menjadi gambar di sisi server pada dimensi yang tidak Anda kontrol, sehingga koordinat yang dikembalikan tidak dapat dipetakan kembali ke halaman secara andal. Untuk bekerja dengan koordinat pada konten PDF, rasterisasi halaman menjadi gambar sendiri dan gunakan pendekatan pra-ubah ukuran.
+  Penalaran spasial Claude memiliki batasan (lihat [Keterbatasan](https://platform.claude.com/docs/id/build-with-claude/vision#limitations)). Akurasi koordinat paling baik ketika Anda menyatakan format koordinat yang diharapkan dalam prompt Anda dan memeriksa hasilnya secara visual sebelum memproses dalam skala besar. Elemen kecil kehilangan presisi ketika gambar diperkecil: untuk target yang halus, potong wilayah yang diminati dan kirim potongan tersebut (geser koordinat yang dikembalikan sebesar titik asal potongan), atau gunakan model tingkat resolusi tinggi. Untuk [dukungan PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support), halaman dirasterisasi menjadi gambar di sisi server pada dimensi yang tidak Anda kendalikan, sehingga koordinat yang dikembalikan tidak dapat dipetakan kembali ke halaman secara andal. Untuk bekerja dengan koordinat pada konten PDF, rasterisasi halaman menjadi gambar sendiri dan gunakan pendekatan ubah-ukuran-terlebih-dahulu.
 </Note>
 
 ## Bagaimana Claude mengubah ukuran dan menambahkan padding pada gambar
 
 Claude mencari ukuran terbesar yang mempertahankan rasio aspek dan memenuhi kedua batas gambar model:
 
-1. **Batas sisi:** tidak ada sisi yang melebihi panjang sisi maksimum (1568 px pada tier standar, 2576 px pada tier resolusi tinggi).
-2. **Batas token visual:** biaya token gambar `⌈width / 28⌉ × ⌈height / 28⌉` tidak melebihi anggaran token visual model (1568 token pada tier standar, 4784 pada tier resolusi tinggi).
+1. **Batas tepi:** tidak ada sisi yang melebihi panjang tepi maksimum (1568 px pada tingkat standar, 2576 px pada tingkat resolusi tinggi).
+2. **Batas token visual:** biaya token gambar `⌈width / 28⌉ × ⌈height / 28⌉` tidak melebihi anggaran token visual model (1568 token pada tingkat standar, 4784 pada tingkat resolusi tinggi).
 
-Lihat [Resolusi dan biaya token](https://platform.claude.com/docs/id/build-with-claude/vision#evaluate-image-size) untuk mengetahui model mana yang berada di tier mana.
+Lihat [Resolusi dan biaya token](https://platform.claude.com/docs/id/build-with-claude/vision#evaluate-image-size) untuk mengetahui model mana yang berada di tingkat mana.
 
-Untuk hampir semua foto dan tangkapan layar, batas token visual adalah yang menentukan ukuran akhir. Batas sisi hanya berlaku untuk gambar memanjang seperti panorama atau tangkapan layar ponsel yang tinggi. Hitung ukurannya dengan [implementasi referensi](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#resize-your-image-before-uploading) alih-alih menskalakan ke panjang sisi secara manual: tangkapan layar 1920×1080 diubah ukurannya menjadi 1456×819, bukan 1568×882, dan mengasumsikan batas sisi akan membuat setiap koordinat meleset secara signifikan dari target.
+Untuk hampir semua foto dan tangkapan layar, batas token visual adalah yang menentukan ukuran akhir. Batas tepi hanya berlaku untuk gambar memanjang seperti panorama atau tangkapan layar ponsel yang tinggi. Hitung ukurannya dengan [implementasi referensi](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#resize-your-image-before-uploading) alih-alih menskalakan ke panjang tepi secara manual: tangkapan layar 1920×1080 diubah ukurannya menjadi 1456×819, bukan 1568×882, dan mengasumsikan batas tepi akan membuat setiap koordinat meleset cukup jauh dari target.
 
-Batas token juga dapat memicu perubahan ukuran ketika tidak ada sisi yang melebihi batas sisi. Mengabaikan hal ini adalah penyebab paling umum dari koordinat yang tidak selaras. Misalnya, halaman A4 yang dipindai pada 130 DPI berukuran 1075×1520 piksel: kedua sisinya di bawah 1568 px, tetapi biayanya `39 × 55 = 2145` token visual, sehingga Claude mengubah ukurannya menjadi 924×1307.
+Batas token juga dapat memicu pengubahan ukuran ketika tidak ada sisi yang melebihi batas tepi. Mengabaikan hal ini adalah penyebab paling umum dari koordinat yang tidak selaras. Misalnya, halaman A4 yang dipindai pada 130 DPI berukuran 1075×1520 piksel: kedua sisi berada di bawah 1568 px, tetapi biayanya `39 × 55 = 2145` token visual, sehingga Claude mengubah ukurannya menjadi 924×1307.
 
 <Note>
-  Contoh ini mengasumsikan model pada tier resolusi standar. Model tier resolusi tinggi tidak mengubah ukuran hasil pindaian yang sama: 2145 token berada dalam anggaran 4784 tokennya, sehingga koordinat yang dikembalikannya dipetakan langsung ke gambar asli 1075×1520. Tier model tercantum di [Resolusi dan biaya token](https://platform.claude.com/docs/id/build-with-claude/vision#evaluate-image-size).
+  Contoh ini mengasumsikan model pada tingkat resolusi standar. Model tingkat resolusi tinggi tidak mengubah ukuran pindaian yang sama: 2145 token berada dalam anggaran 4784 tokennya, sehingga koordinat yang dikembalikannya dipetakan langsung ke gambar asli 1075×1520. Tingkat model tercantum di [Resolusi dan biaya token](https://platform.claude.com/docs/id/build-with-claude/vision#evaluate-image-size).
 </Note>
 
-Claude kemudian menambahkan padding pada setiap gambar, baik yang diubah ukurannya maupun tidak, hingga kelipatan 28 piksel berikutnya pada sisi bawah dan kanan (924×1307 menjadi 924×1316 dalam contoh ini). Padding tidak berisi konten: Claude melihat gambar yang telah diberi padding, tetapi konten halaman hanya menempati region yang diubah ukurannya tanpa padding. **Selalu normalisasi atau skalakan ulang berdasarkan dimensi yang diubah ukurannya, bukan dimensi yang diberi padding**; membagi dengan dimensi yang diberi padding akan menskalakan setiap koordinat dengan jumlah kecil.
+Claude kemudian menambahkan padding pada setiap gambar, baik yang diubah ukurannya maupun tidak, hingga kelipatan 28 piksel berikutnya pada tepi bawah dan kanan (924×1307 menjadi 924×1316 dalam contoh). Padding tidak berisi konten: Claude melihat gambar yang telah diberi padding, tetapi konten halaman hanya menempati wilayah hasil pengubahan ukuran tanpa padding. **Selalu normalisasi atau skalakan ulang berdasarkan dimensi hasil pengubahan ukuran, bukan dimensi dengan padding**; membagi dengan dimensi dengan padding akan menskalakan setiap koordinat sedikit.
 
 ## Ubah ukuran gambar Anda sebelum mengunggah
 
-Pendekatan paling andal adalah mengubah ukuran gambar Anda sendiri sebelum mengunggah, sehingga gambar yang Anda miliki persis sama dengan gambar yang dilihat Claude dan koordinat yang dikembalikan Claude tidak memerlukan konversi.
+Pendekatan yang paling andal adalah mengubah ukuran gambar Anda sendiri sebelum mengunggah, sehingga gambar yang Anda miliki persis sama dengan gambar yang dilihat Claude dan koordinat yang dikembalikan Claude tidak memerlukan konversi.
 
-Pertama, periksa tier resolusi mana yang digunakan model Anda (lihat [Resolusi dan biaya token](https://platform.claude.com/docs/id/build-with-claude/vision#evaluate-image-size)) dan berikan batas sisi dan token yang sesuai. Implementasi referensi berikut menghitung ukuran persis yang digunakan Claude untuk mengubah ukuran gambar:
+Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](https://platform.claude.com/docs/id/build-with-claude/vision#evaluate-image-size)) dan berikan batas tepi dan token yang sesuai. Implementasi referensi berikut menghitung ukuran persis yang digunakan Claude saat mengubah ukuran gambar:
 
 <CodeGroup>
   ```bash cURL
-  # Implementasi referensi ini adalah perhitungan matematika lokal yang tidak membuat permintaan API, jadi
+  # Implementasi referensi ini adalah perhitungan lokal yang tidak membuat permintaan API, jadi
   # tidak ada yang bisa ditampilkan untuk cURL. Lihat tab SDK.
   ```
 
   ```bash CLI
-  # Implementasi referensi ini adalah perhitungan matematika lokal yang tidak membuat permintaan API, jadi
-  # tidak ada yang bisa ditampilkan untuk CLI. Lihat tab SDK.
+  # Implementasi referensi ini adalah perhitungan lokal yang tidak membuat permintaan API, jadi
+  # tidak ada yang perlu ditampilkan untuk CLI. Lihat tab SDK.
   ```
 
   ```python Python
@@ -442,18 +442,18 @@ Pertama, periksa tier resolusi mana yang digunakan model Anda (lihat [Resolusi d
   ```
 </CodeGroup>
 
-1. Ubah ukuran gambar ke dimensi yang dikembalikan oleh helper resize. Jika gambar sudah sesuai dengan batas model, helper mengembalikan dimensinya tanpa perubahan dan tidak diperlukan perubahan ukuran.
-2. [Kirim gambar yang telah diubah ukurannya](https://platform.claude.com/docs/id/build-with-claude/vision#send-images-to-claude) ke API. Jangan tambahkan padding sendiri. Claude menangani padding, dan padding tidak menggeser titik asal koordinat.
-3. Dalam prompt Anda, minta koordinat piksel secara eksplisit. Misalnya: *"Return the click point for the Submit button as `[x, y]` in pixel coordinates."*
-4. Gunakan koordinat yang dikembalikan secara langsung pada gambar yang Anda kirim. Jika Anda memerlukan koordinat yang dinormalisasi, bagi dengan dimensi gambar yang Anda kirim, bukan dengan dimensi gambar asli dan bukan dengan dimensi yang diberi padding.
+1. Ubah ukuran gambar ke dimensi yang dikembalikan oleh helper pengubah ukuran. Jika gambar sudah sesuai dengan batas model, helper mengembalikan dimensinya tanpa perubahan dan tidak perlu pengubahan ukuran.
+2. [Kirim gambar yang telah diubah ukurannya](https://platform.claude.com/docs/id/build-with-claude/vision#send-images-to-claude) ke API. Jangan menambahkan padding sendiri. Claude menangani padding, dan padding tidak menggeser titik asal koordinat.
+3. Dalam prompt Anda, minta koordinat piksel secara eksplisit. Misalnya: *"Kembalikan titik klik untuk tombol Submit sebagai `[x, y]` dalam koordinat piksel."*
+4. Gunakan koordinat yang dikembalikan secara langsung terhadap gambar yang Anda kirim. Jika Anda memerlukan koordinat yang dinormalisasi, bagi dengan dimensi gambar yang Anda kirim, bukan dengan dimensi gambar asli dan bukan dengan dimensi dengan padding.
 
 <Note>
-  Endpoint [Token counting](https://platform.claude.com/docs/id/build-with-claude/token-counting) memperkirakan biaya token gambar dari dimensinya tanpa memprosesnya sepenuhnya, sehingga penghitungan yang berhasil tidak berarti gambar berada dalam [batas permintaan](https://platform.claude.com/docs/id/build-with-claude/vision#request-limits) Messages API. Sebuah gambar dapat dihitung dengan sukses dan tetap ditolak ketika Anda mengirimnya.
+  Endpoint [Penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting) memperkirakan biaya token gambar dari dimensinya tanpa memprosesnya sepenuhnya, sehingga penghitungan yang berhasil tidak berarti gambar berada dalam [batas permintaan](https://platform.claude.com/docs/id/build-with-claude/vision#request-limits) Messages API. Sebuah gambar dapat berhasil dihitung dan tetap ditolak ketika Anda mengirimnya.
 </Note>
 
-## Ubah perubahan ukuran menjadi error dengan `transformations`
+## Ubah pengubahan ukuran menjadi error dengan `transformations`
 
-Pra-ubah ukuran hanya melindungi koordinat Anda selama pipeline Anda terus menghasilkan ukuran yang tepat. Sumber gambar baru atau peralihan ke model pada tier resolusi yang berbeda dapat secara diam-diam memperkenalkan kembali perubahan ukuran di sisi server. Untuk mengubah pergeseran diam-diam tersebut menjadi error yang terlihat, atur field opsional `transformations` pada blok konten gambar dalam permintaan [Messages](https://platform.claude.com/docs/id/api/messages):
+Pengubahan ukuran terlebih dahulu hanya melindungi koordinat Anda selama pipeline Anda terus menghasilkan ukuran yang tepat. Sumber gambar baru atau peralihan ke model pada tingkat resolusi yang berbeda dapat secara diam-diam memunculkan kembali pengubahan ukuran di sisi server. Untuk mengubah penyimpangan diam-diam itu menjadi error yang terlihat, atur field opsional `transformations` pada blok konten gambar dalam permintaan [Messages](https://platform.claude.com/docs/id/api/messages):
 
 ```json
 {
@@ -463,7 +463,7 @@ Pra-ubah ukuran hanya melindungi koordinat Anda selama pipeline Anda terus mengh
 }
 ```
 
-Permintaan yang gambar bertandanya (blok apa pun yang mengatur `"oversized_image": "error"`) akan diubah ukurannya akan ditolak dengan 400 `invalid_request_error` yang menyebutkan dimensi gambar dan dimensi terbesar yang sesuai. Apakah sebuah gambar memicu penolakan bergantung pada [batas setiap model yang disebutkan dalam permintaan](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#how-claude-resizes-and-pads-images): contoh 1920×1080 di bawah ini ditolak oleh model tier standar tetapi sesuai dalam tier resolusi tinggi:
+Permintaan yang gambar bertandanya (blok apa pun yang mengatur `"oversized_image": "error"`) akan diubah ukurannya ditolak dengan 400 `invalid_request_error` yang menyebutkan dimensi gambar dan dimensi terbesar yang sesuai. Apakah sebuah gambar memicu penolakan bergantung pada [batas setiap model yang disebutkan dalam permintaan](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#how-claude-resizes-and-pads-images): contoh 1920×1080 di bawah ini ditolak oleh model tingkat standar tetapi sesuai dengan tingkat resolusi tinggi:
 
 ```text wrap
 messages.0.content.0: image dimensions 1920x1080 exceed the maximum image size of a model named on this request and would be downsized to 1456x819; scale the image to at most 1456x819 or set the image's oversized_image setting to "downsize"
@@ -471,29 +471,31 @@ messages.0.content.0: image dimensions 1920x1080 exceed the maximum image size o
 
 Skalakan ulang ke target yang dilaporkan dan kirim ulang: target tersebut adalah ukuran terbesar, pada rasio aspek gambar Anda, yang diterima oleh setiap model yang disebutkan dalam permintaan. Bagaimana gambar bertanda berinteraksi dengan [beta fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) dijelaskan bersama fitur tersebut; dalam setiap mode, gambar bertanda tidak pernah disajikan dalam keadaan diubah ukurannya.
 
-Pengaturan ini berlaku per gambar. `"oversized_image": "downsize"` (default ketika field dihilangkan) mempertahankan perubahan ukuran otomatis seperti yang dijelaskan di halaman ini. Setiap blok gambar hanya diperiksa terhadap pengaturannya sendiri, sehingga satu permintaan dapat mencampur gambar yang dimensinya penting (tangkapan layar yang akan Anda klik) dengan gambar di mana perubahan ukuran tidak berbahaya (logo). Apa yang diubah dan tidak diubah oleh pengaturan ini:
+Pengaturan ini berlaku per gambar. `"oversized_image": "downsize"` (default ketika field dihilangkan) mempertahankan pengubahan ukuran otomatis seperti yang dijelaskan di halaman ini. Setiap blok gambar hanya diperiksa terhadap pengaturannya sendiri, sehingga satu permintaan dapat mencampur gambar yang dimensinya penting (tangkapan layar yang akan Anda klik) dengan gambar yang pengubahan ukurannya tidak berbahaya (logo). Apa yang diubah dan tidak diubah oleh pengaturan ini:
 
-* Padding ([yang tidak pernah membuang konten](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#how-claude-resizes-and-pads-images)), konversi format, dan koreksi orientasi tetap berjalan seperti biasa.
+* Padding ([yang tidak pernah membuang konten](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#how-claude-resizes-and-pads-images)), konversi format, dan koreksi orientasi berjalan seperti biasa.
 * Batas keras (8000 px pada sisi terpanjang, dan batas per gambar yang lebih ketat pada [permintaan dengan banyak gambar](https://platform.claude.com/docs/id/build-with-claude/vision#request-limits)) adalah penolakan terpisah; pengaturan ini tidak pernah membiarkan gambar melewatinya.
-* Gambar yang disediakan melalui URL atau file ID diperiksa setelah byte-nya diambil; penolakan tersebut membawa pesan yang sama tanpa posisi di awal, sehingga tidak mengidentifikasi gambar mana yang gagal; hanya gambar base64 yang disematkan yang disebutkan berdasarkan posisi dalam error.
-* [Halaman PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support) dirasterisasi di sisi server pada dimensi yang tidak Anda kontrol; blok `document` tidak menerima field ini (blok gambar yang bersarang di dalam konten dokumen menerimanya seperti blok gambar lainnya).
-* Gambar bertanda yang dimensinya tidak dapat ditentukan akan ditolak alih-alih diteruskan: penolakan tersebut melaporkan bahwa dimensi sumber gambar tidak dapat ditentukan, bukan pesan perubahan ukuran yang dikutip di atas. Tidak ada gambar yang mengatur `"error"` yang mencapai model dalam keadaan diubah ukurannya.
+* Gambar yang diberikan melalui URL atau ID file diperiksa setelah byte-nya diambil; penolakan tersebut membawa pesan yang sama tanpa posisi di awal, sehingga tidak mengidentifikasi gambar mana yang gagal; hanya gambar base64 yang disematkan yang disebutkan berdasarkan posisi dalam error.
+* [Halaman PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support) dirasterisasi di sisi server pada dimensi yang tidak Anda kendalikan; blok `document` tidak menerima field ini (blok gambar yang bersarang di dalam konten dokumen menerimanya seperti blok lainnya).
+* Gambar bertanda yang dimensinya tidak dapat ditentukan ditolak alih-alih diteruskan: penolakan tersebut melaporkan bahwa dimensi sumber gambar tidak dapat ditentukan, bukan pesan pengubahan ukuran yang dikutip di atas. Tidak ada gambar yang mengatur `"error"` yang mencapai model dalam keadaan diubah ukurannya.
 
-Endpoint [Token counting](https://platform.claude.com/docs/id/build-with-claude/token-counting) juga menghormati `transformations`, menolak gambar yang disematkan persis seperti yang dilakukan Messages API, sehingga Anda dapat memeriksa apakah gambar yang disematkan sesuai tanpa diubah ukurannya, sebelum menjalankan inferensi. Penghitungan tidak pernah mengambil gambar yang disediakan melalui URL atau file ID, sehingga gambar bertanda dari sumber tersebut hanya diperiksa pada waktu Messages, seperti yang dijelaskan di atas.
+Endpoint [Penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting) juga menghormati `transformations`, menolak gambar yang disematkan persis seperti yang dilakukan Messages API, sehingga Anda dapat memeriksa apakah gambar yang disematkan sesuai tanpa diubah ukurannya, sebelum menjalankan inferensi. Penghitungan tidak pernah mengambil gambar yang diberikan melalui URL atau ID file, sehingga gambar bertanda dari sumber tersebut hanya diperiksa pada saat Messages, seperti yang dijelaskan di atas.
 
 ## Skalakan ulang koordinat ketika Anda tidak dapat mengubah ukuran terlebih dahulu
 
-Jika Anda tidak dapat mengubah ukuran terlebih dahulu (misalnya, ketika gambar berasal dari sistem upstream yang tidak dapat Anda modifikasi), gunakan helper resize dari [Ubah ukuran gambar Anda sebelum mengunggah](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#resize-your-image-before-uploading) untuk memulihkan dimensi yang dilihat Claude, lalu petakan koordinat yang dikembalikan Claude ke koordinat yang dinormalisasi atau kembali ke gambar asli Anda. Kecuali sebuah gambar [memilih untuk menerima error sebagai gantinya](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#oversized-image-error), Claude mengubah ukuran gambar yang terlalu besar alih-alih menolaknya, hingga [batas permintaan](https://platform.claude.com/docs/id/build-with-claude/vision#request-limits) API. Di luar batas tersebut, permintaan gagal dengan error validasi. Berikan batas tier yang sesuai dengan model yang Anda panggil: batas tier yang salah akan memulihkan dimensi yang diubah ukurannya secara salah dan secara diam-diam menggeser setiap koordinat. Pendekatan ini memerlukan pengetahuan tentang dimensi piksel gambar yang Anda unggah, sehingga tidak berlaku untuk unggahan PDF.
+Jika Anda tidak dapat mengubah ukuran terlebih dahulu (misalnya, ketika gambar berasal dari sistem hulu yang tidak dapat Anda modifikasi), gunakan helper pengubah ukuran dari [Ubah ukuran gambar Anda sebelum mengunggah](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#resize-your-image-before-uploading) untuk memulihkan dimensi yang dilihat Claude, lalu petakan koordinat yang dikembalikan Claude ke koordinat yang dinormalisasi atau kembali ke gambar asli Anda. Kecuali sebuah gambar [memilih error sebagai gantinya](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#oversized-image-error), Claude mengubah ukuran gambar yang terlalu besar alih-alih menolaknya, hingga [batas permintaan](https://platform.claude.com/docs/id/build-with-claude/vision#request-limits) API. Di luar batas tersebut, permintaan gagal dengan error validasi. Berikan batas tingkat yang sesuai dengan model yang Anda panggil: batas tingkat yang salah memulihkan dimensi hasil pengubahan ukuran yang salah dan secara diam-diam menggeser setiap koordinat. Pendekatan ini memerlukan pengetahuan tentang dimensi piksel gambar yang Anda unggah, sehingga tidak berlaku untuk unggahan PDF.
+
+Tangkapan layar dan gambar zoom yang Anda kembalikan ke toolset [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#handle-coordinate-scaling-for-higher-resolutions) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#targets-and-coordinates) merupakan pengecualian dari pengubahan ukuran otomatis. API menolak gambar `tool_result` yang melebihi batas model dengan error validasi alih-alih mengubah ukurannya. Ubah ukuran gambar tersebut di aplikasi Anda sebelum mengembalikannya, lalu skalakan koordinat yang dikembalikan Claude kembali ke dimensi layar Anda.
 
 <CodeGroup>
   ```bash cURL
   # Konversi koordinat lokal ini tidak membuat permintaan API, jadi tidak ada
-  # yang bisa ditampilkan untuk cURL. Lihat tab SDK.
+  # yang perlu ditampilkan untuk cURL. Lihat tab SDK.
   ```
 
   ```bash CLI
   # Konversi koordinat lokal ini tidak membuat permintaan API, jadi tidak ada
-  # yang bisa ditampilkan untuk CLI. Lihat tab SDK.
+  # yang perlu ditampilkan untuk CLI. Lihat tab SDK.
   ```
 
   ```python Python
@@ -660,9 +662,9 @@ Jika Anda tidak dapat mengubah ukuran terlebih dahulu (misalnya, ketika gambar b
   ```
 </CodeGroup>
 
-Padding hanya diterapkan pada sisi bawah dan kanan, sehingga titik asal tidak bergeser dan penskalaan ulang linear per sumbu sudah cukup. Batasi (clamp) koordinat yang dikembalikan ke dimensi yang diubah ukurannya sebelum menskalakan ulang, sehingga titik yang sedikit di luar gambar tidak dapat dipetakan ke luar gambar asli Anda.
+Padding hanya diterapkan pada tepi bawah dan kanan, sehingga titik asal tidak bergeser dan penskalaan ulang linear per sumbu sudah cukup. Batasi (clamp) koordinat yang dikembalikan ke dimensi hasil pengubahan ukuran sebelum menskalakan ulang, sehingga titik yang sedikit berada di luar gambar tidak dapat dipetakan ke luar gambar asli Anda.
 
-Koordinat relatif dikalikan dengan permukaan apa pun yang Anda tindak: gambar asli, hasil pindaian resolusi penuh, atau layar. Ketika Anda bertindak pada layar dan piksel tangkapan layar berbeda dari koordinat logis (layar HiDPI), bagi juga dengan faktor skala tampilan. [Panduan penskalaan alat Computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#handle-coordinate-scaling-for-higher-resolutions) membahas pola tersebut.
+Koordinat relatif dikalikan dengan permukaan apa pun yang Anda gunakan untuk bertindak: gambar asli, pindaian resolusi penuh, atau layar. Ketika Anda bertindak pada layar dan piksel tangkapan layar berbeda dari koordinat logis (layar HiDPI), bagi juga dengan faktor skala tampilan. [Panduan penskalaan alat Computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#handle-coordinate-scaling-for-higher-resolutions) membahas pola tersebut.
 
 ## Langkah selanjutnya
 
@@ -671,15 +673,15 @@ Koordinat relatif dikalikan dengan permukaan apa pun yang Anda tindak: gambar as
     Agent Skills adalah kemampuan modular yang memperluas fungsionalitas Claude. Setiap Skill mengemas instruksi, metadata, dan sumber daya opsional (skrip, template) yang digunakan Claude secara otomatis ketika relevan.
   </Card>
 
-  <Card title="Alat Computer use" icon="computer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool">
-    Berikan Claude kontrol tangkapan layar, mouse, dan keyboard atas lingkungan desktop dengan alat computer use.
+  <Card title="Alat computer use" icon="computer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool">
+    Berikan Claude kendali tangkapan layar, mouse, dan keyboard atas lingkungan desktop dengan alat computer use.
   </Card>
 
   <Card title="Dukungan PDF" icon="file" href="https://platform.claude.com/docs/id/build-with-claude/pdf-support">
     Proses PDF dengan Claude. Ekstrak teks, analisis grafik, dan pahami konten visual dari dokumen Anda.
   </Card>
 
-  <Card title="Token counting" icon="calculator" href="https://platform.claude.com/docs/id/build-with-claude/token-counting">
-    Hitung token dalam pesan sebelum Anda mengirimnya ke Claude. Gunakan jumlah token untuk mengelola batas laju dan biaya, membuat keputusan routing model, dan menyesuaikan prompt dengan panjang target.
+  <Card title="Penghitungan token" icon="calculator" href="https://platform.claude.com/docs/id/build-with-claude/token-counting">
+    Hitung token dalam sebuah pesan sebelum Anda mengirimnya ke Claude. Gunakan jumlah token untuk mengelola batas laju dan biaya, membuat keputusan perutean model, dan menyesuaikan prompt dengan panjang target.
   </Card>
 </CardGroup>

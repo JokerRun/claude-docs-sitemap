@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-protocol
-fetched_at: 2026-08-23T02:32:19.757524Z
-sha256: cd636413e9aaa35671b7b563bc82e25c762500f524b7537c5f99d9833ea0f838
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 55a1367627198e3880d70407d2e7dc0991655723b2141f7dad2c562488b74da4
 ---
 
 > ## Documentation Index
@@ -161,7 +161,7 @@ The set of capabilities Claude Code sends grows over releases. For current beta 
 
 ## Model discovery
 
-When `ANTHROPIC_BASE_URL` points at a gateway that exposes the Anthropic Messages format, Claude Code can query the gateway's `/v1/models` endpoint at startup and add the returned models to the `/model` picker.
+When `ANTHROPIC_BASE_URL` points at a gateway that exposes the Anthropic Messages format, Claude Code can query the gateway's `/v1/models` endpoint at startup and add the returned models to the `/model` picker. If you or your administrator set `replaceBuiltInOptions` in a [`modelPicker`](/docs/en/settings-reference#modelpicker) lineup, Claude Code hides the discovered models from the picker.
 
 Developers enable it by setting [`CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY=1`](/docs/en/env-vars), in their own environment or through managed settings. Discovery is off by default so that gateways backed by a shared API key don't surface every model the key can access to every user.
 

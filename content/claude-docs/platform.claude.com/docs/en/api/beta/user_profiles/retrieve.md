@@ -1,26 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/retrieve
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 3ad4950e5989a8c48f9158b647136b23c783bceee1ddfb75f675fc54207142bb
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: e8e9075447a7cab5536fae07ebb91b14b521819937c8cafdfb04f6c18719ab68
 ---
 
----
-title: Get User Profile
-url: https://platform.claude.com/docs/en/api/beta/user_profiles/retrieve
----
+# Get User Profile
 
-## Get User Profile
-
-**get** `/v1/user_profiles/{user_profile_id}`
+**GET** `/v1/user_profiles/{user_profile_id}`
 
 Get User Profile
 
-### Path Parameters
+## Path parameters
 
 - `user_profile_id: string`
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -98,9 +93,9 @@ Get User Profile
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
-### Returns
+## Returns
 
-- `BetaUserProfile object { id, created_at, metadata, 7 more }`
+- `BetaUserProfile object`
 
   - `id: string`
 
@@ -109,6 +104,8 @@ Get User Profile
   - `created_at: string`
 
     A timestamp in RFC 3339 format
+
+    format: date-time
 
   - `metadata: map[string]`
 
@@ -132,11 +129,11 @@ Get User Profile
 
     Object type. Always `user_profile`.
 
-    - `"user_profile"`
-
   - `updated_at: string`
 
     A timestamp in RFC 3339 format
+
+    format: date-time
 
   - `access_type: optional "application" or "passthrough"`
 
@@ -164,16 +161,16 @@ Get User Profile
 
     - `"internal"`
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/user_profiles/$USER_PROFILE_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: user-profiles-2026-08-18' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

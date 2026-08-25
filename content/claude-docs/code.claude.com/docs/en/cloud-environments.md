@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cloud-environments
-fetched_at: 2026-08-23T02:32:19.757524Z
-sha256: c5f6a4d2b6095b81d232e8d636e5d8a84e66d4b7f81f6b52715efdd767ed1da9
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 72c2d776de7ba634344bd9614ba8bf5766c41d5434ded4f1e32ef1ae036dcd28
 ---
 
 > ## Documentation Index
@@ -342,7 +342,7 @@ Setup scripts and SessionStart hooks run in a fixed order when a cloud session s
 | **When they run**            | Before Claude Code launches, skipped when a [cached environment](#environment-caching) exists                                                                             | After Claude Code launches, on every session including resumed                                                                                                                                                     |
 | **Where they run**           | Cloud sessions only                                                                                                                                                       | Local and cloud sessions                                                                                                                                                                                           |
 
-If you have SessionStart hooks in your user-level `~/.claude/settings.json`, don't expect them in the cloud: user-level settings stay on your machine. In a cloud session, Claude Code runs hooks from the repository and from your organization's [server-managed settings](/docs/en/server-managed-settings); sessions in a [self-hosted environment](/docs/en/self-hosted-environments-configuration#permissions-and-tool-approval) also run hooks the operator seeded from the runner host's `~/.claude/`.
+If you have SessionStart hooks in your user-level `~/.claude/settings.json`, don't expect them in the cloud: user-level settings stay on your machine. In a cloud session, Claude Code runs hooks from the repository and from your organization's [server-managed settings](/docs/en/server-managed-settings). In a [self-hosted environment](/docs/en/self-hosted-environments-configuration#permissions-and-tool-approval), Claude Code also runs the hooks the operator seeded from the runner host's `~/.claude/`, and it runs the hooks in the runner image's managed settings file when neither [server-managed settings nor an MDM-delivered Claude Code policy](/docs/en/settings#precedence-within-the-managed-tier) supplies the managed tier.
 
 ### Install dependencies with a SessionStart hook
 

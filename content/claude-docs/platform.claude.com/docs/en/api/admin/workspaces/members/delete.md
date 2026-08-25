@@ -1,22 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/members/delete
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: c4bb9a6c3fef9242e3c1e4ea13ed9fdc1439a441b561ba988260c350df00763a
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 152bd2c4b16c521571e6b50a1c814c4c2a750e0e732b199d94538c07cfccc757
 ---
 
----
-title: Delete Workspace Member
-url: https://platform.claude.com/docs/en/api/admin/workspaces/members/delete
----
+# Delete Workspace Member
 
-## Delete Workspace Member
-
-**delete** `/v1/organizations/workspaces/{workspace_id}/members/{user_id}`
+**DELETE** `/v1/organizations/workspaces/{workspace_id}/members/{user_id}`
 
 Delete Workspace Member
 
-### Path Parameters
+## Path parameters
 
 - `workspace_id: string`
 
@@ -26,7 +21,7 @@ Delete Workspace Member
 
   ID of the User.
 
-### Returns
+## Returns
 
 - `type: "workspace_member_deleted"`
 
@@ -34,7 +29,7 @@ Delete Workspace Member
 
   For Workspace Members, this is always `"workspace_member_deleted"`.
 
-  - `"workspace_member_deleted"`
+  default: workspace_member_deleted
 
 - `user_id: string`
 
@@ -44,16 +39,16 @@ Delete Workspace Member
 
   ID of the Workspace.
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members/$USER_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

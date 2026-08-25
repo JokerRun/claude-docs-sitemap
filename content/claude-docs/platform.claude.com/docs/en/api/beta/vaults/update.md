@@ -1,26 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/update
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 74ea7c3310c8e69716abd6b33a59568d59e2a03524e4f9c7353b9114c5febae4
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 2c5bb608ef42828e086547d960c4fcf463dfa862a7cbda517a61c05a9391787f
 ---
 
----
-title: Update Vault
-url: https://platform.claude.com/docs/en/api/beta/vaults/update
----
+# Update Vault
 
-## Update Vault
-
-**post** `/v1/vaults/{vault_id}`
+**POST** `/v1/vaults/{vault_id}`
 
 Update Vault
 
-### Path Parameters
+## Path parameters
 
 - `vault_id: string`
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -98,19 +93,21 @@ Update Vault
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
-### Body Parameters
+## Body parameters
 
 - `display_name: optional string or null`
 
   Updated human-readable name for the vault. 1-255 characters.
 
+  minLength: 1, maxLength: 255
+
 - `metadata: optional map[string] or null`
 
   Metadata patch. Set a key to a string to upsert it, or to null to delete it. Omitted keys are preserved.
 
-### Returns
+## Returns
 
-- `BetaManagedAgentsVault object { id, archived_at, created_at, 4 more }`
+- `BetaManagedAgentsVault object`
 
   A vault that stores credentials for use by agents during sessions.
 
@@ -122,9 +119,13 @@ Update Vault
 
     A timestamp in RFC 3339 format
 
+    format: date-time
+
   - `created_at: string`
 
     A timestamp in RFC 3339 format
+
+    format: date-time
 
   - `display_name: string`
 
@@ -136,15 +137,15 @@ Update Vault
 
   - `type: "vault"`
 
-    - `"vault"`
-
   - `updated_at: string`
 
     A timestamp in RFC 3339 format
 
-### Example
+    format: date-time
 
-```http
+## Example
+
+```bash
 curl https://api.anthropic.com/v1/vaults/$VAULT_ID \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
@@ -158,7 +159,7 @@ curl https://api.anthropic.com/v1/vaults/$VAULT_ID \
         }'
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

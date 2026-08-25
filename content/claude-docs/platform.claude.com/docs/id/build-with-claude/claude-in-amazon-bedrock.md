@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: c18501b55a412511e93b878e581a537b5646e3fb01f2d78bf9bba76be4de632b
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: c4b21a19f44ce0f98e2785a97f2fc6f2a7cfe7a4b602151d9d2cc8889d760e34
 ---
 
 ---
@@ -28,11 +28,11 @@ Sebelum memulai, pastikan Anda memiliki:
 * Akun AWS dengan [akses model Amazon Bedrock](https://console.aws.amazon.com/bedrock/home#/modelaccess) yang diaktifkan untuk model Claude yang ingin Anda gunakan.
 * [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) yang terinstal dan terkonfigurasi (opsional, untuk manajemen kredensial).
 
-Claude Mythos Preview juga memerlukan akun AWS khusus yang telah dimasukkan ke daftar izin (allowlist) oleh tim Bedrock Marketplace. Account executive Anthropic Anda dapat mengajukan ID akun Anda untuk dimasukkan ke daftar izin (biasanya diproses dalam 24 jam), dan AWS akan mengirimkan email sambutan setelah prosesnya selesai.
+Claude Mythos Preview juga memerlukan akun AWS khusus yang telah dimasukkan ke dalam allowlist oleh tim Bedrock Marketplace. Account executive Anthropic Anda dapat mengajukan ID akun Anda untuk dimasukkan ke allowlist (biasanya diproses dalam 24 jam), dan AWS akan mengirimkan email sambutan setelah prosesnya selesai.
 
 ## Autentikasi
 
-Claude di Amazon Bedrock mendukung tiga jalur autentikasi. Pilih yang paling sesuai dengan persyaratan keamanan Anda.
+Claude di Amazon Bedrock mendukung tiga jalur autentikasi. Pilih yang paling sesuai dengan kebutuhan keamanan Anda.
 
 ### Service role Bedrock (direkomendasikan)
 
@@ -78,7 +78,7 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
 
 ## Instal SDK
 
-[Client SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) Anthropic mendukung Claude di Amazon Bedrock melalui paket atau modul khusus Bedrock.
+[SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) Anthropic mendukung Claude di Amazon Bedrock melalui paket atau modul khusus Bedrock.
 
 <Tabs>
   <Tab title="Python">
@@ -144,7 +144,7 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
 
 Endpoint mengikuti pola `https://bedrock-mantle.{region}.api.aws/anthropic/v1/messages`. Berbeda dengan integrasi berbasis `InvokeModel`, endpoint ini menggunakan streaming SSE standar dan bentuk body permintaan yang sama dengan API pihak pertama Anthropic.
 
-SDK menyelesaikan kredensial dan region menggunakan urutan prioritas standar AWS: argumen konstruktor, lalu variabel lingkungan (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_SESSION_TOKEN`, `AWS_REGION`), lalu file konfigurasi AWS dan rantai kredensial (SSO, assumed role, ECS task role, IMDS).
+SDK menentukan kredensial dan region menggunakan urutan prioritas AWS standar: argumen konstruktor, lalu variabel lingkungan (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_SESSION_TOKEN`, `AWS_REGION`), lalu file konfigurasi AWS dan rantai kredensial (SSO, assumed role, ECS task role, IMDS).
 
 <Tabs>
   <Tab title="cURL">
@@ -326,7 +326,7 @@ SDK menyelesaikan kredensial dan region menggunakan urutan prioritas standar AWS
 </Tabs>
 
 <Tip>
-  Anda juga dapat menggunakan client `Anthropic` standar: atur `base_url` ke `https://bedrock-mantle.{region}.api.aws/anthropic` dan teruskan bearer token Anda sebagai `api_key`. Jalur ini hanya mendukung autentikasi bearer token. Penandatanganan SigV4 memerlukan client khusus.
+  Anda juga dapat menggunakan klien `Anthropic` standar: atur `base_url` ke `https://bedrock-mantle.{region}.api.aws/anthropic` dan teruskan bearer token Anda sebagai `api_key`. Jalur ini hanya mendukung autentikasi bearer token. Penandatanganan SigV4 memerlukan klien khusus.
 </Tip>
 
 ## Model yang didukung
@@ -368,13 +368,14 @@ Untuk daftar fitur lengkap beserta ketersediaannya di Amazon Bedrock, lihat [Ikh
 * Endpoint API (Message Batches, Models, Admin, Compliance, Usage and Cost)
 * Claude Managed Agents
 * Fallback sisi server ([parameter `fallbacks`](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback); gunakan [pola fallback sisi klien](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) sebagai gantinya)
+* Toolset [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`computer_toolset_20260801` dan `browser_toolset_20260801` saat ini tidak tersedia di Amazon Bedrock; versi beta alat computer use tetap tersedia)
 
 ## Region
 
 Claude di Amazon Bedrock tersedia di region AWS berikut. Amazon Bedrock menawarkan dua jenis endpoint:
 
-* **Global:** perutean dinamis di seluruh region yang tersedia untuk ketersediaan maksimum. Tanpa premi harga.
-* **Regional:** endpoint diselesaikan ke satu region AWS yang Anda tentukan, untuk persyaratan residensi data. Endpoint regional dikenai premi harga 10% di atas endpoint global. Untuk merutekan ke beberapa region dalam satu wilayah geografis, gunakan [inference profile](https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html) (US, EU, JP, atau AU). Region yang ditandai **In-region only** dalam tabel mendukung perutean langsung satu region tanpa inference profile.
+* **Global:** perutean dinamis ke seluruh region yang tersedia untuk ketersediaan maksimum. Tanpa premi harga.
+* **Regional:** endpoint mengarah ke satu region AWS yang Anda tentukan, untuk kebutuhan residensi data. Endpoint regional dikenai premi harga 10% di atas endpoint global. Untuk merutekan ke beberapa region dalam satu wilayah geografis, gunakan [inference profile](https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html) (US, EU, JP, atau AU). Region yang ditandai **In-region only** dalam tabel mendukung perutean langsung ke satu region tanpa inference profile.
 
 Endpoint global tersedia untuk Claude Fable 5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5, dan Claude Haiku 4.5. Claude Mythos Preview hanya tersedia secara regional dan tersedia di `us-east-1`.
 
@@ -410,13 +411,13 @@ Endpoint global tersedia untuk Claude Fable 5, Claude Opus 5, Claude Opus 4.8, C
 
 ## Kuota
 
-Kuota default adalah 2 juta token input per menit (TPM). Anda dapat meminta hingga 4 juta TPM input tanpa persetujuan tambahan dari Anthropic. AWS memberlakukan batas "requests-per-minute" (permintaan per menit), atau RPM, di sisi Bedrock; hubungi dukungan AWS untuk penyesuaian RPM.
+Kuota default adalah 2 juta token input per menit (TPM). Anda dapat meminta hingga 4 juta TPM input tanpa persetujuan tambahan dari Anthropic. AWS menerapkan batas permintaan per menit (RPM) di sisi Bedrock; hubungi dukungan AWS untuk penyesuaian RPM.
 
 ## Retensi data
 
 Penanganan data untuk penawaran ini diatur oleh Amazon Bedrock. Untuk detailnya, lihat [Perlindungan data di Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/data-protection.html).
 
-## Pemantauan dan pencatatan log
+## Pemantauan dan logging
 
 Claude di Amazon Bedrock mengirimkan log ke CloudWatch dan CloudTrail. Anthropic merekomendasikan untuk menyimpan log aktivitas setidaknya secara bergulir selama 30 hari guna memahami pola penggunaan dan menyelidiki potensi masalah.
 

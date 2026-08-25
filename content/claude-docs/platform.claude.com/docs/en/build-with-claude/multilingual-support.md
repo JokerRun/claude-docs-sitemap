@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/multilingual-support
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: f67b5a26d9dd4c46a3a45e0c1928e0da0f48910458250651e6686ac40f758455
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: be9163072c1ffa03fced5e22a69382be736928103d0eff61872b8d251721e2ea
 ---
 
 ---
@@ -216,7 +216,7 @@ Also follow the general guidance in [Prompt engineering overview](https://platfo
     Build a localized support chatbot using a language-constrained system prompt.
   </Card>
 
-  <Card title="Models overview" icon="table" href="https://platform.claude.com/docs/en/about-claude/models/overview">
+  <Card title="Models overview" icon="table" href="https://platform.claude.com/docs/en/models/overview">
     Compare model tiers to balance multilingual quality against cost and latency.
   </Card>
 

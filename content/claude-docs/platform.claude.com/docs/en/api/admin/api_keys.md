@@ -1,24 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 539ae9feada41e5d50ccbbc1ce11bcb20f37d0f199915a8dc94aa23c33fe43d1
----
-
----
-title: API Keys
-url: https://platform.claude.com/docs/en/api/admin/api_keys
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 39238ba59ccaea5bfa19edd79877d0971b9eda8186884085e2aa9f3127a8a9bd
 ---
 
 # API Keys
 
 ## Retrieve API Key (Admin API)
 
-**get** `/v1/organizations/api_keys/{api_key_id}`
+**GET** `/v1/organizations/api_keys/{api_key_id}`
 
 Retrieve information about a single API key in your organization, looked up by its ID. This Admin API endpoint requires an Admin API key, is intended for programmatic key management, and never returns the key's secret value. To view or create your own API keys, go to [API keys](https://platform.claude.com/settings/keys) in the Claude Console.
 
-### Path Parameters
+### Path parameters
 
 - `api_key_id: string`
 
@@ -26,7 +21,7 @@ Retrieve information about a single API key in your organization, looked up by i
 
 ### Returns
 
-- `APIKey object { id, created_at, created_by, 7 more }`
+- `APIKey object`
 
   - `id: string`
 
@@ -36,7 +31,9 @@ Retrieve information about a single API key in your organization, looked up by i
 
     RFC 3339 datetime string indicating when the API Key was created.
 
-  - `created_by: object { id, type }  or null`
+    format: date-time
+
+  - `created_by: object or null`
 
     The ID and type of the actor that created the API key, or `null` when the
     creator is not recorded (legacy, workload-identity-federated, or
@@ -54,6 +51,8 @@ Retrieve information about a single API key in your organization, looked up by i
 
     RFC 3339 datetime string indicating when the API Key expires, or `null` if it never expires.
 
+    format: date-time
+
   - `name: string`
 
     Name of the API key.
@@ -62,7 +61,7 @@ Retrieve information about a single API key in your organization, looked up by i
 
     Partially redacted hint for the API key.
 
-  - `principal: object { id, type }  or null`
+  - `principal: object or null`
 
     The ID and type of the principal the API key acts as, or `null` if the key is not bound to a principal.
 
@@ -96,7 +95,7 @@ Retrieve information about a single API key in your organization, looked up by i
 
     For API Keys, this is always `"api_key"`.
 
-    - `"api_key"`
+    default: api_key
 
   - `workspace_id: string or null`
 
@@ -104,13 +103,13 @@ Retrieve information about a single API key in your organization, looked up by i
 
 ### Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/api_keys/$API_KEY_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
-#### Response
+#### Response (200)
 
 ```json
 {
@@ -135,11 +134,11 @@ curl https://api.anthropic.com/v1/organizations/api_keys/$API_KEY_ID \
 
 ## List API Keys
 
-**get** `/v1/organizations/api_keys`
+**GET** `/v1/organizations/api_keys`
 
 List API Keys
 
-### Query Parameters
+### Query parameters
 
 - `after_id: optional string`
 
@@ -158,6 +157,8 @@ List API Keys
   Number of items to return per page.
 
   Defaults to `20`. Ranges from `1` to `1000`.
+
+  default: 20, maximum: 1000, minimum: 1
 
 - `status: optional "active" or "archived" or "expired" or "inactive"`
 
@@ -187,7 +188,9 @@ List API Keys
 
     RFC 3339 datetime string indicating when the API Key was created.
 
-  - `created_by: object { id, type }  or null`
+    format: date-time
+
+  - `created_by: object or null`
 
     The ID and type of the actor that created the API key, or `null` when the
     creator is not recorded (legacy, workload-identity-federated, or
@@ -205,6 +208,8 @@ List API Keys
 
     RFC 3339 datetime string indicating when the API Key expires, or `null` if it never expires.
 
+    format: date-time
+
   - `name: string`
 
     Name of the API key.
@@ -213,7 +218,7 @@ List API Keys
 
     Partially redacted hint for the API key.
 
-  - `principal: object { id, type }  or null`
+  - `principal: object or null`
 
     The ID and type of the principal the API key acts as, or `null` if the key is not bound to a principal.
 
@@ -247,7 +252,7 @@ List API Keys
 
     For API Keys, this is always `"api_key"`.
 
-    - `"api_key"`
+    default: api_key
 
   - `workspace_id: string or null`
 
@@ -267,13 +272,13 @@ List API Keys
 
 ### Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/api_keys \
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
-#### Response
+#### Response (200)
 
 ```json
 {
@@ -305,21 +310,23 @@ curl https://api.anthropic.com/v1/organizations/api_keys \
 
 ## Update API Key
 
-**post** `/v1/organizations/api_keys/{api_key_id}`
+**POST** `/v1/organizations/api_keys/{api_key_id}`
 
 Update API Key
 
-### Path Parameters
+### Path parameters
 
 - `api_key_id: string`
 
   ID of the API key.
 
-### Body Parameters
+### Body parameters
 
 - `name: optional string or null`
 
   Name of the API key.
+
+  maxLength: 500, minLength: 1
 
 - `status: optional "active" or "archived" or "inactive" or null`
 
@@ -333,7 +340,7 @@ Update API Key
 
 ### Returns
 
-- `APIKey object { id, created_at, created_by, 7 more }`
+- `APIKey object`
 
   - `id: string`
 
@@ -343,7 +350,9 @@ Update API Key
 
     RFC 3339 datetime string indicating when the API Key was created.
 
-  - `created_by: object { id, type }  or null`
+    format: date-time
+
+  - `created_by: object or null`
 
     The ID and type of the actor that created the API key, or `null` when the
     creator is not recorded (legacy, workload-identity-federated, or
@@ -361,6 +370,8 @@ Update API Key
 
     RFC 3339 datetime string indicating when the API Key expires, or `null` if it never expires.
 
+    format: date-time
+
   - `name: string`
 
     Name of the API key.
@@ -369,7 +380,7 @@ Update API Key
 
     Partially redacted hint for the API key.
 
-  - `principal: object { id, type }  or null`
+  - `principal: object or null`
 
     The ID and type of the principal the API key acts as, or `null` if the key is not bound to a principal.
 
@@ -403,7 +414,7 @@ Update API Key
 
     For API Keys, this is always `"api_key"`.
 
-    - `"api_key"`
+    default: api_key
 
   - `workspace_id: string or null`
 
@@ -411,7 +422,7 @@ Update API Key
 
 ### Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/api_keys/$API_KEY_ID \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
@@ -419,7 +430,7 @@ curl https://api.anthropic.com/v1/organizations/api_keys/$API_KEY_ID \
     -d '{}'
 ```
 
-#### Response
+#### Response (200)
 
 ```json
 {

@@ -1,18 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/federation_rules/update
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: b3eb4915201aa36a82754588e58ae64a8b4af5457b51b05d62ab2b1e4e14c245
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 8af487e967bda2e06d66572cc751a689a2a4a62823b09ba46168643c3f72369d
 ---
 
----
-title: Update Federation Rule
-url: https://platform.claude.com/docs/en/api/admin/federation_rules/update
----
+# Update Federation Rule
 
-## Update Federation Rule
-
-**post** `/v1/organizations/federation_rules/{federation_rule_id}`
+**POST** `/v1/organizations/federation_rules/{federation_rule_id}`
 
 Partially update a federation rule.
 
@@ -32,13 +27,13 @@ request. OAuth callers may only manage rules whose `oauth_scope` is
 `workspace:developer` or `workspace:inference`; other scopes require a
 Console session. Admin API keys are not accepted.
 
-### Path Parameters
+## Path parameters
 
 - `federation_rule_id: string`
 
   ID of the federation rule to update.
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of string`
 
@@ -46,7 +41,7 @@ Console session. Admin API keys are not accepted.
 
   To use multiple betas, use a comma separated list like `beta1,beta2` or specify the header multiple times for each beta.
 
-### Body Parameters
+## Body parameters
 
 - `applies_to_all_workspaces: optional boolean or null`
 
@@ -60,7 +55,9 @@ Console session. Admin API keys are not accepted.
 
   Replaces the description. Omit to leave unchanged; send `null` to clear (the field is stored as an empty string).
 
-- `match: optional object { audience, claims, condition, subject_prefix }  or null`
+  maxLength: 2000
+
+- `match: optional object or null`
 
   Does the incoming JWT qualify?
 
@@ -72,6 +69,8 @@ Console session. Admin API keys are not accepted.
 
     Exact match against the `aud` claim (any element if array). When omitted, the JWT's `aud` must still equal Anthropic's expected audience for the issuer; setting this field overrides that default.
 
+    maxLength: 1024
+
   - `claims: optional map[string] or null`
 
     Exact-match `{claim: value}` pairs against top-level claims. Only string-valued claims can be matched; use `condition` for non-string claims.
@@ -80,19 +79,27 @@ Console session. Admin API keys are not accepted.
 
     CEL expression over claims for logic the structural fields can't express. Must evaluate to a boolean and may reference only the `claims` variable; a constant-true expression (such as `true`) is rejected with 400.
 
+    maxLength: 4096
+
   - `subject_prefix: optional string or null`
 
     Match the verified JWT `sub` claim. Exact match unless the value ends with `*`, in which case it is a prefix match. Example: `repo:my-org/my-repo:ref:refs/heads/main`.
+
+    maxLength: 1024
 
 - `name: optional string or null`
 
   Replaces the slug identifier (lowercase, digits, hyphens). Unique within the organization; a duplicate name returns 409.
 
+  maxLength: 255, minLength: 1
+
 - `oauth_scope: optional string or null`
 
   Replaces the space-separated OAuth scopes granted on minted tokens. OAuth callers may only set `workspace:developer` or `workspace:inference`; other scopes (such as `org:admin`) require a Console session.
 
-- `target: optional object { service_account_id, type, service_account_name }  or null`
+  minLength: 1
+
+- `target: optional object or null`
 
   Bind to a fixed service account by ID.
 
@@ -102,8 +109,6 @@ Console session. Admin API keys are not accepted.
 
   - `type: "service_account"`
 
-    - `"service_account"`
-
   - `service_account_name: optional string or null`
 
     Service account's display name at read time. Ignored on writes.
@@ -112,13 +117,15 @@ Console session. Admin API keys are not accepted.
 
   Replaces the lifetime in seconds for access tokens minted via this rule (60-86400). Minted tokens are capped at `max(60, min(this value, 2 × remaining assertion validity))` seconds.
 
+  maximum: 86400, minimum: 60
+
 - `workspace_id: optional string or null`
 
   Replaces the existing single workspace enablement (the previous one is removed). Rejected with 400 if the rule is enabled for more than one workspace; use the `/federation_rules/{federation_rule_id}/workspaces` sub-resource instead.
 
-### Returns
+## Returns
 
-- `FederationRule object { id, applies_to_all_workspaces, archived_at, 17 more }`
+- `FederationRule object`
 
   Authorization rule binding an external OIDC identity to Anthropic.
 
@@ -143,6 +150,8 @@ Console session. Admin API keys are not accepted.
 
     If set, this rule is archived and rejects token exchange.
 
+    format: date-time
+
   - `archived_by_actor_id: string or null`
 
     Tagged ID (`user_`/`svac_`) of the actor that archived this rule.
@@ -154,6 +163,8 @@ Console session. Admin API keys are not accepted.
   - `created_at: string`
 
     When this rule was created.
+
+    format: date-time
 
   - `created_by_actor_id: string or null`
 
@@ -171,13 +182,15 @@ Console session. Admin API keys are not accepted.
 
     Issuer's display name at read time.
 
-  - `match: object { audience, claims, condition, subject_prefix }`
+  - `match: object`
 
     Conditions the verified JWT must satisfy for this rule to apply. All populated matcher fields must pass.
 
     - `audience: optional string or null`
 
       Exact match against the `aud` claim (any element if array). When omitted, the JWT's `aud` must still equal Anthropic's expected audience for the issuer; setting this field overrides that default.
+
+      maxLength: 1024
 
     - `claims: optional map[string] or null`
 
@@ -187,9 +200,13 @@ Console session. Admin API keys are not accepted.
 
       CEL expression over claims for logic the structural fields can't express. Must evaluate to a boolean and may reference only the `claims` variable; a constant-true expression (such as `true`) is rejected with 400.
 
+      maxLength: 4096
+
     - `subject_prefix: optional string or null`
 
       Match the verified JWT `sub` claim. Exact match unless the value ends with `*`, in which case it is a prefix match. Example: `repo:my-org/my-repo:ref:refs/heads/main`.
+
+      maxLength: 1024
 
   - `name: string`
 
@@ -199,7 +216,7 @@ Console session. Admin API keys are not accepted.
 
     Space-separated OAuth scopes granted on the minted token.
 
-  - `target: object { service_account_id, type, service_account_name }`
+  - `target: object`
 
     Identity that tokens minted via this rule act as. Currently always a `service_account` target.
 
@@ -208,8 +225,6 @@ Console session. Admin API keys are not accepted.
       Tagged ID of the service account to mint tokens for.
 
     - `type: "service_account"`
-
-      - `"service_account"`
 
     - `service_account_name: optional string or null`
 
@@ -221,11 +236,13 @@ Console session. Admin API keys are not accepted.
 
   - `type: "federation_rule"`
 
-    - `"federation_rule"`
+    default: federation_rule
 
   - `updated_at: string`
 
     When this rule was last updated.
+
+    format: date-time
 
   - `updated_by_actor_id: string or null`
 
@@ -239,9 +256,9 @@ Console session. Admin API keys are not accepted.
 
     Tagged IDs of the workspaces this rule is enabled for. May be empty for older rules that only carry the legacy `workspace_id` binding. Ignored at exchange time when `applies_to_all_workspaces` is true (the list may still be non-empty).
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/federation_rules/$FEDERATION_RULE_ID \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
@@ -249,7 +266,7 @@ curl https://api.anthropic.com/v1/organizations/federation_rules/$FEDERATION_RUL
     -d '{}'
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

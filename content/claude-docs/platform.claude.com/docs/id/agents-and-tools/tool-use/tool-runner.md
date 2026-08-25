@@ -1,19 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 38299d8ba84d36551287be1a2bbd5256a6e0ecf71520f46895343fcde431ea6f
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: f3661b3257cd5a4ad45554cc4961a71da6bac3a11b41bf5065990c9c48a5cd63
 ---
 
 ---
 title: Tool runner (SDK)
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner
-description: Gunakan tool runner dari SDK untuk menangani loop agentik, pembungkusan error, dan keamanan tipe secara otomatis.
+description: Gunakan tool runner SDK untuk menangani loop agentik, pembungkusan error, dan keamanan tipe secara otomatis.
 ---
 
-"Tool runner" (penjalan alat) menangani loop agentik, pembungkusan error, dan keamanan tipe sehingga Anda tidak perlu melakukannya. Ketika Anda memerlukan persetujuan human-in-the-loop, logging kustom, atau eksekusi bersyarat, gunakan [loop manual](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls) sebagai gantinya.
+Tool runner menangani "agentic loop" (loop agentik), pembungkusan error, dan "type safety" (keamanan tipe) sehingga Anda tidak perlu melakukannya sendiri. Ketika Anda memerlukan persetujuan human-in-the-loop, logging kustom, atau eksekusi bersyarat, gunakan [loop manual](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls) sebagai gantinya.
 
-Alih-alih menangani panggilan alat, hasil alat, dan manajemen percakapan secara manual, tool runner secara otomatis:
+Alih-alih menangani pemanggilan alat, hasil alat, dan manajemen percakapan secara manual, tool runner secara otomatis:
 
 * Menjalankan alat ketika Claude memanggilnya
 * Menangani siklus permintaan/respons
@@ -21,7 +21,7 @@ Alih-alih menangani panggilan alat, hasil alat, dan manajemen percakapan secara 
 * Menyediakan keamanan tipe dan validasi
 
 <Note>
-  Tool runner berada dalam tahap beta dan tersedia di [Python SDK](https://github.com/anthropics/anthropic-sdk-python/blob/main/tools.md), [TypeScript SDK](https://github.com/anthropics/anthropic-sdk-typescript/blob/main/helpers.md#tool-helpers), [C# SDK](https://github.com/anthropics/anthropic-sdk-csharp/blob/main/examples/ToolRunnerExample/Program.cs), [Go SDK](https://github.com/anthropics/anthropic-sdk-go/blob/main/tools.md), [Java SDK](https://github.com/anthropics/anthropic-sdk-java/blob/main/anthropic-java-example/src/main/java/com/anthropic/example/BetaToolRunnerExample.java), [PHP SDK](https://github.com/anthropics/anthropic-sdk-php/blob/main/examples/beta/beta_tool_runner.php), dan [Ruby SDK](https://github.com/anthropics/anthropic-sdk-ruby/blob/main/helpers.md#3-auto-looping-tool-runner-beta).
+  Tool runner masih dalam versi beta dan tersedia di [Python SDK](https://github.com/anthropics/anthropic-sdk-python/blob/main/tools.md), [TypeScript SDK](https://github.com/anthropics/anthropic-sdk-typescript/blob/main/helpers.md#tool-helpers), [C# SDK](https://github.com/anthropics/anthropic-sdk-csharp/blob/main/examples/ToolRunnerExample/Program.cs), [Go SDK](https://github.com/anthropics/anthropic-sdk-go/blob/main/tools.md), [Java SDK](https://github.com/anthropics/anthropic-sdk-java/blob/main/anthropic-java-example/src/main/java/com/anthropic/example/BetaToolRunnerExample.java), [PHP SDK](https://github.com/anthropics/anthropic-sdk-php/blob/main/examples/beta/beta_tool_runner.php), dan [Ruby SDK](https://github.com/anthropics/anthropic-sdk-ruby/blob/main/helpers.md#3-auto-looping-tool-runner-beta).
 </Note>
 
 ## Penggunaan dasar
@@ -32,7 +32,7 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
 
 <Tabs>
   <Tab title="Python">
-    Gunakan dekorator `@beta_tool` untuk mendefinisikan alat dengan type hint dan docstring.
+    Gunakan decorator `@beta_tool` untuk mendefinisikan alat dengan type hint dan docstring.
 
     <Note>
       Jika Anda menggunakan klien async, ganti `@beta_tool` dengan `@beta_async_tool` dan definisikan fungsi dengan `async def`.
@@ -82,15 +82,15 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
         print(message)
     ```
 
-    Dekorator `@beta_tool` memeriksa argumen fungsi dan docstring untuk menurunkan skema JSON bagi Anda.
+    Decorator `@beta_tool` memeriksa argumen fungsi dan docstring untuk menurunkan skema JSON bagi Anda.
   </Tab>
 
   <Tab title="TypeScript">
-    Gunakan `betaZodTool()` untuk definisi alat yang type-safe dengan validasi Zod, atau `betaTool()` untuk definisi berbasis JSON Schema.
+    Gunakan `betaZodTool()` untuk definisi alat yang aman secara tipe dengan validasi Zod, atau `betaTool()` untuk definisi berbasis JSON Schema.
 
     TypeScript menawarkan dua pendekatan untuk mendefinisikan alat:
 
-    **Menggunakan Zod (direkomendasikan)** - Gunakan `betaZodTool()` untuk definisi alat yang type-safe dengan validasi Zod (memerlukan Zod 3.25.0 atau lebih tinggi):
+    **Menggunakan Zod (direkomendasikan)** - Gunakan `betaZodTool()` untuk definisi alat yang aman secara tipe dengan validasi Zod (memerlukan Zod 3.25.0 atau lebih tinggi):
 
     ```typescript
     import Anthropic from "@anthropic-ai/sdk";
@@ -125,7 +125,7 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
     }
     ```
 
-    **Menggunakan JSON Schema** - Gunakan `betaTool()` untuk definisi alat yang type-safe tanpa Zod:
+    **Menggunakan JSON Schema** - Gunakan `betaTool()` untuk definisi alat yang aman secara tipe tanpa Zod:
 
     <Note>
       Input yang dihasilkan oleh Claude tidak divalidasi saat runtime. Lakukan validasi di dalam fungsi `run` jika diperlukan.
@@ -169,7 +169,7 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
   </Tab>
 
   <Tab title="C#">
-    Definisikan setiap alat sebagai `BetaRunnableTool`, dengan menyediakan `Definition` yang berisi skema JSON dan delegate `Run` yang berjalan ketika Claude memanggil alat tersebut.
+    Definisikan setiap alat sebagai `BetaRunnableTool`, dengan menyediakan `Definition` berisi skema JSON dan delegate `Run` yang dijalankan ketika Claude memanggil alat tersebut.
 
     ```csharp
     using System.Text.Json;
@@ -260,7 +260,7 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
   </Tab>
 
   <Tab title="Go">
-    Definisikan alat dengan `toolrunner.NewBetaToolFromJSONSchema`. Tipe input handler adalah struct dengan tag `jsonschema:`. SDK melakukan refleksi padanya untuk menghasilkan skema JSON.
+    Definisikan alat dengan `toolrunner.NewBetaToolFromJSONSchema`. Tipe input handler adalah struct dengan tag `jsonschema:`. SDK melakukan refleksi terhadapnya untuk menghasilkan skema JSON.
 
     ```go
     package main
@@ -357,7 +357,7 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
   </Tab>
 
   <Tab title="Java">
-    Definisikan setiap alat sebagai kelas yang mengimplementasikan `Supplier<String>`. Anotasikan kelas dengan `@JsonClassDescription` untuk deskripsi alat, dan setiap field publik dengan `@JsonPropertyDescription` untuk deskripsi parameter. SDK menurunkan skema JSON, nama alat (nama kelas dalam format snake-case), dan parsing input dari kelas tersebut, serta menandai alat dengan `strict: true` ([strict tool use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use)).
+    Definisikan setiap alat sebagai kelas yang mengimplementasikan `Supplier<String>`. Beri anotasi `@JsonClassDescription` pada kelas untuk deskripsi alat, dan `@JsonPropertyDescription` pada setiap field publik untuk deskripsi parameter. SDK menurunkan skema JSON, nama alat (nama kelas dalam snake case), dan parsing input dari kelas tersebut, serta menandai alat dengan `strict: true` ([penggunaan alat strict](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use)).
 
     ```java
     import com.anthropic.client.AnthropicClient;
@@ -570,17 +570,17 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
     end
     ```
 
-    Kelas `Anthropic::BaseTool` menggunakan metode `doc` untuk deskripsi alat dan `input_schema` untuk mendefinisikan parameter yang diharapkan. SDK secara otomatis mengonversi ini ke format skema JSON yang sesuai.
+    Kelas `Anthropic::BaseTool` menggunakan metode `doc` untuk deskripsi alat dan `input_schema` untuk mendefinisikan parameter yang diharapkan. SDK secara otomatis mengonversinya ke format skema JSON yang sesuai.
   </Tab>
 </Tabs>
 
 ## Melakukan iterasi pada tool runner
 
-Tool runner adalah iterable yang menghasilkan pesan dari Claude. Pada setiap iterasi, runner memeriksa apakah Claude meminta penggunaan alat. Jika ya, runner menjalankan alat tersebut dan mengirimkan hasilnya kembali ke Claude secara otomatis, lalu menghasilkan pesan berikutnya dari Claude untuk melanjutkan loop Anda.
+Tool runner adalah iterable yang menghasilkan pesan dari Claude. Pada setiap iterasi, runner memeriksa apakah Claude meminta penggunaan alat. Jika ya, runner menjalankan alat tersebut dan mengirim hasilnya kembali ke Claude secara otomatis, lalu menghasilkan pesan berikutnya dari Claude untuk melanjutkan loop Anda.
 
-Anda dapat mengakhiri loop pada iterasi mana pun dengan pernyataan `break`. Runner terus melakukan loop sampai Claude mengembalikan pesan tanpa penggunaan alat, atau sampai mencapai `max_iterations` jika Anda mengaturnya.
+Anda dapat mengakhiri loop pada iterasi mana pun dengan pernyataan `break`. Runner terus melakukan loop hingga Claude mengembalikan pesan tanpa penggunaan alat, atau hingga mencapai `max_iterations` jika Anda mengaturnya.
 
-Jika Anda tidak memerlukan pesan perantara, Anda dapat langsung mendapatkan pesan akhir:
+Jika Anda tidak memerlukan pesan perantara, Anda dapat memperoleh pesan akhir secara langsung:
 
 <Tabs>
   <Tab title="Python">
@@ -608,7 +608,7 @@ Jika Anda tidak memerlukan pesan perantara, Anda dapat langsung mendapatkan pesa
   </Tab>
 
   <Tab title="TypeScript">
-    Gunakan `await` pada runner untuk mendapatkan pesan akhir.
+    Lakukan `await` pada runner untuk mendapatkan pesan akhir.
 
     ```typescript
     const client = new Anthropic();
@@ -698,7 +698,7 @@ Jika Anda tidak memerlukan pesan perantara, Anda dapat langsung mendapatkan pesa
   </Tab>
 
   <Tab title="Java">
-    Java SDK tidak memiliki pintasan `until_done()`. Lakukan iterasi sampai habis dan simpan pesan terakhir.
+    Java SDK tidak memiliki pintasan `until_done()`. Lakukan iterasi hingga habis dan simpan pesan terakhir.
 
     ```java
     AnthropicClient client = AnthropicOkHttpClient.fromEnv();
@@ -773,15 +773,15 @@ Jika Anda tidak memerlukan pesan perantara, Anda dapat langsung mendapatkan pesa
 
 Di dalam loop, Anda dapat membaca setiap pesan respons dan memodifikasi status runner sebelum panggilan API berikutnya. Setiap iterasi mengikuti siklus hidup berikut:
 
-1. Runner mengirimkan permintaan ke Messages API dengan status saat ini.
+1. Runner mengirim permintaan ke Messages API dengan statusnya saat ini.
 
 2. Runner menghasilkan pesan respons ke badan loop Anda.
 
-3. Badan loop Anda berjalan. Anda dapat membaca pesan dan secara opsional memodifikasi status runner.
+3. Badan loop Anda dijalankan. Anda dapat membaca pesan dan secara opsional memodifikasi status runner.
 
 4. Ketika badan loop Anda selesai, runner memeriksa apakah Anda memodifikasi riwayat pesannya.
 
-   * **Jika Anda tidak memodifikasi riwayat pesan:** Jika pesan berisi panggilan alat, runner menambahkan pesan asisten dan hasil alat, lalu melanjutkan. Jika tidak ada panggilan alat, loop berakhir.
+   * **Jika Anda tidak memodifikasi riwayat pesan:** Jika pesan berisi pemanggilan alat, runner menambahkan pesan asisten dan hasil alat, lalu melanjutkan. Jika tidak ada pemanggilan alat, loop berakhir.
    * **Jika Anda memodifikasi riwayat pesan:** Runner melewati penambahan otomatisnya dan menggunakan status Anda tanpa perubahan. Lihat [Mengambil alih riwayat pesan](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner#taking-over-message-history).
 
 ```mermaid
@@ -806,11 +806,11 @@ sequenceDiagram
 
 ### Mengambil alih riwayat pesan
 
-Secara default, runner mengelola status percakapan untuk Anda: setelah setiap giliran panggilan alat, runner menambahkan pesan asisten dan hasil alat apa pun ke riwayat pesannya sendiri. Anda mengambil alih riwayat pesan ketika Anda ingin mengulang sebuah giliran (membuang respons dan mengirim ulang), menyisipkan pesan lanjutan, atau membangun hasil alat sendiri.
+Secara default, runner mengelola status percakapan untuk Anda: setelah setiap giliran pemanggilan alat, runner menambahkan pesan asisten dan hasil alat apa pun ke riwayat pesannya sendiri. Anda mengambil alih riwayat pesan ketika Anda ingin mencoba ulang suatu giliran (membuang respons dan mengirim ulang), menyisipkan pesan lanjutan, atau membangun hasil alat sendiri.
 
 Anda mengambil alih dengan memodifikasi pesan runner dari dalam badan loop. Metode persisnya bergantung pada SDK. Lihat tab per bahasa berikut ini.
 
-Ketika Anda mengambil alih untuk sebuah iterasi, runner tidak menambahkan pesan asisten atau hasil alat dari giliran tersebut. Anda menjadi bertanggung jawab untuk menjaga percakapan tetap valid: tambahkan pesan asisten dan hasil alat sendiri (jika Anda ingin giliran tersebut dihitung), modifikasi status secara bersyarat agar loop masih dapat berakhir ketika tidak ada panggilan alat, dan berikan `max_iterations` untuk membatasi loop. Ketujuh SDK mendukung `max_iterations`.
+Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan asisten atau hasil alat dari giliran tersebut. Anda menjadi bertanggung jawab untuk menjaga percakapan tetap valid: tambahkan sendiri pesan asisten dan hasil alat (jika Anda ingin giliran tersebut dihitung), modifikasi status secara bersyarat agar loop tetap dapat berakhir ketika tidak ada pemanggilan alat, dan berikan `max_iterations` untuk membatasi loop. Ketujuh SDK mendukung `max_iterations`.
 
 <Tabs>
   <Tab title="Python">
@@ -850,7 +850,7 @@ Ketika Anda mengambil alih untuk sebuah iterasi, runner tidak menambahkan pesan 
   <Tab title="TypeScript">
     Gunakan `runner.params` untuk membaca parameter permintaan saat ini dan `setMessagesParams()` untuk menggantinya. Memanggil `setMessagesParams()` atau `pushMessages()` di dalam loop memberi tahu runner bahwa Anda mengelola status sendiri: pesan asisten dan hasil alat dari iterasi ini dibuang, dan permintaan berikutnya dikirim dengan status Anda.
 
-    Contoh berikut mengulang respons yang terpotong dengan anggaran `max_tokens` yang lebih besar.
+    Contoh berikut mencoba ulang respons yang terpotong dengan anggaran `max_tokens` yang lebih besar.
 
     ```typescript
     const runner = client.beta.messages.toolRunner({
@@ -888,7 +888,7 @@ Ketika Anda mengambil alih untuk sebuah iterasi, runner tidak menambahkan pesan 
   </Tab>
 
   <Tab title="C#">
-    Memanggil `SetParams()` atau `PushMessages()` menandai status sebagai telah dimodifikasi, yang menyebabkan runner melewati penambahan otomatisnya untuk giliran tersebut. Runner C# tetap menjalankan alat yang cocok untuk giliran tersebut dan membuang hasil yang dibangun secara otomatis, sehingga alat yang juga Anda jalankan sendiri di dalam badan loop akan berjalan dua kali kecuali Anda memperhitungkannya. Ketika Anda mengambil alih, dorong pesan asisten dan hasil alat sendiri. Jika tidak, percakapan tidak akan membuat kemajuan. Runner C# selalu berakhir ketika respons tidak memiliki panggilan alat, jadi buat setiap mutasi status bersyarat pada keberadaan blok `tool_use`.
+    Memanggil `SetParams()` atau `PushMessages()` menandai status sebagai telah dimodifikasi, yang menyebabkan runner melewati penambahan otomatisnya untuk giliran tersebut. Runner C# tetap menjalankan alat yang cocok untuk giliran tersebut dan membuang hasil yang dibangun otomatis, sehingga alat yang juga Anda jalankan sendiri di dalam badan loop akan berjalan dua kali kecuali Anda memperhitungkannya. Ketika Anda mengambil alih, tambahkan sendiri pesan asisten dan hasil alat. Jika tidak, percakapan tidak akan mengalami kemajuan. Runner C# selalu berakhir ketika respons tidak memiliki pemanggilan alat, jadi kondisikan setiap mutasi status pada keberadaan blok `tool_use`.
 
     ```csharp
     var runner = client.Beta.Messages.ToolRunner(
@@ -944,7 +944,7 @@ Ketika Anda mengambil alih untuk sebuah iterasi, runner tidak menambahkan pesan 
   </Tab>
 
   <Tab title="Go">
-    Runner Go mengekspos parameter sebagai field publik `Params`. Memodifikasi `runner.Params` di antara panggilan ke `NextMessage(ctx)` berlaku untuk permintaan API berikutnya. Tidak seperti SDK lainnya, runner Go selalu menambahkan pesan asisten dan hasil alat tanpa syarat. Memodifikasi `Params` tidak menekan langkah tersebut.
+    Runner Go mengekspos parameter sebagai field publik `Params`. Memodifikasi `runner.Params` di antara panggilan ke `NextMessage(ctx)` berlaku untuk permintaan API berikutnya. Tidak seperti SDK lain, runner Go selalu menambahkan pesan asisten dan hasil alat tanpa syarat. Memodifikasi `Params` tidak menekan langkah tersebut.
 
     ```go
     runner := client.Beta.Messages.NewToolRunner(
@@ -980,9 +980,9 @@ Ketika Anda mengambil alih untuk sebuah iterasi, runner tidak menambahkan pesan 
   </Tab>
 
   <Tab title="Java">
-    Gunakan `runner.params()` untuk membaca parameter saat ini dan `runner.setNextParams()` untuk menggantinya pada iterasi berikutnya. Ketika Anda memanggil `setNextParams()` di dalam loop, runner melewati penambahan otomatisnya. Pesan yang baru saja dihasilkan dibuang, dan iterasi berikutnya mengirimkan parameter baru Anda tanpa perubahan.
+    Gunakan `runner.params()` untuk membaca parameter saat ini dan `runner.setNextParams()` untuk menggantinya pada iterasi berikutnya. Ketika Anda memanggil `setNextParams()` di dalam loop, runner melewati penambahan otomatisnya. Pesan yang baru saja dihasilkan dibuang, dan iterasi berikutnya mengirim parameter baru Anda tanpa perubahan.
 
-    Contoh berikut mengulang giliran yang mencapai batas token dengan menggandakan `max_tokens`. Melakukan mutasi hanya pada cabang `max_tokens` menjaga loop tetap konvergen: giliran yang selesai secara normal akan lolos, dan runner menambahkan secara otomatis lalu berakhir ketika tidak ada lagi panggilan alat.
+    Contoh berikut mencoba ulang giliran yang mencapai batas token dengan menggandakan `max_tokens`. Melakukan mutasi hanya pada cabang `max_tokens` menjaga loop tetap konvergen: giliran yang selesai secara normal diteruskan, dan runner menambahkan secara otomatis serta berakhir ketika tidak ada lagi pemanggilan alat.
 
     ```java
     BetaToolRunner runner = client.beta()
@@ -1021,9 +1021,9 @@ Ketika Anda mengambil alih untuk sebuah iterasi, runner tidak menambahkan pesan 
   </Tab>
 
   <Tab title="PHP">
-    Gunakan `setMessagesParams()` dan `pushMessages()` untuk memodifikasi status runner, dan `getParams()` untuk membacanya. Memanggil salah satu setter di dalam loop memberi tahu runner untuk melewati penambahan otomatisnya, sehingga percakapan berlanjut dari status yang Anda modifikasi.
+    Gunakan `setMessagesParams()` dan `pushMessages()` untuk memodifikasi status runner, dan `getParams()` untuk membacanya. Memanggil salah satu setter di dalam loop memberi tahu runner untuk melewati penambahan otomatisnya, sehingga percakapan berlanjut dari status yang telah Anda modifikasi.
 
-    Contoh berikut menggandakan `max_tokens` dan mengulang ketika respons terpotong.
+    Contoh berikut menggandakan `max_tokens` dan mencoba ulang ketika respons terpotong.
 
     ```php
     use Anthropic\Beta\Messages\BetaStopReason;
@@ -1063,7 +1063,7 @@ Ketika Anda mengambil alih untuk sebuah iterasi, runner tidak menambahkan pesan 
   </Tab>
 
   <Tab title="Ruby">
-    Gunakan `next_message` untuk kontrol langkah demi langkah. Pada saat `next_message` mengembalikan nilai, pesan asisten dan hasil alat untuk giliran tersebut sudah ditambahkan. Gunakan `feed_messages` untuk menyisipkan pesan lanjutan di antara giliran, dan `runner.params.update(...)` untuk mengubah parameter permintaan secara langsung.
+    Gunakan `next_message` untuk kontrol langkah demi langkah. Pada saat `next_message` selesai, pesan asisten dan hasil alat untuk giliran tersebut sudah ditambahkan. Gunakan `feed_messages` untuk menyisipkan pesan lanjutan di antara giliran, dan `runner.params.update(...)` untuk mengubah parameter permintaan secara langsung.
 
     Anda mengambil alih riwayat pesan ketika, dari dalam blok `each_message` atau `each_streaming`, Anda menetapkan ulang `runner.params[:messages]` atau memanggil `feed_messages`. Pola berikut memanggil `feed_messages` di antara panggilan `next_message`, yang tidak mengambil alih.
 
@@ -1095,13 +1095,13 @@ Ketika Anda mengambil alih untuk sebuah iterasi, runner tidak menambahkan pesan 
 
 ### Manajemen konteks otomatis
 
-Untuk tugas agentik yang berjalan lama, tool runner Python, TypeScript, dan Ruby mendukung [kompaksi](https://platform.claude.com/docs/id/build-with-claude/context-editing#client-side-compaction-sdk) otomatis, yang menghasilkan ringkasan ketika penggunaan token melebihi ambang batas sehingga percakapan dapat berlanjut melampaui batas jendela konteks. Ketiga SDK tersebut telah menghentikan dukungan (deprecated) opsi sisi klien ini demi [context editing](https://platform.claude.com/docs/id/build-with-claude/context-editing) sisi server, yang tersedia di setiap SDK. Tool runner Go, Java, C#, dan PHP tidak menyertakan kompaksi sisi klien.
+Untuk tugas agentik yang berjalan lama, tool runner TypeScript dan Ruby mendukung [compaction](https://platform.claude.com/docs/id/build-with-claude/context-editing#client-side-compaction-sdk) (pemadatan) otomatis, yang menghasilkan ringkasan ketika penggunaan token melebihi ambang batas sehingga percakapan dapat berlanjut melampaui batas "context window" (jendela konteks). Kedua SDK telah mendeprekasi opsi sisi klien ini dan menggantinya dengan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction), yang berfungsi dengan tool runner setiap SDK melalui parameter permintaan `context_management`. Python SDK (v1.0 dan yang lebih baru) serta tool runner Go, Java, C#, dan PHP tidak menyertakan compaction sisi klien.
 
-### Melakukan debug eksekusi alat
+### Men-debug eksekusi alat
 
-Ketika sebuah alat melemparkan exception, tool runner menangkapnya dan mengembalikan error tersebut ke Claude sebagai hasil alat dengan `is_error: true`. Hasil alat membawa pesan exception (di Python, tipe dan pesannya), bukan stack trace lengkap.
+Ketika sebuah alat melempar exception, tool runner menangkapnya dan mengembalikan error tersebut ke Claude sebagai hasil alat dengan `is_error: true`. Hasil alat membawa pesan exception (di Python, tipe dan pesannya), bukan stack trace lengkap.
 
-Apa yang dicatat oleh SDK bersifat spesifik per bahasa. Python SDK mencatat exception lengkap, termasuk stack trace-nya, melalui modul `logging` standar setiap kali sebuah alat memunculkan exception yang tidak ditangani. SDK Python, TypeScript, dan Java membaca variabel lingkungan `ANTHROPIC_LOG` untuk mengaktifkan logging SDK, yang mencakup detail permintaan dan respons:
+Apa yang dicatat oleh SDK bersifat spesifik per bahasa. Python SDK mencatat exception lengkap, termasuk stack trace-nya, melalui modul `logging` standar setiap kali sebuah alat memunculkan exception yang tidak ditangani. Python, TypeScript, dan Java SDK membaca variabel lingkungan `ANTHROPIC_LOG` untuk mengaktifkan logging SDK, yang mencakup detail permintaan dan respons:
 
 ```bash
 # Log pada level info
@@ -1111,13 +1111,13 @@ export ANTHROPIC_LOG=info
 export ANTHROPIC_LOG=debug
 ```
 
-SDK Go, Ruby, C#, dan PHP tidak membaca `ANTHROPIC_LOG`. Di luar Python, tidak ada SDK yang mencatat alat yang gagal: untuk melihat mengapa sebuah alat gagal, tangkap dan catat exception di dalam fungsi alat sebelum mengembalikan atau melempar ulang exception tersebut.
+Go, Ruby, C#, dan PHP SDK tidak membaca `ANTHROPIC_LOG`. Di luar Python, tidak ada SDK yang mencatat alat yang gagal: untuk melihat mengapa sebuah alat gagal, tangkap dan catat exception di dalam fungsi alat sebelum mengembalikan atau melemparnya kembali.
 
 ### Mencegat error alat
 
 Secara default, error alat diteruskan kembali ke Claude, yang kemudian dapat merespons dengan tepat. Namun, Anda mungkin ingin mendeteksi error dan menanganinya secara berbeda, misalnya, untuk menghentikan eksekusi lebih awal atau mengimplementasikan penanganan error kustom.
 
-Di SDK Python dan TypeScript, gunakan metode respons alat (`generate_tool_call_response()` di Python, `generateToolResponse()` di TypeScript) untuk mencegat hasil alat dan memeriksa error sebelum dikirim ke Claude. SDK lainnya tidak mengekspos hook tersebut. Tab mereka menjelaskan alternatif terdekat:
+Di Python dan TypeScript SDK, gunakan metode respons alat (`generate_tool_call_response()` di Python, `generateToolResponse()` di TypeScript) untuk mencegat hasil alat dan memeriksa error sebelum dikirim ke Claude. SDK lainnya tidak mengekspos hook tersebut. Tab masing-masing menjelaskan alternatif terdekat:
 
 <Tabs>
   <Tab title="Python">
@@ -1142,7 +1142,7 @@ Di SDK Python dan TypeScript, gunakan metode respons alat (`generate_tool_call_r
                     # Opsi 1: Lempar exception untuk menghentikan loop
                     raise RuntimeError(f"Tool failed: {json.dumps(block['content'])}")
 
-                    # Opsi 2: Catat di log dan lanjutkan (biarkan Claude menanganinya)
+                    # Opsi 2: Catat log dan lanjutkan (biarkan Claude menanganinya)
                     # logger.error(f"Tool error: {json.dumps(block['content'])}")
 
         # Proses pesan seperti biasa
@@ -1165,10 +1165,10 @@ Di SDK Python dan TypeScript, gunakan metode respons alat (`generate_tool_call_r
       const toolResultMessage = await runner.generateToolResponse();
 
       if (toolResultMessage && typeof toolResultMessage.content !== "string") {
-        // Periksa apakah ada hasil alat yang mengalami error
+        // Periksa apakah ada hasil alat yang mengandung error
         for (const block of toolResultMessage.content) {
           if (block.type === "tool_result" && block.is_error) {
-            // Opsi 1: Lempar error untuk menghentikan loop
+            // Opsi 1: Lempar exception untuk menghentikan loop
             throw new Error(`Tool failed: ${JSON.stringify(block.content)}`);
 
             // Opsi 2: Catat log dan lanjutkan (biarkan Claude menanganinya)
@@ -1184,7 +1184,7 @@ Di SDK Python dan TypeScript, gunakan metode respons alat (`generate_tool_call_r
   </Tab>
 
   <Tab title="C#">
-    Tool runner C# tidak mengekspos hook untuk memeriksa hasil alat sebelum dikirim ke Claude. Untuk mengontrol konten error, lemparkan `BetaToolError` dari dalam badan alat. Runner mengonversinya menjadi `tool_result` dengan `is_error: true` dan konten yang Anda berikan.
+    Tool runner C# tidak mengekspos hook untuk memeriksa hasil alat sebelum dikirim ke Claude. Untuk mengontrol konten error, lempar `BetaToolError` dari dalam badan alat. Runner mengonversinya menjadi `tool_result` dengan `is_error: true` dan konten yang Anda berikan.
 
     ```csharp
     var client = new AnthropicClient();
@@ -1216,7 +1216,7 @@ Di SDK Python dan TypeScript, gunakan metode respons alat (`generate_tool_call_r
             }
             catch (HttpRequestException ex)
             {
-                // Lakukan logging di sini jika Anda perlu memeriksa kegagalan tersebut sebelum Claude melihatnya.
+                // Catat log di sini jika Anda perlu memeriksa kegagalan sebelum Claude melihatnya.
                 throw new BetaToolError($"Weather service unavailable: {ex.Message}");
             }
         },
@@ -1244,11 +1244,11 @@ Di SDK Python dan TypeScript, gunakan metode respons alat (`generate_tool_call_r
   </Tab>
 
   <Tab title="Java">
-    Mencegat error alat sebelum dikirim ke Claude saat ini tidak didukung di Java SDK. Runner menangkap exception apa pun yang dilemparkan dari metode `get()` alat dan mengonversinya menjadi hasil alat dengan `is_error: true` secara otomatis. Untuk mengontrol konten error, tangkap exception di dalam alat Anda dan kembalikan string kustom.
+    Mencegat error alat sebelum dikirim ke Claude saat ini tidak didukung di Java SDK. Runner menangkap exception apa pun yang dilempar dari metode `get()` alat dan mengonversinya menjadi hasil alat dengan `is_error: true` secara otomatis. Untuk mengontrol konten error, tangkap exception di dalam alat Anda dan kembalikan string kustom.
   </Tab>
 
   <Tab title="PHP">
-    Tool runner PHP saat ini tidak mengekspos hasil alat sebelum ditambahkan. Exception yang dilemparkan dari closure `run` sebuah alat ditangkap dan dikirim ke Claude sebagai hasil alat dengan `is_error: true` secara otomatis. Untuk memeriksa atau mengganti konten error, gunakan pola `pushMessages()` manual yang ditunjukkan di [Memodifikasi hasil alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner#modifying-tool-results).
+    Tool runner PHP saat ini tidak mengekspos hasil alat sebelum ditambahkan. Exception yang dilempar dari closure `run` alat ditangkap dan dikirim ke Claude sebagai hasil alat dengan `is_error: true` secara otomatis. Untuk memeriksa atau mengganti konten error, gunakan pola `pushMessages()` manual yang ditunjukkan di [Memodifikasi hasil alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner#modifying-tool-results).
   </Tab>
 
   <Tab title="Ruby">
@@ -1266,8 +1266,8 @@ Di SDK Python dan TypeScript, gunakan metode respons alat (`generate_tool_call_r
       message = runner.next_message
       break unless message
 
-      # Pada saat next_message mengembalikan nilai, runner telah menjalankan alat-alat pada giliran ini dan
-      # menambahkan hasilnya sebagai pesan terakhir (dengan peran user). Periksa hasilnya di sini,
+      # Saat next_message kembali, runner telah menjalankan alat giliran ini dan
+      # menambahkan hasilnya sebagai pesan terakhir (peran user). Periksa di sini,
       # sebelum permintaan berikutnya mengirimkannya ke Claude.
       tool_results = runner.params[:messages].last
 
@@ -1277,7 +1277,7 @@ Di SDK Python dan TypeScript, gunakan metode respons alat (`generate_tool_call_r
             # Opsi 1: Lempar exception untuk menghentikan loop
             raise "Tool failed: #{block[:content]}"
 
-            # Opsi 2: Catat di log dan lanjutkan (biarkan Claude menanganinya)
+            # Opsi 2: Catat log dan lanjutkan (biarkan Claude menanganinya)
             # logger.error("Tool error: #{block[:content]}")
           end
         end
@@ -1292,9 +1292,9 @@ Di SDK Python dan TypeScript, gunakan metode respons alat (`generate_tool_call_r
 
 ### Memodifikasi hasil alat
 
-Anda dapat memodifikasi hasil alat sebelum dikirim kembali ke Claude. Ini berguna untuk menambahkan metadata seperti `cache_control` untuk mengaktifkan [prompt caching](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) (caching prompt) pada hasil alat, atau untuk mentransformasi output alat.
+Anda dapat memodifikasi hasil alat sebelum dikirim kembali ke Claude. Ini berguna untuk menambahkan metadata seperti `cache_control` guna mengaktifkan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) pada hasil alat, atau untuk mentransformasi output alat.
 
-Di SDK Python dan TypeScript, gunakan metode respons alat untuk mendapatkan hasil alat, lalu modifikasi sebelum runner melanjutkan. Apakah Anda secara eksplisit menambahkan hasil yang dimodifikasi atau memutasinya secara langsung bergantung pada SDK. Lihat komentar kode di setiap tab.
+Di Python dan TypeScript SDK, gunakan metode respons alat untuk mendapatkan hasil alat, lalu modifikasi sebelum runner melanjutkan. Apakah Anda secara eksplisit menambahkan hasil yang dimodifikasi atau memutasinya secara langsung bergantung pada SDK. Lihat komentar kode di setiap tab.
 
 <Tabs>
   <Tab title="Python">
@@ -1318,13 +1318,13 @@ Di SDK Python dan TypeScript, gunakan metode respons alat untuk mendapatkan hasi
 
         if tool_response is not None:
             # tool_response adalah dict: {"role": "user", "content": [...]}
-            # Modifikasi hasil alat untuk menambahkan kontrol cache
+            # Ubah hasil alat untuk menambahkan cache control
             for block in tool_response["content"]:
                 if block["type"] == "tool_result":
                     # Tambahkan cache_control untuk meng-cache hasil alat ini
                     block["cache_control"] = {"type": "ephemeral"}
 
-            # Tambahkan respons yang telah dimodifikasi (ini mencegah penambahan otomatis respons asli)
+            # Tambahkan respons yang telah diubah (ini mencegah penambahan otomatis respons asli)
             runner.append_messages(message, tool_response)
 
         print(message.content)
@@ -1348,15 +1348,15 @@ Di SDK Python dan TypeScript, gunakan metode respons alat untuk mendapatkan hasi
       const toolResultMessage = await runner.generateToolResponse();
 
       if (toolResultMessage && typeof toolResultMessage.content !== "string") {
-        // Modifikasi hasil alat untuk menambahkan kontrol cache
+        // Ubah hasil alat untuk menambahkan cache control
         for (const block of toolResultMessage.content) {
           if (block.type === "tool_result") {
             // Tambahkan cache_control untuk meng-cache hasil alat ini
             block.cache_control = { type: "ephemeral" };
           }
         }
-        // Tidak perlu memanggil pushMessages: runner otomatis menambahkan baik pesan
-        // asisten maupun respons alat yang di-cache (yang kini telah dimutasi).
+        // Tidak perlu memanggil pushMessages: runner otomatis menambahkan pesan assistant
+        // dan respons alat yang di-cache (yang kini telah dimutasi).
       }
 
       console.log(message.content);
@@ -1369,7 +1369,7 @@ Di SDK Python dan TypeScript, gunakan metode respons alat untuk mendapatkan hasi
   </Tab>
 
   <Tab title="Go">
-    Runner Go tidak mengekspos hook untuk memodifikasi blok `tool_result` terluar. Namun, Anda dapat mengatur `cache_control` pada blok konten bagian dalam yang dikembalikan oleh handler Anda.
+    Runner Go tidak mengekspos hook untuk memodifikasi blok `tool_result` luar. Namun, Anda dapat mengatur `cache_control` pada blok konten dalam yang dikembalikan handler Anda.
 
     ```go
     client := anthropic.NewClient()
@@ -1383,8 +1383,8 @@ Di SDK Python dan TypeScript, gunakan metode respons alat untuk mendapatkan hasi
     			OfText: &anthropic.BetaTextBlockParam{
     				Text: fmt.Sprintf("Found 3 documents matching: %s", input.Query),
     				// Atur cache_control pada blok konten bagian dalam. cache_control
-    				// pada blok tool_result bagian luar saat ini belum
-    				// dapat diatur melalui runner Go.
+    				// pada blok tool_result bagian luar saat ini belum dapat
+    				// diatur melalui runner Go.
     				CacheControl: anthropic.NewBetaCacheControlEphemeralParam(),
     			},
     		}, nil
@@ -1418,7 +1418,7 @@ Di SDK Python dan TypeScript, gunakan metode respons alat untuk mendapatkan hasi
   </Tab>
 
   <Tab title="Java">
-    Untuk mengatur `cache_control` pada hasil alat, kembalikan `BetaToolResultBlockParam.Content` dari alat alih-alih `String` dan atur `cacheControl` pada blok teks bagian dalam. Runner saat ini tidak mendukung pengaturan `cache_control` pada blok `tool_result` terluar.
+    Untuk mengatur `cache_control` pada hasil alat, kembalikan `BetaToolResultBlockParam.Content` dari alat alih-alih `String` dan atur `cacheControl` pada blok teks dalam. Runner saat ini tidak mendukung pengaturan `cache_control` pada blok `tool_result` luar.
 
     ```java
     @JsonClassDescription("Look up reference documentation for a topic")
@@ -1441,7 +1441,7 @@ Di SDK Python dan TypeScript, gunakan metode respons alat untuk mendapatkan hasi
   </Tab>
 
   <Tab title="PHP">
-    Tool runner PHP tidak memiliki callback untuk memutasi blok `tool_result` yang dihasilkan secara otomatis. Untuk menambahkan field seperti `cache_control`, bangun hasil alat sendiri dan dorong hasilnya. Memanggil `pushMessages()` melewati penambahan otomatis runner untuk giliran tersebut.
+    Tool runner PHP tidak memiliki callback untuk memutasi blok `tool_result` yang dihasilkan otomatis. Untuk menambahkan field seperti `cache_control`, bangun hasil alat sendiri dan tambahkan. Memanggil `pushMessages()` melewati penambahan otomatis runner untuk giliran tersebut.
 
     ```php
     $client = new Client();
@@ -1463,21 +1463,21 @@ Di SDK Python dan TypeScript, gunakan metode respons alat untuk mendapatkan hasi
                     'type' => 'tool_result',
                     'tool_use_id' => $block->id,
                     'content' => $searchDocuments->run($block->input),
-                    // Tambahkan cache_control untuk menyimpan hasil alat ini ke cache
+                    // Tambahkan cache_control untuk meng-cache hasil alat ini
                     'cache_control' => ['type' => 'ephemeral'],
                 ];
             }
         }
 
         if ($toolResults !== []) {
-            // pushMessages() menandai state sebagai telah diubah, sehingga runner melewati
+            // pushMessages() menandai state sebagai termutasi, sehingga runner melewati
             // penambahan otomatisnya. Push pesan asisten dan hasil alat.
             $runner->pushMessages(
                 ['role' => 'assistant', 'content' => $message->content],
                 ['role' => 'user', 'content' => $toolResults],
             );
         }
-        // Tidak ada panggilan alat: biarkan state tidak berubah agar loop berhenti.
+        // Tidak ada panggilan alat: biarkan state tak tersentuh agar loop berakhir.
     }
     ```
   </Tab>
@@ -1518,7 +1518,7 @@ Di SDK Python dan TypeScript, gunakan metode respons alat untuk mendapatkan hasi
 </Tabs>
 
 <Tip>
-  Menambahkan `cache_control` ke hasil alat sangat berguna ketika alat mengembalikan data dalam jumlah besar (seperti hasil pencarian dokumen) yang ingin Anda cache untuk panggilan API berikutnya. Lihat [Prompt caching](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk detail lebih lanjut tentang strategi caching.
+  Menambahkan `cache_control` ke hasil alat sangat berguna ketika alat mengembalikan data dalam jumlah besar (seperti hasil pencarian dokumen) yang ingin Anda cache untuk panggilan API berikutnya. Lihat [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk detail lebih lanjut tentang strategi caching.
 </Tip>
 
 ## Streaming
@@ -1577,7 +1577,7 @@ Aktifkan streaming untuk memproses respons setiap giliran secara bertahap. Setia
   </Tab>
 
   <Tab title="C#">
-    Panggil `runner.Streaming()` untuk mendapatkan urutan async bersarang: satu stream bagian dalam untuk setiap panggilan API.
+    Panggil `runner.Streaming()` untuk mendapatkan urutan async bersarang: satu stream dalam untuk setiap panggilan API.
 
     ```csharp
     var client = new AnthropicClient();
@@ -1717,16 +1717,16 @@ Aktifkan streaming untuk memproses respons setiap giliran secara bertahap. Setia
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Strict tool use" icon="check" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use">
+  <Card title="Penggunaan alat strict" icon="check" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use">
     Terapkan kepatuhan JSON Schema pada input alat Claude dengan sampling yang dibatasi grammar.
   </Card>
 
-  <Card title="Menangani panggilan alat" icon="arrows-left-right" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls">
+  <Card title="Menangani pemanggilan alat" icon="arrows-left-right" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls">
     Parse blok `tool_use`, format respons `tool_result`, dan tangani error dengan `is_error`.
   </Card>
 
   <Card title="Penggunaan alat paralel" icon="grid" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use">
-    Aktifkan, format, dan nonaktifkan panggilan alat paralel, dengan panduan riwayat pesan dan pemecahan masalah.
+    Aktifkan, format, dan nonaktifkan pemanggilan alat paralel, dengan panduan riwayat pesan dan pemecahan masalah.
   </Card>
 
   <Card title="Mendefinisikan alat" icon="hammer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools">

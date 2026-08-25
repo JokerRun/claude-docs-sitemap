@@ -1,22 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/permissions/list
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 7e64cbf93509ad0da461ff782f6a3da5a85cbde3dd0ea18d77578e12ff804755
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 6b1a07b7d4abcd5c7590d4f09369f7e8e8f9729703401c15286df2a310c28b3d
 ---
 
----
-title: List Compliance Role Permissions
-url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/permissions/list
----
+# List Compliance Role Permissions
 
-## List Compliance Role Permissions
-
-**get** `/v1/compliance/organizations/{org_uuid}/roles/{role_id}/permissions`
+**GET** `/v1/compliance/organizations/{org_uuid}/roles/{role_id}/permissions`
 
 List Compliance Role Permissions
 
-### Path Parameters
+## Path parameters
 
 - `org_uuid: string`
 
@@ -26,23 +21,25 @@ List Compliance Role Permissions
 
   The role ID (tagged ID, e.g., rbac_role_abc123)
 
-### Query Parameters
+## Query parameters
 
 - `limit: optional number`
 
   Maximum results (default: 500, max: 1000)
 
+  default: 500, maximum: 1000, minimum: 1
+
 - `page: optional string`
 
   Opaque pagination token from a previous response's `next_page` field. Pass this to retrieve the next page of results. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
 
-### Header Parameters
+## Headers
 
 - `"x-api-key": optional string`
 
-### Returns
+## Returns
 
-- `data: array of object { action, resource_id, resource_type }`
+- `data: array of object`
 
   List of permissions
 
@@ -66,14 +63,14 @@ List Compliance Role Permissions
 
   Token to retrieve the next page. Use this as the 'page' parameter in your next request
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles/$ROLE_ID/permissions \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

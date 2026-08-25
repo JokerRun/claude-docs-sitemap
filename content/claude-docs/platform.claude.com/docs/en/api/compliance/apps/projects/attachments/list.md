@@ -1,18 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments/list
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 2a200ceedc9472eb8a12e76696519f731712aaa84e3d19eb8be7f2706a0da0cf
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 074c05a2a2cd8ab82b54b5105862d1e01c6b2af4646cffa69b75a28dc6d90190
 ---
 
----
-title: List project attachments
-url: https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments/list
----
+# List project attachments
 
-## List project attachments
-
-**get** `/v1/compliance/apps/projects/{project_id}/attachments`
+**GET** `/v1/compliance/apps/projects/{project_id}/attachments`
 
 List files and documents attached to a project.
 
@@ -25,33 +20,35 @@ GET /v1/compliance/apps/chats/files/{claude_file_id}/content endpoint.
 The text content of attached project documents can be fetched using the
 GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
 
-### Path Parameters
+## Path parameters
 
 - `project_id: string`
 
   The project ID (tagged ID, e.g., claude_proj_abc123)
 
-### Query Parameters
+## Query parameters
 
 - `limit: optional number`
 
   Maximum results (default: 20, max: 100)
 
+  default: 20, maximum: 100, minimum: 1
+
 - `page: optional string`
 
   Opaque pagination token from a previous response's `next_page` field. Pass this to retrieve the next page of results. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
 
-### Header Parameters
+## Headers
 
 - `"x-api-key": optional string`
 
-### Returns
+## Returns
 
-- `data: array of object { id, created_at, filename, 4 more }  or object { id, created_at, filename, 3 more }`
+- `data: array of object or object`
 
   List of attachments sorted chronologically by created_at, tie break by id
 
-  - `ComplianceProjectFileReference object { id, created_at, filename, 4 more }`
+  - `ComplianceProjectFileReference object`
 
     File attachment reference for compliance responses.
 
@@ -62,6 +59,8 @@ GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
     - `created_at: string`
 
       Creation timestamp (RFC 3339 format)
+
+      format: date-time
 
     - `filename: string`
 
@@ -83,9 +82,9 @@ GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
 
       Discriminator marking this as a binary file
 
-      - `"project_file"`
+      default: project_file
 
-  - `ComplianceProjectDocReference object { id, created_at, filename, 3 more }`
+  - `ComplianceProjectDocReference object`
 
     Project document attachment reference for compliance responses.
 
@@ -97,6 +96,8 @@ GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
 
       Creation timestamp (RFC 3339 format)
 
+      format: date-time
+
     - `filename: string`
 
       Display name of the document (e.g., 'document.txt')
@@ -105,17 +106,19 @@ GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
 
       MIME type of the project document, always set to plain text
 
-      - `"text/plain"`
+      default: text/plain
 
     - `type: "project_doc"`
 
       Discriminator marking this as a plain text document
 
-      - `"project_doc"`
+      default: project_doc
 
     - `updated_at: string or null`
 
       Last-modified timestamp of the document. Reserved for future use — currently always null.
+
+      format: date-time
 
 - `has_more: boolean`
 
@@ -125,14 +128,14 @@ GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
 
   To get the next page, use the 'next_page' from the current response as the 'page' in your next request
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID/attachments \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

@@ -1,24 +1,33 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/skills/create
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 1ba17dac161aa560fa7f481ea437551459edffa6b62b1898a5bce42d8d432ff9
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 6bf4d97b15fa329a6767e372b0ed0f8f220bd23925213405693c2262a73851c0
 ---
 
----
-title: Create Skill
-url: https://platform.claude.com/docs/en/api/skills/create
----
+# Create Skill
 
-## Create Skill
-
-**post** `/v1/skills`
+**POST** `/v1/skills`
 
 Create Skill
 
-### Returns
+## Body parameters (form-data)
 
-- `Skill object { id, created_at, display_name, 4 more }`
+- `files: array of string`
+
+  Files to upload for the skill.
+
+  All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
+
+- `display_name: optional string or null`
+
+  Human-readable, single-line label for the Skill. Maximum 255 characters.
+  Always set: derived from the SKILL.md frontmatter `name` when omitted at
+  creation. Not unique.
+
+## Returns
+
+- `Skill object`
 
   - `id: string`
 
@@ -29,6 +38,8 @@ Create Skill
   - `created_at: string`
 
     ISO 8601 timestamp of when the skill was created.
+
+    format: date-time
 
   - `display_name: string`
 
@@ -76,15 +87,17 @@ Create Skill
 
     For Skills, this is always `"skill"`.
 
-    - `"skill"`
+    default: skill
 
   - `updated_at: string`
 
     ISO 8601 timestamp of when the skill was last updated.
 
-### Example
+    format: date-time
 
-```http
+## Example
+
+```bash
 curl https://api.anthropic.com/v1/skills \
     -H 'Content-Type: multipart/form-data' \
     -H 'anthropic-version: 2023-06-01' \
@@ -92,7 +105,7 @@ curl https://api.anthropic.com/v1/skills \
     -F files='["Example data"]'
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

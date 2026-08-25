@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-08-23T02:32:19.757524Z
-sha256: a647ea4df3426c40c039ccfa60da140486de3fd40007c910f69b255035029ec9
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 728ed36a2edd0daf46aa75bf2c63ae3add443ae5fd74f4af297b49e886e5e6f1
 ---
 
 ---
@@ -11,9 +11,9 @@ url: https://platform.claude.com/docs/id/managed-agents/environments
 description: Sesuaikan sandbox cloud untuk sesi Anda.
 ---
 
-Environment mendefinisikan konfigurasi sandbox tempat agen Anda berjalan. Anda membuat environment satu kali, lalu mereferensikan ID-nya setiap kali Anda memulai sesi. Beberapa sesi dapat berbagi environment yang sama, tetapi setiap sesi mendapatkan sandbox terisolasinya sendiri (kontainer Linux yang baru).
+Environment mendefinisikan konfigurasi sandbox tempat agen Anda berjalan. Anda membuat environment sekali, lalu mereferensikan ID-nya setiap kali Anda memulai sesi. Beberapa sesi dapat berbagi environment yang sama, tetapi setiap sesi mendapatkan sandbox terisolasinya sendiri (container Linux baru).
 
-Halaman ini membahas environment dengan `type: cloud`. Untuk menjalankan sandbox pada infrastruktur Anda sendiri, lihat [Sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes).
+Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di infrastruktur Anda sendiri, lihat [Sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes).
 
 <Note>
   Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
@@ -145,7 +145,7 @@ Halaman ini membahas environment dengan `type: cloud`. Untuk menjalankan sandbox
   ```
 </CodeGroup>
 
-Gunakan `name` yang unik dan deskriptif agar Anda dapat membedakan antar environment.
+Gunakan `name` yang unik dan deskriptif agar Anda dapat membedakan environment satu dengan lainnya.
 
 ## Menggunakan environment dalam sesi
 
@@ -229,9 +229,9 @@ Teruskan ID environment sebagai string saat [membuat sesi](https://platform.clau
 
 ## Opsi konfigurasi
 
-### Packages
+### Paket
 
-Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dimulai. Paket diinstal oleh package manager masing-masing dan di-cache di seluruh sesi yang berbagi environment yang sama. Ketika beberapa package manager ditentukan, mereka dijalankan dalam urutan alfabetis (apt, cargo, gem, go, npm, pip). Anda dapat secara opsional menyematkan versi tertentu. Paket yang tidak disematkan akan menginstal versi terbaru.
+Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dimulai. Paket diinstal oleh package manager masing-masing dan di-cache di seluruh sesi yang berbagi environment yang sama. Ketika beberapa package manager ditentukan, mereka berjalan dalam urutan alfabetis (apt, cargo, gem, go, npm, pip). Anda dapat secara opsional mengunci versi tertentu. Paket yang tidak dikunci versinya akan menginstal versi terbaru.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -395,23 +395,23 @@ Package manager yang didukung:
 
 | Field   | Package manager        | Contoh                                      |
 | ------- | ---------------------- | ------------------------------------------- |
-| `apt`   | Paket sistem (apt-get) | `"ffmpeg"`                                  |
-| `cargo` | Rust (cargo)           | `"ripgrep@14.0.0"`                          |
+| `apt`   | Paket sistem (apt-get) | `"graphviz"`                                |
+| `cargo` | Rust (cargo)           | `"hyperfine@1.18.0"`                        |
 | `gem`   | Ruby (gem)             | `"rails:7.1.0"`                             |
 | `go`    | Modul Go               | `"golang.org/x/tools/cmd/goimports@latest"` |
 | `npm`   | Node.js (npm)          | `"express@4.18.0"`                          |
-| `pip`   | Python (pip)           | `"pandas==2.2.0"`                           |
+| `pip`   | Python (pip)           | `"sqlalchemy==2.0.30"`                      |
 
-### Networking
+### Jaringan
 
-Field `networking` mengontrol akses jaringan keluar dari sandbox. Field ini tidak memengaruhi domain yang diizinkan untuk alat `web_search` atau `web_fetch`.
+Field `networking` mengontrol akses jaringan keluar (outbound) dari sandbox. Field ini tidak memengaruhi alat `web_search` atau `web_fetch`, yang berjalan di server Anthropic; untuk membatasi situs yang dapat dijangkau alat tersebut, atur `allowed_domains` atau `blocked_domains` pada entri alat di toolset agen. Lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
 
-| Mode           | Deskripsi                                                                                                                                                               |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `unrestricted` | Akses jaringan keluar penuh, kecuali untuk daftar blokir keamanan umum. Ini adalah default.                                                                             |
-| `limited`      | Membatasi akses jaringan sandbox ke host yang ada di `allowed_hosts`. Atur `allow_package_managers` dan `allow_mcp_servers` ke `true` untuk mengizinkan akses tambahan. |
+| Mode           | Deskripsi                                                                                                                                                         |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `unrestricted` | Akses jaringan keluar penuh, kecuali untuk blocklist keamanan umum. Ini adalah default.                                                                           |
+| `limited`      | Membatasi akses jaringan sandbox ke host dalam `allowed_hosts`. Atur `allow_package_managers` dan `allow_mcp_servers` ke `true` untuk mengizinkan akses tambahan. |
 
-Contoh berikut membuat environment dengan networking `limited`:
+Contoh berikut membuat environment dengan jaringan `limited`:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -571,14 +571,14 @@ Contoh berikut membuat environment dengan networking `limited`:
 </CodeGroup>
 
 <Info>
-  Untuk deployment produksi, gunakan networking `limited` dengan daftar `allowed_hosts` yang eksplisit. Ikuti prinsip hak istimewa minimum (least privilege) dengan hanya memberikan akses jaringan minimum yang dibutuhkan agen Anda, dan audit domain yang diizinkan secara berkala.
+  Untuk deployment produksi, gunakan jaringan `limited` dengan daftar `allowed_hosts` yang eksplisit. Ikuti prinsip hak akses minimum (least privilege) dengan hanya memberikan akses jaringan minimum yang dibutuhkan agen Anda, dan audit domain yang diizinkan secara berkala.
 </Info>
 
-Saat menggunakan networking `limited`:
+Saat menggunakan jaringan `limited`:
 
-* `allowed_hosts` menentukan domain yang dapat dijangkau oleh sandbox. Tentukan hostname polos atau pola wildcard (seperti `*.example.com`). Jangan sertakan skema URL, port, atau path.
-* `allow_mcp_servers` mengizinkan akses keluar ke endpoint server MCP yang dikonfigurasi pada agen, di luar yang tercantum dalam array `allowed_hosts`. Default-nya adalah `false`.
-* `allow_package_managers` mengizinkan akses keluar ke registri paket publik (seperti PyPI dan npm) di luar yang tercantum dalam array `allowed_hosts`. Default-nya adalah `false`.
+* `allowed_hosts` menentukan domain yang dapat dijangkau sandbox. Tentukan hostname saja atau pola wildcard (seperti `*.example.com`). Jangan sertakan skema URL, port, atau path.
+* `allow_mcp_servers` mengizinkan akses keluar ke endpoint server MCP yang dikonfigurasi pada agen, di luar yang tercantum dalam array `allowed_hosts`. Default-nya `false`.
+* `allow_package_managers` mengizinkan akses keluar ke registry paket publik (seperti PyPI dan npm) di luar yang tercantum dalam array `allowed_hosts`. Default-nya `false`.
 
 ## Siklus hidup environment
 
@@ -616,16 +616,16 @@ Saat menggunakan networking `limited`:
   ```
 
   ```bash CLI
-  # List environments
+  # Daftar environment
   ant beta:environments list
 
-  # Retrieve a specific environment
+  # Ambil environment tertentu
   ant beta:environments retrieve --environment-id "$ENVIRONMENT_ID"
 
-  # Archive an environment (read-only, existing sessions continue)
+  # Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
   ant beta:environments archive --environment-id "$ENVIRONMENT_ID"
 
-  # Delete an environment (only if no sessions reference it)
+  # Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
   ant beta:environments delete --environment-id "$ENVIRONMENT_ID"
   ```
 
@@ -725,15 +725,15 @@ Saat menggunakan networking `limited`:
   ```
 </CodeGroup>
 
-## Runtime yang sudah terinstal
+## Runtime pra-instal
 
-Sandbox cloud menyertakan runtime umum secara bawaan. Lihat [Referensi sandbox cloud](https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference) untuk daftar lengkap bahasa, database, dan utilitas yang sudah terinstal.
+Sandbox cloud menyertakan runtime bahasa umum, database, dan alat command-line secara bawaan. Lihat [Referensi sandbox cloud](https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference) untuk daftar lengkapnya.
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
   <Card title="Referensi sandbox cloud" icon="book" href="https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference">
-    Paket, database, dan utilitas yang sudah terinstal dan tersedia di sandbox cloud.
+    Paket, database, dan utilitas pra-instal yang tersedia di sandbox cloud.
   </Card>
 
   <Card title="Memulai sesi" icon="play" href="https://platform.claude.com/docs/id/managed-agents/sessions">

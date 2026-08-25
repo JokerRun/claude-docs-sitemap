@@ -1,18 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/remote/messages/list
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 81446169c47d9e177b485e14f7aefbfe114e9f16b88e8a7c1cba289e2823f1c0
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 70100b7e0b22cee768271522ab487b3a721ff384c8539a28c074651be3f24cd6
 ---
 
----
-title: Retrieve remote session messages
-url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/remote/messages/list
----
+# Retrieve remote session messages
 
-## Retrieve remote session messages
-
-**get** `/v1/compliance/apps/sessions/remote/{claude_remote_session_id}/messages`
+**GET** `/v1/compliance/apps/sessions/remote/{claude_remote_session_id}/messages`
 
 Retrieve one remote session's transcript: user prompts, assistant
 responses, and tool calls and results. Thinking blocks and images are
@@ -35,21 +30,25 @@ Returns 404 while the session is still `pending`, for deleted sessions,
 and for sessions outside the organizations the key may read. A
 malformed session identifier returns 400.
 
-### Path Parameters
+## Path parameters
 
 - `claude_remote_session_id: string`
 
   The remote session identifier (`cse_...`) to retrieve
 
-### Query Parameters
+## Query parameters
 
 - `limit: optional number`
 
   Maximum results (default: 100, max: 1000)
 
+  default: 100, maximum: 1000, minimum: 1
+
 - `order: optional "asc" or "desc"`
 
   Sort direction. `asc` (oldest-first) or `desc`.
+
+  default: asc
 
   - `"asc"`
 
@@ -63,17 +62,21 @@ malformed session identifier returns 400.
 
   Truncate each text item inside a tool result to at most this many bytes (cut on a code-point boundary). Pass `-1` to request the server maximum. `0` is not a valid value.
 
+  default: 10000, maximum: 2147483647, minimum: -1
+
 - `tool_use_input_max_bytes: optional number`
 
   Truncate each tool-use input to at most this many bytes (cut on a code-point boundary so the result is valid UTF-8). Pass `-1` to request the server maximum. `0` is not a valid value.
 
-### Header Parameters
+  default: 10000, maximum: 2147483647, minimum: -1
+
+## Headers
 
 - `"x-api-key": optional string`
 
-### Returns
+## Returns
 
-- `data: array of object { id, content, content_unavailable, 3 more }`
+- `data: array of object`
 
   Transcript turns for this page, ordered by transcript position. `created_at` is a commit timestamp and may tie or invert under concurrent writes; do not re-sort by it.
 
@@ -81,11 +84,11 @@ malformed session identifier returns 400.
 
     Unique identifier for the message, e.g. `csev_abc123`
 
-  - `content: array of object { text, truncated, type }  or object { id, input, name, 2 more }  or object { content, is_error, name, 3 more }`
+  - `content: array of object or object or object`
 
     Content blocks within the message
 
-    - `Text object { text, truncated, type }`
+    - `Text object`
 
       Text content block.
 
@@ -97,11 +100,13 @@ malformed session identifier returns 400.
 
         True when `text` exceeded the server-defined maximum (approximately 1 MiB) and was shortened.
 
+        default: false
+
       - `type: "text"`
 
-        - `"text"`
+        default: text
 
-    - `ToolUse object { id, input, name, 2 more }`
+    - `ToolUse object`
 
       Tool invocation requested by the assistant.
 
@@ -121,15 +126,17 @@ malformed session identifier returns 400.
 
         True when `input` was shortened. Pass `tool_use_input_max_bytes=-1` to request full content, subject to the server-side maximum.
 
+        default: false
+
       - `type: "tool_use"`
 
-        - `"tool_use"`
+        default: tool_use
 
-    - `ToolResult object { content, is_error, name, 3 more }`
+    - `ToolResult object`
 
       Result returned by a tool invocation.
 
-      - `content: array of object { text, type }`
+      - `content: array of object`
 
         Text content returned by the tool. Non-text item types are omitted.
 
@@ -139,7 +146,7 @@ malformed session identifier returns 400.
 
         - `type: "text"`
 
-          - `"text"`
+          default: text
 
       - `is_error: boolean`
 
@@ -157,17 +164,23 @@ malformed session identifier returns 400.
 
         True when one or more text items in `content` were shortened. Pass `tool_result_max_bytes=-1` to request full content, subject to the server-side maximum.
 
+        default: false
+
       - `type: "tool_result"`
 
-        - `"tool_result"`
+        default: tool_result
 
   - `content_unavailable: boolean`
 
     True when the stored content could not be returned — it could not be decrypted, or it exceeded the server's per-event size bound. `content` is empty in that case; this distinguishes 'no content' from 'content withheld'.
 
+    default: false
+
   - `created_at: string`
 
     When the message was recorded (RFC 3339, UTC)
+
+    format: date-time
 
   - `role: "assistant" or "user"`
 
@@ -185,7 +198,7 @@ malformed session identifier returns 400.
 
   Opaque page token; pass as `page` to retrieve the next page. Null when no rows exist after this page. Treat this value as opaque; do not parse or store it long-term, as the format may change without notice.
 
-- `session: object { id, agent_id, claude_project_id, 7 more }`
+- `session: object`
 
   Session metadata. `started_by_user`, `user.email_address`, and `claude_project_id` are always null on this endpoint; the messages endpoint resolves neither email addresses nor project bindings.
 
@@ -205,6 +218,8 @@ malformed session identifier returns 400.
 
     When the session was created (RFC 3339, UTC)
 
+    format: date-time
+
   - `organization_uuid: string`
 
     UUID of the organization the session belongs to
@@ -213,7 +228,7 @@ malformed session identifier returns 400.
 
     The Claude product the session was created from. Currently `cowork_remote`, for Cowork sessions started on claude.ai web or mobile. More values will appear as other surfaces launch, so treat any unrecognized value as an unclassified surface rather than an error. Null for sessions created before this field was recorded, for surfaces that do not stamp it, and for unrecognized tag values.
 
-  - `started_by_user: object { id, email_address }  or null`
+  - `started_by_user: object or null`
 
     A user associated with a remote session.
 
@@ -233,7 +248,9 @@ malformed session identifier returns 400.
 
     When the session was last modified (RFC 3339, UTC)
 
-  - `user: object { id, email_address }  or null`
+    format: date-time
+
+  - `user: object or null`
 
     A user associated with a remote session.
 
@@ -245,14 +262,14 @@ malformed session identifier returns 400.
 
       User's email address. Null when the user is no longer a member of an organization the key may read — `id` remains set so attribution is preserved. The messages endpoint does not resolve email addresses; this field is always null there.
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/compliance/apps/sessions/remote/$CLAUDE_REMOTE_SESSION_ID/messages \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

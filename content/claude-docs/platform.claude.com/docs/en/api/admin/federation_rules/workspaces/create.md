@@ -1,18 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/federation_rules/workspaces/create
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: faade7a4a922f15a81c0540e5d3c4121dd94b4ecbf889f0b9f8b4db40fcdb0bb
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 857a52b7a3c88e78affe9ff38473cdb99423eab2c1f09b4a4ca03f364a9094ab
 ---
 
----
-title: Add Federation Rule Workspace
-url: https://platform.claude.com/docs/en/api/admin/federation_rules/workspaces/create
----
+# Add Federation Rule Workspace
 
-## Add Federation Rule Workspace
-
-**post** `/v1/organizations/federation_rules/{federation_rule_id}/workspaces`
+**POST** `/v1/organizations/federation_rules/{federation_rule_id}/workspaces`
 
 Enable a federation rule for a workspace.
 
@@ -25,13 +20,13 @@ Archived rules are rejected with 400. OAuth callers may only manage rules whose
 `oauth_scope` is `workspace:developer` or `workspace:inference`; other
 scopes require a Console session. Admin API keys are not accepted.
 
-### Path Parameters
+## Path parameters
 
 - `federation_rule_id: string`
 
   ID of the federation rule.
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of string`
 
@@ -39,17 +34,19 @@ scopes require a Console session. Admin API keys are not accepted.
 
   To use multiple betas, use a comma separated list like `beta1,beta2` or specify the header multiple times for each beta.
 
-### Body Parameters
+## Body parameters
 
 - `workspace_id: string`
 
   Tagged ID of the workspace to enable this rule for.
 
-### Returns
+## Returns
 
 - `created_at: string`
 
   When this workspace was enabled for the rule.
+
+  format: date-time
 
 - `created_by_actor_id: string or null`
 
@@ -61,7 +58,7 @@ scopes require a Console session. Admin API keys are not accepted.
 
 - `type: "federation_rule_workspace"`
 
-  - `"federation_rule_workspace"`
+  default: federation_rule_workspace
 
 - `workspace_id: string`
 
@@ -71,9 +68,9 @@ scopes require a Console session. Admin API keys are not accepted.
 
   Workspace display name. Populated when listing; null in the enable response.
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/federation_rules/$FEDERATION_RULE_ID/workspaces \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
@@ -83,7 +80,7 @@ curl https://api.anthropic.com/v1/organizations/federation_rules/$FEDERATION_RUL
         }'
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: a90336dbaadb45d46b9869df725ce1075b2ad5627de0886331357848b7d13625
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 3b57868b3467a2bd19c1b087be86df16e76280c6650aa44ad7a227eb2921d6f1
 ---
 
 ---
@@ -25,19 +25,19 @@ Gunakan kemampuan vision Claude melalui:
 
 Pada API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah satu dari tiga jenis sumber:
 
-1. Gambar yang dienkode base64 dan disematkan dalam body permintaan
+1. Gambar berenkode base64 yang disematkan dalam body permintaan
 2. Referensi URL ke gambar yang dihosting secara online
 3. `file_id` yang dikembalikan oleh [Files API](https://platform.claude.com/docs/id/build-with-claude/files) (unggah sekali, referensikan berkali-kali)
 
 <Note>
-  Di Amazon Bedrock dan Google Cloud, saat ini hanya sumber yang dienkode base64 yang tersedia.
+  Di Amazon Bedrock dan Google Cloud, saat ini hanya sumber berenkode base64 yang tersedia.
 </Note>
 
 <Tip>
   Sama seperti [menempatkan dokumen panjang sebelum kueri Anda](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#long-context-prompting) meningkatkan hasil pada prompt teks, Claude bekerja paling baik ketika gambar ditempatkan sebelum teks. Gambar yang ditempatkan setelah teks atau diselingi dengan teks tetap berkinerja baik, tetapi jika kasus penggunaan Anda memungkinkan, utamakan struktur gambar-lalu-teks.
 </Tip>
 
-### Contoh gambar yang dienkode base64
+### Contoh gambar berenkode base64
 
 <CodeGroup>
   ```bash cURL
@@ -536,10 +536,10 @@ Pada API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah
 
 ### Contoh gambar Files API
 
-Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghindari overhead pengodean, gunakan [Files API](https://platform.claude.com/docs/id/build-with-claude/files). Unggah gambar sekali, lalu referensikan `file_id` yang dikembalikan dalam pesan-pesan berikutnya alih-alih mengirim ulang data base64.
+Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghindari overhead encoding, gunakan [Files API](https://platform.claude.com/docs/id/build-with-claude/files). Unggah gambar sekali, lalu referensikan `file_id` yang dikembalikan dalam pesan-pesan berikutnya alih-alih mengirim ulang data base64.
 
 <Tip>
-  Dalam percakapan multi-giliran dan alur kerja agentik, setiap permintaan mengirim ulang seluruh riwayat percakapan. Jika gambar dienkode base64, seluruh byte gambar disertakan dalam payload pada setiap giliran, yang dapat secara signifikan meningkatkan ukuran permintaan dan "latency" (latensi) seiring bertambahnya percakapan. Mengunggah gambar ke Files API dan mereferensikannya dengan `file_id` menjaga payload permintaan tetap kecil terlepas dari berapa banyak gambar yang terakumulasi dalam riwayat percakapan.
+  Dalam percakapan multi-giliran dan alur kerja agentik, setiap permintaan mengirim ulang seluruh riwayat percakapan. Jika gambar berenkode base64, seluruh byte gambar disertakan dalam payload pada setiap giliran, yang dapat secara signifikan meningkatkan ukuran permintaan dan "latency" (latensi) seiring bertambahnya percakapan. Mengunggah gambar ke Files API dan mereferensikannya dengan `file_id` menjaga payload permintaan tetap kecil terlepas dari berapa banyak gambar yang terakumulasi dalam riwayat percakapan.
 </Tip>
 
 <CodeGroup>
@@ -695,7 +695,7 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
       },
   });
 
-  // Gunakan file yang diunggah dalam pesan
+  // Gunakan file yang diunggah dalam sebuah pesan
   var response = await client.Messages.Create(new MessageCreateParams
   {
       Model = Model.ClaudeOpus5,
@@ -799,15 +799,17 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
   ```
 
   ```php PHP
+  use Anthropic\Core\FileParam;
+
   $client = new Client();
 
   // Unggah file gambar
-  $fileUpload = $client->beta->files->upload(
-      FileParam::fromResource(fopen('vision-example.jpg', 'rb'), contentType: 'image/jpeg'),
+  $fileUpload = $client->files->upload(
+      file: FileParam::fromResource(fopen('vision-example.jpg', 'rb'), contentType: 'image/jpeg'),
   );
 
   // Gunakan file yang diunggah dalam pesan
-  $message = $client->beta->messages->create(
+  $message = $client->messages->create(
       maxTokens: 1024,
       messages: [
           [
@@ -815,14 +817,13 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
               'content' => [
                   [
                       'type' => 'image',
-                      'source' => ['type' => 'file', 'file_id' => $fileUpload->id],
+                      'source' => ['type' => 'file', 'fileID' => $fileUpload->id],
                   ],
                   ['type' => 'text', 'text' => 'Describe this image.'],
               ],
           ],
       ],
       model: 'claude-opus-5',
-      betas: ['files-api-2025-04-14'],
   );
 
   echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
@@ -865,7 +866,7 @@ Lihat [contoh Messages API](https://platform.claude.com/docs/id/api/messages/cre
 
 ### Beberapa gambar
 
-Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude menganalisisnya secara bersama-sama. Ini berguna untuk membandingkan gambar, menanyakan perbedaan, atau bekerja dengan suatu urutan seperti halaman-halaman dokumen. Saat mengirim beberapa gambar, perkenalkan masing-masing dengan label teks singkat (`Image 1:`, `Image 2:`, dan seterusnya) sehingga Anda dapat merujuknya berdasarkan nama dalam prompt Anda dan pada giliran lanjutan.
+Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude menganalisisnya secara bersama-sama. Ini berguna untuk membandingkan gambar, menanyakan perbedaan, atau bekerja dengan urutan seperti halaman-halaman dokumen. Saat mengirim beberapa gambar, perkenalkan masing-masing dengan label teks singkat (`Image 1:`, `Image 2:`, dan seterusnya) sehingga Anda dapat merujuknya berdasarkan nama dalam prompt Anda dan pada giliran lanjutan.
 
 <CodeGroup>
   ```bash cURL
@@ -1225,7 +1226,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
   ```
 </CodeGroup>
 
-Dalam percakapan multi-giliran, tambahkan gambar baru pada giliran `user` berikutnya dengan cara yang sama. Claude memiliki akses ke setiap gambar dari giliran sebelumnya, sehingga pertanyaan lanjutan seperti "Apakah ini mirip dengan dua gambar pertama?" dapat berfungsi tanpa menyertakan kembali gambar-gambar sebelumnya dalam konten giliran baru.
+Dalam percakapan multi-giliran, tambahkan gambar baru pada giliran `user` berikutnya dengan cara yang sama. Claude memiliki akses ke setiap gambar dari giliran sebelumnya, sehingga pertanyaan lanjutan seperti "Apakah ini mirip dengan dua gambar pertama?" berfungsi tanpa perlu menyertakan kembali gambar sebelumnya dalam konten giliran baru.
 
 ***
 
@@ -1241,18 +1242,18 @@ Jumlah maksimum gambar per pesan atau permintaan adalah:
 
 Dimensi maksimum per gambar adalah 8000x8000 px.
 
-Jika satu permintaan API berisi lebih dari 20 gambar, batas dimensi per gambar yang lebih ketat berlaku. Di Amazon Bedrock dan Google Cloud, blok dokumen seperti PDF juga dihitung terhadap ambang ini. Gambar yang melebihi batas yang lebih ketat tersebut ditolak dengan `invalid_request_error` yang pesannya merujuk pada "many-image requests" dan menyatakan batas saat ini dalam piksel. Agar tetap di bawah batas pada semua platform, ubah ukuran setiap gambar sehingga tidak ada dimensi yang melebihi 2000 px, atau batasi permintaan hingga 20 blok gambar dan dokumen atau kurang.
+Jika satu permintaan API berisi lebih dari 20 gambar, batas dimensi per gambar yang lebih ketat berlaku untuk setiap gambar dalam permintaan tersebut. Semua blok `image` dalam permintaan dihitung terhadap ambang ini, termasuk gambar dari giliran percakapan sebelumnya yang Anda kirim ulang dan gambar yang bersarang di dalam konten `tool_result` (misalnya, tangkapan layar yang dikembalikan ke alat computer use). Di Amazon Bedrock dan Google Cloud, blok dokumen seperti PDF juga dihitung terhadap ambang ini. Gambar yang melebihi batas yang lebih ketat ditolak dengan `invalid_request_error` yang pesannya merujuk pada "many-image requests" dan menyatakan batas saat ini dalam piksel. Agar tetap di bawah batas di semua platform, ubah ukuran setiap gambar sehingga tidak ada dimensi yang melebihi 2000 px, atau jaga agar permintaan berisi 20 blok gambar dan dokumen atau kurang.
 
 Ukuran maksimum per gambar adalah:
 
-* 10 MB (dienkode base64) saat menggunakan Claude API secara langsung.
-* 5 MB (dienkode base64) di Amazon Bedrock dan Google Cloud.
+* 10 MB (berenkode base64) saat menggunakan Claude API secara langsung.
+* 5 MB (berenkode base64) di Amazon Bedrock dan Google Cloud.
 * 10 MB di [claude.ai](https://claude.ai/).
 
 <Note>
-  Meskipun API mendukung hingga 600 gambar per permintaan, [batas ukuran permintaan](https://platform.claude.com/docs/id/api/overview#request-size-limits) (32 MB untuk endpoint standar; lebih rendah pada beberapa platform yang dioperasikan mitra, misalnya Amazon Bedrock dan Google Cloud) dapat tercapai lebih dulu. Untuk gambar dalam jumlah banyak, pertimbangkan untuk mengunggah dengan [Files API](https://platform.claude.com/docs/id/build-with-claude/vision#files-api-image-example) dan mereferensikannya dengan `file_id` agar payload permintaan tetap kecil.
+  Meskipun API mendukung hingga 600 gambar per permintaan, [batas ukuran permintaan](https://platform.claude.com/docs/id/api/overview#request-size-limits) (32 MB untuk endpoint standar; lebih rendah pada beberapa platform yang dioperasikan mitra, misalnya Amazon Bedrock dan Google Cloud) dapat tercapai lebih dulu. Untuk banyak gambar, pertimbangkan untuk mengunggah dengan [Files API](https://platform.claude.com/docs/id/build-with-claude/vision#files-api-image-example) dan mereferensikan dengan `file_id` agar payload permintaan tetap kecil.
 
-  Bahkan saat menggunakan Files API, permintaan dengan banyak gambar berukuran besar dapat gagal sebelum mencapai jumlah 600 gambar. Kurangi dimensi gambar atau ukuran file (misalnya, dengan downsampling) sebelum mengunggah (lihat [Resolusi dan biaya token](https://platform.claude.com/docs/id/build-with-claude/vision#evaluate-image-size)).
+  Bahkan saat menggunakan Files API, permintaan dengan banyak gambar besar dapat gagal sebelum mencapai jumlah 600 gambar. Kurangi dimensi gambar atau ukuran file (misalnya, dengan downsampling) sebelum mengunggah (lihat [Resolusi dan biaya token](https://platform.claude.com/docs/id/build-with-claude/vision#evaluate-image-size)).
 </Note>
 
 ### Format yang didukung
@@ -1261,9 +1262,9 @@ Claude mendukung gambar JPEG, PNG, GIF, dan WebP (`image/jpeg`, `image/png`, `im
 
 ### Resolusi dan biaya token
 
-Claude melihat gambar dalam bentuk patch, bukan piksel. Setiap patch adalah blok gambar berukuran 28×28 piksel, yang disebut sebagai token visual. Oleh karena itu, sebuah gambar memerlukan biaya `⌈width / 28⌉ × ⌈height / 28⌉` token visual.
+Claude melihat gambar dalam patch, bukan piksel. Setiap patch adalah blok gambar berukuran 28×28 piksel, yang disebut sebagai token visual. Oleh karena itu, sebuah gambar memerlukan `⌈width / 28⌉ × ⌈height / 28⌉` token visual.
 
-Setiap model memiliki resolusi gambar native maksimum, yang dinyatakan sebagai batas sisi terpanjang dan batas token visual. Gambar yang lebih besar dari salah satu batas tersebut diperkecil sebelum diproses; lihat [Cara Claude mengubah ukuran dan menambahkan padding pada gambar](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#how-claude-resizes-and-pads-images) untuk aturan persisnya.
+Setiap model memiliki resolusi gambar native maksimum, yang dinyatakan sebagai batas sisi terpanjang dan batas token visual. Gambar yang lebih besar dari salah satu batas tersebut diperkecil sebelum diproses; lihat [Cara Claude mengubah ukuran dan menambahkan padding pada gambar](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#how-claude-resizes-and-pads-images) untuk aturan persisnya. Pengecualiannya adalah tangkapan layar dan gambar zoom yang Anda kembalikan ke toolset [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#handle-coordinate-scaling-for-higher-resolutions) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#targets-and-coordinates): API menolak gambar `tool_result` yang melebihi batas model dengan error validasi alih-alih memperkecilnya, jadi ubah ukuran gambar tersebut di aplikasi Anda sebelum mengembalikannya. Agar gambar lain yang terlalu besar ditolak dengan error alih-alih diperkecil, atur [field `transformations`](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#oversized-image-error) pada blok gambar.
 
 | Tingkat resolusi | Model                                | Sisi terpanjang maks | Token visual maks |
 | ---------------- | ------------------------------------ | -------------------- | ----------------- |
@@ -1285,9 +1286,9 @@ Tabel berikut menunjukkan resolusi setelah diperkecil dan biaya token visual unt
 
 Ketika sebuah gambar diperkecil, Claude menskalakannya ke ukuran terbesar yang sesuai dengan batas tingkat tersebut sambil mempertahankan rasio aspeknya. Ini membatasi biaya token. Untuk aturan persis dan implementasi referensi, lihat [Cara Claude mengubah ukuran dan menambahkan padding pada gambar](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#how-claude-resizes-and-pads-images).
 
-Untuk memperkirakan biaya, kalikan jumlah token dengan [harga per token dari model](https://claude.com/pricing) yang Anda gunakan. Misalnya, dengan harga Claude Haiku 4.5 sebesar $1 USD per juta token input (tingkat standar), gambar 1000×1000 memerlukan biaya sekitar $1,30 USD per seribu gambar. Dengan harga Claude Opus 5 sebesar $5 USD per juta (tingkat resolusi tinggi), gambar yang sama memerlukan biaya sekitar $6,48 USD per seribu dan gambar 4K sekitar $23,92 USD per seribu.
+Untuk memperkirakan biaya, kalikan jumlah token dengan [harga per token model](https://claude.com/pricing) yang Anda gunakan. Misalnya, dengan harga Claude Haiku 4.5 sebesar $1 USD per juta token input (tingkat standar), gambar 1000×1000 berbiaya sekitar $1,30 USD per seribu gambar. Dengan harga Claude Opus 5 sebesar $5 USD per juta (tingkat resolusi tinggi), gambar yang sama berbiaya sekitar $6,48 USD per seribu dan gambar 4K sekitar $23,92 USD per seribu.
 
-Gambar resolusi tinggi dapat menggunakan hingga kira-kira tiga kali lebih banyak token visual dibandingkan gambar yang sama pada model tingkat standar. Jika Anda tidak memerlukan fidelitas tambahan yang diberikan resolusi tinggi untuk computer use, pemahaman tangkapan layar, dan dokumen padat, lakukan downsampling pada gambar sebelum mengirimnya untuk mengendalikan biaya token. Untuk meminimalkan latensi dan menyederhanakan [alur kerja berbasis koordinat](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates), utamakan mengubah ukuran gambar sebelum mengunggahnya.
+Gambar resolusi tinggi dapat menggunakan hingga kira-kira tiga kali lebih banyak token visual dibandingkan gambar yang sama pada model tingkat standar. Jika Anda tidak memerlukan fidelitas tambahan yang diberikan resolusi tinggi untuk computer use, pemahaman tangkapan layar, dan dokumen padat, lakukan downsampling pada gambar sebelum mengirim untuk mengendalikan biaya token. Untuk meminimalkan latensi dan menyederhanakan [alur kerja berbasis koordinat](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates), utamakan mengubah ukuran gambar sebelum mengunggahnya.
 
 ### Panduan kualitas gambar
 
@@ -1295,8 +1296,8 @@ Saat memberikan gambar ke Claude, perhatikan hal-hal berikut untuk hasil terbaik
 
 * **Kejernihan gambar:** Pastikan gambar jernih dan tidak terlalu buram atau pecah (pixelated).
 * **Teks:** Jika gambar berisi teks penting, pastikan teks tersebut terbaca dan tidak terlalu kecil. Hindari memotong konteks visual penting hanya untuk memperbesar teks.
-* **Pengubahan ukuran:** Perhitungkan bahwa gambar Anda mungkin diubah ukurannya jika terlalu besar (lihat [Resolusi dan biaya token](https://platform.claude.com/docs/id/build-with-claude/vision#evaluate-image-size)); hal ini, misalnya, dapat membuat teks kurang terbaca. Pertimbangkan untuk mengubah ukuran gambar Anda terlebih dahulu, memotongnya, atau keduanya.
-* **Kompresi gambar:** Mengompresi gambar sebelum mengirimnya, menggunakan format lossy seperti JPEG atau WebP (mode lossy), dapat mengurangi latensi dengan mengurangi ukuran permintaan. Namun, hal ini dapat menimbulkan artefak yang merugikan kinerja model, terutama ketika beberapa tahap kompresi diterapkan. Misalnya, kompresi JPEG yang berat dapat membuat teks sulit dibaca. Pastikan pengaturan kompresi Anda sesuai untuk tugas tersebut dengan memeriksa gambar aktual yang dikirim ke API.
+* **Pengubahan ukuran:** Perhatikan bahwa gambar Anda mungkin diubah ukurannya jika terlalu besar (lihat [Resolusi dan biaya token](https://platform.claude.com/docs/id/build-with-claude/vision#evaluate-image-size)); hal ini, misalnya, dapat membuat teks kurang terbaca. Pertimbangkan untuk mengubah ukuran gambar Anda terlebih dahulu, memotongnya, atau keduanya. Agar gambar yang terlalu besar ditolak dengan error alih-alih diubah ukurannya (penting untuk [alur kerja koordinat](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates)), tandai blok gambar dengan [`"oversized_image": "error"`](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#oversized-image-error).
+* **Kompresi gambar:** Mengompresi gambar sebelum mengirimnya, menggunakan format lossy seperti JPEG atau WebP (mode lossy), dapat mengurangi latensi dengan memperkecil ukuran permintaan. Namun, hal ini dapat menimbulkan artefak yang merugikan kinerja model, terutama ketika beberapa tahap kompresi diterapkan. Misalnya, kompresi JPEG yang berat dapat membuat teks sulit dibaca. Pastikan pengaturan kompresi Anda sesuai untuk tugas tersebut dengan memeriksa gambar aktual yang dikirim ke API.
 
 ***
 
@@ -1308,15 +1309,15 @@ Untuk bounding box, titik, dan koordinat piksel, lihat [Koordinat dan bounding b
 
 ## Keterbatasan
 
-Meskipun kemampuan pemahaman gambar Claude sangat mutakhir, ada beberapa keterbatasan yang perlu diperhatikan:
+Meskipun kemampuan pemahaman gambar Claude sangat mutakhir, ada beberapa keterbatasan yang perlu diketahui:
 
-* **Identifikasi orang:** Claude [tidak dapat digunakan](https://www.anthropic.com/legal/aup) untuk menyebutkan nama orang dalam gambar dan akan menolak melakukannya.
+* **Identifikasi orang:** Claude [tidak dapat digunakan](https://www.anthropic.com/legal/aup) untuk menyebutkan nama orang dalam gambar dan menolak melakukannya.
 * **Akurasi:** Claude mungkin berhalusinasi atau membuat kesalahan saat menafsirkan gambar berkualitas rendah, diputar, atau sangat kecil di bawah 200 piksel.
 * **Penalaran spasial:** Output koordinat dan lokalisasi Claude bersifat perkiraan. Ikuti panduan di [Koordinat dan bounding box](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates) dan verifikasi output sebelum mengandalkannya.
 * **Penghitungan:** Claude dapat memberikan perkiraan jumlah objek dalam gambar tetapi mungkin tidak selalu akurat secara presisi, terutama dengan objek kecil dalam jumlah besar.
 * **Gambar buatan AI:** Claude tidak dapat menentukan apakah sebuah gambar dibuat oleh AI dan mungkin salah jika ditanya. Jangan mengandalkannya untuk mendeteksi gambar palsu atau sintetis.
 * **Konten tidak pantas:** Claude tidak memproses gambar tidak pantas atau eksplisit yang melanggar [Kebijakan Penggunaan yang Dapat Diterima](https://www.anthropic.com/legal/aup).
-* **Aplikasi kesehatan:** Meskipun Claude dapat menganalisis gambar medis umum, Claude tidak dirancang untuk menafsirkan pindaian diagnostik kompleks seperti CT atau MRI. Output Claude tidak boleh dianggap sebagai pengganti saran atau diagnosis medis profesional.
+* **Aplikasi kesehatan:** Meskipun Claude dapat menganalisis gambar medis umum, Claude tidak dirancang untuk menafsirkan pemindaian diagnostik kompleks seperti CT atau MRI. Output Claude tidak boleh dianggap sebagai pengganti saran atau diagnosis medis profesional.
 
 Selalu tinjau dan verifikasi interpretasi gambar Claude dengan cermat, terutama untuk kasus penggunaan berisiko tinggi. Jangan gunakan Claude untuk tugas yang memerlukan presisi sempurna atau analisis gambar sensitif tanpa pengawasan manusia.
 
@@ -1360,10 +1361,10 @@ Selalu tinjau dan verifikasi interpretasi gambar Claude dengan cermat, terutama 
     2. Coba teknik prompt engineering untuk meningkatkan hasil.
     3. Jika masalah berlanjut, tandai output di claude.ai (jempol ke atas/bawah) atau hubungi [tim dukungan](https://support.claude.com/).
 
-    Masukan Anda membantu meningkatkan Claude!
+    Umpan balik Anda membantu meningkatkan Claude!
   </Accordion>
 
-  <Accordion title="Dapatkah Claude membuat atau mengedit gambar?">
+  <Accordion title="Dapatkah Claude menghasilkan atau mengedit gambar?">
     Tidak, Claude hanyalah model pemahaman gambar. Claude dapat menafsirkan dan menganalisis gambar, tetapi tidak dapat menghasilkan, memproduksi, mengedit, memanipulasi, atau membuat gambar.
   </Accordion>
 </AccordionGroup>

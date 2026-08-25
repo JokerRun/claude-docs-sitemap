@@ -1,32 +1,27 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/generated_files
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: e3b35a4dffef77cb43a556e73f92500457f21ee5868d359f53f5c84935c45489
----
-
----
-title: Generated Files
-url: https://platform.claude.com/docs/en/api/compliance/apps/chats/generated_files
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: d2f96fea5c2fae6c0f49ea1e50bea2d69f99f36dfc780a440826559e734f8aae
 ---
 
 # Generated Files
 
 ## Get Claude-generated file metadata
 
-**get** `/v1/compliance/apps/chats/generated-files/{claude_gen_file_id}`
+**GET** `/v1/compliance/apps/chats/generated-files/{claude_gen_file_id}`
 
 Returns metadata for a file the assistant created via tool use.
 
 Use the sibling `/content` endpoint to download the bytes.
 
-### Path Parameters
+### Path parameters
 
 - `claude_gen_file_id: string`
 
   The generated-file id (e.g., 'claude_gen_file_abc123') as returned in `chat_messages[].generated_files[].id` from GET /apps/chats/{claude_chat_id}/messages.
 
-### Header Parameters
+### Headers
 
 - `"x-api-key": optional string`
 
@@ -43,6 +38,8 @@ Use the sibling `/content` endpoint to download the bytes.
 - `created_at: string or null`
 
   File creation timestamp, when available
+
+  format: date-time
 
 - `filename: string`
 
@@ -62,12 +59,12 @@ Use the sibling `/content` endpoint to download the bytes.
 
 ### Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/compliance/apps/chats/generated-files/$CLAUDE_GEN_FILE_ID \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
-#### Response
+#### Response (200)
 
 ```json
 {
@@ -83,32 +80,32 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/generated-files/$CLAUDE_
 
 ## Download a Claude-generated file
 
-**get** `/v1/compliance/apps/chats/generated-files/{claude_gen_file_id}/content`
+**GET** `/v1/compliance/apps/chats/generated-files/{claude_gen_file_id}/content`
 
 Downloads the binary content of a file the assistant created via tool use.
 
-### Path Parameters
+### Path parameters
 
 - `claude_gen_file_id: string`
 
   The generated-file id (e.g., 'claude_gen_file_abc123') as returned in `chat_messages[].generated_files[].id` from GET /apps/chats/{claude_chat_id}/messages.
 
-### Header Parameters
+### Headers
 
 - `"x-api-key": optional string`
 
 ### Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/compliance/apps/chats/generated-files/$CLAUDE_GEN_FILE_ID/content \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
-## Domain Types
+## Domain types
 
 ### Generated File Retrieve Response
 
-- `GeneratedFileRetrieveResponse object { id, claude_chat_id, created_at, 4 more }`
+- `GeneratedFileRetrieveResponse object`
 
   Metadata for GET /v1/compliance/apps/chats/generated-files/{claude_gen_file_id}.
 
@@ -129,6 +126,8 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/generated-files/$CLAUDE_
   - `created_at: string or null`
 
     File creation timestamp, when available
+
+    format: date-time
 
   - `filename: string`
 

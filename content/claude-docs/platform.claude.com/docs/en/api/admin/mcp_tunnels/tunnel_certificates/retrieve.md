@@ -1,24 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/tunnel_certificates/retrieve
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 5f6371b1cdb160656ed02781584aaefc441e86724aeccf4f44cf16456f7d25f7
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 651e7970da5ddb0d97b5148ebce4b0bf95a1fd70d88e8200b4da416395fc4bff
 ---
 
----
-title: Get Tunnel Certificate
-url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/tunnel_certificates/retrieve
----
+# Get Tunnel Certificate
 
-## Get Tunnel Certificate
+**GET** `/v1/organizations/tunnels/{tunnel_id}/certificates/{certificate_id}`
 
-**get** `/v1/organizations/tunnels/{tunnel_id}/certificates/{certificate_id}`
+**Deprecated**
 
 **Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and will be removed after a migration window. New integrations should use [`/v1/tunnels`](/docs/en/api/beta/tunnels) with the `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the `workspace:manage_tunnels` scope. Existing integrations continue to work with the `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window.
 
 Retrieve a single certificate registered on a tunnel by ID.
 
-### Path Parameters
+## Path parameters
 
 - `tunnel_id: string`
 
@@ -28,15 +25,13 @@ Retrieve a single certificate registered on a tunnel by ID.
 
   ID of the Tunnel Certificate.
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": array of "mcp-tunnels-2026-05-19"`
 
   Required for all Tunnel endpoints.
 
-  - `"mcp-tunnels-2026-05-19"`
-
-### Returns
+## Returns
 
 - `id: string`
 
@@ -47,14 +42,20 @@ Retrieve a single certificate registered on a tunnel by ID.
   RFC 3339 datetime string indicating when the certificate was archived, or
   `null` if it is not archived.
 
+  format: date-time
+
 - `created_at: string`
 
   RFC 3339 datetime string indicating when the certificate was registered.
+
+  format: date-time
 
 - `expires_at: string or null`
 
   RFC 3339 datetime string indicating when the certificate expires, or
   `null` if it does not expire.
+
+  format: date-time
 
 - `fingerprint: string`
 
@@ -68,17 +69,17 @@ Retrieve a single certificate registered on a tunnel by ID.
 
   Object type. Always `tunnel_certificate` for Tunnel Certificates.
 
-  - `"tunnel_certificate"`
+  default: tunnel_certificate
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/certificates/$CERTIFICATE_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

@@ -1,26 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/delete
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 6493fc2efbc9156ea8200dc05ba7be3e98f7a8e7a0e14a1bbf2f902bed529cdd
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 3356bacb5902062c2ff0bbb4fe5c580f6076fc3ae3c911478f58beec2d6283a6
 ---
 
----
-title: Delete a memory store
-url: https://platform.claude.com/docs/en/api/beta/memory_stores/delete
----
+# Delete a memory store
 
-## Delete a memory store
-
-**delete** `/v1/memory_stores/{memory_store_id}`
+**DELETE** `/v1/memory_stores/{memory_store_id}`
 
 Delete a memory store
 
-### Path Parameters
+## Path parameters
 
 - `memory_store_id: string`
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -98,9 +93,9 @@ Delete a memory store
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
-### Returns
+## Returns
 
-- `BetaManagedAgentsDeletedMemoryStore object { id, type }`
+- `BetaManagedAgentsDeletedMemoryStore object`
 
   Confirmation that a `memory_store` was deleted.
 
@@ -110,11 +105,9 @@ Delete a memory store
 
   - `type: "memory_store_deleted"`
 
-    - `"memory_store_deleted"`
+## Example
 
-### Example
-
-```http
+```bash
 curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
@@ -122,7 +115,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

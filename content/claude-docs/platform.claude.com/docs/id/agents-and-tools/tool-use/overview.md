@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 98e0583fdc5e89bb9e18888531891d35a2cb3730dc1dbdfab95c413a3f2ff965
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: af4c90690647bb50ce2a95ecbbd80a9a3206410f24f29186e9447de51598f242
 ---
 
 ---
@@ -13,7 +13,7 @@ description: Hubungkan Claude ke alat dan API eksternal. Lihat di mana alat diek
 
 "Tool use" (penggunaan alat), yang juga disebut function calling, memungkinkan Claude memanggil fungsi yang Anda definisikan atau yang disediakan oleh Anthropic. Claude menentukan kapan harus memanggil alat berdasarkan permintaan pengguna dan deskripsi alat tersebut. Claude kemudian mengembalikan panggilan terstruktur yang dieksekusi oleh aplikasi Anda (alat klien) atau yang dieksekusi oleh Anthropic (alat server).
 
-Berikut contoh minimal yang menggunakan alat server, yaitu [alat Web search](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool), yang dieksekusi oleh Anthropic untuk Anda:
+Berikut contoh minimal menggunakan alat server, yaitu [alat Web search](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool), yang dieksekusi oleh Anthropic untuk Anda:
 
 <CodeGroup>
   ```bash cURL
@@ -141,11 +141,11 @@ Berikut contoh minimal yang menggunakan alat server, yaitu [alat Web search](htt
   ```
 </CodeGroup>
 
-Claude menjalankan pencarian di infrastruktur Anthropic dan mengembalikan hasil beserta kutipannya dalam respons yang sama. Agar Claude memanggil fungsi yang Anda definisikan, berikan alat dengan `input_schema`, lalu eksekusi panggilan tersebut ketika Claude mengembalikan blok `tool_use`. [Cara kerja penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview#how-tool-use-works) menunjukkan siklus bolak-balik tersebut dari awal hingga akhir. Pelajari lebih lanjut tentang [mendefinisikan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools) dan [menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls).
+Claude menjalankan pencarian di infrastruktur Anthropic dan mengembalikan hasil yang disertai kutipan dalam respons yang sama. Agar Claude memanggil fungsi yang Anda definisikan, berikan alat dengan `input_schema`, lalu eksekusi panggilan tersebut ketika Claude mengembalikan blok `tool_use`. [Cara kerja penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview#how-tool-use-works) menunjukkan siklus bolak-balik tersebut dari awal hingga akhir. Pelajari lebih lanjut tentang [mendefinisikan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools) dan [menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls).
 
 ## Cara kerja penggunaan alat
 
-Alat terutama dibedakan berdasarkan tempat kode dieksekusi. **Alat klien** (termasuk alat yang didefinisikan pengguna dan alat dengan skema yang didefinisikan Anthropic, seperti `bash` dan `text_editor`) berjalan di aplikasi Anda. Claude merespons dengan `stop_reason: "tool_use"` dan satu atau lebih blok `tool_use`. Kode Anda mengeksekusi operasi tersebut dan mengirim kembali `tool_result`. **Alat server** (seperti `web_search`, `web_fetch`, `code_execution`, dan `tool_search`) berjalan di infrastruktur Anthropic: Anda melihat hasilnya secara langsung tanpa perlu menangani eksekusi, kecuali jika Claude memanggil alat tersebut dalam kelompok panggilan alat paralel yang sama dengan salah satu alat klien Anda (lihat [Alasan berhenti dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#tool-use)).
+Alat terutama dibedakan berdasarkan tempat kode dieksekusi. **Alat klien** (termasuk alat yang didefinisikan pengguna dan alat dengan skema yang didefinisikan Anthropic, seperti `bash` dan `text_editor`) berjalan di aplikasi Anda. Claude merespons dengan `stop_reason: "tool_use"` dan satu atau lebih blok `tool_use`. Kode Anda mengeksekusi operasi tersebut dan mengirim kembali `tool_result`. **Alat server** (seperti `web_search`, `web_fetch`, `code_execution`, dan `tool_search`) berjalan di infrastruktur Anthropic: Anda melihat hasilnya secara langsung tanpa menangani eksekusi, kecuali jika Claude memanggil alat tersebut dalam kelompok panggilan alat paralel yang sama dengan salah satu alat klien Anda (lihat [Alasan berhenti dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#tool-use)).
 
 Berikut siklus bolak-balik tersebut secara lengkap untuk alat klien. Permintaan pertama mendefinisikan alat `get_weather`, dan Claude menjawab pertanyaan dengan memanggilnya: respons membawa blok `tool_use`, kode Anda menjalankan pencarian, dan permintaan kedua mengirim hasilnya kembali dalam blok `tool_result` sehingga Claude dapat membalas dengan jawabannya.
 
@@ -174,7 +174,7 @@ Berikut siklus bolak-balik tersebut secara lengkap untuk alat klien. Permintaan 
       model: "claude-opus-5",
       max_tokens: 1024,
       tools: $tools,
-      # Minta paling banyak satu pemanggilan alat per giliran.
+      # Ask for at most one tool call per turn.
       tool_choice: {type: "auto", disable_parallel_tool_use: true},
       messages: [{role: "user", content: $msg}]
     }')")
@@ -736,7 +736,7 @@ Claude called get_weather with {"location": "San Francisco, CA"}
 The current weather in San Francisco is 15 degrees Celsius with partly cloudy skies.
 ```
 
-[Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls) membahas setiap langkah secara detail, termasuk pemformatan hasil dan pensinyalan kesalahan; [Penggunaan alat paralel](https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use) membahas respons yang memanggil beberapa alat sekaligus. Agar tidak perlu menulis siklus bolak-balik ini sendiri, gunakan [Tool Runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner): SDK mengeksekusi alat Anda dan mengirim hasilnya kembali secara otomatis.
+[Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls) membahas setiap langkah secara mendetail, termasuk pemformatan hasil dan pensinyalan kesalahan; [Penggunaan alat paralel](https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use) membahas respons yang memanggil beberapa alat sekaligus. Untuk tidak perlu menulis siklus bolak-balik ini sendiri, gunakan [Tool Runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner): SDK mengeksekusi alat Anda dan mengirim hasilnya kembali secara otomatis.
 
 Untuk model konseptual lengkap termasuk loop agentik dan kapan memilih setiap pendekatan, lihat [Cara kerja penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/how-tool-use-works).
 
@@ -746,22 +746,22 @@ Untuk terhubung ke server "Model Context Protocol", atau MCP, lihat [konektor MC
 
 Dengan `tool_choice` default yaitu `{"type": "auto"}`, Claude menentukan pada setiap giliran apakah akan memanggil alat atau merespons secara langsung. Claude memanggil alat ketika permintaan sesuai dengan kemampuan yang dideskripsikan alat tersebut dan jawabannya belum ada dalam konteks. Claude merespons secara langsung untuk pengetahuan yang stabil, tugas kreatif, dan giliran percakapan.
 
-Batas ini dapat diarahkan melalui prompt sistem Anda. Jika Claude tidak memanggil alat saat Anda mengharapkannya, instruksi ringan seperti `"Use the tools to investigate before responding."` meningkatkan penggunaan alat. Bentuk yang lebih kuat seperti `"Always call a tool first before responding."` mendorong lebih jauh. Sebaliknya, `"Use your judgment about whether to call a tool or respond directly."` menjaga perilaku pemicuan tetap konservatif.
+Batas ini dapat diarahkan melalui prompt sistem Anda. Jika Claude tidak memanggil alat ketika Anda mengharapkannya, instruksi ringan seperti `"Use the tools to investigate before responding."` meningkatkan penggunaan alat. Bentuk yang lebih kuat seperti `"Always call a tool first before responding."` mendorong lebih jauh. Sebaliknya, `"Use your judgment about whether to call a tool or respond directly."` menjaga perilaku pemicuan tetap konservatif.
 
 Untuk mewajibkan panggilan alat alih-alih mengandalkan prompting, atur [`tool_choice`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use).
 
 <Tip>
-  **Jamin kesesuaian skema dengan penggunaan alat strict**
+  **Jamin kesesuaian skema dengan strict tool use**
 
-  Tambahkan `strict: true` ke definisi alat kustom Anda untuk memastikan panggilan alat Claude selalu cocok persis dengan skema Anda. Lihat [Penggunaan alat strict](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use).
+  Tambahkan `strict: true` ke definisi alat kustom Anda untuk memastikan panggilan alat Claude selalu cocok persis dengan skema Anda. Lihat [Strict tool use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use).
 </Tip>
 
-Halaman setiap alat server menjelaskan batas pemicunya masing-masing secara lebih detail.
+Halaman setiap alat server menjelaskan batas pemicunya sendiri secara lebih mendetail.
 
 <Accordion title="Ketika parameter wajib tidak ada">
   Jika prompt pengguna tidak menyertakan informasi yang cukup untuk mengisi semua parameter wajib suatu alat, Claude Opus jauh lebih mungkin mengenali bahwa ada parameter yang hilang dan menanyakannya. Claude Sonnet mungkin bertanya, terutama ketika diminta untuk berpikir sebelum mengeluarkan permintaan alat. Namun Claude Sonnet juga mungkin menyimpulkan nilai yang masuk akal.
 
-  Misalnya, dengan alat `get_weather` yang memerlukan parameter `location`, jika Anda bertanya kepada Claude "What's the weather?" tanpa menyebutkan lokasi, Claude (khususnya Claude Sonnet) mungkin menebak nilai yang tidak Anda berikan:
+  Sebagai contoh, dengan alat `get_weather` yang memerlukan parameter `location`, jika Anda bertanya kepada Claude "What's the weather?" tanpa menyebutkan lokasi, Claude (khususnya Claude Sonnet) mungkin menebak nilai yang tidak Anda berikan:
 
   ```json JSON
   {
@@ -775,7 +775,7 @@ Halaman setiap alat server menjelaskan batas pemicunya masing-masing secara lebi
   Perilaku ini tidak dijamin, terutama untuk prompt yang lebih ambigu dan untuk model yang kurang mumpuni.
 </Accordion>
 
-## Memilih alat
+## Pilih alat
 
 Untuk string `type`, versi, dan header beta, lihat [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference).
 
@@ -784,18 +784,18 @@ Untuk string `type`, versi, dan header beta, lihat [Referensi alat](https://plat
 Untuk alat yang Anda definisikan, Anda menulis skemanya dan aplikasi Anda mengeksekusi setiap panggilan.
 
 <CardGroup cols={2}>
-  <Card title="Mendefinisikan alat" icon="hammer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools">
+  <Card title="Definisikan alat" icon="hammer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools">
     Tentukan skema alat, tulis deskripsi, dan kendalikan kapan Claude memanggil alat Anda.
   </Card>
 
-  <Card title="Menangani panggilan alat" icon="arrows-left-right" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls">
+  <Card title="Tangani panggilan alat" icon="arrows-left-right" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls">
     Parse blok `tool_use`, format respons `tool_result`, dan tangani kesalahan.
   </Card>
 </CardGroup>
 
 ### Alat klien dengan skema Anthropic
 
-Anthropic menerbitkan skemanya dan melatih Claude dengan skema tersebut. Aplikasi Anda tetap mengeksekusi setiap panggilan dan mengembalikan `tool_result`.
+Anthropic memublikasikan skemanya dan melatih Claude dengan skema tersebut. Aplikasi Anda tetap mengeksekusi setiap panggilan dan mengembalikan `tool_result`.
 
 <CardGroup cols={2}>
   <Card title="Alat memori" icon="brain" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool">
@@ -811,17 +811,21 @@ Anthropic menerbitkan skemanya dan melatih Claude dengan skema tersebut. Aplikas
   </Card>
 
   <Card title="Alat computer use" icon="computer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool">
-    Ambil tangkapan layar serta kendalikan mouse dan keyboard di lingkungan desktop.
+    Ambil tangkapan layar dan kendalikan mouse serta keyboard di lingkungan desktop.
+  </Card>
+
+  <Card title="Alat browser use" icon="browser" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool">
+    Navigasi, baca, dan berinteraksi dengan halaman web di lingkungan browser Anda sendiri.
   </Card>
 </CardGroup>
 
 ### Alat server
 
-Alat server berjalan di infrastruktur Anthropic, tanpa kode handler di aplikasi Anda. Lihat [Alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) untuk mekanisme yang dimiliki bersama oleh alat-alat tersebut.
+Alat server berjalan di infrastruktur Anthropic, tanpa kode handler di aplikasi Anda. Lihat [Alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) untuk mekanisme yang dimiliki bersama.
 
 <CardGroup cols={2}>
-  <Card title="Alat web search" icon="browser" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool">
-    Cari informasi di web yang melampaui batas pengetahuan, dengan sumber yang dikutip.
+  <Card title="Alat web search" icon="magnifying-glass" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool">
+    Cari informasi di web di luar batas pengetahuan, dengan sumber yang dikutip.
   </Card>
 
   <Card title="Alat web fetch" icon="download" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool">
@@ -829,7 +833,7 @@ Alat server berjalan di infrastruktur Anthropic, tanpa kode handler di aplikasi 
   </Card>
 
   <Card title="Alat eksekusi kode" icon="code" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool">
-    Jalankan kode Python dan bash dalam container sandbox untuk menganalisis data dan menghasilkan file.
+    Jalankan kode Python dan bash dalam kontainer sandbox untuk menganalisis data dan menghasilkan file.
   </Card>
 
   <Card title="Alat advisor" icon="lightbulb" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool">
@@ -837,7 +841,7 @@ Alat server berjalan di infrastruktur Anthropic, tanpa kode handler di aplikasi 
   </Card>
 
   <Card title="Alat tool search" icon="library" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool">
-    Bekerja dengan ribuan alat dengan menemukan dan memuatnya sesuai kebutuhan.
+    Bekerja dengan ribuan alat dengan menemukan dan memuatnya sesuai permintaan.
   </Card>
 
   <Card title="Konektor MCP" icon="link" href="https://platform.claude.com/docs/id/agents-and-tools/mcp-connector">
@@ -887,7 +891,7 @@ Jumlah token ini ditambahkan ke token input dan output normal Anda untuk menghit
 
 Lihat tabel [Ikhtisar model](https://platform.claude.com/docs/id/about-claude/models/overview#latest-models-comparison) untuk harga per model saat ini.
 
-Ketika Anda mengirim prompt penggunaan alat, sama seperti permintaan API lainnya, respons menyertakan jumlah token input dan output dalam metrik `usage` yang dilaporkan.
+Ketika Anda mengirim prompt penggunaan alat, seperti permintaan API lainnya, respons menyertakan jumlah token input dan output dalam metrik `usage` yang dilaporkan.
 
 Beberapa alat server menambahkan biaya berbasis penggunaan di luar token: lihat [Alat web search](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#usage-and-pricing) dan [Alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#usage-and-pricing) untuk tarifnya.
 
@@ -898,7 +902,7 @@ Beberapa alat server menambahkan biaya berbasis penggunaan di luar token: lihat 
     Pahami loop penggunaan alat, di mana alat dieksekusi, dan kapan menggunakan alat alih-alih prosa.
   </Card>
 
-  <Card href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent" title="Tutorial: Membangun agen yang menggunakan alat" icon="graduation-cap">
+  <Card href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent" title="Tutorial: Bangun agen yang menggunakan alat" icon="graduation-cap">
     Panduan langkah demi langkah dari satu panggilan alat hingga loop agentik yang siap produksi.
   </Card>
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/libraries/openai-sdk
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: e62ad7d512fea4181e4d7e33e3ad57140b66fa8fb633e1d359b58f4cddef41a1
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 1b37987b276146e4373ddb7e481d11bebb5e3ecf9c9590ec89ad4140470359d3
 ---
 
 ---
@@ -33,7 +33,7 @@ To use the OpenAI SDK compatibility feature, you'll need to:
 
    * Update your base URL to point to the Claude API
    * Replace your API key with a [Claude API key](https://platform.claude.com/settings/keys)
-   * Update your model name to use a [Claude model](https://platform.claude.com/docs/en/about-claude/models/overview)
+   * Update your model name to use a [Claude model](https://platform.claude.com/docs/en/models/overview)
 
 3. Review the following sections for what features are supported
 

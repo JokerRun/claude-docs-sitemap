@@ -1,20 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/overview
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 4f5c65d87972d85096805c2f686b5c44a7a4ab30696c73339cc4f79b7d46a8d3
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 76d6b88f06fedc5454fce921fadd52ddeab5444cce88fdca1f4097e55347a2d4
 ---
 
 ---
 title: Ikhtisar API
 url: https://platform.claude.com/docs/id/api/overview
-description: Pahami endpoint yang tersedia di Claude API, header autentikasi, SDK klien, paginasi, batas laju, dan opsi akses melalui platform cloud.
+description: Pahami endpoint yang tersedia di Claude API, header autentikasi, SDK klien, paginasi, batas laju, dan opsi akses platform cloud.
 ---
 
-Claude API adalah RESTful API di `https://api.anthropic.com` yang menyediakan akses terprogram ke model Claude dan Claude Managed Agents.
+Claude API adalah API RESTful di `https://api.anthropic.com` yang menyediakan akses terprogram ke model Claude dan Claude Managed Agents.
 
 <Note>
-  **Baru mengenal Claude?** Untuk akses model secara langsung, mulailah dengan [Memulai](https://platform.claude.com/docs/id/get-started) dan [Bekerja dengan Messages](https://platform.claude.com/docs/id/build-with-claude/working-with-messages). Untuk infrastruktur agen terkelola, lihat [panduan memulai cepat Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/quickstart).
+  **Baru mengenal Claude?** Untuk akses model secara langsung, mulailah dengan [Memulai](https://platform.claude.com/docs/id/get-started) dan [Bekerja dengan Messages](https://platform.claude.com/docs/id/build-with-claude/working-with-messages). Untuk infrastruktur agen terkelola, lihat [quickstart Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/quickstart).
 </Note>
 
 ## Prasyarat
@@ -30,8 +30,6 @@ Untuk petunjuk penyiapan langkah demi langkah, lihat [Memulai](https://platform.
 
 Claude API mencakup API berikut:
 
-**Ketersediaan Umum:**
-
 * **[Messages API](https://platform.claude.com/docs/id/api/messages/create)**: Kirim pesan ke Claude untuk interaksi percakapan (`POST /v1/messages`)
 * **[Message Batches API](https://platform.claude.com/docs/id/api/messages/batches/create)**: Proses permintaan Messages dalam volume besar secara asinkron dengan pengurangan biaya 50% (`POST /v1/messages/batches`)
 * **[Token Counting API](https://platform.claude.com/docs/id/api/messages-count-tokens)**: Hitung token dalam sebuah pesan sebelum mengirimnya untuk mengelola biaya dan batas laju (`POST /v1/messages/count_tokens`)
@@ -39,9 +37,9 @@ Claude API mencakup API berikut:
 * **[Files API](https://platform.claude.com/docs/id/api/files/upload)**: Unggah dan kelola file untuk digunakan di berbagai panggilan API (`POST /v1/files`, `GET /v1/files`)
 * **[Skills API](https://platform.claude.com/docs/id/api/skills/create)**: Buat dan kelola skill agen kustom (`POST /v1/skills`, `GET /v1/skills`)
 
-**Beta:**
+API berikut masih dalam versi beta:
 
-* **[Agents API](https://platform.claude.com/docs/id/managed-agents/agent-setup)**: Definisikan konfigurasi agen yang dapat digunakan ulang dan berversi untuk Claude Managed Agents (`POST /v1/agents`, `GET /v1/agents`)
+* **[Agents API](https://platform.claude.com/docs/id/managed-agents/agent-setup)**: Definisikan konfigurasi agen yang dapat digunakan ulang dan memiliki versi untuk Claude Managed Agents (`POST /v1/agents`, `GET /v1/agents`)
 * **[Sessions API](https://platform.claude.com/docs/id/managed-agents/sessions)**: Jalankan sesi agen stateful di sandbox cloud terkelola (`POST /v1/sessions`, `GET /v1/sessions/{id}/events/stream`)
 * **[Environments API](https://platform.claude.com/docs/id/managed-agents/environments)**: Konfigurasikan template sandbox untuk sesi agen (`POST /v1/environments`, `GET /v1/environments`)
 
@@ -58,7 +56,7 @@ Untuk detail tentang kedua metode autentikasi dan kapan menggunakan masing-masin
 | `anthropic-version` | Versi API (misalnya, `2023-06-01`)                                                                                                                                                                                                      | Ya                                               |
 | `content-type`      | `application/json`                                                                                                                                                                                                                      | Ya                                               |
 
-Jika Anda menggunakan [SDK Klien](https://platform.claude.com/docs/id/api/overview#client-sdks), SDK akan mengirim header ini secara otomatis. Untuk detail pembuatan versi API, lihat [Versi API](https://platform.claude.com/docs/id/api/versioning).
+Jika Anda menggunakan [SDK Klien](https://platform.claude.com/docs/id/api/overview#client-sdks), SDK akan mengirim header ini secara otomatis. Untuk detail pemversian API, lihat [Versi API](https://platform.claude.com/docs/id/api/versioning).
 
 Saat mengakses Claude melalui [platform cloud](https://platform.claude.com/docs/id/api/overview#claude-api-vs-cloud-platforms), autentikasi terintegrasi dengan sistem IAM penyedia cloud. Lihat dokumentasi khusus platform untuk jenis kredensial yang didukung, header yang diperlukan, dan opsi autentikasi.
 
@@ -74,9 +72,9 @@ Anthropic menyediakan SDK resmi yang menyederhanakan integrasi API dengan menang
 
 * Manajemen header otomatis (`x-api-key`, `anthropic-version`, `content-type`)
 * Penanganan permintaan dan respons yang type-safe
-* Logika percobaan ulang dan penanganan kesalahan bawaan
+* Logika retry dan penanganan kesalahan bawaan
 * Dukungan streaming
-* Batas waktu permintaan dan manajemen koneksi
+* Timeout permintaan dan manajemen koneksi
 
 Untuk daftar SDK klien, lihat [SDK Klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview).
 
@@ -123,18 +121,18 @@ Akses Claude melalui AWS, Google Cloud, atau Microsoft Azure:
 Jika Anda melebihi batas ini, Anda akan menerima kesalahan 413 `request_too_large`.
 
 <Note>
-  Platform yang dioperasikan mitra memiliki batas ukuran permintaan sendiri: Bedrock membatasi permintaan hingga 20 MB, dan Google Cloud membatasi permintaan hingga 30 MB. Claude Platform on AWS menggunakan batas yang sama dengan Claude API langsung. Lihat dokumentasi platform Anda untuk nilai terkini.
+  Platform yang dioperasikan mitra memiliki batas ukuran permintaannya sendiri: Bedrock membatasi permintaan hingga 20 MB, dan Google Cloud membatasi permintaan hingga 30 MB. Claude Platform on AWS menggunakan batas yang sama dengan Claude API langsung. Lihat dokumentasi platform Anda untuk nilai terkini.
 </Note>
 
 ### Header respons
 
 Claude API menyertakan header berikut dalam responsnya:
 
-| Header                      | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `request-id`                | Pengidentifikasi unik global untuk permintaan, seperti `req_018EeWyXxfu5pfWkrYcMdjWG`. Sertakan saat Anda menghubungi dukungan mengenai permintaan tertentu. Lihat [ID Permintaan](https://platform.claude.com/docs/id/api/errors#request-id).                                                                                                                                                                                                                                                                                                                                                    |
-| `anthropic-organization-id` | ID organisasi pemilik kunci API atau token akses yang digunakan dalam permintaan.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| `anthropic-workspace-id`    | ID berawalan `wrkspc_` dari [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) tempat kunci API atau token akses diresolusikan, seperti `wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ`, termasuk ketika itu adalah Default Workspace organisasi Anda. Tidak ada ketika kredensial tidak diresolusikan ke sebuah workspace (misalnya, pada permintaan Admin API) atau permintaan gagal sebelum autentikasi selesai. Lihat [Mengidentifikasi workspace di balik respons API](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response). |
+| Header                      | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `request-id`                | Pengenal unik global untuk permintaan, seperti `req_018EeWyXxfu5pfWkrYcMdjWG`. Sertakan saat Anda menghubungi dukungan mengenai permintaan tertentu. Lihat [ID Permintaan](https://platform.claude.com/docs/id/api/errors#request-id).                                                                                                                                                                                                                                                                                                                                                                  |
+| `anthropic-organization-id` | ID organisasi pemilik kunci API atau token akses yang digunakan dalam permintaan.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `anthropic-workspace-id`    | ID berawalan `wrkspc_` dari [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) yang menjadi tujuan resolusi kunci API atau token akses, seperti `wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ`, termasuk ketika itu adalah Default Workspace organisasi Anda. Tidak ada ketika kredensial tidak ter-resolve ke sebuah workspace (misalnya, pada permintaan Admin API) atau permintaan gagal sebelum autentikasi selesai. Lihat [Mengidentifikasi workspace di balik respons API](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response). |
 
 Untuk header batas laju, lihat [Header respons](https://platform.claude.com/docs/id/api/rate-limits#response-headers) di Batas laju. Untuk contoh yang membaca header respons berdasarkan nama dengan setiap SDK, lihat [Mengidentifikasi workspace di balik respons API](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response).
 
@@ -144,22 +142,22 @@ Untuk header batas laju, lihat [Header respons](https://platform.claude.com/docs
 
 ## Paginasi
 
-Endpoint daftar mengembalikan hasil dalam halaman. Sebagian besar endpoint daftar yang lebih baru menggunakan skema kursor `page` dan `next_page` yang dijelaskan di bagian ini. Beberapa menggunakan skema yang berbeda; lihat catatan di akhir bagian ini. Gunakan parameter kueri `limit` untuk mengontrol ukuran halaman dan parameter kueri `page` untuk mengambil halaman yang berdekatan. Setiap respons menyertakan array `data` beserta field kursor untuk bernavigasi antarhalaman.
+Endpoint daftar mengembalikan hasil dalam halaman. Sebagian besar endpoint daftar yang lebih baru menggunakan skema kursor `page` dan `next_page` yang dijelaskan di bagian ini. Beberapa menggunakan skema yang berbeda; lihat catatan di akhir bagian ini. Gunakan parameter query `limit` untuk mengontrol ukuran halaman dan parameter query `page` untuk mengambil halaman yang berdekatan. Setiap respons menyertakan array `data` beserta field kursor untuk bernavigasi antarhalaman.
 
 | Nama        | Lokasi          | Deskripsi                                                                                                                                                                                                         |
 | ----------- | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `limit`     | Parameter kueri | Jumlah maksimum item yang dikembalikan per halaman.                                                                                                                                                               |
-| `page`      | Parameter kueri | Kursor opaque dari respons sebelumnya. Teruskan nilai `next_page` atau `prev_page` di sini untuk mengambil halaman yang berdekatan.                                                                               |
-| `order`     | Parameter kueri | Arah pengurutan hasil (`asc` atau `desc`), pada endpoint daftar yang mendukung pengurutan. Kursor `page` hanya valid dengan `order` yang digunakan saat kursor tersebut dibuat.                                   |
+| `limit`     | Parameter query | Jumlah maksimum item yang dikembalikan per halaman.                                                                                                                                                               |
+| `page`      | Parameter query | Kursor opaque dari respons sebelumnya. Berikan nilai `next_page` atau `prev_page` di sini untuk mengambil halaman yang berdekatan.                                                                                |
+| `order`     | Parameter query | Arah pengurutan hasil (`asc` atau `desc`), pada endpoint daftar yang mendukung pengurutan. Kursor `page` hanya valid dengan `order` yang digunakan saat kursor tersebut dibuat.                                   |
 | `next_page` | Field respons   | Kursor untuk halaman berikutnya, atau `null` jika tidak ada hasil lagi.                                                                                                                                           |
 | `prev_page` | Field respons   | Kursor untuk halaman sebelumnya pada endpoint yang mendukung paginasi mundur (saat ini `GET /v1/sessions`), atau `null` jika Anda berada di halaman pertama. Endpoint daftar lainnya tidak menyertakan field ini. |
 
-Untuk kembali satu halaman, teruskan `prev_page` sebagai parameter `page`. `prev_page` bernilai `null` ketika Anda berada di halaman pertama. Tidak semua endpoint daftar mendukung `prev_page`. Hanya `GET /v1/sessions` yang mengembalikan `prev_page`; pada endpoint daftar yang tidak mendukung paginasi mundur, field tersebut tidak ada dalam respons, bukan bernilai `null`. Untuk panduan permintaan langkah demi langkah, lihat [Mendaftar sesi](https://platform.claude.com/docs/id/managed-agents/session-operations#listing-sessions).
+Untuk kembali satu halaman, berikan `prev_page` sebagai parameter `page`. `prev_page` bernilai `null` ketika Anda berada di halaman pertama. Tidak semua endpoint daftar mendukung `prev_page`. Hanya `GET /v1/sessions` yang mengembalikan `prev_page`; pada endpoint daftar yang tidak mendukung paginasi mundur, field tersebut tidak ada dalam respons, bukan bernilai `null`. Untuk panduan permintaan langkah demi langkah, lihat [Mendaftar sesi](https://platform.claude.com/docs/id/managed-agents/session-operations#listing-sessions).
 
-Setiap SDK menyediakan iterator paginasi otomatis yang mengikuti `next_page` untuk Anda. Di Python dan TypeScript, Anda mendapatkannya dengan mengiterasi hasil daftar secara langsung. SDK lainnya menyediakan iterator melalui metode terpisah. Paginasi otomatis SDK hanya bergerak maju; untuk kembali satu halaman, baca `prev_page` dari respons dan teruskan kembali sebagai parameter `page` secara manual. Lihat [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk detail khusus bahasa.
+Setiap SDK menyediakan iterator paginasi otomatis yang mengikuti `next_page` untuk Anda. Di Python dan TypeScript, Anda mendapatkannya dengan mengiterasi hasil daftar secara langsung. SDK lainnya menyediakan iterator melalui metode terpisah. Paginasi otomatis SDK hanya bergerak maju; untuk kembali satu halaman, baca `prev_page` dari respons dan berikan kembali sebagai parameter `page` secara manual. Lihat [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk detail khusus bahasa.
 
 <Note>
-  Beberapa endpoint daftar menggunakan skema kursor yang berbeda. [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing), [Models API](https://platform.claude.com/docs/id/api/models/list), dan beberapa endpoint [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) menerima parameter kueri `after_id` dan `before_id` alih-alih `page`. Responsnya mengembalikan `has_more`, `first_id`, dan `last_id` alih-alih `next_page`. [Files API](https://platform.claude.com/docs/id/build-with-claude/files) juga menggunakan skema tersebut ketika permintaan menyertakan header beta `files-api-2025-04-14`; tanpa header tersebut, `GET /v1/files` menerima `page` dan mengembalikan `next_page`. Endpoint daftar [Skills API](https://platform.claude.com/docs/id/build-with-claude/skills-guide), `GET /v1/skills` dan `GET /v1/skills/{skill_id}/versions`, menerima `page` dan mengembalikan `next_page`; permintaan yang menyertakan header beta `skills-2025-10-02` juga menerima Boolean `has_more` di samping `next_page`. Lihat halaman referensi masing-masing endpoint untuk field paginasi persisnya.
+  Beberapa endpoint daftar menggunakan skema kursor yang berbeda. [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing), [Models API](https://platform.claude.com/docs/id/api/models/list), dan beberapa endpoint [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) menerima parameter query `after_id` dan `before_id` alih-alih `page`. Responsnya mengembalikan `has_more`, `first_id`, dan `last_id` alih-alih `next_page`. Lihat halaman referensi masing-masing endpoint untuk field paginasi persisnya.
 </Note>
 
 ## Batas laju dan ketersediaan

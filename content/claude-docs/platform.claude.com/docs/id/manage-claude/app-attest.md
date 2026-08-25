@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/app-attest
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 784697a6b0b72271f901ffa62cf756b9987701d89210f45a8f9d1d7ccce2625e
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 6dcf82c9aa63ed2a6705145680d079b2383fb3a33d3eacdc891f31362cbc03a9
 ---
 
 ---
@@ -11,9 +11,9 @@ url: https://platform.claude.com/docs/id/manage-claude/app-attest
 description: Izinkan instalasi asli aplikasi iOS atau macOS Anda memanggil Claude API tanpa menyertakan kunci API atau menjalankan proxy, menggunakan layanan App Attest dari Apple.
 ---
 
-App Attest mengautentikasi aplikasi iOS dan macOS yang memanggil Claude API langsung dari perangkat, dengan penggunaan yang ditagihkan ke workspace Anda. Halaman ini menjelaskan cara kerja App Attest, cara mendaftarkan aplikasi Anda di Claude Console, dan cara mencabut integrasi aplikasi.
+App Attest mengautentikasi aplikasi iOS dan macOS yang memanggil Claude API langsung dari perangkat, dengan penggunaan ditagihkan ke workspace Anda. Halaman ini menjelaskan cara kerja App Attest, cara mendaftarkan aplikasi Anda di Claude Console, dan cara mencabut integrasi aplikasi.
 
-Aplikasi menggunakan App Attest melalui paket Swift [Claude for Foundation Models](https://github.com/anthropics/ClaudeForFoundationModels), yang saat ini dalam versi beta: paket ini memerlukan OS 27 beta, dan API dapat berubah sebelum ketersediaan umum. Untuk konfigurasi Swift, lihat [Apple Foundation Models](https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/apple-foundation-models#app-attest-production).
+Aplikasi menggunakan App Attest melalui paket Swift [Claude for Foundation Models](https://github.com/anthropics/ClaudeForFoundationModels), yang masih dalam versi beta: paket ini memerlukan OS 27 beta, dan API mungkin berubah selama masa beta. Untuk konfigurasi Swift, lihat [Apple Foundation Models](https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/apple-foundation-models#app-attest-production).
 
 ## Cara kerja App Attest
 

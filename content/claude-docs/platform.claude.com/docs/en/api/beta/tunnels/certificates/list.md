@@ -1,28 +1,23 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/list
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 246c14919ea1e2bb46cf48f3951afafe66043fdb204bc1abbf810a090b546b44
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 00e4c263ea2ce036afda3c63282a747cf15b0e804a2a5d317dc354df661fa141
 ---
 
----
-title: List Tunnel Certificates
-url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/list
----
+# List Tunnel Certificates
 
-## List Tunnel Certificates
-
-**get** `/v1/tunnels/{tunnel_id}/certificates`
+**GET** `/v1/tunnels/{tunnel_id}/certificates`
 
 The Tunnels API is in research preview. It requires the `anthropic-beta: mcp-tunnels-2026-06-22` header and may change without a deprecation period. It supersedes the Admin API endpoints at `/v1/organizations/tunnels`, which remain available during a migration window.
 
 Lists the certificates registered on a tunnel. Archived certificates are excluded unless include_archived is set.
 
-### Path Parameters
+## Path parameters
 
 - `tunnel_id: string`
 
-### Query Parameters
+## Query parameters
 
 - `include_archived: optional boolean`
 
@@ -32,11 +27,13 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 
   Maximum number of certificates to return per page. Defaults to 20, maximum 1000.
 
+  format: int32
+
 - `page: optional string`
 
   Opaque pagination cursor from a previous `list_tunnel_certificates` response.
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -114,7 +111,7 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
-### Returns
+## Returns
 
 - `data: array of BetaTunnelCertificate`
 
@@ -128,13 +125,19 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 
     A timestamp in RFC 3339 format
 
+    format: date-time
+
   - `created_at: string`
 
     A timestamp in RFC 3339 format
 
+    format: date-time
+
   - `expires_at: string or null`
 
     A timestamp in RFC 3339 format
+
+    format: date-time
 
   - `fingerprint: string`
 
@@ -146,22 +149,20 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 
   - `type: "tunnel_certificate"`
 
-    - `"tunnel_certificate"`
-
 - `next_page: string or null`
 
   Pagination cursor for the next page, or null if no more results.
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/tunnels/$TUNNEL_ID/certificates \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: mcp-tunnels-2026-06-22' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

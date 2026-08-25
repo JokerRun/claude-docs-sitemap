@@ -1,22 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/list
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: c1640f089d884fa96cc393a4214ebbc1b09352c74595103f69ce50f25ed919af
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 30434fa106139626f97a809317b8efa59ad3e7cdb235ebc4e34241c1db5479d3
 ---
 
----
-title: List Users
-url: https://platform.claude.com/docs/en/api/admin/users/list
----
+# List Users
 
-## List Users
-
-**get** `/v1/organizations/users`
+**GET** `/v1/organizations/users`
 
 For Claude Enterprise organizations, this endpoint's availability is in beta.
 
-### Query Parameters
+## Query parameters
 
 - `after_id: optional string`
 
@@ -30,11 +25,15 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
 
   Filter by user email.
 
+  format: email
+
 - `limit: optional number`
 
   Number of items to return per page.
 
   Defaults to `20`. Ranges from `1` to `1000`.
+
+  default: 20, maximum: 1000, minimum: 1
 
 - `roles: optional array of string`
 
@@ -42,7 +41,7 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
 
   Accepted values depend on the organization type: Console and API organizations accept `user`, `developer`, `billing`, `admin`, and `claude_code_user`; Claude Enterprise organizations (beta) accept `user`, `owner`, `primary_owner`, `membership_admin`, and `managed`.
 
-### Returns
+## Returns
 
 - `data: array of User`
 
@@ -53,6 +52,8 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
   - `added_at: string`
 
     RFC 3339 datetime string indicating when the User joined the Organization.
+
+    format: date-time
 
   - `email: string`
 
@@ -90,7 +91,7 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
 
     For Users, this is always `"user"`.
 
-    - `"user"`
+    default: user
 
 - `first_id: string or null`
 
@@ -104,15 +105,15 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/users \
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

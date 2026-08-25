@@ -1,26 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/archive
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 094debca00823eddd8679b8497d1e93ce4d5476e1a910d162f4cb1c371def559
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: da15511f4b959e8a47c9bdeb6a6be34b42cc8aefcb5d6f4185dd4d875d76e62e
 ---
 
----
-title: Archive Vault
-url: https://platform.claude.com/docs/en/api/beta/vaults/archive
----
+# Archive Vault
 
-## Archive Vault
-
-**post** `/v1/vaults/{vault_id}/archive`
+**POST** `/v1/vaults/{vault_id}/archive`
 
 Archive Vault
 
-### Path Parameters
+## Path parameters
 
 - `vault_id: string`
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -98,9 +93,9 @@ Archive Vault
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
-### Returns
+## Returns
 
-- `BetaManagedAgentsVault object { id, archived_at, created_at, 4 more }`
+- `BetaManagedAgentsVault object`
 
   A vault that stores credentials for use by agents during sessions.
 
@@ -112,9 +107,13 @@ Archive Vault
 
     A timestamp in RFC 3339 format
 
+    format: date-time
+
   - `created_at: string`
 
     A timestamp in RFC 3339 format
+
+    format: date-time
 
   - `display_name: string`
 
@@ -126,15 +125,15 @@ Archive Vault
 
   - `type: "vault"`
 
-    - `"vault"`
-
   - `updated_at: string`
 
     A timestamp in RFC 3339 format
 
-### Example
+    format: date-time
 
-```http
+## Example
+
+```bash
 curl https://api.anthropic.com/v1/vaults/$VAULT_ID/archive \
     -X POST \
     -H 'anthropic-version: 2023-06-01' \
@@ -142,7 +141,7 @@ curl https://api.anthropic.com/v1/vaults/$VAULT_ID/archive \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

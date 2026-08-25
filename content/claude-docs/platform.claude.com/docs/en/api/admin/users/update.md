@@ -1,28 +1,23 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/update
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: fa0988a40c43c4bd93da1f2d83a1b06cedaaf5037cbc3480b706eaa57bbc6893
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: d9575f518def2d5b1007be299f43cf85108a0ac557853488888ad16bd239a000
 ---
 
----
-title: Update User
-url: https://platform.claude.com/docs/en/api/admin/users/update
----
+# Update User
 
-## Update User
-
-**post** `/v1/organizations/users/{user_id}`
+**POST** `/v1/organizations/users/{user_id}`
 
 For Claude Enterprise organizations, this endpoint's availability is in beta.
 
-### Path Parameters
+## Path parameters
 
 - `user_id: string`
 
   ID of the User.
 
-### Body Parameters
+## Body parameters
 
 - `role: "billing" or "claude_code_user" or "developer" or 2 more`
 
@@ -40,9 +35,9 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
 
   - `"user"`
 
-### Returns
+## Returns
 
-- `User object { id, added_at, email, 3 more }`
+- `User object`
 
   - `id: string`
 
@@ -51,6 +46,8 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
   - `added_at: string`
 
     RFC 3339 datetime string indicating when the User joined the Organization.
+
+    format: date-time
 
   - `email: string`
 
@@ -88,11 +85,11 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
 
     For Users, this is always `"user"`.
 
-    - `"user"`
+    default: user
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
@@ -102,7 +99,7 @@ curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
         }'
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

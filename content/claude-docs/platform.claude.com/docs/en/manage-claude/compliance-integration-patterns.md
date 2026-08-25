@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-integration-patterns
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 8d2ad64d058ff925a1a5b4d13acd2f767adc895890ae2e92dc7d7a1aee2eb113
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 21bf90e136076c73f2889d01cf5f6c251cf4a2d5c08ad7ae72d702c1c1a585f1
 ---
 
 ---
@@ -33,7 +33,7 @@ The Activity Feed supports two consumption patterns: periodic window polling bou
 
 Both patterns share these constraints:
 
-* Activities are queryable within 1 minute of occurring and retained for 6 years.
+* Activities are queryable within 1 minute of occurring and retained for 6 years. Recording is not retroactive: it begins when the Compliance API is first enabled for your organization, and activity from before enablement is not backfilled.
 * The maximum `limit` for each page is 5,000.
 * Cursor values are opaque strings that you must not parse.
 * Requests are limited to 600 per minute per [parent organization](https://platform.claude.com/docs/en/manage-claude/compliance-api#how-the-compliance-api-works), shared across every key, every linked organization, and every `/v1/compliance/*` endpoint; unlike the local session endpoints, the remote session endpoints carry a second request budget on top. See [429 Too Many Requests](https://platform.claude.com/docs/en/manage-claude/compliance-errors#429-too-many-requests) for the response headers and retry contract.

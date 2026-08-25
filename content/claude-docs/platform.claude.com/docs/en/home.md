@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/home
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: e6b06abefbe425947db7f232b9c3acaf4a0a9edfe9ff8e3ed870b869d216cc48
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: c73dd2b86da6e4c4f8a8d97e3493b941813f39a57a6bd0bf8f39b8532eb2896f
 ---
 
 ---
@@ -93,7 +93,7 @@ with Claude"
             Get API key
           </HomeJourneyLink>
 
-          <HomeJourneyLink icon="settings" href="https://platform.claude.com/docs/en/about-claude/models/overview">
+          <HomeJourneyLink icon="settings" href="https://platform.claude.com/docs/en/models/overview">
             Choose a model
           </HomeJourneyLink>
 
@@ -249,13 +249,13 @@ with Claude"
     <HomeSectionHeader label="Models" title="The Claude model family" description="Choose the right model for your use case." />
 
     <HomeModelCards>
-      <HomeModelCard name="Fable 5" badge="Most capable" modelId="claude-fable-5" description="Highest capability for the most demanding reasoning and long-horizon agentic work." href="https://platform.claude.com/docs/en/about-claude/models/overview" />
+      <HomeModelCard name="Fable 5" badge="Most capable" modelId="claude-fable-5" description="Highest capability for the most demanding reasoning and long-horizon agentic work." href="https://platform.claude.com/docs/en/models/fable-5/overview" />
 
-      <HomeModelCard name="Opus 5" badge="Advanced" modelId="claude-opus-5" description="Excellent for complex analysis, coding, and creative tasks requiring deep reasoning." href="https://platform.claude.com/docs/en/about-claude/models/overview" />
+      <HomeModelCard name="Opus 5" badge="Advanced" modelId="claude-opus-5" description="Excellent for complex analysis, coding, and creative tasks requiring deep reasoning." href="https://platform.claude.com/docs/en/models/opus-5/overview" />
 
-      <HomeModelCard name="Sonnet 5" badge="Best balance" modelId="claude-sonnet-5" description="Ideal balance of intelligence and speed for most production workloads." href="https://platform.claude.com/docs/en/about-claude/models/overview" />
+      <HomeModelCard name="Sonnet 5" badge="Best balance" modelId="claude-sonnet-5" description="Ideal balance of intelligence and speed for most production workloads." href="https://platform.claude.com/docs/en/models/sonnet-5/overview" />
 
-      <HomeModelCard name="Haiku 4.5" badge="Fastest" modelId="claude-haiku-4-5" description="Lightning-fast responses for high-volume, latency-sensitive applications." href="https://platform.claude.com/docs/en/about-claude/models/overview" />
+      <HomeModelCard name="Haiku 4.5" badge="Fastest" modelId="claude-haiku-4-5" description="Lightning-fast responses for high-volume, latency-sensitive applications." href="https://platform.claude.com/docs/en/models/haiku-4-5/overview" />
     </HomeModelCards>
   </HomeSection>
 

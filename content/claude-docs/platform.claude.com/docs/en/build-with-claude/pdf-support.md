@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/pdf-support
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: d9b53e2aef9b0158ec8d76696c729807776a46017e5f43a33ac7d0a5cd542e79
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: fe526a04464d0e005159bbfd23cd748c9d6adf569e0af73ac4ade018cf411ec7
 ---
 
 ---
@@ -44,7 +44,7 @@ Because PDF support relies on Claude's vision capabilities, it is subject to the
 
 ### Supported platforms and models
 
-All [active models](https://platform.claude.com/docs/en/about-claude/models/overview) support PDF processing. For PDF support through Amazon Bedrock's Converse API, see [Amazon Bedrock PDF support](https://platform.claude.com/docs/en/build-with-claude/pdf-support#amazon-bedrock-pdf-support).
+All [active models](https://platform.claude.com/docs/en/models/overview) support PDF processing. For PDF support through Amazon Bedrock's Converse API, see [Amazon Bedrock PDF support](https://platform.claude.com/docs/en/build-with-claude/pdf-support#amazon-bedrock-pdf-support).
 
 ### Amazon Bedrock PDF support
 

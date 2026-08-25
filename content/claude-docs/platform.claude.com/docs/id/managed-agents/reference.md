@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/reference
-fetched_at: 2026-08-23T02:32:19.757524Z
-sha256: 400488bbce564e3babdecd0bf54bd9f0255a0d1c9c559284ecce98b7bf26ff51
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 566656ed60f86e2f64db1616bbc7c7364122492a1b1a6f9325045772e90f14d0
 ---
 
 ---
@@ -19,7 +19,7 @@ Halaman ini mengumpulkan materi referensi untuk Claude Managed Agents. Untuk pan
 
 ## Tipe event
 
-String tipe event yang dipersistensi mengikuti konvensi penamaan `{domain}.{action}`; event delta yang hanya tersedia melalui stream (lihat tab Event delta) adalah pengecualiannya. Lihat [Stream event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) untuk mengirim, melakukan streaming, dan mendaftar event.
+String tipe event yang dipersistensi mengikuti konvensi penamaan `{domain}.{action}`; event delta yang hanya tersedia di stream (lihat tab Event deltas) adalah pengecualiannya. Lihat [Stream event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) untuk mengirim, melakukan streaming, dan mendaftar event. Tipe event webhook didaftarkan secara terpisah di [Berlangganan webhook](https://platform.claude.com/docs/id/managed-agents/webhooks#supported-event-types), dan beberapa namanya berbeda dari nama di stream (misalnya, `session.status_idled` alih-alih `session.status_idle`).
 
 <Tabs>
   <Tab title="Event pengguna">
@@ -47,25 +47,25 @@ String tipe event yang dipersistensi mengikuti konvensi penamaan `{domain}.{acti
     | `agent.thread_message_received`  | Dalam sesi [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), sebuah pesan dari thread lain tiba di thread yang stream-nya membawa event ini; pada thread utama, seorang agen mengirim laporan atau pertanyaan kepada koordinator. |
     | `agent.thread_message_sent`      | Dalam sesi [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), thread yang stream-nya membawa event ini mengirim pesan ke thread lain; pada thread utama, koordinator mengirim tugas atau pesan tindak lanjut ke agen lain.         |
 
-    Konten pesan dalam event ini dapat menyertakan blok konten `redacted`, `{"type": "redacted"}`: placeholder untuk konten yang ditahan oleh kebijakan model Anthropic. Blok ini tidak membawa field lain. Blok redacted hanya muncul dalam konten yang dikeluarkan oleh platform; event pengguna yang menyertakannya akan ditolak dengan error 400.
+    Konten pesan dalam event ini dapat menyertakan blok konten `redacted`, `{"type": "redacted"}`: sebuah placeholder untuk konten yang ditahan oleh kebijakan model Anthropic. Blok ini tidak membawa field lain. Blok redacted hanya muncul dalam konten yang dikeluarkan platform; event pengguna yang menyertakannya akan ditolak dengan error 400.
   </Tab>
 
   <Tab title="Event sesi">
-    | Tipe                                | Deskripsi                                                                                                                                                                                                                                                       |
-    | ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | `session.status_running`            | Agen sedang aktif memproses.                                                                                                                                                                                                                                    |
-    | `session.status_idle`               | Agen menyelesaikan tugasnya saat ini dan sedang menunggu input. Menyertakan `stop_reason` yang menunjukkan mengapa agen berhenti.                                                                                                                               |
-    | `session.status_rescheduled`        | Terjadi error sementara dan sesi sedang mencoba ulang secara otomatis.                                                                                                                                                                                          |
-    | `session.status_terminated`         | Sesi berakhir, baik karena error yang tidak dapat dipulihkan maupun karena telah diarsipkan.                                                                                                                                                                    |
-    | `session.deleted`                   | Sesi telah dihapus. Mengakhiri stream event aktif apa pun; tidak ada event lebih lanjut yang dikeluarkan untuk sesi ini.                                                                                                                                        |
-    | `session.updated`                   | Permintaan pembaruan sesi mengubah setidaknya satu field. Hanya menyertakan field yang berubah. Pembaruan berlaku pada giliran berikutnya.                                                                                                                      |
-    | `session.error`                     | Terjadi error selama pemrosesan. Menyertakan objek `error` bertipe dengan `retry_status`.                                                                                                                                                                       |
-    | `session.usage`                     | Snapshot penggunaan kumulatif sesi dan biaya daftar yang dilacak. Membawa total penggunaan sesi dan gema dari [anggaran](https://platform.claude.com/docs/id/managed-agents/budgets) sesi, atau `null` ketika sesi tidak memilikinya.                           |
-    | `session.thread_created`            | Sebuah thread [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration) telah dibuat.                                                                                                                                            |
-    | `session.thread_status_running`     | Sebuah thread sesi mulai dieksekusi. Setiap sesi mengeluarkan event ini untuk thread utamanya; dalam sesi [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), transisi thread anak juga diposting silang ke stream utama. |
-    | `session.thread_status_idle`        | Sebuah thread sesi menyelesaikan gilirannya dan sedang menunggu input. Menyertakan `stop_reason`.                                                                                                                                                               |
-    | `session.thread_status_rescheduled` | Sebuah thread sesi mengalami error sementara dan sedang mencoba ulang secara otomatis.                                                                                                                                                                          |
-    | `session.thread_status_terminated`  | Sebuah thread sesi telah diarsipkan atau mencapai error terminal.                                                                                                                                                                                               |
+    | Tipe                                | Deskripsi                                                                                                                                                                                                                                                 |
+    | ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `session.status_running`            | Agen sedang aktif memproses.                                                                                                                                                                                                                              |
+    | `session.status_idle`               | Agen menyelesaikan tugasnya saat ini dan sedang menunggu input. Menyertakan `stop_reason` yang menunjukkan mengapa agen berhenti.                                                                                                                         |
+    | `session.status_rescheduled`        | Terjadi error sementara dan sesi sedang mencoba ulang secara otomatis.                                                                                                                                                                                    |
+    | `session.status_terminated`         | Sesi berakhir, baik karena error yang tidak dapat dipulihkan maupun karena diarsipkan.                                                                                                                                                                    |
+    | `session.deleted`                   | Sesi telah dihapus. Mengakhiri stream event aktif apa pun; tidak ada event lebih lanjut yang dikeluarkan untuk sesi ini.                                                                                                                                  |
+    | `session.updated`                   | Permintaan pembaruan sesi mengubah setidaknya satu field. Hanya menyertakan field yang berubah. Pembaruan berlaku pada giliran berikutnya.                                                                                                                |
+    | `session.error`                     | Terjadi error selama pemrosesan. Menyertakan objek `error` bertipe dengan `retry_status`.                                                                                                                                                                 |
+    | `session.usage`                     | Snapshot penggunaan kumulatif sesi dan biaya daftar yang dilacak. Membawa total penggunaan sesi dan gema dari [anggaran](https://platform.claude.com/docs/id/managed-agents/budgets) sesi, atau `null` ketika sesi tidak memilikinya.                     |
+    | `session.thread_created`            | Sebuah thread [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration) telah dibuat.                                                                                                                                      |
+    | `session.thread_status_running`     | Sebuah thread sesi mulai dieksekusi. Setiap sesi mengeluarkan ini untuk thread utamanya; dalam sesi [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), transisi thread anak juga diposting silang ke stream utama. |
+    | `session.thread_status_idle`        | Sebuah thread sesi menyelesaikan gilirannya dan sedang menunggu input. Menyertakan `stop_reason`.                                                                                                                                                         |
+    | `session.thread_status_rescheduled` | Sebuah thread sesi mengalami error sementara dan sedang mencoba ulang secara otomatis.                                                                                                                                                                    |
+    | `session.thread_status_terminated`  | Sebuah thread sesi diarsipkan atau mencapai error terminal.                                                                                                                                                                                               |
   </Tab>
 
   <Tab title="Event span">
@@ -81,38 +81,40 @@ String tipe event yang dipersistensi mengikuti konvensi penamaan `{domain}.{acti
   </Tab>
 
   <Tab title="Event sistem">
-    | Tipe             | Deskripsi                                                                                                                                                                                                                                                                                                                            |
-    | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-    | `system.message` | Menambahkan konteks tingkat sistem yang diistimewakan yang berlaku untuk giliran yang menyertainya dan semua giliran berikutnya. Didukung pada Claude Opus 4.8, Claude Fable 5, Claude Mythos 5, dan Claude Opus 5; pada model utama yang tidak didukung, event ini ditolak dengan `model_does_not_support_mid_conversation_system`. |
+    | Tipe             | Deskripsi                                                                                                                                                                                                                                                                                                                        |
+    | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `system.message` | Menambahkan konteks tingkat sistem yang diistimewakan yang berlaku untuk giliran yang menyertainya dan semua giliran berikutnya. Didukung pada Claude Opus 4.8, Claude Fable 5, Claude Mythos 5, dan Claude Opus 5; pada model utama yang tidak didukung, event ditolak dengan `model_does_not_support_mid_conversation_system`. |
   </Tab>
 
-  <Tab title="Event delta">
-    Event delta adalah event pratinjau yang hanya tersedia melalui stream. Event ini dikeluarkan pada koneksi stream (tingkat sesi atau per thread) yang memilih ikut serta dengan parameter `event_deltas[]`, dan tidak pernah dipersistensi ke riwayat event sesi. Lihat [Event delta](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#event-deltas) untuk cara memilih ikut serta, mengakumulasi, dan merekonsiliasinya.
+  <Tab title="Event deltas">
+    Event delta adalah event pratinjau yang hanya tersedia di stream. Event ini dikeluarkan pada koneksi stream (tingkat sesi atau per thread) yang memilih ikut serta dengan parameter `event_deltas[]`, dan tidak pernah dipersistensi ke riwayat event sesi. Lihat [Event delta](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#event-deltas) untuk cara memilih ikut serta, mengakumulasi, dan merekonsiliasinya.
 
-    | Tipe          | Deskripsi                                                                                                                                                                |
-    | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-    | `event_start` | Sebuah event yang dipratinjau telah mulai dihasilkan. Membawa `type` dan `id` dari event yang akan datang. Hanya tersedia melalui stream dan tidak pernah dipersistensi. |
-    | `event_delta` | Konten inkremental untuk event yang dipratinjau, diidentifikasi oleh `event_id`. Hanya tersedia melalui stream dan tidak pernah dipersistensi.                           |
+    | Tipe          | Deskripsi                                                                                                                                                  |
+    | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `event_start` | Sebuah event yang dipratinjau telah mulai dihasilkan. Membawa `type` dan `id` dari event yang akan datang. Hanya di stream dan tidak pernah dipersistensi. |
+    | `event_delta` | Konten inkremental untuk event yang dipratinjau, diidentifikasi oleh `event_id`. Hanya di stream dan tidak pernah dipersistensi.                           |
   </Tab>
 </Tabs>
 
 ## Worker self-hosted
 
-Berikut adalah flag CLI `ant beta:worker` untuk worker bawaan yang menggerakkan environment `self_hosted`. Lihat [Sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes) untuk menyiapkan environment, menjalankan worker, dan opsi helper SDK.
+Berikut adalah flag CLI `ant beta:worker` untuk worker bawaan yang menjalankan environment `self_hosted`. Lihat [Sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes) untuk menyiapkan environment, menjalankan worker, dan opsi helper SDK.
 
-| Flag                   | Deskripsi                                                                                                                                                                                      |
-| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--environment-id`     | Environment yang akan di-poll untuk pekerjaan. Juga dibaca dari `ANTHROPIC_ENVIRONMENT_ID`.                                                                                                    |
-| `--environment-key`    | Mengautentikasi worker dengan environment ini. Juga dibaca dari `ANTHROPIC_ENVIRONMENT_KEY`.                                                                                                   |
-| `--workdir`            | Direktori tempat skill diunduh serta tempat alat membaca dan menulis file. Default-nya `.` (direktori saat ini); direktori kerja default sistem adalah `/workspace`.                           |
-| `--on-work`            | Skrip yang dipanggil untuk setiap item pekerjaan yang diklaim, alih-alih menjalankan alat dalam proses. Menerima detail sesi sebagai variabel environment.                                     |
-| `--unrestricted-paths` | Mengizinkan alat file untuk membaca dan menulis path di luar `--workdir`. Pemeriksaan workdir adalah pagar pengaman untuk alat file saja, bukan sandbox; pemeriksaan ini tidak membatasi bash. |
-| `--max-idle`           | Berapa lama menunggu setelah sesi menjadi idle dengan [stop reason](https://platform.claude.com/docs/id/api/handling-stop-reasons) `end_turn` sebelum dimatikan. Default-nya `60s`.            |
-| `--log-format`         | Format output log. Gunakan `json` untuk ingesti log terstruktur. Default-nya `text`.                                                                                                           |
+| Flag                   | Deskripsi                                                                                                                                                                                |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--environment-id`     | Environment yang akan di-poll untuk pekerjaan. Juga dibaca dari `ANTHROPIC_ENVIRONMENT_ID`.                                                                                              |
+| `--environment-key`    | Mengautentikasi worker dengan environment ini. Juga dibaca dari `ANTHROPIC_ENVIRONMENT_KEY`.                                                                                             |
+| `--workdir`            | Direktori tempat skill diunduh dan alat membaca serta menulis file. Default-nya `.` (direktori saat ini); direktori kerja default sistem adalah `/workspace`.                            |
+| `--on-work`            | Skrip yang dipanggil untuk setiap item pekerjaan yang diklaim alih-alih menjalankan alat dalam proses. Menerima detail sesi sebagai variabel environment.                                |
+| `--unrestricted-paths` | Mengizinkan alat file membaca dan menulis path di luar `--workdir`. Pemeriksaan workdir adalah pagar pengaman untuk alat file saja, bukan sandbox; pemeriksaan ini tidak membatasi bash. |
+| `--max-idle`           | Berapa lama menunggu setelah sesi menjadi idle dengan [stop reason](https://platform.claude.com/docs/id/api/handling-stop-reasons) `end_turn` sebelum dimatikan. Default-nya `60s`.      |
+| `--log-format`         | Format output log. Gunakan `json` untuk ingesti log terstruktur. Default-nya `text`.                                                                                                     |
+
+Worker CLI tidak me-mount [memory store](https://platform.claude.com/docs/id/managed-agents/memory): sesi yang melampirkannya tetap berjalan, tetapi agen tidak menemukan apa pun di `mount_path` store tersebut dan tidak ada perubahan yang disinkronkan kembali ke store. Untuk menggunakan memory store dalam sesi pada environment self-hosted, jalankan worker SDK sebagai gantinya; lihat [Menggunakan memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores).
 
 ## Tipe server MCP yang didukung
 
-Claude Managed Agents terhubung ke [server MCP jarak jauh](https://platform.claude.com/docs/id/agents-and-tools/remote-mcp-servers) yang mengekspos endpoint HTTP, atau ke server MCP privat melalui [tunnel MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview). Server harus mendukung transport streamable HTTP dari protokol MCP; server yang hanya mendukung transport SSE yang sudah tidak digunakan lagi tetap berfungsi melalui fallback otomatis. Lihat [Konektor MCP](https://platform.claude.com/docs/id/managed-agents/mcp-connector) untuk mendeklarasikan server pada agen.
+Claude Managed Agents terhubung ke [server MCP jarak jauh](https://platform.claude.com/docs/id/agents-and-tools/remote-mcp-servers) yang mengekspos endpoint HTTP, atau ke server MCP privat melalui [tunnel MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview). Server harus mendukung transport streamable HTTP dari protokol MCP; server yang hanya mendukung transport SSE yang sudah deprecated tetap berfungsi melalui fallback otomatis. Lihat [Konektor MCP](https://platform.claude.com/docs/id/managed-agents/mcp-connector) untuk mendeklarasikan server pada agen.
 
 Untuk informasi lebih lanjut tentang MCP dan membangun server MCP, lihat [dokumentasi MCP](https://modelcontextprotocol.io).
 
@@ -141,6 +143,6 @@ Bagi mitra yang mengintegrasikan Claude Managed Agents, penggunaan branding Clau
 
 * "Claude Code" atau "Claude Code Agent"
 * "Claude Cowork" atau "Claude Cowork Agent"
-* Seni ASCII bermerek Claude Code atau elemen visual yang meniru Claude Code
+* ASCII art bermerek Claude Code atau elemen visual yang meniru Claude Code
 
 Produk Anda harus mempertahankan branding-nya sendiri dan tidak tampak seperti Claude Code, Claude Cowork, atau produk Anthropic lainnya. Untuk pertanyaan tentang kepatuhan branding, hubungi [tim penjualan](https://www.anthropic.com/contact-sales) Anthropic.

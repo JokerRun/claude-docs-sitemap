@@ -1,33 +1,28 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/delete
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: b5aaa9001816e4859334f9cd4148fe4afac90df64f6dc07d749bac90bce37360
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 8cbe6808cff969ff15aeb645a9d3a086de2620992bbf81acd1c0ebfcd5c76f8a
 ---
 
----
-title: Delete chat
-url: https://platform.claude.com/docs/en/api/compliance/apps/chats/delete
----
+# Delete chat
 
-## Delete chat
-
-**delete** `/v1/compliance/apps/chats/{claude_chat_id}`
+**DELETE** `/v1/compliance/apps/chats/{claude_chat_id}`
 
 Permanently deletes a chat and all associated messages and
 files. This is a destructive operation that cannot be undone.
 
-### Path Parameters
+## Path parameters
 
 - `claude_chat_id: string`
 
   The chat ID (tagged ID, e.g., claude_chat_abc123)
 
-### Header Parameters
+## Headers
 
 - `"x-api-key": optional string`
 
-### Returns
+## Returns
 
 - `id: string`
 
@@ -37,17 +32,17 @@ files. This is a destructive operation that cannot be undone.
 
   Constant string confirming deletion
 
-  - `"claude_chat_deleted"`
+  default: claude_chat_deleted
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/compliance/apps/chats/$CLAUDE_CHAT_ID \
     -X DELETE \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

@@ -1,30 +1,25 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/retrieve
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 016a392969bd279bd0a8268f0c7bef05650d2c1bd22f321181fad1a7b0196c8d
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: c19a8207f22934dbf12b878026b7aba19ac4402b43ed800249dee40b8c2f6cb9
 ---
 
----
-title: Get User
-url: https://platform.claude.com/docs/en/api/admin/users/retrieve
----
+# Get User
 
-## Get User
-
-**get** `/v1/organizations/users/{user_id}`
+**GET** `/v1/organizations/users/{user_id}`
 
 For Claude Enterprise organizations, this endpoint's availability is in beta.
 
-### Path Parameters
+## Path parameters
 
 - `user_id: string`
 
   ID of the User.
 
-### Returns
+## Returns
 
-- `User object { id, added_at, email, 3 more }`
+- `User object`
 
   - `id: string`
 
@@ -33,6 +28,8 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
   - `added_at: string`
 
     RFC 3339 datetime string indicating when the User joined the Organization.
+
+    format: date-time
 
   - `email: string`
 
@@ -70,17 +67,17 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
 
     For Users, this is always `"user"`.
 
-    - `"user"`
+    default: user
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

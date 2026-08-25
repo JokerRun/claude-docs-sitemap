@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: a7d768fbbf03a7bf64d1a8a84e72095f2fcaa4192404895860b7361b432f04e8
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 0f2f1bc9e052c4656bf676b7682e23bab7d6c5aee4e45f86f9d25aa1ba11a798
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
 description: Beri tahu agen seperti apa 'selesai' itu, dan biarkan agen beriterasi hingga mencapainya.
 ---
 
-Sebuah "outcome" (hasil akhir) memberi tahu sesi seperti apa hasil akhir yang seharusnya dan bagaimana mengukur kualitasnya. Agen bekerja menuju target tersebut, mengevaluasi diri dan beriterasi hingga outcome terpenuhi.
+Sebuah "outcome" (hasil akhir) memberi tahu sesi seperti apa hasil akhir yang diharapkan dan bagaimana mengukur kualitasnya. Agen bekerja menuju target tersebut, mengevaluasi diri dan beriterasi hingga outcome terpenuhi.
 
 Saat Anda mendefinisikan outcome, harness secara otomatis menyediakan sebuah *grader* (penilai) untuk mengevaluasi artefak terhadap sebuah rubrik. Grader menggunakan "context window" (jendela konteks) terpisah agar tidak terpengaruh oleh pilihan implementasi agen utama.
 
@@ -59,11 +59,7 @@ Contoh rubrik:
 - Sensitivity analysis on WACC and terminal growth rate is included
 ```
 
-Teruskan rubrik sebagai teks inline pada `user.define_outcome` (lihat [Membuat sesi dengan outcome](https://platform.claude.com/docs/id/managed-agents/define-outcomes#create-a-session-with-an-outcome)), atau unggah melalui Files API agar dapat digunakan kembali di berbagai sesi.
-
-<Note>
-  Mengunggah melalui Files API tidak memerlukan header beta. Contoh cURL mengirim header `managed-agents-2026-04-01` yang digunakannya di sepanjang panduan ini, yang juga diterima oleh Files API.
-</Note>
+Teruskan rubrik sebagai teks inline pada `user.define_outcome` (lihat [Membuat sesi dengan outcome](https://platform.claude.com/docs/id/managed-agents/define-outcomes#create-a-session-with-an-outcome)), atau unggah melalui Files API untuk digunakan kembali di berbagai sesi.
 
 <CodeGroup>
   ```bash cURL
@@ -338,20 +334,20 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
   ```
 
   ```bash CLI
-  # Create a session
+  # Buat sesi
   SESSION_ID=$(ant beta:sessions create \
     --agent "$AGENT_ID" \
     --environment-id "$ENVIRONMENT_ID" \
     --title "Financial analysis on Costco" \
     --transform id --raw-output)
 
-  # Define the outcome — agent starts working on receipt
+  # Definisikan hasil — agen mulai bekerja saat diterima
   ant beta:sessions:events send --session-id "$SESSION_ID" <<YAML
   events:
     - type: user.define_outcome
       description: Build a DCF model for Costco in .xlsx
       rubric: {type: file, file_id: $RUBRIC_ID}
-      # or: rubric: {type: text, content: "..."}
+      # atau: rubric: {type: text, content: "..."}
       max_iterations: 5  # optional; default 3, max 20
   YAML
   ```
@@ -496,14 +492,14 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
   ```
 
   ```php PHP
-  // Create a session
+  // Buat sesi
   $session = $client->beta->sessions->create(
       agent: $agent->id,
       environmentID: $environment->id,
       title: 'Financial analysis on Costco',
   );
 
-  // Define the outcome — agent starts working on receipt
+  // Definisikan hasil — agen mulai bekerja saat diterima
   $client->beta->sessions->events->send(
       $session->id,
       events: [
@@ -511,7 +507,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
               'type' => 'user.define_outcome',
               'description' => 'Build a DCF model for Costco in .xlsx',
               'rubric' => ['type' => 'text', 'content' => $rubricText],
-              // or: 'rubric' => ['type' => 'file', 'file_id' => $rubric->id],
+              // atau: 'rubric' => ['type' => 'file', 'file_id' => $rubric->id],
               'max_iterations' => 5, // optional; default 3, max 20
           ],
       ],
@@ -559,7 +555,7 @@ Kemajuan pada sesi berorientasi outcome ditampilkan pada [stream](https://platfo
 ### Event pengguna define outcome
 
 <Note>
-  Hanya satu outcome yang didukung dalam satu waktu, tetapi Anda dapat merangkai outcome secara berurutan. Untuk melakukannya, kirim event `user.define_outcome` baru setelah event terminal `span.outcome_evaluation_end` dari outcome sebelumnya.
+  Hanya satu outcome yang didukung pada satu waktu, tetapi Anda dapat merangkai outcome secara berurutan. Untuk melakukannya, kirim event `user.define_outcome` baru setelah event terminal `span.outcome_evaluation_end` dari outcome sebelumnya.
 </Note>
 
 Ini adalah event yang Anda kirim untuk memulai sebuah outcome. Event ini dipantulkan kembali saat diterima, termasuk timestamp `processed_at` dan `outcome_id`.
@@ -575,7 +571,7 @@ Ini adalah event yang Anda kirim untuk memulai sebuah outcome. Event ini dipantu
 
 ### Evaluasi outcome dimulai
 
-Dipancarkan ketika grader memulai evaluasi atas satu loop iterasi. Field `iteration` adalah penghitung revisi berindeks 0: `0` adalah evaluasi pertama, `1` adalah evaluasi ulang setelah revisi pertama, dan seterusnya.
+Dipancarkan begitu grader memulai evaluasi atas satu loop iterasi. Field `iteration` adalah penghitung revisi berindeks 0: `0` adalah evaluasi pertama, `1` adalah evaluasi ulang setelah revisi pertama, dan seterusnya.
 
 ```json
 {
@@ -603,15 +599,15 @@ Heartbeat yang dipancarkan selama grader berjalan. Penalaran internal grader ber
 
 ### Evaluasi outcome berakhir
 
-Dipancarkan ketika siklus evaluasi outcome berakhir: setelah grader selesai mengevaluasi satu iterasi, atau ketika sesi diinterupsi saat sebuah outcome sedang aktif. Field `result` menunjukkan apa yang terjadi selanjutnya.
+Dipancarkan ketika siklus evaluasi outcome berakhir: setelah grader selesai mengevaluasi satu iterasi, atau ketika sesi diinterupsi saat sebuah outcome aktif. Field `result` menunjukkan apa yang terjadi selanjutnya.
 
-| Result                   | Selanjutnya                                                                                                                                                                                                                             |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `satisfied`              | Sesi beralih ke `idle`.                                                                                                                                                                                                                 |
-| `needs_revision`         | Agen memulai siklus iterasi baru.                                                                                                                                                                                                       |
-| `max_iterations_reached` | Satu giliran pengakuan terakhir menyusul sebelum sesi beralih ke `idle`. Tidak ada evaluasi lebih lanjut yang dijalankan.                                                                                                               |
-| `failed`                 | Sesi beralih ke `idle`. Dikembalikan ketika rubrik tidak berlaku untuk deliverable, misalnya jika deskripsi dan rubrik saling bertentangan.                                                                                             |
-| `interrupted`            | Dipancarkan ketika sesi diinterupsi saat sebuah outcome sedang aktif, bahkan jika evaluasi belum dimulai. Jika tidak ada `outcome_evaluation_start` yang terpicu sebelum interupsi, `outcome_evaluation_start_id` berupa string kosong. |
+| Result                   | Selanjutnya                                                                                                                                                                                                                      |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `satisfied`              | Sesi beralih ke `idle`.                                                                                                                                                                                                          |
+| `needs_revision`         | Agen memulai siklus iterasi baru.                                                                                                                                                                                                |
+| `max_iterations_reached` | Satu giliran pengakuan terakhir menyusul sebelum sesi beralih ke `idle`. Tidak ada evaluasi lebih lanjut yang dijalankan.                                                                                                        |
+| `failed`                 | Sesi beralih ke `idle`. Dikembalikan ketika rubrik tidak berlaku untuk deliverable, misalnya jika deskripsi dan rubrik saling bertentangan.                                                                                      |
+| `interrupted`            | Dipancarkan ketika sesi diinterupsi saat sebuah outcome aktif, bahkan jika evaluasi belum dimulai. Jika tidak ada `outcome_evaluation_start` yang terpicu sebelum interupsi, `outcome_evaluation_start_id` berupa string kosong. |
 
 ```json
 {
@@ -634,7 +630,7 @@ Dipancarkan ketika siklus evaluasi outcome berakhir: setelah grader selesai meng
 
 ## Memeriksa status outcome
 
-Anda dapat mendengarkan [stream event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) untuk `span.outcome_evaluation_end`, atau melakukan polling `GET /v1/sessions/{session_id}` dan membaca `outcome_evaluations[].result`. Hingga evaluasi selesai, `result` melaporkan `pending`, `running`, atau `evaluating`:
+Anda dapat mendengarkan [stream event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) untuk `span.outcome_evaluation_end`, atau melakukan polling `GET /v1/sessions/{session_id}` dan membaca `outcome_evaluations[].result`. Hingga sebuah evaluasi selesai, `result` melaporkan `pending`, `running`, atau `evaluating`:
 
 <CodeGroup>
   ```bash cURL
@@ -721,11 +717,7 @@ Anda dapat mendengarkan [stream event](https://platform.claude.com/docs/id/manag
 
 ## Mengambil deliverable
 
-Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah sesi idle, ambil file tersebut melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files) yang dicakupkan ke sesi.
-
-<Note>
-  Memfilter berdasarkan `scope_id` memerlukan header beta `managed-agents-2026-04-01` pada permintaan list, sehingga contoh SDK dan CLI melakukan panggilan tersebut melalui namespace `beta` dan meneruskan header secara eksplisit. Mengunduh file berdasarkan ID tidak memerlukan header beta.
-</Note>
+Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk mengambilnya, daftarkan file melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files) dengan ID sesi sebagai `scope_id`, lalu unduh berdasarkan ID. Pemfilteran berdasarkan `scope_id` memerlukan header beta `managed-agents-2026-04-01` pada permintaan list, sehingga contoh SDK dan CLI melakukan panggilan tersebut melalui namespace `beta` dan meneruskan header secara eksplisit. File muncul dalam daftar tak lama setelah agen selesai menulisnya, terkadang beberapa detik setelah sesi menjadi idle. Jika file yang Anda harapkan belum terdaftar, lakukan list lagi setelah jeda singkat; begitu file muncul dalam daftar, pengunggahannya telah selesai.
 
 <CodeGroup>
   ```bash cURL
@@ -749,11 +741,11 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah se
   ```
 
   ```bash CLI
-  # List files produced by this session
-  # scope_id filtering requires the managed-agents beta on the files request
+  # Daftar file yang dihasilkan oleh sesi ini
+  # Pemfilteran scope_id memerlukan beta managed-agents pada permintaan files
   ant beta:files list --scope-id "$SESSION_ID" --beta managed-agents-2026-04-01
 
-  # Download a file
+  # Unduh file
   FILE_ID=$(ant beta:files list --scope-id "$SESSION_ID" \
     --beta managed-agents-2026-04-01 \
     --transform 'data[0].id' --raw-output)
@@ -870,14 +862,14 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah se
   ```
 
   ```php PHP
-  // List files produced by this session
-  // scope_id filtering requires the managed-agents beta on the files request
+  // Daftar file yang dihasilkan oleh sesi ini
+  // Pemfilteran scope_id memerlukan beta managed-agents pada permintaan files
   $files = $client->beta->files->list(scopeID: $session->id, betas: ['managed-agents-2026-04-01']);
   foreach ($files->getItems() as $file) {
       echo "{$file->id} {$file->filename}\n";
   }
 
-  // Download a file
+  // Unduh file
   if (count($files->getItems()) > 0) {
       $content = $client->files->download($files->getItems()[0]->id);
       file_put_contents('/tmp/output.txt', $content);

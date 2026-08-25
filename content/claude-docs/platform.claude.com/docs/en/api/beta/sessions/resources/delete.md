@@ -1,28 +1,23 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/delete
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 6cfad0f186e6cdd829b9dd1c486c96a7093fb7688328e191aacd134fbefad8db
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: a26dee1bac2c106b2095f332203485a7528d5b1a0eb45ebc3d4f081073c63ef3
 ---
 
----
-title: Delete Session Resource
-url: https://platform.claude.com/docs/en/api/beta/sessions/resources/delete
----
+# Delete Session Resource
 
-## Delete Session Resource
-
-**delete** `/v1/sessions/{session_id}/resources/{resource_id}`
+**DELETE** `/v1/sessions/{session_id}/resources/{resource_id}`
 
 Delete Session Resource
 
-### Path Parameters
+## Path parameters
 
 - `session_id: string`
 
 - `resource_id: string`
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -100,9 +95,9 @@ Delete Session Resource
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
-### Returns
+## Returns
 
-- `BetaManagedAgentsDeleteSessionResource object { id, type }`
+- `BetaManagedAgentsDeleteSessionResource object`
 
   Confirmation of resource deletion.
 
@@ -110,11 +105,9 @@ Delete Session Resource
 
   - `type: "session_resource_deleted"`
 
-    - `"session_resource_deleted"`
+## Example
 
-### Example
-
-```http
+```bash
 curl https://api.anthropic.com/v1/sessions/$SESSION_ID/resources/$RESOURCE_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
@@ -122,7 +115,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/resources/$RESOURCE_ID \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

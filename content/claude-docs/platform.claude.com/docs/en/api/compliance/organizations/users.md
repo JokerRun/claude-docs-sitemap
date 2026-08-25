@@ -1,46 +1,43 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/users
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: bebe15423c1435af2d72482fbe47cd4eacfa4f05b325433e0bd8071dc6396b8b
----
-
----
-title: Users
-url: https://platform.claude.com/docs/en/api/compliance/organizations/users
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 681d9ba85c67f795515294bbf1b0de386512c66ba04adccd9be527cbf68a0fa3
 ---
 
 # Users
 
 ## List organization users
 
-**get** `/v1/compliance/organizations/{org_uuid}/users`
+**GET** `/v1/compliance/organizations/{org_uuid}/users`
 
 List current user members of an organization.
 
-### Path Parameters
+### Path parameters
 
 - `org_uuid: string`
 
   The organization UUID
 
-### Query Parameters
+### Query parameters
 
 - `limit: optional number`
 
   Maximum results (default: 500, max: 1000)
 
+  default: 500, maximum: 1000, minimum: 1
+
 - `page: optional string`
 
   Opaque pagination token from a previous response's `next_page` field. Pass this to retrieve the next page of results. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
 
-### Header Parameters
+### Headers
 
 - `"x-api-key": optional string`
 
 ### Returns
 
-- `data: array of object { id, created_at, email, 2 more }`
+- `data: array of object`
 
   List of current organization members sorted by organization join date ascending
 
@@ -51,6 +48,8 @@ List current user members of an organization.
   - `created_at: string`
 
     User account creation timestamp
+
+    format: date-time
 
   - `email: string`
 
@@ -92,12 +91,12 @@ List current user members of an organization.
 
 ### Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/users \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
-#### Response
+#### Response (200)
 
 ```json
 {
@@ -115,11 +114,11 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/users \
 }
 ```
 
-## Domain Types
+## Domain types
 
 ### User List Response
 
-- `UserListResponse object { id, created_at, email, 2 more }`
+- `UserListResponse object`
 
   User member information for compliance responses.
 
@@ -130,6 +129,8 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/users \
   - `created_at: string`
 
     User account creation timestamp
+
+    format: date-time
 
   - `email: string`
 

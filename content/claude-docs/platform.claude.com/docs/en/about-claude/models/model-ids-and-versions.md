@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: e5d0aa4d3c1bfe06b25439633d0147c9e8e48d56843aa5769d7742f5b39b5626
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 2a2353199b7d09aa111b8287ecab1c6c9649ecadd04835017e8b3a03ea177f03
 ---
 
 ---
@@ -87,4 +87,4 @@ Occasionally, infrastructure updates produce minor differences in observable beh
 
 ## Current model IDs
 
-For the full list of current model IDs and their Amazon Bedrock and Google Cloud equivalents, see [Models overview](https://platform.claude.com/docs/en/about-claude/models/overview).
+For the full list of current model IDs and their Amazon Bedrock and Google Cloud equivalents, see [Models overview](https://platform.claude.com/docs/en/models/overview).

@@ -1,30 +1,25 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys/retrieve
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 7c455ec86ffb10955617289ba68a3e19d2ed6bd553332573f477382b12c09497
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 9ccf7e485e8b5a5f630530cf1fe53635caaf66e5018e8598f6e07dada1348ac6
 ---
 
----
-title: Retrieve API Key (Admin API)
-url: https://platform.claude.com/docs/en/api/admin/api_keys/retrieve
----
+# Retrieve API Key (Admin API)
 
-## Retrieve API Key (Admin API)
-
-**get** `/v1/organizations/api_keys/{api_key_id}`
+**GET** `/v1/organizations/api_keys/{api_key_id}`
 
 Retrieve information about a single API key in your organization, looked up by its ID. This Admin API endpoint requires an Admin API key, is intended for programmatic key management, and never returns the key's secret value. To view or create your own API keys, go to [API keys](https://platform.claude.com/settings/keys) in the Claude Console.
 
-### Path Parameters
+## Path parameters
 
 - `api_key_id: string`
 
   ID of the API key.
 
-### Returns
+## Returns
 
-- `APIKey object { id, created_at, created_by, 7 more }`
+- `APIKey object`
 
   - `id: string`
 
@@ -34,7 +29,9 @@ Retrieve information about a single API key in your organization, looked up by i
 
     RFC 3339 datetime string indicating when the API Key was created.
 
-  - `created_by: object { id, type }  or null`
+    format: date-time
+
+  - `created_by: object or null`
 
     The ID and type of the actor that created the API key, or `null` when the
     creator is not recorded (legacy, workload-identity-federated, or
@@ -52,6 +49,8 @@ Retrieve information about a single API key in your organization, looked up by i
 
     RFC 3339 datetime string indicating when the API Key expires, or `null` if it never expires.
 
+    format: date-time
+
   - `name: string`
 
     Name of the API key.
@@ -60,7 +59,7 @@ Retrieve information about a single API key in your organization, looked up by i
 
     Partially redacted hint for the API key.
 
-  - `principal: object { id, type }  or null`
+  - `principal: object or null`
 
     The ID and type of the principal the API key acts as, or `null` if the key is not bound to a principal.
 
@@ -94,21 +93,21 @@ Retrieve information about a single API key in your organization, looked up by i
 
     For API Keys, this is always `"api_key"`.
 
-    - `"api_key"`
+    default: api_key
 
   - `workspace_id: string or null`
 
     ID of the Workspace associated with the API key, or `null` if the API key belongs to the default Workspace.
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/api_keys/$API_KEY_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

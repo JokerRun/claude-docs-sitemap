@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: c50244aa0b1d2ae6c8744cc68a386b96c120b1c4c62ab74ad7a69363a06c369e
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 352520ef14d329c40b498d8a35aebfe0ee53ad65f46ccc04f8c9c474f5d9e32d
 ---
 
 ---
@@ -331,7 +331,7 @@ The SDK resolves credentials and region using the standard AWS precedence: const
 
 ## Supported models
 
-Model IDs in Claude in Amazon Bedrock carry an `anthropic.` provider prefix. Model capabilities and behaviors are documented on the [Models overview](https://platform.claude.com/docs/en/about-claude/models/overview) page.
+Model IDs in Claude in Amazon Bedrock carry an `anthropic.` provider prefix. Model capabilities and behaviors are documented on the [Models overview](https://platform.claude.com/docs/en/models/overview) page.
 
 | Model                 | Model ID                        | Access                                                                                              |
 | --------------------- | ------------------------------- | --------------------------------------------------------------------------------------------------- |

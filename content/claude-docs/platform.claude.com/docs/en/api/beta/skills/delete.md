@@ -1,22 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/delete
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: bf8329d9247afb31a009beec21c2231e0d31239b5865266f0f874c83ad532c6c
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: cd25e912126014e717c083109807206576e93e76539de2d0d931bedec0d653c3
 ---
 
----
-title: Delete Skill
-url: https://platform.claude.com/docs/en/api/beta/skills/delete
----
+# Delete Skill
 
-## Delete Skill
-
-**delete** `/v1/skills/{skill_id}`
+**DELETE** `/v1/skills/{skill_id}`
 
 Delete Skill
 
-### Path Parameters
+## Path parameters
 
 - `skill_id: string`
 
@@ -24,7 +19,7 @@ Delete Skill
 
   The format and length of IDs may change over time.
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -102,7 +97,7 @@ Delete Skill
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
-### Returns
+## Returns
 
 - `id: string`
 
@@ -116,9 +111,11 @@ Delete Skill
 
   For Skills, this is always `"skill_deleted"`.
 
-### Example
+  default: skill_deleted
 
-```http
+## Example
+
+```bash
 curl https://api.anthropic.com/v1/skills/$SKILL_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
@@ -126,7 +123,7 @@ curl https://api.anthropic.com/v1/skills/$SKILL_ID \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

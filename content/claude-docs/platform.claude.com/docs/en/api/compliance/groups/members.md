@@ -1,46 +1,43 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/groups/members
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: f483a8af3c9a17dcc2b35be36968cb1bcb04bca0e1f616a0db529348108387cb
----
-
----
-title: Members
-url: https://platform.claude.com/docs/en/api/compliance/groups/members
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: fe68ce3fafe8f29220b1b6cf3be577145dbb2c829ae4bdb939e8af19769bdf81
 ---
 
 # Members
 
 ## List Compliance Group Members
 
-**get** `/v1/compliance/groups/{group_id}/members`
+**GET** `/v1/compliance/groups/{group_id}/members`
 
 List Compliance Group Members
 
-### Path Parameters
+### Path parameters
 
 - `group_id: string`
 
   The group ID (tagged ID, e.g., rbac_group_abc123)
 
-### Query Parameters
+### Query parameters
 
 - `limit: optional number`
 
   Maximum results (default: 500, max: 1000)
 
+  default: 500, maximum: 1000, minimum: 1
+
 - `page: optional string`
 
   Opaque pagination token from a previous response's `next_page` field. Pass this to retrieve the next page of results. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
 
-### Header Parameters
+### Headers
 
 - `"x-api-key": optional string`
 
 ### Returns
 
-- `data: array of object { created_at, email, updated_at, user_id }`
+- `data: array of object`
 
   List of group members
 
@@ -70,12 +67,12 @@ List Compliance Group Members
 
 ### Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/compliance/groups/$GROUP_ID/members \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
-#### Response
+#### Response (200)
 
 ```json
 {
@@ -92,11 +89,11 @@ curl https://api.anthropic.com/v1/compliance/groups/$GROUP_ID/members \
 }
 ```
 
-## Domain Types
+## Domain types
 
 ### Member List Response
 
-- `MemberListResponse object { created_at, email, updated_at, user_id }`
+- `MemberListResponse object`
 
   Group member for compliance responses.
 

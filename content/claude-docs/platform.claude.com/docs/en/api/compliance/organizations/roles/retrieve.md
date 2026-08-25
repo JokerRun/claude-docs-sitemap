@@ -1,22 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/retrieve
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 62847f88a90d8631bdf3359573763e3d088c4bb0d15c11bebc321822399116d2
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: a29e8998b6091a327eff5aef23dbbb973a05ba708bcdf2947afe88092a779743
 ---
 
----
-title: Get Compliance Role
-url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/retrieve
----
+# Get Compliance Role
 
-## Get Compliance Role
-
-**get** `/v1/compliance/organizations/{org_uuid}/roles/{role_id}`
+**GET** `/v1/compliance/organizations/{org_uuid}/roles/{role_id}`
 
 Get Compliance Role
 
-### Path Parameters
+## Path parameters
 
 - `org_uuid: string`
 
@@ -26,11 +21,11 @@ Get Compliance Role
 
   The role ID (tagged ID, e.g., rbac_role_abc123)
 
-### Header Parameters
+## Headers
 
 - `"x-api-key": optional string`
 
-### Returns
+## Returns
 
 - `id: string`
 
@@ -52,14 +47,14 @@ Get Compliance Role
 
   Role last-updated timestamp (ISO 8601)
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles/$ROLE_ID \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

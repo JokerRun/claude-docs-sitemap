@@ -1,24 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rbac_groups/members/delete
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 065679eccbbc5b8c23ea760b35b24b63ba935a768a3b67edae71c98ebab832dc
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: 00bf3fcb5a1b4c2fc4fe77489421f5f6ccdc0beb3edd1148c0f6b874aa1b3ea2
 ---
 
----
-title: Remove RBAC Group Member
-url: https://platform.claude.com/docs/en/api/admin/rbac_groups/members/delete
----
+# Remove RBAC Group Member
 
-## Remove RBAC Group Member
-
-**delete** `/v1/organizations/rbac_groups/{group_id}/members/{user_id}`
+**DELETE** `/v1/organizations/rbac_groups/{group_id}/members/{user_id}`
 
 Remove a User from an RBAC Group. Membership of groups provisioned by an identity provider (source type `"scim"`) cannot be modified via the API.
 
 The RBAC Groups API is in beta and available to Claude Enterprise organizations only. Requests must send the `ce-user-management-2026-07-13` value in the `anthropic-beta` header.
 
-### Path Parameters
+## Path parameters
 
 - `group_id: string`
 
@@ -28,7 +23,7 @@ The RBAC Groups API is in beta and available to Claude Enterprise organizations 
 
   ID of the User.
 
-### Header Parameters
+## Headers
 
 - `"anthropic-beta": optional array of string`
 
@@ -36,9 +31,9 @@ The RBAC Groups API is in beta and available to Claude Enterprise organizations 
 
   To use multiple betas, use a comma separated list like `beta1,beta2` or specify the header multiple times for each beta.
 
-### Returns
+## Returns
 
-- `RbacGroupMemberDeleted object { group_id, type, user_id }`
+- `RbacGroupMemberDeleted object`
 
   - `group_id: string`
 
@@ -48,22 +43,22 @@ The RBAC Groups API is in beta and available to Claude Enterprise organizations 
 
     Deleted object type. For RBAC Group Members, this is always `"rbac_group_member_deleted"`.
 
-    - `"rbac_group_member_deleted"`
+    default: rbac_group_member_deleted
 
   - `user_id: string`
 
     ID of the User.
 
-### Example
+## Example
 
-```http
+```bash
 curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID/members/$USER_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
-#### Response
+### Response (200)
 
 ```json
 {

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 50f63d2b6f90fce93a08f9bab2ed96ed053e883181b4f9851d0fc805e5fd1afa
+fetched_at: 2026-08-25T02:28:41.066498Z
+sha256: b075c18eca62ba297c6208307587b738b25d67de45ebe19774918382ca9a5b67
 ---
 
 ---
@@ -34,7 +34,7 @@ Agent Skills bawaan memperluas kemampuan Claude dengan keahlian khusus untuk tug
 
 ## Langkah 1: Daftar Skills yang tersedia
 
-Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk mendaftar semua Skills yang dikelola Anthropic. Setiap tab bahasa merupakan kutipan dari satu skrip yang berkesinambungan, dengan semua import dan penyiapan client di bagian atas:
+Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk mendaftar semua Skills yang dikelola Anthropic. Setiap tab bahasa adalah kutipan dari satu skrip berkelanjutan, dengan semua import dan penyiapan client di bagian atas:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -102,7 +102,7 @@ Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk mendaft
   ```
 
   ```php PHP
-  // List Anthropic-managed Skills
+  // Daftar Skill yang dikelola Anthropic
   $skills = $client->skills->list(source: 'anthropic');
 
   foreach ($skills->getItems() as $skill) {
@@ -307,7 +307,7 @@ Gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbarukan. Ten
   ```
 
   ```php PHP
-  // Create a message with the PowerPoint Skill
+  // Buat pesan dengan Skill PowerPoint
   $response = $client->messages->create(
       model: 'claude-opus-5',
       maxTokens: 16000,
@@ -352,17 +352,15 @@ Permintaan ini mencakup bagian-bagian berikut:
 * **`model`:** Sebuah [model yang mendukung alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#model-compatibility)
 * **`container.skills`:** Menentukan Skills mana yang dapat digunakan Claude
 * **`type: "anthropic"`:** Menunjukkan bahwa ini adalah Skill yang dikelola Anthropic
-* **`skill_id: "pptx"`:** Pengidentifikasi Skill PowerPoint
+* **`skill_id: "pptx"`:** Pengenal Skill PowerPoint
 * **`version: "latest"`:** Versi Skill yang diatur ke versi terbaru yang dipublikasikan
 * **`tools`:** Mengaktifkan eksekusi kode (diperlukan untuk Skills)
 
 <Note>
-  Skills tersedia secara umum di Claude API dan tidak memerlukan header beta. Ini mencakup Skills API, parameter `container.skills`, dan Files API. Permintaan yang masih mengirim header `skills-2025-10-02` atau `files-api-2025-04-14` tetap berfungsi, dan Skills API serta Files API mengembalikan format respons sebelumnya untuk permintaan tersebut. Tab PHP dalam quickstart ini masih memanggil namespace `beta` milik SDK dan mengirim header tersebut, sehingga output yang dicetaknya menampilkan field respons versi sebelumnya.
-
-  Contoh-contoh ini menggunakan versi alat `code_execution_20260521`, dan kode Langkah 3 mem-parsing tipe hasil yang dikembalikan oleh versi alat saat ini. Skills juga berfungsi dengan versi [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) yang lebih lama seperti `code_execution_20250825`: versi alat eksekusi kode mana pun yang berlaku saat ini memenuhi persyaratan Skills tanpa header beta. Jika Anda menggunakan versi yang berbeda, gunakan `type` alat yang tercantum di halaman alat eksekusi kode.
+  Contoh-contoh ini menggunakan versi alat `code_execution_20260521`, dan kode Langkah 3 mem-parsing tipe hasil yang dikembalikan oleh versi alat saat ini. Skills juga berfungsi dengan versi [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) yang lebih lama seperti `code_execution_20250825`: versi alat eksekusi kode apa pun yang masih berlaku memenuhi persyaratan Skills. Jika Anda menggunakan versi yang berbeda, gunakan `type` alat yang tercantum di halaman alat eksekusi kode.
 </Note>
 
-Saat Anda membuat permintaan ini, Claude secara otomatis mencocokkan tugas Anda dengan Skill yang relevan. Karena Anda meminta presentasi, Claude menentukan bahwa Skill PowerPoint relevan dan memuat instruksi lengkapnya: tingkat kedua dari progressive disclosure. Kemudian Claude menjalankan kode Skill tersebut untuk membuat presentasi Anda.
+Saat Anda membuat permintaan ini, Claude secara otomatis mencocokkan tugas Anda dengan Skill yang relevan. Karena Anda meminta presentasi, Claude menentukan bahwa Skill PowerPoint relevan dan memuat instruksi lengkapnya: tingkat kedua dari pengungkapan bertahap. Kemudian Claude menjalankan kode Skill tersebut untuk membuat presentasi Anda.
 
 ## Langkah 3: Unduh file yang dibuat
 
@@ -552,9 +550,9 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. `r
   ```
 
   ```php PHP
-  // Extract the file ID. The code execution tool runs the Skill's code through
-  // its Bash sub-tool, and generated files appear as bash_code_execution_output
-  // items inside the bash_code_execution_tool_result block.
+  // Ekstrak ID file. Alat eksekusi kode menjalankan kode Skill melalui
+  // sub-alat Bash-nya, dan file yang dihasilkan muncul sebagai item bash_code_execution_output
+  // di dalam blok bash_code_execution_tool_result.
   $fileId = null;
   foreach ($response->content as $block) {
       if ($block->type !== 'bash_code_execution_tool_result') {
@@ -570,7 +568,7 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. `r
   }
 
   if ($fileId !== null) {
-      // Download the file and save it
+      // Unduh file dan simpan
       $outputPath = sys_get_temp_dir() . '/renewable_energy.pptx';
       $fileContent = $client->files->download($fileId);
       file_put_contents($outputPath, $fileContent);
@@ -602,7 +600,7 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. `r
 </CodeGroup>
 
 <Note>
-  Untuk detail lengkap tentang cara bekerja dengan file yang dihasilkan, lihat [Mengambil file yang dihasilkan](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#retrieve-generated-files) dalam dokumentasi alat eksekusi kode.
+  Untuk detail lengkap tentang cara bekerja dengan file yang dihasilkan, lihat [Mengambil file yang dihasilkan](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#retrieve-generated-files) di dokumentasi alat eksekusi kode.
 </Note>
 
 ## Coba contoh lainnya
@@ -766,13 +764,12 @@ Coba variasi berikut:
   ```
 
   ```php PHP
-  $response = $client->beta->messages->create(
+  $response = $client->messages->create(
       model: 'claude-opus-5',
       maxTokens: 16000,
-      betas: ['skills-2025-10-02'],
       container: [
           'skills' => [
-              ['type' => 'anthropic', 'skill_id' => 'xlsx', 'version' => 'latest'],
+              ['type' => 'anthropic', 'skillID' => 'xlsx', 'version' => 'latest'],
           ],
       ],
       messages: [
@@ -781,7 +778,7 @@ Coba variasi berikut:
               'content' => 'Create a quarterly sales tracking spreadsheet with sample data',
           ],
       ],
-      tools: [new BetaCodeExecutionTool20260521()],
+      tools: [['type' => 'code_execution_20260521', 'name' => 'code_execution']],
   );
   ```
 
@@ -960,13 +957,12 @@ Coba variasi berikut:
   ```
 
   ```php PHP
-  $response = $client->beta->messages->create(
+  $response = $client->messages->create(
       model: 'claude-opus-5',
       maxTokens: 16000,
-      betas: ['skills-2025-10-02'],
       container: [
           'skills' => [
-              ['type' => 'anthropic', 'skill_id' => 'docx', 'version' => 'latest'],
+              ['type' => 'anthropic', 'skillID' => 'docx', 'version' => 'latest'],
           ],
       ],
       messages: [
@@ -975,7 +971,7 @@ Coba variasi berikut:
               'content' => 'Write a 2-page report on the benefits of renewable energy',
           ],
       ],
-      tools: [new BetaCodeExecutionTool20260521()],
+      tools: [['type' => 'code_execution_20260521', 'name' => 'code_execution']],
   );
   ```
 
@@ -1154,13 +1150,12 @@ Coba variasi berikut:
   ```
 
   ```php PHP
-  $response = $client->beta->messages->create(
+  $response = $client->messages->create(
       model: 'claude-opus-5',
       maxTokens: 16000,
-      betas: ['skills-2025-10-02'],
       container: [
           'skills' => [
-              ['type' => 'anthropic', 'skill_id' => 'pdf', 'version' => 'latest'],
+              ['type' => 'anthropic', 'skillID' => 'pdf', 'version' => 'latest'],
           ],
       ],
       messages: [
@@ -1169,7 +1164,7 @@ Coba variasi berikut:
               'content' => 'Generate a PDF invoice template',
           ],
       ],
-      tools: [new BetaCodeExecutionTool20260521()],
+      tools: [['type' => 'code_execution_20260521', 'name' => 'code_execution']],
   );
   ```
 
