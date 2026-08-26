@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 4bbd5faaa767513fd281b8b1e6e10436d4ac3a88958b69aee4c794386891cd35
+fetched_at: 2026-08-26T02:33:22.881887Z
+sha256: 65be3e0b437cbe23cc41bb4f9b7a5031c5a71cd49ab91ec4d19c62738762b086
 ---
 
 ---
@@ -16,7 +16,7 @@ This guide covers the prompting patterns specific to Claude Opus 5. For the mode
 Claude Opus 5 is built for complex agentic coding and enterprise work, with particular strengths in long-horizon agentic tasks. It performs well out of the box on existing Claude Opus 4.8 prompts. The following patterns cover the behaviors that most often require tuning.
 
 <Note>
-  For API changes when migrating from Claude Opus 4.8 (thinking on by default, and disabling thinking capped at `high` effort), see the [migration guide](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-from-claude-opus-4-8-to-claude-opus-5).
+  For API changes when migrating from Claude Opus 4.8 (thinking on by default, and disabling thinking capped at `high` effort), see the [migration guide](https://platform.claude.com/docs/en/models/opus-5/migration-guide#migrating-from-claude-opus-4-8-to-claude-opus-5).
 </Note>
 
 ## Capability improvements
@@ -99,7 +99,7 @@ Only correct an earlier statement when the error would change the user's code, c
 
 ## Running with thinking disabled
 
-Claude Opus 5 runs with [thinking](https://platform.claude.com/docs/en/build-with-claude/thinking) on by default, and thinking can be disabled only at [effort](https://platform.claude.com/docs/en/build-with-claude/effort) `high` or below; see the [migration guide](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-from-claude-opus-4-8-to-claude-opus-5). With thinking disabled, two artifacts can occasionally appear in the model's visible output. The primary mitigation for both is to keep thinking enabled and control token cost with lower effort levels instead of disabling thinking: for most tasks, thinking enabled at `low` effort performs better than thinking disabled at similar cost.
+Claude Opus 5 runs with [thinking](https://platform.claude.com/docs/en/build-with-claude/thinking) on by default, and thinking can be disabled only at [effort](https://platform.claude.com/docs/en/build-with-claude/effort) `high` or below; see the [migration guide](https://platform.claude.com/docs/en/models/opus-5/migration-guide#migrating-from-claude-opus-4-8-to-claude-opus-5). With thinking disabled, two artifacts can occasionally appear in the model's visible output. The primary mitigation for both is to keep thinking enabled and control token cost with lower effort levels instead of disabling thinking: for most tasks, thinking enabled at `low` effort performs better than thinking disabled at similar cost.
 
 **Tool calls as text.** With thinking disabled, the model occasionally writes a tool call into its user-facing text instead of emitting a structured `tool_use` block. The turn completes normally and the call never runs, and in agentic loops the leaked text stays in the conversation history, so later turns are affected as well. This is most common on tool-heavy workloads such as search.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/mythos-5/overview
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 11ca39fe6aefe72c93dbe5b0c788001f5ed6e29984359177ef9b81bd68b8dab0
+fetched_at: 2026-08-26T02:33:22.881887Z
+sha256: 1f8f2e3726235a8f402eecbd2a6af28ec6444c88c847fa25c0f77234a1075abc
 ---
 
 ---
@@ -19,7 +19,7 @@ Model ID: `claude-mythos-5`
 
 Context window: 1M tokens · Max output: 128K tokens · Input pricing: $10 / MTok · Output pricing: $50 / MTok
 
-[Announcement](https://www.anthropic.com/news/claude-fable-5-mythos-5) · [What’s new](https://platform.claude.com/docs/en/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5) · [Migration guide](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-to-claude-mythos-5-and-claude-fable-5)
+[Announcement](https://www.anthropic.com/news/claude-fable-5-mythos-5) · [What’s new](https://platform.claude.com/docs/en/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5) · [Migration guide](https://platform.claude.com/docs/en/models/fable-5/migration-guide)
 
 Claude Mythos 5 is offered separately, by invitation only, for defensive cybersecurity workflows as part of Project Glasswing. It shares Claude Fable 5’s specifications and pricing. Claude Fable 5 includes safety classifiers that can decline requests; Claude Mythos 5 does not include these classifiers. For access, contact your Anthropic, AWS, or Google Cloud account team. [See Claude Fable 5](https://platform.claude.com/docs/en/models/fable-5/overview) · [Project Glasswing](https://anthropic.com/glasswing)
 

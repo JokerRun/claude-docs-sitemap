@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/opus-5/overview
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: d6ce008a979e14c0d043ce93f064eb8ad3a8917b1540fd380dde7f93eef69770
+fetched_at: 2026-08-26T02:33:22.881887Z
+sha256: 50df66917d300a92cdc02d7e4bb7dd61f97b3f79bcb37577afe45de6ac13bf4c
 ---
 
 ---
@@ -19,7 +19,7 @@ Model ID: `claude-opus-5`
 
 Context window: 1M tokens · Max output: 128K tokens · Input pricing: $5 / MTok · Output pricing: $25 / MTok
 
-[Announcement](https://www.anthropic.com/news/claude-opus-5) · [What’s new](https://platform.claude.com/docs/en/models/opus-5/whats-new-opus-5) · [Migration guide](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-to-claude-opus-5)
+[Announcement](https://www.anthropic.com/news/claude-opus-5) · [What’s new](https://platform.claude.com/docs/en/models/opus-5/whats-new-opus-5) · [Migration guide](https://platform.claude.com/docs/en/models/opus-5/migration-guide)
 
 ## Overview
 

@@ -112,19 +112,19 @@
   lastmod: '2026-08-17T22:18:40.757Z'
 - source: code
   loc: https://code.claude.com/docs/en/amazon-bedrock
-  lastmod: '2026-08-25T00:56:18.093Z'
+  lastmod: '2026-08-25T20:39:37.811Z'
 - source: code
   loc: https://code.claude.com/docs/en/analytics
   lastmod: '2026-07-14T01:11:53.015Z'
 - source: code
   loc: https://code.claude.com/docs/en/artifacts
-  lastmod: '2026-08-21T18:14:47.223Z'
+  lastmod: '2026-08-25T20:56:20.646Z'
 - source: code
   loc: https://code.claude.com/docs/en/authentication
   lastmod: '2026-08-21T22:50:11.193Z'
 - source: code
   loc: https://code.claude.com/docs/en/auto-mode-config
-  lastmod: '2026-08-22T16:23:02.329Z'
+  lastmod: '2026-08-26T00:34:58.311Z'
 - source: code
   loc: https://code.claude.com/docs/en/best-practices
   lastmod: '2026-08-21T17:28:00.305Z'
@@ -133,7 +133,7 @@
   lastmod: '2026-08-12T02:13:01.427Z'
 - source: code
   loc: https://code.claude.com/docs/en/changelog
-  lastmod: '2026-08-23T01:03:59.476Z'
+  lastmod: '2026-08-25T22:39:55.010Z'
 - source: code
   loc: https://code.claude.com/docs/en/channels
   lastmod: '2026-08-21T19:19:25.567Z'
@@ -187,10 +187,10 @@
   lastmod: '2026-08-24T19:11:01.934Z'
 - source: code
   loc: https://code.claude.com/docs/en/code-review
-  lastmod: '2026-08-21T22:50:11.176Z'
+  lastmod: '2026-08-26T00:59:56.555Z'
 - source: code
   loc: https://code.claude.com/docs/en/commands
-  lastmod: '2026-08-25T00:25:05.527Z'
+  lastmod: '2026-08-26T00:34:58.327Z'
 - source: code
   loc: https://code.claude.com/docs/en/common-workflows
   lastmod: '2026-08-22T03:27:40.108Z'
@@ -208,7 +208,7 @@
   lastmod: '2026-08-21T22:50:11.194Z'
 - source: code
   loc: https://code.claude.com/docs/en/costs
-  lastmod: '2026-08-25T00:56:18.094Z'
+  lastmod: '2026-08-26T00:24:08.679Z'
 - source: code
   loc: https://code.claude.com/docs/en/cross-session-messaging
   lastmod: '2026-08-22T02:35:10.424Z'
@@ -223,13 +223,13 @@
   lastmod: '2026-08-22T03:27:40.113Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop
-  lastmod: '2026-08-22T17:33:20.909Z'
+  lastmod: '2026-08-25T18:51:53.330Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop-ios-simulator
   lastmod: '2026-08-12T00:29:46.229Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop-linux
-  lastmod: '2026-08-11T14:18:34.431Z'
+  lastmod: '2026-08-26T02:08:46.802Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop-quickstart
   lastmod: '2026-08-14T22:11:40.782Z'
@@ -247,16 +247,16 @@
   lastmod: '2026-08-24T21:34:39.628Z'
 - source: code
   loc: https://code.claude.com/docs/en/env-vars
-  lastmod: '2026-08-25T00:56:18.098Z'
+  lastmod: '2026-08-26T00:59:56.580Z'
 - source: code
   loc: https://code.claude.com/docs/en/errors
-  lastmod: '2026-08-24T22:17:38.741Z'
+  lastmod: '2026-08-26T00:34:05.349Z'
 - source: code
   loc: https://code.claude.com/docs/en/fast-mode
-  lastmod: '2026-08-21T22:50:11.068Z'
+  lastmod: '2026-08-25T18:27:49.974Z'
 - source: code
   loc: https://code.claude.com/docs/en/feature-availability
-  lastmod: '2026-08-21T22:50:11.069Z'
+  lastmod: '2026-08-26T00:59:56.556Z'
 - source: code
   loc: https://code.claude.com/docs/en/features-overview
   lastmod: '2026-08-21T19:20:30.196Z'
@@ -283,7 +283,7 @@
   lastmod: '2026-08-21T22:50:11.070Z'
 - source: code
   loc: https://code.claude.com/docs/en/goal
-  lastmod: '2026-08-22T02:44:24.347Z'
+  lastmod: '2026-08-26T00:24:08.680Z'
 - source: code
   loc: https://code.claude.com/docs/en/google-vertex-ai
   lastmod: '2026-08-25T00:56:18.090Z'
@@ -307,7 +307,7 @@
   lastmod: '2026-08-22T02:44:24.343Z'
 - source: code
   loc: https://code.claude.com/docs/en/keybindings
-  lastmod: '2026-08-20T22:42:19.931Z'
+  lastmod: '2026-08-25T18:19:17.714Z'
 - source: code
   loc: https://code.claude.com/docs/en/large-codebases
   lastmod: '2026-08-21T22:50:11.068Z'
@@ -331,7 +331,7 @@
   lastmod: '2026-08-24T18:39:05.571Z'
 - source: code
   loc: https://code.claude.com/docs/en/managed-settings
-  lastmod: '2026-08-24T23:57:32.565Z'
+  lastmod: '2026-08-25T20:56:20.656Z'
 - source: code
   loc: https://code.claude.com/docs/en/mcp
   lastmod: '2026-08-22T03:27:40.117Z'
@@ -352,7 +352,7 @@
   lastmod: '2026-08-25T00:56:18.095Z'
 - source: code
   loc: https://code.claude.com/docs/en/monitoring-usage
-  lastmod: '2026-08-21T22:50:11.092Z'
+  lastmod: '2026-08-26T00:34:58.329Z'
 - source: code
   loc: https://code.claude.com/docs/en/network-config
   lastmod: '2026-08-24T22:13:27.481Z'
@@ -361,13 +361,13 @@
   lastmod: '2026-08-21T22:50:11.061Z'
 - source: code
   loc: https://code.claude.com/docs/en/overview
-  lastmod: '2026-08-21T22:50:11.051Z'
+  lastmod: '2026-08-25T20:27:20.119Z'
 - source: code
   loc: https://code.claude.com/docs/en/permission-modes
-  lastmod: '2026-08-24T22:10:54.847Z'
+  lastmod: '2026-08-25T20:56:20.655Z'
 - source: code
   loc: https://code.claude.com/docs/en/permissions
-  lastmod: '2026-08-24T21:41:41.066Z'
+  lastmod: '2026-08-26T00:34:05.343Z'
 - source: code
   loc: https://code.claude.com/docs/en/platforms
   lastmod: '2026-08-21T17:30:08.548Z'
@@ -397,7 +397,7 @@
   lastmod: '2026-08-21T17:32:32.703Z'
 - source: code
   loc: https://code.claude.com/docs/en/quickstart
-  lastmod: '2026-08-24T18:59:23.826Z'
+  lastmod: '2026-08-25T20:56:20.644Z'
 - source: code
   loc: https://code.claude.com/docs/en/remote-control
   lastmod: '2026-08-22T17:19:41.924Z'
@@ -442,7 +442,7 @@
   lastmod: '2026-08-22T17:19:41.919Z'
 - source: code
   loc: https://code.claude.com/docs/en/server-managed-settings
-  lastmod: '2026-08-22T03:04:38.264Z'
+  lastmod: '2026-08-25T20:56:20.655Z'
 - source: code
   loc: https://code.claude.com/docs/en/sessions
   lastmod: '2026-08-24T22:14:49.516Z'
@@ -454,7 +454,7 @@
   lastmod: '2026-08-21T22:50:10.987Z'
 - source: code
   loc: https://code.claude.com/docs/en/settings-reference
-  lastmod: '2026-08-25T00:56:18.101Z'
+  lastmod: '2026-08-25T18:51:53.342Z'
 - source: code
   loc: https://code.claude.com/docs/en/setup
   lastmod: '2026-08-21T22:50:10.981Z'
@@ -466,13 +466,13 @@
   lastmod: '2026-08-22T17:19:41.919Z'
 - source: code
   loc: https://code.claude.com/docs/en/statusline
-  lastmod: '2026-08-22T03:27:40.111Z'
+  lastmod: '2026-08-25T20:07:35.681Z'
 - source: code
   loc: https://code.claude.com/docs/en/sub-agents
   lastmod: '2026-08-21T22:50:10.990Z'
 - source: code
   loc: https://code.claude.com/docs/en/terminal-config
-  lastmod: '2026-08-21T22:50:10.988Z'
+  lastmod: '2026-08-25T19:25:06.455Z'
 - source: code
   loc: https://code.claude.com/docs/en/third-party-integrations
   lastmod: '2026-08-12T02:13:01.424Z'
@@ -490,7 +490,7 @@
   lastmod: '2026-08-13T18:46:46.481Z'
 - source: code
   loc: https://code.claude.com/docs/en/voice-dictation
-  lastmod: '2026-08-22T03:29:30.624Z'
+  lastmod: '2026-08-25T19:26:13.235Z'
 - source: code
   loc: https://code.claude.com/docs/en/vs-code
   lastmod: '2026-08-24T19:47:05.616Z'
@@ -2310,8 +2310,14 @@
   loc: https://platform.claude.com/docs/en/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5
   priority: '1'
 - source: platform
+  loc: https://platform.claude.com/docs/en/models/fable-5/migration-guide
+  priority: '0.8'
+- source: platform
   loc: https://platform.claude.com/docs/en/models/fable-5/overview
   priority: '1'
+- source: platform
+  loc: https://platform.claude.com/docs/en/models/haiku-4-5/migration-guide
+  priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/models/haiku-4-5/overview
   priority: '1'
@@ -2331,6 +2337,9 @@
   loc: https://platform.claude.com/docs/en/models/opus-4-8/overview
   priority: '1'
 - source: platform
+  loc: https://platform.claude.com/docs/en/models/opus-5/migration-guide
+  priority: '0.8'
+- source: platform
   loc: https://platform.claude.com/docs/en/models/opus-5/overview
   priority: '1'
 - source: platform
@@ -2345,6 +2354,9 @@
 - source: platform
   loc: https://platform.claude.com/docs/en/models/sonnet-4-6/overview
   priority: '1'
+- source: platform
+  loc: https://platform.claude.com/docs/en/models/sonnet-5/migration-guide
+  priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/models/sonnet-5/overview
   priority: '1'

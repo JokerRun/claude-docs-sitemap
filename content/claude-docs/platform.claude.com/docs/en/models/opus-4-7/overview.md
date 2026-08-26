@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/opus-4-7/overview
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: cb7435cea81cc46cf3a7850ac3a0d3b70b2eb2ad64ee5ef59abe0d671652e925
+fetched_at: 2026-08-26T02:33:22.881887Z
+sha256: 1fda71c6f8c57145802e544c09aaea230bf01f8dd601c2d60826bb85bcd2631b
 ---
 
 ---
@@ -13,7 +13,7 @@ description: "Claude Opus 4.7 reference: lifecycle status, model IDs on every pl
 
 **Legacy.** Released April 16, 2026.
 
-Although Claude Opus 4.7 is still available, you should consider migrating to Claude Opus 5 for improved performance. [See Claude Opus 5](https://platform.claude.com/docs/en/models/opus-5/overview) · [Migrate to Claude Opus 5](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-from-claude-opus-47)
+Although Claude Opus 4.7 is still available, you should consider migrating to Claude Opus 5 for improved performance. [See Claude Opus 5](https://platform.claude.com/docs/en/models/opus-5/overview) · [Migrate to Claude Opus 5](https://platform.claude.com/docs/en/models/opus-5/migration-guide#migrating-from-claude-opus-47)
 
 Model ID: `claude-opus-4-7`
 
@@ -87,7 +87,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $5 / MTok
 ## Resources
 
 <CardGroup cols={3}>
-  <Card title="Migrate to Claude Opus 5" icon="arrows-left-right" href="https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-from-claude-opus-47">
+  <Card title="Migrate to Claude Opus 5" icon="arrows-left-right" href="https://platform.claude.com/docs/en/models/opus-5/migration-guide#migrating-from-claude-opus-47">
     What changes when moving from Claude Opus 4.7 to Claude Opus 5.
   </Card>
 

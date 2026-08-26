@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/haiku-4-5/overview
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 2d6bb1c81118d9f829c0f5401d730ca1e96eff906f1f7bdb173012f3c8491b75
+fetched_at: 2026-08-26T02:33:22.881887Z
+sha256: 4edeec35df83b5a04ce128eb05eb7bdf446f6aad2a48f906d99cd0602ca4e22f
 ---
 
 ---
@@ -19,7 +19,7 @@ Model ID: `claude-haiku-4-5-20251001`
 
 Context window: 200K tokens · Max output: 64K tokens · Input pricing: $1 / MTok · Output pricing: $5 / MTok
 
-[Announcement](https://www.anthropic.com/news/claude-haiku-4-5) · [Migration guide](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-to-claude-haiku-4-5)
+[Announcement](https://www.anthropic.com/news/claude-haiku-4-5) · [Migration guide](https://platform.claude.com/docs/en/models/haiku-4-5/migration-guide)
 
 ## How it compares
 

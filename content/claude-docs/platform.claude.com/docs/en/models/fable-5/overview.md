@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/fable-5/overview
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 2084874fe2dd375921f40d5ce64542c49500ac1e12d91fd74b1ab1d5e1e949de
+fetched_at: 2026-08-26T02:33:22.881887Z
+sha256: 8e936fc8475ba504531ad0f8356171851501cd636f686c14209bc6290d4d9ab8
 ---
 
 ---
@@ -19,7 +19,7 @@ Model ID: `claude-fable-5`
 
 Context window: 1M tokens · Max output: 128K tokens · Input pricing: $10 / MTok · Output pricing: $50 / MTok
 
-[Announcement](https://www.anthropic.com/news/claude-fable-5-mythos-5) · [What’s new](https://platform.claude.com/docs/en/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5) · [Migration guide](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-to-claude-mythos-5-and-claude-fable-5)
+[Announcement](https://www.anthropic.com/news/claude-fable-5-mythos-5) · [What’s new](https://platform.claude.com/docs/en/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5) · [Migration guide](https://platform.claude.com/docs/en/models/fable-5/migration-guide)
 
 ## Overview
 

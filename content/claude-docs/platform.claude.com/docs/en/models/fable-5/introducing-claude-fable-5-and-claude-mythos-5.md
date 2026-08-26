@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 887e5859e2547faeabf4ba4baf4ba1aab8501a60d4fabf114f1ad579213b9107
+fetched_at: 2026-08-26T02:33:22.881887Z
+sha256: e058eaf0dcf8fb4153cdf7dad6839bfa8dbd4123ef56f452de9cfa104c533d45
 ---
 
 ---
@@ -100,13 +100,13 @@ At launch, Claude Fable 5 and Claude Mythos 5 support:
 
 Step-by-step instructions live in the migration guide:
 
-* From Claude Mythos Preview: see [Migrating from Claude Mythos Preview to Claude Mythos 5](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-from-claude-mythos-preview).
-* From Claude Opus 4.8: see [Migrating from Claude Opus 4.8 to Claude Fable 5](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-from-claude-opus-48).
+* From Claude Mythos Preview: see [Migrating from Claude Mythos Preview to Claude Mythos 5](https://platform.claude.com/docs/en/models/fable-5/migration-guide#migrating-from-claude-mythos-preview).
+* From Claude Opus 4.8: see [Migrating from Claude Opus 4.8 to Claude Fable 5](https://platform.claude.com/docs/en/models/fable-5/migration-guide#migrating-from-claude-opus-48).
 
 ## Next steps
 
 <CardGroup>
-  <Card title="Migration guide" icon="arrow-right" href="https://platform.claude.com/docs/en/about-claude/models/migration-guide">
+  <Card title="Migration guide" icon="arrow-right" href="https://platform.claude.com/docs/en/models/fable-5/migration-guide">
     Step-by-step upgrade instructions from Claude Opus 4.8 and Claude Mythos Preview.
   </Card>
 

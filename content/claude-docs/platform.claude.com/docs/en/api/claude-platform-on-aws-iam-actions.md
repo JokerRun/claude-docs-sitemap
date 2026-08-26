@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/claude-platform-on-aws-iam-actions
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: b2ad51115f4545214573f97bd2e5f5cdd770f017740277123cbc1ed122a70489
+fetched_at: 2026-08-26T02:33:22.881887Z
+sha256: a5c7eee985411ee4792f20ec12acb43d44253db1dd77b6062851b8545b4fbe4d
 ---
 
 ---
@@ -364,7 +364,7 @@ The following table lists every route on Claude Platform on AWS and the IAM acti
 Routes not in this table are not available on Claude Platform on AWS. The gateway denies any route not listed here by default.
 
 <Note>
-  Workspace routes are the only Admin API routes available on Claude Platform on AWS. The Claude Console Workspaces page is read-only; use the Admin API or the AWS Console to create, update, or archive workspaces.
+  Workspace routes are the only Admin API routes available on Claude Platform on AWS. You can also create, update, or archive workspaces in the AWS Console or, with the Admin role, in the Claude Console.
 </Note>
 
 ## Managed policies
@@ -484,7 +484,7 @@ Blocks batch processing and file upload on a specific workspace while leaving sy
 ### Provisioning automation
 
 <Note>
-  The Claude Console Workspaces page is read-only; use the Admin API workspace endpoints or the AWS Console to create, update, or archive workspaces.
+  Besides the Admin API, you can create, update, or archive workspaces in the AWS Console or, with the Admin role, in the Claude Console.
 </Note>
 
 Grants a CI/CD role the actions needed to create and manage workspaces, without any inference permissions:

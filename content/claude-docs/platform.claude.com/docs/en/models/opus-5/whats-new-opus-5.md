@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/opus-5/whats-new-opus-5
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: b9776c5c41a46e1c2e2782455c23ce036251bb5e6654b0a0bf0f02690d7b29ff
+fetched_at: 2026-08-26T02:33:22.881887Z
+sha256: c9b3e93e186c206597cfadfa39e8ad19e91e4fb0efa8e2e02dbf9f0e71678e00
 ---
 
 ---
@@ -323,7 +323,7 @@ To migrate from Claude Opus 4.8, update your model ID:
   ```
 </CodeGroup>
 
-Then review the two [behavior changes](https://platform.claude.com/docs/en/models/opus-5/whats-new-opus-5#behavior-changes): thinking is on by default, and disabling thinking with effort `xhigh` or `max` returns a 400 error. See the [migration guide](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-from-claude-opus-4-8-to-claude-opus-5) for step-by-step instructions.
+Then review the two [behavior changes](https://platform.claude.com/docs/en/models/opus-5/whats-new-opus-5#behavior-changes): thinking is on by default, and disabling thinking with effort `xhigh` or `max` returns a 400 error. See the [migration guide](https://platform.claude.com/docs/en/models/opus-5/migration-guide#migrating-from-claude-opus-4-8-to-claude-opus-5) for step-by-step instructions.
 
 ## Next steps
 

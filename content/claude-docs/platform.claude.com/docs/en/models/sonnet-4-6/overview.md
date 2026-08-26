@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/sonnet-4-6/overview
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 42d6b5ab175e58d70d508788d57c27b5e160526b71090067c4ad2e90f4db5636
+fetched_at: 2026-08-26T02:33:22.881887Z
+sha256: 0201ed807a6124df60bccfa33c639168a1fbaceb51f70427d531a383d500a49e
 ---
 
 ---
@@ -13,7 +13,7 @@ description: "Claude Sonnet 4.6 reference: lifecycle status, model IDs on every 
 
 **Legacy.** Released February 17, 2026.
 
-Although Claude Sonnet 4.6 is still available, you should consider migrating to Claude Sonnet 5 for improved performance. [See Claude Sonnet 5](https://platform.claude.com/docs/en/models/sonnet-5/overview) · [Migrate to Claude Sonnet 5](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-from-claude-sonnet-4-6-to-claude-sonnet-5)
+Although Claude Sonnet 4.6 is still available, you should consider migrating to Claude Sonnet 5 for improved performance. [See Claude Sonnet 5](https://platform.claude.com/docs/en/models/sonnet-5/overview) · [Migrate to Claude Sonnet 5](https://platform.claude.com/docs/en/models/sonnet-5/migration-guide#migrating-from-claude-sonnet-4-6-to-claude-sonnet-5)
 
 Model ID: `claude-sonnet-4-6`
 
@@ -87,7 +87,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $3 / MTok
 ## Resources
 
 <CardGroup cols={3}>
-  <Card title="Migrate to Claude Sonnet 5" icon="arrows-left-right" href="https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-from-claude-sonnet-4-6-to-claude-sonnet-5">
+  <Card title="Migrate to Claude Sonnet 5" icon="arrows-left-right" href="https://platform.claude.com/docs/en/models/sonnet-5/migration-guide#migrating-from-claude-sonnet-4-6-to-claude-sonnet-5">
     What changes when moving from Claude Sonnet 4.6 to Claude Sonnet 5.
   </Card>
 

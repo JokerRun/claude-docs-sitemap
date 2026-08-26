@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/sonnet-5/overview
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: f75dc4c918a624e5c631311d1d233253fab00e9937fdc8b50837ac049a8b3d01
+fetched_at: 2026-08-26T02:33:22.881887Z
+sha256: 5e5000898f3021c43eead62987eebdf3d6ac891f376024119b03fc3fa14aaf28
 ---
 
 ---
@@ -19,7 +19,7 @@ Model ID: `claude-sonnet-5`
 
 Context window: 1M tokens · Max output: 128K tokens · Input pricing: $2 / MTok · Output pricing: $10 / MTok
 
-[Announcement](https://www.anthropic.com/news/claude-sonnet-5) · [What’s new](https://platform.claude.com/docs/en/models/sonnet-5/whats-new-sonnet-5) · [Migration guide](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-to-claude-sonnet-5)
+[Announcement](https://www.anthropic.com/news/claude-sonnet-5) · [What’s new](https://platform.claude.com/docs/en/models/sonnet-5/whats-new-sonnet-5) · [Migration guide](https://platform.claude.com/docs/en/models/sonnet-5/migration-guide)
 
 ## Overview
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: a28bbcdde51c14b2e6a8b0525251169c180917014debf3b7dfe11ce644d5ba3b
+fetched_at: 2026-08-26T02:33:22.881887Z
+sha256: bf5a45c1bb93edf0c5f4fd01254735a5236e79835b42a5070fbe7cd5f06672e5
 ---
 
 > ## Documentation Index
@@ -335,8 +335,8 @@ Actions available in the `Scroll` context when [fullscreen rendering](/docs/en/f
 
 | Action                      | Default              | Description                                                                                               |
 | :-------------------------- | :------------------- | :-------------------------------------------------------------------------------------------------------- |
-| `scroll:lineUp`             | (unbound)            | Scroll up one line. Mouse wheel scrolling triggers this action                                            |
-| `scroll:lineDown`           | (unbound)            | Scroll down one line. Mouse wheel scrolling triggers this action                                          |
+| `scroll:lineUp`             | `wheelup`            | Scroll up one line. Mouse wheel scrolling triggers this action                                            |
+| `scroll:lineDown`           | `wheeldown`          | Scroll down one line. Mouse wheel scrolling triggers this action                                          |
 | `scroll:pageUp`             | PageUp               | Scroll up half the viewport height                                                                        |
 | `scroll:pageDown`           | PageDown             | Scroll down half the viewport height                                                                      |
 | `scroll:top`                | Ctrl+Home            | Jump to the start of the conversation                                                                     |
@@ -378,9 +378,7 @@ ctrl+shift+c    Multiple modifiers
 
 ### Uppercase letters
 
-A standalone uppercase letter implies Shift. For example, `K` is equivalent to `shift+k`. This is useful for vim-style bindings where uppercase and lowercase keys have different meanings.
-
-Uppercase letters with modifiers (e.g., `ctrl+K`) are treated as stylistic and do **not** imply Shift: `ctrl+K` is the same as `ctrl+k`.
+Claude Code parses key names case-insensitively, so `K` is the same binding as `k` and `ctrl+K` is the same as `ctrl+k`. To bind Shift and a letter, write `shift+k`.
 
 ### Chords
 
@@ -398,6 +396,7 @@ ctrl+k ctrl+s   Press Ctrl+K, release, then Ctrl+S
 * `space` - Space bar
 * `up`, `down`, `left`, `right` - Arrow keys
 * `backspace`, `delete` - Delete keys
+* `wheelup`, `wheeldown` - Mouse wheel scroll events
 
 ## Unbind default shortcuts
 
@@ -482,8 +481,8 @@ Claude Code validates your keybindings and shows warnings for:
 
 * Parse errors (invalid JSON or structure)
 * Invalid context names
+* Invalid action values, such as an action that isn't a string or `null`
 * Reserved shortcut conflicts
-* Terminal multiplexer conflicts
 * Duplicate bindings in the same context
 
 Claude Code reports warnings when the file loads and writes each one to the debug log. Start Claude Code with [`--debug`](/docs/en/cli-reference#cli-flags) to see the details.

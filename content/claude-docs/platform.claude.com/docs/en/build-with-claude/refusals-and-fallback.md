@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 7d4184fc0104e5f301c9343c396ae900f000e00580537c26563abe5a8b22bda5
+fetched_at: 2026-08-26T02:33:22.881887Z
+sha256: e7608615ed9ac379ec924d292f6fc6d9dae00e261f067781011c38b95b66f747
 ---
 
 ---
@@ -1184,7 +1184,7 @@ Server-side fallback is not available for batches (a batch request that includes
     How SDK middleware works, including the refusal-fallback helper.
   </Card>
 
-  <Card title="Migration guide" icon="arrow-right" href="https://platform.claude.com/docs/en/about-claude/models/migration-guide">
+  <Card title="Migration guide" icon="arrow-right" href="https://platform.claude.com/docs/en/models/fable-5/migration-guide">
     Move an existing application to Claude Fable 5.
   </Card>
 </CardGroup>

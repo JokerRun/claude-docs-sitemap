@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fast-mode
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 6837e1f70674335b653fb94b386ebb565f42141786bff4021831e842a284bba2
+fetched_at: 2026-08-26T02:33:22.881887Z
+sha256: a2dff12e30355d7f1147cfe0196a93645aa1aa3f927079a841b0f5afb1d35dfb
 ---
 
 ---
@@ -33,11 +33,11 @@ Fast mode is supported on the following models:
 </Note>
 
 <Note>
-  Fast mode is not available on Claude Opus 4.7. Requests to `claude-opus-4-7` with `speed: "fast"` return an error; unlike Claude Opus 4.6 (see the following note), requests do not fall back to standard speed. The model itself remains available at standard speed. To continue using fast mode, migrate to [Claude Opus 5](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-from-claude-opus-47) or Claude Opus 4.8.
+  Fast mode is not available on Claude Opus 4.7. Requests to `claude-opus-4-7` with `speed: "fast"` return an error; unlike Claude Opus 4.6 (see the following note), requests do not fall back to standard speed. The model itself remains available at standard speed. To continue using fast mode, migrate to [Claude Opus 5](https://platform.claude.com/docs/en/models/opus-5/migration-guide#migrating-from-claude-opus-47) or Claude Opus 4.8.
 </Note>
 
 <Note>
-  Fast mode is not available on Claude Opus 4.6. Requests to `claude-opus-4-6` with `speed: "fast"` do not return an error: they run at standard speed and are billed at [standard rates](https://platform.claude.com/docs/en/about-claude/pricing) rather than fast mode's premium rates, and the response reports [`usage.speed: "standard"`](https://platform.claude.com/docs/en/build-with-claude/fast-mode#checking-which-speed-was-used). To continue using fast mode, migrate to [Claude Opus 5](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-from-claude-opus-46) or Claude Opus 4.8.
+  Fast mode is not available on Claude Opus 4.6. Requests to `claude-opus-4-6` with `speed: "fast"` do not return an error: they run at standard speed and are billed at [standard rates](https://platform.claude.com/docs/en/about-claude/pricing) rather than fast mode's premium rates, and the response reports [`usage.speed: "standard"`](https://platform.claude.com/docs/en/build-with-claude/fast-mode#checking-which-speed-was-used). To continue using fast mode, migrate to [Claude Opus 5](https://platform.claude.com/docs/en/models/opus-5/migration-guide#migrating-from-claude-opus-46) or Claude Opus 4.8.
 </Note>
 
 ## How fast mode works

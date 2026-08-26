@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: ac5db7812ddcb9279d66d3c67e58122f16accba1ded924546932363099023029
+fetched_at: 2026-08-26T02:33:22.881887Z
+sha256: 69374e3e7530d3cdaa53b47b381bbd58ee90552cdffc4e17e0bf097d23b4be94
 ---
 
 ---
@@ -1091,7 +1091,7 @@ For detailed migration steps, see the [Migration guide](https://platform.claude.
 
 ### Migrating to Claude Sonnet 5 from Claude Sonnet 4.5 or earlier
 
-See [Migrating to Claude Sonnet 5 from Claude Sonnet 4.5 or earlier](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-from-sonnet-45) in the migration guide, which covers the effort default change and the removal of manual extended thinking (`budget_tokens`).
+See [Migrating to Claude Sonnet 5 from Claude Sonnet 4.5 or earlier](https://platform.claude.com/docs/en/models/sonnet-5/migration-guide#migrating-from-sonnet-45) in the migration guide, which covers the effort default change and the removal of manual extended thinking (`budget_tokens`).
 
 ## Next steps
 
