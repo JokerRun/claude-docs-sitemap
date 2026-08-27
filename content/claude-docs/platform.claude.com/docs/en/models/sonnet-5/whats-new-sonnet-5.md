@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/sonnet-5/whats-new-sonnet-5
-fetched_at: 2026-08-26T02:33:22.881887Z
-sha256: adca866a05f3ca8cd3bf402d9a21941cc67cef992c7d3b637f4c447c47147692
+fetched_at: 2026-08-27T03:51:55.831897Z
+sha256: 02f0df53f8780f93ca88c9691f530f07032ebd5d41c88ec838fc0f9aa85007db
 ---
 
 ---
@@ -19,7 +19,7 @@ Claude Sonnet 5 is the next generation of Anthropic's Sonnet model family. It is
 | --------------- | ----------------- | ---------------------------------------------- |
 | Claude Sonnet 5 | `claude-sonnet-5` | The best combination of speed and intelligence |
 
-Claude Sonnet 5 supports the [1M token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows) by default (1M tokens is both the default and the maximum; there is no smaller context variant), 128k max output tokens, [adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking), and the same set of tools and platform features as Claude Sonnet 4.6, except [Priority Tier](https://platform.claude.com/docs/en/api/service-tiers#supported-models), which is not available on Claude Sonnet 5. On the Claude API, Claude Sonnet 5 also supports the [browser use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool) and the stable `computer_toolset_20260801` version of the [computer use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool), neither of which Claude Sonnet 4.6 supports; the earlier `computer_20251124` version is still accepted on both models. To upgrade an existing integration, see [Migrate from `computer_20251124`](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124).
+Claude Sonnet 5 supports the [1M token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows) by default (1M tokens is both the default and the maximum; there is no smaller context variant), 128k max output tokens, [adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking), and the same set of tools and platform features as Claude Sonnet 4.6, except [Priority Tier](https://platform.claude.com/docs/en/api/service-tiers#supported-models), which is not available on Claude Sonnet 5. On the Claude API and Google Cloud, Claude Sonnet 5 also supports the [browser use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool) and the stable `computer_toolset_20260801` version of the [computer use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool), neither of which Claude Sonnet 4.6 supports; the earlier `computer_20251124` version is still accepted on both models. To upgrade an existing integration, see [Migrate from `computer_20251124`](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124).
 
 For complete pricing and specs, see the [models overview](https://platform.claude.com/docs/en/models/overview).
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/cancel
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 021fe2813299d9c51309433c7a8815849b9746a071ba3ef5311c483156c62408
+fetched_at: 2026-08-27T03:51:55.831897Z
+sha256: 87e73cf4a003d76fb1e77073fc060d7f3af05a735f539edae36db839f6353282
 ---
 
 # Cancel a Dream
@@ -23,7 +23,7 @@ Cancel a Dream
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -92,6 +92,20 @@ Cancel a Dream
     - `"agent-memory-2026-07-22"`
 
     - `"mid-conversation-tool-changes-2026-07-01"`
+
+    - `"compact-2026-01-12"`
+
+    - `"computer-use-2025-11-24"`
+
+    - `"mcp-tunnels-2026-06-22"`
+
+    - `"structured-outputs-2025-11-13"`
+
+    - `"task-budgets-2026-03-13"`
+
+    - `"thinking-display-updates-2026-08-18"`
+
+    - `"ce-user-management-2026-07-13"`
 
 ## Returns
 

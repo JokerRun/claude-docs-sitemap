@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 00af0e0c868aa63634d1fba1fb7bc2f94c108fd7f0e3fd6b9c5a237c512ca8f0
+fetched_at: 2026-08-27T03:51:55.831897Z
+sha256: be224619a0e5cdae391c99aa6f8266771805c6af8a573c513ff2a2c02e12be40
 ---
 
 > ## Documentation Index
@@ -190,7 +190,7 @@ The empty `matcher` fires on all notification types. To fire only on specific ev
 
 | Matcher                      | Fires when                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | :--------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `permission_prompt`          | Claude needs you to approve a tool use and the prompt has waited about six seconds                                                                                                                                                                                                                                                                                                                                                                                    |
+| `permission_prompt`          | Claude needs you to approve a tool use or a sandboxed command's [network request](/docs/en/sandboxing#network-isolation), and the prompt has waited about six seconds                                                                                                                                                                                                                                                                                                      |
 | `idle_prompt`                | Claude finished responding about 60 seconds ago and you haven't typed since                                                                                                                                                                                                                                                                                                                                                                                           |
 | `auth_success`               | Authentication completes                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | `elicitation_dialog`         | An MCP server opens an elicitation form and you haven't typed for about six seconds                                                                                                                                                                                                                                                                                                                                                                                   |
@@ -208,6 +208,8 @@ Claude Code times `permission_prompt` differently in a terminal and in Claude De
 The `agent_needs_input` and `agent_completed` matchers require Claude Code v2.1.198 or later.
 
 The `quota_auto_resume_fired`, `quota_auto_resume_stale`, and `quota_auto_resume_disabled` matchers require Claude Code v2.1.234 or later.
+
+In terminal sessions, `permission_prompt` for a sandboxed command's network request requires Claude Code v2.1.246 or later.
 
 Type `/hooks` and select `Notification` to confirm the hook is registered. For the full event schema, see the [Notification reference](/docs/en/hooks#notification).
 
@@ -474,7 +476,7 @@ To switch the session to `acceptEdits`, your hook writes this JSON to stdout:
 }
 ```
 
-Keep the matcher as narrow as possible. Matching on `.*` or leaving the matcher empty would auto-approve every permission prompt, including file writes and shell commands. See the [PermissionRequest reference](/docs/en/hooks#permissionrequest-decision-control) for the full set of decision fields.
+Keep the matcher as narrow as possible. Matching on `.*` or leaving the matcher empty would auto-approve every tool permission prompt, including file writes and shell commands. See the [PermissionRequest reference](/docs/en/hooks#permissionrequest-decision-control) for the full set of decision fields.
 
 ## How hooks work
 

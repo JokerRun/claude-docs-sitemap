@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 00204f950825df8a2f77a55fca98414dbcfbd1f7c5910512bffa29818eacb18a
+fetched_at: 2026-08-27T03:51:55.831897Z
+sha256: ccfb44d9b7b388a9d6166214603f6429ec3ab6dca3a6591346b0d513706c2c64
 ---
 
 > ## Documentation Index
@@ -141,7 +141,7 @@ This quickstart walks you through creating a plugin with a custom skill. You'll 
     Greet the user named "$ARGUMENTS" warmly and ask how you can help them today. Make the greeting personal and encouraging.
     ```
 
-    Run `/reload-plugins` to pick up the changes. The skills count in the summary covers only `commands/` directories, so it can report `0 skills` even though the skill you just edited reloaded. Then try the skill with your name:
+    Run `/reload-plugins` to pick up the changes. Then try the skill with your name:
 
     ```shell theme={null}
     /my-first-plugin:hello Alex

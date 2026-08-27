@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/delete
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: a26dee1bac2c106b2095f332203485a7528d5b1a0eb45ebc3d4f081073c63ef3
+fetched_at: 2026-08-27T03:51:55.831897Z
+sha256: fa87b496f584cfb3b1e1fda08565617bbb0d80919cfd7879a4777effbeef5637
 ---
 
 # Delete Session Resource
@@ -25,7 +25,7 @@ Delete Session Resource
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -94,6 +94,20 @@ Delete Session Resource
     - `"agent-memory-2026-07-22"`
 
     - `"mid-conversation-tool-changes-2026-07-01"`
+
+    - `"compact-2026-01-12"`
+
+    - `"computer-use-2025-11-24"`
+
+    - `"mcp-tunnels-2026-06-22"`
+
+    - `"structured-outputs-2025-11-13"`
+
+    - `"task-budgets-2026-03-13"`
+
+    - `"thinking-display-updates-2026-08-18"`
+
+    - `"ce-user-management-2026-07-13"`
 
 ## Returns
 

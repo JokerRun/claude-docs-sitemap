@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cloud-environments
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 72c2d776de7ba634344bd9614ba8bf5766c41d5434ded4f1e32ef1ae036dcd28
+fetched_at: 2026-08-27T03:51:55.831897Z
+sha256: 81daae93ab32e8ca9c12dbe893485f2d9a6e2361c50902b0021ffcc8ff6a5829
 ---
 
 > ## Documentation Index
@@ -27,7 +27,13 @@ The same environments apply wherever you start a cloud session: [Claude Code on 
 
 ## The Default environment
 
-If you don't have an environment yet, onboarding sets up the **Default** environment for you, whether you connect through [the web](/docs/en/web-quickstart#connect-github) or a CLI flow such as `/web-setup`; if web onboarding shows an environment form instead of creating the environment, keep the form's defaults to get the same **Default** environment. **Default** carries no configuration of its own:
+If you don't have an environment yet, onboarding sets up the **Default** environment. How depends on where you onboard:
+
+* **CLI flows such as `/web-setup`**: create **Default** for you
+* **Web onboarding on Pro and Max**: creates **Default** for you
+* **Web onboarding on Team and Enterprise**: shows a **Create your first cloud environment** form unless an Owner has turned on [Quick web setup](/docs/en/claude-code-on-the-web#github-authentication-options); keep the form's defaults and click **Create & finish** to get the same **Default** environment
+
+**Default** carries no configuration of its own:
 
 * [**Trusted** network access](#access-levels): sessions reach package registries and other [allowlisted domains](#default-allowed-domains), and nothing else through the session's network.
 * No other configuration: **Default** defines no environment variables or setup script, so sessions start with just the [pre-installed tools](#installed-tools).

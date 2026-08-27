@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 3ee5c842437170b9450cddeb9bacd6157a759aed1fc27848f89816eabf9ffe24
+fetched_at: 2026-08-27T03:51:55.831897Z
+sha256: f80d1f5b4bbd35852d1cd71936213b7c9fe3f9e07ca11460ae71f90b2763c94b
 ---
 
 ---
@@ -356,7 +356,7 @@ For the full feature list with Google Cloud availability, see [Features overview
 * [Messages API](https://platform.claude.com/docs/en/api/messages/create)
 * [Prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching)
 * [Thinking](https://platform.claude.com/docs/en/build-with-claude/thinking)
-* [Tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview), including the [Bash tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool), [Computer use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool), [Memory tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool), and [Text editor tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool)
+* [Tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview), including the [Bash tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool), [Browser use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool), [Computer use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool), [Memory tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool), and [Text editor tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool)
 * [Web search tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool)
 * [Citations](https://platform.claude.com/docs/en/build-with-claude/citations)
 * [Structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
@@ -369,7 +369,6 @@ For the full feature list with Google Cloud availability, see [Features overview
 * API endpoints (Message Batches, Models, Admin, Compliance, Usage and Cost)
 * Claude Managed Agents
 * Server-side fallback (the [`fallbacks` parameter](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback#server-side-fallback); use the [client-side fallback pattern](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback#client-side-fallback) instead)
-* [Computer use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool) and [browser use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool) toolsets (`computer_toolset_20260801` and `browser_toolset_20260801` are not currently available on Google Cloud; the beta computer use tool versions remain available)
 
 ### Context window
 

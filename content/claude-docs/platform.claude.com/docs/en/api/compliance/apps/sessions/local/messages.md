@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/messages
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: e71bdb70623104a75d5b2b3daa9da86fb8ba7f3b599eda5e81fe34bef02dc5fe
+fetched_at: 2026-08-27T03:51:55.831897Z
+sha256: 0ad5ccbfc17417e56e1d5a096217b66206d720a9e3e364e16afea5cc96663d59
 ---
 
 # Messages
@@ -249,7 +249,7 @@ explicit 400; restart the walk to read under the current boundary.
 
   - `product_surface: string or null`
 
-    The product the session ran in: `cowork` for Cowork sessions in Claude Desktop, or `claude_code` for Claude Code sessions. New values appear as coverage expands; treat unrecognized values as opaque. `null` when the surface was not recorded.
+    The product the session ran in: `cowork` (Cowork in Claude Desktop on the user's machine), `claude_code` (Claude Code), `claude_science` (Claude Science), or one of `office_agents/excel`, `office_agents/powerpoint`, `office_agents/word`, and `office_agents/outlook` (Claude for Microsoft 365, by app; `office_agents` alone when the app is not identified). New values appear as coverage expands; treat unrecognized values as opaque. `null` when the surface was not recorded.
 
   - `type: "compliance_local_session"`
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/best-practices
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: defa65b9be8f0c7ed96824822644bdb9334a6b6b71f13684ddd6f6995eccf56c
+fetched_at: 2026-08-27T03:51:55.831897Z
+sha256: d8634f18e24cbfb1e65f967c0c99ba443c1daa68b7a3099477ecda7b31f8052c
 ---
 
 > ## Documentation Index
@@ -505,7 +505,7 @@ For large migrations or analyses, you can distribute work across many parallel C
   <Step title="Write a script to loop through the list">
     ```bash theme={null}
     for file in $(cat files.txt); do
-      claude -p "Migrate $file from React to Vue. Return OK or FAIL." \
+      claude -p "Migrate $file from Python 2 to Python 3. Return OK or FAIL." \
         --allowedTools "Edit,Bash(git commit *)"
     done
     ```

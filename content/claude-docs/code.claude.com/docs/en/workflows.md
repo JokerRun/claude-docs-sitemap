@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/workflows
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 4dde50ea069671837ace96541553bc7233e2263f44bb42dd7c9c1ceadb63aa93
+fetched_at: 2026-08-27T03:51:55.831897Z
+sha256: ee2aa62cdfaab3414684267aff804f9544d877c1e39ca577497fd6b7d205d718
 ---
 
 > ## Documentation Index
@@ -252,7 +252,7 @@ use a workflow to run npx tsc --noEmit and keep fixing the reported errors until
 Discover the files to migrate, transform each one in an isolated copy so edits don't conflict, and verify each result.
 
 ```text wrap theme={null}
-use a workflow to migrate every component under src/components/ from styled-components to Tailwind, working on each file in its own isolated copy
+use a workflow to migrate every component under src/components/ from JavaScript to TypeScript, working on each file in its own isolated copy
 ```
 
 ### Review every changed file and write one summary

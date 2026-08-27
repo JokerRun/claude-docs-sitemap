@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 12836374e9bac6b2e32f14419c7d1249671c039567872c5584320f45c18b298f
+fetched_at: 2026-08-27T03:51:55.831897Z
+sha256: 58a37e24bd3bfe9da9ccb2df148431f0d81b384a3b1ecf3e9a19010a9e58a0ae
 ---
 
 > ## Documentation Index
@@ -1866,7 +1866,7 @@ class ClaudeSDKError(Exception):
     """Base error for Claude SDK."""
 ```
 
-When a single-shot `query()` ends with an error result, for example a turn-limit error, the SDK raises a plain `Exception` after yielding the final result message, not a `ClaudeSDKError` subclass.
+When a single-shot `query()` ends with an error result, for example a turn-limit error, the SDK raises a [`ResultError`](#resulterror) after yielding the final result message. Python Agent SDK versions before 0.2.140 raised a plain `Exception` that wasn't a `ClaudeSDKError` subclass.
 
 ### `CLINotFoundError`
 
@@ -1904,6 +1904,21 @@ class ProcessError(ClaudeSDKError):
     ):
         self.exit_code = exit_code
         self.stderr = stderr
+```
+
+### `ResultError`
+
+Raised after the final [`ResultMessage`](#resultmessage) when the Claude Code process exits because the run ended with an error result, such as a turn-limit error or an API error. `ResultError` subclasses `ProcessError`, so an existing `except ProcessError` handler also catches it. Its attributes carry the fields of that result message, so you can branch on why the run failed without parsing the message text. Requires Python Agent SDK 0.2.140 or later.
+
+```python theme={null}
+class ResultError(ProcessError):
+    subtype: str | None  # for example "error_max_turns" or "error_during_execution"
+    errors: list[str]  # an empty list when the result message reported none
+    result: str | None
+    api_error_status: int | None
+    terminal_reason: str | None  # for example "max_turns" or "api_error"
+    session_id: str | None
+    data: dict[str, Any]  # the raw result message payload
 ```
 
 ### `CLIJSONDecodeError`
@@ -3358,10 +3373,18 @@ asyncio.run(create_project())
 
 ### Error handling
 
+This example catches [`ResultError`](#resulterror), which requires Python Agent SDK 0.2.140 or later.
+
 ```python theme={null}
 import asyncio
 
-from claude_agent_sdk import query, CLINotFoundError, ProcessError, CLIJSONDecodeError
+from claude_agent_sdk import (
+    query,
+    CLINotFoundError,
+    ProcessError,
+    ResultError,
+    CLIJSONDecodeError,
+)
 
 
 async def main():
@@ -3372,13 +3395,14 @@ async def main():
         print(
             "Claude Code CLI not found. Try reinstalling: pip install --force-reinstall claude-agent-sdk"
         )
+    # Catch ResultError before ProcessError, which it subclasses. Its message
+    # carries the error text; branch on e.subtype or e.terminal_reason.
+    except ResultError as e:
+        print(f"Query ended with an error result ({e.subtype}): {e}")
     except ProcessError as e:
         print(f"Process failed with exit code: {e.exit_code}")
     except CLIJSONDecodeError as e:
         print(f"Failed to parse response: {e}")
-    # A single-shot query() raises a plain Exception after yielding an error result
-    except Exception as e:
-        print(f"Query ended with an error result: {e}")
 
 
 asyncio.run(main())

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/skills/versions/retrieve
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 0db72420d3aa5a8f1c5c226a3319546bd40d0dd228242bb1e657b189354e0c78
+fetched_at: 2026-08-27T03:51:55.831897Z
+sha256: b09f2f9bddf2e87cf35f280ef554a067e23db33c3efe4e641f3f0102be2c6633
 ---
 
 # Get Skill Version
@@ -21,7 +21,7 @@ Get Skill Version
 
 - `version: string`
 
-  Identifies the skill version: a version ID, or — where the endpoint accepts it — the literal `latest` for the skill's most recent version.
+  Identifies the skill version: a version ID, or the literal `latest` for the skill's most recent version.
 
   Requests carrying the `skills-2025-10-02` beta header address versions by their Unix epoch timestamp instead (e.g., "1759178010641129").
 

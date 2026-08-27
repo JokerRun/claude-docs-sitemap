@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 6759531936f1aed85b0477e9d7c99648d806520921956a74292b68ce14cabfc0
+fetched_at: 2026-08-27T03:51:55.831897Z
+sha256: 4d2ca393be20e478c0157c9a5fd7854b44b15d77f9849844084dfecfac9becde
 ---
 
 # Organizations
@@ -521,7 +521,7 @@ unknown organizations and organizations outside the hierarchy return 404.
 
     A setting whose enforced value is a single true/false flag.
 
-    - `name: "ai_powered_artifacts_enabled" or "api_workbench_feedback_collection_enabled" or "artifact_connectors_enabled" or 44 more`
+    - `name: "ai_powered_artifacts_enabled" or "api_workbench_feedback_collection_enabled" or "artifact_connectors_enabled" or 52 more`
 
       - `"ai_powered_artifacts_enabled"`
 
@@ -564,6 +564,22 @@ unknown organizations and organizations outside the hierarchy return 404.
       - `"claude_design_enabled"`
 
       - `"claude_in_slack_enabled"`
+
+      - `"claude_science_custom_connectors_enabled"`
+
+      - `"claude_science_custom_skills_enabled"`
+
+      - `"claude_science_enabled"`
+
+      - `"claude_science_managed_network_allowlist_enabled"`
+
+      - `"claude_science_memory_enabled"`
+
+      - `"claude_science_modal_enabled"`
+
+      - `"claude_science_scientific_model_endpoints_enabled"`
+
+      - `"claude_science_ssh_hosts_enabled"`
 
       - `"code_execution_enabled"`
 

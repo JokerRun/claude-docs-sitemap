@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/settings
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: e2f728b75c6f246b035fe29f6269f23aab0db55ca424c261a7ab7aab28b83891
+fetched_at: 2026-08-27T03:51:55.831897Z
+sha256: b620b89fb20c8918a645c552c4106d6041a9572496eb3f97c70b6caefaaa51b1
 ---
 
 # Settings
@@ -82,7 +82,7 @@ unknown organizations and organizations outside the hierarchy return 404.
 
     A setting whose enforced value is a single true/false flag.
 
-    - `name: "ai_powered_artifacts_enabled" or "api_workbench_feedback_collection_enabled" or "artifact_connectors_enabled" or 44 more`
+    - `name: "ai_powered_artifacts_enabled" or "api_workbench_feedback_collection_enabled" or "artifact_connectors_enabled" or 52 more`
 
       - `"ai_powered_artifacts_enabled"`
 
@@ -125,6 +125,22 @@ unknown organizations and organizations outside the hierarchy return 404.
       - `"claude_design_enabled"`
 
       - `"claude_in_slack_enabled"`
+
+      - `"claude_science_custom_connectors_enabled"`
+
+      - `"claude_science_custom_skills_enabled"`
+
+      - `"claude_science_enabled"`
+
+      - `"claude_science_managed_network_allowlist_enabled"`
+
+      - `"claude_science_memory_enabled"`
+
+      - `"claude_science_modal_enabled"`
+
+      - `"claude_science_scientific_model_endpoints_enabled"`
+
+      - `"claude_science_ssh_hosts_enabled"`
 
       - `"code_execution_enabled"`
 
@@ -409,7 +425,7 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORGANIZATION_ID/sett
 
       A setting whose enforced value is a single true/false flag.
 
-      - `name: "ai_powered_artifacts_enabled" or "api_workbench_feedback_collection_enabled" or "artifact_connectors_enabled" or 44 more`
+      - `name: "ai_powered_artifacts_enabled" or "api_workbench_feedback_collection_enabled" or "artifact_connectors_enabled" or 52 more`
 
         - `"ai_powered_artifacts_enabled"`
 
@@ -452,6 +468,22 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORGANIZATION_ID/sett
         - `"claude_design_enabled"`
 
         - `"claude_in_slack_enabled"`
+
+        - `"claude_science_custom_connectors_enabled"`
+
+        - `"claude_science_custom_skills_enabled"`
+
+        - `"claude_science_enabled"`
+
+        - `"claude_science_managed_network_allowlist_enabled"`
+
+        - `"claude_science_memory_enabled"`
+
+        - `"claude_science_modal_enabled"`
+
+        - `"claude_science_scientific_model_endpoints_enabled"`
+
+        - `"claude_science_ssh_hosts_enabled"`
 
         - `"code_execution_enabled"`
 

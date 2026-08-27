@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/skills/versions/delete
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 7dea0ecc3fbc4063b62801db8b11d083eb2ab82e846523752c6aa21ad7b906a8
+fetched_at: 2026-08-27T03:51:55.831897Z
+sha256: cd7760fda0ed620b52017aa2a567ba7aa206511c821953920d87258dec533984
 ---
 
 # Delete Skill Version
@@ -21,7 +21,7 @@ Delete Skill Version
 
 - `version: string`
 
-  Identifies the skill version: a version ID, or — where the endpoint accepts it — the literal `latest` for the skill's most recent version.
+  Identifies the skill version by its version ID.
 
   Requests carrying the `skills-2025-10-02` beta header address versions by their Unix epoch timestamp instead (e.g., "1759178010641129").
 

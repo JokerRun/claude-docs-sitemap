@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/list
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 5cbb85963dd298e22de439a82d449233ac9cf7ff331cf2bb90fa8e5023fdefae
+fetched_at: 2026-08-27T03:51:55.831897Z
+sha256: 6ea685a88846f7a2f3518b88b7d440b383c8fe1c240260df196d5e0785dae796
 ---
 
 # List local sessions
@@ -74,7 +74,7 @@ forward-only via `next_page`; there is no reverse cursor.
 
   - `product_surface: string or null`
 
-    The product the session ran in: `cowork` for Cowork sessions in Claude Desktop, or `claude_code` for Claude Code sessions. New values appear as coverage expands; treat unrecognized values as opaque. `null` when the surface was not recorded.
+    The product the session ran in: `cowork` (Cowork in Claude Desktop on the user's machine), `claude_code` (Claude Code), `claude_science` (Claude Science), or one of `office_agents/excel`, `office_agents/powerpoint`, `office_agents/word`, and `office_agents/outlook` (Claude for Microsoft 365, by app; `office_agents` alone when the app is not identified). New values appear as coverage expands; treat unrecognized values as opaque. `null` when the surface was not recorded.
 
   - `type: "compliance_local_session"`
 

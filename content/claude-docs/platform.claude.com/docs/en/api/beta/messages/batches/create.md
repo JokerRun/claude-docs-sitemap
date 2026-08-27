@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/create
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 499c612557c0736f8a729d2bc7c6c2bd12d0c3cf0694975d166607102c00412a
+fetched_at: 2026-08-27T03:51:55.831897Z
+sha256: f152272a15c6a19ff0e18a9858930b67500235826394d96f9832f3342dcf4463
 ---
 
 # Create a Message Batch
@@ -23,7 +23,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -92,6 +92,20 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"agent-memory-2026-07-22"`
 
     - `"mid-conversation-tool-changes-2026-07-01"`
+
+    - `"compact-2026-01-12"`
+
+    - `"computer-use-2025-11-24"`
+
+    - `"mcp-tunnels-2026-06-22"`
+
+    - `"structured-outputs-2025-11-13"`
+
+    - `"task-budgets-2026-03-13"`
+
+    - `"thinking-display-updates-2026-08-18"`
+
+    - `"ce-user-management-2026-07-13"`
 
 - `"anthropic-user-profile-id": optional string`
 
@@ -1793,13 +1807,15 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `type: "enabled"`
 
-            - `display: optional "summarized" or "omitted" or null`
+            - `display: optional "summarized" or "omitted" or "updates" or null`
 
               Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
 
               - `"summarized"`
 
               - `"omitted"`
+
+              - `"updates"`
 
           - `BetaThinkingConfigDisabled object`
 
@@ -1809,13 +1825,15 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `type: "adaptive"`
 
-            - `display: optional "summarized" or "omitted" or null`
+            - `display: optional "summarized" or "omitted" or "updates" or null`
 
               Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
 
               - `"summarized"`
 
               - `"omitted"`
+
+              - `"updates"`
 
       - `Default = "default"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/skills
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: acde27c92c4be09bc34bd380db4389a044371eab3e7887e140ec9cf1a6eaef7c
+fetched_at: 2026-08-27T03:51:55.831897Z
+sha256: d30631d95c4d969cd4f1ef29d0b123613ad76e03966fc9d1aaca8a182a56444b
 ---
 
 # Skills
@@ -741,7 +741,7 @@ Get Skill Version
 
 - `version: string`
 
-  Identifies the skill version: a version ID, or — where the endpoint accepts it — the literal `latest` for the skill's most recent version.
+  Identifies the skill version: a version ID, or the literal `latest` for the skill's most recent version.
 
   Requests carrying the `skills-2025-10-02` beta header address versions by their Unix epoch timestamp instead (e.g., "1759178010641129").
 
@@ -824,7 +824,7 @@ Delete Skill Version
 
 - `version: string`
 
-  Identifies the skill version: a version ID, or — where the endpoint accepts it — the literal `latest` for the skill's most recent version.
+  Identifies the skill version by its version ID.
 
   Requests carrying the `skills-2025-10-02` beta header address versions by their Unix epoch timestamp instead (e.g., "1759178010641129").
 

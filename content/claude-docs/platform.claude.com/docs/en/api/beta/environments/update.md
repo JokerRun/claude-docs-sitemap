@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/update
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 16aa2ce845bf0dae74e44be4cfb3024ea770d3bd76ed90af2bb75b28c6847144
+fetched_at: 2026-08-27T03:51:55.831897Z
+sha256: 1fe6df4fa3626acb124c5e6fe938613ac9ed3f4679b615dd4622576d384912f6
 ---
 
 # Update Environment
@@ -23,7 +23,7 @@ Update an existing environment's configuration.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 31 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -93,6 +93,20 @@ Update an existing environment's configuration.
 
     - `"mid-conversation-tool-changes-2026-07-01"`
 
+    - `"compact-2026-01-12"`
+
+    - `"computer-use-2025-11-24"`
+
+    - `"mcp-tunnels-2026-06-22"`
+
+    - `"structured-outputs-2025-11-13"`
+
+    - `"task-budgets-2026-03-13"`
+
+    - `"thinking-display-updates-2026-08-18"`
+
+    - `"ce-user-management-2026-07-13"`
+
 ## Body parameters
 
 - `config: optional BetaCloudConfigParams or BetaSelfHostedConfigParams or null`
@@ -139,7 +153,7 @@ Update an existing environment's configuration.
 
         - `allow_package_managers: optional boolean or null`
 
-          Permits outbound access to public package registries (PyPI, npm, etc.) beyond those listed in the `allowed_hosts` array. Defaults to `false`.
+          Permits outbound access to public package registries (PyPI, npm, etc.) beyond those listed in the `allowed_hosts` array. Defaults to `false` on creation. Must be `true` when `packages` are specified.
 
         - `allowed_hosts: optional array of string or null`
 
@@ -150,6 +164,8 @@ Update an existing environment's configuration.
       Specify packages (and optionally their versions) available in this environment.
 
       When versioning, use the version semantics relevant for the package manager, e.g. for `pip` use `package==1.0.0`. You are responsible for validating the package and version exist. Unversioned installs the latest.
+
+      Under `limited` networking, requires `networking.allow_package_managers` to be `true`.
 
       - `apt: optional array of string or null`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 8f71636f39fdbfb44266f9bf7a78559591c8ed739e4be264bbb7b3824881007d
+fetched_at: 2026-08-27T03:51:55.831897Z
+sha256: fe0020a280f5e8bba8155d595db1169ccb219914c7a1fb712ec3f7677bc094c3
 ---
 
 ---
@@ -656,12 +656,11 @@ Claude Fable 5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6
 
 The following features are available for deployments hosted on Anthropic but are not supported for deployments hosted on Azure:
 
-* Structured outputs
-* Server-side tools (web search, web fetch, code execution, and tool search)
-* MCP connector
-* Agent Skills
-* Programmatic tool calling
-* Files API
+* [Code execution](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool)
+* [Web search](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool) and [web fetch](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool) tool versions later than `web_search_20250305` and `web_fetch_20250910`. Deployments hosted on Azure support only these basic versions, so dynamic filtering, response inclusion, and cache bypass are not available.
+* [Agent Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
+* [Programmatic tool calling](https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling)
+* [Files API](https://platform.claude.com/docs/en/build-with-claude/files)
 
 Requests that use these features against a deployment hosted on Azure return a `400 Bad Request` error by design. Claude Code detects deployments hosted on Azure and automatically adapts its feature set.
 

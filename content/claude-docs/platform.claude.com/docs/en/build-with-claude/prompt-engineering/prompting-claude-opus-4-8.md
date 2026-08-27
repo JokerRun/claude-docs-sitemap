@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-4-8
-fetched_at: 2026-08-26T02:33:22.881887Z
-sha256: 9e8bec84126acaf2cdf0ecbcf1b39938646ba124a1c61d5773d75658ebe7149d
+fetched_at: 2026-08-27T03:51:55.831897Z
+sha256: 56b8a940ef2263d52266a609f00a876ec6388643d7bc2181b5d26cf9c0c43ec1
 ---
 
 ---
@@ -164,6 +164,6 @@ Iterate on prompts against a subset of your evals or test cases to validate reca
 
 ## Computer use
 
-On the Claude API, Claude Opus 4.8 supports the `computer_toolset_20260801` toolset and the earlier `computer_20251124` tool version. For tasks inside webpages, Claude Opus 4.8 also supports the [browser use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool) (`browser_toolset_20260801`). [Computer use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool) capability works across resolutions, up to a maximum resolution of 2576px / 3.75MP. Internal computer use testing shows that sending images at 1080p provides a good balance of performance and cost.
+Claude Opus 4.8 supports the `computer_toolset_20260801` toolset (on the Claude API and Google Cloud) and the earlier `computer_20251124` tool version. For tasks inside webpages, Claude Opus 4.8 also supports the [browser use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool) (`browser_toolset_20260801`). [Computer use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool) capability works across resolutions, up to a maximum resolution of 2576px / 3.75MP. Internal computer use testing shows that sending images at 1080p provides a good balance of performance and cost.
 
 For particularly cost-sensitive workloads, 720p or 1366×768 are lower-cost options with strong performance. Conduct your own testing to find the ideal settings for your use case; experimenting with effort settings can also help tune the model's behavior.
