@@ -1,15 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/update
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: d9575f518def2d5b1007be299f43cf85108a0ac557853488888ad16bd239a000
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: dcb03c8eb54474aebdf1b6a7238b90d31edb23f330f1d018eb11e4097a45ab76
 ---
 
 # Update User
 
 **POST** `/v1/organizations/users/{user_id}`
 
-For Claude Enterprise organizations, this endpoint's availability is in beta.
+Update a member's organization role.
 
 ## Path parameters
 
@@ -23,7 +23,7 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
 
   New role for the User.
 
-  The accepted values depend on the organization type. Console and API organizations accept `user`, `developer`, `billing`, and `claude_code_user`; `admin` cannot be assigned through the API. Claude Enterprise organizations (beta) accept `user` and `managed`.
+  The accepted values depend on the organization type. Console and API organizations accept `user`, `developer`, `billing`, and `claude_code_user`; `admin` cannot be assigned through the API. Claude Enterprise organizations accept `user` and `managed`.
 
   - `"billing"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/cost_report/retrieve
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 08a0b888a8b68f981e394e4156cafd935d92c827b0c0abf958553b7435df0877
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 724317afc175b1e68279bf970715232a2a7c642e67eab11a2ccea27dca3d74e7
 ---
 
 # Get Cost Report
@@ -69,6 +69,8 @@ Get Cost Report
     - `ending_at: string`
 
       End of the time bucket (exclusive) in RFC 3339 format.
+
+      format: date-time
 
     - `results: array of object`
 
@@ -151,6 +153,8 @@ Get Cost Report
 
       Start of the time bucket (inclusive) in RFC 3339 format.
 
+      format: date-time
+
   - `has_more: boolean`
 
     Indicates if there are more results.
@@ -180,9 +184,9 @@ curl https://api.anthropic.com/v1/organizations/cost_report \
           "context_window": "0-200k",
           "cost_type": "tokens",
           "currency": "USD",
-          "description": "Claude Sonnet 4 Usage - Input Tokens",
+          "description": "Claude Opus 5 Usage - Input Tokens",
           "inference_geo": "global",
-          "model": "claude-opus-4-6",
+          "model": "claude-opus-5",
           "service_tier": "standard",
           "token_type": "uncached_input_tokens",
           "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"

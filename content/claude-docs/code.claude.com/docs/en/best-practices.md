@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/best-practices
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: d8634f18e24cbfb1e65f967c0c99ba443c1daa68b7a3099477ecda7b31f8052c
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 27cf409896c8887c65b0bcc87070c1c37d03e5854cbe542bcfde4ef365b623bf
 ---
 
 > ## Documentation Index
@@ -469,9 +469,10 @@ The first command prints plain text. The `json` format returns a single JSON obj
   Run multiple Claude sessions in parallel to speed up development, run isolated experiments, or start complex workflows.
 </Tip>
 
-Pick the parallel approach that fits how much coordination you want to do yourself:
+Pick the parallel approach that fits how much coordination you want to do yourself, and add messaging when the sessions need to pass findings between them:
 
 * [Worktrees](/docs/en/worktrees): run separate CLI sessions in isolated git checkouts so edits don't collide
+* [Cross-session messaging](/docs/en/cross-session-messaging): let the sessions you run yourself pass findings to each other
 * [Desktop app](/docs/en/desktop#work-in-parallel-with-sessions): manage multiple local sessions visually, each in its own worktree
 * [Claude Code on the web](/docs/en/claude-code-on-the-web): run sessions in the cloud, on Anthropic-managed infrastructure by default
 * [Agent view](/docs/en/agent-view): research preview. Run `claude agents` to dispatch sessions that keep running in the background and watch them from one screen

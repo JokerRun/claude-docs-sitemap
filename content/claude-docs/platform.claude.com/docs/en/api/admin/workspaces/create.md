@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/create
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 974d6404c2c2e9c302de57a6687d26504d3328948668c73d796b9fc4f5ea0888
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 997c615511a9c9cc7aa4c7b0665ee651dae03c6d24100cb04c953ed91cd352de
 ---
 
 # Create Workspace
@@ -29,7 +29,7 @@ Create Workspace
 
 - `data_residency: optional object or null`
 
-  Data residency configuration for the workspace. If omitted, defaults to workspace_geo=`"us"`, allowed_inference_geos=`"unrestricted"`, and default_inference_geo=`"global"`.
+  Data residency configuration for the workspace. If omitted, defaults to `workspace_geo: "us"`, `allowed_inference_geos: "unrestricted"`, and `default_inference_geo: "global"`.
 
   - `allowed_inference_geos: optional array of "global" or "us" or "unrestricted" or null`
 
@@ -45,7 +45,7 @@ Create Workspace
 
   - `default_inference_geo: optional "global" or "us" or null`
 
-    Default inference geo applied when requests omit the parameter. Defaults to 'global' if omitted. Must be a member of allowed_inference_geos unless allowed_inference_geos is `"unrestricted"`.
+    Default inference geo applied when requests omit the parameter. Defaults to 'global' if omitted. Must be a member of `allowed_inference_geos` unless `allowed_inference_geos` is `"unrestricted"`.
 
     - `"global"`
 

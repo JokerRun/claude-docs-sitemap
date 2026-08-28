@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rbac_groups/members/list
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 9f2d5ec33151f58297fde09bf4e7bae546ada84dc96f7839f7c1ae9aebb1fe1f
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: d60516dac4bb2e5d1117607507e4502c8a174faab86b31014da785969c809fa0
 ---
 
 # List RBAC Group Members
@@ -11,7 +11,7 @@ sha256: 9f2d5ec33151f58297fde09bf4e7bae546ada84dc96f7839f7c1ae9aebb1fe1f
 
 List members of an RBAC Group.
 
-The RBAC Groups API is in beta and available to Claude Enterprise organizations only. Requests must send the `ce-user-management-2026-07-13` value in the `anthropic-beta` header.
+The RBAC Groups API is available to Claude Enterprise organizations only.
 
 ## Path parameters
 
@@ -32,14 +32,6 @@ The RBAC Groups API is in beta and available to Claude Enterprise organizations 
 - `page: optional string`
 
   Optionally set to the `next_page` token from the previous response.
-
-## Headers
-
-- `"anthropic-beta": optional array of string`
-
-  Optional header to specify the beta version(s) you want to use.
-
-  To use multiple betas, use a comma separated list like `beta1,beta2` or specify the header multiple times for each beta.
 
 ## Returns
 

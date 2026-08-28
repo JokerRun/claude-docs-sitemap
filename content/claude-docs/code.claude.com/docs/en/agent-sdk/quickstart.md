@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/quickstart
-fetched_at: 2026-08-05T03:08:04.164913Z
-sha256: 56fda91b98e018dec0e4a0ee128f8e9ea0f6201238e25dcaf9f622f15ae24969
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: c98fbe6c52be91cb1a7025dffdf88546a170121342daaacd83c7c385558ebcd6
 ---
 
 > ## Documentation Index
@@ -272,7 +272,7 @@ As it works, the agent prints its reasoning and each tool it calls, ending with 
 This is what makes the Agent SDK different: Claude executes tools directly instead of asking you to implement them.
 
 <Note>
-  If you see "API key not found", make sure you've set the `ANTHROPIC_API_KEY` environment variable in the shell where you run your agent. The SDK doesn't load `.env` files automatically. See the [full troubleshooting guide](/docs/en/troubleshooting) for more help.
+  If you see an authentication error such as `Not logged in` or `Invalid API key`, make sure you've set the `ANTHROPIC_API_KEY` environment variable in the shell where you run your agent. The SDK doesn't load `.env` files automatically. See the [full troubleshooting guide](/docs/en/troubleshooting) for more help.
 </Note>
 
 ### Try other prompts

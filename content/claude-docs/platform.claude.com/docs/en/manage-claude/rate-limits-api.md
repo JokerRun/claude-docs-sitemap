@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/rate-limits-api
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: f8badd0e8b7474a670b80d0a5581af48f5faf45a11ea6b94b4e67f28b3f2daab
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 0c218dd87bd7100253810e94f8407b7f401c2e025bbdd9429dc78a6d7d612c54
 ---
 
 ---
@@ -24,7 +24,7 @@ Use this API to:
 * **Audit workspace configuration:** Verify that workspace overrides match what your provisioning automation expects.
 
 <Check>
-  **Admin API key required.** These endpoints require an Admin API key, which is different from a standard Claude API key. See [Create an Admin API key](https://platform.claude.com/docs/en/manage-claude/admin-api-keys) to find where to create one for your organization type and which scopes to select.
+  **Admin API credentials required.** These endpoints are part of the Admin API. You can access them using an [Admin API key](https://platform.claude.com/docs/en/manage-claude/admin-api-keys), an OAuth token with the `org:admin` scope, or a personal or service account key that isn't scoped to a workspace; workspace API keys don't work. See [Authentication](https://platform.claude.com/docs/en/manage-claude/admin-api#authentication) for details.
 </Check>
 
 The SDK and CLI examples on this page construct the default client, which reads the Admin API key from the `ANTHROPIC_API_KEY` environment variable. The SDKs expose these endpoints as `client.beta.organization.rate_limits` and `client.beta.organization.workspaces.rate_limits`; the Python, TypeScript, C#, Go, and Java list methods return an iterator that follows `next_page` for you, while the PHP, Ruby, and curl examples read one page.

@@ -1,15 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/invites/create
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 48324c0b7196fe29d07f12d24addd9edd7a7c9a9f392c615752fd993aa657275
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 9f5cb83fa2bbeb564b3790d4767493f9a4aba9d6217c0a7b6e10e1e219ba8c3c
 ---
 
 # Create Invite
 
 **POST** `/v1/organizations/invites`
 
-For Claude Enterprise organizations, this endpoint's availability is in beta.
+Invite a user to join the organization by email.
 
 On plans that draw members from a finite pool of purchased seats, the invite automatically consumes a seat from the lowest tier with availability; there is no seat-tier parameter. When no seat is free the request fails with a 400 error rather than purchasing a seat.
 
@@ -25,7 +25,7 @@ On plans that draw members from a finite pool of purchased seats, the invite aut
 
   Role for the invited User.
 
-  The accepted values depend on the organization type. Console and API organizations accept `user`, `developer`, `billing`, and `claude_code_user`; `admin` cannot be assigned through the API. Claude Enterprise organizations (beta) accept `user` and `managed`.
+  The accepted values depend on the organization type. Console and API organizations accept `user`, `developer`, `billing`, and `claude_code_user`; `admin` cannot be assigned through the API. Claude Enterprise organizations accept `user` and `managed`.
 
   - `"billing"`
 
@@ -39,7 +39,7 @@ On plans that draw members from a finite pool of purchased seats, the invite aut
 
 - `rbac_group_ids: optional array of string`
 
-  RBAC group IDs to assign to the User when the Invite is accepted. A non-empty array is accepted only for a Claude Enterprise organization with RBAC groups (beta), and requires the key to carry the `write:rbac_groups` scope.
+  RBAC group IDs to assign to the User when the Invite is accepted. A non-empty array is accepted only for a Claude Enterprise organization with RBAC groups, and requires the key to carry the `write:rbac_groups` scope.
 
   maxItems: 100
 
@@ -75,7 +75,7 @@ On plans that draw members from a finite pool of purchased seats, the invite aut
 
   - `rbac_group_ids: array of string`
 
-    RBAC group IDs recorded on the Invite (beta, Claude Enterprise organizations), to be assigned to the User when the Invite is accepted. `[]` when none.
+    RBAC group IDs recorded on the Invite (Claude Enterprise organizations), to be assigned to the User when the Invite is accepted. `[]` when none.
 
   - `role: "admin" or "billing" or "claude_code_user" or 6 more`
 

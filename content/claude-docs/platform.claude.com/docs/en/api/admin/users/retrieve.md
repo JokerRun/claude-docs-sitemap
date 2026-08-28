@@ -1,15 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/retrieve
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: c19a8207f22934dbf12b878026b7aba19ac4402b43ed800249dee40b8c2f6cb9
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 70d9e64512d2ae288695f06f00b04bd6e1579fd9b591f59b995b437c6cb741a0
 ---
 
 # Get User
 
 **GET** `/v1/organizations/users/{user_id}`
 
-For Claude Enterprise organizations, this endpoint's availability is in beta.
+Retrieve a member of the organization by user ID.
 
 ## Path parameters
 

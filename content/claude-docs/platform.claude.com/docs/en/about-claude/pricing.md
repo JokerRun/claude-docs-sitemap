@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/pricing
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: c3ea88b25e2906d72bc7b26693bb752bfb97d31952e5b814cf7f62d4087b2f8b
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 2b1d167ca43f7833a0a239a27009dbee468167e0415c391138af34b307e9b820
 ---
 
 ---
@@ -508,19 +508,19 @@ Contact the sales team at [sales@anthropic.com](mailto:sales@anthropic.com) or t
 
 ## Frequently asked questions
 
-**How is token usage calculated?**
+### How is token usage calculated?
 
 Tokens are pieces of text that models process. As a rough estimate, 1 token is approximately 4 characters or 0.75 words in English. The exact count varies by language and content type.
 
-**Are there free tiers or trials?**
+### Are there free tiers or trials?
 
 New users receive a small amount of free credits to test the API. [Contact sales](mailto:sales@anthropic.com) for information about extended trials for enterprise evaluation.
 
-**How do discounts stack?**
+### How do discounts stack?
 
 Batch API and prompt caching discounts can be combined. For example, using both features together provides significant cost savings compared to standard API calls. See [prompt caching pricing](https://platform.claude.com/docs/en/about-claude/pricing#prompt-caching) for how the multipliers interact.
 
-**What payment methods are accepted?**
+### What payment methods are accepted?
 
 Major credit cards are accepted for standard accounts. Enterprise customers can arrange invoicing and other payment methods.
 

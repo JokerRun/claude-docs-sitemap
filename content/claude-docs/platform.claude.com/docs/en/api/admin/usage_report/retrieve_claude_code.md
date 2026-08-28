@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/usage_report/retrieve_claude_code
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 1fbc5c221415ba5cd1d8f5b252fe6515e67d945322055a09a2d4bf13165d4ff2
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 54b629bf7077b8ed15f9b84adf1fd5bd1fb1e6d0e4efa41b46a81611e8ae372f
 ---
 
 # Get Claude Code Usage Report
@@ -18,7 +18,7 @@ Enables organizations to analyze developer productivity and build custom dashboa
 
   UTC date in YYYY-MM-DD format. Returns metrics for this single day only.
 
-  pattern: ^\d{4}-\d{2}-\d{2}$
+  pattern: ^\d{4}-\d{2}-\d{2}$, format: date
 
 - `limit: optional number`
 
@@ -222,7 +222,7 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
             "amount": 186,
             "currency": "USD"
           },
-          "model": "claude-opus-4-8",
+          "model": "claude-opus-5",
           "tokens": {
             "cache_creation": 2340,
             "cache_read": 8790,

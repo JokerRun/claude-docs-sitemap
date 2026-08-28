@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/list
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 99146db49102c9a0f3ec8e14b63bc437d2cd7c93387383ed478e06074ebd962b
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 1391f1196886d3d8225200d1c056bfa46f672cba235a78391d6008c9e873ffe8
 ---
 
 # List External Keys
@@ -78,7 +78,7 @@ Results are ordered by creation time (newest first). Use the
 
       - `region: optional string or null`
 
-        AWS region. Derived from kms_arn if omitted.
+        AWS region. Derived from `kms_arn` if omitted.
 
       - `role_arn: optional string or null`
 
@@ -108,7 +108,7 @@ Results are ordered by creation time (newest first). Use the
 
       - `vault_uri: string`
 
-        Key Vault data-plane URI — https://<vault-name>.vault.azure.net or https://<hsm-name>.managedhsm.azure.net.
+        Key Vault data-plane URI — `https://{vault-name}.vault.azure.net` or `https://{hsm-name}.managedhsm.azure.net`.
 
       - `client_id: optional string or null`
 

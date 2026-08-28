@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rbac_roles/list
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: d73595a0a68dba87d4577d5d587fe40b4b2304e2d3b79a7d03f4fe8c942c08dc
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: a29bba3f8ca5cd204d95bfaf290c6eb330d9f0ada75e42542451dff8564b1f37
 ---
 
 # List RBAC Roles
@@ -11,7 +11,7 @@ sha256: d73595a0a68dba87d4577d5d587fe40b4b2304e2d3b79a7d03f4fe8c942c08dc
 
 List RBAC Roles in the organization.
 
-The RBAC Roles API is in beta and available to Claude Enterprise organizations only. Requests must send the `ce-user-management-2026-07-13` value in the `anthropic-beta` header.
+The RBAC Roles API is available to Claude Enterprise organizations only.
 
 ## Query parameters
 
@@ -26,14 +26,6 @@ The RBAC Roles API is in beta and available to Claude Enterprise organizations o
 - `page: optional string`
 
   Optionally set to the `next_page` token from the previous response.
-
-## Headers
-
-- `"anthropic-beta": optional array of string`
-
-  Optional header to specify the beta version(s) you want to use.
-
-  To use multiple betas, use a comma separated list like `beta1,beta2` or specify the header multiple times for each beta.
 
 ## Returns
 

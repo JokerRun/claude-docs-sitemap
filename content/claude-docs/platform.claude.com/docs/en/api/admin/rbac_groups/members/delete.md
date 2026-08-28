@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rbac_groups/members/delete
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 00bf3fcb5a1b4c2fc4fe77489421f5f6ccdc0beb3edd1148c0f6b874aa1b3ea2
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 8b74b0ed04f3b797800997efc1def6866f5db93696623a36f1f6a516bf22672d
 ---
 
 # Remove RBAC Group Member
@@ -11,7 +11,7 @@ sha256: 00bf3fcb5a1b4c2fc4fe77489421f5f6ccdc0beb3edd1148c0f6b874aa1b3ea2
 
 Remove a User from an RBAC Group. Membership of groups provisioned by an identity provider (source type `"scim"`) cannot be modified via the API.
 
-The RBAC Groups API is in beta and available to Claude Enterprise organizations only. Requests must send the `ce-user-management-2026-07-13` value in the `anthropic-beta` header.
+The RBAC Groups API is available to Claude Enterprise organizations only.
 
 ## Path parameters
 
@@ -22,14 +22,6 @@ The RBAC Groups API is in beta and available to Claude Enterprise organizations 
 - `user_id: string`
 
   ID of the User.
-
-## Headers
-
-- `"anthropic-beta": optional array of string`
-
-  Optional header to specify the beta version(s) you want to use.
-
-  To use multiple betas, use a comma separated list like `beta1,beta2` or specify the header multiple times for each beta.
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/service_accounts/create
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: dd0fcf1fdd4f78ed8c7a3f46e3221b20cc8c31db6b2e4df749dc68c029db62c6
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: ae03a1efc6b4a4c1249805edf59214b04592b47ae339903de8bf98a4aabb171f
 ---
 
 # Create Service Account Workspace Member
@@ -61,7 +61,7 @@ Console session; Admin API keys are not accepted.
 
 - `implicit: boolean or null`
 
-  True when this is the implicit default-workspace membership every service account has when no explicit membership exists. Implicit memberships have role workspace_user and cannot be removed.
+  True when this is the implicit default-workspace membership every service account has when no explicit membership exists. Implicit memberships have role `workspace_user` and cannot be removed.
 
 - `service_account_id: string`
 

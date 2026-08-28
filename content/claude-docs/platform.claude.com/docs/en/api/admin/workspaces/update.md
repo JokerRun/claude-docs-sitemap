@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/update
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 3e4424cf68255afce3196f6fe393154b20918e02a8d46512ea2633f7989bc2ca
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: c0fa63038fbac3900bb3ad3a0d0d9b9fe648f632743bf52ef7a6490ca52e7ed2
 ---
 
 # Update Workspace
@@ -35,7 +35,7 @@ Update Workspace
 
   - `default_inference_geo: optional "global" or "us" or null`
 
-    Default inference geo applied when requests omit the parameter. Must be a member of allowed_inference_geos unless allowed_inference_geos is `"unrestricted"`.
+    Default inference geo applied when requests omit the parameter. Must be a member of `allowed_inference_geos` unless `allowed_inference_geos` is `"unrestricted"`.
 
     - `"global"`
 

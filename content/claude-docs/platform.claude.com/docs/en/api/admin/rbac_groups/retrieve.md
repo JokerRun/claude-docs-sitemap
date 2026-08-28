@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rbac_groups/retrieve
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: b27c7c058fd7b087ce217d64b3d6edffa5df692f6d1ba883421432656aae78b2
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: dd3a294a9f0e65b16a337401d302f924d89e274b230fbe7333683e52b4161c3c
 ---
 
 # Get RBAC Group
@@ -11,21 +11,13 @@ sha256: b27c7c058fd7b087ce217d64b3d6edffa5df692f6d1ba883421432656aae78b2
 
 Retrieve an RBAC Group by ID.
 
-The RBAC Groups API is in beta and available to Claude Enterprise organizations only. Requests must send the `ce-user-management-2026-07-13` value in the `anthropic-beta` header.
+The RBAC Groups API is available to Claude Enterprise organizations only.
 
 ## Path parameters
 
 - `group_id: string`
 
   ID of the RBAC Group.
-
-## Headers
-
-- `"anthropic-beta": optional array of string`
-
-  Optional header to specify the beta version(s) you want to use.
-
-  To use multiple betas, use a comma separated list like `beta1,beta2` or specify the header multiple times for each beta.
 
 ## Returns
 

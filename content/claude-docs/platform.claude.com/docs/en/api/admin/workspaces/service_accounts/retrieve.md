@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/service_accounts/retrieve
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 3f7ace3497fc796537198d909fa765765191bb40eba7c19fb470536e0b8e511a
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 425862729a66e4645a64d8cafb243288038b6e13d42128d9c5967fc3d1cb28bb
 ---
 
 # Get Service Account Workspace Member
@@ -44,7 +44,7 @@ account returns 404.
 
 - `implicit: boolean or null`
 
-  True when this is the implicit default-workspace membership every service account has when no explicit membership exists. Implicit memberships have role workspace_user and cannot be removed.
+  True when this is the implicit default-workspace membership every service account has when no explicit membership exists. Implicit memberships have role `workspace_user` and cannot be removed.
 
 - `service_account_id: string`
 

@@ -1,15 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/invites/list
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: cbc209e07def627d9241949eda42bc711146b4ab5a388075629a57e2f987c19c
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 496a4ca9479989414a64499b45398a66fc1539363d5e47395e00895a812ddfb6
 ---
 
 # List Invites
 
 **GET** `/v1/organizations/invites`
 
-For Claude Enterprise organizations, this endpoint's availability is in beta.
+List the organization's invites.
 
 ## Query parameters
 
@@ -39,7 +39,7 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
 
   Filter to items whose `role` equals one of the supplied values. Repeatable; values are OR'ed together.
 
-  Accepted values depend on the organization type: Console and API organizations accept `user`, `developer`, `billing`, `admin`, and `claude_code_user`; Claude Enterprise organizations (beta) accept `user`, `owner`, `primary_owner`, `membership_admin`, and `managed`.
+  Accepted values depend on the organization type: Console and API organizations accept `user`, `developer`, `billing`, `admin`, and `claude_code_user`; Claude Enterprise organizations accept `user`, `owner`, `primary_owner`, `membership_admin`, and `managed`.
 
 - `statuses: optional array of "accepted" or "expired" or "pending"`
 
@@ -83,7 +83,7 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
 
   - `rbac_group_ids: array of string`
 
-    RBAC group IDs recorded on the Invite (beta, Claude Enterprise organizations), to be assigned to the User when the Invite is accepted. `[]` when none.
+    RBAC group IDs recorded on the Invite (Claude Enterprise organizations), to be assigned to the User when the Invite is accepted. `[]` when none.
 
   - `role: "admin" or "billing" or "claude_code_user" or 6 more`
 

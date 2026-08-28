@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/java
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 0be9aa48f1ae8323f0fb48f4f8161aa43aacd71a04c33daef263b95d5c40de46
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 35d972b041ce3633aa1c703796c2fc9455af951bd865c0ce9371076c5a06b133
 ---
 
 ---
@@ -22,7 +22,7 @@ The Anthropic Java SDK provides convenient access to the Claude API from applica
 <Tabs>
   <Tab title="Gradle">
     ```kotlin
-    implementation("com.anthropic:anthropic-java:2.57.0")
+    implementation("com.anthropic:anthropic-java:2.58.0")
     ```
   </Tab>
 
@@ -31,7 +31,7 @@ The Anthropic Java SDK provides convenient access to the Claude API from applica
     <dependency>
         <groupId>com.anthropic</groupId>
         <artifactId>anthropic-java</artifactId>
-        <version>2.57.0</version>
+        <version>2.58.0</version>
     </dependency>
     ```
   </Tab>
@@ -106,7 +106,7 @@ AnthropicClient client = AnthropicOkHttpClient.builder()
   .build();
 ```
 
-For authentication options including Workload Identity Federation, see [Authentication](https://platform.claude.com/docs/en/manage-claude/authentication).
+For authentication options including Workload Identity Federation, see [Authentication](https://platform.claude.com/docs/en/manage-claude/authentication). If your API key is a [personal or service account key](https://platform.claude.com/docs/en/manage-claude/authentication#key-types) with access to multiple workspaces, set the workspace ID in the `anthropic-workspace-id` request header; [Select a workspace](https://platform.claude.com/docs/en/manage-claude/authentication#select-a-workspace) shows the per-request option for this SDK.
 
 ### Configuration options
 

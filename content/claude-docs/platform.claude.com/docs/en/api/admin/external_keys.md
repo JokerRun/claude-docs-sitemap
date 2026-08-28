@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: d0da831c5705e93044e5110cf658b4870c59d941ab4ddb03e820a9fc8aa28330
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 465a945a2009ac4ce42cbf2dfd47d59bb0667f18bd41b295cb358f14bac84356
 ---
 
 # External Keys
@@ -31,7 +31,7 @@ Create an external key config owned by the caller's organization.
 
     - `region: optional string or null`
 
-      AWS region. Derived from kms_arn if omitted.
+      AWS region. Derived from `kms_arn` if omitted.
 
     - `role_arn: optional string or null`
 
@@ -63,7 +63,7 @@ Create an external key config owned by the caller's organization.
 
     - `vault_uri: string`
 
-      Key Vault data-plane URI — https://<vault-name>.vault.azure.net or https://<hsm-name>.managedhsm.azure.net.
+      Key Vault data-plane URI — `https://{vault-name}.vault.azure.net` or `https://{hsm-name}.managedhsm.azure.net`.
 
     - `client_id: optional string or null`
 
@@ -129,7 +129,7 @@ Create an external key config owned by the caller's organization.
 
     - `region: optional string or null`
 
-      AWS region. Derived from kms_arn if omitted.
+      AWS region. Derived from `kms_arn` if omitted.
 
     - `role_arn: optional string or null`
 
@@ -159,7 +159,7 @@ Create an external key config owned by the caller's organization.
 
     - `vault_uri: string`
 
-      Key Vault data-plane URI — https://<vault-name>.vault.azure.net or https://<hsm-name>.managedhsm.azure.net.
+      Key Vault data-plane URI — `https://{vault-name}.vault.azure.net` or `https://{hsm-name}.managedhsm.azure.net`.
 
     - `client_id: optional string or null`
 
@@ -283,7 +283,7 @@ Results are ordered by creation time (newest first). Use the
 
       - `region: optional string or null`
 
-        AWS region. Derived from kms_arn if omitted.
+        AWS region. Derived from `kms_arn` if omitted.
 
       - `role_arn: optional string or null`
 
@@ -313,7 +313,7 @@ Results are ordered by creation time (newest first). Use the
 
       - `vault_uri: string`
 
-        Key Vault data-plane URI — https://<vault-name>.vault.azure.net or https://<hsm-name>.managedhsm.azure.net.
+        Key Vault data-plane URI — `https://{vault-name}.vault.azure.net` or `https://{hsm-name}.managedhsm.azure.net`.
 
       - `client_id: optional string or null`
 
@@ -430,7 +430,7 @@ Retrieve a single external key config in the caller's organization by ID.
 
     - `region: optional string or null`
 
-      AWS region. Derived from kms_arn if omitted.
+      AWS region. Derived from `kms_arn` if omitted.
 
     - `role_arn: optional string or null`
 
@@ -460,7 +460,7 @@ Retrieve a single external key config in the caller's organization by ID.
 
     - `vault_uri: string`
 
-      Key Vault data-plane URI — https://<vault-name>.vault.azure.net or https://<hsm-name>.managedhsm.azure.net.
+      Key Vault data-plane URI — `https://{vault-name}.vault.azure.net` or `https://{hsm-name}.managedhsm.azure.net`.
 
     - `client_id: optional string or null`
 
@@ -550,7 +550,7 @@ encrypted data requires the original key identity to decrypt.
 
     - `region: optional string or null`
 
-      AWS region. Derived from kms_arn if omitted.
+      AWS region. Derived from `kms_arn` if omitted.
 
     - `role_arn: optional string or null`
 
@@ -582,7 +582,7 @@ encrypted data requires the original key identity to decrypt.
 
     - `vault_uri: string`
 
-      Key Vault data-plane URI — https://<vault-name>.vault.azure.net or https://<hsm-name>.managedhsm.azure.net.
+      Key Vault data-plane URI — `https://{vault-name}.vault.azure.net` or `https://{hsm-name}.managedhsm.azure.net`.
 
     - `client_id: optional string or null`
 
@@ -638,7 +638,7 @@ encrypted data requires the original key identity to decrypt.
 
     - `region: optional string or null`
 
-      AWS region. Derived from kms_arn if omitted.
+      AWS region. Derived from `kms_arn` if omitted.
 
     - `role_arn: optional string or null`
 
@@ -668,7 +668,7 @@ encrypted data requires the original key identity to decrypt.
 
     - `vault_uri: string`
 
-      Key Vault data-plane URI — https://<vault-name>.vault.azure.net or https://<hsm-name>.managedhsm.azure.net.
+      Key Vault data-plane URI — `https://{vault-name}.vault.azure.net` or `https://{hsm-name}.managedhsm.azure.net`.
 
     - `client_id: optional string or null`
 
@@ -874,7 +874,7 @@ curl https://api.anthropic.com/v1/organizations/external_keys/$EXTERNAL_KEY_ID/v
 
       - `region: optional string or null`
 
-        AWS region. Derived from kms_arn if omitted.
+        AWS region. Derived from `kms_arn` if omitted.
 
       - `role_arn: optional string or null`
 
@@ -904,7 +904,7 @@ curl https://api.anthropic.com/v1/organizations/external_keys/$EXTERNAL_KEY_ID/v
 
       - `vault_uri: string`
 
-        Key Vault data-plane URI — https://<vault-name>.vault.azure.net or https://<hsm-name>.managedhsm.azure.net.
+        Key Vault data-plane URI — `https://{vault-name}.vault.azure.net` or `https://{hsm-name}.managedhsm.azure.net`.
 
       - `client_id: optional string or null`
 
@@ -976,7 +976,7 @@ curl https://api.anthropic.com/v1/organizations/external_keys/$EXTERNAL_KEY_ID/v
 
       - `region: optional string or null`
 
-        AWS region. Derived from kms_arn if omitted.
+        AWS region. Derived from `kms_arn` if omitted.
 
       - `role_arn: optional string or null`
 
@@ -1006,7 +1006,7 @@ curl https://api.anthropic.com/v1/organizations/external_keys/$EXTERNAL_KEY_ID/v
 
       - `vault_uri: string`
 
-        Key Vault data-plane URI — https://<vault-name>.vault.azure.net or https://<hsm-name>.managedhsm.azure.net.
+        Key Vault data-plane URI — `https://{vault-name}.vault.azure.net` or `https://{hsm-name}.managedhsm.azure.net`.
 
       - `client_id: optional string or null`
 
@@ -1078,7 +1078,7 @@ curl https://api.anthropic.com/v1/organizations/external_keys/$EXTERNAL_KEY_ID/v
 
       - `region: optional string or null`
 
-        AWS region. Derived from kms_arn if omitted.
+        AWS region. Derived from `kms_arn` if omitted.
 
       - `role_arn: optional string or null`
 
@@ -1108,7 +1108,7 @@ curl https://api.anthropic.com/v1/organizations/external_keys/$EXTERNAL_KEY_ID/v
 
       - `vault_uri: string`
 
-        Key Vault data-plane URI — https://<vault-name>.vault.azure.net or https://<hsm-name>.managedhsm.azure.net.
+        Key Vault data-plane URI — `https://{vault-name}.vault.azure.net` or `https://{hsm-name}.managedhsm.azure.net`.
 
       - `client_id: optional string or null`
 
@@ -1180,7 +1180,7 @@ curl https://api.anthropic.com/v1/organizations/external_keys/$EXTERNAL_KEY_ID/v
 
       - `region: optional string or null`
 
-        AWS region. Derived from kms_arn if omitted.
+        AWS region. Derived from `kms_arn` if omitted.
 
       - `role_arn: optional string or null`
 
@@ -1210,7 +1210,7 @@ curl https://api.anthropic.com/v1/organizations/external_keys/$EXTERNAL_KEY_ID/v
 
       - `vault_uri: string`
 
-        Key Vault data-plane URI — https://<vault-name>.vault.azure.net or https://<hsm-name>.managedhsm.azure.net.
+        Key Vault data-plane URI — `https://{vault-name}.vault.azure.net` or `https://{hsm-name}.managedhsm.azure.net`.
 
       - `client_id: optional string or null`
 

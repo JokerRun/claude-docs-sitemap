@@ -1,15 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/list
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 30434fa106139626f97a809317b8efa59ad3e7cdb235ebc4e34241c1db5479d3
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 1dc355493c06842820fb2723a8b30d41f652aa18cea9c7fbb77e775cf4d0ee37
 ---
 
 # List Users
 
 **GET** `/v1/organizations/users`
 
-For Claude Enterprise organizations, this endpoint's availability is in beta.
+List the organization's members.
 
 ## Query parameters
 
@@ -39,7 +39,7 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
 
   Filter to items whose `role` equals one of the supplied values. Repeatable; values are OR'ed together.
 
-  Accepted values depend on the organization type: Console and API organizations accept `user`, `developer`, `billing`, `admin`, and `claude_code_user`; Claude Enterprise organizations (beta) accept `user`, `owner`, `primary_owner`, `membership_admin`, and `managed`.
+  Accepted values depend on the organization type: Console and API organizations accept `user`, `developer`, `billing`, `admin`, and `claude_code_user`; Claude Enterprise organizations accept `user`, `owner`, `primary_owner`, `membership_admin`, and `managed`.
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/retrieve
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 66187f3e296cafd91f515ae1734fa5fbcc07c1a627417eaee54fc6776ab69a06
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 842317b76fbdaadd1f24b1972d45eb6f4f5243f719bd733019a0248f60c5c267
 ---
 
 # Get External Key
@@ -69,7 +69,7 @@ Retrieve a single external key config in the caller's organization by ID.
 
     - `region: optional string or null`
 
-      AWS region. Derived from kms_arn if omitted.
+      AWS region. Derived from `kms_arn` if omitted.
 
     - `role_arn: optional string or null`
 
@@ -99,7 +99,7 @@ Retrieve a single external key config in the caller's organization by ID.
 
     - `vault_uri: string`
 
-      Key Vault data-plane URI — https://<vault-name>.vault.azure.net or https://<hsm-name>.managedhsm.azure.net.
+      Key Vault data-plane URI — `https://{vault-name}.vault.azure.net` or `https://{hsm-name}.managedhsm.azure.net`.
 
     - `client_id: optional string or null`
 

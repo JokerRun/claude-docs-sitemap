@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 20dd2460436d109b7cdcfcec8f4ddc8775ff274af61b81774dfc871f5e36435a
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: a87505069c2b387e6dd5e5b7aa5739b6bc6775654d7b66995573bde962e7ffb1
 ---
 
 # Users
@@ -11,7 +11,7 @@ sha256: 20dd2460436d109b7cdcfcec8f4ddc8775ff274af61b81774dfc871f5e36435a
 
 **GET** `/v1/organizations/users/{user_id}`
 
-For Claude Enterprise organizations, this endpoint's availability is in beta.
+Retrieve a member of the organization by user ID.
 
 ### Path parameters
 
@@ -96,7 +96,7 @@ curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
 
 **GET** `/v1/organizations/users`
 
-For Claude Enterprise organizations, this endpoint's availability is in beta.
+List the organization's members.
 
 ### Query parameters
 
@@ -126,7 +126,7 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
 
   Filter to items whose `role` equals one of the supplied values. Repeatable; values are OR'ed together.
 
-  Accepted values depend on the organization type: Console and API organizations accept `user`, `developer`, `billing`, `admin`, and `claude_code_user`; Claude Enterprise organizations (beta) accept `user`, `owner`, `primary_owner`, `membership_admin`, and `managed`.
+  Accepted values depend on the organization type: Console and API organizations accept `user`, `developer`, `billing`, `admin`, and `claude_code_user`; Claude Enterprise organizations accept `user`, `owner`, `primary_owner`, `membership_admin`, and `managed`.
 
 ### Returns
 
@@ -224,7 +224,7 @@ curl https://api.anthropic.com/v1/organizations/users \
 
 **POST** `/v1/organizations/users/{user_id}`
 
-For Claude Enterprise organizations, this endpoint's availability is in beta.
+Update a member's organization role.
 
 ### Path parameters
 
@@ -238,7 +238,7 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
 
   New role for the User.
 
-  The accepted values depend on the organization type. Console and API organizations accept `user`, `developer`, `billing`, and `claude_code_user`; `admin` cannot be assigned through the API. Claude Enterprise organizations (beta) accept `user` and `managed`.
+  The accepted values depend on the organization type. Console and API organizations accept `user`, `developer`, `billing`, and `claude_code_user`; `admin` cannot be assigned through the API. Claude Enterprise organizations accept `user` and `managed`.
 
   - `"billing"`
 
@@ -331,7 +331,7 @@ curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
 
 **DELETE** `/v1/organizations/users/{user_id}`
 
-For Claude Enterprise organizations, this endpoint's availability is in beta.
+Remove a member from the organization.
 
 ### Path parameters
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/php
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: 8c991e794cf532ef0068bb5cf6309def94575c52bb6793934dc95bd6e263b501
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: d9701cb641b935a6a41debfc4d7a714553dcd2e1172c22f14c63360ae2170ae7
 ---
 
 ---
@@ -50,7 +50,7 @@ $textBlock = array_find($message->content, static fn ($block): bool => $block->t
 echo $textBlock->text;
 ```
 
-For authentication options including Workload Identity Federation, see [Authentication](https://platform.claude.com/docs/en/manage-claude/authentication).
+For authentication options including Workload Identity Federation, see [Authentication](https://platform.claude.com/docs/en/manage-claude/authentication). If your API key is a [personal or service account key](https://platform.claude.com/docs/en/manage-claude/authentication#key-types) with access to multiple workspaces, set the workspace ID in the `anthropic-workspace-id` request header; [Select a workspace](https://platform.claude.com/docs/en/manage-claude/authentication#select-a-workspace) shows the per-request option for this SDK.
 
 ## Value objects
 

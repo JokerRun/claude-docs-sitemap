@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/prompt-caching
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 6f5a50e900949a520ad187e4bcd16710d9f8bdc7568e5d0458717b431bc28bf5
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 8f1d29d0ab8b45651d8d3ae38e0520a10a3bb5bf05c3f94c7a433bfa7e772deb
 ---
 
 > ## Documentation Index
@@ -142,10 +142,11 @@ If you enable one mid-session, Claude Code changes the tool set at most once in 
 
 #### When plugin changes apply
 
-Claude Code applies a plugin change when you run [`/reload-plugins`](/docs/en/discover-plugins#apply-plugin-changes-without-restarting) or start a new session. You pay the cost, whether appended announcements or a full re-read, on the first turn after the change applies, not when you run `/plugin enable` or `/plugin disable`. Claude Code can also apply a change on its own in two cases:
+Claude Code applies a plugin change when you run [`/reload-plugins`](/docs/en/discover-plugins#apply-plugin-changes-without-restarting) or start a new session. You pay the cost, whether appended announcements or a full re-read, on the first turn after the change applies, not when you run `/plugin enable` or `/plugin disable`. Claude Code can also apply a change on its own in three cases:
 
 * For a plugin with a `command` source, Claude Code [can reload the plugin itself](/docs/en/plugin-marketplaces#when-claude-code-re-runs-the-command).
 * When you [install a plugin from the `/plugin` interface](/docs/en/discover-plugins#install-plugins), Claude Code can activate it during the install. Claude Code tells you in the install summary whether it did or whether to run `/reload-plugins`.
+* When you [move the session with `/cd`](/docs/en/permissions#move-the-session-to-another-directory) on v2.1.246 or later, Claude Code applies the plugins the new directory's settings enable as part of the move, without the full re-read warning that holds a `/reload-plugins`.
 
 When you run `/reload-plugins` and the reload would trigger a full re-read, Claude Code shows a warning and doesn't apply the reload. Rerun it with `--force` to apply the reload anyway.
 
@@ -267,7 +268,9 @@ When more than one control applies, Claude Code takes the first match in this or
 
 Set `FORCE_PROMPT_CACHING_5M=1` when you're debugging cache behavior, comparing the two TTLs, or overriding a longer TTL set in [managed settings](/docs/en/managed-settings).
 
-The one-hour TTL isn't available through the [Claude apps gateway](/docs/en/claude-apps-gateway#availability-and-limitations). On Amazon Bedrock, prompt caching support, minimum cacheable prefix length, and one-hour TTL availability all vary by model. If cache token counts stay at zero, check [supported models, regions, and limits](https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-caching.html#prompt-caching-models) in the Amazon Bedrock documentation.
+To confirm which TTL your main conversation's cache writes used, run `claude -p "hello" --output-format json` and read `usage.cache_creation` in the result. Claude Code reports one-hour cache writes under `ephemeral_1h_input_tokens` and five-minute cache writes under `ephemeral_5m_input_tokens`.
+
+Through an LLM gateway you set with `ANTHROPIC_BASE_URL`, part of the one-hour request travels in the `anthropic-beta` header, so configure the gateway to [forward that header unchanged](/docs/en/llm-gateway-protocol#request-headers). The one-hour TTL isn't available through the [Claude apps gateway](/docs/en/claude-apps-gateway#availability-and-limitations). On Amazon Bedrock, prompt caching support, minimum cacheable prefix length, and one-hour TTL availability all vary by model. If cache token counts stay at zero, check [supported models, regions, and limits](https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-caching.html#prompt-caching-models) in the Amazon Bedrock documentation.
 
 ## Cache scope
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/service_accounts/workspaces/create
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 50d139aad5db9058d027cbda32948651c90f72426c3679ecc935207d3416a74b
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: e81821f25d4e21a00487fafdda86023556981520ac25883b1d985cfb16d304fe
 ---
 
 # Add Workspace To Service Account
@@ -59,7 +59,7 @@ are not accepted.
 
 - `implicit: boolean or null`
 
-  True when this is the implicit default-workspace membership every service account has when no explicit membership exists. Implicit memberships have role workspace_user and cannot be removed.
+  True when this is the implicit default-workspace membership every service account has when no explicit membership exists. Implicit memberships have role `workspace_user` and cannot be removed.
 
 - `service_account_id: string`
 

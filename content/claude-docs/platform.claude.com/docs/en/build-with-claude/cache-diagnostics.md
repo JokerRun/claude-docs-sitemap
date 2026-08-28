@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: bb15ba8e602efefc78c76e3e1de2b7ccac2419afeaf772d8ef757dd1d7a00df9
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 6c70c63566162d11cbe51abb10c94225e0c090b1f2efd1c0589dc9ff16159dd2
 ---
 
 ---
@@ -1088,7 +1088,7 @@ This matrix applies to turns where you passed a real `previous_message_id`. On t
 * **Beta:** Field names and semantics may change while this feature is in beta.
 * **Claude API only:** Not available on Amazon Bedrock or Google Cloud.
 * **Limited retention:** Fingerprints for `previous_message_id` lookup expire after a short period. Run diagnostic comparisons between closely spaced requests.
-* **Same workspace:** The previous request must have been made with an API key from the same organization and workspace. To check, compare the `anthropic-workspace-id` [response header](https://platform.claude.com/docs/en/api/overview#response-headers) on the two responses.
+* **Same workspace:** The previous request must have run in the same organization and workspace. To check, compare the `anthropic-workspace-id` [response header](https://platform.claude.com/docs/en/api/overview#response-headers) on the two responses.
 * **Comparison horizon:** For very long conversations where the only change is deep in the message list, the response may be `unavailable` rather than a precise location.
 * **Best-effort:** Diagnostics never blocks or fails your request. If diagnostic information is not available, the response returns `unavailable`, or `cache_miss_reason: null` when the comparison was still running.
 

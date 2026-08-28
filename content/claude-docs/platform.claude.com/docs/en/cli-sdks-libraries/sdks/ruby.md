@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/ruby
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 3660091b35e27e6280cbb83a4443da1ed37b187ccd0ec4daf94df8e56aa59264
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 76a5796f54cd8e616759575d4edce210da26744280c05d3eb4823b52249a96b9
 ---
 
 ---
@@ -47,7 +47,7 @@ message.content.each do |block|
 end
 ```
 
-For authentication options including Workload Identity Federation, see [Authentication](https://platform.claude.com/docs/en/manage-claude/authentication).
+For authentication options including Workload Identity Federation, see [Authentication](https://platform.claude.com/docs/en/manage-claude/authentication). If your API key is a [personal or service account key](https://platform.claude.com/docs/en/manage-claude/authentication#key-types) with access to multiple workspaces, set the workspace ID in the `anthropic-workspace-id` request header; [Select a workspace](https://platform.claude.com/docs/en/manage-claude/authentication#select-a-workspace) shows the per-request option for this SDK.
 
 ## Streaming
 

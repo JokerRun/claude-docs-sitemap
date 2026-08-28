@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/typescript
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 1b8d5bf00ad725b133808eb2430da96d909f43d9598e4feb55806abe76fa8bdc
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: ed637c375c2ebbb06e437a4827933d0d26172ea954c64021b9c11dc8321ba432
 ---
 
 ---
@@ -62,7 +62,7 @@ for (const block of message.content) {
 }
 ```
 
-For authentication options including Workload Identity Federation, see [Authentication](https://platform.claude.com/docs/en/manage-claude/authentication).
+For authentication options including Workload Identity Federation, see [Authentication](https://platform.claude.com/docs/en/manage-claude/authentication). If your API key is a [personal or service account key](https://platform.claude.com/docs/en/manage-claude/authentication#key-types) with access to multiple workspaces, set the workspace ID in the `anthropic-workspace-id` request header; [Select a workspace](https://platform.claude.com/docs/en/manage-claude/authentication#select-a-workspace) shows the per-request option for this SDK.
 
 ## Request and response types
 

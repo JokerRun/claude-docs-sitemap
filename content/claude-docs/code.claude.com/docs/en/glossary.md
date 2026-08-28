@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 8fc70bde63878b28e2ec198e653b0a50c57dd637c8aed382c519d7eac9e9f315
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 7fee0a00f895edf86168efc269325714c60aae8ec808caa5f5250ce8b5f8fffe
 ---
 
 > ## Documentation Index
@@ -289,7 +289,7 @@ Learn more: [Extend Claude with skills](/docs/en/skills)
 
 ### Subagent
 
-A specialized AI assistant that runs in its own context window with a custom system prompt, specific tool access, and independent permissions. It works on a delegated task and returns a summary to the main conversation. Use subagents to keep large explorations out of your primary context or to run parallel research. Different from [agent teams](#agent-teams), where each agent is a full independent session you can talk to directly.
+A specialized AI assistant that runs in its own context window with a custom system prompt, specific tool access, and independent permissions. It works on a delegated task and returns a summary to the main conversation. Use subagents to keep large explorations out of your primary context or to run parallel research. A subagent stays inside the session that spawned it. To pass findings between separate sessions you run yourself, use [cross-session messaging](/docs/en/cross-session-messaging).
 
 Built-in subagents include Explore, Plan, and general-purpose.
 

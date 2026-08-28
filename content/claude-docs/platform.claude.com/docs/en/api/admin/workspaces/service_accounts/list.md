@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/service_accounts/list
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 75f4adeadecdff8fc38b429e5ceb97640ddcb7396def86fb3d9e7fb04a4398ed
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 3a818852f352551df5a9152ef9cafe857a0fd9c6fe90590653ddb583ff5910c7
 ---
 
 # List Service Account Workspace Members
@@ -54,7 +54,7 @@ omitted from the results.
 
   - `implicit: boolean or null`
 
-    True when this is the implicit default-workspace membership every service account has when no explicit membership exists. Implicit memberships have role workspace_user and cannot be removed.
+    True when this is the implicit default-workspace membership every service account has when no explicit membership exists. Implicit memberships have role `workspace_user` and cannot be removed.
 
   - `service_account_id: string`
 

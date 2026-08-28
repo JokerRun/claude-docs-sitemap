@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-directory
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 086900d343d347daf4ef527b68cedff24b550e9f4109a0bad76fce7670db8a9d
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: e430a95a7b98260d47af6a3d07c35e3ebedfa65db745e07ecfa0152baf0384f8
 ---
 
 > ## Documentation Index
@@ -648,7 +648,7 @@ type: reference
           oneLiner: 'Custom system-prompt sections that adjust how Claude works',
           when: 'Applied at session start when selected via the outputStyle setting',
           description: [<>Each markdown file defines an output style: a section appended to the system prompt that, by default, also drops the built-in software-engineering task instructions. Use this to adapt Claude Code for uses beyond coding, or to add teaching or review modes.</>, <>Select a built-in or custom style with <C>/config</C> or the <C>outputStyle</C> key in settings. Styles here are available in every project; project-level styles with the same name take precedence.</>],
-          tips: ['Built-in styles Explanatory and Learning are included with Claude Code; custom styles go here', <>Set <C>keep-coding-instructions: true</C> in frontmatter to keep the default task instructions alongside your additions</>, 'Changes take effect on the next session since the system prompt is fixed at startup for caching'],
+          tips: ['Built-in styles Default, Proactive, Concise, Explanatory, and Learning are included with Claude Code; custom styles go here', <>Set <C>keep-coding-instructions: true</C> in frontmatter to keep the default task instructions alongside your additions</>, 'Changes take effect on the next session since the system prompt is fixed at startup for caching'],
           docsLink: '/en/output-styles',
           children: [{
             id: 'output-style-example',

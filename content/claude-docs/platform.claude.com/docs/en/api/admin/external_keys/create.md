@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/create
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 501c65e5fa66106cbb3250d873fae508a1c79deb736a01bf8d2ca8ea744f50b8
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 962b59fcddc9154a4df80bd4f2df1eb503c48be28bf5ac8c1288ad0347b26250
 ---
 
 # Create External Key
@@ -29,7 +29,7 @@ Create an external key config owned by the caller's organization.
 
     - `region: optional string or null`
 
-      AWS region. Derived from kms_arn if omitted.
+      AWS region. Derived from `kms_arn` if omitted.
 
     - `role_arn: optional string or null`
 
@@ -61,7 +61,7 @@ Create an external key config owned by the caller's organization.
 
     - `vault_uri: string`
 
-      Key Vault data-plane URI — https://<vault-name>.vault.azure.net or https://<hsm-name>.managedhsm.azure.net.
+      Key Vault data-plane URI — `https://{vault-name}.vault.azure.net` or `https://{hsm-name}.managedhsm.azure.net`.
 
     - `client_id: optional string or null`
 
@@ -127,7 +127,7 @@ Create an external key config owned by the caller's organization.
 
     - `region: optional string or null`
 
-      AWS region. Derived from kms_arn if omitted.
+      AWS region. Derived from `kms_arn` if omitted.
 
     - `role_arn: optional string or null`
 
@@ -157,7 +157,7 @@ Create an external key config owned by the caller's organization.
 
     - `vault_uri: string`
 
-      Key Vault data-plane URI — https://<vault-name>.vault.azure.net or https://<hsm-name>.managedhsm.azure.net.
+      Key Vault data-plane URI — `https://{vault-name}.vault.azure.net` or `https://{hsm-name}.managedhsm.azure.net`.
 
     - `client_id: optional string or null`
 

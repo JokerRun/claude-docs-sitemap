@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-platform-on-aws
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 3eadcc9650ae336d73006b7653a6b6661aec471a16b7c4fd3bc293c69a0c6ab8
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 7a1d2fbefa45f12a5327368d03b7b47240ff9d1cd9483951a2fc952965a029b2
 ---
 
 > ## Documentation Index
@@ -195,7 +195,9 @@ export const Experiment = ({flag, treatment, children}) => {
 
 <Experiment flag="docs-contact-sales-cta" treatment={<ContactSalesCard surface="claude_platform_on_aws" />} />
 
-Claude Platform on AWS is the Anthropic-operated Claude API with AWS authentication, IAM access control, and AWS Marketplace billing. Requests reach Anthropic's API directly, so you get the same models and API features as the [Claude API](https://platform.claude.com/docs) on the same release schedule. Client-side features that Claude Code turns on through Anthropic's feature-flag service, such as [`/loop` self-pacing](/docs/en/scheduled-tasks#let-claude-choose-the-interval), are off by default, and the [advisor tool](/docs/en/advisor) is not available. See the [feature availability matrix](/docs/en/feature-availability#summary-by-provider) for the full list. You authenticate with AWS credentials or a workspace API key, and you pay through AWS Marketplace.
+Claude Platform on AWS is the Anthropic-operated Claude API with AWS authentication, IAM access control, and AWS Marketplace billing. Requests reach Anthropic's API directly, so you get the same models and API features as the [Claude API](https://platform.claude.com/docs) on the same release schedule. You authenticate with AWS credentials or a workspace API key, and you pay through AWS Marketplace.
+
+Client-side features that Claude Code turns on through Anthropic's feature-flag service are off by default, and the [advisor tool](/docs/en/advisor) isn't available. See the [feature availability matrix](/docs/en/feature-availability#summary-by-provider) for the full list.
 
 Use this guide to point Claude Code at a workspace you've already provisioned through Claude Platform on AWS. For the AWS subscription and workspace setup that comes before this, see the [Claude Platform on AWS documentation](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws).
 

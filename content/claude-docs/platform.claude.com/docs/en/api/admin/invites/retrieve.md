@@ -1,15 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/invites/retrieve
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 38a05105ad408ed61502b84ab14b588af16956e6b2004b1c6a0252d08a05b2ab
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 06460848a15187835966262bc4786099d14941c773d0e5185d30b58050234fd2
 ---
 
 # Get Invite
 
 **GET** `/v1/organizations/invites/{invite_id}`
 
-For Claude Enterprise organizations, this endpoint's availability is in beta.
+Retrieve an invite by ID.
 
 ## Path parameters
 
@@ -49,7 +49,7 @@ For Claude Enterprise organizations, this endpoint's availability is in beta.
 
   - `rbac_group_ids: array of string`
 
-    RBAC group IDs recorded on the Invite (beta, Claude Enterprise organizations), to be assigned to the User when the Invite is accepted. `[]` when none.
+    RBAC group IDs recorded on the Invite (Claude Enterprise organizations), to be assigned to the User when the Invite is accepted. `[]` when none.
 
   - `role: "admin" or "billing" or "claude_code_user" or 6 more`
 

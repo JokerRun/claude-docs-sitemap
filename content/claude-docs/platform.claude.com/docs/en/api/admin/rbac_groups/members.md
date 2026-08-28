@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rbac_groups/members
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: e0f8348d1f7cf72c63eaa4dfcc100bac0eb5c095812ce8d0a6211a30aea4bb39
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: bb01a6aa552fb46a494d628202d2f4d4eab5993e883c40f735a7d56f8ed66e05
 ---
 
 # Members
@@ -13,7 +13,7 @@ sha256: e0f8348d1f7cf72c63eaa4dfcc100bac0eb5c095812ce8d0a6211a30aea4bb39
 
 List members of an RBAC Group.
 
-The RBAC Groups API is in beta and available to Claude Enterprise organizations only. Requests must send the `ce-user-management-2026-07-13` value in the `anthropic-beta` header.
+The RBAC Groups API is available to Claude Enterprise organizations only.
 
 ### Path parameters
 
@@ -34,14 +34,6 @@ The RBAC Groups API is in beta and available to Claude Enterprise organizations 
 - `page: optional string`
 
   Optionally set to the `next_page` token from the previous response.
-
-### Headers
-
-- `"anthropic-beta": optional array of string`
-
-  Optional header to specify the beta version(s) you want to use.
-
-  To use multiple betas, use a comma separated list like `beta1,beta2` or specify the header multiple times for each beta.
 
 ### Returns
 
@@ -113,21 +105,13 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID/members \
 
 Add a User to an RBAC Group. Membership of groups provisioned by an identity provider (source type `"scim"`) cannot be modified via the API.
 
-The RBAC Groups API is in beta and available to Claude Enterprise organizations only. Requests must send the `ce-user-management-2026-07-13` value in the `anthropic-beta` header.
+The RBAC Groups API is available to Claude Enterprise organizations only.
 
 ### Path parameters
 
 - `group_id: string`
 
   ID of the RBAC Group.
-
-### Headers
-
-- `"anthropic-beta": optional array of string`
-
-  Optional header to specify the beta version(s) you want to use.
-
-  To use multiple betas, use a comma separated list like `beta1,beta2` or specify the header multiple times for each beta.
 
 ### Body parameters
 
@@ -195,7 +179,7 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID/members \
 
 Remove a User from an RBAC Group. Membership of groups provisioned by an identity provider (source type `"scim"`) cannot be modified via the API.
 
-The RBAC Groups API is in beta and available to Claude Enterprise organizations only. Requests must send the `ce-user-management-2026-07-13` value in the `anthropic-beta` header.
+The RBAC Groups API is available to Claude Enterprise organizations only.
 
 ### Path parameters
 
@@ -206,14 +190,6 @@ The RBAC Groups API is in beta and available to Claude Enterprise organizations 
 - `user_id: string`
 
   ID of the User.
-
-### Headers
-
-- `"anthropic-beta": optional array of string`
-
-  Optional header to specify the beta version(s) you want to use.
-
-  To use multiple betas, use a comma separated list like `beta1,beta2` or specify the header multiple times for each beta.
 
 ### Returns
 

@@ -1,15 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/delete
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: c3c935dc334aa6822f5034985266ef5dd43db118ad06dd81334a0af3de2f74d4
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: acdcc79e1d4507ec838128510b5026cff953aac68a73f10c7865673b4d341e2e
 ---
 
 # Remove User
 
 **DELETE** `/v1/organizations/users/{user_id}`
 
-For Claude Enterprise organizations, this endpoint's availability is in beta.
+Remove a member from the organization.
 
 ## Path parameters
 

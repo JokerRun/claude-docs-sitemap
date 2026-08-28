@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/python
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 7c69ef527b537c10383043a773791e237b6b02898e7e74bbadad1bea7a1c3e67
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 18f6ef2fba520fe1082026f49ea34f826c8c863aea04fffecfda161542649b43
 ---
 
 ---
@@ -76,7 +76,7 @@ for block in message.content:
   Consider using [python-dotenv](https://pypi.org/project/python-dotenv/) to add `ANTHROPIC_API_KEY="my-anthropic-api-key"` to your `.env` file so that your API key isn't stored in source control.
 </Tip>
 
-For authentication options including Workload Identity Federation, see [Authentication](https://platform.claude.com/docs/en/manage-claude/authentication).
+For authentication options including Workload Identity Federation, see [Authentication](https://platform.claude.com/docs/en/manage-claude/authentication). If your API key is a [personal or service account key](https://platform.claude.com/docs/en/manage-claude/authentication#key-types) with access to multiple workspaces, set the workspace ID in the `anthropic-workspace-id` request header; [Select a workspace](https://platform.claude.com/docs/en/manage-claude/authentication#select-a-workspace) shows the per-request option for this SDK.
 
 ## Async usage
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/update
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 106569fd6d7c1d6af94d241befe0804e3e1bec1b369b0fc8dde52b783e53ec86
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 77696a6a9ccf40031c07c055b536082bc7506101bd64835ce7903562f2bb4031
 ---
 
 # Update External Key
@@ -51,7 +51,7 @@ encrypted data requires the original key identity to decrypt.
 
     - `region: optional string or null`
 
-      AWS region. Derived from kms_arn if omitted.
+      AWS region. Derived from `kms_arn` if omitted.
 
     - `role_arn: optional string or null`
 
@@ -83,7 +83,7 @@ encrypted data requires the original key identity to decrypt.
 
     - `vault_uri: string`
 
-      Key Vault data-plane URI — https://<vault-name>.vault.azure.net or https://<hsm-name>.managedhsm.azure.net.
+      Key Vault data-plane URI — `https://{vault-name}.vault.azure.net` or `https://{hsm-name}.managedhsm.azure.net`.
 
     - `client_id: optional string or null`
 
@@ -139,7 +139,7 @@ encrypted data requires the original key identity to decrypt.
 
     - `region: optional string or null`
 
-      AWS region. Derived from kms_arn if omitted.
+      AWS region. Derived from `kms_arn` if omitted.
 
     - `role_arn: optional string or null`
 
@@ -169,7 +169,7 @@ encrypted data requires the original key identity to decrypt.
 
     - `vault_uri: string`
 
-      Key Vault data-plane URI — https://<vault-name>.vault.azure.net or https://<hsm-name>.managedhsm.azure.net.
+      Key Vault data-plane URI — `https://{vault-name}.vault.azure.net` or `https://{hsm-name}.managedhsm.azure.net`.
 
     - `client_id: optional string or null`
 

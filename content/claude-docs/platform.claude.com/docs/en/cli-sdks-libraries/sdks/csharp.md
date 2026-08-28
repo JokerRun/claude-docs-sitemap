@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/csharp
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 244dcd65b8275d9a9390b638e0fd356fb587ad9c858281a4b5d1f85263e47a4c
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: f8c5e4dad7be4a5514e652dcc53545ced988cab98040d27f22b4386e99eccac2
 ---
 
 ---
@@ -71,7 +71,7 @@ foreach (var block in message.Content)
 }
 ```
 
-For authentication options including Workload Identity Federation, see [Authentication](https://platform.claude.com/docs/en/manage-claude/authentication).
+For authentication options including Workload Identity Federation, see [Authentication](https://platform.claude.com/docs/en/manage-claude/authentication). If your API key is a [personal or service account key](https://platform.claude.com/docs/en/manage-claude/authentication#key-types) with access to multiple workspaces, set the workspace ID in the `anthropic-workspace-id` request header; [Select a workspace](https://platform.claude.com/docs/en/manage-claude/authentication#select-a-workspace) shows the per-request option for this SDK.
 
 ## Client configuration
 

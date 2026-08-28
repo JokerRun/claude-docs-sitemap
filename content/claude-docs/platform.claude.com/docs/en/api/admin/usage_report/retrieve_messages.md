@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/usage_report/retrieve_messages
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 46d374a16967d7893c7e9e87f12dcc9fe38bf6a3e7a39d4cce16b3e7e5970a03
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 799e030c3d3851097c6ae1e906451187b2086ea7d1266c549866ed4accb7a0c7
 ---
 
 # Get Messages Usage Report
@@ -289,7 +289,7 @@ curl https://api.anthropic.com/v1/organizations/usage_report/messages \
           "cache_read_input_tokens": 200,
           "context_window": "0-200k",
           "inference_geo": "global",
-          "model": "claude-opus-4-6",
+          "model": "claude-opus-5",
           "output_tokens": 500,
           "server_tool_use": {
             "web_search_requests": 10

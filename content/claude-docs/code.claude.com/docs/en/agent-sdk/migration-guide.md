@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/migration-guide
-fetched_at: 2026-08-12T02:56:30.865670Z
-sha256: 3dd004c9084cd0dbc4abd8db3fa899a0538d319be848fd63db7ae960c3754795
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 6258fd815b7f78d7a9f9d0d3a3c46f89728616b4d5fcbe3ebca1ecf78762a94e
 ---
 
 > ## Documentation Index
@@ -219,7 +219,7 @@ To run isolated from filesystem settings, pass an empty array:
   const isolatedResult = query({
     prompt: "Hello",
     options: {
-      settingSources: [] // No filesystem settings loaded
+      settingSources: [] // Skip user, project, and local settings
     }
   });
 
@@ -240,7 +240,7 @@ To run isolated from filesystem settings, pass an empty array:
   async def main():
       async for message in query(
           prompt="Hello",
-          options=ClaudeAgentOptions(setting_sources=[]),  # No filesystem settings loaded
+          options=ClaudeAgentOptions(setting_sources=[]),  # Skip user, project, and local settings
       ):
           print(message)
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 4fe053821ad8faf8cd3f326e212d746b9aa31148af322b9e2ac0f4d225a134bc
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 78c2c08e671ebaff18b1f7e1fb8518fdc76fdd191271bcd7555e50d826da39fd
 ---
 
 ---
@@ -1120,7 +1120,7 @@ The code execution tool runs in a secure, containerized environment designed spe
 * **External connections:** No outbound network requests permitted
 * **Sandbox isolation:** Full isolation from host system and other containers
 * **File access:** Limited to workspace directory only
-* **Workspace scoping:** Like the [Files API](https://platform.claude.com/docs/en/build-with-claude/files), containers are scoped to the workspace of the API key
+* **Workspace scoping:** Like the [Files API](https://platform.claude.com/docs/en/build-with-claude/files), containers are scoped to the request's workspace
 * **Expiration:** Containers expire 30 days after creation
 
 ### Pre-installed libraries

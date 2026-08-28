@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/tool-search
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: e79c39a402a69fbda275937a2a1463afe821506474a67ed48c6f17fd68712ea3
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 7d57d9540d5b058e63981f5fc6046439e32dd6dbaf9a03472f32182dd3b9aef3
 ---
 
 > ## Documentation Index
@@ -24,9 +24,9 @@ This approach solves two challenges as tool libraries scale:
 
 Tool search is on by default, with the exceptions listed in [Configure tool search](#configure-tool-search).
 
-When it is active, tool definitions are withheld from the context window. The agent receives a summary of available tools and searches for relevant ones when the task requires a capability not already loaded. Up to five of the most relevant tools are loaded into context by default, where they stay available for subsequent turns. When the SDK compacts earlier messages to free space, it keeps the discovered tools loaded.
+When it is active, tool definitions are withheld from the context window. The agent receives a summary of available tools and searches for relevant ones when the task requires a capability not already loaded. Up to five of the most relevant tools are loaded into context by default, where they stay available for subsequent turns until the SDK compacts the messages where the agent discovered them. After that compaction, the agent searches for those tools again when it next needs them.
 
-Tool search adds one extra round-trip the first time Claude discovers a tool (the search step), but for large tool sets this is offset by smaller context on every turn. With fewer than \~10 tools whose definitions fit comfortably in the context window, loading everything upfront is typically faster.
+Tool search adds one extra round-trip each time Claude searches for tools, but for large tool sets this is offset by smaller context on every turn. With fewer than \~10 tools whose definitions fit comfortably in the context window, loading everything upfront is typically faster.
 
 For details on the underlying API mechanism, see [Tool search in the API](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool).
 

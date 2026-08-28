@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop-linux
-fetched_at: 2026-08-26T02:33:22.881887Z
-sha256: 3962791d633a2c52d38d506a47216ff28dbcceb8817b0451a55f6c957bd151c5
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 12d9a33f896c68a5827969b4ef5c27838d0be37e0672a95f0835d664d386b66a
 ---
 
 > ## Documentation Index
@@ -34,7 +34,7 @@ Cowork is the desktop tab for [Dispatch and longer agentic work](https://claude.
 * **QEMU and UEFI firmware**: `qemu-system-x86`, `ovmf`, and `virtiofsd` on x86\_64, or `qemu-system-arm`, `qemu-efi-aarch64`, and `virtiofsd` on arm64. `apt install claude-desktop` installs them by default as recommended packages. If you installed with `--no-install-recommends`, or your system is a minimal image that skips recommended packages, the Cowork tab reports "Cowork requires QEMU" and shows the `apt install` command to run. Ubuntu 22.04 has no `virtiofsd` package; the app uses a bundled copy there.
 * **Access to `/dev/kvm`**: add your user to the `kvm` group with `sudo usermod -aG kvm $USER`, then log out and back in. Some desktop environments grant the logged-in user access to `/dev/kvm` without the group, but Cowork also needs `/dev/vhost-vsock`, which only `kvm` group members can open. Join the group even if `/dev/kvm` already works for you.
 
-The app checks these requirements once at launch: restart it after installing packages, and log out and back in after joining the group. If your kernel has no module directory under `/lib/modules`, which is common on ChromeOS and in container-based Linux environments, the Cowork tab reports that the kernel doesn't include the virtualization support Cowork needs and that it can't be added manually.
+The app checks these requirements once at launch: restart it after installing packages, and log out and back in after joining the group. If `/dev/vhost-vsock` is missing and your running kernel has no module directory under `/lib/modules`, the Cowork tab reports that the kernel doesn't include the virtualization support Cowork needs and that it can't be added manually. This combination is common on ChromeOS and in container-based Linux environments.
 
 ## Install
 

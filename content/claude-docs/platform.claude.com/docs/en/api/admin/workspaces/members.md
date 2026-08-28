@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/members
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 4fc02f94dabdf3fcf16dec30e05173bef4b8f5eb749420e42a5927f6b1fa8f60
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: bbc0cdcf34e958a24851ede75ca718ee0ac0389a3f774b4152b1d3f4d0fb5052
 ---
 
 # Members
@@ -27,7 +27,7 @@ Create Workspace Member
 
 - `workspace_role: "workspace_admin" or "workspace_developer" or "workspace_restricted_developer" or "workspace_user"`
 
-  Role of the new Workspace Member. Cannot be "workspace_billing".
+  Role of the new Workspace Member. Cannot be `workspace_billing`.
 
   - `"workspace_admin"`
 

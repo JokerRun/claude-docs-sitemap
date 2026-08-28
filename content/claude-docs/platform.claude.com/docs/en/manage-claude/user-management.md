@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/user-management
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: aa38b1345ae7eaf4db12765bd80feeb0a65fbf938a8cd890394d1c3cb575842b
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: fb929d287e0e4194cb6c75014bbf199e50d59a31d7dcaaa6063b1eb86bd5e185
 ---
 
 ---
@@ -523,6 +523,8 @@ curl "https://api.anthropic.com/v1/organizations/rbac_roles/rbac_role_01CdEfGhIj
 2. For each group that carries sensitive roles, page through `GET /v1/organizations/rbac_groups/{group_id}/members` and compare the member emails against your identity provider's roster.
 
 3. Remove members who should no longer be in the group with `DELETE /v1/organizations/rbac_groups/{group_id}/members/{user_id}`. For `scim` groups, make the change in your identity provider instead.
+
+For a workflow that combines group membership with a temporary spend limit raise, see [Temporarily raise a member's spend limit during an incident](https://platform.claude.com/docs/en/manage-claude/spend-limits-api#temporarily-raise-a-members-spend-limit-during-an-incident) on the Spend Limits API page.
 
 ## Frequently asked questions
 

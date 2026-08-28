@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: ccfb44d9b7b388a9d6166214603f6429ec3ab6dca3a6591346b0d513706c2c64
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: d64f8d772d4cf3780a4af8aa0042e7f65b6dc8a5ceeb1ba70ea440946514fc48
 ---
 
 > ## Documentation Index
@@ -317,6 +317,8 @@ As you make changes to your plugin, run `/reload-plugins` to pick up the updates
   ```bash theme={null}
   claude --plugin-dir ./plugin-one --plugin-dir ./plugin-two
   ```
+
+  To test a plugin together with a plugin it depends on, see [Test a plugin and its dependency locally](/docs/en/plugin-dependencies#test-a-plugin-and-its-dependency-locally).
 </Tip>
 
 To test a plugin that is already packaged as a `.zip` archive and hosted at a URL, such as a CI build artifact, use `--plugin-url` instead. Claude Code fetches the archive at startup and loads it for that session only. If Claude Code can't fetch the archive, or the archive is invalid, it starts without the plugin and records a plugin load error that you can review in the `/plugin` manager's **Errors** tab. The same [trust considerations](/docs/en/discover-plugins#security) apply as for any plugin source: only point this flag at archives you control or trust.

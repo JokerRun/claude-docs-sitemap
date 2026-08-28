@@ -1,15 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/invites/delete
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: da38b2d5a71d25269ef15e8f592503a60a303a4b4f32f84aeba32142894137f9
+fetched_at: 2026-08-28T04:49:21.048236Z
+sha256: 34db94567024d0992e7cccd843d6565189bc3c273a33f441d917e438126e9b0a
 ---
 
 # Delete Invite
 
 **DELETE** `/v1/organizations/invites/{invite_id}`
 
-For Claude Enterprise organizations, this endpoint's availability is in beta.
+Delete a pending invite.
 
 ## Path parameters
 
