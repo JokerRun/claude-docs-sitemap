@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/service_accounts
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: 6243ac3080a220fc35a31fb15fa46c4cb52f6617b640e0c48f663dbcd13d25e0
+fetched_at: 2026-08-29T02:18:19.758736Z
+sha256: c4ef444381b08be9ff86f8453bc61ddc294744f0027914c7070cfc4866fef4d3
 ---
 
 # Service Accounts
@@ -561,9 +561,9 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/service
 
     - `"workspace_user"`
 
-### Service Account List Response
+### Service Account Update Response
 
-- `ServiceAccountListResponse object`
+- `ServiceAccountUpdateResponse object`
 
   - `created_by_actor_id: string or null`
 
@@ -599,9 +599,9 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/service
 
     - `"workspace_user"`
 
-### Service Account Update Response
+### Service Account List Response
 
-- `ServiceAccountUpdateResponse object`
+- `ServiceAccountListResponse object`
 
   - `created_by_actor_id: string or null`
 

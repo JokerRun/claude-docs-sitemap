@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/delete
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 952d98722e74a0b733d201de40dc9fe1851a399a0ebef22db05daf2d6b862ff5
+fetched_at: 2026-08-29T02:18:19.758736Z
+sha256: 513c51ad5f62dc137ffb0e97ea1ed951601e493b4abd05a5d1659c75585716f2
 ---
 
 # Delete Skill Version
@@ -21,9 +21,9 @@ Delete Skill Version
 
 - `version: string`
 
-  Version identifier for the skill.
+  Identifies the skill version by its version ID.
 
-  Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
+  Requests carrying the `skills-2025-10-02` beta header address versions by their Unix epoch timestamp instead (e.g., "1759178010641129").
 
 ## Headers
 
@@ -119,19 +119,20 @@ Delete Skill Version
 
 ## Returns
 
-- `id: string`
+- `BetaDeletedSkillVersion object`
 
-  Version identifier for the skill.
+  - `id: string`
 
-  Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
+    Unique identifier for this Skill Version. The id addresses the version in
+    paths and pins it in references.
 
-- `type: string`
+  - `type: "skill_version_deleted"`
 
-  Deleted object type.
+    Deleted object type.
 
-  For Skill Versions, this is always `"skill_version_deleted"`.
+    For Skill Versions, this is always `"skill_version_deleted"`.
 
-  default: skill_version_deleted
+    default: skill_version_deleted
 
 ## Example
 
@@ -139,7 +140,6 @@ Delete Skill Version
 curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions/$VERSION \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: skills-2025-10-02' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
@@ -147,7 +147,7 @@ curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions/$VERSION \
 
 ```json
 {
-  "id": "1759178010641129",
-  "type": "type"
+  "id": "id",
+  "type": "skill_version_deleted"
 }
 ```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rate_limits
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: f12f607676e539193d6a2e3d4cd6b9e3b5ee10f9c5cf0023651c9d075b7aef50
+fetched_at: 2026-08-29T02:18:19.758736Z
+sha256: 84aeb42a4d69b0945b150776ae906a0577fcc92f5a713c6f733b56b237caf5f5
 ---
 
 # Rate Limits
@@ -17,9 +17,9 @@ Each entry corresponds to one rate-limit group (either a model family
 or an API-surface category such as the Files API or Message Batches)
 and contains the set of limiter values that apply to it.
 
-This endpoint currently returns every matching entry in a single page
-regardless of `limit`; follow `next_page` so that clients keep working
-when pagination is enabled.
+When `limit` is omitted, every matching entry is returned in a single
+page; when `limit` truncates the result, follow `next_page` to fetch
+the remaining entries.
 
 ### Query parameters
 
@@ -43,7 +43,7 @@ when pagination is enabled.
 
   Maximum number of items to return per page. Ranges from `1` to `1000`.
 
-  Accepted for request-shape compatibility and currently ignored: every entry is returned in a single page.
+  When omitted, every remaining entry is returned in a single page and `next_page` is `null`.
 
   maximum: 1000, minimum: 1
 
@@ -105,7 +105,7 @@ when pagination is enabled.
 
 - `next_page: string or null`
 
-  Token to provide in as `page` in the subsequent request to retrieve the next page of data.
+  Opaque cursor for the next page of results, or `null` when no entries remain beyond this response.
 
 ### Example
 

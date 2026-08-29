@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/structured-outputs
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 1004fc774d446a75680f7ac565d22e481d127ebb12b618bc3e0a44e9896d9313
+fetched_at: 2026-08-29T02:18:19.758736Z
+sha256: df9f60d150aa8c108d94814a5288aaabe98a957432031b77385b3acf9186d6b0
 ---
 
 ---
@@ -1413,7 +1413,7 @@ This means Claude receives a simplified schema, but your code still enforces all
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
         -d '{
-          "model": "claude-opus-4-8",
+          "model": "claude-opus-5",
           "max_tokens": 4096,
           "messages": [
             {
@@ -1747,7 +1747,7 @@ This means Claude receives a simplified schema, but your code still enforces all
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
         -d '{
-          "model": "claude-opus-4-8",
+          "model": "claude-opus-5",
           "max_tokens": 1024,
           "messages": [
             {
@@ -2034,7 +2034,7 @@ This means Claude receives a simplified schema, but your code still enforces all
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
         -d '{
-          "model": "claude-opus-4-8",
+          "model": "claude-opus-5",
           "max_tokens": 1024,
           "messages": [
             {
@@ -2386,7 +2386,7 @@ When combined, Claude can call tools with guaranteed-valid parameters AND return
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5",
       "max_tokens": 1024,
       "messages": [
         {

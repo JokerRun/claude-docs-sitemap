@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/groups
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 6000fbeee10cbec827b0d74dd5746d476946783352d6241cb4dd428cbf573857
+fetched_at: 2026-08-29T02:18:19.758736Z
+sha256: b248693d991a06c31daef18dd6350f7d56aca221a51c78820a432bb746cee12c
 ---
 
 # Groups
@@ -179,9 +179,9 @@ curl https://api.anthropic.com/v1/compliance/groups/$GROUP_ID \
 
 ## Domain types
 
-### Group List Response
+### Group Retrieve Response
 
-- `GroupListResponse object`
+- `GroupRetrieveResponse object`
 
   Group information for compliance responses.
 
@@ -213,9 +213,9 @@ curl https://api.anthropic.com/v1/compliance/groups/$GROUP_ID \
 
     Group last-updated timestamp (ISO 8601)
 
-### Group Retrieve Response
+### Group List Response
 
-- `GroupRetrieveResponse object`
+- `GroupListResponse object`
 
   Group information for compliance responses.
 

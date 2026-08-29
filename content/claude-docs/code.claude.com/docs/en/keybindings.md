@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: 32000c35b6bbac304faf47f46608229da68daa8721081994da0aaad6e5e21e15
+fetched_at: 2026-08-29T02:18:19.758736Z
+sha256: fbf91da7e08c87145c300e1ee1d2c1f3bd7bbafc3f65b14d4ae58fad1367ffb4
 ---
 
 > ## Documentation Index
@@ -472,7 +472,7 @@ These shortcuts cannot be rebound:
 | Ctrl+C    | Hardcoded interrupt/cancel                                                                                                                                                                                                                         |
 | Ctrl+D    | Hardcoded exit                                                                                                                                                                                                                                     |
 | Ctrl+M    | Claude Code always receives it as Enter                                                                                                                                                                                                            |
-| Ctrl+\[   | Claude Code always receives it as Escape                                                                                                                                                                                                           |
+| Ctrl+\[   | Claude Code always receives it as Escape. In terminals that use the Kitty keyboard protocol, this requires v2.1.242 or later                                                                                                                       |
 | Ctrl+I    | Claude Code always receives it as Tab                                                                                                                                                                                                              |
 | Ctrl+H    | Sends the ASCII backspace byte. [How Claude Code reads it on Windows](/docs/en/terminal-config#fix-backspace-deleting-a-whole-word-on-windows) depends on your terminal and the [`CLAUDE_CODE_BS_AS_CTRL_BACKSPACE`](/docs/en/env-vars) environment variable |
 | Caps Lock | Not delivered to terminal applications                                                                                                                                                                                                             |

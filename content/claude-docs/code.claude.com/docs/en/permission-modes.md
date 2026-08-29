@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permission-modes
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: b7d22a1ae6e1b408e1abb76f45cf7dd7d702f5691e26da79789553c57ef650f4
+fetched_at: 2026-08-29T02:18:19.758736Z
+sha256: c424cb1b5189a003a16c61468103e9e9da71549abd16259ef7d4470a0c2a4498
 ---
 
 > ## Documentation Index
@@ -140,6 +140,10 @@ Each interface has its own control for switching permission modes during a sessi
     * `dontAsk`: never appears in the cycle; set it with `--permission-mode dontAsk`
 
     Enabled optional modes slot in after `plan`, with `bypassPermissions` first and `auto` last. If you have both enabled, you will cycle through `bypassPermissions` on the way to `auto`.
+
+    **From a Bash permission prompt**: in the Manual and `acceptEdits` permission modes, when [auto mode](#eliminate-prompts-with-auto-mode) is available, Claude Code adds **Yes, and switch to auto mode** to a Bash command's permission prompt. Select it to approve the command and switch the session to auto mode. [PowerShell tool](/docs/en/tools-reference#powershell-tool) prompts don't offer the option. Requires Claude Code v2.1.247 or later.
+
+    Claude Code doesn't add the option to prompts forced by one of your [`ask` rules](/docs/en/permissions#manage-permissions) or by a [hook](/docs/en/hooks#pretooluse-decision-control), because auto mode still shows you those prompts, so switching wouldn't remove them.
 
     **At startup**: pass the permission mode as a flag.
 
@@ -502,7 +506,9 @@ You can't enter `bypassPermissions` from a session that was started without it e
 claude --permission-mode bypassPermissions
 ```
 
-The `--dangerously-skip-permissions` flag is equivalent. Claude Code refuses `bypassPermissions` in a session you start with [`--restricted`](/docs/en/cli-reference#cli-flags). `--restricted` requires Claude Code v2.1.248 or later.
+The `--dangerously-skip-permissions` flag is equivalent.
+
+Claude Code refuses `bypassPermissions` in a session you start with [`--restricted`](/docs/en/cli-reference#cli-flags). `--restricted` requires Claude Code v2.1.248 or later.
 
 The first time you start an interactive session with this mode enabled, Claude Code shows a warning dialog asking you to accept responsibility for actions taken without permission checks. Claude Code saves your acceptance to user settings, so the dialog appears only once. If you decline, Claude Code exits. In [non-interactive mode](/docs/en/headless) no dialog is shown, and a [background session](/docs/en/agent-view) started with `--bg` is refused until you've accepted the dialog in an interactive session.
 
@@ -531,6 +537,8 @@ Writes to a small set of paths are never auto-approved, except in `bypassPermiss
 | `auto`                   | Routed to the classifier                                                                                                                                                                                                                                |
 | `dontAsk`                | Denied                                                                                                                                                                                                                                                  |
 | `bypassPermissions`      | Allowed                                                                                                                                                                                                                                                 |
+
+In a session started with [`--restricted`](/docs/en/cli-reference#cli-flags), which requires Claude Code v2.1.248 or later, the classifier can't approve protected-path writes.
 
 [`permissions.allow`](/docs/en/permissions#manage-permissions) rules in settings files do not pre-approve protected-path writes. The safety check runs before Claude Code evaluates allow rules from settings, so an entry such as `Edit(.claude/**)` in `~/.claude/settings.json` or `.claude/settings.json` does not change the per-mode outcome in the table above. In modes that prompt, the prompt for a `.claude/` write offers **Yes, and allow Claude to edit its own settings for this session**, which approves later `.claude/` writes in that session without prompting again.
 

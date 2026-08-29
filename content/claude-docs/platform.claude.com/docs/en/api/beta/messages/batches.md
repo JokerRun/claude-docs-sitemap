@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 41f57319e354681806aaf672c4e95403a23531ae9283b817ac7efa4a33de7719
+fetched_at: 2026-08-29T02:18:19.758736Z
+sha256: 6c887890248f20d541f9427c97789dfe1b7be1263549118b2f0ef45a767fb55b
 ---
 
 # Batches
@@ -5161,7 +5161,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             format: date-time
 
-          - `skills: array of BetaSkill or null`
+          - `skills: array of BetaContainerSkill or null`
 
             Skills loaded in the container
 
@@ -7224,7 +7224,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
             format: date-time
 
-          - `skills: array of BetaSkill or null`
+          - `skills: array of BetaContainerSkill or null`
 
             Skills loaded in the container
 
@@ -9058,7 +9058,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
           format: date-time
 
-        - `skills: array of BetaSkill or null`
+        - `skills: array of BetaContainerSkill or null`
 
           Skills loaded in the container
 
@@ -10844,7 +10844,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
         format: date-time
 
-      - `skills: array of BetaSkill or null`
+      - `skills: array of BetaContainerSkill or null`
 
         Skills loaded in the container
 

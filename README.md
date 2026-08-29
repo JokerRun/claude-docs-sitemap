@@ -25,18 +25,18 @@ Automated daily English sitemap collection from Claude documentation sources.
 |--------|--------|--------|--------|
 | code | https://code.claude.com/docs/en/accessibility | 2026-08-21 |  |
 | code | https://code.claude.com/docs/en/admin-setup | 2026-08-28 |  |
-| code | https://code.claude.com/docs/en/advisor | 2026-08-18 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/agent-loop | 2026-08-21 |  |
+| code | https://code.claude.com/docs/en/advisor | 2026-08-28 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/agent-loop | 2026-08-28 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/claude-cod... | 2026-08-28 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/cost-tracking | 2026-08-28 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/custom-tools | 2026-08-20 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/examples | 2026-08-07 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/file-check... | 2026-08-20 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/file-check... | 2026-08-28 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/hooks | 2026-08-21 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/hosting | 2026-08-27 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/mcp | 2026-08-27 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/migration-... | 2026-08-27 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/modifying-... | 2026-08-19 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/hosting | 2026-08-28 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/mcp | 2026-08-28 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/migration-... | 2026-08-28 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/modifying-... | 2026-08-29 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/observability | 2026-08-27 |  |
 | ... | _(~1098 more rows)_ | | |
 

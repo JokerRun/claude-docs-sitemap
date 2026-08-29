@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/code-review
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: f30957a375859a6ab186f308ec4aac5ca2590d26dab4289b8298536680d4cc91
+fetched_at: 2026-08-29T02:18:19.758736Z
+sha256: 0a69d22ffa65fd0229af02b93404fc8bb44e57d32423aed5c76164badd77b3c6
 ---
 
 > ## Documentation Index
@@ -386,7 +386,7 @@ To start a cloud review from a script or CI, run `claude -p '/code-review ultra'
 
 When the review would bill [usage credits](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans), Claude Code stops before launching, because the billing confirmation needs an interactive session. Run the [`claude ultrareview` subcommand](/docs/en/ultrareview#run-ultrareview-non-interactively) instead; by running it, you consent to the charge.
 
-The command was named `/simplify` before v2.1.147, when it applied fixes by default. From v2.1.154, `/simplify` runs a separate cleanup-only review that applies fixes without hunting for bugs. If you scripted `/simplify` for bug-finding, switch to `/code-review --fix`, which is unchanged.
+The command was named `/simplify` before v2.1.147, when it applied fixes by default. `/simplify` runs a separate cleanup-only review that applies fixes without hunting for bugs. If you scripted `/simplify` for bug-finding, switch to `/code-review --fix`.
 
 ## Related resources
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/delete
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 3eb276123041c0b7b4ac54a068fbf6e788fe3a6dbe74f0acc43ba75c88e21625
+fetched_at: 2026-08-29T02:18:19.758736Z
+sha256: 237d63d9845ad6b1212d55d02b29555de0a497b8c3f67db39ec675b61c66d673
 ---
 
 # Delete Skill
@@ -113,19 +113,21 @@ Delete Skill
 
 ## Returns
 
-- `id: string`
+- `BetaDeletedSkill object`
 
-  Unique identifier for the skill.
+  - `id: string`
 
-  The format and length of IDs may change over time.
+    Unique identifier for the skill.
 
-- `type: string`
+    The format and length of IDs may change over time.
 
-  Deleted object type.
+  - `type: "skill_deleted"`
 
-  For Skills, this is always `"skill_deleted"`.
+    Deleted object type.
 
-  default: skill_deleted
+    For Skills, this is always `"skill_deleted"`.
+
+    default: skill_deleted
 
 ## Example
 
@@ -133,7 +135,6 @@ Delete Skill
 curl https://api.anthropic.com/v1/skills/$SKILL_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: skills-2025-10-02' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
@@ -142,6 +143,6 @@ curl https://api.anthropic.com/v1/skills/$SKILL_ID \
 ```json
 {
   "id": "skill_01JAbcdefghijklmnopqrstuvw",
-  "type": "type"
+  "type": "skill_deleted"
 }
 ```

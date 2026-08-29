@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/delete
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: b6c0e1319cc7855ebaccba3eb9142fb6c76dbc666f9ddcc66314c3bafcf3c76c
+fetched_at: 2026-08-29T02:18:19.758736Z
+sha256: 10502f973977024a6f98e33ed2f43f506ccf43163e6e2bd9db83f6a969394be1
 ---
 
 # Delete File
@@ -131,7 +131,6 @@ Delete File
 curl https://api.anthropic.com/v1/files/$FILE_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: files-api-2025-04-14' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 

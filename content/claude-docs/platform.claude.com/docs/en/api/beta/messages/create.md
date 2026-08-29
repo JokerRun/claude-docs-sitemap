@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/create
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: af7660172cb21c51aef854876cb91213cb438097c41c396f9195ef7801c162b1
+fetched_at: 2026-08-29T02:18:19.758736Z
+sha256: 27762633a4a6ff02f18a87f73fa43de25bbe46d888718ace26d515d32e45bfae
 ---
 
 # Create a Message
@@ -3932,7 +3932,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       format: date-time
 
-    - `skills: array of BetaSkill or null`
+    - `skills: array of BetaContainerSkill or null`
 
       Skills loaded in the container
 

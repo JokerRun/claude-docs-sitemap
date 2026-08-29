@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 5f4d331e14df899d64c63be4e9e05baf9a7e5801bfc036bd332bcdc05c367959
+fetched_at: 2026-08-29T02:18:19.758736Z
+sha256: de1ed224e98f4a6d0ca451b12d3b24115d3cad3ce610bb81dec48bfc8b989e0b
 ---
 
 # Documents
@@ -266,6 +266,22 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/documents/$DOCUMENT_I
 
       User's email address
 
+### Document Delete Response
+
+- `DocumentDeleteResponse object`
+
+  Response for deleting a project document.
+
+  - `id: string`
+
+    The ID of the project document that was deleted
+
+  - `type: "claude_project_document_deleted"`
+
+    Constant string confirming deletion.
+
+    default: claude_project_document_deleted
+
 ### Document Metadata Response
 
 - `DocumentMetadataResponse object`
@@ -322,19 +338,3 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/documents/$DOCUMENT_I
     - `email_address: string`
 
       User's email address
-
-### Document Delete Response
-
-- `DocumentDeleteResponse object`
-
-  Response for deleting a project document.
-
-  - `id: string`
-
-    The ID of the project document that was deleted
-
-  - `type: "claude_project_document_deleted"`
-
-    Constant string confirming deletion.
-
-    default: claude_project_document_deleted

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/federation_rules/workspaces
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 4eb35a1f6274d3b69e008b8140713a5d119cedf1b44f545be7383df92d1b9de7
+fetched_at: 2026-08-29T02:18:19.758736Z
+sha256: fc3da4a1a57c907bf98240e55a0de2c448884efc8a410532942056e6a02de768
 ---
 
 # Workspaces
@@ -257,9 +257,9 @@ curl https://api.anthropic.com/v1/organizations/federation_rules/$FEDERATION_RUL
 
 ## Domain types
 
-### Workspace List Response
+### Workspace Create Response
 
-- `WorkspaceListResponse object`
+- `WorkspaceCreateResponse object`
 
   - `created_at: string`
 
@@ -287,9 +287,9 @@ curl https://api.anthropic.com/v1/organizations/federation_rules/$FEDERATION_RUL
 
     Workspace display name. Populated when listing; null in the enable response.
 
-### Workspace Create Response
+### Workspace List Response
 
-- `WorkspaceCreateResponse object`
+- `WorkspaceListResponse object`
 
   - `created_at: string`
 

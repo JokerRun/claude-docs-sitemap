@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: fff4e512c3f7ee07fc8d59dd3a4a86ca378e4d23c70999ca5016c6de8fbb3174
+fetched_at: 2026-08-29T02:18:19.758736Z
+sha256: 06a9e92e3fcafcf4b6572a02dd4139911271d85fa7d2e19d6ceea82b582f1ecf
 ---
 
 # MCP Tunnels
@@ -518,44 +518,6 @@ curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/archive \
     ID of the Workspace this Tunnel belongs to, or `null` for the default
     Workspace. Immutable after creation.
 
-### MCP Tunnel Reveal Token Response
-
-- `MCPTunnelRevealTokenResponse object`
-
-  - `id: string`
-
-    Stable identifier for the current token value. Changes when the token is
-    rotated.
-
-  - `tunnel_token: string`
-
-    The tunnel's connection token.
-
-  - `type: "tunnel_token"`
-
-    Object type. Always `tunnel_token` for Tunnel Tokens.
-
-    default: tunnel_token
-
-### MCP Tunnel Rotate Token Response
-
-- `MCPTunnelRotateTokenResponse object`
-
-  - `id: string`
-
-    Stable identifier for the current token value. Changes when the token is
-    rotated.
-
-  - `tunnel_token: string`
-
-    The tunnel's connection token.
-
-  - `type: "tunnel_token"`
-
-    Object type. Always `tunnel_token` for Tunnel Tokens.
-
-    default: tunnel_token
-
 ### MCP Tunnel Archive Response
 
 - `MCPTunnelArchiveResponse object`
@@ -597,6 +559,44 @@ curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/archive \
 
     ID of the Workspace this Tunnel belongs to, or `null` for the default
     Workspace. Immutable after creation.
+
+### MCP Tunnel Reveal Token Response
+
+- `MCPTunnelRevealTokenResponse object`
+
+  - `id: string`
+
+    Stable identifier for the current token value. Changes when the token is
+    rotated.
+
+  - `tunnel_token: string`
+
+    The tunnel's connection token.
+
+  - `type: "tunnel_token"`
+
+    Object type. Always `tunnel_token` for Tunnel Tokens.
+
+    default: tunnel_token
+
+### MCP Tunnel Rotate Token Response
+
+- `MCPTunnelRotateTokenResponse object`
+
+  - `id: string`
+
+    Stable identifier for the current token value. Changes when the token is
+    rotated.
+
+  - `tunnel_token: string`
+
+    The tunnel's connection token.
+
+  - `type: "tunnel_token"`
+
+    Object type. Always `tunnel_token` for Tunnel Tokens.
+
+    default: tunnel_token
 
 ## MCP Tunnels › Tunnel Certificates
 

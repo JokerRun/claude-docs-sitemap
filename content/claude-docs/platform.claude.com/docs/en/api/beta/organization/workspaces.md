@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 0a43fcdf9452d852169adcc5f28f9ff6270efd46ddb410c4c1d1039d398fdb9b
+fetched_at: 2026-08-29T02:18:19.758736Z
+sha256: 3fe99a3b0f1dca5f33048e6014678435133149dda68b4b1b062f777e620bca2b
 ---
 
 # Workspaces
@@ -1102,9 +1102,9 @@ Returns only the groups and limiter types that have a workspace-level
 override. Groups without overrides inherit the organization limits and
 are not listed; use `GET /v1/organizations/rate_limits` to see those.
 
-This endpoint currently returns every matching entry in a single page
-regardless of `limit`; follow `next_page` so that clients keep working
-when pagination is enabled.
+When `limit` is omitted, every matching entry is returned in a single
+page; when `limit` truncates the result, follow `next_page` to fetch
+the remaining entries.
 
 #### Path parameters
 
@@ -1134,7 +1134,7 @@ when pagination is enabled.
 
   Maximum number of items to return per page. Ranges from `1` to `1000`.
 
-  Accepted for request-shape compatibility and currently ignored: every entry is returned in a single page.
+  When omitted, every remaining entry is returned in a single page and `next_page` is `null`.
 
   maximum: 1000, minimum: 1
 
@@ -1200,7 +1200,7 @@ when pagination is enabled.
 
 - `next_page: string or null`
 
-  Token to provide in as `page` in the subsequent request to retrieve the next page of data.
+  Opaque cursor for the next page of results, or `null` when no entries remain beyond this response.
 
 #### Example
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: b142d5509e6b294a40da4abfd77e48d2ff7a0d26827352b68899a1b3c9f1095d
+fetched_at: 2026-08-29T02:18:19.758736Z
+sha256: ef9a9ea7464c33d32d9af1970cc66a6f7ea96e3ee76119297d666b362663b755
 ---
 
 # Messages
@@ -3934,7 +3934,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       format: date-time
 
-    - `skills: array of BetaSkill or null`
+    - `skills: array of BetaContainerSkill or null`
 
       Skills loaded in the container
 
@@ -14243,7 +14243,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     format: date-time
 
-  - `skills: array of BetaSkill or null`
+  - `skills: array of BetaContainerSkill or null`
 
     Skills loaded in the container
 
@@ -14302,6 +14302,32 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
       Skill version or 'latest' for most recent version
 
       maxLength: 64, minLength: 1
+
+### Beta Container Skill
+
+- `BetaContainerSkill object`
+
+  A skill that was loaded in a container (response model).
+
+  - `skill_id: string`
+
+    Skill ID
+
+    maxLength: 64, minLength: 1
+
+  - `type: "anthropic" or "custom"`
+
+    Type of skill - either 'anthropic' (built-in) or 'custom' (user-defined)
+
+    - `"anthropic"`
+
+    - `"custom"`
+
+  - `version: string`
+
+    The resolved version: a skill version ID for custom skills.
+
+    maxLength: 64, minLength: 1
 
 ### Beta Container Upload Block
 
@@ -19469,7 +19495,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       format: date-time
 
-    - `skills: array of BetaSkill or null`
+    - `skills: array of BetaContainerSkill or null`
 
       Skills loaded in the container
 
@@ -24492,7 +24518,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         format: date-time
 
-      - `skills: array of BetaSkill or null`
+      - `skills: array of BetaContainerSkill or null`
 
         Skills loaded in the container
 
@@ -25064,7 +25090,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         format: date-time
 
-      - `skills: array of BetaSkill or null`
+      - `skills: array of BetaContainerSkill or null`
 
         Skills loaded in the container
 
@@ -26742,7 +26768,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           format: date-time
 
-        - `skills: array of BetaSkill or null`
+        - `skills: array of BetaContainerSkill or null`
 
           Skills loaded in the container
 
@@ -29711,32 +29737,6 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
   - `type: "signature_delta"`
 
     default: signature_delta
-
-### Beta Skill
-
-- `BetaSkill object`
-
-  A skill that was loaded in a container (response model).
-
-  - `skill_id: string`
-
-    Skill ID
-
-    maxLength: 64, minLength: 1
-
-  - `type: "anthropic" or "custom"`
-
-    Type of skill - either 'anthropic' (built-in) or 'custom' (user-defined)
-
-    - `"anthropic"`
-
-    - `"custom"`
-
-  - `version: string`
-
-    The resolved version: a skill version ID for custom skills.
-
-    maxLength: 64, minLength: 1
 
 ### Beta Skill Params
 
@@ -41961,7 +41961,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             format: date-time
 
-          - `skills: array of BetaSkill or null`
+          - `skills: array of BetaContainerSkill or null`
 
             Skills loaded in the container
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/claude-code-features
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: 229365b411e58dc12626222e90f6748e1028c47130c4e94a8a7ef3e783a24f2c
+fetched_at: 2026-08-29T02:18:19.758736Z
+sha256: 651d36b3a2a9adb30b9ea58524a2e5b7744bdbd700d99642721807cbcf5cfbf7
 ---
 
 > ## Documentation Index
@@ -16,8 +16,6 @@ sha256: 229365b411e58dc12626222e90f6748e1028c47130c4e94a8a7ef3e783a24f2c
 The Agent SDK is built on the same foundation as Claude Code, which means your SDK agents have access to the same filesystem-based features: project instructions (`CLAUDE.md` and rules), skills, hooks, and more.
 
 When you omit `settingSources`, `query()` reads the same filesystem settings as the Claude Code CLI: user, project, and local settings, CLAUDE.md files, and `.claude/` skills, agents, and commands. To run without these, pass `settingSources: []`, which limits the agent to what you configure programmatically. Managed policy settings and the global `~/.claude.json` config are read regardless of this option. See [What settingSources does not control](#what-settingsources-does-not-control).
-
-For a conceptual overview of what each feature does and when to use it, see [Extend Claude Code](/docs/en/features-overview).
 
 ## Control filesystem settings with settingSources
 

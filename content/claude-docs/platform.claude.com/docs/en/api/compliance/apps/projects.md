@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 53e4ede463cf998b4559c889348774ca646e3bc92983cc87cde726accae89eca
+fetched_at: 2026-08-29T02:18:19.758736Z
+sha256: 2478ae706417b3ea968b8c9c44de2cc4c2bcf0d9354d855e89a2d925bbd63ae8
 ---
 
 # Projects
@@ -367,15 +367,23 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID \
 
 ## Domain types
 
-### Project List Response
+### Project Retrieve Response
 
-- `ProjectListResponse object`
+- `ProjectRetrieveResponse object`
 
-  Project information for compliance responses.
+  Detailed project information for compliance responses.
 
   - `id: string`
 
     Project identifier (tagged ID)
+
+  - `attachments_count: number`
+
+    Number of attachments contained within this project
+
+  - `chats_count: number`
+
+    Number of chats contained within this project
 
   - `created_at: string`
 
@@ -388,6 +396,14 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID \
     Timestamp when the project was deleted by an end user, or null otherwise
 
     format: date-time
+
+  - `description: string`
+
+    Project description
+
+  - `instructions: string`
+
+    Project's custom instructions / prompt
 
   - `is_private: boolean`
 
@@ -429,23 +445,15 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID \
 
     Organization identifier (tagged ID)
 
-### Project Retrieve Response
+### Project List Response
 
-- `ProjectRetrieveResponse object`
+- `ProjectListResponse object`
 
-  Detailed project information for compliance responses.
+  Project information for compliance responses.
 
   - `id: string`
 
     Project identifier (tagged ID)
-
-  - `attachments_count: number`
-
-    Number of attachments contained within this project
-
-  - `chats_count: number`
-
-    Number of chats contained within this project
 
   - `created_at: string`
 
@@ -458,14 +466,6 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID \
     Timestamp when the project was deleted by an end user, or null otherwise
 
     format: date-time
-
-  - `description: string`
-
-    Project description
-
-  - `instructions: string`
-
-    Project's custom instructions / prompt
 
   - `is_private: boolean`
 

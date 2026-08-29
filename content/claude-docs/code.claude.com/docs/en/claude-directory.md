@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-directory
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: e430a95a7b98260d47af6a3d07c35e3ebedfa65db745e07ecfa0152baf0384f8
+fetched_at: 2026-08-29T02:18:19.758736Z
+sha256: 89957ce8dadc0b70176532914661b243739700400be58344de223bd318d1b5c7
 ---
 
 > ## Documentation Index
@@ -1561,7 +1561,7 @@ The retention cleanup sweep doesn't cover the following paths. Claude Code keeps
 | `history.jsonl`         | Every prompt you've typed, with timestamp and project path. Used for up-arrow recall.                                                                                                                                                                                                                                                                             |
 | `stats-cache.json`      | Aggregated token and cost counts shown by `/usage`                                                                                                                                                                                                                                                                                                                |
 | `remote-settings.json`  | Cached copy of [server-managed settings](/docs/en/server-managed-settings) for your organization, or `{}` when your organization has configured none. Only present when the session [fetches them](/docs/en/server-managed-settings#platform-availability). Claude Code checks for updates at startup and hourly during a session. Claude Code deletes it when you log out. |
-| `cache/changelog.md`    | Cached copy of the Claude Code changelog, used to show release notes after an update. Refreshed in the background.                                                                                                                                                                                                                                                |
+| `cache/changelog.md`    | Cached copy of the Claude Code changelog, shown by `/release-notes`. Refreshed in the background.                                                                                                                                                                                                                                                                 |
 | `policy-limits.json`    | Cached feature policy settings for your organization. Only present for some account types. Refreshed automatically. Claude Code deletes it when you log out.                                                                                                                                                                                                      |
 
 Other small cache and lock files appear depending on which features you use and are safe to delete.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/local
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: f829dcc86fc087d2278ceaa877643244c1d2383ed2aaa6d3a795a1457aeaf8c7
+fetched_at: 2026-08-29T02:18:19.758736Z
+sha256: 033f25fe3155093bf35de64613d125e06b969fea46bf27e70e720071ebf0e040
 ---
 
 # Local
@@ -229,9 +229,9 @@ curl https://api.anthropic.com/v1/compliance/apps/sessions/local/$LOCAL_SESSION_
 
 ## Domain types
 
-### Local List Response
+### Local Retrieve Response
 
-- `LocalListResponse object`
+- `LocalRetrieveResponse object`
 
   A session that a user ran on their own computer in a Claude app while
   signed in with their organization account.
@@ -280,9 +280,9 @@ curl https://api.anthropic.com/v1/compliance/apps/sessions/local/$LOCAL_SESSION_
 
     Workspace identifier (tagged ID, prefixed `wrkspc_`). Null for sessions not attributed to a workspace.
 
-### Local Retrieve Response
+### Local List Response
 
-- `LocalRetrieveResponse object`
+- `LocalListResponse object`
 
   A session that a user ran on their own computer in a Claude app while
   signed in with their organization account.

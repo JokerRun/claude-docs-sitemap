@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/download
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 195d494525d5ee2cb3619062143ce62b53039af4e26de2d738b326dca93a16f2
+fetched_at: 2026-08-29T02:18:19.758736Z
+sha256: 1eacc855ac53e0ea40468e950b520aef47c9bf92675d00e97cbfae21a0539a15
 ---
 
 # Download Skill Version Content
@@ -21,9 +21,9 @@ Download a skill version's content as a zip archive.
 
 - `version: string`
 
-  Version identifier for the skill.
+  Identifies the skill version by its version ID.
 
-  Each version is identified by a Unix epoch timestamp (e.g., "1759178010641129").
+  Requests carrying the `skills-2025-10-02` beta header address versions by their Unix epoch timestamp instead (e.g., "1759178010641129").
 
 ## Headers
 
@@ -122,6 +122,5 @@ Download a skill version's content as a zip archive.
 ```bash
 curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions/$VERSION/content \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: skills-2025-10-02' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```

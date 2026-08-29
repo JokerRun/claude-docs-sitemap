@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 81090a085c7744d34fd0c265b75d7e56546e35b7aadaf9fc6860e65a93c5c8a3
+fetched_at: 2026-08-29T02:18:19.758736Z
+sha256: 0212524b4be6fc5865b2ea5afc224e61f6461e59634a04e9d06882d76da3fea1
 ---
 
 # Roles
@@ -157,9 +157,9 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles/$ROLE
 
 ## Domain types
 
-### Role List Response
+### Role Retrieve Response
 
-- `RoleListResponse object`
+- `RoleRetrieveResponse object`
 
   Role information for compliance responses.
 
@@ -183,9 +183,9 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles/$ROLE
 
     Role last-updated timestamp (ISO 8601)
 
-### Role Retrieve Response
+### Role List Response
 
-- `RoleRetrieveResponse object`
+- `RoleListResponse object`
 
   Role information for compliance responses.
 

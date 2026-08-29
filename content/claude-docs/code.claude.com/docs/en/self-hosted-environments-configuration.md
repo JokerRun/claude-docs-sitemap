@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/self-hosted-environments-configuration
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: 59c551f5c15543105e3683eb0b35e11adaa6d27b6ca0370118aea9fd470e6a48
+fetched_at: 2026-08-29T02:18:19.758736Z
+sha256: a705d3b823401e9c5d26c4b5ac6eff28c84a7747f2be12c1c287a3f1022a2bb3
 ---
 
 > ## Documentation Index
@@ -330,7 +330,7 @@ fi
 #   - init+fetch checkouts (runner default: only FETCH_HEAD exists)
 #   - clone-based checkouts (origin/* exist)
 #   - the runner default: the child starts on the session's outcome
-#     branch, which the runner creates with checkout -B after checkout
+#     branch, which the runner creates after checkout
 #   - detached HEAD, when a custom setup skips that branch creation
 # With no reference point at all (never fetched), stay silent rather
 # than false-positive on a read-only turn.

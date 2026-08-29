@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/thinking-steering-and-cost
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 5aa4f9322c3c2def7d6793f9baf4132dd29a8ebfe9eb332e8e45ddc867eb2884
+fetched_at: 2026-08-29T02:18:19.758736Z
+sha256: 377b47a2244fc9991e1757ee92fc245d3710ac1f3b606f3bfea7c5341c9c36e9
 ---
 
 ---
@@ -64,7 +64,7 @@ Effort is set at `output_config.effort`, not inside the `thinking` object; for f
 
 ```json
 {
-  "model": "claude-opus-4-8",
+  "model": "claude-opus-5",
   "max_tokens": 4096,
   "output_config": { "effort": "medium" },
   "messages": [{ "role": "user", "content": "..." }]
@@ -180,7 +180,7 @@ The following example demonstrates the invalidation with a multi-turn script you
       # First request - establish cache
       print("First request - establishing cache")
       response1 = client.messages.create(
-          model="claude-opus-4-8",
+          model="claude-opus-5",
           max_tokens=16000,
           thinking={"type": "adaptive"},
           messages=MESSAGES,
@@ -194,7 +194,7 @@ The following example demonstrates the invalidation with a multi-turn script you
       # Second request - same configuration (cache hit expected)
       print("\nSecond request - same configuration (cache hit expected)")
       response2 = client.messages.create(
-          model="claude-opus-4-8",
+          model="claude-opus-5",
           max_tokens=16000,
           thinking={"type": "adaptive"},
           messages=MESSAGES,
@@ -208,7 +208,7 @@ The following example demonstrates the invalidation with a multi-turn script you
       # Third request - different effort level (cache miss expected)
       print("\nThird request - different effort level (cache miss expected)")
       response3 = client.messages.create(
-          model="claude-opus-4-8",
+          model="claude-opus-5",
           max_tokens=16000,
           thinking={"type": "adaptive"},
           output_config={"effort": "medium"},
@@ -256,7 +256,7 @@ The following example demonstrates the invalidation with a multi-turn script you
       // First request - establish cache
       console.log("First request - establishing cache");
       const response1 = await client.messages.create({
-        model: "claude-opus-4-8",
+        model: "claude-opus-5",
         max_tokens: 16000,
         thinking: { type: "adaptive" },
         messages
@@ -272,7 +272,7 @@ The following example demonstrates the invalidation with a multi-turn script you
       // Second request - same configuration (cache hit expected)
       console.log("\nSecond request - same configuration (cache hit expected)");
       const response2 = await client.messages.create({
-        model: "claude-opus-4-8",
+        model: "claude-opus-5",
         max_tokens: 16000,
         thinking: { type: "adaptive" },
         messages
@@ -288,7 +288,7 @@ The following example demonstrates the invalidation with a multi-turn script you
       // Third request - different effort level (cache miss expected)
       console.log("\nThird request - different effort level (cache miss expected)");
       const response3 = await client.messages.create({
-        model: "claude-opus-4-8",
+        model: "claude-opus-5",
         max_tokens: 16000,
         thinking: { type: "adaptive" },
         output_config: { effort: "medium" },
@@ -310,7 +310,7 @@ The following example demonstrates the invalidation with a multi-turn script you
       Console.WriteLine("First request - establishing cache");
       var parameters1 = new MessageCreateParams
       {
-          Model = Model.ClaudeOpus4_8,
+          Model = Model.ClaudeOpus5,
           MaxTokens = 16000,
           Thinking = new ThinkingConfigAdaptive(),
           Messages =
@@ -340,7 +340,7 @@ The following example demonstrates the invalidation with a multi-turn script you
       Console.WriteLine("\nSecond request - same configuration (cache hit expected)");
       var parameters2 = new MessageCreateParams
       {
-          Model = Model.ClaudeOpus4_8,
+          Model = Model.ClaudeOpus5,
           MaxTokens = 16000,
           Thinking = new ThinkingConfigAdaptive(),
           Messages =
@@ -380,7 +380,7 @@ The following example demonstrates the invalidation with a multi-turn script you
       Console.WriteLine("\nThird request - different effort level (cache miss expected)");
       var parameters3 = new MessageCreateParams
       {
-          Model = Model.ClaudeOpus4_8,
+          Model = Model.ClaudeOpus5,
           MaxTokens = 16000,
           Thinking = new ThinkingConfigAdaptive(),
           OutputConfig = new OutputConfig
@@ -469,7 +469,7 @@ The following example demonstrates the invalidation with a multi-turn script you
       // First request - establish cache
       fmt.Println("First request - establishing cache")
       response1, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus4_8,
+      	Model:     anthropic.ModelClaudeOpus5,
       	MaxTokens: 16000,
       	Thinking: anthropic.ThinkingConfigParamUnion{
       		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
@@ -487,7 +487,7 @@ The following example demonstrates the invalidation with a multi-turn script you
       // Second request - same configuration (cache hit expected)
       fmt.Println("\nSecond request - same configuration (cache hit expected)")
       response2, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus4_8,
+      	Model:     anthropic.ModelClaudeOpus5,
       	MaxTokens: 16000,
       	Thinking: anthropic.ThinkingConfigParamUnion{
       		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
@@ -505,7 +505,7 @@ The following example demonstrates the invalidation with a multi-turn script you
       // Third request - different effort level (cache miss expected)
       fmt.Println("\nThird request - different effort level (cache miss expected)")
       response3, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus4_8,
+      	Model:     anthropic.ModelClaudeOpus5,
       	MaxTokens: 16000,
       	Thinking: anthropic.ThinkingConfigParamUnion{
       		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
@@ -536,7 +536,7 @@ The following example demonstrates the invalidation with a multi-turn script you
           // First request - establishing cache
           IO.println("First request - establishing cache");
           MessageCreateParams params1 = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_4_8)
+              .model(Model.CLAUDE_OPUS_5)
               .maxTokens(16000L)
               .thinking(ThinkingConfigAdaptive.builder().build())
               .addUserMessageOfBlockParams(List.of(
@@ -556,7 +556,7 @@ The following example demonstrates the invalidation with a multi-turn script you
           // Second request - same configuration (cache hit expected)
           IO.println("\nSecond request - same configuration (cache hit expected)");
           MessageCreateParams params2 = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_4_8)
+              .model(Model.CLAUDE_OPUS_5)
               .maxTokens(16000L)
               .thinking(ThinkingConfigAdaptive.builder().build())
               .addUserMessageOfBlockParams(List.of(
@@ -580,7 +580,7 @@ The following example demonstrates the invalidation with a multi-turn script you
           // Third request - different effort level (cache miss expected)
           IO.println("\nThird request - different effort level (cache miss expected)");
           MessageCreateParams params3 = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_4_8)
+              .model(Model.CLAUDE_OPUS_5)
               .maxTokens(16000L)
               .thinking(ThinkingConfigAdaptive.builder().build())
               .outputConfig(OutputConfig.builder()
@@ -652,7 +652,7 @@ The following example demonstrates the invalidation with a multi-turn script you
                   ]
               ]
           ]],
-          model: 'claude-opus-4-8',
+          model: 'claude-opus-5',
           thinking: ['type' => 'adaptive'],
       );
 
@@ -685,7 +685,7 @@ The following example demonstrates the invalidation with a multi-turn script you
                   'content' => 'Analyze the characters in this passage.'
               ]
           ],
-          model: 'claude-opus-4-8',
+          model: 'claude-opus-5',
           thinking: ['type' => 'adaptive'],
       );
 
@@ -726,7 +726,7 @@ The following example demonstrates the invalidation with a multi-turn script you
                   'content' => 'Analyze the setting in this passage.'
               ]
           ],
-          model: 'claude-opus-4-8',
+          model: 'claude-opus-5',
           thinking: ['type' => 'adaptive'],
           outputConfig: ['effort' => 'medium'],
       );
@@ -757,7 +757,7 @@ The following example demonstrates the invalidation with a multi-turn script you
 
       puts "First request - establishing cache"
       response1 = client.messages.create(
-        model: "claude-opus-4-8",
+        model: "claude-opus-5",
         max_tokens: 16000,
         thinking: {
           type: "adaptive"
@@ -782,7 +782,7 @@ The following example demonstrates the invalidation with a multi-turn script you
 
       puts "\nSecond request - same configuration (cache hit expected)"
       response2 = client.messages.create(
-        model: "claude-opus-4-8",
+        model: "claude-opus-5",
         max_tokens: 16000,
         thinking: {
           type: "adaptive"
@@ -817,7 +817,7 @@ The following example demonstrates the invalidation with a multi-turn script you
 
       puts "\nThird request - different effort level (cache miss expected)"
       response3 = client.messages.create(
-        model: "claude-opus-4-8",
+        model: "claude-opus-5",
         max_tokens: 16000,
         thinking: {
           type: "adaptive"
