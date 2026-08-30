@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/web-quickstart
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 65a49759aaf2173e2a26a27b394634f6663147cda16b3bca973a22f726f89813
+fetched_at: 2026-08-30T02:21:42.830335Z
+sha256: 54fca3b95788fb68bcb5692798c9b347415b513919d1c4513d64baf804178fe7
 ---
 
 > ## Documentation Index
@@ -90,10 +90,10 @@ Connecting GitHub is a one-time step. If you already use the GitHub CLI, you can
 
 ### Connect from your terminal
 
-If you already use the GitHub CLI (`gh`), you can set up Claude Code on the web without opening a browser. This requires the [Claude Code CLI](/docs/en/quickstart). `/web-setup` reads your local `gh` token, links it to your claude.ai account, and creates the **Default** cloud environment if you don't have one. On Team and Enterprise plans, `/web-setup` is available only after an Owner turns on [Quick web setup](/docs/en/claude-code-on-the-web#github-authentication-options).
+If you already use the GitHub CLI (`gh`), you can set up Claude Code on the web without opening a browser. This requires the [Claude Code CLI](/docs/en/quickstart). When you run `/web-setup`, Claude Code reads your local `gh` token, links it to your claude.ai account, and creates the **Default** cloud environment if you don't have one. On Team and Enterprise plans, `/web-setup` is available only after an Owner turns on [Quick web setup](/docs/en/claude-code-on-the-web#github-authentication-options).
 
 <Note>
-  Organizations with [Zero Data Retention](/docs/en/zero-data-retention) enabled cannot use `/web-setup` or other cloud session features. If the GitHub CLI isn't installed or authenticated, `/web-setup` opens the browser onboarding flow instead.
+  Organizations with [Zero Data Retention](/docs/en/zero-data-retention) enabled cannot use `/web-setup` or other cloud session features. If the GitHub CLI isn't installed or isn't authenticated, Claude Code opens the browser onboarding flow instead.
 </Note>
 
 <Steps>
@@ -206,6 +206,10 @@ Enterprise organizations may need an Owner to enable Claude Code on the web. Con
 ### `/web-setup` says "Not signed in to Claude"
 
 If `/web-setup` responds with "Not signed in to Claude. Run /login first.", the CLI doesn't have a valid claude.ai sign-in. This can also happen when a previous sign-in has expired. Run `/login`, sign in with your claude.ai account, then run `/web-setup` again.
+
+### `/web-setup` warns that your token doesn't have the `workflow` scope
+
+If `/web-setup` says your GitHub CLI token doesn't have the `workflow` scope, you can continue, but GitHub can reject some pushes made with that token, such as pushes that change GitHub Actions workflow files. To add the scope, run `gh auth refresh -s workflow` in your shell, then run `/web-setup` again.
 
 <h3 id="web-setup-shows-no-commands-match-or-unknown-command">
   `/web-setup` shows "No commands match" or "Unknown command"

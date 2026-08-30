@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/artifacts
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: b5ae947d9bf020fc19b7f9f85eb447abe2c668456a87321ee6501d05f21ee77d
+fetched_at: 2026-08-30T02:21:42.830335Z
+sha256: 6e476eb059c935bdf41081558de98417563eb6fe5658062898a54a54e96c5720
 ---
 
 > ## Documentation Index
@@ -38,7 +38,7 @@ See [What you can build](#what-you-can-build) for prompts that match these, and 
 
 ### What an artifact is not
 
-An artifact is a capture of work, not an application. It is one self-contained page with no backend, so it can't store form input or serve multiple routes, and its only path to outside data when someone views it is [calling MCP connectors](#pull-live-data-with-mcp-connectors). For a hosted internal tool with a backend, deploy it on your own infrastructure instead. See [Page constraints](#page-constraints) for the full set of limits.
+An artifact is a capture of work: one self-contained page with no backend, so it can't store form input or serve multiple routes, and its only path to outside data when someone views it is [calling MCP connectors](#pull-live-data-with-mcp-connectors). For a hosted internal tool with a backend, deploy it on your own infrastructure instead. See [Page constraints](#page-constraints) for the full set of limits.
 
 ## Create an artifact
 

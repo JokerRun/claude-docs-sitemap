@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-teams
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: d5b2d156e5ed0af9fc38ed75094bc6d7d670271b6cc2a6671af6a48b1fef410c
+fetched_at: 2026-08-30T02:21:42.830335Z
+sha256: cdd15b1b8a8ea37ca2903b29078965192053bc232012adf8d71b403db621ab23
 ---
 
 > ## Documentation Index
@@ -303,7 +303,7 @@ Each teammate has its own context window. When spawned, a teammate loads the sam
 **How teammates share information:**
 
 * **Automatic message delivery**: when teammates send messages, they're delivered automatically to recipients. The lead doesn't need to poll for updates.
-* **Idle notifications**: when a teammate finishes and stops, it automatically notifies the lead. The notification doesn't carry the teammate's output; a teammate shares results by messaging the lead or updating the shared task list. As of v2.1.198, a teammate whose turn ends on an API error notifies the lead that it failed and includes the error text, instead of appearing to finish normally.
+* **Idle notifications**: when a teammate finishes and stops, it automatically notifies the lead and includes its final answer in the notification. A teammate whose turn ends on an API error notifies the lead that it failed and includes the error text.
 * **Shared task list**: [agents that have the Task tools](/docs/en/tools-reference#task-tool-availability) can see task status and claim available work.
 * **Teammate messaging**: send a message to one specific teammate by name. To reach everyone, send one message per recipient.
 
@@ -371,7 +371,7 @@ There's no hard limit on the number of teammates, but practical constraints appl
 
 Start with 3-5 teammates for most workflows. This balances parallel work with manageable coordination. If you have 15 independent tasks, 3 teammates is a good starting point.
 
-Scale up only when the work genuinely benefits from having teammates work simultaneously. Three focused teammates often outperform five scattered ones.
+Scale up only when the work benefits from having teammates work simultaneously. Three focused teammates often outperform five scattered ones.
 
 ### Size tasks appropriately
 
@@ -420,12 +420,9 @@ If teammates aren't appearing after you ask Claude to spawn them:
 
 ### Claude spawns teammates instead of subagents
 
-While agent teams are enabled, a subagent that Claude names in the lead's session launches as a teammate. Claude [can name subagents on its own](#how-claude-starts-agent-teams), so this can happen during delegation you never framed as team work. Subagents and teammates report back differently:
+While agent teams are enabled, a subagent that Claude names in the lead's session launches as a teammate. Claude [can name subagents on its own](#how-claude-starts-agent-teams), so this can happen during delegation you never framed as team work.
 
-* **Subagents**: Claude receives the subagent's result when it completes.
-* **Teammates**: the [idle notification](#context-and-communication) reports that the teammate stopped, without its output.
-
-An orchestration flow that waits on subagent results can stall. To make named subagents launch as subagents again, turn agent teams off by setting `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` to `0`:
+To make named subagents launch as subagents again, turn agent teams off by setting `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` to `0`:
 
 ```json settings.json theme={null}
 {

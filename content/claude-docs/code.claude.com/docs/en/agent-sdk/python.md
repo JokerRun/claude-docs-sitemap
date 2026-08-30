@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: 76c97cebfad121220097e9aefa6c2056217f38b5045af2ecfbc313f9e507b95d
+fetched_at: 2026-08-30T02:21:42.830335Z
+sha256: fbc9a83ccde7bae3ea32201cdcad9cdffa3feb6197b49fc3ad1cab5e02abcd07
 ---
 
 > ## Documentation Index
@@ -3334,7 +3334,7 @@ asyncio.run(main())
 ```
 
 <Warning>
-  **Unix socket security**: The `allowUnixSockets` option can grant access to powerful system services. For example, allowing `/var/run/docker.sock` effectively grants full host system access through the Docker API, bypassing sandbox isolation. Only allow Unix sockets that are strictly necessary and understand the security implications of each.
+  **Unix socket security**: The `allowUnixSockets` option can grant access to system services that reach outside the sandbox. For example, allowing `/var/run/docker.sock` effectively grants full host system access through the Docker API, bypassing sandbox isolation. Only allow Unix sockets that are strictly necessary and understand the security implications of each.
 </Warning>
 
 ### `SandboxNetworkConfig`

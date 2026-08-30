@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins-reference
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: 83eb9d046ea7eb40acdfd18faf35197501c711faedb7f37737132e41b0de3d3b
+fetched_at: 2026-08-30T02:21:42.830335Z
+sha256: a0bc8cc75ce7b6a02446f7c1abb805a63fb72b0386471a44c476957bebdb5253
 ---
 
 > ## Documentation Index
@@ -150,6 +150,8 @@ Plugin hooks respond to the same lifecycle events as [user-defined hooks](/docs/
 | `WorktreeRemove`      | When a worktree is being removed at session exit, when a subagent finishes, or when you delete a background session                                                                                                                                   |
 | `PreCompact`          | Before context compaction                                                                                                                                                                                                                             |
 | `PostCompact`         | After context compaction completes                                                                                                                                                                                                                    |
+| `PreModelSwitch`      | Before Claude Code applies a model switch that you or a client requested. Can block the switch                                                                                                                                                        |
+| `PostModelSwitch`     | After the session's model changes, including changes Claude Code makes on its own, such as restoring the model when you resume a session                                                                                                              |
 | `Elicitation`         | When an MCP server requests user input during a tool call                                                                                                                                                                                             |
 | `ElicitationResult`   | After a user responds to an MCP elicitation, before the response is sent back to the server                                                                                                                                                           |
 | `SessionEnd`          | When a session terminates                                                                                                                                                                                                                             |

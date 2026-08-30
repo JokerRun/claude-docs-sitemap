@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/worktrees
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: 5a215cc0e95047644a74e6d5f406ab94234e76ded08a0fc00130ea16589827d6
+fetched_at: 2026-08-30T02:21:42.830335Z
+sha256: 70ee9e037f68b6b8e953acee7605a39e38895fb8f65f404bb8ee42768e67ce33
 ---
 
 > ## Documentation Index
@@ -65,7 +65,7 @@ When you exit an interactive worktree session, Claude checks the worktree for wo
 
 Non-interactive runs with `-p` have no exit prompt, so Claude doesn't clean up their worktrees, and Claude Code leaves the lock it took on each one at creation in place until a later session's [stale-lock sweep](#clean-up-subagent-and-background-session-worktrees) releases it. To remove one, run `git worktree remove`; if git refuses because the worktree is locked, run `git worktree unlock` on it first.
 
-On Windows, removing a worktree doesn't delete files outside it. If a folder inside the worktree is really a link to somewhere else, such as an NTFS junction or a directory symlink, Claude Code deletes only the link and keeps the folder it points to. Before v2.1.205, removing a worktree with a link nested in a subdirectory could delete the folder it pointed to.
+On Windows, removing a worktree doesn't delete files outside it. If a folder inside the worktree is a link to somewhere else, such as an NTFS junction or a directory symlink, Claude Code deletes only the link and keeps the folder it points to. Before v2.1.205, removing a worktree with a link nested in a subdirectory could delete the folder it pointed to.
 
 ## Resume a worktree session
 

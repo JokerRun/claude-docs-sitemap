@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/jetbrains
-fetched_at: 2026-08-23T02:32:19.757524Z
-sha256: 432e64e2ab0f0d77d7600f0a137fd5cfdc774e6cecf5ccf1e10616e73ed49556
+fetched_at: 2026-08-30T02:21:42.830335Z
+sha256: 9c962c071eefc435d9adb90636ecbf7c8a5878b7d9e64246e377a0a1fbfca305
 ---
 
 > ## Documentation Index
@@ -227,5 +227,5 @@ The JetBrains plugin does not expose a code-execution tool to the model.
 **Listening interface.** Which network interface the server binds to is controlled by **Accept connections from all network interfaces** under **Settings → Tools → Claude Code \[Beta] → Networking (Advanced)**. With the setting disabled, the server listens on `127.0.0.1` only and is not reachable from other hosts. With it enabled, the port is reachable from your local network. The setting exists for cases where the CLI cannot reach the IDE over loopback, such as WSL2 with default NAT networking or a remote-IDE setup; see [WSL configuration](#wsl-configuration) for that scenario.
 
 <Warning>
-  Enabling **Accept connections from all network interfaces** makes the IDE MCP port reachable from your local network. Connections still require the auth token from the lock file, but because the transport is unencrypted `ws://`, both the session traffic and that token cross the network in cleartext when the setting is on. Only turn it on when loopback genuinely cannot work. For WSL2, prefer [mirrored networking](#switch-wsl2-to-mirrored-networking) so the Windows loopback interface is shared with the Linux VM and the socket can stay on loopback.
+  Enabling **Accept connections from all network interfaces** makes the IDE MCP port reachable from your local network. Connections still require the auth token from the lock file, but because the transport is unencrypted `ws://`, both the session traffic and that token cross the network in cleartext when the setting is on. Only turn it on when loopback can't work. For WSL2, prefer [mirrored networking](#switch-wsl2-to-mirrored-networking) so the Windows loopback interface is shared with the Linux VM and the socket can stay on loopback.
 </Warning>

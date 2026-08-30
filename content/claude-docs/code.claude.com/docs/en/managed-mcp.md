@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/managed-mcp
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: 273d8bb3ac0041be3533f5c9dcc817daa8e1541b7d52c6ae12147810d4d57267
+fetched_at: 2026-08-30T02:21:42.830335Z
+sha256: 6c2e03441287feb80fc955b9ff315ddeeb9e279de399cfce5aae4ff3f446c693
 ---
 
 > ## Documentation Index
@@ -65,7 +65,7 @@ Two other settings can further filter the managed set:
 
 See [How a server is evaluated](#how-a-server-is-evaluated) for the full order of checks.
 
-`managed-mcp.json` is a standalone file, so it cannot be delivered through [server-managed settings](/docs/en/server-managed-settings). Any process that can write to a system path with administrator privileges can deploy it. At scale, that's usually through device management tooling, such as Jamf or a configuration profile on macOS, Group Policy or Intune on Windows, or your fleet management of choice on Linux. Claude Code looks for the file at one of these paths:
+`managed-mcp.json` is a standalone file, so it cannot be delivered through [server-managed settings](/docs/en/server-managed-settings). Any process that can write to a system path with administrator privileges can deploy it. Across a fleet, that's usually through device management tooling, such as Jamf or a configuration profile on macOS, Group Policy or Intune on Windows, or your fleet management of choice on Linux. Claude Code looks for the file at one of these paths:
 
 | Platform      | Path                                                       |
 | :------------ | :--------------------------------------------------------- |

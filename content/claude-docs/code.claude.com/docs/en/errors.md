@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/errors
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: 3f35caf1fdb0470d14aaa48a55c2d675e815204f13569bc00c534227042e6dfd
+fetched_at: 2026-08-30T02:21:42.830335Z
+sha256: 86b8ab25393a4457185732ed4959f15bc2e02947e4ac9eb25d2474c00462f195
 ---
 
 > ## Documentation Index
@@ -2711,7 +2711,7 @@ A blocked command reports the same cause for its working directory and ends with
 **What to do:**
 
 * Usually nothing: Claude retries with the local spelling the message asks for
-* If the file genuinely lives on a network share, it's outside the session's local workspace; edit it from a regular interactive session instead
+* If the file is on a network share rather than a local file spelled with a network path, it's outside the session's local workspace; edit it from a regular interactive session instead
 
 ### This session has no saved transcript
 

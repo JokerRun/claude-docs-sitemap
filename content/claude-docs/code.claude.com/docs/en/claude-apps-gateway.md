@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: bd8da9c3289c8d43e01d41f5174e9911a115701cbfa43f8c2b7e9cf2f98f8e01
+fetched_at: 2026-08-30T02:21:42.830335Z
+sha256: 53f3e0e21e2a77f0c284e87450fcc9bcd25b107e75c763a256cb02004ffe10e6
 ---
 
 > ## Documentation Index
@@ -246,7 +246,7 @@ Have these in place before you start:
   </Step>
 
   <Step title="Log a developer in">
-    This last step happens on a developer machine, not the server. Set `forceLoginMethod` to `"gateway"` and `forceLoginGatewayUrl` to your gateway's `public_url` in that machine's [managed settings file](/docs/en/managed-settings#delivery-mechanisms), then run `/login`, press Enter on the **Cloud gateway** screen, and complete the browser sign-in. [Set the gateway URL](#set-the-gateway-url) below covers distributing both keys at scale.
+    This last step happens on a developer machine, not the server. Set `forceLoginMethod` to `"gateway"` and `forceLoginGatewayUrl` to your gateway's `public_url` in that machine's [managed settings file](/docs/en/managed-settings#delivery-mechanisms), then run `/login`, press Enter on the **Cloud gateway** screen, and complete the browser sign-in. [Set the gateway URL](#set-the-gateway-url) below covers distributing both keys to every developer machine.
   </Step>
 </Steps>
 

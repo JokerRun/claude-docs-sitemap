@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/data-usage
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 9ab0b5b391a7c313b4fd1221349203b93a33fd29c2e40edaed7d0ade68f132b7
+fetched_at: 2026-08-30T02:21:42.830335Z
+sha256: 7e49068be87bb5081cd803900a6712b27fe361dbd38b14672f8fcc3c1b4f1720
 ---
 
 > ## Documentation Index
@@ -61,6 +61,8 @@ Anthropic retains Claude Code data based on your account type and preferences.
 * Standard: 30-day retention period
 * [Zero data retention](/docs/en/zero-data-retention): available to qualified accounts for Claude Code on Claude for Enterprise. ZDR is not included in the standard Enterprise plan; it is enabled on a per-organization basis by your account team after confirming eligibility
 * Local caching: Claude Code clients store session transcripts locally in plaintext under `~/.claude/projects/` for 30 days by default to enable session resumption. Adjust the period with `cleanupPeriodDays`. See [application data](/docs/en/claude-directory#application-data) for what's stored and how to clear it.
+
+  Transcripts of sessions started or most recently continued in Claude Desktop or Cowork are [exempt from that limit by default](/docs/en/claude-directory#cleaned-up-automatically).
 
 You can delete individual Claude Code on the web sessions at any time. Deleting a session permanently removes the session's event data. For instructions on how to delete sessions, see [Delete sessions](/docs/en/claude-code-on-the-web#delete-sessions).
 

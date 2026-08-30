@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/overview
-fetched_at: 2026-08-19T02:28:54.965606Z
-sha256: 584a1641997bce448e6675b614c418d73b97087234419ab5227693b3dc89f9ff
+fetched_at: 2026-08-30T02:21:42.830335Z
+sha256: cb761e1199180106ce3dfc97ff1bb937bce28fa4194c721839983ba7a8ef79ed
 ---
 
 > ## Documentation Index
@@ -30,7 +30,7 @@ The SDK is available as a library for Python and TypeScript only. To drive the s
 
 ## Capabilities
 
-Everything that makes Claude Code powerful is available in the SDK.
+These Claude Code capabilities are available in the SDK:
 
 | Capability                   | What it does                                                                                 | Learn more                                                                                                                                                                                                     |
 | ---------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -95,4 +95,4 @@ These resources cover deeper technical detail and example projects for building 
 * [Example agents](https://github.com/anthropics/claude-agent-sdk-demos): demo apps for local development
 * [TypeScript SDK](/docs/en/agent-sdk/typescript): full TypeScript API reference and examples
 * [Python SDK](/docs/en/agent-sdk/python): full Python API reference and examples
-* [Agent harness design](https://claude.com/blog/a-harness-for-every-task-dynamic-workflows-in-claude-code): how the Claude Code team uses dynamic workflows to orchestrate subagents at scale
+* [Agent harness design](https://claude.com/blog/a-harness-for-every-task-dynamic-workflows-in-claude-code): how the Claude Code team uses dynamic workflows to orchestrate many subagents at once

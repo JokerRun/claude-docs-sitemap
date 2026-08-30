@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: f887a7eedd88f109df3cd0fcd12887e5684beb2e3cb0f1a5d31506b27d39e66c
+fetched_at: 2026-08-30T02:21:42.830335Z
+sha256: b6b180ad1ba5f671f41b9ebb278313556223b749316eff468bd0ce8ba0f3465d
 ---
 
 > ## Documentation Index
@@ -1699,6 +1699,8 @@ type HookEvent =
   | "SubagentStop"
   | "PreCompact"
   | "PostCompact"
+  | "PreModelSwitch"
+  | "PostModelSwitch"
   | "PermissionRequest"
   | "PermissionDenied"
   | "Setup"
@@ -1763,6 +1765,8 @@ type HookInput =
   | SubagentStopHookInput
   | PreCompactHookInput
   | PostCompactHookInput
+  | PreModelSwitchHookInput
+  | PostModelSwitchHookInput
   | PermissionRequestHookInput
   | SetupHookInput
   | TeammateIdleHookInput
@@ -2006,6 +2010,44 @@ type PostCompactHookInput = BaseHookInput & {
   hook_event_name: "PostCompact";
   trigger: "manual" | "auto";
   compact_summary: string;
+};
+```
+
+#### `PreModelSwitchHookInput`
+
+Fires before a requested model switch takes effect. `context_tokens` and the fields after it estimate what re-sending the conversation to the new model costs. For the full field descriptions and blocking semantics, see [PreModelSwitch](/docs/en/hooks#premodelswitch).
+
+```typescript theme={null}
+type PreModelSwitchHookInput = BaseHookInput & {
+  hook_event_name: "PreModelSwitch";
+  from_model: string;
+  to_model: string;
+  requested_model: string | null;
+  source: "command" | "picker" | "sdk";
+  context_tokens: number;
+  prompt_cache_warm: boolean;
+  cache_ttl: "5m" | "1h";
+  estimated_cache_write_usd: number;
+  pricing: "configured" | "catalog" | "default";
+};
+```
+
+#### `PostModelSwitchHookInput`
+
+Fires after the session's model changes. It carries the same fields as `PreModelSwitchHookInput`, with two more `source` values. See [PostModelSwitch](/docs/en/hooks#postmodelswitch).
+
+```typescript theme={null}
+type PostModelSwitchHookInput = BaseHookInput & {
+  hook_event_name: "PostModelSwitch";
+  from_model: string;
+  to_model: string;
+  requested_model: string | null;
+  source: "command" | "picker" | "sdk" | "auto" | "resume";
+  context_tokens: number;
+  prompt_cache_warm: boolean;
+  cache_ttl: "5m" | "1h";
+  estimated_cache_write_usd: number;
+  pricing: "configured" | "catalog" | "default";
 };
 ```
 
@@ -2261,6 +2303,22 @@ type SyncHookJSONOutput = {
       }
     | {
         hookEventName: "Setup";
+        additionalContext?: string;
+      }
+    | {
+        hookEventName: "PreModelSwitch";
+        /**
+         * Same contract as PreToolUse: "allow" proceeds, "deny" cancels
+         * the switch, "ask" asks the user to confirm. Only /model in an
+         * interactive session shows that prompt; every other surface,
+         * set_model requests included, treats "ask" as a refusal.
+         */
+        permissionDecision?: "allow" | "deny" | "ask";
+        permissionDecisionReason?: string;
+      }
+    | {
+        hookEventName: "PostModelSwitch";
+        /** Reaches the model with the next request the new model serves. */
         additionalContext?: string;
       }
     | {
@@ -4993,7 +5051,7 @@ try {
 ```
 
 <Warning>
-  **Unix socket security:** The `allowUnixSockets` option can grant access to powerful system services. For example, allowing `/var/run/docker.sock` effectively grants full host system access through the Docker API, bypassing sandbox isolation. Only allow Unix sockets that are strictly necessary and understand the security implications of each.
+  **Unix socket security:** The `allowUnixSockets` option can grant access to system services that reach outside the sandbox. For example, allowing `/var/run/docker.sock` effectively grants full host system access through the Docker API, bypassing sandbox isolation. Only allow Unix sockets that are strictly necessary and understand the security implications of each.
 </Warning>
 
 ### `SandboxNetworkConfig`

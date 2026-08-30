@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/ultrareview
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: f421afb6139b3c2ae35b312fb4f0a64c33ced26d547ea4369b490d11f6363a8e
+fetched_at: 2026-08-30T02:21:42.830335Z
+sha256: 999af5b81be39bfec4fcfa7cf3041eafff86c7cfb30737e1ec0e642eae441e2c
 ---
 
 > ## Documentation Index
@@ -35,7 +35,9 @@ Start a review from any git repository:
 /code-review ultra
 ```
 
-Without arguments, ultrareview reviews the diff between your current branch and the default branch, including uncommitted and staged changes. For a branch review, Claude Code bundles the repository state and uploads it to a remote sandbox; when you [review a pull request](#review-a-pull-request), Claude Code uploads nothing from your machine.
+Without arguments, ultrareview reviews the diff between your current branch and the default branch, including uncommitted and staged changes. For uncommitted changes to files named like credentials or keys, such as `.env` and `*.tfvars` files, Claude Code follows the rules for [uploading a local repository to a cloud session](/docs/en/claude-code-on-the-web#send-local-repositories-without-github).
+
+For a branch review, Claude Code bundles the repository state and uploads it to a remote sandbox; when you [review a pull request](#review-a-pull-request), Claude Code uploads nothing from your machine.
 
 Before launching, Claude Code shows a confirmation dialog with the review scope, your remaining free runs, and the estimated cost; for a branch review, the scope includes the file and line count. After you confirm, the review continues in the background while you keep using your session.
 
