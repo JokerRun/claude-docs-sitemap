@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-protocol
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: c5aed890d446bdd027d2566839a34c0d09d1a5823eeed4f5d9feb72eeaea89f2
+fetched_at: 2026-08-31T02:22:48.005226Z
+sha256: e8784bed96a6d17c91e3e4e836fcae20b9a9c1757c2382db51f4c67b3abcb58d
 ---
 
 > ## Documentation Index
@@ -63,7 +63,9 @@ The [fast mode](/docs/en/fast-mode) availability check never appears in gateway 
 
 ### Streaming
 
-Inference responses must stream. Claude Code consumes server-sent events as they arrive, so a gateway that buffers complete responses before relaying them stalls the client.
+Stream inference responses. Claude Code reads the stream as it arrives, so if your gateway buffers complete responses before relaying them, Claude Code stalls.
+
+When the client speaks the Amazon Bedrock format, relay the `InvokeModelWithResponseStream` response body and its `Content-Type: application/vnd.amazon.eventstream` header unmodified, and don't convert the stream to server-sent events. See [Streaming errors behind a gateway or proxy](/docs/en/amazon-bedrock#streaming-errors-behind-a-gateway-or-proxy).
 
 Forward keep-alive pings as well. On connections through `ANTHROPIC_BASE_URL` or `ANTHROPIC_AWS_BASE_URL`, Claude Code counts every byte your gateway relays, including SSE `ping` events and comment lines, and aborts a stream that goes silent for 300 seconds by default. The upstream's pings are the only traffic during long thinking pauses, so if your gateway strips or buffers them, Claude Code aborts the stream during those pauses; [Automatic retries](/docs/en/errors#automatic-retries) covers what an aborted stream reports based on how far the response had progressed. An upstream that sends no pings at all, such as Amazon Bedrock's binary event-stream, leaves those pauses with nothing to forward. When translating from such an upstream, emit your own `ping` events during silent gaps. Gateways reached through `ANTHROPIC_BEDROCK_BASE_URL`, `ANTHROPIC_VERTEX_BASE_URL`, or `ANTHROPIC_FOUNDRY_BASE_URL` aren't wrapped by this byte-level watchdog, even when they relay the Anthropic Messages format; there, a [5-minute idle timeout](/docs/en/env-vars) aborts a silent stream instead, and on `ANTHROPIC_BEDROCK_BASE_URL` connections you can add the byte watchdog with [`CLAUDE_ENABLE_BYTE_WATCHDOG_BEDROCK`](/docs/en/env-vars).
 

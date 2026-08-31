@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-08-23T02:32:19.757524Z
-sha256: 02f132525d009deae88590647bcac872eb2e5d6cca39c4ba3008a0f810db8314
+fetched_at: 2026-08-31T02:22:48.005226Z
+sha256: 8c0bd278afb8f8d93f445fa0ba450cbf57d63ac908526624f284f829e615d174
 ---
 
 > ## Documentation Index
@@ -73,7 +73,7 @@ In bare mode Claude has access to the Bash, file read, and file edit tools. Pass
 
 If Claude starts a [background Bash task](/docs/en/tools-reference#bash-tool-behavior) during a `claude -p` run, for example a dev server or a watch build, that shell is terminated about five seconds after Claude has returned its final result and stdin has closed. The grace period lets a task that finishes right after the result still deliver its output. Before v2.1.163, a never-exiting background process would hold the `claude -p` invocation open indefinitely.
 
-Background [subagents](/docs/en/sub-agents) and workflows are exempt from the five-second grace because their result is part of the final output, so `claude -p` waits for them to complete. From v2.1.182, that wait is capped at ten minutes by default so a stuck background agent cannot hold the process open indefinitely. Adjust the cap with [`CLAUDE_CODE_PRINT_BG_WAIT_CEILING_MS`](/docs/en/env-vars), or set it to `0` to wait without a limit.
+Background [subagents](/docs/en/sub-agents) and workflows are exempt from the five-second grace because their result is part of the final output, so `claude -p` waits for them to complete. From v2.1.182, that wait is capped at ten minutes of continuous idle waiting by default, so a stuck background agent can't hold the process open indefinitely. Adjust the cap with [`CLAUDE_CODE_PRINT_BG_WAIT_CEILING_MS`](/docs/en/env-vars), or set it to `0` to wait without a limit.
 
 ### Stop a run with SIGTERM
 

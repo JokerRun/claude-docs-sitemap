@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/commands
-fetched_at: 2026-08-30T02:21:42.830335Z
-sha256: ae79c17521cef4596e858ec7dcdd445601686745f7486949dac9e0552bce42ac
+fetched_at: 2026-08-31T02:22:48.005226Z
+sha256: 6bbc0ba8e5183e113a018fa896b182fcdb04f96dce8d3d792439821a43b1c6e9
 ---
 
 > ## Documentation Index
@@ -173,7 +173,7 @@ Claude Code filters the `/` menu as you type. Each bullet below covers one thing
 
 * **Highlighting**: Claude Code highlights the top suggestion only when the letters after the `/` match a command's name or alias, from the start of the name or from a word within it, ignoring the `:`, `_`, and `-` separators. Typing `/adddir` highlights `/add-dir`, and typing `/new` highlights `/clear` through its alias. Press `Enter` to run the highlighted suggestion. These highlighting rules require Claude Code v2.1.236 or later.
 * **After a typo**: Claude Code highlights nothing. The close matches stay listed, and you can pick one with `Tab` or the arrow keys, but `Enter` submits your text as typed and reports [Unknown command](/docs/en/errors#unknown-command).
-* **Commands that aren't available to you**: Claude Code leaves them out of the menu. When nothing matches, Claude Code shows `No commands match "/name"`. Most unavailable commands return [Unknown command](/docs/en/errors#unknown-command) when you submit them; a few, such as [`/schedule` on a Console API key](/docs/en/routines#schedule-returns-unknown-command), answer with their own availability message instead.
+* **Commands that aren't available to you**: Claude Code leaves them out of the menu. When nothing matches, Claude Code shows `No commands match "/name"`. Most unavailable commands return [Unknown command](/docs/en/errors#unknown-command) when you submit them; a few, such as [`/schedule` on a Console API key](/docs/en/routines#schedule-returns-unknown-command), answer with their own availability message instead. Some commands also answer with a message of their own when your organization's policy disables them.
 * **Hidden commands**: Claude Code keeps a few available commands, such as `/heapdump`, out of the menu by design. A partial name never brings a hidden command into the menu: if the partial matches nothing visible, Claude Code shows the same no-match message. Claude Code lists the command only once you've typed its full name, and submitting the full name runs it.
 
 ## MCP prompts
