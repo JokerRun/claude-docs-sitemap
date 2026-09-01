@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 0252fb0c6fde0e8841210305918bc4b8e655ac56e7ca019a085cd5529df48a42
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: 4c6738573f4c9e4547b93a5cc7f2c7512c38cd742ec7e45d9b1ac3cd885f74ef
 ---
 
 ---
@@ -872,7 +872,7 @@ The entry also can't be declared in the same request as a `computer_20251124` en
 
 ### Combining with thinking
 
-For combining computer use with thinking, see [Thinking](https://platform.claude.com/docs/en/build-with-claude/thinking).
+To combine computer use with thinking, see [Thinking](https://platform.claude.com/docs/en/build-with-claude/thinking).
 
 <Tip>
   For the earlier `computer_20251124` tool, internal benchmarking on the models that use it suggests these `effort` settings:

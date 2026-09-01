@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/fable-5/migration-guide
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: 263ec8df614d422e334eaf3d89057de62d5757f120d241f569eff9a9c7b37417
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: 7c95fafec3cc2c2a33df81cd9c2d5eafa89565c2ca1bcfa6d3fb09510b56c2f1
 ---
 
 ---
@@ -19,7 +19,7 @@ description: "Migrate to Claude Mythos 5 and Claude Fable 5 from Claude Mythos P
   **Automate your migration with the Claude API skill.** In Claude Code, run `/claude-api migrate` to invoke the bundled [Claude API skill](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model). It works for any current Claude model as the target:
 
   ```text wrap
-  /claude-api migrate this project to claude-opus-5
+  /claude-api migrate this project to claude-fable-5
   ```
 
   The skill applies the model ID swap and, as needed, breaking parameter changes, prefill replacement, and effort calibration for your target model across your code base, then produces a checklist of items to verify manually. It asks you to confirm the migration scope (entire working directory, a subdirectory, or a specific file list) before editing any files. The skill also detects Amazon Bedrock and Claude Platform on AWS clients and adjusts model ID formats and feature changes for those platforms.

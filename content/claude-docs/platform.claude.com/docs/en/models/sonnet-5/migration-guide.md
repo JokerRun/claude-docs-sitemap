@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/sonnet-5/migration-guide
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: f2a309c38b5923741d4a16f0a3697a3d58f7063cb5ab2c28400471e6aa67debc
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: ffbb0da772db9854827013343a9461030ab0b5a885813b965b97a830dcd0c55f
 ---
 
 ---
@@ -19,7 +19,7 @@ description: "Migrate to Claude Sonnet 5 from earlier Claude models: model IDs, 
   **Automate your migration with the Claude API skill.** In Claude Code, run `/claude-api migrate` to invoke the bundled [Claude API skill](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model). It works for any current Claude model as the target:
 
   ```text wrap
-  /claude-api migrate this project to claude-opus-5
+  /claude-api migrate this project to claude-sonnet-5
   ```
 
   The skill applies the model ID swap and, as needed, breaking parameter changes, prefill replacement, and effort calibration for your target model across your code base, then produces a checklist of items to verify manually. It asks you to confirm the migration scope (entire working directory, a subdirectory, or a specific file list) before editing any files. The skill also detects Amazon Bedrock and Claude Platform on AWS clients and adjusts model ID formats and feature changes for those platforms.

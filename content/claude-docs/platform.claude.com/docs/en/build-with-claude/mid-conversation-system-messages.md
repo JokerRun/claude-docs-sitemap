@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: fd4563b8dbb7965c3836070ddfbcf16520054d171d2b49dfbd75b35a210f7ed9
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: 49475384c83d89572522a77f3209a794dcd87ae5d71e6cafd25e724ee8e08b2d
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Change system instructions or tool availability partway through a c
 ---
 
 <Note>
-  For how zero data retention (ZDR) applies to this feature, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
+  To learn how zero data retention (ZDR) applies to this feature, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
 </Note>
 
 System instructions normally live in the top-level `system` field, ahead of every message in the conversation. That position is great for [prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching): the system prompt is part of the stable prefix, so subsequent turns hit the cache. It is a poor position for instructions you only discover you need partway through a session, because editing the top-level `system` field changes the very beginning of the prompt and invalidates the cache for everything that follows.

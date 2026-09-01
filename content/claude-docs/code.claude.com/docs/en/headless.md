@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-08-31T02:22:48.005226Z
-sha256: 8c0bd278afb8f8d93f445fa0ba450cbf57d63ac908526624f284f829e615d174
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: 999f122f6d227c14a25223e2d02d4044c1201f01d9a0621ca9646ebb8347fb47
 ---
 
 > ## Documentation Index
@@ -196,7 +196,7 @@ When you enable either option, Claude Code forwards messages from [subagents at 
 
 #### Handle API retries
 
-When an API request fails with a retryable error, Claude Code emits a `system/api_retry` event before retrying. You can use this to surface retry progress or implement custom backoff logic.
+When an API request fails with a retryable error, Claude Code emits a `system/api_retry` event before retrying. On v2.1.246 or later, when a `401` or `403` rejects an [`apiKeyHelper`](/docs/en/settings-reference#apikeyhelper) credential, Claude Code makes the first two retries quietly with no event, then emits the event as usual from the third consecutive retry onward. The quiet retries still count toward `attempt`. You can use the event to show retry progress in your own interface.
 
 | Field            | Type            | Description                                                                                                                                                                                            |
 | ---------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

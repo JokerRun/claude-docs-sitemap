@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices
-fetched_at: 2026-08-26T02:33:22.881887Z
-sha256: 69374e3e7530d3cdaa53b47b381bbd58ee90552cdffc4e17e0bf097d23b4be94
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: 476ddc2744812dced0b520c8f628aecb52df52babdaf82ee5a0b10f25f5bcbdb
 ---
 
 ---
@@ -448,7 +448,7 @@ Here are common prefill scenarios and how to migrate away from them:
 
 ### Tool usage
 
-Claude's latest models are trained for precise instruction following and benefit from explicit direction to use specific tools. If you say "can you suggest some changes," Claude will sometimes provide suggestions rather than implementing them, even if making changes might be what you intended. For how to define tools and troubleshoot tool triggering, see [Tool use with Claude](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview).
+Claude's latest models are trained for precise instruction following and benefit from explicit direction to use specific tools. If you say "can you suggest some changes," Claude will sometimes provide suggestions rather than implementing them, even if making changes might be what you intended. To learn how to define tools and troubleshoot tool triggering, see [Tool use with Claude](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview).
 
 For Claude to take action, be more explicit:
 

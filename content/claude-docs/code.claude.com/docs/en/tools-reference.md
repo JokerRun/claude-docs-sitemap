@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/tools-reference
-fetched_at: 2026-08-30T02:21:42.830335Z
-sha256: 21045fa1ae08db958afa473a2664bc36ed0fff116c917a66de2456b937e5a48a
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: fb7a88af3f3ce67d5d1017d55617e6921d3eb272b0956540e1cc72b5ad36f4bf
 ---
 
 > ## Documentation Index
@@ -187,7 +187,7 @@ Claude Code never auto-backgrounds three kinds of command. It stops them at the 
 
 * A command that starts with `sleep`.
 * A command that runs `git` anywhere in it.
-* A compound command Claude Code can't fully parse into simple commands.
+* A compound command Claude Code can't fully parse into simple commands. Claude Code treats a parameter expansion such as `${VAR}` as unparseable, so it stops a command that ends in `; exit "${PIPESTATUS[0]}"` at the timeout even when the rest of that command parses.
 
 The result of a command moved to the background states what happened:
 

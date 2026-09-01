@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/structured-outputs
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: df9f60d150aa8c108d94814a5288aaabe98a957432031b77385b3acf9186d6b0
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: 0acbfdfc0e9544ae4c6d42b5e0c6411db625cc6c0ca8c2243818039a06287419
 ---
 
 ---
@@ -2368,7 +2368,7 @@ This means Claude receives a simplified schema, but your code still enforces all
 
 ## Strict tool use
 
-For enforcing JSON Schema compliance on tool inputs with grammar-constrained sampling, see [Strict tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use).
+To enforce JSON Schema compliance on tool inputs with grammar-constrained sampling, see [Strict tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use).
 
 ## Using both features together
 

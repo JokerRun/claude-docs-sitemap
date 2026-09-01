@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-integration-patterns
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 4bd825abdfcd883bcc225fe1b4adb58d06bee30737e631859c5cf8c31b1a9be7
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: c6a4b225ed3fa000cb90b9b71c8a811a7a29fce38844d42a3fe0913b00d3042c
 ---
 
 ---
@@ -125,7 +125,7 @@ Five retention horizons govern what you can retrieve later:
 | Remote session transcripts (sessions in the cloud)      | 6 years                                                                                                  | Anthropic                                                            |
 | Content hard-deleted through the Compliance API         | Not retained; deletion is immediate and permanent                                                        | The caller of the `DELETE` endpoint                                  |
 
-For how the rest of the Claude Platform handles retention, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
+To learn how the rest of the Claude Platform handles retention, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
 
 Decide between export-and-archive and on-demand API retrieval as follows:
 

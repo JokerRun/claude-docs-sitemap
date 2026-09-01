@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/token-counting
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 2e16978e7be3977606476f6ff9ac3fc0ac0364f6ad00dc8fdb59879f0a76664d
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: acb24c6ca13e1147877c73aad64c9c61c19ed0cc1b5480a1505ea83d7c822d2a
 ---
 
 ---
@@ -1417,9 +1417,9 @@ Token counting is **free to use** but subject to requests per minute rate limits
 
 | Usage tier | Requests per minute (RPM) |
 | ---------- | ------------------------- |
-| Start      | 2,000                     |
-| Build      | 4,000                     |
-| Scale      | 8,000                     |
+| Start      | 5,000                     |
+| Build      | 10,000                    |
+| Scale      | 20,000                    |
 
 <Note>
   Token counting and message creation have separate and independent rate limits. Usage of one does not count against the limits of the other.

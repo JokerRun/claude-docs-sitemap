@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-editing
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 01615f64f18cf29807b827d1f8edbb485750b2d6ae6207e4dc37fd4d1da0695c
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: 8bc3c3eb11895e639bac8f1611b229987f18168d4d15eba04e419b138bb1a812
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Automatically manage conversation context as it grows with context 
 ---
 
 <Note>
-  For how zero data retention (ZDR) applies to this feature, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
+  To learn how zero data retention (ZDR) applies to this feature, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
 </Note>
 
 ## Overview

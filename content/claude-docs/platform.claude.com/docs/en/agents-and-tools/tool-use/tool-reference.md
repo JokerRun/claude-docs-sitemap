@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: c346bad384faa65119714b1fcfd91e01c995e41c41287be2d2e94a1ef88db338
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: 13416536d4956b61ab48432f4041c5f0fcd909cff41dbc05258b1d7279455d21
 ---
 
 ---
@@ -76,7 +76,7 @@ Client toolsets are Messages API tools. They aren't currently available as agent
 
 Set `defer_loading` per member, never on the entry, and give every enabled member the same value: under [tool search](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool#deferred-tool-loading) the toolset loads and expands as one definition. When every enabled member defers, only a [tool search tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool) that isn't itself deferred can surface the toolset, so declare one in the same request. Don't put `cache_control` on a toolset entry whose members defer; set the breakpoint on a non-deferred tool instead, because deferred definitions are not part of the cached prefix.
 
-`cache_control` goes on the entry only; for where the breakpoint lands, including markers inside a batch action, see [Tool use with prompt caching](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching#cache-control-on-tool-definitions).
+`cache_control` goes on the entry only; to learn where the breakpoint lands, including markers inside a batch action, see [Tool use with prompt caching](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching#cache-control-on-tool-definitions).
 
 **Handle member tool calls.** Claude calls a member with a `tool_use` block whose `name` is the member name and whose `toolset_name` is `computer` or `browser`; `input` holds that member's parameters and no `action` field. Dispatch on the `toolset_name` and `name` pair, because a custom tool may share a member's name and the two toolsets share names such as `screenshot`. Only member results echo `toolset_name`. Several member calls in one turn form a batch action that you run in order ([computer use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool#batch-actions), [browser use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool#batch-actions)). New members arrive only with a new dated `type`.
 
@@ -121,4 +121,4 @@ Tools with `defer_loading: true` are stripped from the rendered tools section be
 
 This means `defer_loading: true` preserves your prompt cache. You can add deferred tools to a request without invalidating an existing cache entry, and the cache remains valid across the turn where the tool is discovered and the turn where it's called.
 
-For how to combine `defer_loading` with `cache_control` breakpoints, see the [Tool search tool prompt caching guidance](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool#prompt-caching).
+To learn how to combine `defer_loading` with `cache_control` breakpoints, see the [Tool search tool prompt caching guidance](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool#prompt-caching).

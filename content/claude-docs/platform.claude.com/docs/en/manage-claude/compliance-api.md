@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-api
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: a27184f1b9b4d912ec3520101a36153be028904c3056c365802dc4523f9ad559
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: bfe70e117146971480850e986e55dae3a913b4656a0e5b23953ea0db37977e4c
 ---
 
 ---
 title: Compliance API
 url: https://platform.claude.com/docs/en/manage-claude/compliance-api
-description: Programmatic access to your organization's Claude activity, chats, files, projects, Claude Cowork and Claude Code sessions, and users for compliance, audit, and governance.
+description: Programmatic access to your organization's Claude activity, chats, files, projects, sessions in Claude apps, and users for compliance, audit, and governance.
 ---
 
 The Compliance API gives Claude Enterprise and Claude Console customers programmatic access to their organization's Activity Feed. For Claude Enterprise organizations, it also covers the directory of users, roles, and groups across every linked organization; the effective settings in force for each organization; the underlying chats, files, and projects in claude.ai organizations; and Cowork, Claude Code, Claude Science, and Claude for Microsoft 365 sessions. Security, legal, and compliance teams use it to audit activity, retrieve or delete content, and feed events into downstream tooling.

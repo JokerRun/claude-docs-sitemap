@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/workflows
-fetched_at: 2026-08-30T02:21:42.830335Z
-sha256: ba36960244015e6f104653edd3b6a790075b39f0234bcf30a4586e857c5211a4
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: f95bdda81473d9289e7f3784c741b7b28a9fb9a119810c4f53878db15c12f2c8
 ---
 
 > ## Documentation Index
@@ -153,6 +153,8 @@ Ultracode is a Claude Code setting that combines `xhigh` [reasoning effort](/doc
 ```
 
 To start a session with ultracode already on, launch with `claude --effort ultracode`. Requires Claude Code v2.1.203 or later.
+
+To turn it on while you choose a model, move the `/model` picker's effort slider to `ultracode` with the arrow keys. [Adjust effort level](/docs/en/model-config#adjust-effort-level) lists the routes that turn ultracode on.
 
 With ultracode on, Claude decides when a task warrants a workflow. A single request can turn into several workflows in a row: one to understand the code, one to make the change, and one to verify it. This applies to every task in the session, so each request uses more tokens and takes longer than at lower effort levels.
 
@@ -388,7 +390,9 @@ The warning is advisory: it doesn't pause or limit the run. Two settings change 
 * If you choose a [size guideline](#set-a-size-guideline) yourself, its agent count replaces the 25-agent threshold. The built-in default guideline leaves the threshold at 25.
 * Sessions with [ultracode](#let-claude-decide-with-ultracode) on don't show the warning, because turning ultracode on already opts you in to large runs.
 
-Every agent in a workflow uses your session's model unless the script routes a stage to a different one or the [`CLAUDE_CODE_SUBAGENT_MODEL`](/docs/en/model-config#environment-variables) environment variable is set, which overrides both. To control the model cost:
+Claude Code picks each workflow agent's model in the same [order it uses for subagents](/docs/en/sub-agents#choose-a-model). A model the script names for a stage counts as the per-invocation model in that order. When nothing else assigns one, the agent runs on your session's model.
+
+To control the model cost:
 
 * Check `/model` before a large run if you usually switch to a smaller model for routine work
 * Ask Claude to use a smaller model for stages that don't need the strongest one when you describe the task

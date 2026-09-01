@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/haiku-4-5/migration-guide
-fetched_at: 2026-08-26T02:33:22.881887Z
-sha256: 1e09b6b5c470143800a4a683315c82fc477a5f1ba006c5efeed917684ddda1c3
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: 8ee77d41d38be9c1ed08c4177c290f78894a7093a9eb35275157c329d51a2932
 ---
 
 ---
@@ -19,7 +19,7 @@ description: "Migrate to Claude Haiku 4.5 from earlier Haiku models: model IDs, 
   **Automate your migration with the Claude API skill.** In Claude Code, run `/claude-api migrate` to invoke the bundled [Claude API skill](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model). It works for any current Claude model as the target:
 
   ```text wrap
-  /claude-api migrate this project to claude-opus-5
+  /claude-api migrate this project to claude-haiku-4-5
   ```
 
   The skill applies the model ID swap and, as needed, breaking parameter changes, prefill replacement, and effort calibration for your target model across your code base, then produces a checklist of items to verify manually. It asks you to confirm the migration scope (entire working directory, a subdirectory, or a specific file list) before editing any files. The skill also detects Amazon Bedrock and Claude Platform on AWS clients and adjusts model ID formats and feature changes for those platforms.

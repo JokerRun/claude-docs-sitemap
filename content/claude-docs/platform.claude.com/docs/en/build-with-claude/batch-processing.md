@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/batch-processing
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: 9f5ac47989656b50b44b38e2424098b0f62803c1e33a41431f0886d39f2be97b
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: 4d57f9ea2acb1ddf07c7bde8780068c122f4dc52aa11ae70a58f11b29648e326
 ---
 
 ---
@@ -21,7 +21,7 @@ Batch processing is a powerful approach for handling large volumes of requests e
 The Message Batches API is Anthropic's first implementation of this pattern.
 
 <Note>
-  For how zero data retention (ZDR) applies to this feature, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
+  To learn how zero data retention (ZDR) applies to this feature, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
 </Note>
 
 # Message Batches API

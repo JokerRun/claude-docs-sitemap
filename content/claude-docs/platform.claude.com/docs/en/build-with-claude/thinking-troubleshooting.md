@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 2c985ea0abd007cce3e29d0843ffc381727c6de3f47ba7a820e6e60e3a5c1989
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: 71a865a060f38ff841395b9b4367fae05312cd40dcfdcab077234aacb43e68de
 ---
 
 ---
@@ -12,10 +12,10 @@ description: "Diagnose and fix the most common thinking failures: configuration 
 ---
 
 <Note>
-  For how zero data retention (ZDR) applies to this feature, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
+  To learn how zero data retention (ZDR) applies to this feature, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
 </Note>
 
-This page covers the most common failures when configuring thinking or round-tripping thinking blocks (sending returned thinking blocks back in later requests). The first section maps each model to its supported thinking configurations and the ones it rejects; the sections after it each start from a symptom you observe, so you can match an error message or unexpected response directly to its cause and fix. For how thinking works, see the [Thinking](https://platform.claude.com/docs/en/build-with-claude/thinking) overview.
+This page covers the most common failures when configuring thinking or round-tripping thinking blocks (sending returned thinking blocks back in later requests). The first section maps each model to its supported thinking configurations and the ones it rejects; the sections after it each start from a symptom you observe, so you can match an error message or unexpected response directly to its cause and fix. To learn how thinking works, see the [Thinking](https://platform.claude.com/docs/en/build-with-claude/thinking) overview.
 
 ## Configurations each model rejects
 

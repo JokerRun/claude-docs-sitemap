@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-content-data
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 28ebb6413b724bc4a5ce9eefe610c382a9eb9636ae84e8383b3d2af3a79e777d
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: ef22b7f65ebbbbfbbb12ab45f2ba65472a3759bb733a5d7b3aba2a7a0af9db8c
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Access chat content, file attachments, and projects for claude.ai o
 ---
 
 <Note>
-  The endpoints on this page are available only to Claude Enterprise organizations. They retrieve and delete claude.ai chats, files, and projects; Cowork and Claude Code session transcripts are covered on [Retrieve session transcripts](https://platform.claude.com/docs/en/manage-claude/compliance-sessions). See [Set up the Compliance API](https://platform.claude.com/docs/en/manage-claude/compliance-api-access).
+  The endpoints on this page are available only to Claude Enterprise organizations. They retrieve and delete claude.ai chats, files, and projects; transcripts of sessions in apps such as Cowork and Claude Code are covered on [Retrieve session transcripts](https://platform.claude.com/docs/en/manage-claude/compliance-sessions). See [Set up the Compliance API](https://platform.claude.com/docs/en/manage-claude/compliance-api-access).
 </Note>
 
 <Check>

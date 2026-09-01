@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-08-15T02:25:10.047250Z
-sha256: e0bf1a11e4ee248233a8ed753a9a9a55470ac5707795e6c1a03c0b19608b3f72
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: 006e67f540fb4a9cd3e3ea0dd41d4948d74f2084784d2b636b6047c8304836eb
 ---
 
 ---
@@ -31,7 +31,7 @@ sequenceDiagram
 ```
 
 <Note>
-  For how zero data retention (ZDR) applies to this feature, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
+  To learn how zero data retention (ZDR) applies to this feature, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
 </Note>
 
 ## When to use it

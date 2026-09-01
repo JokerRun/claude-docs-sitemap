@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/using
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: dc722cf53d5cdf076be66e4020f4f1f493a6079fd1bf25f6dbe06db06eef45ce
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: 27ad3930cc0051e29310fb61a4f7d8b40758f84468ea6c1b01d235f248324d37
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/using
 description: Command structure, output formats, GJSON transforms, request bodies, and debugging for the ant CLI.
 ---
 
-This page covers the `ant` CLI's input and output mechanics that apply across every endpoint. For installing and authenticating, see the [Quickstart](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/quickstart). For chaining commands and version-controlling resources, see [CLI scripting and automation](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/scripting).
+This page covers the `ant` CLI's input and output mechanics that apply across every endpoint. To install and authenticate, see the [Quickstart](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/quickstart). To chain commands and version-control resources, see [CLI scripting and automation](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/scripting).
 
 ## Command structure
 

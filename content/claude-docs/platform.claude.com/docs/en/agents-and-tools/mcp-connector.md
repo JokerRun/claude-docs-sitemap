@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: 88047f5c3e05f70265f8e8373e3c03094dd5260f5e2ce9d1758d0889d4803a04
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: e0a6a3b1a9b727143bfbf8caa7c0a1ef22f7a9aee8d36a15eba02e83bcf34036
 ---
 
 ---
@@ -370,7 +370,7 @@ Each tool (whether configured in `default_config` or in `configs`) supports the 
 | `enabled`       | boolean | `true`  | Whether this tool is enabled.                                                                                                                                               |
 | `defer_loading` | boolean | `false` | If true, tool description is not sent to the model initially. Used with [Tool search tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool). |
 
-For the full directory of Anthropic-provided tools and optional properties such as `defer_loading`, see the [Tool reference](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference). For searching across large tool sets, see [Tool search tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool).
+For the full directory of Anthropic-provided tools and optional properties such as `defer_loading`, see the [Tool reference](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference). To search across large tool sets, see [Tool search tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool).
 
 ### Configuration merging
 

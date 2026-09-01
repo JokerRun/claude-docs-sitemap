@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 2e8fbff0eef10cd393bbc5a8be1af8e8e4572f9df2cc8a5f7db1561aac682df1
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: 8eab72aa8a2b780df1e8a8e3115ed997e02cd5572acd7a8f122f3ec42275177e
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Fetch and read content from specific URLs to augment Claude's conte
 ---
 
 <Note>
-  For how zero data retention (ZDR) applies to this feature, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
+  To learn how zero data retention (ZDR) applies to this feature, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
 </Note>
 
 The web fetch tool allows Claude to retrieve full content from specified web pages and PDF documents.
@@ -899,7 +899,7 @@ In this workflow, Claude:
 
 ## Prompt caching
 
-For caching tool definitions across turns, see [Tool use with prompt caching](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching).
+To cache tool definitions across turns, see [Tool use with prompt caching](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching).
 
 ## Streaming
 

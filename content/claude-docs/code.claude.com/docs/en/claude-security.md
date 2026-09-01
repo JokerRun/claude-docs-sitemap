@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-security
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: fa35ea2bc3e0ac2b2ba5f9e183c9cc71526017850ceeed48cfcd0136a18565ab
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: 917f742b5535c77b4a1bda0599a0540a334b1f19ef44dbc51634cdee280ab690
 ---
 
 > ## Documentation Index
@@ -24,7 +24,7 @@ The plugin is also distinct from the review tools already in Claude Code: the [s
 To run the plugin, you need:
 
 * A paid plan, for the [dynamic workflows](/docs/en/workflows) the scan uses to orchestrate its agents. On Pro, turn them on from the Dynamic workflows row in `/config`.
-* Python 3.9.6 or later available on your `PATH` as `python3`. Check with `python3 --version`. The plugin's tooling uses only the Python standard library, so nothing is installed.
+* Python 3.9 or later available on your `PATH` as `python3`. Check with `python3 --version`. The plugin's tooling uses only the Python standard library, so nothing is installed.
 * Linux, macOS, or Windows.
 * Git, for change scans and for turning findings into patches; those jobs don't support other version control systems. A full scan works in any directory, with or without version control.
 
@@ -35,6 +35,8 @@ In a Claude Code session, install from the [official Anthropic marketplace](/doc
 ```text theme={null}
 /plugin install claude-security@claude-plugins-official
 ```
+
+The command opens the plugin's details, where you choose an [installation scope](/docs/en/discover-plugins#install-plugins) to start the install.
 
 If the install fails, the fix depends on which message Claude Code reports:
 
@@ -141,7 +143,7 @@ The plugin doesn't replace your existing source-code security tools. Run it alon
 
 ## Troubleshooting
 
-**The `/claude-security` menu opens with a Python warning.** The plugin needs `python3` 3.9.6 or later on your `PATH`. When it can't find `python3` at all, the menu warns that Claude Security won't work until one is installed; when the first `python3` on your `PATH` is older, the warning names the version it found. Install Python 3, or put a newer `python3` first on your `PATH`, then start a new session.
+**The `/claude-security` menu opens with a Python warning.** The plugin needs `python3` 3.9 or later on your `PATH`. When it can't find `python3` at all, the menu warns that Claude Security won't work until one is installed; when the first `python3` on your `PATH` is older, the warning names the version it found. Install Python 3, or put a newer `python3` first on your `PATH`, then start a new session.
 
 **You may see "Fable 5's safeguards flagged this message" when using Fable 5.** Due to Fable 5's cybersecurity safety classifiers, certain model activities will be blocked and automatically downgraded to Opus.  This is expected, and the scan should still complete successfully.
 

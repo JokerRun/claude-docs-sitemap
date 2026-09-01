@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-sessions
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: c956f02aaf2d5e117a3745d98a7a9c6f510f05de1c19855686c6af8ba38c4d5b
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: 30c9a22dfada15320cb9c95c6448b5856f6a220892bbff830c775dc285764f6b
 ---
 
 ---
@@ -42,7 +42,7 @@ Capture of local sessions is tied to the Compliance API being enabled for your o
 * Local sessions in organizations with [HIPAA readiness](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#hipaa-readiness) enabled. No local session data is captured, so the local session endpoints return no sessions for those organizations.
 * Local sessions for which [zero data retention (ZDR)](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) is in effect. These sessions are excluded from list results, and the retrieve and messages endpoints return 404 for them.
 
-Anthropic recommends the Compliance API for retrieving the content of Cowork and Claude Code sessions. The following table compares [local sessions](https://platform.claude.com/docs/en/manage-claude/compliance-sessions#retrieve-local-sessions) and [remote sessions](https://platform.claude.com/docs/en/manage-claude/compliance-sessions#retrieve-remote-sessions) with the OpenTelemetry-based alternatives, [Cowork's OpenTelemetry logging](https://support.claude.com/en/articles/14477985-monitor-claude-cowork-activity-with-opentelemetry) and [Claude Code monitoring](https://code.claude.com/docs/en/monitoring-usage).
+Anthropic recommends the Compliance API for retrieving session content. The following table compares [local sessions](https://platform.claude.com/docs/en/manage-claude/compliance-sessions#retrieve-local-sessions) and [remote sessions](https://platform.claude.com/docs/en/manage-claude/compliance-sessions#retrieve-remote-sessions) with the OpenTelemetry-based alternatives available for Cowork and Claude Code, [Cowork's OpenTelemetry logging](https://support.claude.com/en/articles/14477985-monitor-claude-cowork-activity-with-opentelemetry) and [Claude Code monitoring](https://code.claude.com/docs/en/monitoring-usage).
 
 |                                                           | Local sessions (on users' machines)                                                                                                                                            | Remote sessions (in the cloud)                                                                                                                                                 | OpenTelemetry logging                                                                                         |
 | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
@@ -425,7 +425,7 @@ The messages endpoint returns [404 Not Found](https://platform.claude.com/docs/e
 
 ## Retention and deletion
 
-The session endpoints are read-only; local and remote sessions cannot be deleted through the Compliance API. Local session transcripts are retained for 6 years by default, or your organization's custom conversation retention period when a finite one is set, as described under [Sessions on users' machines](https://platform.claude.com/docs/en/manage-claude/compliance-sessions#retrieve-local-sessions). Remote session transcripts are retained for 6 years. For how these periods sit alongside Anthropic's other retention arrangements, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
+The session endpoints are read-only; local and remote sessions cannot be deleted through the Compliance API. Local session transcripts are retained for 6 years by default, or your organization's custom conversation retention period when a finite one is set, as described under [Sessions on users' machines](https://platform.claude.com/docs/en/manage-claude/compliance-sessions#retrieve-local-sessions). Remote session transcripts are retained for 6 years. To learn how these periods sit alongside Anthropic's other retention arrangements, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
 
 ## Next steps
 

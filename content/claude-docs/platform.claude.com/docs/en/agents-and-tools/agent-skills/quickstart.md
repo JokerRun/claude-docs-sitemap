@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: d19a433c483bbdf59682d1af74357b07e77c7a04e44b4aa90dde3826d324ccbd
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: d771a4e22252d993ba065c723dcff583a72bfcdf3be59adc575dba374f8f3168
 ---
 
 ---
@@ -349,7 +349,7 @@ Use the PowerPoint Skill to create a presentation about renewable energy. Specif
 
 The request includes the following parts:
 
-* **`model`:** A [model that supports the code execution tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool#model-compatibility)
+* **`model`:** A [model that supports the code execution tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool#compatibility)
 * **`container.skills`:** Specifies which Skills Claude can use
 * **`type: "anthropic"`:** Indicates this is an Anthropic-managed Skill
 * **`skill_id: "pptx"`:** The PowerPoint Skill identifier

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 084eaadd0d75c399a05e919f029e94e039017225a99b858dc5ecb09092a6bd29
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: d29137b7f28307f6259de9056771ff8602015d35825ed8bd2f8118a5ee713532
 ---
 
 ---
@@ -31,7 +31,7 @@ Tool search runs as a server-side tool, but you can also implement your own clie
 </Note>
 
 <Note>
-  For how zero data retention (ZDR) applies to this feature, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
+  To learn how zero data retention (ZDR) applies to this feature, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
 </Note>
 
 <Warning>
@@ -791,7 +791,7 @@ The `error_code` field has four possible values:
 
 ## Prompt caching
 
-For how `defer_loading` preserves prompt caching, see [Tool use with prompt caching](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching).
+To learn how `defer_loading` preserves prompt caching, see [Tool use with prompt caching](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching).
 
 A tool with `defer_loading: true` can't also carry `cache_control`: the API returns a 400. Put the cache breakpoint on a non-deferred tool.
 

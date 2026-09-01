@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/mcp
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: 59462afa71fd93c7bfafe8aeea59e2109f0bb552be3a4c8082f40297a4b31c81
+fetched_at: 2026-09-01T02:22:36.834082Z
+sha256: 38d3bf3173e53b1f8a4bdf8e574a561ca1f1ad28600c9e91b20ea508bf3d7d09
 ---
 
 > ## Documentation Index
@@ -83,7 +83,7 @@ You can configure MCP servers in code when calling `query()`, or in a `.mcp.json
 
 ### In code
 
-Pass MCP servers directly in the `mcpServers` option:
+Pass MCP servers directly in the `mcpServers` option. This example starts a local filesystem MCP server for `/Users/me/projects`. Replace that path with a directory on your machine:
 
 <CodeGroup>
   ```typescript TypeScript theme={null}
@@ -138,7 +138,7 @@ Pass MCP servers directly in the `mcpServers` option:
 
 ### From a config file
 
-Create a `.mcp.json` file at your project root. The file is picked up when the `project` setting source is enabled, which it is for default `query()` options. If you set `settingSources` explicitly, include `"project"` for this file to load:
+Create a `.mcp.json` file at your project root. The file is picked up when the `project` setting source is enabled, which it is for default `query()` options. If you set `settingSources` explicitly, include `"project"` for this file to load. Replace `/Users/me/projects` with a directory on your machine:
 
 ```json theme={null}
 {
@@ -275,7 +275,7 @@ MCP servers communicate with your agent using different transport protocols. Che
 
 ### stdio servers
 
-Local processes that communicate via stdin/stdout. Use this for MCP servers you run on the same machine. For the `.mcp.json` form, use the same fields shown at [From a config file](#from-a-config-file). In code, pass the command and its arguments:
+Local processes that communicate via stdin/stdout. Use this for MCP servers you run on the same machine. For the `.mcp.json` form, use the same fields shown at [From a config file](#from-a-config-file). In code, pass the command and its arguments. Replace `/Users/me/projects` with a directory on your machine:
 
 <CodeGroup>
   ```typescript TypeScript hidelines={1,-1} theme={null}
@@ -345,7 +345,7 @@ Use HTTP or SSE for cloud-hosted MCP servers and remote APIs. For the `.mcp.json
   ```
 </CodeGroup>
 
-For the streamable HTTP transport, use `"type": "http"` instead. In `.mcp.json` and other JSON config files, `"streamable-http"` is accepted as an alias for `"http"`. The programmatic `mcpServers` option accepts only `"http"`.
+For the streamable HTTP transport, use `"type": "http"` instead. In `.mcp.json` and other JSON config files, `"streamable-http"` is accepted as an alias for `"http"`. The SDKs' `McpHttpServerConfig` type declares only `"http"`, so use `"http"` for servers you pass in code.
 
 ### SDK MCP servers
 
@@ -623,6 +623,8 @@ export GITHUB_TOKEN=YOUR_GITHUB_PAT
   asyncio.run(main())
   ```
 </CodeGroup>
+
+In the `MCP servers:` line, a `status` of `connected` for `github` confirms the token works. If Claude Code has a [cached tool list](#connection-timing) for the server, the status can read `pending` instead and the server connects on its first tool call. If the status is `failed` or `needs-auth`, see [Error handling](#error-handling) before trusting the result, since Claude can fall back to built-in tools when the server is unavailable.
 
 ### Query a database
 
