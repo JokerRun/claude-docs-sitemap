@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: e4371599b9eb47bfba4fb59f90007c296c7ac658fa9da33e85d2ec469d60c177
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 8cfc66a418c4a29ecb1165a663b8d0a36d86e1efed4374b7bf11176b607bb4c3
 ---
 
 # Files
@@ -21,7 +21,7 @@ Upload File
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -104,6 +104,12 @@ Upload File
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ### Body parameters (form-data)
 
@@ -248,7 +254,7 @@ List Files
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -331,6 +337,12 @@ List Files
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ### Returns
 
@@ -454,7 +466,7 @@ Download File
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -537,6 +549,12 @@ Download File
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ### Example
 
@@ -566,7 +584,7 @@ Get File Metadata
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -649,6 +667,12 @@ Get File Metadata
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ### Returns
 
@@ -761,7 +785,7 @@ Delete File
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -844,6 +868,12 @@ Delete File
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: fbf91da7e08c87145c300e1ee1d2c1f3bd7bbafc3f65b14d4ae58fad1367ffb4
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 1c5df383bb68c62c6817707d1ab2575e5cbb20d3219e26e1183c8fde307f69a1
 ---
 
 > ## Documentation Index
@@ -138,19 +138,20 @@ Actions available in the `Autocomplete` context:
 
 Actions available in the `Confirmation` context:
 
-| Action                      | Default     | Description                                                                                                                                                                                                                                                                           |
-| :-------------------------- | :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `confirm:yes`               | Y, Enter    | Confirm action                                                                                                                                                                                                                                                                        |
-| `confirm:no`                | N, Escape   | Decline action                                                                                                                                                                                                                                                                        |
-| `confirm:previous`          | Up          | Previous option                                                                                                                                                                                                                                                                       |
-| `confirm:next`              | Down        | Next option                                                                                                                                                                                                                                                                           |
-| `confirm:nextField`         | Tab         | Next field                                                                                                                                                                                                                                                                            |
-| `confirm:previousField`     | (unbound)   | Previous field                                                                                                                                                                                                                                                                        |
-| `confirm:toggle`            | Space       | Toggle selection                                                                                                                                                                                                                                                                      |
-| `confirm:cycleMode`         | Shift+Tab\* | Cycle permission modes. On a file permission prompt, closes an open [comment field](/docs/en/permissions#add-a-comment-when-you-answer-a-permission-prompt); with no field open, selects the option that allows the action for the rest of the session, when the prompt offers that option |
-| `confirm:toggleExplanation` | Ctrl+E      | Toggle a model-generated [explanation of the command](/docs/en/permissions#permission-system) on Bash and PowerShell permission prompts                                                                                                                                                    |
+| Action                  | Default     | Description                                                                                                                                                                                                                                                                           |
+| :---------------------- | :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `confirm:yes`           | Y, Enter    | Confirm action                                                                                                                                                                                                                                                                        |
+| `confirm:no`            | N, Escape   | Decline action                                                                                                                                                                                                                                                                        |
+| `confirm:previous`      | Up          | Previous option                                                                                                                                                                                                                                                                       |
+| `confirm:next`          | Down        | Next option                                                                                                                                                                                                                                                                           |
+| `confirm:nextField`     | Tab         | Next field                                                                                                                                                                                                                                                                            |
+| `confirm:previousField` | (unbound)   | Previous field                                                                                                                                                                                                                                                                        |
+| `confirm:toggle`        | Space       | Toggle selection                                                                                                                                                                                                                                                                      |
+| `confirm:cycleMode`     | Shift+Tab\* | Cycle permission modes. On a file permission prompt, closes an open [comment field](/docs/en/permissions#add-a-comment-when-you-answer-a-permission-prompt); with no field open, selects the option that allows the action for the rest of the session, when the prompt offers that option |
 
 \*On Windows without VT mode (Node \<24.2.0/\<22.17.0, Bun \<1.2.23), defaults to Meta+M.
+
+Before v2.1.257, a `confirm:toggleExplanation` action, bound to `Ctrl+E` by default, showed a model-generated explanation of the command on Bash and PowerShell permission prompts.
 
 ### Permission actions
 

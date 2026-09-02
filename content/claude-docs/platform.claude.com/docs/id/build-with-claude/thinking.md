@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 529578af488bda9da7b67b1433498b7b4523a66606df864d55bfe3c8f99907d7
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 091ec3a5211e7189b576cfebf2863e37a454138850396978eef0941549d9094e
 ---
 
 ---
@@ -12,7 +12,7 @@ description: "Pahami cara kerja thinking Claude: mengaktifkannya, membaca output
 ---
 
 <Note>
-  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 Model yang menjawab dalam satu kali proses harus mendapatkan semuanya dengan benar pada percobaan pertama: tanpa coretan kerja, tanpa pemeriksaan, tanpa mengubah arah di tengah jalan. Untuk sebuah pembuktian, bug yang rumit, atau tugas agentic yang panjang, pendekatan pertama sering kali bukan yang terbaik.
@@ -810,7 +810,7 @@ Untuk mekanisme streaming umum, lihat [Streaming Messages](https://platform.clau
 
 ## Thinking dan effort
 
-Parameter `thinking` mengontrol apakah Claude berpikir dalam [blok pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking) sebelum menjawab; parameter `effort` mengontrol seberapa banyak upaya yang Claude curahkan untuk keseluruhan respons, yang dalam mode adaptif mencakup seberapa sering dan seberapa dalam Claude berpikir. Jangan meneruskan `adaptive` sebagai nilai `effort`: `adaptive` adalah mode berpikir, bukan tingkat effort.
+Parameter `thinking` mengontrol apakah Claude berpikir dalam [blok thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) sebelum menjawab; parameter `effort` mengontrol seberapa banyak upaya yang Claude curahkan untuk keseluruhan respons, yang dalam mode adaptif mencakup seberapa sering dan seberapa dalam Claude berpikir. Jangan berikan `adaptive` sebagai nilai `effort`: `adaptive` adalah mode berpikir, bukan tingkat upaya.
 
 Untuk apa yang dilakukan setiap level effort terhadap perilaku thinking, lihat [tabel perilaku thinking per-level](https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost#effort-levels) di halaman [Mengarahkan thinking](https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost). Halaman [Effort](https://platform.claude.com/docs/id/build-with-claude/effort) mendokumentasikan parameter itu sendiri, termasuk level mana yang didukung setiap model. Pada Claude Opus 4.5, satu-satunya model khusus extended-thinking yang mendukung effort, effort berkomposisi dengan `budget_tokens`. Lihat [Aturan dan penyetelan budget](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#budget-rules-and-tuning).
 

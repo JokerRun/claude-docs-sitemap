@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/retrieve
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 248368edb4c65ff5df2a8f51e999990999d25ac1e74d1fab9b4eb0c286c9140c
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 0e02d2204da7072779f8cace004e69330a82e435315f915cfdd2da7eb9608488
 ---
 
 # Get External Key
@@ -69,7 +69,7 @@ Retrieve a single external key config in the caller's organization by ID.
 
       - `kms_arn: string`
 
-        Full ARN of the AWS KMS key.
+        Full ARN of the AWS KMS key. On Claude Platform on AWS the key must be a single-Region key in your organization's own AWS account; cross-account keys, multi-Region keys, and alias ARNs are rejected.
 
         maxLength: 2048
 
@@ -83,7 +83,7 @@ Retrieve a single external key config in the caller's organization by ID.
 
         **Deprecated**
 
-        IAM role ARN. Deprecated — Anthropic reaches the KMS key via a managed intermediate role; this field is ignored.
+        IAM role ARN. Deprecated — Anthropic reaches the KMS key through its own intermediate role (or, on Claude Platform on AWS, with credentials AWS issues for the Workspace); this field is ignored.
 
     - `BetaGCPExternalKeyConfig object`
 

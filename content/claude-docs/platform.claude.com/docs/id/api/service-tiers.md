@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/service-tiers
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: bbe0a5bc25bbb2b41922be3e1d9c1eb953cfcd9e10ffa93dce8caac3709b4539
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: f163b55b53c21328e17cd1a2d22b1b35a28a2e6551a59e3c1ccebb4fd426dfed
 ---
 
 ---
@@ -12,16 +12,16 @@ description: Berbagai tingkat layanan memungkinkan Anda menyeimbangkan ketersedi
 ---
 
 <Warning>
-  Komitmen kapasitas Priority Tier tidak lagi tersedia untuk dibeli. Organisasi yang sudah memiliki komitmen dapat terus menggunakan Priority Tier hingga tanggal berakhirnya kontrak mereka, dan halaman ini tetap tersedia sebagai referensi bagi mereka. Jika Anda memerlukan kapasitas yang terjamin, [hubungi tim penjualan](https://claude.com/contact-sales).
+  Komitmen kapasitas Priority Tier tidak lagi tersedia untuk dibeli. Organisasi yang memiliki komitmen yang sudah ada dapat terus menggunakan Priority Tier hingga tanggal berakhirnya kontrak mereka, dan halaman ini tetap tersedia sebagai referensi bagi mereka. Jika Anda memerlukan kapasitas yang terjamin, [hubungi tim penjualan](https://claude.com/contact-sales).
 </Warning>
 
 Anthropic menawarkan tiga "service tiers" (tingkat layanan):
 
-* **Priority Tier:** Hanya tersedia bagi organisasi yang sudah memiliki komitmen kapasitas
+* **Priority Tier:** Hanya tersedia bagi organisasi yang memiliki komitmen kapasitas yang sudah ada
 * **Standard:** Tingkat default untuk uji coba maupun penskalaan kasus penggunaan sehari-hari
-* **Batch:** Paling cocok untuk alur kerja asinkron yang dapat menunggu atau mendapat manfaat dari berada di luar kapasitas normal Anda
+* **Batch:** Paling cocok untuk alur kerja asinkron yang dapat menunggu atau diuntungkan dengan berada di luar kapasitas normal Anda
 
-## Tingkat Standard
+## Standard Tier
 
 Standard tier adalah tingkat layanan default untuk semua permintaan API. API memprioritaskan permintaan ini bersama semua permintaan lainnya dengan ketersediaan best-effort (upaya terbaik).
 
@@ -31,7 +31,7 @@ API memprioritaskan permintaan dalam tingkat ini di atas semua permintaan lainny
 
 Untuk informasi lebih lanjut, lihat [Komitmen Priority Tier yang sudah ada](https://platform.claude.com/docs/id/api/service-tiers#existing-priority-tier-commitments).
 
-## Bagaimana permintaan ditetapkan ke tingkat layanan
+## Cara permintaan ditetapkan ke tingkat layanan
 
 Saat menangani permintaan, Anthropic memutuskan untuk menetapkan permintaan ke Priority Tier dalam skenario berikut:
 
@@ -56,7 +56,7 @@ Anthropic menghitung penggunaan terhadap kapasitas Priority Tier sebagai berikut
 Jika tidak, permintaan diproses pada standard tier.
 
 <Note>
-  Tingkat burndown (pengurangan kapasitas) ini mencerminkan harga relatif dari setiap jenis token. Misalnya, inferensi khusus AS dihargai 1,1x pada model Claude 4.6 dan yang lebih baru, sehingga setiap token yang dikonsumsi dengan `inference_geo: "us"` mengurangi 1,1 token dari kapasitas Priority Tier Anda.
+  Laju burndown (pengurangan kapasitas) ini mencerminkan harga relatif dari setiap jenis token. Misalnya, inferensi khusus AS dihargai 1,1x pada model Claude 4.6 dan yang lebih baru, sehingga setiap token yang dikonsumsi dengan `inference_geo: "us"` mengurangi 1,1 token dari kapasitas Priority Tier Anda.
 </Note>
 
 <Note>
@@ -208,7 +208,7 @@ Objek `usage` pada respons juga menyertakan tingkat layanan yang ditetapkan untu
 
 Ini memungkinkan Anda menentukan tingkat layanan mana yang ditetapkan untuk permintaan tersebut.
 
-Saat meminta `service_tier="auto"` dengan model yang memiliki komitmen Priority Tier, header respons berikut memberikan wawasan:
+Saat meminta `service_tier="auto"` dengan model yang memiliki komitmen Priority Tier, header respons berikut memberikan informasi:
 
 ```text wrap
 anthropic-priority-input-tokens-limit: 10000
@@ -234,6 +234,6 @@ Priority Tier menargetkan uptime 99,5% dengan sumber daya komputasi yang diprior
 
 ### Model yang didukung
 
-Priority Tier didukung pada semua model Claude yang tersedia kecuali Claude Mythos 5, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 5, dan Claude Sonnet 5.
+Priority Tier didukung pada semua model Claude yang tersedia kecuali Claude Fable 5.1, Claude Mythos 5.1, Claude Mythos 5, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 5, dan Claude Sonnet 5.
 
-Periksa [Ikhtisar model](https://platform.claude.com/docs/id/about-claude/models/overview) untuk detail lebih lanjut tentang model yang tersedia.
+Lihat [Ikhtisar model](https://platform.claude.com/docs/id/models/overview) untuk detail lebih lanjut tentang model yang tersedia.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: f825a130a291676d026b0dcd3e07c48788243606c4f8a36624eac18d1c2099a2
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 86f511df72e07839be6746259da47caf1f4b365c0800a6809be3c128f49fa620
 ---
 
 ---
@@ -14,7 +14,7 @@ description: Kirim event, lakukan streaming respons, dan interupsi atau arahkan 
 Komunikasi dengan Claude Managed Agents berbasis event. Anda mengirim event pengguna ke agen, dan menerima kembali event agen dan event sesi untuk melacak status.
 
 <Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Jenis event
@@ -22,11 +22,11 @@ Komunikasi dengan Claude Managed Agents berbasis event. Anda mengirim event peng
 Event mengalir dalam dua arah.
 
 * **Event pengguna** dan **event sistem** adalah yang Anda kirim ke agen: event `user.*` memulai sesi dan mengarahkannya seiring berjalannya sesi; `system.message` menambahkan konteks tingkat sistem yang berlaku untuk giliran yang menyertainya dan semua giliran berikutnya.
-* **Event sesi**, **event span**, dan **event agen** dikirim kepada Anda untuk observabilitas terhadap status sesi dan kemajuan agen Anda. Koneksi stream yang memilih ikut serta (opt in) juga menerima [delta event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#event-deltas).
+* **Event sesi**, **event span**, dan **event agen** dikirim kepada Anda untuk observabilitas terhadap status sesi dan kemajuan agen Anda. Koneksi stream yang memilih ikut serta juga menerima [delta event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#event-deltas).
 
 String jenis event sesi, span, agen, pengguna, dan sistem mengikuti konvensi penamaan `{domain}.{action}`. Event pratinjau delta khusus stream (`event_start`, `event_delta`) adalah pengecualiannya. Lihat [Jenis event](https://platform.claude.com/docs/id/managed-agents/reference#event-types) di referensi untuk katalog lengkapnya. [Jenis event webhook](https://platform.claude.com/docs/id/managed-agents/webhooks#supported-event-types) terpisah, dan beberapa namanya berbeda dari nama di stream (misalnya, `session.status_idled` alih-alih `session.status_idle`).
 
-Setiap event yang dipersistenkan menyertakan timestamp `processed_at` yang ditetapkan saat event selesai diproses. Pada event yang Anda kirim, `processed_at` bernilai null selama event masih mengantre di belakang event sebelumnya. Pengecualiannya adalah `user.define_outcome`, `user.custom_tool_result`, dan `user.tool_result`, yang diproses saat diterima dan dipantulkan kembali dengan `processed_at` yang sudah terisi.
+Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang ditetapkan saat event selesai diproses. Pada event yang Anda kirim, `processed_at` bernilai null selama event masih mengantre di belakang event sebelumnya. Pengecualiannya adalah `user.define_outcome`, `user.custom_tool_result`, dan `user.tool_result`, yang diproses saat diterima dan digemakan kembali dengan `processed_at` yang sudah terisi.
 
 ## Mengintegrasikan event
 
@@ -369,7 +369,7 @@ Setiap event yang dipersistenkan menyertakan timestamp `processed_at` yang ditet
       ```
     </CodeGroup>
 
-    Panggilan ini kembali segera setelah event masuk antrean, dan `processed_at` milik interupsi tetap null hingga agen menerapkannya. Respons model yang sedang berlangsung berhenti seketika. Interupsi dapat memerlukan waktu lebih lama untuk diterapkan saat pemanggilan alat sedang berjalan, dan sesi tetap `running` hingga interupsi diterapkan. Event `user.interrupt` kemudian muncul di stream, dan giliran yang diinterupsi berakhir dengan event `session.status_idle`. `stop_reason`-nya adalah `end_turn`, nilai yang sama dengan giliran yang selesai dengan sendirinya; tidak ada stop reason khusus untuk interupsi. Agen memulai giliran berikutnya dengan `user.message` yang Anda kirim setelah interupsi.
+    Panggilan tersebut kembali segera setelah event diantrekan, dan `processed_at` milik interupsi tetap null hingga agen menerapkannya. Respons model yang sedang berlangsung berhenti seketika. Interupsi dapat memerlukan waktu lebih lama untuk diterapkan saat pemanggilan alat sedang berjalan, dan sesi tetap `running` hingga interupsi diterapkan. Event `user.interrupt` kemudian muncul di stream, dan giliran yang diinterupsi berakhir dengan event `session.status_idle`. `stop_reason`-nya adalah `end_turn`, nilai yang sama dengan giliran yang selesai dengan sendirinya; tidak ada stop reason khusus untuk interupsi. Agen memulai giliran berikutnya dengan `user.message` yang Anda kirim setelah interupsi.
   </Tab>
 
   <Tab title="Streaming event">
@@ -660,7 +660,7 @@ Setiap event yang dipersistenkan menyertakan timestamp `processed_at` yang ditet
     Untuk menyambung kembali ke sesi yang sudah ada tanpa melewatkan event:
 
     1. Buka stream baru.
-    2. Daftarkan seluruh riwayat event untuk mengisi awal sekumpulan ID event yang sudah terlihat.
+    2. Daftarkan riwayat event lengkap untuk mengisi awal sekumpulan ID event yang sudah terlihat.
     3. Ikuti stream langsung, dengan melewati event apa pun yang sudah dikembalikan oleh daftar riwayat.
 
     <CodeGroup>
@@ -905,8 +905,8 @@ Setiap event yang dipersistenkan menyertakan timestamp `processed_at` yang ditet
     </CodeGroup>
   </Tab>
 
-  <Tab title="Mendaftar event lampau">
-    Ambil seluruh riwayat event untuk sebuah sesi:
+  <Tab title="Mendaftar event sebelumnya">
+    Ambil riwayat event lengkap untuk sebuah sesi:
 
     <CodeGroup>
       ```bash cURL
@@ -978,7 +978,7 @@ Setiap event yang dipersistenkan menyertakan timestamp `processed_at` yang ditet
       ```
     </CodeGroup>
 
-    Berikan filter `types` untuk mengembalikan hanya jenis event tertentu:
+    Teruskan filter `types` untuk mengembalikan hanya jenis event tertentu:
 
     <CodeGroup>
       ```bash cURL
@@ -1068,13 +1068,13 @@ Setiap event yang dipersistenkan menyertakan timestamp `processed_at` yang ditet
 
 ## Delta event
 
-Secara default, teks respons agen mencapai stream sebagai event `agent.message` yang di-buffer, masing-masing dipancarkan hanya setelah permintaan model yang menghasilkannya selesai. "Event deltas" (delta event) memungkinkan Anda merender teks tersebut secara bertahap, sebagai pratinjau langsung, saat model masih menghasilkannya. Pratinjau bukanlah respons: pratinjau adalah alat bantu tampilan dengan upaya terbaik (best-effort), dan `agent.message` yang di-buffer selalu menjadi catatan otoritatif. Klien yang mengabaikan pratinjau tetap menerima stream yang lengkap dan benar.
+Secara default, teks respons agen mencapai stream sebagai event `agent.message` yang di-buffer, masing-masing dipancarkan hanya setelah permintaan model yang menghasilkannya selesai. "Event deltas" (delta event) memungkinkan Anda merender teks tersebut secara bertahap, sebagai pratinjau langsung, selagi model masih menghasilkannya. Pratinjau bukanlah respons: pratinjau adalah alat bantu tampilan best-effort, dan `agent.message` yang di-buffer selalu menjadi catatan otoritatif. Klien yang mengabaikan pratinjau tetap menerima stream yang lengkap dan benar.
 
 ### Memilih ikut serta dalam pratinjau
 
-Pratinjau bersifat opt-in per koneksi stream. Tambahkan parameter query `event_deltas[]` ke stream yang Anda baca, dengan mengulanginya sekali untuk setiap jenis event yang ingin Anda pratinjau. Karena `[]` adalah pola glob shell, beri tanda kutip pada URL setiap kali Anda menyusun permintaan di shell; contoh-contoh di sini melakukan percent-encode pada tanda kurung siku menjadi `%5B%5D`, yang juga berfungsi. Kedua endpoint stream menerima parameter ini: stream tingkat sesi di `GET /v1/sessions/{session_id}/events/stream`, dan stream milik setiap [thread sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration) di `GET /v1/sessions/{session_id}/threads/{thread_id}/stream`. Nilai yang diterima adalah `agent.message` dan `agent.thinking`; nilai lain apa pun mengembalikan error 400, begitu pula permintaan dengan lebih dari 100 nilai. Pratinjau subagen muncul di [stream thread milik subagen tersebut](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#preview-session-thread-events).
+Pratinjau bersifat opt-in per koneksi stream. Tambahkan parameter query `event_deltas[]` ke stream yang Anda baca, dengan mengulanginya sekali untuk setiap jenis event yang ingin Anda pratinjau. Karena `[]` adalah pola glob shell, beri tanda kutip pada URL setiap kali Anda menyusun permintaan di shell; contoh-contoh di sini melakukan percent-encode pada tanda kurung siku sebagai `%5B%5D`, yang juga berfungsi. Kedua endpoint stream menerima parameter ini: stream tingkat sesi di `GET /v1/sessions/{session_id}/events/stream`, dan stream milik setiap [thread sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration) di `GET /v1/sessions/{session_id}/threads/{thread_id}/stream`. Nilai yang diterima adalah `agent.message` dan `agent.thinking`; nilai lain apa pun mengembalikan error 400, begitu pula permintaan dengan lebih dari 100 nilai. Pratinjau subagen muncul di [stream thread milik subagen itu sendiri](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#preview-session-thread-events).
 
-Saat event yang dipratinjau dimulai, stream memancarkan `event_start` yang membawa jenis dan `id` event yang akan datang:
+Ketika event yang dipratinjau dimulai, stream memancarkan `event_start` yang membawa jenis dan `id` event yang akan datang:
 
 ```json
 {
@@ -1103,9 +1103,9 @@ Untuk `agent.message`, start tersebut diikuti oleh event `event_delta` yang memb
 }
 ```
 
-Saat event `agent.thinking` dipratinjau, hanya `event_start` yang dipancarkan. Tidak ada event `event_delta` yang mengikuti, dan event `agent.thinking` yang di-buffer yang mengakhiri pratinjau tidak membawa konten thinking; event tersebut adalah sinyal kemajuan, bukan pembawa konten.
+Ketika event `agent.thinking` dipratinjau, hanya `event_start` yang dipancarkan. Tidak ada event `event_delta` yang mengikuti, dan event `agent.thinking` yang di-buffer yang mengakhiri pratinjau tidak membawa konten thinking; event tersebut adalah sinyal kemajuan, bukan pembawa konten.
 
-Tidak seperti event yang dipersistenkan, `event_start` dan `event_delta` tidak memiliki `id` atau `processed_at` sendiri. Satu-satunya pengenal yang dibawanya adalah `id` dari event yang dipratinjaunya.
+Tidak seperti event yang dipersistensi, `event_start` dan `event_delta` tidak memiliki `id` atau `processed_at` sendiri. Satu-satunya pengenal yang dibawanya adalah `id` dari event yang dipratinjaunya.
 
 <Note>
   Delta event menggunakan format wire yang berbeda dari [Streaming pesan](https://platform.claude.com/docs/id/build-with-claude/streaming), dan perbedaan ini disengaja. `agent.message` yang dipratinjau mendapatkan satu `event_start` yang hanya diikuti oleh event `event_delta`. Tidak ada event start atau stop per blok konten dan tidak ada event stop untuk event yang dipratinjau itu sendiri. Jenis deltanya adalah `content_delta`, bukan `content_block_delta`. Kode akumulator yang ditulis untuk Messages API tidak dapat dipakai begitu saja tanpa perubahan.
@@ -1113,9 +1113,9 @@ Tidak seperti event yang dipersistenkan, `event_start` dan `event_delta` tidak m
 
 ### Mengakumulasi dan merekonsiliasi
 
-Setiap SDK yang mendukung delta event menyertakan helper akumulator yang menangani pembukuan `index` untuk Anda. Helper Go, Java, Ruby, dan C# juga mengunci pratinjau yang sedang diakumulasi berdasarkan `id` event; dengan helper Python, TypeScript, dan PHP, Anda menyimpan map tersebut sendiri dan menggabungkan setiap delta ke entri untuk `id`-nya. Pola manual juga berfungsi di setiap bahasa ketika Anda memerlukan pembukuan kustom: terapkan pola tersebut pada jenis event yang dihasilkan.
+Setiap SDK yang mendukung delta event menyertakan helper akumulator yang menangani pembukuan `index` untuk Anda. Helper Go, Java, Ruby, dan C# juga mengunci pratinjau yang sedang diakumulasi berdasarkan `id` event; dengan helper Python, TypeScript, dan PHP Anda menyimpan map tersebut sendiri dan menggabungkan setiap delta ke entri untuk `id`-nya. Pola manual juga berfungsi di setiap bahasa ketika Anda memerlukan pembukuan kustom: terapkan pola tersebut pada jenis event yang dihasilkan.
 
-Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang di-buffer sebagai catatan resmi. Kunci buffer berdasarkan `(event_id, index)`. Rekonsiliasi per permintaan model: sebuah giliran dibuka dengan satu event `session.status_running`, lalu pada giliran yang selesai secara normal setiap permintaan model menghasilkan, secara berurutan, `span.model_request_start`, `event_start`, event-event `event_delta`, `agent.message` yang di-buffer, dan terakhir [`span.model_request_end`](https://platform.claude.com/docs/id/managed-agents/reference#event-types) (di tab Span events). Di wire, inilah bagian yang dipratinjau dari urutan tersebut, berselang-seling dengan event ter-buffer lain milik koneksi:
+Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang di-buffer sebagai catatannya. Kunci buffer berdasarkan `(event_id, index)`. Rekonsiliasi per permintaan model: sebuah giliran dibuka dengan satu event `session.status_running`, lalu pada giliran yang selesai secara normal setiap permintaan model menghasilkan, secara berurutan, `span.model_request_start`, `event_start`, event-event `event_delta`, `agent.message` yang di-buffer, dan terakhir [`span.model_request_end`](https://platform.claude.com/docs/id/managed-agents/reference#event-types) (di tab Span events). Di wire, inilah bagian yang dipratinjau dari urutan tersebut, berselang-seling dengan event ter-buffer lain milik koneksi:
 
 ```text wrap
 event_start     {"event": {"type": "agent.message", "id": "sevt_01abc..."}}
@@ -1127,8 +1127,8 @@ agent.message   {"id": "sevt_01abc...", "content": [...]}
 Baris `event_delta` berulang sekali per fragmen teks. Proses setiap event saat tiba:
 
 1. Pada `event_start`, catat `id` yang diumumkan. Pengenalnya selalu selaras: `event_start.event.id`, setiap `event_delta.event_id`, dan `id` milik `agent.message` yang di-buffer adalah nilai yang sama.
-2. Pada setiap `event_delta`, tambahkan `delta.content.text` ke entri di `(event_id, delta.index)` dan render teks yang sedang berjalan. Delta pertama untuk sebuah `index` membuat entri tersebut.
-3. Saat `agent.message` yang di-buffer tiba, cocokkan berdasarkan `id`, buang pratinjau yang terakumulasi, dan render konten pesan tersebut sebagai gantinya.
+2. Pada setiap `event_delta`, tambahkan `delta.content.text` ke entri di `(event_id, delta.index)` dan render teks yang sedang berjalan. Delta pertama untuk suatu `index` membuat entri tersebut.
+3. Ketika `agent.message` yang di-buffer tiba, cocokkan berdasarkan `id`, buang pratinjau yang terakumulasi, dan render konten pesan tersebut sebagai gantinya.
 4. Pada `span.model_request_end`, tutup pratinjau apa pun yang belum direkonsiliasi oleh event ter-buffer-nya. Tidak ada lagi delta yang akan datang untuknya. Jika giliran mengalami error atau diinterupsi, event yang di-buffer mungkin tidak pernah tiba; `span.model_request_end` tetap tiba.
 
 Jaminan yang diandalkan pola ini:
@@ -1550,7 +1550,7 @@ Jaminan yang diandalkan pola ini:
 
 ### Mempratinjau event thread sesi
 
-Dalam sesi [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), setiap thread sesi memiliki aliran event sendiri di `GET /v1/sessions/{session_id}/threads/{thread_id}/stream`, dan menerima parameter `event_deltas[]` yang sama dengan nilai yang sama. Pratinjau dibatasi per thread secara desain: sebuah koneksi hanya mempratinjau thread yang sedang dibacanya. Pratinjau thread anak dikirimkan di stream milik anak tersebut dan tidak pernah diposting silang ke stream tingkat sesi, yang pratinjaunya tetap terbatas pada thread utama. Untuk memantau teks subagen saat model menghasilkannya, buka stream thread subagen tersebut.
+Dalam sesi [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), setiap thread sesi memiliki aliran event sendiri di `GET /v1/sessions/{session_id}/threads/{thread_id}/stream`, dan menerima parameter `event_deltas[]` yang sama dengan nilai yang sama. Pratinjau dibatasi per thread secara desain: sebuah koneksi hanya mempratinjau thread yang sedang dibacanya. Pratinjau thread anak dikirimkan di stream milik anak itu sendiri dan tidak pernah diposting silang ke stream tingkat sesi, yang pratinjaunya tetap terbatas pada thread utama. Untuk melihat teks subagen saat model menghasilkannya, buka stream thread subagen tersebut.
 
 Path stream thread mudah keliru: path-nya adalah `/threads/{thread_id}/stream`, bukan `/events/stream` (yang hanya ada di tingkat sesi), dan tidak ada endpoint `/threads/{thread_id}/events/stream`.
 
@@ -1851,17 +1851,17 @@ Event pratinjaunya sendiri tidak berubah. `event_start` dan `event_delta` memili
   ```
 </CodeGroup>
 
-Loop pembacaan keluar pada [`session.thread_status_idle`](https://platform.claude.com/docs/id/managed-agents/reference#event-types), event yang dipancarkan saat giliran thread sesi selesai dan thread menjadi idle.
+Loop pembacaan keluar pada [`session.thread_status_idle`](https://platform.claude.com/docs/id/managed-agents/reference#event-types), event yang dipancarkan ketika giliran thread sesi selesai dan thread menjadi idle.
 
 ### Keterbatasan
 
-Pratinjau disetel untuk responsivitas. Bangun dengan memperhatikan batasan-batasan ini:
+Pratinjau disetel untuk responsivitas. Bangun dengan memperhatikan batasan berikut:
 
-* **Upaya terbaik:** Saat beban tinggi, server mungkin membuang delta untuk sebuah event. Ketika itu terjadi, Anda menerima prefiks teks yang bersambung lalu tidak ada delta lebih lanjut untuk event tersebut. `agent.message` yang di-buffer tetap tiba secara lengkap. Jangan pernah memperlakukan pratinjau yang terakumulasi sebagai final.
-* **Tidak ada pemutaran ulang saat menyambung kembali:** Delta hanya dikirimkan ke koneksi yang memilih ikut serta, selama koneksi itu terbuka. Ini berlaku sama untuk stream tingkat sesi maupun setiap stream thread sesi, dan koneksi yang dibuka setelah permintaan model dimulai tidak menerima delta untuk event yang sedang berlangsung tersebut. Jika stream terputus, ikuti [prosedur penyambungan kembali](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events) di tab Streaming event: buka kembali stream dan daftarkan riwayat event. Riwayat tersebut mencakup event ter-buffer apa pun yang dipancarkan saat Anda terputus, termasuk `agent.message` yang ditunggu pratinjau Anda. Tidak ada cara untuk meminta ulang delta yang terlewat.
+* **Best effort:** Saat beban tinggi, server mungkin membuang delta untuk suatu event. Ketika itu terjadi, Anda menerima prefiks teks yang bersambung lalu tidak ada delta lebih lanjut untuk event tersebut. `agent.message` yang di-buffer tetap tiba secara lengkap. Jangan pernah memperlakukan pratinjau yang terakumulasi sebagai final.
+* **Tidak ada replay saat menyambung kembali:** Delta hanya dikirimkan ke koneksi yang memilih ikut serta, selama koneksi itu terbuka. Ini berlaku sama untuk stream tingkat sesi maupun setiap stream thread sesi, dan koneksi yang dibuka setelah permintaan model dimulai tidak menerima delta untuk event yang sedang berlangsung tersebut. Jika stream terputus, ikuti [prosedur penyambungan kembali](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events) di tab Streaming event: buka kembali stream dan daftarkan riwayat event. Riwayat tersebut mencakup event ter-buffer apa pun yang dipancarkan selagi Anda terputus, termasuk `agent.message` yang ditunggu pratinjau Anda. Tidak ada cara untuk meminta ulang delta yang terlewat.
 * **Satu thread, hanya teks:** Pratinjau mencakup teks asisten pada thread yang sedang dibaca koneksi. Penggunaan alat, hasil alat, hasil MCP, dan aktivitas pada [thread sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration) lain mana pun tidak pernah dipratinjau pada koneksi tersebut.
 * **`agent.thinking` hanya start:** Pratinjau `agent.thinking` hanya memancarkan `event_start` sebagai sinyal bahwa blok thinking telah dimulai; tidak ada event `event_delta` yang mengikutinya.
-* **Tidak pernah dipersistenkan:** `event_start` dan `event_delta` hanya ada di stream langsung. Keduanya tidak muncul di riwayat event sesi (`GET /v1/sessions/{session_id}/events`) atau di riwayat event thread sesi mana pun.
+* **Tidak pernah dipersistensi:** `event_start` dan `event_delta` hanya ada di stream langsung. Keduanya tidak muncul di riwayat event sesi (`GET /v1/sessions/{session_id}/events`) atau di riwayat event thread sesi mana pun.
 
 ### Memecahkan masalah pratinjau
 
@@ -1870,18 +1870,18 @@ Jika stream tidak berperilaku seperti yang Anda harapkan:
 | Yang Anda lihat                                                              | Artinya                                                                                                                                                                                                                                                                                                                      |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Stream dengan event ter-buffer tetapi tanpa `event_start` atau `event_delta` | Koneksi yang Anda baca tidak memilih ikut serta (`event_deltas[]` berlaku per koneksi, bukan per sesi), atau giliran tersebut tidak pernah menyentuh thread yang Anda stream. Pratinjau dibatasi per thread, jadi daftarkan thread sesi (`GET /v1/sessions/{session_id}/threads`) untuk menemukan thread mana yang berjalan. |
-| 404 pada URL stream                                                          | Path atau salah satu ID keliru, atau permintaan sama sekali tidak membawa header beta managed-agents. Endpoint thread dibatasi beta, jadi tanpa header tersebut endpoint itu tidak ada.                                                                                                                                      |
+| 404 pada URL stream                                                          | Path atau salah satu ID salah, atau permintaan tidak membawa header beta managed-agents sama sekali. Endpoint thread dibatasi beta, jadi tanpa header tersebut endpoint itu tidak ada.                                                                                                                                       |
 | 400 yang menyebut `event_deltas`                                             | Hanya `agent.message` dan `agent.thinking` yang diterima.                                                                                                                                                                                                                                                                    |
 
 ## Skenario tambahan
 
 ### Menangani pemanggilan alat kustom
 
-Saat agen memanggil [alat kustom](https://platform.claude.com/docs/id/managed-agents/tools#custom-tools):
+Ketika agen memanggil [alat kustom](https://platform.claude.com/docs/id/managed-agents/tools#custom-tools):
 
 1. Sesi memancarkan event `agent.custom_tool_use` yang berisi nama alat dan input.
 2. Sesi berhenti sejenak dengan event `session.status_idle` yang berisi `stop_reason: requires_action`. ID event yang memblokir ada di array `stop_reason.event_ids`.
-3. Jalankan alat di sistem Anda dan kirim event `user.custom_tool_result` untuk masing-masing, dengan memberikan ID event di parameter `custom_tool_use_id` beserta konten hasilnya.
+3. Jalankan alat di sistem Anda dan kirim event `user.custom_tool_result` untuk masing-masing, dengan meneruskan ID event di parameter `custom_tool_use_id` bersama konten hasilnya.
 4. Setelah semua event yang memblokir terselesaikan, sesi bertransisi kembali ke `running`.
 
 <CodeGroup>
@@ -2153,11 +2153,11 @@ Saat agen memanggil [alat kustom](https://platform.claude.com/docs/id/managed-ag
 
 ### Konfirmasi alat
 
-Saat [kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) mewajibkan konfirmasi sebelum alat dijalankan:
+Ketika [kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) memerlukan konfirmasi sebelum alat dijalankan:
 
 1. Sesi memancarkan event `agent.tool_use` atau `agent.mcp_tool_use`.
 2. Sesi berhenti sejenak dengan event `session.status_idle` yang berisi `stop_reason: requires_action`. ID event yang memblokir ada di array `stop_reason.event_ids`.
-3. Kirim event `user.tool_confirmation` untuk masing-masing, dengan memberikan ID event di parameter `tool_use_id`. Atur `result` ke `"allow"` atau `"deny"`. Gunakan `deny_message` untuk menjelaskan penolakan.
+3. Kirim event `user.tool_confirmation` untuk masing-masing, dengan meneruskan ID event di parameter `tool_use_id`. Atur `result` ke `"allow"` atau `"deny"`. Gunakan `deny_message` untuk menjelaskan penolakan.
 4. Setelah semua event yang memblokir terselesaikan, sesi bertransisi kembali ke `running`.
 
 <CodeGroup>
@@ -2383,10 +2383,10 @@ Saat [kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permiss
 
 ### Melanjutkan sesi yang idle
 
-Sesi bertahan di antara interaksi. Riwayat percakapan dipertahankan kecuali sesi dihapus secara eksplisit. Saat sesi menjadi idle, sandbox-nya di-checkpoint, mempertahankan seluruh status sandbox, termasuk filesystem, paket yang terinstal, dan file apa pun yang dibuat agen. Ini memungkinkan Anda melanjutkan dengan bersih setelah tidak aktif.
+Sesi bertahan di antara interaksi. Riwayat percakapan dipertahankan kecuali sesi dihapus secara eksplisit. Ketika sesi menjadi idle, sandbox-nya di-checkpoint, mempertahankan status sandbox lengkap, termasuk filesystem, paket yang terinstal, dan file apa pun yang dibuat agen. Ini memungkinkan Anda melanjutkan dengan bersih dari ketidakaktifan.
 
 <Note>
-  Meskipun riwayat sesi dipersistenkan hingga dihapus, status sandbox hanya dipertahankan selama 30 hari setelah sandbox dibuat. Aktivitas tidak memperpanjang jendela ini: setelah 30 hari, status sandbox (file, alat yang terinstal, dan sebagainya) tidak dapat dipulihkan, dan sesi yang dilanjutkan dimulai dari sandbox baru. Jika alur kerja Anda bergantung pada isi sandbox, minta agen menulis artefak penting ke [outputs](https://platform.claude.com/docs/id/managed-agents/define-outcomes#retrieving-deliverables) sebelum jendela tersebut berakhir.
+  Meskipun riwayat sesi dipersistensi hingga dihapus, status sandbox hanya dipertahankan selama 30 hari setelah sandbox dibuat. Aktivitas tidak memperpanjang jendela ini: setelah 30 hari status sandbox (file, alat yang terinstal, dan sebagainya) tidak dapat dipulihkan, dan sesi yang dilanjutkan dimulai dari sandbox baru. Jika alur kerja Anda bergantung pada isi sandbox, minta agen menulis artefak penting ke [outputs](https://platform.claude.com/docs/id/managed-agents/define-outcomes#retrieving-deliverables) sebelum jendela tersebut berakhir.
 </Note>
 
 Untuk melanjutkan sesi, kirim event `user.message` ke sesi tersebut seperti biasa:
@@ -2555,25 +2555,25 @@ Untuk melanjutkan sesi, kirim event `user.message` ke sesi tersebut seperti bias
 
 ### Mencapai anggaran sesi
 
-Sesi yang dibuat dengan [anggaran](https://platform.claude.com/docs/id/managed-agents/budgets) berhenti sejenak alih-alih membelanjakan berlebihan. Saat biaya daftar (list cost) terlacak milik sesi mencapai batas, platform menghentikan sejenak setiap thread sebelum permintaan model berikutnya, dan sesi menjadi idle dengan `stop_reason` bernilai `budget_reached` alih-alih dihentikan. Permintaan yang membawa total melewati batas berjalan hingga selesai, sehingga `list_cost` yang dilaporkan oleh snapshot `session.usage` dapat terbaca [tepat di batas atau sedikit melewatinya](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget). Di stream, jeda tersebut tiba sebagai tiga event, secara berurutan:
+Sesi yang dibuat dengan [anggaran](https://platform.claude.com/docs/id/managed-agents/budgets) berhenti sejenak alih-alih membelanjakan berlebih. Ketika biaya daftar terlacak sesi mencapai batas, platform menghentikan sejenak setiap thread sebelum permintaan model berikutnya, dan sesi menjadi idle dengan `stop_reason` berupa `budget_reached` alih-alih dihentikan. Permintaan yang membawa total melewati batas berjalan hingga selesai, sehingga `list_cost` yang dilaporkan oleh snapshot `session.usage` dapat terbaca [tepat di batas atau sedikit melewati batas](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget). Di stream, jeda tersebut tiba sebagai tiga event, secara berurutan:
 
-1. `session.thread_status_idle` dengan `stop_reason: budget_reached`, untuk setiap thread saat thread itu berhenti sejenak.
+1. `session.thread_status_idle` dengan `stop_reason: budget_reached`, untuk setiap thread saat thread tersebut berhenti sejenak.
 2. `session.usage`, snapshot penggunaan kumulatif sesi dan biaya daftar terlacak.
 3. `session.status_idle` dengan `stop_reason: budget_reached`. Event `session.usage` selalu tepat mendahului idle ini.
 
 Thread yang permintaan terakhirnya sekaligus melewati batas dan menyelesaikan gilirannya melaporkan `end_turn` pada event `session.thread_status_idle` miliknya sendiri sementara sesi tetap melaporkan `budget_reached`; gunakan `stop_reason` tingkat sesi sebagai kunci untuk mendeteksi jeda.
 
-Selama sesi berada di batasnya, sesi hanya menerima event yang menyelesaikan pekerjaan yang sudah berlangsung: `user.tool_confirmation`, `user.tool_result`, `user.custom_tool_result`, dan `user.interrupt`. Event apa pun yang akan memulai pekerjaan baru, termasuk `user.message`, ditolak dengan error 400 yang menyebutkan daftar tersebut. Saat sebuah sesi memiliki thread yang menunggu permintaan alat sekaligus thread yang berhenti sejenak di batas, `stop_reason` tingkat sesi adalah `requires_action`, bukan `budget_reached`: menyelesaikan permintaan tersebut tidak memicu permintaan model, jadi tanggapi seperti biasa.
+Selama sesi berada di batasnya, sesi hanya menerima event yang menyelesaikan pekerjaan yang sudah berlangsung: `user.tool_confirmation`, `user.tool_result`, `user.custom_tool_result`, dan `user.interrupt`. Event apa pun yang akan memulai pekerjaan baru, termasuk `user.message`, ditolak dengan error 400 yang menyebutkan daftar tersebut. Ketika sesi memiliki thread yang menunggu permintaan alat sekaligus thread yang dijeda di batas, `stop_reason` tingkat sesi adalah `requires_action`, bukan `budget_reached`: menyelesaikan permintaan tersebut tidak memicu permintaan model, jadi tanggapi seperti biasa.
 
-Tidak ada event yang melanjutkan sesi yang berhenti sejenak di batasnya. Sebagai gantinya, perbarui anggaran sesi: mengubah batas ke nilai apa pun di atas biaya daftar yang telah terpakai, atau menghapus anggaran dengan memperbarui sesi menggunakan `"budget": null`, akan melanjutkan pekerjaan yang terjeda secara otomatis. Lihat [Anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets) untuk cara biaya daftar dilacak dan semantik lengkap pembaruan anggaran.
+Tidak ada event yang melanjutkan sesi yang dijeda di batasnya. Sebagai gantinya, perbarui anggaran sesi: mengubah batas ke nilai apa pun di atas biaya daftar yang telah terpakai, atau menghapus anggaran dengan memperbarui sesi menggunakan `"budget": null`, akan melanjutkan pekerjaan yang dijeda secara otomatis. Lihat [Anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets) untuk cara biaya daftar dilacak dan semantik pembaruan anggaran selengkapnya.
 
 ### Mengirim pesan sistem
 
 <Note>
-  `system.message` saat ini didukung oleh Claude Opus 4.8, Claude Fable 5, Claude Mythos 5, dan Claude Opus 5. Jika model utama agen tidak mendukung injeksi sistem di tengah percakapan, event ditolak dengan error validasi `model_does_not_support_mid_conversation_system`; model subagen tidak diperiksa, karena `system.message` hanya mendarat di thread utama.
+  `system.message` didukung oleh Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5, dan Claude Opus 4.8. Jika model utama agen tidak mendukung injeksi sistem di tengah percakapan, event ditolak dengan error validasi `model_does_not_support_mid_conversation_system`. Model subagen tidak diperiksa, karena `system.message` hanya mendarat di thread utama.
 </Note>
 
-Kirim event `system.message` untuk memberi agen konteks tingkat sistem yang diistimewakan yang berlaku untuk giliran yang menyertainya dan semua giliran berikutnya. Tidak seperti field `system` pada definisi agen (yang menetapkan prompt sistem tingkat atas), konten `system.message` ditambahkan ke konteks sistem sesi sebagai giliran `role: "system"` alih-alih menggantikan prompt tersebut. Gunakan saat agen memerlukan panduan tingkat sistem yang diperbarui di tengah sesi: persona yang berbeda, batasan yang direvisi, atau konteks yang diambil saat runtime yang seharusnya membentuk perilaku model ke depannya.
+Kirim event `system.message` untuk memberi agen konteks tingkat sistem yang diistimewakan yang berlaku untuk giliran yang menyertainya dan semua giliran berikutnya. Tidak seperti field `system` pada definisi agen (yang menetapkan prompt sistem tingkat atas), konten `system.message` ditambahkan ke konteks sistem sesi sebagai giliran `role: "system"` alih-alih menggantikan prompt tersebut. Gunakan ketika agen memerlukan panduan tingkat sistem yang diperbarui di tengah sesi: persona yang berbeda, batasan yang direvisi, atau konteks yang diambil saat runtime yang seharusnya membentuk perilaku model ke depannya.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -2719,11 +2719,11 @@ Kirim event `system.message` untuk memberi agen konteks tingkat sistem yang diis
   ```
 </CodeGroup>
 
-Selama sesi idle dengan `stop_reason: requires_action`, `system.message` hanya diterima jika mengikuti event hasil alat dalam permintaan yang sama; jika dikirim sendiri atau bersama `user.message`, event tersebut ditolak hingga event alat yang tertunda terselesaikan. `content` menerima 1–1000 item teks.
+Selama sesi idle dengan `stop_reason: requires_action`, `system.message` hanya diterima ketika mengikuti event hasil alat dalam permintaan yang sama; jika dikirim sendiri atau bersama `user.message`, event tersebut ditolak hingga event alat yang tertunda terselesaikan. `content` menerima 1–1000 item teks.
 
 ### Melacak penggunaan
 
-Objek sesi menyertakan field `usage` yang berisi penggunaan kumulatif sesi: jumlah token, penggunaan alat server, waktu aktif, dan biaya daftar (list cost) yang dilacak. Ambil sesi setelah sesi tersebut menjadi idle untuk membaca total terbaru.
+Objek sesi menyertakan field `usage` dengan penggunaan kumulatif sesi: jumlah token, penggunaan alat server, waktu aktif, dan biaya daftar yang dilacak. Ambil sesi setelah sesi tersebut menjadi idle untuk membaca total terbaru.
 
 ```json
 {
@@ -2752,26 +2752,26 @@ Objek sesi menyertakan field `usage` yang berisi penggunaan kumulatif sesi: juml
 
 `input_tokens` melaporkan token input yang tidak di-cache dan `output_tokens` melaporkan total token output di seluruh panggilan model dalam sesi. Field `cache_read_input_tokens` melaporkan token yang dibaca dari cache prompt, dan objek `cache_creation` merinci token pembuatan cache berdasarkan masa berlaku cache (`ephemeral_5m_input_tokens` dan `ephemeral_1h_input_tokens`). Entri cache menggunakan TTL 5 menit secara default, sehingga giliran yang berurutan dalam jendela waktu tersebut mendapat manfaat dari pembacaan cache, yang mengurangi biaya per token.
 
-`list_cost` adalah konsumsi kumulatif sesi yang dihargai berdasarkan tarif daftar publik, sebagai bilangan bulat dalam satuan sen berbentuk string, disertai kode mata uang. `active_seconds` adalah waktu kumulatif selama sesi memiliki setidaknya satu thread yang berjalan; aktivitas yang tumpang tindih dari thread yang berjalan bersamaan dihitung satu kali, berbeda dengan `active_seconds` dalam objek `stats` milik sesi, yang menjumlahkan waktu aktif masing-masing thread. Angka yang telah dideduplikasi ini adalah durasi yang menjadi dasar penetapan harga biaya runtime sesi. `server_tool_use` menghitung permintaan alat yang dieksekusi server untuk keperluan penetapan harga: permintaan web search dihargai ke dalam list cost per permintaan, sedangkan permintaan web fetch tidak dikenai biaya per permintaan dan tidak diukur, sehingga `web_fetch_requests` bernilai `0`. `usage` milik setiap [thread sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration) juga memuat `list_cost` dan `active_seconds`. Angka per thread dibulatkan secara independen dan tidak mencakup biaya waktu berjalan sesi, sehingga jumlahnya tidak persis sama dengan `list_cost` sesi; angka sesi adalah angka yang otoritatif.
+`list_cost` adalah konsumsi kumulatif sesi yang dihargai berdasarkan tarif daftar publik, sebagai bilangan bulat sen dalam bentuk string, dengan kode mata uang. `active_seconds` adalah waktu kumulatif selama sesi memiliki setidaknya satu thread yang berjalan; aktivitas yang tumpang tindih dari thread konkuren dihitung sekali, berbeda dengan `active_seconds` dalam objek `stats` sesi, yang menjumlahkan waktu aktif masing-masing thread. Angka yang telah dideduplikasi ini adalah durasi yang menjadi dasar penetapan harga biaya runtime sesi. `server_tool_use` menghitung permintaan alat yang dieksekusi server untuk penetapan harga: permintaan pencarian web dihargai ke dalam biaya daftar per permintaan, dan permintaan web fetch tidak dikenai biaya per permintaan dan tidak diukur, sehingga `web_fetch_requests` bernilai `0`. `usage` milik setiap [thread sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration) juga memuat `list_cost` dan `active_seconds`. Angka per thread dibulatkan secara independen dan tidak mencakup biaya waktu berjalan sesi, sehingga jumlahnya tidak persis sama dengan `list_cost` sesi; angka sesi adalah angka yang otoritatif.
 
-Anda tidak perlu melakukan polling pada sesi untuk mengamati total ini. Event `session.usage` membawa snapshot kumulatif yang sama (objek `usage`, ditambah `budget` sesi, yang bernilai `null` jika sesi tidak memilikinya) pada stream sesi dan dalam riwayat event. Event ini dipancarkan pada transisi ke idle, bukan berdasarkan timer: sesi memancarkan satu event tepat sebelum menjadi idle, apa pun alasan berhentinya, dan satu event ketika sebuah thread dijeda pada [anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets). Oleh karena itu, pembaca stream dapat melihat biaya akhir dari suatu giliran, atau dari pekerjaan yang mencapai anggaran, tanpa pengambilan tambahan.
+Anda tidak perlu melakukan polling pada sesi untuk mengamati total ini. Event `session.usage` membawa snapshot kumulatif yang sama (objek `usage`, ditambah `budget` sesi, yang bernilai `null` ketika sesi tidak memilikinya) pada stream sesi dan dalam riwayat event. Event ini dipancarkan pada transisi idle, bukan berdasarkan timer: sesi memancarkan satu event tepat sebelum menjadi idle, apa pun alasan berhentinya, dan satu event ketika sebuah thread dijeda pada [anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets). Oleh karena itu, pembaca stream melihat biaya akhir dari suatu giliran, atau dari pekerjaan yang mencapai anggaran, tanpa pengambilan tambahan.
 
-Untuk menerapkan batas pengeluaran, tetapkan [anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets) alih-alih melakukan polling penggunaan dan menghentikan sesi sendiri. Platform menghargai konsumsi sesi secara terus-menerus dan menjeda setiap thread sebelum permintaan model berikutnya begitu list cost sesi mencapai batas; lihat [Mencapai anggaran sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#reaching-a-session-budget) untuk mengetahui tampilannya pada stream.
+Untuk menerapkan batas pengeluaran, tetapkan [anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets) alih-alih melakukan polling penggunaan dan menghentikan sesi sendiri. Platform menghargai konsumsi sesi secara terus-menerus dan menjeda setiap thread sebelum permintaan model berikutnya begitu biaya daftar sesi mencapai batas; lihat [Mencapai anggaran sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#reaching-a-session-budget) untuk mengetahui tampilannya pada stream.
 
 ## Observabilitas Console
 
-Claude Console menyertakan penampil sesi untuk memeriksa apa yang dilakukan agen tanpa perlu menulis kode apa pun. Di sidebar Console, di bawah **Managed Agents**, pilih **Sessions** untuk melihat setiap sesi di workspace beserta status, agen, penggunaan token, biaya, dan waktu pembuatannya, lalu pilih sebuah sesi untuk membukanya. Penampil sesi hanya dapat diakses oleh Developer dan Admin. Penampil ini menampilkan:
+Claude Console menyertakan penampil sesi untuk memeriksa apa yang dilakukan agen tanpa menulis kode apa pun. Di sidebar Console, di bawah **Managed Agents**, pilih **Sessions** untuk melihat setiap sesi di workspace beserta status, agen, penggunaan token, biaya, dan waktu pembuatannya, lalu pilih sebuah sesi untuk membukanya. Penampil sesi hanya dapat diakses oleh Developer dan Admin. Penampil ini menampilkan:
 
 * **Minimap timeline:** Ikhtisar aktivitas sesi dari waktu ke waktu yang dapat diperbesar, dengan satu jalur per thread dalam sesi [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration). Pilih sebuah jalur untuk melihat thread tersebut, atau pilih sebuah penanda untuk melompat ke event-nya.
 
-* **Transkrip:** Percakapan yang dikelompokkan berdasarkan permintaan model, termasuk thinking, panggilan alat beserta input dan hasilnya, serta teks pesan saat di-streaming. Anda dapat memfilter event dan menyalin atau mengunduhnya sebagai JSON.
+* **Transkrip:** Percakapan yang dikelompokkan berdasarkan permintaan model, termasuk pemikiran, panggilan alat beserta input dan hasilnya, serta teks pesan saat di-streaming. Anda dapat memfilter event dan menyalin atau mengunduhnya sebagai JSON.
 
 * **Inspector:** Panel samping yang dapat diubah ukurannya dengan detail tentang sesi, dalam lima tab:
 
-  * **Session** menampilkan detail dan metadata sesi, biaya kumulatifnya dari waktu ke waktu, serta pengeluaran terhadap [anggaran](https://platform.claude.com/docs/id/managed-agents/budgets) sesi jika ditetapkan.
-  * **Events** mencantumkan setiap event mentah pada thread saat ini sesuai urutan pengiriman oleh server; pilih sebuah event untuk melihat JSON-nya. Pesan yang di-streaming saat halaman terbuka juga memiliki tampilan **Deltas** dari [delta event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#event-deltas)-nya.
+  * **Session** menampilkan detail dan metadata sesi, biaya kumulatifnya dari waktu ke waktu, dan pengeluaran terhadap [anggaran](https://platform.claude.com/docs/id/managed-agents/budgets) sesi jika ditetapkan.
+  * **Events** mencantumkan setiap event mentah pada thread saat ini sesuai urutan pengirimannya oleh server; pilih sebuah event untuk melihat JSON-nya. Pesan yang di-streaming saat halaman terbuka juga memiliki tampilan **Deltas** dari [delta event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#event-deltas)-nya.
   * **Tools** mencantumkan alat yang dikonfigurasikan untuk agen-agen sesi, beserta jumlah panggilan, kegagalan, dan durasi median; pilih sebuah alat untuk melihat panggilannya dan melompat ke salah satunya di transkrip.
-  * **Resources** mencantumkan [file](https://platform.claude.com/docs/id/managed-agents/files), [repositori](https://platform.claude.com/docs/id/managed-agents/github), dan [memory store](https://platform.claude.com/docs/id/managed-agents/memory) yang di-mount pada path container-nya, termasuk memori di setiap store dan perubahan yang dibuat sesi ini terhadapnya, ditambah file yang ditulis agen ke `/mnt/session/outputs` dan [skill](https://platform.claude.com/docs/id/managed-agents/skills) yang dilampirkan ke agen-agen sesi.
+  * **Resources** mencantumkan [file](https://platform.claude.com/docs/id/managed-agents/files), [repositori](https://platform.claude.com/docs/id/managed-agents/github), dan [penyimpanan memori](https://platform.claude.com/docs/id/managed-agents/memory) yang di-mount pada path container-nya, termasuk memori di setiap penyimpanan dan perubahan yang dibuat sesi ini terhadapnya, ditambah file yang ditulis agen ke `/mnt/session/outputs` dan [skill](https://platform.claude.com/docs/id/managed-agents/skills) yang dilampirkan ke agen-agen sesi.
   * **Threads** mencantumkan setiap thread beserta status, ukuran konteks, dan biayanya. Pilih sebuah thread untuk melihat detailnya, seperti agen, model, penggunaan konteks, dan biaya.
 
 Tambahkan `?event={event_id}` ke URL sesi untuk membuka sesi pada event tertentu.
@@ -2782,4 +2782,4 @@ Tambahkan `?event={event_id}` ke URL sesi untuk membuka sesi pada event tertentu
 * **Tinjau hasil alat:** Kegagalan eksekusi alat sering kali menjelaskan perilaku agen yang tidak terduga
 * **Lacak penggunaan token:** Pantau konsumsi token untuk mengoptimalkan prompt dan mengurangi biaya
 * **Gunakan prompt sistem:** Tambahkan instruksi logging ke prompt sistem agar agen menjelaskan penalarannya
-* **Pecahkan masalah pratinjau:** Jika stream yang memilih ikut serta dalam delta event tidak berperilaku seperti yang Anda harapkan, lihat [Memecahkan masalah pratinjau](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#troubleshoot-previews)
+* **Pecahkan masalah pratinjau:** Jika stream yang memilih ikut serta dalam delta event tidak berperilaku seperti yang Anda harapkan, lihat [Pecahkan masalah pratinjau](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#troubleshoot-previews)

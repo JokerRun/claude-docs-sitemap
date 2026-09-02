@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/claude-code-analytics-api
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 69e14a947eca0ef754a00e213e1863e4f2cb0754a1cf1ba70bdc3123055afa38
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 8ab84e008d92a53d4c3245d2b5d70635e2b50b87c994acaf4de21c0c93195e74
 ---
 
 ---
@@ -12,21 +12,21 @@ description: Akses analitik penggunaan Claude Code dan metrik produktivitas orga
 ---
 
 <Tip>
-  **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, atur organisasi Anda di **Console → Settings → Organization**.
+  **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di **Console → Settings → Organization**.
 </Tip>
 
-Claude Code Analytics Admin API menyediakan akses terprogram ke metrik penggunaan harian teragregasi untuk pengguna Claude Code, sehingga organisasi dapat menganalisis produktivitas developer dan membangun dashboard kustom. API ini memberikan detail lebih banyak daripada [dashboard Analytics](https://platform.claude.com/claude-code) dasar tanpa kerumitan integrasi OpenTelemetry.
+Claude Code Analytics Admin API menyediakan akses terprogram ke metrik penggunaan harian teragregasi untuk pengguna Claude Code, yang memungkinkan organisasi menganalisis produktivitas developer dan membangun dashboard kustom. API ini menyediakan detail yang lebih banyak daripada [dashboard Analytics](https://platform.claude.com/claude-code) dasar tanpa kerumitan integrasi OpenTelemetry.
 
-API ini memungkinkan Anda memantau, menganalisis, dan mengoptimalkan adopsi Claude Code dengan lebih baik:
+API ini memungkinkan Anda untuk memantau, menganalisis, dan mengoptimalkan adopsi Claude Code Anda dengan lebih baik:
 
 * **Analisis produktivitas developer:** Lacak sesi, baris kode yang ditambahkan/dihapus, commit, dan pull request yang dibuat menggunakan Claude Code
 * **Metrik penggunaan alat:** Pantau tingkat penerimaan dan penolakan untuk berbagai alat Claude Code (Edit, MultiEdit, Write, NotebookEdit)
 * **Analisis biaya:** Lihat estimasi biaya dan penggunaan token yang dirinci berdasarkan model Claude
-* **Pelaporan kustom:** Ekspor data untuk membangun dashboard eksekutif dan laporan bagi tim manajemen
+* **Pelaporan kustom:** Ekspor data untuk membangun dashboard eksekutif dan laporan untuk tim manajemen
 * **Justifikasi penggunaan:** Sediakan metrik untuk menjustifikasi dan memperluas adopsi Claude Code secara internal
 
 <Check>
-  **Kunci Admin API diperlukan.** Endpoint ini memerlukan kunci Admin API, yang berbeda dari kunci API Claude standar. Lihat [Membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys) untuk mengetahui tempat membuatnya sesuai jenis organisasi Anda dan cakupan mana yang harus dipilih.
+  **Kredensial Admin API diperlukan.** Endpoint ini merupakan bagian dari Admin API. Anda dapat mengaksesnya menggunakan [kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys), token OAuth dengan cakupan `org:admin`, atau kunci akun pribadi maupun akun layanan yang tidak dibatasi pada suatu workspace; kunci API workspace tidak dapat digunakan. Lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/admin-api#authentication) untuk detailnya.
 </Check>
 
 <Note>
@@ -34,7 +34,7 @@ API ini memungkinkan Anda memantau, menganalisis, dan mengoptimalkan adopsi Clau
 </Note>
 
 <Note>
-  **Organisasi Claude Enterprise:** Aktivitas Claude Code untuk pengguna claude.ai dilaporkan oleh Claude Enterprise Analytics API, yang menggunakan kunci API Analytics alih-alih kunci API Admin. Lihat [Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api) untuk mengetahui API dan jenis kunci mana yang dibutuhkan organisasi Anda.
+  **Organisasi Claude Enterprise:** Aktivitas Claude Code untuk pengguna claude.ai dilaporkan oleh Claude Enterprise Analytics API, yang menggunakan kunci API Analytics, bukan kunci API Admin. Lihat [Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api) untuk mengetahui API dan jenis kunci mana yang dibutuhkan organisasi Anda.
 </Note>
 
 ## Mulai cepat
@@ -69,7 +69,7 @@ Lacak penggunaan Claude Code, metrik produktivitas, dan aktivitas developer di s
 * **Data tingkat pengguna:** Setiap record mewakili aktivitas satu pengguna untuk hari yang ditentukan
 * **Metrik produktivitas:** Lacak sesi, baris kode, commit, pull request, dan penggunaan alat
 * **Data token dan biaya:** Pantau penggunaan dan estimasi biaya yang dirinci berdasarkan model Claude
-* **Paginasi berbasis cursor:** Tangani dataset besar dengan paginasi stabil menggunakan cursor opaque
+* **"Cursor-based pagination" (paginasi berbasis kursor):** Tangani dataset besar dengan paginasi yang stabil menggunakan kursor opaque
 * **Kesegaran data:** Metrik tersedia dengan penundaan hingga 1 jam demi konsistensi
 
 Untuk detail parameter lengkap dan skema respons, lihat [referensi Claude Code Analytics API](https://platform.claude.com/docs/id/api/admin/usage_report/retrieve_claude_code).
@@ -109,7 +109,7 @@ page=page_MjAyNS0wNS0xNFQwMDowMDowMFo=" \
 | ------------- | ------- | ----- | ----------------------------------------------------------------------------------- |
 | `starting_at` | string  | Ya    | Tanggal UTC dalam format YYYY-MM-DD; mengembalikan metrik hanya untuk satu hari ini |
 | `limit`       | integer | Tidak | Jumlah record per halaman (default: 20, maks: 1000)                                 |
-| `page`        | string  | Tidak | Token cursor opaque dari field `next_page` pada respons sebelumnya                  |
+| `page`        | string  | Tidak | Token kursor opaque dari field `next_page` pada respons sebelumnya                  |
 
 ### Metrik yang tersedia
 
@@ -217,13 +217,13 @@ API mengembalikan data dalam format berikut:
 
 ## Paginasi
 
-API mendukung paginasi berbasis cursor untuk organisasi dengan jumlah pengguna yang besar:
+API mendukung paginasi berbasis kursor untuk organisasi dengan jumlah pengguna yang besar:
 
 1. Buat permintaan awal Anda dengan parameter `limit` opsional.
 2. Jika `has_more` bernilai `true` dalam respons, gunakan nilai `next_page` dalam permintaan berikutnya.
 3. Lanjutkan hingga `has_more` bernilai `false`.
 
-Cursor mengodekan posisi record terakhir dan memastikan paginasi yang stabil bahkan saat data baru masuk. Setiap sesi paginasi mempertahankan batas data yang konsisten untuk memastikan Anda tidak melewatkan atau menduplikasi record.
+Kursor mengodekan posisi record terakhir dan memastikan paginasi yang stabil bahkan saat data baru masuk. Setiap sesi paginasi mempertahankan batas data yang konsisten untuk memastikan Anda tidak melewatkan atau menduplikasi record.
 
 ## Kasus penggunaan umum
 
@@ -238,11 +238,11 @@ Cursor mengodekan posisi record terakhir dan memastikan paginasi yang stabil bah
 
 ### Seberapa segar data analitiknya?
 
-Data analitik Claude Code biasanya muncul dalam 1 jam setelah aktivitas pengguna selesai. Untuk memastikan hasil paginasi yang konsisten, hanya data yang lebih lama dari 1 jam yang disertakan dalam respons.
+Data analitik Claude Code biasanya muncul dalam waktu 1 jam setelah aktivitas pengguna selesai. Untuk memastikan hasil paginasi yang konsisten, hanya data yang lebih lama dari 1 jam yang disertakan dalam respons.
 
 ### Bisakah saya mendapatkan metrik real-time?
 
-Tidak, API ini hanya menyediakan metrik harian teragregasi. Untuk pemantauan real-time, pertimbangkan untuk menggunakan [integrasi OpenTelemetry](https://code.claude.com/docs/en/monitoring-usage).
+Tidak, API ini hanya menyediakan metrik harian teragregasi. Untuk pemantauan real-time, pertimbangkan untuk menggunakan [integrasi OpenTelemetry](https://code.claude.com/docs/id/monitoring-usage).
 
 ### Bagaimana pengguna diidentifikasi dalam data?
 
@@ -282,5 +282,5 @@ Claude Code Analytics API membantu Anda memahami dan mengoptimalkan alur kerja p
 * [Dashboard Claude Code Analytics](https://platform.claude.com/claude-code)
 * [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) - Lacak penggunaan API di semua layanan Anthropic
 * [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) - Ambil data audit dan aktivitas
-* [Manajemen identitas dan akses](https://code.claude.com/docs/en/iam)
-* [Memantau penggunaan dengan OpenTelemetry](https://code.claude.com/docs/en/monitoring-usage) untuk metrik kustom dan peringatan
+* [Manajemen identitas dan akses](https://code.claude.com/docs/id/iam)
+* [Memantau penggunaan dengan OpenTelemetry](https://code.claude.com/docs/id/monitoring-usage) untuk metrik kustom dan peringatan

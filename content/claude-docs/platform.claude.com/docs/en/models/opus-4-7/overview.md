@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/opus-4-7/overview
-fetched_at: 2026-08-26T02:33:22.881887Z
-sha256: 1fda71c6f8c57145802e544c09aaea230bf01f8dd601c2d60826bb85bcd2631b
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 1bebe4e7c27b00987c6b8dc37563deca64321ce868c6d43105e3df815b33693b
 ---
 
 ---
@@ -25,7 +25,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $5 / MTok
 
 | Model                                                                             | Context | Max output | Price / MTok | Thinking             | Default effort | Knowledge cutoff |
 | :-------------------------------------------------------------------------------- | :------ | :--------- | :----------- | :------------------- | :------------- | :--------------- |
-| [Claude Fable 5](https://platform.claude.com/docs/en/models/fable-5/overview)     | 1M      | 128K       | $10 / $50    | Adaptive (always on) | `high`         | Jan 2026         |
+| [Claude Fable 5.1](https://platform.claude.com/docs/en/models/fable-5-1/overview) | 1M      | 128K       | $10 / $50    | Adaptive (always on) | `high`         | Jun 2026         |
 | [Claude Opus 5](https://platform.claude.com/docs/en/models/opus-5/overview)       | 1M      | 128K       | $5 / $25     | Adaptive             | `high`         | May 2026         |
 | **Claude Opus 4.7** (this model)                                                  | 1M      | 128K       | $5 / $25     | Adaptive             | `high`         | Jan 2026         |
 | [Claude Sonnet 5](https://platform.claude.com/docs/en/models/sonnet-5/overview)   | 1M      | 128K       | $2 / $10     | Adaptive             | `high`         | Jan 2026         |

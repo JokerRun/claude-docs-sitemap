@@ -1,31 +1,31 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-effort-example
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 1a39fb5b5d4e576896697896d7d56df8161baf8da6799deb6a81ad5f303d8c98
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 0f324724a1a12a38ad8bc99acf052df95e55ac2cc1d4c1b24ac8b97f9c65a0ef
 ---
 
 ---
 title: Membangun mode orkestrasi
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-effort-example
-description: Bangun mode tingkat sesi yang memberikan persetujuan tetap untuk fan-out multiagen, dinyalakan dan dimatikan dengan pesan sistem di tengah percakapan.
+description: Bangun mode tingkat sesi yang memberikan persetujuan tetap untuk fan-out multiagen, yang diaktifkan dan dinonaktifkan dengan pesan sistem di tengah percakapan.
 ---
 
-Mode orkestrasi adalah sakelar tingkat sesi: ketika aktif, model mengerahkan ketelitian maksimum pada setiap permintaan substantif, menjajaki tugas itu sendiri lalu menyebarkan pekerjaan ke subagen paralel secara default. Ketika nonaktif, alat orkestrasi yang sama kembali ke opt-in per permintaan.
+Mode orkestrasi adalah sakelar tingkat sesi: ketika aktif, model mengerahkan ketelitian maksimum untuk setiap permintaan substantif, menelusuri tugas itu sendiri lalu secara default menyebarkan pekerjaan ("fan-out") ke subagen paralel. Ketika nonaktif, alat orkestrasi yang sama kembali ke opt-in per permintaan.
 
-Mode ini bukan parameter API. Mode ini dibangun sepenuhnya dari bagian-bagian yang terdokumentasi:
+Mode ini bukan parameter API. Mode ini dibangun sepenuhnya dari komponen yang terdokumentasi:
 
-1. **Tingkat effort:** permintaan berjalan pada nilai [Effort](https://platform.claude.com/docs/id/build-with-claude/effort) yang terdokumentasi seperti `xhigh`. Tidak ada tingkat tersembunyi di atas yang ada di halaman tersebut. Contoh ini menetapkan effort di tingkat atas setiap permintaan, yang tidak memerlukan header beta.
-2. **Pengingat mode:** sebuah [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) memberi tahu model bahwa mode sedang aktif, dengan penyegar satu baris setiap beberapa giliran dan pemberitahuan keluar ketika mode dimatikan. Field `system` tingkat atas tidak pernah berubah, sehingga prefiks yang di-cache tetap utuh.
+1. **Tingkat effort:** permintaan berjalan pada nilai [Effort](https://platform.claude.com/docs/id/build-with-claude/effort) (upaya) yang terdokumentasi seperti `xhigh`. Tidak ada tingkat tersembunyi di atas tingkat yang tercantum di halaman tersebut. Contoh ini menetapkan effort di tingkat teratas setiap permintaan, yang tidak memerlukan header beta.
+2. **Pengingat mode:** sebuah [mid-conversation system message](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) (pesan sistem di tengah percakapan) memberi tahu model bahwa mode sedang aktif, dengan penyegar satu baris setiap beberapa giliran dan pemberitahuan keluar ketika mode dinonaktifkan. Field `system` tingkat teratas tidak pernah berubah, sehingga prefiks yang di-cache tetap utuh.
 3. **Persetujuan tetap dalam deskripsi alat:** deskripsi alat orkestrasi menyatakan bahwa selama mode aktif, model harus menyusun dan menjalankan workflow untuk setiap tugas substantif tanpa bertanya terlebih dahulu.
 
 <Note>
-  Contoh ini menggunakan pesan sistem di tengah percakapan; untuk model dan platform yang mendukungnya, lihat [Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages). Fan-out itu sendiri melipatgandakan penggunaan token: satu permintaan dapat memunculkan banyak percakapan subagen, jadi simpan mode ini untuk pekerjaan yang sepadan dengan biayanya.
+  Contoh ini menggunakan pesan sistem di tengah percakapan; untuk model dan platform yang mendukungnya, lihat [Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages). Fan-out itu sendiri melipatgandakan penggunaan token: satu permintaan dapat memunculkan banyak percakapan subagen, jadi gunakan mode ini hanya untuk pekerjaan yang sepadan dengan biayanya.
 </Note>
 
 ## Menyiapkan loop
 
-Contoh ini adalah satu file. Konstanta-konstanta mengontrol tingkat effort, bentuk fan-out, dan seberapa sering penyegar mode dikirim ulang. `MAX_CONCURRENT` membatasi berapa banyak subagen yang berjalan pada saat yang sama (port PHP bersifat sekuensial dan mengabaikannya); `MAX_TOTAL_SUBTASKS` membatasi berapa banyak yang boleh diantrekan model dalam satu panggilan Workflow. Memisahkan keduanya memungkinkan model merencanakan backlog besar tanpa meluncurkan semuanya sekaligus. Pemeriksaan `DOC_TEST_MODE` membatasi loop ke satu giliran ketika variabel lingkungan tersebut ditetapkan, sehingga harness dokumentasi otomatis dapat memvalidasi bahwa file dapat dikompilasi dan selesai dengan cepat tanpa menjalankan orkestrasi penuh; biarkan tidak ditetapkan saat Anda menjalankan contoh ini sendiri.
+Contoh ini berupa satu file. Konstanta-konstantanya mengontrol tingkat effort, bentuk fan-out, dan seberapa sering penyegar mode dikirim ulang. `MAX_CONCURRENT` membatasi berapa banyak subagen yang berjalan pada waktu yang sama (port PHP berjalan secara sekuensial dan mengabaikannya); `MAX_TOTAL_SUBTASKS` membatasi berapa banyak yang boleh diantrekan model dalam satu panggilan Workflow. Memisahkan keduanya memungkinkan model merencanakan backlog besar tanpa meluncurkan semuanya sekaligus. Pemeriksaan `DOC_TEST_MODE` membatasi loop menjadi satu giliran ketika variabel lingkungan tersebut disetel, sehingga harness dokumentasi otomatis dapat memvalidasi bahwa file terkompilasi dan selesai dengan cepat tanpa menjalankan orkestrasi penuh; biarkan tidak disetel saat Anda menjalankan contoh ini sendiri.
 
 <CodeGroup>
   ```python Python
@@ -306,7 +306,7 @@ Contoh ini adalah satu file. Konstanta-konstanta mengontrol tingkat effort, bent
 
 ## Mendefinisikan pengingat mode
 
-Pengingat sengaja dibuat singkat. Pengingat ini mengubah status mode dan menunjuk ke deskripsi alat, tempat instruksi yang lebih berat berada. Teks lengkap dikirim sekali ketika mode dinyalakan, penyegar dikirim ulang hanya setelah beberapa giliran pengguna, dan pemberitahuan keluar dikirim sekali ketika mode dimatikan.
+Pengingat-pengingat ini sengaja dibuat singkat. Pengingat tersebut mengubah status mode dan menunjuk ke deskripsi alat, tempat instruksi yang berat berada. Teks lengkap dikirim sekali ketika mode diaktifkan, penyegar dikirim ulang hanya setelah beberapa giliran pengguna, dan pemberitahuan keluar dikirim sekali ketika mode dinonaktifkan.
 
 <CodeGroup>
   ```python Python
@@ -406,7 +406,7 @@ Pengingat sengaja dibuat singkat. Pengingat ini mengubah status mode dan menunju
 
 ## Memberikan persetujuan tetap dalam deskripsi alat
 
-Alat Workflow membawa kontrak perilaku yang sebenarnya: aturan opt-in, persetujuan tetap yang berlaku selama mode aktif, panduan granularitas untuk menentukan ukuran fan-out, dan pola kualitas yang dapat digunakan model (gelombang verifikasi, kritikus kelengkapan, pengurutan multifase). Subagen juga mendapatkan alat `report_findings` sehingga hasil mereka kembali sebagai JSON terstruktur alih-alih prosa, dan alat bash adalah alat `bash_20250124` yang didefinisikan Anthropic dan dijalankan secara lokal.
+Alat Workflow memuat kontrak perilaku yang sebenarnya: aturan opt-in, persetujuan tetap yang berlaku selama mode aktif, panduan granularitas untuk menentukan ukuran fan-out, dan pola kualitas yang dapat digunakan model (gelombang verifikasi, kritikus kelengkapan, pengurutan multifase). Subagen juga mendapatkan alat `report_findings` sehingga hasilnya kembali sebagai JSON terstruktur alih-alih prosa, dan alat bash-nya adalah alat `bash_20250124` yang didefinisikan Anthropic dan dijalankan secara lokal.
 
 <CodeGroup>
   ```python Python
@@ -892,7 +892,7 @@ Alat Workflow membawa kontrak perilaku yang sebenarnya: aturan opt-in, persetuju
 
 ## Menjalankan alat bash secara lokal
 
-Handler bash menjalankan perintah yang diminta dengan timeout, menangkap gabungan stdout dan stderr, dan memotong hasilnya sehingga perintah yang tak terkendali tidak dapat membanjiri jendela konteks. Perintah berjalan di direktori tempat Anda meluncurkan contoh, jadi mengarahkannya ke sebuah proyek berarti memulainya di sana; ketika `DOC_TEST_MODE` ditetapkan, harness sebagai gantinya memberi bash direktori fixture sekali pakai kecil yang dihapus saat keluar. Tidak ada sandbox di sini: perintah berjalan dengan izin dari proses yang meluncurkan contoh. Demi kejelasan, contoh ini menjalankan setiap panggilan dalam subshell baru alih-alih mempertahankan sesi persisten yang dijelaskan kontrak `bash_20250124`; agen produksi harus mendukung alat ini dengan shell berumur panjang sehingga direktori kerja, lingkungan, dan aksi `restart` berperilaku seperti yang didokumentasikan.
+Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gabungan stdout dan stderr, dan memotong hasilnya sehingga perintah yang lepas kendali tidak dapat membanjiri "context window" (jendela konteks). Perintah berjalan di direktori tempat Anda meluncurkan contoh ini, jadi mengarahkannya ke sebuah proyek berarti memulainya di sana; ketika `DOC_TEST_MODE` disetel, harness justru memberi bash sebuah direktori fixture kecil sekali pakai yang dihapus saat keluar. Tidak ada sandbox di sini: perintah berjalan dengan izin proses yang meluncurkan contoh ini. Demi kejelasan, contoh ini menjalankan setiap panggilan dalam subshell baru alih-alih mempertahankan sesi persisten yang dijelaskan oleh kontrak `bash_20250124`; agen produksi sebaiknya mendukung alat ini dengan shell berumur panjang sehingga direktori kerja, lingkungan, dan aksi `restart` berperilaku sesuai dokumentasi.
 
 <CodeGroup>
   ```python Python
@@ -1439,7 +1439,7 @@ Handler bash menjalankan perintah yang diminta dengan timeout, menangkap gabunga
 
 ## Menjalankan satu subagen
 
-Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, berjalan pada effort yang sama dengan loop utama. Timeout per permintaan membatasi setiap panggilan API sehingga koneksi yang terputus hanya menurunkan satu subagen alih-alih menghentikan seluruh proses.
+Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, berjalan pada effort yang sama dengan loop utama. Batas waktu per permintaan membatasi setiap panggilan API sehingga koneksi yang terputus hanya menurunkan satu subagen alih-alih menghentikan seluruh proses.
 
 <CodeGroup>
   ```python Python
@@ -1977,9 +1977,9 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
   ```
 </CodeGroup>
 
-## Mencatat hasil dalam jurnal agar proses ulang dapat dilanjutkan
+## Menjurnal hasil agar eksekusi ulang dapat dilanjutkan
 
-Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Jurnal kecil beralamat konten (content-addressed) membuatnya idempoten: sebelum mengirim subagen, cari SHA-256 dari prompt-nya dalam file JSON lokal, dan kembalikan hasil yang tercatat jika ada. Interupsi prosesnya, jalankan ulang, dan hanya subtugas yang belum pernah selesai yang dihitung ulang. Jurnal melakukan deduplikasi antar proses, bukan dalam satu gelombang fan-out; hapus file jurnal untuk memulai dari awal.
+Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Jurnal kecil beralamat konten membuatnya idempoten: sebelum mengirim subagen, cari SHA-256 dari prompt-nya di file JSON lokal, dan kembalikan hasil yang tercatat jika ada. Hentikan proses, jalankan ulang, dan hanya subtugas yang belum pernah selesai yang dihitung ulang. Jurnal melakukan deduplikasi antar-eksekusi, bukan di dalam satu gelombang fan-out; hapus file jurnal untuk memulai dari awal.
 
 <CodeGroup>
   ```python Python
@@ -2270,7 +2270,7 @@ Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Ju
 
 ## Fan-out, lalu verifikasi
 
-Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurnal dengan paling banyak `MAX_CONCURRENT` yang berjalan bersamaan (sekuensial pada port PHP), dan mengisolasi kegagalan sehingga satu subagen yang rusak hanya menurun menjadi string error alih-alih mengakhiri proses. Setelah gelombang pertama selesai, gelombang kedua menggunakan kembali jalur subagen yang sama untuk mencoba menyangkal setiap hasil: setiap verifikator menurunkan ulang klaim dari sumbernya, dengan default menyangkal ketika tidak yakin. Baik hasil asli maupun putusannya dikembalikan ke orkestrator sehingga dapat menimbang keduanya bersama-sama.
+Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurnal dengan paling banyak `MAX_CONCURRENT` yang berjalan bersamaan (sekuensial pada port PHP), dan mengisolasi kegagalan sehingga satu subagen yang rusak hanya menurun menjadi string error alih-alih mengakhiri proses. Setelah gelombang pertama selesai, gelombang kedua menggunakan kembali jalur subagen yang sama untuk mencoba membantah setiap hasil: setiap pemverifikasi menurunkan ulang klaim dari sumbernya, dengan default dianggap terbantah jika tidak pasti. Baik hasil asli maupun putusannya dikembalikan ke orkestrator sehingga keduanya dapat dipertimbangkan bersama.
 
 <CodeGroup>
   ```python Python
@@ -2854,9 +2854,9 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
   ```
 </CodeGroup>
 
-## Mengaktifkan dan menonaktifkan mode dengan pesan sistem di tengah percakapan
+## Mengalihkan mode dengan pesan sistem di tengah percakapan
 
-Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang sudah waktunya: pemberitahuan keluar, teks mode lengkap saat masuk, atau penyegar berkala. Menempatkan pesan sistem setelah giliran pengguna menjaga setiap byte yang di-cache sebelumnya tetap tidak tersentuh, dan memenuhi aturan penempatan bahwa pesan sistem mengikuti giliran pengguna.
+Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang sudah jatuh tempo: pemberitahuan keluar, teks mode lengkap saat masuk, atau penyegar berkala. Menempatkan pesan sistem setelah giliran pengguna menjaga setiap byte yang di-cache di depannya tetap tidak tersentuh, dan memenuhi aturan penempatan bahwa pesan sistem mengikuti giliran pengguna.
 
 <CodeGroup>
   ```bash cURL
@@ -3824,7 +3824,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
 ## Menjalankannya
 
 <Warning>
-  Alat bash dalam contoh ini menjalankan perintah yang ditulis model langsung di mesin Anda tanpa sandbox, dan fan-out menjalankan beberapa agen tersebut secara paralel. Jalankan di direktori dan lingkungan yang Anda nyaman untuk diekspos, dan tambahkan sandboxing sebelum mengadaptasinya untuk apa pun di luar eksperimen lokal.
+  Alat bash dalam contoh ini menjalankan perintah yang ditulis model langsung di mesin Anda tanpa sandbox, dan fan-out menjalankan beberapa agen tersebut secara paralel. Jalankan di direktori dan lingkungan yang Anda rela untuk diekspos, dan tambahkan sandboxing sebelum mengadaptasinya untuk apa pun di luar eksperimen lokal.
 </Warning>
 
 <CodeGroup>
@@ -3931,21 +3931,21 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   ```
 </CodeGroup>
 
-Mulai contoh dari direktori tempat Anda ingin agen bekerja, misalnya root dari repositori yang akan ditinjau:
+Mulai contoh ini dari direktori tempat Anda ingin agen bekerja, misalnya root repositori yang akan ditinjau:
 
 ```bash
 python orchestration_mode.py "Review this repository for flaky tests and propose fixes."
 ```
 
-Dengan mode aktif, harapkan model untuk menjajaki dengan beberapa perintah bash, mengirim alat Workflow tanpa diminta, dan menyintesis laporan subagen menjadi jawaban akhir. Permintaan yang sepele atau bersifat percakapan tetap dikerjakan sendiri, seperti yang diinstruksikan pengingat.
+Dengan mode aktif, model diharapkan akan menelusuri dengan beberapa perintah bash, memanggil alat Workflow tanpa diminta, dan menyintesis laporan subagen menjadi jawaban akhir. Permintaan yang sepele atau bersifat percakapan tetap dikerjakan sendiri, sesuai instruksi pengingat.
 
 ## Menuju harness produksi
 
-Contoh ini sengaja dibuat kecil. Harness yang dimaksudkan untuk beban kerja nyata biasanya akan menambahkan:
+Contoh ini sengaja dibuat kecil. Harness yang ditujukan untuk beban kerja nyata biasanya akan menambahkan:
 
-* **Skrip orkestrasi dalam sandbox:** biarkan model menghasilkan program orkestrasi singkat (percabangan, loop, dan langkah reduce) dan menjalankannya di dalam interpreter terisolasi, alih-alih hanya menerima daftar datar string subtugas.
-* **Penjurnalan yang tahan lama:** ganti file JSON lokal dengan penyimpanan yang bertahan saat proses dimulai ulang dan aman di bawah penulis bersamaan di berbagai mesin.
-* **Penegakan anggaran:** lacak total subagen yang diluncurkan di seluruh sesi, bukan hanya per panggilan Workflow, dan tolak untuk melampaui batas keras sehingga rencana yang tak terkendali tidak dapat menghabiskan kuota Anda.
+* **Skrip orkestrasi dalam sandbox:** biarkan model menghasilkan program orkestrasi singkat (percabangan, loop, dan langkah reduce) dan menjalankannya di dalam interpreter terisolasi, alih-alih hanya menerima daftar datar berisi string subtugas.
+* **Penjurnalan yang tahan lama:** ganti file JSON lokal dengan penyimpanan yang bertahan dari restart proses dan aman terhadap penulis konkuren di berbagai mesin.
+* **Penegakan anggaran:** lacak total subagen yang diluncurkan di seluruh sesi, bukan hanya per panggilan Workflow, dan tolak untuk melampaui batas keras sehingga rencana yang lepas kendali tidak dapat menghabiskan kuota Anda.
 
 Pola-pola dalam contoh ini (pengingat mode, persetujuan tetap dalam deskripsi alat, penjurnalan, dan gelombang verifikasi) tetap berlaku tanpa perubahan; hanya substrat eksekusi di sekitarnya yang menjadi lebih tangguh.
 
@@ -3965,6 +3965,6 @@ Pola-pola dalam contoh ini (pengingat mode, persetujuan tetap dalam deskripsi al
   </Card>
 
   <Card title="Alat bash" icon="terminal" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool">
-    Alat bash yang didefinisikan Anthropic yang dijalankan contoh ini secara lokal.
+    Alat bash yang didefinisikan Anthropic yang dieksekusi secara lokal oleh contoh ini.
   </Card>
 </CardGroup>

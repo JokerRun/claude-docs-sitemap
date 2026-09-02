@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/overview
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 4aec13c22c505b6cf663c7e4eeee40888089f48f008f06fb1bc1aedd84c765bb
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: f5093270cd2d49e84d3adccbb8ea9fe3246195c2248cc9a90387f3f019bd0c5b
 ---
 
 ---
@@ -116,6 +116,6 @@ Manage files and assets for use with Claude.
 | ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- | ---------------- | --------------------------------------------------------------------- |
 | [Files API](https://platform.claude.com/docs/en/build-with-claude/files) | Upload and manage files to use with Claude without re-uploading content with each request. Supports PDFs, images, and text files. | Not ZDR eligible | <PlatformAvailability claudeApi claudePlatformAwsBeta azureAiBeta />† |
 
-\* **Structured outputs:** Your prompts and Claude's outputs are not stored. Only JSON schemas are cached, for up to 24 hours since last use. **Web search and web fetch:** ZDR-eligible except when [dynamic filtering](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool#dynamic-filtering) is enabled. **Fallback credit and server-side fallback:** The features retain no message content, but both handle refusals from Claude Fable 5, which [is not available under ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). See [ZDR details](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#feature-eligibility).
+\* **Structured outputs:** Your prompts and Claude's outputs are not stored. Only JSON schemas are cached, for up to 24 hours since last use. **Web search and web fetch:** ZDR-eligible except when [dynamic filtering](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool#dynamic-filtering) is enabled. **Fallback credit and server-side fallback:** The features retain no message content, but they handle refusals from the Claude Fable models, which [are not available under ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). See [ZDR details](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#feature-eligibility).
 
 † On Microsoft Foundry, feature availability differs by [hosting option](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry#hosting-options). These features are available on Hosted on Anthropic deployments, and not on Hosted on Azure deployments.

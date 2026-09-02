@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/list
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: bcc47736cc0dcf34ed55ac04006c7b7747a3e7c75f02e2c3cf9cf68edaa79528
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: d99e1c845835403d93f437af84979d7e0fa7ae32e2d956c93da9c5327d3b2f6c
 ---
 
 # List Files
@@ -41,7 +41,7 @@ List Files
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -124,6 +124,12 @@ List Files
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ## Returns
 

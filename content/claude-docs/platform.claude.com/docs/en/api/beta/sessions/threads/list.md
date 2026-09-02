@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/list
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 41ad5c8f7b216485dc0a45401ba102f4148df62edf3334e60af29018c68a2673
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 92b023d3edf3cc545bce76a7064d5e938b5eb73a1a72416772fdf876928ed105
 ---
 
 # List Session Threads
@@ -25,7 +25,7 @@ List Session Threads
 
 - `page: optional string`
 
-  Opaque pagination cursor from a previous response's next_page. Forward-only.
+  Opaque pagination cursor from a previous response's `next_page`. Forward-only.
 
 ## Headers
 
@@ -35,7 +35,7 @@ List Session Threads
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -119,6 +119,12 @@ List Session Threads
 
     - `"ce-user-management-2026-07-13"`
 
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
+
 ## Returns
 
 - `data: optional array of BetaManagedAgentsSessionThread`
@@ -159,11 +165,15 @@ List Session Threads
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-sonnet-5" or "claude-fable-5" or "claude-opus-5" or 10 more`
+          - `"claude-fable-5-1" or "claude-sonnet-5" or "claude-fable-5" or 11 more`
 
             The model that will power your agent.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-fable-5-1"`
+
+              Frontier intelligence for ambitious tasks across coding, scientific discovery, and enterprise workflows
 
             - `"claude-sonnet-5"`
 

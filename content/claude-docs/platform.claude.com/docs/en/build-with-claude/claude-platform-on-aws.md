@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: 8a1a27c9901b2fe3c2c0f4129dca2f1c9b57a5468b9d982f4c89aca09a1f446d
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: de8bbd26e4509e4203ce608796dae1e2560e7f5ad085990fa1086d83d20521aa
 ---
 
 ---
@@ -347,6 +347,7 @@ The following models are available on Claude Platform on AWS:
 
 | Model             | Model ID          |
 | ----------------- | ----------------- |
+| Claude Fable 5.1  | claude-fable-5-1  |
 | Claude Fable 5    | claude-fable-5    |
 | Claude Opus 5     | claude-opus-5     |
 | Claude Opus 4.8   | claude-opus-4-8   |

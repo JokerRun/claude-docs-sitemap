@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/overview
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 1cc82ed073c46266644bf25de9d13d6a9729f00799167faff6403bdcfade57ab
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: b94cebf314d48cbb35b86bfed029ee738a4eb5e00d649ffcc2e691adf1c153de
 ---
 
 ---
@@ -13,12 +13,12 @@ description: Harness agen siap pakai dan dapat dikonfigurasi yang berjalan di in
 
 Anthropic menawarkan dua cara untuk membangun dengan Claude, masing-masing cocok untuk kasus penggunaan yang berbeda:
 
-|                        | Messages API                                 | Claude Managed Agents                                                                    |
-| ---------------------- | -------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| **Apa itu**            | Akses prompting model secara langsung        | Harness agen siap pakai yang dapat dikonfigurasi dan berjalan di infrastruktur terkelola |
-| **Paling cocok untuk** | Loop agen kustom dan kontrol yang terperinci | Tugas yang berjalan lama dan pekerjaan asinkron                                          |
+|                        | Messages API                                    | Claude Managed Agents                                                                    |
+| ---------------------- | ----------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| **Apa itu**            | Akses langsung untuk memberikan prompt ke model | Harness agen siap pakai yang dapat dikonfigurasi dan berjalan di infrastruktur terkelola |
+| **Paling cocok untuk** | Loop agen kustom dan kontrol yang terperinci    | Tugas yang berjalan lama dan pekerjaan asinkron                                          |
 
-Claude Managed Agents menyediakan harness dan infrastruktur untuk menjalankan Claude sebagai agen otonom. Alih-alih membangun agent loop (loop agen), eksekusi alat, dan runtime Anda sendiri, Anda mendapatkan lingkungan yang sepenuhnya terkelola tempat Claude dapat membaca file, menjalankan perintah, menjelajahi web, dan menjalankan kode dengan aman. Harness ini mendukung "prompt caching" (caching prompt) bawaan, compaction (pemadatan), dan optimasi performa lainnya untuk output agen yang berkualitas tinggi dan efisien. Untuk membangun loop agen Anda sendiri dengan akses model langsung, lihat [Menggunakan Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages).
+Claude Managed Agents menyediakan harness dan infrastruktur untuk menjalankan Claude sebagai agen otonom. Alih-alih membangun agent loop, eksekusi alat, dan runtime Anda sendiri, Anda mendapatkan lingkungan yang sepenuhnya terkelola tempat Claude dapat membaca file, menjalankan perintah, menjelajahi web, dan menjalankan kode dengan aman. Harness ini mendukung "prompt caching" (caching prompt) bawaan, compaction (pemadatan), dan optimasi performa lainnya untuk output agen yang berkualitas tinggi dan efisien. Untuk membangun agent loop Anda sendiri dengan akses model langsung, lihat [Menggunakan Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages).
 
 <Note>
   Claude Managed Agents juga tersedia di Claude Platform on AWS, dengan beberapa perbedaan dalam ketersediaan fitur dan perilaku sesi. Lihat [Claude Managed Agents](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#claude-managed-agents) dalam panduan Claude Platform on AWS.
@@ -42,26 +42,26 @@ Claude Managed Agents menyediakan harness dan infrastruktur untuk menjalankan Cl
 
 Claude Managed Agents dibangun di atas empat konsep:
 
-| Konsep          | Deskripsi                                                                                                                                  |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Agent**       | Model, prompt sistem, alat, server MCP, dan skill                                                                                          |
-| **Environment** | Konfigurasi untuk tempat sesi dijalankan: sandbox cloud yang dikelola Anthropic, atau sandbox yang di-host sendiri pada infrastruktur Anda |
-| **Session**     | Instance agent yang sedang berjalan dalam sebuah environment, menjalankan tugas tertentu dan menghasilkan output                           |
-| **Events**      | Pesan yang dipertukarkan antara aplikasi Anda dan agent (giliran pengguna, hasil alat, pembaruan status)                                   |
+| Konsep          | Deskripsi                                                                                                                                         |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Agent**       | Model, prompt sistem, alat, server MCP, dan skill                                                                                                 |
+| **Environment** | Konfigurasi untuk tempat sesi berjalan: sandbox cloud yang dikelola Anthropic, atau sandbox yang di-hosting sendiri di infrastruktur Anda sendiri |
+| **Session**     | Instans agen yang sedang berjalan di dalam sebuah environment, melakukan tugas tertentu dan menghasilkan output                                   |
+| **Events**      | Pesan yang dipertukarkan antara aplikasi Anda dan agen (giliran pengguna, hasil alat, pembaruan status)                                           |
 
 ## Cara kerjanya
 
 <Steps>
   <Step title="Buat agen">
-    Tentukan model, prompt sistem, alat, server MCP, dan skill. Buat agen satu kali dan rujuk berdasarkan ID di berbagai sesi.
+    Tentukan model, prompt sistem, alat, server MCP, dan skill. Buat agen sekali dan rujuk berdasarkan ID di berbagai sesi.
   </Step>
 
-  <Step title="Buat lingkungan">
+  <Step title="Buat environment">
     Konfigurasikan tempat agen berjalan: sandbox cloud, atau [sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes) di infrastruktur Anda sendiri.
   </Step>
 
   <Step title="Mulai sesi">
-    Luncurkan sesi yang merujuk pada konfigurasi agen dan lingkungan Anda.
+    Luncurkan sesi yang merujuk pada konfigurasi agen dan environment Anda.
   </Step>
 
   <Step title="Kirim event dan stream respons">
@@ -80,13 +80,13 @@ Claude Managed Agents paling cocok untuk beban kerja yang membutuhkan:
 * **Eksekusi yang berjalan lama:** Tugas yang berjalan selama beberapa menit atau jam dengan banyak pemanggilan alat
 * **Infrastruktur cloud:** Sandbox aman dengan paket yang sudah terinstal dan akses jaringan
 * **Eksekusi self-hosted:** Sandbox di infrastruktur yang Anda kendalikan untuk kebutuhan kepatuhan atau residensi data
-* **Infrastruktur minimal:** Tidak perlu membangun loop agen, sandbox, atau lapisan eksekusi alat Anda sendiri
+* **Infrastruktur minimal:** Tidak perlu membangun agent loop, sandbox, atau lapisan eksekusi alat Anda sendiri
 * **Sesi stateful:** Filesystem dan riwayat percakapan yang persisten di berbagai interaksi
 * **Eksekusi terjadwal:** Menjalankan agen secara berulang dengan jadwal cron melalui [deployment terjadwal](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments)
 
 ## Alat yang didukung
 
-Claude Managed Agents memberi Claude akses ke sekumpulan alat bawaan:
+Claude Managed Agents memberi Claude akses ke serangkaian alat bawaan:
 
 * **Bash:** Menjalankan perintah shell di sandbox
 * **Operasi file:** Membaca, menulis, mengedit, glob, dan grep file di sandbox

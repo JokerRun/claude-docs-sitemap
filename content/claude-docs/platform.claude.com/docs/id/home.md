@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/home
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: b084cbf203f842c02bfeb1c553c8412c58f94c1a1d6be7296f2d31419f23de10
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 2c2e2888f1d495efc1ead231acb5edb0973ade6d72f32b7474495c7ac578d568
 ---
 
 ---
@@ -19,7 +19,7 @@ dengan Claude"
     subtitle="Semua yang Anda butuhkan untuk mengintegrasikan Claude ke dalam aplikasi Anda. Dari panggilan API pertama hingga produksi."
   >
     <HomeQuickChip icon="Play" href="https://platform.claude.com/docs/id/get-started">
-      Mulai cepat
+      Quickstart
     </HomeQuickChip>
 
     <HomeQuickChip icon="Key" href="https://platform.claude.com/settings/keys">
@@ -37,7 +37,7 @@ dengan Claude"
     <HomePlatformCards>
       <HomePlatformCard title="Messages" description="Akses model secara langsung. Anda menyusun setiap giliran, mengelola status percakapan, dan menulis loop alat Anda sendiri." pictogram="code-terminal">
         <HomeCardLink icon="play" href="https://platform.claude.com/docs/id/get-started">
-          Mulai cepat
+          Quickstart
         </HomeCardLink>
 
         <HomeCardLink icon="book" href="https://platform.claude.com/docs/id/api/messages/create">
@@ -51,7 +51,7 @@ dengan Claude"
 
       <HomePlatformCard title="Managed Agents" description="Infrastruktur agen yang dikelola sepenuhnya. Deploy dan kelola agen otonom dalam sesi stateful dengan riwayat event yang persisten." pictogram="clouds">
         <HomeCardLink icon="play" href="https://platform.claude.com/docs/id/managed-agents/quickstart">
-          Mulai cepat
+          Quickstart
         </HomeCardLink>
 
         <HomeCardLink icon="book" href="https://platform.claude.com/docs/id/api/beta/sessions">
@@ -86,14 +86,14 @@ dengan Claude"
       <HomeJourneyTab label="Messages">
         <HomeJourneyStep title="Memulai">
           <HomeJourneyLink icon="play" href="https://platform.claude.com/docs/id/get-started">
-            Mulai cepat
+            Quickstart
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="lock" href="https://platform.claude.com/settings/keys">
             Dapatkan kunci API
           </HomeJourneyLink>
 
-          <HomeJourneyLink icon="settings" href="https://platform.claude.com/docs/id/about-claude/models/overview">
+          <HomeJourneyLink icon="settings" href="https://platform.claude.com/docs/id/models/overview">
             Pilih model
           </HomeJourneyLink>
 
@@ -102,7 +102,7 @@ dengan Claude"
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="message" href="https://platform.claude.com/playground">
-            Coba API di Playground
+            Coba API di playground
           </HomeJourneyLink>
         </HomeJourneyStep>
 
@@ -116,7 +116,7 @@ dengan Claude"
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="image" href="https://platform.claude.com/docs/id/build-with-claude/vision">
-            Visi
+            Vision
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="tool" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview">
@@ -192,7 +192,7 @@ dengan Claude"
       <HomeJourneyTab label="Managed Agents">
         <HomeJourneyStep title="Memulai">
           <HomeJourneyLink icon="play" href="https://platform.claude.com/docs/id/managed-agents/quickstart">
-            Mulai cepat
+            Quickstart
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="lock" href="https://platform.claude.com/settings/keys">
@@ -248,22 +248,17 @@ dengan Claude"
   <HomeSection>
     <HomeSectionHeader label="Model" title="Keluarga model Claude" description="Pilih model yang tepat untuk kasus penggunaan Anda." />
 
-    <HomeModelCards>
-      <HomeModelCard name="Fable 5" badge="Paling mumpuni" modelId="claude-fable-5" description="Kemampuan tertinggi untuk penalaran yang paling menuntut dan pekerjaan agentik berjangka panjang." href="https://platform.claude.com/docs/id/about-claude/models/overview" />
-
-      <HomeModelCard name="Opus 5" badge="Tingkat lanjut" modelId="claude-opus-5" description="Sangat baik untuk analisis kompleks, coding, dan tugas kreatif yang memerlukan penalaran mendalam." href="https://platform.claude.com/docs/id/about-claude/models/overview" />
-
-      <HomeModelCard name="Sonnet 5" badge="Keseimbangan terbaik" modelId="claude-sonnet-5" description="Keseimbangan ideal antara kecerdasan dan kecepatan untuk sebagian besar beban kerja produksi." href="https://platform.claude.com/docs/id/about-claude/models/overview" />
-
-      <HomeModelCard name="Haiku 4.5" badge="Tercepat" modelId="claude-haiku-4-5" description="Respons secepat kilat untuk aplikasi bervolume tinggi yang sensitif terhadap latensi." href="https://platform.claude.com/docs/id/about-claude/models/overview" />
-    </HomeModelCards>
+    * [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) (`claude-fable-5-1`) — New — *For demanding reasoning and long-horizon agentic work* — Most capable · Research · Multi-day tasks
+    * [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview) (`claude-opus-5`) — *For complex agentic coding and enterprise work* — Complex projects · Agents · Coding
+    * [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview) (`claude-sonnet-5`) — *The best combination of speed and intelligence* — Everyday tasks · Writing · Cost-efficient
+    * [Claude Haiku 4.5](https://platform.claude.com/docs/id/models/haiku-4-5/overview) (`claude-haiku-4-5`) — *The fastest model with near-frontier intelligence* — Fastest · Lowest cost · High volume
   </HomeSection>
 
   <HomeSection last>
     <HomeSectionHeader label="Sumber daya" title="Terus belajar" />
 
     <CardGroup cols={3}>
-      <Card icon="graduation-cap" title="Kursus" href="https://anthropic.skilljar.com/">
+      <Card icon="graduation-cap" title="Kursus" href="https://academy.claude.com/courses">
         Kursus interaktif untuk menguasai Claude.
       </Card>
 

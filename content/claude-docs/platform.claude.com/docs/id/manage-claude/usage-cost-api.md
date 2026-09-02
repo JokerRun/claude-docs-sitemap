@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/usage-cost-api
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: dada91684030fac69112ad047e58b8b4fa80c7bc9a167fcea33a55cebefccbad
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: d61709baa0effe78e1c8b3228a89aaf6c41e7a9f773a6e138775e97d31714492
 ---
 
 ---
@@ -12,21 +12,21 @@ description: Akses data penggunaan dan biaya API organisasi Anda secara terprogr
 ---
 
 <Tip>
-  **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, atur organisasi Anda di **Console → Settings → Organization**.
+  **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di **Console → Settings → Organization**.
 </Tip>
 
 Usage & Cost Admin API menyediakan akses terprogram dan granular ke data historis penggunaan dan biaya API untuk organisasi Anda. Data ini serupa dengan informasi yang tersedia di halaman [Usage](https://platform.claude.com/usage) dan [Cost](https://platform.claude.com/cost) pada Claude Console.
 
-API ini memungkinkan Anda memantau, menganalisis, dan mengoptimalkan implementasi Claude Anda dengan lebih baik:
+API ini memungkinkan Anda untuk memantau, menganalisis, dan mengoptimalkan implementasi Claude Anda dengan lebih baik:
 
 * **Pelacakan penggunaan yang akurat:** Dapatkan jumlah token dan pola penggunaan yang presisi alih-alih hanya mengandalkan penghitungan token respons
 * **Rekonsiliasi biaya:** Cocokkan catatan internal dengan penagihan Anthropic untuk tim keuangan dan akuntansi
 * **Kinerja dan peningkatan produk:** Pantau kinerja produk sambil mengukur apakah perubahan pada sistem telah meningkatkannya, atau siapkan peringatan
-* **Optimalisasi [batas laju](https://platform.claude.com/docs/id/api/rate-limits):** Optimalkan fitur seperti [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) atau prompt tertentu untuk memaksimalkan kapasitas yang dialokasikan kepada Anda.
+* **Optimasi ["rate limit" (batas laju)](https://platform.claude.com/docs/id/api/rate-limits):** Optimalkan fitur seperti ["prompt caching" (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) atau prompt tertentu untuk memaksimalkan kapasitas yang dialokasikan kepada Anda.
 * **Analisis lanjutan:** Lakukan analisis data yang lebih mendalam daripada yang tersedia di Console
 
 <Check>
-  **Kunci Admin API diperlukan.** Endpoint ini memerlukan kunci Admin API, yang berbeda dari kunci API Claude standar. Lihat [Membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys) untuk mengetahui tempat membuatnya sesuai jenis organisasi Anda dan cakupan mana yang harus dipilih.
+  **Kredensial Admin API diperlukan.** Endpoint ini merupakan bagian dari Admin API. Anda dapat mengaksesnya menggunakan [kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys), token OAuth dengan cakupan `org:admin`, atau kunci akun pribadi maupun akun layanan yang tidak dibatasi pada suatu workspace; kunci API workspace tidak dapat digunakan. Lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/admin-api#authentication) untuk detailnya.
 </Check>
 
 Organisasi Claude Enterprise menggunakan kunci API Analytics dengan API yang berbeda; lihat [API mana yang Anda butuhkan?](https://platform.claude.com/docs/id/manage-claude/usage-cost-api#which-api-do-you-need).
@@ -39,12 +39,12 @@ Organisasi Claude Enterprise menggunakan kunci API Analytics dengan API yang ber
 
 Anthropic menyediakan pelaporan biaya dan penggunaan melalui dua API, tergantung pada produk Claude mana yang dikelola organisasi Anda:
 
-| Organisasi Anda                  | API                                                                                                                      | Jenis kunci                            |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
-| Claude Console (Claude Platform) | Usage and Cost Admin API yang dijelaskan di halaman ini                                                                  | Kunci Admin API (`sk-ant-admin01-...`) |
-| Claude Enterprise (claude.ai)    | Endpoint biaya dan penggunaan [Claude Enterprise Analytics API](https://platform.claude.com/docs/id/api/admin/analytics) | Kunci API Analytics                    |
+| Organisasi Anda                  | API                                                                                                                      | Jenis kunci                                                                                                                                            |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Claude Console (Claude Platform) | Usage and Cost Admin API yang dijelaskan di halaman ini                                                                  | Kunci Admin API (`sk-ant-admin01-...`) atau [kredensial Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api#authentication) lainnya |
+| Claude Enterprise (claude.ai)    | Endpoint biaya dan penggunaan [Claude Enterprise Analytics API](https://platform.claude.com/docs/id/api/admin/analytics) | Kunci API Analytics                                                                                                                                    |
 
-Organisasi induk Claude Enterprise tidak muncul di Claude Console dan tidak memiliki kunci Admin API, sehingga bagi mereka kunci API Analytics adalah satu-satunya jalur untuk mengakses data ini. Lihat [API Analytics](https://platform.claude.com/docs/id/manage-claude/analytics-api) untuk mengetahui cara membuat setiap jenis kunci dan paket mana yang berlaku untuk data biaya Claude Enterprise.
+Organisasi induk Claude Enterprise tidak muncul di Claude Console dan tidak memiliki kunci Admin API, sehingga bagi mereka kunci API Analytics adalah satu-satunya jalur untuk mengakses data ini. Lihat [Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api) untuk cara membuat setiap jenis kunci dan paket mana yang berlaku untuk data biaya Claude Enterprise.
 
 ## Solusi mitra
 
@@ -52,7 +52,7 @@ Platform observabilitas terkemuka menawarkan integrasi siap pakai untuk memantau
 
 <CardGroup cols={3}>
   <Card title="CloudZero" icon="chart" href="https://docs.cloudzero.com/docs/connections-anthropic">
-    Platform intelijen cloud untuk melacak dan memprakirakan biaya
+    Platform intelijen cloud untuk melacak dan memperkirakan biaya
   </Card>
 
   <Card title="Datadog" icon="chart" href="https://docs.datadoghq.com/integrations/anthropic/">
@@ -61,6 +61,10 @@ Platform observabilitas terkemuka menawarkan integrasi siap pakai untuk memantau
 
   <Card title="Grafana Cloud" icon="chart" href="https://grafana.com/docs/grafana-cloud/monitor-infrastructure/integrations/integration-reference/integration-anthropic/">
     Integrasi tanpa agen untuk observabilitas LLM yang mudah dengan dasbor dan peringatan siap pakai
+  </Card>
+
+  <Card title="Harness" icon="chart" href="https://developer.harness.io/docs/cloud-cost-management/provider-integrations/ai-providers/anthropic/">
+    Platform FinOps untuk manajemen biaya cloud dan AI
   </Card>
 
   <Card title="Honeycomb" icon="polygon" href="https://docs.honeycomb.io/integrations/anthropic-usage-monitoring/">
@@ -189,9 +193,9 @@ bucket_width=1d" \
   Model yang dirilis sebelum Februari 2026 (sebelum Claude Opus 4.6 dan Claude Sonnet 4.6) tidak mendukung parameter permintaan `inference_geo`, sehingga laporan penggunaannya mengembalikan `"not_available"` untuk dimensi ini. Anda dapat menggunakan `not_available` sebagai nilai filter di `inference_geos[]` untuk menargetkan model-model tersebut.
 </Note>
 
-#### Mode cepat (pratinjau riset)
+#### Fast mode (pratinjau riset)
 
-Lacak penggunaan [mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) dengan mengelompokkan dan memfilter menggunakan dimensi `speed`. Ini berguna untuk memantau penggunaan mode standar versus mode cepat.
+Lacak penggunaan [fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) dengan mengelompokkan dan memfilter menggunakan dimensi `speed`. Ini berguna untuk memantau penggunaan mode standar versus fast mode.
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/usage_report/messages?\
@@ -317,9 +321,9 @@ Biaya eksekusi kode muncul di endpoint biaya yang dikelompokkan di bawah `Code E
 
 Filter atau kelompokkan berdasarkan `service_tier` di endpoint penggunaan dan cari nilai `priority`. Biaya Priority Tier tidak tersedia di endpoint biaya.
 
-### Apa yang terjadi dengan penggunaan Playground?
+### Apa yang terjadi dengan penggunaan playground?
 
-Penggunaan API dari Playground di Claude Console (dan dari Workbench lama sebelumnya) tidak dikaitkan dengan kunci API, sehingga `api_key_id` akan bernilai `null` bahkan saat mengelompokkan berdasarkan dimensi tersebut.
+Penggunaan API dari playground di Claude Console (dan dari Workbench lama sebelumnya) tidak dikaitkan dengan kunci API, sehingga `api_key_id` akan bernilai `null` bahkan saat mengelompokkan berdasarkan dimensi tersebut.
 
 ### Bagaimana workspace default direpresentasikan?
 
@@ -331,11 +335,11 @@ Gunakan [Claude Code Analytics API](https://platform.claude.com/docs/id/manage-c
 
 ## Lihat juga
 
-Gunakan Usage API dan Cost API untuk memberikan pengalaman yang lebih baik bagi pengguna Anda, mengelola biaya, dan menjaga batas laju Anda. Pelajari lebih lanjut tentang beberapa fitur lainnya berikut:
+Gunakan Usage API dan Cost API untuk memberikan pengalaman yang lebih baik bagi pengguna Anda, mengelola biaya, dan menjaga batas laju Anda. Pelajari lebih lanjut tentang beberapa fitur lainnya ini:
 
 * [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api)
 * [Referensi Admin API](https://platform.claude.com/docs/id/api/admin)
-* [API Analytics](https://platform.claude.com/docs/id/manage-claude/analytics-api) - API analytics dan jenis kunci mana yang dibutuhkan organisasi Anda
+* [Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api) - API analitik dan jenis kunci mana yang dibutuhkan organisasi Anda
 * [Harga](https://platform.claude.com/docs/id/about-claude/pricing)
 * [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) - Optimalkan biaya dengan caching
 * [Pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing) - Diskon 50% untuk permintaan batch

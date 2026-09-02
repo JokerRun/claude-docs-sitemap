@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/task-budgets
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 9481e148b2b8a165b5b4f4d23519e66bfb4acfd1019f52d14fabda33a2a237e2
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 1346265b67074dcd6eff6f135dc18c490ed42b98a9fdc1bd1e8443bcaf92ae56
 ---
 
 ---
@@ -14,19 +14,19 @@ description: Berikan Claude anggaran token yang bersifat saran untuk seluruh loo
 ## Compatibility
 - Status: Beta
 - [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `task-budgets-2026-03-13`
-- Supported models: `claude-fable-5`, `claude-mythos-5`, `claude-opus-5`, `claude-opus-4-8`, `claude-opus-4-7`
+- Supported models: `claude-fable-5-1`, `claude-mythos-5-1`, `claude-fable-5`, `claude-mythos-5`, `claude-opus-5`, `claude-opus-4-8`, `claude-opus-4-7`
 
-"Task budgets" (anggaran tugas) memungkinkan Anda memberi tahu Claude berapa banyak token yang dimilikinya untuk satu loop agentik penuh, termasuk pemikiran, pemanggilan alat, hasil alat, dan output. Model melihat hitungan mundur yang berjalan dan menggunakannya untuk memprioritaskan pekerjaan serta menyelesaikan dengan baik saat anggaran terpakai.
+"Task budgets" (anggaran tugas) memungkinkan Anda memberi tahu Claude berapa banyak token yang dimilikinya untuk seluruh loop agentik, termasuk pemikiran, pemanggilan alat, hasil alat, dan output. Model melihat hitung mundur yang terus berjalan dan menggunakannya untuk memprioritaskan pekerjaan serta menyelesaikannya dengan baik seiring anggaran terpakai.
 
 ## Kapan menggunakan anggaran tugas
 
-Anggaran tugas paling cocok untuk alur kerja agentik di mana Claude melakukan beberapa pemanggilan alat dan keputusan sebelum memfinalisasi outputnya untuk menunggu respons manusia berikutnya. Gunakan anggaran tugas ketika:
+Anggaran tugas paling cocok untuk alur kerja agentik di mana Claude melakukan beberapa pemanggilan alat dan pengambilan keputusan sebelum memfinalisasi outputnya untuk menunggu respons manusia berikutnya. Gunakan ketika:
 
 * Anda ingin Claude mengatur sendiri pengeluaran token pada tugas berjangka panjang.
-* Anda memiliki batas biaya atau latensi per tugas yang dapat diprediksi untuk diterapkan.
-* Anda ingin model menyelesaikan dengan baik (merangkum temuan, melaporkan kemajuan) saat mendekati anggaran, alih-alih terpotong di tengah tindakan.
+* Anda memiliki batas atas biaya atau latensi per tugas yang dapat diprediksi dan perlu ditegakkan.
+* Anda ingin model menyelesaikan dengan baik (merangkum temuan, melaporkan kemajuan) saat mendekati anggaran, alih-alih terputus di tengah tindakan.
 
-Anggaran tugas melengkapi [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort): effort mengontrol seberapa menyeluruh Claude bernalar tentang setiap langkah, sementara anggaran tugas membatasi total pekerjaan yang dapat dilakukan Claude di seluruh loop agentik.
+Anggaran tugas melengkapi [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort): effort mengontrol seberapa teliti Claude bernalar tentang setiap langkah, sedangkan anggaran tugas membatasi total pekerjaan yang dapat dilakukan Claude di seluruh loop agentik.
 
 ## Menetapkan anggaran tugas
 
@@ -244,23 +244,23 @@ Objek `task_budget` memiliki tiga field:
 
 * `type`: selalu `"tokens"`.
 * `total`: jumlah token yang dapat digunakan Claude di seluruh loop agentik, termasuk pemikiran, pemanggilan alat, hasil alat, dan output.
-* `remaining` (opsional): sisa anggaran yang dibawa dari permintaan sebelumnya. Default-nya adalah `total` jika dihilangkan.
+* `remaining` (opsional): sisa anggaran yang dibawa dari permintaan sebelumnya. Secara default bernilai `total` jika dihilangkan.
 
-## Cara kerja hitungan mundur anggaran
+## Cara kerja hitung mundur anggaran
 
-Claude melihat penanda hitungan mundur anggaran yang disisipkan di sisi server sepanjang percakapan. Penanda tersebut menunjukkan berapa banyak token yang tersisa dalam loop agentik saat ini dan diperbarui saat model menghasilkan pemikiran, pemanggilan alat, dan output, serta saat memproses hasil alat. Claude menggunakan sinyal ini untuk mengatur kecepatannya dan menyelesaikan dengan baik saat anggaran terpakai.
+Claude melihat penanda hitung mundur anggaran yang disisipkan di sisi server sepanjang percakapan. Penanda ini menunjukkan berapa banyak token yang tersisa dalam loop agentik saat ini dan diperbarui seiring model menghasilkan pemikiran, pemanggilan alat, dan output, serta saat model memproses hasil alat. Claude menggunakan sinyal ini untuk mengatur kecepatannya dan menyelesaikan dengan baik seiring anggaran terpakai.
 
 <Note>
-  **Hitungan mundur hanya terlihat oleh model.** Respons API tidak menyertakan field sisa anggaran: tidak ada informasi `task_budget` dalam objek `usage` respons, dan SDK tidak memiliki accessor untuk itu. Untuk melacak pengeluaran di sisi klien, jumlahkan penggunaan token di seluruh permintaan dalam loop Anda seperti yang ditunjukkan di [Ukur penggunaan Anda saat ini](https://platform.claude.com/docs/id/build-with-claude/task-budgets#measure-your-current-usage), atau teruskan angka Anda sendiri dengan `remaining` saat [membawa anggaran melintasi pemadatan](https://platform.claude.com/docs/id/build-with-claude/task-budgets#carrying-a-budget-across-compaction-with-remaining).
+  **Hitung mundur hanya terlihat oleh model.** Respons API tidak menyertakan field sisa anggaran: tidak ada informasi `task_budget` dalam objek `usage` pada respons, dan SDK tidak memiliki accessor untuknya. Untuk melacak pengeluaran di sisi klien, jumlahkan penggunaan token di seluruh permintaan dalam loop Anda seperti ditunjukkan di [Ukur penggunaan Anda saat ini](https://platform.claude.com/docs/id/build-with-claude/task-budgets#measure-your-current-usage), atau teruskan angka Anda sendiri dengan `remaining` saat [membawa anggaran melewati compaction](https://platform.claude.com/docs/id/build-with-claude/task-budgets#carrying-a-budget-across-compaction-with-remaining).
 </Note>
 
 <Warning>
-  **Hitungan mundur mencerminkan token yang telah diproses Claude dalam loop agentik saat ini, bukan token yang Anda kirim ulang di antara giliran.** Jika klien Anda mengirim riwayat percakapan lengkap pada setiap permintaan lanjutan, jumlah token di sisi klien Anda mungkin berbeda dari anggaran yang dilacak Claude. Jika Anda juga mengurangi `remaining` sambil mengirim ulang riwayat lengkap, model melihat anggaran yang dilaporkan lebih rendah dan hitungan mundur turun lebih cepat dari seharusnya, menyebabkan Claude menyelesaikan lebih awal dari yang sebenarnya diizinkan anggaran. Tetapkan anggaran yang longgar dan biarkan model mengatur dirinya sendiri terhadap hitungan mundur, alih-alih mencoba mencerminkannya di sisi klien.
+  **Hitung mundur mencerminkan token yang telah diproses Claude dalam loop agentik saat ini, bukan token yang Anda kirim ulang antar giliran.** Jika klien Anda mengirim seluruh riwayat percakapan pada setiap permintaan lanjutan, hitungan token di sisi klien Anda mungkin berbeda dari anggaran yang dilacak Claude. Jika Anda juga mengurangi `remaining` sambil mengirim ulang seluruh riwayat, model akan melihat anggaran yang dilaporkan lebih kecil dari seharusnya dan hitung mundur turun lebih cepat dari yang semestinya, sehingga Claude menyelesaikan lebih awal daripada yang sebenarnya diizinkan anggaran. Tetapkan anggaran yang longgar dan biarkan model mengatur dirinya sendiri terhadap hitung mundur, alih-alih mencoba mencerminkannya di sisi klien.
 </Warning>
 
-### Contoh terperinci: penghitungan anggaran di seluruh giliran
+### Contoh terperinci: penghitungan anggaran antar giliran
 
-Anggaran tugas menghitung apa yang **dilihat** Claude (pemikiran, pemanggilan alat dan hasilnya, serta teks), bukan apa yang ada dalam payload permintaan Anda. Dalam loop agentik, klien Anda mengirim ulang percakapan lengkap pada setiap permintaan, sehingga payload bertambah dari giliran ke giliran, tetapi anggaran hanya berkurang sebesar token yang dilihat Claude pada giliran ini.
+Anggaran tugas menghitung apa yang **dilihat** Claude (pemikiran, pemanggilan dan hasil alat, serta teks), bukan apa yang ada dalam payload permintaan Anda. Dalam loop agentik, klien Anda mengirim ulang seluruh percakapan pada setiap permintaan, sehingga payload bertambah dari giliran ke giliran, tetapi anggaran hanya berkurang sebesar token yang dilihat Claude pada giliran ini.
 
 Pertimbangkan sebuah loop dengan `task_budget: {type: "tokens", total: 100000}` dan satu alat `bash`.
 
@@ -294,9 +294,9 @@ Claude berpikir, lalu mengeluarkan pemanggilan alat dan berhenti dengan `stop_re
 }
 ```
 
-Misalkan giliran asisten ini (pemikiran ditambah pemanggilan alat) berjumlah 5.000 token yang dihasilkan. Hitungan mundur yang dilihat Claude selama pembuatan berakhir di sekitar `remaining` ≈ 95.000.
+Misalkan giliran asisten ini (pemikiran ditambah pemanggilan alat) berjumlah total 5.000 token yang dihasilkan. Hitung mundur yang dilihat Claude selama pembuatan berakhir di sekitar `remaining` ≈ 95.000.
 
-**Giliran 2.** Klien Anda menjalankan alat tersebut, lalu mengirim ulang riwayat lengkap dengan hasil alat ditambahkan:
+**Giliran 2.** Klien Anda menjalankan alat, lalu mengirim ulang seluruh riwayat dengan hasil alat ditambahkan:
 
 ```json
 {
@@ -328,24 +328,24 @@ Misalkan giliran asisten ini (pemikiran ditambah pemanggilan alat) berjumlah 5.0
 }
 ```
 
-Pesan user dan assistant giliran 1 yang dikirim ulang tidak dihitung lagi, tetapi hasil alat sebesar 2.800 token adalah konten baru yang dilihat Claude pada giliran ini dan dihitung terhadap anggaran. Claude menghabiskan 4.000 token lagi untuk pemikiran dan pemanggilan alat kedua (`grep -rn "eval(" src/`). Hitungan mundur berakhir di sekitar `remaining` ≈ 88.200.
+Pesan pengguna dan asisten giliran 1 yang dikirim ulang tidak dihitung lagi, tetapi hasil alat sebesar 2.800 token adalah konten baru yang dilihat Claude pada giliran ini dan dihitung terhadap anggaran. Claude menghabiskan 4.000 token lagi untuk pemikiran dan pemanggilan alat kedua (`grep -rn "eval(" src/`). Hitung mundur berakhir di sekitar `remaining` ≈ 88.200.
 
-**Giliran 3.** Riwayat lengkap dikirim ulang lagi dengan hasil alat kedua (1.200 token output grep) ditambahkan. Claude menulis laporan temuan akhir sebesar 6.000 token dan berhenti dengan `stop_reason: "end_turn"`. `remaining` ≈ 81.000.
+**Giliran 3.** Seluruh riwayat dikirim ulang lagi dengan hasil alat kedua (1.200 token output grep) ditambahkan. Claude menulis laporan temuan akhir sebesar 6.000 token dan berhenti dengan `stop_reason: "end_turn"`. `remaining` ≈ 81.000.
 
-Menempatkan ketiga giliran berdampingan membuat perbedaan antara ukuran payload dan pengeluaran anggaran menjadi eksplisit:
+Menempatkan ketiga giliran berdampingan memperjelas perbedaan antara ukuran payload dan pengeluaran anggaran:
 
 | Giliran   | Payload permintaan (perkiraan token input yang Anda kirim) | Token yang dihitung terhadap anggaran pada giliran ini    | `remaining` anggaran setelahnya |
 | --------- | ---------------------------------------------------------- | --------------------------------------------------------- | ------------------------------- |
 | 1         | \~20                                                       | 5.000 (pemikiran + `tool_use`)                            | \~95.000                        |
 | 2         | \~7.800 (riwayat giliran 1 + hasil alat)                   | 6.800 (2.800 hasil alat + 4.000 pemikiran dan `tool_use`) | \~88.200                        |
-| 3         | \~13.000 (riwayat lengkap + hasil alat kedua)              | 7.200 (1.200 hasil alat + 6.000 `text`)                   | \~81.000                        |
+| 3         | \~13.000 (seluruh riwayat + hasil alat kedua)              | 7.200 (1.200 hasil alat + 6.000 `text`)                   | \~81.000                        |
 | **Total** | **\~20.820 dikirim di seluruh permintaan**                 | **19.000 dihitung terhadap anggaran**                     | N/A                             |
 
-Klien Anda mengirim pesan user giliran 1 sebanyak tiga kali dan pesan assistant giliran 1 sebanyak dua kali, tetapi masing-masing dihitung satu kali. Anggaran menghabiskan 19.000 dari 100.000 token, meskipun payload kumulatif yang dikirimkan klien Anda lebih besar dan input yang di-cache prompt pada giliran 2 dan 3 lebih besar lagi.
+Klien Anda mengirim pesan pengguna giliran 1 tiga kali dan pesan asisten giliran 1 dua kali, tetapi masing-masing hanya dihitung sekali. Anggaran terpakai 19.000 dari 100.000 token, meskipun payload kumulatif yang dikirimkan klien Anda lebih besar dan input yang di-cache melalui caching prompt pada giliran 2 dan 3 lebih besar lagi.
 
-### Membawa anggaran melintasi pemadatan dengan `remaining`
+### Membawa anggaran melewati compaction dengan `remaining`
 
-Jika loop agentik Anda memadatkan atau menulis ulang konteks di antara permintaan (misalnya, dengan merangkum giliran sebelumnya), server tidak memiliki memori tentang berapa banyak anggaran yang dihabiskan sebelum pemadatan. Teruskan `remaining` pada permintaan berikutnya agar hitungan mundur berlanjut dari tempat Anda berhenti, alih-alih direset ke `total`:
+Jika loop agentik Anda melakukan compaction atau menulis ulang konteks di antara permintaan (misalnya, dengan merangkum giliran sebelumnya), server tidak memiliki ingatan tentang berapa banyak anggaran yang telah terpakai sebelum compaction. Teruskan `remaining` pada permintaan berikutnya agar hitung mundur berlanjut dari titik terakhir Anda, alih-alih direset ke `total`:
 
 <CodeGroup exclude="shell">
   ```python Python
@@ -418,7 +418,7 @@ Jika loop agentik Anda memadatkan atau menulis ulang konteks di antara permintaa
   ```
 
   ```php PHP
-  // Token yang digunakan sebelum pemadatan, dilacak di sisi klien
+  // Token yang dihabiskan sebelum pemadatan, dilacak di sisi klien
   $tokensSpentSoFar = 45000;
 
   $outputConfig = [
@@ -446,34 +446,34 @@ Jika loop agentik Anda memadatkan atau menulis ulang konteks di antara permintaa
   ```
 </CodeGroup>
 
-Untuk loop yang mengirim ulang riwayat lengkap yang tidak dipadatkan pada setiap giliran, hilangkan `remaining` dan biarkan server melacak hitungan mundur.
+Untuk loop yang mengirim ulang seluruh riwayat tanpa compaction pada setiap giliran, hilangkan `remaining` dan biarkan server melacak hitung mundur.
 
 ## Mengubah anggaran di tengah percakapan
 
-`task_budget` adalah pengaturan tingkat permintaan. Untuk mengubah anggaran di tengah tugas, misalnya untuk memperpanjangnya ketika pengguna memperluas permintaan, tetapkan `task_budget` baru di `output_config` pada permintaan berikutnya. Perhatikan konsekuensi caching: nilai anggaran berpartisipasi dalam prompt yang dirender, sehingga nilai yang diubah tidak cocok dengan entri cache yang dibuat di bawah nilai lama (lihat [Dukungan fitur](https://platform.claude.com/docs/id/build-with-claude/task-budgets#feature-support) di bawah).
+`task_budget` adalah pengaturan tingkat permintaan. Untuk mengubah anggaran di tengah tugas, misalnya untuk memperpanjangnya ketika pengguna memperluas permintaan, tetapkan `task_budget` baru di `output_config` pada permintaan berikutnya. Perhatikan konsekuensi caching-nya: nilai anggaran ikut serta dalam prompt yang dirender, sehingga nilai yang berubah tidak cocok dengan entri cache yang dibuat dengan nilai lama (lihat [Dukungan fitur](https://platform.claude.com/docs/id/build-with-claude/task-budgets#feature-support) di bawah).
 
-## Anggaran tugas bersifat saran, bukan paksaan
+## Anggaran tugas bersifat saran, bukan ditegakkan
 
-Anggaran tugas adalah **petunjuk lunak, bukan batas keras**. Claude terkadang dapat melebihi anggaran jika sedang di tengah tindakan yang akan lebih mengganggu jika diinterupsi daripada diselesaikan. Batas yang dipaksakan pada total token output tetap `max_tokens`, yang memotong respons dengan `stop_reason: "max_tokens"` ketika tercapai.
+Anggaran tugas adalah **petunjuk lunak, bukan batas keras**. Claude terkadang dapat melampaui anggaran jika sedang berada di tengah tindakan yang akan lebih mengganggu jika dihentikan daripada diselesaikan. Batas yang ditegakkan untuk total token output tetaplah `max_tokens`, yang memotong respons dengan `stop_reason: "max_tokens"` ketika tercapai.
 
-Untuk batas keras pada biaya atau latensi, kombinasikan anggaran tugas dengan nilai `max_tokens` yang wajar:
+Untuk batas keras pada biaya atau latensi, gabungkan anggaran tugas dengan nilai `max_tokens` yang wajar:
 
-* Gunakan `task_budget` untuk memberi Claude target untuk mengatur kecepatannya.
-* Gunakan `max_tokens` sebagai batas absolut yang mencegah pembuatan yang tidak terkendali.
+* Gunakan `task_budget` untuk memberi Claude target sebagai acuan kecepatan.
+* Gunakan `max_tokens` sebagai batas atas absolut yang mencegah pembuatan yang tak terkendali.
 
-Karena `task_budget` mencakup seluruh loop agentik (berpotensi banyak permintaan) sementara `max_tokens` membatasi setiap permintaan individual, kedua nilai tersebut independen; yang satu tidak diharuskan berada pada atau di bawah yang lain.
+Karena `task_budget` mencakup seluruh loop agentik (berpotensi banyak permintaan) sedangkan `max_tokens` membatasi setiap permintaan individual, kedua nilai ini independen; yang satu tidak harus sama dengan atau di bawah yang lain.
 
 <Warning>
-  **Anggaran yang terlalu kecil untuk tugas dapat menyebabkan perilaku seperti penolakan.** Ketika Claude melihat anggaran yang jelas tidak mencukupi untuk pekerjaan yang diminta (misalnya, anggaran 20.000 token untuk tugas coding agentik berjam-jam), model mungkin menolak untuk mencoba tugas sama sekali, mempersempit cakupannya secara agresif, atau berhenti lebih awal dengan hasil parsial alih-alih memulai pekerjaan yang tidak dapat diselesaikannya. Jika Anda mengamati penolakan yang tidak terduga atau penghentian prematur setelah menetapkan anggaran, naikkan anggaran sebelum men-debug parameter lain. Sesuaikan ukuran anggaran dengan distribusi panjang tugas Anda yang sebenarnya, bukan default tetap; lihat [Memilih anggaran](https://platform.claude.com/docs/id/build-with-claude/task-budgets#choosing-a-budget).
+  **Anggaran yang terlalu kecil untuk tugas dapat menyebabkan perilaku seperti penolakan.** Ketika Claude melihat anggaran yang jelas tidak mencukupi untuk pekerjaan yang diminta (misalnya, anggaran 20.000 token untuk tugas pengodean agentik berdurasi beberapa jam), Claude mungkin menolak untuk mencoba tugas tersebut sama sekali, mempersempit cakupannya secara agresif, atau berhenti lebih awal dengan hasil parsial alih-alih memulai pekerjaan yang tidak dapat diselesaikannya. Jika Anda mengamati penolakan yang tidak terduga atau penghentian dini setelah menetapkan anggaran, naikkan anggaran sebelum men-debug parameter lain. Tentukan ukuran anggaran berdasarkan distribusi panjang tugas Anda yang sebenarnya, bukan default tetap; lihat [Memilih anggaran](https://platform.claude.com/docs/id/build-with-claude/task-budgets#choosing-a-budget).
 </Warning>
 
 ## Memilih anggaran
 
-Anggaran yang tepat bergantung pada seberapa banyak pekerjaan yang saat ini dilakukan loop agentik Anda. Alih-alih menebak, ukur penggunaan token Anda yang ada terlebih dahulu, lalu sesuaikan dari sana.
+Anggaran yang tepat bergantung pada seberapa banyak pekerjaan yang saat ini dilakukan loop agentik Anda. Daripada menebak, ukur penggunaan token Anda yang ada terlebih dahulu, lalu sesuaikan dari sana.
 
 ### Ukur penggunaan Anda saat ini
 
-Jalankan sampel tugas yang representatif **tanpa** `task_budget` ditetapkan dan catat total token yang dihabiskan Claude per tugas. Untuk loop agentik, jumlahkan `usage.output_tokens` di seluruh permintaan dalam loop, ditambah token dari hasil alat yang Anda tambahkan di antara permintaan:
+Jalankan sampel tugas yang representatif **tanpa** menetapkan `task_budget` dan catat total token yang dihabiskan Claude per tugas. Untuk loop agentik, jumlahkan `usage.output_tokens` di setiap permintaan dalam loop, ditambah token dari hasil alat yang Anda tambahkan di antara permintaan:
 
 <CodeGroup>
   ```bash CLI
@@ -497,7 +497,7 @@ Jalankan sampel tugas yang representatif **tanpa** `task_budget` ditetapkan dan 
       ],
   )
 
-  # Jumlahkan output_tokens (teks + pemikiran + panggilan alat) di setiap permintaan dalam loop Anda.
+  # Jumlahkan output_tokens (teks + pemikiran + pemanggilan alat) di setiap permintaan dalam loop Anda.
   print(response.usage.output_tokens)
   ```
 
@@ -525,7 +525,7 @@ Jalankan sampel tugas yang representatif **tanpa** `task_budget` ditetapkan dan 
       Messages = [new() { Role = Role.User, Content = "Review the codebase and propose a refactor plan." }],
   });
 
-  // Jumlahkan OutputTokens (teks + pemikiran + panggilan alat) di setiap permintaan dalam loop Anda.
+  // Jumlahkan OutputTokens (teks + pemikiran + pemanggilan alat) di setiap permintaan dalam loop Anda.
   Console.WriteLine(response.Usage.OutputTokens);
   ```
 
@@ -543,7 +543,7 @@ Jalankan sampel tugas yang representatif **tanpa** `task_budget` ditetapkan dan 
   	log.Fatal(err)
   }
 
-  // Jumlahkan OutputTokens (teks + pemikiran + panggilan alat) di setiap permintaan dalam loop Anda.
+  // Jumlahkan OutputTokens (teks + pemikiran + pemanggilan alat) di setiap permintaan dalam loop Anda.
   fmt.Println(response.Usage.OutputTokens)
   ```
 
@@ -557,7 +557,7 @@ Jalankan sampel tugas yang representatif **tanpa** `task_budget` ditetapkan dan 
       .build();
 
   Message response = client.messages().create(params);
-  // Jumlahkan outputTokens (teks + pemikiran + panggilan alat) di setiap permintaan dalam loop Anda.
+  // Jumlahkan outputTokens (teks + thinking + pemanggilan alat) di setiap permintaan dalam loop Anda.
   IO.println(response.usage().outputTokens());
   ```
 
@@ -572,7 +572,7 @@ Jalankan sampel tugas yang representatif **tanpa** `task_budget` ditetapkan dan 
       ],
   );
 
-  // Jumlahkan outputTokens (teks + pemikiran + panggilan alat) di setiap permintaan dalam loop Anda.
+  // Jumlahkan outputTokens (teks + pemikiran + pemanggilan alat) di setiap permintaan dalam loop Anda.
   echo $response->usage->outputTokens . "\n";
   ```
 
@@ -592,21 +592,23 @@ Jalankan sampel tugas yang representatif **tanpa** `task_budget` ditetapkan dan 
   ```
 </CodeGroup>
 
-Jalankan ini pada sekumpulan tugas yang representatif dan catat distribusinya. Mulailah dengan p99 dari pengeluaran token per tugas Anda untuk memahami bagaimana memberikan anggaran tugas kepada model dapat memodifikasi perilaku model, lalu uji naik atau turun sesuai kebutuhan.
+Jalankan ini pada sekumpulan tugas yang representatif dan catat distribusinya. Mulailah dengan p99 dari pengeluaran token per tugas Anda untuk memahami bagaimana pemberian anggaran tugas kepada model dapat mengubah perilaku model, lalu uji naik atau turun sesuai kebutuhan.
 
-Nilai minimum `task_budget.total` yang diterima bersifat spesifik per model; pada setiap model yang saat ini mendukung anggaran tugas (lihat [Dukungan fitur](https://platform.claude.com/docs/id/build-with-claude/task-budgets#feature-support)) nilainya adalah **20.000 token**, dan nilai di bawah minimum mengembalikan error 400.
+Nilai minimum `task_budget.total` yang diterima bersifat spesifik per model. Pada setiap model yang mendukung anggaran tugas (lihat [Dukungan fitur](https://platform.claude.com/docs/id/build-with-claude/task-budgets#feature-support)), nilainya adalah **20.000 token**, dan nilai yang lebih kecil akan mengembalikan error 400.
 
 ## Interaksi dengan parameter lain
 
-* **`max_tokens`:** Ortogonal terhadap anggaran tugas. `max_tokens` adalah batas keras per permintaan pada token yang dihasilkan, sementara `task_budget` adalah batas yang bersifat saran di seluruh loop agentik penuh (berpotensi mencakup banyak permintaan). Pada effort `xhigh` atau `max`, tetapkan `max_tokens` setidaknya 64k untuk memberi Claude ruang untuk berpikir dan bertindak pada setiap permintaan.
-* **[Effort](https://platform.claude.com/docs/id/build-with-claude/effort):** Effort mengontrol seberapa dalam Claude bernalar per langkah. Anggaran tugas mengontrol seberapa banyak total pekerjaan yang dilakukan Claude di seluruh loop agentik. Keduanya saling melengkapi: effort menyetel kedalaman, anggaran tugas menyetel keluasan.
-* **[Adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking):** Anggaran tugas menyertakan token pemikiran dalam hitungan, sehingga adaptive thinking secara alami menurun seiring anggaran habis.
-* **[Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching):** Penanda hitungan mundur anggaran disisipkan di sisi server per giliran, sehingga tidak cocok di seluruh permintaan. Jika klien Anda mengurangi `task_budget.remaining` pada setiap permintaan lanjutan, nilai yang diubah membatalkan prefiks cache apa pun yang memuatnya. Untuk mempertahankan caching, tetapkan anggaran sekali pada permintaan awal dan biarkan model mengatur dirinya sendiri terhadap hitungan mundur sisi server, alih-alih mengubah anggaran di sisi klien.
+* **`max_tokens`:** Ortogonal terhadap anggaran tugas. `max_tokens` adalah batas keras per permintaan untuk token yang dihasilkan, sedangkan `task_budget` adalah batas bersifat saran di seluruh loop agentik (berpotensi mencakup banyak permintaan). Pada effort `xhigh` atau `max`, tetapkan `max_tokens` setidaknya 64k untuk memberi Claude ruang untuk berpikir dan bertindak pada setiap permintaan.
+* **[Effort](https://platform.claude.com/docs/id/build-with-claude/effort):** Effort mengontrol seberapa dalam Claude bernalar per langkah. Anggaran tugas mengontrol seberapa banyak total pekerjaan yang dilakukan Claude di seluruh loop agentik. Keduanya saling melengkapi: effort mengatur kedalaman, anggaran tugas mengatur keluasan.
+* **[Adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking):** Anggaran tugas menyertakan token pemikiran dalam hitungan, sehingga adaptive thinking (pemikiran adaptif) berkurang seiring anggaran menipis.
+* **[Prompt caching](https://platform.claude.com/docs/id/build-with-claude/prompt-caching):** Penanda hitung mundur anggaran disisipkan di sisi server per giliran, sehingga tidak cocok antar permintaan. Jika klien Anda mengurangi `task_budget.remaining` pada setiap permintaan lanjutan, nilai yang berubah akan membatalkan prefiks cache apa pun yang memuatnya. Untuk mempertahankan caching prompt, tetapkan anggaran sekali pada permintaan awal dan biarkan model mengatur dirinya sendiri terhadap hitung mundur di sisi server, alih-alih mengubah anggaran di sisi klien.
 
 ## Dukungan fitur
 
 | Model             | Dukungan                                         |
 | ----------------- | ------------------------------------------------ |
+| Claude Fable 5.1  | Beta (tetapkan header `task-budgets-2026-03-13`) |
+| Claude Mythos 5.1 | Beta (tetapkan header `task-budgets-2026-03-13`) |
 | Claude Opus 5     | Beta (tetapkan header `task-budgets-2026-03-13`) |
 | Claude Fable 5    | Beta (tetapkan header `task-budgets-2026-03-13`) |
 | Claude Mythos 5   | Beta (tetapkan header `task-budgets-2026-03-13`) |
@@ -617,24 +619,24 @@ Nilai minimum `task_budget.total` yang diterima bersifat spesifik per model; pad
 | Claude Sonnet 4.6 | Tidak didukung                                   |
 | Claude Haiku 4.5  | Tidak didukung                                   |
 
-Anggaran tugas tidak didukung pada [Claude Code](https://code.claude.com/docs/en/overview) atau permukaan Cowork. Gunakan anggaran tugas langsung melalui Messages API pada [model yang didukung](https://platform.claude.com/docs/id/build-with-claude/task-budgets#feature-support).
+Anggaran tugas tidak didukung pada [Claude Code](https://code.claude.com/docs/en/overview) atau permukaan Cowork. Gunakan anggaran tugas secara langsung melalui Messages API pada [model yang didukung](https://platform.claude.com/docs/id/build-with-claude/task-budgets#feature-support).
 
 ## Langkah selanjutnya
 
 <CardGroup>
   <Card title="Effort" icon="gauge" href="https://platform.claude.com/docs/id/build-with-claude/effort">
-    Kontrol seberapa menyeluruh Claude bernalar tentang setiap langkah dari loop agentik.
+    Kontrol seberapa teliti Claude bernalar tentang setiap langkah dalam loop agentik.
   </Card>
 
   <Card title="Adaptive thinking" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/thinking">
     Biarkan Claude memutuskan kapan dan seberapa banyak menggunakan pemikiran diperpanjang.
   </Card>
 
-  <Card title="Pemadatan" icon="arrows-clockwise" href="https://platform.claude.com/docs/id/build-with-claude/compaction">
-    Kelola konteks dalam percakapan yang berjalan lama dengan pemadatan sisi server.
+  <Card title="Compaction" icon="arrows-clockwise" href="https://platform.claude.com/docs/id/build-with-claude/compaction">
+    Kelola konteks dalam percakapan yang berjalan lama dengan compaction di sisi server.
   </Card>
 
   <Card title="Caching prompt" icon="database" href="https://platform.claude.com/docs/id/build-with-claude/prompt-caching">
-    Kurangi biaya dan latensi pada prompt berulang dengan meng-cache prefiks prompt.
+    Kurangi biaya dan latensi pada prompt berulang dengan melakukan caching prefiks prompt.
   </Card>
 </CardGroup>

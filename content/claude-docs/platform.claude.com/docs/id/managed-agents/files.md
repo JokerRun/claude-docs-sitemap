@@ -1,20 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/files
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 72572b34ada46ff797cb5764f3f70c43b59e731d9a0839932c1370a7939d83cb
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 0d9abdd18173e8344bf7236ca268bd0de5bc625015a747269ca6648942e1911d
 ---
 
 ---
 title: Menambahkan file
 url: https://platform.claude.com/docs/id/managed-agents/files
-description: Unggah file dan pasang di sandbox Anda untuk dibaca dan diproses.
+description: Unggah file dan mount ke dalam sandbox Anda untuk dibaca dan diproses.
 ---
 
-Anda dapat menyediakan file untuk agen Anda dengan mengunggahnya melalui Files API dan memasangnya (mounting) di sandbox sesi.
+Anda dapat menyediakan file untuk agen Anda dengan mengunggahnya melalui Files API dan me-mount-nya di sandbox sesi.
 
 <Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Mengunggah file
@@ -88,9 +88,9 @@ Pertama, unggah file menggunakan [Files API](https://platform.claude.com/docs/id
   ```
 </CodeGroup>
 
-## Memasang file dalam sesi
+## Me-mount file dalam sesi
 
-Pasang file yang telah diunggah ke dalam sandbox dengan menambahkannya ke array `resources` saat membuat sesi:
+Mount file yang telah diunggah ke dalam sandbox dengan menambahkannya ke array `resources` saat membuat sesi:
 
 <Tip>
   `mount_path` bersifat opsional, tetapi pastikan file yang diunggah memiliki nama yang deskriptif agar agen dapat mengidentifikasinya.
@@ -240,13 +240,13 @@ Pasang file yang telah diunggah ke dalam sandbox dengan menambahkannya ke array 
   ```
 </CodeGroup>
 
-Dengan `mount_path` di atas, agen membaca file di `/mnt/session/uploads/data.csv` (lihat [Jalur file](https://platform.claude.com/docs/id/managed-agents/files#file-paths)).
+Dengan `mount_path` di atas, agen membaca file di `/mnt/session/uploads/data.csv` (lihat [Path file](https://platform.claude.com/docs/id/managed-agents/files#file-paths)).
 
 Sebuah `file_id` baru dibuat yang mereferensikan instance file tersebut di dalam sesi. Salinan ini tidak dihitung terhadap [batas penyimpanan](https://platform.claude.com/docs/id/build-with-claude/files) Anda.
 
 ## Beberapa file
 
-Pasang beberapa file dengan menambahkan entri ke array `resources`:
+Mount beberapa file dengan menambahkan entri ke array `resources`:
 
 <CodeGroup>
   ```json cURL
@@ -336,7 +336,7 @@ Pasang beberapa file dengan menambahkan entri ke array `resources`:
   ```
 </CodeGroup>
 
-Maksimum 500 file didukung per sesi.
+Maksimal 500 file didukung per sesi.
 
 ## Mengelola file pada sesi yang sedang berjalan
 
@@ -693,14 +693,14 @@ Agen dapat bekerja dengan jenis file apa pun, termasuk:
 * Arsip (`.zip`, `.tar.gz`) - agen dapat mengekstraknya menggunakan bash
 * File biner - agen dapat memprosesnya dengan alat yang sesuai
 
-## Jalur file
+## Path file
 
 <Note>
-  File yang dipasang di sandbox adalah salinan hanya-baca. Agen dapat membacanya tetapi tidak dapat memodifikasi file asli yang diunggah. Untuk bekerja dengan versi yang dimodifikasi, agen menulis ke jalur baru di dalam sandbox.
+  File yang di-mount di sandbox adalah salinan read-only (hanya-baca). Agen dapat membacanya tetapi tidak dapat memodifikasi file asli yang diunggah. Untuk bekerja dengan versi yang dimodifikasi, agen menulis ke path baru di dalam sandbox.
 </Note>
 
-* Jalur yang Anda tentukan berakar di bawah direktori uploads sesi: `mount_path` berupa `/data.csv` menempatkan file di `/mnt/session/uploads/data.csv` di dalam sandbox
+* Path yang Anda tentukan berakar di bawah direktori uploads sesi: `mount_path` berupa `/data.csv` menempatkan file di `/mnt/session/uploads/data.csv` di dalam sandbox
 * Jika Anda menghilangkan `mount_path`, file ditempatkan di `/mnt/session/uploads/<file_id>`
 * Direktori induk dibuat secara otomatis
-* Jalur harus absolut (dimulai dengan `/`)
+* Path harus absolut (dimulai dengan `/`)
 * File yang ditulis agen ke `/mnt/session/outputs/` menjadi tersedia melalui Files API, dicakup ke sesi tersebut; lihat [Mendaftarkan dan mengunduh file sesi](https://platform.claude.com/docs/id/managed-agents/files#listing-and-downloading-session-files)

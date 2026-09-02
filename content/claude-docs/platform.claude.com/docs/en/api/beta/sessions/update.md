@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/update
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: c2789678220be5a23e2421f37e06f7175126d4dc3c168cbc067c2623bb5d55e4
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: e91f79f576d3a48dd3662ca880567bd974e8153cba36cec548fdf197623240a1
 ---
 
 # Update Session
@@ -23,7 +23,7 @@ Update Session
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -106,6 +106,12 @@ Update Session
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ## Body parameters
 
@@ -581,11 +587,15 @@ Update Session
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `"claude-sonnet-5" or "claude-fable-5" or "claude-opus-5" or 10 more`
+        - `"claude-fable-5-1" or "claude-sonnet-5" or "claude-fable-5" or 11 more`
 
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-fable-5-1"`
+
+            Frontier intelligence for ambitious tasks across coding, scientific discovery, and enterprise workflows
 
           - `"claude-sonnet-5"`
 
@@ -1135,7 +1145,7 @@ Update Session
 
   - `outcome_evaluations: array of BetaManagedAgentsOutcomeEvaluationResource`
 
-    Per-outcome evaluation state. One entry per define_outcome event sent to the session.
+    Per-outcome evaluation state. One entry per `define_outcome` event sent to the session.
 
     - `completed_at: string or null`
 
@@ -1149,7 +1159,7 @@ Update Session
 
     - `explanation: string or null`
 
-      Grader's verdict text from the most recent evaluation. For satisfied, explains why criteria are met; for needs_revision (intermediate), what's missing; for failed, why unrecoverable.
+      Grader's verdict text from the most recent evaluation. For `satisfied`, explains why criteria are met; for `needs_revision` (intermediate), what's missing; for `failed`, why unrecoverable.
 
     - `iteration: number`
 
@@ -1277,7 +1287,7 @@ Update Session
 
     - `active_seconds: optional number`
 
-      Cumulative time in seconds the session spent in running status. Excludes idle time.
+      Cumulative time in seconds the session spent in `running` status. Excludes idle time.
 
       format: double
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/update
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 6875f800093326844779c881d4bad83c615f6adeb5ec4eb2ce1d708d477268b2
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 552669374b2c33f74424b46932139589ed80ecb1613ec67491d63c0b81f2e339
 ---
 
 # Update a memory store
@@ -23,7 +23,7 @@ Update a memory store
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -106,6 +106,12 @@ Update a memory store
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ## Body parameters
 

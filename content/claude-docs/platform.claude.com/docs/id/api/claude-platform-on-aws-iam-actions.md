@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: f26d1c43b1a35170fc3291f9b1a19e535edeb563fda2ad7136fa5b2bb11c6da9
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 98a26f0039ea597aed35125b4b3210f01ad5b29b3527fd779a4160c660e381dc
 ---
 
 ---
-title: Tindakan IAM untuk Claude Platform di AWS
+title: Tindakan IAM untuk Claude Platform on AWS
 url: https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions
-description: Referensi tindakan IAM untuk mengontrol akses ke Claude Platform di AWS melalui kebijakan AWS.
+description: Referensi tindakan IAM untuk mengontrol akses ke Claude Platform on AWS melalui kebijakan AWS.
 ---
 
-Claude Platform di AWS menggunakan AWS IAM untuk kontrol akses. Setiap rute API dipetakan ke tindakan IAM dalam namespace `aws-external-anthropic`. Halaman ini mencantumkan semua tindakan, rute yang diotorisasi oleh setiap tindakan, dan kebijakan terkelola yang tersedia untuk pola akses umum. Untuk penyiapan platform dan autentikasi, lihat [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws).
+Claude Platform on AWS menggunakan AWS IAM untuk kontrol akses. Setiap rute API dipetakan ke sebuah tindakan IAM dalam namespace `aws-external-anthropic`. Halaman ini mencantumkan semua tindakan, rute yang diotorisasi oleh setiap tindakan, dan "managed policies" (kebijakan terkelola) yang tersedia untuk pola akses umum. Untuk penyiapan platform dan autentikasi, lihat [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws).
 
 ## Detail layanan
 
@@ -26,11 +26,11 @@ Format ARN workspace:
 arn:aws:aws-external-anthropic:{region}:{account-id}:workspace/{workspace-id}
 ```
 
-Region ARN selalu terisi dan sesuai dengan region tempat workspace terikat. Segmen sumber daya adalah ID workspace yang diberi tag (`wrkspc_...`), nilai yang sama dengan yang Anda kirimkan dalam header `anthropic-workspace-id`.
+Region ARN selalu terisi dan sesuai dengan region tempat workspace terikat. Segmen sumber daya adalah ID workspace bertag (`wrkspc_...`), nilai yang sama dengan yang Anda kirimkan dalam header `anthropic-workspace-id`.
 
 ## Tindakan
 
-Layanan ini mendefinisikan 66 tindakan. Tindakan mengikuti konvensi AWS `VerbNoun` dan menggunakan disiplin kata kerja sehingga wildcard `Get*` dan `List*` menghasilkan batasan read-only yang bersih.
+Layanan ini mendefinisikan 71 tindakan. Tindakan mengikuti konvensi `VerbNoun` AWS dan menggunakan disiplin kata kerja sehingga wildcard `Get*` dan `List*` menghasilkan batas hanya-baca yang bersih.
 
 ### Inferensi
 
@@ -50,7 +50,7 @@ Layanan ini mendefinisikan 66 tindakan. Tindakan mengikuti konvensi AWS `VerbNou
 | `DeleteBatchInference` | `DELETE /v1/messages/batches/{id}`                                      |
 
 <Note>
-  `GetBatchInference` mengotorisasi pembacaan metadata batch sekaligus pengunduhan hasil batch. Wildcard `Get*` pada kebijakan `AnthropicReadOnlyAccess`, `AnthropicInferenceAccess`, dan `AnthropicLimitedAccess` mencakup tindakan ini.
+  `GetBatchInference` mengotorisasi pembacaan metadata batch maupun pengunduhan hasil batch. Wildcard `Get*` pada kebijakan `AnthropicReadOnlyAccess`, `AnthropicInferenceAccess`, dan `AnthropicLimitedAccess` mencakup tindakan ini.
 </Note>
 
 ### Model
@@ -70,7 +70,7 @@ Layanan ini mendefinisikan 66 tindakan. Tindakan mengikuti konvensi AWS `VerbNou
 | `DeleteFile` | `DELETE /v1/files/{id}`                           |
 
 <Note>
-  `GetFile` mengotorisasi pengunduhan metadata sekaligus konten. Principal dengan akses read-only dapat mengunduh byte file, bukan hanya mencantumkan file.
+  `GetFile` mengotorisasi pengunduhan metadata maupun konten. Principal dengan akses hanya-baca dapat mengunduh byte file, bukan hanya mencantumkan file.
 </Note>
 
 ### Skill
@@ -84,14 +84,14 @@ Layanan ini mendefinisikan 66 tindakan. Tindakan mengikuti konvensi AWS `VerbNou
 | `DeleteSkill` | `DELETE /v1/skills/{id}`                                                                                                                       |
 
 <Note>
-  `GetSkill` mengotorisasi pengunduhan metadata skill sekaligus konten skill. Principal dengan akses read-only dapat mengunduh byte skill, bukan hanya mencantumkan skill.
+  `GetSkill` mengotorisasi pengunduhan metadata skill maupun konten skill. Principal dengan akses hanya-baca dapat mengunduh byte skill, bukan hanya mencantumkan skill.
 </Note>
 
 <Note>
-  Membuat atau menghapus versi skill individual dipetakan ke `UpdateSkill`, bukan `CreateSkill` atau `DeleteSkill`. Kebijakan yang menolak `aws-external-anthropic:Delete*` tetap mengizinkan penghapusan versi, dan kebijakan yang menolak `aws-external-anthropic:Create*` tetap mengizinkan pembuatan versi. Tolak `UpdateSkill` dan `CreateSkill` juga jika Anda perlu mencegah mutasi skill apa pun.
+  Membuat atau menghapus versi skill individual dipetakan ke `UpdateSkill`, bukan `CreateSkill` atau `DeleteSkill`. Kebijakan yang menolak `aws-external-anthropic:Delete*` tetap mengizinkan penghapusan versi, dan kebijakan yang menolak `aws-external-anthropic:Create*` tetap mengizinkan pembuatan versi. Tolak juga `UpdateSkill` dan `CreateSkill` jika Anda perlu mencegah mutasi skill apa pun.
 </Note>
 
-### Agent
+### Agen
 
 | Tindakan       | Rute yang diotorisasi                                |
 | -------------- | ---------------------------------------------------- |
@@ -102,10 +102,10 @@ Layanan ini mendefinisikan 66 tindakan. Tindakan mengikuti konvensi AWS `VerbNou
 | `ArchiveAgent` | `POST /v1/agents/{id}/archive`                       |
 
 <Note>
-  Agent hanya mendukung pengarsipan, bukan penghapusan permanen. Kebijakan yang menolak `aws-external-anthropic:Delete*` tidak memblokir `ArchiveAgent`. Tolak `ArchiveAgent`, `UpdateAgent`, dan `CreateAgent` jika Anda perlu mencegah mutasi agent apa pun.
+  Agen hanya mendukung pengarsipan, bukan penghapusan permanen. Kebijakan yang menolak `aws-external-anthropic:Delete*` tidak memblokir `ArchiveAgent`. Tolak `ArchiveAgent`, `UpdateAgent`, dan `CreateAgent` jika Anda perlu mencegah mutasi agen apa pun.
 </Note>
 
-### Session
+### Sesi
 
 | Tindakan         | Rute yang diotorisasi                                                                                                                                                         |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -117,11 +117,11 @@ Layanan ini mendefinisikan 66 tindakan. Tindakan mengikuti konvensi AWS `VerbNou
 | `DeleteSession`  | `DELETE /v1/sessions/{id}`                                                                                                                                                    |
 
 <Note>
-  `GetSession` mengotorisasi pembacaan metadata session, seluruh event stream (riwayat percakapan), dan sumber daya session. Wildcard `Get*` pada kebijakan `AnthropicReadOnlyAccess`, `AnthropicInferenceAccess`, dan `AnthropicLimitedAccess` mencakup tindakan ini.
+  `GetSession` mengotorisasi pembacaan metadata sesi, aliran event lengkap (riwayat percakapan), dan sumber daya sesi. Wildcard `Get*` pada kebijakan `AnthropicReadOnlyAccess`, `AnthropicInferenceAccess`, dan `AnthropicLimitedAccess` mencakup tindakan ini.
 </Note>
 
 <Note>
-  Membuat, memperbarui, atau menghapus sub-sumber daya session individual (event atau sumber daya session) dipetakan ke `UpdateSession`, bukan `CreateSession` atau `DeleteSession`. Kebijakan yang menolak `aws-external-anthropic:Delete*` tetap mengizinkan penghapusan sub-sumber daya, dan kebijakan yang menolak `aws-external-anthropic:Create*` tetap mengizinkan pembuatan sub-sumber daya. Tolak `UpdateSession`, `CreateSession`, dan `ArchiveSession` juga jika Anda perlu mencegah mutasi session apa pun.
+  Membuat, memperbarui, atau menghapus sub-sumber daya sesi individual (event atau sumber daya sesi) dipetakan ke `UpdateSession`, bukan `CreateSession` atau `DeleteSession`. Kebijakan yang menolak `aws-external-anthropic:Delete*` tetap mengizinkan penghapusan sub-sumber daya, dan kebijakan yang menolak `aws-external-anthropic:Create*` tetap mengizinkan pembuatan sub-sumber daya. Tolak juga `UpdateSession`, `CreateSession`, dan `ArchiveSession` jika Anda perlu mencegah mutasi sesi apa pun.
 </Note>
 
 ### Environment
@@ -137,11 +137,11 @@ Layanan ini mendefinisikan 66 tindakan. Tindakan mengikuti konvensi AWS `VerbNou
 | `ProcessEnvironmentWork` | `GET /v1/environments/{id}/work/poll` `POST /v1/environments/{id}/work/{work_id}` `POST /v1/environments/{id}/work/{work_id}/ack` `POST /v1/environments/{id}/work/{work_id}/heartbeat` `POST /v1/environments/{id}/work/{work_id}/stop` |
 
 <Note>
-  Kebijakan yang menolak `aws-external-anthropic:Delete*` tidak memblokir `ArchiveEnvironment`. `ProcessEnvironmentWork` tidak cocok dengan wildcard `Create*`, `Update*`, `Delete*`, atau `Archive*`. Tolak `ArchiveEnvironment`, `UpdateEnvironment`, `CreateEnvironment`, dan `ProcessEnvironmentWork` juga jika Anda perlu mencegah mutasi environment apa pun.
+  Kebijakan yang menolak `aws-external-anthropic:Delete*` tidak memblokir `ArchiveEnvironment`. `ProcessEnvironmentWork` tidak dicocokkan oleh wildcard `Create*`, `Update*`, `Delete*`, atau `Archive*`. Tolak juga `ArchiveEnvironment`, `UpdateEnvironment`, `CreateEnvironment`, dan `ProcessEnvironmentWork` jika Anda perlu mencegah mutasi environment apa pun.
 </Note>
 
 <Note>
-  `ProcessEnvironmentWork` mengotorisasi worker [sandbox yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes) untuk melakukan polling, mengakui (acknowledge), mengirim heartbeat, menghentikan, dan mengirimkan hasil pada item pekerjaan environment. Berikan hanya kepada principal yang menjalankan worker environment yang di-host sendiri. Kebijakan terkelola `AnthropicSelfHostedEnvironmentAccess` mencakup tindakan ini.
+  `ProcessEnvironmentWork` mengotorisasi worker [sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes) untuk melakukan polling, mengakui (acknowledge), mengirim heartbeat, menghentikan, dan memposting hasil pada item pekerjaan environment. Berikan hanya kepada principal yang menjalankan worker environment self-hosted. Kebijakan terkelola `AnthropicSelfHostedEnvironmentAccess` mencakup tindakan ini.
 </Note>
 
 ### Vault
@@ -156,7 +156,7 @@ Layanan ini mendefinisikan 66 tindakan. Tindakan mengikuti konvensi AWS `VerbNou
 | `DeleteVault`  | `DELETE /v1/vaults/{id}`                                                                                                                                                                    |
 
 <Note>
-  Membuat, memperbarui, mengarsipkan, atau menghapus kredensial vault individual dipetakan ke `UpdateVault`. Membaca kredensial dipetakan ke `GetVault`. Secret kredensial vault tidak diekspos: field secret bersifat write-only dan tidak pernah dikembalikan oleh `GetVault` (lihat [Autentikasi dengan vault](https://platform.claude.com/docs/id/managed-agents/vaults)). Kebijakan yang menolak `aws-external-anthropic:Delete*` tetap mengizinkan penghapusan kredensial, dan kebijakan yang menolak `aws-external-anthropic:Create*` tetap mengizinkan pembuatan kredensial. Tolak `UpdateVault`, `CreateVault`, dan `ArchiveVault` juga jika Anda perlu mencegah mutasi vault apa pun.
+  Membuat, memperbarui, mengarsipkan, atau menghapus kredensial vault individual dipetakan ke `UpdateVault`. Membaca kredensial dipetakan ke `GetVault`. Rahasia kredensial vault tidak diekspos: field rahasia bersifat hanya-tulis dan tidak pernah dikembalikan oleh `GetVault` (lihat [Autentikasi dengan vault](https://platform.claude.com/docs/id/managed-agents/vaults)). Kebijakan yang menolak `aws-external-anthropic:Delete*` tetap mengizinkan penghapusan kredensial, dan kebijakan yang menolak `aws-external-anthropic:Create*` tetap mengizinkan pembuatan kredensial. Tolak juga `UpdateVault`, `CreateVault`, dan `ArchiveVault` jika Anda perlu mencegah mutasi vault apa pun.
 </Note>
 
 ### Memory store
@@ -175,7 +175,7 @@ Layanan ini mendefinisikan 66 tindakan. Tindakan mengikuti konvensi AWS `VerbNou
 </Note>
 
 <Note>
-  Membuat, memperbarui, atau menghapus memori individual dan meredaksi versi memori keduanya dipetakan ke `UpdateMemoryStore`, bukan `CreateMemoryStore` atau `DeleteMemoryStore`. Kebijakan yang menolak `aws-external-anthropic:Delete*` tetap mengizinkan penghapusan memori individual dan redaksi versi memori, dan kebijakan yang menolak `aws-external-anthropic:Create*` tetap mengizinkan pembuatan memori individual. Tolak `UpdateMemoryStore`, `CreateMemoryStore`, dan `ArchiveMemoryStore` juga jika Anda perlu mencegah mutasi memory store apa pun.
+  Membuat, memperbarui, atau menghapus memori individual dan meredaksi versi memori keduanya dipetakan ke `UpdateMemoryStore`, bukan `CreateMemoryStore` atau `DeleteMemoryStore`. Kebijakan yang menolak `aws-external-anthropic:Delete*` tetap mengizinkan penghapusan memori individual dan redaksi versi memori, dan kebijakan yang menolak `aws-external-anthropic:Create*` tetap mengizinkan pembuatan memori individual. Tolak juga `UpdateMemoryStore`, `CreateMemoryStore`, dan `ArchiveMemoryStore` jika Anda perlu mencegah mutasi memory store apa pun.
 </Note>
 
 ### Webhook
@@ -190,11 +190,11 @@ Layanan ini mendefinisikan 66 tindakan. Tindakan mengikuti konvensi AWS `VerbNou
 | `RotateWebhookSecret` | `POST /v1/webhooks/{id}/regenerate_signing_secret` |
 
 <Note>
-  Signing secret webhook bersifat write-only. `GetWebhook` hanya mengembalikan metadata webhook; tidak mengembalikan signing secret.
+  Rahasia penandatanganan webhook bersifat hanya-tulis. `GetWebhook` hanya mengembalikan metadata webhook; tidak mengembalikan rahasia penandatanganan.
 </Note>
 
 <Note>
-  `RotateWebhookSecret` tidak cocok dengan wildcard `aws-external-anthropic:Create*`, `Update*`, atau `Delete*`. Kebijakan yang menolak pola-pola tersebut tetap mengizinkan rotasi secret. Tolak `RotateWebhookSecret`, `UpdateWebhook`, `CreateWebhook`, dan `DeleteWebhook` jika Anda perlu mencegah mutasi webhook apa pun.
+  `RotateWebhookSecret` tidak dicocokkan oleh wildcard `aws-external-anthropic:Create*`, `Update*`, atau `Delete*`. Kebijakan yang menolak pola-pola tersebut tetap mengizinkan rotasi rahasia. Tolak `RotateWebhookSecret`, `UpdateWebhook`, `CreateWebhook`, dan `DeleteWebhook` jika Anda perlu mencegah mutasi webhook apa pun.
 </Note>
 
 ### Profil pengguna
@@ -207,7 +207,7 @@ Layanan ini mendefinisikan 66 tindakan. Tindakan mengikuti konvensi AWS `VerbNou
 | `UpdateUserProfile` | `POST /v1/user_profiles/{id}` |
 
 <Warning>
-  Pencocokan tindakan IAM tidak peka huruf besar-kecil. Wildcard `aws-external-anthropic:*File` cocok dengan `CreateFile`, `GetFile`, dan `DeleteFile`, tetapi tidak cocok dengan `ListFiles` (yang berakhiran "files", bukan "file"). Wildcard ini juga secara berlebihan mencocokkan `CreateUserProfile`, `GetUserProfile`, dan `UpdateUserProfile` karena "Profile" berakhiran "file". Jika Anda bermaksud memberikan atau menolak hanya tindakan Files API, sebutkan secara eksplisit (`CreateFile`, `GetFile`, `ListFiles`, `DeleteFile`) daripada menggunakan pola sufiks `*File`.
+  Pencocokan tindakan IAM tidak peka huruf besar/kecil. Wildcard `aws-external-anthropic:*File` cocok dengan `CreateFile`, `GetFile`, dan `DeleteFile`, tetapi tidak cocok dengan `ListFiles` (yang berakhiran "files", bukan "file"). Wildcard ini juga secara berlebihan cocok dengan `CreateUserProfile`, `GetUserProfile`, dan `UpdateUserProfile` karena "Profile" berakhiran "file". Jika Anda bermaksud memberikan atau menolak hanya tindakan Files API, sebutkan secara eksplisit (`CreateFile`, `GetFile`, `ListFiles`, `DeleteFile`) alih-alih menggunakan pola sufiks `*File`.
 </Warning>
 
 ### Workspace
@@ -224,6 +224,20 @@ Layanan ini mendefinisikan 66 tindakan. Tindakan mengikuti konvensi AWS `VerbNou
   Workspace hanya mendukung pengarsipan, bukan penghapusan permanen. Kebijakan yang menolak `aws-external-anthropic:Delete*` tidak memblokir `ArchiveWorkspace`. Tolak `ArchiveWorkspace`, `UpdateWorkspace`, dan `CreateWorkspace` jika Anda perlu mencegah mutasi workspace apa pun.
 </Note>
 
+### Kunci enkripsi
+
+| Tindakan      | Rute yang diotorisasi                         |
+| ------------- | --------------------------------------------- |
+| `RegisterKey` | `POST /v1/organizations/external_keys`        |
+| `GetKey`      | `GET /v1/organizations/external_keys/{id}`    |
+| `ListKeys`    | `GET /v1/organizations/external_keys`         |
+| `UpdateKey`   | `POST /v1/organizations/external_keys/{id}`   |
+| `DisableKey`  | `DELETE /v1/organizations/external_keys/{id}` |
+
+<Note>
+  Tindakan-tindakan ini mengelola registrasi [customer-managed encryption key (CMEK)](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#claude-platform-on-aws) organisasi Anda, yaitu catatan tentang ARN kunci AWS KMS mana yang terdaftar. Tindakan ini tidak membuat, mengubah, atau menonaktifkan kunci di AWS KMS. `DisableKey` menghapus registrasi dan ditolak selama masih ada workspace yang menggunakan kunci tersebut. `RegisterKey` dan `DisableKey` tidak dicocokkan oleh wildcard `Create*`, `Update*`, atau `Delete*`; tolak `RegisterKey`, `UpdateKey`, dan `DisableKey` jika Anda perlu mencegah perubahan apa pun pada registrasi kunci. Dalam rute-rute ini, `{id}` adalah ARN kunci KMS yang di-URL-encode. Melampirkan kunci terdaftar ke workspace adalah operasi workspace, yang diotorisasi oleh `CreateWorkspace` atau `UpdateWorkspace`; principal yang melampirkan kunci juga memerlukan `kms:DescribeKey`, `kms:Encrypt`, dan `kms:Decrypt` pada kunci tersebut (lihat [prasyarat](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#claude-platform-on-aws)). Tindakan kunci eksternal bercakupan akun: menentukan ARN workspace pada tindakan tersebut tidak berpengaruh; gunakan `Resource: "*"`.
+</Note>
+
 ### Kepatuhan
 
 | Tindakan                   | Rute yang diotorisasi           |
@@ -231,7 +245,7 @@ Layanan ini mendefinisikan 66 tindakan. Tindakan mengikuti konvensi AWS `VerbNou
 | `ListComplianceActivities` | `GET /v1/compliance/activities` |
 
 <Note>
-  `ListComplianceActivities` mengotorisasi pembacaan [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) dari [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api), yaitu log audit tingkat organisasi yang mencakup event transparansi akses. Rute ini mengembalikan error hingga Compliance API [diaktifkan untuk organisasi Anda](https://platform.claude.com/docs/id/manage-claude/compliance-api-access); pengaktifan dilakukan berdasarkan permintaan melalui tim akun Anthropic Anda. Wildcard `List*` pada kebijakan `AnthropicReadOnlyAccess`, `AnthropicInferenceAccess`, dan `AnthropicLimitedAccess` mencakup tindakan ini.
+  `ListComplianceActivities` mengotorisasi pembacaan [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) dari [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api), yaitu log audit seluruh organisasi yang mencakup event transparansi akses. Rute ini mengembalikan error hingga Compliance API [diaktifkan untuk organisasi Anda](https://platform.claude.com/docs/id/manage-claude/compliance-api-access); pengaktifan dilakukan atas permintaan melalui tim akun Anthropic Anda. Wildcard `List*` pada kebijakan `AnthropicReadOnlyAccess`, `AnthropicInferenceAccess`, dan `AnthropicLimitedAccess` mencakup tindakan ini.
 </Note>
 
 <Note>
@@ -244,7 +258,7 @@ Layanan ini mendefinisikan 66 tindakan. Tindakan mengikuti konvensi AWS `VerbNou
 | --------------------- | --------------------- |
 | `CallWithBearerToken` | (tidak ada)           |
 
-`CallWithBearerToken` adalah izin lapisan autentikasi yang mengotorisasi principal untuk melakukan autentikasi melalui kunci API (bearer token) alih-alih AWS SigV4. Tindakan ini tidak dipetakan ke rute. Berikan bersama dengan tindakan yang dipetakan ke rute yang Anda inginkan agar dapat dilakukan oleh pemegang kunci API.
+`CallWithBearerToken` adalah izin lapisan autentikasi yang mengotorisasi principal untuk melakukan autentikasi melalui kunci API (bearer token) alih-alih AWS SigV4. Tindakan ini tidak dipetakan ke rute. Berikan bersama tindakan-tindakan yang dipetakan ke rute yang Anda inginkan dapat dilakukan oleh pemegang kunci API.
 
 ### Akses konsol
 
@@ -252,11 +266,11 @@ Layanan ini mendefinisikan 66 tindakan. Tindakan mengikuti konvensi AWS `VerbNou
 | --------------- | --------------------- |
 | `AssumeConsole` | (tidak ada)           |
 
-`AssumeConsole` mengotorisasi principal untuk membuka Claude Console untuk workspace Claude Platform di AWS melalui alur federasi AWS Console. Tindakan ini tidak dipetakan ke rute. Berikan kepada principal yang harus dapat mengklik **Open Claude Console** pada halaman layanan Claude Platform di AWS dalam AWS Console. Peran Claude Console (Admin atau Developer) ditetapkan secara terpisah oleh perwakilan akun Anthropic Anda; peran tersebut tidak diturunkan dari izin IAM principal. Lihat [Menggunakan Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#using-the-claude-console) untuk alur masuk dan deskripsi peran.
+`AssumeConsole` mengotorisasi principal untuk membuka Claude Console untuk workspace Claude Platform on AWS melalui alur federasi AWS Console. Tindakan ini tidak dipetakan ke rute. Berikan kepada principal yang seharusnya dapat mengklik **Open Claude Console** pada halaman layanan Claude Platform on AWS di AWS Console. Peran Claude Console (Admin atau Developer) ditetapkan secara terpisah oleh perwakilan akun Anthropic Anda; peran tersebut tidak diturunkan dari izin IAM principal. Lihat [Menggunakan Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#using-the-claude-console) untuk alur masuk dan deskripsi peran.
 
 ## Pemetaan rute ke tindakan
 
-Tabel berikut mencantumkan setiap rute pada Claude Platform di AWS dan tindakan IAM yang diperlukan untuk memanggilnya. Setiap tindakan IAM juga mengotorisasi permintaan yang menggunakan header `anthropic-beta`; varian beta dari suatu rute tidak memerlukan tindakan IAM terpisah. CloudTrail mengklasifikasikan setiap tindakan sebagai Data event (operasi data-plane bervolume tinggi) atau Management event (operasi control-plane). Tindakan vault dan webhook diklasifikasikan sebagai Management event karena menyimpan secret (kredensial vault dan signing secret webhook) dan mendapat manfaat dari audit logging yang aktif secara default. Tindakan workspace dan kepatuhan juga diklasifikasikan sebagai Management event karena merupakan operasi control-plane bercakupan organisasi. Semua tindakan lainnya, termasuk inferensi, batch, model, file, skill, profil pengguna, dan tindakan Claude Managed Agents lainnya, diklasifikasikan sebagai Data event.
+Tabel berikut mencantumkan setiap rute pada Claude Platform on AWS dan tindakan IAM yang diperlukan untuk memanggilnya. Setiap tindakan IAM juga mengotorisasi permintaan yang menggunakan header `anthropic-beta`; varian beta dari suatu rute tidak memerlukan tindakan IAM terpisah. CloudTrail mengklasifikasikan setiap tindakan sebagai Data event (operasi data-plane bervolume tinggi) atau Management event (operasi control-plane). Tindakan vault dan webhook diklasifikasikan sebagai Management event karena menyimpan rahasia (kredensial vault dan rahasia penandatanganan webhook) dan mendapat manfaat dari pencatatan audit yang aktif secara default. Tindakan workspace, kunci eksternal, dan kepatuhan juga diklasifikasikan sebagai Management event karena merupakan operasi control-plane bercakupan organisasi. Semua tindakan lainnya, termasuk inferensi, batch, model, file, skill, profil pengguna, dan tindakan Claude Managed Agents lainnya, diklasifikasikan sebagai Data event.
 
 | Metode   | Rute                                                 | Tindakan IAM               | Tipe event CloudTrail |
 | -------- | ---------------------------------------------------- | -------------------------- | --------------------- |
@@ -293,6 +307,11 @@ Tabel berikut mencantumkan setiap rute pada Claude Platform di AWS dan tindakan 
 | `GET`    | `/v1/organizations/workspaces/{id}`                  | `GetWorkspace`             | Management            |
 | `POST`   | `/v1/organizations/workspaces/{id}`                  | `UpdateWorkspace`          | Management            |
 | `POST`   | `/v1/organizations/workspaces/{id}/archive`          | `ArchiveWorkspace`         | Management            |
+| `POST`   | `/v1/organizations/external_keys`                    | `RegisterKey`              | Management            |
+| `GET`    | `/v1/organizations/external_keys`                    | `ListKeys`                 | Management            |
+| `GET`    | `/v1/organizations/external_keys/{id}`               | `GetKey`                   | Management            |
+| `POST`   | `/v1/organizations/external_keys/{id}`               | `UpdateKey`                | Management            |
+| `DELETE` | `/v1/organizations/external_keys/{id}`               | `DisableKey`               | Management            |
 | `GET`    | `/v1/compliance/activities`                          | `ListComplianceActivities` | Management            |
 | `POST`   | `/v1/agents`                                         | `CreateAgent`              | Data                  |
 | `GET`    | `/v1/agents`                                         | `ListAgents`               | Data                  |
@@ -361,38 +380,38 @@ Tabel berikut mencantumkan setiap rute pada Claude Platform di AWS dan tindakan 
 | `DELETE` | `/v1/webhooks/{id}`                                  | `DeleteWebhook`            | Management            |
 | `POST`   | `/v1/webhooks/{id}/regenerate_signing_secret`        | `RotateWebhookSecret`      | Management            |
 
-Rute yang tidak ada dalam tabel ini tidak tersedia di Claude Platform di AWS. Gateway menolak secara default rute apa pun yang tidak tercantum di sini.
+Rute yang tidak ada dalam tabel ini tidak tersedia di Claude Platform on AWS. Gateway secara default menolak rute apa pun yang tidak tercantum di sini.
 
 <Note>
-  Rute workspace adalah satu-satunya rute Admin API yang tersedia di Claude Platform di AWS. Halaman Workspaces di Claude Console bersifat read-only; gunakan Admin API atau AWS Console untuk membuat, memperbarui, atau mengarsipkan workspace.
+  Rute workspace dan kunci eksternal adalah satu-satunya rute Admin API yang tersedia di Claude Platform on AWS. Anda juga dapat membuat, memperbarui, atau mengarsipkan workspace di AWS Console atau, dengan peran Admin, di Claude Console. Kunci enkripsi juga dapat didaftarkan dan dilampirkan di Claude Console.
 </Note>
 
 ## Kebijakan terkelola
 
-AWS menyediakan lima kebijakan terkelola untuk Claude Platform di AWS. Semua kebijakan terkelola berlaku untuk `Resource: "*"`.
+AWS menyediakan lima kebijakan terkelola untuk Claude Platform on AWS. Semua kebijakan terkelola berlaku untuk `Resource: "*"`.
 
-| Kebijakan                              | Memberikan                                                                                                                                                                                           |
-| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `AnthropicFullAccess`                  | `aws-external-anthropic:*`                                                                                                                                                                           |
-| `AnthropicReadOnlyAccess`              | `Get*`, `List*`, `CallWithBearerToken`                                                                                                                                                               |
-| `AnthropicInferenceAccess`             | `Get*`, `List*`, `CreateInference`, `CreateBatchInference`, `CancelBatchInference`, `DeleteBatchInference`, `CountTokens`, `CallWithBearerToken`                                                     |
-| `AnthropicLimitedAccess`               | Semua tindakan `AnthropicInferenceAccess`, ditambah semua tindakan Claude Managed Agents (agent, session, environment, vault, memory store, webhook, dan pekerjaan environment yang di-host sendiri) |
-| `AnthropicSelfHostedEnvironmentAccess` | `GetEnvironment`, `ProcessEnvironmentWork`, `GetSession`, `UpdateSession`, `GetSkill`, `CallWithBearerToken`                                                                                         |
+| Kebijakan                              | Memberikan                                                                                                                                                                              |
+| -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `AnthropicFullAccess`                  | `aws-external-anthropic:*`                                                                                                                                                              |
+| `AnthropicReadOnlyAccess`              | `Get*`, `List*`, `CallWithBearerToken`                                                                                                                                                  |
+| `AnthropicInferenceAccess`             | `Get*`, `List*`, `CreateInference`, `CreateBatchInference`, `CancelBatchInference`, `DeleteBatchInference`, `CountTokens`, `CallWithBearerToken`                                        |
+| `AnthropicLimitedAccess`               | Semua tindakan `AnthropicInferenceAccess`, ditambah semua tindakan Claude Managed Agents (agen, sesi, environment, vault, memory store, webhook, dan pekerjaan environment self-hosted) |
+| `AnthropicSelfHostedEnvironmentAccess` | `GetEnvironment`, `ProcessEnvironmentWork`, `GetSession`, `UpdateSession`, `GetSkill`, `CallWithBearerToken`                                                                            |
 
-`AnthropicInferenceAccess` adalah kebijakan terkelola paling sempit yang cukup untuk menjalankan inferensi. Kebijakan ini mencakup inferensi sinkron dan batch, dan melalui wildcard `Get*` dan `List*`, memberikan akses baca ke setiap sumber daya API dalam namespace, termasuk sumber daya Claude Managed Agents (CMA) (agent, session, environment, vault, memory store, dan webhook). Ini mencakup pengunduhan konten file melalui `GetFile` (lihat catatan [File](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#files)), pengunduhan konten skill melalui `GetSkill` (lihat catatan [Skill](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#skills)), dan konten memori melalui `GetMemoryStore`. Secret kredensial vault dan signing secret webhook tidak diekspos: field tersebut bersifat write-only dan tidak pernah dikembalikan oleh `GetVault` atau `GetWebhook` (lihat [Autentikasi dengan vault](https://platform.claude.com/docs/id/managed-agents/vaults)). `AnthropicInferenceAccess` tidak memberikan pembuatan atau penghapusan file, pengelolaan skill, pengelolaan profil pengguna, mutasi workspace, atau tindakan tulis Claude Managed Agents apa pun (create, update, archive, delete, process, atau rotate). Untuk mengecualikan pembacaan CMA, ganti `AnthropicInferenceAccess` dengan kebijakan kustom yang hanya menyebutkan tindakan non-CMA spesifik yang Anda butuhkan.
+`AnthropicInferenceAccess` adalah kebijakan terkelola paling sempit yang cukup untuk menjalankan inferensi. Kebijakan ini mencakup inferensi sinkron maupun batch dan, melalui wildcard `Get*` dan `List*`, memberikan akses baca ke setiap sumber daya API dalam namespace, termasuk sumber daya Claude Managed Agents (CMA) (agen, sesi, environment, vault, memory store, dan webhook). Ini mencakup pengunduhan konten file melalui `GetFile` (lihat catatan [File](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#files)), pengunduhan konten skill melalui `GetSkill` (lihat catatan [Skill](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#skills)), dan isi memori melalui `GetMemoryStore`. Rahasia kredensial vault dan rahasia penandatanganan webhook tidak diekspos: field tersebut bersifat hanya-tulis dan tidak pernah dikembalikan oleh `GetVault` atau `GetWebhook` (lihat [Autentikasi dengan vault](https://platform.claude.com/docs/id/managed-agents/vaults)). `AnthropicInferenceAccess` tidak memberikan pembuatan atau penghapusan file, manajemen skill, manajemen profil pengguna, mutasi workspace, manajemen kunci enkripsi, atau tindakan tulis Claude Managed Agents apa pun (create, update, archive, delete, process, atau rotate). Untuk mengecualikan pembacaan CMA, ganti `AnthropicInferenceAccess` dengan kebijakan kustom yang hanya menyebutkan tindakan non-CMA spesifik yang Anda perlukan.
 
 <Note>
-  `AnthropicReadOnlyAccess`, `AnthropicInferenceAccess`, dan `AnthropicLimitedAccess` semuanya membawa wildcard `Get*` dan `List*`, yang memberikan akses baca ke semua konten dalam workspace: byte file, konten skill, hasil batch, riwayat percakapan session, dan konten memori. Wildcard `List*` juga memberikan `ListComplianceActivities`, yang membaca [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) kepatuhan organisasi setelah Compliance API diaktifkan untuk organisasi (lihat [Kepatuhan](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#compliance)). Secret kredensial vault dan signing secret webhook tidak diekspos; field tersebut bersifat write-only dan tidak pernah dikembalikan oleh `GetVault` atau `GetWebhook`. Jika principal Anda tidak boleh membaca konten yang ada, gunakan kebijakan kustom yang hanya menyebutkan tindakan yang Anda butuhkan.
+  `AnthropicReadOnlyAccess`, `AnthropicInferenceAccess`, dan `AnthropicLimitedAccess` semuanya membawa wildcard `Get*` dan `List*`, yang memberikan akses baca ke semua konten dalam workspace: byte file, konten skill, hasil batch, riwayat percakapan sesi, dan isi memori. Wildcard tersebut juga memberikan `GetKey` dan `ListKeys`, yang membaca konfigurasi kunci enkripsi terdaftar milik organisasi (ARN kunci dan metadata, tidak pernah materi kunci). Wildcard `List*` juga memberikan `ListComplianceActivities`, yang membaca [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) kepatuhan organisasi setelah Compliance API diaktifkan untuk organisasi (lihat [Kepatuhan](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#compliance)). Rahasia kredensial vault dan rahasia penandatanganan webhook tidak diekspos; field tersebut bersifat hanya-tulis dan tidak pernah dikembalikan oleh `GetVault` atau `GetWebhook`. Jika principal Anda tidak seharusnya membaca konten yang ada, gunakan kebijakan kustom yang hanya menyebutkan tindakan yang Anda perlukan.
 </Note>
 
 `AnthropicLimitedAccess` mencakup semua tindakan Claude Managed Agents selain tindakan inferensi.
 
-`AnthropicSelfHostedEnvironmentAccess` adalah kebijakan terkelola paling sempit yang cukup untuk menjalankan worker [sandbox yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes). Lampirkan ke principal yang digunakan worker environment Anda untuk autentikasi.
+`AnthropicSelfHostedEnvironmentAccess` adalah kebijakan terkelola paling sempit yang cukup untuk menjalankan worker [sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes). Lampirkan ke principal yang digunakan worker environment Anda untuk autentikasi.
 
-`AssumeConsole` tidak termasuk dalam `AnthropicReadOnlyAccess`, `AnthropicInferenceAccess`, `AnthropicLimitedAccess`, atau `AnthropicSelfHostedEnvironmentAccess`. Principal yang memerlukan akses Claude Console memerlukan `AnthropicFullAccess` atau kebijakan kustom yang memberikan `aws-external-anthropic:AssumeConsole`. Lihat [Akses konsol](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#console-access).
+`AssumeConsole` tidak termasuk dalam `AnthropicReadOnlyAccess`, `AnthropicInferenceAccess`, `AnthropicLimitedAccess`, atau `AnthropicSelfHostedEnvironmentAccess`. Principal yang memerlukan akses Claude Console membutuhkan `AnthropicFullAccess` atau kebijakan kustom yang memberikan `aws-external-anthropic:AssumeConsole`. Lihat [Akses konsol](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#console-access).
 
 <Note>
-  `CreateInference` dan `CreateBatchInference` adalah tindakan terpisah. Menolak salah satunya tidak memblokir yang lain. Jika Anda bermaksud mencegah semua panggilan model, tolak keduanya.
+  `CreateInference` dan `CreateBatchInference` adalah tindakan terpisah. Menolak salah satunya tidak memblokir yang lain. Jika Anda bermaksud mencegah semua pemanggilan model, tolak keduanya.
 </Note>
 
 ## Contoh kebijakan
@@ -421,14 +440,14 @@ Memberikan izin minimal untuk principal IAM yang menjalankan inferensi terhadap 
 ```
 
 <Note>
-  `ListWorkspaces` bercakupan akun (lihat [Otomatisasi provisioning](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#provisioning-automation)). Jika akun layanan Anda perlu menghitung workspace, tambahkan pernyataan `Allow` terpisah untuk `ListWorkspaces` dengan `Resource: "*"`.
+  `ListWorkspaces` bercakupan akun (lihat [Otomatisasi provisioning](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#provisioning-automation)). Jika akun layanan Anda perlu mengenumerasi workspace, tambahkan pernyataan `Allow` terpisah untuk `ListWorkspaces` dengan `Resource: "*"`.
 
   Kebijakan ini mengasumsikan autentikasi AWS SigV4. Jika principal melakukan autentikasi dengan kunci API, tambahkan pernyataan `Allow` terpisah untuk `aws-external-anthropic:CallWithBearerToken` dengan `Resource: "*"`. `CallWithBearerToken` adalah tindakan tanpa rute yang tidak terikat ke ARN workspace. Lihat [Isolasi workspace per pelanggan](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#per-customer-workspace-isolation) untuk pola dua pernyataan.
 </Note>
 
 ### Isolasi workspace per pelanggan
 
-Membatasi peran ke satu workspace:
+Membatasi sebuah role ke satu workspace:
 
 ```json
 {
@@ -452,14 +471,14 @@ Membatasi peran ke satu workspace:
 ```
 
 <Note>
-  Wildcard `aws-external-anthropic:*` dalam pernyataan pertama mencakup tindakan bercakupan akun (`CreateWorkspace`, `ListWorkspaces`, `ListComplianceActivities`) yang secara diam-diam difilter oleh batasan ARN workspace. Ini konsisten dengan maksud "isolasi" (peran tidak dapat membuat workspace, menghitung workspace, atau membaca Activity Feed kepatuhan), tetapi kebijakan berisi izin yang tidak berpengaruh. Lihat [Otomatisasi provisioning](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#provisioning-automation) untuk pola bercakupan akun.
+  Wildcard `aws-external-anthropic:*` dalam pernyataan pertama mencakup tindakan bercakupan akun (`CreateWorkspace`, `ListWorkspaces`, `ListComplianceActivities`, dan tindakan kunci eksternal) yang secara diam-diam disaring oleh batasan ARN workspace. Ini konsisten dengan maksud "isolasi" (role tidak dapat membuat workspace, mengenumerasi workspace, mengelola registrasi kunci enkripsi, atau membaca Activity Feed kepatuhan; role tetap dapat melampirkan kunci yang sudah terdaftar ke workspace-nya sendiri melalui `UpdateWorkspace`), tetapi kebijakan tersebut berisi izin yang tidak berpengaruh. Lihat [Otomatisasi provisioning](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#provisioning-automation) untuk pola bercakupan akun.
 
-  `CallWithBearerToken` dan `AssumeConsole` adalah tindakan tanpa rute yang tidak terikat ke ARN workspace. Pernyataan kedua memberikannya pada `Resource: "*"` sehingga peran dapat melakukan autentikasi dengan kunci API dan membuka Claude Console. Hilangkan pernyataan ini jika peran hanya menggunakan SigV4 dan tidak memerlukan akses Claude Console.
+  `CallWithBearerToken` dan `AssumeConsole` adalah tindakan tanpa rute yang tidak terikat ke ARN workspace. Pernyataan kedua memberikannya pada `Resource: "*"` sehingga role dapat melakukan autentikasi dengan kunci API dan membuka Claude Console. Hilangkan pernyataan ini jika role hanya menggunakan SigV4 dan tidak memerlukan akses Claude Console.
 </Note>
 
 ### Penguncian fitur untuk workspace yang sensitif terhadap ZDR
 
-Memblokir pemrosesan batch dan unggahan file pada workspace tertentu sambil tetap menyediakan inferensi sinkron. Berguna ketika workspace menangani data [Zero Data Retention (ZDR)](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention) yang tidak boleh disimpan di sisi server. Lampirkan kebijakan ini bersama dengan kebijakan Allow seperti `AnthropicInferenceAccess` atau [contoh workspace tunggal](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#synchronous-inference-on-a-single-workspace); jika berdiri sendiri, kebijakan yang hanya berisi Deny tidak memberikan izin apa pun:
+Memblokir pemrosesan batch dan unggahan file pada workspace tertentu sambil tetap menyediakan inferensi sinkron. Berguna ketika workspace menangani data [Zero Data Retention (ZDR)](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention) yang tidak boleh tersimpan di sisi server. Lampirkan kebijakan ini bersama kebijakan Allow seperti `AnthropicInferenceAccess` atau [contoh satu workspace](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#synchronous-inference-on-a-single-workspace); jika berdiri sendiri, kebijakan yang hanya berisi Deny tidak memberikan izin apa pun:
 
 ```json
 {
@@ -478,13 +497,13 @@ Memblokir pemrosesan batch dan unggahan file pada workspace tertentu sambil teta
 ```
 
 <Note>
-  Penolakan ini hanya memblokir pembuatan. Tindakan file dan batch lainnya tidak ditolak kecuali Anda mencantumkannya juga. Untuk penguncian lengkap di mana workspace tidak boleh menyimpan file atau batch, tolak juga `aws-external-anthropic:GetFile`, `aws-external-anthropic:ListFiles`, `aws-external-anthropic:DeleteFile`, `aws-external-anthropic:GetBatchInference`, `aws-external-anthropic:ListBatchInferences`, `aws-external-anthropic:CancelBatchInference`, dan `aws-external-anthropic:DeleteBatchInference`.
+  Penolakan ini hanya memblokir pembuatan. Tindakan file dan batch lainnya tidak ditolak kecuali Anda mencantumkannya juga. Untuk penguncian lengkap di mana workspace tidak boleh pernah menyimpan file atau batch, tolak juga `aws-external-anthropic:GetFile`, `aws-external-anthropic:ListFiles`, `aws-external-anthropic:DeleteFile`, `aws-external-anthropic:GetBatchInference`, `aws-external-anthropic:ListBatchInferences`, `aws-external-anthropic:CancelBatchInference`, dan `aws-external-anthropic:DeleteBatchInference`.
 </Note>
 
 ### Otomatisasi provisioning
 
 <Note>
-  Halaman Workspaces di Claude Console bersifat read-only; gunakan endpoint workspace Admin API atau AWS Console untuk membuat, memperbarui, atau mengarsipkan workspace.
+  Selain Admin API, Anda dapat membuat, memperbarui, atau mengarsipkan workspace di AWS Console atau, dengan peran Admin, di Claude Console.
 </Note>
 
 Memberikan peran CI/CD tindakan yang diperlukan untuk membuat dan mengelola workspace, tanpa izin inferensi apa pun:
@@ -508,10 +527,10 @@ Memberikan peran CI/CD tindakan yang diperlukan untuk membuat dan mengelola work
 }
 ```
 
-`CreateWorkspace` dan `ListWorkspaces` adalah operasi bercakupan akun. Menentukan ARN workspace pada tindakan ini tidak berpengaruh; gunakan `Resource: "*"`.
+`CreateWorkspace` dan `ListWorkspaces` adalah operasi dengan cakupan akun. Menentukan ARN workspace pada tindakan ini tidak berpengaruh apa pun; gunakan `Resource: "*"`.
 
 ## Lihat juga
 
-* [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) untuk penyiapan, autentikasi, dan gambaran umum platform
+* [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) untuk penyiapan, autentikasi, dan ikhtisar platform
 * [Panduan Pengguna AWS IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) untuk sintaks kebijakan IAM dan logika evaluasi
-* [Panduan Pengguna AWS CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/) untuk konfigurasi audit logging
+* [Panduan Pengguna AWS CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/) untuk konfigurasi pencatatan audit

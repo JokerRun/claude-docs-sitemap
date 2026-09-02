@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/claude_api_primer
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 36fd9e43c921555927c70476f3004a6a28355f8cb10db17c56e05305cac11225
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: b4cdb755c75808de14a6f1676808e0194462734b634b7de145dbac2d1ea5cab3
 ---
 
 ---
@@ -18,7 +18,8 @@ description: This guide is designed to give Claude the basics of using the Claud
 ## Models
 
 ```text wrap
-For complex agentic coding and enterprise work: Claude Opus 5: claude-opus-5
+Recommended default for most work, including complex agentic coding: Claude Opus 5: claude-opus-5
+Step up for the hardest long-running agentic and research tasks, at 2x Claude Opus 5 pricing: Claude Fable 5.1: claude-fable-5-1
 Previous Opus model: Claude Opus 4.8: claude-opus-4-8
 Smart model: Claude Sonnet 5: claude-sonnet-5
 For fast, cost-effective tasks: Claude Haiku 4.5: claude-haiku-4-5-20251001
@@ -627,6 +628,8 @@ When working with the `tool_choice` parameter, there are four possible options:
 * `any` tells Claude that it must use one of the provided tools.
 * `tool` forces Claude to always use a particular tool.
 * `none` prevents Claude from using any tools.
+
+On Claude Fable 5.1 and Claude Mythos 5.1, `any` and `tool` return a 400 error. Leave `tool_choice` at `auto` and set `"strict": true` on the tool definition to guarantee that any call Claude makes matches the tool's `input_schema`. See [Strict tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use).
 
 ### JSON output
 

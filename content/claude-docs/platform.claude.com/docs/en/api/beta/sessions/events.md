@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 99855359220b1ef4de0e54ca6e52f3731a3061d05c704c31eaeedb5cbf62ebfd
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 1b3add0b0ea12b75e84991f8be26a8550c58a1bb9e494991f0611dbafe16af06
 ---
 
 # Events
@@ -51,7 +51,7 @@ List Events
 
 - `order: optional "asc" or "desc"`
 
-  Sort direction for results, ordered by the event's `processed_at`. Defaults to asc (chronological).
+  Sort direction for results, ordered by the event's `processed_at`. Defaults to `asc` (chronological).
 
   - `"asc"`
 
@@ -59,7 +59,7 @@ List Events
 
 - `page: optional string`
 
-  Opaque pagination cursor from a previous response's next_page.
+  Opaque pagination cursor from a previous response's `next_page`.
 
 - `types: optional array of string`
 
@@ -73,7 +73,7 @@ List Events
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -156,6 +156,12 @@ List Events
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ### Returns
 
@@ -1629,11 +1635,15 @@ List Events
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-sonnet-5" or "claude-fable-5" or "claude-opus-5" or 10 more`
+          - `"claude-fable-5-1" or "claude-sonnet-5" or "claude-fable-5" or 11 more`
 
             The model that will power your agent.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-fable-5-1"`
+
+              Frontier intelligence for ambitious tasks across coding, scientific discovery, and enterprise workflows
 
             - `"claude-sonnet-5"`
 
@@ -2348,7 +2358,7 @@ Send Events
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -2431,6 +2441,12 @@ Send Events
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ### Body parameters
 
@@ -3313,7 +3329,7 @@ Stream Events
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -3396,6 +3412,12 @@ Stream Events
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ### Returns
 
@@ -4869,11 +4891,15 @@ Stream Events
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-sonnet-5" or "claude-fable-5" or "claude-opus-5" or 10 more`
+          - `"claude-fable-5-1" or "claude-sonnet-5" or "claude-fable-5" or 11 more`
 
             The model that will power your agent.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-fable-5-1"`
+
+              Frontier intelligence for ambitious tasks across coding, scientific discovery, and enterprise workflows
 
             - `"claude-sonnet-5"`
 
@@ -9726,11 +9752,15 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-sonnet-5" or "claude-fable-5" or "claude-opus-5" or 10 more`
+          - `"claude-fable-5-1" or "claude-sonnet-5" or "claude-fable-5" or 11 more`
 
             The model that will power your agent.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-fable-5-1"`
+
+              Frontier intelligence for ambitious tasks across coding, scientific discovery, and enterprise workflows
 
             - `"claude-sonnet-5"`
 
@@ -12464,11 +12494,15 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-sonnet-5" or "claude-fable-5" or "claude-opus-5" or 10 more`
+          - `"claude-fable-5-1" or "claude-sonnet-5" or "claude-fable-5" or 11 more`
 
             The model that will power your agent.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-fable-5-1"`
+
+              Frontier intelligence for ambitious tasks across coding, scientific discovery, and enterprise workflows
 
             - `"claude-sonnet-5"`
 

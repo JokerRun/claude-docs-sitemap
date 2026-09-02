@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models/list
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 4f4933230f01febc0a7374d0400c6e91e8fd88158c1de7c6533fe8fee4223b77
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 2a41f27e1996f8a421581e8960ae2ea2437f551c0e930fe701b5ed2b3cd1a968
 ---
 
 # List Models
@@ -39,7 +39,7 @@ The Models API response can be used to determine which models are available for 
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -122,6 +122,12 @@ The Models API response can be used to determine which models are available for 
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ## Returns
 

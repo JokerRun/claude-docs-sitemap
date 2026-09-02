@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 7c20c4c8addea56999f9d8a83e6e83dd899d1846e4dd6209f026d0845c91d580
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 984c2e3a68140a736ecb10430c9546336b81ee6609e7e8abf3aa74719fcaa1b8
 ---
 
 ---
@@ -19,105 +19,105 @@ Halaman ini membahas sisi Console dari deployment MCP tunnels: membuat tunnel, m
 
 ## Prasyarat
 
-* **Satu atau lebih server MCP** yang berjalan di jaringan privat Anda. Tunnel merutekan lalu lintas ke server tersebut; tunnel tidak menghostingnya. Lihat [Server MCP jarak jauh](https://platform.claude.com/docs/id/agents-and-tools/remote-mcp-servers) untuk contoh yang dapat Anda deploy.
+* **Satu atau lebih server MCP** yang berjalan di jaringan privat Anda. Tunnel merutekan lalu lintas ke server tersebut; tunnel tidak meng-host-nya. Lihat [Server MCP jarak jauh](https://platform.claude.com/docs/id/agents-and-tools/remote-mcp-servers) untuk contoh yang dapat Anda deploy.
 
 * **Peran Console dengan izin Manage tunnels**, sehingga Anda dapat membuat dan mengarsipkan tunnel, merotasi token, dan mengelola sertifikat. Admin dan pemilik organisasi memilikinya secara default; peran kustom dan pemberian izin per akun juga dapat menyertakannya. Peran tanpa izin ini memiliki akses hanya-baca ke halaman **MCP tunnels** dan detail tunnel.
 
-* **Cara bagi stack Anda untuk mengautentikasi ke Tunnels API.** Pilih salah satu:
+* **Cara bagi stack Anda untuk melakukan autentikasi ke Tunnels API.** Pilih salah satu:
 
-  * **[Akses terprogram](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning) (direkomendasikan).** Siapkan [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation) selama pembuatan tunnel sehingga stack Anda menghasilkan token API berumur pendek dari penyedia identitas Anda, mengambil token tunnel, serta membuat dan mendaftarkan sertifikat CA secara otomatis. Memerlukan izin untuk mengelola aturan federasi, issuer OIDC yang terdaftar, dan aturan federasi dengan scope `workspace:manage_tunnels`.
-  * **[Manual](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning).** Lewati akses terprogram. Setelah membuat tunnel, [ambil token tunnel](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#get-the-connection-details), buat dan [daftarkan sertifikat CA](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#add-a-ca-certificate) sendiri, lalu berikan token dan sertifikat server Anda ke tunnel stack sebagai secret.
+  * **[Akses programatik](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning) (direkomendasikan).** Siapkan [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation) selama pembuatan tunnel sehingga stack Anda mencetak token API berumur pendek dari penyedia identitas Anda, mengambil token tunnel, serta membuat dan mendaftarkan sertifikat CA secara otomatis. Memerlukan izin untuk mengelola aturan federasi, issuer OIDC yang terdaftar, dan aturan federasi dengan scope `workspace:manage_tunnels`.
+  * **[Manual](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning).** Lewati akses programatik. Setelah membuat tunnel, [dapatkan token tunnel](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#get-the-connection-details), buat dan [daftarkan sertifikat CA](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#add-a-ca-certificate) sendiri, lalu berikan token dan sertifikat server Anda ke tunnel stack sebagai secret.
 
 ## Membuat tunnel
 
 <Steps>
   <Step title="Buka halaman MCP tunnels">
-    Di sidebar Console, buka **Manage > MCP tunnels**. Tunnel memiliki cakupan workspace; tunnel baru akan menjadi milik workspace yang saat ini dipilih di Console, jadi beralihlah workspace terlebih dahulu jika Anda menginginkannya di tempat lain.
+    Di sidebar Console, buka **Manage > MCP tunnels**. Tunnel memiliki cakupan workspace; tunnel baru menjadi milik workspace yang saat ini dipilih di Console, jadi ganti workspace terlebih dahulu jika Anda ingin menempatkannya di tempat lain.
   </Step>
 
   <Step title="Beri nama tunnel">
-    Klik **New tunnel** dan masukkan nama di dialog **Create tunnel**. Nama ini wajib diisi dan mengidentifikasi tunnel dalam daftar, di halaman detail, dan di pemilih server MCP agen. Domain dengan format `abcd1234.tunnel.anthropic.com` ditetapkan secara otomatis.
+    Klik **New tunnel** dan masukkan nama di dialog **Create tunnel**. Nama wajib diisi dan mengidentifikasi tunnel di daftar, di halaman detail, dan di pemilih server MCP agen. Domain dengan bentuk `abcd1234.tunnel.anthropic.com` ditetapkan secara otomatis.
   </Step>
 
-  <Step title="Opsional: siapkan akses terprogram">
-    Jika peran Anda dapat mengelola aturan federasi, toggle **Set up programmatic access** akan muncul (nonaktif secara default). Jika tidak, Console menampilkan pemberitahuan sebagai gantinya dan tunnel stack Anda menggunakan alur manual. Sisa alur pembuatan tetap sama dalam kedua kasus.
+  <Step title="Opsional: siapkan akses programatik">
+    Jika peran Anda dapat mengelola aturan federasi, toggle **Set up programmatic access** akan muncul (nonaktif secara default). Jika tidak, Console menampilkan pemberitahuan sebagai gantinya dan tunnel stack Anda menggunakan alur manual. Sisa alur pembuatan sama untuk kedua kasus.
 
-    Akses terprogram bergantung pada [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation); baca halaman tersebut terlebih dahulu jika Anda belum familier dengan issuer federasi, aturan, dan akun layanan. Untuk mengaktifkan toggle ini, Anda memerlukan:
+    Akses programatik bergantung pada [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation); baca halaman tersebut terlebih dahulu jika issuer federasi, aturan, dan service account belum familier bagi Anda. Untuk mengaktifkan toggle, Anda memerlukan:
 
-    1. **Issuer OIDC yang terdaftar** untuk penyedia identitas tempat stack Anda menyajikan token (seperti klaster Kubernetes, AWS IAM, Google Cloud, atau GitHub Actions). Daftarkan satu di **Settings > Workload identity > Issuers** jika organisasi Anda belum memilikinya.
+    1. **Issuer OIDC yang terdaftar** untuk penyedia identitas tempat stack Anda menyajikan token (seperti cluster Kubernetes, AWS IAM, Google Cloud, atau GitHub Actions). Daftarkan satu di bawah **Settings > Workload identity > Issuers** jika organisasi Anda belum memilikinya.
     2. **Aturan federasi dengan scope `workspace:manage_tunnels`.** Mengaktifkan toggle akan menampilkan pemilih **Federation rule**. Pilih aturan yang sudah ada dengan scope tersebut, atau klik **Create federation rule** untuk membuatnya secara inline.
-    3. **Akun layanan dari aturan tersebut ditambahkan ke workspace ini.** Tunnels API mengotorisasi berdasarkan keanggotaan workspace akun layanan. Jika Anda membuat tunnel di workspace selain workspace default organisasi, tambahkan akun layanan di **Settings > Workspaces** dan berikan ID workspace saat deploy (`api.wif.workspaceId` untuk Helm, `ANTHROPIC_WORKSPACE_ID` untuk Compose).
+    3. **Service account milik aturan tersebut ditambahkan ke workspace ini.** Tunnels API melakukan otorisasi berdasarkan keanggotaan workspace dari service account. Jika Anda membuat tunnel di workspace selain workspace default organisasi, tambahkan service account di bawah **Settings > Workspaces** dan berikan ID workspace saat deploy (`api.wif.workspaceId` untuk Helm, `ANTHROPIC_WORKSPACE_ID` untuk Compose).
 
-    Melewati langkah ini sepenuhnya didukung; kedua panduan deploy memiliki tab **Without programmatic access**.
+    Melewati langkah ini didukung sepenuhnya; kedua panduan deploy memiliki tab **Without programmatic access**.
   </Step>
 
   <Step title="Buat tunnel">
-    Klik **Create tunnel**. Console akan menyediakan tunnel dan membuka halaman detail.
+    Klik **Create tunnel**. Console menyediakan tunnel dan membuka halaman detail.
   </Step>
 
   <Step title="Catat pengidentifikasi deployment">
     Kedua jalur deploy memerlukan:
 
     * **ID tunnel** (`tnl_...`), ditampilkan di halaman detail tunnel.
-    * **Domain tunnel** (`abcd1234.tunnel.anthropic.com`), ditampilkan di halaman detail tunnel. Digunakan sebagai `tunnel_domain` proxy dan dalam SAN sertifikat server.
+    * **Domain tunnel** (`abcd1234.tunnel.anthropic.com`), ditampilkan di halaman detail tunnel. Digunakan sebagai `tunnel_domain` proxy dan di SAN sertifikat server.
 
     Hal lain yang Anda perlukan bergantung pada [mode penyediaan kredensial](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning):
 
-    | Dengan akses terprogram                                                                                                                                                                    | Tanpa akses terprogram                                                                                                                                                                                                                                       |
-    | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-    | **ID aturan federasi** (`fdrl_...`) dari aturan yang Anda pilih. Aturan ini berada di tingkat organisasi, tidak disimpan pada tunnel; temukan di **Settings > Workload identity > Rules**. | **Token tunnel**, ditampilkan dengan ikon mata di samping **Token** pada halaman detail. Perlakukan sebagai secret. Lihat [Mendapatkan detail koneksi](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#get-the-connection-details). |
-    | **ID organisasi** (sebuah UUID), ditampilkan di **Settings > Organization**.                                                                                                               | **Sertifikat CA** yang Anda buat dan [daftarkan pada tunnel](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#add-a-ca-certificate).                                                                                                 |
+    | Dengan akses programatik                                                                                                                                                                         | Tanpa akses programatik                                                                                                                                                                                                                                      |
+    | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+    | **ID aturan federasi** (`fdrl_...`) dari aturan yang Anda pilih. Aturan ini berada di tingkat organisasi, tidak disimpan pada tunnel; temukan di bawah **Settings > Workload identity > Rules**. | **Token tunnel**, ditampilkan dengan ikon mata di sebelah **Token** pada halaman detail. Perlakukan sebagai secret. Lihat [Mendapatkan detail koneksi](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#get-the-connection-details). |
+    | **ID organisasi** (sebuah UUID), ditampilkan di bawah **Settings > Organization**.                                                                                                               | **Sertifikat CA** yang Anda buat dan [daftarkan pada tunnel](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#add-a-ca-certificate).                                                                                                 |
 
-    Dengan akses terprogram, stack Anda mengambil token tunnel melalui Tunnels API, membuat CA dan sertifikat server secara lokal (kunci privat tidak pernah meninggalkan lingkungan Anda), dan hanya mendaftarkan sertifikat publik CA ke Anthropic. Anda tetap bertanggung jawab untuk mengamankan kunci privat dan memperbarui sertifikat server sebelum kedaluwarsa.
+    Dengan akses programatik, stack Anda mengambil token tunnel melalui Tunnels API, membuat CA dan sertifikat server secara lokal (private key tidak pernah meninggalkan lingkungan Anda), dan hanya mendaftarkan sertifikat publik CA ke Anthropic. Anda tetap bertanggung jawab untuk mengamankan private key dan memperbarui sertifikat server sebelum kedaluwarsa.
   </Step>
 </Steps>
 
-Organisasi Anda dapat memiliki hingga 10 tunnel aktif. Membuat tunnel tidak membangun konektivitas apa pun; konektivitas terjadi setelah stack Anda terhubung dengan token tunnel dan sertifikat CA terdaftar.
+Organisasi Anda dapat memiliki hingga 10 tunnel aktif. Membuat tunnel tidak membangun konektivitas apa pun; hal itu terjadi setelah stack Anda terhubung menggunakan token tunnel dan sertifikat CA telah didaftarkan.
 
 ## Mendapatkan detail koneksi
 
 Buka tunnel. Halaman detail menampilkan bagian **Connection** dengan domain dan token serta bagian **Certificates**.
 
-| Field      | Deskripsi                                                                                                                                                                                                                          |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Domain** | Salin nilai `abcd1234.tunnel.anthropic.com` yang ditetapkan. Rute proxy Anda adalah subdomain dari domain ini.                                                                                                                     |
-| **Token**  | Klik ikon mata (**Show token**) untuk mengambil token tunnel, lalu gunakan ikon salin untuk menyalinnya ke penyimpanan secret tunnel stack Anda. Klik **Rotate token** untuk membatalkan token saat ini dan menerbitkan yang baru. |
+| Field      | Deskripsi                                                                                                                                                                                                                           |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Domain** | Salin nilai `abcd1234.tunnel.anthropic.com` yang ditetapkan. Rute proxy Anda adalah subdomain dari domain ini.                                                                                                                      |
+| **Token**  | Klik ikon mata (**Show token**) untuk mengambil token tunnel, lalu gunakan ikon salin untuk menyalinnya ke penyimpanan secret tunnel stack Anda. Klik **Rotate token** untuk membatalkan token saat ini dan menerbitkan token baru. |
 
 <Note>
-  Setiap penampilan dan rotasi dicatat dalam log aktivitas [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) organisasi Anda. Rotasi tidak memutus koneksi cloudflared yang sudah terbentuk, sehingga Anda dapat merotasi, melakukan deploy ulang dengan nilai baru, dan membiarkan koneksi lama berakhir secara bertahap.
+  Setiap penampilan dan rotasi token dicatat dalam log aktivitas [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) organisasi Anda. Rotasi tidak memutus koneksi cloudflared yang sudah terbentuk, sehingga Anda dapat merotasi, melakukan deploy ulang dengan nilai baru, dan membiarkan koneksi lama terkuras.
 </Note>
 
 ## Menambahkan sertifikat CA
 
-Anthropic memverifikasi [inner TLS](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) ke [proxy](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) Anda terhadap sertifikat CA yang Anda daftarkan pada tunnel. Tunnel tanpa sertifikat aktif tidak dapat menerima koneksi, dan tidak muncul di pemilih server MCP agen sampai ada satu yang terdaftar.
+Anthropic memverifikasi [inner TLS](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) ke [proxy](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) Anda terhadap sertifikat CA yang Anda daftarkan pada tunnel. Tunnel tanpa sertifikat aktif tidak dapat menerima koneksi, dan tidak muncul di pemilih server MCP agen hingga satu sertifikat didaftarkan.
 
 <Steps>
   <Step title="Temukan bagian Certificates">
     Di halaman detail tunnel, gulir ke bagian **Certificates** dan klik **Add certificate**.
   </Step>
 
-  <Step title="Sediakan sertifikat">
-    Klik **Choose file** untuk memilih file `.pem`, `.crt`, atau `.cer`, seret file ke area teks, atau tempel blok PEM secara langsung. Modal akan menolak materi kunci privat dan konten yang bukan blok `-----BEGIN CERTIFICATE-----`. File harus berukuran 8 kB atau lebih kecil.
+  <Step title="Berikan sertifikat">
+    Klik **Choose file** untuk memilih file `.pem`, `.crt`, atau `.cer`, seret file ke area teks, atau tempel blok PEM secara langsung. Modal menolak materi private key dan konten yang bukan blok `-----BEGIN CERTIFICATE-----`. File harus berukuran 8 kB atau lebih kecil.
   </Step>
 
   <Step title="Tambahkan sertifikat">
-    Klik **Add certificate**. Fingerprint dan tanggal kedaluwarsa muncul di daftar sertifikat, dan jumlah slot pada header bagian bertambah.
+    Klik **Add certificate**. Fingerprint dan masa berlaku muncul di daftar sertifikat, dan jumlah slot pada header bagian bertambah.
   </Step>
 </Steps>
 
-Sebuah tunnel menampung hingga dua sertifikat aktif sehingga Anda dapat merotasi tanpa downtime: daftarkan sertifikat baru bersama yang lama, deploy ulang proxy Anda dengan pasangan kunci baru, konfirmasi lalu lintas mengalir, lalu klik **Revoke** pada baris sertifikat lama. Sertifikat yang dicabut tetap terlihat dalam daftar dengan badge **Revoked**.
+Sebuah tunnel menampung hingga dua sertifikat aktif sehingga Anda dapat merotasi tanpa downtime: daftarkan sertifikat baru berdampingan dengan yang lama, deploy ulang proxy Anda dengan pasangan kunci baru, pastikan lalu lintas mengalir, lalu klik **Revoke** pada baris sertifikat lama. Sertifikat yang dicabut tetap terlihat di daftar dengan badge **Revoked**.
 
 ## Deploy tunnel stack
 
-Tunnel sudah ada di Console, tetapi tidak ada lalu lintas yang mengalir sampai tunnel stack berjalan di dalam jaringan Anda dan terhubung dengan token tunnel. Ikuti salah satu panduan deploy:
+Tunnel sudah ada di Console, tetapi tidak ada lalu lintas yang mengalir hingga tunnel stack berjalan di dalam jaringan Anda dan terhubung menggunakan token tunnel. Ikuti salah satu panduan deploy:
 
 <CardGroup cols={2}>
   <Card title="Deploy dengan Docker Compose" icon="cube" href="https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-compose">
-    Jalankan tunnel stack pada satu host. Mendukung alur akses terprogram dan manual.
+    Jalankan tunnel stack pada satu host. Mencakup alur akses programatik dan manual.
   </Card>
 
   <Card title="Deploy dengan Helm" icon="stack" href="https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm">
-    Jalankan tunnel stack pada klaster Kubernetes. Mendukung alur akses terprogram dan manual.
+    Jalankan tunnel stack pada cluster Kubernetes. Mencakup alur akses programatik dan manual.
   </Card>
 </CardGroup>
 
@@ -142,13 +142,13 @@ Setelah stack Anda berjalan dan memiliki satu atau lebih server MCP yang dikonfi
     Klik **+ MCP Server** dan buka dropdown. Tunnel yang dibuat di workspace saat ini muncul di bagian atas daftar, di atas katalog konektor publik. Pilih tunnel yang berada di depan server yang ingin Anda jangkau.
   </Step>
 
-  <Step title="Berikan informasi routing">
-    Kartu menampilkan dua field opsional: **Subdomain** (ditambahkan sebagai prefiks ke domain tunnel) dan **Path** (ditambahkan setelahnya). Isi salah satu atau keduanya, tergantung pada bagaimana rute proxy Anda dikonfigurasi. Baris **Resolves to** menampilkan URL server MCP lengkap yang akan dihubungi oleh agen.
+  <Step title="Berikan perutean">
+    Kartu menampilkan dua field opsional: **Subdomain** (ditambahkan di depan domain tunnel) dan **Path** (ditambahkan setelahnya). Isi salah satu atau keduanya, bergantung pada cara rute proxy Anda dikonfigurasi. Baris **Resolves to** menampilkan URL server MCP lengkap yang dihubungi agen.
   </Step>
 </Steps>
 
 <Note>
-  Tunnel membawa lalu lintas; tunnel tidak mengautentikasi ke server MCP upstream. Konfigurasikan OAuth atau autentikasi bearer pada server MCP dengan cara yang sama seperti untuk server MCP lainnya.
+  Tunnel membawa lalu lintas; tunnel tidak melakukan autentikasi ke server MCP upstream. Konfigurasikan OAuth atau autentikasi bearer pada server MCP dengan cara yang sama seperti server MCP lainnya.
 </Note>
 
 ## Mengarsipkan tunnel
@@ -161,10 +161,10 @@ Di daftar **MCP tunnels**, buka menu baris untuk tunnel tersebut dan pilih **Arc
 
 <CardGroup cols={2}>
   <Card title="Deploy dengan Helm" icon="stack" href="https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm">
-    Instal pada klaster Kubernetes menggunakan Helm chart Anthropic.
+    Instal pada cluster Kubernetes menggunakan Helm chart Anthropic.
   </Card>
 
   <Card title="Keamanan" icon="lock" href="https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/security">
-    Panduan pengerasan keamanan, rotasi kredensial, dan respons terhadap pelanggaran.
+    Panduan hardening, rotasi kredensial, dan respons terhadap pelanggaran.
   </Card>
 </CardGroup>

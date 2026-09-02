@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/retrieve
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: f5dc6750597cc7b7a7b4f78b08c964ff5592ff6a44d5237bffd7f013c124ab5d
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 3af743515f976a119deca728b1a642297335e701fac9e3b44d30d2313b5d4d5e
 ---
 
 # Get Session Thread
@@ -25,7 +25,7 @@ Get Session Thread
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -109,6 +109,12 @@ Get Session Thread
 
     - `"ce-user-management-2026-07-13"`
 
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
+
 ## Returns
 
 - `BetaManagedAgentsSessionThread object`
@@ -149,11 +155,15 @@ Get Session Thread
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-sonnet-5" or "claude-fable-5" or "claude-opus-5" or 10 more`
+          - `"claude-fable-5-1" or "claude-sonnet-5" or "claude-fable-5" or 11 more`
 
             The model that will power your agent.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-fable-5-1"`
+
+              Frontier intelligence for ambitious tasks across coding, scientific discovery, and enterprise workflows
 
             - `"claude-sonnet-5"`
 

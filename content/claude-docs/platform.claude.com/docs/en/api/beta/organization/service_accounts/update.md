@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/update
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 3efba23cacb4b0de306264abbc39a2483f975fa1fb17d5d9cd4dd03b85ea3ffc
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 41d77bb5e19010f0dcdb63a639db81fb83f423cf5f3f5c62adb38a7ed063df38
 ---
 
 # Update Service Account
@@ -32,7 +32,7 @@ interactive credential (a user OAuth token or a Console session).
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -115,6 +115,12 @@ interactive credential (a user OAuth token or a Console session).
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ## Body parameters
 

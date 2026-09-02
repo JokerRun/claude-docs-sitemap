@@ -1,23 +1,23 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/pdf-support
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 4c7a92eb3657b7c5b2ed3d2c686da6dd2890fe6148f2aef9bf1af3a869d23fab
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 32da2fdfb76f3efce8b97e3525c1d8e620316355c741f384d60ccce4b991652e
 ---
 
 ---
 title: Dukungan PDF
 url: https://platform.claude.com/docs/id/build-with-claude/pdf-support
-description: "Proses PDF dengan Claude: ekstrak teks, analisis bagan, dan pahami konten visual dari dokumen Anda."
+description: "Proses PDF dengan Claude: ekstrak teks, analisis grafik, dan pahami konten visual dari dokumen Anda."
 ---
 
 ## Compatibility
 - [ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention): eligible (excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))
 - Platforms: Claude API, Claude Platform on AWS, Amazon Bedrock, Google Cloud, Microsoft Foundry
 
-Anda dapat bertanya kepada Claude tentang teks, gambar, bagan, dan tabel apa pun dalam PDF yang Anda berikan. Beberapa contoh kasus penggunaan:
+Anda dapat bertanya kepada Claude tentang teks, gambar, grafik, dan tabel apa pun dalam PDF yang Anda berikan. Beberapa contoh kasus penggunaan:
 
-* Menganalisis laporan keuangan dan memahami bagan/tabel
+* Menganalisis laporan keuangan dan memahami grafik/tabel
 * Mengekstrak informasi penting dari dokumen hukum
 * Membantu penerjemahan dokumen
 * Mengonversi informasi dokumen ke dalam format terstruktur
@@ -28,23 +28,23 @@ Anda dapat bertanya kepada Claude tentang teks, gambar, bagan, dan tabel apa pun
 
 Claude bekerja dengan PDF standar apa pun. Pastikan ukuran permintaan Anda memenuhi persyaratan berikut:
 
-| Persyaratan                            | Batas                                                                                                       |
-| -------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| Ukuran permintaan maksimum             | 32 MB ([bervariasi menurut platform](https://platform.claude.com/docs/id/api/overview#request-size-limits)) |
-| Jumlah halaman maksimum per permintaan | 600 (100 jika jendela konteks permintaan kurang dari 1 juta token)                                          |
-| Format                                 | PDF standar (tanpa kata sandi/enkripsi)                                                                     |
+| Persyaratan                     | Batas                                                                                                       |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Ukuran permintaan maksimum      | 32 MB ([bervariasi menurut platform](https://platform.claude.com/docs/id/api/overview#request-size-limits)) |
+| Halaman maksimum per permintaan | 600 (100 jika jendela konteks permintaan di bawah 1 juta token)                                             |
+| Format                          | PDF standar (tanpa kata sandi/enkripsi)                                                                     |
 
-Kedua batas tersebut berlaku untuk seluruh payload permintaan, termasuk konten lain yang dikirim bersama PDF. Untuk PDF berukuran besar, pertimbangkan untuk mengunggahnya dengan [Files API](https://platform.claude.com/docs/id/build-with-claude/files) dan mereferensikannya melalui `file_id` agar payload permintaan tetap kecil.
+Kedua batas tersebut berlaku untuk seluruh payload permintaan, termasuk konten lain apa pun yang dikirim bersama PDF. Untuk PDF berukuran besar, pertimbangkan untuk mengunggahnya dengan [Files API](https://platform.claude.com/docs/id/build-with-claude/files) dan mereferensikannya melalui `file_id` agar payload permintaan tetap kecil.
 
 <Tip>
-  PDF yang padat (banyak halaman dengan font kecil, tabel kompleks, atau grafis yang berat) dapat memenuhi "context window" (jendela konteks) sebelum mencapai batas halaman. Permintaan dengan PDF berukuran besar juga dapat gagal sebelum mencapai batas halaman, bahkan saat menggunakan Files API. Cobalah membagi dokumen menjadi beberapa bagian; untuk file berukuran besar, karena setiap halaman diproses sebagai gambar, menurunkan resolusi (downsampling) gambar yang disematkan juga dapat membantu.
+  PDF yang padat (banyak halaman dengan font kecil, tabel kompleks, atau grafis yang berat) dapat memenuhi "context window" (jendela konteks) sebelum mencapai batas halaman. Permintaan dengan PDF berukuran besar juga dapat gagal sebelum mencapai batas halaman, bahkan saat menggunakan Files API. Cobalah membagi dokumen menjadi beberapa bagian; untuk file besar, karena setiap halaman diproses sebagai gambar, menurunkan resolusi (downsampling) gambar yang disematkan juga dapat membantu.
 </Tip>
 
 Karena dukungan PDF bergantung pada kemampuan vision Claude, dukungan ini tunduk pada [keterbatasan dan pertimbangan](https://platform.claude.com/docs/id/build-with-claude/vision#limitations) yang sama seperti tugas vision lainnya.
 
 ### Platform dan model yang didukung
 
-Semua [model aktif](https://platform.claude.com/docs/id/about-claude/models/overview) mendukung pemrosesan PDF. Untuk dukungan PDF melalui Converse API Amazon Bedrock, lihat [dukungan PDF Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/pdf-support#amazon-bedrock-pdf-support).
+Semua [model aktif](https://platform.claude.com/docs/id/models/overview) mendukung pemrosesan PDF. Untuk dukungan PDF melalui Converse API Amazon Bedrock, lihat [dukungan PDF Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/pdf-support#amazon-bedrock-pdf-support).
 
 ### Dukungan PDF Amazon Bedrock
 
@@ -59,7 +59,7 @@ Saat menggunakan dukungan PDF melalui Converse API, bagian dari [Claude di Amazo
 1. **Converse Document Chat** (Mode asli - Hanya ekstraksi teks)
 
    * Menyediakan ekstraksi teks dasar dari PDF
-   * Tidak dapat menganalisis gambar, bagan, atau tata letak visual dalam PDF
+   * Tidak dapat menganalisis gambar, grafik, atau tata letak visual dalam PDF
    * Menggunakan sekitar 1.000 token untuk PDF 3 halaman
    * Digunakan secara otomatis ketika citations tidak diaktifkan
 
@@ -78,7 +78,7 @@ Saat menggunakan dukungan PDF melalui Converse API, bagian dari [Claude di Amazo
 
 #### Masalah umum
 
-Jika Claude tidak melihat gambar atau bagan dalam PDF Anda saat menggunakan Converse API, kemungkinan Anda perlu mengaktifkan flag citations. Tanpanya, Converse akan kembali ke ekstraksi teks dasar saja.
+Jika Claude tidak melihat gambar atau grafik dalam PDF Anda saat menggunakan Converse API, kemungkinan Anda perlu mengaktifkan flag citations. Tanpanya, Converse akan kembali ke ekstraksi teks dasar saja.
 
 <Note>
   Ini adalah kendala yang diketahui pada Converse API. Untuk aplikasi yang memerlukan analisis PDF visual tanpa citations, pertimbangkan untuk menggunakan InvokeModel API sebagai gantinya.
@@ -568,7 +568,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
   // pdfBytes, err := os.ReadFile("document.pdf")
   // pdfBase64 := base64.StdEncoding.EncodeToString(pdfBytes)
 
-  // Kirim ke Claude menggunakan enkode base64
+  // Kirim ke Claude menggunakan encoding base64
   client := anthropic.NewClient()
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
   	Model:     anthropic.ModelClaudeOpus5,
@@ -1028,7 +1028,7 @@ Saat Anda mengirim PDF ke Claude, langkah-langkah berikut terjadi:
 
   <Step title="Claude menganalisis teks dan gambar untuk memahami dokumen dengan lebih baik.">
     * Dokumen disediakan sebagai kombinasi teks dan gambar untuk dianalisis.
-    * Hal ini memungkinkan pengguna meminta wawasan tentang elemen visual PDF, seperti bagan, diagram, dan konten non-tekstual lainnya.
+    * Ini memungkinkan pengguna meminta wawasan tentang elemen visual PDF, seperti grafik, diagram, dan konten non-tekstual lainnya.
   </Step>
 
   <Step title="Claude merespons, dengan mereferensikan isi PDF jika relevan.">
@@ -1047,20 +1047,20 @@ Jumlah token file PDF bergantung pada total teks yang diekstrak dari dokumen dan
 * Biaya token teks: Setiap halaman biasanya menggunakan 1.500–3.000 token per halaman tergantung kepadatan konten. Harga API standar berlaku tanpa biaya PDF tambahan.
 * Biaya token gambar: Karena setiap halaman dikonversi menjadi gambar, [perhitungan biaya berbasis gambar](https://platform.claude.com/docs/id/build-with-claude/vision#evaluate-image-size) yang sama diterapkan.
 
-Anda dapat menggunakan [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting) untuk memperkirakan biaya PDF spesifik Anda.
+Anda dapat menggunakan [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting) untuk memperkirakan biaya untuk PDF spesifik Anda.
 
 ## Optimalkan pemrosesan PDF
 
 ### Tingkatkan kinerja
 
-Ikuti praktik terbaik berikut untuk hasil yang optimal:
+Ikuti praktik terbaik berikut untuk hasil optimal:
 
 * Tempatkan PDF sebelum teks dalam permintaan Anda
 * Gunakan font standar
 * Pastikan teks jelas dan terbaca
 * Putar halaman ke orientasi tegak yang benar
 * Gunakan nomor halaman logis (dari penampil PDF) dalam prompt
-* Bagi PDF berukuran besar menjadi beberapa bagian bila diperlukan
+* Bagi PDF besar menjadi beberapa bagian jika diperlukan
 * Aktifkan caching prompt untuk analisis berulang
 
 ### Skalakan implementasi Anda
@@ -1250,7 +1250,7 @@ Cache PDF dengan ["prompt caching" (caching prompt)](https://platform.claude.com
   }
   pdfBase64 := base64.StdEncoding.EncodeToString(pdfBytes)
 
-  // Buat blok dokumen dengan cache_control
+  // Buat blok dokumen dengan cache control
   client := anthropic.NewClient()
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
   	Model:     anthropic.ModelClaudeOpus5,
@@ -1976,7 +1976,7 @@ Batch diproses secara asinkron. Untuk memeriksa progres dan mengambil hasil sete
 
 <CardGroup cols={2}>
   <Card title="Vision" icon="image" href="https://platform.claude.com/docs/id/build-with-claude/vision">
-    Kemampuan vision Claude memungkinkannya memahami dan menganalisis gambar, membuka berbagai kemungkinan menarik untuk interaksi multimodal.
+    Kemampuan vision Claude memungkinkannya memahami dan menganalisis gambar, membuka kemungkinan menarik untuk interaksi multimodal.
   </Card>
 
   <Card title="Coba contoh PDF" icon="file" href="https://platform.claude.com/cookbook/multimodal-getting-started-with-vision">

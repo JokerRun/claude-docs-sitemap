@@ -1,26 +1,26 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/intro
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 6bdfe399faecf737c5213acf7a47aca2f5e64eb4698de8f0262ab78c5566eea7
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: f91784ac4f98fc70efabfa4c5869664f24ae08b136fc2b3030e92f921fcbf8a9
 ---
 
 ---
 title: Pengantar Claude
 url: https://platform.claude.com/docs/id/intro
-description: Claude adalah platform AI yang berkinerja tinggi, tepercaya, dan cerdas yang dibangun oleh Anthropic. Claude unggul dalam tugas-tugas yang melibatkan bahasa, penalaran, analisis, pengodean, dan banyak lagi.
+description: Claude adalah platform AI berkinerja tinggi, tepercaya, dan cerdas yang dibangun oleh Anthropic. Claude unggul dalam tugas-tugas yang melibatkan bahasa, penalaran, analisis, pengodean, dan banyak lagi.
 ---
 
 <Tip>
   Generasi terbaru model Claude:
 
-  **Claude Fable 5** - Kecerdasan generasi berikutnya untuk agen yang berjalan lama. Baca [pengumuman Claude Fable 5 dan Claude Mythos 5](https://www.anthropic.com/news/claude-fable-5-mythos-5).
+  **Claude Fable 5.1** - Untuk penalaran yang menuntut dan pekerjaan agentik berjangka panjang. Baca [pengumuman Claude Fable 5.1](https://www.anthropic.com/claude/fable/5-1).
 
-  **Claude Mythos 5** - Memiliki kemampuan yang sama dengan Claude Fable 5 tanpa pengklasifikasi keamanan. Tersedia dalam rilis terbatas melalui [Project Glasswing](https://anthropic.com/glasswing).
+  **Claude Mythos 5.1** - Menawarkan kemampuan Claude Fable 5.1 melalui undangan lewat [Project Glasswing](https://anthropic.com/glasswing).
 
-  **Claude Opus 5** - Untuk pengkodean agentik yang kompleks dan pekerjaan enterprise. Baca [pengumuman Claude Opus 5](https://www.anthropic.com/news/claude-opus-5).
+  **Claude Opus 5** - Untuk pengodean agentik yang kompleks dan pekerjaan enterprise. Baca [pengumuman Claude Opus 5](https://www.anthropic.com/news/claude-opus-5).
 
-  **Claude Sonnet 5** - Kecerdasan terdepan dalam skala besar, dibangun untuk pengkodean, agen, dan alur kerja enterprise. Baca [pengumuman Claude Sonnet 5](https://www.anthropic.com/news/claude-sonnet-5).
+  **Claude Sonnet 5** - Kecerdasan terdepan dalam skala besar, dibangun untuk pengodean, agen, dan alur kerja enterprise. Baca [pengumuman Claude Sonnet 5](https://www.anthropic.com/news/claude-sonnet-5).
 
   **Claude Haiku 4.5** - Model tercepat dengan kecerdasan mendekati terdepan. Baca [pengumuman Claude Haiku 4.5](https://www.anthropic.com/news/claude-haiku-4-5).
 </Tip>
@@ -31,10 +31,10 @@ description: Claude adalah platform AI yang berkinerja tinggi, tepercaya, dan ce
 
 Anthropic menawarkan dua cara untuk membangun dengan Claude, masing-masing cocok untuk kasus penggunaan yang berbeda:
 
-|                        | Messages API                                 | Claude Managed Agents                                                                    |
-| ---------------------- | -------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| **Apa itu**            | Akses prompting model secara langsung        | Harness agen siap pakai yang dapat dikonfigurasi dan berjalan di infrastruktur terkelola |
-| **Paling cocok untuk** | Loop agen kustom dan kontrol yang terperinci | Tugas yang berjalan lama dan pekerjaan asinkron                                          |
+|                        | Messages API                                    | Claude Managed Agents                                                                    |
+| ---------------------- | ----------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| **Apa itu**            | Akses langsung untuk memberikan prompt ke model | Harness agen siap pakai yang dapat dikonfigurasi dan berjalan di infrastruktur terkelola |
+| **Paling cocok untuk** | Loop agen kustom dan kontrol yang terperinci    | Tugas yang berjalan lama dan pekerjaan asinkron                                          |
 
 Untuk mempelajari lebih lanjut tentang masing-masing, lihat [Menggunakan Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) dan [ikhtisar Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview).
 
@@ -46,17 +46,17 @@ Ikuti langkah-langkah berikut untuk beranjak dari nol hingga memiliki integrasi 
   <Step title="Lakukan panggilan API pertama Anda">
     Siapkan lingkungan Anda, instal SDK, dan kirim pesan pertama Anda ke Claude.
 
-    [Buka panduan memulai cepat](https://platform.claude.com/docs/id/get-started)
+    [Buka quickstart](https://platform.claude.com/docs/id/get-started)
   </Step>
 
   <Step title="Amankan kredensial Anda">
-    Tetapkan masa kedaluwarsa saat Anda membuat "API key" (kunci API). Jauhkan kunci tersebut dari kontrol sumber, kode sisi klien, dan prompt. Periksa apakah beban kerja Anda dapat menggunakan Workload Identity Federation sebagai pengganti kunci statis.
+    Tetapkan masa kedaluwarsa saat Anda membuat kunci API. Jauhkan kunci tersebut dari source control, kode sisi klien, dan prompt. Periksa apakah beban kerja Anda dapat menggunakan Workload Identity Federation sebagai pengganti kunci statis.
 
     [Baca panduan autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication)
   </Step>
 
   <Step title="Pahami Messages API">
-    Pelajari struktur inti permintaan dan respons, termasuk percakapan multi-giliran, "system prompt" (prompt sistem), dan alasan berhenti (stop reason).
+    Pelajari struktur inti permintaan dan respons, termasuk percakapan multi-giliran, "system prompt" (prompt sistem), dan stop reason.
 
     [Baca panduan Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
   </Step>
@@ -64,7 +64,7 @@ Ikuti langkah-langkah berikut untuk beranjak dari nol hingga memiliki integrasi 
   <Step title="Pilih model yang tepat">
     Bandingkan model-model Claude berdasarkan kemampuan dan biaya untuk memilih yang paling sesuai dengan kasus penggunaan Anda.
 
-    [Lihat ikhtisar model](https://platform.claude.com/docs/id/about-claude/models/overview)
+    [Lihat ikhtisar model](https://platform.claude.com/docs/id/models/overview)
   </Step>
 
   <Step title="Jelajahi fitur dan alat">
@@ -82,7 +82,7 @@ Anthropic menyediakan alat developer untuk membantu Anda membangun dan menskalak
 
 <CardGroup cols={3}>
   <Card title="Developer Console" icon="computer" href="https://platform.claude.com/">
-    Jelajahi dan pahami API di browser Anda dengan Playground.
+    Jelajahi dan pahami API di browser Anda dengan playground.
   </Card>
 
   <Card title="Referensi API" icon="code" href="https://platform.claude.com/docs/id/api/overview">

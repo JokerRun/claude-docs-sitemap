@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 71a3ca556196f6f4d41853bb67ae046fc0cde9583a86b3c33f9ec30c247c1b64
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 2f274606a55dcc5ac5ff982f479fb09f6604505d926be01722d254fafc371ad7
 ---
 
 ---
@@ -52,20 +52,20 @@ Pertama, instal [SDK klien](https://platform.claude.com/docs/id/cli-sdks-librari
   <Tab title="Java">
     <CodeGroup exclude="shell, python, typescript, csharp, go, php, ruby">
       ```groovy Gradle
-      implementation("com.anthropic:anthropic-java:2.57.0")
-      implementation("com.anthropic:anthropic-java-vertex:2.57.0")
+      implementation("com.anthropic:anthropic-java:2.58.0")
+      implementation("com.anthropic:anthropic-java-vertex:2.58.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>2.57.0</version>
+          <version>2.58.0</version>
       </dependency>
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java-vertex</artifactId>
-          <version>2.57.0</version>
+          <version>2.58.0</version>
       </dependency>
       ```
 
@@ -124,6 +124,7 @@ Istilah siklus hidup (Deprecated, Retired) didefinisikan dalam [Penghentian mode
 
 | Model                        | ID model API Agent Platform |
 | ---------------------------- | --------------------------- |
+| Claude Fable 5.1             | claude-fable-5-1            |
 | Claude Fable 5               | claude-fable-5              |
 | Claude Opus 5                | claude-opus-5               |
 | Claude Opus 4.8              | claude-opus-4-8             |
@@ -141,7 +142,7 @@ Istilah siklus hidup (Deprecated, Retired) didefinisikan dalam [Penghentian mode
 | Claude Haiku 3.5 Deprecated. | claude-3-5-haiku\@20241022  |
 
 <Tip>
-  Melakukan upgrade ke model Claude yang lebih baru? Di Claude Code, jalankan `/claude-api migrate` untuk menerapkan penggantian ID model dan perubahan parameter yang bersifat breaking di seluruh codebase Anda. Skill ini mendeteksi platform cloud mana yang ditargetkan oleh kode Anda dan menyesuaikan format ID model serta perubahan fitur untuk platform tersebut. Lihat [Migrasi ke model Claude yang lebih baru](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model).
+  Meng-upgrade ke model Claude yang lebih baru? Di Claude Code, jalankan `/claude-api migrate` untuk menerapkan penggantian ID model dan perubahan parameter yang bersifat breaking di seluruh codebase Anda. Skill ini mendeteksi platform cloud mana yang ditargetkan oleh kode Anda dan menyesuaikan format ID model serta perubahan fitur untuk platform tersebut. Lihat [Bermigrasi ke model Claude yang lebih baru](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model).
 </Tip>
 
 ### Membuat permintaan
@@ -356,7 +357,7 @@ Untuk daftar fitur lengkap beserta ketersediaannya di Google Cloud, lihat [Ikhti
 * [Messages API](https://platform.claude.com/docs/id/api/messages/create)
 * [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)
 * [Thinking](https://platform.claude.com/docs/id/build-with-claude/thinking)
-* [Penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), termasuk [alat Bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool), [alat computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool), [alat Memory](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool), dan [alat editor teks](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool)
+* [Penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), termasuk [alat Bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool), [alat Browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool), [alat Computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool), [alat Memory](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool), dan [alat Text editor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool)
 * [Alat pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool)
 * [Kutipan](https://platform.claude.com/docs/id/build-with-claude/citations)
 * [Output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)
@@ -369,11 +370,10 @@ Untuk daftar fitur lengkap beserta ketersediaannya di Google Cloud, lihat [Ikhti
 * Endpoint API (Message Batches, Models, Admin, Compliance, Usage and Cost)
 * Claude Managed Agents
 * Fallback sisi server ([parameter `fallbacks`](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback); gunakan [pola fallback sisi klien](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) sebagai gantinya)
-* Toolset [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`computer_toolset_20260801` dan `browser_toolset_20260801` saat ini tidak tersedia di Google Cloud; versi beta alat computer use tetap tersedia)
 
 ### Jendela konteks
 
-Claude Fable 5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, dan Claude Sonnet 4.6 memiliki ["context window" (jendela konteks) 1 juta token](https://platform.claude.com/docs/id/build-with-claude/context-windows) di Agent Platform. Model Claude lainnya, termasuk Sonnet 4.5 dan Sonnet 4 (deprecated), memiliki jendela konteks 200 ribu token.
+Claude Fable 5.1, Claude Fable 5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, dan Claude Sonnet 4.6 memiliki ["context window" (jendela konteks) 1 juta token](https://platform.claude.com/docs/id/build-with-claude/context-windows) di Agent Platform. Model Claude lainnya, termasuk Sonnet 4.5 dan Sonnet 4 (deprecated), memiliki jendela konteks 200 ribu token.
 
 Agent Platform membatasi payload permintaan hingga 30 MB. Saat mengirim dokumen besar atau banyak gambar, Anda mungkin mencapai batas ini sebelum batas token.
 
@@ -608,7 +608,7 @@ Atur parameter `region` ke `"global"` saat menginisialisasi klien:
 
 **Menggunakan endpoint multi-region:**
 
-Atur parameter `region` ke pengidentifikasi multi-region: `"us"` untuk Amerika Serikat atau `"eu"` untuk Uni Eropa. SDK merutekan permintaan ke endpoint multi-region yang sesuai (`https://aiplatform.us.rep.googleapis.com` atau `https://aiplatform.eu.rep.googleapis.com`), yang secara dinamis menyeimbangkan traffic di berbagai region dalam wilayah geografis tersebut.
+Atur parameter `region` ke pengenal multi-region: `"us"` untuk Amerika Serikat atau `"eu"` untuk Uni Eropa. SDK merutekan permintaan ke endpoint multi-region yang sesuai (`https://aiplatform.us.rep.googleapis.com` atau `https://aiplatform.eu.rep.googleapis.com`), yang secara dinamis menyeimbangkan traffic di berbagai region dalam wilayah geografis tersebut.
 
 <CodeGroup>
   ```bash cURL
@@ -797,7 +797,7 @@ Atur parameter `region` ke pengidentifikasi multi-region: `"us"` untuk Amerika S
 
 **Menggunakan endpoint regional:**
 
-Tentukan region tertentu seperti `"us-east5"` atau `"europe-west1"`:
+Tentukan region spesifik seperti `"us-east5"` atau `"europe-west1"`:
 
 <CodeGroup>
   ```bash cURL
@@ -940,7 +940,7 @@ Tentukan region tertentu seperti `"us-east5"` atau `"europe-west1"`:
           .messages()
           .create(
               MessageCreateParams.builder()
-                  // Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan versi sebelumnya; model yang lebih baru menggunakan endpoint global atau multi-region
+                  // Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan sebelumnya; model lebih baru menggunakan endpoint global atau multi-region
                   .model(Model.CLAUDE_SONNET_4_6)
                   .maxTokens(100)
                   .addUserMessage("Hey Claude!")

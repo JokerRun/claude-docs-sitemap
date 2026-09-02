@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-started
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: f0a7d253fb177617160af2de2f141f33651655565b61a52ee4050a29f6fdd082
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: b6ebc48d187b46f9b3ac5163c96c649257d9448107a7449dea0f7e39f0f86572
 ---
 
 ---
@@ -22,7 +22,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
   <Tab title="cURL">
     <Steps>
       <Step title="Atur kunci API Anda">
-        Ekspor kunci API Anda sebagai variabel lingkungan. Perintah cURL di bawah membacanya dari `$ANTHROPIC_API_KEY`.
+        Ekspor kunci API Anda sebagai variabel lingkungan. Perintah cURL di bawah ini membacanya dari `$ANTHROPIC_API_KEY`.
 
         ```bash
         export ANTHROPIC_API_KEY="your-api-key-here"
@@ -443,7 +443,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
             }
 
             dependencies {
-                implementation("com.anthropic:anthropic-java:2.57.0")
+                implementation("com.anthropic:anthropic-java:2.58.0")
             }
 
             application {
@@ -469,7 +469,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
                 <dependency>
                   <groupId>com.anthropic</groupId>
                   <artifactId>anthropic-java</artifactId>
-                  <version>2.57.0</version>
+                  <version>2.58.0</version>
                 </dependency>
               </dependencies>
             </project>
@@ -668,7 +668,7 @@ Anda telah melakukan panggilan API pertama Anda. Selanjutnya, pelajari pola Mess
 Setelah Anda nyaman dengan dasar-dasarnya, jelajahi lebih lanjut:
 
 <CardGroup cols={2}>
-  <Card title="Ikhtisar model" icon="brain" href="https://platform.claude.com/docs/id/about-claude/models/overview">
+  <Card title="Ikhtisar model" icon="brain" href="https://platform.claude.com/docs/id/models/overview">
     Bandingkan model Claude berdasarkan kemampuan dan biaya.
   </Card>
 

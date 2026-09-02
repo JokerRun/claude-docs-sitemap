@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/list
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 502a1d34635247ca18a889ddffbe768eb947b7430d0749843a4b7e91132f5618
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: d1321e595c2a4ff2be86ba26d9ad77fe1ab30b19bcf420bd7615564538757d85
 ---
 
 # List Environments
@@ -37,7 +37,7 @@ List environments with pagination support.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -120,6 +120,12 @@ List environments with pagination support.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ## Returns
 

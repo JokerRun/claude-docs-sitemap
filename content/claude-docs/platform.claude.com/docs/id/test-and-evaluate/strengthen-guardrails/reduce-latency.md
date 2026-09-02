@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-latency
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 3b3b97931d653895a656e13cf7821c4900e3a7dce21516ab6b5766d58eab640f
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 56a5deeee05b03dcab744f223dd5294937aae2212d18c506e3a4e46a3164bff9
 ---
 
 ---
@@ -11,20 +11,20 @@ url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails
 description: Kurangi latensi respons Claude dengan memilih model yang lebih cepat seperti Claude Haiku 4.5, memangkas token prompt dan output, serta melakukan streaming respons.
 ---
 
-"Latency" (latensi) mengacu pada waktu yang diperlukan model untuk memproses prompt dan menghasilkan output. Latensi dapat dipengaruhi oleh berbagai faktor, seperti ukuran model, kompleksitas prompt, dan infrastruktur yang mendasari model serta titik interaksi.
+"Latency" (latensi) mengacu pada waktu yang diperlukan model untuk memproses prompt dan menghasilkan output. Latensi dapat dipengaruhi oleh berbagai faktor, seperti ukuran model, kompleksitas prompt, serta infrastruktur dasar yang mendukung model dan titik interaksi.
 
 <Note>
-  Selalu lebih baik untuk terlebih dahulu merekayasa prompt yang bekerja dengan baik tanpa batasan model atau prompt, lalu mencoba strategi pengurangan latensi setelahnya. Mencoba mengurangi latensi secara prematur dapat menghalangi Anda menemukan seperti apa performa terbaik itu.
+  Selalu lebih baik untuk terlebih dahulu merancang prompt yang berfungsi dengan baik tanpa batasan model atau prompt, lalu mencoba strategi pengurangan latensi setelahnya. Mencoba mengurangi latensi terlalu dini dapat menghalangi Anda menemukan seperti apa kinerja terbaik itu.
 </Note>
 
 ***
 
 ## Cara mengukur latensi
 
-Saat membahas latensi, Anda mungkin menemukan beberapa istilah dan pengukuran:
+Saat membahas latensi, Anda mungkin menemukan beberapa istilah dan ukuran:
 
-* **Baseline latency:** Ini adalah waktu yang diperlukan model untuk memproses prompt dan menghasilkan respons, tanpa mempertimbangkan token input dan output per detik. Ini memberikan gambaran umum tentang kecepatan model.
-* **Time to first token (TTFT):** Metrik ini mengukur waktu yang diperlukan model untuk menghasilkan token pertama dari respons, sejak prompt dikirim. Ini sangat relevan ketika Anda menggunakan streaming (lebih lanjut tentang itu nanti) dan ingin memberikan pengalaman yang responsif kepada pengguna Anda.
+* **Latensi dasar (baseline latency):** Ini adalah waktu yang dibutuhkan model untuk memproses prompt dan menghasilkan respons, tanpa mempertimbangkan token input dan output per detik. Ini memberikan gambaran umum tentang kecepatan model.
+* **"Time to first token" (waktu hingga token pertama), atau TTFT:** Metrik ini mengukur waktu yang diperlukan model untuk menghasilkan token pertama dari respons, sejak prompt dikirim. Ini sangat relevan ketika Anda menggunakan streaming (lebih lanjut tentang itu nanti) dan ingin memberikan pengalaman yang responsif kepada pengguna Anda.
 
 Untuk pemahaman yang lebih mendalam tentang istilah-istilah ini, lihat [glosarium](https://platform.claude.com/docs/id/about-claude/glossary).
 
@@ -34,9 +34,9 @@ Untuk pemahaman yang lebih mendalam tentang istilah-istilah ini, lihat [glosariu
 
 ### 1. Pilih model yang tepat
 
-Salah satu cara paling langsung untuk mengurangi latensi adalah memilih model yang sesuai untuk kasus penggunaan Anda. Anthropic menawarkan [berbagai model](https://platform.claude.com/docs/id/about-claude/models/overview) dengan kemampuan dan karakteristik performa yang berbeda. Pertimbangkan kebutuhan spesifik Anda dan pilih model yang paling sesuai dengan kebutuhan Anda dalam hal kecepatan dan kualitas output.
+Salah satu cara paling langsung untuk mengurangi latensi adalah memilih model yang sesuai untuk kasus penggunaan Anda. Anthropic menawarkan [berbagai model](https://platform.claude.com/docs/id/models/overview) dengan kemampuan dan karakteristik kinerja yang berbeda. Pertimbangkan kebutuhan spesifik Anda dan pilih model yang paling sesuai dengan kebutuhan Anda dalam hal kecepatan dan kualitas output.
 
-Untuk aplikasi yang kritis terhadap kecepatan, **Claude Haiku 4.5** menawarkan waktu respons tercepat sambil tetap mempertahankan kecerdasan tinggi:
+Untuk aplikasi yang mengutamakan kecepatan, **Claude Haiku 4.5** menawarkan waktu respons tercepat sambil tetap mempertahankan kecerdasan yang tinggi:
 
 <CodeGroup>
   ```bash cURL
@@ -171,16 +171,16 @@ Untuk aplikasi yang kritis terhadap kecepatan, **Claude Haiku 4.5** menawarkan w
   ```
 </CodeGroup>
 
-Untuk detail lebih lanjut tentang metrik model, lihat halaman [ikhtisar model](https://platform.claude.com/docs/id/about-claude/models/overview).
+Untuk detail lebih lanjut tentang metrik model, lihat halaman [ikhtisar model](https://platform.claude.com/docs/id/models/overview).
 
 ### 2. Optimalkan panjang prompt dan output
 
-Minimalkan jumlah token baik dalam prompt input maupun output yang diharapkan, sambil tetap mempertahankan performa tinggi. Semakin sedikit token yang harus diproses dan dihasilkan model, semakin cepat responsnya.
+Minimalkan jumlah token baik dalam prompt input Anda maupun output yang diharapkan, sambil tetap mempertahankan kinerja yang tinggi. Semakin sedikit token yang harus diproses dan dihasilkan model, semakin cepat responsnya.
 
 Berikut beberapa tips untuk membantu Anda mengoptimalkan prompt dan output Anda:
 
-* **Jelas tetapi ringkas:** Usahakan untuk menyampaikan maksud Anda dengan jelas dan ringkas dalam prompt. Hindari detail yang tidak perlu atau informasi yang berlebihan, sambil tetap mengingat bahwa [Claude tidak memiliki konteks](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#be-clear-and-direct) tentang kasus penggunaan Anda dan mungkin tidak membuat lompatan logika yang dimaksudkan jika instruksi tidak jelas.
-* **Minta respons yang lebih pendek:** Minta Claude secara langsung untuk ringkas. Jika Claude menghasilkan output dengan panjang yang tidak diinginkan, minta Claude untuk [mengurangi kecerewetannya](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#be-clear-and-direct).
+* **Jelas tetapi ringkas:** Usahakan menyampaikan maksud Anda dengan jelas dan ringkas dalam prompt. Hindari detail yang tidak perlu atau informasi yang berlebihan, sambil tetap mengingat bahwa [Claude tidak memiliki konteks](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#be-clear-and-direct) tentang kasus penggunaan Anda dan mungkin tidak membuat lompatan logika yang dimaksud jika instruksinya tidak jelas.
+* **Minta respons yang lebih pendek:** Minta Claude secara langsung untuk bersikap ringkas. Jika Claude menghasilkan output dengan panjang yang tidak diinginkan, minta Claude untuk [mengurangi sifat cerewetnya](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#be-clear-and-direct).
   <Tip>
     Karena cara LLM menghitung 
 
@@ -194,19 +194,19 @@ Berikut beberapa tips untuk membantu Anda mengoptimalkan prompt dan output Anda:
 
     `max_tokens`
 
-     token, respons akan terpotong, mungkin di tengah kalimat atau di tengah kata, jadi ini adalah teknik kasar yang mungkin memerlukan pasca-pemrosesan dan biasanya paling sesuai untuk respons pilihan ganda atau jawaban singkat di mana jawabannya muncul tepat di awal.
+     token, respons akan terpotong, mungkin di tengah kalimat atau di tengah kata, sehingga ini adalah teknik kasar yang mungkin memerlukan pasca-pemrosesan dan biasanya paling sesuai untuk respons pilihan ganda atau jawaban singkat di mana jawabannya muncul tepat di awal.
   </Note>
-* **Bereksperimen dengan temperature:** [Parameter](https://platform.claude.com/docs/id/api/messages/create) `temperature` mengontrol keacakan output. Nilai yang lebih rendah (misalnya, 0.2) terkadang dapat menghasilkan respons yang lebih fokus dan lebih pendek, sementara nilai yang lebih tinggi (misalnya, 0.8) mungkin menghasilkan output yang lebih beragam tetapi berpotensi lebih panjang.
+* **Bereksperimen dengan temperature:** [Parameter](https://platform.claude.com/docs/id/api/messages/create) `temperature` mengontrol keacakan output. Nilai yang lebih rendah (misalnya, 0,2) terkadang dapat menghasilkan respons yang lebih terfokus dan lebih pendek, sedangkan nilai yang lebih tinggi (misalnya, 0,8) mungkin menghasilkan output yang lebih beragam tetapi berpotensi lebih panjang.
 
 Menemukan keseimbangan yang tepat antara kejelasan prompt, kualitas output, dan jumlah token mungkin memerlukan beberapa eksperimen.
 
-### 3. Streaming respons
+### 3. Lakukan streaming respons
 
-Streaming adalah fitur yang memungkinkan model mulai mengirimkan kembali responsnya sebelum output lengkap selesai. Ini dapat secara signifikan meningkatkan responsivitas yang dirasakan dari aplikasi Anda, karena pengguna dapat melihat output model secara real time.
+Streaming adalah fitur yang memungkinkan model mulai mengirimkan responsnya sebelum output lengkap selesai. Ini dapat secara signifikan meningkatkan responsivitas yang dirasakan dari aplikasi Anda, karena pengguna dapat melihat output model secara real time.
 
-Dengan streaming diaktifkan, Anda dapat memproses output model saat tiba, memperbarui antarmuka pengguna Anda atau melakukan tugas lain secara paralel.
+Dengan streaming diaktifkan, Anda dapat memproses output model saat output tersebut tiba, memperbarui antarmuka pengguna Anda atau melakukan tugas lain secara paralel.
 
-Kunjungi [Streaming messages](https://platform.claude.com/docs/id/build-with-claude/streaming) untuk mempelajari bagaimana Anda dapat mengimplementasikan streaming untuk kasus penggunaan Anda.
+Kunjungi [Streaming pesan](https://platform.claude.com/docs/id/build-with-claude/streaming) untuk mempelajari cara mengimplementasikan streaming untuk kasus penggunaan Anda.
 
 ***
 
@@ -217,7 +217,7 @@ Kunjungi [Streaming messages](https://platform.claude.com/docs/id/build-with-cla
     Minimalkan halusinasi dalam output Claude dengan mengizinkan ketidakpastian, mendasarkan respons pada kutipan langsung, dan memverifikasi klaim dengan sitasi.
   </Card>
 
-  <Card title="Streaming messages" icon="bolt" href="https://platform.claude.com/docs/id/build-with-claude/streaming">
-    Streaming respons Messages API secara bertahap dengan server-sent events, termasuk delta teks, penggunaan alat, dan pemikiran diperpanjang.
+  <Card title="Streaming pesan" icon="bolt" href="https://platform.claude.com/docs/id/build-with-claude/streaming">
+    Lakukan streaming respons Messages API secara bertahap dengan server-sent events, termasuk delta teks, penggunaan alat, dan pemikiran diperpanjang.
   </Card>
 </CardGroup>

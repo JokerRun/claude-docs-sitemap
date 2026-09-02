@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/results
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 5c45590d7e06b81d59592bedd3670ddd5ef41486e81914b80c9df85c57170453
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 2894046aff9ed708890b6af9c0eb30a70daa85263ca3dba05ee617841b48f81a
 ---
 
 # Retrieve Message Batch results
@@ -818,11 +818,19 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 12 more`
+          - `"claude-fable-5-1" or "claude-mythos-5-1" or "claude-sonnet-5" or 14 more`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-fable-5-1"`
+
+              Frontier intelligence for ambitious tasks across coding, scientific discovery, and enterprise workflows
+
+            - `"claude-mythos-5-1"`
+
+              Our most capable model for cybersecurity and biology research, available through trusted access programs
 
             - `"claude-sonnet-5"`
 

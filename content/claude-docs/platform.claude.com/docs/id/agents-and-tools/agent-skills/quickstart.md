@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: b075c18eca62ba297c6208307587b738b25d67de45ebe19774918382ca9a5b67
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 6b9512f3f6c449ef07bf48bd313ffdc56668cf14737b094e9765e1c8c79b84ca
 ---
 
 ---
@@ -16,7 +16,7 @@ Tutorial ini menunjukkan kepada Anda cara menggunakan Agent Skills untuk membuat
 ## Prasyarat
 
 * Sebuah [kunci API Claude](https://platform.claude.com/settings/keys) atau [ant CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication) yang sudah login
-* Sebuah [client SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk bahasa Anda, atau `curl` dan `jq`
+* Sebuah [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk bahasa Anda, atau `curl` dan `jq`
 * Pemahaman dasar tentang cara membuat permintaan API
 
 ## Ikhtisar Agent Skills
@@ -34,7 +34,7 @@ Agent Skills bawaan memperluas kemampuan Claude dengan keahlian khusus untuk tug
 
 ## Langkah 1: Daftar Skills yang tersedia
 
-Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk mendaftar semua Skills yang dikelola Anthropic. Setiap tab bahasa adalah kutipan dari satu skrip berkelanjutan, dengan semua import dan penyiapan client di bagian atas:
+Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk mendaftar semua Skills yang dikelola Anthropic. Setiap tab bahasa merupakan kutipan dari satu skrip yang berkesinambungan, dengan semua import dan penyiapan klien di bagian atas:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -349,10 +349,10 @@ Gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbarukan. Ten
 
 Permintaan ini mencakup bagian-bagian berikut:
 
-* **`model`:** Sebuah [model yang mendukung alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#model-compatibility)
+* **`model`:** Sebuah [model yang mendukung alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#compatibility)
 * **`container.skills`:** Menentukan Skills mana yang dapat digunakan Claude
 * **`type: "anthropic"`:** Menunjukkan bahwa ini adalah Skill yang dikelola Anthropic
-* **`skill_id: "pptx"`:** Pengenal Skill PowerPoint
+* **`skill_id: "pptx"`:** Pengidentifikasi Skill PowerPoint
 * **`version: "latest"`:** Versi Skill yang diatur ke versi terbaru yang dipublikasikan
 * **`tools`:** Mengaktifkan eksekusi kode (diperlukan untuk Skills)
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/legal-summarization
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: add7736f64bcb32ad3073db800d0b0f2fbb2aa2ad1a44cf5eb73cdc93dc9c5c3
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 27829642227daaca4181956a25fd78c1421e6a91dca05d28e5ea0a5225b3f837
 ---
 
 ---
@@ -21,7 +21,7 @@ Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan "large 
 
 <AccordionGroup>
   <Accordion title="Anda ingin meninjau dokumen dalam volume besar secara efisien dan terjangkau">
-    Peninjauan dokumen berskala besar dapat memakan waktu dan biaya yang besar jika dilakukan secara manual. Claude dapat memproses dan meringkas dokumen hukum dalam jumlah sangat besar dengan cepat, sehingga secara signifikan mengurangi waktu dan biaya yang terkait dengan peninjauan dokumen. Kemampuan ini sangat berharga untuk tugas-tugas seperti uji tuntas (due diligence), analisis kontrak, atau discovery litigasi, di mana efisiensi sangat penting.
+    Peninjauan dokumen berskala besar dapat memakan waktu dan mahal jika dilakukan secara manual. Claude dapat memproses dan meringkas dokumen hukum dalam jumlah sangat besar dengan cepat, sehingga secara signifikan mengurangi waktu dan biaya yang terkait dengan peninjauan dokumen. Kemampuan ini sangat berharga untuk tugas-tugas seperti uji tuntas (due diligence), analisis kontrak, atau discovery litigasi, di mana efisiensi sangat penting.
   </Accordion>
 
   <Accordion title="Anda memerlukan ekstraksi otomatis metadata penting">
@@ -29,15 +29,15 @@ Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan "large 
   </Accordion>
 
   <Accordion title="Anda ingin menghasilkan ringkasan yang jelas, ringkas, dan terstandarisasi">
-    Claude dapat menghasilkan ringkasan terstruktur yang mengikuti format yang telah ditentukan sebelumnya, sehingga memudahkan para profesional hukum untuk dengan cepat memahami poin-poin penting dari berbagai dokumen. Ringkasan terstandarisasi ini dapat meningkatkan keterbacaan, memudahkan perbandingan antar dokumen, dan meningkatkan pemahaman secara keseluruhan, terutama ketika berhadapan dengan bahasa hukum yang kompleks atau jargon teknis.
+    Claude dapat menghasilkan ringkasan terstruktur yang mengikuti format yang telah ditentukan sebelumnya, sehingga memudahkan profesional hukum untuk dengan cepat memahami poin-poin penting dari berbagai dokumen. Ringkasan terstandarisasi ini dapat meningkatkan keterbacaan, memudahkan perbandingan antar dokumen, dan meningkatkan pemahaman secara keseluruhan, terutama ketika berhadapan dengan bahasa hukum yang kompleks atau jargon teknis.
   </Accordion>
 
   <Accordion title="Anda memerlukan sitasi yang tepat untuk ringkasan Anda">
-    Saat membuat ringkasan hukum, atribusi dan sitasi yang tepat sangat penting untuk memastikan kredibilitas dan kepatuhan terhadap standar hukum. Claude dapat diberi prompt untuk menyertakan sitasi yang akurat untuk semua poin hukum yang dirujuk, sehingga memudahkan para profesional hukum untuk meninjau dan memverifikasi informasi yang diringkas.
+    Saat membuat ringkasan hukum, atribusi dan sitasi yang tepat sangat penting untuk memastikan kredibilitas dan kepatuhan terhadap standar hukum. Claude dapat diberi prompt untuk menyertakan sitasi yang akurat untuk semua poin hukum yang dirujuk, sehingga memudahkan profesional hukum untuk meninjau dan memverifikasi informasi yang diringkas.
   </Accordion>
 
   <Accordion title="Anda ingin menyederhanakan dan mempercepat proses riset hukum Anda">
-    Claude dapat membantu riset hukum dengan menganalisis secara cepat volume besar yurisprudensi, undang-undang, dan komentar hukum. Claude dapat mengidentifikasi preseden yang relevan, mengekstrak prinsip-prinsip hukum utama, dan meringkas argumen hukum yang kompleks. Kemampuan ini dapat secara signifikan mempercepat proses riset, sehingga memungkinkan para profesional hukum untuk berfokus pada analisis tingkat tinggi dan pengembangan strategi.
+    Claude dapat membantu riset hukum dengan menganalisis secara cepat volume besar yurisprudensi, undang-undang, dan komentar hukum. Claude dapat mengidentifikasi preseden yang relevan, mengekstrak prinsip-prinsip hukum utama, dan meringkas argumen hukum yang kompleks. Kemampuan ini dapat secara signifikan mempercepat proses riset, sehingga memungkinkan profesional hukum untuk berfokus pada analisis tingkat tinggi dan pengembangan strategi.
   </Accordion>
 </AccordionGroup>
 
@@ -60,7 +60,7 @@ details_to_extract = [
 
 ### Tetapkan kriteria keberhasilan
 
-Mengevaluasi kualitas ringkasan adalah tugas yang terkenal sulit. Tidak seperti banyak tugas pemrosesan bahasa alami lainnya, evaluasi ringkasan sering kali tidak memiliki metrik yang jelas dan objektif. Prosesnya bisa sangat subjektif, karena pembaca yang berbeda menghargai aspek ringkasan yang berbeda. Berikut adalah kriteria yang mungkin ingin Anda pertimbangkan saat menilai seberapa baik Claude melakukan peringkasan hukum.
+Mengevaluasi kualitas ringkasan adalah tugas yang terkenal sulit. Tidak seperti banyak tugas pemrosesan bahasa alami lainnya, evaluasi ringkasan sering kali tidak memiliki metrik yang jelas dan objektif. Prosesnya bisa sangat subjektif, dengan pembaca yang berbeda menghargai aspek ringkasan yang berbeda. Berikut adalah kriteria yang mungkin ingin Anda pertimbangkan saat menilai seberapa baik Claude melakukan peringkasan hukum.
 
 <AccordionGroup>
   <Accordion title="Kebenaran faktual">
@@ -80,7 +80,7 @@ Mengevaluasi kualitas ringkasan adalah tugas yang terkenal sulit. Tidak seperti 
   </Accordion>
 
   <Accordion title="Keterbacaan">
-    Teks harus jelas dan mudah dipahami. Jika audiensnya bukan pakar hukum, ringkasan tidak boleh menyertakan jargon hukum yang dapat membingungkan audiens.
+    Teks harus jelas dan mudah dipahami. Jika audiensnya bukan ahli hukum, ringkasan tidak boleh menyertakan jargon hukum yang dapat membingungkan audiens.
   </Accordion>
 
   <Accordion title="Bias dan keadilan">
@@ -106,34 +106,34 @@ Untuk membantu memperkirakan biaya ini, berikut adalah perbandingan biaya untuk 
   * Karakter per perjanjian: 300.000
   * Total karakter: 300 juta
 
-* **Estimasi token**
+* **Perkiraan token**
 
   * Token input: 86 juta (dengan asumsi 1 token per 3,5 karakter)
   * Token output per ringkasan: 350
   * Total token output: 350.000
 
-* **Estimasi biaya Claude Opus 5**
+* **Perkiraan biaya Claude Opus 5**
 
   * Biaya token input: 86 MTok \* $5,00/MTok = $430,00 USD
   * Biaya token output: 0,35 MTok \* $25,00/MTok = $8,75 USD
   * Total biaya: $430,00 + $8,75 = $438,75 USD
 
-* **Estimasi biaya Claude Opus 4.8**
+* **Perkiraan biaya Claude Opus 4.8**
 
   * Biaya token input: 86 MTok \* $5,00/MTok = $430,00 USD
   * Biaya token output: 0,35 MTok \* $25,00/MTok = $8,75 USD
   * Total biaya: $430,00 + $8,75 = $438,75 USD
 
-* **Estimasi biaya Claude Haiku 4.5**
+* **Perkiraan biaya Claude Haiku 4.5**
 
   * Biaya token input: 86 MTok \* $1,00/MTok = $86,00 USD
   * Biaya token output: 0,35 MTok \* $5,00/MTok = $1,75 USD
   * Total biaya: $86,00 + $1,75 = $87,75 USD
 
 <Tip>
-  Biaya aktual mungkin berbeda dari estimasi ini. Estimasi ini didasarkan pada contoh yang disorot di bagian 
+  Biaya aktual mungkin berbeda dari perkiraan ini. Perkiraan ini didasarkan pada contoh yang disorot di bagian 
 
-  [Bangun prompt yang kuat](https://platform.claude.com/docs/id/about-claude/use-case-guides/legal-summarization#build-a-strong-prompt)
+  [Buat prompt yang kuat](https://platform.claude.com/docs/id/about-claude/use-case-guides/legal-summarization#build-a-strong-prompt)
 
   .
 </Tip>
@@ -183,9 +183,9 @@ Dalam contoh ini, Anda pertama-tama mengunduh PDF dari contoh perjanjian sewa-ul
 
 Contoh ini menggunakan pustaka pypdf untuk mengekstrak isi PDF dan mengonversinya menjadi teks. Data teks kemudian dibersihkan dengan menghapus nomor halaman dan spasi berlebih.
 
-### Bangun prompt yang kuat
+### Buat prompt yang kuat
 
-Claude dapat beradaptasi dengan berbagai gaya peringkasan. Anda dapat mengubah detail prompt untuk mengarahkan Claude agar lebih atau kurang panjang lebar, menyertakan lebih banyak atau lebih sedikit terminologi teknis, atau memberikan ringkasan konteks dengan tingkat yang lebih tinggi atau lebih rendah.
+Claude dapat beradaptasi dengan berbagai gaya peringkasan. Anda dapat mengubah detail prompt untuk mengarahkan Claude agar lebih atau kurang panjang lebar, menyertakan lebih banyak atau lebih sedikit terminologi teknis, atau memberikan ringkasan konteks yang lebih umum atau lebih terperinci.
 
 Berikut adalah contoh cara membuat prompt yang memastikan ringkasan yang dihasilkan mengikuti struktur yang konsisten saat menganalisis perjanjian sewa-ulang:
 
@@ -236,9 +236,9 @@ print(sublease_summary)
 
 Kode ini mengimplementasikan fungsi `summarize_document` yang menggunakan Claude untuk meringkas isi perjanjian sewa-ulang. Fungsi ini menerima string teks dan daftar detail yang akan diekstrak sebagai input. Dalam contoh ini, kode memanggil fungsi tersebut dengan variabel `document_text` dan `details_to_extract` yang telah didefinisikan dalam cuplikan kode sebelumnya.
 
-Di dalam fungsi, sebuah prompt dibuat untuk Claude, yang mencakup dokumen yang akan diringkas, detail yang akan diekstrak, dan instruksi spesifik untuk meringkas dokumen. Prompt tersebut menginstruksikan Claude untuk merespons dengan ringkasan dari setiap detail yang akan diekstrak, yang disarangkan di dalam header XML.
+Di dalam fungsi, sebuah prompt dibuat untuk Claude, yang mencakup dokumen yang akan diringkas, detail yang akan diekstrak, dan instruksi spesifik untuk meringkas dokumen. Prompt tersebut menginstruksikan Claude untuk merespons dengan ringkasan setiap detail yang akan diekstrak, yang disarangkan di dalam header XML.
 
-Karena kode mengeluarkan setiap bagian ringkasan di dalam tag, setiap bagian dapat dengan mudah diurai sebagai langkah pasca-pemrosesan. Pendekatan ini memungkinkan ringkasan terstruktur yang dapat disesuaikan untuk kasus penggunaan Anda, sehingga setiap ringkasan mengikuti pola yang sama.
+Karena kode mengeluarkan setiap bagian ringkasan di dalam tag, setiap bagian dapat dengan mudah diurai sebagai langkah pascapemrosesan. Pendekatan ini memungkinkan ringkasan terstruktur yang dapat disesuaikan dengan kasus penggunaan Anda, sehingga setiap ringkasan mengikuti pola yang sama.
 
 ### Evaluasi prompt Anda
 
@@ -246,7 +246,7 @@ Prompting sering kali memerlukan pengujian dan optimasi agar siap untuk produksi
 
 <AccordionGroup>
   <Accordion title="Skor ROUGE">
-    Metrik ini mengukur tumpang tindih antara ringkasan yang dihasilkan dan ringkasan referensi yang dibuat oleh pakar. Metrik ini terutama berfokus pada recall dan berguna untuk mengevaluasi cakupan konten.
+    Metrik ini mengukur tumpang tindih antara ringkasan yang dihasilkan dan ringkasan referensi yang dibuat oleh ahli. Metrik ini terutama berfokus pada recall dan berguna untuk mengevaluasi cakupan konten.
   </Accordion>
 
   <Accordion title="Skor BLEU">
@@ -258,7 +258,7 @@ Prompting sering kali memerlukan pengujian dan optimasi agar siap untuk produksi
   </Accordion>
 
   <Accordion title="Penilaian berbasis LLM">
-    Metode ini melibatkan penggunaan LLM seperti Claude untuk mengevaluasi kualitas ringkasan yang dihasilkan berdasarkan rubrik penilaian. Rubrik tersebut dapat disesuaikan dengan kebutuhan spesifik Anda, dengan menilai faktor-faktor utama seperti akurasi, kelengkapan, dan koherensi. Untuk panduan implementasi, lihat 
+    Metode ini melibatkan penggunaan LLM seperti Claude untuk mengevaluasi kualitas ringkasan yang dihasilkan berdasarkan rubrik penilaian. Rubrik tersebut dapat disesuaikan dengan kebutuhan spesifik Anda, menilai faktor-faktor utama seperti akurasi, kelengkapan, dan koherensi. Untuk panduan implementasi, lihat 
 
     [Tips untuk penilaian berbasis LLM](https://platform.claude.com/docs/id/test-and-evaluate/develop-tests#tips-for-llm-based-grading)
 
@@ -266,7 +266,7 @@ Prompting sering kali memerlukan pengujian dan optimasi agar siap untuk produksi
   </Accordion>
 
   <Accordion title="Evaluasi manusia">
-    Selain membuat ringkasan referensi, pakar hukum juga dapat mengevaluasi kualitas ringkasan yang dihasilkan. Meskipun ini mahal dan memakan waktu dalam skala besar, hal ini sering dilakukan pada beberapa ringkasan sebagai pemeriksaan validasi sebelum diterapkan ke produksi.
+    Selain membuat ringkasan referensi, ahli hukum juga dapat mengevaluasi kualitas ringkasan yang dihasilkan. Meskipun ini mahal dan memakan waktu dalam skala besar, hal ini sering dilakukan pada beberapa ringkasan sebagai pemeriksaan validasi sebelum diterapkan ke produksi.
   </Accordion>
 </AccordionGroup>
 
@@ -274,7 +274,7 @@ Prompting sering kali memerlukan pengujian dan optimasi agar siap untuk produksi
 
 Berikut adalah beberapa pertimbangan tambahan yang perlu diingat saat Anda menerapkan solusi Anda ke produksi.
 
-1. **Pastikan tidak ada tanggung gugat:** Pahami implikasi hukum dari kesalahan dalam ringkasan, yang dapat menimbulkan tanggung gugat hukum bagi organisasi atau klien Anda. Sediakan disclaimer atau pemberitahuan hukum yang menjelaskan bahwa ringkasan dihasilkan oleh AI dan harus ditinjau oleh profesional hukum.
+1. **Pastikan tidak ada tanggung gugat:** Pahami implikasi hukum dari kesalahan dalam ringkasan, yang dapat menimbulkan tanggung gugat hukum bagi organisasi atau klien Anda. Sediakan penafian atau pemberitahuan hukum yang menjelaskan bahwa ringkasan dihasilkan oleh AI dan harus ditinjau oleh profesional hukum.
 
 2. **Tangani beragam jenis dokumen:** Panduan ini membahas cara mengekstrak teks dari PDF. Di dunia nyata, dokumen dapat hadir dalam berbagai format (seperti PDF, dokumen Word, dan file teks). Pastikan pipeline ekstraksi data Anda dapat mengonversi semua format file yang Anda perkirakan akan diterima.
 
@@ -284,11 +284,11 @@ Berikut adalah beberapa pertimbangan tambahan yang perlu diingat saat Anda mener
 
 ## Tingkatkan performa
 
-Dalam skenario yang kompleks, mungkin bermanfaat untuk mempertimbangkan strategi tambahan guna meningkatkan performa di luar [teknik prompt engineering](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview) standar. Berikut adalah beberapa strategi tingkat lanjut:
+Dalam skenario yang kompleks, mungkin bermanfaat untuk mempertimbangkan strategi tambahan guna meningkatkan performa di luar [teknik rekayasa prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview) standar. Berikut adalah beberapa strategi tingkat lanjut:
 
 ### Lakukan meta-peringkasan untuk meringkas dokumen panjang
 
-Peringkasan hukum sering kali melibatkan penanganan dokumen panjang atau banyak dokumen terkait sekaligus, sehingga Anda melampaui "context window" (jendela konteks) Claude. Anda dapat menggunakan metode chunking yang dikenal sebagai meta-peringkasan (meta-summarization) untuk menangani kasus penggunaan ini. Teknik ini melibatkan pemecahan dokumen menjadi potongan-potongan (chunk) yang lebih kecil dan mudah dikelola, lalu memproses setiap potongan secara terpisah. Anda kemudian dapat menggabungkan ringkasan dari setiap potongan untuk membuat meta-ringkasan dari keseluruhan dokumen.
+Peringkasan hukum sering kali melibatkan penanganan dokumen panjang atau banyak dokumen terkait sekaligus, sehingga Anda melampaui "context window" (jendela konteks) Claude. Anda dapat menggunakan metode chunking yang dikenal sebagai meta-peringkasan (meta-summarization) untuk menangani kasus penggunaan ini. Teknik ini melibatkan pemecahan dokumen menjadi potongan-potongan (chunk) yang lebih kecil dan mudah dikelola, lalu memproses setiap potongan secara terpisah. Anda kemudian dapat menggabungkan ringkasan setiap potongan untuk membuat meta-ringkasan dari keseluruhan dokumen.
 
 Berikut adalah contoh cara melakukan meta-peringkasan:
 
@@ -355,25 +355,25 @@ print(long_summary)
 
 Fungsi `summarize_long_document` dibangun di atas fungsi `summarize_document` sebelumnya dengan membagi dokumen menjadi potongan-potongan yang lebih kecil dan meringkas setiap potongan secara individual.
 
-Kode ini mencapainya dengan menerapkan fungsi `summarize_document` pada setiap potongan berukuran 20.000 karakter dalam dokumen asli. Ringkasan-ringkasan individual tersebut kemudian digabungkan, dan ringkasan akhir dibuat dari ringkasan potongan-potongan ini.
+Kode ini mencapainya dengan menerapkan fungsi `summarize_document` pada setiap potongan sebesar 20.000 karakter dalam dokumen asli. Ringkasan-ringkasan individual tersebut kemudian digabungkan, dan ringkasan akhir dibuat dari ringkasan potongan-potongan ini.
 
-Perhatikan bahwa fungsi `summarize_long_document` tidak benar-benar diperlukan untuk PDF contoh ini, karena seluruh dokumen muat di dalam jendela konteks Claude. Namun, fungsi ini menjadi penting untuk dokumen yang melebihi jendela konteks Claude atau saat meringkas beberapa dokumen terkait secara bersamaan. Bagaimanapun, teknik meta-peringkasan ini sering kali menangkap detail penting tambahan dalam ringkasan akhir yang terlewat dalam pendekatan ringkasan tunggal sebelumnya.
+Perhatikan bahwa fungsi `summarize_long_document` tidak benar-benar diperlukan untuk PDF contoh, karena seluruh dokumen muat di dalam jendela konteks Claude. Namun, fungsi ini menjadi penting untuk dokumen yang melebihi jendela konteks Claude atau saat meringkas beberapa dokumen terkait secara bersamaan. Bagaimanapun, teknik meta-peringkasan ini sering kali menangkap detail penting tambahan dalam ringkasan akhir yang terlewat dalam pendekatan ringkasan tunggal sebelumnya.
 
 ### Gunakan dokumen berindeks ringkasan untuk menjelajahi koleksi dokumen yang besar
 
-Mencari dalam koleksi dokumen dengan LLM biasanya melibatkan "retrieval-augmented generation" (generasi yang diperkaya pengambilan), atau RAG. Namun, dalam skenario yang melibatkan dokumen besar atau ketika pengambilan informasi yang presisi sangat penting, pendekatan RAG dasar mungkin tidak memadai. Dokumen berindeks ringkasan (summary indexed documents) adalah pendekatan RAG tingkat lanjut yang menyediakan cara yang lebih efisien untuk memeringkat dokumen untuk pengambilan, dengan menggunakan konteks yang lebih sedikit dibandingkan metode RAG tradisional. Dalam pendekatan ini, Anda pertama-tama menggunakan Claude untuk menghasilkan ringkasan singkat untuk setiap dokumen dalam korpus Anda, lalu menggunakan Claude untuk memeringkat relevansi setiap ringkasan terhadap kueri yang diajukan. Untuk detail lebih lanjut tentang pendekatan ini, termasuk contoh berbasis kode, lihat bagian summary indexed documents di [summarization cookbook](https://platform.claude.com/cookbook/capabilities-summarization-guide).
+Pencarian dalam koleksi dokumen dengan LLM biasanya melibatkan "retrieval-augmented generation" (generasi yang diperkaya dengan pengambilan), atau RAG. Namun, dalam skenario yang melibatkan dokumen besar atau ketika pengambilan informasi yang presisi sangat penting, pendekatan RAG dasar mungkin tidak memadai. Dokumen berindeks ringkasan (summary indexed documents) adalah pendekatan RAG tingkat lanjut yang menyediakan cara yang lebih efisien untuk memeringkat dokumen untuk pengambilan, dengan menggunakan konteks yang lebih sedikit dibandingkan metode RAG tradisional. Dalam pendekatan ini, Anda pertama-tama menggunakan Claude untuk menghasilkan ringkasan singkat untuk setiap dokumen dalam korpus Anda, lalu menggunakan Claude untuk memeringkat relevansi setiap ringkasan terhadap kueri yang diajukan. Untuk detail lebih lanjut tentang pendekatan ini, termasuk contoh berbasis kode, lihat bagian summary indexed documents di [summarization cookbook](https://platform.claude.com/cookbook/capabilities-summarization-guide).
 
 ### Lakukan fine-tuning pada Claude agar belajar dari dataset Anda
 
 Teknik tingkat lanjut lainnya untuk meningkatkan kemampuan Claude dalam menghasilkan ringkasan adalah "fine-tuning" (penyetelan halus). Fine-tuning melibatkan pelatihan Claude pada dataset kustom yang secara khusus selaras dengan kebutuhan peringkasan hukum Anda, sehingga memastikan Claude beradaptasi dengan kasus penggunaan Anda. Berikut adalah gambaran umum cara melakukan fine-tuning:
 
-1. **Identifikasi kesalahan:** Mulailah dengan mengumpulkan contoh-contoh di mana ringkasan Claude kurang memadai - ini dapat mencakup detail hukum penting yang terlewat, kesalahpahaman konteks, atau penggunaan terminologi hukum yang tidak tepat.
+1. **Identifikasi kesalahan:** Mulailah dengan mengumpulkan kasus-kasus di mana ringkasan Claude kurang memadai - ini dapat mencakup detail hukum penting yang terlewat, kesalahpahaman konteks, atau penggunaan terminologi hukum yang tidak tepat.
 
 2. **Kurasi dataset:** Setelah Anda mengidentifikasi masalah-masalah ini, susun dataset dari contoh-contoh bermasalah tersebut. Dataset ini harus mencakup dokumen hukum asli beserta ringkasan yang telah Anda koreksi, sehingga memastikan Claude mempelajari perilaku yang diinginkan.
 
 3. **Lakukan fine-tuning:** Fine-tuning melibatkan pelatihan ulang model pada dataset yang telah Anda kurasi untuk menyesuaikan bobot dan parameternya. Pelatihan ulang ini membantu Claude beradaptasi lebih baik dengan persyaratan spesifik domain hukum Anda, sehingga meningkatkan kemampuannya untuk meringkas dokumen sesuai standar Anda.
 
-4. **Peningkatan iteratif:** Fine-tuning bukanlah proses sekali jadi. Seiring Claude terus menghasilkan ringkasan, Anda dapat secara iteratif menambahkan contoh-contoh baru di mana performanya kurang baik, sehingga semakin menyempurnakan kemampuannya. Seiring waktu, siklus umpan balik berkelanjutan ini akan menghasilkan model yang sangat terspesialisasi untuk tugas peringkasan hukum Anda.
+4. **Peningkatan iteratif:** Fine-tuning bukanlah proses sekali jalan. Seiring Claude terus menghasilkan ringkasan, Anda dapat secara iteratif menambahkan contoh-contoh baru di mana performanya kurang baik, sehingga semakin menyempurnakan kemampuannya. Seiring waktu, siklus umpan balik berkelanjutan ini akan menghasilkan model yang sangat terspesialisasi untuk tugas peringkasan hukum Anda.
 
 <Tip>
   Fine-tuning saat ini hanya tersedia melalui Amazon Bedrock. Detail tambahan tersedia di 
@@ -385,7 +385,7 @@ Teknik tingkat lanjut lainnya untuk meningkatkan kemampuan Claude dalam menghasi
 
 <CardGroup cols={2}>
   <Card title="Summarization cookbook" icon="link" href="https://platform.claude.com/cookbook/capabilities-summarization-guide">
-    Lihat contoh berbasis kode yang diimplementasikan secara lengkap tentang cara menggunakan Claude untuk meringkas kontrak.
+    Lihat contoh berbasis kode yang diimplementasikan sepenuhnya tentang cara menggunakan Claude untuk meringkas kontrak.
   </Card>
 
   <Card title="Citations cookbook" icon="link" href="https://platform.claude.com/cookbook/misc-using-citations">

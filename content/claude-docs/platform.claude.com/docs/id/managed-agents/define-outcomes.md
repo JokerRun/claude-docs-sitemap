@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 0f2f1bc9e052c4656bf676b7682e23bab7d6c5aee4e45f86f9d25aa1ba11a798
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: aa28f846483ce7778166b9f88d3c65f2825e20b9058c54161e04323ba1011283
 ---
 
 ---
@@ -11,24 +11,24 @@ url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
 description: Beri tahu agen seperti apa 'selesai' itu, dan biarkan agen beriterasi hingga mencapainya.
 ---
 
-Sebuah "outcome" (hasil akhir) memberi tahu sesi seperti apa hasil akhir yang diharapkan dan bagaimana mengukur kualitasnya. Agen bekerja menuju target tersebut, mengevaluasi diri dan beriterasi hingga outcome terpenuhi.
+Sebuah "outcome" (hasil akhir) memberi tahu sesi seperti apa hasil akhir yang seharusnya dan bagaimana mengukur kualitasnya. Agen bekerja menuju target tersebut, mengevaluasi diri dan beriterasi hingga outcome terpenuhi.
 
 Saat Anda mendefinisikan outcome, harness secara otomatis menyediakan sebuah *grader* (penilai) untuk mengevaluasi artefak terhadap sebuah rubrik. Grader menggunakan "context window" (jendela konteks) terpisah agar tidak terpengaruh oleh pilihan implementasi agen utama.
 
 Grader mengembalikan penjelasan yang merangkum kriteria mana yang lolos atau gagal, atau mengonfirmasi bahwa artefak memenuhi rubrik. Umpan balik tersebut diserahkan kembali kepada agen untuk iterasi berikutnya.
 
 <Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Membuat rubrik
 
-Rubrik adalah dokumen markdown yang menjelaskan penilaian per kriteria. Rubrik wajib disertakan.
+Rubrik adalah dokumen markdown yang menjelaskan penilaian per kriteria. Rubrik bersifat wajib.
 
 <Accordion title="Tips menulis rubrik yang efektif">
   Susun rubrik sebagai kriteria yang eksplisit dan dapat dinilai, seperti "CSV berisi kolom price dengan nilai numerik" alih-alih "Datanya terlihat bagus." Grader menilai setiap kriteria secara independen, sehingga kriteria yang samar menghasilkan evaluasi yang tidak konsisten.
 
-  Jika Anda belum memiliki rubrik, coba berikan Claude contoh artefak yang sudah diketahui bagus dan minta Claude menganalisis apa yang membuat konten tersebut bagus, lalu ubah analisis itu menjadi rubrik. Pendekatan jalan tengah ini sering menghasilkan hasil yang lebih baik daripada menulis kriteria dari nol.
+  Jika Anda tidak memiliki rubrik, cobalah memberi Claude contoh artefak yang sudah diketahui bagus dan minta Claude menganalisis apa yang membuat konten tersebut bagus, lalu ubah analisis itu menjadi rubrik. Pendekatan jalan tengah ini sering menghasilkan hasil yang lebih baik daripada menulis kriteria dari nol.
 </Accordion>
 
 Contoh rubrik:
@@ -550,12 +550,12 @@ Kemajuan pada sesi berorientasi outcome ditampilkan pada [stream](https://platfo
 * Event `span.outcome_evaluation_*` hanya dipancarkan untuk sesi berorientasi outcome dan menunjukkan jumlah loop iterasi serta proses umpan balik grader.
 * Anda juga dapat mengirim [event](https://platform.claude.com/docs/id/managed-agents/reference#event-types) `user.message` ke sesi berorientasi outcome untuk mengarahkan pekerjaan agen seiring kemajuannya, tetapi ini tidak wajib: agen bekerja menuju outcome secara mandiri, beriterasi hingga berhasil atau kehabisan iterasi.
 * Event `user.interrupt` menjeda pekerjaan pada outcome saat ini dan menandai `span.outcome_evaluation_end.result` sebagai `interrupted`, sehingga Anda dapat memulai outcome baru.
-* Setelah evaluasi outcome terakhir, sesi dapat dilanjutkan sebagai sesi percakapan, atau outcome baru dapat dimulai. Sesi menyimpan riwayat outcome sebelumnya.
+* Setelah evaluasi outcome terakhir, sesi dapat dilanjutkan sebagai sesi percakapan, atau outcome baru dapat dimulai. Sesi mempertahankan riwayat outcome sebelumnya.
 
 ### Event pengguna define outcome
 
 <Note>
-  Hanya satu outcome yang didukung pada satu waktu, tetapi Anda dapat merangkai outcome secara berurutan. Untuk melakukannya, kirim event `user.define_outcome` baru setelah event terminal `span.outcome_evaluation_end` dari outcome sebelumnya.
+  Hanya satu outcome yang didukung dalam satu waktu, tetapi Anda dapat merangkai outcome secara berurutan. Untuk melakukannya, kirim event `user.define_outcome` baru setelah event terminal `span.outcome_evaluation_end` dari outcome sebelumnya.
 </Note>
 
 Ini adalah event yang Anda kirim untuk memulai sebuah outcome. Event ini dipantulkan kembali saat diterima, termasuk timestamp `processed_at` dan `outcome_id`.
@@ -569,9 +569,9 @@ Ini adalah event yang Anda kirim untuk memulai sebuah outcome. Event ini dipantu
 }
 ```
 
-### Evaluasi outcome dimulai
+### Outcome evaluation start
 
-Dipancarkan begitu grader memulai evaluasi atas satu loop iterasi. Field `iteration` adalah penghitung revisi berindeks 0: `0` adalah evaluasi pertama, `1` adalah evaluasi ulang setelah revisi pertama, dan seterusnya.
+Dipancarkan saat grader memulai evaluasi atas satu loop iterasi. Field `iteration` adalah penghitung revisi berindeks 0: `0` adalah evaluasi pertama, `1` adalah evaluasi ulang setelah revisi pertama, dan seterusnya.
 
 ```json
 {
@@ -583,7 +583,7 @@ Dipancarkan begitu grader memulai evaluasi atas satu loop iterasi. Field `iterat
 }
 ```
 
-### Evaluasi outcome sedang berlangsung
+### Outcome evaluation ongoing
 
 Heartbeat yang dipancarkan selama grader berjalan. Penalaran internal grader bersifat tertutup: Anda melihat bahwa grader sedang bekerja, bukan apa yang dipikirkannya.
 
@@ -597,17 +597,17 @@ Heartbeat yang dipancarkan selama grader berjalan. Penalaran internal grader ber
 }
 ```
 
-### Evaluasi outcome berakhir
+### Outcome evaluation end
 
-Dipancarkan ketika siklus evaluasi outcome berakhir: setelah grader selesai mengevaluasi satu iterasi, atau ketika sesi diinterupsi saat sebuah outcome aktif. Field `result` menunjukkan apa yang terjadi selanjutnya.
+Dipancarkan ketika siklus evaluasi outcome berakhir: setelah grader selesai mengevaluasi satu iterasi, atau ketika sesi diinterupsi saat sebuah outcome sedang aktif. Field `result` menunjukkan apa yang terjadi selanjutnya.
 
-| Result                   | Selanjutnya                                                                                                                                                                                                                      |
-| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `satisfied`              | Sesi beralih ke `idle`.                                                                                                                                                                                                          |
-| `needs_revision`         | Agen memulai siklus iterasi baru.                                                                                                                                                                                                |
-| `max_iterations_reached` | Satu giliran pengakuan terakhir menyusul sebelum sesi beralih ke `idle`. Tidak ada evaluasi lebih lanjut yang dijalankan.                                                                                                        |
-| `failed`                 | Sesi beralih ke `idle`. Dikembalikan ketika rubrik tidak berlaku untuk deliverable, misalnya jika deskripsi dan rubrik saling bertentangan.                                                                                      |
-| `interrupted`            | Dipancarkan ketika sesi diinterupsi saat sebuah outcome aktif, bahkan jika evaluasi belum dimulai. Jika tidak ada `outcome_evaluation_start` yang terpicu sebelum interupsi, `outcome_evaluation_start_id` berupa string kosong. |
+| Result                   | Selanjutnya                                                                                                                                                                                                                             |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `satisfied`              | Sesi beralih ke `idle`.                                                                                                                                                                                                                 |
+| `needs_revision`         | Agen memulai siklus iterasi baru.                                                                                                                                                                                                       |
+| `max_iterations_reached` | Satu giliran pengakuan terakhir menyusul sebelum sesi beralih ke `idle`. Tidak ada evaluasi lebih lanjut yang dijalankan.                                                                                                               |
+| `failed`                 | Sesi beralih ke `idle`. Dikembalikan ketika rubrik tidak berlaku untuk deliverable, misalnya jika deskripsi dan rubrik saling bertentangan.                                                                                             |
+| `interrupted`            | Dipancarkan ketika sesi diinterupsi saat sebuah outcome sedang aktif, bahkan jika evaluasi belum dimulai. Jika tidak ada `outcome_evaluation_start` yang terpicu sebelum interupsi, `outcome_evaluation_start_id` berupa string kosong. |
 
 ```json
 {
@@ -630,7 +630,7 @@ Dipancarkan ketika siklus evaluasi outcome berakhir: setelah grader selesai meng
 
 ## Memeriksa status outcome
 
-Anda dapat mendengarkan [stream event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) untuk `span.outcome_evaluation_end`, atau melakukan polling `GET /v1/sessions/{session_id}` dan membaca `outcome_evaluations[].result`. Hingga sebuah evaluasi selesai, `result` melaporkan `pending`, `running`, atau `evaluating`:
+Anda dapat mendengarkan [stream event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) untuk `span.outcome_evaluation_end`, atau melakukan polling `GET /v1/sessions/{session_id}` dan membaca `outcome_evaluations[].result`. Hingga evaluasi selesai, `result` melaporkan `pending`, `running`, atau `evaluating`:
 
 <CodeGroup>
   ```bash cURL
@@ -717,7 +717,7 @@ Anda dapat mendengarkan [stream event](https://platform.claude.com/docs/id/manag
 
 ## Mengambil deliverable
 
-Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk mengambilnya, daftarkan file melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files) dengan ID sesi sebagai `scope_id`, lalu unduh berdasarkan ID. Pemfilteran berdasarkan `scope_id` memerlukan header beta `managed-agents-2026-04-01` pada permintaan list, sehingga contoh SDK dan CLI melakukan panggilan tersebut melalui namespace `beta` dan meneruskan header secara eksplisit. File muncul dalam daftar tak lama setelah agen selesai menulisnya, terkadang beberapa detik setelah sesi menjadi idle. Jika file yang Anda harapkan belum terdaftar, lakukan list lagi setelah jeda singkat; begitu file muncul dalam daftar, pengunggahannya telah selesai.
+Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk mengambilnya, daftarkan file melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files) dengan ID sesi sebagai `scope_id`, lalu unduh berdasarkan ID. Pemfilteran berdasarkan `scope_id` memerlukan header beta `managed-agents-2026-04-01` pada permintaan list, sehingga contoh SDK dan CLI melakukan panggilan tersebut melalui namespace `beta` dan meneruskan header secara eksplisit. File muncul dalam daftar tak lama setelah agen selesai menulisnya, terkadang beberapa detik setelah sesi menjadi idle. Jika file yang Anda harapkan belum terdaftar, lakukan list lagi setelah jeda singkat; setelah file muncul dalam daftar, pengunggahannya telah selesai.
 
 <CodeGroup>
   ```bash cURL
@@ -898,7 +898,7 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk meng
   </Card>
 
   <Card title="Stream event sesi" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/events-and-streaming">
-    Kirim event, stream respons, dan interupsi atau arahkan ulang sesi Anda di tengah eksekusi.
+    Kirim event, lakukan streaming respons, dan interupsi atau arahkan ulang sesi Anda di tengah eksekusi.
   </Card>
 
   <Card title="Menambahkan file" icon="file" href="https://platform.claude.com/docs/id/managed-agents/files">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/mcp-connector
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 02b38fd4ca2c6601d0504a414a6e4d8624a5461e0a8c99e65760468fdd913c84
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: f26740b16af3021795156e4958a7b5f048ea4170117c1e50a8b459ded12981bf
 ---
 
 ---
@@ -21,7 +21,7 @@ Konfigurasi MCP dibagi menjadi dua langkah:
 Pemisahan ini menjaga rahasia agar tidak masuk ke dalam definisi agen yang dapat digunakan ulang, sekaligus memungkinkan setiap sesi melakukan autentikasi dengan kredensialnya sendiri.
 
 <Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Mendeklarasikan server MCP pada agen
@@ -256,7 +256,7 @@ Batasan:
 
 ## Mengonfigurasi alat MCP mana yang tersedia
 
-Entri `mcp_toolset` mendukung objek `default_config` dan array `configs`, yang diterapkan pada alat yang diekspos oleh server MCP. Setiap entri `configs` hanya menerima `name`, `enabled`, dan `permission_policy`. Berbeda dengan entri dalam toolset agen bawaan, entri alat MCP tidak menerima field `type`, dan [pengaturan web](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains) yang tersedia pada `web_search` dan `web_fetch` tidak berlaku untuk alat MCP. `name` dalam setiap entri `configs` adalah nama alat polos sebagaimana dilaporkan oleh server.
+Entri `mcp_toolset` mendukung objek `default_config` dan array `configs`, yang diterapkan pada alat yang diekspos oleh server MCP. Setiap entri `configs` hanya menerima `name`, `enabled`, dan `permission_policy`. Tidak seperti entri dalam toolset agen bawaan, entri alat MCP tidak menerima field `type`, dan [pengaturan web](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains) yang tersedia pada `web_search` dan `web_fetch` tidak berlaku untuk alat MCP. `name` dalam setiap entri `configs` adalah nama alat polos sebagaimana dilaporkan oleh server.
 
 Secara default, semua alat yang diekspos oleh server MCP diaktifkan. Untuk mengaktifkan hanya alat tertentu, atur `default_config.enabled` ke `false` dan aktifkan secara eksplisit alat yang Anda inginkan:
 
@@ -384,7 +384,7 @@ Saat memulai sesi, teruskan `vault_ids` untuk menyediakan kredensial bagi server
   ```
 </CodeGroup>
 
-Kredensial dicocokkan berdasarkan URL, sehingga vault harus berisi kredensial yang `mcp_server_url`-nya merujuk ke server yang sama dengan `url` yang dideklarasikan dalam `mcp_servers`. Kedua URL dinormalisasi sebelum pencocokan (skema dan host diubah ke huruf kecil, port default dan garis miring di akhir dihapus), sehingga perbedaan huruf besar/kecil pada host, port default, atau garis miring di akhir tidak menghalangi kecocokan; sedangkan path, subdomain, atau port non-default yang berbeda akan menghalanginya. Jika tidak ada yang cocok, koneksi dicoba tanpa autentikasi. Lihat [Menambahkan kredensial](https://platform.claude.com/docs/id/managed-agents/vaults#add-a-credential) untuk jenis kredensial `static_bearer` dan `mcp_oauth`.
+Kredensial dicocokkan berdasarkan URL, sehingga vault harus berisi kredensial yang `mcp_server_url`-nya merujuk ke server yang sama dengan `url` yang dideklarasikan dalam `mcp_servers`. Kedua URL dinormalisasi sebelum pencocokan (skema dan host diubah ke huruf kecil, port default dan garis miring di akhir dihapus), sehingga perbedaan kapitalisasi host, port default, atau garis miring di akhir tidak menghalangi kecocokan; sedangkan path, subdomain, atau port non-default yang berbeda akan menghalanginya. Jika tidak ada yang cocok, koneksi dicoba tanpa autentikasi. Lihat [Menambahkan kredensial](https://platform.claude.com/docs/id/managed-agents/vaults#add-a-credential) untuk jenis kredensial `static_bearer` dan `mcp_oauth`.
 
 ### Menangani kegagalan koneksi dan autentikasi
 
@@ -401,7 +401,7 @@ Anda dapat memutuskan apakah akan memblokir interaksi lebih lanjut pada error in
 
 <CardGroup cols={2}>
   <Card title="Kebijakan izin" icon="check" href="https://platform.claude.com/docs/id/managed-agents/permission-policies">
-    Kendalikan kapan alat agen dan MCP dijalankan.
+    Kontrol kapan alat agen dan MCP dijalankan.
   </Card>
 
   <Card title="Aliran event sesi" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/events-and-streaming">

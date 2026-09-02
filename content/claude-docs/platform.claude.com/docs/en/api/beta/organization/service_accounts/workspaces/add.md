@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces/add
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: d153a23c54484ecc2a3e9f75a20c8119580500d05af101cc89e0eb939d435ad2
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 24e339b0858f37c01b34fc3fdb566c20da271754783edf32cfe4fb6f5d504191
 ---
 
 # Add Workspace To Service Account
@@ -34,7 +34,7 @@ rejected.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -117,6 +117,12 @@ rejected.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ## Body parameters
 

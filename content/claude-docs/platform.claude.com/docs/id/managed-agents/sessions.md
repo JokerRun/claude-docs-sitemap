@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/sessions
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 46cc4938a59ca878c6c7ad8ba46529113f3eafe1365e6ece5f272391833f3b23
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: c3711e8d9269d80316e492cf401916eaa541c19817de0a88d1f004a4f8b6af1f
 ---
 
 ---
@@ -11,15 +11,15 @@ url: https://platform.claude.com/docs/id/managed-agents/sessions
 description: Buat sesi untuk menjalankan agen Anda dan mulai mengeksekusi tugas.
 ---
 
-Sesi adalah instance agen di dalam sebuah environment. Setiap sesi mereferensikan sebuah [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) dan sebuah [environment](https://platform.claude.com/docs/id/managed-agents/environments) (keduanya dibuat secara terpisah), serta mempertahankan riwayat percakapan di berbagai interaksi. Sesi mengikuti siklus hidup dua langkah: pertama [buat sesi](https://platform.claude.com/docs/id/managed-agents/sessions#creating-a-session), lalu [kirim event pengguna](https://platform.claude.com/docs/id/managed-agents/sessions#starting-the-session) untuk memulai pekerjaan. Anda juga dapat menggabungkan kedua langkah tersebut menjadi satu panggilan dengan [`initial_events`](https://platform.claude.com/docs/id/managed-agents/sessions#seed-the-session-with-initial-events).
+Sesi adalah instans agen di dalam sebuah environment (lingkungan). Setiap sesi mereferensikan sebuah [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) dan sebuah [environment](https://platform.claude.com/docs/id/managed-agents/environments) (keduanya dibuat secara terpisah), serta mempertahankan riwayat percakapan di berbagai interaksi. Sesi mengikuti siklus hidup dua langkah: pertama [buat sesi](https://platform.claude.com/docs/id/managed-agents/sessions#creating-a-session), lalu [kirim event pengguna](https://platform.claude.com/docs/id/managed-agents/sessions#starting-the-session) untuk memulai pekerjaan. Anda juga dapat menggabungkan kedua langkah tersebut menjadi satu panggilan dengan [`initial_events`](https://platform.claude.com/docs/id/managed-agents/sessions#seed-the-session-with-initial-events).
 
 <Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Membuat sesi
 
-Sesi memerlukan ID `agent` dan ID `environment`. Agen adalah resource berversi; meneruskan ID `agent` sebagai string akan membuat sesi dengan versi agen terbaru.
+Sesi memerlukan ID `agent` dan ID `environment`. Agen adalah sumber daya berversi; meneruskan ID `agent` sebagai string akan membuat sesi dengan versi agen terbaru.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -450,9 +450,9 @@ Contoh berikut membuat sesi dengan satu `user.message` di `initial_events`:
   ```
 </CodeGroup>
 
-Tidak ada tipe event lain yang diterima. Event yang merespons giliran agen (`user.tool_confirmation`, `user.tool_result`, dan `user.custom_tool_result`) tidak diterima karena belum ada giliran agen, dan `user.interrupt` tidak diterima karena tidak ada giliran yang perlu dihentikan. Berbeda dengan `initial_events` pada scheduled deployment, `initial_events` milik sesi tidak menerima `system.message`.
+Tidak ada tipe event lain yang diterima. Event yang merespons giliran agen (`user.tool_confirmation`, `user.tool_result`, dan `user.custom_tool_result`) tidak diterima karena belum ada giliran agen, dan `user.interrupt` tidak diterima karena tidak ada giliran yang perlu dihentikan. Berbeda dengan `initial_events` pada deployment terjadwal, `initial_events` milik sesi tidak menerima `system.message`.
 
-Setiap event di `initial_events` divalidasi dan disimpan sebelum respons pembuatan dikembalikan, sesuai urutan daftar, dengan ID yang ditetapkan server, persis seolah-olah Anda telah mengirimkannya ke endpoint [kirim event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) segera setelah pembuatan. Aturan konten per event juga sama dengan endpoint tersebut. Daftar kosong setara dengan menghilangkan field tersebut. Validasi bersifat semua-atau-tidak-sama-sekali: jika ada event yang gagal validasi, seluruh permintaan ditolak dan tidak ada sesi yang dibuat.
+Setiap event di `initial_events` divalidasi dan disimpan sebelum respons pembuatan dikembalikan, sesuai urutan daftar, dengan ID yang ditetapkan server, persis seolah-olah Anda mengirimkannya ke endpoint [kirim event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) segera setelah pembuatan. Aturan konten per event juga sama dengan endpoint tersebut. Daftar kosong setara dengan menghilangkan field tersebut. Validasi bersifat semua-atau-tidak-sama-sekali: jika ada event yang gagal validasi, seluruh permintaan ditolak dan tidak ada sesi yang dibuat.
 
 Permintaan pembuatan ditolak dalam kasus-kasus berikut:
 
@@ -467,26 +467,26 @@ Event `user.define_outcome` di `initial_events` diterima dengan kondisi yang sam
 
 ### Menimpa konfigurasi agen untuk sebuah sesi
 
-Anda dapat meneruskan `agent` dalam tiga bentuk: string ID agen, objek versi tersemat (`type: "agent"`), atau objek override. Bentuk override mengubah sebagian konfigurasi agen untuk satu sesi saja. Gunakan bentuk ini untuk mencoba model yang berbeda atau memberikan alat tambahan dalam satu sesi tanpa membuat versi agen baru. Untuk bentuk override, atur `type` ke `agent_with_overrides` dan teruskan `id` agen serta secara opsional `version` (hilangkan `version` untuk menggunakan versi terbaru agen). Kemudian sertakan salah satu dari `model`, `system`, `tools`, `mcp_servers`, atau `skills` dengan nilai yang harus digunakan sesi.
+Anda dapat meneruskan `agent` dalam tiga bentuk: string ID agen, objek versi tersemat (`type: "agent"`), atau objek override (penimpaan). Bentuk override mengubah sebagian konfigurasi agen untuk satu sesi. Gunakan bentuk ini untuk mencoba model yang berbeda atau memberikan alat tambahan dalam satu sesi tanpa membuat versi agen baru. Untuk bentuk override, atur `type` ke `agent_with_overrides` dan teruskan `id` agen serta secara opsional `version` (hilangkan `version` untuk menggunakan versi terbaru agen). Kemudian sertakan salah satu dari `model`, `system`, `tools`, `mcp_servers`, atau `skills` dengan nilai yang harus digunakan sesi.
 
-Setiap field yang dapat di-override mengikuti tiga aturan yang sama:
+Setiap field yang dapat ditimpa mengikuti tiga aturan yang sama:
 
 * **Hilangkan field:** Sesi mewarisi nilai dari versi agen yang direferensikannya.
 
-* **Atur field ke `null`, atau ke array kosong untuk field berupa daftar:** Sesi berjalan dengan field tersebut dikosongkan. Aturan ini berlaku sepenuhnya untuk `system` dan `skills`. Ada tiga pengecualian:
+* **Atur field ke `null`, atau ke array kosong untuk field daftar:** Sesi berjalan dengan field tersebut dikosongkan. Aturan ini berlaku sepenuhnya untuk `system` dan `skills`. Ada tiga pengecualian:
 
   * `model` tidak pernah dapat dikosongkan. Sesi selalu membutuhkan model, sehingga `model: null` mengembalikan error 400 `agent_model_required`.
   * Mengosongkan `tools` mengembalikan error 400 ketika `skills` efektif sesi tidak kosong, karena skills memerlukan alat `read`. Selain itu, `tools: null` dan `tools: []` mengosongkan field tersebut.
-  * Mengosongkan `mcp_servers` mengembalikan error 400 ketika `tools` efektif sesi masih berisi `mcp_toolset` yang mereferensikan salah satu server agen. Override `tools` dalam permintaan yang sama untuk menghapus entri `mcp_toolset` tersebut, lalu kosongkan `mcp_servers`.
+  * Mengosongkan `mcp_servers` mengembalikan error 400 ketika `tools` efektif sesi masih berisi `mcp_toolset` yang mereferensikan salah satu server agen. Timpa `tools` dalam permintaan yang sama untuk menghapus entri `mcp_toolset` tersebut, lalu kosongkan `mcp_servers`.
 
 * **Atur field ke sebuah nilai:** Nilai tersebut menggantikan nilai agen secara penuh. Override tidak pernah digabungkan dengan konfigurasi agen, sehingga override `tools` harus mencantumkan setiap alat yang harus dimiliki sesi. Ada satu pengecualian:
-  * Level `effort` di dalam override `model` per sesi tidak diterapkan, dan karena override menggantikan objek `model` agen secara penuh, `effort` milik agen sendiri juga tidak ikut terbawa: sesi yang dibuat dengan override `model` berjalan pada level effort default model. Untuk berjalan pada level effort tertentu, atur `effort` pada [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#agent-configuration-fields) dan jangan override `model` untuk sesi tersebut.
+  * Level `effort` di dalam override `model` per sesi tidak diterapkan, dan karena override menggantikan objek `model` agen secara penuh, `effort` milik agen sendiri juga tidak ikut terbawa: sesi yang dibuat dengan override `model` berjalan pada level effort default model. Untuk berjalan pada level effort tertentu, atur `effort` pada [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#agent-configuration-fields) dan jangan menimpa `model` untuk sesi tersebut.
 
-Override hanya berlaku untuk sesi yang Anda buat. Override tidak memodifikasi resource agen atau membuat versi agen baru, sehingga sesi lain yang mereferensikan agen yang sama tidak terpengaruh.
+Override hanya berlaku untuk sesi yang Anda buat. Override tidak memodifikasi sumber daya agen atau membuat versi agen baru, sehingga sesi lain yang mereferensikan agen yang sama tidak terpengaruh.
 
-Dalam respons, objek `agent` mencerminkan konfigurasi yang digunakan sesi setelah override diterapkan. `id` dan `version`-nya tetap mengidentifikasi agen dan versi tempat override diterapkan. Ini memungkinkan Anda melacak sesi kembali ke agen dasarnya.
+Dalam respons, objek `agent` mencerminkan konfigurasi yang digunakan sesi setelah override diterapkan. `id` dan `version`-nya tetap mengidentifikasi agen dan versi tempat override diterapkan. Ini memungkinkan Anda menelusuri sesi kembali ke agen dasarnya.
 
-Contoh berikut memulai sesi yang meng-override model dan mengosongkan prompt sistem:
+Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -656,7 +656,7 @@ Contoh berikut memulai sesi yang meng-override model dan mengosongkan prompt sis
 
 #### Menyematkan geo inferensi untuk sebuah sesi
 
-Karena override `model` menggantikan objek `model` agen secara penuh, override tersebut juga mengatur atau mengosongkan pin [`inference_geo`](https://platform.claude.com/docs/id/manage-claude/data-residency) model untuk sesi: override yang menyertakan `inference_geo` menyematkan geografi yang melayani permintaan model sesi, dan override yang menghilangkannya mengosongkan pin agen sehingga sesi mengikuti `default_inference_geo` workspace. Nilai yang di-override divalidasi terhadap `allowed_inference_geos` workspace saat sesi dibuat.
+Karena override `model` menggantikan objek `model` agen secara penuh, override tersebut juga mengatur atau mengosongkan pin [`inference_geo`](https://platform.claude.com/docs/id/manage-claude/data-residency) model untuk sesi: override yang menyertakan `inference_geo` menyematkan geografi yang melayani permintaan model sesi, dan override yang menghilangkannya mengosongkan pin agen sehingga sesi mengikuti `default_inference_geo` workspace. Nilai yang ditimpa divalidasi terhadap `allowed_inference_geos` workspace saat sesi dibuat.
 
 Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki pin geo, menyematkan permintaan model sesi ke inferensi US dengan menyertakan `inference_geo` dalam override `model`, dan mencetak nilai yang dikembalikan dalam `agent.model` pada respons:
 
@@ -815,9 +815,9 @@ Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki pin geo, meny
 
 ### Menetapkan anggaran sesi
 
-Untuk membatasi berapa banyak yang dapat dibelanjakan sebuah sesi, teruskan objek `budget` opsional saat Anda membuatnya. Anggaran adalah batas atas yang ketat pada biaya daftar (list cost) sesi: platform menghargai semua yang dikonsumsi sesi dengan tarif daftar publik, dan sesi berhenti mengeluarkan permintaan model baru setelah total berjalan tersebut mencapai `max_list_cost`. Atur `type` ke `limit` dan berikan `max_list_cost` sebuah `amount` dan `currency`. `amount` adalah bilangan bulat sen AS yang ditulis sebagai string, seperti `"2500"` untuk $25,00; API menerima string alih-alih angka sehingga tidak ada pembulatan floating-point yang pernah diterapkan. `USD` adalah satu-satunya mata uang yang saat ini didukung. Ketika sesi mencapai batas, sesi dijeda dan menjadi idle dengan stop reason `budget_reached`. Batas ini diberlakukan di antara permintaan model, sehingga permintaan yang melewatinya diselesaikan terlebih dahulu dan biaya daftar akhir sesi dapat berakhir [sedikit melewati batas](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget). Anggaran hanya dapat dilampirkan saat pembuatan: Anda dapat [mengubah atau menghapusnya](https://platform.claude.com/docs/id/managed-agents/session-operations#updating-the-session-budget) nanti, tetapi Anda tidak dapat menambahkannya ke sesi yang dibuat tanpa anggaran.
+Untuk membatasi berapa banyak yang dapat dibelanjakan sebuah sesi, teruskan objek `budget` opsional saat Anda membuatnya. Anggaran adalah batas atas yang ketat pada list cost (biaya daftar) sesi: platform menghargai semua yang dikonsumsi sesi dengan tarif daftar publik, dan sesi berhenti mengeluarkan permintaan model baru setelah total berjalan tersebut mencapai `max_list_cost`. Atur `type` ke `limit` dan berikan `max_list_cost` sebuah `amount` dan `currency`. `amount` adalah bilangan bulat dalam sen AS yang ditulis sebagai string, seperti `"2500"` untuk $25,00; API menerima string alih-alih angka sehingga tidak ada pembulatan floating-point yang pernah diterapkan. `USD` adalah satu-satunya mata uang yang saat ini didukung. Ketika sesi mencapai batas, sesi dijeda dan menjadi idle dengan stop reason `budget_reached`. Batas ini diberlakukan di antara permintaan model, sehingga permintaan yang melewatinya diselesaikan terlebih dahulu dan list cost akhir sesi dapat berakhir [sedikit melewati batas](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget). Anggaran hanya dapat dilampirkan saat pembuatan: Anda dapat [mengubah atau menghapusnya](https://platform.claude.com/docs/id/managed-agents/session-operations#updating-the-session-budget) nanti, tetapi Anda tidak dapat menambahkannya ke sesi yang dibuat tanpa anggaran.
 
-Contoh berikut membuat sesi dengan anggaran $25,00; respons mengembalikan `budget` pada resource sesi:
+Contoh berikut membuat sesi dengan anggaran $25,00; respons mengembalikan `budget` pada sumber daya sesi:
 
 ```bash cURL
 curl -fsSL https://api.anthropic.com/v1/sessions \
@@ -837,7 +837,7 @@ curl -fsSL https://api.anthropic.com/v1/sessions \
 EOF
 ```
 
-Lihat [Anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets) untuk mengetahui cara kerja pemberlakuan, apa yang dihitung ke dalam biaya daftar, dan bagaimana anggaran berperilaku dalam sesi multiagen.
+Lihat [Anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets) untuk mengetahui cara kerja pemberlakuan, apa yang dihitung ke dalam list cost, dan bagaimana anggaran berperilaku dalam sesi multiagen.
 
 ## Autentikasi MCP melalui vault
 
@@ -935,7 +935,7 @@ Jika agen Anda menggunakan alat MCP yang memerlukan autentikasi, teruskan `vault
 
 ## Memulai sesi
 
-Membuat sesi tanpa `initial_events` akan mendaftarkan sesi tetapi tidak memulai pekerjaan apa pun; sandbox environment mulai disediakan segera setelah sesi dibuat, sehingga pemanggilan alat pertama tidak perlu menunggunya. Untuk mendelegasikan tugas, kirim event ke sesi menggunakan [event pengguna](https://platform.claude.com/docs/id/managed-agents/reference#event-types). Untuk menyediakan event pertama dalam permintaan pembuatan, lihat [Mengisi sesi dengan event awal](https://platform.claude.com/docs/id/managed-agents/sessions#seed-the-session-with-initial-events). Sesi bertindak sebagai state machine yang melacak kemajuan sementara event menggerakkan eksekusi yang sebenarnya.
+Membuat sesi tanpa `initial_events` akan mendaftarkan sesi tetapi tidak memulai pekerjaan apa pun; sandbox environment mulai diprovisikan segera setelah sesi dibuat, sehingga panggilan alat pertama tidak perlu menunggunya. Untuk mendelegasikan tugas, kirim event ke sesi menggunakan [event pengguna](https://platform.claude.com/docs/id/managed-agents/reference#event-types). Untuk menyediakan event pertama dalam permintaan pembuatan, lihat [Mengisi sesi dengan event awal](https://platform.claude.com/docs/id/managed-agents/sessions#seed-the-session-with-initial-events). Sesi bertindak sebagai state machine yang melacak kemajuan sementara event menggerakkan eksekusi yang sebenarnya.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -1067,7 +1067,7 @@ Membuat sesi tanpa `initial_events` akan mendaftarkan sesi tetapi tidak memulai 
   ```
 </CodeGroup>
 
-Lihat [Stream event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) untuk mengetahui cara melakukan streaming respons agen dan menangani konfirmasi alat.
+Lihat [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) untuk mengetahui cara melakukan streaming respons agen dan menangani konfirmasi alat.
 
 Lihat [Status sesi](https://platform.claude.com/docs/id/managed-agents/session-operations#session-statuses) untuk mengetahui status-status yang dilalui sebuah sesi.
 
@@ -1075,14 +1075,14 @@ Lihat [Status sesi](https://platform.claude.com/docs/id/managed-agents/session-o
 
 <CardGroup cols={3}>
   <Card title="Operasi sesi" icon="settings" href="https://platform.claude.com/docs/id/managed-agents/session-operations">
-    Mengambil, mencantumkan, memperbarui, mengarsipkan, dan menghapus sesi Claude Managed Agents.
+    Ambil, daftarkan, perbarui, arsipkan, dan hapus sesi Claude Managed Agents.
   </Card>
 
-  <Card title="Stream event sesi" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/events-and-streaming">
+  <Card title="Aliran event sesi" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/events-and-streaming">
     Kirim event, lakukan streaming respons, dan interupsi atau arahkan ulang sesi Anda di tengah eksekusi.
   </Card>
 
-  <Card title="Scheduled deployment" icon="arrows-clockwise" href="https://platform.claude.com/docs/id/managed-agents/scheduled-deployments">
+  <Card title="Deployment terjadwal" icon="arrows-clockwise" href="https://platform.claude.com/docs/id/managed-agents/scheduled-deployments">
     Buat dan kelola deployment dengan Claude API: jalankan agen pada jadwal cron berulang dan periksa riwayat eksekusinya.
   </Card>
 </CardGroup>

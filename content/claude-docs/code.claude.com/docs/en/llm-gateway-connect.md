@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-connect
-fetched_at: 2026-09-01T02:22:36.834082Z
-sha256: 27c26e909f54bb952efcfe6b19f97e40d321bfc2dd050fb6f565ae6a6ace0be3
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 20a6a179e6b55f832cff842a3ea5b44de441ac2dcd6eb334a8fbb004bdb6e03c
 ---
 
 > ## Documentation Index
@@ -100,7 +100,7 @@ Replace the values with the ones your gateway team gave you:
 
 Shell exports apply only to that terminal session and programs started from it. An editor launched from the dock or Start menu won't see them. To make the values persist across new terminals, add the same lines to your shell profile, such as `~/.zshrc`, `~/.bashrc`, or your PowerShell `$PROFILE`.
 
-If you export the gateway only in your shell, it doesn't reliably reach background agents hosted by the [supervisor](/docs/en/agent-view#how-background-sessions-are-hosted); see [how each background session sources its gateway](/docs/en/agent-view#the-supervisor-process). Use a settings file for any gateway that background agents must always route through.
+If you export the gateway only in your shell, it doesn't reliably reach background agents hosted by the [supervisor](/docs/en/agent-view#how-background-sessions-are-hosted); see [how each background session sources its gateway](/docs/en/agent-view#llm-gateway). Use a settings file for any gateway that background agents must always route through.
 
 #### Set in a settings file
 
@@ -305,6 +305,8 @@ You can also set `ANTHROPIC_CUSTOM_HEADERS` in the `env` block of a settings fil
   }
 }
 ```
+
+Routing and tenant header names like these count as [headers that need approval](/docs/en/server-managed-settings#environment-variables-and-the-approval-dialog). When the headers come from a project settings file, Claude Code applies them under the [rules for when it applies `env` values](/docs/en/settings-reference#when-claude-code-applies-env-values).
 
 ### Add gateway models to the model picker
 

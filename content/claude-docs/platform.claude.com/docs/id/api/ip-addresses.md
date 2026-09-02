@@ -1,18 +1,18 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/ip-addresses
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: b27ad7131b5e45516582064f4c6a447b14919cc2501cf379d4295a9607972aa5
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: d55db8dcceb967f5552e1ff20429bcd0e11a1b52197770b264480fb93024fcc2
 ---
 
 ---
 title: Alamat IP
 url: https://platform.claude.com/docs/id/api/ip-addresses
-description: Layanan Anthropic menggunakan alamat IP tetap untuk koneksi masuk dan keluar. Anda dapat menggunakan alamat-alamat ini untuk mengonfigurasi aturan firewall Anda demi akses yang aman ke Claude API dan Console. Alamat-alamat ini tidak akan berubah tanpa pemberitahuan.
+description: Layanan Anthropic menggunakan alamat IP tetap untuk koneksi masuk maupun keluar. Anda dapat menggunakan alamat-alamat ini untuk mengonfigurasi aturan firewall Anda agar dapat mengakses Claude API dan Console dengan aman. Alamat-alamat ini tidak akan berubah tanpa pemberitahuan.
 ---
 
 <Note>
-  **[Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws):** Endpoint masuk (`aws-external-anthropic.{region}.api.aws`) me-resolve ke rentang IP AWS. Panggilan alat keluar (MCP connector, web search, dan web fetch) berasal dari rentang Anthropic yang tercantum di halaman ini. Lihat [rentang alamat IP AWS](https://docs.aws.amazon.com/vpc/latest/userguide/aws-ip-ranges.html) untuk allowlisting koneksi masuk.
+  **[Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws):** Endpoint masuk (`aws-external-anthropic.{region}.api.aws`) di-resolve ke rentang IP AWS. Panggilan alat keluar (konektor MCP, web search, dan web fetch) berasal dari rentang Anthropic yang tercantum di halaman ini. Lihat [rentang alamat IP AWS](https://docs.aws.amazon.com/vpc/latest/userguide/aws-ip-ranges.html) untuk allowlisting koneksi masuk.
 </Note>
 
 ## Alamat IP masuk
@@ -37,7 +37,7 @@ Ini adalah alamat IP stabil yang digunakan Anthropic untuk permintaan keluar (mi
 
 ### Alamat IP yang sudah tidak digunakan
 
-Alamat IP berikut tidak lagi digunakan oleh Anthropic. Jika Anda sebelumnya telah memasukkan alamat-alamat ini ke dalam allowlist, Anda harus menghapusnya dari aturan firewall Anda.
+Alamat IP berikut tidak lagi digunakan oleh Anthropic. Jika Anda sebelumnya telah memasukkan alamat-alamat ini ke dalam allowlist, Anda sebaiknya menghapusnya dari aturan firewall Anda.
 
 ```text wrap
 34.162.46.92/32

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/migration
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: b83776757e41aa4bfdcb13d282f0aadc98f96467a1cf4764dfc8aa9ca42271c3
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 6e53b6948e94fb3b2573ab6f8db68d355eb41ecd73b238708e2cb1c0420a220d
 ---
 
 ---
@@ -14,21 +14,21 @@ description: Pindahkan agen yang sudah ada yang dibangun di atas Messages API at
 Claude Managed Agents menggantikan loop agen yang Anda tulis sendiri dengan infrastruktur terkelola. Halaman ini membahas apa yang berubah ketika Anda bermigrasi dari loop kustom yang dibangun di atas [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) atau dari [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview).
 
 <Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Dari loop agen Messages API
 
-Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, menjalankan pemanggilan alat sendiri, dan menambahkan hasilnya ke riwayat percakapan, sebagian besar kode tersebut tidak lagi diperlukan.
+Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, menjalankan pemanggilan alat sendiri, dan menambahkan hasilnya ke riwayat percakapan, sebagian besar kode tersebut akan hilang.
 
-### Apa yang tidak lagi Anda kelola
+### Apa yang tidak perlu Anda kelola lagi
 
 | Sebelum                                                                                                           | Sesudah                                                                                                                        |
 | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | Anda memelihara array riwayat percakapan dan mengirimkannya kembali pada setiap giliran.                          | Sesi menyimpan riwayat di sisi server. Kirim event, terima event.                                                              |
 | Anda mengiterasi blok konten `tool_use`, menjalankan setiap alat, dan kembali ke loop dengan pesan `tool_result`. | Alat bawaan berjalan di dalam sandbox secara otomatis. Anda hanya menangani alat kustom melalui event `agent.custom_tool_use`. |
 | Anda menyediakan sandbox sendiri untuk menjalankan kode yang dihasilkan agen.                                     | Sandbox sesi menangani eksekusi kode, operasi file, dan bash.                                                                  |
-| Anda memutuskan kapan loop selesai.                                                                               | Sesi memancarkan `session.status_idle` ketika agen tidak memiliki hal lain untuk dikerjakan.                                   |
+| Anda memutuskan kapan loop selesai.                                                                               | Sesi memancarkan `session.status_idle` ketika agen tidak memiliki hal lain untuk dilakukan.                                    |
 
 ### Perbandingan kode
 
@@ -614,11 +614,11 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
 * **Prompt sistem dan model:** Field yang sama, kini berada pada definisi agen.
 * **Alat kustom:** Masih dideklarasikan dengan JSON Schema. Eksekusi berpindah dari penanganan inline menjadi merespons event `agent.custom_tool_use`. Lihat [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming).
 * **Pengaturan web search dan web fetch:** Field `allowed_domains`, `blocked_domains`, `max_content_tokens`, dan `user_location` yang sama, kini diatur sekali pada entri `web_search` dan `web_fetch` dalam array `configs` milik toolset agen, bukan pada setiap permintaan. Field `max_uses`, `citations`, dan `cache_control` tidak tersedia. Lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
-* **Konteks:** Anda masih dapat menyisipkan konteks melalui prompt sistem, [sumber daya file](https://platform.claude.com/docs/id/managed-agents/files), atau [skills](https://platform.claude.com/docs/id/managed-agents/skills).
+* **Konteks:** Anda masih dapat menyuntikkan konteks melalui prompt sistem, [sumber daya file](https://platform.claude.com/docs/id/managed-agents/files), atau [skills](https://platform.claude.com/docs/id/managed-agents/skills).
 
 ## Dari Claude Agent SDK
 
-Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview), Anda sudah bekerja dengan agen, alat, dan sesi sebagai konsep. Perbedaannya adalah di mana semuanya berjalan: SDK berjalan dalam proses yang Anda operasikan, sedangkan Managed Agents berjalan di infrastruktur Anthropic. Sebagian besar migrasi berupa pemetaan objek konfigurasi SDK ke padanannya di sisi API.
+Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview), Anda sudah bekerja dengan agen, alat, dan sesi sebagai konsep. Perbedaannya adalah di mana semuanya berjalan: SDK berjalan dalam proses yang Anda operasikan, sedangkan Managed Agents berjalan di infrastruktur Anthropic. Sebagian besar migrasi adalah memetakan objek konfigurasi SDK ke padanannya di sisi API.
 
 ### Apa yang berubah
 
@@ -1304,7 +1304,7 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/en/ag
   ```
 </CodeGroup>
 
-Agent dan Environment dibuat sekali dan digunakan kembali di berbagai sesi. Fungsi alat tetap berjalan dalam proses Anda; perbedaannya adalah Anda membaca event `agent.custom_tool_use` dan mengirim hasilnya secara eksplisit, bukan SDK yang mendispatchnya untuk Anda.
+Agent dan Environment dibuat sekali dan digunakan kembali di berbagai sesi. Fungsi alat masih berjalan dalam proses Anda; perbedaannya adalah Anda membaca event `agent.custom_tool_use` dan mengirim hasilnya secara eksplisit, bukan SDK yang mendispatchnya untuk Anda.
 
 ### Fitur yang berpindah ke klien Anda
 
@@ -1312,8 +1312,8 @@ Konsekuensi dari Anthropic menjalankan loop agen adalah beberapa hal yang sebelu
 
 | Fitur SDK                         | Pendekatan Managed Agents                                                                                                                                                |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Plan mode                         | Jalankan sesi khusus perencanaan terlebih dahulu, lalu sesi kedua untuk menjalankan rencana tersebut.                                                                    |
-| Output styles, slash commands     | Terapkan di klien Anda sebelum mengirim `user.message` atau setelah menerima `agent.message`.                                                                            |
+| Mode plan                         | Jalankan sesi khusus perencanaan terlebih dahulu, lalu sesi kedua untuk menjalankan rencana tersebut.                                                                    |
+| Gaya output, slash command        | Terapkan di klien Anda sebelum mengirim `user.message` atau setelah menerima `agent.message`.                                                                            |
 | Hook `PreToolUse` / `PostToolUse` | Klien Anda sudah melihat setiap event `agent.custom_tool_use` sebelum merespons; letakkan logikanya di sana. Untuk alat bawaan, gunakan `permission_policy: always_ask`. |
 | `max_turns`                       | Hitung giliran di sisi klien.                                                                                                                                            |
 
@@ -1323,7 +1323,7 @@ Konsekuensi dari Anthropic menjalankan loop agen adalah beberapa hal yang sebelu
 2. Pindahkan prompt sistem dan pilihan alat Anda ke [definisi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup).
 3. Ganti loop Anda dengan [`sessions.create`](https://platform.claude.com/docs/id/managed-agents/sessions) dan [`sessions.events.stream`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming).
 4. Untuk file lokal apa pun yang dibaca agen, unggah melalui [Files API](https://platform.claude.com/docs/id/managed-agents/files) dan mount sebagai `resources`.
-5. Untuk handler alat kustom apa pun, pindahkan eksekusinya ke dalam loop event Anda sebagai respons terhadap event `agent.custom_tool_use`.
+5. Untuk handler alat kustom apa pun, pindahkan eksekusi ke dalam loop event Anda sebagai respons terhadap event `agent.custom_tool_use`.
 6. Verifikasi dengan sesi uji sebelum mengarahkan lalu lintas produksi ke alur baru.
 
 ## Migrasi antar versi model
@@ -1421,6 +1421,6 @@ Sebagian besar perubahan perilaku tingkat model yang didokumentasikan dalam [pan
 
 * **Perubahan parameter permintaan** (default `max_tokens`, konfigurasi `thinking`) ditangani oleh runtime Claude Managed Agents. Field ini tidak diekspos pada definisi agen.
 * **Prefilling pesan asisten** tidak ada dalam model sesi berbasis event, sehingga penghapusannya pada model yang lebih baru tidak berdampak apa pun.
-* **Escaping JSON argumen alat** diparse oleh runtime sebelum Anda menerima event `agent.custom_tool_use`. Anda melihat data terstruktur, bukan string mentah.
+* **Escaping JSON argumen alat** diurai oleh runtime sebelum Anda menerima event `agent.custom_tool_use`. Anda melihat data terstruktur, bukan string mentah.
 
 Deskripsi perilaku dalam panduan Messages API (apa yang dilakukan model secara berbeda) tetap berlaku. Langkah-langkah migrasinya (cara mengubah kode permintaan Anda) tidak berlaku.

@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 194ac8b091ac46a9c3a5d05a27c2cc758808994758630322f82f9c5ef327c7e4
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: f3f39ed534441f0e314b5c118a9ca2152b4810b833678ac2f4130c50f9c7e2fc
 ---
 
 ---
 title: Skill Claude API
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill
-description: Agent Skill open-source yang menyediakan Claude dengan materi referensi API terkini, dokumentasi SDK, dan praktik terbaik untuk membangun aplikasi dengan Claude API dan Claude Managed Agents.
+description: Agent Skill open-source yang menyediakan materi referensi API terkini, dokumentasi SDK, dan praktik terbaik bagi Claude untuk membangun aplikasi dengan Claude API dan Claude Managed Agents.
 ---
 
-Skill `claude-api` adalah [Agent Skill](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview) open-source yang menyediakan Claude dengan materi referensi yang terperinci dan terkini untuk membangun aplikasi pada dua surface Anthropic:
+Skill `claude-api` adalah [Agent Skill](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview) open-source yang menyediakan materi referensi yang terperinci dan terkini bagi Claude untuk membangun aplikasi di dua surface Anthropic:
 
 * **Messages API:** Surface utama untuk permintaan tunggal, chat streaming, "tool use" (penggunaan alat), pemrosesan batch, "prompt caching" (caching prompt), output terstruktur, dan loop agen kustom.
 * **Claude Managed Agents (beta):** Surface yang di-hosting Anthropic untuk agen stateful yang dikelola server dengan eksekusi alat yang di-hosting Anthropic, konfigurasi agen persisten, dan sandbox per sesi.
@@ -20,7 +20,7 @@ Skill ini mencakup delapan bahasa pemrograman untuk Messages API maupun Managed 
 
 Skill ini disertakan bersama [Claude Code](https://code.claude.com/docs/en/overview) dan juga tersedia di [repositori skills Anthropic](https://github.com/anthropics/skills) open-source, tempat Anda dapat menginstalnya di lingkungan apa pun yang mendukung Agent Skills.
 
-Skill ini menggunakan ["progressive disclosure" (pengungkapan bertahap)](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#how-skills-work) untuk menjaga efisiensi konteks: Claude hanya memuat dokumentasi yang relevan dengan bahasa proyek Anda, surface (Messages API atau Managed Agents), dan tugas spesifik yang sedang dikerjakan (penggunaan alat, streaming, batch, dan sebagainya), alih-alih memuat semuanya sekaligus.
+Skill ini menggunakan [progressive disclosure](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#how-skills-work) (pengungkapan bertahap) agar konteks tetap efisien: Claude hanya memuat dokumentasi yang relevan dengan bahasa proyek Anda, surface (Messages API atau Managed Agents), dan tugas spesifik yang sedang dikerjakan (penggunaan alat, streaming, batch, dan sebagainya), alih-alih memuat semuanya sekaligus.
 
 ## Apa yang disediakan skill ini
 
@@ -28,12 +28,12 @@ Saat dipicu, skill ini membekali Claude dengan:
 
 **Untuk Messages API:**
 
-* **Dokumentasi SDK khusus bahasa:** Instalasi, mulai cepat, pola umum, dan penanganan error untuk bahasa proyek Anda
+* **Dokumentasi SDK khusus bahasa:** Instalasi, quick start, pola umum, dan penanganan error untuk bahasa proyek Anda
 * **Panduan penggunaan alat:** Contoh khusus bahasa dan [landasan konseptual](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) untuk function calling, termasuk tool runner beta jika tersedia
 * **Pola streaming:** Detail implementasi untuk membangun UI chat dan menangani tampilan inkremental
 * **Pemrosesan batch:** Pemrosesan batch offline dengan biaya 50%
 * **Caching prompt:** Desain stabilitas prefiks, penempatan breakpoint, dan audit silent-invalidator
-* **Migrasi model:** Panduan langkah demi langkah untuk bermigrasi ke model Claude yang lebih baru (termasuk breaking changes dan pergeseran perilaku pada [Claude Opus 5](https://platform.claude.com/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-4-8-to-claude-opus-5))
+* **Migrasi model:** Panduan langkah demi langkah untuk bermigrasi ke model Claude yang lebih baru (termasuk breaking changes dan pergeseran perilaku pada [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/migration-guide#migrating-from-claude-opus-4-8-to-claude-opus-5) dan [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide))
 * **Informasi model terkini:** ID model, ukuran "context window" (jendela konteks), dan harga
 * **Kesalahan umum:** Panduan terperinci untuk menghindari kesalahan yang sering terjadi saat berintegrasi dengan API
 
@@ -41,7 +41,7 @@ Saat dipicu, skill ini membekali Claude dengan:
 
 * **Alur onboarding:** Panduan berbasis wawancara untuk menyiapkan Managed Agent baru dari awal, tersedia melalui subperintah `/claude-api managed-agents-onboard`
 * **Dokumentasi Managed Agents khusus bahasa:** Membuat agen persisten, memulai sesi, streaming event, dan menangani konfirmasi alat untuk Python, TypeScript, C#, Go, Java, PHP, Ruby, dan cURL
-* **Pola klien:** Reconnect stream tanpa kehilangan data, gate queued/processed `processed_at`, penanganan interupsi, hal-hal yang perlu diwaspadai pada file-mount, dan penanganan kredensial
+* **Pola klien:** Reconnect stream tanpa kehilangan data, gate queued/processed `processed_at`, penanganan interupsi, jebakan file-mount, dan penanganan kredensial
 * **Batasan deployment:** Managed Agents hanya tersedia di Claude API dan [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) (tidak di Amazon Bedrock, Google Cloud, atau Microsoft Foundry). Skill ini mengarahkan deployment lain ke Messages API dan penggunaan alat sebagai gantinya.
 
 ## Kapan skill ini aktif
@@ -51,7 +51,7 @@ Skill ini aktif dengan dua cara:
 **Aktivasi otomatis** terjadi ketika:
 
 * Kode Anda mengimpor SDK Anthropic (`anthropic` untuk Python, `@anthropic-ai/sdk` untuk TypeScript/JavaScript)
-* Anda meminta Claude untuk membantu membangun, men-debug, atau mengoptimalkan sesuatu dengan Claude API, SDK Anthropic, atau Managed Agents
+* Anda meminta Claude membantu membangun, men-debug, atau mengoptimalkan sesuatu dengan Claude API, SDK Anthropic, atau Managed Agents
 * Anda menambahkan, memodifikasi, atau menyetel fitur Claude dalam sebuah file (caching prompt, adaptive thinking, compaction, penggunaan alat, batch, files, citations, memory) atau referensi model
 
 **Pemanggilan manual** dengan mengetik `/claude-api` (dengan subperintah atau prosa opsional) di lingkungan mana pun tempat skill ini terinstal.
@@ -79,7 +79,7 @@ Jika proyek Anda menggunakan beberapa bahasa, Claude akan menanyakan bahasa mana
 
 ### Di Claude Code (disertakan)
 
-Skill ini disertakan bersama [Claude Code](https://code.claude.com/docs/en/overview) dan tidak memerlukan instalasi. Saat Anda meminta Claude untuk membantu membangun sesuatu dengan Claude API, atau saat proyek Anda sudah mengimpor SDK Anthropic, skill ini aktif secara otomatis.
+Skill ini disertakan bersama [Claude Code](https://code.claude.com/docs/en/overview) dan tidak memerlukan instalasi. Saat Anda meminta Claude membantu membangun sesuatu dengan Claude API, atau saat proyek Anda sudah mengimpor SDK Anthropic, skill ini aktif secara otomatis.
 
 Anda juga dapat memanggilnya secara langsung:
 
@@ -87,7 +87,7 @@ Anda juga dapat memanggilnya secara langsung:
 /claude-api
 ```
 
-Untuk informasi lebih lanjut tentang cara kerja skill yang disertakan di Claude Code, lihat [dokumentasi skills Claude Code](https://code.claude.com/docs/en/skills#bundled-skills).
+Untuk informasi lebih lanjut tentang cara kerja skill bawaan di Claude Code, lihat [dokumentasi skills Claude Code](https://code.claude.com/docs/en/skills#bundled-skills).
 
 ### Dari repositori skills
 
@@ -123,19 +123,19 @@ Ketika cakupannya ambigu (misalnya, `/claude-api migrate to claude-opus-5` saja)
 
 Skill ini menangani:
 
-* **Penggantian ID model**, termasuk konstanta SDK bertipe (`Model.CLAUDE_OPUS_4_8` → `Model.CLAUDE_OPUS_5`) di semua bahasa yang didukung, dan mengklasifikasikan setiap file sebagai pemanggil, pendefinisi model, atau referensi string opaque sebelum mengedit
+* **Penggantian ID model**, termasuk konstanta SDK bertipe (`Model.CLAUDE_OPUS_4_8` → `Model.CLAUDE_OPUS_5`) di semua bahasa yang didukung, dan mengklasifikasikan setiap file sebagai pemanggil, pendefinisi model, atau referensi string opak sebelum mengedit
 * **Deteksi platform cloud**, mempertahankan format ID model khusus platform (misalnya, prefiks `anthropic.` di Amazon Bedrock) dan melewati perubahan untuk fitur yang tidak tersedia di platform yang dioperasikan mitra
-* **Perubahan parameter yang breaking**, seperti menghapus `temperature`, `top_p`, dan `top_k` untuk Claude Opus 4.8 dan Claude Opus 4.7, serta mengonversi `thinking: {type: "enabled", budget_tokens: N}` menjadi `thinking: {type: "adaptive"}`
+* **Perubahan parameter yang bersifat breaking**, seperti menghapus `temperature`, `top_p`, dan `top_k` untuk Claude Opus 4.8 dan Claude Opus 4.7, serta mengonversi `thinking: {type: "enabled", budget_tokens: N}` menjadi `thinking: {type: "adaptive"}`
 * **Penggantian prefill**, mengonversi pola prefill pesan asisten menjadi [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) jika berlaku
-* **Pembersihan beta header**, menghapus beta header yang tidak diperlukan model target (misalnya, `effort-2025-11-24`, `fine-grained-tool-streaming-2025-05-14`, `interleaved-thinking-2025-05-14`) dan beralih kembali dari `client.beta.messages.create` ke `client.messages.create`
+* **Pembersihan header beta**, menghapus header beta yang tidak diperlukan model target (misalnya, `effort-2025-11-24`, `fine-grained-tool-streaming-2025-05-14`, `interleaved-thinking-2025-05-14`) dan beralih kembali dari `client.beta.messages.create` ke `client.messages.create`
 * **Kalibrasi effort**, merekomendasikan titik awal `output_config.effort` untuk model target (misalnya, default `high` pada Claude Opus 5, dan `xhigh` untuk kasus penggunaan coding dan agentik pada Claude Opus 4.8 dan Claude Opus 4.7)
 * **Penyetelan perilaku prompt**, menandai prompt kontrol panjang, pemicu alat, subagen, dan kepatuhan instruksi yang mungkin berperilaku berbeda pada model target
 * **Penanganan default diam-diam**, memilih kembali ringkasan thinking (`thinking.display: "summarized"`) ketika penalaran ditampilkan kepada pengguna pada Claude Opus 4.8 dan Claude Opus 4.7
-* **Konfigurasi fallback penolakan**, menambahkan penanganan `stop_reason: "refusal"` sebelum membaca konten respons dan menyiapkan [jalur retry fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) ketika targetnya adalah Claude Fable 5 atau Claude Opus 5 (parameter `fallbacks` sisi server, biasanya dalam mode `"default"`, middleware refusal-fallback SDK, atau retry fallback-credit), serta memperbarui kode fallback yang ditulis berdasarkan bentuk preview sebelumnya
+* **Konfigurasi fallback penolakan**, menambahkan penanganan `stop_reason: "refusal"` sebelum membaca konten respons dan menyiapkan [jalur retry fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) ketika targetnya adalah Claude Fable 5.1, Claude Fable 5, atau Claude Opus 5 (parameter `fallbacks` sisi server, biasanya dalam mode `"default"`, middleware refusal-fallback SDK, atau retry fallback-credit), serta memperbarui kode fallback yang ditulis berdasarkan bentuk preview sebelumnya
 
 Saat mengedit, skill ini menjelaskan setiap perubahan dan motivasinya secara inline. Setelah selesai, skill ini menghasilkan daftar periksa item yang memerlukan verifikasi manual (biasanya tes integrasi, penyetelan prompt kontrol panjang, dan penetapan ulang baseline biaya/"rate limit" (batas laju)).
 
-Untuk daftar lengkap perubahan khusus model yang diterapkan skill ini, lihat [Bermigrasi ke Claude Opus 5 dari Claude Opus 4.8](https://platform.claude.com/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-4-8-to-claude-opus-5).
+Untuk daftar lengkap perubahan khusus model yang diterapkan skill ini, lihat [Bermigrasi ke Claude Opus 5 dari Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-5/migration-guide#migrating-from-claude-opus-4-8-to-claude-opus-5) dan [Bermigrasi ke Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide).
 
 ## Menyiapkan Managed Agent
 
@@ -145,9 +145,9 @@ Untuk membuat kerangka Managed Agent baru dari awal, panggil subperintah `manage
 /claude-api managed-agents-onboard
 ```
 
-Skill ini menjalankan wawancara yang memandu Anda melalui model mental Managed Agents (konfigurasi Agent versus Session), membuat template konfigurasi agen, mengonfigurasi lingkungan dan alat, menyiapkan loop sesi, dan menghasilkan kode yang dapat dijalankan untuk bahasa Anda. Skill ini juga mencakup alur wajib **Agent (sekali) → Session (setiap kali dijalankan)**: `model`, `system`, dan `tools` berada pada agen, tidak pernah pada sesi, dan agen sebaiknya dibuat sekali lalu direferensikan berdasarkan ID.
+Skill ini menjalankan wawancara yang memandu Anda melalui model mental Managed Agents (konfigurasi Agent versus Session), membuat template konfigurasi agen, mengonfigurasi lingkungan dan alat, menyiapkan loop sesi, dan menghasilkan kode yang dapat dijalankan untuk bahasa Anda. Skill ini juga mencakup alur wajib **Agent (sekali) → Session (setiap kali dijalankan)**: `model`, `system`, dan `tools` berada di agen, tidak pernah di sesi, dan agen sebaiknya dibuat sekali lalu direferensikan berdasarkan ID.
 
-Managed Agents memerlukan beta header `managed-agents-2026-04-01`, yang diatur SDK secara otomatis untuk semua panggilan `client.beta.agents.*`, `client.beta.environments.*`, `client.beta.sessions.*`, dan `client.beta.vaults.*`.
+Managed Agents memerlukan header beta `managed-agents-2026-04-01`, yang diatur SDK secara otomatis untuk semua panggilan `client.beta.agents.*`, `client.beta.environments.*`, `client.beta.sessions.*`, dan `client.beta.vaults.*`.
 
 ## Contoh penggunaan
 

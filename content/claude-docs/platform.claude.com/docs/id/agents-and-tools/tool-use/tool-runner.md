@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: f3661b3257cd5a4ad45554cc4961a71da6bac3a11b41bf5065990c9c48a5cd63
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: a67e223a5b972aa6cee399419865fe6265e6338a5581c719504cbb98a95ece8e
 ---
 
 ---
@@ -888,7 +888,7 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
   </Tab>
 
   <Tab title="C#">
-    Memanggil `SetParams()` atau `PushMessages()` menandai status sebagai telah dimodifikasi, yang menyebabkan runner melewati penambahan otomatisnya untuk giliran tersebut. Runner C# tetap menjalankan alat yang cocok untuk giliran tersebut dan membuang hasil yang dibangun otomatis, sehingga alat yang juga Anda jalankan sendiri di dalam badan loop akan berjalan dua kali kecuali Anda memperhitungkannya. Ketika Anda mengambil alih, tambahkan sendiri pesan asisten dan hasil alat. Jika tidak, percakapan tidak akan mengalami kemajuan. Runner C# selalu berakhir ketika respons tidak memiliki pemanggilan alat, jadi kondisikan setiap mutasi status pada keberadaan blok `tool_use`.
+    Memanggil `SetParams()` atau `PushMessages()` menandai status sebagai termodifikasi, yang menyebabkan runner melewati penambahan otomatisnya untuk giliran tersebut. Runner C# tetap menjalankan alat yang cocok untuk giliran tersebut dan membuang hasil yang dibangun otomatis, sehingga alat yang juga Anda jalankan sendiri di dalam badan loop akan berjalan dua kali kecuali Anda memperhitungkannya. Ketika Anda mengambil alih, push sendiri pesan asisten dan hasil alat. Jika tidak, percakapan tidak akan mengalami kemajuan. Runner C# selalu berakhir ketika respons tidak memiliki pemanggilan alat, jadi kondisikan setiap mutasi status pada keberadaan blok `tool_use`.
 
     ```csharp
     var runner = client.Beta.Messages.ToolRunner(
@@ -980,7 +980,7 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
   </Tab>
 
   <Tab title="Java">
-    Gunakan `runner.params()` untuk membaca parameter saat ini dan `runner.setNextParams()` untuk menggantinya pada iterasi berikutnya. Ketika Anda memanggil `setNextParams()` di dalam loop, runner melewati penambahan otomatisnya. Pesan yang baru saja dihasilkan dibuang, dan iterasi berikutnya mengirim parameter baru Anda tanpa perubahan.
+    Gunakan `runner.params()` untuk membaca parameter saat ini dan `runner.setNextParams()` untuk menggantinya pada iterasi berikutnya. Ketika Anda memanggil `setNextParams()` di dalam loop, runner melewati penambahan otomatisnya. Pesan yang baru saja dihasilkan dibuang, dan iterasi berikutnya mengirim params baru Anda tanpa perubahan.
 
     Contoh berikut mencoba ulang giliran yang mencapai batas token dengan menggandakan `max_tokens`. Melakukan mutasi hanya pada cabang `max_tokens` menjaga loop tetap konvergen: giliran yang selesai secara normal diteruskan, dan runner menambahkan secara otomatis serta berakhir ketika tidak ada lagi pemanggilan alat.
 
@@ -1021,7 +1021,7 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
   </Tab>
 
   <Tab title="PHP">
-    Gunakan `setMessagesParams()` dan `pushMessages()` untuk memodifikasi status runner, dan `getParams()` untuk membacanya. Memanggil salah satu setter di dalam loop memberi tahu runner untuk melewati penambahan otomatisnya, sehingga percakapan berlanjut dari status yang telah Anda modifikasi.
+    Gunakan `setMessagesParams()` dan `pushMessages()` untuk memodifikasi status runner, dan `getParams()` untuk membacanya. Memanggil salah satu setter di dalam loop memberi tahu runner untuk melewati penambahan otomatisnya, sehingga percakapan berlanjut dari status yang Anda modifikasi.
 
     Contoh berikut menggandakan `max_tokens` dan mencoba ulang ketika respons terpotong.
 
@@ -1063,7 +1063,7 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
   </Tab>
 
   <Tab title="Ruby">
-    Gunakan `next_message` untuk kontrol langkah demi langkah. Pada saat `next_message` selesai, pesan asisten dan hasil alat untuk giliran tersebut sudah ditambahkan. Gunakan `feed_messages` untuk menyisipkan pesan lanjutan di antara giliran, dan `runner.params.update(...)` untuk mengubah parameter permintaan secara langsung.
+    Gunakan `next_message` untuk kontrol langkah demi langkah. Pada saat `next_message` selesai, pesan asisten dan hasil alat untuk giliran tersebut sudah ditambahkan. Gunakan `feed_messages` untuk menyisipkan pesan lanjutan di antara giliran, dan `runner.params.update(...)` untuk mengubah parameter permintaan di tempat.
 
     Anda mengambil alih riwayat pesan ketika, dari dalam blok `each_message` atau `each_streaming`, Anda menetapkan ulang `runner.params[:messages]` atau memanggil `feed_messages`. Pola berikut memanggil `feed_messages` di antara panggilan `next_message`, yang tidak mengambil alih.
 
@@ -1115,7 +1115,7 @@ Go, Ruby, C#, dan PHP SDK tidak membaca `ANTHROPIC_LOG`. Di luar Python, tidak a
 
 ### Mencegat error alat
 
-Secara default, error alat diteruskan kembali ke Claude, yang kemudian dapat merespons dengan tepat. Namun, Anda mungkin ingin mendeteksi error dan menanganinya secara berbeda, misalnya, untuk menghentikan eksekusi lebih awal atau mengimplementasikan penanganan error kustom.
+Secara default, error alat diteruskan kembali ke Claude, yang kemudian dapat merespons dengan tepat. Namun, Anda mungkin ingin mendeteksi error dan menanganinya secara berbeda, misalnya untuk menghentikan eksekusi lebih awal atau mengimplementasikan penanganan error kustom.
 
 Di Python dan TypeScript SDK, gunakan metode respons alat (`generate_tool_call_response()` di Python, `generateToolResponse()` di TypeScript) untuk mencegat hasil alat dan memeriksa error sebelum dikirim ke Claude. SDK lainnya tidak mengekspos hook tersebut. Tab masing-masing menjelaskan alternatif terdekat:
 
@@ -1266,7 +1266,7 @@ Di Python dan TypeScript SDK, gunakan metode respons alat (`generate_tool_call_r
       message = runner.next_message
       break unless message
 
-      # Saat next_message kembali, runner telah menjalankan alat giliran ini dan
+      # Saat next_message kembali, runner telah menjalankan alat pada giliran ini dan
       # menambahkan hasilnya sebagai pesan terakhir (peran user). Periksa di sini,
       # sebelum permintaan berikutnya mengirimkannya ke Claude.
       tool_results = runner.params[:messages].last
@@ -1294,7 +1294,7 @@ Di Python dan TypeScript SDK, gunakan metode respons alat (`generate_tool_call_r
 
 Anda dapat memodifikasi hasil alat sebelum dikirim kembali ke Claude. Ini berguna untuk menambahkan metadata seperti `cache_control` guna mengaktifkan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) pada hasil alat, atau untuk mentransformasi output alat.
 
-Di Python dan TypeScript SDK, gunakan metode respons alat untuk mendapatkan hasil alat, lalu modifikasi sebelum runner melanjutkan. Apakah Anda secara eksplisit menambahkan hasil yang dimodifikasi atau memutasinya secara langsung bergantung pada SDK. Lihat komentar kode di setiap tab.
+Di Python dan TypeScript SDK, gunakan metode respons alat untuk mendapatkan hasil alat, lalu modifikasi sebelum runner melanjutkan. Apakah Anda secara eksplisit menambahkan hasil yang dimodifikasi atau memutasinya di tempat bergantung pada SDK. Lihat komentar kode di setiap tab.
 
 <Tabs>
   <Tab title="Python">
@@ -1355,7 +1355,7 @@ Di Python dan TypeScript SDK, gunakan metode respons alat untuk mendapatkan hasi
             block.cache_control = { type: "ephemeral" };
           }
         }
-        // Tidak perlu memanggil pushMessages: runner otomatis menambahkan pesan assistant
+        // Tidak perlu memanggil pushMessages: runner otomatis menambahkan pesan asisten
         // dan respons alat yang di-cache (yang kini telah dimutasi).
       }
 
@@ -1441,7 +1441,7 @@ Di Python dan TypeScript SDK, gunakan metode respons alat untuk mendapatkan hasi
   </Tab>
 
   <Tab title="PHP">
-    Tool runner PHP tidak memiliki callback untuk memutasi blok `tool_result` yang dihasilkan otomatis. Untuk menambahkan field seperti `cache_control`, bangun hasil alat sendiri dan tambahkan. Memanggil `pushMessages()` melewati penambahan otomatis runner untuk giliran tersebut.
+    Tool runner PHP tidak memiliki callback untuk memutasi blok `tool_result` yang dihasilkan otomatis. Untuk menambahkan field seperti `cache_control`, bangun sendiri hasil alat dan push. Memanggil `pushMessages()` melewati penambahan otomatis runner untuk giliran tersebut.
 
     ```php
     $client = new Client();
@@ -1470,14 +1470,14 @@ Di Python dan TypeScript SDK, gunakan metode respons alat untuk mendapatkan hasi
         }
 
         if ($toolResults !== []) {
-            // pushMessages() menandai state sebagai termutasi, sehingga runner melewati
+            // pushMessages() menandai state sebagai telah diubah, sehingga runner melewati
             // penambahan otomatisnya. Push pesan asisten dan hasil alat.
             $runner->pushMessages(
                 ['role' => 'assistant', 'content' => $message->content],
                 ['role' => 'user', 'content' => $toolResults],
             );
         }
-        // Tidak ada panggilan alat: biarkan state tak tersentuh agar loop berakhir.
+        // Tidak ada pemanggilan alat: biarkan state tidak tersentuh agar loop berhenti.
     }
     ```
   </Tab>
@@ -1683,7 +1683,7 @@ Aktifkan streaming untuk memproses respons setiap giliran secara bertahap. Setia
   </Tab>
 
   <Tab title="PHP">
-    Streaming saat ini tidak tersedia dengan tool runner PHP.
+    Streaming saat ini tidak tersedia pada tool runner PHP.
   </Tab>
 
   <Tab title="Ruby">

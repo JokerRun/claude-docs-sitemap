@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/intro
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: cbf18b4d02520f74c39d50650a1e541267f16b0268a86fc0b4d6bf1f38ccf55d
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 628bf49fe37d7bc6c7ca8a507c5b09af78420a6c2aa5cf3f0c6fd3fd759c3ac7
 ---
 
 ---
@@ -14,9 +14,9 @@ description: Claude is a highly performant, trustworthy, and intelligent AI plat
 <Tip>
   The latest generation of Claude models:
 
-  **Claude Fable 5** - Next-generation intelligence for long-running agents. Read the [Claude Fable 5 and Claude Mythos 5 announcement](https://www.anthropic.com/news/claude-fable-5-mythos-5).
+  **Claude Fable 5.1** - For demanding reasoning and long-horizon agentic work. Read the [Claude Fable 5.1 announcement](https://www.anthropic.com/claude-fable-and-mythos-5-1).
 
-  **Claude Mythos 5** - Shares Claude Fable 5's capabilities without the safety classifiers. Available in limited release through [Project Glasswing](https://anthropic.com/glasswing).
+  **Claude Mythos 5.1** - Offers Claude Fable 5.1's capabilities by invitation through [Project Glasswing](https://anthropic.com/glasswing).
 
   **Claude Opus 5** - For complex agentic coding and enterprise work. Read the [Claude Opus 5 announcement](https://www.anthropic.com/news/claude-opus-5).
 

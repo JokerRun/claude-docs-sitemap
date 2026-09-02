@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/list
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 007162ff4f000fe9ac0ea2d5be3c77f5ab752fb4b59a59c7f5a1cb6c79022615
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: bf53d602aae3c04cb7873fa8ca2af617495a1a87c38ea6f6a7ca857fa9cb7adc
 ---
 
 # List Tunnels
@@ -37,7 +37,7 @@ Lists tunnels. Results are ordered by creation time, newest first; archived tunn
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -120,6 +120,12 @@ Lists tunnels. Results are ordered by creation time, newest first; archived tunn
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ## Returns
 

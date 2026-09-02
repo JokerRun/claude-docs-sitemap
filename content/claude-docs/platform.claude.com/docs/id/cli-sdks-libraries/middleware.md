@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/middleware
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 1a13044e322d2c4bd7b3a3e0b7e95244056dc360231472d00e5a07bbb3ce512c
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: af21704f212d28c01f49b3a1feefc5761f0fc42caf31b145543d8129bf5ea070
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/cli-sdks-libraries/middleware
 description: Mencegat dan memodifikasi permintaan dan respons di SDK Anthropic.
 ---
 
-SDK Anthropic menyediakan hook "middleware" (perangkat lunak perantara), atau interceptor, yang memungkinkan Anda menjalankan kode sebelum permintaan dikirim dan setelah respons diterima. Gunakan middleware untuk kebutuhan lintas-fungsi seperti logging, retry kustom, anotasi permintaan, dan penanganan fallback penolakan.
+SDK Anthropic menyediakan hook "middleware" (perantara), atau interceptor, yang memungkinkan Anda menjalankan kode sebelum permintaan dikirim dan setelah respons diterima. Gunakan middleware untuk kebutuhan lintas-fungsi seperti logging, percobaan ulang kustom, anotasi permintaan, dan penanganan fallback penolakan.
 
 ```mermaid
 sequenceDiagram
@@ -31,11 +31,11 @@ sequenceDiagram
     M1-->>App: response
 ```
 
-Setiap middleware dapat memeriksa atau mengganti permintaan sebelum memanggil `next()`, dan respons setelah `next()` mengembalikan hasil.
+Setiap middleware dapat memeriksa atau mengganti permintaan sebelum memanggil `next()`, dan respons setelah `next()` kembali.
 
 ## Mendaftarkan middleware
 
-Setiap middleware adalah fungsi yang menerima permintaan keluar dan sebuah callable `next`. Panggil `next` untuk meneruskan permintaan ke sisa rantai (atau langsung ke inti SDK jika ini adalah middleware terakhir), dan kembalikan responsnya. Apa pun sebelum pemanggilan `next` berjalan saat permintaan keluar; apa pun setelahnya berjalan saat respons kembali.
+Setiap middleware adalah fungsi yang menerima permintaan keluar dan sebuah callable `next`. Panggil `next` untuk meneruskan permintaan ke sisa rantai (atau langsung ke inti SDK jika ini adalah middleware terakhir), dan kembalikan responsnya. Apa pun sebelum pemanggilan `next` dijalankan saat permintaan keluar; apa pun setelahnya dijalankan saat respons kembali.
 
 <CodeGroup exclude="shell">
   ```python Python
@@ -81,13 +81,13 @@ Setiap middleware adalah fungsi yang menerima permintaan keluar dan sebuah calla
       [
           Handler.Create(async (request, next, cancellationToken) =>
           {
-              // Sebelum request
+              // Sebelum permintaan
               Console.WriteLine($"Sending {request.Method} {request.RequestUri}");
 
-              // Teruskan request ke handler berikutnya
+              // Teruskan permintaan ke handler berikutnya
               var response = await next(request, cancellationToken);
 
-              // Setelah request
+              // Setelah permintaan
               Console.WriteLine($"Received {(int)response.StatusCode}");
 
               return response;
@@ -172,13 +172,13 @@ Setiap middleware adalah fungsi yang menerima permintaan keluar dan sebuah calla
 
 ## Urutan middleware
 
-Ketika Anda mendaftarkan beberapa middleware, middleware tersebut diterapkan sesuai urutan yang diberikan: kode "before" dari middleware pertama berjalan lebih dulu, dan kode "after"-nya berjalan terakhir. Middleware yang didaftarkan pada klien berjalan sebelum middleware yang diberikan sebagai opsi per-permintaan.
+Ketika Anda mendaftarkan beberapa middleware, middleware tersebut diterapkan sesuai urutan yang diberikan: kode "sebelum" dari middleware pertama dijalankan paling awal, dan kode "setelah"-nya dijalankan paling akhir. Middleware yang didaftarkan pada klien dijalankan sebelum middleware yang diteruskan sebagai opsi per permintaan.
 
-Di SDK Go, pemanggilan `option.WithMiddleware` yang berulang akan digabungkan (klien lebih dulu, kemudian metode). Di SDK lainnya, berikan sebuah array; entri yang lebih akhir membungkus yang lebih dalam.
+Di SDK Go, pemanggilan `option.WithMiddleware` yang berulang akan digabungkan (klien terlebih dahulu, lalu metode). Di SDK lainnya, teruskan sebuah array; entri yang lebih akhir membungkus bagian dalam.
 
 ## Mengganti klien HTTP
 
-Setiap SDK juga menerima klien HTTP kustom (untuk konfigurasi proxy, TLS kustom, atau connection pooling). Hanya satu klien HTTP yang digunakan per klien SDK; mengaturnya akan menggantikan yang default. Klien HTTP kustom menerima permintaan setelah semua middleware selesai berjalan.
+Setiap SDK juga menerima klien HTTP kustom (untuk konfigurasi proxy, TLS kustom, atau connection pooling). Hanya satu klien HTTP yang digunakan per klien SDK; mengaturnya akan menggantikan klien default. Klien HTTP kustom menerima permintaan setelah semua middleware dijalankan.
 
 ## Middleware bawaan
 

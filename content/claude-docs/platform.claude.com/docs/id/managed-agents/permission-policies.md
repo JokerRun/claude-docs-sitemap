@@ -1,20 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/permission-policies
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: cd065bbc90f49c9f9afb1e23b5f1afa2f3a428c1bf2e838af136d542556a2d61
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 2d81a428ab3361bcce3001fd271d222d0de889b16b2be7ee1ab0b09ca1ffc7d7
 ---
 
 ---
 title: Kebijakan izin
 url: https://platform.claude.com/docs/id/managed-agents/permission-policies
-description: Kontrol kapan alat agen dan alat MCP dieksekusi.
+description: Kontrol kapan alat agen dan MCP dieksekusi.
 ---
 
 "Permission policies" (kebijakan izin) mengontrol apakah alat yang dieksekusi server (toolset agen bawaan dan toolset MCP) berjalan secara otomatis atau menunggu persetujuan Anda. Alat kustom dieksekusi oleh aplikasi Anda dan dikontrol oleh Anda, sehingga tidak diatur oleh kebijakan izin.
 
 <Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Jenis kebijakan izin
@@ -215,7 +215,7 @@ Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_t
 
 ### Izin toolset MCP
 
-Toolset MCP default-nya `always_ask`. Ini memastikan bahwa alat baru yang ditambahkan ke server MCP tidak dieksekusi di aplikasi Anda tanpa persetujuan. Untuk menyetujui secara otomatis alat dari server MCP yang tepercaya, tetapkan `default_config.permission_policy` pada entri `mcp_toolset`.
+Toolset MCP default-nya `always_ask`. Ini memastikan bahwa alat baru yang ditambahkan ke server MCP tidak dieksekusi di aplikasi Anda tanpa persetujuan. Untuk menyetujui secara otomatis alat dari server MCP tepercaya, tetapkan `default_config.permission_policy` pada entri `mcp_toolset`.
 
 `mcp_server_name` harus cocok dengan `name` dari server dalam array `mcp_servers`.
 
@@ -665,7 +665,7 @@ Gunakan array `configs` untuk mengganti default untuk alat individual. Nilai `na
   ```
 </CodeGroup>
 
-Kirimkan konfigurasi `tools` ini dalam permintaan pembuatan agen (tab CLI menampilkan perintah lengkapnya). Toolset MCP mendukung penggantian per alat yang sama, dengan `name` diatur ke nama alat yang dilaporkan oleh server MCP. Lihat [Mengonfigurasi alat MCP mana yang tersedia](https://platform.claude.com/docs/id/managed-agents/mcp-connector#configure-which-mcp-tools-are-available).
+Teruskan konfigurasi `tools` ini dalam permintaan pembuatan agen (tab CLI menampilkan perintah lengkapnya). Toolset MCP mendukung penggantian per alat yang sama, dengan `name` diatur ke nama alat yang dilaporkan oleh server MCP. Lihat [Mengonfigurasi alat MCP mana yang tersedia](https://platform.claude.com/docs/id/managed-agents/mcp-connector#configure-which-mcp-tools-are-available).
 
 ## Merespons permintaan konfirmasi
 
@@ -673,10 +673,10 @@ Ketika agen memanggil alat dengan kebijakan `always_ask`:
 
 1. Sesi memancarkan event `agent.tool_use` atau `agent.mcp_tool_use`.
 2. Sesi dijeda dengan event `session.status_idle` yang `stop_reason.type`-nya adalah `requires_action`. ID event yang memblokir terdapat dalam array `stop_reason.event_ids`. Sesi menunggu respons tanpa batas waktu.
-3. Kirim event `user.tool_confirmation` untuk setiap event yang memblokir, dengan menyertakan ID event dalam parameter `tool_use_id`. Atur `result` ke `"allow"` atau `"deny"`. Gunakan `deny_message` untuk menjelaskan penolakan. Anda dapat mengirim beberapa konfirmasi dalam satu permintaan `events`.
-4. Setelah semua event yang memblokir diselesaikan, sesi bertransisi kembali ke `running`. Alat yang diizinkan dieksekusi. Alat yang ditolak tidak berjalan, dan agen menerima hasil alat yang menyatakan bahwa panggilan tersebut ditolak, termasuk `deny_message` Anda.
+3. Kirim event `user.tool_confirmation` untuk setiap event yang memblokir, dengan meneruskan ID event dalam parameter `tool_use_id`. Atur `result` ke `"allow"` atau `"deny"`. Gunakan `deny_message` untuk menjelaskan penolakan. Anda dapat mengirim beberapa konfirmasi dalam satu permintaan `events`.
+4. Setelah semua event yang memblokir diselesaikan, sesi bertransisi kembali ke `running`. Alat yang diizinkan dieksekusi. Alat yang ditolak tidak berjalan, dan agen menerima hasil alat yang menyatakan bahwa panggilan ditolak, termasuk `deny_message` Anda.
 
-Dalam contoh berikut, ID event tool-use berasal dari array `stop_reason.event_ids` pada event `session.status_idle`. Pelajari lebih lanjut tentang menerima event di panduan [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events), atau [berlangganan webhook](https://platform.claude.com/docs/id/managed-agents/webhooks) untuk mendapatkan notifikasi ketika sesi dijeda untuk menunggu input.
+Dalam contoh berikut, ID event tool-use berasal dari array `stop_reason.event_ids` pada event `session.status_idle`. Pelajari lebih lanjut tentang menerima event dalam panduan [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events), atau [berlangganan webhook](https://platform.claude.com/docs/id/managed-agents/webhooks) untuk mendapatkan notifikasi ketika sesi dijeda untuk menunggu input.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL

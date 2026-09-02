@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/rotate_token
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 4d8f524a85b3a8aeb791144d47aeebc1dd2aa3f0907e9a92c97dadb454de71c6
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 9b377fba459ec8c1e61e35a6e7b4dd9d7fc0a5e2499cf1cf4109cce7e8e9c493
 ---
 
 # Rotate Tunnel Token
@@ -25,7 +25,7 @@ Rotates a tunnel's connector token. Rotation invalidates the current token for n
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -108,6 +108,12 @@ Rotates a tunnel's connector token. Rotation invalidates the current token for n
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ## Body parameters
 

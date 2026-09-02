@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/beta-headers
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 555bca63507c28061e161d42dea6d843fcf9f95eca2b287463ae21d78cd30434
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: f62986149f339648f9a6bf77015c2b0f7c14c59801759a3f25b822f9ca2cf1b8
 ---
 
 ---
@@ -29,9 +29,9 @@ anthropic-beta: BETA_FEATURE_NAME
 content-type: application/json
 ```
 
-Dokumentasi setiap fitur menyebutkan nama beta yang tepat untuk dikirim. [Ikhtisar API](https://platform.claude.com/docs/id/api/overview) mencantumkan API yang saat ini dalam tahap beta.
+Dokumentasi setiap fitur menyebutkan nama beta persis yang harus dikirim. [Ikhtisar API](https://platform.claude.com/docs/id/api/overview) mencantumkan API yang saat ini dalam tahap beta.
 
-Contoh berikut menunjukkan permintaan yang sama dengan cURL, CLI `ant`, dan SDK, menggunakan beta [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) sebagai contoh. SDK menerima nama beta dalam parameter `betas` dan mengirimkan header `anthropic-beta` untuk Anda:
+Contoh berikut menunjukkan permintaan yang sama dengan cURL, CLI `ant`, dan SDK, menggunakan beta [context editing](https://platform.claude.com/docs/id/build-with-claude/context-editing) (pengeditan konteks) sebagai contoh. SDK menerima nama beta dalam parameter `betas` dan mengirimkan header `anthropic-beta` untuk Anda:
 
 <CodeGroup>
   ```bash cURL
@@ -163,7 +163,7 @@ Contoh berikut menunjukkan permintaan yang sama dengan cURL, CLI `ant`, dan SDK,
 
   * Mengalami perubahan yang merusak kompatibilitas dengan pemberitahuan
   * Dihentikan atau dihapus
-  * Memiliki "rate limit" (batas laju) atau harga yang berbeda
+  * Memiliki batas laju atau harga yang berbeda
   * Tidak tersedia di semua wilayah
 </Warning>
 
@@ -193,7 +193,7 @@ Header khusus endpoint yang berlaku untuk endpoint yang sama tidak selalu dapat 
 
 ### Konvensi penamaan versi
 
-Nama fitur beta biasanya mengikuti pola `feature-name-YYYY-MM-DD`, di mana tanggal menunjukkan kapan beta tersebut dirilis. Selalu gunakan nama fitur beta yang tepat seperti yang didokumentasikan.
+Nama fitur beta biasanya mengikuti pola `feature-name-YYYY-MM-DD`, di mana tanggal menunjukkan kapan beta tersebut dirilis. Selalu gunakan nama fitur beta yang persis seperti yang didokumentasikan.
 
 ## Penanganan error
 

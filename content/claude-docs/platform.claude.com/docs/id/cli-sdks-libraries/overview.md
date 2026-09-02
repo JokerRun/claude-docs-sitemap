@@ -1,21 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/overview
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: d7b7c7f913c572400c7f11eb28da07eefc02d4e27c3bc13a2fcdf108326ee32f
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 794110e224117759487bb5258d4d8d3813634805a332ca0337b1961b2dae980e
 ---
 
 ---
-title: CLI, SDK, dan pustaka
+title: CLI, SDK, dan library
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/overview
-description: "Alat resmi untuk membangun dengan Claude API: CLI ant, SDK klien dalam tujuh bahasa, dan pustaka khusus framework."
+description: "Alat resmi untuk membangun dengan Claude API: CLI ant, SDK klien dalam tujuh bahasa, dan library khusus framework."
 ---
 
-Anthropic menyediakan tiga jenis perkakas resmi untuk membangun dengan Claude API:
+Anthropic menyediakan tiga jenis alat resmi untuk membangun dengan Claude API:
 
-* **CLI:** Alat baris perintah `ant` untuk shell scripting dan penggunaan interaktif.
-* **SDK Klien:** Klien Messages API serbaguna untuk Python, TypeScript, C#, Go, Java, PHP, dan Ruby. Setiap SDK menyediakan antarmuka yang idiomatik, keamanan tipe, dan dukungan bawaan untuk streaming, percobaan ulang, dan penanganan kesalahan.
-* **Pustaka dan integrasi:** Paket dan lapisan kompatibilitas yang mengekspos Claude di dalam permukaan API framework lain alih-alih Messages API secara langsung.
+* **CLI:** Alat baris perintah `ant` untuk scripting shell dan penggunaan interaktif.
+* **SDK klien:** Klien Messages API serbaguna untuk Python, TypeScript, C#, Go, Java, PHP, dan Ruby. Setiap SDK menyediakan antarmuka idiomatis, keamanan tipe, dan dukungan bawaan untuk streaming, percobaan ulang, dan penanganan error.
+* **Library dan integrasi:** Paket dan lapisan kompatibilitas yang mengekspos Claude di dalam permukaan API framework lain, bukan Messages API secara langsung.
 
 <Info>
   Untuk spesifikasi API lengkap, lihat [referensi API](https://platform.claude.com/docs/id/api/overview).
@@ -24,16 +24,16 @@ Anthropic menyediakan tiga jenis perkakas resmi untuk membangun dengan Claude AP
 ## CLI
 
 <CardGroup cols={3}>
-  <Card title="ant CLI" href="https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart">
-    Shell scripting, flag bertipe, transformasi respons
+  <Card title="CLI ant" href="https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart">
+    Scripting shell, flag bertipe, transformasi respons
   </Card>
 </CardGroup>
 
-## SDK Klien
+## SDK klien
 
 <CardGroup cols={3}>
   <Card title="Python" href="https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python">
-    Klien sync dan async, model Pydantic
+    Klien sinkron dan asinkron, model Pydantic
   </Card>
 
   <Card title="TypeScript" href="https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript">
@@ -49,7 +49,7 @@ Anthropic menyediakan tiga jenis perkakas resmi untuk membangun dengan Claude AP
   </Card>
 
   <Card title="Java" href="https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java">
-    Pola builder, async CompletableFuture
+    Pola builder, asinkron dengan CompletableFuture
   </Card>
 
   <Card title="PHP" href="https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php">
@@ -61,13 +61,13 @@ Anthropic menyediakan tiga jenis perkakas resmi untuk membangun dengan Claude AP
   </Card>
 </CardGroup>
 
-## Pustaka dan integrasi
+## Library dan integrasi
 
-Pustaka dan integrasi mengekspos Claude melalui permukaan API framework lain. Keduanya bukan klien Messages API serbaguna.
+Library dan integrasi mengekspos Claude melalui permukaan API framework lain. Keduanya bukan klien Messages API serbaguna.
 
 <CardGroup cols={3}>
   <Card title="Apple Foundation Models" href="https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/apple-foundation-models">
-    Paket Swift untuk API `LanguageModelSession` dari Apple
+    Paket Swift untuk API `LanguageModelSession` milik Apple
   </Card>
 
   <Card title="Kompatibilitas OpenAI SDK" href="https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk">
@@ -77,14 +77,14 @@ Pustaka dan integrasi mengekspos Claude melalui permukaan API framework lain. Ke
 
 ## Membangun agen atau menggunakan Claude Code?
 
-CLI, SDK klien, dan pustaka ditujukan untuk memanggil Claude API sendiri: Anda mengirim setiap permintaan dan menangani setiap respons. Claude Code, Claude Agent SDK, dan Claude Managed Agents bekerja pada tingkat yang lebih tinggi, menyediakan loop agen, eksekusi alat, dan runtime.
+CLI, SDK klien, dan library ditujukan untuk memanggil Claude API sendiri: Anda mengirim setiap permintaan dan menangani setiap respons. Claude Code, Claude Agent SDK, dan Claude Managed Agents bekerja pada tingkat yang lebih tinggi, menyediakan loop agen, eksekusi alat, dan runtime.
 
 <CardGroup cols={3}>
-  <Card title="Claude Code" href="https://code.claude.com/docs/en/overview">
+  <Card title="Claude Code" href="https://code.claude.com/docs/id/overview">
     Alat coding agentik untuk mendelegasikan tugas coding kepada Claude
   </Card>
 
-  <Card title="Claude Agent SDK" href="https://code.claude.com/docs/en/agent-sdk/overview">
+  <Card title="Claude Agent SDK" href="https://code.claude.com/docs/id/agent-sdk/overview">
     Bangun agen yang berjalan dalam proses yang Anda operasikan
   </Card>
 

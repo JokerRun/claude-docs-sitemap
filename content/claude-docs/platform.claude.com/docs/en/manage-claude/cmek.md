@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: b7817e71465ea0d442ce6f151fc4fbbdd067b03ff6ca75e8810f2c7dd742fa26
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: ba147fabe483c4250a493cb659173a7d04534f34d1cbd964a49eb8c02032945d
 ---
 
 ---
@@ -121,19 +121,19 @@ On both products, account data for users in your organization (such as names, em
 
 The following Claude Platform APIs and tools store data at rest under your key when CMEK is enabled:
 
-| APIs                  | Tools and features                                                                                  |
-| --------------------- | --------------------------------------------------------------------------------------------------- |
-| Messages              | Web search                                                                                          |
-| Models                | Web fetch                                                                                           |
-| Files                 | Code execution                                                                                      |
-| Batch                 | Bash tool                                                                                           |
-| Skills                | Text editor tool                                                                                    |
-| Claude Managed Agents | MCP connector                                                                                       |
-|                       | Structured outputs (not available for Claude Fable 5 or Claude Mythos models in CMEK organizations) |
-|                       | Advisor tool                                                                                        |
-|                       | Computer use                                                                                        |
-|                       | Browser use                                                                                         |
-|                       | Context management                                                                                  |
+| APIs                  | Tools and features                                                                                |
+| --------------------- | ------------------------------------------------------------------------------------------------- |
+| Messages              | Web search                                                                                        |
+| Models                | Web fetch                                                                                         |
+| Files                 | Code execution                                                                                    |
+| Batch                 | Bash tool                                                                                         |
+| Skills                | Text editor tool                                                                                  |
+| Claude Managed Agents | MCP connector                                                                                     |
+|                       | Structured outputs (not available for Claude Fable or Claude Mythos models in CMEK organizations) |
+|                       | Advisor tool                                                                                      |
+|                       | Computer use                                                                                      |
+|                       | Browser use                                                                                       |
+|                       | Context management                                                                                |
 
 ## Limited preservation outside your key
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 9e2997eb2b4bd4e88a24371e668d6f93e6985d284eb715ce5e9183e9dca0cc33
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: e81b9a24daf95b3d2a43d557645d7e9ea2af0b02305fa872a2cc656fa7813bf0
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Lakukan streaming input alat tanpa buffering JSON di sisi server un
 ---
 
 <Note>
-  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 "Fine-grained tool streaming" (streaming alat fine-grained) mengirimkan input alat ke klien Anda saat Claude menghasilkannya, tanpa buffering atau validasi JSON di sisi server. Melewati langkah buffering mengurangi waktu hingga fragmen pertama dari parameter besar, seperti dokumen atau blok kode, dan fragmen-fragmen tersebut tiba melalui event [Streaming pesan](https://platform.claude.com/docs/id/build-with-claude/streaming) yang sama seperti penggunaan alat standar.
@@ -228,7 +228,7 @@ Contoh berikut mengaktifkan streaming fine-grained untuk alat `make_file` dan me
       ],
   };
 
-  // Contoh C# merakit input sendiri: indeks blok konten -> JSON yang terakumulasi
+  // Contoh C# menyusun input sendiri: indeks blok konten -> JSON yang terakumulasi
   var toolInputs = new Dictionary<long, StringBuilder>();
 
   await foreach (var streamEvent in client.Messages.CreateStreaming(parameters))
@@ -405,7 +405,7 @@ Contoh berikut mengaktifkan streaming fine-grained untuk alat `make_file` dan me
       ],
   );
 
-  // Contoh PHP menyusun input sendiri: index => string JSON yang diakumulasi
+  // Contoh PHP merakit input sendiri: index => string JSON yang terakumulasi
   $toolInputs = [];
 
   foreach ($stream as $event) {
@@ -475,22 +475,22 @@ Contoh berikut mengaktifkan streaming fine-grained untuk alat `make_file` dan me
   ```
 </CodeGroup>
 
-Setiap tab mengaktifkan streaming fine-grained untuk alat `make_file`. Tab SDK mencetak setiap fragmen input begitu fragmen itu tiba, lalu mencetak input terakumulasi lengkap setelah stream berakhir. Tab cURL menampilkan stream event mentah, dan tab CLI menggunakan `jq` untuk mencetak fragmennya saja. Karena fragmen yang dicetak bergabung menjadi input alat lengkap, puisi tersebut memenuhi terminal Anda saat Claude menulisnya:
+Setiap tab mengaktifkan streaming fine-grained untuk alat `make_file`. Tab SDK mencetak setiap fragmen input begitu fragmen itu tiba, lalu mencetak input terakumulasi lengkap setelah stream berakhir. Tab cURL menampilkan stream event mentah, dan tab CLI menggunakan `jq` untuk mencetak hanya fragmen-fragmennya. Karena fragmen yang dicetak bergabung menjadi input alat lengkap, puisi tersebut memenuhi terminal Anda saat Claude menulisnya:
 
 ```text wrap
 {"filename": "poem.txt", "lines_of_text": ["The Wanderer's Journey", "", "I.", "", "Beneath the vast and star-strewn sky,", "Where silver moonbeams softly lie,", ...
 Complete tool input: {"filename": "poem.txt", "lines_of_text": ["The Wanderer's Journey", ...]}
 ```
 
-Tanpa `eager_input_streaming`, API melakukan buffering dan memvalidasi setiap nilai parameter sebelum melakukan streaming kembali, sehingga tidak ada yang tercetak untuk parameter besar sampai Claude selesai menghasilkannya. Dengannya, fragmen mulai tiba segera setelah Claude memulai parameter tersebut, dan fragmen-fragmen itu biasanya lebih panjang, dengan lebih sedikit pemotongan di tengah kata.
+Tanpa `eager_input_streaming`, API melakukan buffering dan memvalidasi setiap nilai parameter sebelum melakukan streaming kembali, sehingga tidak ada yang tercetak untuk parameter besar sampai Claude selesai menghasilkannya. Dengan field tersebut, fragmen mulai tiba segera setelah Claude memulai parameter, dan fragmen-fragmen itu biasanya lebih panjang, dengan lebih sedikit pemotongan di tengah kata.
 
 ## Mengakumulasi delta input alat
 
-Kontrak akumulasinya sama dengan streaming penggunaan alat standar, jadi bagian ini berlaku dengan maupun tanpa `eager_input_streaming`. Lihat [Input JSON delta](https://platform.claude.com/docs/id/build-with-claude/streaming#input-json-delta) di Streaming pesan untuk format event-nya. Streaming alat fine-grained mengubah apa yang dapat Anda asumsikan tentang hasilnya: server melakukan streaming fragmen tanpa memvalidasinya, sehingga string terakumulasi mungkin bukan JSON yang valid.
+Kontrak akumulasinya sama seperti untuk streaming penggunaan alat standar, jadi bagian ini berlaku dengan maupun tanpa `eager_input_streaming`. Lihat [Input JSON delta](https://platform.claude.com/docs/id/build-with-claude/streaming#input-json-delta) di Streaming pesan untuk format event-nya. Streaming alat fine-grained mengubah apa yang dapat Anda asumsikan tentang hasilnya: server melakukan streaming fragmen tanpa memvalidasinya, sehingga string terakumulasi mungkin bukan JSON yang valid.
 
 Ketika blok konten `tool_use` di-streaming, event `content_block_start` awal berisi `input: {}` (objek kosong). Ini adalah placeholder. Input sebenarnya tiba sebagai serangkaian event `input_json_delta`, masing-masing membawa fragmen string `partial_json`. Untuk menyusun input lengkap, gabungkan fragmen-fragmen ini dan parse hasilnya ketika blok ditutup.
 
-Jika SDK Anda menyediakan helper akumulator (seperti yang dilakukan tab Python, TypeScript, Go, Java, dan Ruby pada contoh sebelumnya), helper tersebut menanganinya untuk Anda. Pola manual ditujukan untuk SDK tanpa helper, atau ketika Anda menginginkan kontrol penuh atas cara input disusun.
+Jika SDK Anda menyediakan helper akumulator (seperti yang dilakukan tab Python, TypeScript, Go, Java, dan Ruby pada contoh sebelumnya), helper tersebut menanganinya untuk Anda. Pola manual ditujukan untuk SDK tanpa helper, atau ketika Anda menginginkan kendali penuh atas cara input disusun.
 
 Kontrak akumulasinya:
 
@@ -498,19 +498,19 @@ Kontrak akumulasinya:
 2. Untuk setiap `content_block_delta` dengan `type: "input_json_delta"`, tambahkan: `input_json += event.delta.partial_json`
 3. Pada `content_block_stop`, parse string terakumulasi
 
-Lindungi proses parse, seperti yang dilakukan contoh SDK berikut. Respons juga dapat berhenti pada `max_tokens` di tengah-tengah parameter. Periksa [stop reason](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons) dan putuskan apakah akan mencoba ulang permintaan dengan `max_tokens` yang lebih tinggi atau memperbaiki input parsial tersebut.
+Lindungi proses parse, seperti yang dilakukan contoh SDK berikut. Respons juga dapat berhenti pada `max_tokens` di tengah parameter. Periksa [stop reason](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons) dan putuskan apakah akan mencoba ulang permintaan dengan `max_tokens` yang lebih tinggi atau memperbaiki input parsial tersebut.
 
 Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) memang disengaja. Objek kosong menandai slot dalam array konten. String delta membangun nilai sebenarnya.
 
 <CodeGroup>
   ```bash cURL
-  # Mengakumulasi delta input per blok memerlukan bahasa pemrograman; tab CLI pada
-  # contoh pertama menampilkan fragmen mentah dengan jq. Lihat tab SDK.
+  # Mengakumulasi delta input per blok memerlukan bahasa pemrograman; tab CLI
+  # pada contoh pertama menampilkan fragmen mentah dengan jq. Lihat tab SDK.
   ```
 
   ```bash CLI
-  # Mengakumulasi delta input per blok memerlukan bahasa pemrograman; tab CLI
-  # pada contoh pertama menampilkan fragmen mentah dengan jq. Lihat tab SDK.
+  # Mengakumulasi delta input per blok memerlukan bahasa pemrograman; tab CLI pada
+  # contoh pertama menampilkan fragmen mentah dengan jq. Lihat tab SDK.
   ```
 
   ```python Python
@@ -546,7 +546,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
                   try:
                       parsed = json.loads(raw_input)
                   except json.JSONDecodeError:
-                      # String yang terakumulasi tidak dijamin merupakan JSON yang valid.
+                      # String yang terakumulasi tidak dijamin berupa JSON yang valid.
                       # Lihat "Menangani JSON tidak valid dalam respons alat" di halaman ini.
                       print(f"Invalid tool input: {raw_input}")
                   else:
@@ -589,7 +589,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
       try {
         console.log("Tool input:", JSON.parse(rawInput));
       } catch {
-        // String yang terakumulasi tidak dijamin merupakan JSON yang valid.
+        // String yang terakumulasi tidak dijamin berupa JSON yang valid.
         // Lihat "Menangani JSON tidak valid dalam respons alat" di halaman ini.
         console.log("Invalid tool input:", rawInput);
       }
@@ -829,8 +829,8 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
               $parsed = json_decode($accumulated, associative: true, flags: JSON_THROW_ON_ERROR);
               echo "Tool input: " . json_encode($parsed) . "\n";
           } catch (JsonException $e) {
-              // String yang terakumulasi tidak dijamin berupa JSON yang valid.
-              // Lihat "Menangani JSON tidak valid dalam respons alat" di halaman ini.
+              // String yang diakumulasi tidak dijamin berupa JSON yang valid.
+              // Lihat "Handling invalid JSON in tool responses" di halaman ini.
               echo "Invalid tool input: {$accumulated}\n";
           }
       }
@@ -875,8 +875,8 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
           parsed = JSON.parse(accumulated)
           puts "Tool input: #{parsed}"
         rescue JSON::ParserError
-          # String yang terakumulasi tidak dijamin merupakan JSON yang valid.
-          # Lihat "Menangani JSON tidak valid dalam respons alat" di halaman ini.
+          # String yang terakumulasi tidak dijamin berupa JSON yang valid.
+          # Lihat "Handling invalid JSON in tool responses" di halaman ini.
           puts "Invalid tool input: #{accumulated}"
         end
       end
@@ -886,7 +886,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
 </CodeGroup>
 
 <Tip>
-  Bereaksi terhadap fragmen dan menyusunnya adalah dua urusan yang terpisah. Contoh pertama bereaksi terhadap setiap fragmen saat tiba dan tetap menyerahkan penyusunan kepada SDK pada tab yang menggunakan helper akumulator. Gunakan pola manual ketika Anda tidak menggunakan helper akumulator atau ketika Anda menginginkan kontrol penuh atas penyusunan.
+  Bereaksi terhadap fragmen dan menyusunnya adalah dua hal yang terpisah. Contoh pertama bereaksi terhadap setiap fragmen saat tiba dan tetap menyerahkan penyusunan kepada SDK pada tab yang menggunakan helper akumulator. Gunakan pola manual ketika Anda tidak menggunakan helper akumulator atau ketika Anda menginginkan kendali penuh atas penyusunan.
 </Tip>
 
 ## Menangani JSON tidak valid dalam respons alat

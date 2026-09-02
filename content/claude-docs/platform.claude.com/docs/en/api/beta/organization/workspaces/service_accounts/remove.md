@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/remove
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 4608834fd230e1d9b42bee49efb3177a4c75cfad6f3acf54fde50db6668a544e
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: dbacfc34ff57737406d3706ec688c6d33cccecf8d40e3ce62c26e5e8c86ec2e2
 ---
 
 # Delete Service Account Workspace Member
@@ -37,7 +37,7 @@ membership. Archived workspaces return 400.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -120,6 +120,12 @@ membership. Archived workspaces return 400.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ## Returns
 

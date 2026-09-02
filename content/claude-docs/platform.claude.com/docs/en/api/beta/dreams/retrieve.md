@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/retrieve
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 9eca5f46fa2e94dfaeb9b815246878f3bc3fecf72e936b581638a1b2edf22328
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 6b6316cbfbfbb0e5b4b507d15862a8d29d43c4dabbba1ff410f6ab6a294deed0
 ---
 
 # Get a Dream
@@ -23,7 +23,7 @@ Get a Dream
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -106,6 +106,12 @@ Get a Dream
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ## Returns
 

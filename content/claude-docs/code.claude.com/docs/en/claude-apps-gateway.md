@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway
-fetched_at: 2026-09-01T02:22:36.834082Z
-sha256: a0d87dcb769827faa22cdec912eeb99bf8ee6acd2d6e9cb8784707c8c6cb21fa
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: a73ed11b7ee9e51df65c9a93e8fe222c4340ce6d9baf72e86a756b19ca77bb36
 ---
 
 > ## Documentation Index
@@ -260,7 +260,7 @@ The CLI fingerprints the gateway's TLS leaf certificate on first connect and pin
 openssl x509 -noout -fingerprint -sha256 -in cert.pem | cut -d= -f2 | tr -d : | tr 'A-F' 'a-f'
 ```
 
-When the certificate rotates, every developer sees the trust prompt again, so treat rotations as a planned event and republish the fingerprint.
+When the certificate rotates, every developer sees the trust prompt again, so treat rotations as a planned event and republish the fingerprint. If your gateway policy includes [settings that need approval](/docs/en/server-managed-settings#security-approval-dialogs), the developer also sees that approval dialog again after accepting the new certificate, because Claude Code keys [approval memory](/docs/en/server-managed-settings#approval-memory) to the pinned certificate.
 
 Once signed in, the [model picker](/docs/en/model-config) shows the models in the developer's `availableModels` allowlist, managed settings apply at startup and refresh hourly, and telemetry routes to your collector. Sessions refresh silently before `ttl_hours` expiry, and a failed refresh after IdP deprovisioning prompts a re-login.
 

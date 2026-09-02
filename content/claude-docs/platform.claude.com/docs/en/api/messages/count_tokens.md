@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/count_tokens
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 8f31dae3425bad9622af4173db5b719b3cff2bf2f7477d87fdd106fca2afb279
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 0f0eb7aa6e298ee9d8f065b1c9d28f354e9301ead2b778ae50008ed4b4be6fd8
 ---
 
 # Count tokens in a Message
@@ -1065,11 +1065,19 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `"claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 12 more`
+  - `"claude-fable-5-1" or "claude-mythos-5-1" or "claude-sonnet-5" or 14 more`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-fable-5-1"`
+
+      Frontier intelligence for ambitious tasks across coding, scientific discovery, and enterprise workflows
+
+    - `"claude-mythos-5-1"`
+
+      Our most capable model for cybersecurity and biology research, available through trusted access programs
 
     - `"claude-sonnet-5"`
 
@@ -1580,16 +1588,6 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
     - `type: "browser_toolset_20260801"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
-
-      - `"direct"`
-
-      - `"code_execution_20250825"`
-
-      - `"code_execution_20260120"`
-
-      - `"code_execution_20260521"`
-
     - `cache_control: optional CacheControlEphemeral or null`
 
       Create a cache control breakpoint at this content block.
@@ -2021,16 +2019,6 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
     via `configs.zoom.enabled`.
 
     - `type: "computer_toolset_20260801"`
-
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
-
-      - `"direct"`
-
-      - `"code_execution_20250825"`
-
-      - `"code_execution_20260120"`
-
-      - `"code_execution_20260521"`
 
     - `cache_control: optional CacheControlEphemeral or null`
 

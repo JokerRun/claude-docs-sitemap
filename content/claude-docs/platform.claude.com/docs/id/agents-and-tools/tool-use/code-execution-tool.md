@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 2fc5b3a9d975ccdff3f25e757f0258c3ac37af6a438872bd9558119700eaf6b7
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: dcd2870d0dce55a0ea53141212e593ccebc8edbdf63ad0b646fde07acc8fa850
 ---
 
 ---
@@ -22,7 +22,7 @@ Eksekusi kode juga menjadi penggerak pemfilteran dinamis pada alat [web search](
 </Note>
 
 <Note>
-  Untuk mengetahui bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku pada fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 ## Kompatibilitas model
@@ -1472,14 +1472,14 @@ Anda dapat menyertakan alat eksekusi kode dalam [Messages Batches API](https://p
 
 ## Penggunaan dan harga
 
-**Eksekusi kode gratis saat digunakan dengan web search atau web fetch.** Ketika `web_search_20260209` (atau yang lebih baru) atau `web_fetch_20260209` (atau yang lebih baru) disertakan dalam permintaan API Anda, tidak ada biaya tambahan untuk pemanggilan alat eksekusi kode di luar biaya token input dan output standar.
+**Eksekusi kode gratis ketika digunakan bersama web search atau web fetch.** Ketika `web_search_20260209` (atau yang lebih baru) atau `web_fetch_20260209` (atau yang lebih baru) disertakan dalam permintaan API Anda, tidak ada biaya tambahan untuk pemanggilan alat eksekusi kode di luar biaya token input dan output standar.
 
-Saat digunakan tanpa alat-alat tersebut, eksekusi kode ditagih berdasarkan waktu eksekusi, yang dilacak secara terpisah dari penggunaan token:
+Ketika digunakan tanpa alat-alat tersebut, eksekusi kode ditagih berdasarkan waktu eksekusi, yang dilacak secara terpisah dari penggunaan token:
 
 * Waktu eksekusi memiliki minimum 5 menit
 * Setiap organisasi menerima **1.550 jam gratis** penggunaan per bulan
-* Penggunaan tambahan di atas 1.550 jam ditagih sebesar **$0,05 USD per jam, per container**
-* Jika file disertakan dalam permintaan, waktu eksekusi tetap ditagih meskipun alat tidak dipanggil, karena file dimuat terlebih dahulu ke dalam container
+* Penggunaan tambahan di atas 1.550 jam ditagih sebesar **$0,05 USD per jam, per kontainer**
+* Jika file disertakan dalam permintaan, waktu eksekusi ditagih meskipun alat tidak dipanggil, karena file dimuat terlebih dahulu ke dalam kontainer
 
 Penggunaan eksekusi kode dilacak dalam respons:
 

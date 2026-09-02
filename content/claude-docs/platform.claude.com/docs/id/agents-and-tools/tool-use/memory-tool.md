@@ -1,45 +1,45 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 7943d1842456178ff118704409883e77ca4c72a9cdfac71c2180cb9c81e2f289
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 2df2d38cc7bde8a696b999ae782a98557e8d009f6c456dbf6638a6adbd2be861
 ---
 
 ---
 title: Memory tool
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool
-description: Biarkan Claude menyimpan dan mengambil informasi lintas percakapan dengan mengimplementasikan operasi file alat memori di aplikasi Anda.
+description: Biarkan Claude menyimpan dan mengambil informasi di seluruh percakapan dengan mengimplementasikan operasi file dari memory tool di aplikasi Anda.
 ---
 
-Alat memori memungkinkan Claude menyimpan dan mengambil informasi lintas percakapan dalam sebuah direktori file memori. Claude dapat membuat, membaca, memperbarui, dan menghapus file yang bertahan antar sesi, membangun pengetahuan dari waktu ke waktu tanpa harus menyimpan semuanya di "context window" (jendela konteks).
+Memory tool memungkinkan Claude menyimpan dan mengambil informasi di seluruh percakapan dalam sebuah direktori file memori. Claude dapat membuat, membaca, memperbarui, dan menghapus file yang bertahan antar sesi, membangun pengetahuan dari waktu ke waktu tanpa menyimpan semuanya di jendela konteks.
 
-Memori mendukung pengambilan konteks just-in-time. Alih-alih memuat semua informasi relevan di awal, sebuah agen mencatat apa yang dipelajarinya dalam file memori dan membacanya kembali sesuai kebutuhan. Ini menjaga konteks aktif tetap terfokus pada tugas saat ini, yang penting untuk sesi berjalan lama yang jika tidak akan membanjiri jendela konteks. Lihat [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) untuk pola yang lebih luas.
+Memory mendukung pengambilan konteks just-in-time. Alih-alih memuat semua informasi relevan di awal, sebuah agen mencatat apa yang dipelajarinya dalam file memori dan membacanya kembali sesuai permintaan. Ini menjaga konteks aktif tetap fokus pada tugas saat ini, yang penting untuk sesi berjalan lama yang jika tidak akan membebani jendela konteks. Lihat [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) untuk pola yang lebih luas.
 
-Alat memori beroperasi di sisi klien (client-side): Claude meminta operasi file, dan aplikasi Anda yang mengeksekusinya. Anda mengontrol di mana dan bagaimana data disimpan melalui infrastruktur Anda sendiri.
+Memory tool beroperasi di sisi klien: Claude meminta operasi file, dan aplikasi Anda mengeksekusinya. Anda mengontrol di mana dan bagaimana data disimpan melalui infrastruktur Anda sendiri.
 
 <Note>
   Hubungi kami melalui [formulir umpan balik](https://forms.gle/YXC2EKGMhjN1c4L88) untuk membagikan umpan balik Anda tentang fitur ini.
 </Note>
 
 <Note>
-  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 ## Kasus penggunaan
 
-* Mempertahankan konteks proyek di berbagai sesi agen
-* Menerapkan pelajaran dari interaksi, keputusan, dan umpan balik sebelumnya pada tugas baru
+* Mempertahankan konteks proyek di beberapa sesi agen
+* Menerapkan pelajaran dari interaksi, keputusan, dan umpan balik masa lalu ke tugas baru
 * Membangun basis pengetahuan dari waktu ke waktu
 
 ## Cara kerjanya
 
-Ketika alat memori diaktifkan, Claude secara otomatis memeriksa direktori memorinya sebelum memulai tugas. Saat bekerja, Claude menyimpan apa yang dipelajarinya dalam file di bawah `/memories` dan membacanya kembali di percakapan berikutnya untuk melanjutkan pekerjaan sebelumnya.
+Ketika memory tool diaktifkan, Claude secara otomatis memeriksa direktori memorinya sebelum memulai tugas. Saat bekerja, Claude menyimpan apa yang dipelajarinya dalam file di bawah `/memories` dan membacanya kembali dalam percakapan berikutnya untuk melanjutkan pekerjaan sebelumnya.
 
-Karena alat memori berada di sisi klien, Claude hanya meminta operasi memori. Aplikasi Anda mengeksekusi setiap permintaan terhadap penyimpanan yang Anda kontrol dan mengembalikan hasilnya dalam blok `tool_result` (lihat [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls)). Path `/memories` adalah prefiks yang dipetakan oleh handler Anda ke penyimpanan nyata, seperti direktori per pengguna atau kunci dalam database. Memori sepenuhnya berada di aplikasi Anda. Percakapan berikutnya melanjutkan dari memori yang sama ketika mengirim entri `tools` yang sama dan handler Anda melayani penyimpanan yang sama. Demi keamanan, batasi semua operasi memori ke direktori `/memories` (lihat [Perlindungan path traversal](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool#path-traversal-protection)).
+Karena memory tool berada di sisi klien, Claude hanya meminta operasi memori. Aplikasi Anda mengeksekusi setiap permintaan terhadap penyimpanan yang Anda kontrol dan mengembalikan hasilnya dalam blok `tool_result` (lihat [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls)). Path `/memories` adalah prefiks yang dipetakan handler Anda ke penyimpanan nyata, seperti direktori per-pengguna atau kunci dalam database. Memori sepenuhnya berada di aplikasi Anda. Percakapan berikutnya melanjutkan dari memori yang sama ketika mengirim entri `tools` yang sama dan handler Anda melayani penyimpanan yang sama. Untuk keamanan, batasi semua operasi memori ke direktori `/memories` (lihat [Perlindungan path traversal](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool#path-traversal-protection)).
 
-### Contoh: Cara kerja panggilan alat memori
+### Contoh: Cara kerja panggilan memory tool
 
-Interaksi yang umum terlihat seperti ini:
+Interaksi tipikal terlihat seperti ini:
 
 **1. Permintaan pengguna:**
 
@@ -53,7 +53,7 @@ Interaksi yang umum terlihat seperti ini:
 "I'll help you respond to the customer service ticket. Let me check my memory for any previous context."
 ```
 
-Claude memanggil alat memori:
+Claude memanggil memory tool:
 
 ```json
 {
@@ -107,13 +107,13 @@ Claude memanggil alat memori:
 "Based on your customer service guidelines, I can help you craft a response. Please share the ticket details..."
 ```
 
-Alat memori tersedia di semua model Claude 4 dan yang lebih baru. Untuk daftar lengkap alat yang disediakan Anthropic, lihat [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference).
+Memory tool tersedia di semua model Claude 4 dan yang lebih baru. Untuk daftar lengkap alat yang disediakan Anthropic, lihat [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference).
 
 ## Memulai
 
-Menggunakan alat memori memerlukan dua langkah:
+Menggunakan memory tool memerlukan dua langkah:
 
-1. Tambahkan alat memori ke permintaan Anda. Entri `tools` `{"type": "memory_20250818", "name": "memory"}` adalah keseluruhan konfigurasinya: `name` harus `memory`, dan Anda tidak mendefinisikan skema input untuk alat yang disediakan Anthropic.
+1. Tambahkan memory tool ke permintaan Anda. Entri `tools` `{"type": "memory_20250818", "name": "memory"}` adalah seluruh konfigurasinya: `name` harus `memory`, dan Anda tidak mendefinisikan skema input untuk alat yang disediakan Anthropic.
 2. Implementasikan handler sisi klien untuk setiap perintah memori. Handler Anda harus menolak path di luar `/memories`, jadi baca [Perlindungan path traversal](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool#path-traversal-protection) sebelum Anda menulisnya.
 
 ## Penggunaan dasar
@@ -290,9 +290,9 @@ Menggunakan alat memori memerlukan dua langkah:
 
 ## Mengimplementasikan handler memori
 
-Balasan Claude terhadap permintaan seperti sebelumnya diakhiri dengan blok `tool_use` yang meminta operasi memori, seperti `view /memories`. Aplikasi Anda mengeksekusi operasi tersebut dan mengembalikan hasilnya dalam blok `tool_result`, lalu mengirim kembali percakapan agar Claude dapat melanjutkan: [loop penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls) standar.
+Balasan Claude terhadap permintaan seperti yang sebelumnya diakhiri dengan blok `tool_use` yang meminta operasi memori, seperti `view /memories`. Aplikasi Anda mengeksekusi operasi tersebut dan mengembalikan hasilnya dalam blok `tool_result`, lalu mengirim percakapan kembali sehingga Claude dapat melanjutkan: [loop penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls) standar.
 
-Empat SDK menyediakan helper alat memori yang menangani antarmuka alat dan loop-nya. Buat subclass dari `BetaAbstractMemoryTool` (Python dan C#), gunakan `betaMemoryTool` (TypeScript), atau implementasikan `BetaMemoryToolHandler` (Java) untuk mendukung memori dengan penyimpanan Anda sendiri, seperti file di disk, database, penyimpanan cloud, atau file terenkripsi. Python dan TypeScript juga menyertakan implementasi sistem file lokal siap pakai, `BetaLocalFilesystemMemoryTool`. Permukaan helper dan tool-runner berada di namespace beta masing-masing SDK meskipun alat memori itu sendiri tidak memerlukan header beta. SDK Go dan Ruby tidak memiliki helper memori, sehingga contoh-contoh tersebut menjalankan loop penggunaan alat sendiri, dan PHP membungkus closure handler Anda dalam `BetaRunnableTool` generiknya. Ketiganya menggunakan penyimpanan in-memory yang Anda ganti dengan penyimpanan Anda sendiri.
+Empat SDK menyediakan helper memory tool yang menangani antarmuka alat dan loop. Subclass `BetaAbstractMemoryTool` (Python dan C#), gunakan `betaMemoryTool` (TypeScript), atau implementasikan `BetaMemoryToolHandler` (Java) untuk mendukung memori dengan penyimpanan Anda sendiri, seperti file di disk, database, penyimpanan cloud, atau file terenkripsi. Python dan TypeScript juga menyertakan implementasi sistem file lokal siap pakai, `BetaLocalFilesystemMemoryTool`. Permukaan helper dan tool-runner berada di namespace beta setiap SDK meskipun memory tool itu sendiri tidak memerlukan header beta. SDK Go dan Ruby tidak memiliki helper memori, jadi contoh-contoh tersebut menjalankan loop penggunaan alat sendiri, dan PHP membungkus closure handler Anda dalam `BetaRunnableTool` generiknya. Ketiganya menggunakan penyimpanan dalam memori yang Anda ganti dengan penyimpanan Anda sendiri.
 
 <CodeGroup exclude="shell">
   ```python Python
@@ -352,7 +352,7 @@ Empat SDK menyediakan helper alat memori yang menangani antarmuka alat dan loop-
 
   var client = new AnthropicClient();
 
-  // Subkelas BetaAbstractMemoryTool milik Anda
+  // Subkelas Anda dari BetaAbstractMemoryTool
   var memory = new FilesystemMemoryTool("./memories");
 
   var runner = client.Beta.Messages.ToolRunner(
@@ -392,8 +392,8 @@ Empat SDK menyediakan helper alat memori yang menangani antarmuka alat dan loop-
   	"github.com/anthropics/anthropic-sdk-go"
   )
 
-  // Penyimpanan dalam memori yang memetakan path file memori ke isinya.
-  // Gunakan penyimpanan Anda sendiri di lingkungan produksi.
+  // Penyimpanan dalam memori yang memetakan jalur file memori ke isinya.
+  // Gunakan penyimpanan Anda sendiri di produksi.
   var store = map[string]string{}
 
   type memoryCommand struct {
@@ -525,7 +525,7 @@ Empat SDK menyediakan helper alat memori yang menangani antarmuka alat dan loop-
   void main() {
     AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-    // Implementasi BetaMemoryToolHandler Anda untuk enam perintah memori
+    // Implementasi BetaMemoryToolHandler Anda untuk keenam perintah memori
     BetaMemoryToolHandler handler = new FileSystemMemoryToolHandler(Path.of("memories"));
 
     MessageCreateParams createParams = MessageCreateParams.builder()
@@ -559,7 +559,7 @@ Empat SDK menyediakan helper alat memori yang menangani antarmuka alat dan loop-
   $client = new Client();
 
   // Penyimpanan dalam memori yang memetakan path file memori ke isinya.
-  // Gunakan penyimpanan Anda sendiri di lingkungan produksi.
+  // Gunakan penyimpanan Anda sendiri di produksi.
   $store = [];
 
   $memory = new BetaRunnableTool(
@@ -644,8 +644,8 @@ Empat SDK menyediakan helper alat memori yang menangani antarmuka alat dan loop-
   client = Anthropic::Client.new
   TOOLS = [{type: "memory_20250818", name: "memory"}].freeze
 
-  # Penyimpanan dalam memori yang memetakan path file memori ke isinya.
-  # Gunakan penyimpanan Anda sendiri di lingkungan produksi.
+  # Penyimpanan dalam memori yang memetakan jalur file memori ke kontennya.
+  # Gunakan penyimpanan Anda sendiri di produksi.
   STORE = {}
 
   def execute_memory(input)
@@ -717,7 +717,7 @@ Empat SDK menyediakan helper alat memori yang menangani antarmuka alat dan loop-
   ```
 </CodeGroup>
 
-Penyimpanan in-memory dalam contoh Go, PHP, dan Ruby membuatnya mandiri: masing-masing melakukan dispatch berdasarkan field `command` dalam `input` blok `tool_use` dan mengembalikan string yang dijelaskan di bawah [Perintah alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool#tool-commands). Handler produksi juga memerlukan [validasi path](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool#path-traversal-protection) yang dilewati oleh penyimpanan demonstrasi ini. Untuk contoh lengkap dari SDK itu sendiri, lihat:
+Penyimpanan dalam memori pada contoh Go, PHP, dan Ruby membuatnya mandiri: masing-masing mengirimkan berdasarkan field `command` dalam `input` blok `tool_use` dan mengembalikan string yang dijelaskan di bawah [Perintah alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool#tool-commands). Handler produksi juga memerlukan [validasi path](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool#path-traversal-protection) yang dilewati oleh penyimpanan demonstrasi ini. Untuk contoh lengkap SDK itu sendiri, lihat:
 
 * Python: [examples/memory/basic.py](https://github.com/anthropics/anthropic-sdk-python/blob/main/examples/memory/basic.py)
 * TypeScript: [examples/tools-helpers-memory.ts](https://github.com/anthropics/anthropic-sdk-typescript/blob/main/examples/tools-helpers-memory.ts)
@@ -726,7 +726,7 @@ Penyimpanan in-memory dalam contoh Go, PHP, dan Ruby membuatnya mandiri: masing-
 
 ## Perintah alat
 
-Implementasi sisi klien Anda harus menangani perintah-perintah berikut. Spesifikasi ini menjelaskan perilaku dan string kembalian yang direkomendasikan: Claude membaca teks apa pun yang terkandung dalam hasil alat Anda, sehingga Anda dapat mengembalikan string yang berbeda jika aplikasi Anda memerlukannya.
+Implementasi sisi klien Anda harus menangani perintah-perintah berikut. Spesifikasi ini menjelaskan perilaku yang direkomendasikan dan string yang dikembalikan: Claude membaca teks apa pun yang terkandung dalam hasil alat Anda, jadi Anda dapat mengembalikan string yang berbeda jika aplikasi Anda membutuhkannya.
 
 ### view
 
@@ -744,7 +744,7 @@ Menampilkan isi direktori atau isi file dengan rentang baris opsional:
 
 #### Nilai kembalian
 
-**Untuk direktori:** Kembalikan daftar yang menampilkan file dan direktori beserta ukurannya:
+**Untuk direktori:** Kembalikan daftar yang menampilkan file dan direktori dengan ukurannya:
 
 ```text
 Here're the files and directories up to 2 levels deep in {path}, excluding hidden items and node_modules:
@@ -753,12 +753,12 @@ Here're the files and directories up to 2 levels deep in {path}, excluding hidde
 {size}\t{path}/{filename2}
 ```
 
-* Mendaftar file hingga kedalaman 2 level
-* Menampilkan ukuran yang mudah dibaca manusia (misalnya, `5.5K`, `1.2M`)
-* Mengecualikan item tersembunyi (file yang diawali dengan `.`) dan `node_modules`
+* Mendaftar file hingga 2 tingkat kedalaman
+* Menampilkan ukuran yang dapat dibaca manusia (misalnya, `5.5K`, `1.2M`)
+* Mengecualikan item tersembunyi (file yang dimulai dengan `.`) dan `node_modules`
 * Menggunakan karakter tab antara ukuran dan path
 
-`view` pertama terhadap `/memories` pada penyimpanan kosong bukanlah error. Alat memori sistem file lokal milik SDK (`BetaLocalFilesystemMemoryTool`) membuat root memori sebelum panggilan pertama Claude dan mengembalikan header daftar diikuti satu baris ukuran-dan-path untuk direktori kosong itu sendiri.
+`view` pertama dari `/memories` pada penyimpanan kosong bukanlah kesalahan. Memory tool sistem file lokal SDK (`BetaLocalFilesystemMemoryTool`) membuat root memori sebelum panggilan pertama Claude dan mengembalikan header daftar diikuti oleh satu baris ukuran-dan-path untuk direktori kosong itu sendiri.
 
 **Untuk file:** Kembalikan isi file dengan header dan nomor baris:
 
@@ -767,12 +767,12 @@ Here's the content of {path} with line numbers:
 {line_numbers}{tab}{content}
 ```
 
-Format nomor baris:
+Pemformatan nomor baris:
 
 * **Lebar:** 6 karakter, rata kanan dengan padding spasi
 * **Pemisah:** Karakter tab antara nomor baris dan konten
-* **Pengindeksan:** Berindeks 1 (baris pertama adalah baris 1)
-* **Batas baris:** File dengan lebih dari 999.999 baris harus mengembalikan error: `"File {path} exceeds maximum line limit of 999,999 lines."`
+* **Pengindeksan:** Berbasis 1 (baris pertama adalah baris 1)
+* **Batas baris:** File dengan lebih dari 999.999 baris harus mengembalikan kesalahan: `"File {path} exceeds maximum line limit of 999,999 lines."`
 
 **Contoh output:**
 
@@ -784,9 +784,9 @@ Here's the content of /memories/notes.txt with line numbers:
    100	Line one hundred
 ```
 
-Deskripsi alat Claude juga menyatakan bahwa `view` menampilkan file gambar (`.jpg`, `.jpeg`, dan `.png`) dan memotong tampilan teks file yang lebih panjang dari 16.000 karakter. Antisipasi panggilan `view` pada path gambar dan tampilan berentang lanjutan untuk file yang panjang.
+Deskripsi alat Claude juga mengatakan bahwa `view` menampilkan file gambar (`.jpg`, `.jpeg`, dan `.png`) dan memotong tampilan teks file yang lebih panjang dari 16.000 karakter. Harapkan panggilan `view` pada path gambar dan tampilan berentang lanjutan dari file panjang.
 
-#### Penanganan error
+#### Penanganan kesalahan
 
 * **File atau direktori tidak ada:** `"The path {path} does not exist. Please provide a valid path."`
 
@@ -804,13 +804,13 @@ Membuat file baru:
 
 #### Nilai kembalian
 
-* **Berhasil:** `"File created successfully at: {path}"`
+* **Sukses:** `"File created successfully at: {path}"`
 
-#### Penanganan error
+#### Penanganan kesalahan
 
 * **File sudah ada:** `"Error: File {path} already exists"`
 
-Deskripsi alat Claude menyatakan `create` "creates or overwrites" sebuah file, jadi antisipasi panggilan `create` pada path yang sudah ada. Mengembalikan error adalah perilaku referensi, dan menimpa file sebagai gantinya adalah pilihan implementasi yang valid.
+Deskripsi alat Claude mengatakan `create` "membuat atau menimpa" sebuah file, jadi harapkan panggilan `create` pada path yang sudah ada. Mengembalikan kesalahan adalah perilaku referensi, dan menimpa sebagai gantinya adalah pilihan implementasi yang valid.
 
 ### str\_replace
 
@@ -825,13 +825,13 @@ Mengganti teks dalam file:
 }
 ```
 
-`new_str` bersifat opsional untuk `str_replace`: ketika dihilangkan, `old_str` dihapus tanpa pengganti.
+`new_str` bersifat opsional untuk `str_replace`: ketika dihilangkan, `old_str` dihapus tanpa penggantian.
 
 #### Nilai kembalian
 
-* **Berhasil:** `"The memory file has been edited."` diikuti cuplikan file yang diedit dengan nomor baris
+* **Sukses:** `"The memory file has been edited."` diikuti oleh cuplikan file yang diedit dengan nomor baris
 
-#### Penanganan error
+#### Penanganan kesalahan
 
 * **File tidak ada:** `"Error: The path {path} does not exist. Please provide a valid path."`
 * **Teks tidak ditemukan:** ``"No replacement was performed, old_str `\{old_str}` did not appear verbatim in {path}."``
@@ -839,7 +839,7 @@ Mengganti teks dalam file:
 
 #### Penanganan direktori
 
-Jika path adalah direktori, kembalikan error "file does not exist".
+Jika path adalah direktori, kembalikan kesalahan "file does not exist".
 
 ### insert
 
@@ -858,16 +858,16 @@ Menyisipkan teks pada baris tertentu:
 
 #### Nilai kembalian
 
-* **Berhasil:** `"The file {path} has been edited."`
+* **Sukses:** `"The file {path} has been edited."`
 
-#### Penanganan error
+#### Penanganan kesalahan
 
 * **File tidak ada:** `"Error: The path {path} does not exist"`
 * **Nomor baris tidak valid:** ``"Error: Invalid `insert_line` parameter: {insert_line}. It should be within the range of lines of the file: [0, {n_lines}]"``
 
 #### Penanganan direktori
 
-Jika path adalah direktori, kembalikan error "file does not exist".
+Jika path adalah direktori, kembalikan kesalahan "file does not exist".
 
 ### delete
 
@@ -882,15 +882,15 @@ Menghapus file atau direktori:
 
 #### Nilai kembalian
 
-* **Berhasil:** `"Successfully deleted {path}"`
+* **Sukses:** `"Successfully deleted {path}"`
 
-#### Penanganan error
+#### Penanganan kesalahan
 
 * **File atau direktori tidak ada:** `"Error: The path {path} does not exist"`
 
 #### Penanganan direktori
 
-Menghapus direktori dan seluruh isinya secara rekursif. Deskripsi alat memberi tahu Claude bahwa ia tidak dapat menghapus direktori `/memories` itu sendiri, jadi tolak `delete` yang path-nya adalah root memori.
+Menghapus direktori dan semua isinya secara rekursif. Deskripsi alat memberi tahu Claude bahwa ia tidak dapat menghapus direktori `/memories` itu sendiri, jadi tolak `delete` yang path-nya adalah root memori.
 
 ### rename
 
@@ -906,12 +906,12 @@ Mengganti nama atau memindahkan file atau direktori:
 
 #### Nilai kembalian
 
-* **Berhasil:** `"Successfully renamed {old_path} to {new_path}"`
+* **Sukses:** `"Successfully renamed {old_path} to {new_path}"`
 
-#### Penanganan error
+#### Penanganan kesalahan
 
 * **Sumber tidak ada:** `"Error: The path {old_path} does not exist"`
-* **Tujuan sudah ada:** Kembalikan error (jangan menimpa): `"Error: The destination {new_path} already exists"`
+* **Tujuan sudah ada:** Kembalikan kesalahan (jangan menimpa): `"Error: The destination {new_path} already exists"`
 
 #### Penanganan direktori
 
@@ -919,7 +919,7 @@ Mengganti nama direktori. Deskripsi alat memberi tahu Claude bahwa ia tidak dapa
 
 ## Panduan prompting
 
-Ketika alat memori ada dalam `tools` permintaan Anda, API secara otomatis menambahkan instruksi ini ke "system prompt" (prompt sistem). Anda tidak perlu mengirimkannya sendiri:
+Ketika memory tool ada dalam `tools` permintaan Anda, API secara otomatis menambahkan instruksi ini ke prompt sistem. Anda tidak perlu mengirimkannya sendiri:
 
 ```text wrap
 IMPORTANT: ALWAYS VIEW YOUR MEMORY DIRECTORY BEFORE DOING ANYTHING ELSE.
@@ -930,17 +930,17 @@ MEMORY PROTOCOL:
 ASSUME INTERRUPTION: Your context window might be reset at any moment, so you risk losing any progress that is not recorded in your memory directory.
 ```
 
-Deskripsi alat Claude sudah memberitahunya untuk menjaga direktori memori tetap teratur, jadi Anda tidak perlu mengulangi instruksi tersebut. Jika Claude masih membuat file memori yang berantakan, Anda dapat memperkuatnya dalam prompt Anda:
+Deskripsi alat Claude sudah memberitahunya untuk menjaga direktori memori tetap terorganisir, jadi Anda tidak perlu mengulangi instruksi tersebut. Jika Claude masih membuat file memori yang berantakan, Anda dapat memperkuatnya dalam prompt Anda:
 
 ```text wrap
 Note: when editing your memory folder, always try to keep its content up-to-date, coherent and organized. You can rename or delete files that are no longer relevant. Do not create new files unless necessary.
 ```
 
-Anda juga dapat mengarahkan apa yang ditulis Claude ke memori. Misalnya: "Only write down information relevant to \<topic> in your memory system."
+Anda juga dapat memandu apa yang ditulis Claude ke memori. Misalnya: "Only write down information relevant to \<topic> in your memory system."
 
 ## Pertimbangan keamanan
 
-Aplikasi Anda mengeksekusi setiap operasi file yang diminta Claude, jadi pengamanan berikut adalah tanggung jawab Anda:
+Aplikasi Anda mengeksekusi setiap operasi file yang diminta Claude, jadi pengamanan ini adalah tanggung jawab Anda:
 
 ### Informasi sensitif
 
@@ -948,29 +948,29 @@ Claude biasanya menolak menulis informasi sensitif ke file memori. Untuk jaminan
 
 ### Ukuran penyimpanan file
 
-Lacak ukuran file memori dan batasi seberapa besar sebuah file dapat bertumbuh. Pertimbangkan untuk membatasi jumlah karakter yang dikembalikan perintah `view`, dan biarkan Claude menelusuri sisanya dengan `view_range`.
+Lacak ukuran file memori dan batasi seberapa besar sebuah file dapat tumbuh. Pertimbangkan untuk membatasi berapa banyak karakter yang dikembalikan perintah `view`, dan biarkan Claude menelusuri sisanya dengan `view_range`.
 
 ### Kedaluwarsa memori
 
-Hapus secara berkala file memori yang sudah lama tidak diakses.
+Secara berkala hapus file memori yang belum diakses dalam waktu lama.
 
 ### Perlindungan path traversal
 
 <Warning>
-  Path berbahaya seperti `/memories/../../secrets.env` dapat menjangkau file di luar direktori `/memories`. Implementasi Anda harus memvalidasi setiap path di setiap perintah untuk mencegah serangan directory traversal.
+  Path berbahaya seperti `/memories/../../secrets.env` dapat menjangkau file di luar direktori `/memories`. Implementasi Anda harus memvalidasi setiap path dalam setiap perintah untuk mencegah serangan directory traversal.
 </Warning>
 
-Pertimbangkan pengamanan berikut:
+Pertimbangkan pengamanan ini:
 
-* Validasi bahwa semua path diawali dengan `/memories`
-* Resolusikan path ke bentuk kanonisnya dan verifikasi bahwa path tetap berada di dalam direktori memori
+* Validasi bahwa semua path dimulai dengan `/memories`
+* Selesaikan path ke bentuk kanoniknya dan verifikasi bahwa mereka tetap berada dalam direktori memori
 * Tolak path yang mengandung urutan seperti `../`, `..\\`, atau pola traversal lainnya
-* Waspadai urutan traversal yang di-encode URL (`%2e%2e%2f`)
-* Gunakan utilitas keamanan path bawaan bahasa Anda (misalnya, `pathlib.Path.resolve()` dan `relative_to()` di Python)
+* Waspadai urutan traversal yang dikodekan URL (`%2e%2e%2f`)
+* Gunakan utilitas keamanan path bawaan bahasa Anda (misalnya, `pathlib.Path.resolve()` dan `relative_to()` milik Python)
 
-## Penanganan error
+## Penanganan kesalahan
 
-Alat memori menggunakan pola penanganan error yang serupa dengan [alat editor teks](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool#handle-errors). Pesan error setiap perintah tercantum di bawah [Perintah alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool#tool-commands). Untuk mengembalikan error ke Claude, atur `is_error` ke `true` pada hasil alat dan letakkan pesannya di `content`:
+Memory tool menggunakan pola penanganan kesalahan yang serupa dengan [text editor tool](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool#handle-errors). Pesan kesalahan setiap perintah tercantum di bawah [Perintah alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool#tool-commands). Untuk mengembalikan kesalahan ke Claude, atur `is_error` ke `true` pada hasil alat dan letakkan pesan di `content`:
 
 ```json
 {
@@ -983,29 +983,29 @@ Alat memori menggunakan pola penanganan error yang serupa dengan [alat editor te
 
 ## Integrasi pengeditan konteks
 
-Alat memori berpasangan dengan pengeditan konteks untuk mengelola percakapan yang berjalan lama. Untuk detailnya, lihat [Pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing).
+Memory tool berpasangan dengan pengeditan konteks untuk mengelola percakapan berjalan lama. Untuk detailnya, lihat [Pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing).
 
 ## Menggunakan dengan compaction
 
-Alat memori juga dapat dipasangkan dengan [compaction](https://platform.claude.com/docs/id/build-with-claude/compaction), yang merangkum konteks percakapan lama di sisi server. Pengeditan konteks menghapus hasil alat tertentu di sisi klien. Compaction secara otomatis merangkum seluruh percakapan di server ketika percakapan mendekati batas jendela konteks.
+Memory tool juga dapat dipasangkan dengan [compaction](https://platform.claude.com/docs/id/build-with-claude/compaction), yang merangkum konteks percakapan lama di sisi server. Pengeditan konteks menghapus hasil alat tertentu di klien. Compaction secara otomatis merangkum seluruh percakapan di server ketika percakapan mendekati batas jendela konteks.
 
-Untuk agen yang berjalan lama, pertimbangkan untuk menggunakan keduanya: compaction menjaga konteks aktif tetap kecil tanpa pembukuan di sisi klien, dan memori mempertahankan informasi yang harus bertahan dari peringkasan.
+Untuk agen berjalan lama, pertimbangkan untuk menggunakan keduanya: compaction menjaga konteks aktif tetap kecil tanpa pembukuan sisi klien, dan memori mempertahankan informasi yang harus bertahan dari perangkuman.
 
 ## Pola pengembangan perangkat lunak multisesi
 
-Untuk proyek perangkat lunak yang mencakup beberapa sesi agen, siapkan file memori secara sengaja alih-alih menulisnya secara ad hoc seiring berjalannya pekerjaan. Pola berikut mengubah memori menjadi mekanisme pemulihan: setiap sesi baru melanjutkan dari status yang dicatat oleh sesi terakhir.
+Untuk proyek perangkat lunak yang mencakup beberapa sesi agen, siapkan file memori secara sengaja alih-alih menulisnya secara ad hoc seiring berjalannya pekerjaan. Pola berikut mengubah memori menjadi mekanisme pemulihan: setiap sesi baru melanjutkan dari keadaan yang dicatat sesi terakhir.
 
-### Cara kerja pola ini
+### Cara kerja pola
 
-1. **Sesi inisialisasi:** Sesi pertama menyiapkan file memori sebelum pekerjaan substantif apa pun dimulai. Ini mencakup log kemajuan (melacak apa yang telah dilakukan dan apa yang berikutnya), daftar periksa fitur (mendefinisikan cakupan pekerjaan), dan referensi ke skrip startup atau inisialisasi apa pun yang dibutuhkan proyek.
+1. **Sesi inisialisasi:** Sesi pertama menyiapkan file memori sebelum pekerjaan substantif apa pun dimulai. Ini mencakup log kemajuan (melacak apa yang telah dilakukan dan apa yang akan datang), daftar periksa fitur (mendefinisikan ruang lingkup pekerjaan), dan referensi ke skrip startup atau inisialisasi apa pun yang dibutuhkan proyek.
 
-2. **Sesi berikutnya:** Setiap sesi baru dibuka dengan membaca file memori tersebut. Ini memulihkan status proyek tanpa menjelajahi ulang basis kode atau menelusuri kembali keputusan sebelumnya.
+2. **Sesi berikutnya:** Setiap sesi baru dibuka dengan membaca file memori tersebut. Ini memulihkan keadaan proyek tanpa menjelajahi ulang basis kode atau menelusuri kembali keputusan sebelumnya.
 
-3. **Pembaruan akhir sesi:** Sebelum sesi berakhir, sesi memperbarui log kemajuan dengan apa yang telah diselesaikan dan apa yang tersisa. Ini memastikan sesi berikutnya memiliki titik awal yang akurat.
+3. **Pembaruan akhir sesi:** Sebelum sesi berakhir, ia memperbarui log kemajuan dengan apa yang telah diselesaikan dan apa yang tersisa. Ini memastikan sesi berikutnya memiliki titik awal yang akurat.
 
 ### Prinsip utama
 
-Kerjakan satu fitur dalam satu waktu. Tandai fitur sebagai selesai hanya setelah verifikasi end-to-end mengonfirmasi bahwa fitur tersebut berfungsi, bukan ketika kodenya selesai ditulis. Ini menjaga log kemajuan tetap akurat dari sesi ke sesi.
+Kerjakan satu fitur pada satu waktu. Tandai fitur sebagai selesai hanya setelah verifikasi end-to-end mengonfirmasi bahwa fitur tersebut berfungsi, bukan ketika kode ditulis. Ini menjaga log kemajuan tetap akurat dari sesi ke sesi.
 
 <Tip>
   Untuk studi kasus terperinci tentang pola ini dalam praktik, termasuk skrip inisialisasi, struktur file kemajuan, dan pemulihan berbasis git, lihat [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).
@@ -1014,16 +1014,16 @@ Kerjakan satu fitur dalam satu waktu. Tandai fitur sebagai selesai hanya setelah
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Alat Bash" icon="terminal" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool">
-    Eksekusi perintah shell dalam sesi bash yang persisten.
+  <Card title="Bash tool" icon="terminal" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool">
+    Jalankan perintah shell dalam sesi bash yang persisten.
   </Card>
 
   <Card title="Pengeditan konteks" icon="edit" href="https://platform.claude.com/docs/id/build-with-claude/context-editing">
-    Kelola konteks percakapan secara otomatis seiring pertumbuhannya dengan pengeditan konteks.
+    Kelola konteks percakapan secara otomatis saat bertumbuh dengan pengeditan konteks.
   </Card>
 
   <Card title="Compaction" icon="stack" href="https://platform.claude.com/docs/id/build-with-claude/compaction">
-    Compaction konteks di sisi server untuk mengelola percakapan panjang yang mendekati batas jendela konteks.
+    Compaction konteks sisi server untuk mengelola percakapan panjang yang mendekati batas jendela konteks.
   </Card>
 
   <Card title="Referensi alat" icon="book" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference">

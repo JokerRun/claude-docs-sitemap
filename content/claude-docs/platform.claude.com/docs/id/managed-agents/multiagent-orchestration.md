@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 17255563609bda4b88775d0c509784bbefc0f689635d12ab54ac00331d666f50
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 2afed3bcdd640160ce62da29aad0fe87e7e6fe96acf203bd4305882e10816709
 ---
 
 ---
@@ -16,30 +16,30 @@ Orkestrasi multiagen memungkinkan satu agen berkoordinasi dengan agen lain untuk
 Tidak yakin apakah pengaturan multiagen cocok untuk masalah Anda? Lihat [kapan menggunakan sistem multiagen (dan kapan tidak)](https://claude.com/blog/building-multi-agent-systems-when-and-how-to-use-them).
 
 <Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Cara kerjanya
 
-Semua agen berbagi sandbox, filesystem, dan [kredensial vault](https://platform.claude.com/docs/id/managed-agents/vaults) yang sama, tetapi setiap agen berjalan di **session thread** (utas sesi) miliknya sendiri, yaitu aliran event dengan konteks terisolasi yang memiliki riwayat percakapannya sendiri. Koordinator melaporkan aktivitas di **primary thread** (utas utama), yang sama dengan [aliran event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) tingkat sesi; thread tambahan dibuat saat runtime ketika koordinator mendelegasikan pekerjaan.
+Semua agen berbagi sandbox, filesystem, dan [kredensial vault](https://platform.claude.com/docs/id/managed-agents/vaults) yang sama, tetapi setiap agen berjalan dalam **session thread** (thread sesi) miliknya sendiri, yaitu aliran event yang terisolasi konteksnya dengan riwayat percakapannya sendiri. Koordinator melaporkan aktivitas di **primary thread** (thread utama), yang sama dengan [aliran event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) tingkat sesi; thread tambahan dibuat saat runtime ketika koordinator mendelegasikan pekerjaan.
 
-Thread bersifat persisten: koordinator dapat mengirim tindak lanjut ke agen yang telah dipanggil sebelumnya, dan agen tersebut mempertahankan semua hal dari giliran sebelumnya.
+Thread bersifat persisten: koordinator dapat mengirim tindak lanjut ke agen yang dipanggilnya sebelumnya, dan agen tersebut mempertahankan semua hal dari giliran sebelumnya.
 
 Setiap agen menggunakan konfigurasinya sendiri: model, prompt sistem, alat, server MCP, dan skill. [Override konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) tingkat sesi adalah pengecualian; override tersebut berlaku untuk koordinator dan salinan `self`-nya. Alat, server MCP, dan konteks tidak dibagikan.
 
-### Apa yang sebaiknya didelegasikan
+### Apa yang perlu didelegasikan
 
-Koordinasi multiagen paling cocok untuk tugas kompleks yang memerlukan pekerjaan di berbagai permukaan, atau ketika beberapa tugas dengan cakupan yang jelas berkontribusi pada tujuan keseluruhan.
+Koordinasi multiagen paling cocok untuk tugas kompleks yang memerlukan pekerjaan di berbagai permukaan, atau di mana beberapa tugas dengan cakupan yang jelas berkontribusi pada tujuan keseluruhan.
 
 Pola yang bekerja dengan baik:
 
-* **Paralelisasi:** Sebarkan subtugas independen secara bersamaan (mencari di beberapa sumber, menganalisis file terpisah) dan minta koordinator menyintesis hasilnya.
+* **Paralelisasi:** Sebarkan subtugas independen secara bersamaan (mencari di beberapa sumber, menganalisis file terpisah) dan minta koordinator mensintesis hasilnya.
 * **Spesialisasi:** Arahkan ke agen dengan prompt sistem dan alat yang berfokus pada domain tertentu, seperti agen keamanan atau agen dokumentasi, daripada membebani satu agen dengan semua kemampuan.
 * **Eskalasi:** Konsultasikan dengan agen atau model yang lebih mumpuni untuk sebagian subtugas yang kompleks.
 
-## Mengonfigurasi koordinator
+## Konfigurasikan koordinator
 
-Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agents/agent-setup), atur `multiagent` untuk mendeklarasikan daftar agen yang dapat didelegasikan oleh koordinator:
+Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agents/agent-setup), atur `multiagent` untuk mendeklarasikan daftar (roster) agen yang dapat didelegasikan oleh koordinator:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -237,20 +237,20 @@ Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agen
 
 `multiagent.agents` dapat menerima salah satu dari berikut ini:
 
-* `{"type": "agent", "id": agent.id}` mereferensikan `agent` yang telah dibuat sebelumnya berdasarkan ID. Jika tidak ada `version` yang ditentukan, referensi tersebut dipatok ke versi terbaru dari agen tersebut pada saat koordinator dibuat.
-* `{"type": "agent", "id": agent.id, "version": agent.version}` mematok versi agen tertentu.
+* `{"type": "agent", "id": agent.id}` mereferensikan `agent` yang telah dibuat sebelumnya berdasarkan ID. Jika `version` tidak ditentukan, referensi disematkan ke versi terbaru agen tersebut pada saat koordinator dibuat.
+* `{"type": "agent", "id": agent.id, "version": agent.version}` menyematkan versi agen tertentu.
 * `{"type": "self"}` memungkinkan koordinator membuat salinan dirinya sendiri. Jika sesi dibuat dengan [override konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session), override tersebut juga berlaku untuk salinan ini; entri roster yang direferensikan berdasarkan ID tidak terpengaruh.
-* `{"type": "advisor", "model": "<model id>"}` memberikan primary thread sesi sebuah advisor yang dapat dikonsultasikan di tengah giliran. Maksimal satu entri advisor per roster. Lihat [Memberikan advisor pada sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor).
+* `{"type": "advisor", "model": "<model id>"}` memberikan primary thread sesi sebuah advisor yang dapat dikonsultasikan di tengah giliran. Maksimal satu entri advisor per roster. Lihat [Berikan sesi sebuah advisor](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor).
 
-Konfigurasi koordinator, termasuk roster `multiagent.agents`-nya, di-snapshot saat koordinator dibuat atau diperbarui. Agen yang direferensikan tetap dipatok ke versi yang di-resolve pada saat itu dan tidak secara otomatis mengambil pembaruan selanjutnya pada definisinya. Untuk mendelegasikan ke versi yang lebih baru dari agen yang direferensikan, [perbarui koordinator](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-an-agent) sehingga roster-nya mereferensikan versi tersebut.
+Konfigurasi koordinator, termasuk roster `multiagent.agents`-nya, di-snapshot saat koordinator dibuat atau diperbarui. Agen yang direferensikan tetap disematkan ke versi yang diselesaikan pada saat itu dan tidak secara otomatis mengambil pembaruan selanjutnya pada definisinya. Untuk mendelegasikan ke versi yang lebih baru dari agen yang direferensikan, [perbarui koordinator](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-an-agent) agar roster-nya mereferensikan versi tersebut.
 
-Koordinator hanya dapat mendelegasikan ke satu tingkat agen; mereferensikan agen yang memiliki roster `multiagent.agents` sendiri akan menggagalkan permintaan create atau update dengan error validasi. Maksimal 20 agen unik dapat dicantumkan dalam `multiagent.agents`, tetapi koordinator dapat memanggil beberapa salinan dari setiap agen.
+Koordinator hanya dapat mendelegasikan ke satu tingkat agen; mereferensikan agen yang memiliki roster `multiagent.agents` sendiri akan menggagalkan permintaan pembuatan atau pembaruan dengan kesalahan validasi. Maksimal 20 agen unik dapat dicantumkan dalam `multiagent.agents`, tetapi koordinator dapat memanggil beberapa salinan dari setiap agen.
 
-Ketika agen mematok [geografi inferensi](https://platform.claude.com/docs/id/manage-claude/data-residency) (`model.inference_geo` dalam [definisi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup)), patokan koordinator dan patokan setiap anggota roster harus semuanya diatur ke nilai yang sama atau semuanya tidak diatur. Roster yang tidak cocok akan ditolak dengan error validasi 400, baik saat agen disimpan maupun saat [override pembuatan sesi](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) mengubah salah satu patokan tersebut.
+Ketika agen menyematkan [geografi inferensi](https://platform.claude.com/docs/id/manage-claude/data-residency) (`model.inference_geo` dalam [definisi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup)), sematan koordinator dan sematan setiap anggota roster harus semuanya diatur ke nilai yang sama atau semuanya tidak diatur. Roster yang tidak cocok ditolak dengan kesalahan validasi 400, baik saat agen disimpan maupun saat [override pembuatan sesi](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) mengubah salah satu sematan tersebut.
 
-### Memberikan advisor pada sesi
+### Berikan sesi sebuah advisor
 
-Entri advisor dalam `multiagent.agents` memberikan primary thread sesi sebuah **advisor**: model yang dapat dikonsultasikan di tengah giliran untuk panduan strategis, seperti merencanakan pendekatan, keluar dari kebuntuan, atau meninjau pekerjaan sebelum menyelesaikannya. Entri ini memiliki tepat dua field, `type` dan `model`:
+Entri advisor dalam `multiagent.agents` memberikan primary thread sesi sebuah **advisor** (penasihat): model yang dapat dikonsultasikan di tengah giliran untuk panduan strategis, seperti merencanakan pendekatan, keluar dari kebuntuan, atau meninjau pekerjaan sebelum selesai. Entri ini memiliki tepat dua field, `type` dan `model`:
 
 ```bash cURL
 curl -fsS https://api.anthropic.com/v1/agents \
@@ -271,15 +271,15 @@ curl -fsS https://api.anthropic.com/v1/agents \
   }'
 ```
 
-Sebuah roster dapat berisi paling banyak satu entri advisor, bersama dengan bentuk roster lainnya. Entri tersebut menempati nama roster yang dicadangkan `anthropic.advisor`: roster yang mencantumkan entri advisor sekaligus anggota yang secara harfiah bernama `anthropic.advisor` akan ditolak dengan error validasi 400. Dalam respons, entri advisor ditampilkan terakhir dalam roster terlepas dari posisi saat dikirimkan.
+Sebuah roster dapat berisi maksimal satu entri advisor, bersama dengan bentuk roster lainnya. Entri ini menempati nama roster yang dicadangkan `anthropic.advisor`: roster yang mencantumkan entri advisor sekaligus anggota yang secara harfiah bernama `anthropic.advisor` ditolak dengan kesalahan validasi 400. Dalam respons, entri advisor ditampilkan terakhir dalam roster terlepas dari posisi saat dikirimkan.
 
-Model advisor harus memenuhi ambang kapabilitas minimum, dan model agen itu sendiri tidak boleh lebih mumpuni daripada advisor-nya; model dengan kapabilitas setara dapat dipasangkan. Pasangan yang tidak valid akan ditolak dengan error validasi 400 saat agen disimpan. Pasangan yang valid mengikuti tabel [kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility) dari alat advisor.
+Model advisor harus memenuhi batas kemampuan minimum, dan model agen itu sendiri tidak boleh lebih mumpuni daripada advisor-nya; model dengan kemampuan setara dapat dipasangkan. Pasangan yang tidak valid ditolak dengan kesalahan validasi 400 saat agen disimpan. Pasangan yang valid mengikuti tabel [kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility) alat advisor.
 
-Advisor juga tersedia sebagai [alat server pada Messages API](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool). Permukaan Managed Agents berbeda dalam konfigurasi dan pengiriman: entri roster tidak memiliki field `max_uses`, `max_tokens`, atau `caching`, dan saran dikirimkan melalui event thread, bukan blok `advisor_tool_result`.
+Advisor juga tersedia sebagai [alat server pada Messages API](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool). Permukaan Managed Agents berbeda dalam konfigurasi dan pengiriman: entri roster tidak memiliki field `max_uses`, `max_tokens`, atau `caching`, dan saran tiba melalui event thread alih-alih blok `advisor_tool_result`.
 
 #### Cara kerja konsultasi
 
-Setiap konsultasi berjalan sebagai thread yang dibuat oleh platform bernama `anthropic.advisor` yang mengakhiri dirinya sendiri saat konsultasi selesai, dan saran dikirimkan ke primary thread sebagai event `agent.thread_message_received`. Sebuah konsultasi memancarkan event thread standar, yang diidentifikasi dengan nama yang dicadangkan `anthropic.advisor` (event siklus hidup thread membawanya sebagai `agent_name`, dan pengiriman saran membawanya sebagai `from_agent_name`), biasanya dalam urutan ini:
+Setiap konsultasi berjalan sebagai thread yang dibuat oleh platform bernama `anthropic.advisor` yang mengakhiri dirinya sendiri saat konsultasi selesai, dan saran dikirimkan ke primary thread sebagai event `agent.thread_message_received`. Sebuah konsultasi memancarkan event thread standar, yang diidentifikasi dengan nama cadangan `anthropic.advisor` (event siklus hidup thread membawanya sebagai `agent_name`, dan pengiriman saran membawanya sebagai `from_agent_name`), biasanya dalam urutan ini:
 
 1. `session.thread_created`
 2. `session.thread_status_running`
@@ -287,25 +287,25 @@ Setiap konsultasi berjalan sebagai thread yang dibuat oleh platform bernama `ant
 4. `session.thread_status_idle` (`stop_reason: end_turn`)
 5. `session.thread_status_terminated`
 
-Tidak ada event `agent.tool_use` yang dipancarkan untuk konsultasi, dan tidak ada event `agent.thread_message_sent` yang muncul pada aliran event sesi, karena input konsultasi disusun oleh platform, bukan dikirim oleh agen. Jika Anda mencantumkan event milik thread advisor itu sendiri, saran juga muncul di sana sebagai event `agent.thread_message_sent`. Pengiriman saran (event 3) tidak dijamin tiba sebelum event idle dan terminated dari thread advisor, jadi jangan memperlakukan event tersebut sebagai sinyal bahwa saran telah dikirimkan.
+Tidak ada event `agent.tool_use` yang dipancarkan untuk konsultasi, dan tidak ada event `agent.thread_message_sent` yang muncul di aliran event sesi, karena input konsultasi disusun oleh platform alih-alih dikirim oleh agen. Jika Anda mencantumkan event milik thread advisor itu sendiri, saran juga muncul di sana sebagai event `agent.thread_message_sent`. Pengiriman saran (event 3) tidak dijamin tiba sebelum event idle dan terminated dari thread advisor, jadi jangan perlakukan event tersebut sebagai sinyal bahwa saran sudah dikirimkan.
 
-Apakah klien Anda dapat membaca saran tersebut adalah kebijakan model advisor, dan ini mencerminkan pembagian [varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants) pada alat advisor Messages API. Model advisor yang mengembalikan hasil plaintext di sana mengirimkan saran sebagai konten teks yang dapat dibaca di sini; model advisor yang mengembalikan hasil yang disunting di sana mengirimkan placeholder `[{"type": "redacted"}]` sebagai konten pesan di setiap permukaan klien, sementara agen itu sendiri tetap membaca saran lengkap di sisi server. Dalam contoh sebelumnya, Claude Opus 5 adalah advisor dengan hasil yang disunting, sehingga klien Anda melihat placeholder sementara agen membaca saran lengkap; pilih Claude Opus 4.8 sebagai advisor jika Anda ingin saran dapat dibaca pada aliran event. Pemikiran advisor tidak pernah ditampilkan. Klien tidak dapat mengirim blok `redacted` sendiri; event yang berisi blok tersebut akan ditolak dengan error validasi 400.
+Apakah klien Anda dapat membaca saran tersebut bergantung pada kebijakan model advisor, dan ini mencerminkan pembagian [varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants) pada alat advisor Messages API. Model advisor yang mengembalikan hasil plaintext di sana mengirimkan saran sebagai konten teks yang dapat dibaca di sini; model advisor yang mengembalikan hasil yang disunting (redacted) di sana mengirimkan placeholder `[{"type": "redacted"}]` sebagai konten pesan di setiap permukaan klien, sementara agen itu sendiri tetap membaca saran lengkap di sisi server. Dalam contoh sebelumnya, Claude Opus 5 adalah advisor dengan hasil redacted, sehingga klien Anda melihat placeholder sementara agen membaca saran lengkap; pilih Claude Opus 4.8 sebagai advisor jika Anda ingin saran dapat dibaca di aliran event. Pemikiran advisor tidak pernah ditampilkan. Klien tidak dapat mengirim blok `redacted` sendiri; event yang berisi blok tersebut ditolak dengan kesalahan validasi 400.
 
-Konsultasi yang gagal atau terputus tidak pernah menggagalkan giliran agen: agen melanjutkan setelah pemberitahuan umum bahwa konsultasi gagal. `user.interrupt` tingkat sesi selama konsultasi akan mengakhiri thread advisor tanpa saran yang dikirimkan; `user.interrupt` dengan `session_thread_id` milik thread advisor hanya membatalkan konsultasi tersebut.
+Konsultasi yang gagal atau terinterupsi tidak pernah menggagalkan giliran agen: agen melanjutkan setelah pemberitahuan umum bahwa konsultasi gagal. `user.interrupt` tingkat sesi selama konsultasi mengakhiri thread advisor tanpa saran yang dikirimkan; `user.interrupt` dengan `session_thread_id` milik thread advisor hanya membatalkan konsultasi tersebut.
 
 #### Thread advisor
 
-Advisor bukanlah agen roster: advisor tidak terlihat oleh alat `list_agents` koordinator, tidak dapat dikirimi pesan dengan `send_to_agent`, dan hanya primary thread sesi yang dapat mengonsultasikannya. Agen roster tidak dapat melakukannya.
+Advisor bukan agen roster: ia tidak terlihat oleh alat `list_agents` koordinator, tidak dapat dikirimi pesan dengan `send_to_agent`, dan hanya primary thread sesi yang dapat berkonsultasi dengannya. Agen roster tidak dapat.
 
-Thread advisor dikecualikan dari batas thread konkuren. Thread tersebut muncul dalam [daftar thread](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#threads) sesi dengan `agent` diatur ke bentuk advisor persis seperti yang dikonfigurasi (`{"type": "advisor", "model": ...}`) dan `parent_thread_id` diatur ke primary thread.
+Thread advisor dikecualikan dari batas thread bersamaan. Thread ini muncul dalam [daftar thread](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#threads) sesi dengan `agent` diatur ke bentuk advisor persis seperti yang dikonfigurasi (`{"type": "advisor", "model": ...}`) dan `parent_thread_id` diatur ke primary thread.
 
-Caching prompt di sisi advisor bersifat otomatis; tidak ada yang perlu dikonfigurasi. Konsultasi ditagih dengan tarif model advisor, dan token-nya muncul dalam penggunaan thread advisor dan dalam total penggunaan sesi.
+Caching prompt di sisi advisor bersifat otomatis; tidak ada yang perlu dikonfigurasi. Konsultasi ditagih dengan tarif model advisor, dan tokennya muncul dalam penggunaan thread advisor dan dalam total penggunaan sesi.
 
 #### Menghapus advisor
 
-Untuk menghapus advisor, [perbarui agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-an-agent) dengan roster yang tidak lagi menyertakan entri advisor. Jika advisor adalah satu-satunya entri dalam roster, kosongkan roster sepenuhnya dengan mengatur `"multiagent": null`.
+Untuk menghapus advisor, [perbarui agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-an-agent) dengan roster yang tidak lagi menyertakan entri advisor. Jika advisor adalah satu-satunya entri roster, kosongkan roster sepenuhnya dengan mengatur `"multiagent": null`.
 
-## Membuat sesi
+## Buat sesi
 
 Buat sesi yang mereferensikan koordinator. Koordinator mendelegasikan ke agen dalam roster-nya sesuai kebutuhan.
 
@@ -388,12 +388,12 @@ Buat sesi yang mereferensikan koordinator. Koordinator mendelegasikan ke agen da
   ```
 </CodeGroup>
 
-## Menghubungkan agen ke server MCP
+## Hubungkan agen ke server MCP
 
 Server MCP memiliki cakupan agen (setiap definisi agen mendeklarasikan server dan alatnya sendiri), sedangkan kredensial vault memiliki cakupan sesi (`vault_ids` yang diteruskan saat pembuatan sesi berlaku untuk setiap thread). Dua implikasi untuk integrasi Anda:
 
 * Untuk mengautentikasi server MCP, sertakan kredensial vault untuk setiap server MCP yang digunakan di semua agen.
-* Untuk membatasi akses agen, deklarasikan hanya server yang dibutuhkan dalam definisi agennya.
+* Untuk membatasi akses agen, deklarasikan hanya server yang dibutuhkannya dalam definisi agennya.
 
 [Override konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) saat pembuatan sesi dapat menggantikan server MCP koordinator dan server MCP salinan `self`-nya.
 
@@ -761,25 +761,25 @@ Server MCP memiliki cakupan agen (setiap definisi agen mendeklarasikan server da
 Dalam contoh ini, hanya researcher yang mendeklarasikan server MCP GitHub, sehingga koordinator tidak memiliki akses. `vault_ids` sesi menyediakan kredensial GitHub ke thread researcher.
 
 <Tip>
-  Jika panggilan MCP agen gagal diautentikasi setelah Anda mendeklarasikan server, pastikan `mcp_server_url` kredensial merujuk ke server yang sama dengan `mcp_servers[].url` agen. Kedua URL dinormalisasi sebelum dicocokkan (skema dan host diubah menjadi huruf kecil, port default dan garis miring di akhir dihapus), sehingga perbedaan dalam kapitalisasi host, port default, atau garis miring di akhir tidak mencegah kecocokan; path, subdomain, atau port non-default yang berbeda akan mencegahnya.
+  Jika panggilan MCP agen gagal diautentikasi setelah Anda mendeklarasikan server, pastikan `mcp_server_url` kredensial merujuk ke server yang sama dengan `mcp_servers[].url` agen. Kedua URL dinormalisasi sebelum dicocokkan (skema dan host dijadikan huruf kecil, port default dan garis miring di akhir dihapus), sehingga perbedaan huruf besar-kecil pada host, port default, atau garis miring di akhir tidak mencegah kecocokan; path, subdomain, atau port non-default yang berbeda akan mencegahnya.
 </Tip>
 
 ## Thread
 
-**Aliran event tingkat sesi** (`/v1/sessions/{session_id}/events/stream`) dianggap sebagai **primary thread**, yang berisi tampilan ringkas dari semua aktivitas di seluruh thread. Anda tidak melihat aktivitas lengkap dari subagen, tetapi Anda melihat awal dan akhir pekerjaan mereka, serta event yang memblokir seperti permintaan izin alat.
+**Aliran event tingkat sesi** (`/v1/sessions/{session_id}/events/stream`) dianggap sebagai **primary thread**, yang berisi tampilan ringkas dari semua aktivitas di semua thread. Anda tidak melihat aktivitas lengkap dari subagen, tetapi Anda melihat awal dan akhir pekerjaan mereka, serta event yang memblokir seperti permintaan izin alat.
 
 **Session thread** adalah tempat Anda menelusuri aktivitas agen tertentu.
 
 `status` sesi adalah agregasi dari semua aktivitas agen; jika setidaknya satu thread berstatus `running`, maka status sesi keseluruhan juga `running`.
 
-[Anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets) adalah satu batas bersama di seluruh thread sesi. Saat batas tercapai, thread dijeda secara independen, dan biaya setiap thread dihitung berdasarkan model yang dilayani oleh thread itu sendiri.
+[Anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets) adalah satu batas bersama untuk semua thread dalam sesi. Saat batas tercapai, thread berhenti sementara secara independen, dan biaya setiap thread dihitung berdasarkan model yang dilayani oleh thread itu sendiri.
 
 <Note>
-  Maksimal 25 thread konkuren didukung. Koordinator dapat memanggil beberapa salinan dari satu agen dalam roster, membuat beberapa thread yang terkait dengan satu `agent`. Thread konsultasi [advisor](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor) dikecualikan dari batas ini.
+  Maksimal 25 thread bersamaan didukung. Koordinator dapat memanggil beberapa salinan dari satu agen dalam roster, sehingga membuat beberapa thread yang terkait dengan satu `agent`. Thread konsultasi [advisor](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor) dikecualikan dari batas ini.
 </Note>
 
 <Tabs>
-  <Tab title="Mencantumkan thread">
+  <Tab title="Daftar thread">
     Cantumkan semua thread yang terkait dengan sesi sebagai berikut:
 
     <CodeGroup>
@@ -847,7 +847,7 @@ Dalam contoh ini, hanya researcher yang mendeklarasikan server MCP GitHub, sehin
     Daftar lengkap mencakup primary thread. `parent_thread_id` bernilai null untuk primary thread.
   </Tab>
 
-  <Tab title="Menginterupsi session thread">
+  <Tab title="Interupsi session thread">
     Kirim `user.interrupt` dengan `session_thread_id` untuk menghentikan thread tertentu. Menghilangkan `session_thread_id` akan menginterupsi setiap thread yang tidak diarsipkan dalam sesi, termasuk primary thread.
 
     <CodeGroup>
@@ -934,10 +934,10 @@ Dalam contoh ini, hanya researcher yang mendeklarasikan server MCP GitHub, sehin
       ```
     </CodeGroup>
 
-    Terhadap thread anak yang diblokir pada `requires_action`, interupsi menutup setiap panggilan alat yang tertunda dengan hasil alat error ("Tool execution was interrupted before completion. Please retry.") dan memancarkan ulang `session.thread_status_idle` dengan `stop_reason: end_turn` secara langsung; model tidak di-sample. Terhadap thread yang sudah berada di `idle`, interupsi tidak melakukan apa-apa.
+    Terhadap thread anak yang terblokir pada `requires_action`, interupsi menutup setiap panggilan alat yang tertunda dengan hasil alat berupa kesalahan ("Tool execution was interrupted before completion. Please retry.") dan memancarkan ulang `session.thread_status_idle` dengan `stop_reason: end_turn` secara langsung; model tidak di-sampling. Terhadap thread yang sudah berstatus `idle`, interupsi tidak melakukan apa pun (no-op).
   </Tab>
 
-  <Tab title="Mengarsipkan session thread">
+  <Tab title="Arsipkan session thread">
     Secara opsional, arsipkan session thread ketika telah menyelesaikan pekerjaannya. Ini membebaskan satu thread dari batas 25 thread.
 
     <CodeGroup>
@@ -1001,7 +1001,7 @@ Dalam contoh ini, hanya researcher yang mendeklarasikan server MCP GitHub, sehin
       ```
     </CodeGroup>
 
-    Pengarsipan hanya berhasil jika thread berstatus `idle`. Thread yang terparkir pada `requires_action` dihitung sebagai idle dan dapat diarsipkan langsung; hanya thread yang sedang running yang harus diinterupsi terlebih dahulu:
+    Pengarsipan hanya berhasil jika thread berstatus `idle`. Thread yang terparkir pada `requires_action` dihitung sebagai idle dan dapat diarsipkan secara langsung; hanya thread yang sedang berjalan yang harus diinterupsi terlebih dahulu:
 
     <CodeGroup>
       ```bash cURL
@@ -1126,24 +1126,24 @@ Dalam contoh ini, hanya researcher yang mendeklarasikan server MCP GitHub, sehin
 
 ### Event primary thread
 
-Event ini menampilkan aktivitas multiagen pada primary thread di `/v1/sessions/{session_id}/events/stream`. Event arah pesan dinamai relatif terhadap thread tempat aliran event tersebut muncul: `agent.thread_message_received` berarti sebuah pesan tiba di thread ini dari thread lain, dan `agent.thread_message_sent` berarti thread ini mengirim pesan. Tugas yang didelegasikan koordinator, misalnya, tiba di aliran milik thread anak sebagai event `agent.thread_message_received`.
+Event-event ini menampilkan aktivitas multiagen pada primary thread di `/v1/sessions/{session_id}/events/stream`. Event arah pesan dinamai relatif terhadap thread tempat event tersebut muncul: `agent.thread_message_received` berarti sebuah pesan tiba di thread ini dari thread lain, dan `agent.thread_message_sent` berarti thread ini mengirim pesan. Tugas yang didelegasikan koordinator, misalnya, tiba di aliran milik thread anak sebagai event `agent.thread_message_received`.
 
 | Tipe                               | Deskripsi                                                                                                                                               |
 | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `session.thread_created`           | Sebuah thread dibuat. Mencakup `session_thread_id` dan `agent_name`.                                                                                    |
 | `session.thread_status_running`    | Sebuah thread memulai aktivitas.                                                                                                                        |
 | `session.thread_status_idle`       | Agen yang terkait dengan thread sedang menunggu input. Mencakup `stop_reason` yang menunjukkan mengapa agen berhenti.                                   |
-| `session.thread_status_terminated` | Sebuah thread diarsipkan atau mengalami error terminal.                                                                                                 |
+| `session.thread_status_terminated` | Sebuah thread diarsipkan atau mengalami kesalahan terminal.                                                                                             |
 | `agent.thread_message_received`    | Pada primary thread, sebuah agen mengirim laporan atau pertanyaan ke koordinator. Mencakup `from_session_thread_id`, `from_agent_name`, dan `content`.  |
 | `agent.thread_message_sent`        | Pada primary thread, koordinator mengirim tugas atau pesan tindak lanjut ke agen lain. Mencakup `to_session_thread_id`, `to_agent_name`, dan `content`. |
 
-Konsultasi advisor memancarkan event thread yang sama ini dengan nama yang dicadangkan `anthropic.advisor` (sebagai `agent_name` pada event siklus hidup thread dan `from_agent_name` pada pengiriman saran); lihat [Memberikan advisor pada sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor) untuk urutannya.
+Konsultasi advisor memancarkan event thread yang sama ini dengan nama cadangan `anthropic.advisor` (sebagai `agent_name` pada event siklus hidup thread dan `from_agent_name` pada pengiriman saran); lihat [Berikan sesi sebuah advisor](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor) untuk urutannya.
 
 ### Event session thread
 
 Event penting diproksikan ke primary thread. Namun, Anda mungkin masih ingin menyelidiki penalaran dan panggilan alat dari agen tertentu. Untuk melakukannya, lakukan streaming atau cantumkan event dari session thread yang terkait.
 
-Setiap session thread memiliki aliran event sendiri di `/v1/sessions/{session_id}/threads/{thread_id}/stream`, dan menerima parameter `event_deltas[]` yang sama dengan aliran tingkat sesi, sehingga Anda dapat melihat pratinjau teks subagen saat model menghasilkannya. Sebuah koneksi hanya menampilkan pratinjau thread yang sedang dibacanya: pratinjau thread anak tidak pernah muncul pada aliran tingkat sesi, jadi untuk menonton subagen secara langsung, buka aliran thread miliknya sendiri. Lihat [Pratinjau event session thread](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#preview-session-thread-events) untuk mengaktifkan, mengakumulasi, dan merekonsiliasi pratinjau.
+Setiap session thread memiliki aliran event sendiri di `/v1/sessions/{session_id}/threads/{thread_id}/stream`, dan menerima parameter `event_deltas[]` yang sama dengan aliran tingkat sesi, sehingga Anda dapat melihat pratinjau teks subagen saat model menghasilkannya. Sebuah koneksi hanya mempratinjau thread yang sedang dibacanya: pratinjau thread anak tidak pernah muncul di aliran tingkat sesi, jadi untuk memantau subagen secara langsung, buka aliran thread miliknya sendiri. Lihat [Pratinjau event session thread](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#preview-session-thread-events) untuk cara mengaktifkan, mengakumulasi, dan merekonsiliasi pratinjau.
 
 <Tabs>
   <Tab title="Streaming event session thread">
@@ -1302,8 +1302,8 @@ Setiap session thread memiliki aliran event sendiri di `/v1/sessions/{session_id
     </CodeGroup>
   </Tab>
 
-  <Tab title="Mencantumkan event session thread">
-    Cantumkan semua event session thread sebelumnya untuk menarik riwayat lengkap.
+  <Tab title="Daftar event session thread">
+    Cantumkan semua event session thread yang telah lalu untuk mengambil riwayat lengkap.
 
     <CodeGroup>
       ```bash cURL
@@ -1395,7 +1395,7 @@ Setiap session thread memiliki aliran event sendiri di `/v1/sessions/{session_id
 
 ### Izin alat dan alat kustom
 
-Jika subagen membutuhkan sesuatu dari klien Anda, seperti [izin](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#tool-confirmation) untuk menjalankan alat `always_ask`, atau [hasil dari alat kustom](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls), event tersebut di-cross-post ke **primary thread** dengan `session_thread_id` yang mengidentifikasi session thread asal.
+Jika subagen membutuhkan sesuatu dari klien Anda, seperti [izin](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#tool-confirmation) untuk menjalankan alat `always_ask`, atau [hasil dari alat kustom](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls), event tersebut diposting silang ke **primary thread** dengan `session_thread_id` yang mengidentifikasi session thread asalnya.
 
 ```json
 {
@@ -1410,7 +1410,7 @@ Jika subagen membutuhkan sesuatu dari klien Anda, seperti [izin](https://platfor
 }
 ```
 
-Kirim `user.tool_confirmation` (dengan `tool_use_id`) atau `user.custom_tool_result` (dengan `custom_tool_use_id`); server merutekan respons ke thread yang benar secara otomatis.
+Posting `user.tool_confirmation` (dengan `tool_use_id`) atau `user.custom_tool_result` (dengan `custom_tool_use_id`); server merutekan respons ke thread yang benar secara otomatis.
 
 Contoh berikut memperluas [handler konfirmasi alat](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#tool-confirmation) untuk merutekan balasan. Pola yang sama berlaku untuk `user.custom_tool_result`.
 

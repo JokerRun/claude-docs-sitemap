@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/run
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: b5133e1bc7d9f4d7f5e2da47a76fa59a25a7735f3778af3eeeb33fb3b4a41eb1
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 164bc176243dd048f50c89baeb348f8e14f8bd24791487b5393aecee470f610f
 ---
 
 # Run Deployment Now
@@ -23,7 +23,7 @@ Run Deployment Now
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -106,6 +106,12 @@ Run Deployment Now
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ## Returns
 
@@ -305,7 +311,7 @@ Run Deployment Now
 
   - `session_id: string or null`
 
-    Populated on success. Null on creation failure. Exactly one of session_id or error is non-null.
+    Populated on success. Null on creation failure. Exactly one of `session_id` or `error` is non-null.
 
   - `trigger_context: BetaManagedAgentsTriggerContext`
 

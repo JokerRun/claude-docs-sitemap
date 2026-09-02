@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 11002cdfa1dd0d2fcec33ae7e6fb77b99ffca506228ded6103e864e435c36780
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: e2e8a7277d989996b84342e117c8008f45897499b288f1ba6fc269dd42d2bb6f
 ---
 
 # External Keys
@@ -23,7 +23,7 @@ Create an external key config owned by the caller's organization.
 
     - `kms_arn: string`
 
-      Full ARN of the AWS KMS key.
+      Full ARN of the AWS KMS key. On Claude Platform on AWS the key must be a single-Region key in your organization's own AWS account; cross-account keys, multi-Region keys, and alias ARNs are rejected.
 
       maxLength: 2048
 
@@ -37,7 +37,7 @@ Create an external key config owned by the caller's organization.
 
       **Deprecated**
 
-      IAM role ARN. Deprecated — Anthropic reaches the KMS key via a managed intermediate role; this field is ignored.
+      IAM role ARN. Deprecated — Anthropic reaches the KMS key through its own intermediate role (or, on Claude Platform on AWS, with credentials AWS issues for the Workspace); this field is ignored.
 
   - `BetaGCPExternalKeyConfig object`
 
@@ -129,7 +129,7 @@ Create an external key config owned by the caller's organization.
 
       - `kms_arn: string`
 
-        Full ARN of the AWS KMS key.
+        Full ARN of the AWS KMS key. On Claude Platform on AWS the key must be a single-Region key in your organization's own AWS account; cross-account keys, multi-Region keys, and alias ARNs are rejected.
 
         maxLength: 2048
 
@@ -143,7 +143,7 @@ Create an external key config owned by the caller's organization.
 
         **Deprecated**
 
-        IAM role ARN. Deprecated — Anthropic reaches the KMS key via a managed intermediate role; this field is ignored.
+        IAM role ARN. Deprecated — Anthropic reaches the KMS key through its own intermediate role (or, on Claude Platform on AWS, with credentials AWS issues for the Workspace); this field is ignored.
 
     - `BetaGCPExternalKeyConfig object`
 
@@ -283,7 +283,7 @@ Results are ordered by creation time (newest first). Use the
 
       - `kms_arn: string`
 
-        Full ARN of the AWS KMS key.
+        Full ARN of the AWS KMS key. On Claude Platform on AWS the key must be a single-Region key in your organization's own AWS account; cross-account keys, multi-Region keys, and alias ARNs are rejected.
 
         maxLength: 2048
 
@@ -297,7 +297,7 @@ Results are ordered by creation time (newest first). Use the
 
         **Deprecated**
 
-        IAM role ARN. Deprecated — Anthropic reaches the KMS key via a managed intermediate role; this field is ignored.
+        IAM role ARN. Deprecated — Anthropic reaches the KMS key through its own intermediate role (or, on Claude Platform on AWS, with credentials AWS issues for the Workspace); this field is ignored.
 
     - `BetaGCPExternalKeyConfig object`
 
@@ -438,7 +438,7 @@ Retrieve a single external key config in the caller's organization by ID.
 
       - `kms_arn: string`
 
-        Full ARN of the AWS KMS key.
+        Full ARN of the AWS KMS key. On Claude Platform on AWS the key must be a single-Region key in your organization's own AWS account; cross-account keys, multi-Region keys, and alias ARNs are rejected.
 
         maxLength: 2048
 
@@ -452,7 +452,7 @@ Retrieve a single external key config in the caller's organization by ID.
 
         **Deprecated**
 
-        IAM role ARN. Deprecated — Anthropic reaches the KMS key via a managed intermediate role; this field is ignored.
+        IAM role ARN. Deprecated — Anthropic reaches the KMS key through its own intermediate role (or, on Claude Platform on AWS, with credentials AWS issues for the Workspace); this field is ignored.
 
     - `BetaGCPExternalKeyConfig object`
 
@@ -558,7 +558,7 @@ encrypted data requires the original key identity to decrypt.
 
     - `kms_arn: string`
 
-      Full ARN of the AWS KMS key.
+      Full ARN of the AWS KMS key. On Claude Platform on AWS the key must be a single-Region key in your organization's own AWS account; cross-account keys, multi-Region keys, and alias ARNs are rejected.
 
       maxLength: 2048
 
@@ -572,7 +572,7 @@ encrypted data requires the original key identity to decrypt.
 
       **Deprecated**
 
-      IAM role ARN. Deprecated — Anthropic reaches the KMS key via a managed intermediate role; this field is ignored.
+      IAM role ARN. Deprecated — Anthropic reaches the KMS key through its own intermediate role (or, on Claude Platform on AWS, with credentials AWS issues for the Workspace); this field is ignored.
 
   - `BetaGCPExternalKeyConfig object`
 
@@ -654,7 +654,7 @@ encrypted data requires the original key identity to decrypt.
 
       - `kms_arn: string`
 
-        Full ARN of the AWS KMS key.
+        Full ARN of the AWS KMS key. On Claude Platform on AWS the key must be a single-Region key in your organization's own AWS account; cross-account keys, multi-Region keys, and alias ARNs are rejected.
 
         maxLength: 2048
 
@@ -668,7 +668,7 @@ encrypted data requires the original key identity to decrypt.
 
         **Deprecated**
 
-        IAM role ARN. Deprecated — Anthropic reaches the KMS key via a managed intermediate role; this field is ignored.
+        IAM role ARN. Deprecated — Anthropic reaches the KMS key through its own intermediate role (or, on Claude Platform on AWS, with credentials AWS issues for the Workspace); this field is ignored.
 
     - `BetaGCPExternalKeyConfig object`
 
@@ -846,7 +846,7 @@ curl https://api.anthropic.com/v1/organizations/external_keys/$EXTERNAL_KEY_ID/v
 
   - `kms_arn: string`
 
-    Full ARN of the AWS KMS key.
+    Full ARN of the AWS KMS key. On Claude Platform on AWS the key must be a single-Region key in your organization's own AWS account; cross-account keys, multi-Region keys, and alias ARNs are rejected.
 
     maxLength: 2048
 
@@ -860,7 +860,7 @@ curl https://api.anthropic.com/v1/organizations/external_keys/$EXTERNAL_KEY_ID/v
 
     **Deprecated**
 
-    IAM role ARN. Deprecated — Anthropic reaches the KMS key via a managed intermediate role; this field is ignored.
+    IAM role ARN. Deprecated — Anthropic reaches the KMS key through its own intermediate role (or, on Claude Platform on AWS, with credentials AWS issues for the Workspace); this field is ignored.
 
 ### Beta Azure External Key Config
 
@@ -958,7 +958,7 @@ curl https://api.anthropic.com/v1/organizations/external_keys/$EXTERNAL_KEY_ID/v
 
       - `kms_arn: string`
 
-        Full ARN of the AWS KMS key.
+        Full ARN of the AWS KMS key. On Claude Platform on AWS the key must be a single-Region key in your organization's own AWS account; cross-account keys, multi-Region keys, and alias ARNs are rejected.
 
         maxLength: 2048
 
@@ -972,7 +972,7 @@ curl https://api.anthropic.com/v1/organizations/external_keys/$EXTERNAL_KEY_ID/v
 
         **Deprecated**
 
-        IAM role ARN. Deprecated — Anthropic reaches the KMS key via a managed intermediate role; this field is ignored.
+        IAM role ARN. Deprecated — Anthropic reaches the KMS key through its own intermediate role (or, on Claude Platform on AWS, with credentials AWS issues for the Workspace); this field is ignored.
 
     - `BetaGCPExternalKeyConfig object`
 

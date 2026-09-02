@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 3e8d647baad3732798163e28e393ce5524224a0d1f3520a978bec5e4dbd07859
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: e61ded7973adc74414ffd78dc08f312a90e75bfa25ae79f71ca6107a110f8aff
 ---
 
 ---
@@ -50,7 +50,7 @@ Anda dapat menggunakan CLI untuk mengelola versi (version control) sumber daya A
     }
     ```
 
-    Catat `id` dari respons. Anda akan meneruskannya ke perintah pembuatan sesi pada langkah selanjutnya.
+    Catat `id` dari respons. Anda akan meneruskannya ke perintah pembuatan sesi pada langkah berikutnya.
 
     <Tip>
       Masukkan `summarizer.agent.yaml` ke repositori Anda dan jaga agar tetap sinkron dengan API di pipeline CI Anda. Perintah update memerlukan ID agen dan versi saat ini sebagai flag:
@@ -62,7 +62,7 @@ Anda dapat menggunakan CLI untuk mengelola versi (version control) sumber daya A
   </Step>
 
   <Step title="Definisikan environment">
-    Sebuah sesi berjalan di dalam [environment](https://platform.claude.com/docs/id/api/cli/beta/environments), yang mendefinisikan sandbox tempat sesi tersebut dieksekusi. Tulis definisi environment ke `summarizer.environment.yaml`:
+    Sebuah sesi berjalan dalam sebuah [environment](https://platform.claude.com/docs/id/api/cli/beta/environments), yang mendefinisikan sandbox tempat sesi tersebut dieksekusi. Tulis definisi environment ke `summarizer.environment.yaml`:
 
     ```yaml summarizer.environment.yaml
     name: summarizer-env
@@ -86,7 +86,7 @@ Anda dapat menggunakan CLI untuk mengelola versi (version control) sumber daya A
     }
     ```
 
-    Catat `id` dari respons. Anda akan meneruskannya ke perintah pembuatan sesi pada langkah selanjutnya.
+    Catat `id` dari respons. Anda akan meneruskannya ke perintah pembuatan sesi pada langkah berikutnya.
 
     <Tip>
       Masukkan `summarizer.environment.yaml` ke repositori Anda dan jaga agar tetap sinkron dengan API di pipeline CI Anda. Perintah update memerlukan ID environment sebagai flag:
@@ -127,7 +127,7 @@ Anda dapat menggunakan CLI untuk mengelola versi (version control) sumber daya A
   </Step>
 
   <Step title="Baca percakapan">
-    `--transform` dijalankan terhadap setiap event yang terdaftar, sehingga ini mencetak teks setiap pesan secara berurutan. `--format auto` menimpa explorer interaktif yang dibuka oleh perintah list secara default di terminal:
+    `--transform` dijalankan terhadap setiap event yang terdaftar, sehingga ini mencetak teks dari setiap pesan secara berurutan. `--format auto` menimpa explorer interaktif yang secara default dibuka oleh perintah list di terminal:
 
     ```bash
     ant beta:sessions:events list \
@@ -141,7 +141,7 @@ Anda dapat menggunakan CLI untuk mengelola versi (version control) sumber daya A
     ```
 
     <Tip>
-      Untuk memantau sesi saat berjalan, gunakan `ant beta:sessions:events stream --session-id session_01JZCh78XvmxJjiXVy3oSi7K`. Event ditulis ke stdout saat tiba.
+      Untuk memantau sesi saat sedang berjalan, gunakan `ant beta:sessions:events stream --session-id session_01JZCh78XvmxJjiXVy3oSi7K`. Event ditulis ke stdout saat tiba.
     </Tip>
   </Step>
 </Steps>
@@ -150,7 +150,7 @@ Anda dapat menggunakan CLI untuk mengelola versi (version control) sumber daya A
 
 CLI dirancang agar dapat dikombinasikan dengan perangkat shell standar.
 
-### Rangkai output list ke perintah kedua
+### Merangkai output list ke perintah kedua
 
 `--transform id --raw-output` pada endpoint list menghasilkan satu ID polos per baris, sehingga alat standar seperti `head` dan `xargs` dapat langsung diterapkan. Ambil hasil pertama, lalu teruskan ke perintah lanjutan:
 
@@ -162,7 +162,7 @@ ant beta:agents:versions list \
   --transform "{version,created_at}" --format jsonl
 ```
 
-### Periksa error
+### Memeriksa error
 
 Flag `--transform-error` dan `--format-error` menerapkan pemfilteran yang sama pada respons error. `--raw-output` tidak berlaku untuk error, jadi gunakan `--format-error yaml` untuk skalar tanpa tanda kutip. Ekstrak hanya pesan error-nya:
 
@@ -176,7 +176,7 @@ GET "https://api.anthropic.com/v1/agents/bogus?beta=true": 404 Not Found
 Agent not found.
 ```
 
-## Gunakan CLI dari Claude Code
+## Menggunakan CLI dari Claude Code
 
 [Claude Code](https://code.claude.com/docs/en/overview) dapat menggunakan CLI `ant` secara langsung tanpa konfigurasi tambahan. Dengan CLI yang sudah terinstal dan terautentikasi, Anda dapat meminta Claude Code untuk mengoperasikan sumber daya API Anda secara langsung. Misalnya:
 
@@ -184,9 +184,9 @@ Agent not found.
 * "Unggah setiap PDF di `./reports` ke Files API dan cetak ID yang dihasilkan."
 * "Ambil event untuk sesi `session_01...` dan beri tahu saya di mana agen tersebut macet."
 
-Claude Code memanggil `ant` melalui shell, mem-parsing output terstrukturnya, dan bernalar atas hasilnya (tanpa memerlukan kode integrasi khusus).
+Claude Code memanggil `ant` melalui shell, mem-parsing output terstrukturnya, dan menalar hasilnya (tanpa memerlukan kode integrasi khusus).
 
-## Autentikasi permintaan curl dengan kredensial CLI
+## Mengautentikasi permintaan curl dengan kredensial CLI
 
 Skrip yang memanggil API dengan `curl` atau klien HTTP lain dapat menggunakan kredensial yang disimpan oleh [`ant auth login`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart#authentication) alih-alih "API key" (kunci API) statis. Token akses OAuth ditempatkan di header `Authorization` sebagai bearer token; header `x-api-key` hanya untuk kunci API statis.
 
@@ -208,4 +208,4 @@ curl https://api.anthropic.com/v1/messages \
   Biarkan `ANTHROPIC_API_KEY` dan `ANTHROPIC_AUTH_TOKEN` tidak disetel saat bekerja dari login CLI. Kedua variabel tersebut lebih diutamakan daripada login untuk perintah `ant` (lihat [Prioritas kredensial](https://platform.claude.com/docs/id/manage-claude/wif-reference#credential-precedence)) dan dapat secara diam-diam mengarahkannya ke organisasi atau workspace yang berbeda.
 </Note>
 
-Jalankan [`ant auth status`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication#check-authentication-status) untuk memastikan organisasi dan workspace mana yang Anda gunakan untuk login; perintah ini memberi peringatan ketika sebuah variabel environment menimpa login Anda.
+Jalankan [`ant auth status`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication#check-authentication-status) untuk memastikan organisasi dan workspace mana yang sedang Anda gunakan untuk login; perintah ini memberi peringatan ketika sebuah variabel environment menimpa login Anda.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: b89ebb2e6b3009d69f6f1694074cf4c345515211f7a8d0d6fe74b5e028daaa81
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 9dbe6475de6d80015f04ca5d752a19f5b5e00337ad2134d1d857fce9b389b13e
 ---
 
 ---
@@ -16,19 +16,13 @@ description: Tentukan skema alat, tulis deskripsi yang efektif, dan kendalikan k
 * Pemahaman tentang [ikhtisar penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview)
 * Kunci API Claude dan pengaturan SDK atau cURL yang berfungsi
 
-## Memilih model
-
-Gunakan model Claude Opus terbaru, Claude Opus 5, untuk alat yang kompleks dan kueri yang ambigu; model ini menangani banyak alat dengan lebih baik dan meminta klarifikasi bila diperlukan.
-
-Gunakan model Claude Haiku untuk alat yang sederhana, tetapi perhatikan bahwa model ini mungkin menyimpulkan parameter yang hilang.
-
 <Tip>
   Jika menggunakan Claude dengan penggunaan alat dan thinking, lihat [Thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) untuk informasi lebih lanjut.
 </Tip>
 
 ## Menentukan alat klien
 
-Alat klien ditentukan dalam parameter tingkat atas `tools` pada permintaan API. Alat klien berskema Anthropic, seperti alat bash dan editor teks, dideklarasikan dengan `type` berversi tanggal; lihat halaman masing-masing alat, yang ditautkan dari [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference), untuk field yang diterimanya. Alat computer use dan browser use adalah [toolset klien](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets): satu entri tanpa `name` yang mendeklarasikan sekumpulan alat anggota yang tetap. Definisi alat yang ditentukan pengguna mencakup:
+"Client tools" (alat klien) ditentukan dalam parameter tingkat atas `tools` pada permintaan API. Alat klien berskema Anthropic, seperti alat bash dan editor teks, dideklarasikan dengan `type` berversi tanggal; lihat halaman masing-masing alat, yang ditautkan dari [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference), untuk field yang diterimanya. Alat computer use dan browser use adalah [toolset klien](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets): satu entri tanpa `name` yang mendeklarasikan sekumpulan alat anggota yang tetap. Definisi alat yang ditentukan pengguna mencakup:
 
 | Parameter        | Deskripsi                                                                                                                                                                                                                                     |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -90,13 +84,13 @@ Untuk mendapatkan kinerja terbaik dari Claude saat menggunakan alat, ikuti pandu
   * Apa arti setiap parameter dan bagaimana pengaruhnya terhadap perilaku alat
   * Peringatan atau batasan penting apa pun, seperti informasi apa yang tidak dikembalikan alat jika nama alat tidak jelas. Semakin banyak konteks yang dapat Anda berikan kepada Claude tentang alat Anda, semakin baik Claude dalam memutuskan kapan dan bagaimana menggunakannya. Targetkan setidaknya 3–4 kalimat untuk setiap deskripsi alat, lebih banyak jika alatnya kompleks.
 
-* **Prioritaskan deskripsi, tetapi pertimbangkan penggunaan `input_examples` untuk alat yang kompleks.** Deskripsi yang jelas adalah yang paling penting, tetapi untuk alat dengan input yang kompleks, objek bersarang, atau parameter yang sensitif terhadap format, Anda dapat menggunakan field `input_examples` untuk menyediakan contoh yang divalidasi skema. Lihat [Menyediakan contoh penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#providing-tool-use-examples) untuk detailnya.
+* **Prioritaskan deskripsi, tetapi pertimbangkan penggunaan `input_examples` untuk alat yang kompleks.** Deskripsi yang jelas adalah yang paling penting, tetapi untuk alat dengan input kompleks, objek bersarang, atau parameter yang sensitif terhadap format, Anda dapat menggunakan field `input_examples` untuk menyediakan contoh yang tervalidasi skema. Lihat [Menyediakan contoh penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#providing-tool-use-examples) untuk detailnya.
 
 * **Gabungkan operasi terkait ke dalam lebih sedikit alat.** Daripada membuat alat terpisah untuk setiap tindakan (`create_pr`, `review_pr`, `merge_pr`), kelompokkan ke dalam satu alat dengan parameter `action`. Alat yang lebih sedikit namun lebih mumpuni mengurangi ambiguitas pemilihan dan membuat permukaan alat Anda lebih mudah dinavigasi oleh Claude.
 
 * **Gunakan namespace yang bermakna dalam nama alat.** Ketika alat Anda mencakup beberapa layanan atau sumber daya, awali nama dengan layanannya (misalnya, `github_list_prs`, `slack_send_message`). Ini membuat pemilihan alat tidak ambigu seiring bertambahnya pustaka Anda, dan sangat penting saat menggunakan [pencarian alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool).
 
-* **Rancang respons alat agar hanya mengembalikan informasi bersinyal tinggi.** Kembalikan pengenal yang semantik dan stabil (misalnya, slug atau UUID) daripada referensi internal yang tidak jelas, dan sertakan hanya field yang dibutuhkan Claude untuk menalar langkah berikutnya. Respons yang membengkak memboroskan konteks dan mempersulit Claude mengekstrak hal yang penting.
+* **Rancang respons alat agar hanya mengembalikan informasi bersinyal tinggi.** Kembalikan pengenal yang semantik dan stabil (misalnya, slug atau UUID) daripada referensi internal yang tidak jelas, dan sertakan hanya field yang dibutuhkan Claude untuk menalar langkah berikutnya. Respons yang membengkak membuang konteks dan mempersulit Claude mengekstrak hal yang penting.
 
 <AccordionGroup>
   <Accordion title="Contoh deskripsi alat yang baik">
@@ -137,7 +131,7 @@ Untuk mendapatkan kinerja terbaik dari Claude saat menggunakan alat, ikuti pandu
   </Accordion>
 </AccordionGroup>
 
-Deskripsi yang baik menjelaskan dengan jelas apa yang dilakukan alat, kapan menggunakannya, data apa yang dikembalikannya, dan apa arti parameter `ticker`. Deskripsi yang buruk terlalu singkat dan meninggalkan banyak pertanyaan terbuka bagi Claude tentang perilaku dan penggunaan alat.
+Deskripsi yang baik menjelaskan dengan jelas apa yang dilakukan alat, kapan menggunakannya, data apa yang dikembalikan, dan apa arti parameter `ticker`. Deskripsi yang buruk terlalu singkat dan meninggalkan banyak pertanyaan terbuka bagi Claude tentang perilaku dan penggunaan alat.
 
 <Tip>
   Untuk panduan lebih mendalam tentang desain alat (konsolidasi, penamaan, dan pembentukan respons), lihat [Writing tools for agents](https://www.anthropic.com/engineering/writing-tools-for-agents).
@@ -553,7 +547,7 @@ Tambahkan field `input_examples` opsional ke definisi alat Anda dengan array obj
   ```
 </CodeGroup>
 
-Contoh disertakan dalam prompt bersama skema alat Anda, menunjukkan kepada Claude pola konkret untuk pemanggilan alat yang terbentuk dengan baik. Ini membantu Claude memahami kapan harus menyertakan parameter opsional, format apa yang digunakan, dan cara menyusun input yang kompleks.
+Contoh disertakan dalam prompt bersama skema alat Anda, menunjukkan kepada Claude pola konkret untuk panggilan alat yang terbentuk dengan baik. Ini membantu Claude memahami kapan harus menyertakan parameter opsional, format apa yang digunakan, dan cara menyusun input yang kompleks.
 
 ### Persyaratan dan batasan
 
@@ -565,7 +559,16 @@ Contoh disertakan dalam prompt bersama skema alat Anda, menunjukkan kepada Claud
 
 ### Memaksa penggunaan alat
 
-Dalam beberapa kasus, Anda mungkin ingin Claude menggunakan alat tertentu untuk menjawab pertanyaan pengguna, meskipun Claude sebenarnya akan menjawab langsung tanpa memanggil alat. Anda dapat melakukannya dengan menentukan alat di field `tool_choice` pada permintaan. Baris yang disorot adalah satu-satunya perbedaan dari permintaan penggunaan alat standar:
+Dalam beberapa kasus, Anda mungkin ingin Claude menggunakan alat tertentu untuk menjawab pertanyaan pengguna, meskipun Claude sebenarnya akan menjawab langsung tanpa memanggil alat. Anda dapat melakukannya dengan menentukan alat di field `tool_choice` pada permintaan.
+
+Tidak semua model dan pengaturan mendukung penggunaan alat paksa. Jika tidak didukung, `tool_choice: {"type": "any"}` dan `tool_choice: {"type": "tool", "name": "..."}` gagal, sementara `tool_choice: {"type": "auto"}` (default) dan `tool_choice: {"type": "none"}` tetap berfungsi:
+
+| Model atau pengaturan                                                                                                                    | Pembatasan                                                                                                               | Yang digunakan sebagai gantinya                                                                                                                                                                                                                                                                                                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Pemikiran diperpanjang](https://platform.claude.com/docs/id/build-with-claude/extended-thinking) manual (`thinking: {type: "enabled"}`) | `any` dan `tool` tidak didukung dan menghasilkan error                                                                   | `auto` atau `none`. [Adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking), termasuk pada model yang thinking-nya aktif secara default seperti Claude Opus 5, mendukung penggunaan alat paksa                                                                                                                                                                                                 |
+| Claude Fable 5.1 dan [Claude Mythos 5.1](https://anthropic.com/glasswing)                                                                | `any` dan `tool` mengembalikan [error 400](https://platform.claude.com/docs/id/api/errors#forced-tool-use-not-supported) | `auto` dengan [penggunaan alat ketat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) untuk menjamin input alat yang valid terhadap skema, atau [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) ketika Anda memerlukan respons dalam bentuk JSON yang tetap. Prompting tetap memengaruhi alat mana yang dipilih `auto`. `none` juga didukung |
+
+Pada model yang mendukungnya, baris yang disorot adalah satu-satunya perbedaan dari permintaan penggunaan alat standar:
 
 <CodeGroup>
   ```bash cURL
@@ -844,7 +847,7 @@ Dalam beberapa kasus, Anda mungkin ingin Claude menggunakan alat tertentu untuk 
   ```
 </CodeGroup>
 
-Saat bekerja dengan parameter `tool_choice`, ada empat opsi yang memungkinkan:
+Saat bekerja dengan parameter `tool_choice`, ada empat opsi yang mungkin:
 
 * `auto` memungkinkan Claude memutuskan apakah akan memanggil alat yang disediakan atau tidak. Ini adalah nilai default ketika `tools` disediakan.
 * `any` memberi tahu Claude bahwa ia harus menggunakan salah satu alat yang disediakan, tetapi tidak memaksa alat tertentu.
@@ -863,20 +866,12 @@ Diagram ini mengilustrasikan cara kerja setiap opsi:
 
 Perhatikan bahwa ketika Anda menetapkan `tool_choice` sebagai `any` atau `tool`, API melakukan prefill pada pesan asisten untuk memaksa penggunaan alat. Ini berarti model tidak akan mengeluarkan respons atau penjelasan bahasa alami sebelum blok konten `tool_use`, meskipun diminta secara eksplisit untuk melakukannya.
 
-<Note>
-  Saat menggunakan [pemikiran diperpanjang](https://platform.claude.com/docs/id/build-with-claude/extended-thinking) manual (`thinking: {type: "enabled"}`) dengan penggunaan alat, `tool_choice: {"type": "any"}` dan `tool_choice: {"type": "tool", "name": "..."}` tidak didukung dan menghasilkan error. Hanya `tool_choice: {"type": "auto"}` (default) dan `tool_choice: {"type": "none"}` yang kompatibel dengan pemikiran diperpanjang manual. [Adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking), termasuk pada model yang thinking-nya aktif secara default seperti Claude Opus 5, mendukung penggunaan alat yang dipaksakan.
-</Note>
-
-<Note>
-  [Claude Mythos Preview](https://anthropic.com/glasswing) tidak mendukung penggunaan alat yang dipaksakan. Permintaan dengan `tool_choice: {"type": "any"}` atau `tool_choice: {"type": "tool", "name": "..."}` mengembalikan error 400 pada model ini. Gunakan `tool_choice: {"type": "auto"}` (default) atau `tool_choice: {"type": "none"}` dan andalkan prompting untuk memengaruhi pemilihan alat.
-</Note>
-
-Pengujian telah menunjukkan bahwa hal ini seharusnya tidak mengurangi kinerja. Jika Anda ingin model memberikan konteks atau penjelasan bahasa alami sambil tetap meminta model menggunakan alat tertentu, Anda dapat menggunakan `{"type": "auto"}` untuk `tool_choice` (default) dan menambahkan instruksi eksplisit dalam pesan `user`. Misalnya: `What's the weather like in London? Use the get_weather tool in your response.`
+Pengujian menunjukkan bahwa hal ini seharusnya tidak mengurangi kinerja. Jika Anda ingin model memberikan konteks atau penjelasan bahasa alami sambil tetap meminta model menggunakan alat tertentu, Anda dapat menggunakan `{"type": "auto"}` untuk `tool_choice` (default) dan menambahkan instruksi eksplisit dalam pesan `user`. Misalnya: `What's the weather like in London? Use the get_weather tool in your response.`
 
 <Tip>
-  **Pemanggilan alat yang terjamin dengan alat strict**
+  **Panggilan alat terjamin dengan alat ketat**
 
-  Gabungkan `tool_choice: {"type": "any"}` dengan [penggunaan alat strict](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) untuk menjamin bahwa salah satu alat Anda akan dipanggil DAN bahwa input alat secara ketat mengikuti skema Anda. Tetapkan `strict: true` pada definisi alat Anda untuk mengaktifkan validasi skema.
+  Pada model yang mendukung penggunaan alat paksa, gabungkan `tool_choice: {"type": "any"}` dengan [penggunaan alat ketat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) untuk menjamin bahwa salah satu alat Anda dipanggil dan bahwa input alat secara ketat mengikuti skema Anda. Tetapkan `strict: true` pada definisi alat Anda untuk mengaktifkan validasi skema.
 </Tip>
 
 ### Respons model dengan alat
@@ -903,14 +898,14 @@ Misalnya, dengan prompt "What's the weather like in San Francisco right now, and
 }
 ```
 
-Gaya respons alami ini membantu pengguna memahami apa yang sedang dilakukan Claude dan menciptakan interaksi yang lebih bersifat percakapan. Anda dapat memandu gaya dan isi respons ini melalui prompt sistem Anda dan dengan menyediakan `<examples>` dalam prompt Anda.
+Gaya respons alami ini membantu pengguna memahami apa yang dilakukan Claude dan menciptakan interaksi yang lebih bersifat percakapan. Anda dapat mengarahkan gaya dan isi respons ini melalui prompt sistem Anda dan dengan menyediakan `<examples>` dalam prompt Anda.
 
 Penting untuk dicatat bahwa Claude dapat menggunakan berbagai frasa dan pendekatan saat menjelaskan tindakannya. Kode Anda harus memperlakukan respons ini seperti teks lain yang dihasilkan asisten, dan tidak bergantung pada konvensi pemformatan tertentu.
 
 ## Langkah selanjutnya
 
 <CardGroup>
-  <Card href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls" title="Menangani pemanggilan alat">
+  <Card href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls" title="Menangani panggilan alat">
     Parse blok tool\_use dan format respons tool\_result.
   </Card>
 

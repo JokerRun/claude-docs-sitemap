@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-editing
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: c8c3048a7a87579e3187d93cfe62ab042caddee63d9bb39dc802605e6ccaca76
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: ef4b4b00e2e1c30f9baa85283433fbc3fe16dbfddeddbae90b0575916b68e39b
 ---
 
 ---
@@ -12,25 +12,25 @@ description: Kelola konteks percakapan secara otomatis seiring pertumbuhannya de
 ---
 
 <Note>
-  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 ## Ikhtisar
 
 <Note>
-  Untuk sebagian besar kasus penggunaan, [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) adalah strategi utama untuk mengelola konteks dalam percakapan yang berjalan lama. Strategi-strategi di halaman ini berguna untuk skenario tertentu ketika Anda memerlukan kontrol yang lebih terperinci atas konten apa yang dibersihkan.
+  Untuk sebagian besar kasus penggunaan, [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) adalah strategi utama untuk mengelola konteks dalam percakapan yang berjalan lama. Strategi di halaman ini berguna untuk skenario tertentu di mana Anda memerlukan kontrol yang lebih terperinci atas konten apa yang dibersihkan.
 </Note>
 
-"Context editing" (pengeditan konteks) memungkinkan Anda membersihkan konten tertentu secara selektif dari riwayat percakapan seiring pertumbuhannya. Lebih dari sekadar mengoptimalkan biaya dan tetap berada dalam batas, ini adalah tentang secara aktif mengkurasi apa yang dilihat Claude: konteks adalah sumber daya terbatas dengan hasil yang semakin berkurang, dan konten yang tidak relevan menurunkan fokus model. Pengeditan konteks memberi Anda kontrol runtime yang terperinci atas kurasi tersebut. Untuk prinsip-prinsip yang lebih luas di balik manajemen konteks, lihat [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents). Halaman ini mencakup:
+"Context editing" (pengeditan konteks) memungkinkan Anda membersihkan konten tertentu secara selektif dari riwayat percakapan seiring pertumbuhannya. Selain mengoptimalkan biaya dan tetap berada dalam batas, ini adalah tentang mengkurasi secara aktif apa yang dilihat Claude: konteks adalah sumber daya terbatas dengan hasil yang semakin berkurang, dan konten yang tidak relevan menurunkan fokus model. Pengeditan konteks memberi Anda kontrol runtime yang terperinci atas kurasi tersebut. Untuk prinsip yang lebih luas di balik manajemen konteks, lihat [Rekayasa konteks yang efektif](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents). Halaman ini mencakup:
 
-* **Pembersihan hasil alat** - Paling cocok untuk alur kerja agentik dengan "tool use" (penggunaan alat) yang intensif di mana hasil alat lama tidak lagi diperlukan
+* **Pembersihan hasil alat** - Paling cocok untuk alur kerja agentik dengan penggunaan alat yang intensif di mana hasil alat lama tidak lagi diperlukan
 * **Pembersihan blok thinking** - Untuk mengelola blok thinking saat menggunakan "extended thinking" (pemikiran diperpanjang), dengan opsi untuk mempertahankan thinking terbaru demi kesinambungan konteks
-* **Compaction SDK sisi klien** - Alternatif berbasis SDK untuk manajemen konteks berbasis ringkasan (compaction sisi server umumnya lebih disarankan)
+* **Kompaksi SDK sisi klien** - Alternatif berbasis SDK untuk manajemen konteks berbasis ringkasan (kompaksi sisi server umumnya lebih disarankan)
 
-| Pendekatan      | Tempat berjalan | Strategi                                                                                                  | Cara kerjanya                                                                                                                                                                                                                                                                                                                                                                                                            |
-| --------------- | --------------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Sisi server** | API             | Pembersihan hasil alat (`clear_tool_uses_20250919`) Pembersihan blok thinking (`clear_thinking_20251015`) | Diterapkan sebelum prompt mencapai Claude. Membersihkan konten tertentu dari riwayat percakapan. Setiap strategi dapat dikonfigurasi secara independen.                                                                                                                                                                                                                                                                  |
-| **Sisi klien**  | SDK             | Compaction                                                                                                | Tersedia di [SDK TypeScript dan Ruby](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) saat menggunakan [`tool_runner`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner). Menghasilkan ringkasan dan menggantikan seluruh riwayat percakapan. Lihat [Compaction sisi klien](https://platform.claude.com/docs/id/build-with-claude/context-editing#client-side-compaction-sdk). |
+| Pendekatan      | Tempat berjalan | Strategi                                                                                                  | Cara kerjanya                                                                                                                                                                                                                                                                                                                                                                                                          |
+| --------------- | --------------- | --------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Sisi server** | API             | Pembersihan hasil alat (`clear_tool_uses_20250919`) Pembersihan blok thinking (`clear_thinking_20251015`) | Diterapkan sebelum prompt mencapai Claude. Membersihkan konten tertentu dari riwayat percakapan. Setiap strategi dapat dikonfigurasi secara independen.                                                                                                                                                                                                                                                                |
+| **Sisi klien**  | SDK             | Kompaksi                                                                                                  | Tersedia di [SDK TypeScript dan Ruby](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) saat menggunakan [`tool_runner`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner). Menghasilkan ringkasan dan menggantikan seluruh riwayat percakapan. Lihat [Kompaksi sisi klien](https://platform.claude.com/docs/id/build-with-claude/context-editing#client-side-compaction-sdk). |
 
 ## Strategi sisi server
 
@@ -42,7 +42,7 @@ description: Kelola konteks percakapan secara otomatis seiring pertumbuhannya de
 
 ### Pembersihan hasil alat
 
-Strategi `clear_tool_uses_20250919` membersihkan hasil alat ketika konteks percakapan tumbuh melampaui ambang batas yang Anda konfigurasi. Ini sangat berguna untuk alur kerja agentik dengan penggunaan alat yang intensif. Hasil alat yang lebih lama (seperti isi file atau hasil pencarian) tidak lagi diperlukan setelah Claude memprosesnya.
+Strategi `clear_tool_uses_20250919` membersihkan hasil alat ketika konteks percakapan tumbuh melampaui ambang batas yang Anda konfigurasi. Ini sangat berguna untuk alur kerja agentik dengan "tool use" (penggunaan alat) yang intensif. Hasil alat yang lebih lama (seperti isi file atau hasil pencarian) tidak lagi diperlukan setelah Claude memprosesnya.
 
 Saat diaktifkan, API secara otomatis membersihkan hasil alat terlama dalam urutan kronologis. API mengganti setiap hasil yang dibersihkan dengan teks placeholder yang menunjukkan kepada Claude bahwa hasil tersebut telah dihapus. Secara default, hanya hasil alat yang dibersihkan. Anda dapat secara opsional membersihkan hasil alat dan panggilan alat (parameter penggunaan alat) dengan mengatur `clear_tool_inputs` ke true.
 
@@ -53,11 +53,12 @@ Strategi `clear_thinking_20251015` mengelola blok `thinking` dalam percakapan ke
 <Tip>
   **Perilaku default:** Default bervariasi menurut kelas model.
 
-  | Kelas model | Simpan semua thinking sebelumnya      | Simpan hanya thinking giliran terakhir |
-  | ----------- | ------------------------------------- | -------------------------------------- |
-  | Opus        | Claude Opus 4.5 dan yang lebih baru   | Claude Opus 4.1 dan yang lebih lama    |
-  | Sonnet      | Claude Sonnet 4.6 dan yang lebih baru | Claude Sonnet 4.5 dan yang lebih lama  |
-  | Haiku       | (tidak ada)                           | Semua model hingga Claude Haiku 4.5    |
+  | Kelas model      | Simpan semua thinking sebelumnya      | Simpan hanya thinking giliran terakhir |
+  | ---------------- | ------------------------------------- | -------------------------------------- |
+  | Opus             | Claude Opus 4.5 dan yang lebih baru   | Claude Opus 4.1 dan yang lebih lama    |
+  | Sonnet           | Claude Sonnet 4.6 dan yang lebih baru | Claude Sonnet 4.5 dan yang lebih lama  |
+  | Haiku            | (tidak ada)                           | Semua model hingga Claude Haiku 4.5    |
+  | Fable dan Mythos | Semua model                           | (tidak ada)                            |
 
   Gunakan strategi ini untuk menimpa default. Jika kode Anda berjalan di beberapa tingkatan model, atur `keep` secara eksplisit daripada mengandalkan default per model.
 </Tip>
@@ -66,15 +67,17 @@ Satu giliran percakapan asisten dapat mencakup beberapa blok konten (misalnya, s
 
 ### Pengeditan konteks terjadi di sisi server
 
-Pengeditan konteks diterapkan di sisi server sebelum prompt mencapai Claude. Aplikasi klien Anda mempertahankan riwayat percakapan yang lengkap dan tidak dimodifikasi. Anda tidak perlu menyinkronkan status klien Anda dengan versi yang telah diedit. Lanjutkan mengelola riwayat percakapan lengkap Anda secara lokal seperti biasa.
+Pengeditan konteks diterapkan di sisi server sebelum prompt mencapai Claude. Aplikasi klien Anda mempertahankan riwayat percakapan lengkap yang tidak dimodifikasi. Anda tidak perlu menyinkronkan status klien Anda dengan versi yang telah diedit. Lanjutkan mengelola riwayat percakapan lengkap Anda secara lokal seperti biasa.
+
+Pada Claude Fable 5.1, manajemen konteks sisi server tidak pernah membatalkan validitas blok thinking. Pengeditan sisi klien pada giliran sebelumnya dapat membatalkan validitas blok thinking di setiap giliran asisten berikutnya. Untuk akun baru yang dibuat pada atau setelah 31 Agustus 2026, permintaan yang memutar ulang blok yang tidak valid akan ditolak kecuali Anda memilih untuk membuangnya. Lihat [Thinking yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation).
 
 ### Pengeditan konteks dan caching prompt
 
 Interaksi pengeditan konteks dengan ["prompt caching" (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) bervariasi menurut strategi:
 
-* **Pembersihan hasil alat:** Membatalkan prefiks prompt yang di-cache ketika konten dibersihkan. Untuk mengantisipasi hal ini, bersihkan token dalam jumlah yang cukup agar pembatalan cache sepadan. Gunakan parameter `clear_at_least` untuk memastikan jumlah minimum token dibersihkan setiap kali. Anda akan dikenai biaya penulisan cache setiap kali konten dibersihkan, tetapi permintaan berikutnya dapat menggunakan kembali prefiks yang baru di-cache.
+* **Pembersihan hasil alat:** Membatalkan validitas prefiks prompt yang di-cache ketika konten dibersihkan. Untuk mengantisipasi hal ini, bersihkan token yang cukup agar pembatalan cache sepadan. Gunakan parameter `clear_at_least` untuk memastikan jumlah minimum token dibersihkan setiap kali. Anda akan dikenai biaya penulisan cache setiap kali konten dibersihkan, tetapi permintaan berikutnya dapat menggunakan kembali prefiks yang baru di-cache.
 
-* **Pembersihan blok thinking:** Ketika blok thinking **disimpan** dalam konteks (tidak dibersihkan), cache prompt dipertahankan, memungkinkan cache hit dan mengurangi biaya token input. Ketika blok thinking **dibersihkan**, cache dibatalkan pada titik di mana pembersihan terjadi. Konfigurasikan parameter `keep` berdasarkan apakah Anda ingin memprioritaskan kinerja cache atau ketersediaan "context window" (jendela konteks).
+* **Pembersihan blok thinking:** Ketika blok thinking **disimpan** dalam konteks (tidak dibersihkan), cache prompt dipertahankan, memungkinkan cache hit dan mengurangi biaya token input. Ketika blok thinking **dibersihkan**, cache dibatalkan validitasnya pada titik di mana pembersihan terjadi. Konfigurasikan parameter `keep` berdasarkan apakah Anda ingin memprioritaskan kinerja cache atau ketersediaan "context window" (jendela konteks).
 
 ## Model yang didukung
 
@@ -925,9 +928,9 @@ Aktifkan pembersihan blok thinking untuk mengelola konteks dan caching prompt se
 
 Strategi `clear_thinking_20251015` mendukung konfigurasi berikut:
 
-| Opsi konfigurasi | Default            | Deskripsi                                                                                                                                                                                                                                                                                                                                                       |
-| ---------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `keep`           | Spesifik per model | Menentukan berapa banyak giliran asisten terbaru dengan blok thinking yang dipertahankan. Gunakan `{type: "thinking_turns", value: N}` di mana N harus > 0 untuk menyimpan N giliran terakhir, atau `"all"` untuk menyimpan semua blok thinking. Opus 4.5+ dan Sonnet 4.6+: semua giliran. Opus/Sonnet yang lebih lama dan semua Haiku: hanya giliran terakhir. |
+| Opsi konfigurasi | Default            | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                              |
+| ---------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `keep`           | Spesifik per model | Menentukan berapa banyak giliran asisten terbaru dengan blok thinking yang dipertahankan. Gunakan `{type: "thinking_turns", value: N}` di mana N harus > 0 untuk menyimpan N giliran terakhir, atau `"all"` untuk menyimpan semua blok thinking. Opus 4.5+ dan Sonnet 4.6+: semua giliran. Model Fable dan Mythos: semua giliran. Opus/Sonnet yang lebih lama dan semua Haiku: hanya giliran terakhir. |
 
 **Contoh konfigurasi:**
 
@@ -1346,7 +1349,7 @@ Simpan semua blok thinking (memaksimalkan cache hit):
 Anda dapat menggunakan pembersihan blok thinking dan pembersihan hasil alat secara bersamaan:
 
 <Note>
-  Saat menggunakan beberapa strategi, strategi `clear_thinking_20251015` harus dicantumkan pertama dalam array `edits`.
+  Saat menggunakan beberapa strategi, strategi `clear_thinking_20251015` harus dicantumkan terlebih dahulu dalam array `edits`.
 </Note>
 
 <CodeGroup>
@@ -1736,9 +1739,9 @@ Anda dapat menggunakan pembersihan blok thinking dan pembersihan hasil alat seca
 | Opsi konfigurasi    | Default             | Deskripsi                                                                                                                                                                                                                                                                      |
 | ------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `trigger`           | 100.000 token input | Menentukan kapan strategi pengeditan konteks diaktifkan. Setelah prompt melampaui ambang batas ini, pembersihan dimulai. Anda dapat menentukan nilai ini dalam `input_tokens` atau `tool_uses`.                                                                                |
-| `keep`              | 3 penggunaan alat   | Menentukan berapa banyak pasangan penggunaan/hasil alat terbaru yang disimpan setelah pembersihan terjadi. API menghapus interaksi alat terlama terlebih dahulu, mempertahankan yang paling baru.                                                                              |
+| `keep`              | 3 penggunaan alat   | Menentukan berapa banyak pasangan penggunaan/hasil alat terbaru yang disimpan setelah pembersihan terjadi. API menghapus interaksi alat terlama terlebih dahulu, mempertahankan yang terbaru.                                                                                  |
 | `clear_at_least`    | Tidak ada           | Memastikan jumlah minimum token dibersihkan setiap kali strategi diaktifkan. Jika API tidak dapat membersihkan setidaknya jumlah yang ditentukan, strategi tidak akan diterapkan. Ini membantu menentukan apakah pembersihan konteks sepadan dengan merusak cache prompt Anda. |
-| `exclude_tools`     | Tidak ada           | Daftar nama alat yang penggunaan dan hasilnya tidak boleh dibersihkan. Berguna untuk mempertahankan konteks penting.                                                                                                                                                           |
+| `exclude_tools`     | Tidak ada           | Daftar nama alat yang penggunaan dan hasil alatnya tidak boleh dibersihkan. Berguna untuk mempertahankan konteks penting.                                                                                                                                                      |
 | `clear_tool_inputs` | `false`             | Mengontrol apakah parameter panggilan alat dibersihkan bersama dengan hasil alat. Secara default, hanya hasil alat yang dibersihkan sementara panggilan alat asli Claude tetap terlihat.                                                                                       |
 
 ## Respons pengeditan konteks
@@ -2103,7 +2106,7 @@ Endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-cla
 
 Respons menunjukkan jumlah token akhir setelah manajemen konteks diterapkan (`input_tokens`) dan jumlah token asli sebelum pembersihan apa pun terjadi (`original_input_tokens`).
 
-## Menggunakan dengan alat memori
+## Penggunaan dengan alat memori
 
 Pengeditan konteks dapat digabungkan dengan [alat memori](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool). Ketika konteks percakapan Anda mendekati ambang batas pembersihan yang dikonfigurasi, Claude menerima peringatan otomatis untuk mempertahankan informasi penting. Ini memungkinkan Claude menyimpan hasil alat atau konteks ke file memorinya sebelum dibersihkan dari riwayat percakapan.
 
@@ -2327,49 +2330,49 @@ Untuk menggunakan kedua fitur secara bersamaan, aktifkan keduanya dalam perminta
 
 Untuk referensi lengkap alat memori termasuk perintah dan contoh, lihat [Alat memori](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool).
 
-## Compaction sisi klien (SDK)
+## Kompaksi sisi klien (SDK)
 
 <Warning>
-  **Anthropic merekomendasikan compaction sisi server daripada compaction SDK.** [Compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) menangani manajemen konteks secara otomatis dengan kompleksitas integrasi yang lebih rendah, perhitungan penggunaan token yang lebih baik, dan tanpa keterbatasan sisi klien. Gunakan compaction SDK hanya jika Anda secara khusus memerlukan kontrol sisi klien atas proses peringkasan.
+  **Anthropic merekomendasikan kompaksi sisi server daripada kompaksi SDK.** [Kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) menangani manajemen konteks secara otomatis dengan kompleksitas integrasi yang lebih rendah, perhitungan penggunaan token yang lebih baik, dan tanpa keterbatasan sisi klien. Gunakan kompaksi SDK hanya jika Anda secara khusus memerlukan kontrol sisi klien atas proses peringkasan.
 
-  Parameter `compaction_control` sudah deprecated di SDK TypeScript dan Ruby dan akan dihapus di versi mendatang. SDK mengeluarkan peringatan deprecation ketika parameter ini diaktifkan. SDK Python menghapusnya di v1.0. Untuk menggunakan compaction sisi server dengan tool runner, teruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+  Parameter `compaction_control` sudah tidak digunakan lagi (deprecated) di SDK TypeScript dan Ruby dan akan dihapus di versi mendatang. SDK mengeluarkan peringatan deprecation ketika parameter ini diaktifkan. SDK Python telah menghapusnya di v1.0. Untuk menggunakan kompaksi sisi server dengan tool runner, teruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
 </Warning>
 
 <Note>
-  Compaction tersedia di [SDK TypeScript dan Ruby](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) saat menggunakan [metode `tool_runner`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner).
+  Kompaksi tersedia di [SDK TypeScript dan Ruby](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) saat menggunakan [metode `tool_runner`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner).
 </Note>
 
-"Compaction" (pemadatan) adalah fitur SDK yang secara otomatis mengelola konteks percakapan dengan menghasilkan ringkasan ketika penggunaan token tumbuh terlalu besar. Berbeda dengan strategi pengeditan konteks sisi server yang membersihkan konten, compaction menginstruksikan Claude untuk merangkum riwayat percakapan, lalu mengganti seluruh riwayat dengan ringkasan tersebut. Ini memungkinkan Claude untuk terus mengerjakan tugas yang berjalan lama yang seharusnya melampaui [jendela konteks](https://platform.claude.com/docs/id/build-with-claude/context-windows).
+"Compaction" (kompaksi) adalah fitur SDK yang secara otomatis mengelola konteks percakapan dengan menghasilkan ringkasan ketika penggunaan token tumbuh terlalu besar. Berbeda dengan strategi pengeditan konteks sisi server yang membersihkan konten, kompaksi menginstruksikan Claude untuk merangkum riwayat percakapan, lalu mengganti seluruh riwayat dengan ringkasan tersebut. Ini memungkinkan Claude untuk terus mengerjakan tugas yang berjalan lama yang seharusnya melampaui [jendela konteks](https://platform.claude.com/docs/id/build-with-claude/context-windows).
 
-### Cara kerja compaction
+### Cara kerja kompaksi
 
-Ketika compaction diaktifkan, SDK memantau penggunaan token setelah setiap respons model:
+Ketika kompaksi diaktifkan, SDK memantau penggunaan token setelah setiap respons model:
 
 1. **Pemeriksaan ambang batas:** SDK menghitung total token sebagai `input_tokens + cache_creation_input_tokens + cache_read_input_tokens + output_tokens` (lihat [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk field token cache).
 2. **Pembuatan ringkasan:** Ketika ambang batas terlampaui, prompt ringkasan disisipkan sebagai giliran pengguna, dan Claude menghasilkan ringkasan terstruktur yang dibungkus dalam tag `<summary></summary>`.
 3. **Penggantian konteks:** SDK mengekstrak ringkasan dan mengganti seluruh riwayat pesan dengannya.
 4. **Kelanjutan:** Percakapan dilanjutkan dari ringkasan, dengan Claude melanjutkan dari titik terakhir.
 
-### Menggunakan compaction
+### Menggunakan kompaksi
 
 Tambahkan `compaction_control` ke panggilan `tool_runner` Anda untuk mengaktifkan peringkasan otomatis ketika penggunaan token melampaui ambang batas.
 
 <Tabs>
   <Tab title="cURL">
     <Note>
-      Compaction berjalan di sisi klien dalam helper `tool_runner` SDK, sehingga tidak memiliki padanan HTTP langsung. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani compaction di server Anthropic.
+      Kompaksi berjalan di sisi klien dalam helper `tool_runner` SDK, sehingga tidak memiliki padanan HTTP langsung. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani kompaksi di server Anthropic.
     </Note>
   </Tab>
 
   <Tab title="CLI">
     <Note>
-      CLI tidak menyertakan helper `tool_runner`. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani compaction di server Anthropic tanpa integrasi sisi SDK.
+      CLI tidak menyertakan helper `tool_runner`. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani kompaksi di server Anthropic tanpa integrasi sisi SDK.
     </Note>
   </Tab>
 
   <Tab title="Python">
     <Note>
-      Di v1.0 dan yang lebih baru, tool runner SDK Python tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      Di v1.0 dan yang lebih baru, tool runner SDK Python tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
@@ -2393,25 +2396,25 @@ Tambahkan `compaction_control` ke panggilan `tool_runner` Anda untuk mengaktifka
 
   <Tab title="C#">
     <Note>
-      SDK C# menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK C# menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
   <Tab title="Go">
     <Note>
-      SDK Go menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK Go menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
   <Tab title="Java">
     <Note>
-      SDK Java menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK Java menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
   <Tab title="PHP">
     <Note>
-      SDK PHP menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK PHP menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
@@ -2434,11 +2437,11 @@ Tambahkan `compaction_control` ke panggilan `tool_runner` Anda untuk mengaktifka
   </Tab>
 </Tabs>
 
-#### Apa yang terjadi selama compaction
+#### Apa yang terjadi selama kompaksi
 
 Seiring pertumbuhan percakapan, riwayat pesan terakumulasi:
 
-**Sebelum compaction (mendekati 100k token):**
+**Sebelum kompaksi (mendekati 100k token):**
 
 ```json
 [
@@ -2460,7 +2463,7 @@ Seiring pertumbuhan percakapan, riwayat pesan terakumulasi:
 
 Ketika token melampaui ambang batas, SDK menyisipkan permintaan ringkasan dan Claude menghasilkan ringkasan. Seluruh riwayat kemudian diganti:
 
-**Setelah compaction (kembali ke \~2–3k token):**
+**Setelah kompaksi (kembali ke \~2–3k token):**
 
 ```json
 [
@@ -2477,31 +2480,31 @@ Claude melanjutkan pekerjaan dari ringkasan ini seolah-olah itu adalah riwayat p
 
 | Parameter                 | Tipe    | Wajib | Default                                                                                                                        | Deskripsi                                         |
 | ------------------------- | ------- | ----- | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------- |
-| `enabled`                 | boolean | Ya    | -                                                                                                                              | Apakah compaction otomatis diaktifkan             |
-| `context_token_threshold` | number  | Tidak | 100.000                                                                                                                        | Jumlah token saat compaction dipicu               |
+| `enabled`                 | boolean | Ya    | -                                                                                                                              | Apakah kompaksi otomatis diaktifkan               |
+| `context_token_threshold` | number  | Tidak | 100.000                                                                                                                        | Jumlah token saat kompaksi dipicu                 |
 | `model`                   | string  | Tidak | Sama dengan model utama                                                                                                        | Model yang digunakan untuk menghasilkan ringkasan |
 | `summary_prompt`          | string  | Tidak | Lihat [Prompt ringkasan default](https://platform.claude.com/docs/id/build-with-claude/context-editing#default-summary-prompt) | Prompt kustom untuk pembuatan ringkasan           |
 
 #### Memilih ambang batas token
 
-Ambang batas menentukan kapan compaction terjadi. Ambang batas yang lebih rendah berarti compaction lebih sering dengan jendela konteks yang lebih kecil. Ambang batas yang lebih tinggi memungkinkan lebih banyak konteks tetapi berisiko mencapai batas.
+Ambang batas menentukan kapan kompaksi terjadi. Ambang batas yang lebih rendah berarti kompaksi lebih sering dengan jendela konteks yang lebih kecil. Ambang batas yang lebih tinggi memungkinkan lebih banyak konteks tetapi berisiko mencapai batas.
 
 <Tabs>
   <Tab title="cURL">
     <Note>
-      Compaction berjalan di sisi klien dalam helper `tool_runner` SDK, sehingga tidak memiliki padanan HTTP langsung. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani compaction di server Anthropic.
+      Kompaksi berjalan di sisi klien dalam helper `tool_runner` SDK, sehingga tidak memiliki padanan HTTP langsung. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani kompaksi di server Anthropic.
     </Note>
   </Tab>
 
   <Tab title="CLI">
     <Note>
-      CLI tidak menyertakan helper `tool_runner`. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani compaction di server Anthropic tanpa integrasi sisi SDK.
+      CLI tidak menyertakan helper `tool_runner`. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani kompaksi di server Anthropic tanpa integrasi sisi SDK.
     </Note>
   </Tab>
 
   <Tab title="Python">
     <Note>
-      Di v1.0 dan yang lebih baru, tool runner SDK Python tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      Di v1.0 dan yang lebih baru, tool runner SDK Python tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
@@ -2514,7 +2517,7 @@ Ambang batas menentukan kapan compaction terjadi. Ambang batas yang lebih rendah
       max_tokens: 1024,
       tools: [readFile],
       messages: [{ role: "user", content: "What's in config.json?" }],
-      // Nilai lebih rendah memadatkan lebih sering; naikkan ke 150000 jika tugas membutuhkan lebih banyak konteks
+      // Nilai lebih rendah memadatkan lebih sering; naikkan ke 150000 jika tugas butuh lebih banyak konteks
       compactionControl: { enabled: true, contextTokenThreshold: 50000 }
     });
 
@@ -2526,25 +2529,25 @@ Ambang batas menentukan kapan compaction terjadi. Ambang batas yang lebih rendah
 
   <Tab title="C#">
     <Note>
-      SDK C# menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK C# menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
   <Tab title="Go">
     <Note>
-      SDK Go menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK Go menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
   <Tab title="Java">
     <Note>
-      SDK Java menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK Java menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
   <Tab title="PHP">
     <Note>
-      SDK PHP menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK PHP menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
@@ -2568,26 +2571,26 @@ Ambang batas menentukan kapan compaction terjadi. Ambang batas yang lebih rendah
   </Tab>
 </Tabs>
 
-#### Menggunakan model berbeda untuk ringkasan
+#### Menggunakan model yang berbeda untuk ringkasan
 
 Anda dapat menggunakan model yang lebih cepat atau lebih murah untuk menghasilkan ringkasan:
 
 <Tabs>
   <Tab title="cURL">
     <Note>
-      Compaction berjalan di sisi klien dalam helper `tool_runner` SDK, sehingga tidak memiliki padanan HTTP langsung. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani compaction di server Anthropic.
+      Kompaksi berjalan di sisi klien dalam helper `tool_runner` SDK, sehingga tidak memiliki padanan HTTP langsung. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani kompaksi di server Anthropic.
     </Note>
   </Tab>
 
   <Tab title="CLI">
     <Note>
-      CLI tidak menyertakan helper `tool_runner`. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani compaction di server Anthropic tanpa integrasi sisi SDK.
+      CLI tidak menyertakan helper `tool_runner`. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani kompaksi di server Anthropic tanpa integrasi sisi SDK.
     </Note>
   </Tab>
 
   <Tab title="Python">
     <Note>
-      Di v1.0 dan yang lebih baru, tool runner SDK Python tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      Di v1.0 dan yang lebih baru, tool runner SDK Python tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
@@ -2615,25 +2618,25 @@ Anda dapat menggunakan model yang lebih cepat atau lebih murah untuk menghasilka
 
   <Tab title="C#">
     <Note>
-      SDK C# menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK C# menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
   <Tab title="Go">
     <Note>
-      SDK Go menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK Go menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
   <Tab title="Java">
     <Note>
-      SDK Java menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK Java menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
   <Tab title="PHP">
     <Note>
-      SDK PHP menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK PHP menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
@@ -2667,19 +2670,19 @@ Anda dapat menyediakan prompt kustom untuk kebutuhan spesifik domain. Prompt And
 <Tabs>
   <Tab title="cURL">
     <Note>
-      Compaction berjalan di sisi klien dalam helper `tool_runner` SDK, sehingga tidak memiliki padanan HTTP langsung. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani compaction di server Anthropic.
+      Kompaksi berjalan di sisi klien dalam helper `tool_runner` SDK, sehingga tidak memiliki padanan HTTP langsung. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani kompaksi di server Anthropic.
     </Note>
   </Tab>
 
   <Tab title="CLI">
     <Note>
-      CLI tidak menyertakan helper `tool_runner`. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani compaction di server Anthropic tanpa integrasi sisi SDK.
+      CLI tidak menyertakan helper `tool_runner`. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani kompaksi di server Anthropic tanpa integrasi sisi SDK.
     </Note>
   </Tab>
 
   <Tab title="Python">
     <Note>
-      Di v1.0 dan yang lebih baru, tool runner SDK Python tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      Di v1.0 dan yang lebih baru, tool runner SDK Python tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
@@ -2712,25 +2715,25 @@ Anda dapat menyediakan prompt kustom untuk kebutuhan spesifik domain. Prompt And
 
   <Tab title="C#">
     <Note>
-      SDK C# menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK C# menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
   <Tab title="Go">
     <Note>
-      SDK Go menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK Go menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
   <Tab title="Java">
     <Note>
-      SDK Java menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK Java menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
   <Tab title="PHP">
     <Note>
-      SDK PHP menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK PHP menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
     </Note>
   </Tab>
 
@@ -2816,12 +2819,12 @@ Struktur ini memungkinkan Claude melanjutkan pekerjaan secara efisien tanpa kehi
 #### Alat sisi server
 
 <Warning>
-  Compaction memerlukan pertimbangan khusus saat menggunakan alat sisi server seperti [web search](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool) atau [web fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool).
+  Kompaksi memerlukan pertimbangan khusus saat menggunakan alat sisi server seperti [pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool) atau [web fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool).
 </Warning>
 
-Saat menggunakan alat sisi server, SDK mungkin salah menghitung penggunaan token, menyebabkan compaction dipicu pada waktu yang salah.
+Saat menggunakan alat sisi server, SDK mungkin salah menghitung penggunaan token, menyebabkan kompaksi dipicu pada waktu yang salah.
 
-Misalnya, setelah operasi web search, respons API mungkin menunjukkan:
+Misalnya, setelah operasi pencarian web, respons API mungkin menunjukkan:
 
 ```json Output
 {
@@ -2834,42 +2837,42 @@ Misalnya, setelah operasi web search, respons API mungkin menunjukkan:
 }
 ```
 
-SDK menghitung total penggunaan sebagai 63.000 + 0 + 270.000 + 1.400 = 334.400 token. Namun, nilai `cache_read_input_tokens` mencakup akumulasi pembacaan dari beberapa panggilan API internal yang dilakukan oleh alat sisi server, bukan konteks percakapan Anda yang sebenarnya. Panjang konteks Anda yang sebenarnya mungkin hanya 63.000 `input_tokens`, tetapi SDK melihat 334k dan memicu compaction terlalu dini.
+SDK menghitung total penggunaan sebagai 63.000 + 0 + 270.000 + 1.400 = 334.400 token. Namun, nilai `cache_read_input_tokens` mencakup akumulasi pembacaan dari beberapa panggilan API internal yang dilakukan oleh alat sisi server, bukan konteks percakapan Anda yang sebenarnya. Panjang konteks Anda yang sebenarnya mungkin hanya 63.000 `input_tokens`, tetapi SDK melihat 334k dan memicu kompaksi terlalu dini.
 
 **Solusi sementara:**
 
 * Gunakan endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting) untuk mendapatkan panjang konteks yang akurat
-* Hindari compaction saat menggunakan alat sisi server secara ekstensif
+* Hindari kompaksi saat menggunakan alat sisi server secara ekstensif
 
 #### Kasus tepi penggunaan alat
 
-Ketika SDK memicu compaction saat respons penggunaan alat masih tertunda, SDK menghapus blok penggunaan alat dari riwayat pesan sebelum menghasilkan ringkasan. Claude akan mengeluarkan kembali panggilan alat setelah melanjutkan dari ringkasan jika masih diperlukan.
+Ketika SDK memicu kompaksi saat respons penggunaan alat masih tertunda, SDK menghapus blok penggunaan alat dari riwayat pesan sebelum menghasilkan ringkasan. Claude akan mengeluarkan kembali panggilan alat setelah melanjutkan dari ringkasan jika masih diperlukan.
 
-### Memantau compaction
+### Memantau kompaksi
 
-Memahami kapan compaction dipicu membantu Anda menyetel ambang batas dan memverifikasi perilaku yang diharapkan.
+Memahami kapan kompaksi dipicu membantu Anda menyetel ambang batas dan memverifikasi perilaku yang diharapkan.
 
 <Tabs>
   <Tab title="cURL">
     <Note>
-      Compaction berjalan di sisi klien dalam helper `tool_runner` SDK, sehingga tidak memiliki padanan HTTP langsung. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani compaction di server Anthropic.
+      Kompaksi berjalan di sisi klien dalam helper `tool_runner` SDK, sehingga tidak memiliki padanan HTTP langsung. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani kompaksi di server Anthropic.
     </Note>
   </Tab>
 
   <Tab title="CLI">
     <Note>
-      CLI tidak menyertakan helper `tool_runner`. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani compaction di server Anthropic tanpa integrasi sisi SDK.
+      CLI tidak menyertakan helper `tool_runner`. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya, yang menangani kompaksi di server Anthropic tanpa integrasi sisi SDK.
     </Note>
   </Tab>
 
   <Tab title="Python">
     <Note>
-      Di v1.0 dan yang lebih baru, tool runner SDK Python tidak mendukung `compaction_control`. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya.
+      Di v1.0 dan yang lebih baru, tool runner SDK Python tidak mendukung `compaction_control`. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya.
     </Note>
   </Tab>
 
   <Tab title="TypeScript">
-    `toolRunner` SDK TypeScript mendukung compaction tetapi tidak mencatat event. Deteksi compaction dengan mengamati `runner.params.messages.length` menyusut di antara giliran:
+    `toolRunner` SDK TypeScript mendukung kompaksi tetapi tidak mencatat event. Deteksi kompaksi dengan mengamati `runner.params.messages.length` menyusut di antara giliran:
 
     ```typescript TypeScript
     let prevMsgCount = 0;
@@ -2886,30 +2889,30 @@ Memahami kapan compaction dipicu membantu Anda menyetel ambang batas dan memveri
 
   <Tab title="C#">
     <Note>
-      Tool runner SDK C# tidak mendukung `compaction_control`. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya.
+      Tool runner SDK C# tidak mendukung `compaction_control`. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya.
     </Note>
   </Tab>
 
   <Tab title="Go">
     <Note>
-      Tool runner SDK Go tidak mendukung `compaction_control`. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya.
+      Tool runner SDK Go tidak mendukung `compaction_control`. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya.
     </Note>
   </Tab>
 
   <Tab title="Java">
     <Note>
-      Tool runner SDK Java tidak mendukung `compaction_control`. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya.
+      Tool runner SDK Java tidak mendukung `compaction_control`. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya.
     </Note>
   </Tab>
 
   <Tab title="PHP">
     <Note>
-      Tool runner SDK PHP tidak mendukung `compaction_control`. Gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya.
+      Tool runner SDK PHP tidak mendukung `compaction_control`. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya.
     </Note>
   </Tab>
 
   <Tab title="Ruby">
-    SDK Ruby mendukung callback `on_compact:` yang dipicu ketika compaction terjadi. Tambahkan ke konfigurasi `compaction_control` Anda:
+    SDK Ruby mendukung callback `on_compact:` yang dipicu ketika kompaksi terjadi. Tambahkan ke konfigurasi `compaction_control` Anda:
 
     ```ruby Ruby
     client = Anthropic::Client.new
@@ -2935,7 +2938,7 @@ Memahami kapan compaction dipicu membantu Anda menyetel ambang batas dan memveri
   </Tab>
 </Tabs>
 
-### Kapan menggunakan compaction
+### Kapan menggunakan kompaksi
 
 **Kasus penggunaan yang baik:**
 
@@ -2953,11 +2956,11 @@ Memahami kapan compaction dipicu membantu Anda menyetel ambang batas dan memveri
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Compaction" icon="arrows-clockwise" href="https://platform.claude.com/docs/id/build-with-claude/compaction">
-    Kelola percakapan panjang dengan compaction sisi server, strategi yang direkomendasikan untuk sebagian besar kasus penggunaan.
+  <Card title="Kompaksi" icon="arrows-clockwise" href="https://platform.claude.com/docs/id/build-with-claude/compaction">
+    Kelola percakapan panjang dengan kompaksi sisi server, strategi yang direkomendasikan untuk sebagian besar kasus penggunaan.
   </Card>
 
   <Card title="Caching prompt" icon="database" href="https://platform.claude.com/docs/id/build-with-claude/prompt-caching">
-    Kurangi biaya dan latensi dengan meng-cache prefiks prompt, dan pelajari bagaimana pengeditan konteks berinteraksi dengan cache.
+    Kurangi biaya dan latensi dengan melakukan caching prefiks prompt, dan pelajari bagaimana pengeditan konteks berinteraksi dengan cache.
   </Card>
 </CardGroup>

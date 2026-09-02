@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: ed5bfb0f28b0ffbc79149cdbbaa68663c4fbd9385204e6eec5d4b301d09647a7
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 2a800b7c766eb5507523395a1eb7b11b3cbb735d4dde73debe29dc18c28abf8a
 ---
 
 ---
@@ -36,7 +36,7 @@ Dibandingkan dengan `curl`, `ant` membangun body permintaan dari flag bertipe at
     Untuk lingkungan Linux, unduh binary rilis secara langsung.
 
     ```bash
-    VERSION=1.26.1
+    VERSION=1.27.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -50,7 +50,7 @@ Dibandingkan dengan `curl`, `ant` membangun body permintaan dari flag bertipe at
   </Tab>
 
   <Tab title="Go">
-    Anda juga dapat menginstal CLI dari kode sumber menggunakan `go install`. Memerlukan Go 1.25 atau yang lebih baru.
+    Anda juga dapat menginstal CLI dari kode sumber menggunakan `go install`. Memerlukan Go 1.25 atau lebih baru.
 
     ```bash
     go install github.com/anthropics/anthropic-cli/cmd/ant@latest

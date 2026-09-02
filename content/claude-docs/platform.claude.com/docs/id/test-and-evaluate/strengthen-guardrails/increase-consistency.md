@@ -1,29 +1,29 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/increase-consistency
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 1a4d47005645d499b7a8e99d20030b16a91b41e57e02fa053cb43f2802d67c93
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 46e9373f03ddd329e127689dfea71aab585c33f2ceceaf62538cb04eaf908aa3
 ---
 
 ---
 title: Meningkatkan konsistensi output
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/increase-consistency
-description: Buat output Claude lebih konsisten dengan menentukan format yang tepat, mengisi respons di awal, membatasi dengan contoh, dan mendasarkan jawaban pada retrieval.
+description: Buat output Claude lebih konsisten dengan menentukan format yang tepat, melakukan prefill respons, membatasi dengan contoh, dan mendasarkan jawaban pada retrieval.
 ---
 
 <Tip>
-  **Untuk jaminan kesesuaian skema JSON**
+  **Untuk kepatuhan skema JSON yang terjamin**
 
-  Jika Anda membutuhkan Claude untuk selalu menghasilkan JSON valid yang sesuai dengan skema tertentu, gunakan [Structured Outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) alih-alih teknik rekayasa prompt di bawah ini. Structured outputs memberikan jaminan kepatuhan skema dan dirancang khusus untuk kasus penggunaan ini.
+  Jika Anda memerlukan Claude untuk selalu menghasilkan JSON valid yang sesuai dengan skema tertentu, gunakan [Structured Outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) alih-alih teknik rekayasa prompt di bawah ini. Structured outputs (output terstruktur) memberikan kepatuhan skema yang terjamin dan dirancang khusus untuk kasus penggunaan ini.
 
-  Teknik-teknik di bawah ini berguna untuk konsistensi output secara umum atau ketika Anda membutuhkan fleksibilitas di luar skema JSON yang ketat.
+  Teknik-teknik di bawah ini berguna untuk konsistensi output secara umum atau ketika Anda memerlukan fleksibilitas di luar skema JSON yang ketat.
 </Tip>
 
 Berikut cara membuat respons Claude lebih konsisten:
 
 ## Tentukan format output yang diinginkan
 
-Definisikan format output yang Anda inginkan secara tepat menggunakan JSON, XML, atau template kustom sehingga Claude mengikuti setiap elemen pemformatan output yang Anda butuhkan.
+Definisikan secara tepat format output yang Anda inginkan menggunakan JSON, XML, atau template kustom sehingga Claude mengikuti setiap elemen pemformatan output yang Anda perlukan.
 
 <Accordion title="Contoh: Menstandarkan umpan balik pelanggan">
   ```text User wrap
@@ -62,21 +62,21 @@ Definisikan format output yang Anda inginkan secara tepat menggunakan JSON, XML,
   ```
 </Accordion>
 
-## Isi respons Claude di awal
+## Prefill respons Claude
 
 <Note>
-  "Prefilling" (pengisian awal) tidak didukung pada Claude 4.6 dan model yang lebih baru serta 
+  Prefilling tidak didukung pada model Claude 4.6 dan yang lebih baru serta 
 
   [Claude Mythos Preview](https://anthropic.com/glasswing)
 
-  . Gunakan 
+  . Sebagai gantinya, gunakan 
 
   [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)
 
-   pada model yang mendukungnya, atau instruksi prompt sistem, sebagai gantinya.
+   pada model yang mendukungnya, atau instruksi prompt sistem.
 </Note>
 
-Isi giliran `Assistant` di awal dengan format yang Anda inginkan. Trik ini melewati pembukaan ramah Claude dan memaksakan struktur Anda.
+Lakukan "prefill" (pengisian awal) pada giliran `Assistant` dengan format yang Anda inginkan. Trik ini melewati pembukaan ramah Claude dan menegakkan struktur Anda.
 
 <Accordion title="Contoh: Laporan penjualan harian">
   ```text User wrap
@@ -256,9 +256,9 @@ Berikan contoh output yang Anda inginkan. Ini lebih efektif daripada instruksi a
 
 ## Gunakan retrieval untuk konsistensi kontekstual
 
-Untuk tugas yang memerlukan konteks yang konsisten (misalnya, chatbot, basis pengetahuan), gunakan "retrieval" (pengambilan) untuk mendasarkan respons Claude pada kumpulan informasi yang tetap.
+Untuk tugas yang memerlukan konteks yang konsisten (misalnya, chatbot, basis pengetahuan), gunakan "retrieval" (pengambilan informasi) untuk mendasarkan respons Claude pada kumpulan informasi yang tetap.
 
-<Accordion title="Contoh: Meningkatkan konsistensi dukungan IT">
+<Accordion title="Contoh: Meningkatkan konsistensi dukungan TI">
   ```text User wrap
   You're our IT Support AI that draws on knowledge base data. Here are entries from your knowledge base:
 
@@ -323,7 +323,7 @@ Untuk tugas yang memerlukan konteks yang konsisten (misalnya, chatbot, basis pen
 
 ## Rangkai prompt untuk tugas kompleks
 
-Pecah tugas kompleks menjadi subtugas yang lebih kecil dan konsisten. Setiap subtugas mendapatkan perhatian penuh dari Claude, mengurangi kesalahan inkonsistensi di seluruh alur kerja berskala besar.
+Pecah tugas kompleks menjadi subtugas yang lebih kecil dan konsisten. Setiap subtugas mendapatkan perhatian penuh Claude, sehingga mengurangi kesalahan inkonsistensi di seluruh alur kerja berskala besar.
 
 ## Jaga Claude tetap dalam karakter
 
@@ -333,7 +333,7 @@ Untuk aplikasi berbasis peran, mempertahankan karakter yang konsisten memerlukan
   <Tip>
     Saat menyiapkan karakter, berikan informasi terperinci tentang kepribadian, latar belakang, dan sifat atau keunikan spesifik apa pun. Ini membantu model meniru dan menggeneralisasi sifat-sifat karakter dengan lebih baik.
   </Tip>
-* **Siapkan Claude untuk kemungkinan skenario:** Berikan daftar skenario umum dan respons yang diharapkan dalam prompt Anda. Ini "melatih" Claude untuk menangani situasi yang beragam tanpa keluar dari karakter.
+* **Persiapkan Claude untuk skenario yang mungkin terjadi:** Berikan daftar skenario umum dan respons yang diharapkan dalam prompt Anda. Ini "melatih" Claude untuk menangani beragam situasi tanpa keluar dari karakter.
 
 <Accordion title="Contoh: Chatbot enterprise untuk role prompting">
   ```text System wrap

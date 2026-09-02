@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/search-results
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: d992e25ed34e12c8ad06af9913c399249615a97fc42c4349eabb123c105ead74
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: f56e89c150202f933a8154c27d30f4975ac039f8f2b4a7c52eebd0e066fd130f
 ---
 
 ---
@@ -12,21 +12,21 @@ description: Aktifkan sitasi alami untuk aplikasi RAG dengan menyediakan hasil p
 ---
 
 <Note>
-  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
-Blok konten hasil pencarian memungkinkan Claude mengutip konten Anda sendiri dengan cara yang sama seperti saat mengutip hasil pencarian web: setiap sitasi membawa sumber dan judul yang Anda berikan. Gunakan blok ini dalam aplikasi "Retrieval-Augmented Generation" (generasi yang diperkaya dengan pengambilan data), atau RAG, di mana Claude perlu mengatribusikan jawaban ke dokumen Anda.
+Blok konten hasil pencarian memungkinkan Claude mengutip konten Anda sendiri dengan cara yang sama seperti mengutip hasil pencarian web: setiap sitasi membawa sumber dan judul yang Anda berikan. Gunakan blok ini dalam aplikasi "Retrieval-Augmented Generation" (generasi yang diperkaya pengambilan), atau RAG, di mana Claude perlu mengatribusikan jawaban ke dokumen Anda.
 
-Semua [model aktif](https://platform.claude.com/docs/id/about-claude/models/overview) mendukung hasil pencarian dengan sitasi, kecuali Claude Haiku 3. Tidak diperlukan header beta: hasil pencarian merupakan bagian dari Messages API standar.
+Semua [model aktif](https://platform.claude.com/docs/id/models/overview) mendukung hasil pencarian dengan sitasi, kecuali Claude Haiku 3. Tidak diperlukan header beta: hasil pencarian merupakan bagian dari Messages API standar.
 
 ## Cara kerjanya
 
 Hasil pencarian dapat disediakan dengan dua cara:
 
-1. **Dari pemanggilan alat:** Alat kustom Anda mengembalikan hasil pencarian, sehingga memungkinkan aplikasi RAG yang dinamis
-2. **Sebagai konten tingkat atas:** Anda menyediakan hasil pencarian secara langsung dalam pesan pengguna untuk konten yang telah diambil sebelumnya atau di-cache
+1. **Dari pemanggilan alat:** Alat kustom Anda mengembalikan hasil pencarian, memungkinkan aplikasi RAG yang dinamis
+2. **Sebagai konten tingkat atas:** Anda menyediakan hasil pencarian langsung dalam pesan pengguna untuk konten yang telah diambil sebelumnya atau di-cache
 
-Dalam kedua kasus tersebut, Claude mengutip hasil pencarian secara otomatis ketika sitasi diaktifkan. Tidak diperlukan prompt khusus: ajukan pertanyaan Anda, dan sitasi akan muncul pada blok teks yang mengambil informasi dari konten Anda.
+Dalam kedua kasus, Claude mengutip hasil pencarian secara otomatis ketika sitasi diaktifkan. Tidak diperlukan prompt khusus: ajukan pertanyaan Anda, dan sitasi akan muncul pada blok teks yang mengambil dari konten Anda.
 
 ### Skema hasil pencarian
 
@@ -55,7 +55,7 @@ Hasil pencarian menggunakan struktur berikut:
 
 | Field     | Tipe   | Deskripsi                                                                                                     |
 | --------- | ------ | ------------------------------------------------------------------------------------------------------------- |
-| `type`    | string | Harus berupa `"search_result"`                                                                                |
+| `type`    | string | Harus `"search_result"`                                                                                       |
 | `source`  | string | Sumber konten. String stabil apa pun dapat digunakan: URL, atau pengenal internal seperti `kb://article-1234` |
 | `title`   | string | Judul deskriptif untuk hasil pencarian                                                                        |
 | `content` | array  | Array blok teks yang berisi konten sebenarnya                                                                 |
@@ -69,28 +69,28 @@ Hasil pencarian menggunakan struktur berikut:
 
 Setiap item dalam array `content` harus berupa blok teks dengan:
 
-* `type`: Harus berupa `"text"`
+* `type`: Harus `"text"`
 * `text`: Konten teks sebenarnya (string tidak kosong)
 
-Hasil pencarian hanya memuat teks. Gambar dan media lainnya tidak didukung di dalam array `content`.
+Hasil pencarian hanya memuat teks. Gambar dan media lain tidak didukung di dalam array `content`.
 
 ## Metode 1: Hasil pencarian dari pemanggilan alat
 
-Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG yang dinamis: alat mengambil konten saat runtime, dan Claude mengutipnya dalam respons. Contoh berikut memaksa pemanggilan alat dengan [`tool_choice`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use), sehingga langkah pengambilan data berjalan setiap kali.
+Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG yang dinamis: alat mengambil konten saat runtime, dan Claude mengutipnya dalam respons. Contoh berikut memaksa pemanggilan alat dengan [`tool_choice`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use), sehingga langkah pengambilan berjalan setiap kali.
 
 ### Contoh: Alat basis pengetahuan
 
 <CodeGroup>
   ```bash cURL
   # Alur pemanggilan alat memerlukan logika pencarian di sisi aplikasi yang tidak
-  # dapat diterjemahkan menjadi perintah shell sekali jalan. Lihat tab SDK untuk alur lengkapnya.
+  # dapat diterjemahkan menjadi satu perintah shell. Lihat tab SDK untuk alur lengkapnya.
   # Bentuk mentah percakapan alat dengan hasil pencarian ditampilkan di
   # tab cURL Menggabungkan kedua metode; Metode 2 menunjukkan bentuk tingkat atas.
   ```
 
   ```bash CLI
   # Alur pemanggilan alat memerlukan logika pencarian di sisi aplikasi yang tidak
-  # dapat diterjemahkan menjadi perintah shell sekali pakai. Lihat tab SDK untuk alur lengkapnya.
+  # dapat diterjemahkan menjadi satu perintah shell. Lihat tab SDK untuk alur lengkapnya.
   # Bentuk mentah percakapan alat dengan hasil pencarian ditampilkan di
   # tab cURL Menggabungkan kedua metode; Metode 2 menunjukkan bentuk tingkat atas.
   ```
@@ -259,7 +259,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG ya
   });
 
   // Tangani penggunaan alat dan berikan hasilnya.
-  // Blok tool_use tidak selalu berada di urutan pertama: temukan di dalam array content.
+  // Blok tool_use tidak selalu berada di urutan pertama: cari di dalam array content.
   const toolUse = response.content.find(
     (block): block is Anthropic.ToolUseBlock => block.type === "tool_use"
   );
@@ -348,7 +348,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG ya
   });
 
   // Saat Claude memanggil alat, berikan hasil pencariannya.
-  // Blok tool_use tidak selalu berada di urutan pertama: cari yang pertama.
+  // Blok tool_use tidak selalu yang pertama: temukan yang pertama.
   foreach (var block in response.Content)
   {
       if (block.TryPickToolUse(out var toolUse))
@@ -743,7 +743,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG ya
     ]
   end
 
-  # Susun percakapan dalam sebuah list, dimulai dengan pertanyaan pengguna
+  # Bangun percakapan dalam sebuah list, dimulai dengan pertanyaan pengguna
   messages = [
     { role: "user", content: "How do I configure the timeout settings?" }
   ]
@@ -788,7 +788,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG ya
 
 ## Metode 2: Hasil pencarian sebagai konten tingkat atas
 
-Anda juga dapat menyediakan hasil pencarian secara langsung dalam pesan pengguna. Ini berguna untuk:
+Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini berguna untuk:
 
 * Konten yang telah diambil sebelumnya dari infrastruktur pencarian Anda
 * Hasil pencarian yang di-cache dari kueri sebelumnya
@@ -889,7 +889,7 @@ Anda juga dapat menyediakan hasil pencarian secara langsung dalam pesan pengguna
 
   client = Anthropic()
 
-  # Sediakan hasil pencarian langsung di dalam pesan pengguna
+  # Berikan hasil pencarian langsung di dalam pesan pengguna
   response = client.messages.create(
       model="claude-opus-5",
       max_tokens=1024,
@@ -936,7 +936,7 @@ Anda juga dapat menyediakan hasil pencarian secara langsung dalam pesan pengguna
   ```typescript TypeScript
   const client = new Anthropic();
 
-  // Sediakan hasil pencarian langsung di pesan pengguna
+  // Sediakan hasil pencarian langsung di dalam pesan pengguna
   const response = await client.messages.create({
     model: "claude-opus-5",
     max_tokens: 1024,
@@ -1257,7 +1257,7 @@ Setiap sitasi mencakup:
 | `start_block_index`   | integer          | Indeks berbasis 0 dari blok pertama yang dikutip dalam array `content` hasil pencarian.                                                                                   |
 | `end_block_index`     | integer          | Indeks akhir eksklusif dari rentang blok yang dikutip dalam array `content` hasil pencarian. Selalu lebih besar dari `start_block_index`.                                 |
 
-Indeks blok mengidentifikasi sebuah irisan (slice) dari array `content` hasil pencarian, dan `cited_text` adalah teks lengkap dari irisan tersebut. Blok teks adalah unit terkecil yang dapat dikutip: Claude mengutip blok secara utuh, bukan substring di dalam blok. Untuk mendapatkan sitasi yang lebih terperinci, pecah konten hasil pencarian Anda menjadi blok-blok yang lebih kecil (lihat [Beberapa blok konten](https://platform.claude.com/docs/id/build-with-claude/search-results#multiple-content-blocks)).
+Indeks blok mengidentifikasi sebuah irisan dari array `content` hasil pencarian, dan `cited_text` adalah teks lengkap dari irisan tersebut. Blok teks adalah unit terkecil yang dapat dikutip: Claude mengutip blok secara utuh, bukan substring di dalam blok. Untuk mendapatkan sitasi yang lebih terperinci, pecah konten hasil pencarian Anda menjadi blok-blok yang lebih kecil (lihat [Beberapa blok konten](https://platform.claude.com/docs/id/build-with-claude/search-results#multiple-content-blocks)).
 
 ## Beberapa blok konten
 
@@ -1300,13 +1300,13 @@ Sitasi yang merujuk pada blok batas laju terlihat seperti ini:
 }
 ```
 
-Ketika hasil pencarian ini dikutip, `start_block_index` dan `end_block_index` mengidentifikasi blok mana saja yang dicakup oleh sitasi, dan `cited_text` berisi persis teks dari blok-blok tersebut. Memecah konten menjadi blok-blok yang lebih kecil dan terfokus memberi Claude batas sitasi yang lebih halus; menggabungkan konten menjadi satu blok berarti setiap sitasi mengembalikan teks lengkap. Ini adalah model yang sama dengan yang digunakan oleh [dokumen konten kustom](https://platform.claude.com/docs/id/build-with-claude/citations#custom-content-documents) dalam fitur Citations.
+Ketika hasil pencarian ini dikutip, `start_block_index` dan `end_block_index` mengidentifikasi blok mana saja yang dicakup oleh sitasi, dan `cited_text` berisi persis teks dari blok-blok tersebut. Memecah konten menjadi blok yang lebih kecil dan terfokus memberi Claude batas sitasi yang lebih halus; menggabungkan konten menjadi satu blok berarti setiap sitasi mengembalikan teks lengkap. Ini adalah model yang sama yang digunakan oleh [dokumen konten kustom](https://platform.claude.com/docs/id/build-with-claude/citations#custom-content-documents) dalam fitur Citations.
 
 ## Penggunaan lanjutan
 
 ### Menggabungkan kedua metode
 
-Anda dapat mencampur kedua metode dalam percakapan yang sama. Claude mengutip dari sumber mana pun, dan `search_result_index` menghitung semua blok `search_result` sesuai urutan dalam permintaan, terlepas dari sumbernya.
+Anda dapat mencampur kedua metode dalam percakapan yang sama. Claude mengutip dari sumber mana pun, dan `search_result_index` menghitung semua blok `search_result` sesuai urutan permintaan, terlepas dari sumbernya.
 
 Contoh berikut memutar ulang sebuah percakapan lengkap. Pesan pengguna pertama membawa hasil pencarian yang telah diambil sebelumnya, giliran asisten memanggil alat basis pengetahuan, dan hasil alat mengembalikan hasil pencarian kedua. Jawaban Claude mengutip kedua sumber:
 
@@ -1631,7 +1631,7 @@ Contoh berikut memutar ulang sebuah percakapan lengkap. Pesan pengguna pertama m
   ```csharp C#
   AnthropicClient client = new();
 
-  // Putar ulang percakapan yang menyediakan hasil pencarian dengan kedua cara: pesan
+  // Putar ulang percakapan yang menyediakan hasil pencarian dengan dua cara: pesan
   // pengguna pertama membawa hasil yang sudah diambil, hasil alat mengembalikan yang lain
   var response = await client.Messages.Create(new()
   {
@@ -2081,7 +2081,7 @@ Hasil alat lebih ketat: jika ada blok dalam array konten `tool_result` yang beru
 
 ### Kontrol cache
 
-Tambahkan `cache_control` pada blok hasil pencarian untuk meng-cache-nya agar dapat digunakan kembali di berbagai permintaan. Field ini berdampingan dengan `citations` pada blok yang sama:
+Tambahkan `cache_control` pada blok hasil pencarian untuk meng-cache-nya agar dapat digunakan kembali di berbagai permintaan. Pengaturan ini berdampingan dengan `citations` pada blok yang sama:
 
 ```json
 {
@@ -2112,7 +2112,7 @@ Secara default, sitasi dinonaktifkan untuk hasil pencarian. Anda dapat mengaktif
 }
 ```
 
-Ketika `citations.enabled` diatur ke `true`, Claude melampirkan referensi sitasi pada blok teks yang mengambil informasi dari hasil pencarian.
+Ketika `citations.enabled` diatur ke `true`, Claude melampirkan referensi sitasi pada blok teks yang mengambil dari hasil pencarian.
 
 <Warning>
   Sitasi bersifat semua-atau-tidak-sama-sekali: semua hasil pencarian dalam satu permintaan harus mengaktifkan sitasi, atau semuanya harus menonaktifkannya. Mencampur hasil pencarian dengan pengaturan sitasi yang berbeda akan menghasilkan kesalahan.
@@ -2130,7 +2130,7 @@ Ketika `citations.enabled` diatur ke `true`, Claude melampirkan referensi sitasi
 
 * **Konten yang telah diambil sebelumnya:** Gunakan ketika Anda sudah memiliki hasil pencarian
 * **Pemrosesan batch:** Ideal untuk memproses beberapa hasil pencarian sekaligus
-* **Pengujian:** Sangat cocok untuk menguji perilaku sitasi dengan konten yang sudah diketahui
+* **Pengujian:** Sangat baik untuk menguji perilaku sitasi dengan konten yang sudah diketahui
 
 ### Praktik terbaik umum
 
@@ -2146,20 +2146,20 @@ Ketika `citations.enabled` diatur ke `true`, Claude melampirkan referensi sitasi
    * Pastikan judul mencerminkan konten secara akurat
    * Jaga konsistensi pemformatan
 
-3. **Tangani kesalahan dengan baik:** ketika pencarian gagal atau tidak mengembalikan apa pun, kembalikan blok teks biasa yang menjelaskan hasilnya (misalnya, `{"type": "text", "text": "No results found."}`) alih-alih memunculkan kesalahan: Claude akan menjelaskan hasil kosong tersebut kepada pengguna, dan percakapan berlanjut.
+3. **Tangani kesalahan dengan baik:** ketika pencarian gagal atau tidak mengembalikan apa pun, kembalikan blok teks biasa yang menjelaskan hasilnya (misalnya, `{"type": "text", "text": "No results found."}`) alih-alih memunculkan kesalahan: Claude menjelaskan hasil kosong tersebut kepada pengguna, dan percakapan berlanjut.
 
 ## Keterbatasan
 
 * Blok konten hasil pencarian tersedia di Claude API, Amazon Bedrock, dan Google Cloud.
 * Hanya konten teks yang didukung di dalam hasil pencarian (tanpa gambar atau media lain).
-* Blok `search_result` hanya dapat muncul dalam pesan pengguna (termasuk di dalam hasil alat). Pesan asisten yang berisi hasil pencarian akan ditolak.
+* Blok `search_result` hanya dapat muncul dalam pesan pengguna (termasuk di dalam hasil alat). Pesan asisten dengan hasil pencarian akan ditolak.
 * Ketika [alat pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool) diaktifkan dalam permintaan yang sama, sitasi harus diaktifkan pada semua blok `search_result`.
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
   <Card title="Penolakan streaming" icon="lock" href="https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals">
-    Deteksi dan tangani alasan berhenti berupa penolakan dalam respons streaming, dan coba ulang permintaan yang ditolak pada model cadangan.
+    Deteksi dan tangani alasan berhenti penolakan dalam respons streaming, dan coba ulang permintaan yang ditolak pada model cadangan.
   </Card>
 
   <Card title="Sitasi" icon="book" href="https://platform.claude.com/docs/id/build-with-claude/citations">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 5e967b1346f528353ba7e88e866ee5ecdf6b3eaf58d3b1d0b48552c740478bb5
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 4b56b43acbf5ea11dfb75a3266bb358ad9c260f6069eb55d050ad9902d6f67ad
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/build-with-claude/streaming
 description: Lakukan streaming respons Messages API secara bertahap dengan server-sent events, termasuk delta teks, penggunaan alat, dan pemikiran diperpanjang.
 ---
 
-Saat membuat Message, Anda dapat mengatur `"stream": true` untuk melakukan streaming respons secara bertahap menggunakan [server-sent events](https://developer.mozilla.org/en-US/Web/API/Server-sent%5Fevents/Using%5Fserver-sent%5Fevents) (SSE).
+Saat membuat sebuah Message, Anda dapat mengatur `"stream": true` untuk melakukan streaming respons secara bertahap menggunakan [server-sent events](https://developer.mozilla.org/en-US/Web/API/Server-sent%5Fevents/Using%5Fserver-sent%5Fevents) (SSE).
 
 ## Streaming dengan SDK
 
@@ -149,7 +149,7 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
 
 <CodeGroup>
   ```bash CLI
-  # Flag --stream pada CLI ant memancarkan satu event per baris dan tidak
+  # Flag --stream pada CLI ant mengeluarkan satu event per baris dan tidak
   # mengakumulasikannya menjadi Message akhir. Untuk generasi panjang, stream
   # event mentahnya:
   ant messages create --stream --format jsonl <<'YAML'
@@ -296,7 +296,7 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
   ```
 </CodeGroup>
 
-Pemanggilan `.stream()` menjaga koneksi HTTP tetap aktif dengan server-sent events, lalu `.get_final_message()` (Python) atau `.finalMessage()` (TypeScript) mengakumulasi semua event dan mengembalikan objek `Message` lengkap. Di Go, Anda memanggil `message.Accumulate(event)` di dalam loop stream untuk membangun `Message` lengkap yang sama. Di Java, gunakan `MessageAccumulator.create()` dan panggil `accumulator.accumulate(event)` pada setiap event. Di C#, lakukan await pada metode ekstensi `.Aggregate()` milik stream untuk mendapatkan `Message` lengkap, atau teruskan `MessageContentAggregator` ke `.CollectAsync()` untuk mengagregasi sambil menangani event. Di Ruby, panggil `.accumulated_message` pada stream. Di PHP SDK, Anda melakukan iterasi atas event stream secara manual untuk mengakumulasi respons.
+Pemanggilan `.stream()` menjaga koneksi HTTP tetap hidup dengan server-sent events, lalu `.get_final_message()` (Python) atau `.finalMessage()` (TypeScript) mengakumulasi semua event dan mengembalikan objek `Message` lengkap. Di Go, Anda memanggil `message.Accumulate(event)` di dalam loop stream untuk membangun `Message` lengkap yang sama. Di Java, gunakan `MessageAccumulator.create()` dan panggil `accumulator.accumulate(event)` pada setiap event. Di C#, lakukan await pada metode ekstensi `.Aggregate()` milik stream untuk mendapatkan `Message` lengkap, atau teruskan `MessageContentAggregator` ke `.CollectAsync()` untuk melakukan agregasi sambil menangani event. Di Ruby, panggil `.accumulated_message` pada stream. Di PHP SDK, Anda melakukan iterasi atas event stream secara manual untuk mengakumulasi respons.
 
 ## Jenis event
 
@@ -304,10 +304,10 @@ Setiap server-sent event menyertakan jenis event bernama dan data JSON terkait. 
 
 Setiap stream menggunakan alur event berikut:
 
-1. `message_start`: berisi objek `Message` dengan `content` kosong.
-2. Serangkaian blok konten, yang masing-masing memiliki `content_block_start`, satu atau lebih event `content_block_delta`, dan sebuah event `content_block_stop`. Setiap blok konten memiliki `index` yang sesuai dengan indeksnya di array `content` Message akhir. Satu pengecualian: selama respons [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback), blok konten `fallback` tiba di setiap batas model sebagai pasangan `content_block_start` dan `content_block_stop` tanpa delta di antaranya.
+1. `message_start`: berisi objek `Message` dengan `content` kosong. Di bawah header beta [`thinking-binding-controls-2026-08-01`](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-thinking-controls), objek `Message` ini juga membawa array `input_transformations`. Setelah [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) di tengah stream, event `message_delta` terakhir membawa array tersebut lagi dengan entri dari model yang melayani.
+2. Serangkaian blok konten, yang masing-masing memiliki event `content_block_start`, satu atau lebih event `content_block_delta`, dan event `content_block_stop`. Setiap blok konten memiliki `index` yang sesuai dengan indeksnya dalam array `content` Message akhir. Satu pengecualian: selama respons [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback), blok konten `fallback` tiba di setiap batas model sebagai pasangan `content_block_start` dan `content_block_stop` tanpa delta di antaranya.
 3. Satu atau lebih event `message_delta`, yang menunjukkan perubahan tingkat atas pada objek `Message` akhir.
-4. Sebuah event `message_stop` terakhir.
+4. Event `message_stop` terakhir.
 
 <Warning>
   Jumlah token yang ditampilkan di field `usage` pada event `message_delta` bersifat *kumulatif*.
@@ -315,11 +315,11 @@ Setiap stream menggunakan alur event berikut:
 
 ### Event ping
 
-Stream event juga dapat menyertakan event `ping` dalam jumlah berapa pun.
+Stream event juga dapat menyertakan sejumlah event `ping`.
 
 ### Event error
 
-API sesekali dapat mengirim [error](https://platform.claude.com/docs/id/api/errors) di dalam stream event. Misalnya, selama periode penggunaan tinggi, Anda mungkin menerima `overloaded_error`, yang biasanya setara dengan HTTP 529 dalam konteks non-streaming:
+API sesekali dapat mengirimkan [error](https://platform.claude.com/docs/id/api/errors) dalam stream event. Misalnya, selama periode penggunaan tinggi, Anda mungkin menerima `overloaded_error`, yang biasanya setara dengan HTTP 529 dalam konteks non-streaming:
 
 ```sse Example error
 event: error
@@ -356,7 +356,7 @@ event: content_block_delta
 data: {"type": "content_block_delta","index": 1,"delta": {"type": "input_json_delta","partial_json": "{\"location\": \"San Fra"}}}
 ```
 
-Catatan: Model saat ini hanya mendukung pengeluaran satu properti kunci dan nilai lengkap dari `input` dalam satu waktu. Oleh karena itu, saat menggunakan alat, mungkin ada jeda antara event streaming selagi model bekerja. Setelah sebuah kunci dan nilai `input` terakumulasi, keduanya dikeluarkan sebagai beberapa event `content_block_delta` dengan JSON parsial yang dipotong-potong sehingga format ini dapat secara otomatis mendukung granularitas yang lebih halus pada model mendatang.
+Catatan: Model saat ini hanya mendukung pengeluaran satu properti kunci dan nilai lengkap dari `input` dalam satu waktu. Oleh karena itu, saat menggunakan alat, mungkin ada jeda antara event streaming selagi model bekerja. Setelah kunci dan nilai `input` terakumulasi, keduanya dikeluarkan sebagai beberapa event `content_block_delta` dengan JSON parsial yang dipotong-potong sehingga format ini dapat secara otomatis mendukung granularitas yang lebih halus pada model mendatang.
 
 ### Delta thinking
 
@@ -364,7 +364,7 @@ Saat menggunakan [thinking](https://platform.claude.com/docs/id/build-with-claud
 
 Untuk konten thinking, event `signature_delta` khusus dikirim tepat sebelum event `content_block_stop`. Signature ini digunakan untuk memverifikasi integritas blok thinking.
 
-Ketika `display: "omitted"` diatur pada konfigurasi thinking, tidak ada event `thinking_delta` yang dikirim. Blok thinking dibuka, menerima satu `signature_delta`, lalu ditutup. Lihat [Mengontrol tampilan thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#controlling-thinking-display).
+Ketika `display: "omitted"` diatur pada konfigurasi thinking, tidak ada event `thinking_delta` yang dikirim. Blok thinking dibuka, menerima satu `signature_delta`, lalu ditutup. Dengan `display: "updates"` (beta), blok penalaran di-stream dengan cara yang sama, dan hanya [pembaruan progres](https://platform.claude.com/docs/id/build-with-claude/thinking#progress-updates) yang ditulis beberapa model di antara pemanggilan alat yang men-stream event `thinking_delta`. Lihat [Mengontrol tampilan thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#controlling-thinking-display).
 
 Delta thinking yang umum terlihat seperti:
 
@@ -382,23 +382,23 @@ data: {"type": "content_block_delta", "index": 0, "delta": {"type": "signature_d
 
 ## Respons stream HTTP lengkap
 
-Gunakan [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) saat menggunakan mode streaming. Namun, jika Anda membangun integrasi API langsung, Anda perlu menangani event-event ini sendiri.
+Gunakan [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) saat menggunakan mode streaming. Namun, jika Anda membangun integrasi API langsung, Anda perlu menangani event ini sendiri.
 
 Respons stream terdiri dari:
 
-1. Sebuah event `message_start`
+1. Event `message_start`
 
 2. Kemungkinan beberapa blok konten, yang masing-masing berisi:
 
-   * Sebuah event `content_block_start`
+   * Event `content_block_start`
    * Kemungkinan beberapa event `content_block_delta`
-   * Sebuah event `content_block_stop`
+   * Event `content_block_stop`
 
 3. Satu atau lebih event `message_delta`
 
-4. Sebuah event `message_stop`
+4. Event `message_stop`
 
-Mungkin juga ada event `ping` yang tersebar di sepanjang respons. Lihat [Jenis event](https://platform.claude.com/docs/id/build-with-claude/streaming#event-types) untuk detail lebih lanjut tentang formatnya.
+Mungkin juga terdapat event `ping` yang tersebar di sepanjang respons. Lihat [Jenis event](https://platform.claude.com/docs/id/build-with-claude/streaming#event-types) untuk detail lebih lanjut tentang formatnya.
 
 ### Permintaan streaming dasar
 
@@ -572,7 +572,7 @@ data: {"type": "message_stop"}
 ### Permintaan streaming dengan penggunaan alat
 
 <Tip>
-  "Tool use" (penggunaan alat) mendukung [streaming fine-grained](https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming) untuk nilai parameter. Aktifkan per alat dengan `eager_input_streaming`.
+  Penggunaan alat mendukung [streaming fine-grained](https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming) untuk nilai parameter. Aktifkan per alat dengan `eager_input_streaming`.
 </Tip>
 
 Permintaan ini meminta Claude menggunakan alat untuk melaporkan cuaca.
@@ -971,7 +971,7 @@ data: {"type":"message_stop"}
 
 ### Permintaan streaming dengan thinking
 
-Permintaan ini mengaktifkan thinking dengan streaming. Pengaturan `display: "summarized"` melakukan streaming ringkasan padat dari penalaran Claude alih-alih rantai pemikiran lengkapnya.
+Permintaan ini mengaktifkan thinking dengan streaming. Pengaturan `display: "summarized"` men-stream ringkasan padat dari penalaran Claude alih-alih rantai pemikiran lengkap.
 
 <CodeGroup>
   ```bash cURL
@@ -1499,7 +1499,7 @@ Strategi pemulihan dasar meliputi:
 
 ### Claude 4.6 dan setelahnya
 
-Untuk model Claude 4.6 dan setelahnya, strategi tangkap-dan-lanjutkan yang sama berlaku, tetapi langkah 2 berubah: alih-alih menempatkan respons parsial di pesan asisten, tambahkan pesan pengguna yang menginstruksikan model untuk melanjutkan dari titik terakhirnya.
+Untuk model Claude 4.6 dan setelahnya, strategi tangkap-dan-lanjutkan yang sama berlaku, tetapi langkah 2 berubah: alih-alih menempatkan respons parsial dalam pesan asisten, tambahkan pesan pengguna yang menginstruksikan model untuk melanjutkan dari titik terakhirnya.
 
 1. **Tangkap respons parsial:** Simpan semua konten yang berhasil diterima sebelum error terjadi.
 2. **Susun permintaan lanjutan:** Buat permintaan API baru dengan pesan pengguna yang berisi respons parsial dan instruksi untuk melanjutkan, misalnya:
@@ -1511,7 +1511,7 @@ Untuk model Claude 4.6 dan setelahnya, strategi tangkap-dan-lanjutkan yang sama 
 ### Praktik terbaik pemulihan error
 
 1. **Gunakan fitur SDK:** Manfaatkan kemampuan akumulasi pesan dan penanganan error bawaan SDK.
-2. **Tangani jenis konten:** Perhatikan bahwa pesan dapat berisi beberapa blok konten (`text`, `tool_use`, `thinking`). Blok penggunaan alat dan "extended thinking" (pemikiran diperpanjang) tidak dapat dipulihkan sebagian. Anda dapat melanjutkan streaming dari blok teks terbaru.
+2. **Tangani jenis konten:** Perhatikan bahwa pesan dapat berisi beberapa blok konten (`text`, `tool_use`, `thinking`). Blok penggunaan alat dan pemikiran diperpanjang tidak dapat dipulihkan sebagian. Anda dapat melanjutkan streaming dari blok teks terbaru.
 
 ## Langkah selanjutnya
 
@@ -1521,11 +1521,11 @@ Untuk model Claude 4.6 dan setelahnya, strategi tangkap-dan-lanjutkan yang sama 
   </Card>
 
   <Card title="Streaming alat fine-grained" icon="wrench" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming">
-    Lakukan streaming JSON input alat tanpa buffering sisi server untuk latensi yang lebih rendah.
+    Stream JSON input alat tanpa buffering sisi server untuk latensi lebih rendah.
   </Card>
 
   <Card title="Thinking" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/thinking">
-    Lakukan streaming output thinking dengan event `thinking_delta` dan `signature_delta`.
+    Stream output thinking dengan event `thinking_delta` dan `signature_delta`.
   </Card>
 
   <Card title="SDK klien" icon="code" href="https://platform.claude.com/docs/id/cli-sdks-libraries/overview">

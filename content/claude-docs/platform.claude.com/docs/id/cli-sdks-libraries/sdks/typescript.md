@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: c774b5a762c5af6a3d1726d92b03f27b780ce4f29ba7cdc361db7120d261c2cd
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 4b44d9556e1932dd57ddbd53921da558f666b718ff43a8cbdeb6a20db09aa27e
 ---
 
 ---
@@ -62,7 +62,7 @@ for (const block of message.content) {
 }
 ```
 
-Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication).
+Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci personal atau kunci akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) dengan akses ke beberapa workspace, tetapkan ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
 
 ## Tipe request dan response
 
@@ -330,7 +330,7 @@ for await (const entry of results) {
 
 ## Unggahan file
 
-Parameter request yang berhubungan dengan unggahan file dapat diteruskan dalam berbagai bentuk:
+Parameter request yang berkaitan dengan unggahan file dapat diteruskan dalam berbagai bentuk:
 
 * `File` (atau objek dengan struktur yang sama)
 * `Response` dari `fetch` (atau objek dengan struktur yang sama)
@@ -372,7 +372,7 @@ await client.files.upload({
 
 ## Menangani error
 
-Ketika library tidak dapat terhubung ke API, atau jika API mengembalikan kode status non-sukses (yaitu, response 4xx atau 5xx), sebuah subclass dari `APIError` akan dilempar:
+Ketika library tidak dapat terhubung ke API, atau jika API mengembalikan kode status non-sukses (yaitu, response 4xx atau 5xx), subclass dari `APIError` akan dilempar:
 
 ```typescript
 const message = await client.messages
@@ -428,7 +428,7 @@ Error tertentu secara otomatis dicoba ulang 2 kali secara default, dengan expone
 Anda dapat menggunakan opsi `maxRetries` untuk mengonfigurasi atau menonaktifkan ini:
 
 ```typescript
-// Konfigurasikan nilai default untuk semua permintaan:
+// Konfigurasikan default untuk semua permintaan:
 const client = new Anthropic({
   maxRetries: 0 // default is 2
 });
@@ -475,7 +475,7 @@ await client.messages.create(
 );
 ```
 
-Saat timeout, sebuah `APIConnectionTimeoutError` akan dilempar.
+Saat timeout, `APIConnectionTimeoutError` akan dilempar.
 
 Perhatikan bahwa request yang timeout akan [dicoba ulang dua kali secara default](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#retries).
 
@@ -495,7 +495,7 @@ Jika didukung oleh implementasi `fetch`, SDK mengatur opsi [TCP socket keep-aliv
 
 ## Auto-pagination
 
-Metode list di Claude API menggunakan paginasi. Anda dapat menggunakan sintaks `for await ... of` untuk mengiterasi item di seluruh halaman:
+Metode list di Claude API menggunakan paginasi. Anda dapat menggunakan sintaks `for await ... of` untuk mengiterasi item di semua halaman:
 
 ```typescript
 async function fetchAllMessageBatches() {
@@ -550,7 +550,7 @@ const message = await client.messages.create(
 
 `Response` "mentah" yang dikembalikan oleh `fetch()` dapat diakses melalui metode `.asResponse()` pada tipe `APIPromise` yang dikembalikan oleh semua metode. Metode ini mengembalikan hasil segera setelah header untuk response yang sukses diterima dan tidak mengonsumsi body response, sehingga Anda bebas menulis logika parsing atau streaming kustom.
 
-Anda juga dapat menggunakan metode `.withResponse()` untuk mendapatkan `Response` mentah beserta data yang telah di-parse. Tidak seperti `.asResponse()`, metode ini mengonsumsi body, dan mengembalikan hasil setelah body di-parse.
+Anda juga dapat menggunakan metode `.withResponse()` untuk mendapatkan `Response` mentah bersama dengan data yang telah di-parse. Tidak seperti `.asResponse()`, metode ini mengonsumsi body, dan mengembalikan hasil setelah body di-parse.
 
 ```typescript
 const client = new Anthropic();
@@ -579,7 +579,7 @@ console.log(message.content);
 ### Logging
 
 <Warning>
-  Semua pesan log ditujukan hanya untuk debugging. Format dan isi pesan log dapat berubah antar rilis.
+  Semua pesan log ditujukan hanya untuk debugging. Format dan konten pesan log dapat berubah antar rilis.
 </Warning>
 
 #### Level log
@@ -639,7 +639,7 @@ await client.post("/some/path", {
 
 #### Parameter request tidak terdokumentasi
 
-Untuk membuat request menggunakan parameter yang tidak terdokumentasi, Anda dapat menggunakan `// @ts-expect-error` pada parameter yang tidak terdokumentasi tersebut. Library ini tidak memvalidasi saat runtime bahwa request sesuai dengan tipenya, sehingga nilai tambahan apa pun yang Anda kirim akan dikirim apa adanya.
+Untuk membuat request menggunakan parameter yang tidak terdokumentasi, Anda dapat menggunakan `// @ts-expect-error` pada parameter yang tidak terdokumentasi tersebut. Library ini tidak memvalidasi saat runtime bahwa request cocok dengan tipenya, sehingga nilai tambahan apa pun yang Anda kirim akan dikirim apa adanya.
 
 ```typescript
 client.messages.create({
@@ -655,7 +655,7 @@ Jika Anda ingin secara eksplisit mengirim argumen tambahan, Anda dapat melakukan
 
 #### Properti response tidak terdokumentasi
 
-Untuk mengakses properti response yang tidak terdokumentasi, Anda dapat mengakses objek response dengan `// @ts-expect-error` pada objek response, atau melakukan cast objek response ke tipe yang diperlukan. Seperti parameter request, SDK tidak memvalidasi atau menghapus properti tambahan dari response API.
+Untuk mengakses properti response yang tidak terdokumentasi, Anda dapat mengakses objek response dengan `// @ts-expect-error` pada objek response, atau melakukan cast objek response ke tipe yang diperlukan. Seperti parameter request, SDK tidak memvalidasi atau menghapus properti tambahan dari response dari API.
 
 ### Menyesuaikan client fetch
 
@@ -785,7 +785,7 @@ Gunakan `AnthropicBedrockMantle` untuk proyek baru; `AnthropicBedrock` tetap ter
 
 ## Semantic versioning
 
-Paket ini umumnya mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang mungkin dirilis sebagai versi minor:
+Paket ini secara umum mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang dapat dirilis sebagai versi minor:
 
 1. Perubahan yang hanya memengaruhi tipe statis, tanpa merusak perilaku runtime.
 2. Perubahan pada internal library yang secara teknis publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal.

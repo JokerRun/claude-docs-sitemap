@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: d8ae592a5e83eb17ef9e140e061cf8e59bc033ee725f43fed18b54871f60ebac
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 9b87e3cdd04d43b5746cad163f712acac267ffbab4ad5dd40dc602dbdf4b39c4
 ---
 
 ---
@@ -35,7 +35,7 @@ PHP 8.1.0 atau lebih tinggi.
 
 ## Penggunaan
 
-Library ini menggunakan named parameter (parameter bernama) untuk menentukan argumen opsional. Parameter dengan nilai default harus ditetapkan berdasarkan nama.
+Library ini menggunakan "named parameters" (parameter bernama) untuk menentukan argumen opsional. Parameter dengan nilai default harus ditetapkan berdasarkan nama.
 
 ```php
 $client = new Client();
@@ -50,11 +50,11 @@ $textBlock = array_find($message->content, static fn ($block): bool => $block->t
 echo $textBlock->text;
 ```
 
-Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication).
+Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci personal atau kunci akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) dengan akses ke beberapa workspace, tetapkan ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
 
 ## Value object
 
-Disarankan untuk menggunakan konstruktor statis `with` `Base64ImageSource::with(data: "U3RhaW5sZXNzIHJvY2tz", ...)` dan named parameter untuk menginisialisasi value object (objek nilai).
+Disarankan untuk menggunakan konstruktor statis `with` `Base64ImageSource::with(data: "U3RhaW5sZXNzIHJvY2tz", ...)` dan parameter bernama untuk menginisialisasi "value objects" (objek nilai).
 
 Namun, builder juga disediakan `(new Base64ImageSource)->withData("U3RhaW5sZXNzIHJvY2tz")`.
 
@@ -86,7 +86,7 @@ $client = new Anthropic\Client(
 
 ## Penanganan error
 
-Ketika library tidak dapat terhubung ke API, atau jika API mengembalikan kode status non-sukses (yaitu, respons 4xx atau 5xx), subclass dari `Anthropic\Core\Exceptions\APIException` akan dilempar:
+Ketika library tidak dapat terhubung ke API, atau jika API mengembalikan kode status yang tidak berhasil (yaitu, respons 4xx atau 5xx), subclass dari `Anthropic\Core\Exceptions\APIException` akan dilempar:
 
 ```php
 <?php
@@ -236,7 +236,7 @@ PHP SDK mendukung platform berikut:
 * **Agent Platform:** `Anthropic\Vertex\Client`. Gunakan `::fromEnvironment()`.
 * **Bedrock:** `Anthropic\Bedrock\MantleClient`. Gunakan `new MantleClient(awsRegion: ...)`.
 * **Bedrock (legacy):** `Anthropic\Bedrock\Client`. Gunakan `::fromEnvironment()` atau `::withCredentials()`.
-* **Claude Platform on AWS:** `Anthropic\Aws\Client` (memerlukan `aws/aws-sdk-php` sebagai soft dependency). Gunakan `new Anthropic\Aws\Client(workspaceId: ...)` atau tetapkan `ANTHROPIC_AWS_WORKSPACE_ID`. Tersedia dalam versi beta.
+* **Claude Platform on AWS:** `Anthropic\Aws\Client` (memerlukan `aws/aws-sdk-php` sebagai soft dependency). Gunakan `new Anthropic\Aws\Client(workspaceId: ...)` atau atur `ANTHROPIC_AWS_WORKSPACE_ID`. Tersedia dalam versi beta.
 * **Foundry:** `Anthropic\Foundry\Client`. Gunakan `::withCredentials()`.
 
 Gunakan `MantleClient` untuk proyek baru; `Anthropic\Bedrock\Client` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.

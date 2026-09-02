@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/create
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 44668474d331456c54d08bdcc08683f4d04d0c806689da1db4ce34a5573f7bc6
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: c45d8939155b1d662dd98cffa46e4659c05744e161598383fb6caa84b5c5c6d7
 ---
 
 # Create a memory
@@ -33,7 +33,7 @@ Create a memory
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -117,6 +117,12 @@ Create a memory
 
     - `"ce-user-management-2026-07-13"`
 
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
+
 ## Body parameters
 
 - `content: string or null`
@@ -125,7 +131,7 @@ Create a memory
 
 - `path: string`
 
-  Hierarchical path for the new memory, e.g. `/projects/foo/notes.md`. Must start with `/`, contain at least one non-empty segment, and be at most 1,024 bytes. Must not contain empty segments, `.` or `..` segments, control or format characters, and must be NFC-normalized. Paths are case-sensitive.
+  Hierarchical path for the new memory, e.g. `/projects/foo/notes.md`. Must start with `/`, contain at least one non-empty segment, and be at most 1,024 bytes. Must not contain empty segments, `.` or `..` segments, control or format characters, or the Unicode line and paragraph separators (U+2028, U+2029), and must be NFC-normalized. Paths are case-sensitive.
 
   minLength: 2, maxLength: 1024
 

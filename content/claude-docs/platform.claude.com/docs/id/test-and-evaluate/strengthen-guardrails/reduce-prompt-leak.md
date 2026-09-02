@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-prompt-leak
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 7237256ea7618c8cd189de0b42becc2ed59762cde16309056e299bd5ecdc7809
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: a63162a74126f2e79ad20462e1bd76a01575115b0d92c53721b6bbbd6c89323c
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails
 description: Kurangi risiko kebocoran prompt dengan memisahkan konteks dari kueri pengguna, memfilter output Claude, dan mengaudit prompt, tanpa menurunkan kinerja tugas.
 ---
 
-"Prompt leak" (kebocoran prompt) dapat mengekspos informasi sensitif yang Anda harapkan "tersembunyi" di dalam prompt Anda. Meskipun tidak ada metode yang sepenuhnya aman, strategi di bawah ini dapat mengurangi risiko secara signifikan.
+"Prompt leak" (kebocoran prompt) dapat mengekspos informasi sensitif yang Anda harapkan "tersembunyi" di dalam prompt Anda. Meskipun tidak ada metode yang sepenuhnya aman, strategi di bawah ini dapat mengurangi risikonya secara signifikan.
 
 ## Sebelum Anda mencoba mengurangi kebocoran prompt
 
@@ -20,7 +20,7 @@ Pertimbangkan untuk menggunakan strategi rekayasa prompt yang tahan kebocoran ha
 Jika Anda memutuskan untuk menerapkan teknik tahan kebocoran, pastikan untuk menguji prompt Anda secara menyeluruh guna memastikan bahwa kompleksitas tambahan tersebut tidak berdampak negatif pada kinerja model atau kualitas outputnya.
 
 <Tip>
-  Coba teknik pemantauan terlebih dahulu, seperti penyaringan output dan pasca-pemrosesan, untuk mencoba menangkap kasus kebocoran prompt.
+  Cobalah teknik pemantauan terlebih dahulu, seperti penyaringan output dan pasca-pemrosesan, untuk mencoba menangkap kejadian kebocoran prompt.
 </Tip>
 
 ***
@@ -30,7 +30,7 @@ Jika Anda memutuskan untuk menerapkan teknik tahan kebocoran, pastikan untuk men
 * **Pisahkan konteks dari kueri:** Anda dapat mencoba menggunakan "system prompt" (prompt sistem) untuk mengisolasi informasi dan konteks penting dari kueri pengguna. Anda dapat menekankan instruksi penting pada giliran `User`, lalu menekankan kembali instruksi tersebut dengan melakukan prefill pada giliran `Assistant`. (Catatan: prefill tidak didukung pada model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing).)
 
 <Accordion title="Contoh: Melindungi analitik proprietary">
-  Perhatikan bahwa prompt sistem ini sebagian besar masih merupakan prompt peran, yang merupakan [cara paling efektif untuk menggunakan prompt sistem](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role).
+  Perhatikan bahwa prompt sistem ini sebagian besar masih berupa prompt peran, yang merupakan [cara paling efektif untuk menggunakan prompt sistem](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role).
 
   ```text System wrap
   You are AnalyticsBot, an AI assistant that uses our proprietary EBITDA formula:

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/archive
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: fc1e7dce1636a5b59c7bc2bfc41d27c49bc1d8bf56c33b8801309b4a7bbff84c
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 6da4c1ee9b8f9b642fb1ff9069966fe4d61c22f5d97fb566e66308c59050957b
 ---
 
 # Archive Federation Rule
@@ -35,7 +35,7 @@ other scopes require a Console session.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -118,6 +118,12 @@ other scopes require a Console session.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ## Returns
 

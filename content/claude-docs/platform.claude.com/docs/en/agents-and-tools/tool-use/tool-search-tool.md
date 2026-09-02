@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-09-01T02:22:36.834082Z
-sha256: d29137b7f28307f6259de9056771ff8602015d35825ed8bd2f8118a5ee713532
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 26df28103af148de29a7215dd1265092afd7a93c757c1e1d036a5239d5f3839b
 ---
 
 ---
@@ -48,6 +48,8 @@ Both tool search variants are available on the following models:
 
 | Model                                          | Tool versions                                                       |
 | ---------------------------------------------- | ------------------------------------------------------------------- |
+| Claude Fable 5.1 (claude-fable-5-1)            | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
+| Claude Mythos 5.1 (claude-mythos-5-1)          | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 | Claude Fable 5 (claude-fable-5)                | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 | Claude Mythos 5 (claude-mythos-5)              | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 | Claude Opus 5 (claude-opus-5)                  | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |

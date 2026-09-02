@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 3258e3446174638f35ef6f9332744efb601ece5183c32bf882020383c7df1b8b
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 4444c8f347bc4591c9034e16671c3a3c1f7263d5e044a58cd20451f1dcfe1deb
 ---
 
 ---
@@ -11,45 +11,45 @@ url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/pr
 description: Perbedaan perilaku dan pola prompting untuk Claude Fable 5 dan Claude Mythos 5, mencakup effort, kepatuhan instruksi, run panjang, memori, dan perubahan scaffolding.
 ---
 
-Panduan ini mencakup pola prompting dan scaffolding yang spesifik untuk Claude Fable 5 dan Claude Mythos 5. Untuk kemampuan model, perubahan API, harga, dan ketersediaan, lihat [Memperkenalkan Claude Fable 5 dan Claude Mythos 5](https://platform.claude.com/docs/id/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5). Untuk teknik yang berlaku di semua model Claude saat ini, lihat [Praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
+Panduan ini membahas pola prompting dan scaffolding yang khusus untuk Claude Fable 5 dan Claude Mythos 5. Untuk kemampuan model, perubahan API, harga, dan ketersediaan, lihat [Memperkenalkan Claude Fable 5 dan Claude Mythos 5](https://platform.claude.com/docs/id/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5). Untuk teknik yang berlaku di semua model Claude saat ini, lihat [Praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
 
-Claude Fable 5 menangani masalah yang sebelumnya terlalu kompleks, terlalu lama berjalan, atau terlalu ambigu untuk model-model sebelumnya, dan sangat efektif pada pekerjaan end-to-end yang membutuhkan waktu berjam-jam, berhari-hari, atau berminggu-minggu bagi seseorang untuk menyelesaikannya. Tim yang melihat hasil terbaik menerapkan Claude Fable 5 pada masalah tersulit mereka yang belum terpecahkan; mengujinya hanya pada beban kerja yang lebih sederhana cenderung meremehkan rentang kemampuannya. Model ini juga bekerja dengan andal pada tugas-tugas yang lebih sederhana.
+Claude Fable 5 menangani masalah yang sebelumnya terlalu kompleks, berjalan terlalu lama, atau terlalu ambigu bagi model-model sebelumnya, dan sangat efektif untuk pekerjaan end-to-end yang membutuhkan waktu berjam-jam, berhari-hari, atau berminggu-minggu bagi seseorang untuk menyelesaikannya. Tim yang memperoleh hasil terbaik menerapkan Claude Fable 5 pada masalah tersulit mereka yang belum terpecahkan; mengujinya hanya pada beban kerja yang lebih sederhana cenderung meremehkan rentang kemampuannya. Model ini juga bekerja dengan andal pada tugas-tugas yang lebih sederhana.
 
-Claude Fable 5 memiliki beberapa perbedaan perilaku dari Claude Opus 4.8 yang mungkin memerlukan pembaruan prompt atau scaffolding. Peningkatan kemampuan pada level ini juga merupakan momen yang baik untuk mengevaluasi ulang instruksi, alat, dan guardrail mana yang masih diperlukan. Pola-pola di bawah ini mencakup perilaku yang paling sering memerlukan penyesuaian.
+Claude Fable 5 memiliki beberapa perbedaan perilaku dari Claude Opus 4.8 yang mungkin memerlukan pembaruan prompt atau scaffolding. Peningkatan kemampuan pada tingkat ini juga merupakan dorongan yang baik untuk mengevaluasi ulang instruksi, alat, dan guardrail mana yang masih diperlukan. Pola-pola di bawah ini mencakup perilaku yang paling sering memerlukan penyesuaian.
 
 <Note>
-  Untuk perubahan parameter API yang spesifik untuk Claude Fable 5 dan Claude Mythos 5 (hanya adaptive thinking, output thinking yang hanya diringkas, tanpa budget pemikiran diperpanjang, stop reason `refusal` dan penanganan fallback), lihat [Memperkenalkan Claude Fable 5 dan Claude Mythos 5](https://platform.claude.com/docs/id/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5).
+  Untuk perubahan parameter API yang khusus untuk Claude Fable 5 dan Claude Mythos 5 (hanya adaptive thinking, output thinking yang hanya berupa ringkasan, tanpa anggaran "extended thinking" (pemikiran diperpanjang), stop reason `refusal` dan penanganan fallback), lihat [Memperkenalkan Claude Fable 5 dan Claude Mythos 5](https://platform.claude.com/docs/id/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5).
 
-  Claude Fable 5 menjalankan classifier keamanan yang menargetkan teknik keamanan siber ofensif (seperti membangun exploit, malware, atau perkakas serangan), konten biologi dan ilmu hayati (seperti metode laboratorium atau mekanisme molekuler), dan ekstraksi thinking model yang telah diringkas. Pekerjaan keamanan siber yang tidak berbahaya dan tugas ilmu hayati yang bermanfaat juga dapat memicu pengaman ini. Untuk mengalihkan permintaan yang ditolak secara otomatis, konfigurasikan [fallback sisi server atau sisi klien](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) ke Claude Opus 4.8.
+  Claude Fable 5 menjalankan classifier keamanan yang menargetkan teknik keamanan siber ofensif (seperti membangun exploit, malware, atau perangkat serangan), konten biologi dan ilmu hayati (seperti metode laboratorium atau mekanisme molekuler), dan ekstraksi ringkasan thinking model. Pekerjaan keamanan siber yang tidak berbahaya dan tugas ilmu hayati yang bermanfaat juga dapat memicu pengaman ini. Untuk mengalihkan permintaan yang ditolak secara otomatis, konfigurasikan [fallback sisi server atau sisi klien](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) ke Claude Opus 4.8.
 </Note>
 
 ## Peningkatan kemampuan
 
 Dibandingkan dengan Claude Opus 4.8, Claude Fable 5 menunjukkan peningkatan dalam:
 
-* **Otonomi jangka panjang.** Claude Fable 5 mempertahankan output yang produktif selama periode yang panjang, menyelesaikan run berorientasi tujuan selama beberapa hari dengan retensi instruksi yang kuat di sepanjang tugas yang panjang dan kompleks.
-* **Ketepatan percobaan pertama pada masalah kompleks yang terspesifikasi dengan baik.** Penguji awal melaporkan implementasi sekali jalan untuk sistem yang sebelumnya membutuhkan iterasi berhari-hari.
-* **Visi.** Claude Fable 5 menginterpretasikan gambar teknis yang padat, aplikasi web, dan tangkapan layar yang detail dengan akurasi yang jauh lebih tinggi, sering kali sambil menggunakan lebih sedikit token output, dan dilatih untuk menggunakan alat bash dan crop untuk menangani gambar yang terbalik, buram, atau bernoise.
+* **Otonomi jangka panjang.** Claude Fable 5 mempertahankan output yang produktif dalam periode yang panjang, menyelesaikan run berorientasi tujuan selama beberapa hari dengan retensi instruksi yang kuat di sepanjang tugas yang panjang dan kompleks.
+* **Ketepatan pada percobaan pertama untuk masalah kompleks yang terspesifikasi dengan baik.** Penguji awal melaporkan implementasi sekali jalan untuk sistem yang sebelumnya membutuhkan iterasi berhari-hari.
+* **Vision.** Claude Fable 5 menafsirkan gambar teknis yang padat, aplikasi web, dan tangkapan layar yang detail dengan akurasi yang jauh lebih tinggi, sering kali dengan menggunakan lebih sedikit token output, dan dilatih untuk menggunakan alat bash dan crop untuk menangani gambar yang terbalik, buram, atau penuh noise.
 * **Alur kerja enterprise.** Claude Fable 5 mengikuti instruksi, tetap dalam cakupan, dan menghasilkan output berkualitas profesional pada analisis keuangan, spreadsheet, slide, dan dokumen.
-* **Tinjauan kode dan debugging.** Recall penemuan bug (di luar domain keamanan siber yang dicakup oleh classifier keamanan) secara nyata lebih tinggi daripada Claude Opus 4.8, termasuk pencarian di seluruh codebase dan riwayat repositori.
+* **Code review dan debugging.** Recall penemuan bug (di luar domain keamanan siber yang dicakup classifier keamanan) terasa lebih tinggi daripada Claude Opus 4.8, termasuk pencarian di seluruh codebase dan riwayat repositori.
 * **Menavigasi ambiguitas.** Claude Fable 5 bekerja dengan baik ketika diberi permintaan yang kompleks dan bercabang banyak serta diminta untuk menentukan langkah selanjutnya.
-* **Delegasi dan kolaborasi.** Claude Fable 5 secara signifikan lebih dapat diandalkan dalam mengirim dan mempertahankan subagen paralel, dan secara andal mengelola komunikasi berkelanjutan dengan subagen yang berjalan lama dan agen sejawat.
+* **Delegasi dan kolaborasi.** Claude Fable 5 jauh lebih dapat diandalkan dalam mengirim dan mempertahankan subagen paralel, serta mengelola komunikasi berkelanjutan dengan subagen yang berjalan lama dan agen sejawat secara andal.
 
 Di luar peningkatan spesifik ini, Claude Fable 5 secara umum lebih mampu daripada model-model sebelumnya pada hampir semua tugas. Claude Fable 5 tidak ditujukan untuk pekerjaan keamanan siber ofensif atau biologi dan ilmu hayati; permintaan dalam domain tersebut dapat mengembalikan [`stop_reason: "refusal"`](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback).
 
 ## Giliran yang lebih panjang secara default
 
-Permintaan individual pada tugas yang sulit dapat berjalan selama beberapa menit pada pengaturan [effort](https://platform.claude.com/docs/id/build-with-claude/effort) yang lebih tinggi, terutama ketika tugas tersebut memerlukan pengumpulan konteks, pembangunan, dan verifikasi mandiri, dan run otonom dapat berlangsung selama berjam-jam. Ini adalah salah satu pergeseran terbesar yang dihadapi tim saat menyesuaikan diri dengan Claude Fable 5. Sesuaikan timeout klien, streaming, dan indikator progres yang dilihat pengguna sebelum bermigrasi, dan pertimbangkan untuk merestrukturisasi harness agar memeriksa run secara asinkron, misalnya melalui job terjadwal, alih-alih memblokir. Untuk mencegah Claude Fable 5 merencanakan secara berlebihan ketika tugas bersifat ambigu:
+Permintaan individual pada tugas yang sulit dapat berjalan selama bermenit-menit pada pengaturan [effort](https://platform.claude.com/docs/id/build-with-claude/effort) yang lebih tinggi, terutama ketika tugas tersebut memerlukan pengumpulan konteks, pembangunan, dan verifikasi mandiri, dan run otonom dapat berlangsung selama berjam-jam. Ini adalah salah satu pergeseran terbesar yang dihadapi tim saat menyesuaikan diri dengan Claude Fable 5. Sesuaikan timeout klien, streaming, dan indikator progres yang ditampilkan kepada pengguna sebelum bermigrasi, dan pertimbangkan untuk merestrukturisasi harness agar memeriksa run secara asinkron, misalnya melalui job terjadwal, alih-alih memblokir. Untuk mencegah Claude Fable 5 merencanakan secara berlebihan ketika suatu tugas ambigu:
 
 ```text wrap
 When you have enough information to act, act. Do not re-derive facts already established in the conversation, re-litigate a decision the user has already made, or narrate options you will not pursue in user-facing messages. If you are weighing a choice, give a recommendation, not an exhaustive survey. This does not apply to thinking blocks.
 ```
 
-## Pertimbangkan semua level effort
+## Pertimbangkan semua tingkat effort
 
-[Effort](https://platform.claude.com/docs/id/build-with-claude/effort) adalah kontrol utama untuk trade-off antara kecerdasan, latensi, dan biaya pada Claude Fable 5. Gunakan `high` sebagai default untuk sebagian besar tugas, dengan `xhigh` untuk beban kerja yang paling sensitif terhadap kemampuan dan `medium` atau `low` untuk pekerjaan rutin. Pengaturan effort yang lebih rendah pada Claude Fable 5 tetap bekerja dengan baik dan sering kali melampaui performa `xhigh` pada model-model sebelumnya. Kurangi effort jika tugas selesai tetapi memakan waktu lebih lama dari yang diperlukan, atau jika Anda menginginkan gaya kerja yang lebih cepat dan lebih interaktif.
+[Effort](https://platform.claude.com/docs/id/build-with-claude/effort) adalah kontrol utama untuk trade-off antara kecerdasan, "latency" (latensi), dan biaya pada Claude Fable 5. Gunakan `high` sebagai default untuk sebagian besar tugas, dengan `xhigh` untuk beban kerja yang paling sensitif terhadap kemampuan dan `medium` atau `low` untuk pekerjaan rutin. Pengaturan effort yang lebih rendah pada Claude Fable 5 tetap berkinerja baik dan sering kali melampaui kinerja `xhigh` pada model-model sebelumnya. Kurangi effort jika suatu tugas selesai tetapi memakan waktu lebih lama dari yang diperlukan, atau jika Anda menginginkan gaya kerja yang lebih cepat dan lebih interaktif.
 
-Pada pekerjaan rutin dengan effort yang lebih tinggi, Claude Fable 5 dapat mengumpulkan konteks dan berdeliberasi melebihi apa yang dibutuhkan tugas. Pada saat yang sama, effort yang lebih tinggi sering menghasilkan perilaku verifikasi yang sangat baik, penalaran yang canggih, dan output yang paling teliti. Untuk mencegah perapian atau refactoring yang tidak diminta pada effort yang lebih tinggi:
+Pada pekerjaan rutin dengan effort yang lebih tinggi, Claude Fable 5 dapat mengumpulkan konteks dan mempertimbangkan melebihi apa yang dibutuhkan tugas. Pada saat yang sama, effort yang lebih tinggi sering menghasilkan perilaku verifikasi yang sangat baik, penalaran yang canggih, dan output yang paling teliti. Untuk mencegah perapian atau refactoring yang tidak diminta pada effort yang lebih tinggi:
 
 ```text wrap
 Don't add features, refactor, or introduce abstractions beyond what the task requires. A bug fix doesn't need surrounding cleanup and a one-shot operation usually doesn't need a helper. Don't design for hypothetical future requirements: do the simplest thing that works well. Avoid premature abstraction and half-finished implementations. Don't add error handling, fallbacks, or validation for scenarios that cannot happen. Trust internal code and framework guarantees. Only validate at system boundaries (user input, external APIs). Don't use feature flags or backwards-compatibility shims when you can just change the code.
@@ -57,7 +57,7 @@ Don't add features, refactor, or introduce abstractions beyond what the task req
 
 ## Kepatuhan instruksi yang kuat
 
-Kepatuhan terhadap instruksi telah cukup meningkat sehingga Anda dapat mengarahkan sebagian besar perilaku dengan instruksi singkat alih-alih menyebutkan setiap perilaku satu per satu. Misalnya, ketika tidak diarahkan, Claude Fable 5 dapat menguraikan melebihi apa yang dibutuhkan tugas, terutama pada pengaturan effort yang lebih tinggi: menyurvei opsi yang tidak akan dikerjakannya, menjelaskan akar masalah secara panjang lebar, menghasilkan deskripsi PR yang sangat terstruktur, atau menulis komentar yang menarasikan apa yang dilakukan baris berikutnya. Instruksi singkat tentang keringkasan sama efektifnya dengan mendaftar setiap pola:
+Kepatuhan instruksi telah meningkat sedemikian rupa sehingga Anda dapat mengarahkan sebagian besar perilaku dengan instruksi singkat alih-alih menyebutkan setiap perilaku satu per satu. Misalnya, ketika tidak diarahkan, Claude Fable 5 dapat menguraikan melebihi apa yang dibutuhkan tugas, terutama pada pengaturan effort yang lebih tinggi: meninjau opsi yang tidak akan dikejarnya, menjelaskan akar masalah secara panjang lebar, menghasilkan deskripsi PR yang sangat terstruktur, atau menulis komentar yang menarasikan apa yang dilakukan baris berikutnya. Instruksi keringkasan yang pendek sama efektifnya dengan mendaftar setiap pola:
 
 ```text wrap
 Lead with the outcome. Your first sentence after finishing should answer "what happened" or "what did you find": the thing the user would ask for if they said "just give me the TLDR." Supporting detail and reasoning come after. Being readable and being concise are different things, and readability matters more.
@@ -65,15 +65,15 @@ Lead with the outcome. Your first sentence after finishing should answer "what h
 The way to keep output short is to be selective about what you include (drop details that don't change what the reader would do next), not to compress the writing into fragments, abbreviations, arrow chains like A → B → fails, or jargon.
 ```
 
-Hal yang sama berlaku untuk perilaku checkpoint dalam alur kerja yang berjalan lama. Agar Claude Fable 5 berhenti hanya di tempat yang benar-benar membutuhkan Anda, tidak perlu menyebutkan setiap kasus:
+Hal yang sama berlaku untuk perilaku checkpoint dalam alur kerja yang berjalan lama. Agar Claude Fable 5 berhenti hanya di tempat ia benar-benar membutuhkan Anda, tidak perlu menyebutkan setiap kasus:
 
 ```text wrap
 Pause for the user only when the work genuinely requires them: a destructive or irreversible action, a real scope change, or input that only they can provide. If you hit one of these, ask and end the turn, rather than ending on a promise.
 ```
 
-## Dasarkan klaim progres pada bukti selama run panjang
+## Landaskan klaim progres selama run panjang
 
-Pada run otonom yang panjang, instruksikan Claude Fable 5 untuk mengaudit progres terhadap hasil alat yang sebenarnya. Dalam pengujian Anthropic, ini hampir menghilangkan laporan status yang dibuat-buat bahkan pada tugas yang dirancang untuk memancingnya:
+Pada run otonom yang panjang, instruksikan Claude Fable 5 untuk mengaudit progres terhadap hasil alat yang sebenarnya. Dalam pengujian Anthropic, hal ini hampir menghilangkan laporan status yang dibuat-buat bahkan pada tugas yang dirancang untuk memancingnya:
 
 ```text wrap
 Before reporting progress, audit each claim against a tool result from this session. Only report work you can point to evidence for; if something is not yet verified, say so explicitly. Report outcomes faithfully: if tests fail, say so with the output; if a step was skipped, say that; when something is done and verified, state it plainly without hedging.
@@ -81,7 +81,7 @@ Before reporting progress, audit each claim against a tool result from this sess
 
 ## Nyatakan batasannya
 
-Claude Fable 5 terkadang dapat mengambil tindakan yang tidak diminta (menyusun draf email padahal tidak diminta, membuat cadangan git-branch defensif). Definisikan batasan eksplisit tentang apa yang boleh dan tidak boleh dilakukan Claude Fable 5:
+Claude Fable 5 sesekali dapat mengambil tindakan yang tidak diminta (menyusun draf email padahal tidak diminta, membuat cadangan git-branch defensif). Definisikan batasan eksplisit tentang apa yang boleh dan tidak boleh dilakukan Claude Fable 5:
 
 ```text wrap
 When the user is describing a problem, asking a question, or thinking out loud rather than requesting a change, the deliverable is your assessment. Report your findings and stop. Don't apply a fix until they ask for one. Before running a command that changes system state (restarts, deletes, config edits), check that the evidence actually supports that specific action. A signal that pattern-matches to a known failure may have a different cause.
@@ -89,7 +89,7 @@ When the user is describing a problem, asking a question, or thinking out loud r
 
 ## Subagen paralel
 
-Claude Fable 5 mengirim subagen paralel lebih mudah daripada model-model sebelumnya. Gunakan subagen secara sering, berikan panduan eksplisit tentang kapan delegasi sesuai, dan utamakan komunikasi asinkron antara orkestrator dan subagen daripada memblokir sampai setiap subagen kembali. Subagen berumur panjang yang mempertahankan konteksnya di sepanjang subtugas menghemat waktu dan biaya melalui pembacaan cache dan menghindari bottleneck pada subagen yang paling lambat.
+Claude Fable 5 mengirim subagen paralel dengan lebih mudah daripada model-model sebelumnya. Gunakan subagen sesering mungkin, berikan panduan eksplisit tentang kapan delegasi tepat dilakukan, dan utamakan komunikasi asinkron antara orkestrator dan subagen daripada memblokir hingga setiap subagen kembali. Subagen berumur panjang yang mempertahankan konteksnya di seluruh subtugas menghemat waktu dan biaya melalui cache read dan menghindari bottleneck pada subagen yang paling lambat.
 
 ```text wrap
 Delegate independent subtasks to subagents and keep working while they run. Intervene if a subagent goes off track or is missing relevant context.
@@ -97,29 +97,29 @@ Delegate independent subtasks to subagents and keep working while they run. Inte
 
 ## Bangun sistem memori
 
-Claude Fable 5 bekerja sangat baik ketika dapat mencatat pelajaran dari run sebelumnya dan merujuknya. Sediakan tempat untuk menulis catatan, sesederhana file Markdown:
+Claude Fable 5 berkinerja sangat baik ketika dapat mencatat pelajaran dari run sebelumnya dan merujuknya. Sediakan tempat untuk menulis catatan, sesederhana file Markdown:
 
 ```text wrap
 Store one lesson per file with a one-line summary at the top. Record corrections and confirmed approaches alike, including why they mattered. Don't save what the repo or chat history already records; update an existing note rather than creating a duplicate; delete notes that turn out to be wrong.
 ```
 
-Untuk memulai sistem memori dari riwayat yang sudah ada, minta Claude Fable 5 meninjau sesi-sesi sebelumnya:
+Untuk melakukan bootstrap sistem memori dari riwayat yang ada, minta Claude Fable 5 meninjau sesi-sesi sebelumnya:
 
 ```text wrap
 Reflect on the previous sessions we've had together. Use subagents to identify core themes and lessons, and store them in [X]. Make sure you know to reference [X] for future use.
 ```
 
-## Kasus langka berhenti lebih awal
+## Kasus langka penghentian dini
 
-Jauh di dalam sesi yang panjang, Claude Fable 5 terkadang dapat mengakhiri giliran dengan pernyataan niat berupa teks saja ("Saya sekarang akan menjalankan X") tanpa mengeluarkan panggilan alat yang sesuai, atau berhenti untuk meminta izin padahal sudah memiliki cukup informasi untuk melanjutkan. Perintah "continue" atau "go ahead and do it end to end" sudah cukup. Untuk mendefinisikan kapan berhenti sejenak itu sesuai, padukan ini dengan instruksi checkpoint di [Kepatuhan instruksi yang kuat](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5#strong-instruction-following). Untuk pipeline otonom, tambahkan pengingat sistem:
+Jauh di dalam sesi yang panjang, Claude Fable 5 sesekali dapat mengakhiri giliran dengan pernyataan niat berupa teks saja ("Sekarang saya akan menjalankan X") tanpa mengeluarkan panggilan alat yang sesuai, atau berhenti sejenak untuk meminta izin padahal sudah memiliki cukup informasi untuk melanjutkan. Cukup dengan "lanjutkan" atau "silakan kerjakan sampai selesai secara end-to-end". Untuk mendefinisikan kapan jeda itu tepat, padukan ini dengan instruksi checkpoint di [Kepatuhan instruksi yang kuat](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5#strong-instruction-following). Untuk pipeline otonom, tambahkan pengingat sistem:
 
 ```text wrap
 You are operating autonomously. The user is not watching in real time and cannot answer questions mid-task, so asking "Want me to…?" or "Shall I…?" will block the work. For reversible actions that follow from the original request, proceed without asking. Offering follow-ups after the task is done is fine; asking permission after already discussing with the user before doing the work is not. Before ending your turn, check your last paragraph. If it is a plan, an analysis, a question, a list of next steps, or a promise about work you have not done ("I'll…", "let me know when…"), do that work now with tool calls. End your turn only when the task is complete or you are blocked on input only the user can provide.
 ```
 
-## Kasus langka kekhawatiran budget konteks
+## Kasus langka kekhawatiran anggaran konteks
 
-Dalam sesi yang sangat panjang, Claude Fable 5 terkadang dapat menyarankan sesi baru, menawarkan untuk meringkas dan menyerahkan, atau memangkas pekerjaannya sendiri. Ini paling sering dipicu ketika harness menampilkan hitungan mundur token tersisa kepada model. Hindari menampilkan hitungan budget konteks secara eksplisit jika memungkinkan. Jika harness harus menampilkannya, sebuah penenangan akan membantu:
+Dalam sesi yang sangat panjang, Claude Fable 5 sesekali dapat menyarankan sesi baru, menawarkan untuk merangkum dan menyerahkan pekerjaan, atau memangkas pekerjaannya sendiri. Hal ini paling sering dipicu ketika harness menampilkan hitung mundur token tersisa kepada model. Hindari menampilkan hitungan anggaran konteks secara eksplisit jika memungkinkan. Jika harness harus menampilkannya, sebuah penegasan akan membantu:
 
 ```text wrap
 You have ample context remaining. Do not stop, summarize, or suggest a new session on account of context limits. Continue the work.
@@ -127,7 +127,7 @@ You have ample context remaining. Do not stop, summarize, or suggest a new sessi
 
 ## Berikan alasannya, bukan hanya permintaannya
 
-Claude Fable 5 cenderung bekerja lebih baik ketika memahami maksud di balik sebuah permintaan: konteks memungkinkannya menghubungkan tugas dengan informasi yang relevan alih-alih menyimpulkan maksud sendiri. Berikan konteks tentang mengapa Anda meminta, terutama untuk agen yang berjalan lama yang mengambil dari beberapa alur kerja:
+Claude Fable 5 cenderung berkinerja lebih baik ketika memahami maksud di balik suatu permintaan: konteks memungkinkannya menghubungkan tugas dengan informasi yang relevan alih-alih menyimpulkan maksud sendiri. Berikan konteks tentang mengapa Anda meminta, terutama untuk agen yang berjalan lama yang memanfaatkan beberapa alur kerja:
 
 ```text wrap
 I'm working on [the larger task] for [who it's for]. They need [what the output enables]. With that in mind: [request].
@@ -135,7 +135,7 @@ I'm working on [the larger task] for [who it's for]. They need [what the output 
 
 ## Keterbacaan saat berkomunikasi dengan pengguna
 
-Dalam percakapan yang panjang atau agentik (banyak panggilan alat, konteks kerja yang besar), Claude Fable 5 dapat menghasilkan teks yang sulit diikuti: singkatan rantai panah yang padat, detail implementasi yang dalam, referensi ke thinking yang tidak pernah dilihat pengguna, atau frasa yang terlalu teknis. Tambahan gaya komunikasi dapat memitigasi hal ini:
+Dalam percakapan yang panjang atau agentic (banyak panggilan alat, konteks kerja yang besar), Claude Fable 5 dapat menghasilkan teks yang sulit diikuti: singkatan rantai panah yang padat, detail implementasi yang mendalam, rujukan ke thinking yang tidak pernah dilihat pengguna, atau frasa yang terlalu teknis. Tambahan gaya komunikasi dapat mengurangi hal ini:
 
 ```text wrap
 Terse shorthand is fine between tool calls (that's you thinking out loud, and brevity there is good). Your final summary is different: it's for a reader who didn't see any of that.
@@ -147,7 +147,7 @@ When you write the summary at the end, drop the working shorthand. Write complet
 
 ## Buat alat send-to-user
 
-Saat menjalankan agen asinkron yang panjang, berikan agen cara untuk menampilkan pesan yang harus dilihat pengguna persis seperti yang ditulis, tanpa mengakhiri gilirannya: sebuah deliverable (potongan kode yang dihasilkan atau draf pesan), pembaruan progres dengan angka spesifik, atau balasan langsung untuk pertanyaan yang diajukan pengguna di tengah loop. Input alat adalah pesan yang akan ditampilkan; ketika Claude memanggilnya, render input tersebut langsung di UI Anda dan kembalikan pengakuan sederhana sebagai hasil alat. Input alat tidak pernah diringkas, sehingga konten tiba secara utuh.
+Saat menjalankan agen asinkron yang panjang, berikan agen cara untuk menampilkan pesan yang harus dilihat pengguna persis seperti yang tertulis, tanpa mengakhiri gilirannya: sebuah deliverable (cuplikan kode yang dihasilkan atau draf pesan), pembaruan progres dengan angka spesifik, atau balasan langsung atas pertanyaan yang diajukan pengguna di tengah loop. Input alat tersebut adalah pesan yang akan ditampilkan; ketika Claude memanggilnya, render input tersebut langsung di UI Anda dan kembalikan pengakuan sederhana sebagai hasil alat. Input alat tidak pernah diringkas, sehingga kontennya tiba secara utuh.
 
 ```json
 {
@@ -166,18 +166,18 @@ Saat menjalankan agen asinkron yang panjang, berikan agen cara untuk menampilkan
 }
 ```
 
-Tambahkan alat ini kapan pun UX Anda bergantung pada penyampaian konten atau interaksi pengguna langsung secara verbatim di tengah tugas. Untuk agen yang hanya menarasikan progres rutin, ringkasan dari model itu sendiri biasanya sudah memadai. Mendefinisikan alat saja tidak cukup; tanpa instruksi di prompt sistem, Claude Fable 5 jarang memanggilnya. Padukan alat tersebut dengan bahasa elisitasi seperti:
+Tambahkan alat ini kapan pun UX Anda bergantung pada penyampaian konten atau interaksi pengguna langsung secara verbatim di tengah tugas. Untuk agen yang hanya menarasikan progres rutin, ringkasan model sendiri biasanya sudah memadai. Mendefinisikan alat saja tidak cukup; tanpa instruksi dalam "system prompt" (prompt sistem), Claude Fable 5 jarang memanggilnya. Padukan alat tersebut dengan bahasa pemancing seperti:
 
 ```text wrap
 Between tool calls, when you have content the user must read verbatim (a partial deliverable, a direct answer to their question), call the send_to_user tool with that content. Use send_to_user only for user-facing content, not for narration or reasoning.
 ```
 
-Jangan mengarahkan narasi atau penalaran internal melalui `send_to_user`; memanggilnya secara berlebihan untuk konten yang tidak ditujukan kepada pengguna akan menggagalkan tujuannya.
+Jangan mengalirkan narasi atau penalaran internal melalui `send_to_user`; memanggilnya secara berlebihan untuk konten yang tidak ditujukan kepada pengguna menggagalkan tujuannya.
 
 ## Perubahan scaffolding yang direkomendasikan
 
-* **Mulai dari puncak rentang kesulitan Anda.** Pilih tugas yang lebih sulit daripada yang akan Anda berikan ke model-model sebelumnya, dan minta Claude Fable 5 menentukan cakupannya, mengajukan pertanyaan klarifikasi, dan mengeksekusinya.
-* **Buat verifikasi mandiri eksplisit dalam prompt run panjang.** Subagen verifikator terpisah dengan konteks baru cenderung mengungguli kritik mandiri. Untuk tugas yang berjalan lama, instruksikan: `Establish a method for checking your own work at an interval of [X] as you build. Run this every [X interval], verifying your work with subagents against the specification.`
-* **Refactor prompt dan skill yang sudah ada.** Skill yang dikembangkan untuk model-model sebelumnya sering kali terlalu preskriptif untuk Claude Fable 5 dan dapat menurunkan kualitas output. Tinjau dan pertimbangkan untuk menghapus instruksi lama jika performa default lebih baik. Claude Fable 5 juga melakukan pekerjaan yang baik dalam memperbarui skill secara langsung berdasarkan apa yang dipelajarinya dari tugas yang sedang dikerjakan.
-* **Jangan instruksikan Claude untuk mereproduksi penalarannya dalam respons.** Prompt, skill, atau instruksi harness yang memberi tahu model untuk menggemakan, menyalin, atau menjelaskan penalaran internalnya sebagai teks respons dapat memicu [kategori penolakan `reasoning_extraction`](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) pada Claude Fable 5, menyebabkan peningkatan fallback ke Claude Opus 4.8. Audit skill dan prompt sistem yang ada untuk instruksi refleksi atau tunjukkan-pemikiran-Anda saat bermigrasi. Jika aplikasi Anda memerlukan visibilitas penalaran, baca blok `thinking` terstruktur dari [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) sebagai gantinya, dan gunakan [alat send-to-user](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5#create-a-send-to-user-tool) untuk menampilkan progres selama run panjang.
+* **Mulailah dari puncak rentang kesulitan Anda.** Pilih tugas yang lebih sulit daripada yang akan Anda berikan kepada model-model sebelumnya, dan minta Claude Fable 5 menentukan cakupannya, mengajukan pertanyaan klarifikasi, dan mengeksekusinya.
+* **Jadikan verifikasi mandiri eksplisit dalam prompt run panjang.** Subagen verifikator terpisah dengan konteks baru cenderung mengungguli kritik diri. Untuk tugas yang berjalan lama, instruksikan: `Establish a method for checking your own work at an interval of [X] as you build. Run this every [X interval], verifying your work with subagents against the specification.`
+* **Refactor prompt dan skill yang ada.** Skill yang dikembangkan untuk model-model sebelumnya sering kali terlalu preskriptif untuk Claude Fable 5 dan dapat menurunkan kualitas output. Tinjau dan pertimbangkan untuk menghapus instruksi lama jika kinerja default lebih baik. Claude Fable 5 juga mampu memperbarui skill secara langsung berdasarkan apa yang dipelajarinya dari tugas yang sedang dikerjakan.
+* **Jangan menginstruksikan Claude untuk mereproduksi penalarannya dalam respons.** Prompt, skill, atau instruksi harness yang menyuruh model menggemakan, mentranskripsikan, atau menjelaskan penalaran internalnya sebagai teks respons dapat memicu [kategori refusal `reasoning_extraction`](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) pada Claude Fable 5, yang menyebabkan peningkatan fallback ke Claude Opus 4.8. Audit skill dan prompt sistem yang ada untuk instruksi refleksi atau tunjukkan-pemikiran-Anda saat bermigrasi. Jika aplikasi Anda memerlukan visibilitas penalaran, baca blok `thinking` terstruktur dari [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) sebagai gantinya, dan gunakan [alat send-to-user](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5#create-a-send-to-user-tool) untuk menampilkan progres selama run panjang.
 * **Buat alat send-to-user.** Untuk agen asinkron yang panjang, alat sisi klien menyampaikan pesan kepada pengguna secara verbatim tanpa mengakhiri giliran. Lihat [Buat alat send-to-user](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5#create-a-send-to-user-tool).

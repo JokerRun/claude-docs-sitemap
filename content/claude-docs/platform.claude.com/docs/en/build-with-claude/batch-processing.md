@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/batch-processing
-fetched_at: 2026-09-01T02:22:36.834082Z
-sha256: 4d57f9ea2acb1ddf07c7bde8780068c122f4dc52aa11ae70a58f11b29648e326
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 5c1501ce73f82df3071d3e9f0cad93b645e0143cc64c59664e77533381f73bb2
 ---
 
 ---
@@ -93,6 +93,8 @@ The Batches API offers significant cost savings. All usage is charged at 50% of 
 
 | Model                                                                                                                                 | Batch input  | Batch output  |
 | ------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ------------- |
+| Claude Fable 5.1                                                                                                                      | $5 / MTok    | $25 / MTok    |
+| Claude Mythos 5.1 ([limited availability](https://anthropic.com/glasswing))                                                           | $5 / MTok    | $25 / MTok    |
 | Claude Fable 5                                                                                                                        | $5 / MTok    | $25 / MTok    |
 | Claude Mythos 5 ([limited availability](https://anthropic.com/glasswing))                                                             | $5 / MTok    | $25 / MTok    |
 | Claude Opus 5                                                                                                                         | $2.50 / MTok | $12.50 / MTok |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/ruby
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: ec3feb50b23d7b02078c852d84b6f057812a8234a952eda01905e8a023c66b4b
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 671fd4893a0b7eb8485918293a4544cda0dc3c88028154ae4faf8a8c546103c9
 ---
 
 ---
@@ -47,7 +47,7 @@ message.content.each do |block|
 end
 ```
 
-Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication).
+Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci personal atau kunci akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) dengan akses ke beberapa workspace, tetapkan ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
 
 ## Streaming
 
@@ -159,7 +159,7 @@ Kode error adalah sebagai berikut:
 
 ## Percobaan ulang
 
-Error tertentu akan dicoba ulang secara otomatis 2 kali secara default, dengan exponential backoff singkat.
+Error tertentu akan secara otomatis dicoba ulang 2 kali secara default, dengan exponential backoff singkat.
 
 Error koneksi (misalnya, karena masalah konektivitas jaringan), 408 Request Timeout, 409 Conflict, 429 Rate Limit, error Internal >=500, dan timeout semuanya dicoba ulang secara default.
 
@@ -207,7 +207,7 @@ Perhatikan bahwa permintaan yang timeout akan dicoba ulang secara default.
 
 Metode list di Claude API dipaginasi.
 
-Library ini menyediakan iterator auto-paginating pada setiap respons list, sehingga Anda tidak perlu meminta halaman berikutnya secara manual:
+Library ini menyediakan iterator auto-paginasi pada setiap respons list, sehingga Anda tidak perlu meminta halaman berikutnya secara manual:
 
 ```ruby
 anthropic = Anthropic::Client.new
@@ -277,7 +277,7 @@ Atau, secara ekuivalen:
 
 ```ruby
 anthropic = Anthropic::Client.new
-# Hash berfungsi, tetapi tidak typesafe:
+# Hash dapat digunakan, tetapi tidak typesafe:
 anthropic.messages.create(
   max_tokens: 1024,
   messages: [{role: "user", content: "Hello, Claude"}],
@@ -335,13 +335,13 @@ Semua objek parameter dan respons mewarisi dari `Anthropic::Internal::Type::Base
 
 ## Konkurensi dan connection pooling
 
-Instance `Anthropic::Client` bersifat threadsafe, tetapi hanya fork-safe ketika tidak ada permintaan HTTP yang sedang berlangsung.
+Instance `Anthropic::Client` bersifat threadsafe, tetapi hanya fork-safe ketika tidak ada permintaan HTTP yang sedang berjalan.
 
-Setiap instance `Anthropic::Client` memiliki HTTP connection pool sendiri dengan ukuran default 99. Oleh karena itu, rekomendasinya adalah membuat client sekali per aplikasi dalam sebagian besar pengaturan.
+Setiap instance `Anthropic::Client` memiliki pool koneksi HTTP sendiri dengan ukuran default 99. Oleh karena itu, rekomendasinya adalah membuat client sekali per aplikasi dalam sebagian besar pengaturan.
 
-Ketika semua koneksi yang tersedia dari pool sedang digunakan, permintaan akan menunggu koneksi baru tersedia, dengan waktu antrean dihitung ke dalam timeout permintaan.
+Ketika semua koneksi yang tersedia dari pool sedang digunakan, permintaan akan menunggu hingga koneksi baru tersedia, dengan waktu antrean dihitung ke dalam timeout permintaan.
 
-Kecuali dinyatakan lain, kelas lain dalam SDK tidak memiliki lock yang melindungi struktur data yang mendasarinya.
+Kecuali dinyatakan lain, kelas lain dalam SDK tidak memiliki lock yang melindungi struktur data dasarnya.
 
 ## Membuat permintaan kustom atau tidak terdokumentasi
 
@@ -350,7 +350,7 @@ Kecuali dinyatakan lain, kelas lain dalam SDK tidak memiliki lock yang melindung
 Anda dapat mengirim parameter tidak terdokumentasi ke endpoint mana pun, dan membaca properti respons tidak terdokumentasi, seperti berikut:
 
 <Warning>
-  Parameter `extra_` dengan nama yang sama akan menimpa parameter yang terdokumentasi. Untuk alasan keamanan, pastikan metode ini hanya digunakan dengan data input yang tepercaya.
+  Parameter `extra_` dengan nama yang sama akan menimpa parameter yang terdokumentasi. Demi alasan keamanan, pastikan metode ini hanya digunakan dengan data input yang tepercaya.
 </Warning>
 
 ```ruby
@@ -404,8 +404,8 @@ Ruby SDK mendukung platform berikut:
 
 * **Agent Platform:** `Anthropic::VertexClient`. Memerlukan gem `googleauth`.
 * **Bedrock:** `Anthropic::BedrockMantleClient`, atau `Anthropic::BedrockClient` untuk jalur `bedrock-runtime`. `Anthropic::BedrockMantleClient` memerlukan gem `aws-sdk-core`; `Anthropic::BedrockClient` memerlukan gem `aws-sdk-bedrockruntime`.
-* **Claude Platform on AWS:** Bagian dari gem utama `anthropic` (memerlukan gem `aws-sdk-core`). Menyediakan `Anthropic::AWSClient`. Teruskan `workspace_id:` ke constructor atau atur variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID` (lihat [Workspaces](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#workspaces)). Tersedia dalam beta.
-* **Foundry:** Saat ini tidak didukung di Ruby SDK. Lihat [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk SDK yang didukung.
+* **Claude Platform on AWS:** Bagian dari gem utama `anthropic` (memerlukan gem `aws-sdk-core`). Menyediakan `Anthropic::AWSClient`. Teruskan `workspace_id:` ke konstruktor atau atur variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID` (lihat [Workspaces](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#workspaces)). Tersedia dalam beta.
+* **Foundry:** Saat ini tidak didukung di Ruby SDK. Lihat [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk SDK yang didukung.
 
 Gunakan `Anthropic::BedrockMantleClient` untuk proyek baru; `Anthropic::BedrockClient` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
 

@@ -1,40 +1,40 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 84c9d95dde6a58ed0027218cc80b57f394979d035172dd98355f1b62b2e80e84
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 8111cf3c9c64caaa7552569424e4161f86bd7b5f314f041184cc3fcce01749a4
 ---
 
 ---
-title: Deploy MCP tunnel dengan Helm
+title: Deploy tunnel MCP dengan Helm
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm
-description: Instal tunnel stack pada klaster Kubernetes menggunakan Helm chart Anthropic.
+description: Instal tunnel stack pada cluster Kubernetes menggunakan Helm chart Anthropic.
 ---
 
 <Note>
   Tunnel MCP sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/claude-managed-agents) untuk mencobanya.
 </Note>
 
-Helm chart Anthropic menginstal [tunnel stack](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) sebagai satu Deployment dan menghubungkannya ke tunnel Anda: tunnel yang dibuat oleh setup hook chart untuk Anda, atau tunnel yang sudah ada yang Anda buat di [Console](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#create-a-tunnel).
+Helm chart Anthropic menginstal [tunnel stack](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) sebagai satu Deployment dan melampirkannya ke tunnel Anda: tunnel yang dibuat oleh setup hook chart untuk Anda, atau tunnel yang sudah ada yang Anda buat di [Console](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#create-a-tunnel).
 
-## Sebelum Anda mulai
+## Sebelum Anda memulai
 
 Anda memerlukan:
 
-* **Sebuah tunnel.** Dengan akses terprogram, setup hook chart akan membuatnya untuk Anda ketika Anda tidak menyediakan ID tunnel; untuk menghubungkan ke tunnel yang sudah ada, [buat di Console](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#create-a-tunnel) dan catat ID tunnel (`tnl_...`). Provisioning manual selalu dimulai dari tunnel yang dibuat di Console; Anda juga akan memerlukan token tunnel dan domain tunnel-nya.
+* **Sebuah tunnel.** Dengan akses programatik, setup hook chart membuatkannya untuk Anda ketika Anda tidak menyediakan ID tunnel; untuk melampirkan ke tunnel yang sudah ada, [buat tunnel tersebut di Console](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#create-a-tunnel) dan catat ID tunnel-nya (`tnl_...`). Penyediaan manual selalu dimulai dari tunnel yang dibuat di Console; Anda juga memerlukan token tunnel dan domain tunnel-nya.
 
-* **Cara bagi chart untuk mengautentikasi ke Tunnels API.**
+* **Cara bagi chart untuk melakukan autentikasi ke Tunnels API.**
 
-  * **[Akses terprogram](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning) (direkomendasikan).** [Komponen setup](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) mengautentikasi melalui Workload Identity Federation, mengambil token tunnel, menghasilkan CA, mendaftarkannya ke Anthropic, dan menyimpan semuanya dalam sebuah Secret. Anda akan memerlukan aturan federasi dengan scope `workspace:manage_tunnels`.
-  * **[Manual](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning).** Lewati akses terprogram. Anda akan [mendapatkan token tunnel dari Console](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#get-the-connection-details), menghasilkan CA dan sertifikat server sendiri, [mendaftarkan CA di Console](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#add-a-ca-certificate), dan menyediakan kredensial ke klaster sebagai Secret.
+  * **[Akses programatik](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning) (direkomendasikan).** [Komponen setup](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) melakukan autentikasi melalui Workload Identity Federation, mengambil token tunnel, menghasilkan CA, mendaftarkannya ke Anthropic, dan menyimpan semuanya dalam sebuah Secret. Anda memerlukan federation rule dengan cakupan `workspace:manage_tunnels`.
+  * **[Manual](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning).** Lewati akses programatik. Anda akan [mendapatkan token tunnel dari Console](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#get-the-connection-details), menghasilkan CA dan sertifikat server sendiri, [mendaftarkan CA di Console](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#add-a-ca-certificate), dan menyediakan kredensial ke cluster sebagai Secret.
 
-* **Klaster Kubernetes** yang dapat Anda deploy dengan `helm` dan `kubectl`. Tab **Tanpa akses terprogram** juga menggunakan `openssl` (1.1.1 atau lebih baru).
+* **Sebuah cluster Kubernetes** yang dapat Anda deploy menggunakan `helm` dan `kubectl`. Tab **Tanpa akses programatik** juga menggunakan `openssl` (1.1.1 atau lebih baru).
 
-* **Konektivitas jaringan keluar** dari klaster ke `api.anthropic.com` (443 TCP) dan [tunnel edge](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) (7844 TCP dan UDP). Lihat [persyaratan jaringan](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview#network-requirements) lengkap.
+* **Konektivitas jaringan keluar** dari cluster ke `api.anthropic.com` (443 TCP) dan [tunnel edge](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) (7844 TCP dan UDP). Lihat [persyaratan jaringan](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview#network-requirements) selengkapnya.
 
-* **Satu atau lebih server MCP** yang berjalan dan dapat dijangkau dari klaster pada alamat yang akan Anda konfigurasikan di bawah `gateway.config.routes`. Jika Anda belum memilikinya, [gunakan server sampel](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm#optional-use-a-sample-mcp-server).
+* **Satu atau lebih server MCP** yang berjalan dan dapat dijangkau dari cluster pada alamat yang akan Anda konfigurasikan di bawah `gateway.config.routes`. Jika Anda belum memilikinya, [gunakan server contoh](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm#optional-use-a-sample-mcp-server).
 
-## Opsional: Gunakan server MCP sampel
+## Opsional: Gunakan server MCP contoh
 
 Jika Anda tidak memiliki server MCP yang tersedia untuk pengujian, gunakan server minimal ini:
 
@@ -96,17 +96,17 @@ spec:
 EOF
 ```
 
-Langkah-langkah Instal berikut mencatat di mana harus menambahkan route yang sesuai.
+Langkah-langkah Instal berikut ini mencatat di mana menambahkan route yang sesuai.
 
 ## Instal
 
 <Tabs>
-  <Tab title="Dengan akses terprogram">
-    Komponen setup menukar token ServiceAccount terproyeksi milik klaster melalui aturan federasi Anda, mengambil token tunnel, menghasilkan CA dan sertifikat server, serta mendaftarkan CA ke Anthropic. CronJob harian memperbarui sertifikat server sesuai kebutuhan, sehingga Anda tidak perlu menangani secret apa pun secara manual.
+  <Tab title="Dengan akses programatik">
+    Komponen setup menukarkan token ServiceAccount terproyeksi milik cluster melalui federation rule Anda, mengambil token tunnel, menghasilkan CA dan sertifikat server, serta mendaftarkan CA ke Anthropic. Sebuah CronJob harian memperbarui sertifikat server sesuai kebutuhan, sehingga Anda tidak perlu menangani secret apa pun secara manual.
 
     <Steps>
-      <Step title="Siapkan Workload Identity Federation untuk klaster">
-        Ikuti [Menggunakan WIF dengan Kubernetes](https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes) untuk mendaftarkan OIDC issuer klaster Anda dan membuat aturan federasi. Komponen setup berjalan di bawah ServiceAccount-nya sendiri di namespace rilis; nama persisnya mengikuti konvensi `fullname` Helm, jadi untuk nama rilis selain `mcp-tunnel`, jalankan `helm template <release> ... | grep -A2 'kind: ServiceAccount'` untuk mengonfirmasinya sebelum membuat aturan. Sisa panduan ini mengasumsikan nama rilis `mcp-tunnel` di namespace `mcp-tunnel`, di mana ServiceAccount-nya adalah `mcp-tunnel-setup`.
+      <Step title="Siapkan Workload Identity Federation untuk cluster">
+        Ikuti [Gunakan WIF dengan Kubernetes](https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes) untuk mendaftarkan OIDC issuer cluster Anda dan membuat federation rule. Komponen setup berjalan di bawah ServiceAccount-nya sendiri di namespace release; nama persisnya mengikuti konvensi `fullname` Helm, jadi untuk nama release selain `mcp-tunnel`, jalankan `helm template <release> ... | grep -A2 'kind: ServiceAccount'` untuk mengonfirmasinya sebelum membuat rule. Sisa panduan ini mengasumsikan nama release `mcp-tunnel` di namespace `mcp-tunnel`, di mana ServiceAccount-nya adalah `mcp-tunnel-setup`.
 
         | Field    | Nilai                                               |
         | -------- | --------------------------------------------------- |
@@ -115,15 +115,15 @@ Langkah-langkah Instal berikut mencatat di mana harus menambahkan route yang ses
         | Scope    | `workspace:manage_tunnels`                          |
 
         <Note>
-          Audience default chart adalah `api.anthropic.com` tanpa skema, tetapi formulir aturan federasi di Console menyarankan `https://api.anthropic.com`. Keduanya harus cocok byte demi byte atau autentikasi akan gagal. Atur audience aturan ke `api.anthropic.com`, atau atur `api.wif.audience` di `values.yaml` ke `https://api.anthropic.com`.
+          Audience default chart adalah `api.anthropic.com` tanpa skema, tetapi formulir federation rule di Console menyarankan `https://api.anthropic.com`. Keduanya harus cocok byte demi byte atau autentikasi akan gagal. Atur audience rule ke `api.anthropic.com`, atau atur `api.wif.audience` di `values.yaml` ke `https://api.anthropic.com`.
         </Note>
 
-        Jika tunnel berada di workspace selain workspace default organisasi, tambahkan juga service account aturan tersebut sebagai anggota workspace itu di bawah **Settings > Workspaces** (Tunnels API mengotorisasi berdasarkan keanggotaan workspace service account).
+        Jika tunnel berada di workspace selain workspace default organisasi, tambahkan juga service account milik rule sebagai anggota workspace tersebut di bawah **Settings > Workspaces** (Tunnels API melakukan otorisasi berdasarkan keanggotaan workspace service account).
 
-        Catat ID aturan (`fdrl_...`); Anda akan mengaturnya sebagai `api.wif.federationRuleId`.
+        Catat ID rule (`fdrl_...`); Anda akan mengaturnya sebagai `api.wif.federationRuleId`.
 
         <Note>
-          CronJob pembaruan sertifikat harian menggunakan ServiceAccount terpisah (juga diturunkan dari `fullname` Helm) tetapi tidak memanggil Tunnels API; CronJob ini memperbarui sertifikat secara lokal dan hanya memerlukan RBAC Kubernetes, yang diberikan oleh chart. Aturan federasi tidak perlu mencakupnya.
+          CronJob pembaruan sertifikat harian menggunakan ServiceAccount terpisah (juga diturunkan dari `fullname` Helm) tetapi tidak memanggil Tunnels API; CronJob ini memperbarui sertifikat secara lokal dan hanya memerlukan RBAC Kubernetes, yang diberikan oleh chart. Federation rule tidak perlu mencakupnya.
         </Note>
       </Step>
 
@@ -135,8 +135,8 @@ Langkah-langkah Instal berikut mencatat di mana harus menambahkan route yang ses
         ```
       </Step>
 
-      <Step title="Konfigurasikan attachment tunnel dan route">
-        Edit `values.yaml` dan atur key `api.wif.*` dengan ID aturan federasi dan ID organisasi, ditambah entri `routes` untuk setiap [server MCP upstream](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components):
+      <Step title="Konfigurasikan pelampiran tunnel dan route">
+        Edit `values.yaml` dan atur kunci `api.wif.*` dengan ID federation rule dan ID organisasi, ditambah entri `routes` untuk setiap [server MCP upstream](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components):
 
         ```yaml values.yaml
         api:
@@ -162,15 +162,15 @@ Langkah-langkah Instal berikut mencatat di mana harus menambahkan route yang ses
               search: http://search-mcp.internal:8080
         ```
 
-        Dengan route ini, Claude menjangkau server di `docs.<your-tunnel-domain>` dan `search.<your-tunnel-domain>`. Beberapa distribusi Kubernetes terkelola mengalokasikan Service CIDR di luar rentang privat standar; jika route Anda menargetkan Service dalam klaster, tambahkan `gateway.config.upstream.allowed_ips` di sini sesuai [Validasi IP upstream](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting#upstream-ip-validation).
+        Dengan route ini, Claude menjangkau server di `docs.<your-tunnel-domain>` dan `search.<your-tunnel-domain>`. Beberapa distribusi Kubernetes terkelola mengalokasikan Service CIDR di luar rentang privat standar; jika route Anda menargetkan Service di dalam cluster, tambahkan `gateway.config.upstream.allowed_ips` di sini sesuai [Validasi IP upstream](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting#upstream-ip-validation).
 
         <Note>
-          Jika Anda menggunakan [server MCP sampel](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm#optional-use-a-sample-mcp-server), atur `routes` ke `echo: http://hello-mcp:9000` sebagai gantinya.
+          Jika Anda menggunakan [server MCP contoh](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm#optional-use-a-sample-mcp-server), atur `routes` ke `echo: http://hello-mcp:9000` sebagai gantinya.
         </Note>
       </Step>
 
-      <Step title="Tinjau manifest yang di-render">
-        Render chart dan tinjau output sesuai dengan praktik pemeriksaan organisasi Anda:
+      <Step title="Tinjau manifest yang dirender">
+        Render chart dan tinjau outputnya sesuai praktik pemeriksaan organisasi Anda:
 
         ```bash
         helm template mcp-tunnel \
@@ -190,25 +190,25 @@ Langkah-langkah Instal berikut mencatat di mana harus menambahkan route yang ses
           -f values.yaml
         ```
 
-        Komponen setup berjalan sebagai Job hook pre-install Helm, sehingga `helm install` akan memblokir hingga selesai. Jika berhasil, Helm menghapus Job secara otomatis. Jika `helm install` gagal dengan error hook, lihat [Kegagalan autentikasi komponen setup](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting#setup-component-authentication-failures).
+        Komponen setup berjalan sebagai Job pre-install hook Helm, sehingga `helm install` memblokir hingga selesai. Jika berhasil, Helm menghapus Job secara otomatis. Jika `helm install` gagal dengan error hook, lihat [Kegagalan autentikasi komponen setup](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting#setup-component-authentication-failures).
 
-        Ketika `tunnel.id` kosong, komponen setup membuat tunnel di workspace yang ditargetkan aturan federasi Anda (workspace default organisasi kecuali Anda mengatur `api.wif.workspaceId`) dan menyimpan ID serta domainnya di Secret `mcp-tunnel`. Temukan domain yang Anda perlukan untuk [verifikasi](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm#verify-the-deployment) di halaman detail tunnel di Console di bawah **Manage > MCP tunnels**, atau baca dari Secret:
+        Ketika `tunnel.id` kosong, komponen setup membuat tunnel di workspace yang ditargetkan federation rule Anda (workspace default organisasi kecuali Anda mengatur `api.wif.workspaceId`) dan menyimpan ID serta domainnya di Secret `mcp-tunnel`. Temukan domain yang Anda perlukan untuk [verifikasi](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm#verify-the-deployment) di halaman detail tunnel di Console di bawah **Manage > MCP tunnels**, atau baca dari Secret:
 
         ```bash
         kubectl -n mcp-tunnel get secret mcp-tunnel \
           -o jsonpath='{.data.tunnel-domain}' | base64 -d
         ```
 
-        Menjalankan ulang komponen setup (selama [upgrade](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm#upgrades) atau [rotasi token](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm#rotate-the-tunnel-token)) menggunakan kembali ID tunnel yang tersimpan di Secret ini; komponen tidak pernah membuat tunnel kedua.
+        Menjalankan ulang komponen setup (selama [upgrade](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm#upgrades) atau [rotasi token](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm#rotate-the-tunnel-token)) menggunakan kembali ID tunnel yang tersimpan di Secret ini; komponen ini tidak pernah membuat tunnel kedua.
 
         <Warning>
-          Nilai `api.wif.*` adalah pengidentifikasi, bukan secret, jadi menyimpannya di Secret riwayat rilis Helm bukanlah risiko. Data sensitif yang tersimpan adalah Secret `mcp-tunnel` yang dibuat komponen setup, yang menyimpan token tunnel dan private key TLS. Terapkan praktik standar organisasi Anda untuk melindungi Secret Kubernetes pada namespace ini.
+          Nilai `api.wif.*` adalah pengenal, bukan secret, sehingga menyimpannya di Secret riwayat release Helm bukanlah risiko. Data sensitif yang tersimpan adalah Secret `mcp-tunnel` yang dibuat komponen setup, yang menyimpan token tunnel dan private key TLS. Terapkan praktik standar organisasi Anda untuk melindungi Kubernetes Secret pada namespace ini.
         </Warning>
       </Step>
     </Steps>
   </Tab>
 
-  <Tab title="Tanpa akses terprogram">
+  <Tab title="Tanpa akses programatik">
     Dalam mode ini (`setup.enabled: false`) chart tidak melakukan panggilan API apa pun; komponen setup tidak berjalan dan tidak ada CronJob cert-renew. Gunakan jalur ini jika Anda lebih memilih untuk tidak menyiapkan Workload Identity Federation.
 
     <Steps>
@@ -221,15 +221,15 @@ Langkah-langkah Instal berikut mencatat di mana harus menambahkan route yang ses
       </Step>
 
       <Step title="Hasilkan CA dan sertifikat server">
-        Proxy mendengarkan pada WebSocket biasa, dengan [inner TLS](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) dibawa di dalam stream tersebut menggunakan sertifikat yang Anda hasilkan di sini. SAN sertifikat server harus menyertakan `*.<tunnel-domain>` sesuai [persyaratan sertifikat](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference#certificate-requirements).
+        Proxy mendengarkan pada WebSocket biasa, dengan [inner TLS](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) yang dibawa di dalam stream tersebut menggunakan sertifikat yang Anda hasilkan di sini. SAN sertifikat server harus menyertakan `*.<tunnel-domain>` sesuai [persyaratan sertifikat](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference#certificate-requirements).
 
         ```bash
         export TUNNEL_DOMAIN=YOUR_TUNNEL_DOMAIN_HERE
         mkdir -p mcp-tunnel/data
         cd mcp-tunnel
 
-        # CA self-signed. Ekstensi eksplisit agar memenuhi persyaratan sertifikat
-        # terlepas dari default openssl.cnf pada distro.
+        # CA yang ditandatangani sendiri. Ekstensi eksplisit agar memenuhi persyaratan
+        # sertifikat terlepas dari default openssl.cnf distro.
         openssl req -x509 -newkey rsa:2048 -nodes \
           -keyout data/ca.key -out data/ca.crt \
           -days 3650 -subj "/CN=mcp-tunnel-ca" \
@@ -238,7 +238,7 @@ Langkah-langkah Instal berikut mencatat di mana harus menambahkan route yang ses
           -addext "subjectKeyIdentifier=hash"
 
         # File ekstensi untuk sertifikat server. Menggunakan -extfile (alih-alih
-        # -copy_extensions, yang hanya ada di OpenSSL 3.0+) agar tetap berfungsi pada
+        # -copy_extensions, yang hanya untuk OpenSSL 3.0+) agar tetap berfungsi di
         # OpenSSL 1.1.x.
         cat > data/tls.ext <<EOF
         subjectAltName = DNS:${TUNNEL_DOMAIN},DNS:*.${TUNNEL_DOMAIN}
@@ -260,7 +260,7 @@ Langkah-langkah Instal berikut mencatat di mana harus menambahkan route yang ses
       </Step>
 
       <Step title="Buat dua Secret">
-        Chart membaca key tertentu; nama Secret dapat dikonfigurasi tetapi key-nya tidak. Perintah pembuatan namespace berikut adalah no-op jika namespace sudah ada (misalnya, dari langkah [server MCP sampel](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm#optional-use-a-sample-mcp-server)).
+        Chart membaca kunci tertentu; nama Secret dapat dikonfigurasi tetapi kuncinya tidak. Perintah pembuatan namespace berikut tidak berpengaruh apa pun jika namespace sudah ada (misalnya, dari langkah [server MCP contoh](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm#optional-use-a-sample-mcp-server)).
 
         ```bash
         kubectl create namespace mcp-tunnel --dry-run=client -o yaml | kubectl apply -f -
@@ -280,8 +280,8 @@ Langkah-langkah Instal berikut mencatat di mana harus menambahkan route yang ses
         ```
       </Step>
 
-      <Step title="Konfigurasikan nilai untuk provisioning manual">
-        Edit `values.yaml` dan atur key berikut:
+      <Step title="Konfigurasikan nilai untuk penyediaan manual">
+        Edit `values.yaml` dan atur kunci berikut:
 
         ```yaml values.yaml
         setup:
@@ -303,14 +303,14 @@ Langkah-langkah Instal berikut mencatat di mana harus menambahkan route yang ses
               search: http://search-mcp.internal:8080
         ```
 
-        Beberapa distribusi Kubernetes terkelola mengalokasikan Service CIDR di luar rentang privat standar; jika route Anda menargetkan Service dalam klaster, tambahkan `gateway.config.upstream.allowed_ips` di sini sesuai [Validasi IP upstream](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting#upstream-ip-validation).
+        Beberapa distribusi Kubernetes terkelola mengalokasikan Service CIDR di luar rentang privat standar; jika route Anda menargetkan Service di dalam cluster, tambahkan `gateway.config.upstream.allowed_ips` di sini sesuai [Validasi IP upstream](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting#upstream-ip-validation).
 
         <Note>
-          Jika Anda menggunakan [server MCP sampel](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm#optional-use-a-sample-mcp-server), atur `routes` ke `echo: http://hello-mcp:9000` sebagai gantinya.
+          Jika Anda menggunakan [server MCP contoh](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm#optional-use-a-sample-mcp-server), atur `routes` ke `echo: http://hello-mcp:9000` sebagai gantinya.
         </Note>
       </Step>
 
-      <Step title="Tinjau manifest yang di-render">
+      <Step title="Tinjau manifest yang dirender">
         ```bash
         helm template mcp-tunnel \
           oci://us-docker.pkg.dev/anthropic-public-registry/charts/mcp-tunnel \
@@ -335,7 +335,7 @@ Langkah-langkah Instal berikut mencatat di mana harus menambahkan route yang ses
 
 ## Verifikasi deployment
 
-Verifikasi secara end-to-end dari sisi Anthropic: gunakan `https://<route>.<your-tunnel-domain>/<path>` dalam sesi Managed Agent atau permintaan Messages API, di mana `<route>` adalah key dari `gateway.config.routes` dan `<path>` adalah apa pun yang disajikan server MCP upstream. Dengan [server MCP sampel](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm#optional-use-a-sample-mcp-server), itu adalah `https://echo.<your-tunnel-domain>/mcp`. Lihat [Menggunakan server MCP yang di-tunnel](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview#use-the-tunneled-mcp-servers) untuk bentuk permintaannya.
+Verifikasi secara end-to-end dari sisi Anthropic: gunakan `https://<route>.<your-tunnel-domain>/<path>` dalam sesi Managed Agent atau permintaan Messages API, di mana `<route>` adalah kunci dari `gateway.config.routes` dan `<path>` adalah path apa pun yang dilayani server MCP upstream. Dengan [server MCP contoh](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm#optional-use-a-sample-mcp-server), itu adalah `https://echo.<your-tunnel-domain>/mcp`. Lihat [Gunakan server MCP yang di-tunnel](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview#use-the-tunneled-mcp-servers) untuk bentuk permintaannya.
 
 Jika gagal, periksa log pod (`kubectl -n mcp-tunnel logs deploy/mcp-tunnel -c mcp-proxy` dan `-c cloudflared`) dan lihat [Pemecahan masalah](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting).
 
@@ -343,23 +343,23 @@ Jika gagal, periksa log pod (`kubectl -n mcp-tunnel logs deploy/mcp-tunnel -c mc
 
 ### Batasi egress dengan NetworkPolicy
 
-Ingress ke pod proxy ditolak secara default (`networkPolicy.ingress.enabled: true`). Untuk juga membatasi egress pod, atur `networkPolicy.egress.enabled: true` dan isi `networkPolicy.egress.mcpServers` dengan selector label pod atau rentang CIDR yang mencakup server MCP upstream Anda. Egress dari cloudflared ke tunnel edge diizinkan secara terpisah melalui `networkPolicy.egress.cloudflaredEgressCIDRs`.
+Ingress ke pod proxy ditolak secara default (`networkPolicy.ingress.enabled: true`). Untuk membatasi egress pod lebih lanjut, atur `networkPolicy.egress.enabled: true` dan isi `networkPolicy.egress.mcpServers` dengan pod label selector atau rentang CIDR yang mencakup server MCP upstream Anda. Egress dari cloudflared ke tunnel edge diizinkan secara terpisah melalui `networkPolicy.egress.cloudflaredEgressCIDRs`.
 
 ### Sesuaikan proxy
 
-Field di bawah `gateway.config.*` diteruskan ke file konfigurasi proxy. Penyesuaian umum mencakup `upstream.allowed_ips`, `log_level`, dan `upstream.tls`. Lihat referensi [konfigurasi proxy](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference#proxy-configuration) untuk daftar field lengkap. Chart selalu mengatur `listen_addr`, `tls.cert_file`, dan `tls.key_file`; mengaturnya di `gateway.config` tidak berpengaruh.
+Field di bawah `gateway.config.*` diteruskan ke file konfigurasi proxy. Penyesuaian umum mencakup `upstream.allowed_ips`, `log_level`, dan `upstream.tls`. Lihat referensi [konfigurasi proxy](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference#proxy-configuration) untuk daftar field selengkapnya. Chart selalu mengatur `listen_addr`, `tls.cert_file`, dan `tls.key_file`; mengaturnya di `gateway.config` tidak berpengaruh.
 
 ### Sediakan token OIDC Anda sendiri
 
-Secara default, chart memproyeksikan token ServiceAccount Kubernetes untuk komponen setup. Untuk menggunakan token dari penyedia identitas yang berbeda (seperti [SPIFFE](https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe), Vault, atau sidecar cloud-SDK), mount token tersebut dengan `setup.extraVolumes` dan `setup.extraVolumeMounts`. Kemudian arahkan `api.wif.tokenFile` ke path mount. Chart mengatur `ANTHROPIC_IDENTITY_TOKEN_FILE` ke path tersebut, dan komponen setup membaca token dari sana.
+Secara default chart memproyeksikan token ServiceAccount Kubernetes untuk komponen setup. Untuk menggunakan token dari penyedia identitas lain (seperti [SPIFFE](https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe), Vault, atau sidecar cloud-SDK), mount token tersebut dengan `setup.extraVolumes` dan `setup.extraVolumeMounts`. Kemudian arahkan `api.wif.tokenFile` ke path mount tersebut. Chart mengatur `ANTHROPIC_IDENTITY_TOKEN_FILE` ke path itu, dan komponen setup membaca token dari sana.
 
 ## Upgrade
 
-Selalu sertakan `--version` pada `helm upgrade` agar Anda tidak menarik chart yang lebih baru secara tidak terduga.
+Selalu berikan `--version` ke `helm upgrade` agar Anda tidak menarik chart yang lebih baru secara tidak terduga.
 
 ### Upgrade dari chart 1.x
 
-Chart 2.0.0 memindahkan ID tunnel dari `api.wif.tunnelId` ke `tunnel.id`. Sebelum melakukan upgrade, edit `values.yaml` Anda: pindahkan nilai `tnl_...` ke `tunnel.id` dan hapus `api.wif.tunnelId`. Membiarkan `tunnel.id` tidak diatur adalah aman (komponen setup menggunakan kembali ID tunnel yang sudah tersimpan di Secret `mcp-tunnel` saat dijalankan ulang), tetapi pemindahan eksplisit menjaga `values.yaml` Anda tetap akurat. Perbarui juga scope aturan federasi Anda dari `org:manage_tunnels` ke `workspace:manage_tunnels` di Console.
+Chart 2.0.0 memindahkan ID tunnel dari `api.wif.tunnelId` ke `tunnel.id`. Sebelum melakukan upgrade, edit `values.yaml` Anda: pindahkan nilai `tnl_...` ke `tunnel.id` dan hapus `api.wif.tunnelId`. Membiarkan `tunnel.id` tidak diatur aman (komponen setup menggunakan kembali ID tunnel yang sudah tersimpan di Secret `mcp-tunnel` saat dijalankan ulang), tetapi pemindahan eksplisit menjaga `values.yaml` Anda tetap akurat. Perbarui juga cakupan federation rule Anda dari `org:manage_tunnels` ke `workspace:manage_tunnels` di Console.
 
 ### Ubah konfigurasi
 
@@ -379,7 +379,7 @@ helm upgrade mcp-tunnel \
 
 ### Rotasi token tunnel
 
-Dengan akses terprogram, tingkatkan `tunnel.tokenVersion` di `values.yaml` dan upgrade dengan `--set setup.force=true`. Komponen setup hanya berjalan ulang pada upgrade ketika dipaksa:
+Dengan akses programatik, naikkan `tunnel.tokenVersion` di `values.yaml` dan lakukan upgrade dengan `--set setup.force=true`. Komponen setup hanya berjalan ulang pada upgrade ketika dipaksa:
 
 ```bash
 helm upgrade mcp-tunnel \
@@ -390,9 +390,9 @@ helm upgrade mcp-tunnel \
   --set setup.force=true
 ```
 
-Komponen setup mengautentikasi dengan Workload Identity Federation; tidak ada token API yang perlu dicabut.
+Komponen setup melakukan autentikasi dengan Workload Identity Federation; tidak ada token API yang perlu dicabut.
 
-Tanpa akses terprogram, klik **Rotate token** pada halaman detail tunnel di Console, lalu perbarui Secret `mcp-tunnel-token`:
+Tanpa akses programatik, klik **Rotate token** di halaman detail tunnel di Console, lalu perbarui Secret `mcp-tunnel-token`:
 
 ```bash
 kubectl -n mcp-tunnel create secret generic mcp-tunnel-token \
@@ -401,16 +401,16 @@ kubectl -n mcp-tunnel rollout restart deploy/mcp-tunnel
 ```
 
 <Warning>
-  Mengklik **Rotate token** langsung membatalkan token saat ini. Hingga Secret diperbarui dan rollout selesai, pod apa pun yang restart dengan token lama (eviction, node drain, OOM) tidak dapat terhubung kembali. Perbarui Secret segera setelah rotasi; untuk persyaratan ketersediaan yang lebih ketat, gunakan akses terprogram agar chart menangani rotasi secara atomik.
+  Mengklik **Rotate token** langsung membatalkan token saat ini. Hingga Secret diperbarui dan rollout selesai, pod apa pun yang restart dengan token lama (eviction, node drain, OOM) tidak dapat terhubung kembali. Perbarui Secret segera setelah rotasi; untuk persyaratan ketersediaan yang lebih ketat, gunakan akses programatik agar chart menangani rotasi secara atomik.
 </Warning>
 
 ### Pembaruan sertifikat
 
-Chart menyediakan otomatisasi, tetapi Anda tetap bertanggung jawab untuk memantau kedaluwarsa dan memastikan pembaruan selesai.
+Chart menyediakan otomatisasi, tetapi Anda tetap bertanggung jawab untuk memantau masa berlaku dan memastikan pembaruan selesai.
 
-Dengan akses terprogram, pembaruan sertifikat bersifat otomatis. Chart men-deploy CronJob (dinamai berdasarkan `fullname` Helm, dengan akhiran `-cert-renew`) yang menjalankan `setup renew-cert` setiap hari (pada `serverCert.cronSchedule`, default `0 0 * * *` UTC). Job ini adalah no-op kecuali sertifikat berada dalam `serverCert.renewBefore` dari kedaluwarsa (default 30 hari). Pembaruan bersifat lokal: job menandatangani sertifikat baru dengan CA yang sudah tersimpan di Secret, tidak melakukan panggilan API, dan hanya memerlukan RBAC Kubernetes yang diberikan chart. Proxy melakukan hot-reload sertifikat dari mount Secret, sehingga tidak diperlukan restart Deployment.
+Dengan akses programatik, pembaruan sertifikat berlangsung otomatis. Chart men-deploy CronJob (dinamai berdasarkan `fullname` Helm, dengan akhiran `-cert-renew`) yang menjalankan `setup renew-cert` setiap hari (pada `serverCert.cronSchedule`, default `0 0 * * *` UTC). Job ini tidak melakukan apa pun kecuali sertifikat berada dalam rentang `serverCert.renewBefore` dari masa kedaluwarsa (default 30 hari). Pembaruan bersifat lokal: job menandatangani sertifikat baru dengan CA yang sudah tersimpan di Secret, tidak melakukan panggilan API, dan hanya memerlukan RBAC Kubernetes yang diberikan chart. Proxy melakukan hot-reload sertifikat dari mount Secret, sehingga tidak diperlukan restart Deployment.
 
-Tanpa akses terprogram, tidak ada CronJob. Dari dalam direktori `mcp-tunnel/` yang Anda simpan setelah instalasi, tandatangani sertifikat server baru dengan CA yang ada (jangan regenerasi CA):
+Tanpa akses programatik tidak ada CronJob. Dari dalam direktori `mcp-tunnel/` yang Anda simpan setelah instalasi, tandatangani sertifikat server baru dengan CA yang sudah ada (jangan menghasilkan ulang CA):
 
 ```bash
 export TUNNEL_DOMAIN=YOUR_TUNNEL_DOMAIN_HERE
@@ -431,11 +431,11 @@ Proxy melakukan hot-reload sertifikat dari mount Secret.
 
 <CardGroup cols={2}>
   <Card title="Gunakan server MCP yang di-tunnel" icon="link" href="https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview#use-the-tunneled-mcp-servers">
-    Hubungkan server MCP upstream ke Managed Agent atau Messages API.
+    Lampirkan server MCP upstream ke Managed Agent atau Messages API.
   </Card>
 
   <Card title="Keamanan" icon="lock" href="https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/security">
-    Panduan pengerasan, rotasi kredensial, dan respons pelanggaran.
+    Panduan hardening, rotasi kredensial, dan respons terhadap pelanggaran.
   </Card>
 
   <Card title="Pemecahan masalah" icon="wrench" href="https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting">

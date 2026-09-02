@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/download
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: 946ebee549db8d238b95b33827ff3a483acb582aae6718b97209783946e2c26f
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: d772b366b67d8d0c74ffb72f8d50dad3f8af7893680ab70779d669a0b652ad5a
 ---
 
 # Download File
@@ -25,7 +25,7 @@ Download File
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -108,6 +108,12 @@ Download File
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ## Example
 

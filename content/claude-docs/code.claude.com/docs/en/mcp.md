@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-09-01T02:22:36.834082Z
-sha256: c4d6746c8ae51e0fdaf10443ae115d692833ede95db6047dbc2dd67eb6f1244d
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 6fcd70146a05d0ca779e2b48accf9ba38f6c8db6ea32f4b7b2ab3b3f4a2b3e3b
 ---
 
 > ## Documentation Index
@@ -971,7 +971,7 @@ A `headersHelper` that a repository or plugin supplies is a command you didn't w
 * **Removed**: a server in a project `.mcp.json` or in a plugin, and an inline server in an agent file from your project or from an `--add-dir` directory
 * **Not removed**: a server at [user](#user-scope) or [local scope](#local-scope), in [managed MCP](/docs/en/managed-mcp), from a [claude.ai connector](#use-mcp-servers-from-claude-ai), or supplied by the SDK or [`--mcp-config`](/docs/en/cli-reference), and an inline server in an agent file from `~/.claude/agents/`, from managed settings, or passed with `--agents`
 
-Apart from Git's `GIT_CONFIG_KEY_<n>` variables, Claude Code removes every variable from your environment whose name has `TOKEN`, `SECRET`, `PASSWORD`, `PASSWD`, `PASSPHRASE`, `KEY`, `AUTH`, `COOKIE`, `PAT`, `DSN`, `CREDENTIAL`, or `CREDENTIALS` as one of its underscore-separated parts, in either letter case, such as `ANTHROPIC_API_KEY` or `MY_REGISTRY_TOKEN`. Claude Code also removes a fixed list of credential variables whose names don't follow that pattern, such as `ANTHROPIC_CUSTOM_HEADERS`.
+Apart from Git's `GIT_CONFIG_KEY_<n>` variables, Claude Code removes every variable from your environment whose name looks like a credential, such as a name with `TOKEN`, `SECRET`, `PASSWORD`, `KEY`, or `AUTH` in it in either letter case, so `ANTHROPIC_API_KEY` and `MY_REGISTRY_TOKEN` are both removed. Claude Code also removes a fixed list of credential variables whose names don't follow that pattern, such as `ANTHROPIC_CUSTOM_HEADERS`.
 
 When this applies to your helper, have the script read its credential from a file or a credential store. If the server's `url` [expands one of these variables](#environment-variable-expansion-in-mcp-json), the `CLAUDE_CODE_MCP_SERVER_URL` value the helper receives has that part replaced with `REDACTED` as well.
 

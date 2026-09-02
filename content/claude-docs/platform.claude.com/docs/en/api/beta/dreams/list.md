@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/list
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 7da3eede58f15d871d1fcce645ea8954b47733eb5a2f0ddb5a102cf1801df26b
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 7a35e05bfcd442a632863f92b04b71c7c9afe30cc4b0849b42519730feb4eec0
 ---
 
 # List Dreams
@@ -61,7 +61,7 @@ List Dreams
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -144,6 +144,12 @@ List Dreams
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ## Returns
 

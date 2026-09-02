@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 95e0680df24dd898189656cd362c9a9f8f7e20d38721b95bcbac69abd750ef20
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: f9a8d091e7c92ca40bb98d81ac6652e656d325a92f47b6dbf9d497dc97c156bf
 ---
 
 ---
@@ -29,7 +29,7 @@ kubectl get --raw /.well-known/openid-configuration | jq -r .issuer
 
 * Salah satu dari berikut ini agar Anthropic dapat memvalidasi tanda tangan token:
 
-  * Endpoint JWKS milik issuer dapat dijangkau dari internet publik melalui HTTPS pada port 443, atau
+  * Endpoint JWKS issuer dapat dijangkau dari internet publik melalui HTTPS pada port 443, atau
   * Anda dapat mengambil JWKS dari dalam klaster dan mendaftarkannya dalam mode `inline` (dibahas di [Mengonfigurasi Anthropic](https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes#configure-anthropic)).
 
 * Izin untuk membuat service account, federation issuer, dan federation rule di Claude Console untuk organisasi Anthropic Anda.
@@ -80,7 +80,7 @@ Token yang diterbitkan untuk pod ini membawa `sub: "system:serviceaccount:infere
 
 Di Claude Console, buka **Settings → Workload identity**, klik **Connect workload**, dan pilih tile **Kubernetes**. Wizard akan memandu Anda mendaftarkan issuer, membuat service account, dan membuat federation rule.
 
-Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut baik saat Anda memasukkannya di wizard maupun saat mengirimkannya ke [Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api):
+Wizard membuat sumber daya ini untuk Anda. Gunakan nilai-nilai berikut, baik Anda memasukkannya di wizard maupun mengirimkannya ke [Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api):
 
 **Federation issuer:** Banyak klaster yang dikelola sendiri menggunakan URL issuer seperti `https://kubernetes.default.svc.cluster.local` yang tidak dapat dijangkau dari internet publik. Jika hal itu berlaku untuk klaster Anda, pilih sumber JWKS **inline** dan tempelkan kunci klaster. Ambil kunci tersebut dari dalam klaster:
 
@@ -104,10 +104,10 @@ Kemudian konfigurasikan issuer dengan isi array `keys` yang dikembalikan (bukan 
 Dalam mode `inline`, `issuer_url` hanya dibandingkan dengan klaim `iss` pada JWT; Anthropic tidak pernah mencoba menjangkaunya. Jika issuer Anda dapat dijangkau secara publik, gunakan `"jwks": {"type": "discovery"}` sebagai gantinya.
 
 <Warning>
-  Dengan kunci `inline`, Anda bertanggung jawab memperbarui issuer ketika klaster merotasi kunci penandatanganan service account-nya. Rotasi jarang terjadi (biasanya hanya selama upgrade klaster), tetapi pertukaran token akan gagal dengan error tanda tangan hingga Anda mengirimkan JWKS yang baru.
+  Dengan kunci `inline`, Anda bertanggung jawab memperbarui issuer ketika klaster merotasi kunci penandatanganan service account-nya. Rotasi jarang terjadi (biasanya hanya selama upgrade klaster), tetapi pertukaran token akan gagal dengan error tanda tangan sampai Anda mengirimkan JWKS yang baru.
 </Warning>
 
-**Federation rule:** Cocokkan klaim `sub` milik service account dan audience yang Anda atur pada projected token.
+**Federation rule:** Cocokkan klaim `sub` service account dan audience yang Anda atur pada projected token.
 
 ```json
 {
@@ -302,7 +302,7 @@ Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-an
 ## Membatasi cakupan rule Anda
 
 <Warning>
-  `subject_prefix` berupa `system:serviceaccount:*` cocok dengan setiap service account di klaster, sehingga pod mana pun dapat memperoleh token Anthropic terfederasi. Tanpa matcher `audience`, rule juga cocok dengan token default-audience milik klaster, yang sudah diproyeksikan ke setiap pod.
+  `subject_prefix` berupa `system:serviceaccount:*` cocok dengan setiap service account di klaster, sehingga pod mana pun dapat memperoleh token Anthropic terfederasi. Tanpa matcher `audience`, rule juga cocok dengan token default-audience klaster, yang sudah diproyeksikan ke setiap pod.
 </Warning>
 
 Kunci blok `match` pada rule ke cakupan tersempit yang sesuai dengan kasus penggunaan Anda:

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: 3d76110b53dcd165e9d06241dbfdf78e819c49f2bd1602e996f989c977207b84
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 602475563b615e7d59d9674ce21dbc2b7b79f74faed5cb9550e76ae252d059e5
 ---
 
 ---
@@ -124,6 +124,7 @@ Lifecycle terms (Deprecated, Retired) are defined in [Model deprecations](https:
 
 | Model                        | Agent Platform API model ID |
 | ---------------------------- | --------------------------- |
+| Claude Fable 5.1             | claude-fable-5-1            |
 | Claude Fable 5               | claude-fable-5              |
 | Claude Opus 5                | claude-opus-5               |
 | Claude Opus 4.8              | claude-opus-4-8             |
@@ -372,7 +373,7 @@ For the full feature list with Google Cloud availability, see [Features overview
 
 ### Context window
 
-Claude Fable 5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, and Claude Sonnet 4.6 have a [1M-token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows) on Agent Platform. Other Claude models, including Sonnet 4.5 and Sonnet 4 (deprecated), have a 200k-token context window.
+Claude Fable 5.1, Claude Fable 5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, and Claude Sonnet 4.6 have a [1M-token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows) on Agent Platform. Other Claude models, including Sonnet 4.5 and Sonnet 4 (deprecated), have a 200k-token context window.
 
 Agent Platform limits request payloads to 30 MB. When sending large documents or many images, you might reach this limit before the token limit.
 

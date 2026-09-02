@@ -1,12 +1,12 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 62dd5b0646bff699ca00f908599404c2e23d30ff87179582877435bfebfe1299
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 12d12ffea95db66f431d05b02be836dfd37e029b6326b07fd3700bcab56d5a30
 ---
 
 ---
-title: Penggunaan alat dengan prompt caching
+title: Penggunaan alat dengan caching prompt
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching
 description: Cache definisi alat di seluruh giliran dan pahami apa yang membatalkan cache Anda.
 ---
@@ -49,7 +49,7 @@ Tempatkan `cache_control: {"type": "ephemeral"}` pada alat terakhir dalam array 
 
 Untuk `mcp_toolset`, breakpoint `cache_control` ditempatkan pada alat terakhir dalam set tersebut. Anda tidak mengontrol urutan alat di dalam toolset MCP, jadi tempatkan breakpoint pada entri `mcp_toolset` itu sendiri dan API akan menerapkannya pada alat terakhir yang diperluas.
 
-Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) mengikuti aturan yang sama: tempatkan `cache_control` pada entri toolset itu sendiri, dan breakpoint akan ditempatkan setelah definisi toolset. `cache_control` tidak diterima di dalam entri `configs` milik anggota, karena anggota toolset dimuat sebagai satu definisi. Di dalam [batch action](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#batch-actions), penanda `cache_control` pada blok `tool_use` atau `tool_result` anggota mana pun dalam giliran tersebut diterima dan berlaku di akhir batch itu, sehingga beberapa penanda dalam satu batch bertindak sebagai satu breakpoint. Setiap penanda tetap dihitung terhadap batas permintaan sebanyak [empat breakpoint](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#when-to-use-multiple-breakpoints), jadi gunakan satu per giliran.
+Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) mengikuti aturan yang sama: tempatkan `cache_control` pada entri toolset itu sendiri, dan breakpoint akan ditempatkan setelah definisi toolset tersebut. `cache_control` tidak diterima di dalam entri `configs` milik anggota, karena anggota toolset dimuat sebagai satu definisi. Di dalam [batch action](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#batch-actions), penanda `cache_control` pada blok `tool_use` atau `tool_result` anggota mana pun dalam giliran tersebut diterima dan berlaku di akhir batch itu, sehingga beberapa penanda dalam satu batch bertindak sebagai satu breakpoint. Setiap penanda tetap dihitung terhadap batas permintaan sebanyak [empat breakpoint](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#when-to-use-multiple-breakpoints), jadi gunakan satu per giliran.
 
 ## defer\_loading dan pelestarian cache
 

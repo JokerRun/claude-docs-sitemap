@@ -1,27 +1,27 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 09d3c18adcb6418f0150a4fdb4d316ea8307c0d8fd61f247b5244ebf85585b54
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 7c039b90ad5971ecc1e35eed52f09d35420f7d2eb424ec92462d403cd64e02c6
 ---
 
 ---
 title: Mengembangkan integrasi Inference hooks
 url: https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint
-description: Bangun server keamanan AI yang menerima permintaan Inference hooks yang ditandatangani, memverifikasinya, dan mengembalikan verdict allow atau deny.
+description: Bangun server keamanan AI yang menerima permintaan Inference hooks yang ditandatangani, memverifikasinya, dan mengembalikan putusan allow atau deny.
 ---
 
 <Note>
   Inference hooks masih dalam versi beta dan tersedia untuk organisasi Claude Enterprise. Nama field, bentuk permintaan, dan header dapat berubah selama masa beta.
 </Note>
 
-Integrasi Inference hooks adalah sebuah "AI security server" (server keamanan AI): layanan HTTPS yang dipanggil oleh Anthropic. Untuk setiap permintaan yang diatur, server Anda menerima `POST` bertanda tangan yang membawa transkrip percakapan dan merespons dengan "verdict" (putusan) allow atau deny. Halaman ini mendokumentasikan protokol untuk membangun server tersebut: skema permintaan dan verdict, verifikasi tanda tangan, dan kontrak operasional.
+Integrasi Inference hooks adalah sebuah "AI security server" (server keamanan AI): layanan HTTPS yang dipanggil oleh Anthropic. Untuk setiap permintaan yang diatur, server Anda menerima `POST` bertanda tangan yang membawa transkrip percakapan dan merespons dengan "verdict" (putusan) allow atau deny. Halaman ini mendokumentasikan protokol untuk membangun server tersebut: skema permintaan dan putusan, verifikasi tanda tangan, dan kontrak operasional.
 
-Untuk mengaktifkan Inference hooks dan mengarahkannya ke endpoint Anda, lihat [Mengonfigurasi Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration). Untuk mengetahui apa itu Inference hooks dan kapan menggunakannya, lihat [ikhtisar Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks).
+Untuk mengaktifkan Inference hooks dan mengarahkannya ke endpoint Anda, lihat [Mengonfigurasi Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration). Untuk mempelajari apa itu Inference hooks dan kapan menggunakannya, lihat [ikhtisar Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks).
 
-## Mendapatkan round trip verdict pertama
+## Mendapatkan round trip putusan pertama
 
-Integrasi terkecil yang berfungsi adalah server yang membaca setiap permintaan dan mengizinkannya. Jalankan salah satu server berikut, ekspos di URL `https://` publik (misalnya, di belakang reverse proxy yang menangani terminasi TLS pada host yang Anda kendalikan, bukan layanan reverse-tunnel; lihat [Menerima permintaan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#receive-a-request)), lalu minta administrator Anda [menetapkannya sebagai endpoint dan menguji koneksinya](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration): hasil **Test connection** melaporkan verdict allow yang dikembalikan server Anda.
+Integrasi terkecil yang berfungsi adalah server yang membaca setiap permintaan dan mengizinkannya. Jalankan salah satu server berikut, ekspos di URL `https://` publik (misalnya, di belakang reverse proxy yang menterminasi TLS pada host yang Anda kendalikan, bukan layanan reverse-tunnel; lihat [Menerima permintaan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#receive-a-request)), lalu minta administrator Anda [menetapkannya sebagai endpoint dan menguji koneksinya](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration): hasil **Test connection** melaporkan putusan allow yang dikembalikan server Anda.
 
 <CodeGroup exclude="shell">
   ```python Python
@@ -51,7 +51,7 @@ Integrasi terkecil yang berfungsi adalah server yang membaca setiap permintaan d
   import { createServer } from "node:http";
 
   createServer((request, response) => {
-    // Kosongkan body sebelum menjawab; transkrip bisa berukuran megabyte.
+    // Kuras body sebelum menjawab; transkrip bisa berukuran megabyte.
     request.resume();
     request.on("end", () => {
       response.writeHead(200, { "Content-Type": "application/json" });
@@ -89,7 +89,7 @@ Integrasi terkecil yang berfungsi adalah server yang membaca setiap permintaan d
 
   func main() {
   	http.HandleFunc("POST /", func(writer http.ResponseWriter, request *http.Request) {
-  		// Kuras body agar koneksi dapat digunakan kembali; transkrip bisa berukuran megabyte.
+  		// Kosongkan body agar koneksi dapat digunakan kembali; transkrip bisa berukuran megabyte.
   		io.Copy(io.Discard, request.Body)
   		writer.Header().Set("Content-Type", "application/json")
   		writer.Write([]byte(`{"action": "allow"}`))
@@ -123,7 +123,7 @@ Integrasi terkecil yang berfungsi adalah server yang membaca setiap permintaan d
   <?php
   // Jalankan dengan: php -S 0.0.0.0:8000 server.php
 
-  // Kuras isi body; transkrip bisa berukuran megabyte.
+  // Kuras body; transkrip bisa berukuran megabyte.
   file_get_contents('php://input');
 
   http_response_code(200);
@@ -157,7 +157,7 @@ Anthropic mengirim `POST` HTTPS ke URL yang dikonfigurasi administrator Anda. Se
 
 Host server keamanan AI Anda di tempat yang dapat dijangkau Anthropic: URL `https://` pada port 443, pada host yang dapat dirutekan secara publik (rentang privat, loopback, dan carrier-grade NAT ditolak saat koneksi), dengan sertifikat yang tervalidasi terhadap trust store CA publik, dan merespons tanpa redirect. URL yang dikonfigurasi harus menjadi tujuan akhir. Host reverse-tunnel (ngrok dan layanan tunnel serupa) tidak didukung: kebijakan jaringan Anthropic memblokirnya. Host server Anda pada domain yang Anda kendalikan. [Mengonfigurasi Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration) membahas cara administrator Anda menetapkan dan menguji URL tersebut.
 
-Setiap permintaan membawa header tetap berikut, bersama dengan [header permintaan kustom](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration) apa pun yang dikonfigurasi administrator Anda dan, setelah organisasi Anda memiliki signing secret, header tanda tangan `webhook-*` yang dijelaskan di [Memverifikasi tanda tangan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#verify-the-signature):
+Setiap permintaan membawa header tetap berikut, bersama dengan [header permintaan kustom](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration) apa pun yang dikonfigurasi administrator Anda dan, setelah organisasi Anda memiliki "signing secret" (rahasia penandatanganan), header tanda tangan `webhook-*` yang dijelaskan di [Memverifikasi tanda tangan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#verify-the-signature):
 
 | Header            | Nilai              |
 | ----------------- | ------------------ |
@@ -165,9 +165,9 @@ Setiap permintaan membawa header tetap berikut, bersama dengan [header permintaa
 | `User-Agent`      | `anthropic-dlp/1`  |
 | `Accept-Encoding` | `identity`         |
 
-Saat ini ada satu event hook: prompt frame, yang dikirim sekali per permintaan inferensi yang diatur, sebelum inferensi dimulai. Anthropic menahan permintaan hingga server keamanan AI Anda merespons atau batas waktu verdict habis.
+Saat ini ada satu event hook: frame prompt, dikirim sekali per permintaan inferensi yang diatur, sebelum inferensi dimulai. Anthropic menahan permintaan hingga server keamanan AI Anda merespons atau batas waktu putusan habis.
 
-## Prompt frame
+## Frame prompt
 
 Body permintaan adalah objek JSON dengan field-field berikut:
 
@@ -230,32 +230,32 @@ Contoh body permintaan:
 
 Setiap entri dalam `messages` memiliki `role` berupa `user` atau `assistant` (hasil alat muncul di bawah role `user`, sesuai dengan model konten Messages API publik) dan array `content` berisi blok-blok yang didiskriminasi berdasarkan `type`:
 
-| `type` blok   | Field                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `text`        | `text`: konten teks.                                                                                                                                                                                                                                                                                                                                                                                                          |
-| `tool_use`    | `id`: pengidentifikasi yang dirujuk oleh hasil alat yang cocok. `tool_name`: nama alat. `input`: argumen yang diteruskan model ke alat.                                                                                                                                                                                                                                                                                       |
-| `tool_result` | `content`: output alat sebagai teks, dengan bagian-bagian yang digabungkan dengan baris baru; bagian biner seperti gambar diganti dengan penanda placeholder, dan byte mentah tidak pernah dikirim. `is_error`: apakah panggilan alat gagal. `tool_name`: nama alat, sehingga kebijakan dapat mengondisikan pada identitas alat tanpa merujuk silang ke blok sebelumnya. `tool_use_id`: `id` dari blok `tool_use` yang cocok. |
-| `attachment`  | `file_name`: nama atau path file asli. `media_type`: tipe media lampiran. `size_bytes`: ukuran file asli. `text`: konten teks lampiran jika tersedia, seperti teks dokumen yang diekstrak, transkrip audio, atau metadata tautan. Byte mentah lampiran tidak pernah dikirim.                                                                                                                                                  |
+| `type` blok   | Field                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `text`        | `text`: konten teks.                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `tool_use`    | `id`: pengidentifikasi yang dirujuk oleh hasil alat yang cocok. `tool_name`: nama alat. `input`: argumen yang diteruskan model ke alat.                                                                                                                                                                                                                                                                                |
+| `tool_result` | `content`: output alat sebagai teks, dengan bagian-bagian digabungkan oleh baris baru; bagian biner seperti gambar diganti dengan penanda placeholder, dan byte mentah tidak pernah dikirim. `is_error`: apakah panggilan alat gagal. `tool_name`: nama alat, sehingga kebijakan dapat mengondisikan pada identitas alat tanpa merujuk silang ke blok sebelumnya. `tool_use_id`: `id` dari blok `tool_use` yang cocok. |
+| `attachment`  | `file_name`: nama atau path file asli. `media_type`: tipe media lampiran. `size_bytes`: ukuran file asli. `text`: konten teks lampiran jika tersedia, seperti teks dokumen yang diekstrak, transkrip audio, atau metadata tautan. Byte lampiran mentah tidak pernah dikirim.                                                                                                                                           |
 
-Blok dengan `type` yang tidak Anda kenali adalah tambahan yang kompatibel ke depan. Satu-satunya field yang dijaminnya adalah `type`; kebijakan Anda boleh memeriksa field lain apa pun yang ada, tetapi tidak boleh menolak permintaan karena tipe yang tidak dikenali.
+Blok yang `type`-nya tidak Anda kenali adalah tambahan yang kompatibel ke depan. Satu-satunya field yang dijaminnya adalah `type`; kebijakan Anda boleh memeriksa field lain apa pun yang ada, tetapi tidak boleh menolak permintaan karena tipe yang tidak dikenali.
 
 ### Apa yang terkandung dalam transkrip
 
 Transkrip adalah percakapan sebagaimana dilihat pengguna akhir, hingga titik inferensi: teks transkrip, panggilan alat dan hasilnya, teks lampiran yang diekstrak, dan giliran sebelumnya. Transkrip tidak pernah menyertakan prompt sistem, definisi alat, konteks internal Anthropic, penalaran tersembunyi Claude, atau byte file mentah.
 
-Giliran yang setiap bloknya dikecualikan akan dihilangkan seluruhnya, jadi jangan berasumsi adanya pergantian ketat antara user dan assistant.
+Giliran yang setiap bloknya dikecualikan akan dihilangkan seluruhnya, jadi jangan berasumsi pergantian user dan assistant yang ketat.
 
-Transkrip dikirim tanpa pemotongan, sehingga percakapan panjang dengan lampiran besar menghasilkan body permintaan yang besar, hingga batas atas 10 MB. Naikkan batas body server Anda untuk menerima batas tersebut. Beberapa nilai default umum jauh lebih kecil, termasuk `client_max_body_size` nginx sebesar 1 MB dan `express.json()` Express sebesar 100 kB, dan body yang ditolak dihitung sebagai kegagalan webhook, sehingga di bawah penanganan kegagalan **Allow the request**, prompt yang terlalu besar akan mencapai model tanpa diperiksa.
+Transkrip dikirim tanpa pemotongan, sehingga percakapan panjang dengan lampiran besar menghasilkan body permintaan yang besar, hingga batas atas 10 MB. Naikkan batas body server Anda untuk menerima batas tersebut. Beberapa default umum jauh lebih kecil, termasuk nginx `client_max_body_size` sebesar 1 MB dan Express `express.json()` sebesar 100 kB, dan body yang ditolak dihitung sebagai kegagalan webhook, sehingga di bawah penanganan kegagalan **Allow the request**, prompt yang terlalu besar akan mencapai model tanpa diperiksa.
 
 ### Nilai source
 
-`source.application` adalah string terbuka, bukan enum tertutup. Nilai yang dikenal adalah `claude-ai` dan `claude-code`; [uji koneksi](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration) menggunakan `config-test`. Nilai baru dapat muncul, dan server Anda tidak boleh menolak permintaan karena nilai yang tidak dikenalinya.
+`source.application` adalah string terbuka, bukan enum tertutup. Nilai yang dikenal adalah `claude-ai` dan `claude-code`; [pengujian koneksi](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration) menggunakan `config-test`. Nilai baru dapat muncul, dan server Anda tidak boleh menolak permintaan karena nilai yang tidak dikenalinya.
 
 Perlakukan `source.application` sebagai metadata perutean yang bersifat saran, bukan batas kepercayaan: jangan menyandarkan keputusan kebijakan yang kritis terhadap keamanan hanya padanya.
 
-## Mengembalikan verdict
+## Mengembalikan putusan
 
-Respons dengan HTTP 200 dan body verdict JSON untuk kedua hasil; field `action` yang membedakan. Untuk mengizinkan permintaan:
+Respons dengan HTTP 200 dan body putusan JSON untuk kedua hasil; field `action` yang membedakan. Untuk mengizinkan permintaan:
 
 ```json
 {
@@ -273,20 +273,20 @@ Untuk menolaknya:
 }
 ```
 
-| Field          | Batasan                                                                    | Semantik                                                                                                                                                                                                                                                                                                                                                   |
-| -------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `action`       | `"allow"` atau `"deny"`; wajib                                             | `allow` membiarkan inferensi berlanjut; `deny` menolaknya.                                                                                                                                                                                                                                                                                                 |
-| `deny_reason`  | string atau null; maksimal 500 karakter, nilai yang lebih panjang dipotong | Ditampilkan kepada pengguna akhir ketika `action` adalah `deny`; diabaikan pada `allow`.                                                                                                                                                                                                                                                                   |
-| `reference_id` | string atau null; maksimal 50 karakter dari `[A-Za-z0-9._:/-]`             | Pengidentifikasi Anda sendiri untuk evaluasi ini. Ini dicatat pada [aktivitas kepatuhan](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) `inference_hooks_request_denied` milik penolakan tersebut dan tidak pernah ditampilkan kepada pengguna akhir. Jaga agar tetap opaque: tanpa konten permintaan dan tanpa data pribadi. |
+| Field          | Batasan                                                                    | Semantik                                                                                                                                                                                                                                                                                                                                                         |
+| -------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `action`       | `"allow"` atau `"deny"`; wajib                                             | `allow` membiarkan inferensi berlanjut; `deny` menolaknya.                                                                                                                                                                                                                                                                                                       |
+| `deny_reason`  | string atau null; maksimal 500 karakter, nilai yang lebih panjang dipotong | Ditampilkan kepada pengguna akhir ketika `action` adalah `deny`; diabaikan pada `allow`.                                                                                                                                                                                                                                                                         |
+| `reference_id` | string atau null; maksimal 50 karakter dari `[A-Za-z0-9._:/-]`             | Pengidentifikasi Anda sendiri untuk evaluasi ini. Nilai ini dicatat pada [aktivitas kepatuhan](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) `inference_hooks_request_denied` milik penolakan tersebut dan tidak pernah ditampilkan kepada pengguna akhir. Jaga agar tetap opaque: tanpa konten permintaan dan tanpa data pribadi. |
 
-Deny tidak pernah dibuang karena masalah format: `deny_reason` yang terlalu besar dipotong, `reference_id` yang salah format dibuang secara diam-diam, dan `action` tetap dihormati.
+Deny tidak pernah dibuang karena masalah pemformatan: `deny_reason` yang terlalu besar dipotong, `reference_id` yang salah format dibuang secara diam-diam, dan `action` tetap dihormati.
 
-Kebalikannya tidak berlaku. Apa pun selain HTTP 200 dengan verdict yang dapat di-parse adalah kegagalan webhook, dan [penanganan kegagalan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration) organisasi Anda berlaku sebagai pengganti verdict. Khususnya:
+Kebalikannya tidak berlaku. Apa pun selain HTTP 200 dengan putusan yang dapat di-parse adalah kegagalan webhook, dan [penanganan kegagalan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration) organisasi Anda berlaku sebagai pengganti putusan. Secara khusus:
 
-* Jangan menandakan deny dengan status error. Respons non-200 adalah kegagalan, bukan deny.
+* Jangan memberi sinyal deny dengan status error. Respons non-200 adalah kegagalan, bukan deny.
 * Nilai `action` apa pun selain `allow` atau `deny` diperlakukan sebagai kegagalan webhook.
 
-Anthropic membaca maksimal 64 KiB dari body respons, dan body tersebut harus tidak terkompresi. Redirect tidak diikuti, dan cookie diabaikan. Field yang tidak dikenal dalam body verdict diabaikan, sehingga Anda dapat mengembalikan objek yang lebih kaya di samping field yang didokumentasikan di sini.
+Anthropic membaca maksimal 64 KiB dari body respons, dan body tersebut harus tidak terkompresi. Redirect tidak diikuti, dan cookie diabaikan. Field yang tidak dikenal dalam body putusan diabaikan, sehingga Anda dapat mengembalikan objek yang lebih kaya di samping field yang didokumentasikan di sini.
 
 ## Memverifikasi tanda tangan
 
@@ -295,17 +295,17 @@ Permintaan ditandatangani sesuai spesifikasi [Standard Webhooks](https://www.sta
 | Header              | Isi                                                                                                                                                                                                                                                             |
 | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `webhook-id`        | Pengidentifikasi unik untuk pengiriman ini. Sama dengan `request_id` pada body. Gunakan sebagai kunci idempotensi dan sebagai komponen pertama dari payload yang ditandatangani.                                                                                |
-| `webhook-timestamp` | Waktu Unix dalam detik, sebagai string desimal, saat permintaan ditandatangani. Tolak timestamp yang berselisih lebih dari lima menit dari jam server Anda, ke arah mana pun.                                                                                   |
-| `webhook-signature` | Satu atau lebih nilai `v1,<base64>` yang dipisahkan spasi, masing-masing merupakan HMAC-SHA256 atas `{webhook-id}.{webhook-timestamp}.{raw body bytes}`. Terima permintaan jika ada nilai yang cocok dengan milik Anda, menggunakan perbandingan constant-time. |
+| `webhook-timestamp` | Waktu Unix dalam detik, sebagai string desimal, saat permintaan ditandatangani. Tolak timestamp yang berjarak lebih dari lima menit dari jam server Anda, ke arah mana pun.                                                                                     |
+| `webhook-signature` | Satu atau lebih nilai `v1,<base64>` yang dipisahkan spasi, masing-masing merupakan HMAC-SHA256 atas `{webhook-id}.{webhook-timestamp}.{raw body bytes}`. Terima permintaan jika ada nilai yang cocok dengan milik Anda, menggunakan perbandingan waktu-konstan. |
 
 Dua detail menyebabkan sebagian besar bug verifikasi:
 
-* **Verifikasi byte mentah.** Hitung HMAC atas body persis seperti yang diterima, sebelum parsing JSON atau re-encoding apa pun.
-* **Decode secret dengan decoder base64 standar.** Signing secret adalah nilai setelah prefiks `whsec_`, di-encode dengan alfabet base64 standar (`+` dan `/`), begitu pula tanda tangan dalam header. Decoder URL-safe menghasilkan byte kunci yang salah setiap kali secret mengandung `+` atau `/`, yang terjadi hampir selalu.
+* **Verifikasi byte mentah.** Hitung HMAC atas body persis seperti yang diterima, sebelum parsing JSON atau pengodean ulang apa pun.
+* **Dekode secret dengan dekoder base64 standar.** Signing secret adalah nilai setelah prefiks `whsec_`, dikodekan dengan alfabet base64 standar (`+` dan `/`), begitu pula tanda tangan di header. Dekoder URL-safe menghasilkan byte kunci yang salah setiap kali secret mengandung `+` atau `/`, yang terjadi hampir selalu.
 
-Setelah organisasi Anda memiliki signing secret, setiap permintaan yang dikirim Anthropic ditandatangani, dan [mengaktifkan Inference hooks mensyaratkannya](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration), jadi tolak permintaan apa pun yang tiba tanpa tanda tangan. Satu pengecualian: uji koneksi yang dikirim sebelum penyimpanan pertama organisasi Anda tiba tanpa tanda tangan, karena signing secret belum ada. Terima permintaan tanpa tanda tangan hingga administrator Anda mengonfirmasi bahwa secret sudah ada, lalu tolak.
+Setelah organisasi Anda memiliki signing secret, setiap permintaan yang dikirim Anthropic ditandatangani, dan [mengaktifkan Inference hooks mensyaratkannya](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration), jadi tolak permintaan apa pun yang tiba tanpa tanda tangan. Satu pengecualian: pengujian koneksi yang dikirim sebelum penyimpanan pertama organisasi Anda tiba tanpa tanda tangan, karena signing secret belum ada. Terima permintaan tanpa tanda tangan hingga administrator Anda mengonfirmasi bahwa secret sudah ada, lalu tolak.
 
-[Merotasi secret](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration#rotate-your-signing-secret) adalah peralihan seketika, tetapi permintaan yang ditandatangani dengan secret sebelumnya masih dapat tiba selama sekitar satu menit setelahnya, ditambah apa pun yang sudah dalam perjalanan. Buat server keamanan AI Anda menerima tanda tangan dari kedua secret selama masa peralihan agar permintaan yang tertinggal tersebut tidak ditolak.
+[Merotasi secret](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration#rotate-your-signing-secret) adalah peralihan seketika, tetapi permintaan yang ditandatangani dengan secret sebelumnya masih dapat tiba selama sekitar satu menit setelahnya, ditambah apa pun yang sudah dalam perjalanan. Buat server keamanan AI Anda menerima tanda tangan dari kedua secret selama peralihan agar permintaan yang tertinggal tersebut tidak ditolak.
 
 Contoh-contoh berikut adalah implementasi server, sehingga tidak ada tab shell: server keamanan AI adalah layanan HTTPS yang berjalan lama, bukan permintaan sekali jalan. Setiap contoh hanya menggunakan pustaka standar bahasa tersebut; proyek [Standard Webhooks](https://www.standardwebhooks.com/) juga menerbitkan pustaka verifikasi untuk sebagian besar bahasa.
 
@@ -634,7 +634,7 @@ Contoh-contoh berikut adalah implementasi server, sehingga tidak ada tab shell: 
   ```
 
   ```ruby Ruby
-  # base64 adalah bundled gem di Ruby 3.4: aplikasi yang dikelola Bundler perlu menambahkan gem "base64".
+  # base64 adalah bundled gem di Ruby 3.4: aplikasi yang dikelola Bundler menambahkan gem "base64".
   require "base64"
   require "openssl"
 
@@ -642,7 +642,7 @@ Contoh-contoh berikut adalah implementasi server, sehingga tidak ada tab shell: 
 
   # Mengembalikan true jika body ditandatangani oleh Anthropic untuk organisasi ini.
   #
-  # Anthropic mengirim nama header dalam huruf kecil, tetapi proxy bebas
+  # Anthropic mengirim nama header dalam huruf kecil, tetapi proxy bebas untuk
   # mengubah kapitalisasinya, jadi normalisasi pencarian ke huruf kecil.
   def verify(secret, headers, body)
     lowercased = headers.transform_keys(&:downcase)
@@ -658,7 +658,7 @@ Contoh-contoh berikut adalah implementasi server, sehingga tidak ada tab shell: 
       return false # replayed, or the clocks disagree
     end
 
-    # Alfabet base64 standar: decoder URL-safe akan menghasilkan byte kunci yang salah.
+    # Alfabet base64 standar: decoder URL-safe menghasilkan byte kunci yang salah.
     begin
       key = Base64.strict_decode64(secret.delete_prefix("whsec_"))
     rescue ArgumentError
@@ -684,33 +684,35 @@ Contoh-contoh berikut adalah implementasi server, sehingga tidak ada tab shell: 
 
 ### Batas waktu dan percobaan ulang
 
-Administrator Anda menetapkan batas waktu verdict antara 1 dan 10.000 md (5.000 md secara default). Anggaran ini mencakup seluruh pertukaran: koneksi, handshake TLS, permintaan, dan respons.
+Administrator Anda menetapkan batas waktu putusan antara 1 dan 10.000 md (5.000 md secara default). Anggaran tersebut mencakup seluruh pertukaran: koneksi, handshake TLS, permintaan, dan respons.
 
 Anthropic mencoba ulang tepat satu kali, setelah jeda 100 md, dan hanya ketika upaya koneksi gagal. Percobaan ulang berbagi anggaran batas waktu yang sama dan membawa `webhook-id` yang sama serta tanda tangan yang sama. Setelah server keamanan AI Anda merespons, pertukaran tidak pernah dicoba ulang.
 
 ### Kegagalan webhook
 
-Batas waktu habis, status non-200 (termasuk redirect), body respons yang tidak dapat di-parse atau terlalu besar, dan endpoint yang tidak dapat dijangkau semuanya adalah kegagalan webhook. Kegagalan webhook tidak pernah menjadi deny; sebaliknya, pengaturan [penanganan kegagalan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration) organisasi Anda yang menentukan apakah permintaan yang terdampak diblokir atau dilanjutkan tanpa pemeriksaan.
+Batas waktu habis, status non-200 (termasuk redirect), body respons yang tidak dapat di-parse atau terlalu besar, dan endpoint yang tidak dapat dijangkau semuanya adalah kegagalan webhook. Kegagalan webhook tidak pernah menjadi deny; sebaliknya, pengaturan [penanganan kegagalan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration) organisasi Anda menentukan apakah permintaan yang terdampak diblokir atau dilanjutkan tanpa pemeriksaan.
 
 ### Circuit breaker
 
-Kegagalan webhook berkelanjutan yang disebabkan oleh server keamanan AI Anda memicu "circuit breaker" (pemutus sirkuit) yang menghentikan penegakan: Anthropic berhenti menghubungi server Anda, dan penanganan kegagalan berlaku untuk setiap permintaan. Pemulihan terjadi di sisi admin: perbaiki server, lalu minta administrator Anda mengaktifkan kembali **Enforce verdicts**. Lihat [Circuit breaker](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration#circuit-breaker).
+Kegagalan webhook berkelanjutan yang disebabkan oleh server keamanan AI Anda memicu "circuit breaker" (pemutus sirkuit) yang menghentikan penegakan: Anthropic berhenti menghubungi server Anda, dan penanganan kegagalan berlaku untuk setiap permintaan.
 
-Setiap pemicuan dicatat sebagai aktivitas `inference_hooks_circuit_breaker_tripped` di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed), satu aktivitas per pemicuan. Selama circuit breaker terpicu, tidak ada aktivitas Inference hooks per permintaan yang dicatat, sehingga aktivitas pemicuan adalah satu-satunya catatan feed untuk jendela waktu terpicu tersebut.
+Mulai 10 menit setelah terpicu, Anthropic menguji apakah server Anda telah pulih: paling banyak sekitar sekali per menit, satu permintaan, yang dibawa oleh lalu lintas organisasi Anda sendiri, dikirimkan ke server Anda untuk diperiksa, ditandatangani dan berbentuk seperti permintaan lainnya. Respons secara normal. Putusan yang valid, allow atau deny, mereset breaker dan penegakan dilanjutkan. Kegagalan webhook membiarkan breaker tetap terpicu, dan pengujian berlanjut. Bagaimanapun, permintaan uji itu sendiri tetap berlanjut untuk penggunanya: putusannya tidak ditegakkan, dan pengujian yang gagal tidak memblokirnya, bahkan di bawah **Block the request**. Administrator juga dapat mereset breaker kapan saja, dan perubahan konfigurasi administrator menghentikan pengujian otomatis; lihat [Circuit breaker](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration#circuit-breaker).
+
+Setiap pemicuan dicatat sebagai aktivitas `inference_hooks_circuit_breaker_tripped` di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed), satu aktivitas per pemicuan. Selama breaker terpicu, tidak ada aktivitas Inference hooks per permintaan yang dicatat, sehingga aktivitas pemicuan adalah satu-satunya catatan feed tentang jendela waktu terpicu tersebut.
 
 ### Latensi
 
-Penegakan menambahkan round trip server keamanan AI Anda ke "latency" (latensi) setiap permintaan yang diatur di organisasi Anda. Jaga agar verdict tetap cepat, dan lakukan uji beban pada server Anda sebelum meluncurkannya ke organisasi besar.
+Penegakan menambahkan round trip server keamanan AI Anda ke "latency" (latensi) setiap permintaan yang diatur di organisasi Anda. Jaga agar putusan tetap cepat, dan lakukan uji beban pada server Anda sebelum meluncurkannya ke organisasi besar.
 
 ### Alamat IP sumber
 
-Permintaan ke server keamanan AI Anda berasal dari `160.79.106.0/24`, bagian dari [rentang IP keluar](https://platform.claude.com/docs/id/api/ip-addresses) Anthropic yang dipublikasikan. Masukkan blok tersebut ke allowlist, bukan rentang masuk pada halaman yang sama, yang tidak mencakupnya. Allowlist mempersempit eksposur server Anda, tetapi bukan pengganti verifikasi tanda tangan: blok tersebut membawa lalu lintas egress Anthropic di luar Inference hooks.
+Permintaan ke server keamanan AI Anda berasal dari `160.79.106.0/24`, bagian dari [rentang IP keluar](https://platform.claude.com/docs/id/api/ip-addresses) Anthropic yang dipublikasikan. Masukkan blok tersebut ke allowlist, bukan rentang masuk di halaman yang sama, yang tidak mencakupnya. Allowlist mempersempit eksposur server Anda, tetapi bukan pengganti verifikasi tanda tangan: blok tersebut membawa lalu lintas egress Anthropic di luar Inference hooks.
 
 ## Kompatibilitas ke depan
 
 Protokol ini berkembang tanpa merusak server yang ditulis dengan benar. Server Anda harus mengabaikan:
 
-* Field tingkat atas yang tidak dikenal pada prompt frame.
+* Field tingkat atas yang tidak dikenal pada frame prompt.
 * Kunci yang tidak dikenal dalam `metadata`.
 * Nilai `source.application` baru.
 * Nilai `actor.type` baru. `actor` adalah union yang didiskriminasi berdasarkan `type`, dan `"user"` adalah satu-satunya jenis yang dikirim saat ini; jenis di masa mendatang hanya menjamin bahwa `type` ada.
@@ -718,15 +720,15 @@ Protokol ini berkembang tanpa merusak server yang ditulis dengan benar. Server A
 
 Jangan pernah menolak permintaan karena tipe blok atau field yang tidak dikenali; baca field yang Anda ketahui dan lewati sisanya.
 
-Tipe event hook lain akan diperkenalkan di masa mendatang. Tipe event baru adalah tambahan yang tidak dapat ditangani server Anda dengan melewati sebuah field: permintaan tetap membutuhkan verdict. Ketika `type` tingkat atas adalah nilai yang tidak Anda kenali, kembalikan verdict allow alih-alih status error; respons error adalah [kegagalan webhook](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#webhook-failures), dan kegagalan berkelanjutan memicu [circuit breaker](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#circuit-breaker).
+Tipe event hook lain akan diperkenalkan di masa mendatang. Tipe event baru adalah tambahan yang tidak dapat ditangani server Anda dengan melewati sebuah field: permintaan tersebut tetap memerlukan putusan. Ketika `type` tingkat atas adalah nilai yang tidak Anda kenali, kembalikan putusan allow alih-alih status error; respons error adalah [kegagalan webhook](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#webhook-failures), dan kegagalan berkelanjutan memicu [circuit breaker](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#circuit-breaker).
 
 ## Merancang integrasi Anda
 
 Server keamanan AI produksi membuat beberapa pilihan desain di luar protokol wire.
 
-**Deduplikasi berdasarkan `webhook-id`.** Header `webhook-id` unik per pengiriman dan sama dengan `request_id` pada body, dan percobaan ulang akibat kegagalan koneksi menggunakannya kembali, sehingga berfungsi sebagai kunci idempotensi. Jika Anda mencatat verdict, gunakan header ini sebagai kunci catatan.
+**Deduplikasi berdasarkan `webhook-id`.** Header `webhook-id` unik per pengiriman dan sama dengan `request_id` pada body, dan percobaan ulang akibat kegagalan koneksi menggunakannya kembali, sehingga berfungsi sebagai kunci idempotensi. Jika Anda mencatat putusan, gunakan header ini sebagai kunci catatan.
 
-**Catat verdict dan gabungkan penolakan.** Simpan setiap verdict yang Anda kembalikan bersama `reference_id`-nya. Setiap penolakan dicatat sebagai aktivitas kepatuhan `inference_hooks_request_denied` yang membawa `reference_id` yang dikembalikan server Anda, sehingga Anda dapat menggabungkan penolakan di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) dengan catatan yang cocok di sistem Anda sendiri.
+**Catat putusan dan gabungkan penolakan.** Simpan setiap putusan yang Anda kembalikan bersama `reference_id`-nya. Setiap penolakan dicatat sebagai aktivitas kepatuhan `inference_hooks_request_denied` yang membawa `reference_id` yang dikembalikan server Anda, sehingga Anda dapat menggabungkan penolakan di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) dengan catatan yang cocok di sistem Anda sendiri.
 
 **Arsipkan dengan server yang selalu mengizinkan.** Untuk menangkap transkrip secara real time tanpa mengawasinya, kembalikan `{"action": "allow"}` tanpa syarat dan simpan frame setelah merespons. Ini adalah alternatif berbasis push untuk polling [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api), dan menjawab sebelum Anda menyimpan menjaga round trip Anda di luar jalur kritis pengguna.
 
@@ -740,6 +742,6 @@ Server keamanan AI produksi membuat beberapa pilihan desain di luar protokol wir
   </Card>
 
   <Card title="Ikhtisar Inference hooks" href="https://platform.claude.com/docs/id/manage-claude/inference-hooks">
-    Apa itu Inference hooks, cara kerja round trip verdict, dan kapan menggunakannya.
+    Apa itu Inference hooks, cara kerja round trip putusan, dan kapan menggunakannya.
   </Card>
 </CardGroup>

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings
-fetched_at: 2026-09-01T02:22:36.834082Z
-sha256: 3f1b27a915fd3ebe6345af6ccc4d63ac64b36fb613d76e887a18c66c92ad2959
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 143ed9621cfc094e4e3a9dbc04d3d725e58325a8e794a98a5a6b6341ea914281
 ---
 
 > ## Documentation Index
@@ -760,10 +760,11 @@ When you set a key and Claude Code doesn't behave as if you had, start with `/st
 
 #### A value you set is ignored
 
-Something else is setting the same key, or the file didn't load:
+Something else is setting the same key, the file can't set that value, or the file didn't load:
 
 * **A higher level sets it.** Another settings file, a `--settings` flag, or a managed source sets the key above yours; the [stack](#settings-precedence) says which. A flag or environment variable can also override the key on its own, decided key by key; the key's entry on the [settings reference](/docs/en/settings-reference) says which one Claude Code uses, and the [`env` entry](/docs/en/settings-reference#env) covers a managed `env` value versus a shell export.
 * **A security key keeps its strict value.** For a few keys Claude Code honors the restrictive value from any file, so a project `true` for [`disableClaudeAiConnectors`](/docs/en/settings-reference#disableclaudeaiconnectors) stays on; see [Exceptions to managed settings precedence](#exceptions-to-managed-settings-precedence).
+* **The file can't set that value.** [`permissions.defaultMode`](/docs/en/settings-reference#permissions-defaultmode) values `auto` and `bypassPermissions` don't take effect from project or local settings; set them in user or managed settings instead, or pass `--permission-mode` for one session. Before v2.1.257, `bypassPermissions` took effect from any file.
 * **The file is broken.** Invalid JSON or a rejected value makes Claude Code skip the file or the entry; see [Fix a broken settings file](#fix-a-broken-settings-file).
 
 #### A managed change hasn't reached you

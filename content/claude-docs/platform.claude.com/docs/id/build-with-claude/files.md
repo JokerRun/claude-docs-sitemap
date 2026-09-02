@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 24d80c004a640e38473a8ccbd217b0b12cec702a5739b4f6ae8abd52e7afeed7
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 7a496b860a7af272e24a72d3591c832a7796a1e559d86fd1363bf6490367ccf6
 ---
 
 ---
@@ -20,7 +20,7 @@ Files API memungkinkan Anda mengunggah dan mengelola file untuk digunakan dengan
 
 ## Dukungan jenis file
 
-Mereferensikan `file_id` dalam permintaan Messages didukung pada semua model yang mendukung jenis file tersebut. [Gambar](https://platform.claude.com/docs/id/build-with-claude/vision) didukung pada semua model Claude saat ini. Untuk [PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support) dan [jenis file lain dengan alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#model-compatibility), lihat halaman yang ditautkan untuk dukungan model.
+Mereferensikan `file_id` dalam permintaan Messages didukung pada semua model yang mendukung jenis file tersebut. [Gambar](https://platform.claude.com/docs/id/build-with-claude/vision) didukung pada semua model Claude saat ini. Untuk [PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support) dan [jenis file lain dengan alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#compatibility), lihat halaman tertaut untuk dukungan model.
 
 ## Cara kerja Files API
 
@@ -32,7 +32,7 @@ Files API menyediakan pendekatan buat-sekali, gunakan-berkali-kali untuk bekerja
 * **Kelola file Anda** dengan operasi list, retrieve, dan delete
 
 <Warning id="workspace-scoped-access">
-  **File yang diunggah dapat diakses oleh seluruh workspace Anda, tidak dibatasi pada pengguna akhir, percakapan, atau sesi tertentu.** Kunci API mana pun dalam workspace yang sama dapat mengakses file apa pun yang diunggah di sana, dan semua kunci Anda berbagi Default Workspace organisasi Anda kecuali Anda telah menetapkannya ke [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces#api-keys-and-resource-scoping) terpisah. Jangan pernah menerima nilai `file_id` dari pengguna akhir atau sumber tidak tepercaya lainnya: ID file yang diberikan pengguna akan memungkinkan satu pengguna aplikasi Anda membaca konten yang diunggah pengguna lain. Perlakukan ID file sebagai referensi sisi server, dan simpan pemetaan antara pengguna Anda dan file mereka di aplikasi Anda.
+  **File yang diunggah dapat diakses oleh seluruh workspace Anda, tidak dibatasi pada pengguna akhir, percakapan, atau sesi tertentu.** Kunci API apa pun yang memiliki akses ke suatu workspace dapat mengakses file apa pun yang diunggah ke workspace tersebut. Setiap service account, dan setiap pengguna yang peran organisasinya mengizinkan akses API, dapat menggunakan Default Workspace selain workspace mana pun tempat Anda menambahkan mereka, jadi simpan file yang harus tetap terpisah di [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces#api-keys-and-resource-scoping) tersendiri dan akses file tersebut hanya dengan kunci yang dibatasi pada workspace itu. Jangan pernah menerima nilai `file_id` dari pengguna akhir atau sumber tidak tepercaya lainnya: ID file yang diberikan pengguna akan memungkinkan satu pengguna aplikasi Anda membaca konten yang diunggah pengguna lain. Perlakukan ID file sebagai referensi sisi server, dan simpan pemetaan antara pengguna Anda dan file mereka di dalam aplikasi Anda.
 
   Jika Anda membangun aplikasi multi-tenant di atas Files API, buat [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) terpisah untuk setiap tenant. Workspace adalah batas isolasi untuk file, sehingga satu workspace per tenant memberikan isolasi ketat bagi data setiap tenant dari semua tenant lainnya. Setiap organisasi dapat memiliki hingga 100 workspace; hubungi tim akun Anda jika Anda membutuhkan lebih banyak.
 </Warning>
@@ -41,7 +41,7 @@ Files API menyediakan pendekatan buat-sekali, gunakan-berkali-kali untuk bekerja
 
 ### Mengunggah file
 
-Unggah file untuk direferensikan dalam panggilan API berikutnya:
+Unggah file untuk direferensikan dalam panggilan API mendatang:
 
 <CodeGroup>
   ```bash cURL
@@ -688,7 +688,7 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
 
 #### Daftar file
 
-Ambil daftar file yang telah Anda unggah. Endpoint ini menggunakan paginasi: setiap permintaan mengembalikan hingga `limit` file (20 secara default, dan maksimal 1.000), dan kursor `next_page` pada respons mengambil halaman berikutnya saat diteruskan kembali sebagai parameter `page`. File diurutkan dari yang terbaru. Lihat [referensi API List Files](https://platform.claude.com/docs/id/api/files/list). SDK mengembalikan halaman pertama dan menyediakan helper paginasi otomatis. Contoh CLI membatasi jumlah total dengan `--max-items`:
+Ambil daftar file yang telah Anda unggah. Endpoint ini menggunakan paginasi: setiap permintaan mengembalikan hingga `limit` file (20 secara default, dan maksimal 1.000), dan kursor `next_page` pada respons mengambil halaman berikutnya ketika diteruskan kembali sebagai parameter `page`. File diurutkan dari yang terbaru. Lihat [referensi API List Files](https://platform.claude.com/docs/id/api/files/list). SDK mengembalikan halaman pertama dan menyediakan helper paginasi otomatis. Contoh CLI membatasi jumlah total dengan `--max-items`:
 
 <CodeGroup>
   ```bash cURL
@@ -944,10 +944,12 @@ Unduh file yang dibuat oleh [skills](https://platform.claude.com/docs/id/build-w
 </CodeGroup>
 
 <Note>
-  Sebuah file hanya dapat diunduh jika metadatanya menunjukkan `"downloadable": true`, yang berlaku untuk file yang dibuat oleh skills atau alat eksekusi kode. Mengunduh file yang Anda unggah akan mengembalikan error 400.
+  Sebuah file hanya dapat diunduh ketika metadatanya menunjukkan `"downloadable": true`, yang berlaku untuk file yang dibuat oleh skills atau alat eksekusi kode. Mengunduh file yang Anda unggah akan mengembalikan error 400.
 </Note>
 
-## Penyimpanan file dan batasan
+Di Claude API, file gambar dan video yang didukung yang dihasilkan Claude dengan alat eksekusi kode, termasuk file yang dibuat oleh skills, membawa Content Credentials C2PA bertanda tangan saat Anda mengunduhnya. Lihat [Content Credentials pada file yang dihasilkan](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#content-credentials-on-generated-files) untuk mengetahui isi kredensial tersebut dan cara memverifikasinya.
+
+## Penyimpanan dan batas file
 
 ### Batas penyimpanan
 
@@ -956,25 +958,25 @@ Unduh file yang dibuat oleh [skills](https://platform.claude.com/docs/id/build-w
 
 ### Siklus hidup file
 
-* File dibatasi pada workspace dari kunci API yang mengunggahnya. Kunci API mana pun dalam workspace yang sama dapat mereferensikannya; jangan pernah menerima ID file dari sumber yang tidak tepercaya (lihat [peringatan akses workspace](https://platform.claude.com/docs/id/build-with-claude/files#workspace-scoped-access))
-* File tidak dapat dimodifikasi atau diganti namanya setelah diunggah. Untuk mengubah konten file, unggah file baru dan hapus yang lama
-* File tetap ada hingga Anda menghapusnya dengan endpoint `DELETE /v1/files/{file_id}` atau hingga mencapai `expires_at`-nya
+* File dibatasi pada workspace tempat file tersebut diunggah. Permintaan apa pun dalam workspace yang sama dapat mereferensikannya; jangan pernah menerima ID file dari sumber tidak tepercaya (lihat [peringatan akses workspace](https://platform.claude.com/docs/id/build-with-claude/files#workspace-scoped-access))
+* File tidak dapat dimodifikasi atau diubah namanya setelah diunggah. Untuk mengubah konten file, unggah file baru dan hapus yang lama
+* File tetap ada hingga Anda menghapusnya dengan endpoint `DELETE /v1/files/{file_id}` atau hingga mencapai `expires_at`
 * File yang dihapus tidak dapat dipulihkan
 * File tidak dapat diakses melalui API sesaat setelah penghapusan, tetapi mungkin masih ada dalam panggilan Messages API yang sedang aktif dan penggunaan alat terkait
 * File yang dihapus pengguna akan dihapus sesuai dengan [kebijakan retensi data](https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data) Anthropic. Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention)
 
 ### Kedaluwarsa file
 
-Agar file kedaluwarsa secara otomatis, sertakan field form `expires_in_seconds` saat Anda mengunggahnya. Nilainya adalah bilangan bulat dalam detik antara 3.600 (1 jam) dan 7.776.000 (90 hari). Timestamp `expires_at` yang dihasilkan (RFC 3339) muncul pada setiap respons file dan bernilai `null` untuk file yang diunggah tanpa kedaluwarsa. Kedaluwarsa ditetapkan sekali saat pengunggahan dan tidak dapat diubah.
+Agar file kedaluwarsa secara otomatis, sertakan field form `expires_in_seconds` saat Anda mengunggahnya. Nilainya adalah bilangan bulat dalam detik antara 3.600 (1 jam) dan 7.776.000 (90 hari). Timestamp `expires_at` yang dihasilkan (RFC 3339) muncul pada setiap respons file dan bernilai `null` untuk file yang diunggah tanpa kedaluwarsa. Kedaluwarsa ditetapkan sekali saat unggah dan tidak dapat diubah.
 
-Ketika file mencapai `expires_at`-nya:
+Ketika file mencapai `expires_at`:
 
 * Mengunduh kontennya (`GET /v1/files/{file_id}/content`) mengembalikan error 404
 * Permintaan Messages yang mereferensikan file tersebut gagal sebelum inferensi
 * Metadatanya (`GET /v1/files/{file_id}`) tetap dapat dibaca hingga 30 hari, dengan `expires_at` di masa lalu
-* File tetap muncul dalam respons list selama jangka waktu tersebut; bandingkan `expires_at` dengan waktu saat ini untuk memfilter file yang kedaluwarsa
+* File tersebut tetap muncul dalam respons list selama jangka waktu itu; bandingkan `expires_at` dengan waktu saat ini untuk memfilter file yang kedaluwarsa
 
-Menghapus file yang kedaluwarsa dengan `DELETE /v1/files/{file_id}` akan segera menghapus metadatanya alih-alih menunggu jangka waktu 30 hari berlalu.
+Menghapus file yang kedaluwarsa dengan `DELETE /v1/files/{file_id}` akan menghapus metadatanya segera alih-alih menunggu jangka waktu 30 hari berlalu.
 
 <Note>
   Kedaluwarsa adalah fitur siklus hidup, bukan kontrol penghapusan yang dijamin. Setelah `expires_at`, konten file tidak lagi dapat diambil melalui API dan dilepaskan dari kuota penyimpanan Anda; konten yang mendasarinya mungkin disimpan untuk jangka waktu terbatas setelahnya untuk peninjauan keamanan sebelum penghapusan permanen, dan metadata file tetap terlihat hingga 30 hari setelah kedaluwarsa. Untuk menghapus file sebelum jadwal kedaluwarsanya, gunakan `DELETE /v1/files/{file_id}`.
@@ -982,7 +984,30 @@ Menghapus file yang kedaluwarsa dengan `DELETE /v1/files/{file_id}` akan segera 
 
 ### Pencatatan audit
 
-Jika organisasi Anda telah mengaktifkan [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api), [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed)-nya mencatat operasi Files API yang dilakukan dengan kunci API Claude atau dari Claude Console: setiap unggahan (`POST /v1/files`), unduhan konten (`GET /v1/files/{file_id}/content`), dan penghapusan (`DELETE /v1/files/{file_id}`) muncul sebagai aktivitas `platform_file_uploaded`, `platform_file_content_downloaded`, atau `platform_file_deleted`. Membuat daftar file dan mengambil metadata file tidak dicatat. Operasi yang terjadi saat Compliance API nonaktif tidak dicatat dan tidak dapat dipulihkan kemudian, jadi [siapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access) sebelum Anda mengandalkan jejak audit ini. Di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#monitoring-and-logging), audit operasi file dengan data event AWS CloudTrail sebagai gantinya.
+Jika organisasi Anda telah mengaktifkan [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api), [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed)-nya mencatat operasi Files API yang dilakukan dengan kunci API Claude atau dari Claude Console: setiap unggahan (`POST /v1/files`), unduhan konten (`GET /v1/files/{file_id}/content`), dan penghapusan (`DELETE /v1/files/{file_id}`) muncul sebagai aktivitas `platform_file_uploaded`, `platform_file_content_downloaded`, atau `platform_file_deleted`. Mendaftar file dan mengambil metadata file tidak dicatat. Operasi yang terjadi saat Compliance API nonaktif tidak dicatat dan tidak dapat dipulihkan kemudian, jadi [siapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access) sebelum Anda mengandalkan jejak audit ini. Di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#monitoring-and-logging), audit operasi file dengan data event AWS CloudTrail sebagai gantinya.
+
+## Migrasi dari `files-api-2025-04-14`
+
+Files API telah keluar dari beta dan tidak memerlukan header beta. Migrasi dari `files-api-2025-04-14` bersifat opsional: permintaan yang masih mengirimkannya tetap berfungsi dan tetap mengembalikan bentuk respons beta, sehingga integrasi yang ada tetap berfungsi hingga Anda mengubahnya. Menghapus header tersebut akan mengalihkan permintaan itu ke bentuk yang didokumentasikan di halaman ini:
+
+|                                               | Dengan `files-api-2025-04-14`           | Tanpa header                                                                         |
+| --------------------------------------------- | --------------------------------------- | ------------------------------------------------------------------------------------ |
+| Respons list                                  | `{ data, has_more, first_id, last_id }` | `{ data, next_page }`; teruskan `next_page` kembali sebagai parameter query `page`   |
+| Kursor list                                   | `before_id`, `after_id`                 | `page`, atau hingga 100 `ids[]` (`before_id` dan `after_id` mengembalikan error 400) |
+| `expires_at` pada objek file                  | Tidak dikembalikan                      | Selalu ada; `null` ketika file tidak memiliki kedaluwarsa                            |
+| `Content-Type` pada bagian file yang diunggah | Wajib                                   | Opsional; jenisnya dideteksi jika dihilangkan                                        |
+
+Untuk bermigrasi:
+
+1. **Hapus header beta.** Hilangkan `anthropic-beta: files-api-2025-04-14` dari permintaan Anda. Di SDK, panggil `client.files` alih-alih `client.beta.files`; tetap menggunakan `client.beta.files` hanya berfungsi pada [rilis SDK yang tidak lagi mengirim header tersebut](https://platform.claude.com/docs/id/build-with-claude/files#sdk-beta-namespace). Rilis sebelumnya mengirimkannya dari `client.beta.files` bahkan tanpa argumen `betas`.
+2. **Perbarui paginasi.** Ganti loop `after_id`/`before_id` dengan kursor `page`/`next_page`, atau gunakan helper paginasi otomatis SDK yang ditunjukkan di [Mengelola file](https://platform.claude.com/docs/id/build-with-claude/files#managing-files).
+3. **Baca `expires_at`.** Field ini hanya muncul tanpa header; `null` berarti file tidak memiliki kedaluwarsa (lihat [Kedaluwarsa file](https://platform.claude.com/docs/id/build-with-claude/files#file-expiration)).
+
+### Namespace beta SDK
+
+Mulai dari Python SDK 1.2.0, TypeScript SDK 0.122.0, Go SDK 1.68.0, Java SDK 2.59.0, Ruby SDK 1.67.0, dan C# SDK 12.44.0, `client.beta.files` tidak lagi mengirim `files-api-2025-04-14` dan mengembalikan bentuk yang sama dengan `client.files`, dengan nama tipe berawalan `Beta`. Namespace ini menerima argumen `betas` untuk fitur Files yang masih dalam beta, seperti pemfilteran `scope_id` di bawah header beta [Managed Agents](https://platform.claude.com/docs/id/managed-agents/files). Rilis SDK sebelumnya memiliki tipe sesuai bentuk beta; jika Anda bergantung pada tipe tersebut, tetaplah pada rilis sebelumnya hingga Anda bermigrasi.
+
+Permintaan yang membawa `anthropic-beta: managed-agents-2026-04-01` tanpa `files-api-2025-04-14` menerima bentuk di halaman ini dengan satu kelonggaran kompatibilitas pada `GET /v1/files`: `before_id` dan `after_id` masih diterima (tidak dapat digabungkan dengan `page` atau `ids[]`), dan respons list menyertakan `has_more`, `first_id`, dan `last_id` di samping `next_page`. Versi beta Managed Agents yang lebih baru menerima bentuk biasa.
 
 ## Penanganan error
 
@@ -1009,11 +1034,11 @@ Error umum saat menggunakan Files API meliputi:
 
 ## Penggunaan dan penagihan
 
-Operasi Files API berikut gratis:
+Operasi Files API gratis:
 
 * Mengunggah file
 * Mengunduh file
-* Membuat daftar file
+* Mendaftar file
 * Mendapatkan metadata file
 * Menghapus file
 

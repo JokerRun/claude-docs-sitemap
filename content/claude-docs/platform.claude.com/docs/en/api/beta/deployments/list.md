@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/list
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 99bf6c743bd20a1142e05d7b63b95ab85a67e7c846cddcbb10f513c95c4251f0
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: db8ab955a279bf3231ea109d08025a199ba1cb58e99c71a5a061382a0e2f43af
 ---
 
 # List Deployments
@@ -45,7 +45,7 @@ List Deployments
 
 - `status: optional BetaManagedAgentsDeploymentStatus`
 
-  Filter by status: active or paused. Omit for both. To include archived deployments, use include_archived instead; the two cannot be combined.
+  Filter by status: `active` or `paused`. Omit for both. To include archived deployments, use `include_archived` instead; the two cannot be combined.
 
   - `"active"`
 
@@ -59,7 +59,7 @@ List Deployments
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -142,6 +142,12 @@ List Deployments
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ## Returns
 

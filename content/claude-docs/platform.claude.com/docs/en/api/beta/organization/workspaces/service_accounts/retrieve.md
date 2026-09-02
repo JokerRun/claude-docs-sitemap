@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/retrieve
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: d7eea6b078241a54fa97c1c159b6e31bca27409cb342a7b194b4b82a75ab1aa3
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: f7986321c4c27b93b0cdde675aef11bab6652b7d6011984e3097583a7c2a71dc
 ---
 
 # Get Service Account Workspace Member
@@ -38,7 +38,7 @@ account returns 404.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -121,6 +121,12 @@ account returns 404.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ## Returns
 

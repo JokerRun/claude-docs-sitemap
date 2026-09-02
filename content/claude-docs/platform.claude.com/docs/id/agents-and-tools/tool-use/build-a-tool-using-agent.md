@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: c024ab902c41e67cf05a8df969dddc7e477f26378c4c887b965dc8b6b2603ef7
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: cdcff7b1b150afd98953e4fbee92cf32030a5a468f857341b4337572787112a8
 ---
 
 ---
@@ -11,17 +11,17 @@ url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-
 description: Panduan langkah demi langkah dari satu panggilan alat hingga loop agentik yang siap produksi.
 ---
 
-Tutorial ini membangun agen manajemen kalender dalam lima ring konsentris. Setiap ring adalah program lengkap yang dapat dijalankan dan menambahkan tepat satu konsep ke ring sebelumnya. Pada akhirnya Anda akan menulis loop agentik secara manual dan kemudian menggantinya dengan abstraksi Tool Runner SDK.
+Tutorial ini membangun agen pengelola kalender dalam lima cincin konsentris. Setiap cincin adalah program lengkap yang dapat dijalankan dan menambahkan tepat satu konsep ke cincin sebelumnya. Pada akhirnya, Anda akan telah menulis "agentic loop" (loop agentik) secara manual lalu menggantinya dengan abstraksi SDK Tool Runner.
 
-Alat contohnya adalah `create_calendar_event`. Skemanya menggunakan objek bersarang, array, dan field opsional, sehingga Anda akan melihat bagaimana Claude menangani bentuk input yang realistis alih-alih satu string datar.
+Alat contohnya adalah `create_calendar_event`. Skemanya menggunakan objek bersarang, array, dan field opsional, sehingga Anda akan melihat bagaimana Claude menangani bentuk input yang realistis, bukan hanya satu string datar.
 
 <Note>
-  Setiap ring berjalan secara mandiri. Salin ring mana pun ke file baru dan ring tersebut akan berjalan tanpa kode dari ring sebelumnya.
+  Setiap cincin berjalan secara mandiri. Salin cincin mana pun ke file baru dan cincin tersebut akan berjalan tanpa kode dari cincin-cincin sebelumnya.
 </Note>
 
-## Ring 1: Satu alat, satu giliran
+## Cincin 1: Satu alat, satu giliran
 
-Program penggunaan alat terkecil yang mungkin: satu alat, satu pesan pengguna, satu panggilan alat, satu hasil. Kode ini diberi komentar secara rinci sehingga Anda dapat memetakan setiap baris ke [siklus hidup penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/how-tool-use-works).
+Program pengguna alat terkecil yang mungkin: satu alat, satu pesan pengguna, satu panggilan alat, satu hasil. Kodenya diberi banyak komentar sehingga Anda dapat memetakan setiap baris ke [siklus hidup penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/how-tool-use-works).
 
 Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menentukan bahwa panggilan alat diperlukan, respons kembali dengan `stop_reason: "tool_use"` dan blok konten `tool_use` yang berisi nama alat, `id` unik, dan `input` terstruktur. Kode Anda menjalankan alat tersebut, lalu mengirimkan hasilnya kembali dalam blok `tool_result` yang `tool_use_id`-nya cocok dengan `id` dari panggilan tersebut.
 
@@ -1028,13 +1028,13 @@ stop_reason: end_turn
 I've scheduled your 30-minute sync with Alice and Bob for Monday, March 30 at 10am.
 ```
 
-`stop_reason` pertama adalah `tool_use` karena Claude sedang menunggu hasil kalender. Setelah Anda mengirimkan hasilnya, `stop_reason` kedua adalah `end_turn` dan kontennya adalah bahasa alami untuk pengguna.
+`stop_reason` pertama adalah `tool_use` karena Claude sedang menunggu hasil kalender. Setelah Anda mengirimkan hasilnya, `stop_reason` kedua adalah `end_turn` dan kontennya berupa bahasa alami untuk pengguna.
 
-## Ring 2: Loop agentik
+## Cincin 2: Loop agentik
 
-Ring 1 mengasumsikan Claude akan memanggil alat tepat satu kali. Tugas nyata sering membutuhkan beberapa panggilan: Claude mungkin membuat sebuah acara, membaca konfirmasinya, lalu membuat acara lain. Solusinya adalah loop `while` yang terus menjalankan alat dan mengirimkan hasilnya kembali sampai `stop_reason` tidak lagi `"tool_use"`.
+Cincin 1 mengasumsikan Claude akan memanggil alat tepat satu kali. Tugas nyata sering membutuhkan beberapa panggilan: Claude mungkin membuat sebuah acara, membaca konfirmasinya, lalu membuat acara lain. Solusinya adalah loop `while` yang terus menjalankan alat dan mengirimkan hasilnya kembali hingga `stop_reason` tidak lagi `"tool_use"`.
 
-Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `messages` dari awal pada setiap permintaan, simpan daftar yang terus berjalan dan tambahkan ke dalamnya. Setiap giliran melihat konteks lengkap sebelumnya.
+Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `messages` dari awal pada setiap permintaan, simpan daftar berjalan dan tambahkan ke dalamnya. Setiap giliran melihat konteks sebelumnya secara lengkap.
 
 <CodeGroup>
   ```bash cURL
@@ -1951,13 +1951,13 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
 I've set up your weekly team standup for the next 4 Mondays at 9am with Alice, Bob, and Carol invited.
 ```
 
-Loop mungkin berjalan sekali atau beberapa kali tergantung pada bagaimana Claude memecah tugas. Kode Anda tidak lagi perlu mengetahuinya sebelumnya.
+Loop mungkin berjalan sekali atau beberapa kali tergantung pada bagaimana Claude memecah tugasnya. Kode Anda tidak perlu lagi mengetahuinya terlebih dahulu.
 
-## Ring 3: Beberapa alat, panggilan paralel
+## Cincin 3: Banyak alat, panggilan paralel
 
-Agen jarang hanya memiliki satu kemampuan. Tambahkan alat kedua, `list_calendar_events`, sehingga Claude dapat memeriksa jadwal yang ada sebelum membuat sesuatu yang baru.
+Agen jarang hanya memiliki satu kemampuan. Tambahkan alat kedua, `list_calendar_events`, agar Claude dapat memeriksa jadwal yang ada sebelum membuat sesuatu yang baru.
 
-Ketika Claude memiliki beberapa panggilan alat independen yang harus dilakukan, Claude mungkin mengembalikan beberapa blok `tool_use` dalam satu respons. Loop Anda perlu memproses semuanya dan mengirimkan kembali semua hasil bersama-sama dalam satu pesan pengguna. Iterasi setiap blok `tool_use` di `response.content`, bukan hanya yang pertama.
+Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claude mungkin mengembalikan beberapa blok `tool_use` dalam satu respons. Loop Anda perlu memproses semuanya dan mengirimkan kembali semua hasil bersama-sama dalam satu pesan pengguna. Iterasi setiap blok `tool_use` dalam `response.content`, bukan hanya yang pertama.
 
 <CodeGroup>
   ```bash cURL
@@ -2932,11 +2932,11 @@ Ketika Claude memiliki beberapa panggilan alat independen yang harus dilakukan, 
 I checked your calendar for next Monday and found an existing meeting from 2pm to 3pm. I've scheduled the planning session for 10am to 11am to avoid the conflict.
 ```
 
-Untuk informasi lebih lanjut tentang eksekusi bersamaan dan jaminan urutan, lihat [Penggunaan alat paralel](https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use).
+Untuk informasi lebih lanjut tentang eksekusi konkuren dan jaminan urutan, lihat [Penggunaan alat paralel](https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use).
 
-## Ring 4: Penanganan error
+## Cincin 4: Penanganan error
 
-Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak peserta, atau tanggal mungkin salah format. Ketika alat menimbulkan error, kirimkan pesan error kembali dengan `is_error: true` alih-alih membuat program crash. Claude membaca error tersebut dan dapat mencoba lagi dengan input yang diperbaiki, meminta klarifikasi dari pengguna, atau menjelaskan keterbatasannya.
+Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak peserta, atau sebuah tanggal mungkin salah format. Ketika alat memunculkan error, kirimkan pesan error kembali dengan `is_error: true` alih-alih membuat program crash. Claude membaca error tersebut dan dapat mencoba lagi dengan input yang diperbaiki, meminta klarifikasi kepada pengguna, atau menjelaskan keterbatasannya.
 
 <CodeGroup>
   ```bash cURL
@@ -4018,16 +4018,16 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
 I tried to schedule the all-hands but the calendar only allows 10 attendees per event. I can split this into two sessions, or you can let me know which 10 people to prioritize.
 ```
 
-Flag `is_error` adalah satu-satunya perbedaan dari hasil yang berhasil. Claude melihat flag tersebut dan teks error-nya, lalu merespons sesuai. Lihat [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls) untuk referensi penanganan error lengkap.
+Flag `is_error` adalah satu-satunya perbedaan dari hasil yang berhasil. Claude melihat flag dan teks error tersebut, lalu merespons sesuai dengannya. Lihat [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls) untuk referensi penanganan error yang lengkap.
 
-## Ring 5: Abstraksi Tool Runner SDK
+## Cincin 5: Abstraksi SDK Tool Runner
 
-Ring 2 hingga 4 menulis loop yang sama secara manual: panggil API, periksa `stop_reason`, jalankan alat, tambahkan hasil, ulangi. Tool Runner melakukan ini untuk Anda. Definisikan setiap alat sebagai fungsi, berikan daftarnya ke `tool_runner`, dan ambil pesan akhir setelah loop selesai. Pembungkusan error, pemformatan hasil, dan manajemen percakapan ditangani secara internal.
+Cincin 2 hingga 4 menulis loop yang sama secara manual: memanggil API, memeriksa `stop_reason`, menjalankan alat, menambahkan hasil, ulangi. Tool Runner melakukan ini untuk Anda. Definisikan setiap alat sebagai fungsi, teruskan daftarnya ke `tool_runner`, dan ambil pesan akhir setelah loop selesai. Pembungkusan error, pemformatan hasil, dan pengelolaan percakapan ditangani secara internal.
 
-Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat dijalankan dan menurunkan skema input dari signature-nya; tab di bawah menunjukkan bentuk idiomatik untuk setiap bahasa.
+Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat dijalankan dan menurunkan skema input dari signature-nya; tab di bawah ini menunjukkan bentuk idiomatis untuk setiap bahasa.
 
 <Note>
-  Tool Runner tersedia di ketujuh SDK: Python, TypeScript, C#, Go, Java, PHP, dan Ruby. Lihat [Tool Runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner) untuk referensi lengkap. Tab cURL dan CLI menampilkan catatan alih-alih kode; pertahankan loop Ring 4 untuk skrip berbasis curl atau CLI.
+  Tool Runner tersedia di ketujuh SDK: Python, TypeScript, C#, Go, Java, PHP, dan Ruby. Lihat [Tool Runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner) untuk referensi lengkapnya. Tab cURL dan CLI menampilkan catatan alih-alih kode; pertahankan loop Cincin 4 untuk skrip berbasis curl atau CLI.
 </Note>
 
 <CodeGroup>
@@ -4658,11 +4658,11 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
 I checked your calendar for next Monday and found an existing meeting from 2pm to 3pm. I've scheduled the planning session for 10am to 11am to avoid the conflict.
 ```
 
-Output-nya identik dengan Ring 3. Perbedaannya ada pada kode: kira-kira setengah jumlah baris, tanpa loop manual, dan skema berada tepat di samping implementasinya.
+Outputnya identik dengan Cincin 3. Perbedaannya ada pada kodenya: kira-kira setengah jumlah baris, tanpa loop manual, dan skemanya berada di samping implementasinya.
 
-## Apa yang telah Anda bangun
+## Apa yang Anda bangun
 
-Anda memulai dengan satu panggilan alat yang di-hardcode dan berakhir dengan agen berbentuk produksi yang menangani beberapa alat, panggilan paralel, dan error, lalu meringkas semuanya ke dalam Tool Runner. Sepanjang jalan Anda melihat setiap bagian dari protokol penggunaan alat: blok `tool_use`, blok `tool_result`, pencocokan `tool_use_id`, pemeriksaan `stop_reason`, dan pensinyalan `is_error`.
+Anda memulai dengan satu panggilan alat yang di-hardcode dan mengakhiri dengan agen berbentuk produksi yang menangani banyak alat, panggilan paralel, dan error, lalu meringkas semuanya ke dalam Tool Runner. Sepanjang perjalanan, Anda melihat setiap bagian dari protokol penggunaan alat: blok `tool_use`, blok `tool_result`, pencocokan `tool_use_id`, pemeriksaan `stop_reason`, dan pensinyalan `is_error`.
 
 ## Langkah selanjutnya
 
@@ -4676,6 +4676,6 @@ Anda memulai dengan satu panggilan alat yang di-hardcode dan berakhir dengan age
   </Card>
 
   <Card href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/troubleshooting-tool-use" title="Pemecahan masalah">
-    Perbaiki error penggunaan alat yang umum.
+    Memperbaiki error penggunaan alat yang umum.
   </Card>
 </CardGroup>

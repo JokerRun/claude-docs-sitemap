@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/csharp
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 391e25280e8b7721a9b60e3d86cbd85a277acd00318f5cddb8fc3a02ccd351e5
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 8e4bbe1c2df0d696f80505ae6197a45c678070b37a4891cd61e3523b5aa1d418
 ---
 
 ---
@@ -22,7 +22,7 @@ Anthropic C# SDK menyediakan akses yang mudah ke Claude API dari aplikasi yang d
 </Info>
 
 <Warning>
-  Mulai versi 10+, paket `Anthropic` kini menjadi SDK resmi Anthropic untuk C#. Versi paket 3.X dan di bawahnya sebelumnya digunakan untuk SDK buatan komunitas tryAGI, yang telah dipindahkan ke [`tryAGI.Anthropic`](https://www.nuget.org/packages/tryagi.Anthropic/). Jika Anda perlu terus menggunakan klien lama tersebut dalam proyek Anda, perbarui referensi paket Anda ke `tryAGI.Anthropic`.
+  Mulai versi 10+, paket `Anthropic` kini menjadi Anthropic SDK resmi untuk C#. Versi paket 3.X dan di bawahnya sebelumnya digunakan untuk SDK buatan komunitas tryAGI, yang telah dipindahkan ke [`tryAGI.Anthropic`](https://www.nuget.org/packages/tryagi.Anthropic/). Jika Anda perlu terus menggunakan klien lama tersebut dalam proyek Anda, perbarui referensi paket Anda ke `tryAGI.Anthropic`.
 </Warning>
 
 ## Instalasi
@@ -71,7 +71,7 @@ foreach (var block in message.Content)
 }
 ```
 
-Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication).
+Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci personal atau kunci akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) dengan akses ke beberapa workspace, tetapkan ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
 
 ## Konfigurasi klien
 
@@ -128,7 +128,7 @@ Metode `WithOptions` tidak memengaruhi klien atau layanan asli.
 
 ## Streaming
 
-SDK mendefinisikan metode yang mengembalikan stream "chunk" respons, di mana setiap chunk dapat diproses secara individual segera setelah tiba alih-alih menunggu respons lengkap. Metode streaming umumnya berkorespondensi dengan respons [SSE](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) atau [JSONL](https://jsonlines.org).
+SDK mendefinisikan metode yang mengembalikan stream "chunk" (potongan) respons, di mana setiap chunk dapat diproses secara individual segera setelah tiba alih-alih menunggu respons lengkap. Metode streaming umumnya berkorespondensi dengan respons [SSE](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) atau [JSONL](https://jsonlines.org).
 
 Metode streaming selalu memiliki akhiran `Streaming` pada namanya, meskipun tidak memiliki varian non-streaming.
 
@@ -181,7 +181,7 @@ Selain itu, semua error 4xx mewarisi dari `Anthropic4xxException`.
 
 * `AnthropicIOException`: Error jaringan I/O.
 
-* `AnthropicInvalidDataException`: Kegagalan menginterpretasikan data yang berhasil di-parse. Misalnya, saat mengakses properti yang seharusnya wajib, tetapi API secara tak terduga menghilangkannya dari respons.
+* `AnthropicInvalidDataException`: Kegagalan menafsirkan data yang telah berhasil di-parse. Misalnya, saat mengakses properti yang seharusnya wajib, tetapi API secara tak terduga menghilangkannya dari respons.
 
 * `AnthropicException`: Kelas dasar untuk semua exception.
 
@@ -250,7 +250,7 @@ Console.WriteLine(message);
 
 ## Paginasi
 
-SDK mendefinisikan metode yang mengembalikan daftar hasil yang dipaginasi. SDK menyediakan cara yang mudah untuk mengakses hasil baik satu halaman sekaligus maupun item demi item di seluruh halaman.
+SDK mendefinisikan metode yang mengembalikan daftar hasil yang dipaginasi. SDK menyediakan cara yang mudah untuk mengakses hasil baik satu halaman sekaligus maupun item per item di seluruh halaman.
 
 ### Paginasi otomatis
 
@@ -290,7 +290,7 @@ while (true)
 
 Dalam kasus yang jarang terjadi, API dapat mengembalikan respons yang tidak sesuai dengan tipe yang diharapkan. Secara default, SDK tidak melempar exception dalam kasus ini. SDK hanya melempar `AnthropicInvalidDataException` jika Anda mengakses properti tersebut secara langsung.
 
-Jika Anda lebih suka memeriksa bahwa respons sepenuhnya bertipe dengan benar sejak awal, panggil `Validate`:
+Jika Anda lebih suka memeriksa di awal bahwa respons sepenuhnya bertipe dengan benar, panggil `Validate`:
 
 ```csharp
 var message = await client.Messages.Create(parameters);
@@ -321,7 +321,7 @@ Console.WriteLine(message);
 
 ## Integrasi IChatClient
 
-SDK menyediakan implementasi antarmuka `IChatClient` dari library `Microsoft.Extensions.AI.Abstractions`. Ini memungkinkan `AnthropicClient` (dan `Anthropic.Services.IBetaService`) digunakan bersama library lain yang terintegrasi dengan abstraksi inti ini. Misalnya, alat dalam library MCP C# SDK (`ModelContextProtocol`) dapat digunakan secara langsung dengan `AnthropicClient` yang diekspos melalui `IChatClient`.
+SDK menyediakan implementasi antarmuka `IChatClient` dari library `Microsoft.Extensions.AI.Abstractions`. Ini memungkinkan `AnthropicClient` (dan `Anthropic.Services.IBetaService`) digunakan bersama library lain yang terintegrasi dengan abstraksi inti ini. Misalnya, alat dalam library MCP C# SDK (`ModelContextProtocol`) dapat digunakan langsung dengan `AnthropicClient` yang diekspos melalui `IChatClient`.
 
 ```csharp
 using Anthropic;
@@ -347,7 +347,7 @@ Console.WriteLine(await chatClient.GetResponseAsync("Tell me about IChatClient",
 
 ## Permintaan dan respons
 
-Untuk mengirim permintaan ke Claude API, buat instance dari kelas `Params` dan teruskan ke metode klien yang sesuai. Ketika respons diterima, respons tersebut dideserialisasi menjadi instance dari kelas C#.
+Untuk mengirim permintaan ke Claude API, buat instance dari kelas `Params` dan teruskan ke metode klien yang sesuai. Saat respons diterima, respons tersebut dideserialisasi menjadi instance dari kelas C#.
 
 Misalnya, `client.Messages.Create` harus dipanggil dengan instance `MessageCreateParams`, dan akan mengembalikan instance `Task<Message>`.
 
@@ -430,7 +430,7 @@ export ANTHROPIC_LOG=debug
 
 ### Fungsionalitas API yang tidak terdokumentasi
 
-SDK memiliki tipe untuk penggunaan yang mudah atas API yang terdokumentasi. Namun, SDK juga mendukung bekerja dengan bagian API yang tidak terdokumentasi atau belum didukung.
+SDK memiliki tipe untuk penggunaan API terdokumentasi yang mudah. Namun, SDK juga mendukung penggunaan bagian API yang tidak terdokumentasi atau belum didukung.
 
 ## Integrasi platform
 
@@ -461,7 +461,7 @@ Gunakan `AnthropicBedrockMantleClient` untuk proyek baru; `AnthropicBedrockClien
 
 Paket ini secara umum mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang dapat dirilis sebagai versi minor:
 
-1. Perubahan pada internal library yang secara teknis publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal.
+1. Perubahan pada internal library yang secara teknis bersifat publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal.
 2. Perubahan yang dalam praktiknya tidak diperkirakan berdampak pada sebagian besar pengguna.
 
 Kompatibilitas ke belakang ditangani dengan serius untuk memastikan Anda dapat mengandalkan pengalaman upgrade yang lancar.

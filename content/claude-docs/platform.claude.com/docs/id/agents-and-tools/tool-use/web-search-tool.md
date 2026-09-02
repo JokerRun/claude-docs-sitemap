@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 717dba35aacec06c3fcf5aa146f4dbf4f5ebb3b6d2aa0a32c44c843f133c28d8
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: a0db756e4b4ec55baa28a4789d4edb17f877d79f96390a2dd93913d7cb7001ee
 ---
 
 ---
@@ -12,20 +12,20 @@ description: Berikan Claude akses ke konten web terkini dengan sumber yang dikut
 ---
 
 <Note>
-  Untuk mengetahui bagaimana zero data retention (ZDR) berlaku pada fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
-Alat pencarian web (web search tool) memberi Claude akses langsung ke konten web real-time, sehingga Claude dapat menjawab pertanyaan dengan informasi terbaru di luar batas pengetahuannya. Respons menyertakan kutipan untuk sumber yang diambil dari hasil pencarian.
+Alat pencarian web (web search tool) memberi Claude akses langsung ke konten web real-time, sehingga Claude dapat menjawab pertanyaan dengan informasi terbaru di luar batas pengetahuannya (knowledge cutoff). Respons menyertakan kutipan untuk sumber yang diambil dari hasil pencarian.
 
-Dengan `web_search_20260209` dan versi yang lebih baru, Claude dapat menulis dan menjalankan kode yang memfilter hasil pencarian sebelum mencapai "context window" (jendela konteks) (**pemfilteran dinamis**), sehingga hanya menyimpan informasi yang relevan. Pemfilteran dinamis tersedia dengan model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing).
+Dengan `web_search_20260209` dan versi yang lebih baru, Claude dapat menulis dan menjalankan kode yang memfilter hasil pencarian sebelum mencapai "context window" (jendela konteks) (**dynamic filtering** atau pemfilteran dinamis), sehingga hanya informasi yang relevan yang dipertahankan. Pemfilteran dinamis tersedia pada model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing).
 
-Tiga versi alat pencarian web tersedia:
+Tersedia tiga versi alat pencarian web:
 
 * `web_search_20250305`: pencarian web dasar
 * `web_search_20260209`: menambahkan [pemfilteran dinamis](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#dynamic-filtering)
 * `web_search_20260318`: menambahkan kontrol [penyertaan respons](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#response-inclusion) untuk alur kerja agentik
 
-Contoh di halaman ini menggunakan `web_search_20250305` untuk pencarian dasar dan `web_search_20260318` untuk pemfilteran dinamis.
+Contoh-contoh di halaman ini menggunakan `web_search_20250305` untuk pencarian dasar dan `web_search_20260318` untuk pemfilteran dinamis.
 
 <Note>
   Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), pencarian web didukung di Claude API, Google Cloud, dan Microsoft Foundry. Pencarian web tidak tersedia untuk Mythos Preview di Amazon Bedrock atau [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws).
@@ -45,7 +45,7 @@ Saat Anda menambahkan alat pencarian web ke permintaan API Anda:
 
 ### Kapan Claude mencari
 
-Claude mencari ketika permintaan bergantung pada informasi yang terkini, berubah-ubah, atau di luar data pelatihannya:
+Claude melakukan pencarian ketika permintaan bergantung pada informasi yang terkini, berubah-ubah, atau berada di luar data pelatihannya:
 
 * Peristiwa, berita, atau pengumuman terbaru
 * Harga, tarif, skor, atau statistik terkini
@@ -57,23 +57,23 @@ Claude menjawab langsung tanpa mencari ketika permintaan mengandalkan pengetahua
 * Fakta yang sudah mapan, matematika, dasar-dasar sains, atau konsep pemrograman
 * Penulisan kreatif atau brainstorming
 * Analisis konten yang sudah disediakan dalam percakapan
-* Giliran percakapan dan sapaan
+* Giliran percakapan biasa dan sapaan
 
 Pemicuan dapat diarahkan melalui "system prompt" (prompt sistem) Anda: Anda dapat mendorong Claude untuk lebih mudah mencari atau lebih memilih menjawab langsung. Untuk batasan yang tegas, gunakan `max_uses` untuk membatasi jumlah pencarian untuk setiap permintaan.
 
 ### Pemfilteran dinamis
 
-Dengan pencarian web dasar, setiap hasil pencarian dimuat ke jendela konteks Claude, dan sebagian besar konten tersebut bisa jadi tidak relevan dengan permintaan. Dengan `web_search_20260209` atau yang lebih baru, Claude justru menulis dan menjalankan kode yang memfilter hasilnya terlebih dahulu, sehingga hanya konten yang relevan yang mencapai jendela konteks. Ini mengurangi penggunaan token pada permintaan yang banyak melakukan pencarian.
+Dengan pencarian web dasar, setiap hasil pencarian dimuat ke dalam jendela konteks Claude, dan sebagian besar konten tersebut bisa jadi tidak relevan dengan permintaan. Dengan `web_search_20260209` atau yang lebih baru, Claude justru menulis dan menjalankan kode yang memfilter hasil terlebih dahulu, sehingga hanya konten yang relevan yang mencapai jendela konteks. Ini mengurangi penggunaan token pada permintaan yang banyak melakukan pencarian.
 
-Pemfilteran dinamis menjalankan pencarian web dari dalam [eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool): pada `web_search_20260209` dan yang lebih baru, field `allowed_callers` alat ini secara default bernilai `["code_execution_20260120"]`, dan ketika pemfilteran dinamis berjalan, API secara otomatis menyediakan eksekusi kode yang dibutuhkan untuk permintaan tersebut. Anda tidak perlu menambahkan alat eksekusi kode ke `tools` sendiri. Tidak ada biaya tambahan untuk panggilan eksekusi kode yang dilakukan dengan cara ini di luar biaya token standar.
+Pemfilteran dinamis menjalankan pencarian web dari dalam [eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool): pada `web_search_20260209` dan yang lebih baru, field `allowed_callers` milik alat ini secara default bernilai `["code_execution_20260120"]`, dan ketika pemfilteran dinamis berjalan, API secara otomatis menyediakan eksekusi kode yang dibutuhkan untuk permintaan tersebut. Anda tidak perlu menambahkan alat eksekusi kode ke `tools` sendiri. Tidak ada biaya tambahan untuk panggilan eksekusi kode yang dilakukan dengan cara ini di luar biaya token standar.
 
 Untuk memanggil pencarian web secara langsung, tanpa pemfilteran dinamis, atur `allowed_callers: ["direct"]`. Model yang tidak mendukung pemanggilan alat secara programatik memerlukan pengaturan ini. Tanpanya, API mengembalikan error 400 yang memberi tahu Anda untuk mengaturnya.
 
 <Note>
-  Alat pencarian web (dengan dan tanpa pemfilteran dinamis) tersedia di Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Di Microsoft Foundry, pencarian web memerlukan [deployment Hosted on Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure). Di Google Cloud, hanya alat pencarian web dasar (tanpa pemfilteran dinamis) yang tersedia. Pencarian web tidak tersedia di Amazon Bedrock.
+  Alat pencarian web (dengan dan tanpa pemfilteran dinamis) tersedia di Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Di Microsoft Foundry, deployment yang [di-hosting di Azure](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure) hanya mendukung alat pencarian web dasar (`web_search_20250305`, tanpa pemfilteran dinamis). Deployment yang di-hosting di Anthropic mendukung semua versi. Di Google Cloud, hanya alat pencarian web dasar (tanpa pemfilteran dinamis) yang tersedia. Pencarian web tidak tersedia di Amazon Bedrock.
 </Note>
 
-Contoh berikut menggunakan `web_search_20260318`:
+Contoh-contoh berikut menggunakan `web_search_20260318`:
 
 <CodeGroup>
   ```bash cURL
@@ -241,7 +241,7 @@ Contoh berikut menggunakan `web_search_20260318`:
 ## Cara menggunakan pencarian web
 
 <Note>
-  Pencarian web diaktifkan untuk organisasi Anda kecuali administrator telah menonaktifkannya di [Claude Console](https://platform.claude.com/settings/privacy), tempat mereka juga dapat membatasi domain mana yang dicari. Jika dinonaktifkan, permintaan yang menyertakan alat ini gagal dengan 400 `invalid_request_error` yang menyatakan bahwa pencarian web tidak diaktifkan, bukan [kode error](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#errors) di dalam hasil pencarian.
+  Pencarian web diaktifkan untuk organisasi Anda kecuali administrator telah menonaktifkannya di [Claude Console](https://platform.claude.com/settings/privacy), tempat mereka juga dapat membatasi domain mana yang dicari. Jika dinonaktifkan, permintaan yang menyertakan alat ini gagal dengan 400 `invalid_request_error` yang menyatakan bahwa pencarian web tidak diaktifkan, bukan dengan [kode error](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#errors) di dalam hasil pencarian.
 </Note>
 
 Pengaturan tingkat organisasi di Claude Console ini hanya berlaku untuk permintaan Messages API. Sesi [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) hanya menggunakan daftar `allowed_domains` dan `blocked_domains` per alat pada toolset agen; lihat [Membatasi domain pencarian web dan pengambilan web](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
@@ -445,7 +445,7 @@ Semua versi alat pencarian web menerima `allowed_callers`, yang mengontrol apaka
 
 ### Penggunaan maksimum
 
-Parameter `max_uses` membatasi jumlah pencarian yang dilakukan. Jika Claude mencoba lebih banyak pencarian daripada yang diizinkan, `web_search_tool_result` berupa error dengan kode error `max_uses_exceeded`.
+Parameter `max_uses` membatasi jumlah pencarian yang dilakukan. Jika Claude mencoba melakukan lebih banyak pencarian daripada yang diizinkan, `web_search_tool_result` akan berupa error dengan kode error `max_uses_exceeded`.
 
 Kueri faktual sederhana biasanya menggunakan 1–3 pencarian; riset komparatif atau multientitas dapat menggunakan 10 atau lebih. Untuk panduan memilih nilai, lihat [Alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools).
 
@@ -459,7 +459,7 @@ Di [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/ov
 
 ### Lokalisasi
 
-Parameter `user_location` memungkinkan Anda melokalisasi hasil pencarian berdasarkan lokasi pengguna. Sediakan setidaknya satu dari `city`, `region`, `country`, atau `timezone`.
+Parameter `user_location` memungkinkan Anda melokalisasi hasil pencarian berdasarkan lokasi pengguna. Sediakan setidaknya salah satu dari `city`, `region`, `country`, atau `timezone`.
 
 * `type`: Jenis lokasi (harus `approximate`)
 * `city`: Nama kota
@@ -475,7 +475,7 @@ Di Claude Managed Agents, entri `web_search` pada toolset agen menerima objek `u
   Memerlukan `web_search_20260318` atau yang lebih baru.
 </Note>
 
-Parameter `response_inclusion` mengontrol bagaimana blok hasil pencarian muncul dalam respons API ketika hasil tersebut dikonsumsi oleh panggilan [eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) yang telah selesai dalam giliran yang sama. Atur `"response_inclusion": "excluded"` untuk menghilangkan sepenuhnya pasangan blok `server_tool_use` dan blok hasil bersarang tersebut dari respons, sehingga mengurangi biaya token output untuk alur kerja agentik yang tidak perlu mengembalikan konten pencarian mentah ke klien. Nilai defaultnya adalah `"full"`. Hasil dari panggilan langsung, atau dari panggilan eksekusi kode yang dijeda sebelum selesai, selalu dikembalikan secara penuh agar dapat dikirim kembali pada giliran berikutnya.
+Parameter `response_inclusion` mengontrol bagaimana blok hasil pencarian muncul dalam respons API ketika hasil tersebut dikonsumsi oleh panggilan [eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) yang telah selesai pada giliran yang sama. Atur `"response_inclusion": "excluded"` untuk menghilangkan sepenuhnya pasangan blok `server_tool_use` dan blok hasil bersarang tersebut dari respons, sehingga mengurangi biaya token output untuk alur kerja agentik yang tidak perlu mengembalikan konten pencarian mentah ke klien. Nilai defaultnya adalah `"full"`. Hasil dari panggilan langsung, atau dari panggilan eksekusi kode yang dijeda sebelum selesai, selalu dikembalikan secara penuh agar dapat dikirim kembali pada giliran berikutnya.
 
 ```json JSON
 {
@@ -578,7 +578,7 @@ Kutipan selalu diaktifkan untuk pencarian web, dan setiap `web_search_result_loc
 * `encrypted_index`: Referensi yang harus dikirim kembali untuk percakapan multi-giliran
 * `cited_text`: Hingga 150 karakter dari konten yang dikutip
 
-Field kutipan pencarian web `cited_text`, `title`, dan `url` tidak dihitung dalam penggunaan token input atau output.
+Field kutipan pencarian web `cited_text`, `title`, dan `url` tidak dihitung dalam penggunaan token input maupun output.
 
 <Note>
   Saat menampilkan output API secara langsung kepada pengguna akhir, kutipan ke sumber asli harus disertakan. Jika Anda melakukan modifikasi pada output API, termasuk dengan memproses ulang atau menggabungkannya dengan materi Anda sendiri sebelum menampilkannya kepada pengguna akhir, tampilkan kutipan sebagaimana mestinya berdasarkan konsultasi dengan tim hukum Anda.
@@ -610,17 +610,17 @@ Berikut kode error yang mungkin muncul:
 * `request_too_large`: Permintaan pencarian terlalu besar, biasanya karena daftar filter domain yang panjang
 * `unavailable`: Terjadi error internal
 
-### Alasan berhenti `pause_turn`
+### Stop reason `pause_turn`
 
 API dapat menjeda giliran pencarian yang berjalan lama dan mengembalikan `stop_reason: "pause_turn"`. Untuk melanjutkan, kirim kembali pesan asisten yang dijeda tanpa perubahan dalam permintaan baru.
 
-Jika Claude memanggil pencarian web dan salah satu alat klien Anda dalam kelompok panggilan alat paralel yang sama, API justru mengembalikan `stop_reason: "tool_use"` dan belum menjalankan pencarian. Untuk melanjutkan, kembalikan hasil alat klien, dan API menjalankan pencarian pada permintaan berikutnya. Lihat [Mencampur alat server dan alat klien dalam satu giliran](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#mixing-server-tools-and-client-tools-in-one-turn).
+Jika Claude memanggil pencarian web dan salah satu alat klien Anda dalam kelompok panggilan alat paralel yang sama, API mengembalikan `stop_reason: "tool_use"` dan belum menjalankan pencarian. Untuk melanjutkan, kembalikan hasil alat klien, dan API akan menjalankan pencarian pada permintaan berikutnya. Lihat [Mencampur alat server dan alat klien dalam satu giliran](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#mixing-server-tools-and-client-tools-in-one-turn).
 
 Untuk loop sisi server dan penanganan `pause_turn`, lihat [Loop sisi server dan pause\_turn](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#the-server-side-loop-and-pause-turn) di panduan Alat server.
 
 ## Caching prompt
 
-Untuk caching definisi alat lintas giliran, lihat [Penggunaan alat dengan caching prompt](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching).
+Untuk meng-cache definisi alat lintas giliran, lihat [Penggunaan alat dengan caching prompt](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching).
 
 ## Streaming
 
@@ -659,7 +659,7 @@ Untuk melindungi kapasitas bersama, Batches API membatasi permintaan pencarian w
 
 ## Penggunaan dan harga
 
-Penggunaan pencarian web dikenakan biaya sebagai tambahan dari penggunaan token:
+Penggunaan web search (pencarian web) dikenakan biaya di luar penggunaan token:
 
 ```json
 {
@@ -675,7 +675,7 @@ Penggunaan pencarian web dikenakan biaya sebagai tambahan dari penggunaan token:
 }
 ```
 
-Pencarian web tersedia di API Claude dengan harga **$10 per 1.000 pencarian**, ditambah biaya token standar untuk konten yang dihasilkan dari pencarian. Hasil pencarian web yang diambil sepanjang percakapan dihitung sebagai token input, baik dalam iterasi pencarian yang dijalankan selama satu giliran maupun dalam giliran percakapan berikutnya.
+Pencarian web tersedia di Claude API dengan harga **$10 per 1.000 pencarian**, ditambah biaya token standar untuk konten yang dihasilkan dari pencarian. Hasil pencarian web yang diambil sepanjang percakapan dihitung sebagai input token, baik dalam iterasi pencarian yang dijalankan selama satu giliran maupun dalam giliran percakapan berikutnya.
 
 Setiap pencarian web dihitung sebagai satu penggunaan, terlepas dari jumlah hasil yang dikembalikan. Jika terjadi kesalahan selama pencarian web, pencarian web tersebut tidak akan ditagih.
 

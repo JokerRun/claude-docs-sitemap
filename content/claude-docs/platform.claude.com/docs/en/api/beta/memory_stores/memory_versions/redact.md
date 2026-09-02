@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/redact
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: e49e005aeb4830a141c529989ee6440c1519c4ed599cf4ba3c162f44d903862a
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 517a4d07cab42d3722eb0a3df1aa924d4d2c1b2f6177ba3679ae2b8344bb0251
 ---
 
 # Redact a memory version
@@ -25,7 +25,7 @@ Redact a memory version
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -108,6 +108,12 @@ Redact a memory version
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ## Returns
 

@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/additional-resources
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 71e17a4f57a72e6ddb02c37641cd8946029cfbd5b84acaa7aac3ca9b0a030f61
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 0fa1aed5578e2b4ffeeadc8a255acbe52cd4bca11464df7e59cf2a98de28f902
 ---
 
 ---
 title: Sumber daya tambahan
 url: https://platform.claude.com/docs/id/about-claude/additional-resources
-description: Sumber daya pembelajaran dan format dokumentasi yang dioptimalkan untuk penyerapan oleh AI.
+description: Sumber daya pembelajaran dan format dokumentasi yang dioptimalkan untuk diserap oleh AI.
 ---
 
 ## Sumber daya pembelajaran
@@ -18,7 +18,7 @@ description: Sumber daya pembelajaran dan format dokumentasi yang dioptimalkan u
     Aplikasi siap deploy yang dibangun dengan API.
   </Card>
 
-  <Card title="Kursus" icon="graduation-cap" href="https://anthropic.skilljar.com/">
+  <Card title="Kursus" icon="graduation-cap" href="https://academy.claude.com/courses">
     Pelajaran langkah demi langkah tentang membangun dengan Claude.
   </Card>
 
@@ -35,10 +35,10 @@ description: Sumber daya pembelajaran dan format dokumentasi yang dioptimalkan u
   </Card>
 </CardGroup>
 
-## Sumber daya untuk penyerapan oleh AI
+## Sumber daya untuk diserap oleh AI
 
 <CardGroup cols={2}>
-  <Card title="Pengantar API untuk penyerapan oleh Claude" icon="settings" href="https://platform.claude.com/docs/id/claude_api_primer">
+  <Card title="Pengantar API untuk diserap oleh Claude" icon="settings" href="https://platform.claude.com/docs/id/claude_api_primer">
     Panduan API ringkas yang ditujukan untuk diserap oleh Claude.
   </Card>
 

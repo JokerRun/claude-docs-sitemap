@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/additional-resources
-fetched_at: 2026-08-20T02:28:31.280657Z
-sha256: 6303bfff6af1937165805bbe94e3da23b32f9602c516810e2d72e986aa934bd9
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 5f8fecfe013fbd747426c5c21e1096914383c1486b5b8f7bf5cce5ed01c4542c
 ---
 
 ---
@@ -18,7 +18,7 @@ description: Learning resources and documentation formats optimized for AI inges
     Deployable applications built with the API.
   </Card>
 
-  <Card title="Courses" icon="graduation-cap" href="https://anthropic.skilljar.com/">
+  <Card title="Courses" icon="graduation-cap" href="https://academy.claude.com/courses">
     Step-by-step lessons on building with Claude.
   </Card>
 

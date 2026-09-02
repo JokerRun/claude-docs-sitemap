@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 9ac1bf66907e431fc9286b37f33afa8dab1f3117d8f7a0f3641ba29314753df9
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: f6cca6d88c2849e411ba2f7792830bd251317279e4ed00845f6a35ae589bb2fb
 ---
 
 ---
@@ -845,6 +845,12 @@ Claude 4 and later models make parallel tool calls by default when a request ben
   </Accordion>
 </AccordionGroup>
 
+<Note>
+  **Claude Fable 5.1 in long agent loops**
+
+  Claude Fable 5.1 may issue fewer parallel tool calls than earlier models, most noticeably in long agent loops where the next reads are only implied (custom coding agents, bash and text editor harnesses, computer use). Standard function calling is unaffected. For the batching instruction to add and where to put it, see [Batch independent tool calls in agent loops](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#batch-independent-tool-calls-in-agent-loops).
+</Note>
+
 ## Disable parallel tool use
 
 Parallel tool use is on by default. To turn it off, set `disable_parallel_tool_use: true` inside the [`tool_choice`](https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools#forcing-tool-use) object. It is not a top-level request parameter. The effect depends on the `tool_choice` type.
@@ -1132,7 +1138,7 @@ When `tool_choice` type is `auto` (the default), setting `disable_parallel_tool_
 
 ### Exactly one tool call
 
-When `tool_choice` type is `any` or `tool`, setting `disable_parallel_tool_use: true` means Claude calls exactly one tool. The following example uses `any`. The same field works with `tool`:
+When `tool_choice` type is `any` or `tool`, setting `disable_parallel_tool_use: true` means Claude calls exactly one tool. Claude Fable 5.1 and Claude Mythos 5.1 don't support these `tool_choice` types (see [Forcing tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools#forcing-tool-use)). The following example uses `any`. The same field works with `tool`:
 
 <CodeGroup>
   ```bash cURL

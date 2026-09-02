@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/model-deprecations
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: c7db71a1486d71f9801c97d8d87a7c029558ff7e77140c6352b8d870b9f31827
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 4d33a492e28ae076bfe4aacae3f82e49f297a98c5adcffb49486f4be096f78b4
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/about-claude/model-deprecations
 description: Lihat model Claude mana yang aktif, dihentikan (deprecated), atau dipensiunkan, serta temukan tanggal pensiun dan pengganti yang direkomendasikan untuk model dan parameter API.
 ---
 
-Seiring diluncurkannya model yang lebih aman dan lebih mumpuni, Anthropic secara rutin memensiunkan model yang lebih lama. Aplikasi yang bergantung pada model Anthropic mungkin sesekali memerlukan pembaruan agar tetap berfungsi. Pelanggan yang terdampak akan selalu diberi tahu melalui email dan di dalam dokumentasi.
+Seiring diluncurkannya model yang lebih aman dan lebih mumpuni, Anthropic secara rutin memensiunkan model yang lebih lama. Aplikasi yang mengandalkan model Anthropic mungkin sesekali memerlukan pembaruan agar tetap berfungsi. Pelanggan yang terdampak akan selalu diberi tahu melalui email dan di dokumentasi.
 
 Halaman ini mencantumkan semua penghentian API, beserta pengganti yang direkomendasikan.
 
@@ -19,22 +19,22 @@ Halaman ini mencantumkan semua penghentian API, beserta pengganti yang direkomen
 
 Anthropic menggunakan istilah berikut untuk menjelaskan siklus hidup model:
 
-* **Active (Aktif):** Model didukung sepenuhnya dan direkomendasikan untuk digunakan.
-* **Legacy (Lawas):** Model tidak akan lagi menerima pembaruan dan mungkin akan dihentikan di masa mendatang.
-* **Deprecated (Dihentikan):** Model masih berfungsi tetapi tidak lagi direkomendasikan. Anthropic menyediakan pengganti yang direkomendasikan dan menetapkan tanggal pensiun.
-* **Retired (Dipensiunkan):** Model tidak lagi tersedia untuk digunakan. Permintaan ke model yang telah dipensiunkan akan gagal.
+* **Active** (aktif): Model didukung sepenuhnya dan direkomendasikan untuk digunakan.
+* **Legacy** (lawas): Model tidak akan lagi menerima pembaruan dan mungkin akan dihentikan di masa mendatang.
+* **Deprecated** (dihentikan): Model masih berfungsi tetapi tidak lagi direkomendasikan. Anthropic menyediakan pengganti yang direkomendasikan dan menetapkan tanggal pensiun.
+* **Retired** (dipensiunkan): Model tidak lagi tersedia untuk digunakan. Permintaan ke model yang telah dipensiunkan akan gagal.
 
 <Warning>
   Model yang dihentikan kemungkinan kurang andal dibandingkan model aktif. Pindahkan beban kerja ke model aktif untuk mempertahankan tingkat dukungan dan keandalan tertinggi.
 </Warning>
 
-Tanggal-tanggal di halaman ini berlaku untuk platform yang dioperasikan Anthropic: Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Platform yang dioperasikan mitra (Amazon Bedrock dan Google Cloud) menetapkan jadwal pensiun mereka sendiri, sehingga status siklus hidup dan tanggal suatu model dapat berbeda. Lihat tabel model [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#supported-models), [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#api-model-ids), dan [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai#api-model-ids).
+Tanggal di halaman ini berlaku untuk platform yang dioperasikan Anthropic: Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Platform yang dioperasikan mitra (Amazon Bedrock dan Google Cloud) menetapkan jadwal pensiun mereka sendiri, sehingga status siklus hidup dan tanggal suatu model dapat berbeda. Lihat tabel model [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#supported-models), [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#api-model-ids), dan [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai#api-model-ids).
 
 ## Bermigrasi ke pengganti
 
 Setelah suatu model dihentikan, migrasikan semua penggunaan ke pengganti yang sesuai sebelum tanggal pensiun. Permintaan ke model yang telah melewati tanggal pensiun akan gagal.
 
-Untuk membantu mengukur kinerja model pengganti pada tugas-tugas Anda, pertimbangkan pengujian menyeluruh terhadap aplikasi Anda dengan model baru jauh sebelum tanggal pensiun.
+Untuk membantu mengukur kinerja model pengganti pada tugas Anda, pertimbangkan pengujian menyeluruh terhadap aplikasi Anda dengan model baru jauh sebelum tanggal pensiun.
 
 Untuk petunjuk khusus tentang migrasi ke model Claude terbaru, lihat [Panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide).
 
@@ -67,18 +67,19 @@ Anthropic saat ini menghentikan dan memensiunkan model untuk memastikan kapasita
 * Peneliti kehilangan akses ke model untuk studi yang sedang berlangsung dan studi komparatif
 * Pensiun model menimbulkan risiko terkait keselamatan dan kesejahteraan model
 
-Pada suatu saat nanti, Anthropic berharap dapat membuat model-model lama tersedia kembali untuk publik. Sementara itu, Anthropic telah berkomitmen pada pelestarian jangka panjang bobot model dan langkah-langkah lain untuk membantu memitigasi dampak ini. Untuk detail lebih lanjut, lihat [Commitments on Model Deprecation and Preservation](https://www.anthropic.com/research/deprecation-commitments).
+Pada suatu saat, Anthropic berharap dapat membuat model-model lama tersedia kembali untuk publik. Sementara itu, Anthropic telah berkomitmen pada pelestarian jangka panjang bobot model dan langkah-langkah lain untuk membantu memitigasi dampak ini. Untuk detail lebih lanjut, lihat [Commitments on Model Deprecation and Preservation](https://www.anthropic.com/research/deprecation-commitments).
 
 ## Status model
 
 <Note>
-  [Claude Mythos Preview](https://anthropic.com/glasswing) (`claude-mythos-preview`) telah dihentikan. Untuk bermigrasi ke [Claude Mythos 5](https://anthropic.com/glasswing) (`claude-mythos-5`), lihat [panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide#migrating-from-claude-mythos-preview).
+  [Claude Mythos Preview](https://anthropic.com/glasswing) (`claude-mythos-preview`) telah dihentikan. Untuk bermigrasi ke [Claude Mythos 5](https://anthropic.com/glasswing) (`claude-mythos-5`), lihat [panduan migrasi](https://platform.claude.com/docs/id/models/fable-5/migration-guide#migrating-from-claude-mythos-preview).
 </Note>
 
 Model saat ini dan yang baru saja dipensiunkan tercantum dalam tabel berikut beserta statusnya:
 
 | Nama model API             | Status saat ini | Dihentikan       | Tanggal pensiun tentatif                |
 | -------------------------- | --------------- | ---------------- | --------------------------------------- |
+| claude-fable-5-1           | Aktif           | N/A              | Tidak lebih awal dari 1 September 2027  |
 | claude-fable-5             | Aktif           | N/A              | Tidak lebih awal dari 9 Juni 2027       |
 | claude-opus-5              | Aktif           | N/A              | Tidak lebih awal dari 24 Juli 2027      |
 | claude-opus-4-8            | Aktif           | N/A              | Tidak lebih awal dari 28 Mei 2027       |

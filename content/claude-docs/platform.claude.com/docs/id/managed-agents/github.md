@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/github
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 7edcea3acb48f8403a19d3593794dc0323aef740c7bd8718f0aadef1f17b1f93
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: e22340dc2cbf682b644439f4c6b50ce1c9327361e0fcb7f4452f6011538cc9f2
 ---
 
 ---
@@ -16,7 +16,7 @@ Anda dapat memasang (mount) repositori GitHub ke sandbox sesi Anda dan terhubung
 Repositori GitHub di-cache, sehingga sesi mendatang yang menggunakan repositori yang sama akan dimulai lebih cepat.
 
 <Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## GitHub MCP dan sumber daya sesi
@@ -400,13 +400,13 @@ Sumber daya `github_repository` menerima field berikut:
 
 | Field                 | Deskripsi                                                                                                                                                                                                                    |
 | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`                | Wajib. Harus berupa `"github_repository"`.                                                                                                                                                                                   |
+| `type`                | Wajib. Harus bernilai `"github_repository"`.                                                                                                                                                                                 |
 | `url`                 | Wajib. URL HTTPS repositori dalam bentuk `https://github.com/<owner>/<repo>`, tanpa akhiran `.git`. Bentuk lain, termasuk URL SSH, akan ditolak dengan `invalid_request_error`.                                              |
 | `authorization_token` | Wajib. Token GitHub yang digunakan untuk melakukan clone repositori. Token ini tidak ditampilkan kembali dalam respons API. Lihat [Izin token](https://platform.claude.com/docs/id/managed-agents/github#token-permissions). |
 | `mount_path`          | Opsional. Direktori di bawah `/workspace` tempat repositori akan di-clone. Default-nya adalah `/workspace/<repo-name>`.                                                                                                      |
 | `checkout`            | Opsional. Branch (`{"type": "branch", "name": "main"}`) atau commit (`{"type": "commit", "sha": "..."}`) yang akan di-checkout. Default-nya adalah branch default repositori.                                                |
 
-Memasang repositori juga memuat skill apa pun yang disimpan di direktori root `.claude/skills` miliknya. Skill ditemukan satu kali per sesi, dari status repositori yang di-checkout saat sesi dimulai. Lihat [Memuat skill dari repositori GitHub](https://platform.claude.com/docs/id/managed-agents/skills#load-skills-from-a-github-repository).
+Memasang repositori juga memuat skill apa pun yang disimpan di direktori root `.claude/skills` repositori tersebut. Skill ditemukan satu kali per sesi, dari status repositori yang di-checkout saat sesi dimulai. Lihat [Memuat skill dari repositori GitHub](https://platform.claude.com/docs/id/managed-agents/skills#load-skills-from-a-github-repository).
 
 ## Izin token
 
@@ -588,7 +588,7 @@ Pasang beberapa repositori dengan menambahkan entri ke array `resources`:
 
 ## Mengelola repositori pada sesi yang sedang berjalan
 
-Setelah sesi dibuat, Anda dapat melihat daftar sumber daya repositorinya dan merotasi token otorisasinya. Setiap sumber daya memiliki `id` yang dikembalikan saat pembuatan sesi (atau melalui `resources.list`) yang Anda gunakan untuk pembaruan. Repositori terpasang selama masa hidup sesi; untuk mengubah repositori mana yang dipasang, buat sesi baru.
+Setelah sesi dibuat, Anda dapat melihat daftar sumber daya repositorinya dan merotasi token otorisasinya. Setiap sumber daya memiliki `id` yang dikembalikan pada saat pembuatan sesi (atau melalui `resources.list`) yang Anda gunakan untuk pembaruan. Repositori terpasang selama masa hidup sesi; untuk mengubah repositori mana yang dipasang, buat sesi baru.
 
 <CodeGroup>
   ```bash cURL

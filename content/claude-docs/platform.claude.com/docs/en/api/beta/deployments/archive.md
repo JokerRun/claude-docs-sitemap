@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/archive
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 92b1c3a1e5e45f4daf40b0415f5d9903a739b67c6c33336cb199097aadf2be9e
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 14de6f254fea69bbdfe4bf8ad9c11f8edaf1477bd04e7e92283298098474e04d
 ---
 
 # Archive Deployment
@@ -23,7 +23,7 @@ Archive Deployment
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -106,6 +106,12 @@ Archive Deployment
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ## Returns
 

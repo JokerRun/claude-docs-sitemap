@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/list
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 9be90fd518eb385e75a80cb339b7d535080083b611bb3245d057b040990f470e
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: aefec2a319edc48f607ac000de017ba770676e54e18e9b18fe537b1e11288855
 ---
 
 # List Service Account Workspace Members
@@ -46,7 +46,7 @@ omitted from the results.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -129,6 +129,12 @@ omitted from the results.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ## Returns
 

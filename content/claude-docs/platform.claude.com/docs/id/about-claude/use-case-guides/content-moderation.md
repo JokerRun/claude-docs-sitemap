@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/content-moderation
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 296915366bf52e6421fb50f7261509249a34b3175e6f17a6f8d73b926e4d6b8f
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 82441eef2509cf0e0be202a6afee90057b8baf7342c898179d5cedcd8f0d1822
 ---
 
 ---
@@ -41,7 +41,7 @@ Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan "large 
   </Accordion>
 
   <Accordion title="Kebijakan moderasi Anda kemungkinan akan berubah atau berkembang seiring waktu">
-    Setelah pendekatan ML tradisional ditetapkan, mengubahnya merupakan pekerjaan yang melelahkan dan membutuhkan banyak data. Di sisi lain, seiring berkembangnya kebutuhan produk atau pelanggan Anda, Claude dapat dengan mudah beradaptasi terhadap perubahan atau penambahan kebijakan moderasi tanpa pelabelan ulang data pelatihan secara ekstensif.
+    Setelah pendekatan ML tradisional ditetapkan, mengubahnya merupakan pekerjaan yang melelahkan dan membutuhkan banyak data. Di sisi lain, seiring berkembangnya produk atau kebutuhan pelanggan Anda, Claude dapat dengan mudah beradaptasi terhadap perubahan atau penambahan kebijakan moderasi tanpa pelabelan ulang data pelatihan secara ekstensif.
   </Accordion>
 
   <Accordion title="Anda memerlukan penalaran yang dapat diinterpretasikan untuk keputusan moderasi Anda">
@@ -53,16 +53,16 @@ Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan "large 
   </Accordion>
 
   <Accordion title="Anda memerlukan dukungan multimodal">
-    Kemampuan multimodal Claude memungkinkannya menganalisis dan menafsirkan konten baik berupa teks maupun gambar. Hal ini menjadikannya alat yang serbaguna untuk moderasi konten yang komprehensif di lingkungan tempat berbagai jenis media perlu dievaluasi bersama-sama.
+    Kemampuan multimodal Claude memungkinkannya menganalisis dan menafsirkan konten baik dalam bentuk teks maupun gambar. Hal ini menjadikannya alat yang serbaguna untuk moderasi konten yang komprehensif di lingkungan tempat berbagai jenis media perlu dievaluasi secara bersamaan.
   </Accordion>
 </AccordionGroup>
 
 <Note>
-  Semua model Claude dilatih dengan perilaku keamanan bawaan. Hal ini dapat mengakibatkan Claude memoderasi konten yang dianggap sangat berbahaya (sejalan dengan 
+  Semua model Claude dilatih dengan perilaku keamanan bawaan. Hal ini dapat mengakibatkan Claude memoderasi konten yang dianggap sangat berbahaya (sesuai dengan 
 
   [Kebijakan Penggunaan yang Dapat Diterima](https://www.anthropic.com/legal/aup)
 
-  ), terlepas dari prompt yang digunakan. Misalnya, situs web dewasa yang ingin mengizinkan pengguna memposting konten seksual eksplisit mungkin mendapati bahwa Claude tetap menandai konten eksplisit sebagai konten yang memerlukan moderasi, meskipun mereka menentukan dalam prompt mereka untuk tidak memoderasi konten seksual eksplisit. Pertimbangkan untuk meninjau AUP sebelum membangun solusi moderasi.
+  ), terlepas dari prompt yang digunakan. Misalnya, situs web dewasa yang ingin mengizinkan pengguna memposting konten seksual eksplisit mungkin mendapati bahwa Claude tetap menandai konten eksplisit sebagai konten yang memerlukan moderasi, meskipun mereka menyatakan dalam prompt mereka untuk tidak memoderasi konten seksual eksplisit. Pertimbangkan untuk meninjau AUP terlebih dahulu sebelum membangun solusi moderasi.
 </Note>
 
 ### Buat contoh konten untuk dimoderasi
@@ -328,7 +328,7 @@ Kategori tidak aman dapat disesuaikan agar sesuai dengan kebutuhan spesifik Anda
 
 ### Pilih model Claude yang tepat
 
-Saat memilih model, penting untuk mempertimbangkan ukuran data Anda. Jika biaya menjadi perhatian, model yang lebih kecil seperti Claude Haiku 4.5 adalah pilihan yang sangat baik karena efektivitas biayanya. Berikut adalah estimasi biaya untuk memoderasi teks bagi platform media sosial yang menerima satu miliar postingan per bulan:
+Saat memilih model, penting untuk mempertimbangkan ukuran data Anda. Jika biaya menjadi pertimbangan, model yang lebih kecil seperti Claude Haiku 4.5 adalah pilihan yang sangat baik karena efektivitas biayanya. Berikut adalah estimasi biaya untuk memoderasi teks bagi platform media sosial yang menerima satu miliar postingan per bulan:
 
 * **Ukuran konten**
 
@@ -2196,9 +2196,9 @@ Selain mencantumkan kategori tidak aman dalam prompt, peningkatan lebih lanjut d
   ```
 </CodeGroup>
 
-Fungsi `moderate_message_with_definitions` memperluas fungsi `moderate_message` sebelumnya dengan memungkinkan setiap kategori tidak aman dipasangkan dengan definisi yang terperinci. Hal ini dilakukan dalam kode dengan mengganti koleksi `unsafe_categories` dari fungsi asli dengan pemetaan `unsafe_category_definitions`. Pemetaan ini memasangkan setiap kategori tidak aman dengan definisinya yang sesuai. Baik nama kategori maupun definisinya disertakan dalam prompt.
+Fungsi `moderate_message_with_definitions` memperluas fungsi `moderate_message` sebelumnya dengan memungkinkan setiap kategori tidak aman dipasangkan dengan definisi yang terperinci. Hal ini dilakukan dalam kode dengan mengganti koleksi `unsafe_categories` dari fungsi asli dengan pemetaan `unsafe_category_definitions`. Pemetaan ini memasangkan setiap kategori tidak aman dengan definisi yang sesuai. Baik nama kategori maupun definisinya disertakan dalam prompt.
 
-Yang perlu dicatat, definisi untuk kategori `Specialized Advice` kini menentukan jenis-jenis saran keuangan yang harus dilarang. Akibatnya, komentar `It is a great time to invest in gold!`, yang sebelumnya lolos penilaian `moderate_message`, kini memicu pelanggaran.
+Yang perlu diperhatikan, definisi untuk kategori `Specialized Advice` kini menentukan jenis-jenis saran keuangan yang harus dilarang. Akibatnya, komentar `It is a great time to invest in gold!`, yang sebelumnya lolos dari penilaian `moderate_message`, kini memicu pelanggaran.
 
 ### Pertimbangkan pemrosesan batch
 
@@ -2741,7 +2741,7 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
   ```
 </CodeGroup>
 
-Dalam contoh ini, fungsi `batch_moderate_messages` menangani moderasi seluruh batch pesan dengan satu panggilan API Claude. Di dalam fungsi tersebut, sebuah prompt dibuat yang mencakup daftar pesan yang akan dievaluasi dan kategori konten tidak aman. Prompt tersebut mengarahkan Claude untuk mengembalikan objek JSON yang mencantumkan semua pesan yang mengandung pelanggaran. Setiap pesan dalam respons diidentifikasi berdasarkan `id`-nya, yang sesuai dengan posisi pesan dalam batch. Perlu diingat bahwa menemukan ukuran batch yang optimal untuk kebutuhan spesifik Anda mungkin memerlukan beberapa eksperimen. Meskipun ukuran batch yang lebih besar dapat menurunkan biaya, hal tersebut juga dapat menyebabkan sedikit penurunan kualitas. Selain itu, Anda mungkin perlu meningkatkan parameter `max_tokens` dalam panggilan API Claude untuk mengakomodasi respons yang lebih panjang. Untuk detail tentang jumlah maksimum token yang dapat dihasilkan oleh model pilihan Anda, lihat [tabel perbandingan model](https://platform.claude.com/docs/id/about-claude/models/overview#latest-models-comparison).
+Dalam contoh ini, fungsi `batch_moderate_messages` menangani moderasi seluruh batch pesan dengan satu panggilan Claude API. Di dalam fungsi tersebut, sebuah prompt dibuat yang mencakup daftar pesan yang akan dievaluasi dan kategori konten tidak aman. Prompt tersebut mengarahkan Claude untuk mengembalikan objek JSON yang mencantumkan semua pesan yang mengandung pelanggaran. Setiap pesan dalam respons diidentifikasi berdasarkan `id`-nya, yang sesuai dengan posisi pesan dalam batch. Perlu diingat bahwa menemukan ukuran batch yang optimal untuk kebutuhan spesifik Anda mungkin memerlukan beberapa eksperimen. Meskipun ukuran batch yang lebih besar dapat menurunkan biaya, hal tersebut juga dapat menyebabkan sedikit penurunan kualitas. Selain itu, Anda mungkin perlu meningkatkan parameter `max_tokens` dalam panggilan Claude API untuk mengakomodasi respons yang lebih panjang. Untuk detail tentang jumlah maksimum token yang dapat dihasilkan oleh model pilihan Anda, lihat [tabel perbandingan model](https://platform.claude.com/docs/id/models/overview#latest-models-comparison).
 
 <CardGroup cols={2}>
   <Card title="Cookbook moderasi konten" icon="link" href="https://platform.claude.com/cookbook/misc-building-moderation-filter">

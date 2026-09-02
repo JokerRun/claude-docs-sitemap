@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-09-01T02:22:36.834082Z
-sha256: 3271c35f40da2a44d0c3a3e306b96b943cd19e4e3b3c24a5d53c5f0f4b0b972f
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 74ca6082526c87e867e463187e33fdbe79172c8c51bf4b0130e1a129c7e28e45
 ---
 
 > ## Documentation Index
@@ -196,6 +196,8 @@ claude_code.interaction
 ```
 
 In Agent SDK and `claude -p` sessions, `claude_code.interaction` itself becomes a child of the caller's span when `TRACEPARENT` is set in the environment.
+
+When a `PreToolUse` hook [defers a tool call](/docs/en/hooks#defer-a-tool-call-for-later), Claude Code saves the trace context of the turn that deferred it. When you resume the session and the tool re-runs, the tool's spans join that earlier turn's trace as children of the turn's `claude_code.interaction` span.
 
 #### Span attributes
 

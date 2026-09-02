@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/dreams
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 600f552315c1af7a7179405be25e5552861eebf12d664c5c78a22619cd18b6ce
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 97b3d54a8ba3fe98727138ad6e404a36aff3f136feed4deb39030d2e707110d7
 ---
 
 ---
@@ -171,7 +171,7 @@ The dream produces another **output memory store**, separate from the input. The
   ```
 </CodeGroup>
 
-Dreaming inputs include the pre-existing memory store and an array of sessions. The selected model runs the dreaming pipeline; during the research preview `claude-opus-5`, `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-sonnet-5`, and `claude-sonnet-4-6` are supported. You can optionally pass `instructions` to steer the dreaming process; see [Steer with instructions](https://platform.claude.com/docs/en/managed-agents/dreams#steer-with-instructions).
+Dreaming inputs include the pre-existing memory store and an array of sessions. The selected model runs the dreaming pipeline. During the research preview, `claude-opus-5`, `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-sonnet-5`, and `claude-sonnet-4-6` are supported. You can optionally pass `instructions` to steer the dreaming process. See [Steer with instructions](https://platform.claude.com/docs/en/managed-agents/dreams#steer-with-instructions).
 
 The response is the full `dream` resource with `status: "pending"`:
 

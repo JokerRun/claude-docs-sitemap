@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/list
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 897bf139a4def3b8a924647ba2c155c2affc1cec8b1d81e7f58aef2d5ae0c3d3
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 6d42217f40663175c81b7d75ece7aa22440de098c43006d672e176477f4e7895
 ---
 
 # List User Profiles
@@ -27,6 +27,14 @@ List User Profiles
 
   - `"desc"`
 
+- `order_by: optional "created_at" or "name"`
+
+  Query parameter for order_by
+
+  - `"created_at"`
+
+  - `"name"`
+
 - `page: optional string`
 
   Query parameter for page
@@ -39,7 +47,7 @@ List User Profiles
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -123,6 +131,12 @@ List User Profiles
 
     - `"ce-user-management-2026-07-13"`
 
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
+
 ## Returns
 
 - `data: array of BetaUserProfile`
@@ -179,19 +193,15 @@ List User Profiles
 
     Platform's own identifier for this user. Not enforced unique.
 
+  - `external_user_onboarded_at: optional string or null`
+
+    A timestamp in RFC 3339 format
+
+    format: date-time
+
   - `name: optional string or null`
 
-    Real-world name of the entity this profile represents (company or individual). For a resold-to company (`access_type` `passthrough`, or `relationship` `resold` under the `user-profiles-2026-03-24` header) this is that company's name.
-
-  - `relationship: optional "external" or "resold" or "internal"`
-
-    How the entity behind a user profile relates to the platform that owns the API key. `external`: an individual end-user of the platform. `resold`: a company the platform resells Claude access to. `internal`: the platform's own usage.
-
-    - `"external"`
-
-    - `"resold"`
-
-    - `"internal"`
+    Real-world name of the entity this profile represents (company or individual). For a company the platform resells Claude access to (`access_type` `passthrough`) this is that company's name.
 
 - `next_page: string or null`
 
@@ -224,8 +234,8 @@ curl https://api.anthropic.com/v1/user_profiles \
       "updated_at": "2026-03-15T10:00:00Z",
       "access_type": "application",
       "external_id": "user_12345",
-      "name": "Example User",
-      "relationship": "external"
+      "external_user_onboarded_at": "2024-11-02T08:15:00Z",
+      "name": "Example User"
     }
   ],
   "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="

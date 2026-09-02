@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/retrieve
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: d698e9f6e1d4a21f5733b7a06f27dda3236a009f6a73bf0116c6ee6d508f3fab
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 795eaae46289e8b16975c7e90021919f563c14e05f45b5c6ff4f269a0b62da94
 ---
 
 # Get Tunnel
@@ -25,7 +25,7 @@ Fetches a tunnel by ID.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -108,6 +108,12 @@ Fetches a tunnel by ID.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ## Returns
 

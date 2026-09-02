@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/system-prompts/overview
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 55c15c19d6f975933c33ebbefcb555face63cab1930e297fd65a8ca34e252236
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: f889f94ae8fc185123d6674a565f17cf8fbcd297c34caadd6a1e99792b5d2262
 ---
 
 ---
@@ -14,6 +14,8 @@ description: See updates to the core system prompts on [claude.ai](https://claud
 Claude's web interface ([claude.ai](https://claude.ai)) and mobile apps use a system prompt to provide up-to-date information, such as the current date, to Claude at the start of every conversation. The system prompt also encourages certain behaviors, such as always providing code snippets in Markdown. This prompt is periodically updated to improve Claude's responses. These system prompt updates do not apply to the Claude API. Some models have multiple dated entries on their pages. Starting with the Claude 4.6 generation, each model ID is a [single fixed snapshot](https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions), so those models have one entry.
 
 <CardGroup cols={3}>
+  <Card id="claude-fable-5-1" title="Claude Fable 5.1" icon="file" href="https://platform.claude.com/docs/en/release-notes/system-prompts/claude-fable-5-1" />
+
   <Card id="claude-opus-5" title="Claude Opus 5" icon="file" href="https://platform.claude.com/docs/en/release-notes/system-prompts/claude-opus-5" />
 
   <Card id="claude-fable-5" title="Claude Fable 5" icon="file" href="https://platform.claude.com/docs/en/release-notes/system-prompts/claude-fable-5" />

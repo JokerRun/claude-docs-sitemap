@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: f721cdffa1ffd90742f46b6217ad152d277bba7922589c6a9c5d53f356ee0011
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 229dc276f7c9a724df223d3d4163cc5aa9537bfcdb2e88388a05c8e4089e1f52
 ---
 
 ---
@@ -19,12 +19,12 @@ Panduan ini memandu Anda dalam membuat agen, menyiapkan environment, memulai ses
 
 ## Konsep inti
 
-| Konsep          | Deskripsi                                                                                                                                  |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Agent**       | Model, prompt sistem, alat, server MCP, dan skill                                                                                          |
-| **Environment** | Konfigurasi untuk tempat sesi dijalankan: sandbox cloud yang dikelola Anthropic, atau sandbox yang di-host sendiri pada infrastruktur Anda |
-| **Session**     | Instance agent yang sedang berjalan dalam sebuah environment, menjalankan tugas tertentu dan menghasilkan output                           |
-| **Events**      | Pesan yang dipertukarkan antara aplikasi Anda dan agent (giliran pengguna, hasil alat, pembaruan status)                                   |
+| Konsep          | Deskripsi                                                                                                                                         |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Agent**       | Model, prompt sistem, alat, server MCP, dan skill                                                                                                 |
+| **Environment** | Konfigurasi untuk tempat sesi berjalan: sandbox cloud yang dikelola Anthropic, atau sandbox yang di-hosting sendiri di infrastruktur Anda sendiri |
+| **Session**     | Instans agen yang sedang berjalan di dalam sebuah environment, melakukan tugas tertentu dan menghasilkan output                                   |
+| **Events**      | Pesan yang dipertukarkan antara aplikasi Anda dan agen (giliran pengguna, hasil alat, pembaruan status)                                           |
 
 ## Prasyarat
 
@@ -44,7 +44,7 @@ Panduan ini memandu Anda dalam membuat agen, menyiapkan environment, memulai ses
     Untuk environment Linux, unduh binary rilis secara langsung.
 
     ```bash
-    VERSION=1.26.1
+    VERSION=1.27.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -95,7 +95,7 @@ ant --version
 
   <Tab title="Java">
     ```groovy Gradle
-    implementation("com.anthropic:anthropic-java:2.57.0")
+    implementation("com.anthropic:anthropic-java:2.58.0")
     ```
   </Tab>
 
@@ -133,7 +133,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 ## Buat sesi pertama Anda
 
 <Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 <Steps>
@@ -866,11 +866,11 @@ Saat Anda mengirim event pengguna, Claude Managed Agents:
 2. **Menjalankan loop agen:** Claude menentukan alat mana yang akan digunakan berdasarkan pesan Anda.
 3. **Menjalankan alat:** Penulisan file, perintah bash, dan pemanggilan alat lainnya berjalan di dalam sandbox.
 4. **Melakukan streaming event:** Anda menerima pembaruan real-time saat agen bekerja.
-5. **Menjadi idle:** Agen memancarkan event `session.status_idle` ketika tidak ada lagi yang perlu dilakukan.
+5. **Menjadi idle:** Agen mengeluarkan event `session.status_idle` ketika tidak ada lagi yang perlu dilakukan.
 
 ## Bangun aplikasi lengkap
 
-Masing-masing quickstart ini memasangkan Claude Managed Agents dengan framework chat populer untuk membuat aplikasi lengkap yang dapat dijalankan. Di masing-masing quickstart, framework merender antarmuka chat sementara sesi terkelola menjalankan loop agen di sisi server: sesi menyimpan transkrip, menjalankan alat di sandbox, dan melakukan streaming event yang dirender oleh front end.
+Masing-masing quickstart ini memadukan Claude Managed Agents dengan framework chat populer untuk membuat aplikasi lengkap yang dapat dijalankan. Di setiap quickstart, framework merender antarmuka chat sementara sesi terkelola menjalankan loop agen di sisi server: sesi menyimpan transkrip, menjalankan alat di sandbox, dan melakukan streaming event yang dirender oleh front end.
 
 <CardGroup cols={3}>
   <Card title="Chat SDK" icon="github-logo" href="https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/chat-sdk">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-combinations
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 8a1fe245cb904c930c77f64c8bfe29eccddc3ac4c615085bde787ff3a4dbf749
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 7602bbd3160e69c0e6897600d6f5c58cfc5030083138f6ad02599c6be84744e3
 ---
 
 ---
@@ -11,9 +11,9 @@ url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-combinat
 description: Pasangan alat Anthropic yang umum untuk agen riset, agen coding, dan agen yang berjalan lama.
 ---
 
-Alat yang disediakan Anthropic dirancang untuk bekerja bersama. Pola agen yang umum memasangkan alat-alat yang mencakup tahap-tahap alur kerja yang saling melengkapi: satu alat mengumpulkan atau menemukan, alat lainnya memproses atau bertindak. Kombinasi di bawah ini adalah titik awal, bukan ketentuan baku. Padukan sesuai dengan tugas Anda.
+Alat yang disediakan Anthropic dirancang untuk bekerja bersama. Pola agen yang umum memasangkan alat yang mencakup tahap-tahap pelengkap dalam suatu alur kerja: satu alat mengumpulkan atau menemukan, alat lainnya memproses atau bertindak. Kombinasi di bawah ini adalah titik awal, bukan ketentuan baku. Padukan sesuai kebutuhan tugas Anda.
 
-Setiap cuplikan hanya menampilkan array `tools`. Lihat [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls) untuk bentuk permintaan yang lengkap.
+Setiap cuplikan hanya menampilkan array `tools`. Lihat [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls) untuk bentuk permintaan lengkapnya.
 
 ## Agen riset: web\_search + code\_execution
 
@@ -43,7 +43,7 @@ Editor teks membaca dan memodifikasi file; bash menjalankan pengujian dan perint
 }
 ```
 
-Pasangkan ini dengan direktori kerja yang dibatasi dan daftar izin (allowlist) perintah jika agen beroperasi pada kode yang tidak tepercaya. Lihat [Alat editor teks](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool) dan [Alat bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool) untuk kontrak eksekusinya.
+Pasangkan ini dengan direktori kerja yang dibatasi dan allowlist perintah jika agen beroperasi pada kode yang tidak tepercaya. Lihat [Alat editor teks](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool) dan [Alat bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool) untuk kontrak eksekusinya.
 
 ## Kutip-lalu-ambil: web\_search + web\_fetch
 
@@ -58,11 +58,11 @@ Pencarian memunculkan URL kandidat; fetch mengambil konten halaman lengkap untuk
 }
 ```
 
-Pasangan ini berguna ketika jawabannya berada dalam konten berbentuk panjang (halaman dokumentasi, artikel, spesifikasi) yang tidak dapat ditangkap sepenuhnya oleh cuplikan pencarian. Fetch menarik halaman lengkap sehingga Claude dapat mengutip bagian-bagian tertentu.
+Pasangan ini berguna ketika jawabannya berada dalam konten berformat panjang (halaman dokumentasi, artikel, spesifikasi) yang tidak dapat ditangkap sepenuhnya oleh cuplikan pencarian. Fetch menarik halaman lengkap sehingga Claude dapat mengutip bagian-bagian tertentu.
 
 ## Agen yang berjalan lama: memory + alat lain apa pun
 
-Memory mempertahankan status di seluruh percakapan; alat-alat lainnya melakukan pekerjaannya. Tambahkan memory ke agen apa pun yang perlu mengingat sesi sebelumnya, seperti agen dukungan yang mengingat masalah pelanggan sebelumnya atau asisten proyek yang melacak keputusan yang dibuat minggu lalu.
+Memory mempertahankan status lintas percakapan; alat lainnya melakukan pekerjaannya. Tambahkan memory ke agen apa pun yang perlu mengingat sesi sebelumnya, seperti agen dukungan yang mengingat masalah pelanggan sebelumnya atau asisten proyek yang melacak keputusan yang dibuat minggu lalu.
 
 ```json
 {
@@ -70,13 +70,13 @@ Memory mempertahankan status di seluruh percakapan; alat-alat lainnya melakukan 
 }
 ```
 
-Tambahkan alat-alat Anda yang lain di samping `memory` dalam array yang sama.
+Tambahkan alat Anda yang lain di samping `memory` dalam array yang sama.
 
-Memory bersifat ortogonal terhadap alat-alat Anda yang lain. Memory tidak mengubah cara alat-alat tersebut berperilaku; memory memberi Claude tempat untuk menuliskan dan kemudian mengambil kembali fakta-fakta yang jika tidak akan hilang ketika "context window" (jendela konteks) direset. Lihat [Alat memory](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool) untuk model penyimpanannya.
+Memory bersifat ortogonal terhadap alat Anda yang lain. Memory tidak mengubah cara alat-alat tersebut berperilaku; memory memberi Claude tempat untuk mencatat dan kemudian mengambil kembali fakta yang jika tidak akan hilang ketika "context window" (jendela konteks) direset. Lihat [Alat memory](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool) untuk model penyimpanannya.
 
 ## Serba ada: computer\_use
 
-Alat computer use mencakup sebagian besar alat lainnya dengan mengoperasikan desktop penuh. Claude melihat tangkapan layar dan mengeluarkan tindakan mouse dan keyboard, yang berarti Claude dapat mengendalikan aplikasi apa pun yang dapat dikendalikan manusia. Gunakan ini ketika tugas memerlukan interaksi GUI arbitrer yang tidak dapat dijangkau oleh alat yang lebih spesifik: perangkat lunak lawas tanpa API, langkah verifikasi visual, atau alur kerja yang mencakup beberapa aplikasi desktop.
+Alat computer use mencakup sebagian besar alat lainnya dengan mengoperasikan desktop penuh. Claude melihat tangkapan layar dan mengeluarkan aksi mouse dan keyboard, yang berarti Claude dapat mengendalikan aplikasi apa pun yang dapat dikendalikan manusia. Gunakan ini ketika tugas memerlukan interaksi GUI arbitrer yang tidak dapat dijangkau oleh alat yang lebih spesifik: perangkat lunak lawas tanpa API, langkah verifikasi visual, atau alur kerja yang mencakup beberapa aplikasi desktop.
 
 ```json
 {
@@ -84,13 +84,13 @@ Alat computer use mencakup sebagian besar alat lainnya dengan mengoperasikan des
 }
 ```
 
-Entri toolset tidak memerlukan `name` atau dimensi tampilan: koordinat dinyatakan dalam ruang piksel dari tangkapan layar yang Anda kembalikan, dan Anda dapat menonaktifkan tindakan individual melalui field `configs` pada entri tersebut.
+Entri toolset tidak menerima `name` atau dimensi tampilan: koordinat dinyatakan dalam ruang piksel dari tangkapan layar yang Anda kembalikan, dan Anda dapat menonaktifkan aksi individual melalui field `configs` pada entri tersebut.
 
-Computer use adalah opsi yang paling umum dan juga yang paling lambat, karena Claude biasanya memerlukan tangkapan layar baru setelah setiap kumpulan tindakan. Utamakan alat yang lebih sempit ketika alat tersebut mencakup kasus penggunaan Anda, dan gunakan computer use ketika tidak ada yang lain yang cocok. Jika tugas tetap berada di dalam browser web, gunakan pola agen browser di bagian berikutnya. Lihat [Alat computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) untuk penyiapan sandbox.
+Computer use adalah opsi yang paling umum dan juga yang paling lambat, karena Claude biasanya memerlukan tangkapan layar baru setelah setiap kumpulan aksi. Utamakan alat yang lebih sempit jika alat tersebut mencakup kasus penggunaan Anda, dan gunakan computer use ketika tidak ada yang lain yang cocok. Jika tugas tetap berada di dalam browser web, gunakan pola agen browser di bagian berikutnya. Lihat [Alat computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) untuk penyiapan sandbox.
 
 ## Agen browser: browser\_use
 
-Ketika seluruh tugas terjadi di dalam halaman web (mengisi formulir, membaca konten halaman, bekerja di beberapa tab), alat browser use lebih cocok daripada computer use. Aplikasi Anda mengendalikan browser yang dikontrolnya dan mengembalikan tangkapan layar atau status halaman; Claude memanggil alat anggota yang sadar-halaman seperti `read_page`, `find`, `form_input`, dan `get_page_text` di samping klik dan pengetikan, sehingga Claude dapat bertindak berdasarkan referensi elemen selain koordinat piksel.
+Ketika seluruh tugas terjadi di dalam halaman web (mengisi formulir, membaca konten halaman, bekerja lintas tab), alat browser use lebih cocok daripada computer use. Aplikasi Anda mengendalikan browser yang dikontrolnya dan mengembalikan tangkapan layar atau status halaman; Claude memanggil alat anggota yang sadar-halaman seperti `read_page`, `find`, `form_input`, dan `get_page_text` di samping klik dan pengetikan, sehingga Claude dapat bertindak berdasarkan referensi elemen selain koordinat piksel.
 
 ```json
 {
@@ -98,13 +98,13 @@ Ketika seluruh tugas terjadi di dalam halaman web (mengisi formulir, membaca kon
 }
 ```
 
-Seperti toolset computer use, entri ini tidak memerlukan `name`, dan Anda menonaktifkan alat anggota individual melalui field `configs`-nya. Lihat [Alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) untuk kontrak eksekusinya.
+Seperti toolset computer use, entri ini tidak menerima `name`, dan Anda menonaktifkan alat anggota individual melalui field `configs`-nya. Lihat [Alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) untuk kontrak eksekusinya.
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
   <Card title="Referensi alat" icon="book" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference">
-    Katalog lengkap alat yang disediakan Anthropic dengan string tipe dan parameter.
+    Katalog lengkap alat yang disediakan Anthropic beserta string tipe dan parameternya.
   </Card>
 
   <Card title="Ikhtisar penggunaan alat" icon="map" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview">

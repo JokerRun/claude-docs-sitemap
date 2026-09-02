@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/create
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: a83100bdd7e79c96cacb8fef66fd55a6e7f740dc587a842a2b0cb123c594748c
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 872b80f01da40e96cab4b1ee85fa7695ca0ff18056500ec8756bdb0fe4bbea15
 ---
 
 # Create External Key
@@ -21,7 +21,7 @@ Create an external key config owned by the caller's organization.
 
     - `kms_arn: string`
 
-      Full ARN of the AWS KMS key.
+      Full ARN of the AWS KMS key. On Claude Platform on AWS the key must be a single-Region key in your organization's own AWS account; cross-account keys, multi-Region keys, and alias ARNs are rejected.
 
       maxLength: 2048
 
@@ -35,7 +35,7 @@ Create an external key config owned by the caller's organization.
 
       **Deprecated**
 
-      IAM role ARN. Deprecated — Anthropic reaches the KMS key via a managed intermediate role; this field is ignored.
+      IAM role ARN. Deprecated — Anthropic reaches the KMS key through its own intermediate role (or, on Claude Platform on AWS, with credentials AWS issues for the Workspace); this field is ignored.
 
   - `BetaGCPExternalKeyConfig object`
 
@@ -127,7 +127,7 @@ Create an external key config owned by the caller's organization.
 
       - `kms_arn: string`
 
-        Full ARN of the AWS KMS key.
+        Full ARN of the AWS KMS key. On Claude Platform on AWS the key must be a single-Region key in your organization's own AWS account; cross-account keys, multi-Region keys, and alias ARNs are rejected.
 
         maxLength: 2048
 
@@ -141,7 +141,7 @@ Create an external key config owned by the caller's organization.
 
         **Deprecated**
 
-        IAM role ARN. Deprecated — Anthropic reaches the KMS key via a managed intermediate role; this field is ignored.
+        IAM role ARN. Deprecated — Anthropic reaches the KMS key through its own intermediate role (or, on Claude Platform on AWS, with credentials AWS issues for the Workspace); this field is ignored.
 
     - `BetaGCPExternalKeyConfig object`
 

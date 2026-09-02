@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 29e79d2fe1d8f5e32eb7c6c9a3fb8e0e34155ee3df71808857e722194f582817
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: ac51c35de333f2665c8c54bf39fc85dccb04bf6ff19ae53b9522dea2933ca907
 ---
 
 ---
@@ -23,10 +23,10 @@ Untuk latar belakang konseptual tentang cara kerja Skill, lihat [ikhtisar Skills
 
 * Prompt sistem
 * Riwayat percakapan
-* Metadata Skill lain
+* Metadata Skill lainnya
 * Permintaan Anda yang sebenarnya
 
-Tidak setiap token dalam Skill Anda memiliki biaya langsung. Saat startup, hanya metadata (nama dan deskripsi) dari semua Skill yang dimuat terlebih dahulu. Claude membaca SKILL.md hanya ketika Skill tersebut menjadi relevan, dan membaca file tambahan hanya jika diperlukan. Namun, bersikap ringkas dalam SKILL.md tetap penting: setelah Claude memuatnya, setiap token bersaing dengan riwayat percakapan dan konteks lainnya.
+Tidak setiap token dalam Skill Anda memiliki biaya langsung. Saat startup, hanya metadata (nama dan deskripsi) dari semua Skill yang dimuat terlebih dahulu. Claude membaca SKILL.md hanya ketika Skill tersebut menjadi relevan, dan membaca file tambahan hanya sesuai kebutuhan. Namun, bersikap ringkas dalam SKILL.md tetap penting: setelah Claude memuatnya, setiap token bersaing dengan riwayat percakapan dan konteks lainnya.
 
 **Asumsi default:** Claude sudah sangat cerdas
 
@@ -203,7 +203,7 @@ Penamaan yang konsisten memudahkan untuk:
 * Merujuk Skill dalam dokumentasi dan percakapan
 * Memahami apa yang dilakukan Skill secara sekilas
 * Mengorganisasi dan mencari di antara banyak Skill
-* Memelihara pustaka skill yang profesional dan kohesif
+* Memelihara library skill yang profesional dan kohesif
 
 ### Menulis deskripsi yang efektif
 
@@ -257,12 +257,12 @@ description: Does stuff with files
 
 ### Pola progressive disclosure
 
-SKILL.md berfungsi sebagai ikhtisar yang mengarahkan Claude ke materi terperinci sesuai kebutuhan, seperti daftar isi dalam panduan orientasi. Untuk penjelasan tentang cara kerja "progressive disclosure" (pengungkapan bertahap), lihat [Cara kerja Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#how-skills-work) di ikhtisar.
+SKILL.md berfungsi sebagai ikhtisar yang mengarahkan Claude ke materi terperinci sesuai kebutuhan, seperti daftar isi dalam panduan orientasi. Untuk penjelasan tentang cara kerja "progressive disclosure" (pengungkapan bertahap), lihat [Cara kerja Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#how-skills-work) dalam ikhtisar.
 
 **Panduan praktis:**
 
-* Jaga isi SKILL.md di bawah 500 baris untuk performa optimal
-* Pisahkan konten ke file terpisah saat mendekati batas ini
+* Jaga isi SKILL.md di bawah 500 baris untuk kinerja optimal
+* Pisahkan konten ke file terpisah ketika mendekati batas ini
 * Gunakan pola berikut untuk mengorganisasi instruksi, kode, dan sumber daya secara efektif
 
 #### Ikhtisar visual: Dari sederhana ke kompleks
@@ -323,7 +323,7 @@ Claude memuat FORMS.md, REFERENCE.md, atau EXAMPLES.md hanya saat diperlukan.
 
 #### Pola 2: Organisasi berdasarkan domain
 
-Untuk Skill dengan beberapa domain, organisasikan konten berdasarkan domain untuk menghindari pemuatan konteks yang tidak relevan. Ketika pengguna bertanya tentang metrik penjualan, Claude hanya perlu membaca skema terkait penjualan, bukan data keuangan atau pemasaran. Ini menjaga penggunaan token tetap rendah dan konteks tetap fokus.
+Untuk Skill dengan beberapa domain, organisasikan konten berdasarkan domain untuk menghindari pemuatan konteks yang tidak relevan. Ketika pengguna bertanya tentang metrik penjualan, Claude hanya perlu membaca skema terkait penjualan, bukan data keuangan atau pemasaran. Ini menjaga penggunaan token tetap rendah dan konteks tetap terfokus.
 
 * `bigquery-skill/`
 
@@ -380,9 +380,9 @@ Claude membaca REDLINING.md atau OOXML.md hanya ketika pengguna membutuhkan fitu
 
 ### Hindari referensi bertingkat dalam
 
-Claude mungkin membaca file secara parsial ketika file tersebut dirujuk dari file lain yang juga dirujuk. Saat menemui referensi bertingkat, Claude mungkin menggunakan perintah seperti `head -100` untuk melihat pratinjau konten alih-alih membaca seluruh file, yang mengakibatkan informasi tidak lengkap.
+Claude mungkin membaca file secara parsial ketika file tersebut dirujuk dari file lain yang juga dirujuk. Saat menemui referensi bertingkat, Claude mungkin menggunakan perintah seperti `head -100` untuk melihat pratinjau konten alih-alih membaca seluruh file, yang menghasilkan informasi tidak lengkap.
 
-**Jaga referensi satu tingkat dari SKILL.md**. Semua file referensi harus ditautkan langsung dari SKILL.md untuk memastikan Claude membaca file secara lengkap saat diperlukan.
+**Jaga referensi satu tingkat dari SKILL.md**. Semua file referensi harus ditautkan langsung dari SKILL.md untuk memastikan Claude membaca file lengkap saat diperlukan.
 
 **Contoh buruk: Terlalu dalam**:
 
@@ -433,9 +433,9 @@ Untuk file referensi yang lebih panjang dari 100 baris, sertakan daftar isi di b
 
 Claude kemudian dapat membaca file lengkap atau melompat ke bagian tertentu sesuai kebutuhan.
 
-Untuk detail tentang bagaimana arsitektur berbasis filesystem ini memungkinkan progressive disclosure, lihat bagian [Lingkungan runtime](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices#runtime-environment) di bagian selanjutnya panduan ini.
+Untuk detail tentang bagaimana arsitektur berbasis filesystem ini memungkinkan progressive disclosure, lihat bagian [Lingkungan runtime](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices#runtime-environment) nanti dalam panduan ini.
 
-## Alur kerja dan loop umpan balik
+## Alur kerja dan feedback loop
 
 ### Gunakan alur kerja untuk tugas kompleks
 
@@ -481,7 +481,7 @@ Organize findings by theme. Include:
 Check that every claim references the correct source document. If citations are incomplete, return to Step 3.
 ````
 
-Contoh ini menunjukkan bagaimana alur kerja berlaku untuk tugas analisis yang tidak memerlukan kode. Pola checklist bekerja untuk proses kompleks multilangkah apa pun.
+Contoh ini menunjukkan bagaimana alur kerja berlaku untuk tugas analisis yang tidak memerlukan kode. Pola checklist berfungsi untuk proses kompleks multilangkah apa pun.
 
 **Contoh 2: Alur kerja pengisian formulir PDF** (untuk Skill dengan kode):
 
@@ -528,7 +528,7 @@ If verification fails, return to Step 2.
 
 Langkah-langkah yang jelas mencegah Claude melewatkan validasi penting. Checklist membantu Claude dan Anda melacak kemajuan melalui alur kerja multilangkah.
 
-### Terapkan loop umpan balik
+### Terapkan feedback loop
 
 **Pola umum:** Jalankan validator → perbaiki kesalahan → ulangi
 
@@ -603,7 +603,7 @@ This endpoint is no longer supported.
 </details>
 ```
 
-Bagian old patterns menyediakan konteks historis tanpa mengacaukan konten utama.
+Bagian old patterns memberikan konteks historis tanpa mengacaukan konten utama.
 
 ### Gunakan terminologi yang konsisten
 
@@ -756,7 +756,7 @@ Pandu Claude melalui titik-titik keputusan:
 
 1. **Identifikasi kesenjangan:** Jalankan Claude pada tugas-tugas representatif tanpa Skill. Dokumentasikan kegagalan spesifik atau konteks yang hilang
 2. **Buat evaluasi:** Bangun tiga skenario yang menguji kesenjangan ini
-3. **Tetapkan baseline:** Ukur performa Claude tanpa Skill
+3. **Tetapkan baseline:** Ukur kinerja Claude tanpa Skill
 4. **Tulis instruksi minimal:** Buat konten yang cukup saja untuk mengatasi kesenjangan dan lulus evaluasi
 5. **Iterasi:** Jalankan evaluasi, bandingkan dengan baseline, dan sempurnakan
 
@@ -799,9 +799,9 @@ Proses pengembangan Skill yang paling efektif melibatkan Claude sendiri. Bekerja
      Model Claude memahami format dan struktur Skill secara native. Anda tidak memerlukan prompt sistem khusus atau skill "menulis skill" agar Claude membantu membuat Skill. Cukup minta Claude membuat Skill dan Claude akan menghasilkan konten SKILL.md yang terstruktur dengan benar dengan frontmatter dan isi yang sesuai.
    </Tip>
 
-4. **Tinjau keringkasannya:** Periksa bahwa Claude A tidak menambahkan penjelasan yang tidak perlu. Minta: "Hapus penjelasan tentang apa arti win rate - Claude sudah mengetahuinya."
+4. **Tinjau keringkasan:** Periksa bahwa Claude A tidak menambahkan penjelasan yang tidak perlu. Minta: "Hapus penjelasan tentang apa arti win rate - Claude sudah mengetahuinya."
 
-5. **Perbaiki arsitektur informasi:** Minta Claude A mengorganisasi konten dengan lebih efektif. Misalnya: "Organisasikan ini sehingga skema tabel berada di file referensi terpisah. Kita mungkin menambahkan lebih banyak tabel nanti."
+5. **Perbaiki arsitektur informasi:** Minta Claude A mengorganisasi konten dengan lebih efektif. Misalnya: "Organisasikan ini agar skema tabel berada di file referensi terpisah. Kita mungkin menambahkan lebih banyak tabel nanti."
 
 6. **Uji pada tugas serupa:** Gunakan Skill dengan Claude B (instance baru dengan Skill yang dimuat) pada kasus penggunaan terkait. Amati apakah Claude B menemukan informasi yang tepat, menerapkan aturan dengan benar, dan menangani tugas dengan sukses.
 
@@ -857,7 +857,7 @@ Selalu gunakan garis miring ke depan dalam path file, bahkan di Windows:
 * ✓ **Baik:** `scripts/helper.py`, `reference/guide.md`
 * ✗ **Hindari:** `scripts\helper.py`, `reference\guide.md`
 
-Path bergaya Unix bekerja di semua platform, sementara path bergaya Windows menyebabkan kesalahan pada sistem Unix.
+Path bergaya Unix berfungsi di semua platform, sedangkan path bergaya Windows menyebabkan kesalahan pada sistem Unix.
 
 ### Hindari menawarkan terlalu banyak opsi
 
@@ -1008,7 +1008,7 @@ Ketika input dapat dirender sebagai gambar, minta Claude menganalisisnya:
   Dalam contoh ini, Anda perlu menulis skrip `pdf_to_images.py`.
 </Note>
 
-Kemampuan visi Claude membantu menganalisis tata letak dan struktur.
+Kemampuan vision Claude membantu menganalisis tata letak dan struktur.
 
 ### Buat output antara yang dapat diverifikasi
 
@@ -1021,7 +1021,7 @@ Ketika Claude melakukan tugas kompleks yang terbuka, ia dapat membuat kesalahan.
 **Mengapa pola ini berhasil:**
 
 * **Menangkap kesalahan lebih awal:** Validasi menemukan masalah sebelum perubahan diterapkan
-* **Dapat diverifikasi mesin:** Skrip menyediakan verifikasi objektif
+* **Dapat diverifikasi mesin:** Skrip memberikan verifikasi objektif
 * **Perencanaan yang dapat dibalik:** Claude dapat mengiterasi rencana tanpa menyentuh file asli
 * **Debugging yang jelas:** Pesan kesalahan menunjuk ke masalah spesifik
 
@@ -1040,7 +1040,7 @@ Daftarkan paket yang diperlukan dalam SKILL.md Anda dan verifikasi ketersediaann
 
 ### Lingkungan runtime
 
-Skill berjalan di lingkungan eksekusi kode dengan akses filesystem, perintah bash, dan kemampuan eksekusi kode. Untuk penjelasan konseptual arsitektur ini, lihat [Arsitektur Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#the-skills-architecture) di ikhtisar.
+Skill berjalan di lingkungan eksekusi kode dengan akses filesystem, perintah bash, dan kemampuan eksekusi kode. Untuk penjelasan konseptual arsitektur ini, lihat [Arsitektur Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#the-skills-architecture) dalam ikhtisar.
 
 **Bagaimana ini memengaruhi penulisan Anda:**
 
@@ -1075,7 +1075,7 @@ Skill berjalan di lingkungan eksekusi kode dengan akses filesystem, perintah bas
 
 * `bigquery-skill/`
 
-  * `SKILL.md` (ikhtisar, mengarah ke file referensi)
+  * `SKILL.md` (ikhtisar, menunjuk ke file referensi)
 
   * `reference/`
 
@@ -1083,9 +1083,9 @@ Skill berjalan di lingkungan eksekusi kode dengan akses filesystem, perintah bas
     * `sales.md` (data pipeline)
     * `product.md` (analitik penggunaan)
 
-Ketika pengguna bertanya tentang pendapatan, Claude membaca SKILL.md, melihat referensi ke `reference/finance.md`, dan memanggil bash untuk membaca hanya file tersebut. File sales.md dan product.md tetap berada di filesystem, mengonsumsi nol token konteks sampai diperlukan. Model berbasis filesystem inilah yang memungkinkan progressive disclosure. Claude dapat menavigasi dan secara selektif memuat tepat apa yang dibutuhkan setiap tugas.
+Ketika pengguna bertanya tentang pendapatan, Claude membaca SKILL.md, melihat referensi ke `reference/finance.md`, dan memanggil bash untuk membaca file itu saja. File sales.md dan product.md tetap berada di filesystem, mengonsumsi nol token konteks sampai diperlukan. Model berbasis filesystem inilah yang memungkinkan progressive disclosure. Claude dapat menavigasi dan secara selektif memuat tepat apa yang dibutuhkan setiap tugas.
 
-Untuk detail lengkap tentang arsitektur teknis, lihat [Cara kerja Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#how-skills-work) di ikhtisar Skills.
+Untuk detail lengkap tentang arsitektur teknis, lihat [Cara kerja Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#how-skills-work) dalam ikhtisar Skills.
 
 ### Referensi alat MCP
 
@@ -1138,7 +1138,7 @@ Lihat [ikhtisar Skills](https://platform.claude.com/docs/id/agents-and-tools/age
 
 ### Anggaran token
 
-Jaga isi SKILL.md di bawah 500 baris untuk performa optimal. Jika konten Anda melebihi ini, pisahkan ke file terpisah menggunakan pola progressive disclosure yang dijelaskan sebelumnya. Untuk detail arsitektur, lihat [ikhtisar Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#how-skills-work).
+Jaga isi SKILL.md di bawah 500 baris untuk kinerja optimal. Jika konten Anda melebihi ini, pisahkan ke file terpisah menggunakan pola progressive disclosure yang dijelaskan sebelumnya. Untuk detail arsitektur, lihat [ikhtisar Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#how-skills-work).
 
 ## Checklist untuk Skill yang efektif
 
@@ -1166,7 +1166,7 @@ Sebelum membagikan Skill, verifikasi:
 * [ ] Skrip memiliki dokumentasi yang jelas
 * [ ] Tidak ada path bergaya Windows (semua garis miring ke depan)
 * [ ] Langkah validasi/verifikasi untuk operasi penting
-* [ ] Loop umpan balik disertakan untuk tugas yang kritis terhadap kualitas
+* [ ] Feedback loop disertakan untuk tugas yang kritis terhadap kualitas
 
 ### Pengujian
 

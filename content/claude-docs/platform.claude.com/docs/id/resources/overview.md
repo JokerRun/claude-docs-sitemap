@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/overview
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 49155c927bd755c0a83d0edb9d1ded410e836b8f64ac22f4d4df4c2b5d1f9ca0
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: b28747a8c7a3dc560983a5fe34e241b1504b87db5164405a954210935a99147e
 ---
 
 ---
@@ -12,6 +12,10 @@ description: Kartu model dengan dokumentasi terperinci untuk model-model Claude.
 ---
 
 <CardGroup cols={3}>
+  <Card title="Kartu Sistem Claude Fable 5.1 dan Mythos 5.1" icon="file" href="https://www.anthropic.com/claude-fable-5-1-mythos-5-1-system-card">
+    Dokumentasi terperinci tentang Claude Fable 5.1 dan Claude Mythos 5.1.
+  </Card>
+
   <Card title="Kartu Sistem Claude Opus 5" icon="file" href="https://www.anthropic.com/claude-opus-5-system-card">
     Dokumentasi terperinci tentang Claude Opus 5.
   </Card>

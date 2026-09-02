@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/onboarding
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: ff1d82f5de2fab8f5f22274bf9af4ef787b3795f53887b04032c4b4110248d0b
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 5a2c0283cf04f010dae58062ff383289fb8a668701503c0be3de18c443e67c59
 ---
 
 ---
@@ -11,28 +11,28 @@ url: https://platform.claude.com/docs/id/managed-agents/onboarding
 description: Buat, uji, dan iterasi agen secara visual di Console, lalu jalankan dari kode Anda dengan API.
 ---
 
-[Console](https://platform.claude.com/workspaces/default/agent-quickstart/) menyediakan antarmuka visual untuk membuat dan mengonfigurasi agen. Console memungkinkan Anda melakukan iterasi pada konfigurasi secara interaktif sebelum menulis kode.
+[Console](https://platform.claude.com/workspaces/default/agent-quickstart/) menyediakan antarmuka visual untuk membuat dan mengonfigurasi agen. Console memungkinkan Anda melakukan iterasi konfigurasi secara interaktif sebelum menulis kode.
 
 <Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Cara membangun agen
 
-[Antarmuka visual](https://platform.claude.com/workspaces/default/agent-quickstart/) memandu Anda melalui setiap bidang dari definisi agen:
+[Antarmuka visual](https://platform.claude.com/workspaces/default/agent-quickstart/) memandu Anda melalui setiap bidang dalam definisi agen:
 
-* **Model dan prompt sistem:** Pilih model dan tulis prompt sistem dalam editor lebar penuh.
-* **Server MCP:** Tambahkan server MCP jarak jauh melalui URL dan autentikasi agen Anda untuk mengambil tindakan atas nama Anda.
-* **Alat:** Perluas kemampuan agen Anda menggunakan kumpulan alat agen yang telah dibuat sebelumnya dan alat MCP.
-* **Skill:** Lampirkan skill dari Anthropic atau skill kustom dari pustaka organisasi Anda.
+* **Model dan prompt sistem:** Pilih model dan tulis "system prompt" (prompt sistem) di editor lebar penuh.
+* **Server MCP:** Tambahkan server MCP jarak jauh melalui URL dan autentikasi agen Anda agar dapat mengambil tindakan atas nama Anda.
+* **Alat:** Perluas kemampuan agen Anda menggunakan toolset agen bawaan dan alat MCP.
+* **Skills:** Lampirkan skill Anthropic atau skill kustom dari pustaka organisasi Anda.
 
-Saat Anda mengonfigurasi, Console menampilkan permintaan API yang setara sehingga Anda dapat menyalinnya ke dalam kode Anda setelah Anda puas.
+Saat Anda mengonfigurasi, Console menampilkan permintaan API yang setara sehingga Anda dapat menyalinnya ke kode Anda setelah Anda puas.
 
 ## Menguji agen
 
-Console menyertakan runner sesi inline. Setelah mengonfigurasi agen Anda, Anda dapat langsung memulai sesi uji, mengirim pesan, dan mengamati aliran event tanpa meninggalkan halaman. Ini adalah cara tercepat untuk memeriksa bahwa prompt sistem dan pemilihan alat Anda menghasilkan perilaku yang Anda harapkan.
+Console menyertakan session runner inline. Setelah mengonfigurasi agen Anda, Anda dapat memulai sesi pengujian secara langsung, mengirim pesan, dan memantau aliran event tanpa meninggalkan halaman. Ini adalah cara tercepat untuk memeriksa bahwa prompt sistem dan pilihan alat Anda menghasilkan perilaku yang Anda harapkan.
 
-## Dari Console ke basis kode Anda
+## Dari Console ke codebase Anda
 
 Setelah agen Anda berfungsi sesuai harapan:
 

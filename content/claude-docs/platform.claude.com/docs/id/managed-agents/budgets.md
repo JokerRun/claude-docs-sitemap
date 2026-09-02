@@ -1,25 +1,25 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/budgets
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 83934c9ddba38e0e742e4d6d575b054d7ac867c84557069d45a1cac855103969
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 081f05cf3221bb78cd9df975868522cc6e69fe75d6d3fe52c27acafba0ff6b20
 ---
 
 ---
 title: Anggaran sesi
 url: https://platform.claude.com/docs/id/managed-agents/budgets
-description: Batasi pengeluaran sesi dengan anggaran dolar yang ketat yang diberlakukan pada tarif daftar publik.
+description: Batasi pengeluaran sesi dengan anggaran dolar yang ketat, diberlakukan berdasarkan tarif daftar publik.
 ---
 
-Anggaran sesi adalah batas atas pengeluaran ketat opsional yang Anda tetapkan saat Anda [membuat sesi](https://platform.claude.com/docs/id/managed-agents/sessions). Platform secara terus-menerus menghitung harga semua yang dikonsumsi sesi pada tarif daftar publik (**list cost** atau biaya daftar sesi) dan berhenti mengeluarkan permintaan model baru setelah biaya tersebut mencapai anggaran. Permintaan yang sedang berjalan saat batas terlampaui tetap diselesaikan, sehingga biaya daftar akhir dapat berakhir [sedikit melewati anggaran](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget). Sesi yang mencapai anggarannya akan dijeda dan menjadi [idle](https://platform.claude.com/docs/id/managed-agents/session-operations#session-statuses) alih-alih dihentikan; mengubah atau menghapus anggaran akan melanjutkan pekerjaannya secara otomatis. Deployment menerima anggaran yang sama dan menerapkannya pada setiap sesi yang dimulainya; lihat [Anggaran pada deployment](https://platform.claude.com/docs/id/managed-agents/budgets#budgets-on-deployments).
+"Session budget" (anggaran sesi) adalah batas atas pengeluaran ketat opsional yang Anda tetapkan saat [membuat sesi](https://platform.claude.com/docs/id/managed-agents/sessions). Platform secara terus-menerus menghitung harga semua yang dikonsumsi sesi berdasarkan tarif daftar publik (**list cost** atau biaya daftar sesi) dan berhenti mengeluarkan permintaan model baru setelah biaya tersebut mencapai anggaran. Permintaan yang sedang berjalan saat batas terlampaui tetap diselesaikan, sehingga biaya daftar akhir dapat berakhir [sedikit melewati anggaran](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget). Sesi yang mencapai anggarannya akan dijeda dan menjadi [idle](https://platform.claude.com/docs/id/managed-agents/session-operations#session-statuses) alih-alih dihentikan; mengubah atau menghapus anggaran akan melanjutkan pekerjaannya secara otomatis. Deployment menerima anggaran yang sama dan menerapkannya ke setiap sesi yang dimulainya; lihat [Anggaran pada deployment](https://platform.claude.com/docs/id/managed-agents/budgets#budgets-on-deployments).
 
 <Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Menetapkan anggaran saat pembuatan sesi
 
-Berikan field opsional `budget` saat Anda membuat sesi:
+Teruskan field opsional `budget` saat Anda membuat sesi:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -151,16 +151,16 @@ Berikan field opsional `budget` saat Anda membuat sesi:
 
 Objek `budget` memiliki dua field:
 
-* `type` selalu `"limit"`.
-* `max_list_cost` adalah batas itu sendiri: `amount` adalah bilangan bulat sen AS yang ditulis sebagai string tanpa nol di depan (`"125"` adalah $1,25 dan `"50"` adalah 50 sen) dan harus lebih besar dari nol. Bentuk desimal seperti `"25.00"` ditolak. Jumlah ini berupa string, bukan angka, sehingga tidak ada pembulatan float yang pernah diterapkan padanya. `currency` adalah kode mata uang ISO-4217 huruf besar; `USD` adalah satu-satunya mata uang yang didukung.
+* `type` selalu bernilai `"limit"`.
+* `max_list_cost` adalah batas itu sendiri: `amount` adalah bilangan bulat dalam sen AS yang ditulis sebagai string tanpa nol di depan (`"125"` berarti $1,25 dan `"50"` berarti 50 sen) dan harus lebih besar dari nol. Bentuk desimal seperti `"25.00"` ditolak. Nilai amount berupa string, bukan angka, sehingga tidak pernah ada pembulatan float yang diterapkan padanya. `currency` adalah kode mata uang ISO-4217 dalam huruf kapital; `USD` adalah satu-satunya mata uang yang didukung.
 
-Anggaran hanya dapat dilampirkan saat sesi dibuat. Menambahkan anggaran ke sesi yang sudah ada yang tidak memilikinya akan ditolak dengan error 400. Batas sesi yang memiliki anggaran dapat [diubah](https://platform.claude.com/docs/id/managed-agents/budgets#change-the-budget) atau [dihapus](https://platform.claude.com/docs/id/managed-agents/budgets#remove-the-budget) kapan saja.
+Anggaran hanya dapat dilampirkan saat sesi dibuat. Menambahkan anggaran ke sesi yang sudah ada dan belum memilikinya akan ditolak dengan error 400. Batas pada sesi yang memiliki anggaran dapat [diubah](https://platform.claude.com/docs/id/managed-agents/budgets#change-the-budget) atau [dihapus](https://platform.claude.com/docs/id/managed-agents/budgets#remove-the-budget) kapan saja.
 
 ## Cara biaya daftar diukur
 
-Platform menghitung harga apa yang dikonsumsi sesi, secara terus-menerus, pada tarif daftar publik:
+Platform menghitung harga apa yang dikonsumsi sesi, secara terus-menerus, berdasarkan tarif daftar publik:
 
-* **Token model**, pada harga daftar setiap model yang dilayani
+* **Token model**, berdasarkan harga daftar setiap model yang dilayani
 * **Pencarian web**, seharga $10 per 1.000 pencarian
 * **Waktu berjalan sesi**, seharga $0,08 per jam
 
@@ -170,19 +170,19 @@ Pemberlakuan menggunakan biaya daftar yang tepat dan tidak dibulatkan. Angka `li
 
 ## Ketika sesi mencapai anggarannya
 
-Batas diberlakukan di antara permintaan model, bukan di tengah permintaan. Sebelum setiap permintaan model, platform memeriksa biaya daftar yang telah dikonsumsi sesi, dan setelah total tersebut mencapai batas, setiap thread dijeda sebelum permintaan berikutnya. Permintaan yang membawa total melewati batas diterima saat sesi masih di bawah batas dan berjalan hingga selesai, sehingga `list_cost` yang tercatat pada sesi yang dijeda terbaca sama dengan atau sedikit melewati `max_list_cost`: sesi yang dibatasi pada `"50"` (50 sen) dapat dijeda dengan `list_cost` sebesar `"53"`. Ini adalah hal yang diharapkan, bukan kesalahan penagihan, dan kelebihannya dibatasi oleh satu permintaan model per thread. Perlakukan anggaran sebagai batas pada pekerjaan baru, bukan titik berhenti yang tepat, dan tentukan ukuran batas dengan mempertimbangkan margin satu permintaan tersebut.
+Batas diberlakukan di antara permintaan model, bukan di tengah permintaan. Sebelum setiap permintaan model, platform memeriksa biaya daftar yang telah dikonsumsi sesi, dan setelah total tersebut mencapai batas, setiap thread dijeda sebelum permintaan berikutnya. Permintaan yang membawa total melewati batas diterima saat sesi masih di bawah batas dan berjalan hingga selesai, sehingga `list_cost` yang tercatat pada sesi yang dijeda bernilai sama dengan atau sedikit melewati `max_list_cost`: sesi dengan batas `"50"` (50 sen) dapat dijeda dengan `list_cost` sebesar `"53"`. Ini adalah hal yang diharapkan, bukan kesalahan penagihan, dan kelebihannya dibatasi oleh satu permintaan model per thread. Perlakukan anggaran sebagai batas untuk pekerjaan baru, bukan titik berhenti yang tepat, dan tentukan ukuran batas dengan mempertimbangkan margin satu permintaan tersebut.
 
-Sesi yang mencapai anggarannya menjadi idle dengan `stop_reason` berupa `budget_reached`; sesi tidak dihentikan, dan riwayat serta sandbox-nya dipertahankan seperti sesi idle lainnya. Pada [event stream](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) Anda akan melihat, secara berurutan:
+Sesi yang mencapai anggarannya menjadi idle dengan `stop_reason` bernilai `budget_reached`; sesi tidak dihentikan, dan riwayat serta sandbox-nya dipertahankan seperti sesi idle lainnya. Pada [event stream](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) Anda akan melihat, secara berurutan:
 
-1. Event `session.thread_status_idle` dengan `stop_reason` berupa `budget_reached` saat setiap thread dijeda.
+1. Event `session.thread_status_idle` dengan `stop_reason` bernilai `budget_reached` saat setiap thread dijeda.
 2. Event [`session.usage`](https://platform.claude.com/docs/id/managed-agents/budgets#monitor-spend) dengan penggunaan kumulatif dan biaya daftar sesi.
-3. Event `session.status_idle` dengan `stop_reason` berupa `budget_reached`. Event usage selalu langsung mendahului event idle ini.
+3. Event `session.status_idle` dengan `stop_reason` bernilai `budget_reached`. Event usage selalu langsung mendahului event idle ini.
 
-Thread yang permintaan terakhirnya melewati batas sekaligus menyelesaikan gilirannya melaporkan `end_turn` pada event `session.thread_status_idle` miliknya sendiri sementara sesi tetap melaporkan `budget_reached`; perlakukan `stop_reason` tingkat sesi sebagai sinyal bahwa sesi dijeda pada anggarannya.
+Thread yang permintaan terakhirnya melewati batas sekaligus menyelesaikan gilirannya melaporkan `end_turn` pada event `session.thread_status_idle` miliknya sendiri, sementara sesi tetap melaporkan `budget_reached`; perlakukan `stop_reason` tingkat sesi sebagai sinyal bahwa sesi dijeda pada anggarannya.
 
 ### Event yang diterima pada batas
 
-Selama sesi berada pada atau melebihi anggarannya, sesi hanya menerima event yang menyelesaikan pekerjaan yang sudah berlangsung:
+Selama sesi berada pada atau melebihi anggarannya, sesi hanya menerima event yang menyelesaikan pekerjaan yang sudah berjalan:
 
 * `user.tool_confirmation`
 * `user.tool_result`
@@ -191,7 +191,7 @@ Selama sesi berada pada atau melebihi anggarannya, sesi hanya menerima event yan
 
 Event apa pun yang akan memulai pekerjaan baru, seperti `user.message`, ditolak dengan error 400 yang menyebutkan daftar ini. Hasil yang diselesaikan dicatat tanpa memicu permintaan model baru; sesi tetap dijeda pada anggarannya.
 
-`user.interrupt` yang dikirim saat sesi dijeda pada anggarannya (semua thread dijeda pada batas) diterima dan diabaikan: event ini tidak muncul dalam daftar event dan tidak mengubah apa pun. Ubah atau hapus anggaran untuk melanjutkan.
+`user.interrupt` yang dikirim saat sesi dijeda pada anggarannya (semua thread dijeda pada batas) diterima dan diabaikan: event tersebut tidak muncul dalam daftar event dan tidak mengubah apa pun. Ubah atau hapus anggaran untuk melanjutkan.
 
 ## Melanjutkan sesi yang mencapai anggarannya
 
@@ -199,7 +199,7 @@ Ubah atau hapus anggaran dengan pembaruan sesi. Pembaruan yang diterima akan mel
 
 ### Mengubah anggaran
 
-Perbarui sesi dengan `max_list_cost` baru. Nilai baru dapat lebih tinggi atau lebih rendah dari batas saat ini, tetapi harus benar-benar lebih besar dari biaya daftar yang telah dikonsumsi sesi; jika tidak, pembaruan ditolak dengan error 400: `budget.max_list_cost must be greater than the session's consumed list cost`. Karena biaya yang dikonsumsi biasanya berada [sedikit melewati batas lama](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget) saat sesi dijeda, dasarkan nilai baru pada `usage.list_cost` yang dilaporkan sesi, bukan pada `max_list_cost` lama. Tetapkan satu sen atau lebih di atas angka tersebut: nilai yang dilaporkan dibulatkan dan dapat berada sedikit di bawah biaya terkonsumsi tepat yang digunakan pemeriksaan.
+Perbarui sesi dengan `max_list_cost` baru. Nilai baru dapat lebih tinggi atau lebih rendah dari batas saat ini, tetapi harus benar-benar lebih besar dari biaya daftar yang telah dikonsumsi sesi; jika tidak, pembaruan ditolak dengan error 400: `budget.max_list_cost must be greater than the session's consumed list cost`. Karena biaya yang dikonsumsi biasanya berada [sedikit melewati batas lama](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget) saat sesi dijeda, dasarkan nilai baru pada `usage.list_cost` yang dilaporkan sesi, bukan pada `max_list_cost` lama. Tetapkan satu sen atau lebih di atas angka tersebut: nilai yang dilaporkan dibulatkan dan dapat berada sedikit di bawah biaya konsumsi tepat yang digunakan pemeriksaan.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -309,7 +309,7 @@ Perbarui sesi dengan `max_list_cost` baru. Nilai baru dapat lebih tinggi atau le
 
 ### Menghapus anggaran
 
-Tetapkan `budget` ke `null` untuk menghapus batas sepenuhnya. Pekerjaan sesi yang dijeda dilanjutkan, dan event `session.updated` yang dihasilkan membawa `budget` yang ditetapkan ke `null`.
+Tetapkan `budget` ke `null` untuk menghapus batas sepenuhnya. Pekerjaan sesi yang dijeda dilanjutkan, dan event `session.updated` yang dihasilkan membawa `budget` bernilai `null`.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -381,17 +381,17 @@ Tetapkan `budget` ke `null` untuk menghapus batas sepenuhnya. Pekerjaan sesi yan
 
 ## Memantau pengeluaran
 
-Objek sesi membawa `budget`-nya dan objek `usage` dengan pengeluaran yang dilacak: `usage.list_cost` adalah biaya daftar yang telah dikonsumsi sesi, dan `usage.active_seconds` adalah waktu berjalan yang menjadi dasar penghitungan biaya runtime-nya. Pada sesi yang dijeda di `budget_reached`, perkirakan `usage.list_cost` terbaca sama dengan atau sedikit melewati `max_list_cost`: [permintaan yang melewati batas](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget) selesai sebelum jeda. `active_seconds` tingkat sesi menghitung aktivitas yang tumpang tindih dari thread konkuren satu kali saja. Respons pengambilan thread membawa dua field yang sama pada `usage` milik thread itu sendiri, dihitung per thread. Angka per thread dibulatkan secara independen dan tidak mencakup biaya waktu berjalan sesi, sehingga jumlahnya tidak persis sama dengan `list_cost` sesi; angka sesi adalah angka yang menjadi dasar pemberlakuan anggaran.
+Objek sesi membawa `budget` miliknya dan objek `usage` dengan pengeluaran yang dilacak: `usage.list_cost` adalah biaya daftar yang telah dikonsumsi sesi, dan `usage.active_seconds` adalah waktu berjalan yang menjadi dasar penghitungan biaya runtime-nya. Pada sesi yang dijeda dengan `budget_reached`, perkirakan `usage.list_cost` bernilai sama dengan atau sedikit melewati `max_list_cost`: [permintaan yang melewati batas](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget) selesai sebelum jeda. `active_seconds` tingkat sesi menghitung aktivitas yang tumpang tindih dari thread konkuren hanya sekali. Respons pengambilan thread membawa dua field yang sama pada `usage` milik thread itu sendiri, dihitung per thread. Angka per thread dibulatkan secara independen dan tidak mencakup biaya waktu berjalan sesi, sehingga jumlahnya tidak persis sama dengan `list_cost` sesi; angka sesi adalah angka yang menjadi acuan pemberlakuan anggaran.
 
-Event `session.usage` adalah snapshot penggunaan kumulatif sesi dan biaya daftar yang dilacak. Event ini membawa total token sesi, `list_cost`, `active_seconds`, jumlah permintaan `server_tool_use` (`web_search_requests`, yang dihitung ke dalam biaya daftar per permintaan, dan `web_fetch_requests`, yang terbaca `0` karena permintaan web fetch tidak memiliki biaya per permintaan dan tidak diukur), serta gema dari `budget` sesi, atau `null` jika sesi tidak memilikinya. Event ini muncul dalam daftar event dan stream sesi. Sesi memancarkan satu event ini tepat sebelum menjadi idle, apa pun alasan berhentinya, sehingga sesi yang mencapai anggarannya selalu memancarkan satu event ini tepat sebelum event idle budget-reached.
+Event `session.usage` adalah snapshot penggunaan kumulatif sesi dan biaya daftar yang dilacak. Event ini membawa total token sesi, `list_cost`, `active_seconds`, jumlah permintaan `server_tool_use` (`web_search_requests`, yang dihitung ke dalam biaya daftar per permintaan, dan `web_fetch_requests`, yang bernilai `0` karena permintaan web fetch tidak dikenai biaya per permintaan dan tidak diukur), serta salinan `budget` sesi, atau `null` jika sesi tidak memilikinya. Event ini muncul dalam daftar event dan stream sesi. Sesi memancarkan satu event ini tepat sebelum menjadi idle, apa pun alasan berhentinya, sehingga sesi yang mencapai anggarannya selalu memancarkan satu event ini tepat sebelum event idle budget-reached.
 
 Untuk membaca penggunaan dari stream dan objek sesi, lihat [Melacak penggunaan](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#tracking-usage).
 
 ## Anggaran dalam sesi multiagen
 
-Sesi [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration) memiliki satu anggaran yang dibagi di antara semua thread-nya; tidak ada batas per thread. Konsumsi setiap thread dihitung pada model yang dilayaninya sendiri, dan thread dijeda secara independen saat batas bersama tercapai. Konsultasi [advisor](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor) dihitung terhadap anggaran yang sama, dengan harga pada tarif model advisor. Satu thread dapat dijeda di `budget_reached` sementara thread lain menyelesaikan permintaannya yang sedang berjalan.
+Sesi [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration) memiliki satu anggaran yang dibagi di antara semua thread-nya; tidak ada batas per thread. Konsumsi setiap thread dihitung berdasarkan model yang dilayaninya sendiri, dan thread dijeda secara independen saat batas bersama tercapai. Konsultasi [advisor](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor) dihitung terhadap anggaran yang sama, dengan harga berdasarkan tarif model advisor. Satu thread dapat dijeda pada `budget_reached` sementara thread lain menyelesaikan permintaannya yang sedang berjalan.
 
-Permintaan yang tertunda mengungguli batas: sesi dengan satu thread yang menunggu di `requires_action` dan thread lain yang dijeda di `budget_reached` melaporkan `requires_action` di tingkat sesi. Permintaan yang tertunda masih memerlukan jawaban, dan menjawabnya merupakan [event penyelesaian](https://platform.claude.com/docs/id/managed-agents/budgets#events-accepted-at-the-cap) yang tidak diblokir oleh anggaran.
+Permintaan yang tertunda lebih diutamakan daripada batas: sesi dengan satu thread yang menunggu pada `requires_action` dan thread lain yang dijeda pada `budget_reached` melaporkan `requires_action` di tingkat sesi. Permintaan yang tertunda tetap memerlukan jawaban, dan menjawabnya merupakan [event penyelesaian](https://platform.claude.com/docs/id/managed-agents/budgets#events-accepted-at-the-cap) yang tidak diblokir oleh anggaran.
 
 ## Anggaran pada deployment
 
@@ -406,26 +406,26 @@ Permintaan yang tertunda mengungguli batas: sesi dengan satu thread yang menungg
 }
 ```
 
-Batas disalin ke setiap sesi yang dimulai deployment, sehingga batas tersebut membatasi setiap run secara terpisah, bukan pengeluaran kumulatif deployment. Mengubah anggaran deployment berlaku untuk sesi yang dimulai deployment setelahnya, bukan untuk sesi yang sudah berjalan. Tidak seperti sesi, anggaran deployment dapat dikosongkan dengan `null` dan ditetapkan lagi nanti. Lihat [Menetapkan anggaran pada setiap run](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments#set-a-budget-on-each-run).
+Batas disalin ke setiap sesi yang dimulai deployment, sehingga batas tersebut membatasi setiap run secara terpisah, bukan pengeluaran kumulatif deployment. Mengubah anggaran deployment berlaku untuk sesi yang dimulai deployment setelahnya, bukan untuk sesi yang sudah berjalan. Tidak seperti sesi, anggaran deployment dapat dihapus dengan `null` dan ditetapkan kembali nanti. Lihat [Menetapkan anggaran pada setiap run](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments#set-a-budget-on-each-run).
 
 ## Model tanpa harga daftar
 
-Anggaran hanya dapat melacak konsumsi yang dapat dihitung harganya oleh platform. Membuat sesi beranggaran yang agennya, atau agen atau advisor mana pun pada [daftar multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration)-nya, menggunakan model tanpa harga daftar publik akan ditolak dengan error 400 yang menyatakan bahwa tidak ada harga daftar yang tersedia untuk model tersebut.
+Anggaran hanya dapat melacak konsumsi yang dapat dihitung harganya oleh platform. Membuat sesi beranggaran yang agennya, atau agen maupun advisor mana pun pada [daftar multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration)-nya, menggunakan model tanpa harga daftar publik akan ditolak dengan error 400 yang menyatakan bahwa tidak ada harga daftar yang tersedia untuk model tersebut.
 
-Jika penggunaan sesi beranggaran kemudian mencakup model tanpa harga daftar, anggaran tidak dapat lagi mengukur pengeluaran sesi: sesi dapat dijeda dengan `stop_reason` berupa `budget_reached`, dan mengubah anggaran akan ditolak. Hapus anggaran untuk melanjutkan sesi.
+Jika penggunaan sesi beranggaran kemudian mencakup model tanpa harga daftar, anggaran tidak dapat lagi mengukur pengeluaran sesi: sesi dapat dijeda dengan `stop_reason` bernilai `budget_reached`, dan mengubah anggaran akan ditolak. Hapus anggaran untuk melanjutkan sesi.
 
 ## Referensi error
 
-Permintaan terkait anggaran ditolak dalam kasus berikut:
+Permintaan terkait anggaran ditolak dalam kasus-kasus berikut:
 
 | Kondisi                                                                                                                                                                                                                                                      | Status |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
 | Event yang memulai pekerjaan (misalnya, `user.message`) dikirim saat sesi berada pada atau melebihi anggarannya; error menyebutkan [event penyelesaian yang diterima](https://platform.claude.com/docs/id/managed-agents/budgets#events-accepted-at-the-cap) | 400    |
 | Anggaran ditetapkan ke nilai yang sama dengan atau di bawah biaya daftar yang telah dikonsumsi sesi                                                                                                                                                          | 400    |
 | Anggaran ditambahkan ke sesi yang dibuat tanpa anggaran, atau ditambahkan kembali setelah dihapus                                                                                                                                                            | 400    |
-| `amount` bukan bilangan bulat sen (misalnya, `"25.00"`), bernilai nol atau negatif, atau `currency` bukan `USD`                                                                                                                                              | 400    |
+| `amount` bukan bilangan bulat dalam sen (misalnya, `"25.00"`), bernilai nol atau negatif, atau `currency` bukan `USD`                                                                                                                                        | 400    |
 | Pembuatan beranggaran mereferensikan model [tanpa harga daftar publik](https://platform.claude.com/docs/id/managed-agents/budgets#models-without-a-list-price)                                                                                               | 400    |
 
 <Note>
-  Anggaran sesi adalah batas ketat dalam dolar AS (ditulis dalam sen) pada satu sesi, yang diberlakukan oleh platform. Anggaran ini berbeda dari [anggaran tugas](https://platform.claude.com/docs/id/build-with-claude/task-budgets) Messages API, yang merupakan anggaran bersifat saran dalam satuan token yang digunakan model untuk mengatur dirinya sendiri dalam satu loop agentik.
+  Anggaran sesi adalah batas ketat dalam dolar AS (ditulis dalam sen) pada satu sesi, yang diberlakukan oleh platform. Anggaran ini berbeda dari [task budget](https://platform.claude.com/docs/id/build-with-claude/task-budgets) pada Messages API, yang merupakan anggaran bersifat anjuran dalam satuan token yang digunakan model untuk mengatur dirinya sendiri dalam satu loop agentik.
 </Note>

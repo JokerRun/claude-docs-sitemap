@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 850db35d375a6b6069c901a01f5d215c62480c88dd332177b464f49a41800a65
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 0696f7421fd74d8fa203955138b7e803ec8bc9e2f9f6d32dee79a3539576d4b1
 ---
 
 ---
@@ -25,20 +25,20 @@ description: Hitung token dalam sebuah pesan sebelum Anda mengirimkannya ke Clau
 
 ## Cara menghitung token pesan
 
-Endpoint [penghitungan token](https://platform.claude.com/docs/id/api/messages-count-tokens) menerima daftar input terstruktur yang sama seperti untuk membuat pesan, termasuk dukungan untuk "system prompt" (prompt sistem), [alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), [gambar](https://platform.claude.com/docs/id/build-with-claude/vision), dan [PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support). Respons berisi jumlah total token input.
+Endpoint [penghitungan token](https://platform.claude.com/docs/id/api/messages-count-tokens) menerima daftar input terstruktur yang sama seperti untuk membuat pesan, termasuk dukungan untuk prompt sistem, [alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), [gambar](https://platform.claude.com/docs/id/build-with-claude/vision), dan [PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support). Respons berisi jumlah total token input.
 
 <Note>
-  Jumlah token adalah sebuah **perkiraan**. Dalam beberapa kasus, jumlah token input aktual yang digunakan saat membuat pesan mungkin berbeda sedikit.
+  Jumlah token adalah sebuah **estimasi**. Dalam beberapa kasus, jumlah token input aktual yang digunakan saat membuat pesan mungkin berbeda sedikit.
 
   Jumlah token dapat mencakup token yang ditambahkan secara otomatis oleh Anthropic untuk optimasi sistem. **Anda tidak ditagih untuk token yang ditambahkan sistem**. Penagihan hanya mencerminkan konten Anda.
 </Note>
 
 ### Model yang didukung
 
-Semua [model aktif](https://platform.claude.com/docs/id/about-claude/models/overview) mendukung penghitungan token, termasuk Claude Opus 5 dan Claude Sonnet 5.
+Semua [model aktif](https://platform.claude.com/docs/id/models/overview) mendukung penghitungan token.
 
 <Note>
-  Model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview menggunakan tokenizer yang lebih baru. Teks input yang sama menghasilkan sekitar 30 persen lebih banyak token dibandingkan pada model sebelumnya. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Hitung ulang prompt terhadap model yang Anda rencanakan untuk digunakan daripada menggunakan kembali jumlah yang diukur terhadap model sebelumnya.
+  Model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview menggunakan tokenizer yang lebih baru. Teks input yang sama menghasilkan sekitar 30 persen lebih banyak token dibandingkan model sebelumnya. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Hitung ulang prompt terhadap model yang Anda rencanakan untuk digunakan daripada menggunakan kembali jumlah yang diukur terhadap model sebelumnya.
 </Note>
 
 ### Menghitung token dalam pesan dasar
@@ -1401,28 +1401,28 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
 
 ***
 
-## Jumlah token pada Claude Fable 5 dan Claude Mythos 5
+## Jumlah token pada model Claude Fable dan Claude Mythos
 
-Claude Fable 5 dan Claude Mythos 5 menggunakan tokenizer yang diperkenalkan bersama Claude Opus 4.7, yang menghasilkan kira-kira 30 persen lebih banyak token dibandingkan model sebelum Claude Opus 4.7 untuk teks yang sama. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Endpoint penghitungan token mengembalikan jumlah berdasarkan tokenizer dari `model` yang Anda berikan, jadi untuk mengukur perbedaannya bagi beban kerja Anda, hitung permintaan yang sama dua kali: sekali dengan model Anda saat ini dan sekali dengan `model: "claude-fable-5"` (atau `"claude-mythos-5"`), lalu bandingkan kedua nilai `input_tokens` tersebut.
+Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5 berbagi tokenizer yang diperkenalkan bersama Claude Opus 4.7. Sebuah prompt dihitung sama pada keempat model tersebut, dan kira-kira 30 persen lebih tinggi dibandingkan model sebelum Claude Opus 4.7 (peningkatan pastinya bergantung pada konten). Endpoint penghitungan token menghitung berdasarkan tokenizer dari `model` yang Anda berikan. Untuk mengukur perbedaannya pada beban kerja Anda, hitung permintaan yang sama dua kali, sekali dengan model Anda saat ini dan sekali dengan model yang Anda rencanakan untuk beralih, lalu bandingkan kedua nilai `input_tokens` tersebut.
 
 <Note>
-  **Penagihan dan migrasi:** Penggunaan dan penagihan pada Claude Fable 5 dan Claude Mythos 5 mencerminkan jumlah dari tokenizer ini. Jika Anda bermigrasi dari model sebelum Claude Opus 4.7, konten yang sama mengonsumsi kira-kira 30 persen lebih banyak token. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Saat memigrasikan beban kerja ke Claude Fable 5 dan Claude Mythos 5, jangan menggunakan kembali jumlah token yang diukur pada model sebelum Claude Opus 4.7 untuk memperkirakan biaya atau kesesuaian "context window" (jendela konteks). Hitung prompt Anda dengan `model: "claude-fable-5"` (atau `"claude-mythos-5"`).
+  **Penagihan dan migrasi:** Penggunaan dan penagihan pada model-model ini mencerminkan jumlah dari tokenizer ini. Saat bermigrasi dari model sebelum Claude Opus 4.7, jangan gunakan kembali jumlah token yang diukur pada model lama untuk memperkirakan biaya atau kesesuaian jendela konteks. Hitung prompt Anda dengan ID `model` yang Anda rencanakan untuk digunakan (misalnya, `"claude-fable-5-1"`).
 </Note>
 
 ***
 
 ## Harga dan batas laju
 
-Penghitungan token **gratis untuk digunakan** tetapi tunduk pada batas laju permintaan per menit berdasarkan [tingkat penggunaan](https://platform.claude.com/docs/id/api/rate-limits#rate-limits) Anda. Jika Anda memerlukan batas yang lebih tinggi, gunakan **Request rate limit increase** di halaman [Rate limits](https://platform.claude.com/settings/limits).
+Penghitungan token **gratis untuk digunakan** tetapi tunduk pada batas laju permintaan per menit berdasarkan [tingkat penggunaan](https://platform.claude.com/docs/id/api/rate-limits#rate-limits) Anda. Jika Anda memerlukan batas yang lebih tinggi, gunakan **Request rate limit increase** pada halaman [Rate limits](https://platform.claude.com/settings/limits).
 
 | Tingkat penggunaan | Permintaan per menit (RPM) |
 | ------------------ | -------------------------- |
-| Start              | 2.000                      |
-| Build              | 4.000                      |
-| Scale              | 8.000                      |
+| Start              | 5.000                      |
+| Build              | 10.000                     |
+| Scale              | 20.000                     |
 
 <Note>
-  Penghitungan token dan pembuatan pesan memiliki batas laju yang terpisah dan independen. Penggunaan salah satunya tidak dihitung terhadap batas yang lainnya.
+  Penghitungan token dan pembuatan pesan memiliki batas laju yang terpisah dan independen. Penggunaan salah satunya tidak dihitung terhadap batas yang lain.
 </Note>
 
 ***
@@ -1431,7 +1431,7 @@ Penghitungan token **gratis untuk digunakan** tetapi tunduk pada batas laju perm
 
 <AccordionGroup>
   <Accordion title="Apakah penghitungan token menggunakan caching prompt?">
-    Tidak, penghitungan token memberikan perkiraan tanpa menggunakan logika caching. Meskipun Anda dapat menyertakan blok `cache_control` dalam permintaan penghitungan token Anda, "prompt caching" (caching prompt) hanya terjadi selama pembuatan pesan yang sebenarnya.
+    Tidak, penghitungan token memberikan estimasi tanpa menggunakan logika caching. Meskipun Anda dapat menyertakan blok `cache_control` dalam permintaan penghitungan token Anda, "prompt caching" (caching prompt) hanya terjadi selama pembuatan pesan yang sebenarnya.
   </Accordion>
 </AccordionGroup>
 
@@ -1440,7 +1440,7 @@ Penghitungan token **gratis untuk digunakan** tetapi tunduk pada batas laju perm
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Menghitung token pesan" icon="code" href="https://platform.claude.com/docs/id/api/messages-count-tokens">
+  <Card title="Hitung token pesan" icon="code" href="https://platform.claude.com/docs/id/api/messages-count-tokens">
     Baca referensi API lengkap untuk endpoint penghitungan token.
   </Card>
 

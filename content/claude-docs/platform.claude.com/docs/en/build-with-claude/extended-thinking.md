@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/extended-thinking
-fetched_at: 2026-09-01T02:22:36.834082Z
-sha256: 1b263bf346961ebf039da868c76f668b80538797294c08fb1b2e9ab308ad651d
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: e4659de68a1379fdcd291cf6ba725003e78450c67e57d363273cc6238a825c96
 ---
 
 ---
@@ -359,7 +359,7 @@ If your model supports only extended thinking (Claude Sonnet 4.5, Claude Opus 4.
 You need to migrate off `type: "enabled"` if:
 
 * You use Claude Opus 4.6 or Claude Sonnet 4.6, where `budget_tokens` is deprecated.
-* You are moving to Claude Opus 4.7, Claude Opus 4.8, Claude Opus 5, Claude Sonnet 5, Claude Fable 5, or Claude Mythos 5, where `type: "enabled"` returns a 400 error.
+* You are moving to Claude Opus 4.7, Claude Opus 4.8, Claude Opus 5, Claude Sonnet 5, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, or Claude Mythos 5, where `type: "enabled"` returns a 400 error.
 
 The mapping is small: remove `budget_tokens`, set `thinking: {type: "adaptive"}`, and control reasoning depth with `output_config: {effort: ...}` instead of a token budget.
 

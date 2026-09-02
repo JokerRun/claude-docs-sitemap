@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/archive
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: fc2a99286367ece014d506ce4634efe916d60e449b2ce8aa1986662db1caaea3
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 609cbce757371a842e4c2fb7916012bd72e0ae00b33c407734b76f9161c8856c
 ---
 
 # Archive Tunnel
@@ -25,7 +25,7 @@ Archives a tunnel. Archival is irreversible: every non-archived certificate on t
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -108,6 +108,12 @@ Archives a tunnel. Archival is irreversible: every non-archived certificate on t
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ## Returns
 

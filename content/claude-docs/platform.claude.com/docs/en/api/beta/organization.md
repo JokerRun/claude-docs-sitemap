@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: 3830ba2c305850e800757a0f13223014c8048973b1e76a8553e6c922532bdbec
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 65f97a1355f584ce6a15b06515d33fe6bdc5d358f1d42171885e2dc71767dd84
 ---
 
 # Organization
@@ -703,7 +703,7 @@ Create an external key config owned by the caller's organization.
 
     - `kms_arn: string`
 
-      Full ARN of the AWS KMS key.
+      Full ARN of the AWS KMS key. On Claude Platform on AWS the key must be a single-Region key in your organization's own AWS account; cross-account keys, multi-Region keys, and alias ARNs are rejected.
 
       maxLength: 2048
 
@@ -717,7 +717,7 @@ Create an external key config owned by the caller's organization.
 
       **Deprecated**
 
-      IAM role ARN. Deprecated — Anthropic reaches the KMS key via a managed intermediate role; this field is ignored.
+      IAM role ARN. Deprecated — Anthropic reaches the KMS key through its own intermediate role (or, on Claude Platform on AWS, with credentials AWS issues for the Workspace); this field is ignored.
 
   - `BetaGCPExternalKeyConfig object`
 
@@ -809,7 +809,7 @@ Create an external key config owned by the caller's organization.
 
       - `kms_arn: string`
 
-        Full ARN of the AWS KMS key.
+        Full ARN of the AWS KMS key. On Claude Platform on AWS the key must be a single-Region key in your organization's own AWS account; cross-account keys, multi-Region keys, and alias ARNs are rejected.
 
         maxLength: 2048
 
@@ -823,7 +823,7 @@ Create an external key config owned by the caller's organization.
 
         **Deprecated**
 
-        IAM role ARN. Deprecated — Anthropic reaches the KMS key via a managed intermediate role; this field is ignored.
+        IAM role ARN. Deprecated — Anthropic reaches the KMS key through its own intermediate role (or, on Claude Platform on AWS, with credentials AWS issues for the Workspace); this field is ignored.
 
     - `BetaGCPExternalKeyConfig object`
 
@@ -963,7 +963,7 @@ Results are ordered by creation time (newest first). Use the
 
       - `kms_arn: string`
 
-        Full ARN of the AWS KMS key.
+        Full ARN of the AWS KMS key. On Claude Platform on AWS the key must be a single-Region key in your organization's own AWS account; cross-account keys, multi-Region keys, and alias ARNs are rejected.
 
         maxLength: 2048
 
@@ -977,7 +977,7 @@ Results are ordered by creation time (newest first). Use the
 
         **Deprecated**
 
-        IAM role ARN. Deprecated — Anthropic reaches the KMS key via a managed intermediate role; this field is ignored.
+        IAM role ARN. Deprecated — Anthropic reaches the KMS key through its own intermediate role (or, on Claude Platform on AWS, with credentials AWS issues for the Workspace); this field is ignored.
 
     - `BetaGCPExternalKeyConfig object`
 
@@ -1118,7 +1118,7 @@ Retrieve a single external key config in the caller's organization by ID.
 
       - `kms_arn: string`
 
-        Full ARN of the AWS KMS key.
+        Full ARN of the AWS KMS key. On Claude Platform on AWS the key must be a single-Region key in your organization's own AWS account; cross-account keys, multi-Region keys, and alias ARNs are rejected.
 
         maxLength: 2048
 
@@ -1132,7 +1132,7 @@ Retrieve a single external key config in the caller's organization by ID.
 
         **Deprecated**
 
-        IAM role ARN. Deprecated — Anthropic reaches the KMS key via a managed intermediate role; this field is ignored.
+        IAM role ARN. Deprecated — Anthropic reaches the KMS key through its own intermediate role (or, on Claude Platform on AWS, with credentials AWS issues for the Workspace); this field is ignored.
 
     - `BetaGCPExternalKeyConfig object`
 
@@ -1238,7 +1238,7 @@ encrypted data requires the original key identity to decrypt.
 
     - `kms_arn: string`
 
-      Full ARN of the AWS KMS key.
+      Full ARN of the AWS KMS key. On Claude Platform on AWS the key must be a single-Region key in your organization's own AWS account; cross-account keys, multi-Region keys, and alias ARNs are rejected.
 
       maxLength: 2048
 
@@ -1252,7 +1252,7 @@ encrypted data requires the original key identity to decrypt.
 
       **Deprecated**
 
-      IAM role ARN. Deprecated — Anthropic reaches the KMS key via a managed intermediate role; this field is ignored.
+      IAM role ARN. Deprecated — Anthropic reaches the KMS key through its own intermediate role (or, on Claude Platform on AWS, with credentials AWS issues for the Workspace); this field is ignored.
 
   - `BetaGCPExternalKeyConfig object`
 
@@ -1334,7 +1334,7 @@ encrypted data requires the original key identity to decrypt.
 
       - `kms_arn: string`
 
-        Full ARN of the AWS KMS key.
+        Full ARN of the AWS KMS key. On Claude Platform on AWS the key must be a single-Region key in your organization's own AWS account; cross-account keys, multi-Region keys, and alias ARNs are rejected.
 
         maxLength: 2048
 
@@ -1348,7 +1348,7 @@ encrypted data requires the original key identity to decrypt.
 
         **Deprecated**
 
-        IAM role ARN. Deprecated — Anthropic reaches the KMS key via a managed intermediate role; this field is ignored.
+        IAM role ARN. Deprecated — Anthropic reaches the KMS key through its own intermediate role (or, on Claude Platform on AWS, with credentials AWS issues for the Workspace); this field is ignored.
 
     - `BetaGCPExternalKeyConfig object`
 
@@ -1546,7 +1546,7 @@ matched as the JWT's `iss` claim and is not fetched.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -1629,6 +1629,12 @@ matched as the JWT's `iss` claim and is not fetched.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Body parameters
 
@@ -1926,7 +1932,7 @@ Archived issuers are excluded unless `include_archived=true`.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -2009,6 +2015,12 @@ Archived issuers are excluded unless `include_archived=true`.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Returns
 
@@ -2217,7 +2229,7 @@ Retrieve a federation issuer by its ID (`fdis_...`).
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -2300,6 +2312,12 @@ Retrieve a federation issuer by its ID (`fdis_...`).
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Returns
 
@@ -2511,7 +2529,7 @@ session.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -2594,6 +2612,12 @@ session.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Body parameters
 
@@ -2883,7 +2907,7 @@ issuer cannot be changed), or recreate them against another issuer.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -2966,6 +2990,12 @@ issuer cannot be changed), or recreate them against another issuer.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Returns
 
@@ -3181,7 +3211,7 @@ manage rules whose `oauth_scope` is `workspace:developer` or
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -3264,6 +3294,12 @@ manage rules whose `oauth_scope` is `workspace:developer` or
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Body parameters
 
@@ -3582,7 +3618,7 @@ unless `include_archived=true`.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -3665,6 +3701,12 @@ unless `include_archived=true`.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Returns
 
@@ -3869,7 +3911,7 @@ Retrieve a federation rule by its ID (`fdrl_...`).
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -3952,6 +3994,12 @@ Retrieve a federation rule by its ID (`fdrl_...`).
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Returns
 
@@ -4174,7 +4222,7 @@ Console session.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -4257,6 +4305,12 @@ Console session.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Body parameters
 
@@ -4555,7 +4609,7 @@ other scopes require a Console session.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -4638,6 +4692,12 @@ other scopes require a Console session.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Returns
 
@@ -4856,7 +4916,7 @@ other scopes require a Console session.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -4939,6 +4999,12 @@ other scopes require a Console session.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Body parameters
 
@@ -5041,7 +5107,7 @@ rules with `applies_to_all_workspaces` or a legacy single
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -5124,6 +5190,12 @@ rules with `applies_to_all_workspaces` or a legacy single
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Returns
 
@@ -5216,7 +5288,7 @@ Console session.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -5299,6 +5371,12 @@ Console session.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Returns
 
@@ -5831,7 +5909,7 @@ accounts.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -5914,6 +5992,12 @@ accounts.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Body parameters
 
@@ -6068,7 +6152,7 @@ archived service accounts.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -6151,6 +6235,12 @@ archived service accounts.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Returns
 
@@ -6267,7 +6357,7 @@ Retrieve a service account by its ID (`svac_...`).
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -6350,6 +6440,12 @@ Retrieve a service account by its ID (`svac_...`).
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Returns
 
@@ -6467,7 +6563,7 @@ interactive credential (a user OAuth token or a Console session).
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -6550,6 +6646,12 @@ interactive credential (a user OAuth token or a Console session).
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Body parameters
 
@@ -6685,7 +6787,7 @@ those rules first or change their target to another service account.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -6768,6 +6870,12 @@ those rules first or change their target to another service account.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Returns
 
@@ -6890,7 +6998,7 @@ rejected.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -6973,6 +7081,12 @@ rejected.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Body parameters
 
@@ -7104,7 +7218,7 @@ page to recover.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -7187,6 +7301,12 @@ page to recover.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Returns
 
@@ -7290,7 +7410,7 @@ to the implicit `workspace_user` membership. Archived workspaces return
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -7373,6 +7493,12 @@ to the implicit `workspace_user` membership. Archived workspaces return
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Returns
 
@@ -7825,8 +7951,13 @@ List Workspaces
     customer-managed encryption key (CMEK) on AWS, reference this value in your
     KMS key-policy condition so the key is scoped to this compartment. On GCP and
     Azure, Anthropic enforces the compartment binding automatically; you do not
-    need to reference this value in your key configuration. See the CMEK integration guide for the
-    required key configuration, including the value used during key validation.
+    need to reference this value in your key configuration. See the CMEK
+    integration guide for the required key configuration; unless your organization
+    is on Claude Platform on AWS, it includes a separate value used during key
+    validation. On Claude Platform on AWS there is no separate validation value:
+    the key is validated against this Workspace's own value when it is attached, so
+    if your key policy uses the compartment condition, add this value to it before
+    attaching the key.
 
   - `created_at: string`
 
@@ -7863,10 +7994,14 @@ List Workspaces
     ID of the customer-managed encryption key (CMEK) configuration to use for this
     Workspace. Setting this field requires CMEK to be enabled for your
     organization. When set, data stored for this Workspace is encrypted with the
-    referenced key. Create key configurations with the External Keys API. This
-    field is write-once: once a key is attached to a Workspace it cannot be
-    detached or replaced. To rotate key material, rotate the underlying key on
-    your cloud KMS; the `external_key_id` stays the same.
+    referenced key. Create key configurations with the External Keys API. On
+    Claude Platform on AWS the value is the AWS KMS key ARN, and the key must be a
+    single-Region key in the same AWS account and Region as the Workspace. On that
+    platform the key is validated against this Workspace when it is attached, so a
+    key-policy problem is reported as an error on this request. This field is write-once:
+    once a key is attached to a Workspace it cannot be detached or replaced. To
+    rotate key material, rotate the underlying key on your cloud KMS; the
+    `external_key_id` stays the same.
 
   - `name: string`
 
@@ -7949,7 +8084,7 @@ Create Workspace
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -8033,6 +8168,12 @@ Create Workspace
 
     - `"ce-user-management-2026-07-13"`
 
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
+
 #### Body parameters
 
 - `name: string`
@@ -8080,10 +8221,14 @@ Create Workspace
   ID of the customer-managed encryption key (CMEK) configuration to use for this
   Workspace. Setting this field requires CMEK to be enabled for your
   organization. When set, data stored for this Workspace is encrypted with the
-  referenced key. Create key configurations with the External Keys API. This
-  field is write-once: once a key is attached to a Workspace it cannot be
-  detached or replaced. To rotate key material, rotate the underlying key on
-  your cloud KMS; the `external_key_id` stays the same.
+  referenced key. Create key configurations with the External Keys API. On
+  Claude Platform on AWS the value is the AWS KMS key ARN, and the key must be a
+  single-Region key in the same AWS account and Region as the Workspace. On that
+  platform the key is validated against this Workspace when it is attached, so a
+  key-policy problem is reported as an error on this request. This field is write-once:
+  once a key is attached to a Workspace it cannot be detached or replaced. To
+  rotate key material, rotate the underlying key on your cloud KMS; the
+  `external_key_id` stays the same.
 
 - `tags: optional map[string] or null`
 
@@ -8109,8 +8254,13 @@ Create Workspace
     customer-managed encryption key (CMEK) on AWS, reference this value in your
     KMS key-policy condition so the key is scoped to this compartment. On GCP and
     Azure, Anthropic enforces the compartment binding automatically; you do not
-    need to reference this value in your key configuration. See the CMEK integration guide for the
-    required key configuration, including the value used during key validation.
+    need to reference this value in your key configuration. See the CMEK
+    integration guide for the required key configuration; unless your organization
+    is on Claude Platform on AWS, it includes a separate value used during key
+    validation. On Claude Platform on AWS there is no separate validation value:
+    the key is validated against this Workspace's own value when it is attached, so
+    if your key policy uses the compartment condition, add this value to it before
+    attaching the key.
 
   - `created_at: string`
 
@@ -8147,10 +8297,14 @@ Create Workspace
     ID of the customer-managed encryption key (CMEK) configuration to use for this
     Workspace. Setting this field requires CMEK to be enabled for your
     organization. When set, data stored for this Workspace is encrypted with the
-    referenced key. Create key configurations with the External Keys API. This
-    field is write-once: once a key is attached to a Workspace it cannot be
-    detached or replaced. To rotate key material, rotate the underlying key on
-    your cloud KMS; the `external_key_id` stays the same.
+    referenced key. Create key configurations with the External Keys API. On
+    Claude Platform on AWS the value is the AWS KMS key ARN, and the key must be a
+    single-Region key in the same AWS account and Region as the Workspace. On that
+    platform the key is validated against this Workspace when it is attached, so a
+    key-policy problem is reported as an error on this request. This field is write-once:
+    once a key is attached to a Workspace it cannot be detached or replaced. To
+    rotate key material, rotate the underlying key on your cloud KMS; the
+    `external_key_id` stays the same.
 
   - `name: string`
 
@@ -8242,8 +8396,13 @@ Get Workspace
     customer-managed encryption key (CMEK) on AWS, reference this value in your
     KMS key-policy condition so the key is scoped to this compartment. On GCP and
     Azure, Anthropic enforces the compartment binding automatically; you do not
-    need to reference this value in your key configuration. See the CMEK integration guide for the
-    required key configuration, including the value used during key validation.
+    need to reference this value in your key configuration. See the CMEK
+    integration guide for the required key configuration; unless your organization
+    is on Claude Platform on AWS, it includes a separate value used during key
+    validation. On Claude Platform on AWS there is no separate validation value:
+    the key is validated against this Workspace's own value when it is attached, so
+    if your key policy uses the compartment condition, add this value to it before
+    attaching the key.
 
   - `created_at: string`
 
@@ -8280,10 +8439,14 @@ Get Workspace
     ID of the customer-managed encryption key (CMEK) configuration to use for this
     Workspace. Setting this field requires CMEK to be enabled for your
     organization. When set, data stored for this Workspace is encrypted with the
-    referenced key. Create key configurations with the External Keys API. This
-    field is write-once: once a key is attached to a Workspace it cannot be
-    detached or replaced. To rotate key material, rotate the underlying key on
-    your cloud KMS; the `external_key_id` stays the same.
+    referenced key. Create key configurations with the External Keys API. On
+    Claude Platform on AWS the value is the AWS KMS key ARN, and the key must be a
+    single-Region key in the same AWS account and Region as the Workspace. On that
+    platform the key is validated against this Workspace when it is attached, so a
+    key-policy problem is reported as an error on this request. This field is write-once:
+    once a key is attached to a Workspace it cannot be detached or replaced. To
+    rotate key material, rotate the underlying key on your cloud KMS; the
+    `external_key_id` stays the same.
 
   - `name: string`
 
@@ -8380,10 +8543,14 @@ Update Workspace
   ID of the customer-managed encryption key (CMEK) configuration to use for this
   Workspace. Setting this field requires CMEK to be enabled for your
   organization. When set, data stored for this Workspace is encrypted with the
-  referenced key. Create key configurations with the External Keys API. This
-  field is write-once: once a key is attached to a Workspace it cannot be
-  detached or replaced. To rotate key material, rotate the underlying key on
-  your cloud KMS; the `external_key_id` stays the same.
+  referenced key. Create key configurations with the External Keys API. On
+  Claude Platform on AWS the value is the AWS KMS key ARN, and the key must be a
+  single-Region key in the same AWS account and Region as the Workspace. On that
+  platform the key is validated against this Workspace when it is attached, so a
+  key-policy problem is reported as an error on this request. This field is write-once:
+  once a key is attached to a Workspace it cannot be detached or replaced. To
+  rotate key material, rotate the underlying key on your cloud KMS; the
+  `external_key_id` stays the same.
 
 - `name: optional string`
 
@@ -8415,8 +8582,13 @@ Update Workspace
     customer-managed encryption key (CMEK) on AWS, reference this value in your
     KMS key-policy condition so the key is scoped to this compartment. On GCP and
     Azure, Anthropic enforces the compartment binding automatically; you do not
-    need to reference this value in your key configuration. See the CMEK integration guide for the
-    required key configuration, including the value used during key validation.
+    need to reference this value in your key configuration. See the CMEK
+    integration guide for the required key configuration; unless your organization
+    is on Claude Platform on AWS, it includes a separate value used during key
+    validation. On Claude Platform on AWS there is no separate validation value:
+    the key is validated against this Workspace's own value when it is attached, so
+    if your key policy uses the compartment condition, add this value to it before
+    attaching the key.
 
   - `created_at: string`
 
@@ -8453,10 +8625,14 @@ Update Workspace
     ID of the customer-managed encryption key (CMEK) configuration to use for this
     Workspace. Setting this field requires CMEK to be enabled for your
     organization. When set, data stored for this Workspace is encrypted with the
-    referenced key. Create key configurations with the External Keys API. This
-    field is write-once: once a key is attached to a Workspace it cannot be
-    detached or replaced. To rotate key material, rotate the underlying key on
-    your cloud KMS; the `external_key_id` stays the same.
+    referenced key. Create key configurations with the External Keys API. On
+    Claude Platform on AWS the value is the AWS KMS key ARN, and the key must be a
+    single-Region key in the same AWS account and Region as the Workspace. On that
+    platform the key is validated against this Workspace when it is attached, so a
+    key-policy problem is reported as an error on this request. This field is write-once:
+    once a key is attached to a Workspace it cannot be detached or replaced. To
+    rotate key material, rotate the underlying key on your cloud KMS; the
+    `external_key_id` stays the same.
 
   - `name: string`
 
@@ -8545,8 +8721,13 @@ Archive Workspace
     customer-managed encryption key (CMEK) on AWS, reference this value in your
     KMS key-policy condition so the key is scoped to this compartment. On GCP and
     Azure, Anthropic enforces the compartment binding automatically; you do not
-    need to reference this value in your key configuration. See the CMEK integration guide for the
-    required key configuration, including the value used during key validation.
+    need to reference this value in your key configuration. See the CMEK
+    integration guide for the required key configuration; unless your organization
+    is on Claude Platform on AWS, it includes a separate value used during key
+    validation. On Claude Platform on AWS there is no separate validation value:
+    the key is validated against this Workspace's own value when it is attached, so
+    if your key policy uses the compartment condition, add this value to it before
+    attaching the key.
 
   - `created_at: string`
 
@@ -8583,10 +8764,14 @@ Archive Workspace
     ID of the customer-managed encryption key (CMEK) configuration to use for this
     Workspace. Setting this field requires CMEK to be enabled for your
     organization. When set, data stored for this Workspace is encrypted with the
-    referenced key. Create key configurations with the External Keys API. This
-    field is write-once: once a key is attached to a Workspace it cannot be
-    detached or replaced. To rotate key material, rotate the underlying key on
-    your cloud KMS; the `external_key_id` stays the same.
+    referenced key. Create key configurations with the External Keys API. On
+    Claude Platform on AWS the value is the AWS KMS key ARN, and the key must be a
+    single-Region key in the same AWS account and Region as the Workspace. On that
+    platform the key is validated against this Workspace when it is attached, so a
+    key-policy problem is reported as an error on this request. This field is write-once:
+    once a key is attached to a Workspace it cannot be detached or replaced. To
+    rotate key material, rotate the underlying key on your cloud KMS; the
+    `external_key_id` stays the same.
 
   - `name: string`
 
@@ -9229,7 +9414,7 @@ omitted from the results.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -9312,6 +9497,12 @@ omitted from the results.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Returns
 
@@ -9412,7 +9603,7 @@ accounts cannot be added and are rejected.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -9495,6 +9686,12 @@ accounts cannot be added and are rejected.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Body parameters
 
@@ -9611,7 +9808,7 @@ account returns 404.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -9694,6 +9891,12 @@ account returns 404.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Returns
 
@@ -9787,7 +9990,7 @@ rejected.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -9870,6 +10073,12 @@ rejected.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Body parameters
 
@@ -9980,7 +10189,7 @@ membership. Archived workspaces return 400.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -10063,6 +10272,12 @@ membership. Archived workspaces return 400.
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 #### Returns
 
@@ -10228,5 +10443,143 @@ curl https://api.anthropic.com/v1/organizations/rate_limits \
     }
   ],
   "next_page": "next_page"
+}
+```
+
+## Organization › Compliance Settings
+
+### Get Compliance Settings
+
+**GET** `/v1/organizations/compliance_settings`
+
+Retrieve your organization's Compliance Settings.
+
+Compliance Settings is a singleton resource: there is exactly one per
+organization, addressed without an identifier. The `state` field reflects
+whether the Compliance API is enabled. An organization with a parent
+organization reads the state inherited from the parent's configuration.
+
+#### Returns
+
+- `BetaComplianceSettings object`
+
+  - `state: BetaComplianceSettingsStateEnabled or BetaComplianceSettingsStateDisabled`
+
+    Whether the Compliance API is enabled for this organization.
+
+    - `BetaComplianceSettingsStateEnabled object`
+
+      - `type: "enabled"`
+
+        default: enabled
+
+    - `BetaComplianceSettingsStateDisabled object`
+
+      - `type: "disabled"`
+
+        default: disabled
+
+  - `type: "compliance_settings"`
+
+    default: compliance_settings
+
+#### Example
+
+```bash
+curl https://api.anthropic.com/v1/organizations/compliance_settings \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```
+
+##### Response (200)
+
+```json
+{
+  "state": {
+    "type": "enabled"
+  },
+  "type": "compliance_settings"
+}
+```
+
+### Update Compliance Settings
+
+**POST** `/v1/organizations/compliance_settings`
+
+Update your organization's Compliance Settings.
+
+Setting `state` to `enabled` turns on the Compliance API and begins
+capturing organization activity events. Setting it to `disabled` turns
+both off. `state` reflects whether the Compliance API is enabled.
+
+A request that sets `state` to its current value succeeds and leaves the
+resource unchanged. A `disabled` request stays in effect until a later
+`enabled` request or the organization's next provisioning action that
+enables Access Transparency: enabling Access Transparency also enables
+the Compliance API, which serves its activity events, so such
+provisioning (including re-runs) re-enables the Compliance API even
+after a `disabled` request. Automated provisioning never disables
+compliance settings.
+
+#### Body parameters
+
+- `state: BetaComplianceSettingsStateEnabledParam or BetaComplianceSettingsStateDisabledParam`
+
+  Desired state. Accepts the string shorthand "enabled" or "disabled" in place of the object form; the response always returns the canonical object form.
+
+  - `BetaComplianceSettingsStateEnabledParam object`
+
+    - `type: "enabled"`
+
+  - `BetaComplianceSettingsStateDisabledParam object`
+
+    - `type: "disabled"`
+
+#### Returns
+
+- `BetaComplianceSettings object`
+
+  - `state: BetaComplianceSettingsStateEnabled or BetaComplianceSettingsStateDisabled`
+
+    Whether the Compliance API is enabled for this organization.
+
+    - `BetaComplianceSettingsStateEnabled object`
+
+      - `type: "enabled"`
+
+        default: enabled
+
+    - `BetaComplianceSettingsStateDisabled object`
+
+      - `type: "disabled"`
+
+        default: disabled
+
+  - `type: "compliance_settings"`
+
+    default: compliance_settings
+
+#### Example
+
+```bash
+curl https://api.anthropic.com/v1/organizations/compliance_settings \
+    -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2023-06-01' \
+    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -d '{
+          "state": {
+            "type": "enabled"
+          }
+        }'
+```
+
+##### Response (200)
+
+```json
+{
+  "state": {
+    "type": "enabled"
+  },
+  "type": "compliance_settings"
 }
 ```

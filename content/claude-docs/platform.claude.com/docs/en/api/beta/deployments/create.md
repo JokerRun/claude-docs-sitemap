@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/create
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 61e8a3f55481b4c20e3f2a728a4ef148e1531700f356f20a8aed1fef64f246d8
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: a848951f5dbc75f96fea89692399f3d0abaafddb82e7f80d16fcb8e7f2c0bee1
 ---
 
 # Create Deployment
@@ -19,7 +19,7 @@ Create Deployment
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -102,6 +102,12 @@ Create Deployment
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ## Body parameters
 

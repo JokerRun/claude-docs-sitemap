@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/analytics-api
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 21057357ed3a7e991c3a6b580b0dff9f518737ba80a95cda56f20f92ab6dad76
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 81628d6c2ed7e2656b4c4de5a4935a5f8d51c1ef0e8da7829fc7646596e49e38
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/manage-claude/analytics-api
 description: Pahami API analitik dan kunci API mana yang dibutuhkan organisasi Anda, lalu sediakan akses ke metrik produktivitas Claude Code atau data keterlibatan dan adopsi Claude Enterprise.
 ---
 
-Anthropic menyediakan dua API analitik, dan mana yang Anda gunakan bergantung pada produk Claude mana yang dikelola organisasi Anda:
+Anthropic menyediakan dua API analitik, dan API mana yang Anda gunakan bergantung pada produk Claude mana yang dikelola organisasi Anda:
 
 * **Claude Code Analytics API** melaporkan metrik produktivitas Claude Code harian untuk organisasi yang menggunakan Claude Platform. API ini merupakan bagian dari [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) dan menggunakan kunci Admin API.
 * **Claude Enterprise Analytics API** melaporkan data keterlibatan, adopsi, dan biaya di seluruh organisasi untuk berbagai produk Claude (chat, proyek, Claude Code, dan lainnya) bagi organisasi Claude Enterprise. API ini menggunakan kunci Analytics API yang dibuat di claude.ai.
@@ -63,11 +63,11 @@ Claude Enterprise Analytics API tersedia untuk organisasi Claude Enterprise. Dat
 
 <Steps>
   <Step title="Masuk sebagai pemilik utama">
-    Hanya pemilik utama organisasi yang dapat mengaktifkan akses API dan membuat kunci Analytics API.
+    Hanya pemilik utama (primary owner) organisasi yang dapat mengaktifkan akses API dan membuat kunci Analytics API.
   </Step>
 
   <Step title="Aktifkan akses API dan buat kunci">
-    Buka [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access) dan aktifkan akses API publik, lalu buat kunci Analytics API. Kunci membawa cakupan `read:analytics`. Salin secret yang ditampilkan dan simpan di pengelola secret Anda.
+    Buka [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access) dan aktifkan akses API publik, lalu buat kunci Analytics API. Kunci membawa scope `read:analytics`. Salin secret yang ditampilkan dan simpan di pengelola secret Anda.
   </Step>
 
   <Step title="Panggil API">
@@ -88,9 +88,9 @@ Untuk detail endpoint, parameter, dan skema respons, lihat [referensi Claude Ent
 
 Data Claude Enterprise Analytics API tersedia untuk tanggal pada atau setelah 1 Januari 2026.
 
-**Endpoint keterlibatan dan adopsi** (aktivitas pengguna, ringkasan, proyek, skill, konektor) mengembalikan snapshot per hari untuk tanggal yang Anda tentukan. Data untuk hari tertentu diagregasi pada pukul 10:00 UTC hari berikutnya dan biasanya tersedia dengan jeda 1 hari. Kesegaran pastinya bervariasi menurut kueri, jadi alih-alih mengasumsikan jeda tetap, periksa respons error: meminta tanggal yang belum tersedia akan mengembalikan error 400 yang menyebutkan hari terbaru yang tersedia. Jika data tidak tersedia jauh melewati jeda yang biasa, hal itu umumnya menunjukkan kegagalan pipeline data di sisi Anthropic; hubungi dukungan jika kesenjangan tersebut berlanjut.
+**Endpoint keterlibatan dan adopsi** (aktivitas pengguna, ringkasan, proyek, skill, konektor) mengembalikan snapshot per hari untuk tanggal yang Anda tentukan. Data untuk hari tertentu diagregasi pada pukul 10:00 UTC hari berikutnya dan biasanya tersedia dengan jeda 1 hari. Kesegaran yang tepat bervariasi menurut kueri, jadi alih-alih mengasumsikan jeda tetap, periksa respons error: meminta tanggal yang belum tersedia akan mengembalikan error 400 yang menyebutkan hari terbaru yang tersedia. Jika data tidak tersedia jauh melewati jeda yang biasa, hal ini umumnya menunjukkan kegagalan pipeline data di sisi Anthropic; hubungi dukungan jika kesenjangan tersebut berlanjut.
 
-**Endpoint biaya dan penggunaan** mengikuti model kesegaran yang berbeda. Data biasanya tersedia dalam empat jam setelah penggunaan yang mendasarinya, tetapi dapat memerlukan hingga 24 jam. Nilai untuk tanggal tertentu dapat direvisi hingga 30 hari seiring datangnya peristiwa yang terlambat dan berjalannya rekonsiliasi. Untuk total setingkat penagihan, kueri tanggal setidaknya 30 hari yang lalu.
+**Endpoint biaya dan penggunaan** mengikuti model kesegaran yang berbeda. Data biasanya tersedia dalam empat jam setelah penggunaan yang mendasarinya, tetapi dapat memerlukan waktu hingga 24 jam. Nilai untuk tanggal tertentu dapat direvisi hingga 30 hari seiring datangnya peristiwa yang terlambat dan berjalannya rekonsiliasi. Untuk total setingkat penagihan, kueri tanggal setidaknya 30 hari yang lalu.
 
 <Note>
   Respons biaya dan penggunaan menyertakan timestamp `data_refreshed_at`. Ketika `ending_at` dihilangkan (default-nya adalah waktu saat ini), respons menyertakan ekor data setelah `data_refreshed_at` yang belum lengkap. Untuk hasil yang stabil di seluruh panggilan berulang, atur `ending_at` ke nilai pada atau sebelum `data_refreshed_at` yang dikembalikan sebelumnya.
@@ -98,7 +98,7 @@ Data Claude Enterprise Analytics API tersedia untuk tanggal pada atau setelah 1 
 
 ## Bagaimana metrik didefinisikan
 
-**Pengguna aktif.** Seorang pengguna dihitung aktif untuk suatu hari jika salah satu dari hal berikut benar: mereka mengirim setidaknya satu pesan chat di Claude, mereka memiliki setidaknya satu sesi Claude Code (lokal atau jarak jauh) yang terkait dengan organisasi Claude Enterprise Anda yang mencakup "tool use" (penggunaan alat) atau aktivitas git, atau mereka memiliki setidaknya satu sesi Cowork dengan penggunaan alat atau aktivitas pesan.
+**Pengguna aktif.** Seorang pengguna dihitung aktif untuk suatu hari jika salah satu dari hal berikut benar: mereka mengirim setidaknya satu pesan chat di Claude, mereka memiliki setidaknya satu sesi Claude Code (lokal atau jarak jauh) yang terkait dengan organisasi Claude Enterprise Anda yang mencakup penggunaan alat atau aktivitas git, atau mereka memiliki setidaknya satu sesi Cowork dengan penggunaan alat atau aktivitas pesan.
 
 **Blok metrik per produk.** Objek metrik per produk (misalnya, metrik Office Agent atau Cowork pada catatan aktivitas pengguna) selalu ada di setiap catatan. Organisasi tanpa penggunaan produk tersebut akan melihat nilai yang semuanya nol, bukan `null`.
 
@@ -106,13 +106,13 @@ Data Claude Enterprise Analytics API tersedia untuk tanggal pada atau setelah 1 
 
 ## Bekerja dengan API
 
-**Kursor paginasi terikat pada kueri yang menerbitkannya.** Pada endpoint biaya dan penggunaan, jangan mengubah parameter kueri di tengah urutan: jika Anda mengubah `products[]`, `group_by[]`, `order_by`, rentang tanggal, atau filter apa pun dan meneruskan kursor lama, permintaan akan mengembalikan error 400. Untuk mengubah parameter, mulai ulang dari halaman pertama tanpa kursor.
+**Cursor paginasi terikat pada kueri yang menerbitkannya.** Pada endpoint biaya dan penggunaan, jangan mengubah parameter kueri di tengah urutan: jika Anda mengubah `products[]`, `group_by[]`, `order_by`, rentang tanggal, atau filter apa pun dan meneruskan cursor lama, permintaan akan mengembalikan error 400. Untuk mengubah parameter, mulai ulang dari halaman pertama tanpa cursor.
 
 **Parameter daftar menggunakan notasi kurung siku.** Ulangi parameter untuk setiap nilai, misalnya `products[]=chat&products[]=claude_code`.
 
 **Field jumlah adalah string desimal dalam sen.** Jumlah mata uang dikembalikan sebagai string desimal seperti `"41280.000000"` (yang merepresentasikan $412,80). Untuk mengonversi ke dolar, parse sebagai desimal dan bagi dengan 100. Hindari parsing floating-point biner untuk nilai yang mungkin melebihi beberapa juta dolar.
 
-**"Rate limit" (batas laju) berlaku di tingkat organisasi**, bukan per kunci, dengan default 60 permintaan per menit di seluruh endpoint dalam API ini. Jika itu tidak mencukupi untuk kasus penggunaan Anda, hubungi tim akun Anthropic Anda untuk mendiskusikan penyesuaian batas tersebut.
+**Batas laju (rate limit) berlaku di tingkat organisasi**, bukan per kunci, dengan default 60 permintaan per menit di seluruh endpoint dalam API ini. Jika itu tidak mencukupi untuk kasus penggunaan Anda, hubungi tim akun Anthropic Anda untuk mendiskusikan penyesuaian batas tersebut.
 
 ## Keterbatasan yang diketahui
 

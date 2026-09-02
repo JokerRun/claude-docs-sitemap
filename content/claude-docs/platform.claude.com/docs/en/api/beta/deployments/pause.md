@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/pause
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: acdae576894933057a075e03699119f39aa9f6f0b6e2b399ad7cfdc0da431151
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: feed09be873fbbfa97b5e18a4b9b7103b4fc84986933a200408bda22ce3dbbe9
 ---
 
 # Pause Deployment
@@ -23,7 +23,7 @@ Pause Deployment
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -106,6 +106,12 @@ Pause Deployment
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ## Returns
 

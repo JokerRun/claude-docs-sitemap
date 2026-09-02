@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/list
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 3abacb82eb2d32eeea614689800aa55d6c94cde177a86b630666ff7ce07acd81
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 4aca1e4cb1096018a6d7a27b9fd8a3f4be4cae4bfa0b3fd276334be5c27acf92
 ---
 
 # List Vaults
@@ -35,7 +35,7 @@ List Vaults
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 38 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -118,6 +118,12 @@ List Vaults
     - `"thinking-display-updates-2026-08-18"`
 
     - `"ce-user-management-2026-07-13"`
+
+    - `"mid-conversation-output-config-2026-07-01"`
+
+    - `"thinking-binding-controls-2026-08-01"`
+
+    - `"mid-conversation-system-clear-at-2026-08-21"`
 
 ## Returns
 

@@ -1,22 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: c201f39b6d249fd8580df7d15b95101da7aa386ea1b2494c312a422b98a94c2e
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: cade72c6e38bb2973c31463d70e2fc10600bf6c227a6ac5eb1c8c8c6f2f9976f
 ---
 
 ---
-title: Referensi cloud sandbox
+title: Referensi sandbox cloud
 url: https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference
-description: Paket, database, dan utilitas yang telah terinstal sebelumnya dan tersedia di cloud sandbox.
+description: Paket, database, dan utilitas pra-instal yang tersedia di sandbox cloud.
 ---
 
-Cloud sandbox berjalan sebagai kontainer Linux terisolasi pada infrastruktur yang dikelola Anthropic. Sandbox ini telah dilengkapi dengan serangkaian lengkap bahasa pemrograman, database, dan utilitas yang terinstal sebelumnya. Agen dapat langsung menggunakannya tanpa langkah instalasi apa pun.
+Sandbox cloud berjalan sebagai kontainer Linux terisolasi pada infrastruktur yang dikelola Anthropic. Sandbox ini sudah dilengkapi dengan serangkaian lengkap bahasa pemrograman, database, dan utilitas yang telah terinstal sebelumnya. Agen dapat langsung menggunakannya tanpa langkah instalasi apa pun.
 
 Spesifikasi ini berlaku untuk lingkungan `cloud`. Sandbox self-hosted berjalan pada infrastruktur Anda dengan apa pun yang disediakan oleh worker Anda.
 
 <Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK mengatur header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
+  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Bahasa pemrograman
@@ -26,13 +26,13 @@ Spesifikasi ini berlaku untuk lingkungan `cloud`. Sandbox self-hosted berjalan p
 | Python  | 3.10, 3.11, 3.12, dan 3.13  | pip, uv, poetry      |
 | Node.js | 20, 21, dan 22 (default)    | npm, yarn, pnpm, bun |
 | Go      | 1.24 (default) dan 1.25     | go modules           |
-| Rust    | Toolchain stable (rustup)   | cargo                |
+| Rust    | Toolchain stabil (rustup)   | cargo                |
 | Java    | OpenJDK 21                  | maven, gradle        |
 | Ruby    | 3.1, 3.2, dan 3.3 (default) | bundler, gem         |
 | PHP     | 8.3                         | composer             |
 | C/C++   | GCC 13 dan Clang            | make, cmake, ninja   |
 
-Library data dan dokumen Python yang umum, termasuk NumPy, pandas, Matplotlib, openpyxl, python-docx, python-pptx, dan pypdf, terinstal untuk interpreter `python3`.
+Pustaka data dan dokumen Python yang umum, termasuk NumPy, pandas, Matplotlib, openpyxl, python-docx, python-pptx, dan pypdf, terinstal untuk interpreter `python3`.
 
 ## Database
 
@@ -50,7 +50,7 @@ Library data dan dokumen Python yang umum, termasuk NumPy, pandas, Matplotlib, o
 * `curl`, `wget` - Klien HTTP
 * `jq`, `yq` - Pemrosesan JSON dan YAML
 * `tar`, `zip`, `unzip` - Alat arsip
-* `tmux` - Terminal multiplexer
+* `tmux` - Multiplexer terminal
 
 ### Alat pengembangan
 
@@ -72,14 +72,14 @@ Library data dan dokumen Python yang umum, termasuk NumPy, pandas, Matplotlib, o
 * LibreOffice (headless) - Konversi dokumen office
 * Utilitas Poppler (`pdftotext`, `pdftoppm`) dan `qpdf` - Pemrosesan PDF
 * `tesseract` - Pengenalan karakter optik (data bahasa Inggris)
-* TeX Live (`pdflatex`, `xelatex`, `latexmk`) - Typesetting
+* TeX Live (`pdflatex`, `xelatex`, `latexmk`) - Penataan huruf (typesetting)
 
 ### Otomatisasi browser
 
-* Playwright (Python dan Node.js) - Library otomatisasi browser
+* Playwright (Python dan Node.js) - Pustaka otomatisasi browser
 * Chromium (`/opt/pw-browsers/chromium`) - Browser yang digunakan oleh Playwright, tidak ada di `PATH`
 
-Sandbox menetapkan `PLAYWRIGHT_BROWSERS_PATH` ke `/opt/pw-browsers`, sehingga paket Playwright yang telah terinstal sebelumnya menemukan Chromium di sana tanpa konfigurasi. Paket Python terinstal untuk interpreter `python3`. Gunakan paket yang telah terinstal sebelumnya daripada menginstal versi Playwright lain, yang akan mencari build browser yang tidak tersedia. Firefox dan WebKit tidak terinstal.
+Sandbox menetapkan `PLAYWRIGHT_BROWSERS_PATH` ke `/opt/pw-browsers`, sehingga paket Playwright pra-instal menemukan Chromium di sana tanpa konfigurasi. Paket Python terinstal untuk interpreter `python3`. Gunakan paket pra-instal daripada menginstal versi Playwright lain, yang akan mencari build browser yang tidak tersedia. Firefox dan WebKit tidak terinstal.
 
 ## Spesifikasi sandbox
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: d7f0c5261cd60abfc66b935864512aef6469deb3bb5dd783e030aebf4db8d279
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 22107f364fd9396422abf5c114a77cab964b3f3028821b71ec401a0c016b97b1
 ---
 
 # Batches
@@ -1099,11 +1099,19 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 12 more`
+      - `"claude-fable-5-1" or "claude-mythos-5-1" or "claude-sonnet-5" or 14 more`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5-1"`
+
+          Frontier intelligence for ambitious tasks across coding, scientific discovery, and enterprise workflows
+
+        - `"claude-mythos-5-1"`
+
+          Our most capable model for cybersecurity and biology research, available through trusted access programs
 
         - `"claude-sonnet-5"`
 
@@ -1694,16 +1702,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
         - `type: "browser_toolset_20260801"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
-
-          - `"direct"`
-
-          - `"code_execution_20250825"`
-
-          - `"code_execution_20260120"`
-
-          - `"code_execution_20260521"`
-
         - `cache_control: optional CacheControlEphemeral or null`
 
           Create a cache control breakpoint at this content block.
@@ -2135,16 +2133,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
         via `configs.zoom.enabled`.
 
         - `type: "computer_toolset_20260801"`
-
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
-
-          - `"direct"`
-
-          - `"code_execution_20250825"`
-
-          - `"code_execution_20260120"`
-
-          - `"code_execution_20260521"`
 
         - `cache_control: optional CacheControlEphemeral or null`
 
@@ -4526,11 +4514,19 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 12 more`
+          - `"claude-fable-5-1" or "claude-mythos-5-1" or "claude-sonnet-5" or 14 more`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-fable-5-1"`
+
+              Frontier intelligence for ambitious tasks across coding, scientific discovery, and enterprise workflows
+
+            - `"claude-mythos-5-1"`
+
+              Our most capable model for cybersecurity and biology research, available through trusted access programs
 
             - `"claude-sonnet-5"`
 
@@ -5967,11 +5963,19 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 12 more`
+          - `"claude-fable-5-1" or "claude-mythos-5-1" or "claude-sonnet-5" or 14 more`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-fable-5-1"`
+
+              Frontier intelligence for ambitious tasks across coding, scientific discovery, and enterprise workflows
+
+            - `"claude-mythos-5-1"`
+
+              Our most capable model for cybersecurity and biology research, available through trusted access programs
 
             - `"claude-sonnet-5"`
 
@@ -7180,11 +7184,19 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `"claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 12 more`
+        - `"claude-fable-5-1" or "claude-mythos-5-1" or "claude-sonnet-5" or 14 more`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-fable-5-1"`
+
+            Frontier intelligence for ambitious tasks across coding, scientific discovery, and enterprise workflows
+
+          - `"claude-mythos-5-1"`
+
+            Our most capable model for cybersecurity and biology research, available through trusted access programs
 
           - `"claude-sonnet-5"`
 
@@ -8345,11 +8357,19 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 12 more`
+      - `"claude-fable-5-1" or "claude-mythos-5-1" or "claude-sonnet-5" or 14 more`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5-1"`
+
+          Frontier intelligence for ambitious tasks across coding, scientific discovery, and enterprise workflows
+
+        - `"claude-mythos-5-1"`
+
+          Our most capable model for cybersecurity and biology research, available through trusted access programs
 
         - `"claude-sonnet-5"`
 

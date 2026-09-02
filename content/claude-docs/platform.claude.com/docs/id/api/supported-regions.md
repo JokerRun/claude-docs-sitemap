@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/supported-regions
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: f84d6ab2d8bd525f30a4a739ee031950706e6461b1d292bfd792f178b63dcc4e
+fetched_at: 2026-09-02T02:36:53.462770Z
+sha256: 3a651b8f04086345d9483b25b680b0f952a9ba5dda7012ec4980761904d06da4
 ---
 
 ---
@@ -42,12 +42,12 @@ description: "Berikut adalah negara, wilayah, dan teritori yang saat ini dapat k
 * Kamerun
 * Kanada
 * Chad
-* Chili
+* Chile
 * Kolombia
 * Komoro
 * Kongo, Republik
 * Kosta Rika
-* Pantai Gading
+* Côte d'Ivoire
 * Kroasia
 * Siprus
 * Ceko (Republik Ceko)
@@ -143,7 +143,7 @@ description: "Berikut adalah negara, wilayah, dan teritori yang saat ini dapat k
 * Rwanda
 * Saint Kitts dan Nevis
 * Saint Lucia
-* Saint Vincent dan Grenadines
+* Saint Vincent dan Grenadine
 * Samoa
 * San Marino
 * Sao Tome dan Principe
@@ -153,7 +153,7 @@ description: "Berikut adalah negara, wilayah, dan teritori yang saat ini dapat k
 * Seychelles
 * Sierra Leone
 * Singapura
-* Slowakia
+* Slovakia
 * Slovenia
 * Kepulauan Solomon
 * Afrika Selatan
