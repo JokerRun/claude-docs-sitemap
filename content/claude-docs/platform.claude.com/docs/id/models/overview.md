@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/overview
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 95e9ae959048319acde38bbdd7aa55c753da3b27f3aa1d7714d52f6f48d19ac3
+fetched_at: 2026-09-03T02:44:34.856042Z
+sha256: 11a1a8f81d9f5b5f5f557cfca286c76a923e953f239da98df56c212a12f39e3e
 ---
 
 ---
@@ -52,7 +52,7 @@ Jika Anda tidak yakin model mana yang harus digunakan, mulailah dengan [Claude O
 | [Claude Platform on AWS ID](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) | `claude-fable-5-1`                                                                | —                                                                           | `claude-sonnet-5`                                                               | `claude-haiku-4-5`                                                                |
 
 * **Comparative latency:** Relative to the current lineup. Actual latency depends on prompt length, output length, and thinking effort.
-* **Pricing:** Base price per million tokens. Batch API requests are 50% off; prompt cache reads cost 10% of the base input price. See Pricing for cache writes, long-context, and per-platform pricing.
+* **Pricing:** Base price per million tokens. Batch API requests are 50% off; prompt cache reads cost 10% of the base input price (2.5% on Claude Fable 5.1 and Claude Mythos 5.1). See Pricing for cache writes, long-context, and per-platform pricing.
 * **Claude API ID:** Every Claude model ID is a pinned snapshot, including the dateless IDs used from the 4.6 generation on.
 * **Thinking:** Adaptive thinking lets the model decide how much to think, steered by effort. Extended thinking is the manual thinking.type “enabled” + budget\_tokens mode on earlier models; it is deprecated on Claude Opus 4.6 and Claude Sonnet 4.6 and not accepted on later models.
 * **Default effort:** The effort parameter’s default on the Claude API. Set effort explicitly to use a different level.

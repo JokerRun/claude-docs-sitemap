@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/typescript
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: ed637c375c2ebbb06e437a4827933d0d26172ea954c64021b9c11dc8321ba432
+fetched_at: 2026-09-03T02:44:34.856042Z
+sha256: 35e01a80060358f74ec132a4b1bbb9de2e4c2ab5874c96f1aafae9f4aaa73c3d
 ---
 
 ---
@@ -25,7 +25,7 @@ npm install @anthropic-ai/sdk
 
 ## Requirements
 
-TypeScript >= 4.9 is supported.
+TypeScript >= 5.0 is supported.
 
 The following runtimes are supported:
 

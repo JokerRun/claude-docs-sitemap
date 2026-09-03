@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/inference-hooks
-fetched_at: 2026-09-01T02:22:36.834082Z
-sha256: 4219d5c41dd802326d45d2232f65049469ead621585ad35b6395ce313b747df9
+fetched_at: 2026-09-03T02:44:34.856042Z
+sha256: 682de74afca3ba514436f7060eb41d94d69bf44dd8a7d6bf49aa645cb01a2413
 ---
 
 ---
@@ -67,7 +67,7 @@ For the full request and response schemas, signature verification, and operation
 
 Inference hooks are available to Claude Enterprise organizations. Configuring them requires the `organization:manage` permission, which the built-in Admin, Owner, and Primary owner roles hold, as does any custom role granted it.
 
-One hook governs conversations across claude.ai, Cowork, and Claude Code sessions in your Claude Enterprise organization, whether they run on the web, in the desktop app, or in the CLI. Inference hooks are not available on Amazon Bedrock or Google Cloud.
+One hook governs conversations across claude.ai, Cowork, and Claude Code sessions in your Claude Enterprise organization, whether they run on the web, in the desktop or mobile apps, or in the CLI. Inference hooks are not available on Amazon Bedrock or Google Cloud.
 
 Governed requests are the inference requests behind the user's conversation. Ancillary requests, such as conversation title generation, aren't sent to your endpoint, and system prompts and tool definitions are never included in what is sent. Voice mode is not covered.
 

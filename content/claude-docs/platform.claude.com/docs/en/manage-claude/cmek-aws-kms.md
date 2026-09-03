@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek-aws-kms
-fetched_at: 2026-09-01T02:22:36.834082Z
-sha256: 5a9701977c4b466facbd619ef2c587952c0d47ccfdd85360dbbc0fb3d5cd0daa
+fetched_at: 2026-09-03T02:44:34.856042Z
+sha256: d711cf1c8c7c9dc1187204a515dedb48090191d4ad7b5d9aa5489070fb3d68f8
 ---
 
 ---
@@ -634,7 +634,7 @@ You can also create the key from the AWS Console: choose a symmetric key with th
     * The key is enabled, single-region, and in the same AWS account and region as the workspace.
     * The principal you are signed in as has `kms:DescribeKey`, `kms:Encrypt`, and `kms:Decrypt` on the key.
     * No service control policy or resource control policy in your AWS organization prevents the service principal or your principal from using the key.
-    * If the policy looks right and the attach still fails, find the denied `kms:` event in CloudTrail in the key's account (it shows the calling principal and, for cryptographic calls, the encryption context), then retry with the `aws:SourceArn` condition temporarily removed to tell a source-ARN mismatch apart from an encryption-context mismatch.
+    * If the policy looks right and the attach still fails, find the denied `kms:` event in CloudTrail in the key's account (it shows the calling principal and, for cryptographic calls, the encryption context), then retry with the `aws:SourceArn` condition temporarily removed to tell a source-ARN mismatch apart from an encryption-context mismatch. Once the key is attached, whether on that retry or after you correct the encryption context, restore the `ArnLike` entry on both service-principal statements with `kms:PutKeyPolicy`, using the account-wide `aws:SourceArn` pattern or the ARN of every workspace the key is attached to.
   </Step>
 </Steps>
 

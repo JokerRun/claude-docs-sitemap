@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/token-counting
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 56ae25b05bc572297d28c34bb1e89bd4c7934c9a80a8c58e50eff423d3db85b9
+fetched_at: 2026-09-03T02:44:34.856042Z
+sha256: 351312c40615bb4c5966e425cea37d4026cdd83e1255d1fe5291f88ffb62b223
 ---
 
 ---
@@ -786,7 +786,7 @@ An embedded image block that sets [`"oversized_image": "error"`](https://platfor
 <Note>
   See [Thinking and the context window](https://platform.claude.com/docs/en/build-with-claude/thinking#thinking-and-the-context-window) for more details.
 
-  * Thinking blocks from **previous** assistant turns are ignored and **do not** count toward your input tokens
+  * Thinking blocks from **previous** assistant turns count toward your input tokens on models that [keep all prior turns](https://platform.claude.com/docs/en/build-with-claude/thinking#thinking-block-preservation-by-model); on models that keep only the last turn, the API strips them and they do **not** count
   * **Current** assistant turn thinking **does** count toward your input tokens
 </Note>
 

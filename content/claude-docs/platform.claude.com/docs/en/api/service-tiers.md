@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/service-tiers
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: f804f847a6d1d4fc94d68cd4ee68730b7b16725670ea28861cb6433e1e417d34
+fetched_at: 2026-09-03T02:44:34.856042Z
+sha256: 90d1a56809bc7fa1030ac3314b60111e69b767d776b869b50e0414796e9452f2
 ---
 
 ---
@@ -21,7 +21,7 @@ Anthropic offers three service tiers:
 * **Standard:** Default tier for both piloting and scaling everyday use cases
 * **Batch:** Best for asynchronous workflows that can wait or benefit from being outside your normal capacity
 
-## Standard Tier
+## Standard tier
 
 The standard tier is the default service tier for all API requests. The API prioritizes these requests alongside all other requests with best-effort availability.
 

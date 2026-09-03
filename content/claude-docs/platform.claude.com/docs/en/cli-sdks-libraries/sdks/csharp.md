@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/csharp
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: f8c5e4dad7be4a5514e652dcc53545ced988cab98040d27f22b4386e99eccac2
+fetched_at: 2026-09-03T02:44:34.856042Z
+sha256: 125174acae433871ee5a6727fe0ce978a846227151bb53378a6558fad923b702
 ---
 
 ---
@@ -12,10 +12,6 @@ description: Install and configure the Anthropic C# SDK for .NET applications wi
 ---
 
 The Anthropic C# SDK provides convenient access to the Claude API from applications written in C#.
-
-<Info>
-  The C# SDK is currently in beta. APIs may change between versions.
-</Info>
 
 <Info>
   For API feature documentation with code examples, see the [API reference](https://platform.claude.com/docs/en/api/overview). This page covers C#-specific SDK features and configuration.
@@ -454,10 +450,6 @@ The C# SDK supports the following platforms through separate NuGet packages:
 Use `AnthropicBedrockMantleClient` for new projects; `AnthropicBedrockClient` remains for existing applications using the Bedrock `InvokeModel` API.
 
 ## Semantic versioning
-
-<Warning>
-  Although this package is versioned as 10+, it's currently in beta. During the beta period, breaking changes may occur in minor or patch releases. Once the library reaches stable release, SemVer conventions will be followed more strictly. Share feedback by [filing an issue](https://github.com/anthropics/anthropic-sdk-csharp/issues/new).
-</Warning>
 
 This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backward-incompatible changes may be released as minor versions:
 

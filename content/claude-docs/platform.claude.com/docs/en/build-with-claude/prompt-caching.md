@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: f527d7be5f5b14314d9cf8c5476ea378d1fabff2d76eb6cd60b3bc1edebbc136
+fetched_at: 2026-09-03T02:44:34.856042Z
+sha256: 89fd9a1e988ae4902de1047706ee788003060cb232e444ad4cf37a11421d42a4
 ---
 
 ---
@@ -874,7 +874,7 @@ When mixing TTLs, the API determines three billing locations in your prompt:
 3. Position `C`: The token count at the last `cache_control` block.
 
 <Note>
-  If `B` and/or `C` are larger than `A`, they will necessarily be cache misses, because `A` is the highest cache hit.
+  If `B` or `C` is larger than `A`, it is necessarily a cache miss, because `A` is the highest cache hit.
 </Note>
 
 You'll be charged for:

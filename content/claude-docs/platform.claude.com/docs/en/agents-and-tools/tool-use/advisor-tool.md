@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 09dd4bf65ca8681e46711132ec831120c453508197949b730fc7ae5932cf072a
+fetched_at: 2026-09-03T02:44:34.856042Z
+sha256: e798608a5dfa622e88c58c702ea92d194e53b19d6d35af59857ed01dddea26ab
 ---
 
 ---
@@ -38,7 +38,7 @@ sequenceDiagram
 
 The advisor fits these configurations:
 
-* **You currently use Sonnet on complex tasks:** Add a higher-tier advisor. Opus keeps total cost similar or lower; Claude Fable 5 maximizes the quality lift.
+* **You currently use Sonnet on complex tasks:** Add a higher-tier advisor. Opus keeps total cost similar or lower; Claude Fable 5.1 maximizes the quality lift.
 * **You currently use Haiku and want a step up in intelligence:** Add an Opus or Fable advisor. Expect higher cost than Haiku alone, but lower than switching the executor to a larger model.
 
 Results are task-dependent. Evaluate on your own workload.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: d5a57343169b341cebecc57c76cc4686083305ff815e7677fbf2383bb93857be
+fetched_at: 2026-09-03T02:44:34.856042Z
+sha256: f6bba6a1bae60a97ea392fe74f1cff4469f3aa476b7b657b96f09ece73cfbbd5
 ---
 
 ---
@@ -93,7 +93,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikembalikan per
       "First privately list what you need next; then request every item "
       "that doesn't depend on another's result in this one response."
   )
-  # File dalam memori menggantikan direktori kerja agar contoh ini dapat dijalankan di mana saja.
+  # In-memory files stand in for a working directory so the sample runs anywhere.
   FILES = {
       "pyproject.toml": """\
   [project]
@@ -130,14 +130,15 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikembalikan per
           tools=tools,
           messages=messages,
       )
-      # Tambahkan giliran asisten persis seperti yang dikembalikan, termasuk blok thinking.
+      # Append the assistant turn exactly as returned, thinking blocks included.
       messages.append({"role": "assistant", "content": response.content})
       if response.stop_reason != "tool_use":
           break
       tool_results: list[BetaToolResultBlockParam] = []
       for block in response.content:
           if block.type == "tool_use":
-              path = str(block.input["path"])
+              raw_path = block.input.get("path")
+              path = raw_path if isinstance(raw_path, str) else ""
               if path in FILES:
                   tool_results.append(
                       {
@@ -155,9 +156,9 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikembalikan per
                           "is_error": True,
                       }
                   )
-      # Kirim hasil alat sebagai giliran pengguna, lalu salinan baru dorongan sebagai
-      # pesan sistem cakupan giliran. Biarkan salinan sebelumnya tetap ada: API menghapusnya,
-      # sehingga model hanya melihat salinan yang terbaru.
+      # Send the tool results as the user turn, then a fresh copy of the nudge as a
+      # turn-scoped system message. Leave earlier copies in place: the API clears them,
+      # so the model sees only the newest one.
       messages.append({"role": "user", "content": tool_results})
       messages.append(
           {"role": "system", "content": BATCH_NUDGE, "clear_at": "next_user_message"}
@@ -174,7 +175,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikembalikan per
   const BATCH_NUDGE =
     "First privately list what you need next; then request every item " +
     "that doesn't depend on another's result in this one response.";
-  // File dalam memori menggantikan direktori kerja agar contoh ini dapat dijalankan di mana saja.
+  // In-memory files stand in for a working directory so the sample runs anywhere.
   const FILES = new Map<string, string>([
     [
       "pyproject.toml",
@@ -216,7 +217,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikembalikan per
       tools,
       messages,
     });
-    // Tambahkan giliran asisten persis seperti yang dikembalikan, termasuk blok thinking.
+    // Append the assistant turn exactly as returned, thinking blocks included.
     messages.push({ role: "assistant", content: response.content });
     if (response.stop_reason !== "tool_use") {
       break;
@@ -250,9 +251,9 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikembalikan per
         content: text,
       });
     }
-    // Kirim hasil alat sebagai giliran pengguna, lalu salinan baru dorongan sebagai
-    // pesan sistem cakupan giliran. Biarkan salinan sebelumnya tetap ada: API menghapusnya,
-    // sehingga model hanya melihat salinan yang terbaru.
+    // Send the tool results as the user turn, then a fresh copy of the nudge as a
+    // turn-scoped system message. Leave earlier copies in place: the API clears them,
+    // so the model sees only the newest one.
     messages.push({ role: "user", content: toolResults });
     messages.push({
       role: "system",
@@ -262,7 +263,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikembalikan per
   }
 
   const finalText = response.content.find((block) => block.type === "text");
-  console.log(finalText?.text);
+  console.log(finalText?.text ?? "");
   ```
 
   ```csharp C#
@@ -276,7 +277,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikembalikan per
       "First privately list what you need next; then request every item "
       + "that doesn't depend on another's result in this one response.";
 
-  // File dalam memori menggantikan direktori kerja agar contoh ini dapat dijalankan di mana saja.
+  // In-memory files stand in for a working directory so the sample runs anywhere.
   Dictionary<string, string> files = new()
   {
       ["pyproject.toml"] = """
@@ -325,7 +326,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikembalikan per
           Tools = tools,
           Messages = messages,
       });
-      // Tambahkan giliran asisten persis seperti yang dikembalikan, termasuk blok thinking.
+      // Append the assistant turn exactly as returned, thinking blocks included.
       messages.Add(new()
       {
           Role = Role.Assistant,
@@ -340,7 +341,10 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikembalikan per
       {
           if (block.TryPickToolUse(out var toolUse))
           {
-              var path = toolUse.Input["path"].GetString()!;
+              var path = toolUse.Input.TryGetValue("path", out var pathValue)
+                  && pathValue.ValueKind == JsonValueKind.String
+                  ? pathValue.GetString()!
+                  : "";
               if (files.TryGetValue(path, out var fileText))
               {
                   toolResults.Add(new BetaToolResultBlockParam { ToolUseID = toolUse.ID, Content = fileText });
@@ -356,9 +360,9 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikembalikan per
               }
           }
       }
-      // Kirim hasil alat sebagai giliran pengguna, lalu salinan baru dorongan sebagai
-      // pesan sistem cakupan giliran. Biarkan salinan sebelumnya tetap ada: API menghapusnya,
-      // sehingga model hanya melihat salinan yang terbaru.
+      // Send the tool results as the user turn, then a fresh copy of the nudge as a
+      // turn-scoped system message. Leave earlier copies in place: the API clears them,
+      // so the model sees only the newest one.
       messages.Add(new() { Role = Role.User, Content = toolResults });
       messages.Add(new()
       {
@@ -393,7 +397,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikembalikan per
   const batchNudge = "First privately list what you need next; then request every item " +
   	"that doesn't depend on another's result in this one response."
 
-  // File dalam memori menggantikan direktori kerja agar contoh ini dapat dijalankan di mana saja.
+  // In-memory files stand in for a working directory so the sample runs anywhere.
   var files = map[string]string{
   	"pyproject.toml": `[project]
   name = "demo"
@@ -439,7 +443,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikembalikan per
   		if err != nil {
   			log.Fatal(err)
   		}
-  		// Tambahkan giliran asisten persis seperti yang dikembalikan, termasuk blok thinking.
+  		// Append the assistant turn exactly as returned, thinking blocks included.
   		messages = append(messages, response.ToParam())
   		if response.StopReason != anthropic.BetaStopReasonToolUse {
   			break
@@ -453,8 +457,9 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikembalikan per
   			var input struct {
   				Path string `json:"path"`
   			}
+  			// A missing or non-string path leaves input.Path empty, which takes the error-result branch.
   			if err := json.Unmarshal([]byte(toolUse.JSON.Input.Raw()), &input); err != nil {
-  				log.Fatal(err)
+  				input.Path = ""
   			}
   			text, found := files[input.Path]
   			if !found {
@@ -462,9 +467,9 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikembalikan per
   			}
   			toolResults = append(toolResults, anthropic.NewBetaToolResultBlock(toolUse.ID, text, !found))
   		}
-  		// Kirim hasil alat sebagai giliran pengguna, lalu salinan baru dorongan sebagai
-  		// pesan sistem cakupan giliran. Biarkan salinan sebelumnya tetap ada: API menghapusnya,
-  		// sehingga model hanya melihat salinan yang terbaru.
+  		// Send the tool results as the user turn, then a fresh copy of the nudge as a
+  		// turn-scoped system message. Leave earlier copies in place: the API clears them,
+  		// so the model sees only the newest one.
   		messages = append(messages, anthropic.NewBetaUserMessage(toolResults...))
   		messages = append(messages, anthropic.BetaMessageParam{
   			Role:    anthropic.BetaMessageParamRoleSystem,
@@ -500,7 +505,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikembalikan per
       "First privately list what you need next; then request every item "
           + "that doesn't depend on another's result in this one response.";
 
-  // File dalam memori menggantikan direktori kerja agar contoh ini dapat dijalankan di mana saja.
+  // In-memory files stand in for a working directory so the sample runs anywhere.
   static final Map<String, String> FILES = Map.of(
       "pyproject.toml", """
           [project]
@@ -540,7 +545,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikembalikan per
               .addTool(readFileTool)
               .messages(messages)
               .build());
-          // Tambahkan giliran asisten persis seperti yang dikembalikan, termasuk blok thinking.
+          // Append the assistant turn exactly as returned, thinking blocks included.
           messages.add(response.toParam());
           boolean requestedTools = response.stopReason()
               .map(BetaStopReason.TOOL_USE::equals)
@@ -555,7 +560,10 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikembalikan per
           for (BetaToolUseBlock toolUse : toolUses) {
               Map<String, JsonValue> input =
                   (Map<String, JsonValue>) toolUse._input().asObject().orElseThrow();
-              String path = input.get("path").asStringOrThrow();
+              JsonValue pathValue = input.get("path");
+              String path = pathValue != null && pathValue.asString().isPresent()
+                  ? pathValue.asStringOrThrow()
+                  : "";
               String fileText = FILES.get(path);
               BetaToolResultBlockParam.Builder result = BetaToolResultBlockParam.builder()
                   .toolUseId(toolUse.id());
@@ -566,9 +574,9 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikembalikan per
               }
               toolResults.add(BetaContentBlockParam.ofToolResult(result.build()));
           }
-          // Kirim hasil alat sebagai giliran pengguna, lalu salinan baru dorongan sebagai
-          // pesan sistem cakupan giliran. Biarkan salinan sebelumnya tetap ada: API menghapusnya,
-          // sehingga model hanya melihat salinan yang terbaru.
+          // Send the tool results as the user turn, then a fresh copy of the nudge as a
+          // turn-scoped system message. Leave earlier copies in place: the API clears them,
+          // so the model sees only the newest one.
           messages.add(BetaMessageParam.builder()
               .role(BetaMessageParam.Role.USER)
               .contentOfBetaContentBlockParams(toolResults)
@@ -582,9 +590,9 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikembalikan per
 
       String finalText = response.content().stream()
           .flatMap(block -> block.text().stream())
+          .map(textBlock -> textBlock.text())
           .findFirst()
-          .orElseThrow()
-          .text();
+          .orElse("");
       IO.println(finalText);
   }
   ```
@@ -599,7 +607,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikembalikan per
 
   const BATCH_NUDGE = 'First privately list what you need next; then request every item '
       . "that doesn't depend on another's result in this one response.";
-  // File dalam memori menggantikan direktori kerja agar contoh ini dapat dijalankan di mana saja.
+  // In-memory files stand in for a working directory so the sample runs anywhere.
   const FILES = [
       'pyproject.toml' => <<<'TOML'
           [project]
@@ -636,7 +644,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikembalikan per
           tools: $tools,
           messages: $messages,
       );
-      // Tambahkan giliran asisten persis seperti yang dikembalikan, termasuk blok thinking.
+      // Append the assistant turn exactly as returned, thinking blocks included.
       $messages[] = ['role' => 'assistant', 'content' => $response->content];
       if ($response->stopReason !== BetaStopReason::TOOL_USE->value) {
           break;
@@ -644,7 +652,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikembalikan per
       $toolResults = [];
       foreach ($response->content as $block) {
           if ($block->type === 'tool_use') {
-              $path = $block->input['path'];
+              $path = is_string($block->input['path'] ?? null) ? $block->input['path'] : '';
               if (array_key_exists($path, FILES)) {
                   $toolResults[] = [
                       'type' => 'tool_result',
@@ -661,9 +669,9 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikembalikan per
               }
           }
       }
-      // Kirim hasil alat sebagai giliran pengguna, lalu salinan baru dorongan sebagai
-      // pesan sistem cakupan giliran. Biarkan salinan sebelumnya tetap ada: API menghapusnya,
-      // sehingga model hanya melihat salinan yang terbaru.
+      // Send the tool results as the user turn, then a fresh copy of the nudge as a
+      // turn-scoped system message. Leave earlier copies in place: the API clears them,
+      // so the model sees only the newest one.
       $messages[] = ['role' => 'user', 'content' => $toolResults];
       $messages[] = [
           'role' => 'system',
@@ -673,7 +681,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikembalikan per
   }
 
   $textBlock = array_find($response->content, fn ($block) => $block->type === 'text');
-  echo $textBlock->text, PHP_EOL;
+  echo $textBlock?->text ?? '', PHP_EOL;
   ```
 
   ```ruby Ruby

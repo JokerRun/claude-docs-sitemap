@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/quickstart
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: a73c22a160b09bfc8c95f95bc5add78f6181d59788e849af0463cbfc4c8a137d
+fetched_at: 2026-09-03T02:44:34.856042Z
+sha256: d04b90d6b800143c45b9198e0423682b9aedf6f5776ea2ff48f907226dc3ba49
 ---
 
 ---
@@ -36,7 +36,7 @@ Compared to `curl`, `ant` builds request bodies from typed flags or piped YAML i
     For Linux environments, download the release binary directly.
 
     ```bash
-    VERSION=1.27.0
+    VERSION=1.29.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;

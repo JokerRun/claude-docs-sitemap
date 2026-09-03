@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-faq
-fetched_at: 2026-09-01T02:22:36.834082Z
-sha256: 5913191d3537086aa9b6c700b42d92bfe0ca7feeaba9f826b44cb282608938bc
+fetched_at: 2026-09-03T02:44:34.856042Z
+sha256: 26682dbb7e11829aa42bd307efeb24397e66491f08d8a17464b008ef3bde5d3a
 ---
 
 ---
@@ -110,7 +110,7 @@ description: Answers to common questions about Compliance API access, scopes, re
   </Accordion>
 
   <Accordion title="Is deleted content recoverable through the Compliance API?">
-    No. Deletes performed through the Compliance API are immediate, permanent, and not recoverable. The content of a chat that a user deletes in claude.ai is not recoverable either: the Compliance API still returns the chat and its messages, with `deleted_at` populated, but not their content. Pull any content you need to retain (for legal hold or archival) while it is still available. See [Plan content retention](https://platform.claude.com/docs/en/manage-claude/compliance-integration-patterns#plan-content-retention) for when to export content to your own archive.
+    No. Deletes performed through the Compliance API are immediate, permanent, and not recoverable. The content of a chat that a user deletes in claude.ai is not recoverable either: the Compliance API still returns the chat and its messages, with `deleted_at` populated, but not their content. A remote session that a user deletes is likewise not recoverable, and the remote session endpoints no longer return it. Pull any content you need to retain (for legal hold or archival) while it is still available. See [Plan content retention](https://platform.claude.com/docs/en/manage-claude/compliance-integration-patterns#plan-content-retention) for when to export content to your own archive.
   </Accordion>
 
   <Accordion title="What does the Compliance API not capture?">
