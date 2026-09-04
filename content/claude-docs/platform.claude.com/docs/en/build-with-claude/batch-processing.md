@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/batch-processing
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 5c1501ce73f82df3071d3e9f0cad93b645e0143cc64c59664e77533381f73bb2
+fetched_at: 2026-09-04T02:21:22.489135Z
+sha256: e1df24b2de12d22c8eed0e85d4dbc46cf6c2e1c8300d6d635d0667fd22a439c4
 ---
 
 ---
@@ -78,10 +78,7 @@ A small number of Messages API parameters are **not** supported in batch request
 | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | `stream: true`                                                                         | Batch results come back as a single file, not a stream.                                                            |
 | `speed` ([Fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode)) | Fast mode tunes synchronous latency, which doesn't apply to asynchronous batch processing.                         |
-| `store` / `previous_thread_event_id` (Threads)                                         | Threads are stateful; batch requests are not.                                                                      |
-| `cache_hint` / `context_hint`                                                          | These routing hints apply to synchronous request scheduling only.                                                  |
 | `max_tokens: 0`                                                                        | See [Batch limitations](https://platform.claude.com/docs/en/build-with-claude/batch-processing#batch-limitations). |
-| `research_preview_2026_02: "active"`                                                   | Research preview mode is not available on the batch path.                                                          |
 
 <Tip>
   Because batches can take longer than 5 minutes to process, consider using the [1-hour cache duration](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#1-hour-cache-duration) with prompt caching for better cache hit rates when processing batches with shared context.
@@ -1850,7 +1847,7 @@ For ZDR eligibility across all features, see [API and data retention](https://pl
   </Accordion>
 
   <Accordion title="Can I use the Message Batches API with other API features?">
-    Yes, the Message Batches API supports nearly all features available in the Messages API, including most beta features. A small number of parameters (`stream`, `speed`, `store`, `previous_thread_event_id`, `cache_hint`, `context_hint`, `max_tokens: 0`, and `research_preview_2026_02`) are not supported. See [What can be batched](https://platform.claude.com/docs/en/build-with-claude/batch-processing#what-can-be-batched) for the full list.
+    Yes, the Message Batches API supports nearly all features available in the Messages API, including most beta features. A small number of parameters (`stream`, `speed`, and `max_tokens: 0`) are not supported. See [What can be batched](https://platform.claude.com/docs/en/build-with-claude/batch-processing#what-can-be-batched) for the full list.
   </Accordion>
 
   <Accordion title="How does the Message Batches API affect pricing?">

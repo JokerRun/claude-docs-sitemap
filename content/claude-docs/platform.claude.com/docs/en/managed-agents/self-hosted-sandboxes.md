@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-09-03T02:44:34.856042Z
-sha256: 945bf3c8450501db91ad9a3daa98b7d0a0a234f952b7e3921b4fb9be9c2246f7
+fetched_at: 2026-09-04T02:21:22.489135Z
+sha256: 827343eda3b4ac4b509acfe925bc483fb9ec39397928ebfddff748f8ee38797b
 ---
 
 ---
@@ -92,7 +92,7 @@ You need:
 
       <MultiFileExample language="cli" label="CLI">
         ```bash CLI
-        ant beta:environments create < environment.yaml
+        ant apply environment.yaml
         ```
 
         <File filename="environment.yaml">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/overview
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: f9055b712d7cd91982a263eaffd1f6687a08fdd6f29601fc78ad3bdad857cd94
+fetched_at: 2026-09-04T02:21:22.489135Z
+sha256: 2fab8d010c46878e6f3e6e7387a0566fd6ca06f7711dca972517fa212460ba13
 ---
 
 ---
@@ -51,8 +51,8 @@ For details on each authentication method and when to use it, see [Authenticatio
 
 | Header                   | Value                                                                                                                                                                                                                                                                    | Required                                                                                                                                                             |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `x-api-key`              | Your API key from Console                                                                                                                                                                                                                                                | One of `x-api-key` or `Authorization`                                                                                                                                |
-| `Authorization`          | `Bearer <token>`, where `<token>` is a short-lived access token obtained from `POST /v1/oauth/token` through [Workload Identity Federation](https://platform.claude.com/docs/en/manage-claude/workload-identity-federation)                                              | One of `x-api-key` or `Authorization`                                                                                                                                |
+| `Authorization`          | `Bearer <token>`, where `<token>` is your API key or a short-lived access token obtained from `POST /v1/oauth/token` through [Workload Identity Federation](https://platform.claude.com/docs/en/manage-claude/workload-identity-federation)                              | Yes, unless `x-api-key` is set                                                                                                                                       |
+| `x-api-key`              | Your API key from Console. Legacy fallback for `Authorization`, still supported                                                                                                                                                                                          | No                                                                                                                                                                   |
 | `anthropic-workspace-id` | ID of the [workspace](https://platform.claude.com/docs/en/manage-claude/workspaces) the request runs in (for example, `wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ`). See [Select a workspace](https://platform.claude.com/docs/en/manage-claude/authentication#select-a-workspace). | Required with a multi-workspace API key. Optional for other API keys. Not used with Workload Identity Federation tokens, which select a workspace at token exchange. |
 | `anthropic-version`      | API version (for example, `2023-06-01`)                                                                                                                                                                                                                                  | Yes                                                                                                                                                                  |
 | `content-type`           | `application/json`                                                                                                                                                                                                                                                       | Yes                                                                                                                                                                  |
@@ -71,7 +71,7 @@ Anthropic provides official SDKs that simplify API integration by handling authe
 
 **Benefits:**
 
-* Automatic header management (`x-api-key`, `anthropic-version`, `content-type`)
+* Automatic header management (authentication, `anthropic-version`, `content-type`)
 * Type-safe request and response handling
 * Built-in retry logic and error handling
 * Streaming support

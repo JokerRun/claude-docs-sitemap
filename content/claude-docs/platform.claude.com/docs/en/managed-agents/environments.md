@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/environments
-fetched_at: 2026-08-26T02:33:22.881887Z
-sha256: 8374f7fda90137f89491006f08bc6fa7378eed7f33d1a0c8b873e4d7fcc25a94
+fetched_at: 2026-09-04T02:21:22.489135Z
+sha256: 27af1a04bb9c5be7dd67b91a9d31d4160371459a7a87c8d4e10d8d59b33a9351
 ---
 
 ---
@@ -45,10 +45,10 @@ This page covers `type: cloud` environments. To run sandboxes on your own infras
 
   <MultiFileExample language="cli" label="CLI">
     ```bash CLI
-    ant beta:environments create < python-dev.environment.yaml
+    ant apply environment.yaml
     ```
 
-    <File filename="python-dev.environment.yaml">
+    <File filename="environment.yaml">
       ```yaml
       name: python-dev
       config:
@@ -258,7 +258,7 @@ The `packages` field pre-installs packages into the sandbox before the agent sta
 
   <MultiFileExample language="cli" label="CLI">
     ```bash CLI
-    ant beta:environments create < environment.yaml
+    ant apply environment.yaml
     ```
 
     <File filename="environment.yaml">
@@ -436,7 +436,7 @@ The following example creates an environment with `limited` networking:
 
   <MultiFileExample language="cli" label="CLI">
     ```bash CLI
-    ant beta:environments create < environment.yaml
+    ant apply environment.yaml
     ```
 
     <File filename="environment.yaml">

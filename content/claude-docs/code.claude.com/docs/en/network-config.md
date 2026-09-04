@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/network-config
-fetched_at: 2026-08-30T02:21:42.830335Z
-sha256: cf5f693537712b9807a08c3b11ceb2e785639a60f7c5d15d7eec72a4a6f0f8fb
+fetched_at: 2026-09-04T02:21:22.489135Z
+sha256: 6a892c56d6fc49f1a2e561d2110ab52d4f9c94ff1aeee7ffc188b12dc0486c32
 ---
 
 > ## Documentation Index
@@ -205,7 +205,9 @@ Configure the timers with these variables, each detailed in the [environment var
 * `CLAUDE_STREAM_FIRST_BYTE_TIMEOUT_MS` sets the first-byte deadline directly. Leave it unset and Claude Code derives the deadline from the byte-level watchdog's timeout or from an `API_TIMEOUT_MS` you set above that timeout, so `CLAUDE_STREAM_IDLE_TIMEOUT_MS` and `CLAUDE_BYTE_STREAM_IDLE_TIMEOUT_MS` change the deadline too. For the clamps, the upload allowance, and the `API_TIMEOUT_MS` cap, see [No response from API](/docs/en/errors#no-response-from-api).
 * `API_FORCE_IDLE_TIMEOUT` set to `0` turns the body idle timeout off, and set to `1` turns it on for every provider. The watchdogs run independently of it, so to let a stream pause longer than their thresholds, also raise or disable them.
 
-When a watchdog aborts a stalled stream, Claude Code treats it as a mid-stream failure: depending on how far the response had got, it retries the request or ends the turn with an error, keeps the completed output and shows an [incomplete-response notice](/docs/en/errors#the-response-above-may-be-incomplete), or ends the turn normally. [Automatic retries](/docs/en/errors#automatic-retries) says where each outcome applies. In a [non-interactive session](/docs/en/headless), Claude Code may first prompt Claude to continue the cut-off response; [that notice's entry](/docs/en/errors#the-response-above-may-be-incomplete) says when it does and when you still see the notice.
+When a watchdog aborts a stalled stream, Claude Code treats the abort as a mid-stream failure, and what you see depends on how far the response had got. Claude Code retries the request or ends the turn with an error, keeps the completed output and shows an [incomplete-response notice](/docs/en/errors#the-response-above-may-be-incomplete), or ends the turn normally. [Automatic retries](/docs/en/errors#automatic-retries) says where each outcome applies.
+
+In a [non-interactive session](/docs/en/headless), and for a subagent's response in any session, Claude Code may first prompt Claude to continue the cut-off response; [that notice's entry](/docs/en/errors#the-response-above-may-be-incomplete) says when it does and when you still see the notice.
 
 When the first-byte deadline fires, no response has started, so there is no partial output to keep. For how Claude Code re-sends the request and when the turn ends instead, see [No response from API](/docs/en/errors#no-response-from-api).
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-teams
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 42ee37642823ee36bbb94238db39bbd7795ceedf06b2c769f215cf9175a75c8e
+fetched_at: 2026-09-04T02:21:22.489135Z
+sha256: d746d5be8e828ad123a07dc1342100d81c211064a84e794c024cdea64d68138e
 ---
 
 > ## Documentation Index
@@ -156,7 +156,7 @@ Claude Code picks each teammate's model from the first of these that applies:
 3. [`CLAUDE_CODE_SUBAGENT_MODEL`](/docs/en/model-config#environment-variables), when it's set to anything other than `inherit`.
 4. The lead's current model.
 
-[`CLAUDE_CODE_SUBAGENT_MODEL_FORCE`](/docs/en/sub-agents#choose-a-model) applies to teammates as well as to subagents.
+[`CLAUDE_CODE_SUBAGENT_MODEL_FORCE`](/docs/en/sub-agents#run-every-subagent-on-one-model) applies to teammates as well as to subagents.
 
 Before v2.1.251, `CLAUDE_CODE_SUBAGENT_MODEL` came first in this order.
 

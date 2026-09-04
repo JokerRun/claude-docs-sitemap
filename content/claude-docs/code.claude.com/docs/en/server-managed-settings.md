@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/server-managed-settings
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: eafac2bd8b0809b597c14167c30a1d4913b940c6eb3bd8e3e1f83b4ad11b4d00
+fetched_at: 2026-09-04T02:21:22.489135Z
+sha256: bcc9f46b1ea80ce6bf25dfbff2a7575cba596511aa4826384db987fccf824eae
 ---
 
 > ## Documentation Index
@@ -191,7 +191,7 @@ Claude Code applies most settings updates to running sessions without a restart.
 
 ### Invalid entries in delivered settings
 
-Delivered payloads parse tolerantly with the same rules as the other managed sources. When part of a payload fails schema validation, Claude Code surfaces a validation error and applies every remaining valid setting; [Invalid entries in managed settings](/docs/en/managed-settings#invalid-entries-in-managed-settings) says what it drops and which keys fall back to a stricter value. Requires Claude Code v2.1.169 or later.
+When part of a payload fails schema validation, Claude Code surfaces a validation error and applies every remaining valid setting; [Invalid entries in managed settings](/docs/en/managed-settings#invalid-entries-in-managed-settings) says what it drops and which keys fall back to a stricter value. Requires Claude Code v2.1.169 or later.
 
 Server-managed delivery adds these behaviors:
 

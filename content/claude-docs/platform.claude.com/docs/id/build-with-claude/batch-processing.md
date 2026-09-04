@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/batch-processing
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 55627bf67171bd48ea1470b023ddc57d73625d81e4b8ad47d950d83f8a375f72
+fetched_at: 2026-09-04T02:21:22.489135Z
+sha256: 9ce53f32ecbb899711ffb4cfd7f35b2e4f597a8f7240f738a7689094c8f79cf1
 ---
 
 ---
@@ -78,10 +78,7 @@ Sejumlah kecil parameter Messages API **tidak** didukung dalam permintaan batch.
 | --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | `stream: true`                                                                          | Hasil batch dikembalikan sebagai satu file, bukan stream.                                                        |
 | `speed` ([Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode)) | Mode cepat menyetel latensi sinkron, yang tidak berlaku untuk pemrosesan batch asinkron.                         |
-| `store` / `previous_thread_event_id` (Threads)                                          | Threads bersifat stateful; permintaan batch tidak.                                                               |
-| `cache_hint` / `context_hint`                                                           | Petunjuk perutean ini hanya berlaku untuk penjadwalan permintaan sinkron.                                        |
 | `max_tokens: 0`                                                                         | Lihat [Batasan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing#batch-limitations). |
-| `research_preview_2026_02: "active"`                                                    | Mode pratinjau riset tidak tersedia pada jalur batch.                                                            |
 
 <Tip>
   Karena batch dapat memerlukan waktu lebih dari 5 menit untuk diproses, pertimbangkan untuk menggunakan [durasi cache 1 jam](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#1-hour-cache-duration) dengan "prompt caching" (caching prompt) untuk tingkat cache hit yang lebih baik saat memproses batch dengan konteks bersama.
@@ -1850,7 +1847,7 @@ Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platfor
   </Accordion>
 
   <Accordion title="Dapatkah saya menggunakan Message Batches API dengan fitur API lainnya?">
-    Ya, Message Batches API mendukung hampir semua fitur yang tersedia di Messages API, termasuk sebagian besar fitur beta. Sejumlah kecil parameter (`stream`, `speed`, `store`, `previous_thread_event_id`, `cache_hint`, `context_hint`, `max_tokens: 0`, dan `research_preview_2026_02`) tidak didukung. Lihat [Apa yang dapat di-batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing#what-can-be-batched) untuk daftar lengkapnya.
+    Ya, Message Batches API mendukung hampir semua fitur yang tersedia di Messages API, termasuk sebagian besar fitur beta. Sejumlah kecil parameter (`stream`, `speed`, dan `max_tokens: 0`) tidak didukung. Lihat [Apa yang dapat di-batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing#what-can-be-batched) untuk daftar lengkapnya.
   </Accordion>
 
   <Accordion title="Bagaimana Message Batches API memengaruhi harga?">

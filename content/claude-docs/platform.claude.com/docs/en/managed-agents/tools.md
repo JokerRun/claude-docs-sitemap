@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/tools
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 91373069c56bd71fc3a056186ba47833a5afd86e865d82144d69f17bc419f167
+fetched_at: 2026-09-04T02:21:22.489135Z
+sha256: 3e93e9ccc5371e636ae7fe0d58764c7716576e9431572164c76b3119a61eadc1
 ---
 
 ---
@@ -701,11 +701,12 @@ If your sessions run in a self-hosted sandbox, the environment worker can [serve
 
   <MultiFileExample language="cli" label="CLI">
     ```bash CLI
-    ant beta:agents create < agent.yaml
+    ant apply agent.md
     ```
 
-    <File filename="agent.yaml">
-      ```yaml
+    <File filename="agent.md">
+      ```markdown
+      ---
       name: Weather Agent
       model: claude-opus-5
       tools:
@@ -721,6 +722,7 @@ If your sessions run in a self-hosted sandbox, the environment worker can [serve
                 description: City name
             required:
               - location
+      ---
       ```
     </File>
   </MultiFileExample>

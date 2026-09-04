@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: e06252ae91323ce776fcd8460a7951fe672c6db1468f29c0b63d1a2c5d56bc83
+fetched_at: 2026-09-04T02:21:22.489135Z
+sha256: 778e73bdc6a29dc937b89591a9acf332feaa8a7c902dd1c1574c59f734708d30
 ---
 
 ---
@@ -947,7 +947,7 @@ Download files that were created by [skills](https://platform.claude.com/docs/en
   A file is downloadable only when its metadata shows `"downloadable": true`, which is the case for files created by skills or the code execution tool. Downloading a file you uploaded returns a 400 error.
 </Note>
 
-On the Claude API, supported image and video files that Claude produces with the code execution tool, including files created by skills, carry signed C2PA Content Credentials when you download them. See [Content Credentials on generated files](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool#content-credentials-on-generated-files) for what the credential contains and how to verify it.
+On the Claude API, supported image, video, and audio files that Claude produces with the code execution tool, including files created by skills, carry signed C2PA Content Credentials when you download them. See [Content Credentials on generated files](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool#content-credentials-on-generated-files) for what the credential contains and how to verify it.
 
 ## File storage and limits
 

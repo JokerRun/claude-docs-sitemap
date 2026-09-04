@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: ade380769323c116d3c79da09c777cb20ad6af780d2e0e961badf271d86eea7a
+fetched_at: 2026-09-04T02:21:22.489135Z
+sha256: 4ae37f56971ecfb1680a1996aa87ea80fdc794ac5af09fd7b8b567d9acad7d53
 ---
 
 > ## Documentation Index
@@ -572,7 +572,7 @@ interface Query extends AsyncGenerator<SDKMessage, void> {
 | `updateSettings(source, settings)`     | Merges settings into the project's local settings file, `.claude/settings.local.json`; they take effect on the next request. Accepts only `source: 'localSettings'` and an allowlisted key set, currently `outputStyle`, with string values; deleting a key isn't supported. Rejects on remote transports and in sessions whose [`settingSources`](#options) exclude `local`. Requires TypeScript SDK v0.3.257 or later, which bundles Claude Code v2.1.257                               |
 | `initializationResult()`               | Returns the full initialization result including supported commands, models, account info, and output style configuration                                                                                                                                                                                                                                                                                                                                                                 |
 | `reinitialize()`                       | Re-sends the `initialize` control request to the running CLI and returns a fresh result instead of the cached first-connect result. Use it after a transport gap, such as reattaching to a session after a disconnect, so pending permission requests reach your `canUseTool` callback again. Make the callback idempotent per request ID, because a request whose response was lost is dispatched again. Requires Claude Code v2.1.195 or later                                          |
-| `supportedCommands()`                  | Returns available slash commands. From Agent SDK v0.3.216 the list reflects mid-session command changes; see [`SDKCommandsChangedMessage`](#sdkcommandschangedmessage)                                                                                                                                                                                                                                                                                                                    |
+| `supportedCommands()`                  | Returns available commands. From Agent SDK v0.3.216 the list reflects mid-session command changes; see [`SDKCommandsChangedMessage`](#sdkcommandschangedmessage)                                                                                                                                                                                                                                                                                                                          |
 | `supportedModels()`                    | Returns available models with display info                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | `supportedAgents()`                    | Returns available subagents as [`AgentInfo`](#agentinfo)`[]`                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | `mcpServerStatus()`                    | Returns status of connected MCP servers                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
@@ -4317,7 +4317,7 @@ type SdkBeta = "context-1m-2025-08-07";
 
 ### `SlashCommand`
 
-Information about an available slash command.
+Information about an available command.
 
 ```typescript theme={null}
 type SlashCommand = {
