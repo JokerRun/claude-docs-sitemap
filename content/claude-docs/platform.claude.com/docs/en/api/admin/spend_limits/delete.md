@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/delete
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 814344a69e4eb38d9f43747272f063504a653734a8e0a88adb1b4ace482acc89
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: c3ef3bc72303d75e109fef456d14ee22902e42e97977251fe5e0c7e0b329c4b4
 ---
 
 # Delete Spend Limit
@@ -35,7 +35,7 @@ this endpoint.
 curl https://api.anthropic.com/v1/organizations/spend_limits/$SPEND_LIMIT_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN"
 ```
 
 ### Response (200)

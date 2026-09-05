@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/create
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: 4f8000e22585f47dcb0ade62746bacd2a914faf6bd686cb4f4be106969b9c393
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: b76baa52873e16814a69e3d27a070db2c1a67aa2a0a641acc779347971c35f79
 ---
 
 # Set Spend Limit
@@ -143,7 +143,7 @@ group, and organization-level defaults are configured in claude.ai.
 curl https://api.anthropic.com/v1/organizations/spend_limits \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN" \
+    -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN" \
     -d '{
           "amount": "50000",
           "scope": {

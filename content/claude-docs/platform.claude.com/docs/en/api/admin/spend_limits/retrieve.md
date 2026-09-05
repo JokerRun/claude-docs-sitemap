@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/retrieve
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: 69a429d346a51bdc2f591800a88629b6c4470680c27d3326f5aca5b38fe6b670
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: 39dbfe55e910e26355a51a7c59fd42f396f2c93f634d2e1d235a9275ac71af14
 ---
 
 # Get Spend Limit
@@ -116,7 +116,7 @@ Retrieve a spend limit by ID.
 ```bash
 curl https://api.anthropic.com/v1/organizations/spend_limits/$SPEND_LIMIT_ID \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN"
 ```
 
 ### Response (200)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/list_effective
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: 510206f147c5ed6940b2be9487f6813623a98920f34908fa290b6d91e086edcb
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: dfa4eb7ce467c6ef09f05ecdd829fb9b869f1ff370b1a8ce5803f4ffedf41f98
 ---
 
 # List Effective Spend Limits
@@ -172,7 +172,7 @@ Paginates by member, so a member's periods never split across pages.
 ```bash
 curl https://api.anthropic.com/v1/organizations/spend_limits/effective \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN"
 ```
 
 ### Response (200)

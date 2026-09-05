@@ -6301,6 +6301,10 @@
 <priority>0.8</priority>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/en/cli-sdks-libraries/cli/apply</loc>
+<priority>0.8</priority>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/en/cli-sdks-libraries/middleware</loc>
 <priority>0.8</priority>
 </url>

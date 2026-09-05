@@ -1,13 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/service_accounts/list
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 2154b9a5858996c853509213768a7be637c348cbe65e06847fe9ba288773cee8
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: 4b60b803aadbc778f72f3ae7c846f373a3fd849d2aac8c2b796962e17fde5694
 ---
 
 # List Service Accounts
 
 **GET** `/v1/organizations/service_accounts`
+
+**Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See [Manage WIF with the Admin API](/docs/en/manage-claude/wif-admin-api).
 
 List service accounts in the caller's organization.
 
@@ -108,7 +110,7 @@ archived service accounts.
 ```bash
 curl https://api.anthropic.com/v1/organizations/service_accounts \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN"
 ```
 
 ### Response (200)

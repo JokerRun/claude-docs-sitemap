@@ -1,13 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/service_accounts/update
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: 86a20be088572f4cac24109e4d1e80466050f2b150cf48d163466a40d53811ee
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: c9af79c4634e9c504d62d18948cebf980d51dbc7e52d380297dc699f8c154b58
 ---
 
 # Update Service Account Workspace Member
 
 **POST** `/v1/organizations/workspaces/{workspace_id}/service_accounts/{service_account_id}`
+
+**Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See [Manage WIF with the Admin API](/docs/en/manage-claude/wif-admin-api).
 
 Change a service account's role in a workspace.
 
@@ -16,8 +18,7 @@ memberships can be updated; to set a role on the implicit
 default-workspace membership, add the service account explicitly with
 `POST /workspaces/{workspace_id}/service_accounts`. Archived workspaces
 return 400. Archived service accounts cannot be updated and are
-rejected. Requires an OAuth bearer or Console session; Admin API keys
-are not accepted.
+rejected.
 
 ## Path parameters
 
@@ -93,7 +94,7 @@ are not accepted.
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/service_accounts/$SERVICE_ACCOUNT_ID \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN" \
+    -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN" \
     -d '{
           "workspace_role": "workspace_admin"
         }'

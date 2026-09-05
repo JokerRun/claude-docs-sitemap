@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys/retrieve
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: 6e449319cdced98a781da85aaa5377644582991257d7c446f2dbffe0f99acd2f
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: 183d17804a3215aade5acff2f76c8bc8525136d8cd779080c3fac30db3ddd71a
 ---
 
 # Retrieve API Key (Admin API)
@@ -146,7 +146,7 @@ Retrieve information about a single API key in your organization, looked up by i
 ```bash
 curl https://api.anthropic.com/v1/organizations/api_keys/$API_KEY_ID \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN"
 ```
 
 ### Response (200)

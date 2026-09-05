@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/gcp
-fetched_at: 2026-08-19T02:28:54.965606Z
-sha256: 5c104d2f5bb7f6bbd30606196c878ee8156bd422525f64fb87af274da72a5f36
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: ad5bd2da6d8f745f51dfc88ab53a172d43b22fba007f71212a55ffa80ab5dd2c
 ---
 
 ---
@@ -315,6 +315,9 @@ Inside your Google Cloud workload, fetch the identity token from the metadata se
   ```
 
   ```csharp C#
+  using Anthropic.Credentials;
+  // ...
+
   var credentials = new WorkloadIdentityCredentials(new WorkloadIdentityOptions
   {
       FederationRuleId = Environment.GetEnvironmentVariable("ANTHROPIC_FEDERATION_RULE_ID")!,
@@ -323,7 +326,7 @@ Inside your Google Cloud workload, fetch the identity token from the metadata se
       WorkspaceId = Environment.GetEnvironmentVariable("ANTHROPIC_WORKSPACE_ID"),
       IdentityTokenProvider = new MetadataTokenProvider(),
   });
-  using var client = new AnthropicOidcClient(credentials);
+  using var client = new AnthropicClient(new ClientOptions { Credentials = credentials });
 
   var message = await client.Messages.Create(new()
   {

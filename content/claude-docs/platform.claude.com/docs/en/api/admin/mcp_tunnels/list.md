@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/list
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: c1d7f9904b7da90f6f9704e816abc44a3f0626eafc6094e4eff51c005bfe92e4
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: 5b710d881f03a93a2b9b46c9f3b974ec3b58e7540399dddb13ebd2d4486880e6
 ---
 
 # List Tunnels
@@ -101,7 +101,7 @@ archived tunnels are excluded unless `include_archived` is set.
 ```bash
 curl https://api.anthropic.com/v1/organizations/tunnels \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN"
 ```
 
 ### Response (200)

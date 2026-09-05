@@ -1,13 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/federation_rules/list
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 362890eadf2b19371b5a876334aadf6328c40ee8351533ec7e27de6aaa90028e
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: be2d875d1e7a402ec5f963807e937c56d959498caa67c58d44181570216c9e9c
 ---
 
 # List Federation Rules
 
 **GET** `/v1/organizations/federation_rules`
+
+**Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See [Manage WIF with the Admin API](/docs/en/manage-claude/wif-admin-api).
 
 List federation rules in your organization.
 
@@ -175,7 +177,7 @@ unless `include_archived=true`.
 ```bash
 curl https://api.anthropic.com/v1/organizations/federation_rules \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN"
 ```
 
 ### Response (200)

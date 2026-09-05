@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-connect
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 20a6a179e6b55f832cff842a3ea5b44de441ac2dcd6eb334a8fbb004bdb6e03c
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: 6a51a2d4355632bfec26d2eaa9051cd416c41e24e1c506b559c78ca78b29f5fa
 ---
 
 > ## Documentation Index
@@ -19,7 +19,7 @@ This page is for developers running Claude Code through a gateway their organiza
 
 <Note>
   * To deploy a gateway for your organization, see [Roll out an LLM gateway](/docs/en/llm-gateway-rollout)
-  * For what Claude Code sends to a gateway, see the [gateway protocol reference](/docs/en/llm-gateway-protocol)
+  * For what Claude Code sends to a gateway, see the [gateway compatibility guide](/docs/en/llm-gateway-protocol)
 </Note>
 
 ## Check for an existing configuration
@@ -538,6 +538,6 @@ If Claude Code prompts you to log in repeatedly after removing gateway configura
 
 * [LLM gateways overview](/docs/en/llm-gateway): what a gateway is and how it interacts with claude.ai subscriptions
 * [Roll out an LLM gateway for your organization](/docs/en/llm-gateway-rollout): the admin-facing checklist for deploying and distributing gateway configuration
-* [Gateway protocol reference](/docs/en/llm-gateway-protocol): what Claude Code sends to a gateway, including the headers and fields the gateway must forward
+* [Gateway compatibility guide](/docs/en/llm-gateway-protocol): what Claude Code sends to a gateway, including the headers and fields the gateway must forward
 * [Settings](/docs/en/settings): where settings files live and how the `env` block is read
 * [Authentication](/docs/en/authentication): how credential variables, `apiKeyHelper`, and OAuth login interact

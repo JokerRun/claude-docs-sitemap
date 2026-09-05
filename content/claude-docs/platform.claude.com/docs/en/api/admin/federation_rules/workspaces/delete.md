@@ -1,20 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/federation_rules/workspaces/delete
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: e880368a36b142f519b722f1ba5056b7e76ba689ea9e0f57486ec277107339c9
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: a8b92a8aa2815bc2cccda175f1984ad3c7037aeb3f864aa0fa00643264aa0e24
 ---
 
 # Remove Federation Rule Workspace
 
 **DELETE** `/v1/organizations/federation_rules/{federation_rule_id}/workspaces/{workspace_id}`
 
+**Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See [Manage WIF with the Admin API](/docs/en/manage-claude/wif-admin-api).
+
 Disable a federation rule for a workspace.
 
 Idempotent; succeeds even if the enablement was already removed. OAuth
 callers may only manage rules whose `oauth_scope` is
 `workspace:developer` or `workspace:inference`; other scopes require a
-Console session. Admin API keys are not accepted.
+Console session.
 
 ## Path parameters
 
@@ -54,7 +56,7 @@ Console session. Admin API keys are not accepted.
 curl https://api.anthropic.com/v1/organizations/federation_rules/$FEDERATION_RULE_ID/workspaces/$WORKSPACE_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN"
 ```
 
 ### Response (200)

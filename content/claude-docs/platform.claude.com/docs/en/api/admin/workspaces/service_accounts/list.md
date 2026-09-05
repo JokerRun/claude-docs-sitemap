@@ -1,13 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/service_accounts/list
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: 3a818852f352551df5a9152ef9cafe857a0fd9c6fe90590653ddb583ff5910c7
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: 07f7f56082ce2012c38121be9ca93efd89e55ce3a1341ccc8ddb6cd4f95f4638
 ---
 
 # List Service Account Workspace Members
 
 **GET** `/v1/organizations/workspaces/{workspace_id}/service_accounts`
+
+**Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See [Manage WIF with the Admin API](/docs/en/manage-claude/wif-admin-api).
 
 List the service accounts that are members of a workspace.
 
@@ -91,7 +93,7 @@ omitted from the results.
 ```bash
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/service_accounts \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN"
 ```
 
 ### Response (200)

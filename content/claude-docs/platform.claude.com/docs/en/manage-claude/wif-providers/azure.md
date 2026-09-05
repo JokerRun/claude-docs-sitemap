@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/azure
-fetched_at: 2026-08-19T02:28:54.965606Z
-sha256: 2c6cf9d6a7a7dc3e05755c700ef2c39dfd3c7079206e0b2b51e59873fad3727e
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: 952202dd6887403d9a88e6fd385834a36f495c73cd33536fe2d20c2acfccfa6a
 ---
 
 ---
@@ -424,6 +424,9 @@ The samples fetch the managed identity token from the platform's token endpoint:
   ```
 
   ```csharp C#
+  using Anthropic.Credentials;
+  // ...
+
   var credentials = new WorkloadIdentityCredentials(new WorkloadIdentityOptions
   {
       FederationRuleId = Environment.GetEnvironmentVariable("ANTHROPIC_FEDERATION_RULE_ID")!,
@@ -432,7 +435,7 @@ The samples fetch the managed identity token from the platform's token endpoint:
       WorkspaceId = Environment.GetEnvironmentVariable("ANTHROPIC_WORKSPACE_ID"),
       IdentityTokenProvider = new EntraTokenProvider(),
   });
-  using var client = new AnthropicOidcClient(credentials);
+  using var client = new AnthropicClient(new ClientOptions { Credentials = credentials });
 
   var message = await client.Messages.Create(new()
   {
@@ -1024,6 +1027,9 @@ Two different client IDs appear in the samples. `<APP_ID>` is the audience app r
   ```
 
   ```csharp C#
+  using Anthropic.Credentials;
+  // ...
+
   var credentials = new WorkloadIdentityCredentials(new WorkloadIdentityOptions
   {
       FederationRuleId = Environment.GetEnvironmentVariable("ANTHROPIC_FEDERATION_RULE_ID")!,
@@ -1032,7 +1038,7 @@ Two different client IDs appear in the samples. `<APP_ID>` is the audience app r
       WorkspaceId = Environment.GetEnvironmentVariable("ANTHROPIC_WORKSPACE_ID"),
       IdentityTokenProvider = new EntraFederationTokenProvider(),
   });
-  using var client = new AnthropicOidcClient(credentials);
+  using var client = new AnthropicClient(new ClientOptions { Credentials = credentials });
 
   var message = await client.Messages.Create(new()
   {

@@ -1,13 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/federation_issuers/update
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 26786eb2d747da4a71454005fb95be60d7ee6bd409a34e6dd200e2b0964d0816
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: 89bdfc262778bc40cbbe529f673fb01e552b6757762b127d54d386b27094a2d0
 ---
 
 # Update Federation Issuer
 
 **POST** `/v1/organizations/federation_issuers/{federation_issuer_id}`
+
+**Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See [Manage WIF with the Admin API](/docs/en/manage-claude/wif-admin-api).
 
 Partially update a federation issuer.
 
@@ -16,8 +18,7 @@ cannot be updated; this returns 400. Create a new issuer instead.
 
 Updating an issuer that backs a rule with a scope outside
 `workspace:developer` or `workspace:inference` requires a Console
-session. Requires an OAuth bearer or Console session; Admin API keys
-are not accepted.
+session.
 
 ## Path parameters
 
@@ -260,7 +261,7 @@ are not accepted.
 curl https://api.anthropic.com/v1/organizations/federation_issuers/$FEDERATION_ISSUER_ID \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN" \
+    -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN" \
     -d '{}'
 ```
 

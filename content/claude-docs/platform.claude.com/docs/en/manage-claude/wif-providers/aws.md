@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/aws
-fetched_at: 2026-08-19T02:28:54.965606Z
-sha256: 9c097b02cadeff891d46fda2a9a43d637df60fc30e06bb2c17423c911dc54db1
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: 9d18c12a63196297f85c2e25dc7007d82d0b5c6465c6f1838f68ec529e34ba77
 ---
 
 ---
@@ -298,6 +298,12 @@ Call `GetWebIdentityToken` with `https://api.anthropic.com` as the audience, the
   ```
 
   ```csharp C#
+  using Amazon.SecurityToken;
+  using Amazon.SecurityToken.Model;
+  // ...
+  using Anthropic.Credentials;
+  // ...
+
   var credentials = new WorkloadIdentityCredentials(new WorkloadIdentityOptions
   {
       FederationRuleId = Environment.GetEnvironmentVariable("ANTHROPIC_FEDERATION_RULE_ID")!,
@@ -306,7 +312,7 @@ Call `GetWebIdentityToken` with `https://api.anthropic.com` as the audience, the
       WorkspaceId = Environment.GetEnvironmentVariable("ANTHROPIC_WORKSPACE_ID"),
       IdentityTokenProvider = new StsTokenProvider(),
   });
-  using var client = new AnthropicOidcClient(credentials);
+  using var client = new AnthropicClient(new ClientOptions { Credentials = credentials });
 
   var message = await client.Messages.Create(new()
   {
@@ -709,9 +715,10 @@ Inside the pod, the projected token is at `/var/run/secrets/anthropic.com/token`
   ```
 
   ```csharp C#
-  var result = AnthropicCredentials.Resolve()
-      ?? throw new InvalidOperationException("No federation credentials found in environment");
-  using var client = new AnthropicOidcClient(result);
+  // Reads ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
+  // ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, and ANTHROPIC_IDENTITY_TOKEN_FILE
+  // from the pod's environment.
+  using var client = new AnthropicClient();
 
   var message = await client.Messages.Create(new()
   {

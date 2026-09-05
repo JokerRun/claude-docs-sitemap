@@ -1,13 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/federation_issuers/create
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: c3fa9534f9129994c75fef13695f6b2b88682c4d2be5bdbe876a5bb546831075
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: d91d26edc99489865643320c9f5ba5069da54b7be8f9793d207441e38b6d7739
 ---
 
 # Create Federation Issuer
 
 **POST** `/v1/organizations/federation_issuers`
+
+**Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See [Manage WIF with the Admin API](/docs/en/manage-claude/wif-admin-api).
 
 Register an OIDC issuer that Anthropic will trust for workload identity
 federation in your organization.
@@ -20,9 +22,6 @@ URL), or `inline` (provide a static key set). When `jwks.type` is
 publicly reachable over HTTPS so Anthropic can fetch the discovery
 document; for `explicit_url` and `inline` modes the issuer URL is only
 matched as the JWT's `iss` claim and is not fetched.
-
-Requires an OAuth bearer or Console session; Admin API keys are not
-accepted.
 
 ## Headers
 
@@ -255,7 +254,7 @@ accepted.
 curl https://api.anthropic.com/v1/organizations/federation_issuers \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN" \
+    -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN" \
     -d '{
           "issuer_url": "x",
           "name": "x"

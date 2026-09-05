@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/members/retrieve
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: cb9ecdae7396b4e32ce1a12b25f6c216a946aa0b2f3bb235468155234936e461
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: c90388a3d858e05309cf6a39074615200b2c978010473e3dad12dc3057a0ac1e
 ---
 
 # Get Workspace Member
@@ -60,7 +60,7 @@ Get Workspace Member
 ```bash
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members/$USER_ID \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN"
 ```
 
 ### Response (200)

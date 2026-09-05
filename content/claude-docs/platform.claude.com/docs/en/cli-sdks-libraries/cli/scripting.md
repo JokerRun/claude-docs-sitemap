@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/scripting
-fetched_at: 2026-09-04T02:21:22.489135Z
-sha256: 39724fb843c1de0abcd6d4c2f137eb9b006d691f89a62790044b16c951ffe3f6
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: 4a18b2a0ef0a9f588bbb9c2446c3894a625b266c28e12870e4550c1687efa2f5
 ---
 
 ---
 title: CLI scripting and automation
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/scripting
-description: Version-control API resources as YAML, chain ant CLI commands in scripts, operate on resources from Claude Code, and authenticate curl calls with CLI credentials.
+description: Version-control API resources as files with ant apply, chain ant CLI commands in scripts, operate on resources from Claude Code, and authenticate curl calls with CLI credentials.
 ---
 
 This page covers task-oriented workflows built on the `ant` CLI. For the underlying flags and output options, see [Using the CLI](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/using).

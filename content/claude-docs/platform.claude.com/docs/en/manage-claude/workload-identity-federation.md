@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/workload-identity-federation
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: ea5b1da2e7bb2d8c11315f5d29c947af3ccdddcabcb6bf3f094bbe69e05af8ad
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: 6b4af6c6d56a3511216e74e9f009bdd3caa54acc2efda228019c980f660523b2
 ---
 
 ---
@@ -256,8 +256,8 @@ You can construct the client with explicit credentials or with no arguments. Wit
   ```
 
   ```csharp C#
-  using Anthropic.Models.Messages;
-  using Anthropic.Oidc;
+  using Anthropic.Credentials;
+  // ...
 
   var credentials = new WorkloadIdentityCredentials(new WorkloadIdentityOptions
   {
@@ -267,7 +267,7 @@ You can construct the client with explicit credentials or with no arguments. Wit
       WorkspaceId = "wrkspc_...",
       IdentityTokenProvider = new FileIdentityTokenProvider("/var/run/secrets/anthropic.com/token"),
   });
-  using var client = new AnthropicOidcClient(credentials);
+  using var client = new AnthropicClient(new ClientOptions { Credentials = credentials });
 
   var message = await client.Messages.Create(new()
   {

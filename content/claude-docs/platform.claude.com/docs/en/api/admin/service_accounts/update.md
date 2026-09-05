@@ -1,21 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/service_accounts/update
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 76bf745bf32a2455089d9510b8447d0a7201e8d95b096c0f88cba30e59b524bc
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: e99dc2c76aa602c877c4dd4602820789bcff491e1122f4ea9e1e8909760dce4b
 ---
 
 # Update Service Account
 
 **POST** `/v1/organizations/service_accounts/{service_account_id}`
 
+**Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See [Manage WIF with the Admin API](/docs/en/manage-claude/wif-admin-api).
+
 Update a service account.
 
 Only `description` and `organization_role` are mutable; `name` cannot be
 changed. Archived service accounts cannot be updated; this returns 400.
 Setting `organization_role` to `admin` (even when unchanged) requires an
-interactive credential (a user OAuth token or a Console session). Admin
-API keys are not accepted.
+interactive credential (a user OAuth token or a Console session).
 
 ## Path parameters
 
@@ -116,7 +117,7 @@ API keys are not accepted.
 curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUNT_ID \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN" \
+    -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN" \
     -d '{}'
 ```
 

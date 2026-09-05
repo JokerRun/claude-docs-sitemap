@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/kubernetes
-fetched_at: 2026-08-19T02:28:54.965606Z
-sha256: 8b13fb2a457db389eab5e11bbd9879b50735bf7d8f54de0e556b554c90b1beed
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: 3d9cf3406a76ef9771429eed7669dc7e5672323d53fa9de62be75661ac45aa2e
 ---
 
 ---
@@ -235,9 +235,10 @@ The pod spec in [Configure Kubernetes](https://platform.claude.com/docs/en/manag
   ```
 
   ```csharp C#
-  var result = AnthropicCredentials.Resolve()
-      ?? throw new InvalidOperationException("No federation credentials found in environment");
-  using var client = new AnthropicOidcClient(result);
+  // Reads ANTHROPIC_IDENTITY_TOKEN_FILE, ANTHROPIC_FEDERATION_RULE_ID,
+  // ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID, and ANTHROPIC_WORKSPACE_ID
+  // from the pod's environment.
+  using var client = new AnthropicClient();
 
   var message = await client.Messages.Create(new()
   {

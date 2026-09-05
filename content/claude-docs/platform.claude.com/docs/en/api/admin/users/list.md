@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/list
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: 1dc355493c06842820fb2723a8b30d41f652aa18cea9c7fbb77e775cf4d0ee37
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: 550234fe98ecdb3acf196647f0e380f2d404693606e8d728abaa92c302eb25e0
 ---
 
 # List Users
@@ -110,7 +110,7 @@ List the organization's members.
 ```bash
 curl https://api.anthropic.com/v1/organizations/users \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN"
 ```
 
 ### Response (200)

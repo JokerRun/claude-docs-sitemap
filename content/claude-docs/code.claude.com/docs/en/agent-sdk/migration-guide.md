@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/migration-guide
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: 5c55aecef4913f5a9bed665f7f5907cb933b579e7f4c584086b1b3fa721ebdd4
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: 1c9fd0cee873c913d41cf515cd3c70464d2dbe9208691e70b09e43cc2dbd2a8c
 ---
 
 > ## Documentation Index
@@ -16,6 +16,8 @@ sha256: 5c55aecef4913f5a9bed665f7f5907cb933b579e7f4c584086b1b3fa721ebdd4
 ## Overview
 
 The Claude Code SDK has been renamed to the **Claude Agent SDK** and its documentation has been reorganized. This change reflects the SDK's broader capabilities for building AI agents beyond just coding tasks.
+
+Migrating from the OpenAI Agents SDK instead? The [OpenAI Agents SDK migration recipe](https://platform.claude.com/cookbook/claude-agent-sdk-04-migrating-from-openai-agents-sdk) maps each primitive onto the Claude Agent SDK through a single worked example.
 
 ## What's Changed
 

@@ -1,13 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/federation_issuers/list
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 20ed8bbae508c6029cc9a66870f05da56947335360a3e493407194759058d921
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: 30dfd39f5fd2f2d789ef9a92fcf3d19baf863f80bec6842306e830cfdd265515
 ---
 
 # List Federation Issuers
 
 **GET** `/v1/organizations/federation_issuers`
+
+**Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See [Manage WIF with the Admin API](/docs/en/manage-claude/wif-admin-api).
 
 List federation issuers in your organization.
 
@@ -186,7 +188,7 @@ Archived issuers are excluded unless `include_archived=true`.
 ```bash
 curl https://api.anthropic.com/v1/organizations/federation_issuers \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN"
 ```
 
 ### Response (200)

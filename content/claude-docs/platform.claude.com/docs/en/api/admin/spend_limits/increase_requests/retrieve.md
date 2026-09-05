@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/increase_requests/retrieve
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: d01baa888a339b8059f35e2e2ea68fed93b19d950c2c85853ed06986bfcd042f
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: cff765d6071191ab2b0306de4296eac5ac82f7f6d69be3862bd4ff29d0d9f129
 ---
 
 # Get Spend Limit Increase Request
@@ -255,7 +255,7 @@ requester at the request's period.
 ```bash
 curl https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/$SPEND_LIMIT_INCREASE_REQUEST_ID \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN"
 ```
 
 ### Response (200)

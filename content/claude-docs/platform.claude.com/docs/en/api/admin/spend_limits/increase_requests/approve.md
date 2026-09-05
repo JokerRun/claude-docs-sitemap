@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/increase_requests/approve
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: c5b4fdeca81c0b4a1322ced4c7b3cf6438889a31c5de2702d80813540b781c95
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: a76102e2099c3eb73b9f2a693deaeaf57dcb78f3706365421026a84207649085
 ---
 
 # Approve Spend Limit Increase Request
@@ -364,7 +364,7 @@ the member was blocked on. Anthropic emails the requester unless
 curl https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/$SPEND_LIMIT_INCREASE_REQUEST_ID/approve \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN" \
+    -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN" \
     -d '{
           "amount": "50000",
           "period": "monthly"

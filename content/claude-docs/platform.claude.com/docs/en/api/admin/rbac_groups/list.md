@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rbac_groups/list
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: e34bc484ff49b6bd346762e187627c6d30c522131c05f23cbbd023c47dfb70af
+fetched_at: 2026-09-05T02:20:11.001334Z
+sha256: fa765c22ff73ab3b5afe24c83eddd3be7463595bcc95eb7bda3fc0bf63eefd3d
 ---
 
 # List RBAC Groups
@@ -84,7 +84,7 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 ```bash
 curl https://api.anthropic.com/v1/organizations/rbac_groups \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+    -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN"
 ```
 
 ### Response (200)
