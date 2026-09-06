@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/managed-settings
-fetched_at: 2026-09-04T02:21:22.489135Z
-sha256: 02b0ca48cea4a13c48cc0263d93066860b27b2bb80419fba2e3bca0dd14dc521
+fetched_at: 2026-09-06T02:21:01.136595Z
+sha256: bfb922a16b2617a7c8dc60ae7813386b59bb4d87f669d4fe2001e7c14b7ec256
 ---
 
 > ## Documentation Index
@@ -370,6 +370,8 @@ The table covers the permission, plugin, and delivery controls. For any key not 
 
 <Note>
   On Team and Enterprise plans, an Owner enables or disables [Remote Control](/docs/en/remote-control) and [web sessions](/docs/en/claude-code-on-the-web) organization-wide in [Claude Code admin settings](https://claude.ai/admin-settings/claude-code). Remote Control can additionally be disabled per device with the [`disableRemoteControl`](/docs/en/settings-reference#disableremotecontrol) setting. Web sessions have no per-device managed settings key.
+
+  To check whether these organization settings reached a given machine, run `claude doctor` there and read the `Organization policy` line, which says where Claude Code loaded the policy from or why it didn't load. Requires Claude Code v2.1.261 or later. In a running session, `/status` shows the same line when the policy didn't load.
 </Note>
 
 ## Turn telemetry off for your organization

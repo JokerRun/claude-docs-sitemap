@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings-example
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 4579259dbe45daf19115e51189575ebdedbb266f7ad3dc8634de288d49930672
+fetched_at: 2026-09-06T02:21:01.136595Z
+sha256: 24c2b90e030b07c174ffd3be56539b0303a5468d46a5db2bac60cd3d0a02aa6c
 ---
 
 > ## Documentation Index
@@ -371,9 +371,9 @@ Administrators deploy a file like this as `managed-settings.json`, or the same J
           "repo": "acme-corp/approved-plugins"
         }
       ],
-      // Sandbox every command, refuse to start if the sandbox can't be set up, and
-      // never let a blocked command retry outside the sandbox; network limited to
-      // npm and GitHub, and users can't add domains
+      // Sandbox every command Claude runs, refuse to start if the sandbox can't be
+      // set up, and never let a blocked command retry outside the sandbox; network
+      // limited to npm and GitHub, and users can't add domains
       "sandbox": {
         "enabled": true,
         "failIfUnavailable": true,

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/permissions
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: aee5bbf5552f1d665efbad2ee59bd0cdcb7cee371930c61cab144d9ce6195ebf
+fetched_at: 2026-09-06T02:21:01.136595Z
+sha256: b41a6eff7975d594c0945f91bea9bdbda265cd8496b8ae0070b384ac364d33b9
 ---
 
 > ## Documentation Index
@@ -46,6 +46,8 @@ When Claude requests a tool, the SDK checks permissions in this order:
 
   <Step title="canUseTool callback">
     If not resolved by any of the above, call your [`canUseTool` callback](/docs/en/agent-sdk/user-input) for a decision. In `dontAsk` mode, this step is skipped and the tool is denied.
+
+    In the TypeScript SDK, if you set [`permissionPrompts: 'none'`](/docs/en/agent-sdk/typescript#options), your callback isn't called at this step. A [`PermissionRequest` hook](/docs/en/hooks#permissionrequest) still gets a chance to decide, and if it doesn't, Claude Code denies the call. The option requires Claude Code v2.1.259 or later.
   </Step>
 </Steps>
 

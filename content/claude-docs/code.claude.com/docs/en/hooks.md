@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-09-04T02:21:22.489135Z
-sha256: 1c1b1218cb5238252758674be528898de67be1863dfc699ef0a3efde1812a9f3
+fetched_at: 2026-09-06T02:21:01.136595Z
+sha256: c30a50b8192dadf4e6ba016e451685f57a6d1d2c360d268887a9a94022d29f3e
 ---
 
 > ## Documentation Index
@@ -2757,7 +2757,7 @@ Claude Code doesn't fire this event when:
 
 * You pass a directory with the `--add-dir` startup flag; [SessionStart](#sessionstart) covers those directories
 * You add a directory on the `/permissions` Workspace tab
-* You add a directory that is already a working directory; the add fails with an error
+* You add a directory that is already a working directory or inside one
 
 Claude Code fires DirectoryAdded after refreshing sandbox and permission state, so sandboxed tools already see the new directory when your hook runs. Hook commands themselves run unsandboxed.
 
