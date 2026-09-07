@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/changelog
-fetched_at: 2026-09-05T02:20:11.001334Z
-sha256: a2e4be7b8a0ce48af14cdb9160664bcc29d910045bf084630b7274f2b89e3a85
+fetched_at: 2026-09-07T02:22:39.309836Z
+sha256: 7793b8ecddea1dc32fb60d108f24bac81e7c526aeadf29e3c926886fb3bdfb98
 ---
 
 > ## Documentation Index
@@ -16,6 +16,10 @@ sha256: a2e4be7b8a0ce48af14cdb9160664bcc29d910045bf084630b7274f2b89e3a85
 This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md).
 
 Run `claude --version` to check your installed version.
+
+<Update label="2.1.263" description="September 6, 2026">
+  * Bug fixes and reliability improvements
+</Update>
 
 <Update label="2.1.261" description="September 4, 2026">
   * Added an "Organization policy" line to `/status` and `claude doctor` that says why your organization's policy could not be loaded, such as a proxy not passing the endpoint through
