@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/network-config
-fetched_at: 2026-09-06T02:21:01.136595Z
-sha256: 1341f34b5517901b1983764068cc14c0cf2c3a6db216cdbc60a3e107daafb741
+fetched_at: 2026-09-09T02:20:42.382817Z
+sha256: a8809399f9232704d0c3e42bb6219cee31321bf438c1cfd52554ca0309ee628f
 ---
 
 > ## Documentation Index
@@ -266,6 +266,6 @@ Artifacts can also load JavaScript libraries, such as React or a charting packag
 
 ## Additional resources
 
-* [Claude Code settings](/docs/en/settings)
+* [Settings files and precedence](/docs/en/settings)
 * [Environment variables reference](/docs/en/env-vars)
 * [Troubleshooting guide](/docs/en/troubleshooting)

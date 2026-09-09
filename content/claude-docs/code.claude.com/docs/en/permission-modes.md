@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permission-modes
-fetched_at: 2026-09-05T02:20:11.001334Z
-sha256: 50113edef87dde54e3fd76e628653f134ba9c004c16f692470013fbfad030238
+fetched_at: 2026-09-09T02:20:42.382817Z
+sha256: 9e060f198a8927cd21500af5ff1ed847c2d5e6c096928be841043e740c650f33
 ---
 
 > ## Documentation Index
@@ -390,6 +390,10 @@ Claude Code v2.1.257 and later also block these by default:
 
 If Claude Code runs somewhere that is meant to allow one of these, describe that setup in a [Host containment entry](/docs/en/auto-mode-config#define-trusted-infrastructure) in `autoMode.environment`.
 
+Claude Code v2.1.261 and later also block these by default:
+
+* Posting or writing a link to a public paste, diagram, or data-sharing service in a message, PR or issue text, a document, or anywhere else the link will be opened or fetched, when the URL itself carries the content being shared, unless you named that service
+
 **Allowed by default**:
 
 * Local file operations in your working directory
@@ -415,7 +419,7 @@ Sandbox network access requests are routed through the classifier rather than al
 
 Run `claude auto-mode defaults` to print the full rule lists as JSON. If routine actions get blocked, an administrator can add trusted repos, buckets, and services via the `autoMode.environment` setting: see [Configure auto mode](/docs/en/auto-mode-config).
 
-Pushing to any branch of the repository you're working in and creating a pull request that matches your request run without a prompt, unless the change would send secrets or sensitive data outside the repository or the pull request targets a different repository or organization, the cases the [blocked list](#what-the-classifier-blocks-by-default) covers. To require a human checkpoint before these actions while staying in auto mode, add `permissions.ask` rules: see [Common boundaries](/docs/en/auto-mode-config#common-boundaries).
+Pushing to any branch of the repository you're working in and creating a pull request that matches your request run without a prompt, unless the push or pull request falls under the [blocked list](#what-the-classifier-blocks-by-default), such as secrets or sensitive data leaving the repository, or a pull request that targets a different repository or organization. To require a human checkpoint before these actions while staying in auto mode, add `permissions.ask` rules: see [Common boundaries](/docs/en/auto-mode-config#common-boundaries).
 
 <h3 id="first-read-outside-the-working-directories">
   The first read outside the working directories

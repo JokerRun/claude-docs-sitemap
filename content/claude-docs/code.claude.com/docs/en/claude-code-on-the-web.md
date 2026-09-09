@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-09-05T02:20:11.001334Z
-sha256: 7274a272b2a556dce7d278c022ea7d772e432a40285fc396bfbefddcfba431da
+fetched_at: 2026-09-09T02:20:42.382817Z
+sha256: 732c47ee8aff55c054990863267847a78ec9ea06ed66b8a9bdc21af96c22bab6
 ---
 
 > ## Documentation Index
@@ -365,7 +365,7 @@ Before relying on cloud sessions for a workflow, account for these constraints:
 * [Ultrareview](/docs/en/ultrareview): run a deep multi-agent code review in a cloud sandbox
 * [Routines](/docs/en/routines): automate work on a schedule, via API call, or in response to GitHub events
 * [Hooks configuration](/docs/en/hooks): run scripts at session lifecycle events
-* [Settings reference](/docs/en/settings-reference): all configuration options
+* [All settings](/docs/en/settings-reference): all configuration options
 * [Security](/docs/en/security): isolation guarantees and data handling
 * [Data usage](/docs/en/data-usage): what Anthropic retains from cloud sessions
 * [Claude Tag](https://claude.com/docs/claude-tag/overview): an organization-managed @Claude in Slack that runs on the same cloud infrastructure

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-09-05T02:20:11.001334Z
-sha256: e3089106d21ce207ec2a57a3e6639d6fece54ed6fbfe9b988593d40509636b5c
+fetched_at: 2026-09-09T02:20:42.382817Z
+sha256: 335d18b579865522c1be960e1f405157b7767b3f823c599924f0d5baa283a9e4
 ---
 
 > ## Documentation Index
@@ -191,9 +191,9 @@ The `historySearch:next`, `historySearch:accept`, `historySearch:cancel`, and `h
 
 Actions available in the `Task` context:
 
-| Action            | Default               | Description                                                                                                     |
-| :---------------- | :-------------------- | :-------------------------------------------------------------------------------------------------------------- |
-| `task:background` | Ctrl+B, Ctrl+X Ctrl+B | Background current task. The Ctrl+X Ctrl+B chord requires v2.1.169 or later and avoids the tmux prefix conflict |
+| Action            | Default               | Description                                                                      |
+| :---------------- | :-------------------- | :------------------------------------------------------------------------------- |
+| `task:background` | Ctrl+B, Ctrl+X Ctrl+B | Background current task. The Ctrl+X Ctrl+B chord avoids the tmux prefix conflict |
 
 ### Theme actions
 

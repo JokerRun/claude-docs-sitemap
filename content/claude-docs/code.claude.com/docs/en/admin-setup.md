@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/admin-setup
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 5684043590608d308a7d44eeb3212a9e24860e7ac7e035b8be5b0178fa624ae9
+fetched_at: 2026-09-09T02:20:42.382817Z
+sha256: 4d33c28351383b7871b4d9ae2726773c12ad62bff3c7637e928ae04a9f668993
 ---
 
 > ## Documentation Index
@@ -169,7 +169,7 @@ If a developer sees "You haven't been added to your organization yet," their sea
 With provider and delivery mechanism chosen, move on to detailed configuration:
 
 * [Server-managed settings](/docs/en/server-managed-settings): deliver managed policy from the Claude admin console
-* [Settings reference](/docs/en/settings-reference): every setting key, with where it goes and an example
+* [All settings](/docs/en/settings-reference): every setting key, with where it goes and an example
 * [Which value Claude Code uses](/docs/en/settings#which-value-claude-code-uses): the precedence rules across managed, project, local, and user settings
 * [Monorepos and large repos](/docs/en/large-codebases): per-directory configuration patterns for organizations deploying into a monorepo
 * [Amazon Bedrock](/docs/en/amazon-bedrock), [Google Cloud's Agent Platform](/docs/en/google-vertex-ai), [Microsoft Foundry](/docs/en/microsoft-foundry): provider-specific deployment

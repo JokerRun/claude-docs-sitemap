@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-09-06T02:21:01.136595Z
-sha256: 5c28e9a9c0bc1b9cc9f906851f326e6800acec2197d94ef085ac84a95889f0bd
+fetched_at: 2026-09-09T02:20:42.382817Z
+sha256: b97101f6ba0705b2290bf4f310a33937379a234fc0ee8e98716fbd37d894c7fc
 ---
 
 > ## Documentation Index
@@ -717,5 +717,5 @@ The sandbox isolates Bash subprocesses. Other tools operate under different boun
 * [Sandbox environments](/docs/en/sandbox-environments): compare the built-in sandbox with dev containers, containers, and VMs
 * [Security](/docs/en/security): comprehensive security features and best practices
 * [Permissions](/docs/en/permissions): permission configuration and access control
-* [Settings reference](/docs/en/settings-reference): every settings key
+* [All settings](/docs/en/settings-reference): every settings key
 * [CLI reference](/docs/en/cli-reference): command-line options

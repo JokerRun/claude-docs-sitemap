@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/server-managed-settings
-fetched_at: 2026-09-05T02:20:11.001334Z
-sha256: 45ff79d701bc59dabb12684f21490b3f02bc20063d5b5c259ef4abf87e0dfc98
+fetched_at: 2026-09-09T02:20:42.382817Z
+sha256: 93c6558e96475fd3871d7430f0e5a94d8d9e1de96475e868367389eedce13637
 ---
 
 > ## Documentation Index
@@ -322,7 +322,7 @@ To restrict which organizations your users can access with credentials the clien
 
 Related pages for managing Claude Code configuration:
 
-* [Settings reference](/docs/en/settings-reference): every settings key
+* [All settings](/docs/en/settings-reference): every settings key
 * [Endpoint-managed settings](/docs/en/managed-settings#delivery-mechanisms): managed settings deployed to devices by IT
 * [Authentication](/docs/en/authentication): set up user access to Claude Code
 * [Security](/docs/en/security): security safeguards and best practices

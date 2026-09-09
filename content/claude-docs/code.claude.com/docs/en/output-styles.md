@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/output-styles
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 0254e1d95b71365a64cc241a6675fbd25a75300ca316900ac1c713cb2052a4e5
+fetched_at: 2026-09-09T02:20:42.382817Z
+sha256: 5f3f4ad2839b72a7bc46ff496075f400dfd20e151f2f45d71de8f4ef3c9c2913
 ---
 
 > ## Documentation Index
@@ -51,7 +51,7 @@ To set a style without the menu, edit the `outputStyle` field directly in a sett
 }
 ```
 
-Output style is part of the system prompt, which Claude Code reads once at session start. Changes take effect after `/clear` or a new session. See [How Claude Code uses prompt caching](/docs/en/prompt-caching#changing-output-style) for what an output style change does to the cache.
+When you switch styles mid-session, Claude uses the new style starting with your next message. The style is part of the system prompt, so that first message rebuilds the [prompt cache](/docs/en/prompt-caching#changing-output-style) once. Before v2.1.251, the new style applied only after you ran `/clear` or started a new session.
 
 ## Create a custom output style
 
@@ -89,7 +89,7 @@ A custom output style is a Markdown file: frontmatter for metadata, then the ins
   </Step>
 
   <Step title="Switch to your style">
-    Run `/config` in the terminal and select your style under **Output style**, or set `outputStyle` in a settings file to the style's name. It takes effect after `/clear` or the next time you start a session.
+    Run `/config` in the terminal and select your style under **Output style**. Claude uses the new style starting with your next message. In the terminal, Claude Code reads style files when it starts, so if you create or edit one during a running session, restart Claude Code to pick up the change.
   </Step>
 </Steps>
 

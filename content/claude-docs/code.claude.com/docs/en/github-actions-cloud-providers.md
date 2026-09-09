@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/github-actions-cloud-providers
-fetched_at: 2026-08-06T03:07:37.547989Z
-sha256: 7a7a329c318f99c2ba31868cd61df3f6430c614cf160711d6cead9d62b417c3b
+fetched_at: 2026-09-09T02:20:42.382817Z
+sha256: 05540411b87f60ec8f2d062d822a7359cf05b2f1704706c7220073feb9ef6039
 ---
 
 > ## Documentation Index
@@ -27,13 +27,7 @@ The Claude Code GitHub Action supports three providers, and the setup steps belo
 * **Google Cloud's Agent Platform**: `use_vertex: "true"`
 * **Microsoft Foundry**: `use_foundry: "true"`
 
-The following snippet shows the input in place for Amazon Bedrock. You don't need to edit a workflow yet, because the complete workflow examples later on this page already include the input for each provider.
-
-```yaml theme={null}
-- uses: anthropics/claude-code-action@v1
-  with:
-    use_bedrock: "true"
-```
+The complete workflow examples under [Set up the integration](#set-up-the-integration) already include the input for each provider.
 
 ## Prerequisites
 

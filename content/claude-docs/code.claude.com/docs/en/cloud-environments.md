@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cloud-environments
-fetched_at: 2026-09-06T02:21:01.136595Z
-sha256: 26cc5b7ae4dd0e6e88ebf4c88ef25b2448022fbc67dadb5da184a20874814cf5
+fetched_at: 2026-09-09T02:20:42.382817Z
+sha256: 658a4b2e4514fc4ef61790b2cfe58fe40e811b65139b04fb49b0558c40d935e5
 ---
 
 > ## Documentation Index
@@ -404,10 +404,7 @@ You don't need to enable caching or manage snapshots yourself.
 
 Use a setup script to provision the VM itself: toolchains and CLI tools that aren't [pre-installed](#installed-tools). Use a [SessionStart hook](/docs/en/hooks#sessionstart) for project setup that should run everywhere, cloud and local, like `npm install`.
 
-Setup scripts and SessionStart hooks run in a fixed order when a cloud session starts:
-
-1. The setup script runs first, before Claude Code launches, and only when no [cached environment](#environment-caching) exists.
-2. Claude Code launches and runs your SessionStart hooks, as it does at the start of every session, local or cloud.
+Setup scripts and SessionStart hooks run in a fixed order when a cloud session starts. The table compares where you configure them, when they run, and where they run.
 
 |                              | Setup scripts                                                                                                                                                               | SessionStart hooks                                                                                                                                                                                                 |
 | ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
