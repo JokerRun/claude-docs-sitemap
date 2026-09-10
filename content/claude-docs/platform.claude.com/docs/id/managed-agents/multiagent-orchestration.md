@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 2afed3bcdd640160ce62da29aad0fe87e7e6fe96acf203bd4305882e10816709
+fetched_at: 2026-09-10T02:21:33.922749Z
+sha256: 3b30b1d5fa5c0283498c48ebef0a287e7195c734b89ee9efd15aa99d639bd630
 ---
 
 ---
@@ -802,7 +802,8 @@ Dalam contoh ini, hanya researcher yang mendeklarasikan server MCP GitHub, sehin
 
       ```typescript TypeScript
       for await (const thread of client.beta.sessions.threads.list(session.id)) {
-        console.log(`[${thread.agent.name}] ${thread.status}`);
+        const name = thread.agent.type === "agent" ? thread.agent.name : "advisor";
+        console.log(`[${name}] ${thread.status}`);
       }
       ```
 

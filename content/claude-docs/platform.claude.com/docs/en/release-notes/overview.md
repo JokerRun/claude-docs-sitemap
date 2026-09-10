@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/overview
-fetched_at: 2026-09-05T02:20:11.001334Z
-sha256: 274fa6831570140361a991f69bdedd6b3511b9fbca25d97a23867eeebdd8558f
+fetched_at: 2026-09-10T02:21:33.922749Z
+sha256: 45b4ff95256ec00f7f49543d89399d7f20749287d979b53dcb1d257571fb9b79
 ---
 
 ---
@@ -22,6 +22,7 @@ The Claude Platform release notes list changes to the Claude API, the client SDK
 ### September 3, 2026
 
 * Version 1.30.0 of the `ant` CLI adds `ant apply`, which creates and updates agents, environments, skills, memory stores, and deployments from files in your repository. Describe each resource in a file, run `ant apply`, and approve the plan it prints. Commit the `claude-lock.json` lockfile it writes so that later runs, on your machine or in CI, update the same resources instead of creating new ones. See [Manage resources as code with ant apply](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/apply).
+* [Per-message effort](https://platform.claude.com/docs/en/build-with-claude/effort#change-effort-mid-conversation-beta) changes, in beta, are also available on [Google Cloud](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai) for Claude Fable 5.1, Claude Mythos 5.1, and Claude Opus 5, with the same `mid-conversation-output-config-2026-07-01` beta header.
 
 ### September 1, 2026
 

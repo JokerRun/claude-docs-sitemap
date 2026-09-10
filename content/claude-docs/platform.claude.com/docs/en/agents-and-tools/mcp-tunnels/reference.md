@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/reference
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 3583f45364aaa94f15d2e51497896987b7277e8ad1902ece75f7a42729d929a7
+fetched_at: 2026-09-10T02:21:33.922749Z
+sha256: 993f6f49c6d0b754e52a7a6335ec28c3d1ac819ac27fe0c214e27259a5ad9162
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Proxy configuration fields, the Tunnels REST API, certificate requi
 ---
 
 <Note>
-  MCP tunnels are in research preview. [Request access](https://claude.com/form/claude-managed-agents) to try them.
+  MCP tunnels are in research preview. [Request access](https://claude.com/form/mcp-tunnels) to try them.
 </Note>
 
 ## Proxy configuration

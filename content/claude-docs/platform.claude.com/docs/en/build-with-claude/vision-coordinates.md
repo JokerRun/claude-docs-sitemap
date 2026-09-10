@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/vision-coordinates
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: e33bc6c9b4d5df482f3399f3a3c9c1bf219b0e8bb27a5f8bb655fe45a20fa521
+fetched_at: 2026-09-10T02:21:33.922749Z
+sha256: 6858de5bd8059664774f4adfcdd5aee59ec13429391af4fc269c2afe16e7dc6f
 ---
 
 ---
@@ -479,7 +479,7 @@ The setting is per image. `"oversized_image": "downsize"` (the default when the 
 * [PDF pages](https://platform.claude.com/docs/en/build-with-claude/pdf-support) are rasterized server-side at dimensions you don't control; the `document` block does not accept the field (an image block nested inside a document's content accepts it like any other).
 * A marked image whose dimensions cannot be determined is rejected rather than passed through: that rejection reports that the image's source dimensions could not be determined, not the resize message quoted above. No image that sets `"error"` reaches the model resized.
 
-The [Token counting](https://platform.claude.com/docs/en/build-with-claude/token-counting) endpoint honors `transformations` too, rejecting an embedded image exactly as the Messages API would, so you can check whether an embedded image fits without being resized, before running inference. Counting never fetches images supplied by URL or file ID, so a marked image from those sources is checked only at Messages time, as described above.
+The [Token counting](https://platform.claude.com/docs/en/build-with-claude/token-counting) endpoint honors `transformations` too, rejecting an embedded image exactly as the Messages API would, so you can check whether an embedded image fits without being resized, before running inference. Counting rejects images supplied by URL or file ID rather than fetching them, so a marked image from those sources is checked only at Messages time.
 
 ## Rescale coordinates when you cannot pre-resize
 

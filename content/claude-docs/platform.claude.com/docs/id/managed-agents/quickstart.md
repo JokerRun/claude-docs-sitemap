@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 229dc276f7c9a724df223d3d4163cc5aa9537bfcdb2e88388a05c8e4089e1f52
+fetched_at: 2026-09-10T02:21:33.922749Z
+sha256: 39cf1b2b09b4bd1ad7ee7da916553ea08110a62e2e63eca6796374532c625738
 ---
 
 ---
@@ -632,7 +632,8 @@ export ANTHROPIC_API_KEY="your-api-key-here"
               match event.type:
                   case "agent.message":
                       for block in event.content:
-                          print(block.text, end="")
+                          if block.type == "text":
+                              print(block.text, end="")
                   case "agent.tool_use":
                       print(f"\n[Using tool: {event.name}]")
                   case "session.status_idle":
@@ -662,7 +663,9 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       for await (const event of stream) {
         if (event.type === "agent.message") {
           for (const block of event.content) {
-            process.stdout.write(block.text);
+            if (block.type === "text") {
+              process.stdout.write(block.text);
+            }
           }
         } else if (event.type === "agent.tool_use") {
           console.log(`\n[Using tool: ${event.name}]`);
@@ -703,7 +706,10 @@ export ANTHROPIC_API_KEY="your-api-key-here"
           {
               foreach (var block in message.Content)
               {
-                  Console.Write(block.Text);
+                  if (block.Value is BetaManagedAgentsTextBlock textBlock)
+                  {
+                      Console.Write(textBlock.Text);
+                  }
               }
           }
           else if (ev.Value is BetaManagedAgentsAgentToolUseEvent toolUse)
@@ -746,7 +752,9 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       		switch event := stream.Current().AsAny().(type) {
       		case anthropic.BetaManagedAgentsAgentMessageEvent:
       			for _, block := range event.Content {
-      				fmt.Print(block.Text)
+      				if block.Type == "text" {
+      					fmt.Print(block.Text)
+      				}
       			}
       		case anthropic.BetaManagedAgentsAgentToolUseEvent:
       			fmt.Printf("\n[Using tool: %s]\n", event.Name)
@@ -803,7 +811,10 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       // Proses event streaming
       foreach ($stream as $event) {
           match ($event->type) {
-              'agent.message' => print(implode('', array_map(fn($block) => $block->text, $event->content))),
+              'agent.message' => array_walk(
+                  $event->content,
+                  static fn ($block) => $block->type === 'text' ? print($block->text) : null,
+              ),
               'agent.tool_use' => print("\n[Using tool: {$event->name}]\n"),
               'session.status_idle' => print("\n\nAgent finished.\n"),
               default => null,
@@ -830,7 +841,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       stream.each do |event|
         case event.type
         in :"agent.message"
-          event.content.each { print it.text }
+          event.content.each { print it.text if it.type == :text }
         in :"agent.tool_use"
           puts "\n[Using tool: #{event.name}]"
         in :"session.status_idle"

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/subagents
-fetched_at: 2026-09-01T02:22:36.834082Z
-sha256: 74ec0f8f4f1690b1eebcb3879f0215ffa456d67995730e6bb35d0cfb81db5382
+fetched_at: 2026-09-10T02:21:33.922749Z
+sha256: 279ffda8a50c4a30333720c7939cef049cf64ea4876e07260d5ddd8e58cd1ed7
 ---
 
 > ## Documentation Index
@@ -163,7 +163,7 @@ This example creates two subagents: a code reviewer with read-only access and a 
 | `maxTurns`        | `number`                                                    | No       | Maximum number of agentic turns before the agent stops. When the agent reaches the limit, Claude Code returns its output marked as partial, and you can [resume the agent](#resume-subagents) to continue. The partial marking requires Claude Code v2.1.246 or later            |
 | `background`      | `boolean`                                                   | No       | Run this agent as a non-blocking background task when invoked                                                                                                                                                                                                                    |
 | `effort`          | `'low' \| 'medium' \| 'high' \| 'xhigh' \| 'max' \| number` | No       | Reasoning effort level for this agent                                                                                                                                                                                                                                            |
-| `permissionMode`  | `PermissionMode`                                            | No       | Permission mode for tool execution within this agent                                                                                                                                                                                                                             |
+| `permissionMode`  | `PermissionMode`                                            | No       | Permission mode for tool execution within this agent. The [subagent inheritance rules](/docs/en/agent-sdk/permissions#available-modes) decide when it applies                                                                                                                         |
 
 In the Python SDK, multi-word field names such as `disallowedTools` and `mcpServers` keep their camelCase spelling to match the wire format rather than following Python's snake\_case convention. See the [`AgentDefinition` reference](/docs/en/agent-sdk/python#agentdefinition) for details.
 

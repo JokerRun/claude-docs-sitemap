@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/claude_api_primer
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: b4cdb755c75808de14a6f1676808e0194462734b634b7de145dbac2d1ea5cab3
+fetched_at: 2026-09-10T02:21:33.922749Z
+sha256: 606cd1bee7353e93f3a3d244d6561bd708a3e49ae6d0d9cf5cc9d60eba9b6317
 ---
 
 ---
@@ -556,7 +556,7 @@ Client tools are specified in the `tools` top-level parameter of the API request
 
 | Parameter      | Description                                                                                         |
 | -------------- | --------------------------------------------------------------------------------------------------- |
-| `name`         | The name of the tool. Must match the regex `^[a-zA-Z0-9_-]{1,64}$`.                                 |
+| `name`         | The name of the tool. Must match the regex `^[a-zA-Z0-9_-]{1,128}$`.                                |
 | `description`  | A detailed plaintext description of what the tool does, when it should be used, and how it behaves. |
 | `input_schema` | A [JSON Schema](https://json-schema.org/) object defining the expected parameters for the tool.     |
 

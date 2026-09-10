@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/overview
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 111f77eaa88112457d2a732e641f20ec917dee635d4e337e418133339fc31e1e
+fetched_at: 2026-09-10T02:21:33.922749Z
+sha256: 15ae0027769c0d5116c18ced6a18ac0f2211b5698fc79cbc734123a83aba8791
 ---
 
 ---
 title: Guides to common use cases
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/overview
-description: "Explore production guides for building common Claude use cases: ticket routing, customer support agents, content moderation, and legal summarization."
+description: "Explore production guides for building common Claude use cases: ticket routing, customer support agents, content moderation, legal summarization, and commerce agents."
 ---
 
 Claude is designed to excel in a variety of tasks. Explore these in-depth production guides to learn how to build common use cases with Claude.
@@ -29,4 +29,12 @@ Claude is designed to excel in a variety of tasks. Explore these in-depth produc
   <Card title="Legal summarization" icon="book" href="https://platform.claude.com/docs/en/about-claude/use-case-guides/legal-summarization">
     Summarize legal documents using Claude to extract key information and expedite research.
   </Card>
+
+  <Card title="Commerce agent" icon="building" href="https://platform.claude.com/docs/en/about-claude/use-case-guides/commerce-agents">
+    Build shopping and merchant agents from an open-source blueprint that runs on the Messages API, the Claude Agent SDK, and Claude Managed Agents.
+  </Card>
 </CardGroup>
+
+## Choosing a build path
+
+The three paths for building with Claude differ in how much control you keep and how much of the implementation you offload to Anthropic. The [Messages API](https://platform.claude.com/docs/en/build-with-claude/working-with-messages) gives you the most control: you write the agent loop and run your own tools and infrastructure. The [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview) sits in between, providing the agent loop and tool execution in a process you operate. With [Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview), you offload the most: Anthropic hosts the agent loop, tool execution, and runtime for you.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 0b073779d05a37d8a8ec258eff3cb63c2e299a645870db8f1c2a23d3a280bf50
+fetched_at: 2026-09-10T02:21:33.922749Z
+sha256: e833db03264772b497cfbbda1960093da9ff4ec72ca9c3acc251b6356aba12ba
 ---
 
 # Beta
@@ -40597,10 +40597,6 @@ Stream Events
 
       A hard spend ceiling. The session stops issuing new model requests once the tracked list cost reaches `max_list_cost`.
 
-- `BetaManagedAgentsStreamSessionEvents = BetaManagedAgentsUserMessageEvent or BetaManagedAgentsUserInterruptEvent or BetaManagedAgentsUserToolConfirmationEvent or 34 more`
-
-  Server-sent event in the session stream.
-
 #### Example
 
 ```bash
@@ -48853,10 +48849,6 @@ Stream Session Thread Events
     - `budget: optional BetaManagedAgentsBudgetLimit or null`
 
       A hard spend ceiling. The session stops issuing new model requests once the tracked list cost reaches `max_list_cost`.
-
-- `BetaManagedAgentsStreamSessionThreadEvents = BetaManagedAgentsUserMessageEvent or BetaManagedAgentsUserInterruptEvent or BetaManagedAgentsUserToolConfirmationEvent or 34 more`
-
-  Server-sent event in a single thread's stream.
 
 #### Example
 

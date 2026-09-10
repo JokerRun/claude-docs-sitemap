@@ -6033,6 +6033,10 @@
 <priority>0.8</priority>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/en/about-claude/use-case-guides/commerce-agents</loc>
+<priority>0.8</priority>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview</loc>
 <priority>1</priority>
 </url>

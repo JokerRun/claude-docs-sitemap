@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: c25ce034e35f0c5d1ca3fdd2504d41a951f02665c8e86d789551b8ae55637441
+fetched_at: 2026-09-10T02:21:33.922749Z
+sha256: 58d22e8fdeebaf5874019f7aa06bb2950423ef42c0c0043d6ee65a583c172f85
 ---
 
 ---
@@ -26,7 +26,7 @@ Client tools are specified in the `tools` top-level parameter of the API request
 
 | Parameter        | Description                                                                                                                                                                                                                            |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`           | The name of the tool. Must match the regex `^[a-zA-Z0-9_-]{1,64}$`.                                                                                                                                                                    |
+| `name`           | The name of the tool. Must match the regex `^[a-zA-Z0-9_-]{1,128}$`.                                                                                                                                                                   |
 | `description`    | A detailed plaintext description of what the tool does, when it should be used, and how it behaves.                                                                                                                                    |
 | `input_schema`   | A [JSON Schema](https://json-schema.org/) object defining the expected parameters for the tool.                                                                                                                                        |
 | `input_examples` | (Optional) An array of example input objects to help Claude understand how to use the tool. See [Providing tool use examples](https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools#providing-tool-use-examples). |

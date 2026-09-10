@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/communications-kit
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 8103eea14d2331b689252f1aba0de008675565d5ff2a089109732d11f8d5a5d6
+fetched_at: 2026-09-10T02:21:33.922749Z
+sha256: 91defabfdba853124b55f2e8d5ffe60b96343c6f2726099c7efc5b12e715d42e
 ---
 
 > ## Documentation Index
@@ -218,7 +218,9 @@ Claude Code runs on the same models as the Claude app, and you can switch
 mid-session. *Sonnet* is the workhorse default for everyday feature work,
 bugs, tests, and reviews. Reach for *Opus* on large refactors, gnarly
 debugging, or anything high-stakes. Drop to *Haiku* for quick questions,
-formatting, and mechanical edits where speed wins. *Fable* is the most
+formatting, and mechanical edits where speed wins.
+
+*Fable* is the most
 capable model for your hardest, longest-running tasks; it is not the
 default, so select it with `/model fable`, and note that cybersecurity and
 biology content falls back to Opus automatically. Opus 5 runs its own
@@ -233,7 +235,7 @@ the right default for most tasks.
 
 | Model  | Best for                                                                                                                                                                                                                       |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Fable  | The hardest, longest-running tasks. Opt-in only: select it with `/model fable`. Cybersecurity or biology content [falls back to Opus](/docs/en/model-config#automatic-model-fallback)                                               |
+| Fable  | The hardest, longest-running tasks. Opt-in only: select it with `/model fable`. Cybersecurity or biology content triggers [automatic model fallback to Opus](/docs/en/model-config#automatic-model-fallback)                        |
 | Opus   | Large-scale refactors, complex debugging, architecture decisions, high-stakes changes. On Opus 5, cybersecurity or biology content triggers [automatic model fallback or a refusal](/docs/en/model-config#automatic-model-fallback) |
 | Sonnet | Everyday feature work, bug fixes, tests, documentation, code review. Recommended default.                                                                                                                                      |
 | Haiku  | Quick questions, formatting, mechanical edits, rapid iteration                                                                                                                                                                 |

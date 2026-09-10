@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 389d8204b7d8f06f5024d839e14515bd8ea21ae53046bf13f51384338d693ca3
+fetched_at: 2026-09-10T02:21:33.922749Z
+sha256: b1801270990474fd6e4363698b27000c5312945e33443508309c3fa9103549b2
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Canonical names for the parts of an MCP tunnel deployment, the two 
 ---
 
 <Note>
-  MCP tunnels are in research preview. [Request access](https://claude.com/form/claude-managed-agents) to try them.
+  MCP tunnels are in research preview. [Request access](https://claude.com/form/mcp-tunnels) to try them.
 </Note>
 
 This page defines the terms used throughout the [MCP tunnels](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/overview) documentation. Several components appear under different names in configuration files, container images, and prose; the following tables give one canonical name for each and list the aliases you may encounter.

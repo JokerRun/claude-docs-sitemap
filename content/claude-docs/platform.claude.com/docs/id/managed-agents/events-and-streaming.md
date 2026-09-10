@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 86f511df72e07839be6746259da47caf1f4b365c0800a6809be3c128f49fa620
+fetched_at: 2026-09-10T02:21:33.922749Z
+sha256: 7f20f28fc8b745a03a0c70e5e1e8417162c83cc293922a227ae201a0d8c585a5
 ---
 
 ---
@@ -512,7 +512,10 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
           {
               foreach (var block in message.Content)
               {
-                  Console.Write(block.Text);
+                  if (block.Value is BetaManagedAgentsTextBlock textBlock)
+                  {
+                      Console.Write(textBlock.Text);
+                  }
               }
           }
           else if (streamEvent.Value is BetaManagedAgentsSessionStatusIdleEvent)
@@ -784,7 +787,10 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
           {
               foreach (var block in message.Content)
               {
-                  Console.Write(block.Text);
+                  if (block.Value is BetaManagedAgentsTextBlock textBlock)
+                  {
+                      Console.Write(textBlock.Text);
+                  }
               }
           }
           else if (streamEvent.Value is BetaManagedAgentsSessionStatusIdleEvent)
@@ -1287,14 +1293,18 @@ Jaminan yang diandalkan pola ini:
       const preview = accumulateManagedAgentsEvent(previews.get(event.event_id), event);
       if (preview) {
         previews.set(event.event_id, preview);
-        const text = preview.content.map((block) => block.text).join("");
+        const text = preview.content
+          .map((block) => (block.type === "text" ? block.text : ""))
+          .join("");
         console.log(`event_delta             preview: ${JSON.stringify(text)}`);
       }
     } else if (event.type === "agent.message") {
       // 3. Event yang di-buffer adalah rekamannya: menggantikan dan menutup pratinjau
       const message = accumulateManagedAgentsEvent(previews.get(event.id), event);
       previews.delete(event.id);
-      const text = message.content.map((block) => block.text).join("");
+      const text = message.content
+        .map((block) => (block.type === "text" ? block.text : ""))
+        .join("");
       console.log(`agent.message           ${event.id} ${JSON.stringify(text)}`);
     } else if (event.type === "span.model_request_end") {
       // 4. Tidak ada delta lagi yang akan datang. Tutup pratinjau yang belum pernah direkonsiliasi.
@@ -1366,7 +1376,9 @@ Jaminan yang diandalkan pola ini:
       {
           // Delta bersifat best-effort: buang pratinjau dan gunakan event ter-buffer
           previews.Remove(message.ID);
-          Console.WriteLine($"agent.message           {message.ID} {string.Concat(message.Content.Select(block => block.Text))}");
+          var text = string.Concat(message.Content.Select(block =>
+              block.TryPickBetaManagedAgentsTextBlock(out var textBlock) ? textBlock.Text : ""));
+          Console.WriteLine($"agent.message           {message.ID} {text}");
       }
       else if (streamEvent.TryPickSpanModelRequestEndEvent(out _))
       {
@@ -1695,7 +1707,9 @@ Event pratinjaunya sendiri tidak berubah. `event_start` dan `event_delta` memili
     } else if (event.type === "agent.message") {
       // Event yang di-buffer adalah rekaman otoritatif; render kontennya.
       process.stdout.write("\n");
-      const text = event.content.map((block) => block.text).join("");
+      const text = event.content
+        .map((block) => (block.type === "text" ? block.text : ""))
+        .join("");
       console.log(text);
     } else if (event.type === "session.thread_status_idle") {
       break;
@@ -1727,7 +1741,9 @@ Event pratinjaunya sendiri tidak berubah. `event_start` dan `event_delta` memili
       {
           // Event ter-buffer adalah catatan otoritatif; render kontennya.
           Console.WriteLine();
-          Console.WriteLine(string.Concat(message.Content.Select(block => block.Text)));
+          var text = string.Concat(message.Content.Select(block =>
+              block.TryPickBetaManagedAgentsTextBlock(out var textBlock) ? textBlock.Text : ""));
+          Console.WriteLine(text);
       }
       else if (streamEvent.TryPickSessionThreadStatusIdleEvent(out _))
       {

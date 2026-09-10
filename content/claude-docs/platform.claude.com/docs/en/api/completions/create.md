@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions/create
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: b8efb8acfe13c3839927c3b78360813bee67356f9aa764a1b71b915f1f289708
+fetched_at: 2026-09-10T02:21:33.922749Z
+sha256: 89653663a29793495a061d87b77efe74256094b3b91892a32a4bf3c549436c9f
 ---
 
 # Create a Text Completion
@@ -401,8 +401,6 @@ Future models and features will not be compatible with Text Completions. See our
     For Text Completions, this is always `"completion"`.
 
     default: completion
-
-- `Completion object`
 
 ## Example
 

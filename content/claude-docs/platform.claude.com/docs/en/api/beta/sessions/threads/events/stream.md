@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/events/stream
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 4f6a53d57f23ab3035d490f0e562b67ced81e29ba4bd7623aa7898f98ac38bac
+fetched_at: 2026-09-10T02:21:33.922749Z
+sha256: 0cbbaf63bc25ab3d075ebaeeae0bef39ec920c0d3aea880b8cfd9e5da1ffa4cd
 ---
 
 # Stream Session Thread Events
@@ -2308,10 +2308,6 @@ Stream Session Thread Events
     - `budget: optional BetaManagedAgentsBudgetLimit or null`
 
       A hard spend ceiling. The session stops issuing new model requests once the tracked list cost reaches `max_list_cost`.
-
-- `BetaManagedAgentsStreamSessionThreadEvents = BetaManagedAgentsUserMessageEvent or BetaManagedAgentsUserInterruptEvent or BetaManagedAgentsUserToolConfirmationEvent or 34 more`
-
-  Server-sent event in a single thread's stream.
 
 ## Example
 

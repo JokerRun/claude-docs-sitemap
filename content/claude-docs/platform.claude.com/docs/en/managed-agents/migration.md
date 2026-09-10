@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/migration
-fetched_at: 2026-09-04T02:21:22.489135Z
-sha256: 907d3c42fe209ca165fd6c4dede541643c79c55f104b52dc5a85d1e9b92d166b
+fetched_at: 2026-09-10T02:21:33.922749Z
+sha256: 49660e30319a2d7430d5e8f13ee3661fec80987ee99afe773d0f5c27bd0beecc
 ---
 
 ---
@@ -914,7 +914,9 @@ If you built with the [Claude Agent SDK](https://code.claude.com/docs/en/agent-s
   {
       if (streamEvent.Value is BetaManagedAgentsAgentMessageEvent message)
       {
-          Console.WriteLine(string.Concat(message.Content.Select(block => block.Text)));
+          var text = string.Concat(message.Content.Select(block =>
+              block.Value is BetaManagedAgentsTextBlock textBlock ? textBlock.Text : ""));
+          Console.WriteLine(text);
       }
       else if (streamEvent.Value is BetaManagedAgentsAgentCustomToolUseEvent toolUse)
       {
