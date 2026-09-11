@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/invites/create
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: bfbc4c895780b80767d2d2d6fa7b2fcfb72496667419f3a3b12a90cc0af15e1e
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 0f4f49cd918a9d5c280bf5f14bbc10c7ed8ccd223f547476178467afb8a253ac
+---
+
+---
+title: Create Invite
+url: https://platform.claude.com/docs/en/api/beta/organization/invites/create
 ---
 
 # Create Invite
@@ -46,6 +51,14 @@ On plans that draw members from a finite pool of purchased seats, the invite aut
 ## Returns
 
 - `BetaOrganizationInvite object`
+
+  - `type: "invite"`
+
+    Object type.
+
+    For Invites, this is always `"invite"`.
+
+    default: invite
 
   - `id: string`
 
@@ -110,14 +123,6 @@ On plans that draw members from a finite pool of purchased seats, the invite aut
     - `"expired"`
 
     - `"pending"`
-
-  - `type: "invite"`
-
-    Object type.
-
-    For Invites, this is always `"invite"`.
-
-    default: invite
 
 ## Example
 

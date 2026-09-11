@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: c0444703c2b5ca3d2db013b6755f40f2f18b7df6685099457297e57de37a7cec
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 1769438e0657fee2ad73aec41a91c32d613c2812de4502caf0c31fe93fb18f94
+---
+
+---
+title: Workspaces
+url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces
 ---
 
 # Workspaces
@@ -38,7 +43,7 @@ other scopes require a Console session.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -85,6 +90,8 @@ other scopes require a Console session.
     - `"user-profiles-2026-03-24"`
 
     - `"user-profiles-2026-08-18"`
+
+    - `"user-profiles-2026-09-04"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -138,6 +145,10 @@ other scopes require a Console session.
 
 - `BetaFederationRuleWorkspace object`
 
+  - `type: "federation_rule_workspace"`
+
+    default: federation_rule_workspace
+
   - `created_at: string`
 
     When this workspace was enabled for the rule.
@@ -151,10 +162,6 @@ other scopes require a Console session.
   - `federation_rule_id: string`
 
     Tagged ID of the federation rule.
-
-  - `type: "federation_rule_workspace"`
-
-    default: federation_rule_workspace
 
   - `workspace_id: string`
 
@@ -229,7 +236,7 @@ rules with `applies_to_all_workspaces` or a legacy single
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -277,6 +284,8 @@ rules with `applies_to_all_workspaces` or a legacy single
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -323,6 +332,10 @@ rules with `applies_to_all_workspaces` or a legacy single
 
 - `data: array of BetaFederationRuleWorkspace`
 
+  - `type: "federation_rule_workspace"`
+
+    default: federation_rule_workspace
+
   - `created_at: string`
 
     When this workspace was enabled for the rule.
@@ -336,10 +349,6 @@ rules with `applies_to_all_workspaces` or a legacy single
   - `federation_rule_id: string`
 
     Tagged ID of the federation rule.
-
-  - `type: "federation_rule_workspace"`
-
-    default: federation_rule_workspace
 
   - `workspace_id: string`
 
@@ -410,7 +419,7 @@ Console session.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -458,6 +467,8 @@ Console session.
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -502,13 +513,13 @@ Console session.
 
 ### Returns
 
-- `federation_rule_id: string`
-
-  Tagged ID of the federation rule.
-
 - `type: "federation_rule_workspace_deleted"`
 
   default: federation_rule_workspace_deleted
+
+- `federation_rule_id: string`
+
+  Tagged ID of the federation rule.
 
 - `workspace_id: string`
 
@@ -539,13 +550,13 @@ curl https://api.anthropic.com/v1/organizations/federation_rules/$FEDERATION_RUL
 
 - `WorkspaceRemoveResponse object`
 
-  - `federation_rule_id: string`
-
-    Tagged ID of the federation rule.
-
   - `type: "federation_rule_workspace_deleted"`
 
     default: federation_rule_workspace_deleted
+
+  - `federation_rule_id: string`
+
+    Tagged ID of the federation rule.
 
   - `workspace_id: string`
 

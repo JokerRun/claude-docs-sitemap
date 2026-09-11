@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files/delete
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 7c878e4b2ed58b00dd044a62ae8b5289cf7617dd090621f56c4c2d2dce430c68
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 56b80a4ab00b1f278771961afffd86532619a60b58c49d3607f315cfe45318d7
+---
+
+---
+title: Delete file
+url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files/delete
 ---
 
 # Delete file
@@ -20,19 +25,25 @@ operation that cannot be undone.
 
 ## Headers
 
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 - `"x-api-key": optional string`
 
 ## Returns
-
-- `id: string`
-
-  The ID of the file that was deleted
 
 - `type: optional "claude_file_deleted"`
 
   Constant string confirming deletion
 
   default: claude_file_deleted
+
+- `id: string`
+
+  The ID of the file that was deleted
 
 ## Example
 

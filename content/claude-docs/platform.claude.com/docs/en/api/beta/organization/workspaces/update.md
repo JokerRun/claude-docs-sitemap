@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/update
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 28555fef76157d2c4ebed506b0360e5f08e5e2a76742b44ef7a2257672641594
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: cf7f990e6526c5fcb8728927708e364bbae3cfbb87526acf907761dfb8451b85
+---
+
+---
+title: Update Workspace
+url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/update
 ---
 
 # Update Workspace
@@ -74,6 +79,14 @@ Update Workspace
 ## Returns
 
 - `BetaWorkspace object`
+
+  - `type: "workspace"`
+
+    Object type.
+
+    For Workspaces, this is always `"workspace"`.
+
+    default: workspace
 
   - `id: string`
 
@@ -150,14 +163,6 @@ Update Workspace
   - `tags: map[string]`
 
     User-defined tags as string key-value pairs. Keys may not begin with `anthropic`.
-
-  - `type: "workspace"`
-
-    Object type.
-
-    For Workspaces, this is always `"workspace"`.
-
-    default: workspace
 
 ## Example
 

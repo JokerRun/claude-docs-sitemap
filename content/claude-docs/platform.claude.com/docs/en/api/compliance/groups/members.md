@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/groups/members
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: fe68ce3fafe8f29220b1b6cf3be577145dbb2c829ae4bdb939e8af19769bdf81
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 07a47a42ef33c79ed179f747b57d2bc4271688cd770ba78c75735cf2033912f5
+---
+
+---
+title: Members
+url: https://platform.claude.com/docs/en/api/compliance/groups/members
 ---
 
 # Members
@@ -33,6 +38,12 @@ List Compliance Group Members
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 - `"x-api-key": optional string`
 
 ### Returns
@@ -43,7 +54,9 @@ List Compliance Group Members
 
   - `created_at: string or null`
 
-    Membership creation timestamp (ISO 8601)
+    Membership creation timestamp (RFC 3339)
+
+    format: date-time
 
   - `email: string`
 
@@ -51,7 +64,9 @@ List Compliance Group Members
 
   - `updated_at: string or null`
 
-    Membership last-updated timestamp (ISO 8601)
+    Membership last-updated timestamp (RFC 3339)
+
+    format: date-time
 
   - `user_id: string`
 
@@ -78,9 +93,9 @@ curl https://api.anthropic.com/v1/compliance/groups/$GROUP_ID/members \
 {
   "data": [
     {
-      "created_at": "2025-03-12T18:22:41.123456",
+      "created_at": "2025-03-12T18:22:41.123456Z",
       "email": "jane.doe@example.com",
-      "updated_at": "2025-03-14T09:05:17.456789",
+      "updated_at": "2025-03-14T09:05:17.456789Z",
       "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
     }
   ],
@@ -99,7 +114,9 @@ curl https://api.anthropic.com/v1/compliance/groups/$GROUP_ID/members \
 
   - `created_at: string or null`
 
-    Membership creation timestamp (ISO 8601)
+    Membership creation timestamp (RFC 3339)
+
+    format: date-time
 
   - `email: string`
 
@@ -107,7 +124,9 @@ curl https://api.anthropic.com/v1/compliance/groups/$GROUP_ID/members \
 
   - `updated_at: string or null`
 
-    Membership last-updated timestamp (ISO 8601)
+    Membership last-updated timestamp (RFC 3339)
+
+    format: date-time
 
   - `user_id: string`
 

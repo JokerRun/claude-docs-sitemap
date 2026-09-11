@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/heartbeat
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: eca2b99bdbb1b4e4a6a6e09786a8e6c777d0ccaa1dbfa844346c2373e77acd48
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 2b3e2c97b1c29b28e981374012c1ade6ecfcb5c495ddf1381449cbb380e2985c
+---
+
+---
+title: Record Heartbeat
+url: https://platform.claude.com/docs/en/api/beta/environments/work/heartbeat
 ---
 
 # Record Heartbeat
@@ -37,7 +42,7 @@ Record a heartbeat for a work item to maintain the lease.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -84,6 +89,8 @@ Record a heartbeat for a work item to maintain the lease.
     - `"user-profiles-2026-03-24"`
 
     - `"user-profiles-2026-08-18"`
+
+    - `"user-profiles-2026-09-04"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -133,6 +140,12 @@ Record a heartbeat for a work item to maintain the lease.
 
   Response after recording a heartbeat for a work item.
 
+  - `type: "work_heartbeat"`
+
+    The type of response
+
+    default: work_heartbeat
+
   - `last_heartbeat: string`
 
     RFC 3339 timestamp of the actual heartbeat from DB
@@ -158,12 +171,6 @@ Record a heartbeat for a work item to maintain the lease.
   - `ttl_seconds: number`
 
     Effective TTL applied to the lease
-
-  - `type: "work_heartbeat"`
-
-    The type of response
-
-    default: work_heartbeat
 
 ## Example
 

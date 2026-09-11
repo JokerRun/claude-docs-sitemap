@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files/download
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 2bb758e06ddc7bb1e193157fe8599f5ee645848261ae3f5911224e1c7bb2ac80
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 2c1caa8fd6e911d665e76ad871c0da357c6858e3a09b81be5edf322e140872d2
+---
+
+---
+title: Download file content
+url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files/download
 ---
 
 # Download file content
@@ -18,6 +23,12 @@ Downloads the binary content of a file referenced in chat messages.
   The file ID (tagged ID, e.g., claude_file_abc123)
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

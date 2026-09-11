@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/invites/retrieve
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: b0fe9458ac360679238f7d86ca3ddaff29c9d3c11ebc3ba141fc32e19b6621df
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 7a2899de1829e78fab7448ad7b93ccf467af4db087eb6a8463de0d12406f0cd5
+---
+
+---
+title: Get Invite
+url: https://platform.claude.com/docs/en/api/beta/organization/invites/retrieve
 ---
 
 # Get Invite
@@ -20,6 +25,14 @@ Retrieve an invite by ID.
 ## Returns
 
 - `BetaOrganizationInvite object`
+
+  - `type: "invite"`
+
+    Object type.
+
+    For Invites, this is always `"invite"`.
+
+    default: invite
 
   - `id: string`
 
@@ -84,14 +97,6 @@ Retrieve an invite by ID.
     - `"expired"`
 
     - `"pending"`
-
-  - `type: "invite"`
-
-    Object type.
-
-    For Invites, this is always `"invite"`.
-
-    default: invite
 
 ## Example
 

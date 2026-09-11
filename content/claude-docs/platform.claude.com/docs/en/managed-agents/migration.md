@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/migration
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: 49660e30319a2d7430d5e8f13ee3661fec80987ee99afe773d0f5c27bd0beecc
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 7bdba3e6a8d9bd5be148a6114a294cefe34b5436c573773387c2aced10d2ab5d
 ---
 
 ---
@@ -632,7 +632,7 @@ If you built with the [Claude Agent SDK](https://code.claude.com/docs/en/agent-s
 | `cwd`, `add_dirs` point at local paths                          | Upload or mount [files](https://platform.claude.com/docs/en/managed-agents/files) as session resources.                                                                                                                                                                       |
 | `system_prompt` and the `CLAUDE.md` hierarchy                   | A single `system` string on the Agent. Each update that changes the agent produces a new server-side version; pin sessions to a specific version to promote or roll back without a deploy. See [Agent setup](https://platform.claude.com/docs/en/managed-agents/agent-setup). |
 | `mcp_servers` configured and authenticated in one place         | Declare servers on the Agent; provide credentials through a [Vault](https://platform.claude.com/docs/en/managed-agents/vaults) on the Session.                                                                                                                                |
-| `permission_mode`, `can_use_tool`                               | Per-tool [`permission_policy`](https://platform.claude.com/docs/en/managed-agents/permission-policies); send `user.tool_confirmation` events for `always_ask` tools.                                                                                                          |
+| `permission_mode`, `can_use_tool`                               | Per-tool [`permission_policy`](https://platform.claude.com/docs/en/managed-agents/permission-policies) (`always_allow`, `always_ask`, or `auto`); send `user.tool_confirmation` events for calls that pause for your approval.                                                |
 
 ### Code comparison
 
@@ -1313,12 +1313,12 @@ The Agent and Environment are created once and reused across sessions. The tool 
 
 The tradeoff for Anthropic running the agent loop is that a few things the SDK handled automatically become your client's responsibility.
 
-| SDK feature                        | Managed Agents approach                                                                                                                                       |
-| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Plan mode                          | Run a planning-only session first, then a second session to run the plan.                                                                                     |
-| Output styles, slash commands      | Apply in your client before sending `user.message` or after receiving `agent.message`.                                                                        |
-| `PreToolUse` / `PostToolUse` hooks | Your client already sees every `agent.custom_tool_use` event before responding; put the logic there. For built-in tools, use `permission_policy: always_ask`. |
-| `max_turns`                        | Count turns client-side.                                                                                                                                      |
+| SDK feature                        | Managed Agents approach                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Plan mode                          | Run a planning-only session first, then a second session to run the plan.                                                                                                                                                                                                                                                                                                                                                                     |
+| Output styles, slash commands      | Apply in your client before sending `user.message` or after receiving `agent.message`.                                                                                                                                                                                                                                                                                                                                                        |
+| `PreToolUse` / `PostToolUse` hooks | Your client already sees every `agent.custom_tool_use` event before responding; put the logic there. For built-in tools, use `permission_policy: always_ask` to review every call. [`auto`](https://platform.claude.com/docs/en/managed-agents/permission-policies#let-the-server-evaluate-each-call-with-auto) lets the server evaluate each call instead, but if the server evaluates a call as safe, it runs without reaching your client. |
+| `max_turns`                        | Count turns client-side.                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
 ## Migration checklist
 

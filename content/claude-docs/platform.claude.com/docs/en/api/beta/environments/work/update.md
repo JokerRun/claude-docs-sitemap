@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/update
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 26351043631e8642d9628603d9764aff709fffc9743af08684436843429e9b2b
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: df7ec324f987681385056db9e34e6b2252134342d5b7b5237aeb14ec62033086
+---
+
+---
+title: Update Work Item
+url: https://platform.claude.com/docs/en/api/beta/environments/work/update
 ---
 
 # Update Work Item
@@ -27,7 +32,7 @@ Update work item metadata with merge semantics.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -75,6 +80,8 @@ Update work item metadata with merge semantics.
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -117,6 +124,8 @@ Update work item metadata with merge semantics.
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
+- `"anthropic-workspace-id": optional string`
+
 ## Body parameters
 
 - `metadata: map[string]`
@@ -132,6 +141,12 @@ Update work item metadata with merge semantics.
   Work items are queued when sessions are created or when long-dormant sessions
   receive new messages. The environment worker polls for work to execute in a
   self-hosted sandbox.
+
+  - `type: "work"`
+
+    The type of object (always 'work')
+
+    default: work
 
   - `id: string`
 
@@ -149,13 +164,13 @@ Update work item metadata with merge semantics.
 
     The actual work to be performed
 
-    - `id: string`
-
-      Session identifier (e.g., 'session_...')
-
     - `type: "session"`
 
       Type of work data
+
+    - `id: string`
+
+      Session identifier (e.g., 'session_...')
 
   - `environment_id: string`
 
@@ -198,12 +213,6 @@ Update work item metadata with merge semantics.
   - `stopped_at: string or null`
 
     RFC 3339 timestamp when work execution stopped
-
-  - `type: "work"`
-
-    The type of object (always 'work')
-
-    default: work
 
 ## Example
 

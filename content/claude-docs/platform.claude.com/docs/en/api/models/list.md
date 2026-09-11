@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models/list
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 2a41f27e1996f8a421581e8960ae2ea2437f551c0e930fe701b5ed2b3cd1a968
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 3a687a8d2f63c62245fa60b5fd278ad16c885e87d1b71ee9f36b43736002a53d
+---
+
+---
+title: List Models
+url: https://platform.claude.com/docs/en/api/models/list
 ---
 
 # List Models
@@ -39,7 +44,7 @@ The Models API response can be used to determine which models are available for 
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -87,6 +92,8 @@ The Models API response can be used to determine which models are available for 
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -129,9 +136,19 @@ The Models API response can be used to determine which models are available for 
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
+- `"anthropic-workspace-id": optional string`
+
 ## Returns
 
 - `data: array of ModelInfo`
+
+  - `type: "model"`
+
+    Object type.
+
+    For Models, this is always `"model"`.
+
+    default: model
 
   - `id: string`
 
@@ -254,14 +271,6 @@ The Models API response can be used to determine which models are available for 
   - `max_tokens: number or null`
 
     Maximum value for the `max_tokens` parameter when using this model.
-
-  - `type: "model"`
-
-    Object type.
-
-    For Models, this is always `"model"`.
-
-    default: model
 
 - `first_id: string or null`
 

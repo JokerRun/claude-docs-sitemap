@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/users
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 681d9ba85c67f795515294bbf1b0de386512c66ba04adccd9be527cbf68a0fa3
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 6ae98072d39dfb93af6a927bf1f700e31465b4e7fe162f74aa491a58dafdb833
+---
+
+---
+title: Users
+url: https://platform.claude.com/docs/en/api/compliance/organizations/users
 ---
 
 # Users
@@ -32,6 +37,12 @@ List current user members of an organization.
   Opaque pagination token from a previous response's `next_page` field. Pass this to retrieve the next page of results. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

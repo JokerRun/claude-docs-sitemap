@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/messages/list
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 5092c9d227e3f37adb1cc7f5f41eefb1fcb7a038fabafcc56f9f9fd10672209f
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 5dc69bf2af8502641909b722fbcaad7f5e41ff808e207966b3e467852c4b391f
+---
+
+---
+title: Get chat messages
+url: https://platform.claude.com/docs/en/api/compliance/apps/chats/messages/list
 ---
 
 # Get chat messages
@@ -109,6 +114,12 @@ Retrieves message history and file metadata for a specific chat.
 
 ## Headers
 
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 - `"x-api-key": optional string`
 
 ## Returns
@@ -153,6 +164,10 @@ Retrieves message history and file metadata for a specific chat.
 
       Text content block.
 
+      - `type: "text"`
+
+        default: text
+
       - `text: string`
 
         Text content from human or assistant
@@ -169,13 +184,13 @@ Retrieves message history and file metadata for a specific chat.
 
         default: false
 
-      - `type: "text"`
-
-        default: text
-
     - `ToolUse object`
 
       Tool invocation requested by the assistant.
+
+      - `type: "tool_use"`
+
+        default: tool_use
 
       - `id: string or null`
 
@@ -203,25 +218,25 @@ Retrieves message history and file metadata for a specific chat.
 
         default: false
 
-      - `type: "tool_use"`
-
-        default: tool_use
-
     - `ToolResult object`
 
       Result returned by a tool invocation.
+
+      - `type: "tool_result"`
+
+        default: tool_result
 
       - `content: array of object`
 
         Text content returned by the tool. Generated files are surfaced via the message's `generated_files` list; other non-text item types (including images and links) are omitted.
 
-        - `text: string`
-
-          Text returned by the tool
-
         - `type: "text"`
 
           default: text
+
+        - `text: string`
+
+          Text returned by the tool
 
       - `integration_name: string or null`
 
@@ -248,10 +263,6 @@ Retrieves message history and file metadata for a specific chat.
         True when one or more text items in `content` were shortened. Pass the endpoint's tool-result max parameter as -1 to request full content, subject to any server-side maximum the endpoint enforces.
 
         default: false
-
-      - `type: "tool_result"`
-
-        default: tool_result
 
   - `created_at: string`
 
@@ -375,7 +386,21 @@ Retrieves message history and file metadata for a specific chat.
 
 - `user: object or null`
 
-  User information for compliance responses.
+  The user who created the chat.
+
+  Null when the API key is restricted to one organization and the creator
+  is no longer a member of it (for example, after they were removed from
+  it).
+
+  A key for the whole parent organization returns the creator's `id`
+  and current `email_address` for every chat; on the list endpoint, pass
+  `organization_ids[]` to keep the results to one organization. For the
+  email address the creator had when the chat was created, query
+  `GET /v1/compliance/activities` with `activity_types[]=claude_chat_created`
+  and a `created_at` window around the chat's `created_at`, find the event
+  whose `claude_chat_id` matches this chat's `id`, and read
+  `actor.email_address`. These events exist only for chats created after
+  compliance logging was enabled for the organization.
 
   - `id: string`
 

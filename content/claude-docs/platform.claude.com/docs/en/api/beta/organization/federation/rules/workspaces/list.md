@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces/list
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 6d3e30e8371af27cfe0a4fafa2df28cb497d5ea9e85dcf52eab05853cedde9cc
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 8b4fe3d2b744ede7e4ffac938b8a8500b09d2040070c8d0cd2e7f5c27323c513
+---
+
+---
+title: List Federation Rule Workspaces
+url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces/list
 ---
 
 # List Federation Rule Workspaces
@@ -45,7 +50,7 @@ rules with `applies_to_all_workspaces` or a legacy single
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -93,6 +98,8 @@ rules with `applies_to_all_workspaces` or a legacy single
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -139,6 +146,10 @@ rules with `applies_to_all_workspaces` or a legacy single
 
 - `data: array of BetaFederationRuleWorkspace`
 
+  - `type: "federation_rule_workspace"`
+
+    default: federation_rule_workspace
+
   - `created_at: string`
 
     When this workspace was enabled for the rule.
@@ -152,10 +163,6 @@ rules with `applies_to_all_workspaces` or a legacy single
   - `federation_rule_id: string`
 
     Tagged ID of the federation rule.
-
-  - `type: "federation_rule_workspace"`
-
-    default: federation_rule_workspace
 
   - `workspace_id: string`
 

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/retrieve
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: ce0796ce0a51b723bd9044308fc06124def4dc903da9b6276d5688ade66d071b
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 9769ada282c4d4e5a923e66f2d91073210e595789668d474279ba9e6714fa2d9
+---
+
+---
+title: Get Credential
+url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/retrieve
 ---
 
 # Get Credential
@@ -25,7 +30,7 @@ Get Credential
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -73,6 +78,8 @@ Get Credential
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -115,11 +122,15 @@ Get Credential
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
+- `"anthropic-workspace-id": optional string`
+
 ## Returns
 
 - `BetaManagedAgentsCredential object`
 
   A credential stored in a vault. Sensitive fields are never returned in responses.
+
+  - `type: "vault_credential"`
 
   - `id: string`
 
@@ -139,11 +150,11 @@ Get Credential
 
       OAuth credential details for an MCP server.
 
+      - `type: "mcp_oauth"`
+
       - `mcp_server_url: string`
 
         URL of the MCP server this credential authenticates against.
-
-      - `type: "mcp_oauth"`
 
       - `expires_at: optional string or null`
 
@@ -197,15 +208,17 @@ Get Credential
 
       Static bearer token credential details for an MCP server.
 
+      - `type: "static_bearer"`
+
       - `mcp_server_url: string`
 
         URL of the MCP server this credential authenticates against.
 
-      - `type: "static_bearer"`
-
     - `BetaManagedAgentsEnvironmentVariableAuthResponse object`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `type: "environment_variable"`
 
       - `injection_location: BetaManagedAgentsInjectionLocationResponse`
 
@@ -233,17 +246,15 @@ Get Credential
 
           The secret is substituted only on requests to the listed hosts.
 
+          - `type: "limited"`
+
           - `allowed_hosts: array of string`
 
             Hostnames on which the secret will be substituted. An entry matches the request host exactly; a `*.`-prefixed entry matches any subdomain of the named domain but not the domain itself.
 
-          - `type: "limited"`
-
       - `secret_name: string`
 
         Name of the environment variable.
-
-      - `type: "environment_variable"`
 
   - `created_at: string`
 
@@ -254,8 +265,6 @@ Get Credential
   - `metadata: map[string]`
 
     Arbitrary key-value metadata attached to the credential.
-
-  - `type: "vault_credential"`
 
   - `updated_at: string`
 

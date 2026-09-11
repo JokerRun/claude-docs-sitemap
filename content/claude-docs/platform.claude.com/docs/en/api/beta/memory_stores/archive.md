@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/archive
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 700277505b9795cf502e4f67a4a60d8082f8aec5a8364d3589098eb3cdd0faf6
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 10ddbc15c6d568821d851407fc8cd64f6b89c179f5b1c17fc676a2e38bb5b8aa
+---
+
+---
+title: Archive a memory store
+url: https://platform.claude.com/docs/en/api/beta/memory_stores/archive
 ---
 
 # Archive a memory store
@@ -23,7 +28,7 @@ Archive a memory store
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -71,6 +76,8 @@ Archive a memory store
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -113,11 +120,15 @@ Archive a memory store
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
+- `"anthropic-workspace-id": optional string`
+
 ## Returns
 
 - `BetaManagedAgentsMemoryStore object`
 
   A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
+
+  - `type: "memory_store"`
 
   - `id: string`
 
@@ -132,8 +143,6 @@ Archive a memory store
   - `name: string`
 
     Human-readable name for the store. 1–255 characters. The store's mount-path slug under `/mnt/memory/` is derived from this name.
-
-  - `type: "memory_store"`
 
   - `updated_at: string`
 

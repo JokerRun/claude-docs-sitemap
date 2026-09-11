@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/files/download
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 01bc82427ee76635c85636fbe82e008bd153689b7ad6a756ae0eacf68bc56e66
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 74f6c8470bd1d17c1aca6567430fd02f5f36de4451cad36117fff299a8bd1d1c
+---
+
+---
+title: Download File
+url: https://platform.claude.com/docs/en/api/files/download
 ---
 
 # Download File
@@ -16,6 +21,10 @@ Download File
 - `file_id: string`
 
   ID of the File.
+
+## Headers
+
+- `"anthropic-workspace-id": optional string`
 
 ## Example
 

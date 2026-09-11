@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/retrieve
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 034f333f4ab543bc94095f5960e01cf99f55e614b22609cf7da0dced4b9f83c0
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 37708aa2a84e95bd2be6b568297e8f25d75cea1b3c9e51f6f65c0b5cc85b4c22
+---
+
+---
+title: Retrieve a memory
+url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/retrieve
 ---
 
 # Retrieve a memory
@@ -35,7 +40,7 @@ Retrieve a memory
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -83,6 +88,8 @@ Retrieve a memory
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -125,11 +132,15 @@ Retrieve a memory
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
+- `"anthropic-workspace-id": optional string`
+
 ## Returns
 
 - `BetaManagedAgentsMemory object`
 
   A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
+
+  - `type: "memory"`
 
   - `id: string`
 
@@ -162,8 +173,6 @@ Retrieve a memory
   - `path: string`
 
     Hierarchical path of the memory within the store, e.g. `/projects/foo/notes.md`. Always starts with `/`. Paths are case-sensitive and unique within a store. Maximum 1,024 bytes.
-
-  - `type: "memory"`
 
   - `updated_at: string`
 

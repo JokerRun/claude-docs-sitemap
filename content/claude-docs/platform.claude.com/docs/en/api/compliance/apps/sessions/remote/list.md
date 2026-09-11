@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/remote/list
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 81a7435121055a7d88e9ce931a0a6c909b9c93918d71f51d1adb9c4cba7e73cd
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: de46477493f4ba7c8c2f9f59b6ac59741690e6a281acf3168260e2d14021b2f2
+---
+
+---
+title: List remote sessions
+url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/remote/list
 ---
 
 # List remote sessions
@@ -78,6 +83,12 @@ retrieve the next page, and stop when `next_page` is null.
   maxItems: 10
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

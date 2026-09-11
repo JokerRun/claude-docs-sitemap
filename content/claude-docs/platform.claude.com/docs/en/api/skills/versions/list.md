@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/skills/versions/list
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: fdf2427971488c6f67d9984845f67683d28131dfbe251495c0246bc90365da94
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: e2cc2d82bd2212fcf4a334b92f3a4479c66964a1d427be6005b4471d7f3e57bd
+---
+
+---
+title: List Skill Versions
+url: https://platform.claude.com/docs/en/api/skills/versions/list
 ---
 
 # List Skill Versions
@@ -33,11 +38,23 @@ List Skill Versions
 
   Optionally set to the `next_page` token from the previous response.
 
+## Headers
+
+- `"anthropic-workspace-id": optional string`
+
 ## Returns
 
 - `data: array of SkillVersion`
 
   List of skills.
+
+  - `type: "skill_version"`
+
+    Object type.
+
+    For Skill Versions, this is always `"skill_version"`.
+
+    default: skill_version
 
   - `id: string`
 
@@ -68,14 +85,6 @@ List Skill Versions
     Unique identifier for the skill.
 
     The format and length of IDs may change over time.
-
-  - `type: "skill_version"`
-
-    Object type.
-
-    For Skill Versions, this is always `"skill_version"`.
-
-    default: skill_version
 
 - `next_page: string or null`
 

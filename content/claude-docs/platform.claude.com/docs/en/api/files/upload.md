@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/files/upload
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 3bdcbab410a2b6f85ba56da7793e0480e145c5bd2bdf24634c4bf7fb4b20bb0a
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: ea11fcfb49d1a15f6ddec39424af9005211ef25e68032dc92e884279a566c4ce
+---
+
+---
+title: Upload File
+url: https://platform.claude.com/docs/en/api/files/upload
 ---
 
 # Upload File
@@ -11,11 +16,15 @@ sha256: 3bdcbab410a2b6f85ba56da7793e0480e145c5bd2bdf24634c4bf7fb4b20bb0a
 
 Upload File
 
+## Headers
+
+- `"anthropic-workspace-id": optional string`
+
 ## Body parameters (form-data)
 
 - `file: string`
 
-  The file to upload
+  The file to upload. Only the final path component of the part's `filename` is kept; an absent or empty `filename` is replaced with `unnamed` plus the extension for the file's stored `mime_type`, when known.
 
   format: binary
 
@@ -28,6 +37,12 @@ Upload File
 ## Returns
 
 - `FileMetadata object`
+
+  - `type: "file"`
+
+    Object type.
+
+    For files, this is always `"file"`.
 
   - `id: string`
 
@@ -58,12 +73,6 @@ Upload File
     Size of the file in bytes.
 
     minimum: 0
-
-  - `type: "file"`
-
-    Object type.
-
-    For files, this is always `"file"`.
 
   - `downloadable: optional boolean`
 

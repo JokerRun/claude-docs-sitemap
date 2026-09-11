@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: 5a0772d4f9dbfb3ccc384af5ae3a1bc6fc9daea6713ac2d47c63553e6bd464c8
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 8070daef044b8dcd7f744f4ccbba8189e106ee72e31d34d1ce5dcca5aac3e742
 ---
 
 > ## Documentation Index
@@ -225,7 +225,7 @@ When reviewing code, check for:
 4. Test coverage
 ```
 
-After you install the plugin, check the install summary: if it reports `Run /reload-plugins to activate.`, run that command to load the Skills. For complete Skill authoring guidance including progressive disclosure and tool restrictions, see [Agent Skills](/docs/en/skills).
+After you install the plugin, check the install summary: if it reports `Run /reload-plugins to activate.`, see [Apply plugin changes without restarting](/docs/en/discover-plugins#apply-plugin-changes-without-restarting) to load the Skills in your current session. For complete Skill authoring guidance including progressive disclosure and tool restrictions, see [Agent Skills](/docs/en/skills).
 
 ### Add LSP servers to your plugin
 

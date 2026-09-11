@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/code/artifacts/list
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 5a702316b5de973165fe13d9c22e06c7a7680cb84957d31bb4ddfac9525c0669
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 8773abad651426e3f54529998d60f86a05b7c80622e2686b639448c50948e06d
+---
+
+---
+title: List Code Artifacts
+url: https://platform.claude.com/docs/en/api/compliance/code/artifacts/list
 ---
 
 # List Code Artifacts
@@ -73,6 +78,12 @@ returned.
   maxItems: 200
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: aa8df280d3c8ac3876b34ee03e1e1e7b57e301efe2817f3a7d82a5c6a6fb7a5f
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 504c612b18c113ded4346161acfb7047a5a0dc8a7e7450e35199f99aa94a6c21
+---
+
+---
+title: Files
+url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files
 ---
 
 # Files
@@ -22,6 +27,12 @@ download the bytes.
   The file ID (tagged ID, e.g., claude_file_abc123)
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -102,19 +113,25 @@ operation that cannot be undone.
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 - `"x-api-key": optional string`
 
 ### Returns
-
-- `id: string`
-
-  The ID of the file that was deleted
 
 - `type: optional "claude_file_deleted"`
 
   Constant string confirming deletion
 
   default: claude_file_deleted
+
+- `id: string`
+
+  The ID of the file that was deleted
 
 ### Example
 
@@ -146,6 +163,12 @@ Downloads the binary content of a file referenced in chat messages.
   The file ID (tagged ID, e.g., claude_file_abc123)
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -207,12 +230,12 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/files/$CLAUDE_FILE_ID/co
 
   Response for deleting a compliance file.
 
-  - `id: string`
-
-    The ID of the file that was deleted
-
   - `type: optional "claude_file_deleted"`
 
     Constant string confirming deletion
 
     default: claude_file_deleted
+
+  - `id: string`
+
+    The ID of the file that was deleted

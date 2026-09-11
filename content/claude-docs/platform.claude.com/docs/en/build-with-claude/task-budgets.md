@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/task-budgets
-fetched_at: 2026-09-04T02:21:22.489135Z
-sha256: e3cfd1af5bd8e63eccef60bac877083056f72161d6fd62e3b790597f3c7275e3
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 62748c519874f1dd9d2d05e0c89d2a45e3e25444bb704e5d906ebc1f7d764741
 ---
 
 ---
@@ -631,7 +631,7 @@ Run a representative sample of tasks **without** `task_budget` set and record th
 
 Run this across a representative set of tasks and record the distribution. Start with the p99 of your per-task token spend to understand how providing the model with a task budget might modify the model's behavior, then test up or down as needed.
 
-The minimum accepted `task_budget.total` is model-specific. On every model that supports task budgets (see [Feature support](https://platform.claude.com/docs/en/build-with-claude/task-budgets#feature-support)) it is **20,000 tokens**, and smaller values return a 400 error.
+The minimum accepted `task_budget.total` is **20,000 tokens** on every model that supports task budgets (see [Feature support](https://platform.claude.com/docs/en/build-with-claude/task-budgets#feature-support)). Smaller values return a 400 error.
 
 ## Interaction with other parameters
 

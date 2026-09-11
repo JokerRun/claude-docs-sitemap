@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/ack
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 8c25713693a5b77050d2413ce44ba4a5808e00535c95fd175c97096a46038765
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 123d90ecbba840a251e7c06797ddb1f143e0b7784576cfe62441ee067a0d8048
+---
+
+---
+title: Acknowledge Work
+url: https://platform.claude.com/docs/en/api/beta/environments/work/ack
 ---
 
 # Acknowledge Work
@@ -27,7 +32,7 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +79,8 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
     - `"user-profiles-2026-03-24"`
 
     - `"user-profiles-2026-08-18"`
+
+    - `"user-profiles-2026-09-04"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -127,6 +134,12 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
   receive new messages. The environment worker polls for work to execute in a
   self-hosted sandbox.
 
+  - `type: "work"`
+
+    The type of object (always 'work')
+
+    default: work
+
   - `id: string`
 
     Work identifier (e.g., 'work_...')
@@ -143,13 +156,13 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
     The actual work to be performed
 
-    - `id: string`
-
-      Session identifier (e.g., 'session_...')
-
     - `type: "session"`
 
       Type of work data
+
+    - `id: string`
+
+      Session identifier (e.g., 'session_...')
 
   - `environment_id: string`
 
@@ -192,12 +205,6 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
   - `stopped_at: string or null`
 
     RFC 3339 timestamp when work execution stopped
-
-  - `type: "work"`
-
-    The type of object (always 'work')
-
-    default: work
 
 ## Example
 

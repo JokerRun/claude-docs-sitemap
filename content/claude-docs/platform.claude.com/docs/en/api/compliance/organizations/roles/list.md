@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/list
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 4dbcc97b7f991ce67e51780c48d95adb95969b352c059f31bf7eb5f6353dfa05
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: d2bc2a9b12bce0d2342a00d501a59e061ae65f59dcfeb2b7c8918fbd8c5b6fcb
+---
+
+---
+title: List Compliance Roles
+url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/list
 ---
 
 # List Compliance Roles
@@ -31,6 +36,12 @@ List Compliance Roles
 
 ## Headers
 
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 - `"x-api-key": optional string`
 
 ## Returns
@@ -45,7 +56,9 @@ List Compliance Roles
 
   - `created_at: string or null`
 
-    Role creation timestamp (ISO 8601)
+    Role creation timestamp (RFC 3339)
+
+    format: date-time
 
   - `description: string`
 
@@ -57,7 +70,9 @@ List Compliance Roles
 
   - `updated_at: string or null`
 
-    Role last-updated timestamp (ISO 8601)
+    Role last-updated timestamp (RFC 3339)
+
+    format: date-time
 
 - `has_more: boolean`
 
@@ -81,10 +96,10 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles \
   "data": [
     {
       "id": "rbac_role_01SGBg3kEnZrdsVR2QmyJbvD",
-      "created_at": "2025-03-12T18:22:41.123456",
+      "created_at": "2025-03-12T18:22:41.123456Z",
       "description": "Full administrative access to organization settings and members",
       "name": "Organization Admin",
-      "updated_at": "2025-03-14T09:05:17.456789"
+      "updated_at": "2025-03-14T09:05:17.456789Z"
     }
   ],
   "has_more": true,

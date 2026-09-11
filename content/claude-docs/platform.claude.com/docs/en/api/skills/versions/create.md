@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/skills/versions/create
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 885e796c5f935c5c35f2fb2e4e8c5e0c74e958d4cf0c611e87ec825f3ede9109
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 5b80ec07e84f4a954a59dac1af1592d029d7ebb8c1e2979982ed6e7cdcbf68a5
+---
+
+---
+title: Create Skill Version
+url: https://platform.claude.com/docs/en/api/skills/versions/create
 ---
 
 # Create Skill Version
@@ -19,6 +24,10 @@ Create Skill Version
 
   The format and length of IDs may change over time.
 
+## Headers
+
+- `"anthropic-workspace-id": optional string`
+
 ## Body parameters (form-data)
 
 - `files: array of string`
@@ -30,6 +39,14 @@ Create Skill Version
 ## Returns
 
 - `SkillVersion object`
+
+  - `type: "skill_version"`
+
+    Object type.
+
+    For Skill Versions, this is always `"skill_version"`.
+
+    default: skill_version
 
   - `id: string`
 
@@ -60,14 +77,6 @@ Create Skill Version
     Unique identifier for the skill.
 
     The format and length of IDs may change over time.
-
-  - `type: "skill_version"`
-
-    Object type.
-
-    For Skill Versions, this is always `"skill_version"`.
-
-    default: skill_version
 
 ## Example
 

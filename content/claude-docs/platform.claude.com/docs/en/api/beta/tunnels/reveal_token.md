@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/reveal_token
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: ce6dfcc720cc150e695f11407157b5eaaec0d980c8d8c8d2737a762590676d6b
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 48dd2659bee949c29a7927a574e73dc0caeee0e9d16ac2a7edc18d04e5900d95
+---
+
+---
+title: Reveal Tunnel Token
+url: https://platform.claude.com/docs/en/api/beta/tunnels/reveal_token
 ---
 
 # Reveal Tunnel Token
@@ -25,7 +30,7 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -73,6 +78,8 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -115,11 +122,15 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
+- `"anthropic-workspace-id": optional string`
+
 ## Returns
 
 - `BetaTunnelToken object`
 
   A tunnel's connector token.
+
+  - `type: "tunnel_token"`
 
   - `id: string`
 
@@ -128,8 +139,6 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
   - `tunnel_token: string`
 
     The connector token used to run the tunnel. Treat as a credential.
-
-  - `type: "tunnel_token"`
 
 ## Example
 

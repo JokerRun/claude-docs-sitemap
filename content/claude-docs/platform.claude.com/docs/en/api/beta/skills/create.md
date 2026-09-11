@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/create
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 861490919c6a3948509f47d1c0074e8c9b2f2ec58729589a0fb47bb7786da812
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 6170e91e04fa04cfd6c7a344c32620d6896360e4a38062fdfbf084641c808dce
+---
+
+---
+title: Create Skill
+url: https://platform.claude.com/docs/en/api/beta/skills/create
 ---
 
 # Create Skill
@@ -19,7 +24,7 @@ Create Skill
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -67,6 +72,8 @@ Create Skill
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -109,6 +116,8 @@ Create Skill
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
+- `"anthropic-workspace-id": optional string`
+
 ## Body parameters (form-data)
 
 - `files: array of string`
@@ -126,6 +135,14 @@ Create Skill
 ## Returns
 
 - `BetaSkill object`
+
+  - `type: "skill"`
+
+    Object type.
+
+    For Skills, this is always `"skill"`.
+
+    default: skill
 
   - `id: string`
 
@@ -178,14 +195,6 @@ Create Skill
       - `"anthropic_example"`
 
       - `"plugin"`
-
-  - `type: "skill"`
-
-    Object type.
-
-    For Skills, this is always `"skill"`.
-
-    default: skill
 
   - `updated_at: string`
 

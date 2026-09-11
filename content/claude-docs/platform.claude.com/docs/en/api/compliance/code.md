@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/code
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: b5a47337f228b8612cfe36e5965e1eb5be6dd519e413f0ca54feb265918d6bf6
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 21738bcb3c6c8248af578c4e12b3c54afd0d3f86448b9e9173559bd3dff7aba1
+---
+
+---
+title: Code
+url: https://platform.claude.com/docs/en/api/compliance/code
 ---
 
 # Code
@@ -77,6 +82,12 @@ returned.
   maxItems: 200
 
 #### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -229,6 +240,12 @@ only for identity-stored content; validate against it when present.
 
 #### Headers
 
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 - `"x-api-key": optional string`
 
 #### Example
@@ -259,19 +276,25 @@ Artifact.
 
 #### Headers
 
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 - `"x-api-key": optional string`
 
 #### Returns
-
-- `id: string`
-
-  The ID of the Artifact that was deleted
 
 - `type: "code_artifact_deleted"`
 
   Constant string confirming deletion
 
   default: code_artifact_deleted
+
+- `id: string`
+
+  The ID of the Artifact that was deleted
 
 #### Example
 

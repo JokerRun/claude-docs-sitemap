@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/retrieve
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 8cf57b8e06dcc897d4439e9809e6b2fe9ec2ef89b341185dbb9f8f1007286fae
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 6217256f61e293c671bf3392c1bcbb2d0fb1f932d8919b9096d89ce3489c84c4
+---
+
+---
+title: Get Current Organization
+url: https://platform.claude.com/docs/en/api/beta/organization/retrieve
 ---
 
 # Get Current Organization
@@ -15,6 +20,14 @@ Retrieve information about the organization associated with the authenticated AP
 
 - `BetaOrganization object`
 
+  - `type: "organization"`
+
+    Object type.
+
+    For Organizations, this is always `"organization"`.
+
+    default: organization
+
   - `id: string`
 
     ID of the Organization.
@@ -24,14 +37,6 @@ Retrieve information about the organization associated with the authenticated AP
   - `name: string`
 
     Name of the Organization.
-
-  - `type: "organization"`
-
-    Object type.
-
-    For Organizations, this is always `"organization"`.
-
-    default: organization
 
 ## Example
 

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/delete
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 07dd2951e836d17a3ac27629406b79bcdba5bb12c48a3487e85ce7343e6f96d1
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 8dbf4cd0716c9026f277240f088edbbdaf69c573c5a109d0a6d019ddfcb4ca1a
+---
+
+---
+title: Delete Environment
+url: https://platform.claude.com/docs/en/api/beta/environments/delete
 ---
 
 # Delete Environment
@@ -23,7 +28,7 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -71,6 +76,8 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -113,21 +120,23 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
+- `"anthropic-workspace-id": optional string`
+
 ## Returns
 
 - `BetaEnvironmentDeleteResponse object`
 
   Response after deleting an environment.
 
-  - `id: string`
-
-    Environment identifier
-
   - `type: "environment_deleted"`
 
     The type of response
 
     default: environment_deleted
+
+  - `id: string`
+
+    Environment identifier
 
 ## Example
 

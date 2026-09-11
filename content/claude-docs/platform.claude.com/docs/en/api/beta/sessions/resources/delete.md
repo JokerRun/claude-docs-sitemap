@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/delete
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 03125a9fd6ee4a9bf96f6336fbebf1bc09653d88dbd194833f470096ef6597ec
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: f725a093ce468ff68f4b6fc123110dde667812f3cc8a109b6e6cb591e35fb22c
+---
+
+---
+title: Delete Session Resource
+url: https://platform.claude.com/docs/en/api/beta/sessions/resources/delete
 ---
 
 # Delete Session Resource
@@ -25,7 +30,7 @@ Delete Session Resource
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -73,6 +78,8 @@ Delete Session Resource
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -115,15 +122,17 @@ Delete Session Resource
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
+- `"anthropic-workspace-id": optional string`
+
 ## Returns
 
 - `BetaManagedAgentsDeleteSessionResource object`
 
   Confirmation of resource deletion.
 
-  - `id: string`
-
   - `type: "session_resource_deleted"`
+
+  - `id: string`
 
 ## Example
 

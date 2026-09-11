@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/list
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 4a6f6241f2d401cc837a9fd23de3cf57a1e0a654cf258cda1ef38b919cf09cef
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: be3acb8c25863331d15f23bc749d746f73805b53a5642bc605a5a2389a46c2b4
+---
+
+---
+title: List Workspaces
+url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/list
 ---
 
 # List Workspaces
@@ -38,6 +43,14 @@ List Workspaces
 ## Returns
 
 - `data: array of BetaWorkspace`
+
+  - `type: "workspace"`
+
+    Object type.
+
+    For Workspaces, this is always `"workspace"`.
+
+    default: workspace
 
   - `id: string`
 
@@ -114,14 +127,6 @@ List Workspaces
   - `tags: map[string]`
 
     User-defined tags as string key-value pairs. Keys may not begin with `anthropic`.
-
-  - `type: "workspace"`
-
-    Object type.
-
-    For Workspaces, this is always `"workspace"`.
-
-    default: workspace
 
 - `first_id: string or null`
 

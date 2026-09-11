@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/add
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: ce0bf105bb7051aade5582b496c9ac3b78722043c705d83cdac0158285ab0c11
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: f1fd89f6da5ca504e71dce2996bcf417a8c025b0832e3b1f57fcbeb816c7af9c
+---
+
+---
+title: Add Session Resource
+url: https://platform.claude.com/docs/en/api/beta/sessions/resources/add
 ---
 
 # Add Session Resource
@@ -23,7 +28,7 @@ Add Session Resource
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -71,6 +76,8 @@ Add Session Resource
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -113,6 +120,8 @@ Add Session Resource
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
+- `"anthropic-workspace-id": optional string`
+
 ## Body parameters
 
 - `file_id: string`
@@ -133,6 +142,8 @@ Add Session Resource
 
 - `BetaManagedAgentsFileResource object`
 
+  - `type: "file"`
+
   - `id: string`
 
   - `created_at: string`
@@ -144,8 +155,6 @@ Add Session Resource
   - `file_id: string`
 
   - `mount_path: string`
-
-  - `type: "file"`
 
   - `updated_at: string`
 

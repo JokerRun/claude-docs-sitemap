@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/list
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 04d56e557660a90075bf4e8e120b07d08bc8fc569058b9d6bb1eadf596a7c095
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 0e1666a6e66ce74274f6bad33c83b9290130c82eb8ff3115ee5e5eaf1476740a
+---
+
+---
+title: List Service Accounts
+url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/list
 ---
 
 # List Service Accounts
@@ -43,7 +48,7 @@ archived service accounts.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -91,6 +96,8 @@ archived service accounts.
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -137,6 +144,10 @@ archived service accounts.
 
 - `data: array of BetaServiceAccount`
 
+  - `type: "service_account"`
+
+    default: service_account
+
   - `id: string`
 
     Tagged ID of the service account.
@@ -176,10 +187,6 @@ archived service accounts.
     - `"admin"`
 
     - `"developer"`
-
-  - `type: "service_account"`
-
-    default: service_account
 
   - `updated_at: string`
 

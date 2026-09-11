@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/compliance_settings/update
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 937bbac416e09034fb2476aeca121a8069afff45016ebcd09acd5bc73a1cec4f
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 43c97bf549672c1bc800e6e34dfe4473cab71451e3a52d27b3ec8a4c17f9af12
+---
+
+---
+title: Update Compliance Settings
+url: https://platform.claude.com/docs/en/api/beta/organization/compliance_settings/update
 ---
 
 # Update Compliance Settings
@@ -26,7 +31,7 @@ compliance settings.
 
 ## Body parameters
 
-- `state: BetaComplianceSettingsStateEnabledParam or BetaComplianceSettingsStateDisabledParam`
+- `state: BetaComplianceSettingsStateParam`
 
   Desired state. Accepts the string shorthand "enabled" or "disabled" in place of the object form; the response always returns the canonical object form.
 
@@ -42,7 +47,11 @@ compliance settings.
 
 - `BetaComplianceSettings object`
 
-  - `state: BetaComplianceSettingsStateEnabled or BetaComplianceSettingsStateDisabled`
+  - `type: "compliance_settings"`
+
+    default: compliance_settings
+
+  - `state: BetaComplianceSettingsState`
 
     Whether the Compliance API is enabled for this organization.
 
@@ -57,10 +66,6 @@ compliance settings.
       - `type: "disabled"`
 
         default: disabled
-
-  - `type: "compliance_settings"`
-
-    default: compliance_settings
 
 ## Example
 

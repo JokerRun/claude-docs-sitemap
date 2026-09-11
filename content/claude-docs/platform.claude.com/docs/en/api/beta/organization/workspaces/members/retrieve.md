@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/members/retrieve
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: abbb2bb065480fb7ffd84fc09224e6be87a6b4ccdc5e8a5ea70033daedae72d3
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 8f0b2f2c2b062d1079cd40cc9881327960fe0beb0b4ed764f21c1f8f431dab18
+---
+
+---
+title: Get Workspace Member
+url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/members/retrieve
 ---
 
 # Get Workspace Member

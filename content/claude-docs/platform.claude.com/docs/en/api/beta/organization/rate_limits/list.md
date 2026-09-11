@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rate_limits/list
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: 63f973767971680754046b7c3d3f42416e79101f9834bea8f0612f09d5cedcf7
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 9230e2cdd347f3fa6d935b8de0e7b9ece3ce1007e7ea5c89bf0d52bc396f7326
+---
+
+---
+title: List Organization Rate Limits
+url: https://platform.claude.com/docs/en/api/beta/organization/rate_limits/list
 ---
 
 # List Organization Rate Limits
@@ -59,6 +64,12 @@ the remaining entries.
 
   Rate-limit entries for the organization, one per group.
 
+  - `type: "rate_limit"`
+
+    Object type. Always `rate_limit` for organization rate-limit entries.
+
+    default: rate_limit
+
   - `id: string`
 
     Stable identifier for this rate-limit group within the organization.
@@ -94,12 +105,6 @@ the remaining entries.
   - `models: array of string or null`
 
     Model names this entry's limits apply to, including aliases. `null` when `group_type` is not `"model_group"`.
-
-  - `type: "rate_limit"`
-
-    Object type. Always `rate_limit` for organization rate-limit entries.
-
-    default: rate_limit
 
 - `next_page: string or null`
 

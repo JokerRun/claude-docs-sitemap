@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/update
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 7e2e6c94a13ebe82d85f00b703f18bb140689f3a8ee7e4e71b95c54a0eed9c5b
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 3809c034f49a11da3f7140faa95f7a34722ce26ad1b62a6c7d03cf44d249674a
+---
+
+---
+title: Update Federation Issuer
+url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/update
 ---
 
 # Update Federation Issuer
@@ -34,7 +39,7 @@ session.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -81,6 +86,8 @@ session.
     - `"user-profiles-2026-03-24"`
 
     - `"user-profiles-2026-08-18"`
+
+    - `"user-profiles-2026-09-04"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -178,13 +185,13 @@ session.
 
     JWKS supplied directly; no network fetch.
 
+    - `type: "inline"`
+
     - `keys: array of map[unknown]`
 
       Inline JWK objects.
 
       minItems: 1
-
-    - `type: "inline"`
 
 - `jwks_polling_disabled: optional boolean or null`
 
@@ -210,6 +217,10 @@ session.
 
   Records an external IdP the organization trusts for the RFC 7523
   jwt-bearer grant. The `issuer_url` must match the JWT `iss` claim exactly.
+
+  - `type: "federation_issuer"`
+
+    default: federation_issuer
 
   - `id: string`
 
@@ -285,13 +296,13 @@ session.
 
       JWKS supplied directly; no network fetch.
 
+      - `type: "inline"`
+
       - `keys: array of map[unknown]`
 
         Inline JWK objects.
 
         minItems: 1
-
-      - `type: "inline"`
 
   - `jwks_polling_disabled_at: string or null`
 
@@ -330,10 +341,6 @@ session.
       When the next fetch is scheduled. Null if paused.
 
       format: date-time
-
-  - `type: "federation_issuer"`
-
-    default: federation_issuer
 
   - `updated_at: string`
 

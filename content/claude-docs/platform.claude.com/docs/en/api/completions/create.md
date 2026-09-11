@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions/create
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: 89653663a29793495a061d87b77efe74256094b3b91892a32a4bf3c549436c9f
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: f1aa95a43a03e1d42317e3c26eacf20ae34b1c065943c82361b8dfef5cdc2edb
+---
+
+---
+title: Create a Text Completion
+url: https://platform.claude.com/docs/en/api/completions/create
 ---
 
 # Create a Text Completion
@@ -23,7 +28,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -71,6 +76,8 @@ Future models and features will not be compatible with Text Completions. See our
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -112,6 +119,8 @@ Future models and features will not be compatible with Text Completions. See our
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+- `"anthropic-workspace-id": optional string`
 
 ## Body parameters
 
@@ -293,6 +302,14 @@ Future models and features will not be compatible with Text Completions. See our
 
 - `Completion object`
 
+  - `type: "completion"`
+
+    Object type.
+
+    For Text Completions, this is always `"completion"`.
+
+    default: completion
+
   - `id: string`
 
     Unique object identifier.
@@ -393,14 +410,6 @@ Future models and features will not be compatible with Text Completions. See our
 
     * `"stop_sequence"`: we reached a stop sequence — either provided by you via the `stop_sequences` parameter, or a stop sequence built into the model
     * `"max_tokens"`: we exceeded `max_tokens_to_sample` or the model's maximum
-
-  - `type: "completion"`
-
-    Object type.
-
-    For Text Completions, this is always `"completion"`.
-
-    default: completion
 
 ## Example
 

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/archive
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: a8ead20ba063a844bf3cf082b1b64adc36d5e6c5ab4828dd4022fb9313a0704e
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 6c1e1be44c2bbe98eb605155fbd7b0824cfaff22c488951d9c629ec45e155b7c
+---
+
+---
+title: Archive Vault
+url: https://platform.claude.com/docs/en/api/beta/vaults/archive
 ---
 
 # Archive Vault
@@ -23,7 +28,7 @@ Archive Vault
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -71,6 +76,8 @@ Archive Vault
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -113,11 +120,15 @@ Archive Vault
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
+- `"anthropic-workspace-id": optional string`
+
 ## Returns
 
 - `BetaManagedAgentsVault object`
 
   A vault that stores credentials for use by agents during sessions.
+
+  - `type: "vault"`
 
   - `id: string`
 
@@ -142,8 +153,6 @@ Archive Vault
   - `metadata: map[string]`
 
     Arbitrary key-value metadata attached to the vault.
-
-  - `type: "vault"`
 
   - `updated_at: string`
 

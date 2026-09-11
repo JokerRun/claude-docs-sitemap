@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/list
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 01bf76c67b1e1af3987b38a7df6f6eb433ea27adb9ab4a80db775e2a5ec99937
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 5708cdaecee2d16b8f047c15a986d52663cd0e83fc7d79caeb5be8c955ff20d8
+---
+
+---
+title: List projects
+url: https://platform.claude.com/docs/en/api/compliance/apps/projects/list
 ---
 
 # List projects
@@ -85,6 +90,12 @@ are sorted chronologically (time ascending) by created_at.
   Filter by user IDs. Enumerate IDs via `GET /v1/compliance/organizations/{org_uuid}/users`.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

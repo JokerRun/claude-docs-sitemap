@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/delete
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 53d36287c0d931eedf23dcac2fb6686e054a8ab009dee90131b3ce4b90c0689c
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 5e6cddbae823ae9f07f04b2d00f4800f163e684f6fee1e6687c3370579eb81e3
+---
+
+---
+title: Delete project
+url: https://platform.claude.com/docs/en/api/compliance/apps/projects/delete
 ---
 
 # Delete project
@@ -28,19 +33,25 @@ Project must have no attached chats - returns 409 if chats exist.
 
 ## Headers
 
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 - `"x-api-key": optional string`
 
 ## Returns
-
-- `id: string`
-
-  The ID of the Claude project that was deleted
 
 - `type: optional "claude_project_deleted"`
 
   Constant string confirming deletion.
 
   default: claude_project_deleted
+
+- `id: string`
+
+  The ID of the Claude project that was deleted
 
 ## Example
 

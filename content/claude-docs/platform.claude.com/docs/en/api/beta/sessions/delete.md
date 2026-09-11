@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/delete
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: ace0db29c1f5611e91846acfb1855e403037082a6aebc7878b8b80c07f1379b8
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: f705a047376b0389a73473ca41f8e87a692e5a7a9b0ebe5e38aaeda8a616db0f
+---
+
+---
+title: Delete Session
+url: https://platform.claude.com/docs/en/api/beta/sessions/delete
 ---
 
 # Delete Session
@@ -23,7 +28,7 @@ Delete Session
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -71,6 +76,8 @@ Delete Session
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -113,15 +120,17 @@ Delete Session
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
+- `"anthropic-workspace-id": optional string`
+
 ## Returns
 
 - `BetaManagedAgentsDeletedSession object`
 
   Confirmation that a `session` has been permanently deleted.
 
-  - `id: string`
-
   - `type: "session_deleted"`
+
+  - `id: string`
 
 ## Example
 

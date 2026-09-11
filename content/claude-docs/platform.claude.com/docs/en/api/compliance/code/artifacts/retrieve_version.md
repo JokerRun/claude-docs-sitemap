@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/code/artifacts/retrieve_version
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 78a02deaed72f0f64929625dbc686fcd4e32b9341f0619e02360d3f634ee7ea1
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: be082bafb803e593145238bf5f05f899c72f26967478b6c23137940c20e1b072
+---
+
+---
+title: Download Code Artifact Version Content
+url: https://platform.claude.com/docs/en/api/compliance/code/artifacts/retrieve_version
 ---
 
 # Download Code Artifact Version Content
@@ -33,6 +38,12 @@ only for identity-stored content; validate against it when present.
   Opaque version identifier from the Artifact's `versions` list
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

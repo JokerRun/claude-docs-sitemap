@@ -1,15 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/api_keys/retrieve
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 3af11b0f601c9dcdc08463ea2a9919ff0b8570b9be23ed9371a0f72d57a86ba3
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: be6946ee1fcbdda973616f327a462570274a1bf32a2f032230138462d68b4852
 ---
 
-# Get API Key
+---
+title: Retrieve API Key (Admin API)
+url: https://platform.claude.com/docs/en/api/beta/organization/api_keys/retrieve
+---
+
+# Retrieve API Key (Admin API)
 
 **GET** `/v1/organizations/api_keys/{api_key_id}`
 
-Get API Key
+Retrieve information about a single API key in your organization, looked up by its ID. This Admin API endpoint requires an Admin API key, is intended for programmatic key management, and never returns the key's secret value. To view or create your own API keys, go to [API keys](https://platform.claude.com/settings/keys) in the Claude Console.
 
 ## Path parameters
 
@@ -20,6 +25,14 @@ Get API Key
 ## Returns
 
 - `BetaAPIKey object`
+
+  - `type: "api_key"`
+
+    Object type.
+
+    For API Keys, this is always `"api_key"`.
+
+    default: api_key
 
   - `id: string`
 
@@ -37,10 +50,6 @@ Get API Key
     creator is not recorded (legacy, workload-identity-federated, or
     system-created keys).
 
-    - `id: string`
-
-      ID of the actor that created the object.
-
     - `type: "service_account" or "user"`
 
       Type of the actor that created the object.
@@ -48,6 +57,10 @@ Get API Key
       - `"service_account"`
 
       - `"user"`
+
+    - `id: string`
+
+      ID of the actor that created the object.
 
   - `expires_at: string or null`
 
@@ -81,15 +94,15 @@ Get API Key
 
     - `BetaAPIKeyServiceAccountActor object`
 
-      - `service_account_id: string`
-
-        ID of the Service Account the API key acts as.
-
       - `type: "service_account_actor"`
 
         Principal type. Always `"service_account_actor"` for a Service Account.
 
         default: service_account_actor
+
+      - `service_account_id: string`
+
+        ID of the Service Account the API key acts as.
 
   - `scope: BetaAPIKeyOrganizationScope or BetaAPIKeyWorkspaceScope`
 
@@ -126,14 +139,6 @@ Get API Key
     - `"expired"`
 
     - `"inactive"`
-
-  - `type: "api_key"`
-
-    Object type.
-
-    For API Keys, this is always `"api_key"`.
-
-    default: api_key
 
   - `workspace_id: string or null`
 

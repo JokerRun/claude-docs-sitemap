@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/inference-hooks-endpoint
-fetched_at: 2026-09-01T02:22:36.834082Z
-sha256: 0207b345247c2db6b0bf7cc3bc6758da4c9fcfa4c167c098465e5718c34207c0
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 7ae3bfe271bf2df6b4695e12699fdb97882de46d3f7be0a1bc0ca42275d06cec
 ---
 
 ---
@@ -303,7 +303,7 @@ Two details cause most verification bugs:
 * **Verify raw bytes.** Compute the HMAC over the body exactly as received, before any JSON parsing or re-encoding.
 * **Decode the secret with a standard base64 decoder.** The signing secret is the value after the `whsec_` prefix, encoded with the standard base64 alphabet (`+` and `/`), as is the signature in the header. A URL-safe decoder derives the wrong key bytes whenever the secret contains `+` or `/`, which is most of the time.
 
-Once your organization has a signing secret, every request Anthropic sends is signed, and [enabling Inference hooks requires one](https://platform.claude.com/docs/en/manage-claude/inference-hooks-configuration), so reject any request that arrives unsigned. One exception: a connection test sent before your organization's first save arrives unsigned, because the signing secret doesn't exist yet. Accept unsigned requests until your administrator confirms the secret exists, then reject them.
+Once your organization has a signing secret, every request Anthropic sends is signed, including the connection test, because the setup flow generates the secret before the first test. [Enabling Inference hooks requires a secret](https://platform.claude.com/docs/en/manage-claude/inference-hooks-configuration), so reject any request that arrives unsigned. One exception: an organization that enabled Inference hooks before the secret was required keeps sending unsigned requests until its administrator generates one. Accept unsigned requests only until your administrator confirms the secret exists, then reject them.
 
 [Rotating the secret](https://platform.claude.com/docs/en/manage-claude/inference-hooks-configuration#rotate-your-signing-secret) is an immediate cutover, but requests signed with the previous secret can still arrive for about a minute afterward, plus anything already in flight. Have your AI security server accept signatures from both secrets during the switchover so those stragglers aren't rejected.
 

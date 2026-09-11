@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 2794ed9c1a52a819289ffb08da56f7e5c6f134ffed5cef61db94ba9355859c7b
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: ab07088370b4a7b6bd5c5d72bea49908b10435899888d2f2759efc3bfed1f2d3
+---
+
+---
+title: Create Enrollment URL
+url: https://platform.claude.com/docs/en/api/beta/user_profiles/create_enrollment_url
 ---
 
 # Create Enrollment URL
@@ -23,7 +28,7 @@ Create Enrollment URL
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -71,6 +76,8 @@ Create Enrollment URL
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -117,15 +124,15 @@ Create Enrollment URL
 
 - `BetaUserProfileEnrollmentURL object`
 
+  - `type: "enrollment_url"`
+
+    Object type. Always `enrollment_url`.
+
   - `expires_at: string`
 
     A timestamp in RFC 3339 format
 
     format: date-time
-
-  - `type: "enrollment_url"`
-
-    Object type. Always `enrollment_url`.
 
   - `url: string`
 

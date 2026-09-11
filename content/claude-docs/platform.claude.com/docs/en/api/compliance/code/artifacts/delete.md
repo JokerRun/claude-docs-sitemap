@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/code/artifacts/delete
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 93d52a8c7f4c8c303050233a36c4f292674be19482d1d31594abfafe4f828936
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 03f244913f22f8873c38b5901ee8a76a07250137a8bb646a8a6995d5a89ab365
+---
+
+---
+title: Delete Code Artifact
+url: https://platform.claude.com/docs/en/api/compliance/code/artifacts/delete
 ---
 
 # Delete Code Artifact
@@ -26,19 +31,25 @@ Artifact.
 
 ## Headers
 
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 - `"x-api-key": optional string`
 
 ## Returns
-
-- `id: string`
-
-  The ID of the Artifact that was deleted
 
 - `type: "code_artifact_deleted"`
 
   Constant string confirming deletion
 
   default: code_artifact_deleted
+
+- `id: string`
+
+  The ID of the Artifact that was deleted
 
 ## Example
 

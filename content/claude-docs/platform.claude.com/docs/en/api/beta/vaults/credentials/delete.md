@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/delete
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: da3abe8991a56d065de9207c93c15bc025fd912146534771d500932db6e34bbe
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 503f1fb7bacbcbbad646d396ad08116821c75bba00b9c42ddc04f60e98b801e8
+---
+
+---
+title: Delete Credential
+url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/delete
 ---
 
 # Delete Credential
@@ -25,7 +30,7 @@ Delete Credential
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -73,6 +78,8 @@ Delete Credential
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -115,17 +122,19 @@ Delete Credential
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
+- `"anthropic-workspace-id": optional string`
+
 ## Returns
 
 - `BetaManagedAgentsDeletedCredential object`
 
   Confirmation of a deleted credential.
 
+  - `type: "vault_credential_deleted"`
+
   - `id: string`
 
     Unique identifier of the deleted credential.
-
-  - `type: "vault_credential_deleted"`
 
 ## Example
 

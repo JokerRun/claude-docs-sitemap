@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/skills/create
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 6bf4d97b15fa329a6767e372b0ed0f8f220bd23925213405693c2262a73851c0
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 92f8f0f2acba9d3bebc180216f273a14199422f68ae7f8c989640037e3ea881b
+---
+
+---
+title: Create Skill
+url: https://platform.claude.com/docs/en/api/skills/create
 ---
 
 # Create Skill
@@ -10,6 +15,10 @@ sha256: 6bf4d97b15fa329a6767e372b0ed0f8f220bd23925213405693c2262a73851c0
 **POST** `/v1/skills`
 
 Create Skill
+
+## Headers
+
+- `"anthropic-workspace-id": optional string`
 
 ## Body parameters (form-data)
 
@@ -28,6 +37,14 @@ Create Skill
 ## Returns
 
 - `Skill object`
+
+  - `type: "skill"`
+
+    Object type.
+
+    For Skills, this is always `"skill"`.
+
+    default: skill
 
   - `id: string`
 
@@ -80,14 +97,6 @@ Create Skill
       - `"anthropic_example"`
 
       - `"plugin"`
-
-  - `type: "skill"`
-
-    Object type.
-
-    For Skills, this is always `"skill"`.
-
-    default: skill
 
   - `updated_at: string`
 

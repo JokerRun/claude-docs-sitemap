@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/cancel
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: e2ba2d8fdfe2d1e7ae7879806efe1a6e803d047dca34722acc810bd659d71284
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 75a7bac8e190b7d1f3898306807f171765bebc4b37e5887f272e9f84ae67dcb3
+---
+
+---
+title: Cancel a Dream
+url: https://platform.claude.com/docs/en/api/beta/dreams/cancel
 ---
 
 # Cancel a Dream
@@ -23,7 +28,7 @@ Cancel a Dream
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -71,6 +76,8 @@ Cancel a Dream
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -113,11 +120,15 @@ Cancel a Dream
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
+- `"anthropic-workspace-id": optional string`
+
 ## Returns
 
 - `BetaDream object`
 
   An asynchronous memory-consolidation job that reads a memory store plus a set of session transcripts and writes consolidated memories into an output memory store — a new store by default, or an existing store chosen via output_behavior. The Dreams API is in research preview: the request and response shapes are volatile and may change without the deprecation period that applies to generally-available endpoints.
+
+  - `type: "dream"`
 
   - `id: string`
 
@@ -143,9 +154,9 @@ Cancel a Dream
 
     Failure detail for a Dream whose `status` is `failed`.
 
-    - `message: string`
-
     - `type: string`
+
+    - `message: string`
 
   - `inputs: array of BetaDreamInput`
 
@@ -153,19 +164,19 @@ Cancel a Dream
 
       An input memory store the dream reads from. The dream never mutates this store unless it is also the destination: with output_behavior {type: "update_existing"} the job consolidates this store in place.
 
+      - `type: "memory_store"`
+
       - `memory_store_id: string`
 
         minLength: 1
-
-      - `type: "memory_store"`
 
     - `BetaDreamSessionsInput object`
 
       Input session transcripts the dream reads.
 
-      - `session_ids: array of string`
-
       - `type: "sessions"`
+
+      - `session_ids: array of string`
 
   - `instructions: string or null`
 
@@ -201,17 +212,17 @@ Cancel a Dream
 
       The job writes the consolidated memories into this existing memory store instead of creating one. In EAP the store must be the job's own memory_store input, so the job consolidates the store in place.
 
+      - `type: "update_existing"`
+
       - `memory_store_id: string`
 
         minLength: 1
 
-      - `type: "update_existing"`
-
   - `outputs: array of BetaDreamOutput`
 
-    - `memory_store_id: string`
-
     - `type: "memory_store"`
+
+    - `memory_store_id: string`
 
   - `session_id: string or null`
 
@@ -228,8 +239,6 @@ Cancel a Dream
     - `"failed"`
 
     - `"canceled"`
-
-  - `type: "dream"`
 
   - `usage: BetaDreamUsage`
 

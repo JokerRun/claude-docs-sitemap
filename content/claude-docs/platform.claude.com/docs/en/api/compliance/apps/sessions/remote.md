@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/remote
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 10b9b2a4d95db148f175fb09e8aff06c7d6def2fa39f9351709e96133ad75e8e
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: d97b04bbf6b562fd465914a8a359a33f679e3a4ea2e7cbeda9a703af4d9a7061
+---
+
+---
+title: Remote
+url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/remote
 ---
 
 # Remote
@@ -80,6 +85,12 @@ retrieve the next page, and stop when `next_page` is null.
   maxItems: 10
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -322,6 +333,12 @@ malformed session identifier returns 400.
 
 #### Headers
 
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 - `"x-api-key": optional string`
 
 #### Returns
@@ -342,6 +359,10 @@ malformed session identifier returns 400.
 
       Text content block.
 
+      - `type: "text"`
+
+        default: text
+
       - `text: string`
 
         Text content from the user or the assistant
@@ -352,13 +373,13 @@ malformed session identifier returns 400.
 
         default: false
 
-      - `type: "text"`
-
-        default: text
-
     - `ToolUse object`
 
       Tool invocation requested by the assistant.
+
+      - `type: "tool_use"`
+
+        default: tool_use
 
       - `id: string or null`
 
@@ -378,25 +399,25 @@ malformed session identifier returns 400.
 
         default: false
 
-      - `type: "tool_use"`
-
-        default: tool_use
-
     - `ToolResult object`
 
       Result returned by a tool invocation.
+
+      - `type: "tool_result"`
+
+        default: tool_result
 
       - `content: array of object`
 
         Text content returned by the tool. Non-text item types are omitted.
 
-        - `text: string`
-
-          Text returned by the tool
-
         - `type: "text"`
 
           default: text
+
+        - `text: string`
+
+          Text returned by the tool
 
       - `is_error: boolean`
 
@@ -415,10 +436,6 @@ malformed session identifier returns 400.
         True when one or more text items in `content` were shortened. Pass `tool_result_max_bytes=-1` to request full content, subject to the server-side maximum.
 
         default: false
-
-      - `type: "tool_result"`
-
-        default: tool_result
 
   - `content_unavailable: boolean`
 

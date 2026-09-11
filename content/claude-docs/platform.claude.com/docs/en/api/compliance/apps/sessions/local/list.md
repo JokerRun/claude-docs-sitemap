@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/list
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 6ea685a88846f7a2f3518b88b7d440b383c8fe1c240260df196d5e0785dae796
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 4edabc64e7782ecea7f0e24b08c38921e11a0903fbefb8213ec062f1d06a8741
+---
+
+---
+title: List local sessions
+url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/list
 ---
 
 # List local sessions
@@ -50,6 +55,12 @@ forward-only via `next_page`; there is no reverse cursor.
 
 ## Headers
 
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 - `"x-api-key": optional string`
 
 ## Returns
@@ -57,6 +68,10 @@ forward-only via `next_page`; there is no reverse cursor.
 - `data: array of object`
 
   Page of local sessions, ordered by `created_at` descending; ties are broken by a fixed server-side order. `updated_at` never participates in the ordering; the `updated_at.gte` query parameter filters on it without changing the order or the pagination cursor.
+
+  - `type: "compliance_local_session"`
+
+    default: compliance_local_session
 
   - `id: string`
 
@@ -76,9 +91,11 @@ forward-only via `next_page`; there is no reverse cursor.
 
     The product the session ran in: `cowork` (Cowork in Claude Desktop on the user's machine), `claude_code` (Claude Code), `claude_science` (Claude Science), or one of `office_agents/excel`, `office_agents/powerpoint`, `office_agents/word`, and `office_agents/outlook` (Claude for Microsoft 365, by app; `office_agents` alone when the app is not identified). New values appear as coverage expands; treat unrecognized values as opaque. `null` when the surface was not recorded.
 
-  - `type: "compliance_local_session"`
+  - `truncated: boolean`
 
-    default: compliance_local_session
+    True when the session has more inference calls than the service can return for one session (100,000). The messages endpoint then returns only the session's earliest calls, up to that many, and ends before the session does; `updated_at` is a lower bound on the latest call and can differ between the list and retrieve endpoints. False for every session within that bound.
+
+    default: false
 
   - `updated_at: string`
 

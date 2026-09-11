@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces/add
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 24e339b0858f37c01b34fc3fdb566c20da271754783edf32cfe4fb6f5d504191
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 35c4ca8b941da266276c811ff8f469747e4de1f40f547ee34b8e8ab1ae9263a5
+---
+
+---
+title: Add Workspace To Service Account
+url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces/add
 ---
 
 # Add Workspace To Service Account
@@ -34,7 +39,7 @@ rejected.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -81,6 +86,8 @@ rejected.
     - `"user-profiles-2026-03-24"`
 
     - `"user-profiles-2026-08-18"`
+
+    - `"user-profiles-2026-09-04"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -146,6 +153,10 @@ rejected.
 
 - `BetaServiceAccountWorkspaceMember object`
 
+  - `type: "service_account_workspace_member"`
+
+    default: service_account_workspace_member
+
   - `created_by_actor_id: string or null`
 
     Tagged ID (`user_...`/`svac_...`) of the actor who created this membership.
@@ -157,10 +168,6 @@ rejected.
   - `service_account_id: string`
 
     Tagged service account ID (`svac_...`).
-
-  - `type: "service_account_workspace_member"`
-
-    default: service_account_workspace_member
 
   - `workspace_id: string`
 

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/remote/messages
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: f44184be3dca7a6147453c49385c903aa2798ec8e25374915c75bae2d527cd4a
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: f50963e68f9cc1b7d56ac238088ea93f89ac1c1663e2d64b801efd3f510306d5
+---
+
+---
+title: Messages
+url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/remote/messages
 ---
 
 # Messages
@@ -74,6 +79,12 @@ malformed session identifier returns 400.
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 - `"x-api-key": optional string`
 
 ### Returns
@@ -94,6 +105,10 @@ malformed session identifier returns 400.
 
       Text content block.
 
+      - `type: "text"`
+
+        default: text
+
       - `text: string`
 
         Text content from the user or the assistant
@@ -104,13 +119,13 @@ malformed session identifier returns 400.
 
         default: false
 
-      - `type: "text"`
-
-        default: text
-
     - `ToolUse object`
 
       Tool invocation requested by the assistant.
+
+      - `type: "tool_use"`
+
+        default: tool_use
 
       - `id: string or null`
 
@@ -130,25 +145,25 @@ malformed session identifier returns 400.
 
         default: false
 
-      - `type: "tool_use"`
-
-        default: tool_use
-
     - `ToolResult object`
 
       Result returned by a tool invocation.
+
+      - `type: "tool_result"`
+
+        default: tool_result
 
       - `content: array of object`
 
         Text content returned by the tool. Non-text item types are omitted.
 
-        - `text: string`
-
-          Text returned by the tool
-
         - `type: "text"`
 
           default: text
+
+        - `text: string`
+
+          Text returned by the tool
 
       - `is_error: boolean`
 
@@ -167,10 +182,6 @@ malformed session identifier returns 400.
         True when one or more text items in `content` were shortened. Pass `tool_result_max_bytes=-1` to request full content, subject to the server-side maximum.
 
         default: false
-
-      - `type: "tool_result"`
-
-        default: tool_result
 
   - `content_unavailable: boolean`
 
@@ -336,6 +347,10 @@ curl https://api.anthropic.com/v1/compliance/apps/sessions/remote/$CLAUDE_REMOTE
 
       Text content block.
 
+      - `type: "text"`
+
+        default: text
+
       - `text: string`
 
         Text content from the user or the assistant
@@ -346,13 +361,13 @@ curl https://api.anthropic.com/v1/compliance/apps/sessions/remote/$CLAUDE_REMOTE
 
         default: false
 
-      - `type: "text"`
-
-        default: text
-
     - `ToolUse object`
 
       Tool invocation requested by the assistant.
+
+      - `type: "tool_use"`
+
+        default: tool_use
 
       - `id: string or null`
 
@@ -372,25 +387,25 @@ curl https://api.anthropic.com/v1/compliance/apps/sessions/remote/$CLAUDE_REMOTE
 
         default: false
 
-      - `type: "tool_use"`
-
-        default: tool_use
-
     - `ToolResult object`
 
       Result returned by a tool invocation.
+
+      - `type: "tool_result"`
+
+        default: tool_result
 
       - `content: array of object`
 
         Text content returned by the tool. Non-text item types are omitted.
 
-        - `text: string`
-
-          Text returned by the tool
-
         - `type: "text"`
 
           default: text
+
+        - `text: string`
+
+          Text returned by the tool
 
       - `is_error: boolean`
 
@@ -409,10 +424,6 @@ curl https://api.anthropic.com/v1/compliance/apps/sessions/remote/$CLAUDE_REMOTE
         True when one or more text items in `content` were shortened. Pass `tool_result_max_bytes=-1` to request full content, subject to the server-side maximum.
 
         default: false
-
-      - `type: "tool_result"`
-
-        default: tool_result
 
   - `content_unavailable: boolean`
 

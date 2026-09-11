@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/update
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 41d77bb5e19010f0dcdb63a639db81fb83f423cf5f3f5c62adb38a7ed063df38
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 40d80350ee4e3b92f132d30fdf1302c7ec9df57bb4075f81b487d442a191bab7
+---
+
+---
+title: Update Service Account
+url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/update
 ---
 
 # Update Service Account
@@ -32,7 +37,7 @@ interactive credential (a user OAuth token or a Console session).
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -79,6 +84,8 @@ interactive credential (a user OAuth token or a Console session).
     - `"user-profiles-2026-03-24"`
 
     - `"user-profiles-2026-08-18"`
+
+    - `"user-profiles-2026-09-04"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -147,6 +154,10 @@ interactive credential (a user OAuth token or a Console session).
   A service account is a pure identity: name + org. Authorization lives on
   whatever references it (federation rules).
 
+  - `type: "service_account"`
+
+    default: service_account
+
   - `id: string`
 
     Tagged ID of the service account.
@@ -186,10 +197,6 @@ interactive credential (a user OAuth token or a Console session).
     - `"admin"`
 
     - `"developer"`
-
-  - `type: "service_account"`
-
-    default: service_account
 
   - `updated_at: string`
 

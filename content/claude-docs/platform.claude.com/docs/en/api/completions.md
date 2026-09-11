@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: feeeda2e7b55e7d6e7378458e696aab359cabce6b13d4c16c2b199031a8a79d8
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: bc4760da73dede16e5565035f18bafff51f2b86fcd28c0ce0ecc17a479f30d72
+---
+
+---
+title: Completions
+url: https://platform.claude.com/docs/en/api/completions
 ---
 
 # Completions
@@ -25,7 +30,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -73,6 +78,8 @@ Future models and features will not be compatible with Text Completions. See our
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -114,6 +121,8 @@ Future models and features will not be compatible with Text Completions. See our
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+- `"anthropic-workspace-id": optional string`
 
 ### Body parameters
 
@@ -295,6 +304,14 @@ Future models and features will not be compatible with Text Completions. See our
 
 - `Completion object`
 
+  - `type: "completion"`
+
+    Object type.
+
+    For Text Completions, this is always `"completion"`.
+
+    default: completion
+
   - `id: string`
 
     Unique object identifier.
@@ -395,14 +412,6 @@ Future models and features will not be compatible with Text Completions. See our
 
     * `"stop_sequence"`: we reached a stop sequence — either provided by you via the `stop_sequences` parameter, or a stop sequence built into the model
     * `"max_tokens"`: we exceeded `max_tokens_to_sample` or the model's maximum
-
-  - `type: "completion"`
-
-    Object type.
-
-    For Text Completions, this is always `"completion"`.
-
-    default: completion
 
 ### Example
 
@@ -440,6 +449,14 @@ curl https://api.anthropic.com/v1/complete \
 
 - `Completion object`
 
+  - `type: "completion"`
+
+    Object type.
+
+    For Text Completions, this is always `"completion"`.
+
+    default: completion
+
   - `id: string`
 
     Unique object identifier.
@@ -540,11 +557,3 @@ curl https://api.anthropic.com/v1/complete \
 
     * `"stop_sequence"`: we reached a stop sequence — either provided by you via the `stop_sequences` parameter, or a stop sequence built into the model
     * `"max_tokens"`: we exceeded `max_tokens_to_sample` or the model's maximum
-
-  - `type: "completion"`
-
-    Object type.
-
-    For Text Completions, this is always `"completion"`.
-
-    default: completion

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/users/list
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: a68cad64ca481597d3e16f16dcd358390fecab16aa41d2c9518930fed87090f0
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 42a54e41f93f9a892320b7c52de857b816372fa6ae2036b0c885a9d0d219f275
+---
+
+---
+title: List Users
+url: https://platform.claude.com/docs/en/api/beta/organization/users/list
 ---
 
 # List Users
@@ -45,6 +50,14 @@ List the organization's members.
 
 - `data: array of BetaOrganizationUser`
 
+  - `type: "user"`
+
+    Object type.
+
+    For Users, this is always `"user"`.
+
+    default: user
+
   - `id: string`
 
     ID of the User.
@@ -84,14 +97,6 @@ List the organization's members.
     - `"primary_owner"`
 
     - `"user"`
-
-  - `type: "user"`
-
-    Object type.
-
-    For Users, this is always `"user"`.
-
-    default: user
 
 - `first_id: string or null`
 

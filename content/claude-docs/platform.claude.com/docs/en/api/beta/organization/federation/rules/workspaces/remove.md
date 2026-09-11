@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces/remove
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: eba3da664e93d680938f8af058144d987a01e302d09fa1cabfb1a6bb888f6a48
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: de0722f63177679a22d7aca44d9a62b169c0347a5cebc9b4ca4af3acf1357346
+---
+
+---
+title: Remove Federation Rule Workspace
+url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces/remove
 ---
 
 # Remove Federation Rule Workspace
@@ -36,7 +41,7 @@ Console session.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -84,6 +89,8 @@ Console session.
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -128,13 +135,13 @@ Console session.
 
 ## Returns
 
-- `federation_rule_id: string`
-
-  Tagged ID of the federation rule.
-
 - `type: "federation_rule_workspace_deleted"`
 
   default: federation_rule_workspace_deleted
+
+- `federation_rule_id: string`
+
+  Tagged ID of the federation rule.
 
 - `workspace_id: string`
 

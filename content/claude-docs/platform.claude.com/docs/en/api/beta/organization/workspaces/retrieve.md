@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/retrieve
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 97c8cc2eaeff5fc31e127c8c8137e2f8968b9f846c02416f6ddebfbef5ebdedb
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: a65159143e3da8c84cedd1966e3c3a5ec759e10698b57aaccc004119b8c1e91e
+---
+
+---
+title: Get Workspace
+url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/retrieve
 ---
 
 # Get Workspace
@@ -20,6 +25,14 @@ Get Workspace
 ## Returns
 
 - `BetaWorkspace object`
+
+  - `type: "workspace"`
+
+    Object type.
+
+    For Workspaces, this is always `"workspace"`.
+
+    default: workspace
 
   - `id: string`
 
@@ -96,14 +109,6 @@ Get Workspace
   - `tags: map[string]`
 
     User-defined tags as string key-value pairs. Keys may not begin with `anthropic`.
-
-  - `type: "workspace"`
-
-    Object type.
-
-    For Workspaces, this is always `"workspace"`.
-
-    default: workspace
 
 ## Example
 

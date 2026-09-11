@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/skills/list
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 913b478131a1bbbee4de41f02c6f8c2996b7080056df0541d023eeb953b32e1a
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 3b7206c5b66eed32dfad767ecf0abea398e393875bb55996fdcaf0bca446c2c7
+---
+
+---
+title: List Skills
+url: https://platform.claude.com/docs/en/api/skills/list
 ---
 
 # List Skills
@@ -36,11 +41,23 @@ List Skills
   * `"custom"`: only return user-created skills
   * `"anthropic"`: only return Anthropic-created skills
 
+## Headers
+
+- `"anthropic-workspace-id": optional string`
+
 ## Returns
 
 - `data: array of Skill`
 
   List of skills.
+
+  - `type: "skill"`
+
+    Object type.
+
+    For Skills, this is always `"skill"`.
+
+    default: skill
 
   - `id: string`
 
@@ -93,14 +110,6 @@ List Skills
       - `"anthropic_example"`
 
       - `"plugin"`
-
-  - `type: "skill"`
-
-    Object type.
-
-    For Skills, this is always `"skill"`.
-
-    default: skill
 
   - `updated_at: string`
 

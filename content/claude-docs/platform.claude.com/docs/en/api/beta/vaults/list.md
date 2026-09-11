@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/list
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 4aca1e4cb1096018a6d7a27b9fd8a3f4be4cae4bfa0b3fd276334be5c27acf92
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: b6a5229ce8e6305448b8005a65613c70adf49998642d8cd6369e76844b7609c1
+---
+
+---
+title: List Vaults
+url: https://platform.claude.com/docs/en/api/beta/vaults/list
 ---
 
 # List Vaults
@@ -35,7 +40,7 @@ List Vaults
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -83,6 +88,8 @@ List Vaults
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -125,11 +132,15 @@ List Vaults
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
+- `"anthropic-workspace-id": optional string`
+
 ## Returns
 
 - `data: optional array of BetaManagedAgentsVault`
 
   List of vaults.
+
+  - `type: "vault"`
 
   - `id: string`
 
@@ -154,8 +165,6 @@ List Vaults
   - `metadata: map[string]`
 
     Arbitrary key-value metadata attached to the vault.
-
-  - `type: "vault"`
 
   - `updated_at: string`
 

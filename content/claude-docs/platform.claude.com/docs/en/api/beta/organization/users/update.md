@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/users/update
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: f01392be981edbc85b2cfdf7b08579a5aed0873d81b8a97e5160a8ed73be2c12
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: d46a8953b9f148ce73193e9f7124cde6023fb94353f5ab225a8a93b9716ad45b
+---
+
+---
+title: Update User
+url: https://platform.claude.com/docs/en/api/beta/organization/users/update
 ---
 
 # Update User
@@ -38,6 +43,14 @@ Update a member's organization role.
 ## Returns
 
 - `BetaOrganizationUser object`
+
+  - `type: "user"`
+
+    Object type.
+
+    For Users, this is always `"user"`.
+
+    default: user
 
   - `id: string`
 
@@ -78,14 +91,6 @@ Update a member's organization role.
     - `"primary_owner"`
 
     - `"user"`
-
-  - `type: "user"`
-
-    Object type.
-
-    For Users, this is always `"user"`.
-
-    default: user
 
 ## Example
 

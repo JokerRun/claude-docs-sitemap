@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/retrieve
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: ce372f046bb0f4cc35bea0d743522d8a398fd7441fbf87ffb2f539e94f2d3be5
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 530d02d76297f36c7cb8407fc3b622205dcfbc56b9ab7940aab8c78634325900
+---
+
+---
+title: Get Skill Version
+url: https://platform.claude.com/docs/en/api/beta/skills/versions/retrieve
 ---
 
 # Get Skill Version
@@ -33,7 +38,7 @@ Get Skill Version
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -81,6 +86,8 @@ Get Skill Version
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -123,9 +130,19 @@ Get Skill Version
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
+- `"anthropic-workspace-id": optional string`
+
 ## Returns
 
 - `BetaSkillVersion object`
+
+  - `type: "skill_version"`
+
+    Object type.
+
+    For Skill Versions, this is always `"skill_version"`.
+
+    default: skill_version
 
   - `id: string`
 
@@ -156,14 +173,6 @@ Get Skill Version
     Unique identifier for the skill.
 
     The format and length of IDs may change over time.
-
-  - `type: "skill_version"`
-
-    Object type.
-
-    For Skill Versions, this is always `"skill_version"`.
-
-    default: skill_version
 
 ## Example
 

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/retrieve
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 5275e8b3455be532c1d3333710e4e7219070ef9c194d938a71c552a103467fad
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 4771d244a32cb83e71da72d1a9122258758d02f34d128ac79a5633c10e8a477a
+---
+
+---
+title: Retrieve a Message Batch
+url: https://platform.claude.com/docs/en/api/messages/batches/retrieve
 ---
 
 # Retrieve a Message Batch
@@ -19,9 +24,21 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   ID of the Message Batch.
 
+## Headers
+
+- `"anthropic-workspace-id": optional string`
+
 ## Returns
 
 - `MessageBatch object`
+
+  - `type: "message_batch"`
+
+    Object type.
+
+    For Message Batches, this is always `"message_batch"`.
+
+    default: message_batch
 
   - `id: string`
 
@@ -120,14 +137,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     URL to a `.jsonl` file containing the results of the Message Batch requests. Specified only once processing ends.
 
     Results in the file are not guaranteed to be in the same order as requests. Use the `custom_id` field to match results to requests.
-
-  - `type: "message_batch"`
-
-    Object type.
-
-    For Message Batches, this is always `"message_batch"`.
-
-    default: message_batch
 
 ## Example
 

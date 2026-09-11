@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/skills/versions/retrieve
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: b09f2f9bddf2e87cf35f280ef554a067e23db33c3efe4e641f3f0102be2c6633
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 270cac201dcf0ff6781f63826f69ba7c1af62313456cafd550ae0e5557bd1f82
+---
+
+---
+title: Get Skill Version
+url: https://platform.claude.com/docs/en/api/skills/versions/retrieve
 ---
 
 # Get Skill Version
@@ -25,9 +30,21 @@ Get Skill Version
 
   Requests carrying the `skills-2025-10-02` beta header address versions by their Unix epoch timestamp instead (e.g., "1759178010641129").
 
+## Headers
+
+- `"anthropic-workspace-id": optional string`
+
 ## Returns
 
 - `SkillVersion object`
+
+  - `type: "skill_version"`
+
+    Object type.
+
+    For Skill Versions, this is always `"skill_version"`.
+
+    default: skill_version
 
   - `id: string`
 
@@ -58,14 +75,6 @@ Get Skill Version
     Unique identifier for the skill.
 
     The format and length of IDs may change over time.
-
-  - `type: "skill_version"`
-
-    Object type.
-
-    For Skill Versions, this is always `"skill_version"`.
-
-    default: skill_version
 
 ## Example
 

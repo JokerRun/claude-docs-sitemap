@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/invites/list
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 611d23fcf3c97614440e2864498fe6b4ddb3be18ff6b616ece147a8155385325
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 0acbff18a27df8d77da0c0c58c1c5ede0bbf452c7fc43646a45bf61537803019
+---
+
+---
+title: List Invites
+url: https://platform.claude.com/docs/en/api/beta/organization/invites/list
 ---
 
 # List Invites
@@ -54,6 +59,14 @@ List the organization's invites.
 ## Returns
 
 - `data: array of BetaOrganizationInvite`
+
+  - `type: "invite"`
+
+    Object type.
+
+    For Invites, this is always `"invite"`.
+
+    default: invite
 
   - `id: string`
 
@@ -118,14 +131,6 @@ List the organization's invites.
     - `"expired"`
 
     - `"pending"`
-
-  - `type: "invite"`
-
-    Object type.
-
-    For Invites, this is always `"invite"`.
-
-    default: invite
 
 - `first_id: string or null`
 

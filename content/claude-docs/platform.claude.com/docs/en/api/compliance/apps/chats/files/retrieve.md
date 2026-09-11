@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files/retrieve
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 25c36d1139bd942ea2045486c787963b9f3ffd1479fda120634bfd8e5c8fb44a
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 44b9b23ff0bb96f43867e8f7efae41d6224907fd2b99b4b7c09fb25493427382
+---
+
+---
+title: Get file metadata
+url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files/retrieve
 ---
 
 # Get file metadata
@@ -20,6 +25,12 @@ download the bytes.
   The file ID (tagged ID, e.g., claude_file_abc123)
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

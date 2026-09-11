@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/update
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 552669374b2c33f74424b46932139589ed80ecb1613ec67491d63c0b81f2e339
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: c7bde69846b36ffcd7471e0d1668768a526517ed27c322845d3d192678633652
+---
+
+---
+title: Update a memory store
+url: https://platform.claude.com/docs/en/api/beta/memory_stores/update
 ---
 
 # Update a memory store
@@ -23,7 +28,7 @@ Update a memory store
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -71,6 +76,8 @@ Update a memory store
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -113,6 +120,8 @@ Update a memory store
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
+- `"anthropic-workspace-id": optional string`
+
 ## Body parameters
 
 - `description: optional string or null`
@@ -137,6 +146,8 @@ Update a memory store
 
   A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
 
+  - `type: "memory_store"`
+
   - `id: string`
 
     Unique identifier for the memory store (a `memstore_...` tagged ID). Use this when attaching the store to a session, or in the `{memory_store_id}` path parameter of subsequent calls.
@@ -150,8 +161,6 @@ Update a memory store
   - `name: string`
 
     Human-readable name for the store. 1–255 characters. The store's mount-path slug under `/mnt/memory/` is derived from this name.
-
-  - `type: "memory_store"`
 
   - `updated_at: string`
 

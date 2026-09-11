@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/artifacts/retrieve
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 91d32db39bc6ea2c1ec737bb8743a723399cb0fb4a743c534621ac030f1ed89e
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 909ddca2c0060a59ffedfb149a2b1bc0bfd4ba6f461bff6c38a1acc094b6a53f
+---
+
+---
+title: Get artifact metadata
+url: https://platform.claude.com/docs/en/api/compliance/apps/artifacts/retrieve
 ---
 
 # Get artifact metadata
@@ -23,6 +28,12 @@ without downloading every artifact.
   The artifact version ID (tagged ID, e.g., claude_artifact_version_abc123)
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

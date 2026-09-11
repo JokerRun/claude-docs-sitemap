@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/permissions
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: f33418d39d8ff2e81eeb58b535178593796846a936d2e27096f3d35f705990f7
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: bddcea5414934f4f303128d9feb86472f0c3f4dff3cf1add2d2940d493968da3
+---
+
+---
+title: Permissions
+url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/permissions
 ---
 
 # Permissions
@@ -36,6 +41,12 @@ List Compliance Role Permissions
   Opaque pagination token from a previous response's `next_page` field. Pass this to retrieve the next page of results. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

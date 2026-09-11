@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/rate_limits
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: c851d005cce34a15ee4b67735f42e3bece6683dc76946df35bccde4795f817c0
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 15c840ccf98a39d6dd6ade0066c74fe9c8aad085169978c43f569be4d1fc59fa
+---
+
+---
+title: Rate Limits
+url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/rate_limits
 ---
 
 # Rate Limits
@@ -63,6 +68,12 @@ the remaining entries.
 
   Rate-limit entries for the workspace, one per group that has at least one override.
 
+  - `type: "workspace_rate_limit"`
+
+    Object type. Always `workspace_rate_limit` for workspace rate-limit entries.
+
+    default: workspace_rate_limit
+
   - `group_type: "batch" or "files" or "model_group" or 3 more`
 
     The kind of rate-limit group this entry represents. `model_group` entries apply to a family of models (listed in `models`); other values apply to an API-surface category and have `models` set to `null`.
@@ -83,13 +94,13 @@ the remaining entries.
 
     The limiter values overridden for this group in this workspace. Limiter types without a workspace override are omitted and inherit the organization value.
 
-    - `org_limit: number or null`
-
-      The organization-level value for the same limiter type, for reference. `null` when the organization has no limit configured for this limiter type.
-
     - `type: string`
 
       The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute`).
+
+    - `org_limit: number or null`
+
+      The organization-level value for the same limiter type, for reference. `null` when the organization has no limit configured for this limiter type.
 
     - `value: number`
 
@@ -102,12 +113,6 @@ the remaining entries.
   - `rate_limit_id: string`
 
     The `id` of the RateLimit group this override applies to.
-
-  - `type: "workspace_rate_limit"`
-
-    Object type. Always `workspace_rate_limit` for workspace rate-limit entries.
-
-    default: workspace_rate_limit
 
   - `workspace_id: string`
 
@@ -157,6 +162,12 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/rate_li
 
 - `BetaWorkspaceRateLimit object`
 
+  - `type: "workspace_rate_limit"`
+
+    Object type. Always `workspace_rate_limit` for workspace rate-limit entries.
+
+    default: workspace_rate_limit
+
   - `group_type: "batch" or "files" or "model_group" or 3 more`
 
     The kind of rate-limit group this entry represents. `model_group` entries apply to a family of models (listed in `models`); other values apply to an API-surface category and have `models` set to `null`.
@@ -177,13 +188,13 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/rate_li
 
     The limiter values overridden for this group in this workspace. Limiter types without a workspace override are omitted and inherit the organization value.
 
-    - `org_limit: number or null`
-
-      The organization-level value for the same limiter type, for reference. `null` when the organization has no limit configured for this limiter type.
-
     - `type: string`
 
       The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute`).
+
+    - `org_limit: number or null`
+
+      The organization-level value for the same limiter type, for reference. `null` when the organization has no limit configured for this limiter type.
 
     - `value: number`
 
@@ -197,12 +208,6 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/rate_li
 
     The `id` of the RateLimit group this override applies to.
 
-  - `type: "workspace_rate_limit"`
-
-    Object type. Always `workspace_rate_limit` for workspace rate-limit entries.
-
-    default: workspace_rate_limit
-
   - `workspace_id: string`
 
     ID of the Workspace this override applies to.
@@ -211,13 +216,13 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/rate_li
 
 - `BetaWorkspaceRateLimitValue object`
 
-  - `org_limit: number or null`
-
-    The organization-level value for the same limiter type, for reference. `null` when the organization has no limit configured for this limiter type.
-
   - `type: string`
 
     The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute`).
+
+  - `org_limit: number or null`
+
+    The organization-level value for the same limiter type, for reference. `null` when the organization has no limit configured for this limiter type.
 
   - `value: number`
 

@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/users/retrieve
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 8b4a796e1fdc4ecf71d21ef2e3413251c8d17c5a5d991e84563b3774de74661f
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: a8e7ce2598e82b2278e6655d3c1ab4b4510590b0c40e8d78dec0ac0112dde319
+---
+
+---
+title: Get User
+url: https://platform.claude.com/docs/en/api/beta/organization/users/retrieve
 ---
 
 # Get User
@@ -20,6 +25,14 @@ Retrieve a member of the organization by user ID.
 ## Returns
 
 - `BetaOrganizationUser object`
+
+  - `type: "user"`
+
+    Object type.
+
+    For Users, this is always `"user"`.
+
+    default: user
 
   - `id: string`
 
@@ -60,14 +73,6 @@ Retrieve a member of the organization by user ID.
     - `"primary_owner"`
 
     - `"user"`
-
-  - `type: "user"`
-
-    Object type.
-
-    For Users, this is always `"user"`.
-
-    default: user
 
 ## Example
 

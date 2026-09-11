@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/skills/delete
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 959979e853ea9ddbbe10ff1924443f8cba77f5b427e44bcdd29b9987afcc73de
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: aa846c61c32f688c9c27e36af96a9c6dd3449cb017723d3aecf663410b0e8790
+---
+
+---
+title: Delete Skill
+url: https://platform.claude.com/docs/en/api/skills/delete
 ---
 
 # Delete Skill
@@ -19,15 +24,13 @@ Delete Skill
 
   The format and length of IDs may change over time.
 
+## Headers
+
+- `"anthropic-workspace-id": optional string`
+
 ## Returns
 
 - `DeletedSkill object`
-
-  - `id: string`
-
-    Unique identifier for the skill.
-
-    The format and length of IDs may change over time.
 
   - `type: "skill_deleted"`
 
@@ -36,6 +39,12 @@ Delete Skill
     For Skills, this is always `"skill_deleted"`.
 
     default: skill_deleted
+
+  - `id: string`
+
+    Unique identifier for the skill.
+
+    The format and length of IDs may change over time.
 
 ## Example
 

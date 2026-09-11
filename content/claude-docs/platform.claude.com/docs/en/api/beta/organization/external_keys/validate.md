@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/validate
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 3db5ab200bf25347d10a87e080d00ee871d54bc193bb7d114ed249cbec428fa0
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 5245891d5546ba9dbfcabfdbbfb107b81fb9fac8c292b5c93a9f98f92fd4b873
+---
+
+---
+title: Validate External Key
+url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/validate
 ---
 
 # Validate External Key
@@ -26,6 +31,10 @@ message if it failed or timed out.
 
 ## Returns
 
+- `type: "external_key_validation"`
+
+  default: external_key_validation
+
 - `error: string or null`
 
   Error message when status is `failure`. Null otherwise.
@@ -37,10 +46,6 @@ message if it failed or timed out.
   - `"failure"`
 
   - `"success"`
-
-- `type: "external_key_validation"`
-
-  default: external_key_validation
 
 ## Example
 

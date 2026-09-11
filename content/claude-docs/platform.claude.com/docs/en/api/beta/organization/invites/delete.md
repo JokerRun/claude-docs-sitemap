@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/invites/delete
-fetched_at: 2026-08-27T03:51:55.831897Z
-sha256: 83ae545e676eea1ed6bc93f704401370a16160511ee7cf49c200d48d4e770ac4
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: e4a65f30f052eef4cbbeb0a64853a2cdbad375eac7dc12b6b169803b66653881
+---
+
+---
+title: Delete Invite
+url: https://platform.claude.com/docs/en/api/beta/organization/invites/delete
 ---
 
 # Delete Invite
@@ -19,10 +24,6 @@ Delete a pending invite.
 
 ## Returns
 
-- `id: string`
-
-  ID of the Invite.
-
 - `type: "invite_deleted"`
 
   Deleted object type.
@@ -30,6 +31,10 @@ Delete a pending invite.
   For Invites, this is always `"invite_deleted"`.
 
   default: invite_deleted
+
+- `id: string`
+
+  ID of the Invite.
 
 ## Example
 

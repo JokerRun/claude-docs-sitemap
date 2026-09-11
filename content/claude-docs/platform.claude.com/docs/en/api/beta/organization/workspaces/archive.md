@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/archive
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 1bec185210a9770e9da7d3692ae75476ffcab7122343f77b00852b904f5b2b73
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 94f37b8942e271fb5166a3985ab91fa4f23b8a3bb2eccbdad220cd7210c624c9
+---
+
+---
+title: Archive Workspace
+url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/archive
 ---
 
 # Archive Workspace
@@ -18,6 +23,14 @@ Archive Workspace
 ## Returns
 
 - `BetaWorkspace object`
+
+  - `type: "workspace"`
+
+    Object type.
+
+    For Workspaces, this is always `"workspace"`.
+
+    default: workspace
 
   - `id: string`
 
@@ -94,14 +107,6 @@ Archive Workspace
   - `tags: map[string]`
 
     User-defined tags as string key-value pairs. Keys may not begin with `anthropic`.
-
-  - `type: "workspace"`
-
-    Object type.
-
-    For Workspaces, this is always `"workspace"`.
-
-    default: workspace
 
 ## Example
 

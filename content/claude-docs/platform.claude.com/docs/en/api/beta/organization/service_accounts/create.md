@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/create
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: b8b343ccb483e14b3eaa08eb96c2a5ecbe05d82d2b60d1c6c5c663cb20d4bb41
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 8587e8876c0775dffb24637a848adc35956f9307bf9f10df980d2a0089a1e523
+---
+
+---
+title: Create Service Account
+url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/create
 ---
 
 # Create Service Account
@@ -29,7 +34,7 @@ accounts.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,6 +81,8 @@ accounts.
     - `"user-profiles-2026-03-24"`
 
     - `"user-profiles-2026-08-18"`
+
+    - `"user-profiles-2026-09-04"`
 
     - `"advisor-tool-2026-03-01"`
 
@@ -150,6 +157,10 @@ accounts.
   A service account is a pure identity: name + org. Authorization lives on
   whatever references it (federation rules).
 
+  - `type: "service_account"`
+
+    default: service_account
+
   - `id: string`
 
     Tagged ID of the service account.
@@ -189,10 +200,6 @@ accounts.
     - `"admin"`
 
     - `"developer"`
-
-  - `type: "service_account"`
-
-    default: service_account
 
   - `updated_at: string`
 

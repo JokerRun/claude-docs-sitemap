@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/delete
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 95ec3b45fe3ccd5e442dbd6a60bc31151ccc5e3ee68f0d45393370a852469117
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 93e29747695799929eee9b114b17517d4ae9604d894d883d8c5eac46b5441194
+---
+
+---
+title: Delete project document
+url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/delete
 ---
 
 # Delete project document
@@ -21,19 +26,25 @@ Hard-deletes the project document permanently.
 
 ## Headers
 
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 - `"x-api-key": optional string`
 
 ## Returns
-
-- `id: string`
-
-  The ID of the project document that was deleted
 
 - `type: "claude_project_document_deleted"`
 
   Constant string confirming deletion.
 
   default: claude_project_document_deleted
+
+- `id: string`
+
+  The ID of the project document that was deleted
 
 ## Example
 

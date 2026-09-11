@@ -1,8 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/retrieve
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: ad4d0702e9a5225412ca13b733179e88dbb4989d54adddbaf6da92db5e364ade
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 0ccc70a680b620188f63ef6752d603795a8e4f7c664b40ffc7cb21aacb446c65
+---
+
+---
+title: Get Session Resource
+url: https://platform.claude.com/docs/en/api/beta/sessions/resources/retrieve
 ---
 
 # Get Session Resource
@@ -25,7 +30,7 @@ Get Session Resource
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 41 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -73,6 +78,8 @@ Get Session Resource
 
     - `"user-profiles-2026-08-18"`
 
+    - `"user-profiles-2026-09-04"`
+
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
@@ -115,9 +122,13 @@ Get Session Resource
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
+- `"anthropic-workspace-id": optional string`
+
 ## Returns
 
 - `BetaManagedAgentsGitHubRepositoryResource object`
+
+  - `type: "github_repository"`
 
   - `id: string`
 
@@ -128,8 +139,6 @@ Get Session Resource
     format: date-time
 
   - `mount_path: string`
-
-  - `type: "github_repository"`
 
   - `updated_at: string`
 
@@ -143,15 +152,17 @@ Get Session Resource
 
     - `BetaManagedAgentsBranchCheckout object`
 
+      - `type: "branch"`
+
       - `name: string`
 
         Branch name to check out.
 
         minLength: 1, maxLength: 255
 
-      - `type: "branch"`
-
     - `BetaManagedAgentsCommitCheckout object`
+
+      - `type: "commit"`
 
       - `sha: string`
 
@@ -159,9 +170,9 @@ Get Session Resource
 
         minLength: 7, maxLength: 64
 
-      - `type: "commit"`
-
 - `BetaManagedAgentsFileResource object`
+
+  - `type: "file"`
 
   - `id: string`
 
@@ -175,8 +186,6 @@ Get Session Resource
 
   - `mount_path: string`
 
-  - `type: "file"`
-
   - `updated_at: string`
 
     A timestamp in RFC 3339 format
@@ -187,11 +196,11 @@ Get Session Resource
 
   A memory store attached to an agent session.
 
+  - `type: "memory_store"`
+
   - `memory_store_id: string`
 
     The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
-
-  - `type: "memory_store"`
 
   - `access: optional "read_write" or "read_only" or null`
 

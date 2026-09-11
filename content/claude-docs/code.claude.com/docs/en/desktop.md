@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: b78f5f245773175e9751fdce6ed3a2cf535b20ee0f90d6f0c4472d8344589a2c
+fetched_at: 2026-09-11T02:21:44.680579Z
+sha256: 3c585962a30144144f6f07cddbab26d1e8ab8f6272e881441abe0a1401514a09
 ---
 
 > ## Documentation Index
@@ -656,7 +656,12 @@ Your administrator can turn off local sessions with the [`disableDesktopLocalSes
 
 Cloud sessions continue in the background even if you close the app. Usage counts toward your [subscription plan limits](/docs/en/costs) with no separate compute charges.
 
-You can create custom cloud environments with different network access levels and environment variables. Select the environment dropdown when starting a cloud session and choose **Add cloud environment**. See [Configure cloud environments](/docs/en/cloud-environments) for details on configuring network access and environment variables.
+You can create custom cloud environments with different network access levels and environment variables. When you start a cloud session, open the environment dropdown in the prompt box to manage them:
+
+* **Add an environment**: select **Add cloud environment**
+* **Edit or archive one of your own environments**: hover over it and click the gear icon
+
+See [Configure cloud environments](/docs/en/cloud-environments) for details on configuring network access and environment variables.
 
 ### SSH sessions
 
