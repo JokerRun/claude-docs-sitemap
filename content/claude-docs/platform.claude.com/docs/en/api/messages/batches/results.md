@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/results
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 95c06e0a6a8056dc32262c0f6c5a1cbcbc011619ff75efd52c13edfff92111fc
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: 9ab488468cabf2e833c5380b490a75645a69d7b4efd1106ee0d4d487cdcf82a5
 ---
 
 ---
@@ -325,8 +325,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
-              Tool invocation directly from the model.
-
               default: {"type":"direct"}
 
               - `DirectCaller object`
@@ -377,8 +375,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
-              Tool invocation directly from the model.
-
               default: {"type":"direct"}
 
               - `DirectCaller object`
@@ -416,8 +412,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
               default: web_search_tool_result
 
             - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
-
-              Tool invocation directly from the model.
 
               default: {"type":"direct"}
 
@@ -478,8 +472,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
               default: web_fetch_tool_result
 
             - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
-
-              Tool invocation directly from the model.
 
               default: {"type":"direct"}
 
@@ -586,8 +578,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
               default: code_execution_tool_result
 
             - `content: CodeExecutionToolResultBlockContent`
-
-              Code execution result with encrypted stdout for PFC + web_search results.
 
               - `CodeExecutionToolResultError object`
 

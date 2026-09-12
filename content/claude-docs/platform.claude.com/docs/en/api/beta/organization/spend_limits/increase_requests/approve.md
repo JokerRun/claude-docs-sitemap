@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests/approve
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: d1a2183b5cf7a599c839e54fa3355c4855aec2678d606fe4e30815d4d34b6215
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: 4d6032e4b8965989b75393004d26a1a9fb796baea0e4c3d117d81d990f235ce2
 ---
 
 ---
@@ -98,10 +98,6 @@ the member was blocked on. Anthropic emails the requester unless
   format: date-time
 
 - `resolved_by: object or object or null`
-
-  A user within the organization. `name` and `email_address` are
-  null when the underlying account is unavailable or has been deleted;
-  `deleted` is true only for deleted accounts.
 
   - `UserActor object`
 
@@ -306,8 +302,6 @@ the member was blocked on. Anthropic emails the requester unless
       Tagged ID of the member the spend limit applies to.
 
   - `source: object or object or object or 2 more`
-
-    Scope selecting a single member of the organization.
 
     - `User object`
 

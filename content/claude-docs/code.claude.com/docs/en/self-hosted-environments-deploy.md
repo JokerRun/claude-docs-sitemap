@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/self-hosted-environments-deploy
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: ca956e16e1ac95806858a845c8e1ff60a4b2c8a11397404d430c16db3753ac5c
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: 65f5025d31d817110dfdbb044e48a9016f492141dcef3c961135b6d32080191f
 ---
 
 > ## Documentation Index
@@ -437,7 +437,7 @@ A session holding a background task that never finishes doesn't count as idle, s
 
 `--kill-session-after-min` is a backstop for runaway sessions. On a runner on v2.1.260 or later, a session that reaches the limit isn't terminated outright. The runner gives it a grace window, 15 minutes by default, which you can change with [`SELF_HOSTED_RUNNER_MAX_LIFETIME_GRACE_MS`](/docs/en/self-hosted-environments-reference#environment-variable-only-settings):
 
-* If the session is waiting on its user, or its turn has ended and it holds only background tasks, the runner releases it right away. The session resumes when its user sends their next message.
+* If the session is waiting on its user, the runner releases it. If its turn has ended and it holds only background tasks, the runner waits up to 60 seconds for those tasks to finish and then releases it. The session resumes when its user sends their next message.
 * If a turn is still running, the runner waits for the turn to finish, or for the session to next wait on its user, and then releases it.
 * If the session is still on the runner when the grace window ends, the runner terminates it, and any running turn's work is lost. A turn waiting on an approval requested from inside a running tool call is one way a session outlasts the window.
 

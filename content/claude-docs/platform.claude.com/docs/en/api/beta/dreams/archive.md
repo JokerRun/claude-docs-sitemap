@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/archive
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: e7d10f1c5bebe2f94e38f5ad01c92b26fbf748023776202f2c07118db9433f73
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: a99f9071b91e8546cdabe7f125024518f0d90ebb2c9591e573adac0c8e5ee448
 ---
 
 ---
@@ -199,8 +199,6 @@ Archive a Dream
       - `"fast"`
 
   - `output_behavior: BetaOutputBehavior`
-
-    The default destination: the job creates a new output memory store as a clone of the memory_store input and writes the consolidated memories into it. The input store is never mutated.
 
     - `BetaOutputBehaviorCreateNew object`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/webhooks
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: ae82d2737e1544e90a734465abd276e513b8e5e2f47000f464cb7306d9d535a5
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: d2740002113e9bffd9f722f92c9a6618382a1a1821a0a44f83ca4eb73948f404
 ---
 
 ---
@@ -11,17 +11,6 @@ url: https://platform.claude.com/docs/en/api/beta/webhooks
 ---
 
 # Webhooks
-
-## Unwrap
-
-Verifies the webhook signature from the `webhook-id`, `webhook-timestamp` and `webhook-signature`
-headers using your webhook signing key, then parses the payload into an event. Fails if the
-signature is missing or invalid.
-
-## Parse Unverified
-
-Parses a webhook payload into an event without verifying its signature. Prefer `unwrap()` unless
-you have already verified the signature yourself.
 
 ## Domain types
 

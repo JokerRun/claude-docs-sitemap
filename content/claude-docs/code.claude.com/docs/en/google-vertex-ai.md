@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/google-vertex-ai
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: 367dd9b8f61ef9d1cb6e26f674a45b76b17e0b8b0f541f641d9151d49351be5e
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: 4a2f59127c634287d2e30cd024c58e4aa7d8226b75111595c109b24f6fb76e07
 ---
 
 > ## Documentation Index
@@ -111,7 +111,7 @@ If you have Google Cloud credentials and want to start using Claude Code through
   </Step>
 
   <Step title="Follow the wizard prompts">
-    Choose how you authenticate to Google Cloud: Application Default Credentials from `gcloud`, a service account key file, or credentials already in your environment. The wizard detects your project and region, verifies which Claude models your project can invoke, and lets you pin them. It saves the result to the `env` block of your [user settings file](/docs/en/settings), so you don't need to export environment variables yourself.
+    Choose how you authenticate to Google Cloud: Application Default Credentials from `gcloud`, a service account key file, or credentials already in your environment. The wizard asks for your project and region, verifies which Claude models your project can invoke, and lets you pin them. It saves the result to the `env` block of your [user settings file](/docs/en/settings), so you don't need to export environment variables yourself.
   </Step>
 </Steps>
 

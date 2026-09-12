@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 7c49e8a644bf5fce181657fff779684ba2ebac0aff547f9d1b8b8c4d2042bd66
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: 871d48e3b347752337d68620a76ee409af791569fc31bdda3a4435840a35a212
 ---
 
 ---
@@ -4238,8 +4238,6 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/archiv
 
     - `error: BetaManagedAgentsUnknownError or BetaManagedAgentsModelOverloadedError or BetaManagedAgentsModelRateLimitedError or 5 more`
 
-      An unknown or unexpected error occurred during session execution. A fallback variant; clients that don't recognize a new error code can match on `retry_status` and `message` alone.
-
       - `BetaManagedAgentsUnknownError object`
 
         An unknown or unexpected error occurred during session execution. A fallback variant; clients that don't recognize a new error code can match on `retry_status` and `message` alone.
@@ -4525,8 +4523,6 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/archiv
       format: date-time
 
     - `stop_reason: BetaManagedAgentsSessionEndTurn or BetaManagedAgentsSessionRequiresAction or BetaManagedAgentsSessionRetriesExhausted or BetaManagedAgentsSessionBudgetReached`
-
-      The agent completed its turn naturally and is ready for the next user message.
 
       - `BetaManagedAgentsSessionEndTurn object`
 
@@ -4885,8 +4881,6 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/archiv
       Public sthr_ ID of the thread that went idle.
 
     - `stop_reason: BetaManagedAgentsSessionEndTurn or BetaManagedAgentsSessionRequiresAction or BetaManagedAgentsSessionRetriesExhausted or BetaManagedAgentsSessionBudgetReached`
-
-      The agent completed its turn naturally and is ready for the next user message.
 
       - `BetaManagedAgentsSessionEndTurn object`
 
@@ -6656,8 +6650,6 @@ List Session Thread Events
 
     - `error: BetaManagedAgentsUnknownError or BetaManagedAgentsModelOverloadedError or BetaManagedAgentsModelRateLimitedError or 5 more`
 
-      An unknown or unexpected error occurred during session execution. A fallback variant; clients that don't recognize a new error code can match on `retry_status` and `message` alone.
-
       - `BetaManagedAgentsUnknownError object`
 
         An unknown or unexpected error occurred during session execution. A fallback variant; clients that don't recognize a new error code can match on `retry_status` and `message` alone.
@@ -6943,8 +6935,6 @@ List Session Thread Events
       format: date-time
 
     - `stop_reason: BetaManagedAgentsSessionEndTurn or BetaManagedAgentsSessionRequiresAction or BetaManagedAgentsSessionRetriesExhausted or BetaManagedAgentsSessionBudgetReached`
-
-      The agent completed its turn naturally and is ready for the next user message.
 
       - `BetaManagedAgentsSessionEndTurn object`
 
@@ -7303,8 +7293,6 @@ List Session Thread Events
       Public sthr_ ID of the thread that went idle.
 
     - `stop_reason: BetaManagedAgentsSessionEndTurn or BetaManagedAgentsSessionRequiresAction or BetaManagedAgentsSessionRetriesExhausted or BetaManagedAgentsSessionBudgetReached`
-
-      The agent completed its turn naturally and is ready for the next user message.
 
       - `BetaManagedAgentsSessionEndTurn object`
 
@@ -9052,8 +9040,6 @@ Stream Session Thread Events
 
     - `error: BetaManagedAgentsUnknownError or BetaManagedAgentsModelOverloadedError or BetaManagedAgentsModelRateLimitedError or 5 more`
 
-      An unknown or unexpected error occurred during session execution. A fallback variant; clients that don't recognize a new error code can match on `retry_status` and `message` alone.
-
       - `BetaManagedAgentsUnknownError object`
 
         An unknown or unexpected error occurred during session execution. A fallback variant; clients that don't recognize a new error code can match on `retry_status` and `message` alone.
@@ -9339,8 +9325,6 @@ Stream Session Thread Events
       format: date-time
 
     - `stop_reason: BetaManagedAgentsSessionEndTurn or BetaManagedAgentsSessionRequiresAction or BetaManagedAgentsSessionRetriesExhausted or BetaManagedAgentsSessionBudgetReached`
-
-      The agent completed its turn naturally and is ready for the next user message.
 
       - `BetaManagedAgentsSessionEndTurn object`
 
@@ -9699,8 +9683,6 @@ Stream Session Thread Events
       Public sthr_ ID of the thread that went idle.
 
     - `stop_reason: BetaManagedAgentsSessionEndTurn or BetaManagedAgentsSessionRequiresAction or BetaManagedAgentsSessionRetriesExhausted or BetaManagedAgentsSessionBudgetReached`
-
-      The agent completed its turn naturally and is ready for the next user message.
 
       - `BetaManagedAgentsSessionEndTurn object`
 

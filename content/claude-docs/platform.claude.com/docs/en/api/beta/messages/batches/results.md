@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/results
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 851113a623a1aae3737dc35de8d61f201b2085da4f005971bb33d2a17403ddf4
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: d846cddd779c261662e79769c18af3f1d750d16d0c3dad14ae05916da1075b26
 ---
 
 ---
@@ -429,8 +429,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `caller: optional BetaDirectCaller or BetaServerToolCaller or BetaServerToolCaller20260120`
 
-              Tool invocation directly from the model.
-
               - `BetaDirectCaller object`
 
                 Tool invocation directly from the model.
@@ -493,8 +491,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `caller: optional BetaDirectCaller or BetaServerToolCaller or BetaServerToolCaller20260120`
 
-              Tool invocation directly from the model.
-
               - `BetaDirectCaller object`
 
                 Tool invocation directly from the model.
@@ -552,8 +548,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
               pattern: ^srvtoolu_[a-zA-Z0-9_]+$
 
             - `caller: optional BetaDirectCaller or BetaServerToolCaller or BetaServerToolCaller20260120`
-
-              Tool invocation directly from the model.
 
               - `BetaDirectCaller object`
 
@@ -659,8 +653,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `caller: optional BetaDirectCaller or BetaServerToolCaller or BetaServerToolCaller20260120`
 
-              Tool invocation directly from the model.
-
               - `BetaDirectCaller object`
 
                 Tool invocation directly from the model.
@@ -738,8 +730,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
               default: code_execution_tool_result
 
             - `content: BetaCodeExecutionToolResultBlockContent`
-
-              Code execution result with encrypted stdout for PFC + web_search results.
 
               - `BetaCodeExecutionToolResultError object`
 

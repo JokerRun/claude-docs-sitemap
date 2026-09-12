@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-config
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 3257bfe37d57f4673a2bd0a0cd20daf9780ff3a718ac81280970d97368c04245
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: ffd44d9bdd08f31607d4fadb6744c61016d94247838506735d0c69c996ca2f19
 ---
 
 > ## Documentation Index
@@ -572,7 +572,7 @@ Before v2.1.232, the gateway started with these values. Each value had this effe
 
 Each `cli` value is a complete Claude Code `managed-settings.json` document, the same schema you would deploy via MDM or `/etc/claude-code/managed-settings.json`, expressed here as YAML. The CLI applies the delivered document at the managed tier, above user and project settings, in place of server-managed settings. It therefore ignores the settings [restricted to OS-level policy sources](/docs/en/server-managed-settings#current-limitations), such as `policyHelper` and `wslInheritsWindowsSettings`.
 
-The gateway validates each document against the CLI's settings schema at boot, so an unrecognized top-level key fails boot with an error naming every offending key. Deliberately open parts of the schema still accept arbitrary values, because newer clients may recognize entries the gateway's schema doesn't. These open keys are `env`, `pluginConfigs`, and keys nested under `permissions`.
+The gateway validates each document against the CLI's settings schema at boot, so an unrecognized top-level key fails boot with an error naming every offending key. Deliberately open parts of the schema still accept arbitrary values, because newer clients may recognize entries the gateway's schema doesn't. These open keys include `env`, `pluginConfigs`, and keys nested under `permissions`.
 
 Because validation uses the schema bundled with the gateway's installed version, putting a top-level settings key introduced by a newer Claude Code release into managed config requires upgrading the gateway first. Smoke-test a new policy on one client before rolling it out.
 

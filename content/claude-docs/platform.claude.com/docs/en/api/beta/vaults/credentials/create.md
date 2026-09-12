@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/create
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 5a6af2bce58cba566d2a9668f0199389e2725b6fdc40300602272ab819cf05fa
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: 8b56ad681d6bebfbe2816430bda3ced3e059af1c745e8432156811c62b4096e5
 ---
 
 ---
@@ -176,8 +176,6 @@ Create Credential
 
       - `token_endpoint_auth: BetaManagedAgentsTokenEndpointAuthNoneParam or BetaManagedAgentsTokenEndpointAuthBasicParam or BetaManagedAgentsTokenEndpointAuthPostParam`
 
-        Token endpoint requires no client authentication.
-
         - `BetaManagedAgentsTokenEndpointAuthNoneParam object`
 
           Token endpoint requires no client authentication.
@@ -349,8 +347,6 @@ Create Credential
           Token endpoint URL used to refresh the access token.
 
         - `token_endpoint_auth: BetaManagedAgentsTokenEndpointAuthNoneResponse or BetaManagedAgentsTokenEndpointAuthBasicResponse or BetaManagedAgentsTokenEndpointAuthPostResponse`
-
-          Token endpoint requires no client authentication.
 
           - `BetaManagedAgentsTokenEndpointAuthNoneResponse object`
 

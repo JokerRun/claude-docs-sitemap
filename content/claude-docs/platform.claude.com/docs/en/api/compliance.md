@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 8af66acb3141be9f44ca167f0bc76f30e333a12e3a466766363c4f330e5eed7d
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: 099fa1545839a0caf40b507fd45bf92177a2560f25aec151204e4f00dac18402
 ---
 
 ---
@@ -4100,9 +4100,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -4236,8 +4233,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -4349,9 +4344,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -4485,8 +4477,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -4586,9 +4576,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -4722,8 +4709,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -4831,9 +4816,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -4967,8 +4949,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -5072,9 +5052,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -5208,8 +5185,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -5335,9 +5310,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -5471,8 +5443,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -5584,9 +5554,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -5720,8 +5687,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -5823,9 +5788,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -5959,8 +5921,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -6072,9 +6032,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -6208,8 +6165,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -6313,9 +6268,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -6449,8 +6401,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -6550,9 +6500,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -6686,8 +6633,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -6787,9 +6732,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -6923,8 +6865,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -7036,9 +6976,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -7172,8 +7109,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -7285,9 +7220,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -7421,8 +7353,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -7566,9 +7496,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -7702,8 +7629,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -7811,9 +7736,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -7947,8 +7869,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -8052,9 +7972,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -8188,8 +8105,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -8293,9 +8208,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -8429,8 +8341,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -8554,9 +8464,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -8690,8 +8597,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -8860,9 +8765,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -8996,8 +8898,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -9105,9 +9005,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -9241,8 +9138,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -9342,9 +9237,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -9478,8 +9370,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -9587,9 +9477,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -9723,8 +9610,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -9836,9 +9721,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -9972,8 +9854,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -10105,9 +9985,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -10241,8 +10118,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -10358,9 +10233,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -10494,8 +10366,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -10647,9 +10517,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -10783,8 +10650,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -10920,9 +10785,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -11056,8 +10918,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -11213,9 +11073,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -11349,8 +11206,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -11502,9 +11357,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -11638,8 +11490,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -11755,9 +11605,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -11891,8 +11738,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -12002,9 +11847,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -12138,8 +11980,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -12251,9 +12091,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -12387,8 +12224,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -12532,9 +12367,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -12668,8 +12500,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -12797,9 +12627,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -12933,8 +12760,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -13046,9 +12871,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -13182,8 +13004,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -13335,9 +13155,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -13471,8 +13288,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -13592,9 +13407,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -13728,8 +13540,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -13845,9 +13655,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -13981,8 +13788,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -14090,9 +13895,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -14226,8 +14028,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -14335,9 +14135,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -14471,8 +14268,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -14604,9 +14399,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -14740,8 +14532,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -14935,9 +14725,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -15071,8 +14858,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -15200,9 +14985,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -15336,8 +15118,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -15535,9 +15315,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -15671,8 +15448,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -15788,9 +15563,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -15924,8 +15696,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -16037,9 +15807,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -16173,8 +15940,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -16286,9 +16051,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -16422,8 +16184,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -16535,9 +16295,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -16671,8 +16428,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -16800,9 +16555,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -16936,8 +16688,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -17045,9 +16795,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -17181,8 +16928,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -17298,9 +17043,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -17434,8 +17176,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -17543,9 +17283,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -17679,8 +17416,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -17784,9 +17519,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -17920,8 +17652,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -18029,9 +17759,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -18165,8 +17892,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -18274,9 +17999,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -18410,8 +18132,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -18519,9 +18239,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -18655,8 +18372,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -18760,9 +18475,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -18896,8 +18608,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -19001,9 +18711,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -19137,8 +18844,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -19242,9 +18947,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -19378,8 +19080,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -19491,9 +19191,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -19627,8 +19324,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -19732,9 +19427,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -19868,8 +19560,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -19977,9 +19667,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -20113,8 +19800,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -20222,9 +19907,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -20358,8 +20040,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -20463,9 +20143,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -20599,8 +20276,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -20712,9 +20387,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -20848,8 +20520,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -20957,9 +20627,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -21093,8 +20760,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -21210,9 +20875,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -21346,8 +21008,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -21455,9 +21115,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -21591,8 +21248,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -21700,9 +21355,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -21836,8 +21488,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -21977,9 +21627,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -22113,8 +21760,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -22262,9 +21907,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -22398,8 +22040,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -22515,9 +22155,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -22651,8 +22288,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -22764,9 +22399,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -22900,8 +22532,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -23021,9 +22651,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -23157,8 +22784,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -23266,9 +22891,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -23402,8 +23024,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -23511,9 +23131,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -23647,8 +23264,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -23756,9 +23371,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -23892,8 +23504,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -24023,9 +23633,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -24159,8 +23766,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -24272,9 +23877,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -24408,8 +24010,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -24521,9 +24121,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -24657,8 +24254,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -24766,9 +24361,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -24902,8 +24494,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -25009,9 +24599,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -25145,8 +24732,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -25266,9 +24851,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -25402,8 +24984,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -25545,9 +25125,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -25681,8 +25258,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -25810,9 +25385,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -25946,8 +25518,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -26085,9 +25655,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -26221,8 +25788,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -26326,9 +25891,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -26462,8 +26024,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -26567,9 +26127,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -26703,8 +26260,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -26810,9 +26365,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -26946,8 +26498,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -27083,9 +26633,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -27219,8 +26766,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -27328,9 +26873,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -27464,8 +27006,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -27575,9 +27115,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -27711,8 +27248,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -27820,9 +27355,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -27956,8 +27488,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -28065,9 +27595,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -28201,8 +27728,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -28320,9 +27845,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -28456,8 +27978,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -28569,9 +28089,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -28705,8 +28222,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -28854,9 +28369,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -28990,8 +28502,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -29111,9 +28621,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -29247,8 +28754,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -29376,9 +28881,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -29512,8 +29014,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -29645,9 +29145,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -29781,8 +29278,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -29910,9 +29405,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -30046,8 +29538,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -30185,9 +29675,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -30321,8 +29808,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -30422,9 +29907,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -30558,8 +30040,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -30677,9 +30157,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -30813,8 +30290,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -30934,9 +30409,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -31070,8 +30542,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -31189,9 +30659,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -31325,8 +30792,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -31442,9 +30907,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -31578,8 +31040,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -31691,9 +31151,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -31827,8 +31284,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -31948,9 +31403,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -32084,8 +31536,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -32201,9 +31651,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -32337,8 +31784,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -32466,9 +31911,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -32602,8 +32044,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -32707,9 +32147,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -32843,8 +32280,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -32948,9 +32383,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -33084,8 +32516,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -33189,9 +32619,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -33325,8 +32752,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -33456,9 +32881,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -33592,8 +33014,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -33701,9 +33121,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -33837,8 +33254,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -33950,9 +33365,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -34086,8 +33498,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -34203,9 +33613,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -34339,8 +33746,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -34444,9 +33849,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -34580,8 +33982,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -34701,9 +34101,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -34837,8 +34234,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -34954,9 +34349,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -35090,8 +34482,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -35215,9 +34605,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -35351,8 +34738,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -35460,9 +34845,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -35596,8 +34978,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -35721,9 +35101,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -35857,8 +35234,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -35966,9 +35341,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -36102,8 +35474,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -36215,9 +35585,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -36351,8 +35718,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -36464,9 +35829,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -36600,8 +35962,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -36717,9 +36077,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -36853,8 +36210,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -36958,9 +36313,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -37094,8 +36446,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -37199,9 +36549,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -37335,8 +36682,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -37444,9 +36789,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -37580,8 +36922,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -37685,9 +37025,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -37821,8 +37158,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -37926,9 +37261,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -38062,8 +37394,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -38171,9 +37501,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -38307,8 +37634,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -38416,9 +37741,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -38552,8 +37874,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -38653,9 +37973,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -38789,8 +38106,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -38938,9 +38253,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -39074,8 +38386,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -39179,9 +38489,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -39315,8 +38622,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -39416,9 +38721,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -39552,8 +38854,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -39655,9 +38955,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -39791,8 +39088,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -39892,9 +39187,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -40028,8 +39320,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -40129,9 +39419,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -40265,8 +39552,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -40388,9 +39673,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -40524,8 +39806,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -40635,9 +39915,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -40771,8 +40048,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -40888,9 +40163,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -41024,8 +40296,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -41133,9 +40403,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -41269,8 +40536,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -41392,9 +40657,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -41528,8 +40790,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -41637,9 +40897,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -41773,8 +41030,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -41890,9 +41145,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -42026,8 +41278,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -42143,9 +41393,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -42279,8 +41526,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -42396,9 +41641,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -42532,8 +41774,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -42701,9 +41941,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -42837,8 +42074,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -42942,9 +42177,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -43078,8 +42310,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -43183,9 +42413,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -43319,8 +42546,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -43424,9 +42649,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -43560,8 +42782,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -43681,9 +42901,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -43817,8 +43034,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -43938,9 +43153,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -44074,8 +43286,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -44187,9 +43397,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -44323,8 +43530,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -44460,9 +43665,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -44596,8 +43798,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -44705,9 +43905,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -44841,8 +44038,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -44950,9 +44145,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -45086,8 +44278,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -45195,9 +44385,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -45331,8 +44518,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -45440,9 +44625,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -45576,8 +44758,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -45681,9 +44861,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -45817,8 +44994,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -45918,9 +45093,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -46054,8 +45226,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -46163,9 +45333,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -46299,8 +45466,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -46408,9 +45573,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -46544,8 +45706,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -46649,9 +45809,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -46785,8 +45942,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -46894,9 +46049,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -47030,8 +46182,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -47139,9 +46289,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -47275,8 +46422,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -47388,9 +46533,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -47524,8 +46666,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -47641,9 +46781,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -47777,8 +46914,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -47882,9 +47017,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -48018,8 +47150,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -48123,9 +47253,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -48259,8 +47386,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -48420,9 +47545,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -48556,8 +47678,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -48669,9 +47789,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -48805,8 +47922,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -48922,9 +48037,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -49058,8 +48170,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -49179,9 +48289,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -49315,8 +48422,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -49432,9 +48537,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -49568,8 +48670,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -49681,9 +48781,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -49817,8 +48914,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -49922,9 +49017,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -50058,8 +49150,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -50159,9 +49249,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -50295,8 +49382,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -50396,9 +49481,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -50532,8 +49614,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -50633,9 +49713,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -50769,8 +49846,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -50878,9 +49953,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -51014,8 +50086,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -51123,9 +50193,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -51259,8 +50326,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -51360,9 +50425,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -51496,8 +50558,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -51597,9 +50657,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -51733,8 +50790,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -51850,9 +50905,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -51986,8 +51038,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -52087,9 +51137,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -52223,8 +51270,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -52332,9 +51377,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -52468,8 +51510,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -52573,9 +51613,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -52709,8 +51746,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -52834,9 +51869,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -52970,8 +52002,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -53075,9 +52105,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -53211,8 +52238,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -53320,9 +52345,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -53456,8 +52478,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -53565,9 +52585,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -53701,8 +52718,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -53810,9 +52825,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -53946,8 +52958,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -54055,9 +53065,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -54191,8 +53198,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -54328,9 +53333,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -54464,8 +53466,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -54613,9 +53613,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -54749,8 +53746,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -54858,9 +53853,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -54994,8 +53986,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -55111,9 +54101,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -55247,8 +54234,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -55356,9 +54341,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -55492,8 +54474,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -55593,9 +54573,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -55729,8 +54706,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -55848,9 +54823,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -55984,8 +54956,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -56103,9 +55073,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -56239,8 +55206,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -56348,9 +55313,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -56484,8 +55446,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -56593,9 +55553,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -56729,8 +55686,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -56838,9 +55793,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -56974,8 +55926,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -57083,9 +56033,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -57219,8 +56166,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -57320,9 +56265,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -57456,8 +56398,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -57565,9 +56505,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -57701,8 +56638,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -57804,9 +56739,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -57940,8 +56872,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -58041,9 +56971,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -58177,8 +57104,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -58278,9 +57203,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -58414,8 +57336,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -58523,9 +57443,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -58659,8 +57576,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -58768,9 +57683,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -58904,8 +57816,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -59005,9 +57915,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -59141,8 +58048,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -59242,9 +58147,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -59378,8 +58280,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -59487,9 +58387,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -59623,8 +58520,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -59732,9 +58627,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -59868,8 +58760,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -59969,9 +58859,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -60105,8 +58992,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -60206,9 +59091,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -60342,8 +59224,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -60485,9 +59365,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -60621,8 +59498,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -60722,9 +59597,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -60858,8 +59730,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -60959,9 +59829,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -61095,8 +59962,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -61200,9 +60065,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -61336,8 +60198,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -61447,9 +60307,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -61583,8 +60440,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -61694,9 +60549,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -61830,8 +60682,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -61951,9 +60801,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -62087,8 +60934,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -62210,9 +61055,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -62346,8 +61188,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -62447,9 +61287,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -62583,8 +61420,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -62684,9 +61519,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -62820,8 +61652,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -62925,9 +61755,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -63061,8 +61888,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -63166,9 +61991,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -63302,8 +62124,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -63411,9 +62231,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -63547,8 +62364,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -63648,9 +62463,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -63784,8 +62596,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -63885,9 +62695,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -64021,8 +62828,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -64122,9 +62927,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -64258,8 +63060,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -64359,9 +63159,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -64495,8 +63292,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -64596,9 +63391,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -64732,8 +63524,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -64833,9 +63623,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -64969,8 +63756,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -65070,9 +63855,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -65206,8 +63988,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -65311,9 +64091,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -65447,8 +64224,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -65552,9 +64327,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -65688,8 +64460,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -65805,9 +64575,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -65941,8 +64708,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -66046,9 +64811,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -66182,8 +64944,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -66311,9 +65071,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -66447,8 +65204,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -66562,9 +65317,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -66698,8 +65450,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -66811,9 +65561,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -66947,8 +65694,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -67048,9 +65793,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -67184,8 +65926,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -67285,9 +66025,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -67421,8 +66158,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -67522,9 +66257,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -67658,8 +66390,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -67759,9 +66489,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -67895,8 +66622,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -67996,9 +66721,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -68132,8 +66854,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -68233,9 +66953,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -68369,8 +67086,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -68474,9 +67189,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -68610,8 +67322,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -68711,9 +67421,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -68847,8 +67554,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -68950,9 +67655,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -69086,8 +67788,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -69187,9 +67887,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -69323,8 +68020,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -69424,9 +68119,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -69560,8 +68252,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -69661,9 +68351,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -69797,8 +68484,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -69898,9 +68583,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -70034,8 +68716,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -70135,9 +68815,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -70271,8 +68948,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -70376,9 +69051,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -70512,8 +69184,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -70613,9 +69283,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -70749,8 +69416,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -70850,9 +69515,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -70986,8 +69648,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -71097,9 +69757,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -71233,8 +69890,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -71372,9 +70027,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -71508,8 +70160,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -71609,9 +70259,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -71745,8 +70392,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -71846,9 +70491,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -71982,8 +70624,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -72083,9 +70723,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -72219,8 +70856,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -72328,9 +70963,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -72464,8 +71096,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -72569,9 +71199,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -72705,8 +71332,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -72810,9 +71435,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -72946,8 +71568,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -73047,9 +71667,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -73183,8 +71800,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -73292,9 +71907,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -73428,8 +72040,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -73537,9 +72147,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -73673,8 +72280,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -73782,9 +72387,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -73918,8 +72520,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -74043,9 +72643,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -74179,8 +72776,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -74284,9 +72879,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -74420,8 +73012,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -74521,9 +73111,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -74657,8 +73244,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -74758,9 +73343,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -74894,8 +73476,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -75003,9 +73583,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -75139,8 +73716,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -75244,9 +73819,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -75380,8 +73952,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -75489,9 +74059,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -75625,8 +74192,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -75734,9 +74299,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -75870,8 +74432,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -75975,9 +74535,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -76111,8 +74668,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -76224,9 +74779,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -76360,8 +74912,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -76465,9 +75015,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -76601,8 +75148,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -76718,9 +75263,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -76854,8 +75396,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -76959,9 +75499,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -77095,8 +75632,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -77228,9 +75763,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -77364,8 +75896,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -77481,9 +76011,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -77617,8 +76144,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -77722,9 +76247,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -77858,8 +76380,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -77959,9 +76479,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -78095,8 +76612,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -78204,9 +76719,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -78340,8 +76852,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -78449,9 +76959,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -78585,8 +77092,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -78702,9 +77207,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -78838,8 +77340,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -78939,9 +77439,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -79075,8 +77572,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -79176,9 +77671,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -79312,8 +77804,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -81140,9 +79630,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -81276,8 +79763,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -81381,9 +79866,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -81517,8 +79999,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -81618,9 +80098,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -81754,8 +80231,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -81871,9 +80346,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -82007,8 +80479,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -82120,9 +80590,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -82256,8 +80723,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -82357,9 +80822,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -82493,8 +80955,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -82594,9 +81054,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -82730,8 +81187,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -82839,9 +81294,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -82975,8 +81427,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -83084,9 +81534,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -83220,8 +81667,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -83329,9 +81774,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -83465,8 +81907,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -83574,9 +82014,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -83710,8 +82147,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -83819,9 +82254,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -83955,8 +82387,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -84064,9 +82494,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -84200,8 +82627,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -84309,9 +82734,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -84445,8 +82867,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -84554,9 +82974,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -84690,8 +83107,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -84799,9 +83214,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -84935,8 +83347,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -85044,9 +83454,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -85180,8 +83587,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -85289,9 +83694,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -85425,8 +83827,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -85534,9 +83934,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -85670,8 +84067,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -85779,9 +84174,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -85915,8 +84307,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -86028,9 +84418,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -86164,8 +84551,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -86277,9 +84662,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -86413,8 +84795,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -86526,9 +84906,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -86662,8 +85039,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -86775,9 +85150,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -86911,8 +85283,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -87020,9 +85390,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -87156,8 +85523,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -87265,9 +85630,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -87401,8 +85763,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -87544,9 +85904,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -87680,8 +86037,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -87809,9 +86164,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -87945,8 +86297,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -88078,9 +86428,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -88214,8 +86561,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -88319,9 +86664,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -88455,8 +86797,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -88564,9 +86904,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -88700,8 +87037,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -88819,9 +87154,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -88955,8 +87287,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -89056,9 +87386,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -89192,8 +87519,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -89301,9 +87626,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -89437,8 +87759,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -89546,9 +87866,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -89682,8 +87999,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -89791,9 +88106,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -89927,8 +88239,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -90088,9 +88398,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -90224,8 +88531,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -90329,9 +88634,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -90465,8 +88767,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -90608,9 +88908,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -90744,8 +89041,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -90849,9 +89144,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -90985,8 +89277,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -91136,9 +89426,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -91272,8 +89559,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -91381,9 +89666,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -91517,8 +89799,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -91626,9 +89906,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -91762,8 +90039,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -91867,9 +90142,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -92003,8 +90275,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -92108,9 +90378,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -92244,8 +90511,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -92353,9 +90618,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -92489,8 +90751,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -92606,9 +90866,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -92742,8 +90999,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -92859,9 +91114,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -92995,8 +91247,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -93104,9 +91354,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -93240,8 +91487,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -93349,9 +91594,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -93485,8 +91727,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -93594,9 +91834,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -93730,8 +91967,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -93839,9 +92074,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -93975,8 +92207,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -94092,9 +92322,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -94228,8 +92455,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -94345,9 +92570,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -94481,8 +92703,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -94590,9 +92810,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -94726,8 +92943,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -94831,9 +93046,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -94967,8 +93179,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -95098,9 +93308,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -95234,8 +93441,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -95343,9 +93548,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -95479,8 +93681,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -95584,9 +93784,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -95720,8 +93917,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -95829,9 +94024,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -95965,8 +94157,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -96070,9 +94260,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -96206,8 +94393,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -96333,9 +94518,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -96469,8 +94651,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -96582,9 +94762,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -96718,8 +94895,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -96827,9 +95002,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -96963,8 +95135,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -97092,9 +95262,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -97228,8 +95395,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -97345,9 +95510,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -97481,8 +95643,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -97598,9 +95758,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -97734,8 +95891,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -97851,9 +96006,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -97987,8 +96139,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -98096,9 +96246,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -98232,8 +96379,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -98341,9 +96486,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -98477,8 +96619,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -98586,9 +96726,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -98722,8 +96859,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -98831,9 +96966,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -98967,8 +97099,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -99076,9 +97206,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -99212,8 +97339,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -99317,9 +97442,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -99453,8 +97575,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -99562,9 +97682,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -99698,8 +97815,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -99799,9 +97914,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -99935,8 +98047,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -100036,9 +98146,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -100172,8 +98279,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -100277,9 +98382,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -100413,8 +98515,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -100518,9 +98618,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -100654,8 +98751,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -100763,9 +98858,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -100899,8 +98991,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -101008,9 +99098,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -101144,8 +99231,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -101253,9 +99338,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -101389,8 +99471,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -101498,9 +99578,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -101634,8 +99711,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -101763,9 +99838,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -101899,8 +99971,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -102008,9 +100078,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -102144,8 +100211,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -102249,9 +100314,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -102385,8 +100447,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -102498,9 +100558,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -102634,8 +100691,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -102751,9 +100806,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -102887,8 +100939,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -103022,9 +101072,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -103158,8 +101205,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -103263,9 +101308,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -103399,8 +101441,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -103504,9 +101544,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -103640,8 +101677,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -103753,9 +101788,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -103889,8 +101921,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -104002,9 +102032,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -104138,8 +102165,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -104267,9 +102292,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -104403,8 +102425,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -104508,9 +102528,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -104644,8 +102661,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -104775,9 +102790,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -104911,8 +102923,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -105016,9 +103026,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -105152,8 +103159,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -105253,9 +103258,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -105389,8 +103391,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -105498,9 +103498,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -105634,8 +103631,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -105735,9 +103730,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -105871,8 +103863,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -105972,9 +103962,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -106108,8 +104095,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -106209,9 +104194,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -106345,8 +104327,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -106454,9 +104434,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -106590,8 +104567,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -106695,9 +104670,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -106831,8 +104803,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -106936,9 +104906,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -107072,8 +105039,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -107177,9 +105142,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -107313,8 +105275,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -107426,9 +105386,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -107562,8 +105519,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -107675,9 +105630,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -107811,8 +105763,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -107924,9 +105874,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -108060,8 +106007,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -108173,9 +106118,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -108309,8 +106251,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -108422,9 +106362,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -108558,8 +106495,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -108671,9 +106606,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -108807,8 +106739,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -108920,9 +106850,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -109056,8 +106983,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -109165,9 +107090,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -109301,8 +107223,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -109414,9 +107334,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -109550,8 +107467,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -109659,9 +107574,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -109795,8 +107707,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -109904,9 +107814,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -110040,8 +107947,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -110153,9 +108058,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -110289,8 +108191,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -110394,9 +108294,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -110530,8 +108427,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -110655,9 +108550,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -110791,8 +108683,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -110900,9 +108790,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -111036,8 +108923,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -111143,9 +109028,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -111279,8 +109161,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -111392,9 +109272,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -111528,8 +109405,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -111637,9 +109512,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -111773,8 +109645,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -111891,9 +109761,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -112027,8 +109894,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -112143,9 +110008,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -112279,8 +110141,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -112400,9 +110260,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -112536,8 +110393,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -112649,9 +110504,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -112785,8 +110637,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -112898,9 +110748,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -113034,8 +110881,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -113139,9 +110984,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -113275,8 +111117,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -113400,9 +111240,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -113536,8 +111373,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -113661,9 +111496,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -113797,8 +111629,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -113898,9 +111728,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -114034,8 +111861,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -114135,9 +111960,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -114271,8 +112093,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -114388,9 +112208,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -114524,8 +112341,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -114625,9 +112440,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -114761,8 +112573,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -114864,9 +112674,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -115000,8 +112807,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -115103,9 +112908,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -115239,8 +113041,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -115342,9 +113142,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -115478,8 +113275,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -115591,9 +113386,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -115727,8 +113519,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -115854,9 +113644,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -115990,8 +113777,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -116091,9 +113876,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -116227,8 +114009,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -116332,9 +114112,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -116468,8 +114245,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -116573,9 +114348,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -116709,8 +114481,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -116814,9 +114584,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -116950,8 +114717,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -117071,9 +114836,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -117207,8 +114969,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -117316,9 +115076,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -117452,8 +115209,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -117553,9 +115308,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -117689,8 +115441,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -117792,9 +115542,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -117928,8 +115675,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -118035,9 +115780,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -118171,8 +115913,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -118278,9 +116018,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -118414,8 +116151,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -118537,9 +116272,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -118673,8 +116405,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -118802,9 +116532,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -118938,8 +116665,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -119043,9 +116768,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -119179,8 +116901,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -119284,9 +117004,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -119420,8 +117137,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -119543,9 +117258,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -119679,8 +117391,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -119810,9 +117520,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -119946,8 +117653,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -120055,9 +117760,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -120191,8 +117893,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -120300,9 +118000,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -120436,8 +118133,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -120565,9 +118260,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -120701,8 +118393,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -120826,9 +118516,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -120962,8 +118649,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -121077,9 +118762,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -121213,8 +118895,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -121318,9 +118998,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -121454,8 +119131,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -121555,9 +119230,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -121691,8 +119363,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -121804,9 +119474,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -121940,8 +119607,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -122049,9 +119714,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -122185,8 +119847,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -122286,9 +119946,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -122422,8 +120079,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -122535,9 +120190,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -122671,8 +120323,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -122780,9 +120430,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -122916,8 +120563,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -123021,9 +120666,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -123157,8 +120799,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -123290,9 +120930,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -123426,8 +121063,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -123547,9 +121182,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -123683,8 +121315,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -123786,9 +121416,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -123922,8 +121549,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -124029,9 +121654,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -124165,8 +121787,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -124272,9 +121892,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -124408,8 +122025,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -124511,9 +122126,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -124647,8 +122259,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -124752,9 +122362,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -124888,8 +122495,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -124993,9 +122598,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -125129,8 +122731,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -125239,9 +122839,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -125375,8 +122972,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -125482,9 +123077,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -125618,8 +123210,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -125725,9 +123315,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -125861,8 +123448,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -125970,9 +123555,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -126106,8 +123688,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -126223,9 +123803,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -126359,8 +123936,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -126814,9 +124389,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -126950,8 +124522,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -127059,9 +124629,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -127195,8 +124762,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -127300,9 +124865,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -127436,8 +124998,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -127553,9 +125113,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -127689,8 +125246,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -127802,9 +125357,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -127938,8 +125490,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -128055,9 +125605,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -128191,8 +125738,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -128300,9 +125845,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -128436,8 +125978,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 
@@ -128549,9 +126089,6 @@ compliance activities that can be filtered by various criteria.
 
     - `actor: object or object or object or 8 more`
 
-      Automated background processing performed by Anthropic systems, acting
-      without a user or customer credential.
-
       - `APIActor object`
 
         - `type: optional "api_actor"`
@@ -128685,8 +126222,6 @@ compliance activities that can be filtered by various criteria.
           default: federated_actor
 
         - `provider: object or object or object or object`
-
-          Asserting party: the AWS account the organization is bound to.
 
           - `FederatedActorAwsProvider object`
 

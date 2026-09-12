@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-marketplaces
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 7912af9270337aa00dd39e74120a5aad65065f90b4a15c54eed99cec6ff6d960
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: a3e583bb947febc3c586b49138af534d3915ba29e1bbbb5d66b95b1d1a4fa39c
 ---
 
 > ## Documentation Index
@@ -1184,7 +1184,7 @@ Earlier versions of Claude Code ignore the `renames` field and report `plugin-no
 
 ## Validation and testing
 
-Test your marketplace before sharing.
+Test your marketplace before sharing. Validation checks file structure; to test whether a plugin changes what Claude does on realistic prompts, run its eval suite with [`claude plugin eval`](/docs/en/plugin-evals) before you publish a new version.
 
 From your marketplace directory, validate the JSON syntax:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/create
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 0bc40f31bc5685a28d07f5a11b5ab9433fe101a72d08f7cfa4bd8b9aee1bf026
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: 2f5a9f6e527971ee7b91c63c810cbc50b5826bac9c7891e0e522c06b27ff82c2
 ---
 
 ---
@@ -438,8 +438,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
         - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
-          Tool invocation directly from the model.
-
           - `DirectCaller object`
 
             Tool invocation directly from the model.
@@ -693,8 +691,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
         - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
-          Tool invocation directly from the model.
-
           - `DirectCaller object`
 
             Tool invocation directly from the model.
@@ -750,8 +746,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
           Create a cache control breakpoint at this content block.
 
         - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
-
-          Tool invocation directly from the model.
 
           - `DirectCaller object`
 
@@ -819,8 +813,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
         - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
-          Tool invocation directly from the model.
-
           - `DirectCaller object`
 
             Tool invocation directly from the model.
@@ -836,8 +828,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
         - `type: "code_execution_tool_result"`
 
         - `content: CodeExecutionToolResultBlockParamContent`
-
-          Code execution result with encrypted stdout for PFC + web_search results.
 
           - `CodeExecutionToolResultErrorParam object`
 
@@ -3253,8 +3243,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
-        Tool invocation directly from the model.
-
         default: {"type":"direct"}
 
         - `DirectCaller object`
@@ -3305,8 +3293,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
-        Tool invocation directly from the model.
-
         default: {"type":"direct"}
 
         - `DirectCaller object`
@@ -3344,8 +3330,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
         default: web_search_tool_result
 
       - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
-
-        Tool invocation directly from the model.
 
         default: {"type":"direct"}
 
@@ -3406,8 +3390,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
         default: web_fetch_tool_result
 
       - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
-
-        Tool invocation directly from the model.
 
         default: {"type":"direct"}
 
@@ -3514,8 +3496,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
         default: code_execution_tool_result
 
       - `content: CodeExecutionToolResultBlockContent`
-
-        Code execution result with encrypted stdout for PFC + web_search results.
 
         - `CodeExecutionToolResultError object`
 
@@ -4121,8 +4101,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
       default: content_block_start
 
     - `content_block: TextBlock or ThinkingBlock or RedactedThinkingBlock or 9 more`
-
-      Response model for a file uploaded to the container.
 
       - `TextBlock object`
 

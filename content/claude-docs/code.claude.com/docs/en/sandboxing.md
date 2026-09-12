@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: 9173fa7bfc40900080b167be86897899912ce55ff61ad1072f71a5eab69e80ce
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: a4cad3efa21a0f1ae7d18d1b8a74aff7fe8ffa78a0feb6d04bcaf55faa7f382b
 ---
 
 > ## Documentation Index
@@ -56,6 +56,12 @@ On macOS, there is nothing to install: sandboxing uses the built-in Seatbelt fra
 </Steps>
 
 When you select a mode in the panel, Claude Code saves it to your project's local settings at `.claude/settings.local.json`, which apply to the current project. Claude Code adds that file to your global gitignore when it saves a setting there. To enable the sandbox across all of your projects, set [`sandbox.enabled`](/docs/en/settings-reference#sandbox-enabled) to `true` in your user settings at `~/.claude/settings.json`. To enforce sandboxing for every developer in an organization, use [managed settings](#enforce-sandboxing-with-managed-settings).
+
+To change the sandbox for one session without writing to a settings file, start Claude Code with [`--settings`](/docs/en/settings#change-a-setting-for-one-session). For example, this command starts a sandboxed session in which Claude can't retry a blocked command outside the sandbox:
+
+```bash theme={null}
+claude --settings '{"sandbox": {"enabled": true, "allowUnsandboxedCommands": false}}'
+```
 
 <Warning>
   By default, if the sandbox cannot start because dependencies are missing or the platform is unsupported, Claude Code shows a warning and runs commands without sandboxing. To make this a hard failure instead, set [`sandbox.failIfUnavailable`](/docs/en/settings-reference#sandbox-failifunavailable) to `true`. This is intended for managed deployments that require sandboxing as a security gate.

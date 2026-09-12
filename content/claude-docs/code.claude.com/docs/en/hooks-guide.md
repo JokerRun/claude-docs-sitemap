@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: b5632cf6b8c78f04797a91ed590ed7718f6af17cc923a856cbad3b3a2f7138a8
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: e388b1bb4c83d9773396a13ad0c70978b562ea40aefd297045475bbe5e7af41c
 ---
 
 > ## Documentation Index
@@ -1026,7 +1026,10 @@ If your hook legitimately needs more than eight iterations to converge, raise th
 
 ### Hook JSON has no effect
 
-Your hook prints valid JSON, but the decision doesn't take effect and no error appears in the transcript.
+Your hook prints valid JSON, but the decision doesn't take effect and no error appears in the transcript. Check which cause applies:
+
+* **Extra output before the JSON**: something else writes to stdout first, usually an unconditional `echo` in your shell profile, so the output no longer starts with `{` and Claude Code doesn't parse it as JSON. The cause and fix follow this list.
+* **A field at the wrong level**: compare each field's placement against the [JSON output](/docs/en/hooks#json-output) format. For example, `permissionDecision` belongs inside `hookSpecificOutput`, not at the top level.
 
 When Claude Code runs a shell-form command hook, one without `args`, it spawns `sh -c` on macOS and Linux, Git Bash on Windows, or PowerShell when Git Bash isn't installed by default. This shell is non-interactive, but Git Bash and some configurations, such as `BASH_ENV` pointing at `~/.bashrc`, still source your profile. If that profile contains unconditional `echo` statements, the output gets prepended to your hook's JSON:
 
@@ -1045,6 +1048,8 @@ fi
 ```
 
 The `$-` variable contains shell flags, and `i` means interactive. Hooks run in non-interactive shells, so the echo is skipped.
+
+When your hook returns `permissionDecision` or `additionalContext` at the top level instead of inside `hookSpecificOutput`, the JSON still parses, and Claude Code ignores the misplaced fields without reporting an error. To see which fields it ignored, start Claude Code with `claude --debug` and search the [debug log](/docs/en/hooks#debug-hooks) for `Hook JSON output had unrecognized keys`.
 
 ### Debug techniques
 

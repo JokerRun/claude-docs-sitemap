@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/create
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 1484537f56045315ee878c01c6fb7c9a30535eb84d87cec482461abfa180a9ce
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: 828be1b36bf353e4fc0cc3bec8c7223f5a6b987a3f5f11fa28dc0f3e1b09c339
 ---
 
 ---
@@ -458,8 +458,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
-              Tool invocation directly from the model.
-
               - `DirectCaller object`
 
                 Tool invocation directly from the model.
@@ -713,8 +711,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
-              Tool invocation directly from the model.
-
               - `DirectCaller object`
 
                 Tool invocation directly from the model.
@@ -770,8 +766,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
               Create a cache control breakpoint at this content block.
 
             - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
-
-              Tool invocation directly from the model.
 
               - `DirectCaller object`
 
@@ -839,8 +833,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
-              Tool invocation directly from the model.
-
               - `DirectCaller object`
 
                 Tool invocation directly from the model.
@@ -856,8 +848,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
             - `type: "code_execution_tool_result"`
 
             - `content: CodeExecutionToolResultBlockParamContent`
-
-              Code execution result with encrypted stdout for PFC + web_search results.
 
               - `CodeExecutionToolResultErrorParam object`
 

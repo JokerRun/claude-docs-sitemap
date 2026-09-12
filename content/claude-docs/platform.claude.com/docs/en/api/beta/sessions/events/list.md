@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 0a1a46d384687aa5f3203c95e97bf65ed82165f2abdbd9db26e72ceecf10fdf9
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: 0bd57ad6ca889675086439420dc8dc915de26a7611ee1899451996bdff0330a9
 ---
 
 ---
@@ -898,8 +898,6 @@ List Events
 
     - `error: BetaManagedAgentsUnknownError or BetaManagedAgentsModelOverloadedError or BetaManagedAgentsModelRateLimitedError or 5 more`
 
-      An unknown or unexpected error occurred during session execution. A fallback variant; clients that don't recognize a new error code can match on `retry_status` and `message` alone.
-
       - `BetaManagedAgentsUnknownError object`
 
         An unknown or unexpected error occurred during session execution. A fallback variant; clients that don't recognize a new error code can match on `retry_status` and `message` alone.
@@ -1185,8 +1183,6 @@ List Events
       format: date-time
 
     - `stop_reason: BetaManagedAgentsSessionEndTurn or BetaManagedAgentsSessionRequiresAction or BetaManagedAgentsSessionRetriesExhausted or BetaManagedAgentsSessionBudgetReached`
-
-      The agent completed its turn naturally and is ready for the next user message.
 
       - `BetaManagedAgentsSessionEndTurn object`
 
@@ -1545,8 +1541,6 @@ List Events
       Public sthr_ ID of the thread that went idle.
 
     - `stop_reason: BetaManagedAgentsSessionEndTurn or BetaManagedAgentsSessionRequiresAction or BetaManagedAgentsSessionRetriesExhausted or BetaManagedAgentsSessionBudgetReached`
-
-      The agent completed its turn naturally and is ready for the next user message.
 
       - `BetaManagedAgentsSessionEndTurn object`
 

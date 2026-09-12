@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/create
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 3757989727cabacdce09049e1e643c91778bdf62ac82a2e3af411506b78ce94c
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: 5a684dee287f164b405004eccf9ba2eea48ae9def51b9b77b1e6394683a3303e
 ---
 
 ---
@@ -142,8 +142,6 @@ Create a Dream
 
 - `model: string or BetaDreamModelConfigParam`
 
-  Model identifier and configuration applied to every pipeline stage.
-
   - `string`
 
   - `BetaDreamModelConfigParam object`
@@ -169,8 +167,6 @@ Create a Dream
   minLength: 1, maxLength: 4096
 
 - `output_behavior: optional BetaOutputBehavior`
-
-  The default destination: the job creates a new output memory store as a clone of the memory_store input and writes the consolidated memories into it. The input store is never mutated.
 
   - `BetaOutputBehaviorCreateNew object`
 
@@ -265,8 +261,6 @@ Create a Dream
       - `"fast"`
 
   - `output_behavior: BetaOutputBehavior`
-
-    The default destination: the job creates a new output memory store as a clone of the memory_store input and writes the consolidated memories into it. The input store is never mutated.
 
     - `BetaOutputBehaviorCreateNew object`
 

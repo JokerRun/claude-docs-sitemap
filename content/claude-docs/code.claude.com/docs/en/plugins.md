@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 8070daef044b8dcd7f744f4ccbba8189e106ee72e31d34d1ce5dcca5aac3e742
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: 6f9f15a184ff8008208afd690e12488c45941d16844c2fc7b3f455ce0825daca
 ---
 
 > ## Documentation Index
@@ -321,6 +321,8 @@ As you make changes to your plugin, run `/reload-plugins` to pick up the updates
   To test a plugin together with a plugin it depends on, see [Test a plugin and its dependency locally](/docs/en/plugin-dependencies#test-a-plugin-and-its-dependency-locally).
 </Tip>
 
+Trying the plugin with `--plugin-dir` tells you it can work. To find out how often Claude actually reaches for it and gets the right result, run it against a set of test prompts with [`claude plugin eval`](/docs/en/plugin-evals). Each prompt runs several times with and without the plugin loaded, so you can see what the plugin contributes and catch regressions when you change it or a new model ships.
+
 To load several plugins from one place, pass a folder that holds them, such as `--plugin-dir ./plugins`. Loading a folder of plugins requires Claude Code v2.1.265 or later. Claude Code reads the folder's top level to decide which plugins load, and in an interactive session it also watches the folder for later changes:
 
 * **What loads**: if the folder has no manifest or plugin components at its top level, Claude Code treats it as a folder of plugins. Each immediate subfolder that has a `.claude-plugin/plugin.json` manifest loads as a separate plugin. Claude Code skips everything else in the folder without reporting an error, including plugins that have no manifest.
@@ -478,6 +480,7 @@ Now that you understand Claude Code's plugin system, here are suggested paths fo
 
 ### For plugin developers
 
+* [Test plugins with evals](/docs/en/plugin-evals): measure what your plugin changes and gate CI on it
 * [Create and distribute a marketplace](/docs/en/plugin-marketplaces): package and share your plugins
 * [Plugins reference](/docs/en/plugins-reference): complete technical specifications
 * Dive deeper into specific plugin components:

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/cancel
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 75a7bac8e190b7d1f3898306807f171765bebc4b37e5887f272e9f84ae67dcb3
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: 79718e362df1c8f245e36c09ebd587a42b55a33f1fb8299ca9cf34b7fe955890
 ---
 
 ---
@@ -199,8 +199,6 @@ Cancel a Dream
       - `"fast"`
 
   - `output_behavior: BetaOutputBehavior`
-
-    The default destination: the job creates a new output memory store as a clone of the memory_store input and writes the consolidated memories into it. The input store is never mutated.
 
     - `BetaOutputBehaviorCreateNew object`
 

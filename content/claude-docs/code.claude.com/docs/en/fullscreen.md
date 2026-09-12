@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fullscreen
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 80e06152d72cdacbe94feca2ead9f36f846da3183bb2e3c2a0b1dd1cc9119f9b
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: 8dfb74516690335d5525e227853c73fe4c110024e544b732160d5ee481c34346
 ---
 
 > ## Documentation Index
@@ -38,7 +38,7 @@ Claude Code carries these into the relaunched session:
   * If you rewound to before your first message, Claude Code relaunches with an empty conversation
 * Your [permission mode](/docs/en/permission-modes) and [effort level](/docs/en/model-config#adjust-effort-level)
 * The model you last picked with [`/model`](/docs/en/model-config#setting-your-model)
-* Rules you passed with [`--allowed-tools` or `--disallowed-tools`](/docs/en/cli-reference#cli-flags), and your `--agent`, `--agents`, and `--append-system-prompt` flags
+* Rules you passed with [`--allowed-tools` or `--disallowed-tools`](/docs/en/cli-reference#cli-flags), and your `--agent`, `--agents`, `--append-system-prompt`, and `--system-prompt-snapshot` flags
 
 Claude Code declines to relaunch if the session has a restriction it can't pass to the restarted process. Restrictions it can't pass include:
 

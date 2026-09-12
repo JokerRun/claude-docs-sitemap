@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/archive
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: a5aa72258366ecc1df0450695ca83b538a376c5baa12291ea72a0c9f01012a04
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: 783f652aeb5f910a51ffd37b646a3b002c6cbf32529ec6c3f30fcceb3dd634da
 ---
 
 ---
@@ -175,8 +175,6 @@ Archive Credential
           Token endpoint URL used to refresh the access token.
 
         - `token_endpoint_auth: BetaManagedAgentsTokenEndpointAuthNoneResponse or BetaManagedAgentsTokenEndpointAuthBasicResponse or BetaManagedAgentsTokenEndpointAuthPostResponse`
-
-          Token endpoint requires no client authentication.
 
           - `BetaManagedAgentsTokenEndpointAuthNoneResponse object`
 

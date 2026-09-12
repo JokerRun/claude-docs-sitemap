@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: d4c710e78ab23fa0eb8bedafa243b7943978b897cb3e7460624f6047a2abb181
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: ee78ca8340245d8d20ace4b1bbbedfb6dc2cfcde928e06f0c88fb60b961aed80
 ---
 
 ---
@@ -1233,8 +1233,6 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/resources/$RESOURCE_ID \
 ### Beta Managed Agents Session Resource
 
 - `BetaManagedAgentsSessionResource = BetaManagedAgentsGitHubRepositoryResource or BetaManagedAgentsFileResource or BetaManagedAgentsMemoryStoreResource`
-
-  A memory store attached to an agent session.
 
   - `BetaManagedAgentsGitHubRepositoryResource object`
 

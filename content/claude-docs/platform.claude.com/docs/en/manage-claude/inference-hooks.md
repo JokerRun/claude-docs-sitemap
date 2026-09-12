@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/inference-hooks
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 3294d661d3c4004bae74e6d062f1232630e34dc75fc85d10c5c0c544ef408e68
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: b9d413b21273aead2461263adb9d3c3b3b1e1574e18310fc10d5a3d384376a8a
 ---
 
 ---
@@ -30,9 +30,9 @@ Today the only hook event is `prompt`, which fires once per governed inference r
 3. Your AI security server evaluates the content and responds with a verdict within the verdict timeout your organization configures (5 seconds by default).
 4. On `allow`, inference proceeds normally. On `deny`, the request is rejected and the user sees a blocked-by-policy message assembled from two parts: the per-request reason your AI security server supplied in the verdict's `deny_reason` field, followed by a standing message your administrators configure (for example, who to contact or where to request an exception). If your administrators haven't configured one, a built-in default directs the user to contact them. Each denial is also recorded in your organization's [Activity Feed](https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed).
 
-The following diagram traces one example (a Cowork request where Claude also calls an O365 tool) to illustrate which parts of the flow are hooked. The hooked points are the diagram's steps 1 and 5, where the prompt arrives and the tool result returns; each results in the validation exchange with your AI security server shown in steps 2 and 6.
+The following diagram traces one example (a Cowork request where Claude also calls an O365 tool) to illustrate which parts of the flow are hooked. The hooked points are the diagram's steps 1 and 6, where the prompt arrives and the tool result returns; each results in the validation exchange with your AI security server shown in steps 2–3 and 7–8.
 
-![Flow diagram: the AI security server validates both the prompt and the tool result before inference proceeds](https://platform.claude.com/docs/images/inference-hooks-flow.svg)
+![Flow diagram: the AI security server validates both the prompt and the tool result before inference proceeds](https://platform.claude.com/docs/images/inference-hooks-flow.png)
 
 A verdict is a small JSON object: `{"action": "allow"}` lets the request proceed, and a deny carries the user-facing reason. For the full verdict schema, see [Return a verdict](https://platform.claude.com/docs/en/manage-claude/inference-hooks-endpoint#return-a-verdict).
 

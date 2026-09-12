@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: 8c3d88d22cbde5db709f29f43c225e08fbdf0d347098e87a84d2b399fbde80b5
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: 72521df6ef71d978d8c8298e518db15a4362b4fbf97f32a36626e31d088675a1
 ---
 
 > ## Documentation Index
@@ -275,7 +275,7 @@ claude -p "Run the test suite and fix any failures" \
 To set a baseline for the whole session instead of listing individual tools, pass a [permission mode](/docs/en/permission-modes). For `-p`, the [built-in starting permission mode](/docs/en/permission-modes#which-mode-a-session-starts-in) is Manual on every plan, so pass the permission mode you want:
 
 * **`auto`**: pass `--permission-mode auto` to have a classifier review most actions instead of you
-* **`dontAsk`**: Claude Code denies anything not in your `permissions.allow` rules or the [read-only command set](/docs/en/permissions#read-only-commands), which is useful for locked-down CI runs. `AskUserQuestion`, connector tools [your organization set to `ask`](/docs/en/mcp#organization-controls-on-connector-tools), and MCP tools marked [`requiresUserInteraction`](/docs/en/mcp#require-approval-for-a-specific-tool) are denied even when an allow rule matches
+* **`dontAsk`**: Claude Code denies every call that would otherwise prompt, which is useful for locked-down CI runs. Actions that need no approval in Manual mode still run, such as file reads in your working directories and the [read-only command set](/docs/en/permissions#read-only-commands), and so do actions your `--allowedTools` entries or `permissions.allow` rules cover. `AskUserQuestion`, connector tools [your organization set to `ask`](/docs/en/mcp#organization-controls-on-connector-tools), and MCP tools marked [`requiresUserInteraction`](/docs/en/mcp#require-approval-for-a-specific-tool) are denied even when an allow rule matches
 * **`acceptEdits`**: Claude writes files without prompting, and Claude Code auto-approves common filesystem commands such as `mkdir`, `touch`, `mv`, and `cp`. The [actions no mode auto-approves](/docs/en/permission-modes#actions-no-mode-auto-approves) still apply. Apart from the read-only command set, other shell commands and network requests still need an `--allowedTools` entry or a `permissions.allow` rule. See [what `acceptEdits` auto-approves](/docs/en/permission-modes#auto-approve-file-edits-with-acceptedits-mode) for the full list
 
 This example applies lint fixes with `acceptEdits` as the baseline:

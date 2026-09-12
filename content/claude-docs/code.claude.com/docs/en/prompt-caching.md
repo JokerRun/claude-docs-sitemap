@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/prompt-caching
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 6c2732ed8266f03faadfed47d5f583557b6a590b00424025a8dee0c7b23a7cf4
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: e71c2b52900c4e5b65bc535768bebc77d485c1f5b4f182b6a24e83eba692294f
 ---
 
 > ## Documentation Index
@@ -57,7 +57,7 @@ Caching happens server-side, in whichever infrastructure serves your model. Wher
 * **Microsoft Foundry**: depends on the deployment's [hosting option](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry#hosting-options). Hosted on Azure deployments are served on Azure infrastructure; Hosted on Anthropic deployments are served on Anthropic's infrastructure
 * **Custom `ANTHROPIC_BASE_URL` or [LLM gateway](/docs/en/llm-gateway)**: the cache lives wherever your requests are forwarded, and whether caching works depends on the gateway
 
-Claude Code also appends system context mid-conversation, such as file-change notices, and marks that block for caching on every provider and connection.
+Claude Code also appends system context mid-conversation, such as file-change notices, and marks that block for caching on every provider and connection unless you set [`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS`](/docs/en/llm-gateway-protocol#disable-pre-release-capabilities), in which case that block is sent uncached.
 
 At the provider's own endpoint, Amazon Bedrock and its [Mantle endpoint](/docs/en/amazon-bedrock#use-the-mantle-endpoint), Google Cloud's Agent Platform, and Microsoft Foundry cache the block the same way the Claude API does.
 

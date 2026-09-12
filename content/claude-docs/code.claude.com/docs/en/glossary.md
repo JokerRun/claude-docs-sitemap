@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: 8dc3e3e2f1b5d37a54dd2d622ec5d95fc5f9509ec6553351cd3ec837e3af582d
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: 55685afdb741474c99b1ff0f86d1e48ebc035290a5834e76289acf6857211c5e
 ---
 
 > ## Documentation Index
@@ -83,7 +83,7 @@ Learn more: [Channels](/docs/en/channels)
 
 ### Checkpoint
 
-A restore point created at each prompt you send. Claude Code snapshots files before every edit so a checkpoint can revert them. Press `Esc` twice or run `/rewind` to restore code, conversation, or both to an earlier point, or to summarize part of the conversation from a selected message. Checkpoints are saved with the conversation, so a resumed session can still `/rewind` to them. They're separate from git and don't track changes made through the Bash tool.
+A restore point created at each prompt you send that starts a turn. Claude Code snapshots files before every edit so a checkpoint can revert them. Press `Esc` twice or run `/rewind` to restore code, conversation, or both to an earlier point, or to summarize part of the conversation from a selected message. Checkpoints are saved with the conversation, so a resumed session can still `/rewind` to them. They're separate from git and don't track changes made through the Bash tool.
 
 Learn more: [Checkpointing](/docs/en/checkpointing)
 

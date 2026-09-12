@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 502078cc65c9d36706f78c3aaaf9f9bf9f67761ace2981713bf984ff8b88f8be
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: 821edead0fe9cea9e79215c85cced598aa907d24c8c908ddba72420b496fd153
 ---
 
 ---
@@ -460,8 +460,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
-              Tool invocation directly from the model.
-
               - `DirectCaller object`
 
                 Tool invocation directly from the model.
@@ -715,8 +713,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
-              Tool invocation directly from the model.
-
               - `DirectCaller object`
 
                 Tool invocation directly from the model.
@@ -772,8 +768,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
               Create a cache control breakpoint at this content block.
 
             - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
-
-              Tool invocation directly from the model.
 
               - `DirectCaller object`
 
@@ -841,8 +835,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
-              Tool invocation directly from the model.
-
               - `DirectCaller object`
 
                 Tool invocation directly from the model.
@@ -858,8 +850,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
             - `type: "code_execution_tool_result"`
 
             - `content: CodeExecutionToolResultBlockParamContent`
-
-              Code execution result with encrypted stdout for PFC + web_search results.
 
               - `CodeExecutionToolResultErrorParam object`
 
@@ -4041,8 +4031,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
-              Tool invocation directly from the model.
-
               default: {"type":"direct"}
 
               - `DirectCaller object`
@@ -4093,8 +4081,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
-              Tool invocation directly from the model.
-
               default: {"type":"direct"}
 
               - `DirectCaller object`
@@ -4132,8 +4118,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
               default: web_search_tool_result
 
             - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
-
-              Tool invocation directly from the model.
 
               default: {"type":"direct"}
 
@@ -4194,8 +4178,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
               default: web_fetch_tool_result
 
             - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
-
-              Tool invocation directly from the model.
 
               default: {"type":"direct"}
 
@@ -4302,8 +4284,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
               default: code_execution_tool_result
 
             - `content: CodeExecutionToolResultBlockContent`
-
-              Code execution result with encrypted stdout for PFC + web_search results.
 
               - `CodeExecutionToolResultError object`
 
@@ -5492,8 +5472,6 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
             - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
-              Tool invocation directly from the model.
-
               default: {"type":"direct"}
 
               - `DirectCaller object`
@@ -5544,8 +5522,6 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
             - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
-              Tool invocation directly from the model.
-
               default: {"type":"direct"}
 
               - `DirectCaller object`
@@ -5583,8 +5559,6 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
               default: web_search_tool_result
 
             - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
-
-              Tool invocation directly from the model.
 
               default: {"type":"direct"}
 
@@ -5645,8 +5619,6 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
               default: web_fetch_tool_result
 
             - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
-
-              Tool invocation directly from the model.
 
               default: {"type":"direct"}
 
@@ -5753,8 +5725,6 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
               default: code_execution_tool_result
 
             - `content: CodeExecutionToolResultBlockContent`
-
-              Code execution result with encrypted stdout for PFC + web_search results.
 
               - `CodeExecutionToolResultError object`
 
@@ -6715,8 +6685,6 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
           - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
-            Tool invocation directly from the model.
-
             default: {"type":"direct"}
 
             - `DirectCaller object`
@@ -6767,8 +6735,6 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
           - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
-            Tool invocation directly from the model.
-
             default: {"type":"direct"}
 
             - `DirectCaller object`
@@ -6806,8 +6772,6 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
             default: web_search_tool_result
 
           - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
-
-            Tool invocation directly from the model.
 
             default: {"type":"direct"}
 
@@ -6868,8 +6832,6 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
             default: web_fetch_tool_result
 
           - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
-
-            Tool invocation directly from the model.
 
             default: {"type":"direct"}
 
@@ -6976,8 +6938,6 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
             default: code_execution_tool_result
 
           - `content: CodeExecutionToolResultBlockContent`
-
-            Code execution result with encrypted stdout for PFC + web_search results.
 
             - `CodeExecutionToolResultError object`
 
@@ -7890,8 +7850,6 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
         - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
-          Tool invocation directly from the model.
-
           default: {"type":"direct"}
 
           - `DirectCaller object`
@@ -7942,8 +7900,6 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
         - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
-          Tool invocation directly from the model.
-
           default: {"type":"direct"}
 
           - `DirectCaller object`
@@ -7981,8 +7937,6 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
           default: web_search_tool_result
 
         - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
-
-          Tool invocation directly from the model.
 
           default: {"type":"direct"}
 
@@ -8043,8 +7997,6 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
           default: web_fetch_tool_result
 
         - `caller: DirectCaller or ServerToolCaller or ServerToolCaller20260120`
-
-          Tool invocation directly from the model.
 
           default: {"type":"direct"}
 
@@ -8151,8 +8103,6 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
           default: code_execution_tool_result
 
         - `content: CodeExecutionToolResultBlockContent`
-
-          Code execution result with encrypted stdout for PFC + web_search results.
 
           - `CodeExecutionToolResultError object`
 

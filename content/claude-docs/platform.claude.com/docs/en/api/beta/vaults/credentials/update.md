@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/update
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 0f3117e0d04b26fdab429e11a372d6a30e39e12164ca9713d4daae10162fe347
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: 839ea24540440b8793e911132b5f6121aaad734801e33e0691ccda2f1717c595
 ---
 
 ---
@@ -166,8 +166,6 @@ Update Credential
 
       - `token_endpoint_auth: optional BetaManagedAgentsTokenEndpointAuthBasicUpdateParam or BetaManagedAgentsTokenEndpointAuthPostUpdateParam`
 
-        Updated HTTP Basic authentication parameters for the token endpoint.
-
         - `BetaManagedAgentsTokenEndpointAuthBasicUpdateParam object`
 
           Updated HTTP Basic authentication parameters for the token endpoint.
@@ -309,8 +307,6 @@ Update Credential
           Token endpoint URL used to refresh the access token.
 
         - `token_endpoint_auth: BetaManagedAgentsTokenEndpointAuthNoneResponse or BetaManagedAgentsTokenEndpointAuthBasicResponse or BetaManagedAgentsTokenEndpointAuthPostResponse`
-
-          Token endpoint requires no client authentication.
 
           - `BetaManagedAgentsTokenEndpointAuthNoneResponse object`
 

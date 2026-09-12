@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/count_tokens
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 647ab0f66c46fa5edc201b4db022f9fd7b559ce944f6440a44855731f4a90de9
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: 6081bea9f226015e1071dfad4b3e3edf1f0f16dabe53cc258bc785ab1dd8b79d
 ---
 
 ---
@@ -524,8 +524,6 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
         - `caller: optional BetaDirectCaller or BetaServerToolCaller or BetaServerToolCaller20260120`
 
-          Tool invocation directly from the model.
-
           - `BetaDirectCaller object`
 
             Tool invocation directly from the model.
@@ -781,8 +779,6 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
         - `caller: optional BetaDirectCaller or BetaServerToolCaller or BetaServerToolCaller20260120`
 
-          Tool invocation directly from the model.
-
           - `BetaDirectCaller object`
 
             Tool invocation directly from the model.
@@ -838,8 +834,6 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
           Create a cache control breakpoint at this content block.
 
         - `caller: optional BetaDirectCaller or BetaServerToolCaller or BetaServerToolCaller20260120`
-
-          Tool invocation directly from the model.
 
           - `BetaDirectCaller object`
 
@@ -906,8 +900,6 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
           Create a cache control breakpoint at this content block.
 
         - `caller: optional BetaDirectCaller or BetaServerToolCaller or BetaServerToolCaller20260120`
-
-          Tool invocation directly from the model.
 
           - `BetaDirectCaller object`
 
@@ -976,8 +968,6 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
         - `type: "code_execution_tool_result"`
 
         - `content: BetaCodeExecutionToolResultBlockParamContent`
-
-          Code execution result with encrypted stdout for PFC + web_search results.
 
           - `BetaCodeExecutionToolResultErrorParam object`
 
@@ -1300,11 +1290,6 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
         - `tool: BetaToolChangeToolReference or BetaToolChangeMCPToolReference or BetaToolChangeMCPToolsetReference`
 
-          Reference to a single tool the caller declared directly in
-          `tools[]`. Does not accept the composed `{server}_{name}` form the
-          server assigns to MCP-resolved tools — use `mcp_tool_reference` or
-          `mcp_toolset_reference` for those.
-
           - `BetaToolChangeToolReference object`
 
             Reference to a single tool the caller declared directly in
@@ -1352,11 +1337,6 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
         - `type: "tool_removal"`
 
         - `tool: BetaToolChangeToolReference or BetaToolChangeMCPToolReference or BetaToolChangeMCPToolsetReference`
-
-          Reference to a single tool the caller declared directly in
-          `tools[]`. Does not accept the composed `{server}_{name}` form the
-          server assigns to MCP-resolved tools — use `mcp_tool_reference` or
-          `mcp_toolset_reference` for those.
 
           - `BetaToolChangeToolReference object`
 

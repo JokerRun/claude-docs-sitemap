@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/count_tokens
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 6228afea7fe69ebc746b592492d77a1413ff376ba3a26a8134f9f3e9f01f718d
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: 6ff18ceebd9fe6ef51403826477cf54b52190c39bde9a4b9890879d7b2c76b88
 ---
 
 ---
@@ -426,8 +426,6 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
         - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
-          Tool invocation directly from the model.
-
           - `DirectCaller object`
 
             Tool invocation directly from the model.
@@ -681,8 +679,6 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
         - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
-          Tool invocation directly from the model.
-
           - `DirectCaller object`
 
             Tool invocation directly from the model.
@@ -738,8 +734,6 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
           Create a cache control breakpoint at this content block.
 
         - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
-
-          Tool invocation directly from the model.
 
           - `DirectCaller object`
 
@@ -807,8 +801,6 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
         - `caller: optional DirectCaller or ServerToolCaller or ServerToolCaller20260120`
 
-          Tool invocation directly from the model.
-
           - `DirectCaller object`
 
             Tool invocation directly from the model.
@@ -824,8 +816,6 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
         - `type: "code_execution_tool_result"`
 
         - `content: CodeExecutionToolResultBlockParamContent`
-
-          Code execution result with encrypted stdout for PFC + web_search results.
 
           - `CodeExecutionToolResultErrorParam object`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: f7fe7cbc423fbdf4f550db27f5983590b20354e201461a1d6140118f3f73c970
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: c51f7756e82b5721d2ef1590f164acb5656d86b905ab3cfd92e22d6257f410d1
 ---
 
 ---
@@ -1306,8 +1306,6 @@ Create Credential
 
       - `token_endpoint_auth: BetaManagedAgentsTokenEndpointAuthNoneParam or BetaManagedAgentsTokenEndpointAuthBasicParam or BetaManagedAgentsTokenEndpointAuthPostParam`
 
-        Token endpoint requires no client authentication.
-
         - `BetaManagedAgentsTokenEndpointAuthNoneParam object`
 
           Token endpoint requires no client authentication.
@@ -1479,8 +1477,6 @@ Create Credential
           Token endpoint URL used to refresh the access token.
 
         - `token_endpoint_auth: BetaManagedAgentsTokenEndpointAuthNoneResponse or BetaManagedAgentsTokenEndpointAuthBasicResponse or BetaManagedAgentsTokenEndpointAuthPostResponse`
-
-          Token endpoint requires no client authentication.
 
           - `BetaManagedAgentsTokenEndpointAuthNoneResponse object`
 
@@ -1806,8 +1802,6 @@ List Credentials
 
         - `token_endpoint_auth: BetaManagedAgentsTokenEndpointAuthNoneResponse or BetaManagedAgentsTokenEndpointAuthBasicResponse or BetaManagedAgentsTokenEndpointAuthPostResponse`
 
-          Token endpoint requires no client authentication.
-
           - `BetaManagedAgentsTokenEndpointAuthNoneResponse object`
 
             Token endpoint requires no client authentication.
@@ -2115,8 +2109,6 @@ Get Credential
 
         - `token_endpoint_auth: BetaManagedAgentsTokenEndpointAuthNoneResponse or BetaManagedAgentsTokenEndpointAuthBasicResponse or BetaManagedAgentsTokenEndpointAuthPostResponse`
 
-          Token endpoint requires no client authentication.
-
           - `BetaManagedAgentsTokenEndpointAuthNoneResponse object`
 
             Token endpoint requires no client authentication.
@@ -2405,8 +2397,6 @@ Update Credential
 
       - `token_endpoint_auth: optional BetaManagedAgentsTokenEndpointAuthBasicUpdateParam or BetaManagedAgentsTokenEndpointAuthPostUpdateParam`
 
-        Updated HTTP Basic authentication parameters for the token endpoint.
-
         - `BetaManagedAgentsTokenEndpointAuthBasicUpdateParam object`
 
           Updated HTTP Basic authentication parameters for the token endpoint.
@@ -2548,8 +2538,6 @@ Update Credential
           Token endpoint URL used to refresh the access token.
 
         - `token_endpoint_auth: BetaManagedAgentsTokenEndpointAuthNoneResponse or BetaManagedAgentsTokenEndpointAuthBasicResponse or BetaManagedAgentsTokenEndpointAuthPostResponse`
-
-          Token endpoint requires no client authentication.
 
           - `BetaManagedAgentsTokenEndpointAuthNoneResponse object`
 
@@ -3000,8 +2988,6 @@ Archive Credential
           Token endpoint URL used to refresh the access token.
 
         - `token_endpoint_auth: BetaManagedAgentsTokenEndpointAuthNoneResponse or BetaManagedAgentsTokenEndpointAuthBasicResponse or BetaManagedAgentsTokenEndpointAuthPostResponse`
-
-          Token endpoint requires no client authentication.
 
           - `BetaManagedAgentsTokenEndpointAuthNoneResponse object`
 

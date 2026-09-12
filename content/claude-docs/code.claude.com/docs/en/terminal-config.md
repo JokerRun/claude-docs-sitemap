@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/terminal-config
-fetched_at: 2026-09-09T02:20:42.382817Z
-sha256: 1e5f700df62e014ebb0e7cd1524ab61151744128cdb843eefd6ce39af714204e
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: 855b92da7b17adc7a042435755ba1f76d327b389c4386f529423af2fa5dfa82d
 ---
 
 > ## Documentation Index
@@ -212,12 +212,12 @@ The reference below covers the tokens you can set in `overrides`. The interactiv
 
   Signal success, failure, and warning states across messages and indicators.
 
-  | Token     | Controls                                             |
-  | :-------- | :--------------------------------------------------- |
-  | `success` | Success messages and passing checks                  |
-  | `error`   | Error messages and failures                          |
-  | `warning` | Warnings, caution messages, and the auto mode border |
-  | `merged`  | Merged pull request status                           |
+  | Token     | Controls                                                |
+  | :-------- | :------------------------------------------------------ |
+  | `success` | Success messages and passing checks                     |
+  | `error`   | Error messages and failures                             |
+  | `warning` | Warnings, caution messages, and the auto mode indicator |
+  | `merged`  | Merged pull request status                              |
 
   #### Input box and mode indicators
 
@@ -225,9 +225,9 @@ The reference below covers the tokens you can set in `overrides`. The interactiv
 
   | Token          | Controls                                                                                                                                                                             |
   | :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | `promptBorder` | Input box border in Manual mode                                                                                                                                                      |
-  | `planMode`     | Plan mode accent and border                                                                                                                                                          |
-  | `autoAccept`   | Accept-edits mode accent and border                                                                                                                                                  |
+  | `promptBorder` | Input box border                                                                                                                                                                     |
+  | `planMode`     | Plan mode accent, plan messages, and plan-mode dialogs                                                                                                                               |
+  | `autoAccept`   | Accept-edits mode accent                                                                                                                                                             |
   | `bashBorder`   | Input box border when entering a `!` shell command                                                                                                                                   |
   | `ide`          | IDE connection indicator                                                                                                                                                             |
   | `fastMode`     | Fast mode indicator                                                                                                                                                                  |

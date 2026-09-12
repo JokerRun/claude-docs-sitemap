@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/admin-setup
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: be808602dcfae635423ddeb59347c1d58ce53ca6e9debb1c89f3eb8754299f5a
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: eafb24fdcaafedae84768fce405647032c576021160484b67b30f4511fe00243
 ---
 
 > ## Documentation Index
@@ -84,9 +84,7 @@ If a device still refuses WSL sessions, open **Help > Troubleshooting > Show Log
 After WSL sessions are enabled, extend your managed settings to them:
 
 * Deploy `wslInheritsWindowsSettings: true` through the HKLM registry or the `C:\Program Files\ClaudeCode` file so WSL sessions inherit the same policy as host sessions.
-* Verify by running `/status` inside a WSL session and reading the `Setting sources` line. Claude Code names only the [managed source it selected](/docs/en/server-managed-settings#settings-precedence), so what the line tells you depends on the session:
-  * **In a session that [fetches server-managed settings](/docs/en/server-managed-settings#platform-availability) and receives any keys**: `Enterprise managed settings (remote)`, because Claude Code selects them ahead of the Windows sources, so the line doesn't show whether the flag arrived.
-  * **In any other session**: `Enterprise managed settings (HKLM)` confirms a registry deployment. `(file)` names the Windows file or the distribution's own `/etc/claude-code/managed-settings.json`, so it confirms a Windows file deployment only when the distribution has no managed file of its own.
+* Verify by running `/status` inside a WSL session and reading the `Setting sources` line. To interpret what it lists, see [Read the source in /status](/docs/en/managed-settings#read-the-source-in-/status).
 
 Processes inside the WSL 2 utility VM aren't visible to Windows-side endpoint detection sensors. To observe in-distro process and file activity, check your endpoint detection vendor's WSL guidance for a Linux sensor you can run inside the distribution and the exclusions it needs. Claude Code's [OpenTelemetry tool-execution telemetry](/docs/en/monitoring-usage) is emitted identically for WSL and native sessions.
 

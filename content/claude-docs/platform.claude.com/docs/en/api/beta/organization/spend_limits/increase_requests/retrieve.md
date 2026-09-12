@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests/retrieve
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 78732114e0d1b2f5ce9c32fdc3d5e07e893a1173e24e1e2f5adb0be43db14b6f
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: 04c382aa7ff10ea66045c295137670665221cc734e24cedcd9891b32a061c55b
 ---
 
 ---
@@ -82,10 +82,6 @@ requester at the request's period.
     format: date-time
 
   - `resolved_by: object or object or null`
-
-    A user within the organization. `name` and `email_address` are
-    null when the underlying account is unavailable or has been deleted;
-    `deleted` is true only for deleted accounts.
 
     - `UserActor object`
 
@@ -198,8 +194,6 @@ requester at the request's period.
         Tagged ID of the member the spend limit applies to.
 
     - `source: object or object or object or 2 more`
-
-      Scope selecting a single member of the organization.
 
       - `User object`
 

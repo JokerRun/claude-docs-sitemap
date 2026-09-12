@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/collaborators
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 6162bb588c4a5cda217f192e8b9c9a0e9914575d882315590becf7cb239b6bcf
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: e1b1eb86ca1ffbe20951bc61641e5d3890e791489938c168a5d8f5fd5f141c75
 ---
 
 ---
@@ -222,8 +222,6 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID/collabora
 ### Collaborator List Response
 
 - `CollaboratorListResponse = object or object or object or object`
-
-  An individual user granted a role on a project.
 
   - `ComplianceProjectUserCollaborator object`
 

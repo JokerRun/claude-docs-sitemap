@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/apply
-fetched_at: 2026-09-05T02:20:11.001334Z
-sha256: 1855adfa5f9c039e8bccb4d87653476a331009ed27f5b543c4efd17be62ea3e9
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: 441b940bd0ecff6302847e33945bb0ad0ada7e5a2a4c4f8e948448711b14597b
 ---
 
 ---
@@ -111,13 +111,9 @@ You can declaratively define the other resources as files as well. A file holds 
 
 Any resource except a skill can be written as YAML, JSON, or Markdown. In Markdown, the frontmatter is the body and the prose fills the kind's text field: an agent's `system`, an environment's or memory store's `description`, a deployment's first message.
 
-Resources refer to each other by path. Wherever the API expects another resource's ID, write the relative path to that resource's file instead. In this project, the reviewer agent lists `../skills/pr-summary` under `skills`, the lead agent lists `./reviewer.md` in its roster, and the deployment names its agent, environment, and memory store by path. `ant apply` creates them in dependency order and fills in the real IDs. Apply the whole directory:
+Resources refer to each other by path. Wherever the API expects another resource's ID, write the relative path to that resource's file instead. In this project, the reviewer agent lists `../skills/pr-summary` under `skills`, the lead agent lists `./reviewer.md` in its roster, and the deployment names its agent, environment, and memory store by path. `ant apply` creates them in dependency order and fills in the real IDs. The project has six files:
 
-<MultiFileExample language="cli" label="CLI">
-  ```bash CLI
-  ant apply .
-  ```
-
+<MultiFileExample variant="explorer">
   <File filename="agents/reviewer.md">
     ```markdown
     ---
@@ -198,6 +194,12 @@ Resources refer to each other by path. Wherever the API expects another resource
     ```
   </File>
 </MultiFileExample>
+
+Apply the whole directory:
+
+```bash CLI
+ant apply .
+```
 
 `claude-lock.json` then has an entry for every file in the project.
 

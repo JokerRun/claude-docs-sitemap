@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests/deny
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: f8fd0e89d2a1027d6bb05a1d4be489f45673a07483cf5540f457815f5356a323
+fetched_at: 2026-09-12T02:20:53.386482Z
+sha256: 58191a5e786fed99064888d37a8c7154e9f009b3ada6a85e6ce04719bd8c9833
 ---
 
 ---
@@ -86,10 +86,6 @@ Idempotent on `denied`; denying an already-`approved` request returns
     format: date-time
 
   - `resolved_by: object or object or null`
-
-    A user within the organization. `name` and `email_address` are
-    null when the underlying account is unavailable or has been deleted;
-    `deleted` is true only for deleted accounts.
 
     - `UserActor object`
 
@@ -202,8 +198,6 @@ Idempotent on `denied`; denying an already-`approved` request returns
         Tagged ID of the member the spend limit applies to.
 
     - `source: object or object or object or 2 more`
-
-      Scope selecting a single member of the organization.
 
       - `User object`
 
