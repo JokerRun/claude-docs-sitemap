@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: b2350d35b1d7b02f7e432221a7256eadb6c726764ad0bd0057561c8e0565aab4
+fetched_at: 2026-09-13T02:21:02.346162Z
+sha256: f9800fcad978115589b40b6cb73a63ab9eae3289628094a9b515793204a78cbb
 ---
 
 > ## Documentation Index
@@ -666,7 +666,7 @@ type SDKControlInitializeResponse = {
 
 Claude Code omits the field when the request carried no hooks. When the request carried hooks, the value depends on whether the request is the session's first initialize and, for a repeated one, on how it reached the session:
 
-* `true`: Claude Code registered the hooks. A session's first initialize returns this value. So does a repeated initialize sent over the CLI's stdin. In that case the hooks in the new request replace the hooks registered earlier.
+* `true`: Claude Code registered the hooks. A session's first initialize returns this value. A repeated initialize sent over the CLI's stdin also returns `true`. In that case the hooks in the new request replace the hooks registered earlier.
 * `false`: Claude Code ignored the hooks. A repeated initialize sent to a remote session returns this value, so a second client that joins a session can't replace the hooks the first client registered.
 
 Before Agent SDK v0.3.238, the response never carried the field, and Claude Code ignored `hooks` on every repeated initialize.

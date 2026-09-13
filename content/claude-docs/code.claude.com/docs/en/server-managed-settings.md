@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/server-managed-settings
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: d8b087c0c22f4a41a48158fb20cbaef2618444b9b2d2957c2577ad371c651d08
+fetched_at: 2026-09-13T02:21:02.346162Z
+sha256: 3734eecb8ed9368a3172684506192ac11a41121ea54c70b12a81a623df720407
 ---
 
 > ## Documentation Index
@@ -294,7 +294,7 @@ Claude Code decides whether four privacy toggles need approval by the delivered 
 
 Claude Code also decides whether [`API_FORCE_IDLE_TIMEOUT`](/docs/en/env-vars) needs approval by the delivered value: a truthy value only turns the [body idle timeout](/docs/en/network-config#streaming-idle-watchdogs) on, so Claude Code applies it without asking the user. For any other non-empty value, Claude Code shows the dialog. Before v2.1.248, any non-empty value triggered the dialog.
 
-Whether [`ANTHROPIC_CUSTOM_HEADERS`](/docs/en/env-vars#variables) needs approval also depends on the delivered value. Headers that only tag requests, such as `Accept-Language`, apply without the dialog. A line that names a credential, an org or tenant selector, a routing or host override, or an API-behavior header, such as `Authorization`, `X-Api-Key`, `Host`, `anthropic-beta`, or the `X-Amzn-Bedrock-*` headers, requires approval. So does a line whose name isn't a valid HTTP header token, or whose value contains a character an HTTP header can't carry. The check matches words inside the header name, so `X-Client-Version`, which contains `client` and `version`, requires approval too. Before v2.1.251, any `ANTHROPIC_CUSTOM_HEADERS` value applied without it.
+Whether [`ANTHROPIC_CUSTOM_HEADERS`](/docs/en/env-vars#variables) needs approval also depends on the delivered value. Headers that only tag requests, such as `Accept-Language`, apply without the dialog. A line that names a credential, an org or tenant selector, a routing or host override, or an API-behavior header, such as `Authorization`, `X-Api-Key`, `Host`, `anthropic-beta`, or the `X-Amzn-Bedrock-*` headers, requires approval. A line also requires approval when its name isn't a valid HTTP header token or its value contains a character an HTTP header can't carry. The check matches words inside the header name, so `X-Client-Version`, which contains `client` and `version`, requires approval too. Before v2.1.251, any `ANTHROPIC_CUSTOM_HEADERS` value applied without it.
 
 A falsy value such as `0` or `false` for [`ENABLE_BETA_TRACING_DETAILED`](/docs/en/env-vars#variables) or [`OTEL_LOG_RAW_API_BODIES`](/docs/en/env-vars#variables) applies without the dialog, because it only turns detailed tracing or raw API body capture off. Any other non-empty value for either variable requires approval.
 

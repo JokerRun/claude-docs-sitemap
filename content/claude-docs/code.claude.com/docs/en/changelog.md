@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/changelog
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: af9a73e6cbc157da074a3e52036b669c1816d06451166c445ed9474d1e050012
+fetched_at: 2026-09-13T02:21:02.346162Z
+sha256: 7b23ee9ee1f8c85f5d8332369a2fed39f3b5fb1405e3b45d7ddc00804a200ec2
 ---
 
 > ## Documentation Index
@@ -16,6 +16,10 @@ sha256: af9a73e6cbc157da074a3e52036b669c1816d06451166c445ed9474d1e050012
 This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md).
 
 Run `claude --version` to check your installed version.
+
+<Update label="2.1.270" description="September 12, 2026">
+  * Fixed read-only git commands in Bash unexpectedly asking for permission after a session had been running for a while (regression in 2.1.269)
+</Update>
 
 <Update label="2.1.269" description="September 11, 2026">
   * Added `claude plugin eval`: run a plugin's eval suite against Claude Code and get scored, reproducible results (JSON + HTML report); see `claude plugin eval --help`

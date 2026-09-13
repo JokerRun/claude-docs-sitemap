@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/errors
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: 0acbc165266f08fc8bd6745bd2b0d951f9bc966ac725be3822f99491d6f22612
+fetched_at: 2026-09-13T02:21:02.346162Z
+sha256: 1597b5292ad34b38817aa644ccb8dc4686e4d42a3345eca9ceee4cd33089f52e
 ---
 
 > ## Documentation Index
@@ -2113,7 +2113,7 @@ The usual cause is a proxy or gateway that closes a long transfer before it fini
 
 ## Command-line errors
 
-These errors come from the `claude` command line and its subcommands, from a command name you submit at the prompt, and from commands such as `/security-review` that gather context by running shell commands before their prompt runs. So do errors from `/tui`, which relaunches the CLI.
+These errors come from the `claude` command line and its subcommands, from a command name you submit at the prompt, and from commands such as `/security-review` that gather context by running shell commands before their prompt runs. They also come from `/tui`, which relaunches the CLI.
 
 ### Conflict between --bg and --print
 
