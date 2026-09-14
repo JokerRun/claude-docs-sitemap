@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/plugins
-fetched_at: 2026-08-19T02:28:54.965606Z
-sha256: c8b179ee93ae6f4ee0a7b01b688153988c893a1cbca544859adea71097d296c0
+fetched_at: 2026-09-14T02:24:16.718825Z
+sha256: c0f79d1b6ed8e32def8695828d264110c709300854177c4b1bb524bb1e0a06d6
 ---
 
 > ## Documentation Index
@@ -72,7 +72,7 @@ To use a plugin distributed through a [marketplace](/docs/en/plugin-marketplaces
 
 Plugin paths can be:
 
-* **Relative paths**: resolved relative to your current working directory (for example, `"./plugins/my-plugin"`)
+* **Relative paths**: resolved relative to the `cwd` option (for example, `"./plugins/my-plugin"`)
 * **Absolute paths**: full file system paths (for example, `"/home/user/plugins/my-plugin"`)
 
 <Note>

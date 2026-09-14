@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/skills
-fetched_at: 2026-09-09T02:20:42.382817Z
-sha256: 2a24a587d9bccdae8ec6a9b512145b3d807746548723b9f1e1e44a7d4dbf95f9
+fetched_at: 2026-09-14T02:24:16.718825Z
+sha256: a7027fa28304e8a2c44ab86a09b061b4ea235186568b9e99d59d0357afae8e78
 ---
 
 > ## Documentation Index
@@ -102,9 +102,9 @@ The following example enables every discovered skill in a session and pre-approv
 
 ### Confirm skills loaded
 
-Near the start of the stream, the SDK yields a system message with subtype `init`. Check its `skills` array to confirm your skills loaded before Claude starts working. The array includes the user-invocable skills that you have defined, along with [bundled skills included with Claude Code](/docs/en/skills#bundled-skills).
+Near the start of the stream, the SDK yields a system message with subtype `init`. Check its `skills` array to confirm your skills loaded before Claude starts working. The array includes the user-invocable skills that you have defined with a `description` or `when_to_use` frontmatter field, along with [bundled skills included with Claude Code](/docs/en/skills#bundled-skills).
 
-The array lists user-invocable skills only. A skill with [`user-invocable: false`](/docs/en/skills#control-who-invokes-a-skill) in its frontmatter loads and remains available to Claude, but doesn't appear in the array. The array reflects what the session discovered and lists the same skills whether or not they're in your `skills` list.
+The array lists user-invocable skills only. A skill with [`user-invocable: false`](/docs/en/skills#control-who-invokes-a-skill) in its frontmatter loads and remains available to Claude, but doesn't appear in the array. The array lists the same skills whether or not they're in your `skills` list.
 
 ### Allow only specific skills
 
@@ -166,7 +166,7 @@ The printed list mixes built-in commands, bundled skills, your user-invocable sk
 Available commands: ["clear", "compact", "context", "usage", "code-review", "verify", "security-check", ...]
 ```
 
-Your user-invocable skills appear in both this list and the `skills` array from [Confirm skills loaded](#confirm-skills-loaded). The `slash_commands` list adds the rest of the commands available in your session. A skill with [`user-invocable: false`](/docs/en/skills#control-who-invokes-a-skill) in its frontmatter doesn't appear in either. Sessions that configure [MCP servers](/docs/en/agent-sdk/mcp) can also expose [MCP prompts as commands](/docs/en/mcp#use-mcp-prompts-as-commands).
+A skill with [`user-invocable: false`](/docs/en/skills#control-who-invokes-a-skill) in its frontmatter doesn't appear in this list or in the `skills` array from [Confirm skills loaded](#confirm-skills-loaded). Sessions that configure [MCP servers](/docs/en/agent-sdk/mcp) can also expose [MCP prompts as commands](/docs/en/mcp#use-mcp-prompts-as-commands).
 
 ### Dispatch commands by name
 

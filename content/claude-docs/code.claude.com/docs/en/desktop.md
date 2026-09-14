@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: 4700336eefa763c97828a0e3103b5b1ed49244c19dea1a43436e83cfc1d2fbd5
+fetched_at: 2026-09-14T02:24:16.718825Z
+sha256: b8a6ef9c5dd76007afc525b06e2a1efe32e3cc000604f840bafe59492aa8f105
 ---
 
 > ## Documentation Index
@@ -380,7 +380,7 @@ Claude can also suggest new sessions. When it notices something worth fixing tha
 
 For large refactors, test suites, migrations, or other long-running tasks, select **Cloud** instead of **Local** when starting a session. Cloud sessions run on Anthropic-managed infrastructure by default and continue even if you close the app or shut down your computer. Check back anytime to see progress or steer Claude in a different direction. You can also monitor cloud sessions from [claude.ai/code](https://claude.ai/code) or the [Claude mobile app](/docs/en/mobile).
 
-Cloud sessions also support multiple repositories. After selecting a cloud environment, click the **+** button next to the repo pill to add additional repositories to the session. Each repo gets its own branch selector. This is useful for tasks that span multiple codebases, such as updating a shared library and its consumers.
+Cloud sessions also support multiple repositories. After selecting a cloud environment, click the **+** button next to the selected repository to add more repositories to the session. Each repo gets its own branch selector. This is useful for tasks that span multiple codebases, such as updating a shared library and its consumers.
 
 See [Claude Code on the web](/docs/en/claude-code-on-the-web) for more on how cloud sessions work.
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/overview
-fetched_at: 2026-09-05T02:20:11.001334Z
-sha256: 97ffb20562a473292629fbfb8b8e8611dc72f8afae55a3364baf95a30340d356
+fetched_at: 2026-09-14T02:24:16.718825Z
+sha256: f2b47a950ecc99e9cc41183838b81bd3916645f392839fb18dcf5594c266eaf5
 ---
 
 > ## Documentation Index
@@ -21,7 +21,7 @@ The Agent SDK, the CLI, the Client SDK, and Managed Agents each fit different ne
 
 | If you're...                                                                                            | Use                                                                               | Why                                                                                                  |
 | ------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| Building an agent without implementing the tool loop yourself                                           | **Agent SDK**                                                                     | A library that runs the agent loop in your own process, in Python or TypeScript.                     |
+| Building an agent without implementing the tool loop yourself                                           | **Agent SDK**                                                                     | A Python or TypeScript library that runs the agent loop for you.                                     |
 | Doing interactive development or running one-off tasks from a terminal                                  | [**Claude Code CLI**](/docs/en/overview)                                               | The terminal interface, built for daily interactive use.                                             |
 | Calling the API directly and implementing the tool loop yourself                                        | [**Client SDK**](https://platform.claude.com/docs/en/api/client-sdks)             | Direct access to the Anthropic API rather than to Claude Code. You implement the tool loop yourself. |
 | Running long-running or asynchronous agents without managing your own sandbox or session infrastructure | [**Managed Agents**](https://platform.claude.com/docs/en/managed-agents/overview) | Hosted REST API, a separate product from the Agent SDK. Anthropic runs the agent and the sandbox.    |

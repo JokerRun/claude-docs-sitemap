@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/claude-code-features
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: 57e4ddef10b85b80215ae060afb7a1c9a9dad7701a52a57f8390d411c8d71f19
+fetched_at: 2026-09-14T02:24:16.718825Z
+sha256: a48c7852f655f888a5bd8c58897b0805e1efd11b72dca6f0eaeaa8c0673a5650
 ---
 
 > ## Documentation Index
@@ -190,8 +190,6 @@ The SDK supports two ways to define hooks, and they run side by side:
 
 * **Filesystem hooks:** shell commands defined in `settings.json`, loaded when `settingSources` includes the relevant source. These are the same hooks you'd configure for [interactive Claude Code sessions](/docs/en/hooks-guide).
 * **Programmatic hooks:** callback functions passed directly to `query()`. These run in your application process and can return structured decisions. See [Control execution with hooks](/docs/en/agent-sdk/hooks).
-
-Both types execute during the same hook lifecycle. If you already have hooks in your project's `.claude/settings.json` and you set `settingSources: ["project"]`, those hooks run automatically in the SDK with no extra configuration.
 
 Hook callbacks receive the tool input and return a decision dict. Returning `{}` means allow the tool to proceed. To block execution, return a `hookSpecificOutput` object with `permissionDecision: "deny"` and a `permissionDecisionReason`. The reason is sent to Claude as the tool result. See the [hooks guide](/docs/en/agent-sdk/hooks) for the full callback signature and return types.
 
