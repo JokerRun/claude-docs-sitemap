@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: b3a91470c1a0362c488a6e1cea5c126defe69dd25b98583069db42a6e2fffade
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: cdbc3bf0068e32b303f7cd733dbb2e2a9efab9b022f17cb3de17e13bae4908dc
 ---
 
 ---
@@ -568,7 +568,7 @@ unknown organizations and organizations outside the hierarchy return 404.
 
 - `organization_id: string`
 
-- `settings: array of object or object or object or 3 more`
+- `settings: array of Boolean or Integer or String or 3 more`
 
   - `Boolean object`
 
@@ -787,7 +787,7 @@ unknown organizations and organizations outside the hierarchy return 404.
 
       default: data_retention
 
-    - `value: map[object or object]`
+    - `value: map[Fixed or Indefinite]`
 
       - `Fixed object`
 

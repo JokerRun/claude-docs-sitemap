@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-config
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: ffd44d9bdd08f31607d4fadb6744c61016d94247838506735d0c69c996ca2f19
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: 1f5149b428af1f28255d855568eabd9cb22fc9647a3bb79c7fd421dc29b3b462
 ---
 
 > ## Documentation Index
@@ -37,7 +37,7 @@ Five sections are [required](#required-sections). Every other section is [option
 
 * [`admin`](#admin): Admin API auth and retention for spend limits
 * [`enforcement`](#enforcement): spend-limit fail-open or fail-closed behavior
-* [`pricing`](#pricing): contracted rates and a discount multiplier for the spend meter and for the cost figures developers see
+* [`pricing`](#pricing): contracted rates and a multiplier for the spend meter and for the cost figures developers see
 * [`models`](#models) and `auto_include_builtin_models`: admin-curated model list and per-upstream IDs
 * [`managed`](#managed): managed settings policies by IdP group
 * [`telemetry`](#telemetry): OTLP forwarding to your observability stack
@@ -460,10 +460,10 @@ pricing:
       cache_write: 4.125
 ```
 
-| Field        | Required | Description                                                                                                                                                                |
-| ------------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `multiplier` | No       | Default `1`. The meter multiplies every metered amount by this, whether list-priced or overridden, so `0.85` bills 85% of the price. Must be greater than 0 and at most 1. |
-| `overrides`  | No       | Rows of `{upstream, model, input, output, cache_read, cache_write}` in USD per million tokens. All four rates are required. Each must be greater than 0 and at most 10000. |
+| Field        | Required | Description                                                                                                                                                                                                                     |
+| ------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `multiplier` | No       | Default `1`. The meter multiplies every metered amount by this, whether list-priced or overridden, so `0.85` bills 85% of the price. Must be greater than 0 and at most 10, and a value above 1 is a [markup](#mark-prices-up). |
+| `overrides`  | No       | Rows of `{upstream, model, input, output, cache_read, cache_write}` in USD per million tokens. All four rates are required. Each must be greater than 0 and at most 10000.                                                      |
 
 How the meter matches an override row:
 
@@ -474,6 +474,23 @@ How the meter matches an override row:
 * Web-search requests stay at the \$0.01 list price; the multiplier still applies to them.
 
 For per-region rates, give each region its own named upstream and one row per upstream.
+
+#### Mark prices up
+
+With v2.1.271 or later on the gateway server, you can set `multiplier` above 1, up to 10, to meter more than the provider charges, for example an internal chargeback rate. This example meters every request at 120% of the price:
+
+```yaml theme={null}
+pricing:
+  multiplier: 1.2
+```
+
+With an [`admin:`](#admin) block, the markup also applies to spend limits. The meter counts 120% of the price, so developers reach their caps sooner. The gateway logs a warning at boot that says so.
+
+The multiplier doesn't change what the upstream provider charges for the requests.
+
+If the gateway also [sends the rates to signed-in clients](#send-the-rates-to-signed-in-clients), developers need Claude Code v2.1.271 or later to see the markup. Earlier clients ignore a `multiplier` above 1 and show costs without it.
+
+A gateway server earlier than v2.1.271 refuses to start if you set a `multiplier` above 1.
 
 #### Send the rates to signed-in clients
 
@@ -901,8 +918,8 @@ store:
 # enforcement:
 #   fail_closed_on_error: false
 
-# Meter at contracted rates instead of USD list price. Requires admin:.
-# With managed:, the same rates also go to signed-in clients.
+# Meter at contracted rates instead of USD list price. Requires admin: or a
+# managed: policy. With managed:, the same rates also go to signed-in clients.
 # Rates below are placeholders, not real contract prices.
 # pricing:
 #   multiplier: 0.85

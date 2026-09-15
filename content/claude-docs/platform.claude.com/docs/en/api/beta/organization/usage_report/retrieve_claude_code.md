@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/usage_report/retrieve_claude_code
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 473084e0fef163961d53ca45c2f3bff80e9c4603d50894adfa4283c7698516f4
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: daa5276d6eb3b98f0715eeb07f15103ae10390ce6bc676189bdbf2d84a58b547
 ---
 
 ---
@@ -43,7 +43,7 @@ Enables organizations to analyze developer productivity and build custom dashboa
 
     List of Claude Code usage records for the requested date.
 
-    - `actor: object or object`
+    - `actor: UserActor or APIActor`
 
       The user or API key that performed the Claude Code actions.
 

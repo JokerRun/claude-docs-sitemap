@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: a43f4a145320ecff8da141c321f3220246884acb226285095ad0ff123ceb2b60
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: 6ea4606207c9a740c076d141f5601f9bb55d41704807fd3aa50c40b3b502535d
 ---
 
 > ## Documentation Index
@@ -549,7 +549,8 @@ The panel also opens on its own once Claude starts editing files, if your termin
 While the panel is open, you can:
 
 * **Jump to a file**: click its row in the list. Scroll the panel with the mouse wheel. When the file list itself is too long to fit, scroll it with `Alt+Up` and `Alt+Down`, or `Ctrl+Up` and `Ctrl+Down`.
-* **Ask Claude about specific lines**: select them in the panel with the mouse. Claude Code attaches the selection to your next prompt and shows a line count next to the input until you send it.
+* **Ask Claude about specific lines**: select them in the panel with the mouse. Claude Code attaches the selection to your next prompt and shows a line count in the input until you send it.
+  * To send the prompt without the selection, move the cursor to just after the line-count indicator and press `Backspace` to delete it. Requires Claude Code v2.1.271 or later.
 * **Show the files the panel leaves out**: the list skips test files and generated files, and collapses changes from before this session into one line at the bottom. Click either count line to expand it.
 * **Change what the panel compares against**: press `Ctrl+X B` to cycle from this session's changes, to your uncommitted changes as one list, to everything since your branch split from the default branch. Claude Code remembers the choice for each project.
 

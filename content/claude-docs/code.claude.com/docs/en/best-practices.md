@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/best-practices
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: f0a3c427a04516cd711cf8660a110dd4f7048707ba9d6badb1b49d289e83ebf7
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: 91876590f0112ff790ab17bb7cdb1c3e9e37ab64bc1a7d4ca25dd75dc9fb25e7
 ---
 
 > ## Documentation Index
@@ -522,8 +522,6 @@ You can also integrate Claude into existing data/processing pipelines:
 ```bash theme={null}
 claude -p "<your prompt>" --output-format json | your_command
 ```
-
-Use `--verbose` for debugging during development, and turn it off in production.
 
 ### Run autonomously with auto mode
 

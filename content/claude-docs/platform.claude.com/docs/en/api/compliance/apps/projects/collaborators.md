@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/collaborators
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: e1b1eb86ca1ffbe20951bc61641e5d3890e791489938c168a5d8f5fd5f141c75
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: bc5989d542a799066f117c9b2a9a95c6d0e49807c12537dad4d5d688f8393daa
 ---
 
 ---
@@ -53,7 +53,7 @@ role.
 
 ### Returns
 
-- `data: array of object or object or object or object`
+- `data: array of ComplianceProjectUserCollaborator or ComplianceProjectGroupCollaborator or ComplianceProjectOrganizationCollaborator or ComplianceProjectOrganizationRoleCollaborator`
 
   List of collaborators sorted chronologically by granted_at, tie break by the underlying role-assignment UUID
 
@@ -221,7 +221,7 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID/collabora
 
 ### Collaborator List Response
 
-- `CollaboratorListResponse = object or object or object or object`
+- `CollaboratorListResponse = ComplianceProjectUserCollaborator or ComplianceProjectGroupCollaborator or ComplianceProjectOrganizationCollaborator or ComplianceProjectOrganizationRoleCollaborator`
 
   - `ComplianceProjectUserCollaborator object`
 

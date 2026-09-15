@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/usage_report
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: e1993de7fce3c3fbdd6025a1de42968fc0600b45d0daa890356d511e8c3a5e12
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: d856f6038d6c321ffbea392f97f4f89f7ebd963e6017c8936407d7845b07e68e
 ---
 
 ---
@@ -444,7 +444,7 @@ Enables organizations to analyze developer productivity and build custom dashboa
 
     List of Claude Code usage records for the requested date.
 
-    - `actor: object or object`
+    - `actor: UserActor or APIActor`
 
       The user or API key that performed the Claude Code actions.
 
@@ -688,7 +688,7 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
 
     List of Claude Code usage records for the requested date.
 
-    - `actor: object or object`
+    - `actor: UserActor or APIActor`
 
       The user or API key that performed the Claude Code actions.
 

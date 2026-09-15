@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/remote
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: d97b04bbf6b562fd465914a8a359a33f679e3a4ea2e7cbeda9a703af4d9a7061
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: 0bbf2cd036aeef317795d4b4fc83d783022f0293e52c82aa07c9ef455f0717ad
 ---
 
 ---
@@ -351,7 +351,7 @@ malformed session identifier returns 400.
 
     Unique identifier for the message, e.g. `csev_abc123`
 
-  - `content: array of object or object or object`
+  - `content: array of Text or ToolUse or ToolResult`
 
     Content blocks within the message
 

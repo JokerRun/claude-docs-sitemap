@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 985cf589469119fae68c7053f0a3fb3c0ea620d6407a5b068013fa5138ea9e65
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: bc3a629e1de187cff850d58892812e10cb8b977091f41a7c75b1fc57a25fa55b
 ---
 
 ---
@@ -593,7 +593,7 @@ GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
 
 #### Returns
 
-- `data: array of object or object`
+- `data: array of ComplianceProjectFileReference or ComplianceProjectDocReference`
 
   List of attachments sorted chronologically by created_at, tie break by id
 
@@ -747,7 +747,7 @@ role.
 
 #### Returns
 
-- `data: array of object or object or object or object`
+- `data: array of ComplianceProjectUserCollaborator or ComplianceProjectGroupCollaborator or ComplianceProjectOrganizationCollaborator or ComplianceProjectOrganizationRoleCollaborator`
 
   List of collaborators sorted chronologically by granted_at, tie break by the underlying role-assignment UUID
 

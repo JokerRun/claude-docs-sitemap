@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/messages
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 6613e9dcd37c4138e8fb60c2940c6900671354a8b7924a9ed9d93a55eb036caa
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: 26088b02fc4d203bf6fa12e5572e3da5573b99e8c1df8c8bf713af73f8e47b26
 ---
 
 ---
@@ -88,7 +88,7 @@ explicit 400; restart the walk to read under the current boundary.
 
     Message identifier, prefixed `clsm_`. Stable for as long as the message's turn is retained: identifiers of retained turns do not change as older turns age out of the organization's retention period. The `retention_elapsed` placeholder's identifier is distinct from every retained turn's and changes only when further turns age out.
 
-  - `content: array of object or object or object`
+  - `content: array of Text or ToolUse or ToolResult`
 
     Content blocks within the message, discriminated on `type` (`text` / `tool_use` / `tool_result`: the same discriminator values as the claude.ai chat-messages endpoint; the tool variants omit `integration_name` and `mcp_server_url`, and `text` carries `truncated`). Extended-thinking content is never included. The request's `system` field is never included; a presence-only marker message is emitted when it was set. The request's `tools[]` definitions are never included as transcript messages. Project-level instructions (such as CLAUDE.md files) appear in the message stream as a user-role context block and are included. Empty when `provenance.type` is `content_unavailable`.
 
@@ -184,7 +184,7 @@ explicit 400; restart the walk to read under the current boundary.
 
     The model that served this assistant turn, as reported in the `model` field of the underlying Messages API response. Null on user messages and on any assistant message whose `provenance` is set: client-asserted history and synthetic markers were not produced by a model during this session, and for unavailable content the serving model is not known.
 
-  - `provenance: object or object or object or null`
+  - `provenance: ContentUnavailable or ClientAsserted or SyntheticMarker or null`
 
     Where this turn's content came from, discriminated on `type`. Null (the common case) means verified content: on an assistant message, content Claude produced during this session; on a user message, content the user sent. `content_unavailable`: the turn's content cannot be returned and `content` is empty; `reason` says why. `client_asserted`: assistant content the client supplied as conversation history; `content` shows what the model received but its authorship is not verified; never on user-role messages. `synthetic_marker`: a transcript marker the endpoint generated rather than content either party sent during the session. Both `client_asserted` and `synthetic_marker` can result from normal request or client processing, not only client modification. Callers should tolerate unrecognized `type` values.
 
@@ -359,7 +359,7 @@ curl https://api.anthropic.com/v1/compliance/apps/sessions/local/$LOCAL_SESSION_
 
     Message identifier, prefixed `clsm_`. Stable for as long as the message's turn is retained: identifiers of retained turns do not change as older turns age out of the organization's retention period. The `retention_elapsed` placeholder's identifier is distinct from every retained turn's and changes only when further turns age out.
 
-  - `content: array of object or object or object`
+  - `content: array of Text or ToolUse or ToolResult`
 
     Content blocks within the message, discriminated on `type` (`text` / `tool_use` / `tool_result`: the same discriminator values as the claude.ai chat-messages endpoint; the tool variants omit `integration_name` and `mcp_server_url`, and `text` carries `truncated`). Extended-thinking content is never included. The request's `system` field is never included; a presence-only marker message is emitted when it was set. The request's `tools[]` definitions are never included as transcript messages. Project-level instructions (such as CLAUDE.md files) appear in the message stream as a user-role context block and are included. Empty when `provenance.type` is `content_unavailable`.
 
@@ -455,7 +455,7 @@ curl https://api.anthropic.com/v1/compliance/apps/sessions/local/$LOCAL_SESSION_
 
     The model that served this assistant turn, as reported in the `model` field of the underlying Messages API response. Null on user messages and on any assistant message whose `provenance` is set: client-asserted history and synthetic markers were not produced by a model during this session, and for unavailable content the serving model is not known.
 
-  - `provenance: object or object or object or null`
+  - `provenance: ContentUnavailable or ClientAsserted or SyntheticMarker or null`
 
     Where this turn's content came from, discriminated on `type`. Null (the common case) means verified content: on an assistant message, content Claude produced during this session; on a user message, content the user sent. `content_unavailable`: the turn's content cannot be returned and `content` is empty; `reason` says why. `client_asserted`: assistant content the client supplied as conversation history; `content` shows what the model received but its authorship is not verified; never on user-role messages. `synthetic_marker`: a transcript marker the endpoint generated rather than content either party sent during the session. Both `client_asserted` and `synthetic_marker` can result from normal request or client processing, not only client modification. Callers should tolerate unrecognized `type` values.
 

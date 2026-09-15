@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/list_effective
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: 442ffddb788a975b049d666d3210a5b13854aa48ff539509460d7967425921db
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: ec8d08b3313b8953a685a17ebfdc36b44fcf05df9bdcf0f881a812cfa0a59342
 ---
 
 ---
@@ -120,7 +120,7 @@ Paginates by member, so a member's periods never split across pages.
 
       Tagged ID of the member the spend limit applies to.
 
-  - `source: object or object or object or 2 more`
+  - `source: User or SeatTier or RBACGroup or 2 more`
 
     - `User object`
 

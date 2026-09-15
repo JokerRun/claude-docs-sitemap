@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/features-overview
-fetched_at: 2026-09-09T02:20:42.382817Z
-sha256: b817faae653dc3b493b5a6d278528ad57d26b40c08316244d72a4f4e1434bc15
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: fad6cc0b1ebf429fda686679b9f6472a58aeaae9efed344c1e43297e32c8d536
 ---
 
 > ## Documentation Index
@@ -283,7 +283,7 @@ Each feature loads at different points in your session. The tabs below explain w
 
     * The agent's own system prompt, not the Claude Code system prompt
     * Full content of skills listed in the agent's `skills:` field
-    * CLAUDE.md and git status, except the built-in Explore and Plan agents [omit both](/docs/en/sub-agents#what-loads-at-startup)
+    * CLAUDE.md and git status, except the built-in Explore and Plan agents [omit both](/docs/en/sub-agents#what-loads-at-startup), and an agent whose definition sets [`omitClaudeMd`](/docs/en/sub-agents#supported-frontmatter-fields) skips the user, project, and local CLAUDE.md files
     * Whatever context the lead agent passes in the prompt
 
     For a [fork](/docs/en/sub-agents#fork-the-current-conversation), Claude Code loads the parent's conversation so far, system prompt, and tools instead.

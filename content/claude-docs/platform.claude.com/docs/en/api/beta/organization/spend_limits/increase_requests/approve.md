@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests/approve
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: 4d6032e4b8965989b75393004d26a1a9fb796baea0e4c3d117d81d990f235ce2
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: 989438c6cf8d1b5e0e511b9bca060ec6aaf9d0c8197c4005528e8afcc0d486ef
 ---
 
 ---
@@ -97,7 +97,7 @@ the member was blocked on. Anthropic emails the requester unless
 
   format: date-time
 
-- `resolved_by: object or object or null`
+- `resolved_by: UserActor or ScopedAPIKeyActor or null`
 
   - `UserActor object`
 
@@ -177,7 +177,7 @@ the member was blocked on. Anthropic emails the requester unless
 
     - `"weekly"`
 
-  - `scope: object or object or object or 2 more`
+  - `scope: User or SeatTier or RBACGroup or 2 more`
 
     What the limit applies to. A tagged union on `type`; each variant carries the identifier for its scope.
 
@@ -301,7 +301,7 @@ the member was blocked on. Anthropic emails the requester unless
 
       Tagged ID of the member the spend limit applies to.
 
-  - `source: object or object or object or 2 more`
+  - `source: User or SeatTier or RBACGroup or 2 more`
 
     - `User object`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/remote/messages
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: f50963e68f9cc1b7d56ac238088ea93f89ac1c1663e2d64b801efd3f510306d5
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: 6d4e21879e35aff15b96ce517e61ca6dce2d5d9fcc2fcce2bafa1da82b7b5a8a
 ---
 
 ---
@@ -97,7 +97,7 @@ malformed session identifier returns 400.
 
     Unique identifier for the message, e.g. `csev_abc123`
 
-  - `content: array of object or object or object`
+  - `content: array of Text or ToolUse or ToolResult`
 
     Content blocks within the message
 
@@ -339,7 +339,7 @@ curl https://api.anthropic.com/v1/compliance/apps/sessions/remote/$CLAUDE_REMOTE
 
     Unique identifier for the message, e.g. `csev_abc123`
 
-  - `content: array of object or object or object`
+  - `content: array of Text or ToolUse or ToolResult`
 
     Content blocks within the message
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/messages
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 4b65d50a4c9b0a8809068df4bb9582164c8e7997b899790620fb0eca2ae2b0b1
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: d28f1c42d2b51ae39fe3fcca9b0ab4d2bd537963bcfc01f18d04b13e45850299
 ---
 
 ---
@@ -158,7 +158,7 @@ Retrieves message history and file metadata for a specific chat.
 
       Artifact version ID e.g. 'claude_artifact_version_abc123'
 
-  - `content: array of object or object or object`
+  - `content: array of Text or ToolUse or ToolResult`
 
     Content blocks within the message
 
@@ -522,7 +522,7 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/$CLAUDE_CHAT_ID/messages
 
       Artifact version ID e.g. 'claude_artifact_version_abc123'
 
-  - `content: array of object or object or object`
+  - `content: array of Text or ToolUse or ToolResult`
 
     Content blocks within the message
 

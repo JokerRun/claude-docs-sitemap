@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: 982ebf98c4b92480f4a6b3071778e35ffaa9b564cd1557691fae9ed68599d0fe
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: 81de8b85623a493207fd7b662d4d8a4a2f54f0f4583df9d3b363d85383180fdc
 ---
 
 ---
@@ -57,7 +57,7 @@ GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
 
 ### Returns
 
-- `data: array of object or object`
+- `data: array of ComplianceProjectFileReference or ComplianceProjectDocReference`
 
   List of attachments sorted chronologically by created_at, tie break by id
 
@@ -172,7 +172,7 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID/attachmen
 
 ### Attachment List Response
 
-- `AttachmentListResponse = object or object`
+- `AttachmentListResponse = ComplianceProjectFileReference or ComplianceProjectDocReference`
 
   - `ComplianceProjectFileReference object`
 

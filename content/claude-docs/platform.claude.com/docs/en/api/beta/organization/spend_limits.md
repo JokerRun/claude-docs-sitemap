@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: 00505b8dd8d0aadea22669aefd459d1fdb245d39af636e30023223dd854b5127
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: 2ae75671257279dd5fc66fd65a84de8ebce6bd287a1375d457fb0e07174402b3
 ---
 
 ---
@@ -90,7 +90,7 @@ group, and organization-level defaults are configured in claude.ai.
 
     - `"weekly"`
 
-  - `scope: object or object or object or 2 more`
+  - `scope: User or SeatTier or RBACGroup or 2 more`
 
     What the limit applies to. A tagged union on `type`; each variant carries the identifier for its scope.
 
@@ -231,7 +231,7 @@ Retrieve a spend limit by ID.
 
     - `"weekly"`
 
-  - `scope: object or object or object or 2 more`
+  - `scope: User or SeatTier or RBACGroup or 2 more`
 
     What the limit applies to. A tagged union on `type`; each variant carries the identifier for its scope.
 
@@ -463,7 +463,7 @@ Paginates by member, so a member's periods never split across pages.
 
       Tagged ID of the member the spend limit applies to.
 
-  - `source: object or object or object or 2 more`
+  - `source: User or SeatTier or RBACGroup or 2 more`
 
     - `User object`
 
@@ -595,7 +595,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limits/effective \
 
     - `"weekly"`
 
-  - `scope: object or object or object or 2 more`
+  - `scope: User or SeatTier or RBACGroup or 2 more`
 
     What the limit applies to. A tagged union on `type`; each variant carries the identifier for its scope.
 
@@ -721,7 +721,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limits/effective \
 
       Tagged ID of the member the spend limit applies to.
 
-  - `source: object or object or object or 2 more`
+  - `source: User or SeatTier or RBACGroup or 2 more`
 
     - `User object`
 
@@ -870,7 +870,7 @@ Requests whose requester is no longer a member are excluded.
 
     format: date-time
 
-  - `resolved_by: object or object or null`
+  - `resolved_by: UserActor or ScopedAPIKeyActor or null`
 
     - `UserActor object`
 
@@ -982,7 +982,7 @@ Requests whose requester is no longer a member are excluded.
 
         Tagged ID of the member the spend limit applies to.
 
-    - `source: object or object or object or 2 more`
+    - `source: User or SeatTier or RBACGroup or 2 more`
 
       - `User object`
 
@@ -1173,7 +1173,7 @@ requester at the request's period.
 
     format: date-time
 
-  - `resolved_by: object or object or null`
+  - `resolved_by: UserActor or ScopedAPIKeyActor or null`
 
     - `UserActor object`
 
@@ -1285,7 +1285,7 @@ requester at the request's period.
 
         Tagged ID of the member the spend limit applies to.
 
-    - `source: object or object or object or 2 more`
+    - `source: User or SeatTier or RBACGroup or 2 more`
 
       - `User object`
 
@@ -1485,7 +1485,7 @@ the member was blocked on. Anthropic emails the requester unless
 
   format: date-time
 
-- `resolved_by: object or object or null`
+- `resolved_by: UserActor or ScopedAPIKeyActor or null`
 
   - `UserActor object`
 
@@ -1565,7 +1565,7 @@ the member was blocked on. Anthropic emails the requester unless
 
     - `"weekly"`
 
-  - `scope: object or object or object or 2 more`
+  - `scope: User or SeatTier or RBACGroup or 2 more`
 
     What the limit applies to. A tagged union on `type`; each variant carries the identifier for its scope.
 
@@ -1689,7 +1689,7 @@ the member was blocked on. Anthropic emails the requester unless
 
       Tagged ID of the member the spend limit applies to.
 
-  - `source: object or object or object or 2 more`
+  - `source: User or SeatTier or RBACGroup or 2 more`
 
     - `User object`
 
@@ -1895,7 +1895,7 @@ Idempotent on `denied`; denying an already-`approved` request returns
 
     format: date-time
 
-  - `resolved_by: object or object or null`
+  - `resolved_by: UserActor or ScopedAPIKeyActor or null`
 
     - `UserActor object`
 
@@ -2007,7 +2007,7 @@ Idempotent on `denied`; denying an already-`approved` request returns
 
         Tagged ID of the member the spend limit applies to.
 
-    - `source: object or object or object or 2 more`
+    - `source: User or SeatTier or RBACGroup or 2 more`
 
       - `User object`
 

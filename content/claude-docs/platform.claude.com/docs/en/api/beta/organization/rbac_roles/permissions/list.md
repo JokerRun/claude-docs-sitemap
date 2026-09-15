@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rbac_roles/permissions/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: aa2b5e4ccb78a515ddcf6711778aacbf25e35b54db11195013555ba169ca7364
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: 517104725df7bb4236fc39df9d79aa3752dc6631b00e35ecca793d6a127a71a7
 ---
 
 ---
@@ -69,7 +69,7 @@ The RBAC Roles API is available to Claude Enterprise organizations only.
     `all_connectors` grants carry a tool-access action, the scope action, or
     an authentication-method action (`interactive` or `managed`).
 
-  - `resource: object or object or object or 2 more`
+  - `resource: Organization or ConnectorTool or ConnectorScope or 2 more`
 
     What the permission applies to.
 

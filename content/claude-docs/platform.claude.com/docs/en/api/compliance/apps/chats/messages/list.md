@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/messages/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 5dc69bf2af8502641909b722fbcaad7f5e41ff808e207966b3e467852c4b391f
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: 1edb81fa94f8ff6c61107e9d455bc561019b542ac1bc8b7c2d1987ac87a867b2
 ---
 
 ---
@@ -156,7 +156,7 @@ Retrieves message history and file metadata for a specific chat.
 
       Artifact version ID e.g. 'claude_artifact_version_abc123'
 
-  - `content: array of object or object or object`
+  - `content: array of Text or ToolUse or ToolResult`
 
     Content blocks within the message
 

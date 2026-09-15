@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mobile
-fetched_at: 2026-09-14T02:24:16.718825Z
-sha256: 024aeb1e6a601dcc51a59f4cce14cdc0367268d93699822a1a24c6c39d103425
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: a4849a7c882a6d057cb2b8a7610c8556b00913b11b92297b2a2811af5e2337d1
 ---
 
 > ## Documentation Index
@@ -26,7 +26,7 @@ The Claude app for [iOS](https://apps.apple.com/us/app/claude-by-anthropic/id647
     Install the Claude app for [iOS](https://apps.apple.com/us/app/claude-by-anthropic/id6473753684) or [Android](https://play.google.com/store/apps/details?id=com.anthropic.claude). On an iPad, install the same iOS app.
 
     <Tip>
-      Run `/mobile` in a Claude Code session to display a download QR code you can scan. `/ios` and `/android` do the same thing.
+      Run `/mobile` in a Claude Code session to show a QR code for [claude.ai/mobile](https://claude.ai/mobile), which opens the right app store for your phone. `/ios` and `/android` do the same thing.
     </Tip>
   </Step>
 

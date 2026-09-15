@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cloud-environments
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 29998b3dc2a851eaf60b64058c4be0d382bad76c81ed9bdb2cdcdfd5aca7b178
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: 1b3876807e2d0a7839ccf8279e50797fd74c1fa30f7847d24641b44f5279496f
 ---
 
 > ## Documentation Index
@@ -479,7 +479,6 @@ With **Trusted** network access, sessions can reach the following domains by def
 <AccordionGroup>
   <Accordion title="Anthropic services">
     * api.anthropic.com
-    * statsig.anthropic.com
     * docs.claude.com
     * platform.claude.com
     * code.claude.com
@@ -551,6 +550,7 @@ With **Trusted** network access, sessions can reach the following domains by def
     * [www.java.net](http://www.java.net)
     * download.oracle.com
     * yum.oracle.com
+    * \*.r2.cloudflarestorage.com
   </Accordion>
 
   <Accordion title="JavaScript and Node package managers">
@@ -561,6 +561,8 @@ With **Trusted** network access, sessions can reach the following domains by def
     * npmjs.org
     * yarnpkg.com
     * registry.yarnpkg.com
+    * jsr.io
+    * npm.jsr.io
   </Accordion>
 
   <Accordion title="Python package managers">
@@ -615,11 +617,13 @@ With **Trusted** network access, sessions can reach the following domains by def
     * central.maven.org
     * repo1.maven.org
     * repo.maven.apache.org
+    * maven.google.com
     * jcenter.bintray.com
     * gradle.org
     * [www.gradle.org](http://www.gradle.org)
     * services.gradle.org
     * plugins.gradle.org
+    * plugins-artifacts.gradle.org
     * kotlinlang.org
     * [www.kotlinlang.org](http://www.kotlinlang.org)
     * spring.io
@@ -697,14 +701,7 @@ With **Trusted** network access, sessions can reach the following domains by def
   </Accordion>
 
   <Accordion title="Cloud services and monitoring">
-    * statsig.com
-    * [www.statsig.com](http://www.statsig.com)
-    * api.statsig.com
-    * sentry.io
-    * \*.sentry.io
-    * downloads.sentry-cdn.com
     * http-intake.logs.datadoghq.com
-    * browser-intake-us5-datadoghq.com
     * \*.datadoghq.com
     * \*.datadoghq.eu
     * api.honeycomb.io

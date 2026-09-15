@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/streaming
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: ad002d1a6e5aa3cb8256df9e9e2c605cbdeef8918bb3c52ba9beb21e9bab0678
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: b0fefc9a3d98b06f5f18736c833527ccbad28ab5c01cd0270a8b1dffe243787a
 ---
 
 ---
@@ -364,7 +364,7 @@ When using [thinking](https://platform.claude.com/docs/en/build-with-claude/thin
 
 For thinking content, a special `signature_delta` event is sent just before the `content_block_stop` event. This signature is used to verify the integrity of the thinking block.
 
-When `display: "omitted"` is set on the thinking configuration, no `thinking_delta` events are sent. The thinking block opens, receives a single `signature_delta`, and closes. With `display: "updates"` (beta), reasoning blocks stream the same way, and only the [progress updates](https://platform.claude.com/docs/en/build-with-claude/thinking#progress-updates) that some models write between tool calls stream `thinking_delta` events. See [Controlling thinking display](https://platform.claude.com/docs/en/build-with-claude/thinking#controlling-thinking-display).
+When `display: "omitted"` is set on the thinking configuration, no thinking text is streamed. The thinking block opens, receives a `thinking_delta` with an empty `thinking` string and then a single `signature_delta`, and closes. With `display: "updates"` (beta), reasoning blocks stream the same way, and only the [progress updates](https://platform.claude.com/docs/en/build-with-claude/thinking#progress-updates) that some models write between tool calls stream `thinking_delta` events that carry text. See [Controlling thinking display](https://platform.claude.com/docs/en/build-with-claude/thinking#controlling-thinking-display).
 
 A typical thinking delta looks like:
 

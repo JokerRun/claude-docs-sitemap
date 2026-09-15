@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/retrieve
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: b570e7c8903cde986faecf9d935d450ab18b78a361d6766b60f6a6f888063aab
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: 9ea5a2cb4b08a6f0045a5fdc83d09c26b2f43671995ea82d7972447fe8f819f2
 ---
 
 ---
@@ -62,7 +62,7 @@ Retrieve a spend limit by ID.
 
     - `"weekly"`
 
-  - `scope: object or object or object or 2 more`
+  - `scope: User or SeatTier or RBACGroup or 2 more`
 
     What the limit applies to. A tagged union on `type`; each variant carries the identifier for its scope.
 

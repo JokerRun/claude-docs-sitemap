@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests/list
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: b6a49978a07de1cd2c367259a94e19ea2d232fbbd011cfd433b7b6f01ccd27f2
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: 1184059c6cc8dc0ec16aad550dbb3343ffd0df4b0499104851043221b3fc2ece
 ---
 
 ---
@@ -99,7 +99,7 @@ Requests whose requester is no longer a member are excluded.
 
     format: date-time
 
-  - `resolved_by: object or object or null`
+  - `resolved_by: UserActor or ScopedAPIKeyActor or null`
 
     - `UserActor object`
 
@@ -211,7 +211,7 @@ Requests whose requester is no longer a member are excluded.
 
         Tagged ID of the member the spend limit applies to.
 
-    - `source: object or object or object or 2 more`
+    - `source: User or SeatTier or RBACGroup or 2 more`
 
       - `User object`
 

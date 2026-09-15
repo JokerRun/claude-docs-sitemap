@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: 5f2cac2f662390fad3b379f9cc468b26b439e11b44d65fa4d4043d562eec1fe2
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: 469c9d56f46ff972146ae3e07e549ac430533aa80e6f5518ed42e8a2aa86f0bd
 ---
 
 ---
@@ -11077,7 +11077,7 @@ Enables organizations to analyze developer productivity and build custom dashboa
 
     List of Claude Code usage records for the requested date.
 
-    - `actor: object or object`
+    - `actor: UserActor or APIActor`
 
       The user or API key that performed the Claude Code actions.
 
@@ -16644,7 +16644,7 @@ group, and organization-level defaults are configured in claude.ai.
 
     - `"weekly"`
 
-  - `scope: object or object or object or 2 more`
+  - `scope: User or SeatTier or RBACGroup or 2 more`
 
     What the limit applies to. A tagged union on `type`; each variant carries the identifier for its scope.
 
@@ -16785,7 +16785,7 @@ Retrieve a spend limit by ID.
 
     - `"weekly"`
 
-  - `scope: object or object or object or 2 more`
+  - `scope: User or SeatTier or RBACGroup or 2 more`
 
     What the limit applies to. A tagged union on `type`; each variant carries the identifier for its scope.
 
@@ -17017,7 +17017,7 @@ Paginates by member, so a member's periods never split across pages.
 
       Tagged ID of the member the spend limit applies to.
 
-  - `source: object or object or object or 2 more`
+  - `source: User or SeatTier or RBACGroup or 2 more`
 
     - `User object`
 
@@ -17198,7 +17198,7 @@ Requests whose requester is no longer a member are excluded.
 
     format: date-time
 
-  - `resolved_by: object or object or null`
+  - `resolved_by: UserActor or ScopedAPIKeyActor or null`
 
     - `UserActor object`
 
@@ -17310,7 +17310,7 @@ Requests whose requester is no longer a member are excluded.
 
         Tagged ID of the member the spend limit applies to.
 
-    - `source: object or object or object or 2 more`
+    - `source: User or SeatTier or RBACGroup or 2 more`
 
       - `User object`
 
@@ -17501,7 +17501,7 @@ requester at the request's period.
 
     format: date-time
 
-  - `resolved_by: object or object or null`
+  - `resolved_by: UserActor or ScopedAPIKeyActor or null`
 
     - `UserActor object`
 
@@ -17613,7 +17613,7 @@ requester at the request's period.
 
         Tagged ID of the member the spend limit applies to.
 
-    - `source: object or object or object or 2 more`
+    - `source: User or SeatTier or RBACGroup or 2 more`
 
       - `User object`
 
@@ -17813,7 +17813,7 @@ the member was blocked on. Anthropic emails the requester unless
 
   format: date-time
 
-- `resolved_by: object or object or null`
+- `resolved_by: UserActor or ScopedAPIKeyActor or null`
 
   - `UserActor object`
 
@@ -17893,7 +17893,7 @@ the member was blocked on. Anthropic emails the requester unless
 
     - `"weekly"`
 
-  - `scope: object or object or object or 2 more`
+  - `scope: User or SeatTier or RBACGroup or 2 more`
 
     What the limit applies to. A tagged union on `type`; each variant carries the identifier for its scope.
 
@@ -18017,7 +18017,7 @@ the member was blocked on. Anthropic emails the requester unless
 
       Tagged ID of the member the spend limit applies to.
 
-  - `source: object or object or object or 2 more`
+  - `source: User or SeatTier or RBACGroup or 2 more`
 
     - `User object`
 
@@ -18223,7 +18223,7 @@ Idempotent on `denied`; denying an already-`approved` request returns
 
     format: date-time
 
-  - `resolved_by: object or object or null`
+  - `resolved_by: UserActor or ScopedAPIKeyActor or null`
 
     - `UserActor object`
 
@@ -18335,7 +18335,7 @@ Idempotent on `denied`; denying an already-`approved` request returns
 
         Tagged ID of the member the spend limit applies to.
 
-    - `source: object or object or object or 2 more`
+    - `source: User or SeatTier or RBACGroup or 2 more`
 
       - `User object`
 
@@ -19319,7 +19319,7 @@ The RBAC Roles API is available to Claude Enterprise organizations only.
     `all_connectors` grants carry a tool-access action, the scope action, or
     an authentication-method action (`interactive` or `managed`).
 
-  - `resource: object or object or object or 2 more`
+  - `resource: Organization or ConnectorTool or ConnectorScope or 2 more`
 
     What the permission applies to.
 

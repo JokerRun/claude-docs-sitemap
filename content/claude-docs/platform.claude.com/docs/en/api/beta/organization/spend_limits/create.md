@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/create
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 92272e9ed07dacdbdb4bd1f6beb50fd7492e1fb6c2acc38d092dd38d5064074e
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: d8ad5273e0e20066d11e8d6d9d80de7c8317e10142c7ad5103ca46a4028b0453
 ---
 
 ---
@@ -88,7 +88,7 @@ group, and organization-level defaults are configured in claude.ai.
 
     - `"weekly"`
 
-  - `scope: object or object or object or 2 more`
+  - `scope: User or SeatTier or RBACGroup or 2 more`
 
     What the limit applies to. A tagged union on `type`; each variant carries the identifier for its scope.
 

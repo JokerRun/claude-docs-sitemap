@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/collaborators/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: fa3deefa4b8d98dbdf423334205f6ef74f2171dbf69e6ff8b2dd491103c89927
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: 0dcf36e6d4915fa77a1d70a9a103d508e2ba72a9f39c42df873c2bd289569425
 ---
 
 ---
@@ -51,7 +51,7 @@ role.
 
 ## Returns
 
-- `data: array of object or object or object or object`
+- `data: array of ComplianceProjectUserCollaborator or ComplianceProjectGroupCollaborator or ComplianceProjectOrganizationCollaborator or ComplianceProjectOrganizationRoleCollaborator`
 
   List of collaborators sorted chronologically by granted_at, tie break by the underlying role-assignment UUID
 

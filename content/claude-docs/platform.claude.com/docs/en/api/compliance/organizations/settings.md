@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/settings
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: fdb00480778365e62779f6b5c1962f0f9984350b4f3cf3f532cbce639265bb16
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: df1a3b7129a4e5bea3538b3ebfad8c55ad70e01723901c32ea071a66231d8cf5
 ---
 
 ---
@@ -91,7 +91,7 @@ unknown organizations and organizations outside the hierarchy return 404.
 
 - `organization_id: string`
 
-- `settings: array of object or object or object or 3 more`
+- `settings: array of Boolean or Integer or String or 3 more`
 
   - `Boolean object`
 
@@ -310,7 +310,7 @@ unknown organizations and organizations outside the hierarchy return 404.
 
       default: data_retention
 
-    - `value: map[object or object]`
+    - `value: map[Fixed or Indefinite]`
 
       - `Fixed object`
 
@@ -436,7 +436,7 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORGANIZATION_ID/sett
 
   - `organization_id: string`
 
-  - `settings: array of object or object or object or 3 more`
+  - `settings: array of Boolean or Integer or String or 3 more`
 
     - `Boolean object`
 
@@ -655,7 +655,7 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORGANIZATION_ID/sett
 
         default: data_retention
 
-      - `value: map[object or object]`
+      - `value: map[Fixed or Indefinite]`
 
         - `Fixed object`
 

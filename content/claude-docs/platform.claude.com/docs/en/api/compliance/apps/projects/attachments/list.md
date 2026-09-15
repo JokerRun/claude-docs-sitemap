@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 34329e6dbc3d9c4cfe034df742e0fd1fb55132cb5c0e7d35944fed82c6345b58
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: 02174af78566088e2fa03b2349e3f740650083f5d3f2334b4ec9baa62f1223ef
 ---
 
 ---
@@ -55,7 +55,7 @@ GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
 
 ## Returns
 
-- `data: array of object or object`
+- `data: array of ComplianceProjectFileReference or ComplianceProjectDocReference`
 
   List of attachments sorted chronologically by created_at, tie break by id
 

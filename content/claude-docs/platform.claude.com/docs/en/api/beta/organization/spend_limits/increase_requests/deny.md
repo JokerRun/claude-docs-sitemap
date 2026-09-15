@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests/deny
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: 58191a5e786fed99064888d37a8c7154e9f009b3ada6a85e6ce04719bd8c9833
+fetched_at: 2026-09-15T02:21:43.636809Z
+sha256: 3f33f4115836363e70a366370ca9295facb104ab7cca00866d7e4482ca0d4fbd
 ---
 
 ---
@@ -85,7 +85,7 @@ Idempotent on `denied`; denying an already-`approved` request returns
 
     format: date-time
 
-  - `resolved_by: object or object or null`
+  - `resolved_by: UserActor or ScopedAPIKeyActor or null`
 
     - `UserActor object`
 
@@ -197,7 +197,7 @@ Idempotent on `denied`; denying an already-`approved` request returns
 
         Tagged ID of the member the spend limit applies to.
 
-    - `source: object or object or object or 2 more`
+    - `source: User or SeatTier or RBACGroup or 2 more`
 
       - `User object`
 
