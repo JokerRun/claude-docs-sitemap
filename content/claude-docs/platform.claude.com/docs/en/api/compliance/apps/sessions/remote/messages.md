@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/remote/messages
-fetched_at: 2026-09-15T02:21:43.636809Z
-sha256: 6d4e21879e35aff15b96ce517e61ca6dce2d5d9fcc2fcce2bafa1da82b7b5a8a
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: f72bd36ecb03a27c525f38f050e624d46129e758ae2af7586fe1153432149a4b
 ---
 
 ---
@@ -78,12 +78,6 @@ malformed session identifier returns 400.
   default: 10000, maximum: 2147483647, minimum: -1
 
 ### Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -279,6 +273,7 @@ malformed session identifier returns 400.
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/sessions/remote/$CLAUDE_REMOTE_SESSION_ID/messages \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

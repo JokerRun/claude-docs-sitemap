@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files/delete
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 56b80a4ab00b1f278771961afffd86532619a60b58c49d3607f315cfe45318d7
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: cda0637dc6452a7601765d5f40b2e1c4822242cc069b663413df9d21e6a4bc9c
 ---
 
 ---
@@ -25,12 +25,6 @@ operation that cannot be undone.
 
 ## Headers
 
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
-
 - `"x-api-key": optional string`
 
 ## Returns
@@ -50,6 +44,7 @@ operation that cannot be undone.
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/chats/files/$CLAUDE_FILE_ID \
     -X DELETE \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

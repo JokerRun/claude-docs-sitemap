@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/features-overview
-fetched_at: 2026-09-15T02:21:43.636809Z
-sha256: fad6cc0b1ebf429fda686679b9f6472a58aeaae9efed344c1e43297e32c8d536
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 859c0d629ceb625e29b264bf971a9cef0d7188a6d9358c292461a9fda56d33d9
 ---
 
 > ## Documentation Index
@@ -241,7 +241,7 @@ Each feature loads at different points in your session. The tabs below explain w
   </Tab>
 
   <Tab title="Skills">
-    Skills are extra capabilities in Claude's toolkit. They can be reference material (like an API style guide) or invocable workflows you trigger with `/<name>` (like `/deploy`). Claude Code includes [bundled skills](/docs/en/commands) like `/code-review`, `/batch`, and `/debug` that work out of the box. You can also create your own.
+    Skills are extra capabilities in Claude's toolkit. They can be reference material (like an API style guide) or invocable workflows you trigger with `/<name>` (like `/deploy`). Claude Code includes [bundled skills](/docs/en/commands) like `/code-review`, `/batch`, and `/debug` that work without setup. You can also create your own.
 
     **When:** Depends on the skill's configuration. By default, descriptions load at session start and full content loads when used. For user-only skills (`disable-model-invocation: true`), nothing loads until you invoke them.
 

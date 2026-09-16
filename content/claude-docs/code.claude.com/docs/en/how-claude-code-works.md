@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/how-claude-code-works
-fetched_at: 2026-09-15T02:21:43.636809Z
-sha256: c878cd4428b09bcbf1ef9fbc8de547da309e49a9270b0e09d4fcb1fc16fe8cad
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: fd2cf401b1c2b0921cd46dee3c892d3c0d353d72b8c849288ddb5c23e6cc8246
 ---
 
 > ## Documentation Index
@@ -83,7 +83,7 @@ Because Claude sees your whole project, it can work across it. When you ask Clau
 
 ## Environments and interfaces
 
-The agentic loop, tools, and capabilities described above are the same everywhere you use Claude Code. What changes is where the code executes and how you interact with it.
+The [agentic loop](#the-agentic-loop), [tools](#tools), and capabilities are the same everywhere you use Claude Code. What changes is where the code executes and how you interact with it.
 
 ### Execution environments
 

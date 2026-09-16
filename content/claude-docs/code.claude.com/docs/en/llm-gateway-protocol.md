@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-protocol
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: a7202b36cfd845a5dadb303d407ae1f737d8de66a43d2e3574497d7f69949783
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 296f53d8f5ed4a5824e9de3de710691d0475d28e84be3c9ea5781adae6c58cac
 ---
 
 > ## Documentation Index
@@ -96,7 +96,7 @@ Claude Code includes these headers on API requests. Header names are case-insens
 | `x-claude-code-agent-id`        | Identifier of the [subagent](/docs/en/sub-agents) that issued the request, present only on requests from an agent Claude Code spawned inside the session. Use it with the session ID to attribute cost to parallel agents                                                                                                                                                                                                                               |
 | `x-claude-code-parent-agent-id` | Identifier of the agent that spawned the requesting agent, present only for nested agents                                                                                                                                                                                                                                                                                                                                                          |
 
-Subagent IDs are generated fresh for each spawn. Teammate agents, the named members of an [agent team](/docs/en/agent-teams), reuse a stable name-based ID across reconnections. In both cases the ID identifies an agent, not a person or a device, so don't treat the agent ID header as a user identifier.
+Subagent IDs are generated fresh each time Claude Code spawns a subagent. Teammate agents, the named members of an [agent team](/docs/en/agent-teams), reuse a stable name-based ID across reconnections. In both cases the ID identifies an agent, not a person or a device, so don't treat the agent ID header as a user identifier.
 
 If your developers set `ANTHROPIC_CUSTOM_HEADERS`, those headers appear on requests as well.
 

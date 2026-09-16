@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 4edabc64e7782ecea7f0e24b08c38921e11a0903fbefb8213ec062f1d06a8741
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 0a791aec237e901babbff349ac1c576b5763531b8863a753362ff6fda5ed1324
 ---
 
 ---
@@ -54,12 +54,6 @@ forward-only via `next_page`; there is no reverse cursor.
     format: date-time
 
 ## Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -127,6 +121,7 @@ forward-only via `next_page`; there is no reverse cursor.
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/sessions/local \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

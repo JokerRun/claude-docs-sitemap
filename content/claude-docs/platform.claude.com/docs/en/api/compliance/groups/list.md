@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/groups/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 614f3205518b53d790c3891911385b39c9833e307ca75df1726f9dff2abbec5d
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 8e7903feff288f7d0b897d6a7219bfc50d0e1d04194413244a0818deb9556caf
 ---
 
 ---
@@ -35,12 +35,6 @@ List Compliance Groups
   Opaque pagination token from a previous response's `next_page` field. Pass this to retrieve the next page of results. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
 
 ## Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -94,6 +88,7 @@ List Compliance Groups
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/groups \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

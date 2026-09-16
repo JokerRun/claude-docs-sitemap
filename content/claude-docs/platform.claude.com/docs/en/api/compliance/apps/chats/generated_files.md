@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/generated_files
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: c79f2823a7941b7acdf8b886fb442e7b199851d130f7018608ef0392758b8486
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: bc5a50237938b811ba8c0642c917b0dc4b0a49ce3a5d03757a43c7e8ee61e9ab
 ---
 
 ---
@@ -27,12 +27,6 @@ Use the sibling `/content` endpoint to download the bytes.
   The generated-file id (e.g., 'claude_gen_file_abc123') as returned in `chat_messages[].generated_files[].id` from GET /apps/chats/{claude_chat_id}/messages.
 
 ### Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -72,6 +66,7 @@ Use the sibling `/content` endpoint to download the bytes.
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/chats/generated-files/$CLAUDE_GEN_FILE_ID \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
@@ -103,18 +98,13 @@ Downloads the binary content of a file the assistant created via tool use.
 
 ### Headers
 
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
-
 - `"x-api-key": optional string`
 
 ### Example
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/chats/generated-files/$CLAUDE_GEN_FILE_ID/content \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

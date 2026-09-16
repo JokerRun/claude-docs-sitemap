@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/scheduled-tasks
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 5f3f6064bcdc5c454244a49e2ac80652cd3f4e891090d544b85cb155f5cdbaa3
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 5f59637b18745f0e55bab0e7881e27a633b41dce78fd14ef0f95318b609b213a
 ---
 
 > ## Documentation Index
@@ -158,7 +158,7 @@ what scheduled tasks do I have?
 cancel the deploy check job
 ```
 
-Under the hood, Claude uses these tools:
+These are the underlying tools Claude uses:
 
 | Tool         | Purpose                                                                                                         |
 | :----------- | :-------------------------------------------------------------------------------------------------------------- |

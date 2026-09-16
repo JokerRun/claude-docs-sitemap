@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/retrieve
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 1b18f15f2a1892185b999b7dff57179c414543fac9c21d861ddbd3b9656081c8
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 30f91875da5510256835abf995f9184be59a62ae9bcb202d5f4bd3a15dad6261
 ---
 
 ---
@@ -23,12 +23,6 @@ Get detailed information for a specific project document.
   The document ID (tagged ID, e.g., claude_proj_doc_abc123)
 
 ## Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -72,6 +66,7 @@ Get detailed information for a specific project document.
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/projects/documents/$DOCUMENT_ID \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

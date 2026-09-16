@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: 821edead0fe9cea9e79215c85cced598aa907d24c8c908ddba72420b496fd153
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 91171a388e224f82edf4c6596344ac1327b1b89c276111dd6eb428ccf4f1fcc8
 ---
 
 ---
@@ -2958,7 +2958,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     - `temperature: optional number`
 
-      **Deprecated**: Deprecated. Models released after Claude Opus 4.6 do not support setting temperature. A value of 1.0 of will be accepted for backwards compatibility, all other values will be rejected with a 400 error.
+      **Deprecated**: Deprecated. Models released after Claude Opus 4.6 do not support setting temperature. A value of 1.0 will be accepted for backwards compatibility, all other values will be rejected with a 400 error.
 
       Amount of randomness injected into the response.
 

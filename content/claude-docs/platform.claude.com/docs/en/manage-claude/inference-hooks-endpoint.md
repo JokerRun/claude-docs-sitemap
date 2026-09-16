@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/inference-hooks-endpoint
-fetched_at: 2026-09-15T02:21:43.636809Z
-sha256: 1e0bc38816677c67ff56f95bbf5bcbe12d26b01af85c228147b1bd83626f6fc3
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: a3e622ef7bc2574a1d9373b868b4ff6b98135ea045297313d42158f7eb7604b8
 ---
 
 ---
@@ -243,7 +243,7 @@ The transcript is the conversation as the end user sees it, up to the point of i
 
 A turn whose every block is excluded is omitted entirely, so don't assume strict user and assistant alternation.
 
-Transcripts are sent untruncated, so a long conversation with large attachments produces a large request body. In practice the model's context window keeps bodies under about 10 MB, but the protocol allows up to 64 MiB, so raise your server's body limit to accept that ceiling. Several common defaults are much smaller, including nginx `client_max_body_size` at 1 MB and Express `express.json()` at 100 kB, and a rejected body counts as a webhook failure, so under **Allow the request** failure handling an oversized prompt would reach the model uninspected.
+Transcripts are sent untruncated, so a long conversation with large attachments produces a large request body. In practice the model's context window keeps bodies under about 10 MB, but the protocol allows up to 64 MiB. Several common defaults are much smaller, including nginx `client_max_body_size` at 1 MB and Express `express.json()` at 100 kB, and a rejected body counts as a webhook failure, so under **Allow the request** failure handling an oversized prompt would reach the model uninspected.
 
 ### Source values
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/server-managed-settings
-fetched_at: 2026-09-13T02:21:02.346162Z
-sha256: 3734eecb8ed9368a3172684506192ac11a41121ea54c70b12a81a623df720407
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: adff1ad2888ed0f9ddd282ff2ad702e627765a1ed4c8851cc2d904f30726b9e2
 ---
 
 > ## Documentation Index
@@ -36,7 +36,7 @@ Claude Code supports two approaches for centralized configuration. Server-manage
 | **Server-managed settings**                                               | Organizations without MDM, or users on unmanaged devices | Settings that Claude Code fetches from Anthropic's servers at startup and refreshes hourly during the session |
 | **[Endpoint-managed settings](/docs/en/managed-settings#delivery-mechanisms)** | Organizations with MDM or endpoint management            | Settings deployed to devices via MDM configuration profiles, registry policies, or managed settings files     |
 
-If your devices are enrolled in an MDM or endpoint management solution, endpoint-managed settings provide stronger security guarantees because the settings file can be protected from user modification at the OS level. Endpoint-managed settings don't reach [cloud sessions](/docs/en/model-config#surface-coverage) in Anthropic-hosted environments, so organizations using Claude Code on the web should configure server-managed settings as well. Sessions in a [self-hosted environment](/docs/en/self-hosted-environments) also read the managed settings file in the runner image. The [settings precedence](#settings-precedence) below says when that file applies.
+If your devices are enrolled in an MDM or endpoint management solution, endpoint-managed settings provide stronger security guarantees because the settings file can be protected from user modification at the OS level. Endpoint-managed settings don't reach [cloud sessions](/docs/en/model-config#surface-coverage) in Anthropic-hosted environments, so organizations whose developers run cloud sessions should configure server-managed settings as well. Sessions in a [self-hosted environment](/docs/en/self-hosted-environments) also read the managed settings file in the runner image. The [settings precedence](#settings-precedence) below says when that file applies.
 
 ## Configure server-managed settings
 

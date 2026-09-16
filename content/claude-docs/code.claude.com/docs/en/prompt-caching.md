@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/prompt-caching
-fetched_at: 2026-09-15T02:21:43.636809Z
-sha256: 4a51888c32c55718cc2e2c71685c48bb0c971bee9ac4e100f88eab840bec1f36
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: a158a25e8c0938171e8696dbf5a959645c08e47a86eaacc0f300abe92ad10b13
 ---
 
 > ## Documentation Index
@@ -87,7 +87,7 @@ These actions cause the next request to miss part or all of the cache. You see a
 
 Each model has its own cache. Switching with [`/model`](/docs/en/model-config#setting-your-model) means the next request reads the entire conversation history with no cache hits, even though the content is identical.
 
-When you run `/model` at the terminal, Claude Code asks you to confirm the switch only while the cache is still warm. The cache stays warm for one [cache TTL](#cache-lifetime) after Claude Code last sent a request in this conversation or Claude last responded. Once that time passes, the cache has expired, so Claude Code switches without asking.
+When you run `/model` at the terminal, Claude Code asks you to confirm the switch only while the cache is still warm and the new model isn't the one that produced the last response. The cache stays warm for one [cache TTL](#cache-lifetime) after Claude Code last sent a request in this conversation or Claude last responded. Once that time passes, the cache has expired, so Claude Code switches without asking.
 
 Before v2.1.238, Claude Code didn't check the cache TTL and asked even after the cache had expired.
 

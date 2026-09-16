@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-dependencies
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: 566c016cf497b7e27052dffed7a4458b7875fa7f48a360c7b1a1e43995fea154
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 00a0c4ecf579422dcf1e8cced5d41ef0cbc0f9f49875495f08db3bee04237cfd
 ---
 
 > ## Documentation Index
@@ -44,7 +44,7 @@ The following manifest declares one unversioned dependency and one constrained d
 }
 ```
 
-An entry can be a bare string with only the plugin name, like `"audit-logger"` in the example above, which depends on whatever version that plugin's marketplace provides. For more control, use an object with these fields:
+An entry can be a bare string with only the plugin name, like `"audit-logger"` in the `deploy-kit` manifest, which depends on whatever version that plugin's marketplace provides. For more control, use an object with these fields:
 
 | Field         | Type   | Description                                                                                                                                                                                                                                                             |
 | :------------ | :----- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

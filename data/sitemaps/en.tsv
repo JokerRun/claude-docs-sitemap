@@ -1,1102 +1,1103 @@
-source	loc	lastmod	priority
-code	https://code.claude.com/docs/en/accessibility	2026-09-05T04:24:06.820Z	
-code	https://code.claude.com/docs/en/admin-setup	2026-09-12T02:08:28.772Z	
-code	https://code.claude.com/docs/en/advisor	2026-09-13T20:11:56.214Z	
-code	https://code.claude.com/docs/en/agent-sdk/agent-loop	2026-09-13T18:15:19.906Z	
-code	https://code.claude.com/docs/en/agent-sdk/claude-code-features	2026-09-13T18:54:28.191Z	
-code	https://code.claude.com/docs/en/agent-sdk/cost-tracking	2026-08-28T21:38:11.818Z	
-code	https://code.claude.com/docs/en/agent-sdk/custom-tools	2026-09-09T20:14:25.754Z	
-code	https://code.claude.com/docs/en/agent-sdk/examples	2026-08-07T23:30:03.497Z	
-code	https://code.claude.com/docs/en/agent-sdk/file-checkpointing	2026-08-28T22:47:24.669Z	
-code	https://code.claude.com/docs/en/agent-sdk/hooks	2026-09-13T18:56:12.464Z	
-code	https://code.claude.com/docs/en/agent-sdk/hosting	2026-09-02T00:53:32.782Z	
-code	https://code.claude.com/docs/en/agent-sdk/mcp	2026-09-13T18:55:16.761Z	
-code	https://code.claude.com/docs/en/agent-sdk/migration-guide	2026-09-04T15:09:57.270Z	
-code	https://code.claude.com/docs/en/agent-sdk/modifying-system-prompts	2026-09-13T18:53:38.595Z	
-code	https://code.claude.com/docs/en/agent-sdk/observability	2026-08-31T15:46:02.791Z	
-code	https://code.claude.com/docs/en/agent-sdk/overview	2026-09-13T18:49:48.535Z	
-code	https://code.claude.com/docs/en/agent-sdk/permissions	2026-09-11T15:08:48.755Z	
-code	https://code.claude.com/docs/en/agent-sdk/plugins	2026-09-13T20:16:15.984Z	
-code	https://code.claude.com/docs/en/agent-sdk/python	2026-09-14T18:06:29.992Z	
-code	https://code.claude.com/docs/en/agent-sdk/quickstart	2026-08-28T18:55:43.959Z	
-code	https://code.claude.com/docs/en/agent-sdk/secure-deployment	2026-08-29T04:34:32.645Z	
-code	https://code.claude.com/docs/en/agent-sdk/session-storage	2026-08-21T22:50:11.312Z	
-code	https://code.claude.com/docs/en/agent-sdk/sessions	2026-08-21T04:31:31.388Z	
-code	https://code.claude.com/docs/en/agent-sdk/skills	2026-09-13T18:52:48.658Z	
-code	https://code.claude.com/docs/en/agent-sdk/streaming-output	2026-09-13T18:54:28.192Z	
-code	https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode	2026-08-28T18:50:04.015Z	
-code	https://code.claude.com/docs/en/agent-sdk/structured-outputs	2026-08-29T00:00:46.408Z	
-code	https://code.claude.com/docs/en/agent-sdk/subagents	2026-09-15T01:04:25.068Z	
-code	https://code.claude.com/docs/en/agent-sdk/todo-tracking	2026-09-10T22:13:14.940Z	
-code	https://code.claude.com/docs/en/agent-sdk/tool-search	2026-08-27T15:07:01.828Z	
-code	https://code.claude.com/docs/en/agent-sdk/troubleshooting	2026-09-04T14:31:16.060Z	
-code	https://code.claude.com/docs/en/agent-sdk/typescript	2026-09-15T01:04:25.080Z	
-code	https://code.claude.com/docs/en/agent-sdk/typescript-v2-preview	2026-08-04T20:26:00.511Z	
-code	https://code.claude.com/docs/en/agent-sdk/user-input	2026-09-13T20:01:08.737Z	
-code	https://code.claude.com/docs/en/agent-teams	2026-09-10T18:38:54.691Z	
-code	https://code.claude.com/docs/en/agent-view	2026-09-12T02:38:04.054Z	
-code	https://code.claude.com/docs/en/agents	2026-09-10T18:41:16.611Z	
-code	https://code.claude.com/docs/en/amazon-bedrock	2026-09-14T18:44:00.782Z	
-code	https://code.claude.com/docs/en/analytics	2026-09-10T19:45:09.121Z	
-code	https://code.claude.com/docs/en/artifacts	2026-09-11T21:41:56.581Z	
-code	https://code.claude.com/docs/en/authentication	2026-09-12T01:28:08.965Z	
-code	https://code.claude.com/docs/en/auto-mode-config	2026-09-10T22:28:30.599Z	
-code	https://code.claude.com/docs/en/best-practices	2026-09-14T18:44:00.771Z	
-code	https://code.claude.com/docs/en/champion-kit	2026-08-29T04:34:32.626Z	
-code	https://code.claude.com/docs/en/changelog	2026-09-15T00:51:23.183Z	
-code	https://code.claude.com/docs/en/channels	2026-09-10T22:08:26.449Z	
-code	https://code.claude.com/docs/en/channels-reference	2026-09-10T19:14:04.211Z	
-code	https://code.claude.com/docs/en/checkpointing	2026-09-11T14:19:52.249Z	
-code	https://code.claude.com/docs/en/chrome	2026-09-13T20:06:46.324Z	
-code	https://code.claude.com/docs/en/claude-apps-gateway	2026-09-11T15:17:04.865Z	
-code	https://code.claude.com/docs/en/claude-apps-gateway-config	2026-09-15T01:03:19.283Z	
-code	https://code.claude.com/docs/en/claude-apps-gateway-deploy	2026-09-10T19:45:09.122Z	
-code	https://code.claude.com/docs/en/claude-apps-gateway-on-aws	2026-09-09T22:57:00.650Z	
-code	https://code.claude.com/docs/en/claude-apps-gateway-on-gcp	2026-08-07T20:23:45.021Z	
-code	https://code.claude.com/docs/en/claude-apps-gateway-spend-limits	2026-08-29T01:09:31.960Z	
-code	https://code.claude.com/docs/en/claude-code-on-the-web	2026-09-15T01:02:25.052Z	
-code	https://code.claude.com/docs/en/claude-directory	2026-09-14T18:44:00.781Z	
-code	https://code.claude.com/docs/en/claude-platform-on-aws	2026-08-28T22:47:24.672Z	
-code	https://code.claude.com/docs/en/claude-security	2026-09-10T22:08:26.451Z	
-code	https://code.claude.com/docs/en/claude-tag	2026-08-10T21:10:44.608Z	
-code	https://code.claude.com/docs/en/cli-reference	2026-09-11T21:49:36.843Z	
-code	https://code.claude.com/docs/en/cloud-environments	2026-09-14T18:44:00.780Z	
-code	https://code.claude.com/docs/en/code-review	2026-09-09T16:07:32.826Z	
-code	https://code.claude.com/docs/en/commands	2026-09-11T15:17:04.866Z	
-code	https://code.claude.com/docs/en/common-workflows	2026-09-14T18:44:00.778Z	
-code	https://code.claude.com/docs/en/communications-kit	2026-09-09T16:53:24.157Z	
-code	https://code.claude.com/docs/en/computer-use	2026-09-13T18:14:27.164Z	
-code	https://code.claude.com/docs/en/context-window	2026-09-09T22:18:41.890Z	
-code	https://code.claude.com/docs/en/corporate-launcher	2026-09-11T21:38:32.530Z	
-code	https://code.claude.com/docs/en/costs	2026-09-15T01:03:19.271Z	
-code	https://code.claude.com/docs/en/cross-session-messaging	2026-09-09T18:00:50.445Z	
-code	https://code.claude.com/docs/en/data-usage	2026-08-29T15:44:47.371Z	
-code	https://code.claude.com/docs/en/debug-your-config	2026-09-15T01:04:25.060Z	
-code	https://code.claude.com/docs/en/deep-links	2026-09-05T04:07:45.769Z	
-code	https://code.claude.com/docs/en/desktop	2026-09-15T00:38:47.628Z	
-code	https://code.claude.com/docs/en/desktop-ios-simulator	2026-09-02T04:52:28.341Z	
-code	https://code.claude.com/docs/en/desktop-linux	2026-08-27T15:07:01.826Z	
-code	https://code.claude.com/docs/en/desktop-quickstart	2026-09-12T02:10:19.627Z	
-code	https://code.claude.com/docs/en/desktop-scheduled-tasks	2026-09-10T18:45:56.012Z	
-code	https://code.claude.com/docs/en/desktop-wsl	2026-07-29T15:17:23.193Z	
-code	https://code.claude.com/docs/en/devcontainer	2026-08-28T21:59:06.583Z	
-code	https://code.claude.com/docs/en/discover-plugins	2026-09-10T22:08:26.452Z	
-code	https://code.claude.com/docs/en/env-vars	2026-09-15T01:02:25.087Z	
-code	https://code.claude.com/docs/en/errors	2026-09-15T01:02:25.087Z	
-code	https://code.claude.com/docs/en/fast-mode	2026-09-15T01:02:25.054Z	
-code	https://code.claude.com/docs/en/feature-availability	2026-09-11T15:17:04.857Z	
-code	https://code.claude.com/docs/en/features-overview	2026-09-15T01:04:25.061Z	
-code	https://code.claude.com/docs/en/fullscreen	2026-09-11T14:27:19.921Z	
-code	https://code.claude.com/docs/en/gateways	2026-09-04T02:25:23.057Z	
-code	https://code.claude.com/docs/en/github-actions	2026-09-09T18:00:50.461Z	
-code	https://code.claude.com/docs/en/github-actions-cloud-providers	2026-09-08T17:45:30.446Z	
-code	https://code.claude.com/docs/en/github-enterprise-server	2026-09-13T18:57:28.670Z	
-code	https://code.claude.com/docs/en/gitlab-ci-cd	2026-08-29T04:34:32.627Z	
-code	https://code.claude.com/docs/en/glossary	2026-09-11T14:19:52.257Z	
-code	https://code.claude.com/docs/en/goal	2026-09-13T20:17:57.560Z	
-code	https://code.claude.com/docs/en/google-vertex-ai	2026-09-11T21:40:57.126Z	
-code	https://code.claude.com/docs/en/headless	2026-09-11T15:08:48.746Z	
-code	https://code.claude.com/docs/en/hooks	2026-09-14T18:44:00.817Z	
-code	https://code.claude.com/docs/en/hooks-guide	2026-09-11T21:42:50.468Z	
-code	https://code.claude.com/docs/en/how-claude-code-works	2026-09-14T18:44:00.776Z	
-code	https://code.claude.com/docs/en/interactive-mode	2026-09-15T01:00:43.569Z	
-code	https://code.claude.com/docs/en/jetbrains	2026-09-14T18:44:00.767Z	
-code	https://code.claude.com/docs/en/keybindings	2026-09-10T19:07:53.281Z	
-code	https://code.claude.com/docs/en/large-codebases	2026-09-14T18:44:00.777Z	
-code	https://code.claude.com/docs/en/legal-and-compliance	2026-08-21T23:21:06.612Z	
-code	https://code.claude.com/docs/en/llm-gateway	2026-09-04T02:25:23.054Z	
-code	https://code.claude.com/docs/en/llm-gateway-connect	2026-09-10T22:49:38.033Z	
-code	https://code.claude.com/docs/en/llm-gateway-protocol	2026-09-09T22:57:00.635Z	
-code	https://code.claude.com/docs/en/llm-gateway-rollout	2026-09-09T22:57:00.636Z	
-code	https://code.claude.com/docs/en/managed-mcp	2026-09-09T16:58:48.921Z	
-code	https://code.claude.com/docs/en/managed-settings	2026-09-12T01:28:08.974Z	
-code	https://code.claude.com/docs/en/mcp	2026-09-15T00:53:54.543Z	
-code	https://code.claude.com/docs/en/mcp-quickstart	2026-08-28T23:29:29.347Z	
-code	https://code.claude.com/docs/en/memory	2026-09-10T19:09:41.707Z	
-code	https://code.claude.com/docs/en/microsoft-foundry	2026-08-25T00:56:18.092Z	
-code	https://code.claude.com/docs/en/mobile	2026-09-15T00:58:45.724Z	
-code	https://code.claude.com/docs/en/model-config	2026-09-12T02:07:39.426Z	
-code	https://code.claude.com/docs/en/monitoring-usage	2026-09-14T21:33:05.721Z	
-code	https://code.claude.com/docs/en/network-config	2026-09-09T22:19:50.372Z	
-code	https://code.claude.com/docs/en/output-styles	2026-09-09T22:18:41.624Z	
-code	https://code.claude.com/docs/en/overview	2026-08-29T15:49:48.812Z	
-code	https://code.claude.com/docs/en/permission-modes	2026-09-11T15:08:48.756Z	
-code	https://code.claude.com/docs/en/permissions	2026-09-14T20:05:20.586Z	
-code	https://code.claude.com/docs/en/platforms	2026-08-21T17:30:08.548Z	
-code	https://code.claude.com/docs/en/plugin-dependencies	2026-09-09T19:22:00.870Z	
-code	https://code.claude.com/docs/en/plugin-evals	2026-09-11T22:04:50.613Z	
-code	https://code.claude.com/docs/en/plugin-hints	2026-09-10T18:41:16.613Z	
-code	https://code.claude.com/docs/en/plugin-marketplaces	2026-09-15T01:07:22.863Z	
-code	https://code.claude.com/docs/en/plugin-relevance	2026-09-08T15:40:46.926Z	
-code	https://code.claude.com/docs/en/plugins	2026-09-11T19:44:19.743Z	
-code	https://code.claude.com/docs/en/plugins-reference	2026-09-15T01:07:22.858Z	
-code	https://code.claude.com/docs/en/prompt-caching	2026-09-14T20:05:20.578Z	
-code	https://code.claude.com/docs/en/prompt-library	2026-08-21T17:32:32.703Z	
-code	https://code.claude.com/docs/en/quickstart	2026-08-31T15:11:34.646Z	
-code	https://code.claude.com/docs/en/remote-control	2026-09-15T00:58:45.784Z	
-code	https://code.claude.com/docs/en/routines	2026-09-04T04:37:30.389Z	
-code	https://code.claude.com/docs/en/sandbox-environments	2026-09-12T02:09:18.230Z	
-code	https://code.claude.com/docs/en/sandboxing	2026-09-11T14:15:21.624Z	
-code	https://code.claude.com/docs/en/scheduled-tasks	2026-09-10T18:45:55.616Z	
-code	https://code.claude.com/docs/en/security	2026-09-09T20:14:25.755Z	
-code	https://code.claude.com/docs/en/security-guidance	2026-09-10T22:08:26.449Z	
-code	https://code.claude.com/docs/en/self-hosted-environments	2026-08-28T22:16:24.455Z	
-code	https://code.claude.com/docs/en/self-hosted-environments-configuration	2026-09-15T00:59:49.126Z	
-code	https://code.claude.com/docs/en/self-hosted-environments-deploy	2026-09-12T02:07:39.419Z	
-code	https://code.claude.com/docs/en/self-hosted-environments-identity	2026-08-29T04:34:32.626Z	
-code	https://code.claude.com/docs/en/self-hosted-environments-quickstart	2026-08-28T03:56:13.506Z	
-code	https://code.claude.com/docs/en/self-hosted-environments-reference	2026-09-15T00:59:49.127Z	
-code	https://code.claude.com/docs/en/self-hosted-environments-testing	2026-08-31T05:50:47.785Z	
-code	https://code.claude.com/docs/en/server-managed-settings	2026-09-12T02:38:04.023Z	
-code	https://code.claude.com/docs/en/sessions	2026-09-09T22:18:41.526Z	
-code	https://code.claude.com/docs/en/settings	2026-09-11T14:27:19.920Z	
-code	https://code.claude.com/docs/en/settings-example	2026-09-09T20:14:25.752Z	
-code	https://code.claude.com/docs/en/settings-reference	2026-09-15T01:26:26.631Z	
-code	https://code.claude.com/docs/en/setup	2026-09-12T01:41:14.775Z	
-code	https://code.claude.com/docs/en/skills	2026-09-15T01:04:25.069Z	
-code	https://code.claude.com/docs/en/slack	2026-08-26T21:50:22.493Z	
-code	https://code.claude.com/docs/en/statusline	2026-09-09T18:00:50.475Z	
-code	https://code.claude.com/docs/en/sub-agents	2026-09-15T01:04:25.067Z	
-code	https://code.claude.com/docs/en/terminal-config	2026-09-12T02:23:35.316Z	
-code	https://code.claude.com/docs/en/third-party-integrations	2026-09-10T19:45:09.115Z	
-code	https://code.claude.com/docs/en/tools-reference	2026-09-15T01:04:25.059Z	
-code	https://code.claude.com/docs/en/troubleshoot-install	2026-09-12T02:09:18.274Z	
-code	https://code.claude.com/docs/en/troubleshooting	2026-09-11T14:00:19.682Z	
-code	https://code.claude.com/docs/en/ultrareview	2026-09-09T18:00:50.444Z	
-code	https://code.claude.com/docs/en/voice-dictation	2026-09-08T15:40:46.912Z	
-code	https://code.claude.com/docs/en/vs-code	2026-09-15T01:09:43.602Z	
-code	https://code.claude.com/docs/en/web-quickstart	2026-09-15T00:58:45.722Z	
-code	https://code.claude.com/docs/en/whats-new	2026-09-15T00:38:47.264Z	
-code	https://code.claude.com/docs/en/whats-new/2026-w13	2026-09-04T00:23:08.834Z	
-code	https://code.claude.com/docs/en/whats-new/2026-w14	2026-09-04T00:23:08.836Z	
-code	https://code.claude.com/docs/en/whats-new/2026-w15	2026-09-04T00:23:08.838Z	
-code	https://code.claude.com/docs/en/whats-new/2026-w16	2026-09-04T00:23:08.834Z	
-code	https://code.claude.com/docs/en/whats-new/2026-w17	2026-09-04T00:23:08.835Z	
-code	https://code.claude.com/docs/en/whats-new/2026-w18	2026-09-04T00:23:08.839Z	
-code	https://code.claude.com/docs/en/whats-new/2026-w19	2026-09-04T00:23:08.832Z	
-code	https://code.claude.com/docs/en/whats-new/2026-w20	2026-09-04T00:23:08.835Z	
-code	https://code.claude.com/docs/en/whats-new/2026-w21	2026-09-04T00:23:08.838Z	
-code	https://code.claude.com/docs/en/whats-new/2026-w22	2026-09-04T00:23:08.839Z	
-code	https://code.claude.com/docs/en/whats-new/2026-w23	2026-09-04T00:23:08.840Z	
-code	https://code.claude.com/docs/en/whats-new/2026-w24	2026-09-04T00:23:08.837Z	
-code	https://code.claude.com/docs/en/whats-new/2026-w25	2026-09-04T00:23:08.840Z	
-code	https://code.claude.com/docs/en/whats-new/2026-w26	2026-09-04T00:23:08.831Z	
-code	https://code.claude.com/docs/en/whats-new/2026-w27	2026-09-04T00:23:08.839Z	
-code	https://code.claude.com/docs/en/whats-new/2026-w28	2026-09-04T00:23:08.837Z	
-code	https://code.claude.com/docs/en/whats-new/2026-w29	2026-09-04T00:23:08.831Z	
-code	https://code.claude.com/docs/en/whats-new/2026-w30	2026-09-04T00:23:08.832Z	
-code	https://code.claude.com/docs/en/whats-new/2026-w32	2026-09-04T00:23:08.830Z	
-code	https://code.claude.com/docs/en/whats-new/2026-w33	2026-09-04T00:23:08.833Z	
-code	https://code.claude.com/docs/en/whats-new/2026-w34	2026-09-04T00:23:08.833Z	
-code	https://code.claude.com/docs/en/whats-new/2026-w35	2026-09-15T00:38:47.221Z	
-code	https://code.claude.com/docs/en/whats-new/2026-w36	2026-09-15T00:38:47.220Z	
-code	https://code.claude.com/docs/en/whats-new/2026-w37	2026-09-15T00:38:47.216Z	
-code	https://code.claude.com/docs/en/workflows	2026-09-15T01:26:26.614Z	
-code	https://code.claude.com/docs/en/worktrees	2026-09-12T02:10:19.629Z	
-code	https://code.claude.com/docs/en/zero-data-retention	2026-09-01T17:54:24.403Z	
-platform	https://platform.claude.com/agent-quickstart		0.8
-platform	https://platform.claude.com/agents		0.8
-platform	https://platform.claude.com/batches		0.8
-platform	https://platform.claude.com/claude-code		0.8
-platform	https://platform.claude.com/claude-code/settings		0.8
-platform	https://platform.claude.com/cost		0.8
-platform	https://platform.claude.com/deployments		0.8
-platform	https://platform.claude.com/docs		0.8
-platform	https://platform.claude.com/docs/en/about-claude/additional-resources		0.8
-platform	https://platform.claude.com/docs/en/about-claude/glossary		0.8
-platform	https://platform.claude.com/docs/en/about-claude/model-deprecations		0.8
-platform	https://platform.claude.com/docs/en/about-claude/models/choosing-a-model		0.8
-platform	https://platform.claude.com/docs/en/about-claude/models/migration-guide		0.8
-platform	https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions		0.8
-platform	https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence		0.8
-platform	https://platform.claude.com/docs/en/about-claude/pricing		0.8
-platform	https://platform.claude.com/docs/en/about-claude/use-case-guides/commerce-agents		0.8
-platform	https://platform.claude.com/docs/en/about-claude/use-case-guides/content-moderation		0.8
-platform	https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat		0.8
-platform	https://platform.claude.com/docs/en/about-claude/use-case-guides/legal-summarization		0.8
-platform	https://platform.claude.com/docs/en/about-claude/use-case-guides/overview		1
-platform	https://platform.claude.com/docs/en/about-claude/use-case-guides/ticket-routing		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview		1
-platform	https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart		1
-platform	https://platform.claude.com/docs/en/agents-and-tools/mcp-connector		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/console		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-compose		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-helm		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/overview		1
-platform	https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/quickstart		1
-platform	https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/reference		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/security		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/troubleshooting		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/remote-mcp-servers		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/build-a-tool-using-agent		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/manage-tool-context		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview		1
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-combinations		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/troubleshooting-tool-use		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool		0.8
-platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool		0.8
-platform	https://platform.claude.com/docs/en/api/beta		0.9
-platform	https://platform.claude.com/docs/en/api/beta-headers		0.8
-platform	https://platform.claude.com/docs/en/api/beta/agents		0.9
-platform	https://platform.claude.com/docs/en/api/beta/agents/archive		0.9
-platform	https://platform.claude.com/docs/en/api/beta/agents/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/agents/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/agents/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/agents/update		0.9
-platform	https://platform.claude.com/docs/en/api/beta/agents/versions		0.9
-platform	https://platform.claude.com/docs/en/api/beta/agents/versions/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/deployment_runs		0.9
-platform	https://platform.claude.com/docs/en/api/beta/deployment_runs/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/deployment_runs/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/deployments		0.9
-platform	https://platform.claude.com/docs/en/api/beta/deployments/archive		0.9
-platform	https://platform.claude.com/docs/en/api/beta/deployments/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/deployments/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/deployments/pause		0.9
-platform	https://platform.claude.com/docs/en/api/beta/deployments/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/deployments/run		0.9
-platform	https://platform.claude.com/docs/en/api/beta/deployments/unpause		0.9
-platform	https://platform.claude.com/docs/en/api/beta/deployments/update		0.9
-platform	https://platform.claude.com/docs/en/api/beta/dreams		0.9
-platform	https://platform.claude.com/docs/en/api/beta/dreams/archive		0.9
-platform	https://platform.claude.com/docs/en/api/beta/dreams/cancel		0.9
-platform	https://platform.claude.com/docs/en/api/beta/dreams/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/dreams/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/dreams/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/environments		0.9
-platform	https://platform.claude.com/docs/en/api/beta/environments/archive		0.9
-platform	https://platform.claude.com/docs/en/api/beta/environments/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/environments/delete		0.9
-platform	https://platform.claude.com/docs/en/api/beta/environments/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/environments/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/environments/update		0.9
-platform	https://platform.claude.com/docs/en/api/beta/environments/work		0.9
-platform	https://platform.claude.com/docs/en/api/beta/environments/work/ack		0.9
-platform	https://platform.claude.com/docs/en/api/beta/environments/work/heartbeat		0.9
-platform	https://platform.claude.com/docs/en/api/beta/environments/work/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/environments/work/poll		0.9
-platform	https://platform.claude.com/docs/en/api/beta/environments/work/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/environments/work/stats		0.9
-platform	https://platform.claude.com/docs/en/api/beta/environments/work/stop		0.9
-platform	https://platform.claude.com/docs/en/api/beta/environments/work/update		0.9
-platform	https://platform.claude.com/docs/en/api/beta/files		0.9
-platform	https://platform.claude.com/docs/en/api/beta/files/delete		0.9
-platform	https://platform.claude.com/docs/en/api/beta/files/download		0.9
-platform	https://platform.claude.com/docs/en/api/beta/files/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/files/retrieve_metadata		0.9
-platform	https://platform.claude.com/docs/en/api/beta/files/upload		0.9
-platform	https://platform.claude.com/docs/en/api/beta/memory_stores		0.9
-platform	https://platform.claude.com/docs/en/api/beta/memory_stores/archive		0.9
-platform	https://platform.claude.com/docs/en/api/beta/memory_stores/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/memory_stores/delete		0.9
-platform	https://platform.claude.com/docs/en/api/beta/memory_stores/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/memory_stores/memories		0.9
-platform	https://platform.claude.com/docs/en/api/beta/memory_stores/memories/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/memory_stores/memories/delete		0.9
-platform	https://platform.claude.com/docs/en/api/beta/memory_stores/memories/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/memory_stores/memories/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/memory_stores/memories/update		0.9
-platform	https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions		0.9
-platform	https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/redact		0.9
-platform	https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/memory_stores/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/memory_stores/update		0.9
-platform	https://platform.claude.com/docs/en/api/beta/messages		0.9
-platform	https://platform.claude.com/docs/en/api/beta/messages/batches		0.9
-platform	https://platform.claude.com/docs/en/api/beta/messages/batches/cancel		0.9
-platform	https://platform.claude.com/docs/en/api/beta/messages/batches/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/messages/batches/delete		0.9
-platform	https://platform.claude.com/docs/en/api/beta/messages/batches/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/messages/batches/results		0.9
-platform	https://platform.claude.com/docs/en/api/beta/messages/batches/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/messages/count_tokens		0.9
-platform	https://platform.claude.com/docs/en/api/beta/messages/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/models		0.9
-platform	https://platform.claude.com/docs/en/api/beta/models/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/models/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/analytics		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/artifacts		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/artifacts/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/chat_projects		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/chat_projects/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/connectors		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/connectors/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/cost		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/cost/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/cost/list_by_user		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/plugins		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/plugins/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/retrieve_summaries		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/skills		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/skills/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/usage		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/usage/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/usage/list_by_user		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/users		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/users/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/api_keys		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/api_keys/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/api_keys/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/api_keys/update		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/compliance_settings		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/compliance_settings/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/compliance_settings/update		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/cost_report		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/cost_report/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/external_keys		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/external_keys/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/external_keys/delete		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/external_keys/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/external_keys/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/external_keys/update		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/external_keys/validate		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/federation		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/federation/issuers		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/archive		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/update		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/federation/rules		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/federation/rules/archive		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/federation/rules/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/federation/rules/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/federation/rules/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/federation/rules/update		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces/add		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces/remove		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/invites		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/invites/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/invites/delete		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/invites/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/invites/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/archive		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/reveal_token		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/rotate_token		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/archive		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/rate_limits		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/rate_limits/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_groups		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/delete		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/members		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/members/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/members/delete		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/members/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/update		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_roles		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_roles/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_roles/permissions		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_roles/permissions/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_roles/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/service_accounts		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/service_accounts/archive		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/service_accounts/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/service_accounts/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/service_accounts/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/service_accounts/update		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces/add		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces/remove		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/spend_limits		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/spend_limits/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/spend_limits/delete		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests/approve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests/deny		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/spend_limits/list_effective		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/spend_limits/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/usage_report		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/usage_report/retrieve_claude_code		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/usage_report/retrieve_messages		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/users		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/users/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/users/remove		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/users/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/users/update		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/archive		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/members		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/members/add		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/members/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/members/remove		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/members/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/members/update		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/rate_limits		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/rate_limits/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/add		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/remove		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/update		0.9
-platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/update		0.9
-platform	https://platform.claude.com/docs/en/api/beta/sessions		0.9
-platform	https://platform.claude.com/docs/en/api/beta/sessions/archive		0.9
-platform	https://platform.claude.com/docs/en/api/beta/sessions/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/sessions/delete		0.9
-platform	https://platform.claude.com/docs/en/api/beta/sessions/events		0.9
-platform	https://platform.claude.com/docs/en/api/beta/sessions/events/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/sessions/events/send		0.9
-platform	https://platform.claude.com/docs/en/api/beta/sessions/events/stream		0.9
-platform	https://platform.claude.com/docs/en/api/beta/sessions/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/sessions/resources		0.9
-platform	https://platform.claude.com/docs/en/api/beta/sessions/resources/add		0.9
-platform	https://platform.claude.com/docs/en/api/beta/sessions/resources/delete		0.9
-platform	https://platform.claude.com/docs/en/api/beta/sessions/resources/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/sessions/resources/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/sessions/resources/update		0.9
-platform	https://platform.claude.com/docs/en/api/beta/sessions/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/sessions/threads		0.9
-platform	https://platform.claude.com/docs/en/api/beta/sessions/threads/archive		0.9
-platform	https://platform.claude.com/docs/en/api/beta/sessions/threads/events		0.9
-platform	https://platform.claude.com/docs/en/api/beta/sessions/threads/events/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/sessions/threads/events/stream		0.9
-platform	https://platform.claude.com/docs/en/api/beta/sessions/threads/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/sessions/threads/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/sessions/update		0.9
-platform	https://platform.claude.com/docs/en/api/beta/skills		0.9
-platform	https://platform.claude.com/docs/en/api/beta/skills/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/skills/delete		0.9
-platform	https://platform.claude.com/docs/en/api/beta/skills/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/skills/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/skills/versions		0.9
-platform	https://platform.claude.com/docs/en/api/beta/skills/versions/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/skills/versions/delete		0.9
-platform	https://platform.claude.com/docs/en/api/beta/skills/versions/download		0.9
-platform	https://platform.claude.com/docs/en/api/beta/skills/versions/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/skills/versions/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/tunnels		0.9
-platform	https://platform.claude.com/docs/en/api/beta/tunnels/archive		0.9
-platform	https://platform.claude.com/docs/en/api/beta/tunnels/certificates		0.9
-platform	https://platform.claude.com/docs/en/api/beta/tunnels/certificates/archive		0.9
-platform	https://platform.claude.com/docs/en/api/beta/tunnels/certificates/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/tunnels/certificates/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/tunnels/certificates/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/tunnels/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/tunnels/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/tunnels/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/tunnels/reveal_token		0.9
-platform	https://platform.claude.com/docs/en/api/beta/tunnels/rotate_token		0.9
-platform	https://platform.claude.com/docs/en/api/beta/user_profiles		0.9
-platform	https://platform.claude.com/docs/en/api/beta/user_profiles/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/user_profiles/create_enrollment_url		0.9
-platform	https://platform.claude.com/docs/en/api/beta/user_profiles/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/user_profiles/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/user_profiles/update		0.9
-platform	https://platform.claude.com/docs/en/api/beta/vaults		0.9
-platform	https://platform.claude.com/docs/en/api/beta/vaults/archive		0.9
-platform	https://platform.claude.com/docs/en/api/beta/vaults/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/vaults/credentials		0.9
-platform	https://platform.claude.com/docs/en/api/beta/vaults/credentials/archive		0.9
-platform	https://platform.claude.com/docs/en/api/beta/vaults/credentials/create		0.9
-platform	https://platform.claude.com/docs/en/api/beta/vaults/credentials/delete		0.9
-platform	https://platform.claude.com/docs/en/api/beta/vaults/credentials/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/vaults/credentials/mcp_oauth_validate		0.9
-platform	https://platform.claude.com/docs/en/api/beta/vaults/credentials/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/vaults/credentials/update		0.9
-platform	https://platform.claude.com/docs/en/api/beta/vaults/delete		0.9
-platform	https://platform.claude.com/docs/en/api/beta/vaults/list		0.9
-platform	https://platform.claude.com/docs/en/api/beta/vaults/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/beta/vaults/update		0.9
-platform	https://platform.claude.com/docs/en/api/beta/webhooks		0.9
-platform	https://platform.claude.com/docs/en/api/claude-code/routines-fire		0.8
-platform	https://platform.claude.com/docs/en/api/claude-platform-on-aws-iam-actions		0.8
-platform	https://platform.claude.com/docs/en/api/completions		0.9
-platform	https://platform.claude.com/docs/en/api/completions/create		0.9
-platform	https://platform.claude.com/docs/en/api/compliance		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/activities		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/activities/list		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/artifacts		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/artifacts/download		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/artifacts/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/chats		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/chats/delete		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/chats/files		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/chats/files/delete		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/chats/files/download		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/chats/files/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/chats/generated_files		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/chats/generated_files/download		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/chats/generated_files/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/chats/list		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/chats/messages		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/chats/messages/list		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/projects		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments/list		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/collaborators		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/collaborators/list		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/delete		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/documents		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/delete		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/metadata		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/list		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/sessions		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/sessions/local		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/list		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/messages		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/messages/list		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/sessions/remote		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/sessions/remote/list		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/sessions/remote/messages		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/apps/sessions/remote/messages/list		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/code		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/code/artifacts		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/code/artifacts/delete		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/code/artifacts/list		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/code/artifacts/retrieve_version		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/groups		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/groups/list		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/groups/members		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/groups/members/list		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/groups/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/organizations		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/organizations/list		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/organizations/roles		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/organizations/roles/list		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/organizations/roles/permissions		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/organizations/roles/permissions/list		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/organizations/roles/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/organizations/settings		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/organizations/settings/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/organizations/users		0.9
-platform	https://platform.claude.com/docs/en/api/compliance/organizations/users/list		0.9
-platform	https://platform.claude.com/docs/en/api/errors		0.8
-platform	https://platform.claude.com/docs/en/api/files		0.9
-platform	https://platform.claude.com/docs/en/api/files/delete		0.9
-platform	https://platform.claude.com/docs/en/api/files/download		0.9
-platform	https://platform.claude.com/docs/en/api/files/list		0.9
-platform	https://platform.claude.com/docs/en/api/files/retrieve_metadata		0.9
-platform	https://platform.claude.com/docs/en/api/files/upload		0.9
-platform	https://platform.claude.com/docs/en/api/ip-addresses		0.8
-platform	https://platform.claude.com/docs/en/api/messages		0.9
-platform	https://platform.claude.com/docs/en/api/messages/batches		0.9
-platform	https://platform.claude.com/docs/en/api/messages/batches/cancel		0.9
-platform	https://platform.claude.com/docs/en/api/messages/batches/create		0.9
-platform	https://platform.claude.com/docs/en/api/messages/batches/delete		0.9
-platform	https://platform.claude.com/docs/en/api/messages/batches/list		0.9
-platform	https://platform.claude.com/docs/en/api/messages/batches/results		0.9
-platform	https://platform.claude.com/docs/en/api/messages/batches/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/messages/count_tokens		0.9
-platform	https://platform.claude.com/docs/en/api/messages/create		0.9
-platform	https://platform.claude.com/docs/en/api/models		0.9
-platform	https://platform.claude.com/docs/en/api/models/list		0.9
-platform	https://platform.claude.com/docs/en/api/models/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/overview		1
-platform	https://platform.claude.com/docs/en/api/rate-limits		0.8
-platform	https://platform.claude.com/docs/en/api/service-tiers		0.8
-platform	https://platform.claude.com/docs/en/api/skills		0.9
-platform	https://platform.claude.com/docs/en/api/skills/create		0.9
-platform	https://platform.claude.com/docs/en/api/skills/delete		0.9
-platform	https://platform.claude.com/docs/en/api/skills/list		0.9
-platform	https://platform.claude.com/docs/en/api/skills/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/skills/versions		0.9
-platform	https://platform.claude.com/docs/en/api/skills/versions/create		0.9
-platform	https://platform.claude.com/docs/en/api/skills/versions/delete		0.9
-platform	https://platform.claude.com/docs/en/api/skills/versions/list		0.9
-platform	https://platform.claude.com/docs/en/api/skills/versions/retrieve		0.9
-platform	https://platform.claude.com/docs/en/api/supported-regions		0.8
-platform	https://platform.claude.com/docs/en/api/versioning		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/batch-processing		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/citations		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/compaction		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/context-editing		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/context-windows		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/effort		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/embeddings		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/extended-thinking		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/fallback-credit		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/fast-mode		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/files		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/mid-conversation-effort-example		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/multilingual-support		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/overview		1
-platform	https://platform.claude.com/docs/en/build-with-claude/pdf-support		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/preserved-thinking		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/prompt-caching		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview		1
-platform	https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-1		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-4-8		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/search-results		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/skills-guide		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/streaming		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/structured-outputs		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/task-budgets		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/thinking		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/thinking-steering-and-cost		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/thinking-tool-workflows		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/token-counting		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/vision		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/vision-coordinates		0.8
-platform	https://platform.claude.com/docs/en/build-with-claude/working-with-messages		0.8
-platform	https://platform.claude.com/docs/en/claude_api_primer		0.8
-platform	https://platform.claude.com/docs/en/cli-sdks-libraries/cli/apply		0.8
-platform	https://platform.claude.com/docs/en/cli-sdks-libraries/cli/authentication		0.8
-platform	https://platform.claude.com/docs/en/cli-sdks-libraries/cli/quickstart		1
-platform	https://platform.claude.com/docs/en/cli-sdks-libraries/cli/scripting		0.8
-platform	https://platform.claude.com/docs/en/cli-sdks-libraries/cli/using		0.8
-platform	https://platform.claude.com/docs/en/cli-sdks-libraries/libraries/apple-foundation-models		0.8
-platform	https://platform.claude.com/docs/en/cli-sdks-libraries/libraries/openai-sdk		0.8
-platform	https://platform.claude.com/docs/en/cli-sdks-libraries/middleware		0.8
-platform	https://platform.claude.com/docs/en/cli-sdks-libraries/overview		1
-platform	https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/csharp		0.8
-platform	https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/go		0.8
-platform	https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/java		0.8
-platform	https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/php		0.8
-platform	https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/python		0.8
-platform	https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/ruby		0.8
-platform	https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/typescript		0.8
-platform	https://platform.claude.com/docs/en/get-api-key		0.8
-platform	https://platform.claude.com/docs/en/get-started		1
-platform	https://platform.claude.com/docs/en/home		1
-platform	https://platform.claude.com/docs/en/intro		1
-platform	https://platform.claude.com/docs/en/manage-claude/access-transparency		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/admin-api		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/admin-api-keys		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/analytics-api		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/api-and-data-retention		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/app-attest		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/authentication		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/claude-code-analytics-api		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/cmek		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/cmek-aws-kms		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/cmek-azure-key-vault		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/cmek-google-cloud-kms		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/compliance-api		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/compliance-api-access		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/compliance-content-data		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/compliance-errors		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/compliance-faq		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/compliance-integration-patterns		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/compliance-org-data		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/compliance-sessions		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/data-residency		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/inference-hooks		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/inference-hooks-configuration		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/inference-hooks-endpoint		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/rate-limits-api		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/spend-limits-api		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/usage-cost-api		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/user-management		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/wif-admin-api		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/wif-providers/aws		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/wif-providers/azure		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/wif-providers/gcp		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/wif-providers/github-actions		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/wif-providers/kubernetes		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/wif-providers/okta		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/wif-providers/spiffe		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/wif-reference		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/workload-identity-federation		0.8
-platform	https://platform.claude.com/docs/en/manage-claude/workspaces		0.8
-platform	https://platform.claude.com/docs/en/managed-agents/agent-setup		0.8
-platform	https://platform.claude.com/docs/en/managed-agents/budgets		0.8
-platform	https://platform.claude.com/docs/en/managed-agents/cloud-sandboxes-reference		0.8
-platform	https://platform.claude.com/docs/en/managed-agents/define-outcomes		0.8
-platform	https://platform.claude.com/docs/en/managed-agents/dreams		0.8
-platform	https://platform.claude.com/docs/en/managed-agents/environments		0.8
-platform	https://platform.claude.com/docs/en/managed-agents/events-and-streaming		0.8
-platform	https://platform.claude.com/docs/en/managed-agents/files		0.8
-platform	https://platform.claude.com/docs/en/managed-agents/github		0.8
-platform	https://platform.claude.com/docs/en/managed-agents/mcp-connector		0.8
-platform	https://platform.claude.com/docs/en/managed-agents/memory		0.8
-platform	https://platform.claude.com/docs/en/managed-agents/migration		0.8
-platform	https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration		0.8
-platform	https://platform.claude.com/docs/en/managed-agents/onboarding		0.8
-platform	https://platform.claude.com/docs/en/managed-agents/overview		1
-platform	https://platform.claude.com/docs/en/managed-agents/permission-policies		0.8
-platform	https://platform.claude.com/docs/en/managed-agents/quickstart		1
-platform	https://platform.claude.com/docs/en/managed-agents/reference		0.8
-platform	https://platform.claude.com/docs/en/managed-agents/scheduled-deployments		0.8
-platform	https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes		0.8
-platform	https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-security		0.8
-platform	https://platform.claude.com/docs/en/managed-agents/session-operations		0.8
-platform	https://platform.claude.com/docs/en/managed-agents/sessions		0.8
-platform	https://platform.claude.com/docs/en/managed-agents/skills		0.8
-platform	https://platform.claude.com/docs/en/managed-agents/tools		0.8
-platform	https://platform.claude.com/docs/en/managed-agents/vaults		0.8
-platform	https://platform.claude.com/docs/en/managed-agents/webhooks		0.8
-platform	https://platform.claude.com/docs/en/models/fable-5-1/migration-guide		0.8
-platform	https://platform.claude.com/docs/en/models/fable-5-1/overview		1
-platform	https://platform.claude.com/docs/en/models/fable-5-1/whats-new-fable-5-1		0.8
-platform	https://platform.claude.com/docs/en/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5		1
-platform	https://platform.claude.com/docs/en/models/fable-5/migration-guide		0.8
-platform	https://platform.claude.com/docs/en/models/fable-5/overview		1
-platform	https://platform.claude.com/docs/en/models/haiku-4-5/migration-guide		0.8
-platform	https://platform.claude.com/docs/en/models/haiku-4-5/overview		1
-platform	https://platform.claude.com/docs/en/models/mythos-5-1/overview		1
-platform	https://platform.claude.com/docs/en/models/mythos-5/overview		1
-platform	https://platform.claude.com/docs/en/models/opus-4-5/overview		1
-platform	https://platform.claude.com/docs/en/models/opus-4-6/overview		1
-platform	https://platform.claude.com/docs/en/models/opus-4-7/overview		1
-platform	https://platform.claude.com/docs/en/models/opus-4-8/overview		1
-platform	https://platform.claude.com/docs/en/models/opus-5/migration-guide		0.8
-platform	https://platform.claude.com/docs/en/models/opus-5/overview		1
-platform	https://platform.claude.com/docs/en/models/opus-5/whats-new-opus-5		0.8
-platform	https://platform.claude.com/docs/en/models/overview		1
-platform	https://platform.claude.com/docs/en/models/sonnet-4-5/overview		1
-platform	https://platform.claude.com/docs/en/models/sonnet-4-6/overview		1
-platform	https://platform.claude.com/docs/en/models/sonnet-5/migration-guide		0.8
-platform	https://platform.claude.com/docs/en/models/sonnet-5/overview		1
-platform	https://platform.claude.com/docs/en/models/sonnet-5/whats-new-sonnet-5		0.8
-platform	https://platform.claude.com/docs/en/release-notes/overview		1
-platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-fable-5		0.8
-platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-fable-5-1		0.8
-platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-haiku-3		0.8
-platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-haiku-3-5		0.8
-platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-haiku-4-5		0.8
-platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-opus-3		0.8
-platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-opus-4		0.8
-platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-opus-4-1		0.8
-platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-opus-4-5		0.8
-platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-opus-4-6		0.8
-platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-opus-4-7		0.8
-platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-opus-4-8		0.8
-platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-opus-5		0.8
-platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-sonnet-3-5		0.8
-platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-sonnet-3-7		0.8
-platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-sonnet-4		0.8
-platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-sonnet-4-5		0.8
-platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-sonnet-4-6		0.8
-platform	https://platform.claude.com/docs/en/release-notes/system-prompts/overview		1
-platform	https://platform.claude.com/docs/en/resources/overview		1
-platform	https://platform.claude.com/docs/en/test-and-evaluate/develop-tests		0.8
-platform	https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals		0.8
-platform	https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/increase-consistency		0.8
-platform	https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks		0.8
-platform	https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations		0.8
-platform	https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-latency		0.8
-platform	https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-prompt-leak		0.8
-platform	https://platform.claude.com/docs/id/about-claude/additional-resources		0.7
-platform	https://platform.claude.com/docs/id/about-claude/glossary		0.7
-platform	https://platform.claude.com/docs/id/about-claude/model-deprecations		0.7
-platform	https://platform.claude.com/docs/id/about-claude/models/choosing-a-model		0.7
-platform	https://platform.claude.com/docs/id/about-claude/models/migration-guide		0.7
-platform	https://platform.claude.com/docs/id/about-claude/models/model-ids-and-versions		0.7
-platform	https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence		0.7
-platform	https://platform.claude.com/docs/id/about-claude/pricing		0.7
-platform	https://platform.claude.com/docs/id/about-claude/use-case-guides/content-moderation		0.7
-platform	https://platform.claude.com/docs/id/about-claude/use-case-guides/customer-support-chat		0.7
-platform	https://platform.claude.com/docs/id/about-claude/use-case-guides/legal-summarization		0.7
-platform	https://platform.claude.com/docs/id/about-claude/use-case-guides/overview		0.9
-platform	https://platform.claude.com/docs/id/about-claude/use-case-guides/ticket-routing		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterprise		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview		0.9
-platform	https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart		0.9
-platform	https://platform.claude.com/docs/id/agents-and-tools/mcp-connector		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-compose		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview		0.9
-platform	https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/quickstart		0.9
-platform	https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/security		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/remote-mcp-servers		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/how-tool-use-works		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/manage-tool-context		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview		0.9
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-combinations		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/troubleshooting-tool-use		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool		0.7
-platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool		0.7
-platform	https://platform.claude.com/docs/id/api/beta-headers		0.7
-platform	https://platform.claude.com/docs/id/api/claude-code/routines-fire		0.7
-platform	https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions		0.7
-platform	https://platform.claude.com/docs/id/api/errors		0.7
-platform	https://platform.claude.com/docs/id/api/ip-addresses		0.7
-platform	https://platform.claude.com/docs/id/api/overview		0.9
-platform	https://platform.claude.com/docs/id/api/rate-limits		0.7
-platform	https://platform.claude.com/docs/id/api/service-tiers		0.7
-platform	https://platform.claude.com/docs/id/api/supported-regions		0.7
-platform	https://platform.claude.com/docs/id/api/versioning		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/batch-processing		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/citations		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/compaction		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/context-editing		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/context-windows		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/effort		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/embeddings		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/extended-thinking		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/fallback-credit		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/fast-mode		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/files		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/mid-conversation-effort-example		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/multilingual-support		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/overview		0.9
-platform	https://platform.claude.com/docs/id/build-with-claude/pdf-support		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/preserved-thinking		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/prompt-caching		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview		0.9
-platform	https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-4-8		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/search-results		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/skills-guide		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/streaming		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/structured-outputs		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/task-budgets		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/thinking		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/thinking-tool-workflows		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/token-counting		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/vision		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/vision-coordinates		0.7
-platform	https://platform.claude.com/docs/id/build-with-claude/working-with-messages		0.7
-platform	https://platform.claude.com/docs/id/claude_api_primer		0.7
-platform	https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication		0.7
-platform	https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart		0.9
-platform	https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting		0.7
-platform	https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using		0.7
-platform	https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/apple-foundation-models		0.7
-platform	https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk		0.7
-platform	https://platform.claude.com/docs/id/cli-sdks-libraries/middleware		0.7
-platform	https://platform.claude.com/docs/id/cli-sdks-libraries/overview		0.9
-platform	https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/csharp		0.7
-platform	https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go		0.7
-platform	https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java		0.7
-platform	https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php		0.7
-platform	https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python		0.7
-platform	https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/ruby		0.7
-platform	https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript		0.7
-platform	https://platform.claude.com/docs/id/get-api-key		0.7
-platform	https://platform.claude.com/docs/id/get-started		1
-platform	https://platform.claude.com/docs/id/home		1
-platform	https://platform.claude.com/docs/id/intro		1
-platform	https://platform.claude.com/docs/id/manage-claude/access-transparency		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/admin-api		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/admin-api-keys		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/analytics-api		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/api-and-data-retention		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/app-attest		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/authentication		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/claude-code-analytics-api		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/cmek		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/compliance-api		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/compliance-api-access		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/compliance-content-data		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/compliance-errors		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/compliance-faq		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/compliance-integration-patterns		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/compliance-org-data		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/compliance-sessions		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/data-residency		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/inference-hooks		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/rate-limits-api		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/spend-limits-api		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/usage-cost-api		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/user-management		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/wif-admin-api		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/wif-providers/aws		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/wif-providers/azure		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/wif-providers/gcp		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/wif-providers/github-actions		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/wif-providers/okta		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/wif-reference		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/workload-identity-federation		0.7
-platform	https://platform.claude.com/docs/id/manage-claude/workspaces		0.7
-platform	https://platform.claude.com/docs/id/managed-agents/agent-setup		0.7
-platform	https://platform.claude.com/docs/id/managed-agents/budgets		0.7
-platform	https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference		0.7
-platform	https://platform.claude.com/docs/id/managed-agents/define-outcomes		0.7
-platform	https://platform.claude.com/docs/id/managed-agents/dreams		0.7
-platform	https://platform.claude.com/docs/id/managed-agents/environments		0.7
-platform	https://platform.claude.com/docs/id/managed-agents/events-and-streaming		0.7
-platform	https://platform.claude.com/docs/id/managed-agents/files		0.7
-platform	https://platform.claude.com/docs/id/managed-agents/github		0.7
-platform	https://platform.claude.com/docs/id/managed-agents/mcp-connector		0.7
-platform	https://platform.claude.com/docs/id/managed-agents/memory		0.7
-platform	https://platform.claude.com/docs/id/managed-agents/migration		0.7
-platform	https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration		0.7
-platform	https://platform.claude.com/docs/id/managed-agents/onboarding		0.7
-platform	https://platform.claude.com/docs/id/managed-agents/overview		0.9
-platform	https://platform.claude.com/docs/id/managed-agents/permission-policies		0.7
-platform	https://platform.claude.com/docs/id/managed-agents/quickstart		0.9
-platform	https://platform.claude.com/docs/id/managed-agents/reference		0.7
-platform	https://platform.claude.com/docs/id/managed-agents/scheduled-deployments		0.7
-platform	https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes		0.7
-platform	https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-security		0.7
-platform	https://platform.claude.com/docs/id/managed-agents/session-operations		0.7
-platform	https://platform.claude.com/docs/id/managed-agents/sessions		0.7
-platform	https://platform.claude.com/docs/id/managed-agents/skills		0.7
-platform	https://platform.claude.com/docs/id/managed-agents/tools		0.7
-platform	https://platform.claude.com/docs/id/managed-agents/vaults		0.7
-platform	https://platform.claude.com/docs/id/managed-agents/webhooks		0.7
-platform	https://platform.claude.com/docs/id/models/fable-5-1/migration-guide		0.7
-platform	https://platform.claude.com/docs/id/models/fable-5-1/overview		0.9
-platform	https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1		0.7
-platform	https://platform.claude.com/docs/id/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5		1
-platform	https://platform.claude.com/docs/id/models/fable-5/migration-guide		0.7
-platform	https://platform.claude.com/docs/id/models/fable-5/overview		0.9
-platform	https://platform.claude.com/docs/id/models/haiku-4-5/migration-guide		0.7
-platform	https://platform.claude.com/docs/id/models/haiku-4-5/overview		0.9
-platform	https://platform.claude.com/docs/id/models/mythos-5-1/overview		0.9
-platform	https://platform.claude.com/docs/id/models/mythos-5/overview		0.9
-platform	https://platform.claude.com/docs/id/models/opus-4-5/overview		0.9
-platform	https://platform.claude.com/docs/id/models/opus-4-6/overview		0.9
-platform	https://platform.claude.com/docs/id/models/opus-4-7/overview		0.9
-platform	https://platform.claude.com/docs/id/models/opus-4-8/overview		0.9
-platform	https://platform.claude.com/docs/id/models/opus-5/migration-guide		0.7
-platform	https://platform.claude.com/docs/id/models/opus-5/overview		0.9
-platform	https://platform.claude.com/docs/id/models/opus-5/whats-new-opus-5		0.7
-platform	https://platform.claude.com/docs/id/models/overview		0.9
-platform	https://platform.claude.com/docs/id/models/sonnet-4-5/overview		0.9
-platform	https://platform.claude.com/docs/id/models/sonnet-4-6/overview		0.9
-platform	https://platform.claude.com/docs/id/models/sonnet-5/migration-guide		0.7
-platform	https://platform.claude.com/docs/id/models/sonnet-5/overview		0.9
-platform	https://platform.claude.com/docs/id/models/sonnet-5/whats-new-sonnet-5		0.7
-platform	https://platform.claude.com/docs/id/release-notes/overview		0.9
-platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-fable-5		0.7
-platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-fable-5-1		0.7
-platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-haiku-3		0.7
-platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-haiku-3-5		0.7
-platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-haiku-4-5		0.7
-platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-opus-3		0.7
-platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-opus-4		0.7
-platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-opus-4-1		0.7
-platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-opus-4-5		0.7
-platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-opus-4-6		0.7
-platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-opus-4-7		0.7
-platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-opus-4-8		0.7
-platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-opus-5		0.7
-platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-sonnet-3-5		0.7
-platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-sonnet-3-7		0.7
-platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-sonnet-4		0.7
-platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-sonnet-4-5		0.7
-platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-sonnet-4-6		0.7
-platform	https://platform.claude.com/docs/id/release-notes/system-prompts/overview		0.9
-platform	https://platform.claude.com/docs/id/resources/overview		0.9
-platform	https://platform.claude.com/docs/id/test-and-evaluate/develop-tests		0.7
-platform	https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals		0.7
-platform	https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/increase-consistency		0.7
-platform	https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks		0.7
-platform	https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations		0.7
-platform	https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-latency		0.7
-platform	https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-prompt-leak		0.7
-platform	https://platform.claude.com/environments		0.8
-platform	https://platform.claude.com/files		0.8
-platform	https://platform.claude.com/logs		0.8
-platform	https://platform.claude.com/memory-stores		0.8
-platform	https://platform.claude.com/playground		0.8
-platform	https://platform.claude.com/sessions		0.8
-platform	https://platform.claude.com/settings/admin-keys		0.8
-platform	https://platform.claude.com/settings/billing		0.8
-platform	https://platform.claude.com/settings/general		0.8
-platform	https://platform.claude.com/settings/keys		0.8
-platform	https://platform.claude.com/settings/limits		0.8
-platform	https://platform.claude.com/settings/members		0.8
-platform	https://platform.claude.com/settings/organization		0.8
-platform	https://platform.claude.com/settings/privacy		0.8
-platform	https://platform.claude.com/settings/security		0.8
-platform	https://platform.claude.com/settings/workspaces		0.8
-platform	https://platform.claude.com/skills		0.8
-platform	https://platform.claude.com/usage		0.8
-platform	https://platform.claude.com/usage/cache		0.8
-platform	https://platform.claude.com/usage/limits		0.8
-platform	https://platform.claude.com/vaults		0.8
+source	loc	lastmod
+code	https://code.claude.com/docs/en/accessibility	2026-09-05T04:24:06.820Z
+code	https://code.claude.com/docs/en/admin-setup	2026-09-15T22:32:08.004Z
+code	https://code.claude.com/docs/en/advisor	2026-09-13T20:11:56.214Z
+code	https://code.claude.com/docs/en/agent-sdk/agent-loop	2026-09-15T21:21:29.914Z
+code	https://code.claude.com/docs/en/agent-sdk/claude-code-features	2026-09-15T21:20:07.935Z
+code	https://code.claude.com/docs/en/agent-sdk/configuration	2026-09-15T20:36:31.506Z
+code	https://code.claude.com/docs/en/agent-sdk/cost-tracking	2026-09-15T20:36:31.505Z
+code	https://code.claude.com/docs/en/agent-sdk/custom-tools	2026-09-15T21:20:07.936Z
+code	https://code.claude.com/docs/en/agent-sdk/examples	2026-08-07T23:30:03.497Z
+code	https://code.claude.com/docs/en/agent-sdk/file-checkpointing	2026-09-15T21:20:07.926Z
+code	https://code.claude.com/docs/en/agent-sdk/hooks	2026-09-15T23:29:21.655Z
+code	https://code.claude.com/docs/en/agent-sdk/hosting	2026-09-15T19:41:37.196Z
+code	https://code.claude.com/docs/en/agent-sdk/mcp	2026-09-13T18:55:16.761Z
+code	https://code.claude.com/docs/en/agent-sdk/migration-guide	2026-09-04T15:09:57.270Z
+code	https://code.claude.com/docs/en/agent-sdk/modifying-system-prompts	2026-09-13T18:53:38.595Z
+code	https://code.claude.com/docs/en/agent-sdk/observability	2026-08-31T15:46:02.791Z
+code	https://code.claude.com/docs/en/agent-sdk/overview	2026-09-13T18:49:48.535Z
+code	https://code.claude.com/docs/en/agent-sdk/permissions	2026-09-15T14:33:03.125Z
+code	https://code.claude.com/docs/en/agent-sdk/plugins	2026-09-15T21:21:29.918Z
+code	https://code.claude.com/docs/en/agent-sdk/python	2026-09-15T22:32:08.043Z
+code	https://code.claude.com/docs/en/agent-sdk/quickstart	2026-09-15T20:36:31.504Z
+code	https://code.claude.com/docs/en/agent-sdk/secure-deployment	2026-08-29T04:34:32.645Z
+code	https://code.claude.com/docs/en/agent-sdk/session-storage	2026-09-15T19:41:37.198Z
+code	https://code.claude.com/docs/en/agent-sdk/sessions	2026-08-21T04:31:31.388Z
+code	https://code.claude.com/docs/en/agent-sdk/skills	2026-09-15T21:21:29.916Z
+code	https://code.claude.com/docs/en/agent-sdk/streaming-output	2026-09-13T18:54:28.192Z
+code	https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode	2026-08-28T18:50:04.015Z
+code	https://code.claude.com/docs/en/agent-sdk/structured-outputs	2026-08-29T00:00:46.408Z
+code	https://code.claude.com/docs/en/agent-sdk/subagents	2026-09-15T20:36:31.507Z
+code	https://code.claude.com/docs/en/agent-sdk/todo-tracking	2026-09-10T22:13:14.940Z
+code	https://code.claude.com/docs/en/agent-sdk/tool-search	2026-08-27T15:07:01.828Z
+code	https://code.claude.com/docs/en/agent-sdk/troubleshooting	2026-09-04T14:31:16.060Z
+code	https://code.claude.com/docs/en/agent-sdk/typescript	2026-09-15T22:32:08.028Z
+code	https://code.claude.com/docs/en/agent-sdk/typescript-v2-preview	2026-09-15T21:21:29.917Z
+code	https://code.claude.com/docs/en/agent-sdk/user-input	2026-09-15T21:20:07.913Z
+code	https://code.claude.com/docs/en/agent-teams	2026-09-10T18:38:54.691Z
+code	https://code.claude.com/docs/en/agent-view	2026-09-15T22:32:08.029Z
+code	https://code.claude.com/docs/en/agents	2026-09-15T22:32:08.000Z
+code	https://code.claude.com/docs/en/amazon-bedrock	2026-09-15T21:24:39.191Z
+code	https://code.claude.com/docs/en/analytics	2026-09-10T19:45:09.121Z
+code	https://code.claude.com/docs/en/artifacts	2026-09-15T21:22:35.656Z
+code	https://code.claude.com/docs/en/authentication	2026-09-15T22:32:08.009Z
+code	https://code.claude.com/docs/en/auto-mode-config	2026-09-15T23:26:05.918Z
+code	https://code.claude.com/docs/en/best-practices	2026-09-15T22:32:08.000Z
+code	https://code.claude.com/docs/en/champion-kit	2026-08-29T04:34:32.626Z
+code	https://code.claude.com/docs/en/changelog	2026-09-15T20:36:31.560Z
+code	https://code.claude.com/docs/en/channels	2026-09-15T22:32:08.027Z
+code	https://code.claude.com/docs/en/channels-reference	2026-09-15T21:22:35.656Z
+code	https://code.claude.com/docs/en/checkpointing	2026-09-15T21:25:59.182Z
+code	https://code.claude.com/docs/en/chrome	2026-09-13T20:06:46.324Z
+code	https://code.claude.com/docs/en/claude-apps-gateway	2026-09-15T21:22:35.655Z
+code	https://code.claude.com/docs/en/claude-apps-gateway-config	2026-09-15T21:25:59.202Z
+code	https://code.claude.com/docs/en/claude-apps-gateway-deploy	2026-09-15T21:21:29.916Z
+code	https://code.claude.com/docs/en/claude-apps-gateway-on-aws	2026-09-09T22:57:00.650Z
+code	https://code.claude.com/docs/en/claude-apps-gateway-on-gcp	2026-08-07T20:23:45.021Z
+code	https://code.claude.com/docs/en/claude-apps-gateway-spend-limits	2026-08-29T01:09:31.960Z
+code	https://code.claude.com/docs/en/claude-code-on-the-web	2026-09-15T22:32:07.931Z
+code	https://code.claude.com/docs/en/claude-directory	2026-09-15T21:22:35.661Z
+code	https://code.claude.com/docs/en/claude-platform-on-aws	2026-09-15T21:25:59.181Z
+code	https://code.claude.com/docs/en/claude-security	2026-09-15T21:22:35.647Z
+code	https://code.claude.com/docs/en/claude-tag	2026-08-10T21:10:44.608Z
+code	https://code.claude.com/docs/en/cli-reference	2026-09-15T22:32:07.948Z
+code	https://code.claude.com/docs/en/cloud-environments	2026-09-15T22:32:07.935Z
+code	https://code.claude.com/docs/en/code-review	2026-09-15T21:20:07.928Z
+code	https://code.claude.com/docs/en/commands	2026-09-15T22:32:07.948Z
+code	https://code.claude.com/docs/en/common-workflows	2026-09-14T18:44:00.778Z
+code	https://code.claude.com/docs/en/communications-kit	2026-09-09T16:53:24.157Z
+code	https://code.claude.com/docs/en/computer-use	2026-09-13T18:14:27.164Z
+code	https://code.claude.com/docs/en/context-window	2026-09-15T21:51:32.661Z
+code	https://code.claude.com/docs/en/corporate-launcher	2026-09-11T21:38:32.530Z
+code	https://code.claude.com/docs/en/costs	2026-09-15T01:03:19.271Z
+code	https://code.claude.com/docs/en/cross-session-messaging	2026-09-15T22:32:07.924Z
+code	https://code.claude.com/docs/en/data-usage	2026-09-15T22:32:07.925Z
+code	https://code.claude.com/docs/en/debug-your-config	2026-09-15T01:04:25.060Z
+code	https://code.claude.com/docs/en/deep-links	2026-09-15T21:22:35.648Z
+code	https://code.claude.com/docs/en/desktop	2026-09-15T22:32:07.947Z
+code	https://code.claude.com/docs/en/desktop-ios-simulator	2026-09-15T22:32:07.924Z
+code	https://code.claude.com/docs/en/desktop-linux	2026-08-27T15:07:01.826Z
+code	https://code.claude.com/docs/en/desktop-quickstart	2026-09-15T22:32:07.925Z
+code	https://code.claude.com/docs/en/desktop-scheduled-tasks	2026-09-10T18:45:56.012Z
+code	https://code.claude.com/docs/en/desktop-wsl	2026-07-29T15:17:23.193Z
+code	https://code.claude.com/docs/en/devcontainer	2026-09-15T21:25:59.191Z
+code	https://code.claude.com/docs/en/discover-plugins	2026-09-15T21:20:07.927Z
+code	https://code.claude.com/docs/en/env-vars	2026-09-15T22:32:07.949Z
+code	https://code.claude.com/docs/en/errors	2026-09-15T22:32:07.950Z
+code	https://code.claude.com/docs/en/fast-mode	2026-09-15T01:02:25.054Z
+code	https://code.claude.com/docs/en/feature-availability	2026-09-15T22:32:07.936Z
+code	https://code.claude.com/docs/en/features-overview	2026-09-15T21:22:35.644Z
+code	https://code.claude.com/docs/en/fullscreen	2026-09-15T04:29:37.261Z
+code	https://code.claude.com/docs/en/gateways	2026-09-04T02:25:23.057Z
+code	https://code.claude.com/docs/en/github-actions	2026-09-15T22:32:07.926Z
+code	https://code.claude.com/docs/en/github-actions-cloud-providers	2026-09-15T21:21:29.913Z
+code	https://code.claude.com/docs/en/github-enterprise-server	2026-09-15T22:32:07.923Z
+code	https://code.claude.com/docs/en/gitlab-ci-cd	2026-08-29T04:34:32.627Z
+code	https://code.claude.com/docs/en/glossary	2026-09-15T22:32:07.935Z
+code	https://code.claude.com/docs/en/goal	2026-09-15T21:22:35.643Z
+code	https://code.claude.com/docs/en/google-vertex-ai	2026-09-15T21:24:39.193Z
+code	https://code.claude.com/docs/en/headless	2026-09-11T15:08:48.746Z
+code	https://code.claude.com/docs/en/hooks	2026-09-15T22:32:07.850Z
+code	https://code.claude.com/docs/en/hooks-guide	2026-09-11T21:42:50.468Z
+code	https://code.claude.com/docs/en/how-claude-code-works	2026-09-15T21:20:07.912Z
+code	https://code.claude.com/docs/en/interactive-mode	2026-09-15T01:00:43.569Z
+code	https://code.claude.com/docs/en/jetbrains	2026-09-15T21:25:59.173Z
+code	https://code.claude.com/docs/en/keybindings	2026-09-10T19:07:53.281Z
+code	https://code.claude.com/docs/en/large-codebases	2026-09-14T18:44:00.777Z
+code	https://code.claude.com/docs/en/legal-and-compliance	2026-08-21T23:21:06.612Z
+code	https://code.claude.com/docs/en/llm-gateway	2026-09-04T02:25:23.054Z
+code	https://code.claude.com/docs/en/llm-gateway-connect	2026-09-15T22:32:07.845Z
+code	https://code.claude.com/docs/en/llm-gateway-protocol	2026-09-15T21:21:29.922Z
+code	https://code.claude.com/docs/en/llm-gateway-rollout	2026-09-15T21:22:35.643Z
+code	https://code.claude.com/docs/en/managed-mcp	2026-09-15T21:25:59.193Z
+code	https://code.claude.com/docs/en/managed-settings	2026-09-15T22:32:07.844Z
+code	https://code.claude.com/docs/en/mcp	2026-09-15T22:32:07.844Z
+code	https://code.claude.com/docs/en/mcp-quickstart	2026-09-15T22:32:07.843Z
+code	https://code.claude.com/docs/en/memory	2026-09-10T19:09:41.707Z
+code	https://code.claude.com/docs/en/microsoft-foundry	2026-09-15T21:24:39.189Z
+code	https://code.claude.com/docs/en/mobile	2026-09-15T22:32:07.835Z
+code	https://code.claude.com/docs/en/model-config	2026-09-15T22:32:07.853Z
+code	https://code.claude.com/docs/en/monitoring-usage	2026-09-14T21:33:05.721Z
+code	https://code.claude.com/docs/en/network-config	2026-09-15T22:32:07.841Z
+code	https://code.claude.com/docs/en/output-styles	2026-09-09T22:18:41.624Z
+code	https://code.claude.com/docs/en/overview	2026-09-15T22:32:07.850Z
+code	https://code.claude.com/docs/en/permission-modes	2026-09-15T23:26:05.923Z
+code	https://code.claude.com/docs/en/permissions	2026-09-15T23:26:05.917Z
+code	https://code.claude.com/docs/en/platforms	2026-09-15T22:32:07.835Z
+code	https://code.claude.com/docs/en/plugin-dependencies	2026-09-15T21:20:07.903Z
+code	https://code.claude.com/docs/en/plugin-evals	2026-09-11T22:04:50.613Z
+code	https://code.claude.com/docs/en/plugin-hints	2026-09-10T18:41:16.613Z
+code	https://code.claude.com/docs/en/plugin-marketplaces	2026-09-15T22:32:07.849Z
+code	https://code.claude.com/docs/en/plugin-relevance	2026-09-08T15:40:46.926Z
+code	https://code.claude.com/docs/en/plugins	2026-09-11T19:44:19.743Z
+code	https://code.claude.com/docs/en/plugins-reference	2026-09-15T21:21:29.919Z
+code	https://code.claude.com/docs/en/prompt-caching	2026-09-15T04:29:37.261Z
+code	https://code.claude.com/docs/en/prompt-library	2026-08-21T17:32:32.703Z
+code	https://code.claude.com/docs/en/quickstart	2026-08-31T15:11:34.646Z
+code	https://code.claude.com/docs/en/remote-control	2026-09-15T22:32:07.851Z
+code	https://code.claude.com/docs/en/routines	2026-09-15T22:32:07.851Z
+code	https://code.claude.com/docs/en/sandbox-environments	2026-09-15T23:26:05.908Z
+code	https://code.claude.com/docs/en/sandboxing	2026-09-15T23:26:05.918Z
+code	https://code.claude.com/docs/en/scheduled-tasks	2026-09-15T21:22:35.642Z
+code	https://code.claude.com/docs/en/security	2026-09-15T22:32:07.832Z
+code	https://code.claude.com/docs/en/security-guidance	2026-09-15T22:32:07.832Z
+code	https://code.claude.com/docs/en/self-hosted-environments	2026-09-15T22:32:07.730Z
+code	https://code.claude.com/docs/en/self-hosted-environments-configuration	2026-09-15T21:22:35.658Z
+code	https://code.claude.com/docs/en/self-hosted-environments-deploy	2026-09-15T21:15:54.542Z
+code	https://code.claude.com/docs/en/self-hosted-environments-identity	2026-09-15T22:32:07.831Z
+code	https://code.claude.com/docs/en/self-hosted-environments-quickstart	2026-08-28T03:56:13.506Z
+code	https://code.claude.com/docs/en/self-hosted-environments-reference	2026-09-15T21:15:54.544Z
+code	https://code.claude.com/docs/en/self-hosted-environments-testing	2026-09-15T22:32:07.729Z
+code	https://code.claude.com/docs/en/server-managed-settings	2026-09-15T22:32:07.734Z
+code	https://code.claude.com/docs/en/sessions	2026-09-15T22:32:07.750Z
+code	https://code.claude.com/docs/en/settings	2026-09-15T22:32:07.751Z
+code	https://code.claude.com/docs/en/settings-example	2026-09-15T22:32:07.735Z
+code	https://code.claude.com/docs/en/settings-reference	2026-09-15T23:26:05.933Z
+code	https://code.claude.com/docs/en/setup	2026-09-15T21:51:32.470Z
+code	https://code.claude.com/docs/en/skills	2026-09-15T22:32:07.733Z
+code	https://code.claude.com/docs/en/slack	2026-09-15T22:32:07.750Z
+code	https://code.claude.com/docs/en/statusline	2026-09-15T21:25:59.192Z
+code	https://code.claude.com/docs/en/sub-agents	2026-09-15T21:45:06.317Z
+code	https://code.claude.com/docs/en/terminal-config	2026-09-15T21:21:29.915Z
+code	https://code.claude.com/docs/en/third-party-integrations	2026-09-15T22:32:07.733Z
+code	https://code.claude.com/docs/en/tools-reference	2026-09-15T22:32:07.733Z
+code	https://code.claude.com/docs/en/troubleshoot-install	2026-09-15T21:25:59.189Z
+code	https://code.claude.com/docs/en/troubleshooting	2026-09-15T21:22:35.657Z
+code	https://code.claude.com/docs/en/ultrareview	2026-09-15T22:32:07.730Z
+code	https://code.claude.com/docs/en/voice-dictation	2026-09-15T22:32:07.731Z
+code	https://code.claude.com/docs/en/vs-code	2026-09-15T22:32:07.728Z
+code	https://code.claude.com/docs/en/web-quickstart	2026-09-15T22:32:07.729Z
+code	https://code.claude.com/docs/en/whats-new	2026-09-15T21:22:35.648Z
+code	https://code.claude.com/docs/en/whats-new/2026-w13	2026-09-04T00:23:08.834Z
+code	https://code.claude.com/docs/en/whats-new/2026-w14	2026-09-15T21:24:39.181Z
+code	https://code.claude.com/docs/en/whats-new/2026-w15	2026-09-04T00:23:08.838Z
+code	https://code.claude.com/docs/en/whats-new/2026-w16	2026-09-04T00:23:08.834Z
+code	https://code.claude.com/docs/en/whats-new/2026-w17	2026-09-04T00:23:08.835Z
+code	https://code.claude.com/docs/en/whats-new/2026-w18	2026-09-04T00:23:08.839Z
+code	https://code.claude.com/docs/en/whats-new/2026-w19	2026-09-04T00:23:08.832Z
+code	https://code.claude.com/docs/en/whats-new/2026-w20	2026-09-15T21:25:59.169Z
+code	https://code.claude.com/docs/en/whats-new/2026-w21	2026-09-04T00:23:08.838Z
+code	https://code.claude.com/docs/en/whats-new/2026-w22	2026-09-04T00:23:08.839Z
+code	https://code.claude.com/docs/en/whats-new/2026-w23	2026-09-04T00:23:08.840Z
+code	https://code.claude.com/docs/en/whats-new/2026-w24	2026-09-04T00:23:08.837Z
+code	https://code.claude.com/docs/en/whats-new/2026-w25	2026-09-04T00:23:08.840Z
+code	https://code.claude.com/docs/en/whats-new/2026-w26	2026-09-04T00:23:08.831Z
+code	https://code.claude.com/docs/en/whats-new/2026-w27	2026-09-04T00:23:08.839Z
+code	https://code.claude.com/docs/en/whats-new/2026-w28	2026-09-04T00:23:08.837Z
+code	https://code.claude.com/docs/en/whats-new/2026-w29	2026-09-04T00:23:08.831Z
+code	https://code.claude.com/docs/en/whats-new/2026-w30	2026-09-04T00:23:08.832Z
+code	https://code.claude.com/docs/en/whats-new/2026-w32	2026-09-04T00:23:08.830Z
+code	https://code.claude.com/docs/en/whats-new/2026-w33	2026-09-04T00:23:08.833Z
+code	https://code.claude.com/docs/en/whats-new/2026-w34	2026-09-04T00:23:08.833Z
+code	https://code.claude.com/docs/en/whats-new/2026-w35	2026-09-15T00:38:47.221Z
+code	https://code.claude.com/docs/en/whats-new/2026-w36	2026-09-15T00:38:47.220Z
+code	https://code.claude.com/docs/en/whats-new/2026-w37	2026-09-15T00:38:47.216Z
+code	https://code.claude.com/docs/en/workflows	2026-09-15T21:22:35.657Z
+code	https://code.claude.com/docs/en/worktrees	2026-09-12T02:10:19.629Z
+code	https://code.claude.com/docs/en/zero-data-retention	2026-09-15T22:32:07.630Z
+platform	https://platform.claude.com/agent-quickstart	
+platform	https://platform.claude.com/agents	
+platform	https://platform.claude.com/batches	
+platform	https://platform.claude.com/claude-code	
+platform	https://platform.claude.com/claude-code/settings	
+platform	https://platform.claude.com/cost	
+platform	https://platform.claude.com/deployments	
+platform	https://platform.claude.com/docs	
+platform	https://platform.claude.com/docs/en/about-claude/additional-resources	
+platform	https://platform.claude.com/docs/en/about-claude/glossary	
+platform	https://platform.claude.com/docs/en/about-claude/model-deprecations	
+platform	https://platform.claude.com/docs/en/about-claude/models/choosing-a-model	
+platform	https://platform.claude.com/docs/en/about-claude/models/migration-guide	
+platform	https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions	
+platform	https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence	
+platform	https://platform.claude.com/docs/en/about-claude/pricing	
+platform	https://platform.claude.com/docs/en/about-claude/use-case-guides/commerce-agents	
+platform	https://platform.claude.com/docs/en/about-claude/use-case-guides/content-moderation	
+platform	https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat	
+platform	https://platform.claude.com/docs/en/about-claude/use-case-guides/legal-summarization	
+platform	https://platform.claude.com/docs/en/about-claude/use-case-guides/overview	
+platform	https://platform.claude.com/docs/en/about-claude/use-case-guides/ticket-routing	
+platform	https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices	
+platform	https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill	
+platform	https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise	
+platform	https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview	
+platform	https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart	
+platform	https://platform.claude.com/docs/en/agents-and-tools/mcp-connector	
+platform	https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts	
+platform	https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/console	
+platform	https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-compose	
+platform	https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-helm	
+platform	https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/overview	
+platform	https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/quickstart	
+platform	https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/reference	
+platform	https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/security	
+platform	https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/troubleshooting	
+platform	https://platform.claude.com/docs/en/agents-and-tools/remote-mcp-servers	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/build-a-tool-using-agent	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/manage-tool-context	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-combinations	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/troubleshooting-tool-use	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool	
+platform	https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool	
+platform	https://platform.claude.com/docs/en/api/beta	
+platform	https://platform.claude.com/docs/en/api/beta-headers	
+platform	https://platform.claude.com/docs/en/api/beta/agents	
+platform	https://platform.claude.com/docs/en/api/beta/agents/archive	
+platform	https://platform.claude.com/docs/en/api/beta/agents/create	
+platform	https://platform.claude.com/docs/en/api/beta/agents/list	
+platform	https://platform.claude.com/docs/en/api/beta/agents/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/agents/update	
+platform	https://platform.claude.com/docs/en/api/beta/agents/versions	
+platform	https://platform.claude.com/docs/en/api/beta/agents/versions/list	
+platform	https://platform.claude.com/docs/en/api/beta/deployment_runs	
+platform	https://platform.claude.com/docs/en/api/beta/deployment_runs/list	
+platform	https://platform.claude.com/docs/en/api/beta/deployment_runs/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/deployments	
+platform	https://platform.claude.com/docs/en/api/beta/deployments/archive	
+platform	https://platform.claude.com/docs/en/api/beta/deployments/create	
+platform	https://platform.claude.com/docs/en/api/beta/deployments/list	
+platform	https://platform.claude.com/docs/en/api/beta/deployments/pause	
+platform	https://platform.claude.com/docs/en/api/beta/deployments/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/deployments/run	
+platform	https://platform.claude.com/docs/en/api/beta/deployments/unpause	
+platform	https://platform.claude.com/docs/en/api/beta/deployments/update	
+platform	https://platform.claude.com/docs/en/api/beta/dreams	
+platform	https://platform.claude.com/docs/en/api/beta/dreams/archive	
+platform	https://platform.claude.com/docs/en/api/beta/dreams/cancel	
+platform	https://platform.claude.com/docs/en/api/beta/dreams/create	
+platform	https://platform.claude.com/docs/en/api/beta/dreams/list	
+platform	https://platform.claude.com/docs/en/api/beta/dreams/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/environments	
+platform	https://platform.claude.com/docs/en/api/beta/environments/archive	
+platform	https://platform.claude.com/docs/en/api/beta/environments/create	
+platform	https://platform.claude.com/docs/en/api/beta/environments/delete	
+platform	https://platform.claude.com/docs/en/api/beta/environments/list	
+platform	https://platform.claude.com/docs/en/api/beta/environments/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/environments/update	
+platform	https://platform.claude.com/docs/en/api/beta/environments/work	
+platform	https://platform.claude.com/docs/en/api/beta/environments/work/ack	
+platform	https://platform.claude.com/docs/en/api/beta/environments/work/heartbeat	
+platform	https://platform.claude.com/docs/en/api/beta/environments/work/list	
+platform	https://platform.claude.com/docs/en/api/beta/environments/work/poll	
+platform	https://platform.claude.com/docs/en/api/beta/environments/work/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/environments/work/stats	
+platform	https://platform.claude.com/docs/en/api/beta/environments/work/stop	
+platform	https://platform.claude.com/docs/en/api/beta/environments/work/update	
+platform	https://platform.claude.com/docs/en/api/beta/files	
+platform	https://platform.claude.com/docs/en/api/beta/files/delete	
+platform	https://platform.claude.com/docs/en/api/beta/files/download	
+platform	https://platform.claude.com/docs/en/api/beta/files/list	
+platform	https://platform.claude.com/docs/en/api/beta/files/retrieve_metadata	
+platform	https://platform.claude.com/docs/en/api/beta/files/upload	
+platform	https://platform.claude.com/docs/en/api/beta/memory_stores	
+platform	https://platform.claude.com/docs/en/api/beta/memory_stores/archive	
+platform	https://platform.claude.com/docs/en/api/beta/memory_stores/create	
+platform	https://platform.claude.com/docs/en/api/beta/memory_stores/delete	
+platform	https://platform.claude.com/docs/en/api/beta/memory_stores/list	
+platform	https://platform.claude.com/docs/en/api/beta/memory_stores/memories	
+platform	https://platform.claude.com/docs/en/api/beta/memory_stores/memories/create	
+platform	https://platform.claude.com/docs/en/api/beta/memory_stores/memories/delete	
+platform	https://platform.claude.com/docs/en/api/beta/memory_stores/memories/list	
+platform	https://platform.claude.com/docs/en/api/beta/memory_stores/memories/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/memory_stores/memories/update	
+platform	https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions	
+platform	https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/list	
+platform	https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/redact	
+platform	https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/memory_stores/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/memory_stores/update	
+platform	https://platform.claude.com/docs/en/api/beta/messages	
+platform	https://platform.claude.com/docs/en/api/beta/messages/batches	
+platform	https://platform.claude.com/docs/en/api/beta/messages/batches/cancel	
+platform	https://platform.claude.com/docs/en/api/beta/messages/batches/create	
+platform	https://platform.claude.com/docs/en/api/beta/messages/batches/delete	
+platform	https://platform.claude.com/docs/en/api/beta/messages/batches/list	
+platform	https://platform.claude.com/docs/en/api/beta/messages/batches/results	
+platform	https://platform.claude.com/docs/en/api/beta/messages/batches/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/messages/count_tokens	
+platform	https://platform.claude.com/docs/en/api/beta/messages/create	
+platform	https://platform.claude.com/docs/en/api/beta/models	
+platform	https://platform.claude.com/docs/en/api/beta/models/list	
+platform	https://platform.claude.com/docs/en/api/beta/models/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/organization	
+platform	https://platform.claude.com/docs/en/api/beta/organization/analytics	
+platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/artifacts	
+platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/artifacts/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/chat_projects	
+platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/chat_projects/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/connectors	
+platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/connectors/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/cost	
+platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/cost/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/cost/list_by_user	
+platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/plugins	
+platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/plugins/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/retrieve_summaries	
+platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/skills	
+platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/skills/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/usage	
+platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/usage/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/usage/list_by_user	
+platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/users	
+platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/users/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/api_keys	
+platform	https://platform.claude.com/docs/en/api/beta/organization/api_keys/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/api_keys/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/organization/api_keys/update	
+platform	https://platform.claude.com/docs/en/api/beta/organization/compliance_settings	
+platform	https://platform.claude.com/docs/en/api/beta/organization/compliance_settings/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/organization/compliance_settings/update	
+platform	https://platform.claude.com/docs/en/api/beta/organization/cost_report	
+platform	https://platform.claude.com/docs/en/api/beta/organization/cost_report/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/organization/external_keys	
+platform	https://platform.claude.com/docs/en/api/beta/organization/external_keys/create	
+platform	https://platform.claude.com/docs/en/api/beta/organization/external_keys/delete	
+platform	https://platform.claude.com/docs/en/api/beta/organization/external_keys/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/external_keys/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/organization/external_keys/update	
+platform	https://platform.claude.com/docs/en/api/beta/organization/external_keys/validate	
+platform	https://platform.claude.com/docs/en/api/beta/organization/federation	
+platform	https://platform.claude.com/docs/en/api/beta/organization/federation/issuers	
+platform	https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/archive	
+platform	https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/create	
+platform	https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/update	
+platform	https://platform.claude.com/docs/en/api/beta/organization/federation/rules	
+platform	https://platform.claude.com/docs/en/api/beta/organization/federation/rules/archive	
+platform	https://platform.claude.com/docs/en/api/beta/organization/federation/rules/create	
+platform	https://platform.claude.com/docs/en/api/beta/organization/federation/rules/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/federation/rules/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/organization/federation/rules/update	
+platform	https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces	
+platform	https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces/add	
+platform	https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces/remove	
+platform	https://platform.claude.com/docs/en/api/beta/organization/invites	
+platform	https://platform.claude.com/docs/en/api/beta/organization/invites/create	
+platform	https://platform.claude.com/docs/en/api/beta/organization/invites/delete	
+platform	https://platform.claude.com/docs/en/api/beta/organization/invites/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/invites/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels	
+platform	https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/archive	
+platform	https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/reveal_token	
+platform	https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/rotate_token	
+platform	https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates	
+platform	https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/archive	
+platform	https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/create	
+platform	https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/organization/rate_limits	
+platform	https://platform.claude.com/docs/en/api/beta/organization/rate_limits/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_groups	
+platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/create	
+platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/delete	
+platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/members	
+platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/members/create	
+platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/members/delete	
+platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/members/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/update	
+platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_roles	
+platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_roles/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_roles/permissions	
+platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_roles/permissions/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/rbac_roles/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/organization/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/organization/service_accounts	
+platform	https://platform.claude.com/docs/en/api/beta/organization/service_accounts/archive	
+platform	https://platform.claude.com/docs/en/api/beta/organization/service_accounts/create	
+platform	https://platform.claude.com/docs/en/api/beta/organization/service_accounts/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/service_accounts/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/organization/service_accounts/update	
+platform	https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces	
+platform	https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces/add	
+platform	https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces/remove	
+platform	https://platform.claude.com/docs/en/api/beta/organization/spend_limits	
+platform	https://platform.claude.com/docs/en/api/beta/organization/spend_limits/create	
+platform	https://platform.claude.com/docs/en/api/beta/organization/spend_limits/delete	
+platform	https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests	
+platform	https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests/approve	
+platform	https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests/deny	
+platform	https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/organization/spend_limits/list_effective	
+platform	https://platform.claude.com/docs/en/api/beta/organization/spend_limits/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/organization/usage_report	
+platform	https://platform.claude.com/docs/en/api/beta/organization/usage_report/retrieve_claude_code	
+platform	https://platform.claude.com/docs/en/api/beta/organization/usage_report/retrieve_messages	
+platform	https://platform.claude.com/docs/en/api/beta/organization/users	
+platform	https://platform.claude.com/docs/en/api/beta/organization/users/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/users/remove	
+platform	https://platform.claude.com/docs/en/api/beta/organization/users/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/organization/users/update	
+platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces	
+platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/archive	
+platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/create	
+platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/members	
+platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/members/add	
+platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/members/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/members/remove	
+platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/members/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/members/update	
+platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/rate_limits	
+platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/rate_limits/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts	
+platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/add	
+platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/remove	
+platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/update	
+platform	https://platform.claude.com/docs/en/api/beta/organization/workspaces/update	
+platform	https://platform.claude.com/docs/en/api/beta/sessions	
+platform	https://platform.claude.com/docs/en/api/beta/sessions/archive	
+platform	https://platform.claude.com/docs/en/api/beta/sessions/create	
+platform	https://platform.claude.com/docs/en/api/beta/sessions/delete	
+platform	https://platform.claude.com/docs/en/api/beta/sessions/events	
+platform	https://platform.claude.com/docs/en/api/beta/sessions/events/list	
+platform	https://platform.claude.com/docs/en/api/beta/sessions/events/send	
+platform	https://platform.claude.com/docs/en/api/beta/sessions/events/stream	
+platform	https://platform.claude.com/docs/en/api/beta/sessions/list	
+platform	https://platform.claude.com/docs/en/api/beta/sessions/resources	
+platform	https://platform.claude.com/docs/en/api/beta/sessions/resources/add	
+platform	https://platform.claude.com/docs/en/api/beta/sessions/resources/delete	
+platform	https://platform.claude.com/docs/en/api/beta/sessions/resources/list	
+platform	https://platform.claude.com/docs/en/api/beta/sessions/resources/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/sessions/resources/update	
+platform	https://platform.claude.com/docs/en/api/beta/sessions/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/sessions/threads	
+platform	https://platform.claude.com/docs/en/api/beta/sessions/threads/archive	
+platform	https://platform.claude.com/docs/en/api/beta/sessions/threads/events	
+platform	https://platform.claude.com/docs/en/api/beta/sessions/threads/events/list	
+platform	https://platform.claude.com/docs/en/api/beta/sessions/threads/events/stream	
+platform	https://platform.claude.com/docs/en/api/beta/sessions/threads/list	
+platform	https://platform.claude.com/docs/en/api/beta/sessions/threads/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/sessions/update	
+platform	https://platform.claude.com/docs/en/api/beta/skills	
+platform	https://platform.claude.com/docs/en/api/beta/skills/create	
+platform	https://platform.claude.com/docs/en/api/beta/skills/delete	
+platform	https://platform.claude.com/docs/en/api/beta/skills/list	
+platform	https://platform.claude.com/docs/en/api/beta/skills/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/skills/versions	
+platform	https://platform.claude.com/docs/en/api/beta/skills/versions/create	
+platform	https://platform.claude.com/docs/en/api/beta/skills/versions/delete	
+platform	https://platform.claude.com/docs/en/api/beta/skills/versions/download	
+platform	https://platform.claude.com/docs/en/api/beta/skills/versions/list	
+platform	https://platform.claude.com/docs/en/api/beta/skills/versions/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/tunnels	
+platform	https://platform.claude.com/docs/en/api/beta/tunnels/archive	
+platform	https://platform.claude.com/docs/en/api/beta/tunnels/certificates	
+platform	https://platform.claude.com/docs/en/api/beta/tunnels/certificates/archive	
+platform	https://platform.claude.com/docs/en/api/beta/tunnels/certificates/create	
+platform	https://platform.claude.com/docs/en/api/beta/tunnels/certificates/list	
+platform	https://platform.claude.com/docs/en/api/beta/tunnels/certificates/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/tunnels/create	
+platform	https://platform.claude.com/docs/en/api/beta/tunnels/list	
+platform	https://platform.claude.com/docs/en/api/beta/tunnels/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/tunnels/reveal_token	
+platform	https://platform.claude.com/docs/en/api/beta/tunnels/rotate_token	
+platform	https://platform.claude.com/docs/en/api/beta/user_profiles	
+platform	https://platform.claude.com/docs/en/api/beta/user_profiles/create	
+platform	https://platform.claude.com/docs/en/api/beta/user_profiles/create_enrollment_url	
+platform	https://platform.claude.com/docs/en/api/beta/user_profiles/list	
+platform	https://platform.claude.com/docs/en/api/beta/user_profiles/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/user_profiles/update	
+platform	https://platform.claude.com/docs/en/api/beta/vaults	
+platform	https://platform.claude.com/docs/en/api/beta/vaults/archive	
+platform	https://platform.claude.com/docs/en/api/beta/vaults/create	
+platform	https://platform.claude.com/docs/en/api/beta/vaults/credentials	
+platform	https://platform.claude.com/docs/en/api/beta/vaults/credentials/archive	
+platform	https://platform.claude.com/docs/en/api/beta/vaults/credentials/create	
+platform	https://platform.claude.com/docs/en/api/beta/vaults/credentials/delete	
+platform	https://platform.claude.com/docs/en/api/beta/vaults/credentials/list	
+platform	https://platform.claude.com/docs/en/api/beta/vaults/credentials/mcp_oauth_validate	
+platform	https://platform.claude.com/docs/en/api/beta/vaults/credentials/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/vaults/credentials/update	
+platform	https://platform.claude.com/docs/en/api/beta/vaults/delete	
+platform	https://platform.claude.com/docs/en/api/beta/vaults/list	
+platform	https://platform.claude.com/docs/en/api/beta/vaults/retrieve	
+platform	https://platform.claude.com/docs/en/api/beta/vaults/update	
+platform	https://platform.claude.com/docs/en/api/beta/webhooks	
+platform	https://platform.claude.com/docs/en/api/claude-code/routines-fire	
+platform	https://platform.claude.com/docs/en/api/claude-platform-on-aws-iam-actions	
+platform	https://platform.claude.com/docs/en/api/completions	
+platform	https://platform.claude.com/docs/en/api/completions/create	
+platform	https://platform.claude.com/docs/en/api/compliance	
+platform	https://platform.claude.com/docs/en/api/compliance/activities	
+platform	https://platform.claude.com/docs/en/api/compliance/activities/list	
+platform	https://platform.claude.com/docs/en/api/compliance/apps	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/artifacts	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/artifacts/download	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/artifacts/retrieve	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/chats	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/chats/delete	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/chats/files	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/chats/files/delete	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/chats/files/download	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/chats/files/retrieve	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/chats/generated_files	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/chats/generated_files/download	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/chats/generated_files/retrieve	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/chats/list	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/chats/messages	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/chats/messages/list	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/projects	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments/list	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/collaborators	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/collaborators/list	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/delete	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/documents	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/delete	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/metadata	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/retrieve	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/list	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/retrieve	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/sessions	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/sessions/local	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/list	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/messages	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/messages/list	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/retrieve	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/sessions/remote	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/sessions/remote/list	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/sessions/remote/messages	
+platform	https://platform.claude.com/docs/en/api/compliance/apps/sessions/remote/messages/list	
+platform	https://platform.claude.com/docs/en/api/compliance/code	
+platform	https://platform.claude.com/docs/en/api/compliance/code/artifacts	
+platform	https://platform.claude.com/docs/en/api/compliance/code/artifacts/delete	
+platform	https://platform.claude.com/docs/en/api/compliance/code/artifacts/list	
+platform	https://platform.claude.com/docs/en/api/compliance/code/artifacts/retrieve_version	
+platform	https://platform.claude.com/docs/en/api/compliance/groups	
+platform	https://platform.claude.com/docs/en/api/compliance/groups/list	
+platform	https://platform.claude.com/docs/en/api/compliance/groups/members	
+platform	https://platform.claude.com/docs/en/api/compliance/groups/members/list	
+platform	https://platform.claude.com/docs/en/api/compliance/groups/retrieve	
+platform	https://platform.claude.com/docs/en/api/compliance/organizations	
+platform	https://platform.claude.com/docs/en/api/compliance/organizations/list	
+platform	https://platform.claude.com/docs/en/api/compliance/organizations/roles	
+platform	https://platform.claude.com/docs/en/api/compliance/organizations/roles/list	
+platform	https://platform.claude.com/docs/en/api/compliance/organizations/roles/permissions	
+platform	https://platform.claude.com/docs/en/api/compliance/organizations/roles/permissions/list	
+platform	https://platform.claude.com/docs/en/api/compliance/organizations/roles/retrieve	
+platform	https://platform.claude.com/docs/en/api/compliance/organizations/settings	
+platform	https://platform.claude.com/docs/en/api/compliance/organizations/settings/retrieve	
+platform	https://platform.claude.com/docs/en/api/compliance/organizations/users	
+platform	https://platform.claude.com/docs/en/api/compliance/organizations/users/list	
+platform	https://platform.claude.com/docs/en/api/errors	
+platform	https://platform.claude.com/docs/en/api/files	
+platform	https://platform.claude.com/docs/en/api/files/delete	
+platform	https://platform.claude.com/docs/en/api/files/download	
+platform	https://platform.claude.com/docs/en/api/files/list	
+platform	https://platform.claude.com/docs/en/api/files/retrieve_metadata	
+platform	https://platform.claude.com/docs/en/api/files/upload	
+platform	https://platform.claude.com/docs/en/api/ip-addresses	
+platform	https://platform.claude.com/docs/en/api/messages	
+platform	https://platform.claude.com/docs/en/api/messages/batches	
+platform	https://platform.claude.com/docs/en/api/messages/batches/cancel	
+platform	https://platform.claude.com/docs/en/api/messages/batches/create	
+platform	https://platform.claude.com/docs/en/api/messages/batches/delete	
+platform	https://platform.claude.com/docs/en/api/messages/batches/list	
+platform	https://platform.claude.com/docs/en/api/messages/batches/results	
+platform	https://platform.claude.com/docs/en/api/messages/batches/retrieve	
+platform	https://platform.claude.com/docs/en/api/messages/count_tokens	
+platform	https://platform.claude.com/docs/en/api/messages/create	
+platform	https://platform.claude.com/docs/en/api/models	
+platform	https://platform.claude.com/docs/en/api/models/list	
+platform	https://platform.claude.com/docs/en/api/models/retrieve	
+platform	https://platform.claude.com/docs/en/api/overview	
+platform	https://platform.claude.com/docs/en/api/rate-limits	
+platform	https://platform.claude.com/docs/en/api/service-tiers	
+platform	https://platform.claude.com/docs/en/api/skills	
+platform	https://platform.claude.com/docs/en/api/skills/create	
+platform	https://platform.claude.com/docs/en/api/skills/delete	
+platform	https://platform.claude.com/docs/en/api/skills/list	
+platform	https://platform.claude.com/docs/en/api/skills/retrieve	
+platform	https://platform.claude.com/docs/en/api/skills/versions	
+platform	https://platform.claude.com/docs/en/api/skills/versions/create	
+platform	https://platform.claude.com/docs/en/api/skills/versions/delete	
+platform	https://platform.claude.com/docs/en/api/skills/versions/list	
+platform	https://platform.claude.com/docs/en/api/skills/versions/retrieve	
+platform	https://platform.claude.com/docs/en/api/supported-regions	
+platform	https://platform.claude.com/docs/en/api/versioning	
+platform	https://platform.claude.com/docs/en/build-with-claude/batch-processing	
+platform	https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics	
+platform	https://platform.claude.com/docs/en/build-with-claude/citations	
+platform	https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock	
+platform	https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry	
+platform	https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy	
+platform	https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai	
+platform	https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws	
+platform	https://platform.claude.com/docs/en/build-with-claude/compaction	
+platform	https://platform.claude.com/docs/en/build-with-claude/context-editing	
+platform	https://platform.claude.com/docs/en/build-with-claude/context-windows	
+platform	https://platform.claude.com/docs/en/build-with-claude/effort	
+platform	https://platform.claude.com/docs/en/build-with-claude/embeddings	
+platform	https://platform.claude.com/docs/en/build-with-claude/extended-thinking	
+platform	https://platform.claude.com/docs/en/build-with-claude/fallback-credit	
+platform	https://platform.claude.com/docs/en/build-with-claude/fast-mode	
+platform	https://platform.claude.com/docs/en/build-with-claude/files	
+platform	https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons	
+platform	https://platform.claude.com/docs/en/build-with-claude/mid-conversation-effort-example	
+platform	https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages	
+platform	https://platform.claude.com/docs/en/build-with-claude/multilingual-support	
+platform	https://platform.claude.com/docs/en/build-with-claude/overview	
+platform	https://platform.claude.com/docs/en/build-with-claude/pdf-support	
+platform	https://platform.claude.com/docs/en/build-with-claude/preserved-thinking	
+platform	https://platform.claude.com/docs/en/build-with-claude/prompt-caching	
+platform	https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices	
+platform	https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview	
+platform	https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5	
+platform	https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-1	
+platform	https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-4-8	
+platform	https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5	
+platform	https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5	
+platform	https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback	
+platform	https://platform.claude.com/docs/en/build-with-claude/search-results	
+platform	https://platform.claude.com/docs/en/build-with-claude/skills-guide	
+platform	https://platform.claude.com/docs/en/build-with-claude/streaming	
+platform	https://platform.claude.com/docs/en/build-with-claude/structured-outputs	
+platform	https://platform.claude.com/docs/en/build-with-claude/task-budgets	
+platform	https://platform.claude.com/docs/en/build-with-claude/thinking	
+platform	https://platform.claude.com/docs/en/build-with-claude/thinking-steering-and-cost	
+platform	https://platform.claude.com/docs/en/build-with-claude/thinking-tool-workflows	
+platform	https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting	
+platform	https://platform.claude.com/docs/en/build-with-claude/token-counting	
+platform	https://platform.claude.com/docs/en/build-with-claude/vision	
+platform	https://platform.claude.com/docs/en/build-with-claude/vision-coordinates	
+platform	https://platform.claude.com/docs/en/build-with-claude/working-with-messages	
+platform	https://platform.claude.com/docs/en/claude_api_primer	
+platform	https://platform.claude.com/docs/en/cli-sdks-libraries/cli/apply	
+platform	https://platform.claude.com/docs/en/cli-sdks-libraries/cli/authentication	
+platform	https://platform.claude.com/docs/en/cli-sdks-libraries/cli/quickstart	
+platform	https://platform.claude.com/docs/en/cli-sdks-libraries/cli/scripting	
+platform	https://platform.claude.com/docs/en/cli-sdks-libraries/cli/using	
+platform	https://platform.claude.com/docs/en/cli-sdks-libraries/libraries/apple-foundation-models	
+platform	https://platform.claude.com/docs/en/cli-sdks-libraries/libraries/openai-sdk	
+platform	https://platform.claude.com/docs/en/cli-sdks-libraries/middleware	
+platform	https://platform.claude.com/docs/en/cli-sdks-libraries/overview	
+platform	https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/csharp	
+platform	https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/go	
+platform	https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/java	
+platform	https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/php	
+platform	https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/python	
+platform	https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/ruby	
+platform	https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/typescript	
+platform	https://platform.claude.com/docs/en/get-api-key	
+platform	https://platform.claude.com/docs/en/get-started	
+platform	https://platform.claude.com/docs/en/home	
+platform	https://platform.claude.com/docs/en/intro	
+platform	https://platform.claude.com/docs/en/manage-claude/access-transparency	
+platform	https://platform.claude.com/docs/en/manage-claude/admin-api	
+platform	https://platform.claude.com/docs/en/manage-claude/admin-api-keys	
+platform	https://platform.claude.com/docs/en/manage-claude/analytics-api	
+platform	https://platform.claude.com/docs/en/manage-claude/api-and-data-retention	
+platform	https://platform.claude.com/docs/en/manage-claude/app-attest	
+platform	https://platform.claude.com/docs/en/manage-claude/authentication	
+platform	https://platform.claude.com/docs/en/manage-claude/claude-code-analytics-api	
+platform	https://platform.claude.com/docs/en/manage-claude/cmek	
+platform	https://platform.claude.com/docs/en/manage-claude/cmek-aws-kms	
+platform	https://platform.claude.com/docs/en/manage-claude/cmek-azure-key-vault	
+platform	https://platform.claude.com/docs/en/manage-claude/cmek-google-cloud-kms	
+platform	https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed	
+platform	https://platform.claude.com/docs/en/manage-claude/compliance-api	
+platform	https://platform.claude.com/docs/en/manage-claude/compliance-api-access	
+platform	https://platform.claude.com/docs/en/manage-claude/compliance-content-data	
+platform	https://platform.claude.com/docs/en/manage-claude/compliance-errors	
+platform	https://platform.claude.com/docs/en/manage-claude/compliance-faq	
+platform	https://platform.claude.com/docs/en/manage-claude/compliance-integration-patterns	
+platform	https://platform.claude.com/docs/en/manage-claude/compliance-org-data	
+platform	https://platform.claude.com/docs/en/manage-claude/compliance-sessions	
+platform	https://platform.claude.com/docs/en/manage-claude/data-residency	
+platform	https://platform.claude.com/docs/en/manage-claude/inference-hooks	
+platform	https://platform.claude.com/docs/en/manage-claude/inference-hooks-configuration	
+platform	https://platform.claude.com/docs/en/manage-claude/inference-hooks-endpoint	
+platform	https://platform.claude.com/docs/en/manage-claude/rate-limits-api	
+platform	https://platform.claude.com/docs/en/manage-claude/spend-limits-api	
+platform	https://platform.claude.com/docs/en/manage-claude/usage-cost-api	
+platform	https://platform.claude.com/docs/en/manage-claude/user-management	
+platform	https://platform.claude.com/docs/en/manage-claude/wif-admin-api	
+platform	https://platform.claude.com/docs/en/manage-claude/wif-providers/aws	
+platform	https://platform.claude.com/docs/en/manage-claude/wif-providers/azure	
+platform	https://platform.claude.com/docs/en/manage-claude/wif-providers/gcp	
+platform	https://platform.claude.com/docs/en/manage-claude/wif-providers/github-actions	
+platform	https://platform.claude.com/docs/en/manage-claude/wif-providers/kubernetes	
+platform	https://platform.claude.com/docs/en/manage-claude/wif-providers/okta	
+platform	https://platform.claude.com/docs/en/manage-claude/wif-providers/spiffe	
+platform	https://platform.claude.com/docs/en/manage-claude/wif-reference	
+platform	https://platform.claude.com/docs/en/manage-claude/workload-identity-federation	
+platform	https://platform.claude.com/docs/en/manage-claude/workspaces	
+platform	https://platform.claude.com/docs/en/managed-agents/agent-setup	
+platform	https://platform.claude.com/docs/en/managed-agents/budgets	
+platform	https://platform.claude.com/docs/en/managed-agents/cloud-sandboxes-reference	
+platform	https://platform.claude.com/docs/en/managed-agents/define-outcomes	
+platform	https://platform.claude.com/docs/en/managed-agents/dreams	
+platform	https://platform.claude.com/docs/en/managed-agents/environments	
+platform	https://platform.claude.com/docs/en/managed-agents/events-and-streaming	
+platform	https://platform.claude.com/docs/en/managed-agents/files	
+platform	https://platform.claude.com/docs/en/managed-agents/github	
+platform	https://platform.claude.com/docs/en/managed-agents/mcp-connector	
+platform	https://platform.claude.com/docs/en/managed-agents/memory	
+platform	https://platform.claude.com/docs/en/managed-agents/migration	
+platform	https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration	
+platform	https://platform.claude.com/docs/en/managed-agents/onboarding	
+platform	https://platform.claude.com/docs/en/managed-agents/overview	
+platform	https://platform.claude.com/docs/en/managed-agents/permission-policies	
+platform	https://platform.claude.com/docs/en/managed-agents/quickstart	
+platform	https://platform.claude.com/docs/en/managed-agents/reference	
+platform	https://platform.claude.com/docs/en/managed-agents/scheduled-deployments	
+platform	https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes	
+platform	https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-security	
+platform	https://platform.claude.com/docs/en/managed-agents/session-operations	
+platform	https://platform.claude.com/docs/en/managed-agents/sessions	
+platform	https://platform.claude.com/docs/en/managed-agents/skills	
+platform	https://platform.claude.com/docs/en/managed-agents/tools	
+platform	https://platform.claude.com/docs/en/managed-agents/vaults	
+platform	https://platform.claude.com/docs/en/managed-agents/webhooks	
+platform	https://platform.claude.com/docs/en/models/fable-5-1/migration-guide	
+platform	https://platform.claude.com/docs/en/models/fable-5-1/overview	
+platform	https://platform.claude.com/docs/en/models/fable-5-1/whats-new-fable-5-1	
+platform	https://platform.claude.com/docs/en/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5	
+platform	https://platform.claude.com/docs/en/models/fable-5/migration-guide	
+platform	https://platform.claude.com/docs/en/models/fable-5/overview	
+platform	https://platform.claude.com/docs/en/models/haiku-4-5/migration-guide	
+platform	https://platform.claude.com/docs/en/models/haiku-4-5/overview	
+platform	https://platform.claude.com/docs/en/models/mythos-5-1/overview	
+platform	https://platform.claude.com/docs/en/models/mythos-5/overview	
+platform	https://platform.claude.com/docs/en/models/opus-4-5/overview	
+platform	https://platform.claude.com/docs/en/models/opus-4-6/overview	
+platform	https://platform.claude.com/docs/en/models/opus-4-7/overview	
+platform	https://platform.claude.com/docs/en/models/opus-4-8/overview	
+platform	https://platform.claude.com/docs/en/models/opus-5/migration-guide	
+platform	https://platform.claude.com/docs/en/models/opus-5/overview	
+platform	https://platform.claude.com/docs/en/models/opus-5/whats-new-opus-5	
+platform	https://platform.claude.com/docs/en/models/overview	
+platform	https://platform.claude.com/docs/en/models/sonnet-4-5/overview	
+platform	https://platform.claude.com/docs/en/models/sonnet-4-6/overview	
+platform	https://platform.claude.com/docs/en/models/sonnet-5/migration-guide	
+platform	https://platform.claude.com/docs/en/models/sonnet-5/overview	
+platform	https://platform.claude.com/docs/en/models/sonnet-5/whats-new-sonnet-5	
+platform	https://platform.claude.com/docs/en/release-notes/overview	
+platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-fable-5	
+platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-fable-5-1	
+platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-haiku-3	
+platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-haiku-3-5	
+platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-haiku-4-5	
+platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-opus-3	
+platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-opus-4	
+platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-opus-4-1	
+platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-opus-4-5	
+platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-opus-4-6	
+platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-opus-4-7	
+platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-opus-4-8	
+platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-opus-5	
+platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-sonnet-3-5	
+platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-sonnet-3-7	
+platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-sonnet-4	
+platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-sonnet-4-5	
+platform	https://platform.claude.com/docs/en/release-notes/system-prompts/claude-sonnet-4-6	
+platform	https://platform.claude.com/docs/en/release-notes/system-prompts/overview	
+platform	https://platform.claude.com/docs/en/resources/overview	
+platform	https://platform.claude.com/docs/en/test-and-evaluate/develop-tests	
+platform	https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals	
+platform	https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/increase-consistency	
+platform	https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks	
+platform	https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations	
+platform	https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-latency	
+platform	https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-prompt-leak	
+platform	https://platform.claude.com/docs/id/about-claude/additional-resources	
+platform	https://platform.claude.com/docs/id/about-claude/glossary	
+platform	https://platform.claude.com/docs/id/about-claude/model-deprecations	
+platform	https://platform.claude.com/docs/id/about-claude/models/choosing-a-model	
+platform	https://platform.claude.com/docs/id/about-claude/models/migration-guide	
+platform	https://platform.claude.com/docs/id/about-claude/models/model-ids-and-versions	
+platform	https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence	
+platform	https://platform.claude.com/docs/id/about-claude/pricing	
+platform	https://platform.claude.com/docs/id/about-claude/use-case-guides/content-moderation	
+platform	https://platform.claude.com/docs/id/about-claude/use-case-guides/customer-support-chat	
+platform	https://platform.claude.com/docs/id/about-claude/use-case-guides/legal-summarization	
+platform	https://platform.claude.com/docs/id/about-claude/use-case-guides/overview	
+platform	https://platform.claude.com/docs/id/about-claude/use-case-guides/ticket-routing	
+platform	https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices	
+platform	https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill	
+platform	https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterprise	
+platform	https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview	
+platform	https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart	
+platform	https://platform.claude.com/docs/id/agents-and-tools/mcp-connector	
+platform	https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts	
+platform	https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console	
+platform	https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-compose	
+platform	https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm	
+platform	https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview	
+platform	https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/quickstart	
+platform	https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference	
+platform	https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/security	
+platform	https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting	
+platform	https://platform.claude.com/docs/id/agents-and-tools/remote-mcp-servers	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/how-tool-use-works	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/manage-tool-context	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-combinations	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/troubleshooting-tool-use	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool	
+platform	https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool	
+platform	https://platform.claude.com/docs/id/api/beta-headers	
+platform	https://platform.claude.com/docs/id/api/claude-code/routines-fire	
+platform	https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions	
+platform	https://platform.claude.com/docs/id/api/errors	
+platform	https://platform.claude.com/docs/id/api/ip-addresses	
+platform	https://platform.claude.com/docs/id/api/overview	
+platform	https://platform.claude.com/docs/id/api/rate-limits	
+platform	https://platform.claude.com/docs/id/api/service-tiers	
+platform	https://platform.claude.com/docs/id/api/supported-regions	
+platform	https://platform.claude.com/docs/id/api/versioning	
+platform	https://platform.claude.com/docs/id/build-with-claude/batch-processing	
+platform	https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics	
+platform	https://platform.claude.com/docs/id/build-with-claude/citations	
+platform	https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock	
+platform	https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry	
+platform	https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy	
+platform	https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai	
+platform	https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws	
+platform	https://platform.claude.com/docs/id/build-with-claude/compaction	
+platform	https://platform.claude.com/docs/id/build-with-claude/context-editing	
+platform	https://platform.claude.com/docs/id/build-with-claude/context-windows	
+platform	https://platform.claude.com/docs/id/build-with-claude/effort	
+platform	https://platform.claude.com/docs/id/build-with-claude/embeddings	
+platform	https://platform.claude.com/docs/id/build-with-claude/extended-thinking	
+platform	https://platform.claude.com/docs/id/build-with-claude/fallback-credit	
+platform	https://platform.claude.com/docs/id/build-with-claude/fast-mode	
+platform	https://platform.claude.com/docs/id/build-with-claude/files	
+platform	https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons	
+platform	https://platform.claude.com/docs/id/build-with-claude/mid-conversation-effort-example	
+platform	https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages	
+platform	https://platform.claude.com/docs/id/build-with-claude/multilingual-support	
+platform	https://platform.claude.com/docs/id/build-with-claude/overview	
+platform	https://platform.claude.com/docs/id/build-with-claude/pdf-support	
+platform	https://platform.claude.com/docs/id/build-with-claude/preserved-thinking	
+platform	https://platform.claude.com/docs/id/build-with-claude/prompt-caching	
+platform	https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices	
+platform	https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview	
+platform	https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5	
+platform	https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1	
+platform	https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-4-8	
+platform	https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5	
+platform	https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5	
+platform	https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback	
+platform	https://platform.claude.com/docs/id/build-with-claude/search-results	
+platform	https://platform.claude.com/docs/id/build-with-claude/skills-guide	
+platform	https://platform.claude.com/docs/id/build-with-claude/streaming	
+platform	https://platform.claude.com/docs/id/build-with-claude/structured-outputs	
+platform	https://platform.claude.com/docs/id/build-with-claude/task-budgets	
+platform	https://platform.claude.com/docs/id/build-with-claude/thinking	
+platform	https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost	
+platform	https://platform.claude.com/docs/id/build-with-claude/thinking-tool-workflows	
+platform	https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting	
+platform	https://platform.claude.com/docs/id/build-with-claude/token-counting	
+platform	https://platform.claude.com/docs/id/build-with-claude/vision	
+platform	https://platform.claude.com/docs/id/build-with-claude/vision-coordinates	
+platform	https://platform.claude.com/docs/id/build-with-claude/working-with-messages	
+platform	https://platform.claude.com/docs/id/claude_api_primer	
+platform	https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication	
+platform	https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart	
+platform	https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting	
+platform	https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using	
+platform	https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/apple-foundation-models	
+platform	https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk	
+platform	https://platform.claude.com/docs/id/cli-sdks-libraries/middleware	
+platform	https://platform.claude.com/docs/id/cli-sdks-libraries/overview	
+platform	https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/csharp	
+platform	https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go	
+platform	https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java	
+platform	https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php	
+platform	https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python	
+platform	https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/ruby	
+platform	https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript	
+platform	https://platform.claude.com/docs/id/get-api-key	
+platform	https://platform.claude.com/docs/id/get-started	
+platform	https://platform.claude.com/docs/id/home	
+platform	https://platform.claude.com/docs/id/intro	
+platform	https://platform.claude.com/docs/id/manage-claude/access-transparency	
+platform	https://platform.claude.com/docs/id/manage-claude/admin-api	
+platform	https://platform.claude.com/docs/id/manage-claude/admin-api-keys	
+platform	https://platform.claude.com/docs/id/manage-claude/analytics-api	
+platform	https://platform.claude.com/docs/id/manage-claude/api-and-data-retention	
+platform	https://platform.claude.com/docs/id/manage-claude/app-attest	
+platform	https://platform.claude.com/docs/id/manage-claude/authentication	
+platform	https://platform.claude.com/docs/id/manage-claude/claude-code-analytics-api	
+platform	https://platform.claude.com/docs/id/manage-claude/cmek	
+platform	https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms	
+platform	https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault	
+platform	https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms	
+platform	https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed	
+platform	https://platform.claude.com/docs/id/manage-claude/compliance-api	
+platform	https://platform.claude.com/docs/id/manage-claude/compliance-api-access	
+platform	https://platform.claude.com/docs/id/manage-claude/compliance-content-data	
+platform	https://platform.claude.com/docs/id/manage-claude/compliance-errors	
+platform	https://platform.claude.com/docs/id/manage-claude/compliance-faq	
+platform	https://platform.claude.com/docs/id/manage-claude/compliance-integration-patterns	
+platform	https://platform.claude.com/docs/id/manage-claude/compliance-org-data	
+platform	https://platform.claude.com/docs/id/manage-claude/compliance-sessions	
+platform	https://platform.claude.com/docs/id/manage-claude/data-residency	
+platform	https://platform.claude.com/docs/id/manage-claude/inference-hooks	
+platform	https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration	
+platform	https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint	
+platform	https://platform.claude.com/docs/id/manage-claude/rate-limits-api	
+platform	https://platform.claude.com/docs/id/manage-claude/spend-limits-api	
+platform	https://platform.claude.com/docs/id/manage-claude/usage-cost-api	
+platform	https://platform.claude.com/docs/id/manage-claude/user-management	
+platform	https://platform.claude.com/docs/id/manage-claude/wif-admin-api	
+platform	https://platform.claude.com/docs/id/manage-claude/wif-providers/aws	
+platform	https://platform.claude.com/docs/id/manage-claude/wif-providers/azure	
+platform	https://platform.claude.com/docs/id/manage-claude/wif-providers/gcp	
+platform	https://platform.claude.com/docs/id/manage-claude/wif-providers/github-actions	
+platform	https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes	
+platform	https://platform.claude.com/docs/id/manage-claude/wif-providers/okta	
+platform	https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe	
+platform	https://platform.claude.com/docs/id/manage-claude/wif-reference	
+platform	https://platform.claude.com/docs/id/manage-claude/workload-identity-federation	
+platform	https://platform.claude.com/docs/id/manage-claude/workspaces	
+platform	https://platform.claude.com/docs/id/managed-agents/agent-setup	
+platform	https://platform.claude.com/docs/id/managed-agents/budgets	
+platform	https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference	
+platform	https://platform.claude.com/docs/id/managed-agents/define-outcomes	
+platform	https://platform.claude.com/docs/id/managed-agents/dreams	
+platform	https://platform.claude.com/docs/id/managed-agents/environments	
+platform	https://platform.claude.com/docs/id/managed-agents/events-and-streaming	
+platform	https://platform.claude.com/docs/id/managed-agents/files	
+platform	https://platform.claude.com/docs/id/managed-agents/github	
+platform	https://platform.claude.com/docs/id/managed-agents/mcp-connector	
+platform	https://platform.claude.com/docs/id/managed-agents/memory	
+platform	https://platform.claude.com/docs/id/managed-agents/migration	
+platform	https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration	
+platform	https://platform.claude.com/docs/id/managed-agents/onboarding	
+platform	https://platform.claude.com/docs/id/managed-agents/overview	
+platform	https://platform.claude.com/docs/id/managed-agents/permission-policies	
+platform	https://platform.claude.com/docs/id/managed-agents/quickstart	
+platform	https://platform.claude.com/docs/id/managed-agents/reference	
+platform	https://platform.claude.com/docs/id/managed-agents/scheduled-deployments	
+platform	https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes	
+platform	https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-security	
+platform	https://platform.claude.com/docs/id/managed-agents/session-operations	
+platform	https://platform.claude.com/docs/id/managed-agents/sessions	
+platform	https://platform.claude.com/docs/id/managed-agents/skills	
+platform	https://platform.claude.com/docs/id/managed-agents/tools	
+platform	https://platform.claude.com/docs/id/managed-agents/vaults	
+platform	https://platform.claude.com/docs/id/managed-agents/webhooks	
+platform	https://platform.claude.com/docs/id/models/fable-5-1/migration-guide	
+platform	https://platform.claude.com/docs/id/models/fable-5-1/overview	
+platform	https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1	
+platform	https://platform.claude.com/docs/id/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5	
+platform	https://platform.claude.com/docs/id/models/fable-5/migration-guide	
+platform	https://platform.claude.com/docs/id/models/fable-5/overview	
+platform	https://platform.claude.com/docs/id/models/haiku-4-5/migration-guide	
+platform	https://platform.claude.com/docs/id/models/haiku-4-5/overview	
+platform	https://platform.claude.com/docs/id/models/mythos-5-1/overview	
+platform	https://platform.claude.com/docs/id/models/mythos-5/overview	
+platform	https://platform.claude.com/docs/id/models/opus-4-5/overview	
+platform	https://platform.claude.com/docs/id/models/opus-4-6/overview	
+platform	https://platform.claude.com/docs/id/models/opus-4-7/overview	
+platform	https://platform.claude.com/docs/id/models/opus-4-8/overview	
+platform	https://platform.claude.com/docs/id/models/opus-5/migration-guide	
+platform	https://platform.claude.com/docs/id/models/opus-5/overview	
+platform	https://platform.claude.com/docs/id/models/opus-5/whats-new-opus-5	
+platform	https://platform.claude.com/docs/id/models/overview	
+platform	https://platform.claude.com/docs/id/models/sonnet-4-5/overview	
+platform	https://platform.claude.com/docs/id/models/sonnet-4-6/overview	
+platform	https://platform.claude.com/docs/id/models/sonnet-5/migration-guide	
+platform	https://platform.claude.com/docs/id/models/sonnet-5/overview	
+platform	https://platform.claude.com/docs/id/models/sonnet-5/whats-new-sonnet-5	
+platform	https://platform.claude.com/docs/id/release-notes/overview	
+platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-fable-5	
+platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-fable-5-1	
+platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-haiku-3	
+platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-haiku-3-5	
+platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-haiku-4-5	
+platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-opus-3	
+platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-opus-4	
+platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-opus-4-1	
+platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-opus-4-5	
+platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-opus-4-6	
+platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-opus-4-7	
+platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-opus-4-8	
+platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-opus-5	
+platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-sonnet-3-5	
+platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-sonnet-3-7	
+platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-sonnet-4	
+platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-sonnet-4-5	
+platform	https://platform.claude.com/docs/id/release-notes/system-prompts/claude-sonnet-4-6	
+platform	https://platform.claude.com/docs/id/release-notes/system-prompts/overview	
+platform	https://platform.claude.com/docs/id/resources/overview	
+platform	https://platform.claude.com/docs/id/test-and-evaluate/develop-tests	
+platform	https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals	
+platform	https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/increase-consistency	
+platform	https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks	
+platform	https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations	
+platform	https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-latency	
+platform	https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-prompt-leak	
+platform	https://platform.claude.com/environments	
+platform	https://platform.claude.com/files	
+platform	https://platform.claude.com/logs	
+platform	https://platform.claude.com/memory-stores	
+platform	https://platform.claude.com/playground	
+platform	https://platform.claude.com/sessions	
+platform	https://platform.claude.com/settings/admin-keys	
+platform	https://platform.claude.com/settings/billing	
+platform	https://platform.claude.com/settings/general	
+platform	https://platform.claude.com/settings/keys	
+platform	https://platform.claude.com/settings/limits	
+platform	https://platform.claude.com/settings/members	
+platform	https://platform.claude.com/settings/organization	
+platform	https://platform.claude.com/settings/privacy	
+platform	https://platform.claude.com/settings/security	
+platform	https://platform.claude.com/settings/workspaces	
+platform	https://platform.claude.com/skills	
+platform	https://platform.claude.com/usage	
+platform	https://platform.claude.com/usage/cache	
+platform	https://platform.claude.com/usage/limits	
+platform	https://platform.claude.com/vaults	

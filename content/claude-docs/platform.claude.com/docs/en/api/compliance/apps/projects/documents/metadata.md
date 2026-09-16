@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/metadata
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: cb18983897b460df3155424e8825ac14caf930755045e44f43c3044ce5532891
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 410e01fb0bb756497faef61ebbc2d4f7e28a0fcd440920ac6ea50dfb8cf235dc
 ---
 
 ---
@@ -28,12 +28,6 @@ consumer can dedupe or match hashes without downloading every document.
   The document ID (tagged ID, e.g., claude_proj_doc_abc123)
 
 ## Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -91,6 +85,7 @@ consumer can dedupe or match hashes without downloading every document.
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/projects/documents/$DOCUMENT_ID/metadata \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/update
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: cf7f990e6526c5fcb8728927708e364bbae3cfbb87526acf907761dfb8451b85
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: de648a7d7cc9183579c1251f917d271e808671302f7a26683d4222d635d424db
 ---
 
 ---
@@ -122,19 +122,27 @@ Update Workspace
 
     Data residency configuration.
 
-    - `allowed_inference_geos: array of string or "unrestricted"`
+    - `allowed_inference_geos: array of BetaAllowedInferenceGeo or "unrestricted"`
 
       Permitted inference geo values. 'unrestricted' means all geos are allowed.
 
-      - `Geos = array of string`
+      - `Geos = array of BetaAllowedInferenceGeo`
+
+        - `"global"`
+
+        - `"us"`
 
       - `Unrestricted = "unrestricted"`
 
-    - `default_inference_geo: string`
+    - `default_inference_geo: "global" or "us"`
 
       Default inference geo applied when requests omit the parameter.
 
-    - `workspace_geo: string`
+      - `"global"`
+
+      - `"us"`
+
+    - `workspace_geo: "us"`
 
       Geographic region for workspace data storage. Immutable after creation.
 
@@ -191,8 +199,8 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID \
   "created_at": "2024-10-30T23:58:27.427722Z",
   "data_residency": {
     "allowed_inference_geos": "unrestricted",
-    "default_inference_geo": "default_inference_geo",
-    "workspace_geo": "workspace_geo"
+    "default_inference_geo": "global",
+    "workspace_geo": "us"
   },
   "display_color": "#6C5BB9",
   "external_key_id": "ekey_01SDCCSbTxrXDpWc1phhtcfK",

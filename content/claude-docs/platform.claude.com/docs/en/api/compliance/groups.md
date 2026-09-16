@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/groups
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 229a3cd88ae2241ae7fb3c3643a546060217a914221d947b628b0866498319cb
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 86694ae63d6b53b7ad2f96ebc6b74dee1db560639be9050de36c06700af69b4b
 ---
 
 ---
@@ -37,12 +37,6 @@ List Compliance Groups
   Opaque pagination token from a previous response's `next_page` field. Pass this to retrieve the next page of results. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
 
 ### Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -96,6 +90,7 @@ List Compliance Groups
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/groups \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
@@ -135,12 +130,6 @@ Get Compliance Group
   The group ID (tagged ID, e.g., rbac_group_abc123)
 
 ### Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -182,6 +171,7 @@ Get Compliance Group
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/groups/$GROUP_ID \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
@@ -308,12 +298,6 @@ List Compliance Group Members
 
 #### Headers
 
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
-
 - `"x-api-key": optional string`
 
 #### Returns
@@ -354,6 +338,7 @@ List Compliance Group Members
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/groups/$GROUP_ID/members \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

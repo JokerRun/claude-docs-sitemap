@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/platforms
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 2d9e36e37fd82e2771084ac7c8d8189de6918a4149c683be62e2ba0d97db9a9c
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 5c45e9cba207d4547d3090945c993e9ccc58e97600635d1050c46b01772acc5f
 ---
 
 > ## Documentation Index
@@ -70,7 +70,7 @@ If you're not sure where to start, [install the CLI](/docs/en/quickstart) and ru
 * [Desktop](/docs/en/desktop): visual diff review, parallel sessions, computer use, and Dispatch
 * [VS Code](/docs/en/vs-code): the Claude Code extension inside your editor
 * [JetBrains](/docs/en/jetbrains): the extension for IntelliJ, PyCharm, and other JetBrains IDEs
-* [Claude Code on the web](/docs/en/claude-code-on-the-web): cloud sessions that keep running when you disconnect
+* [Web](/docs/en/claude-code-on-the-web): cloud sessions from your browser at claude.ai/code that keep running when you disconnect
 * [Mobile](/docs/en/mobile): the Claude app for [iOS](https://apps.apple.com/us/app/claude-by-anthropic/id6473753684) and [Android](https://play.google.com/store/apps/details?id=com.anthropic.claude) for starting and monitoring tasks while away from your computer
 
 ### Integrations

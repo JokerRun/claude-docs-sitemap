@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 5708cdaecee2d16b8f047c15a986d52663cd0e83fc7d79caeb5be8c955ff20d8
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 3787a46d3ee4815066c3585510a500265bbdc4088b60bc4d77eb0478980498ab
 ---
 
 ---
@@ -91,12 +91,6 @@ are sorted chronologically (time ascending) by created_at.
 
 ## Headers
 
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
-
 - `"x-api-key": optional string`
 
 ## Returns
@@ -173,6 +167,7 @@ are sorted chronologically (time ascending) by created_at.
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/projects \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: d2bc2a9b12bce0d2342a00d501a59e061ae65f59dcfeb2b7c8918fbd8c5b6fcb
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: ea51117e196b31b53a35b3341d09c209ba4c58982dd2b800474ea8364c1ae1f6
 ---
 
 ---
@@ -35,12 +35,6 @@ List Compliance Roles
   Opaque pagination token from a previous response's `next_page` field. Pass this to retrieve the next page of results. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
 
 ## Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -86,6 +80,7 @@ List Compliance Roles
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

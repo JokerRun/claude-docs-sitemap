@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/delete
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 5e6cddbae823ae9f07f04b2d00f4800f163e684f6fee1e6687c3370579eb81e3
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 3a84d5578b841cbdc273b85db147818fcfb0c6a538fe32b678712945022c678e
 ---
 
 ---
@@ -33,12 +33,6 @@ Project must have no attached chats - returns 409 if chats exist.
 
 ## Headers
 
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
-
 - `"x-api-key": optional string`
 
 ## Returns
@@ -58,6 +52,7 @@ Project must have no attached chats - returns 409 if chats exist.
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID \
     -X DELETE \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rbac_groups
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: d2cd6ceb1366bc853a81b2afd39cb3eaff66172bbe95e7c178cf9b4cd3188b92
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 904b8698278a37ce838e501b1d21339d6deb002a6e08a32d33b9d1b127e1b157
 ---
 
 ---
@@ -91,7 +91,6 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 ```bash
 curl https://api.anthropic.com/v1/organizations/rbac_groups \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: ce-user-management-2026-07-13' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
@@ -180,7 +179,6 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 ```bash
 curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: ce-user-management-2026-07-13' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
@@ -266,7 +264,6 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 curl https://api.anthropic.com/v1/organizations/rbac_groups \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: ce-user-management-2026-07-13' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
     -d '{
           "name": "Engineering"
@@ -361,7 +358,6 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: ce-user-management-2026-07-13' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
     -d '{
           "name": "Engineering"
@@ -420,7 +416,6 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: ce-user-management-2026-07-13' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
@@ -568,7 +563,6 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 ```bash
 curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID/members \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: ce-user-management-2026-07-13' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
@@ -646,7 +640,6 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID/members \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: ce-user-management-2026-07-13' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
     -d '{
           "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
@@ -707,7 +700,6 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID/members/$USER_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: ce-user-management-2026-07-13' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 

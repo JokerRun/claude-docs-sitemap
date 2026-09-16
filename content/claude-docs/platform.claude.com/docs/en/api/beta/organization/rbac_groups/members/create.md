@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/members/create
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 7548ee05139378c7bb1bef1a0e96ac74814bfd9f5479fd09c2175a4609546aaa
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: ffbe89eaa540c3026c9ab3c69139601e080c2ee05f331604a578e1b49ce72836
 ---
 
 ---
@@ -66,7 +66,6 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID/members \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: ce-user-management-2026-07-13' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
     -d '{
           "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"

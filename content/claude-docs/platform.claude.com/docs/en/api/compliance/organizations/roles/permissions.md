@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/permissions
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: bddcea5414934f4f303128d9feb86472f0c3f4dff3cf1add2d2940d493968da3
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 4764d1e55c8f3c767fd6edf70aef3fd9d8eff824d80a393838e22f624a9f6374
 ---
 
 ---
@@ -42,12 +42,6 @@ List Compliance Role Permissions
 
 ### Headers
 
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
-
 - `"x-api-key": optional string`
 
 ### Returns
@@ -80,6 +74,7 @@ List Compliance Role Permissions
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles/$ROLE_ID/permissions \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

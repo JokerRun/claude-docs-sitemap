@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp-quickstart
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: 28772a8c727884cd7c2b5bd1d06c77a39b01b3c97a65fb43e89048c79b615723
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: e6f3e2fe45247a80656332d133e27f0016521abaf3e9fbcdb26f70c7f301d1a2
 ---
 
 > ## Documentation Index
@@ -117,7 +117,7 @@ The `claude mcp add` command writes the server's details to a configuration file
   `claude mcp add` works the same in every shell, including PowerShell and Command Prompt. Inside a `claude` session, use the `/mcp` command to check and manage servers you've already added.
 </Note>
 
-There are other ways to add a server, each covered later on this page:
+There are other ways to add a server, each with its own section:
 
 * [Add a local server](#add-a-local-server): run a program on your machine instead of connecting to a URL.
 * [Edit `.mcp.json` directly](#edit-mcp-json-directly): write the JSON entry yourself instead of using the command.
@@ -291,7 +291,7 @@ This guide uses the `claude mcp` CLI commands, but every Claude Code surface can
 * **Claude Code desktop app**: add servers through the [Connectors UI](/docs/en/desktop#connect-external-tools).
 * **Claude Desktop chat app**: a separate app from Claude Code. To copy servers from its `claude_desktop_config.json` into the CLI, run `claude mcp add-from-claude-desktop` on macOS or WSL.
 * **VS Code**: see [Connect to external tools with MCP](/docs/en/vs-code#connect-to-external-tools-with-mcp).
-* **Claude Code on the web**: reads `.mcp.json` from your repository. See [Edit .mcp.json directly](#edit-mcp-json-directly).
+* **Cloud sessions**: commit a `.mcp.json` to your repository. See [Edit .mcp.json directly](#edit-mcp-json-directly).
 * **Claude.ai**: connectors you add at [claude.ai/customize/connectors](https://claude.ai/customize/connectors) load automatically in the CLI when you sign in with that account. See [Use MCP servers from Claude.ai](/docs/en/mcp#use-mcp-servers-from-claude-ai).
 
 ## Troubleshooting

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/retrieve
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 13c84866f0df2a9a2f20f5d58f274daea74b6b734f222cfa5513ad4f9b6c72bb
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: ba22285f7ff96013a6cf9c0985707d05bebb7deb462dd51fcd786a701a5ffe56
 ---
 
 ---
@@ -27,12 +27,6 @@ Get Compliance Role
   The role ID (tagged ID, e.g., rbac_role_abc123)
 
 ## Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -66,6 +60,7 @@ Get Compliance Role
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles/$ROLE_ID \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-rollout
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: 12a0e018c724b243a3b57f71633ec5ea5856be0e860b9a784c3f5da31a72df4d
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: f578fee1c4c8f2d49d89caa66e326179309a4b1e8f06a45f9b532721354f070b
 ---
 
 > ## Documentation Index
@@ -164,7 +164,7 @@ A wrong or unreachable base URL produces a different symptom: Claude Code [retri
 
 ### Distribute the configuration
 
-Every developer machine needs the gateway address and a credential. You can distribute them centrally through [managed settings](/docs/en/managed-settings#delivery-mechanisms), so developers configure nothing, or hand developers the values to set themselves.
+Every developer machine needs the gateway address and a credential. You can distribute them centrally through [managed settings](/docs/en/managed-settings#delivery-mechanisms), so developers configure nothing, or give developers the values to set themselves.
 
 #### What to distribute
 

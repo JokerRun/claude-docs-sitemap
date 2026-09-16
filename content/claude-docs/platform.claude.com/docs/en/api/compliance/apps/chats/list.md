@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 98e197c27408ce9467c99bc19beff961cc673b9959e2ec5ecfe97f4098e553c6
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: b11a6290da7b1c60ea17e50433a353c888fa3eeef5f3b28efbae26afd307cbc8
 ---
 
 ---
@@ -121,12 +121,6 @@ no time filter) with the default `order_by`. `user_ids[]` with
 
 ## Headers
 
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
-
 - `"x-api-key": optional string`
 
 ## Returns
@@ -225,6 +219,7 @@ no time filter) with the default `order_by`. `user_ids[]` with
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/chats \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

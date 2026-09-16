@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/code/artifacts/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 8773abad651426e3f54529998d60f86a05b7c80622e2686b639448c50948e06d
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 77fd47ec362304300495192f8683284fb4856d3bc3a796a37ab959695a74ad4b
 ---
 
 ---
@@ -78,12 +78,6 @@ returned.
   maxItems: 200
 
 ## Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -174,6 +168,7 @@ returned.
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/code/artifacts \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

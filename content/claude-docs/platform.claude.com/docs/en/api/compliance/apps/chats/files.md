@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 504c612b18c113ded4346161acfb7047a5a0dc8a7e7450e35199f99aa94a6c21
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 2e3cad145d21fd5286efed44b96f86a4bd3bb17777be6e23a4e9a44740af66d3
 ---
 
 ---
@@ -27,12 +27,6 @@ download the bytes.
   The file ID (tagged ID, e.g., claude_file_abc123)
 
 ### Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -76,6 +70,7 @@ download the bytes.
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/chats/files/$CLAUDE_FILE_ID \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
@@ -113,12 +108,6 @@ operation that cannot be undone.
 
 ### Headers
 
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
-
 - `"x-api-key": optional string`
 
 ### Returns
@@ -138,6 +127,7 @@ operation that cannot be undone.
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/chats/files/$CLAUDE_FILE_ID \
     -X DELETE \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
@@ -164,18 +154,13 @@ Downloads the binary content of a file referenced in chat messages.
 
 ### Headers
 
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
-
 - `"x-api-key": optional string`
 
 ### Example
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/chats/files/$CLAUDE_FILE_ID/content \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

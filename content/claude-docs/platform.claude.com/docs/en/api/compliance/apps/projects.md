@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects
-fetched_at: 2026-09-15T02:21:43.636809Z
-sha256: bc3a629e1de187cff850d58892812e10cb8b977091f41a7c75b1fc57a25fa55b
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 167555752db73c4b892c34058ba13f670a571050dc73c34e449926ce6dbbbe0a
 ---
 
 ---
@@ -93,12 +93,6 @@ are sorted chronologically (time ascending) by created_at.
 
 ### Headers
 
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
-
 - `"x-api-key": optional string`
 
 ### Returns
@@ -175,6 +169,7 @@ are sorted chronologically (time ascending) by created_at.
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/projects \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
@@ -215,12 +210,6 @@ Get detailed information for a specific project.
   The project ID (tagged ID, e.g., claude_proj_abc123)
 
 ### Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -302,6 +291,7 @@ Get detailed information for a specific project.
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
@@ -351,12 +341,6 @@ Project must have no attached chats - returns 409 if chats exist.
 
 ### Headers
 
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
-
 - `"x-api-key": optional string`
 
 ### Returns
@@ -376,6 +360,7 @@ Project must have no attached chats - returns 409 if chats exist.
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID \
     -X DELETE \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
@@ -583,12 +568,6 @@ GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
 
 #### Headers
 
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
-
 - `"x-api-key": optional string`
 
 #### Returns
@@ -681,6 +660,7 @@ GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID/attachments \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
@@ -736,12 +716,6 @@ role.
   Opaque pagination token from a previous response's `next_page` field. Pass this to retrieve the next page of results. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
 
 #### Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -891,6 +865,7 @@ role.
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID/collaborators \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
@@ -926,12 +901,6 @@ Get detailed information for a specific project document.
   The document ID (tagged ID, e.g., claude_proj_doc_abc123)
 
 #### Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -975,6 +944,7 @@ Get detailed information for a specific project document.
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/projects/documents/$DOCUMENT_ID \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
@@ -1011,12 +981,6 @@ consumer can dedupe or match hashes without downloading every document.
   The document ID (tagged ID, e.g., claude_proj_doc_abc123)
 
 #### Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -1074,6 +1038,7 @@ consumer can dedupe or match hashes without downloading every document.
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/projects/documents/$DOCUMENT_ID/metadata \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
@@ -1111,12 +1076,6 @@ Hard-deletes the project document permanently.
 
 #### Headers
 
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
-
 - `"x-api-key": optional string`
 
 #### Returns
@@ -1136,6 +1095,7 @@ Hard-deletes the project document permanently.
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/projects/documents/$DOCUMENT_ID \
     -X DELETE \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/code
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 21738bcb3c6c8248af578c4e12b3c54afd0d3f86448b9e9173559bd3dff7aba1
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 060d7f67248ddc3640f79cf74264e8c230438eb8115ee9d387bd1cd37e38cf7e
 ---
 
 ---
@@ -82,12 +82,6 @@ returned.
   maxItems: 200
 
 #### Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -178,6 +172,7 @@ returned.
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/code/artifacts \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
@@ -240,18 +235,13 @@ only for identity-stored content; validate against it when present.
 
 #### Headers
 
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
-
 - `"x-api-key": optional string`
 
 #### Example
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/code/artifacts/$ARTIFACT_ID/versions/$VERSION_ID \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
@@ -276,12 +266,6 @@ Artifact.
 
 #### Headers
 
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
-
 - `"x-api-key": optional string`
 
 #### Returns
@@ -301,6 +285,7 @@ Artifact.
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/code/artifacts/$ARTIFACT_ID \
     -X DELETE \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/file-checkpointing
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: 550722eaa3163a65a19b80883583a8abcca552474da36edb8533932be3f77716
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 9ab83bde8cfd368b1a8a551245e18969cbf0e432b6fdfe1345df57bdb833dbb5
 ---
 
 > ## Documentation Index
@@ -182,7 +182,7 @@ The following example shows the complete flow: enable checkpointing, capture the
   </Step>
 
   <Step title="Capture checkpoint UUID and session ID">
-    With the `replay-user-messages` option set (shown above), each user message in the response stream has a UUID that serves as a checkpoint.
+    With the `replay-user-messages` option set, each user message in the response stream has a UUID that serves as a checkpoint.
 
     For most use cases, capture the first user message UUID (`message.uuid`); rewinding to it restores the tracked files to their original state. To store multiple checkpoints and rewind to intermediate states, see [Multiple restore points](#multiple-restore-points).
 

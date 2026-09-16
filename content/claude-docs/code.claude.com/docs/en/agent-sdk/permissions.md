@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/permissions
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: c3f64490441bbe831b5ea85d1bff786115ae23e799464cfa896116973900cc60
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: f2cf097d8c14d9e3602866223ba3c3ef34df3e2562ebdcc50aba33eef8a6945b
 ---
 
 > ## Documentation Index
@@ -287,6 +287,8 @@ Auto-approves tool uses without prompting, except the cases listed in the warnin
 Claude explores the codebase and produces a plan without editing your source files. Read-only tools run as they do in the `default` permission mode.
 
 File edits are never auto-approved in plan mode, even when an allow rule matches. They prompt through your `canUseTool` callback instead. On Claude Code v2.1.212 or later, shell commands that modify files, such as `touch` and `rm`, reach your `canUseTool` callback the same way.
+
+If you set `allowDangerouslySkipPermissions: true` alongside `permissionMode: 'plan'`, file edits and shell commands that modify files still reach your `canUseTool` callback. The option lets you switch to `bypassPermissions` later with `setPermissionMode()`.
 
 Claude may use `AskUserQuestion` to clarify requirements before finalizing the plan. See [Handle approvals and user input](/docs/en/agent-sdk/user-input#handle-clarifying-questions) for handling these prompts.
 

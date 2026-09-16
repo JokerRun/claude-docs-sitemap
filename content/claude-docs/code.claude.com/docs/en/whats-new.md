@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/whats-new
-fetched_at: 2026-09-15T02:21:43.636809Z
-sha256: 0c99fe5d46c1f97a47e921be1e2df359ea16600aebd34e7a3912028ad75cd9f4
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 461e0053c53a0a3b69992a1a3dcc3e8c3356d55e7b615acb79b5734a812e24ea
 ---
 
 > ## Documentation Index
@@ -50,7 +50,7 @@ The weekly dev digest highlights the features most likely to change how you work
 <Update label="Week 33" description="August 10–14, 2026" tags={["v2.1.225–v2.1.233"]}>
   **Auto-continue after a usage limit on Desktop**: when you hit your session limit in Claude Code Desktop, check **Auto-continue when limits reset** on the limit card and the app retries the interrupted turn once the limit resets.
 
-  Also this week: **fork mode** is on by default in interactive sessions, so Claude can hand a side task to a subagent that inherits the full conversation; **GitLab** merge request URLs work with `--worktree` and the `claude agents` view, and marketplaces clone bare `gitlab.com` URLs; and typing **`@`** in the prompt mentions another Claude session by name.
+  Also this week: **fork mode** is on by default in interactive sessions, so Claude can delegate a side task to a subagent that inherits the full conversation; **GitLab** merge request URLs work with `--worktree` and the `claude agents` view, and marketplaces clone bare `gitlab.com` URLs; and typing **`@`** in the prompt mentions another Claude session by name.
 
   [Read the Week 33 digest →](/docs/en/whats-new/2026-w33)
 </Update>

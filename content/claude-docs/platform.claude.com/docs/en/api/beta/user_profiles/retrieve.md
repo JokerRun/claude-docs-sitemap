@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/retrieve
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: d6999b1b90067a59b95d4041fe37514f7df364e0e8cd7ae485ba463df5d023b9
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 53ad6c408dcf17e98989e1e832fc2ca3a8e46c0ac119a3dc6ebf833de96d492b
 ---
 
 ---
@@ -119,6 +119,8 @@ Get User Profile
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+- `"anthropic-workspace-id": optional string`
 
 ## Returns
 

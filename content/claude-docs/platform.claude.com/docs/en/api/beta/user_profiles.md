@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: ff12b426773be9aad7cd283abf1c5883e4a258eec78fc17b9f218a7f88fd68a3
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: bf85edf02e1a4b2335e7efbb71f2d34077cf81575a29b5b9c957064bf4fe0934
 ---
 
 ---
@@ -117,6 +117,8 @@ Create User Profile
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+- `"anthropic-workspace-id": optional string`
 
 ### Body parameters
 
@@ -495,6 +497,8 @@ List User Profiles
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
+- `"anthropic-workspace-id": optional string`
+
 ### Returns
 
 - `data: array of BetaUserProfile`
@@ -767,6 +771,8 @@ Get User Profile
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
+- `"anthropic-workspace-id": optional string`
+
 ### Returns
 
 - `BetaUserProfile object`
@@ -1027,6 +1033,8 @@ Update User Profile
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+- `"anthropic-workspace-id": optional string`
 
 ### Body parameters
 
@@ -1378,6 +1386,8 @@ Create Enrollment URL
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+- `"anthropic-workspace-id": optional string`
 
 ### Returns
 

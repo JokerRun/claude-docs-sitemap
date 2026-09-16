@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 83dd39121b63bba98fd8b4b9b846eea5a53a6d57249cd2207e57771c33151905
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 81791b897bfca20e207a45c7a60b9ca241cdd574698b533104fe917c7b5674b8
 ---
 
 ---
@@ -33,12 +33,6 @@ Returns organizations sorted by creation date in ascending order. Use
   Opaque pagination token from a previous response's `next_page` field. Pass this to retrieve the next page of results. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
 
 ## Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -72,6 +66,7 @@ Returns organizations sorted by creation date in ascending order. Use
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/organizations \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

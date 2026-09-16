@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/collaborators/list
-fetched_at: 2026-09-15T02:21:43.636809Z
-sha256: 0dcf36e6d4915fa77a1d70a9a103d508e2ba72a9f39c42df873c2bd289569425
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: e28676e3bfa6ee26d19f6bfc23a1baef2488496d380aa583bc228cbe991e2357
 ---
 
 ---
@@ -40,12 +40,6 @@ role.
   Opaque pagination token from a previous response's `next_page` field. Pass this to retrieve the next page of results. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
 
 ## Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -195,6 +189,7 @@ role.
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID/collaborators \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

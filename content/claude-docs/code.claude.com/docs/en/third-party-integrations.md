@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/third-party-integrations
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 5944e5c095d12e5e65938933d9384a6b4d953a9b8261570eed34a09404184829
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 55a0b5d1f8715031fa8f598901575cb3fec78b534ab5c1a3fe5b7d212b48497c
 ---
 
 > ## Documentation Index
@@ -97,7 +97,7 @@ For most organizations, Claude for Teams or Claude for Enterprise provides the b
 
 Learn more about [Team plans](https://support.claude.com/en/articles/9266767-what-is-the-team-plan) and [Enterprise plans](https://support.claude.com/en/articles/9797531-what-is-the-enterprise-plan).
 
-The deployment options compared below cover where model inference runs. To run [Claude Code on the web](/docs/en/claude-code-on-the-web) sessions on compute your organization operates, see [self-hosted environments](/docs/en/self-hosted-environments).
+The deployment options compared below cover where model inference runs. To run Claude Code [cloud sessions](/docs/en/claude-code-on-the-web) on compute your organization operates, see [self-hosted environments](/docs/en/self-hosted-environments).
 
 If your organization has specific infrastructure requirements, compare the options below:
 
@@ -157,7 +157,7 @@ If your organization has specific infrastructure requirements, compare the optio
 
     <tr>
       <td>Authentication</td>
-      <td>Claude.ai SSO or email</td>
+      <td>claude.ai SSO or email</td>
       <td>API key or a [Console sign-in without one](/docs/en/authentication#sign-in-without-an-api-key)</td>
       <td>API key or AWS credentials</td>
       <td>API key or AWS credentials</td>

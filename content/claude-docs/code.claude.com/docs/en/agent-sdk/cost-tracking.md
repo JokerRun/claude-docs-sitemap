@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/cost-tracking
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: 53b62d03543df5389b9e092abd489c63c1a8ba5457403754a508781b06a5a9db
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 28f74ba243aa7319c7df0cbcd3ff7f30a46f75eaecb09d543bc3cf18aefe93fc
 ---
 
 > ## Documentation Index
@@ -81,7 +81,7 @@ To total the whole call, add the last result from before each `/clear` to the ca
 
 In TypeScript, the SDK also emits an [`SDKConversationResetMessage`](/docs/en/agent-sdk/typescript#sdkconversationresetmessage) at each reset, so you can detect resets from the stream. In Python, the SDK likewise emits a `ConversationResetMessage`. Before Python SDK v0.2.137, the Python iterator dropped that message, so on those versions count the resets yourself from the `/clear` turns your app sends.
 
-`maxBudgetUsd`, or `max_budget_usd` in Python, is compared against the same running total, so a `/clear` also starts the budget over.
+`maxBudgetUsd` (TypeScript) or `max_budget_usd` (Python) is compared against the same running total, so a `/clear` also starts the budget over.
 
 ## Get the total cost of a query
 

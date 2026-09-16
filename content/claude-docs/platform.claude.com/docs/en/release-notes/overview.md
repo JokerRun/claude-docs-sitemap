@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/overview
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 5f80d2c55c8539d25cb2e16dd90a0bd654060b4155d9eec5ca6ea97924660f4d
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 22e8aaef098443055ac3c3ad3ac81a0f5f96a0511e98135f94fa7d724e244c56
 ---
 
 ---
@@ -18,6 +18,10 @@ The Claude Platform release notes list changes to the Claude API, the client SDK
 
   For updates to Claude Code, see the [complete CHANGELOG.md](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) in the `claude-code` repository.
 </Tip>
+
+### September 14, 2026
+
+* The Messages API can now [compact a conversation on demand](https://platform.claude.com/docs/en/build-with-claude/compaction#compact-on-demand-with-the-compaction-parameter) on the Claude API, in beta with the `compact-2026-09-04` beta header. Send the top-level `compaction` parameter, and the API returns a signed `compaction` block that summarizes the messages you sent. On later requests, send that block first, in place of those messages. You choose when to compact, the request can run in the background, and you can keep recent turns word for word after the summary. On models with preserved thinking, the thinking in those kept turns can stay valid.
 
 ### September 10, 2026
 

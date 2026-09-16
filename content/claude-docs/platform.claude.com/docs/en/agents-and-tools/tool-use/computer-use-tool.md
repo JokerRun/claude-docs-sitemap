@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 4de659db5a454a438de8f37a25742b665254c305624f55cfcc5b76491ae62d46
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 23aa6bf74b1040e9628082f6e64adaa89d9e448e9af03e78594c73deffd452b3
 ---
 
 ---
@@ -45,9 +45,9 @@ Computer use has unique risks distinct from standard API features. These risks a
 
 In some circumstances, Claude will follow commands found in content even when they conflict with your instructions. For example, instructions on webpages or contained in images might override your instructions or cause Claude to make mistakes. Take precautions to isolate Claude from sensitive data and actions to avoid risks related to prompt injection.
 
-Anthropic has trained the model to resist these prompt injections and has added an extra layer of defense. If you use the computer use tools, classifiers will automatically run on your prompts to flag potential instances of prompt injections. When these classifiers identify potential prompt injections in screenshots, they will automatically steer the model to ask for user confirmation before proceeding with the next action. This extra protection won't be ideal for every use case (for example, use cases without a human in the loop), so if you'd like to opt out and turn it off, [contact support](https://support.claude.com/en/).
+Anthropic has trained the model to resist these prompt injections and has added an extra layer of defense. If you use the computer use tools, classifiers will automatically scan what the tools return, such as screenshots, to flag potential prompt injections. When these classifiers identify a potential prompt injection, they will automatically steer the model to check whether the instruction really came from you before acting on it.
 
-These precautions remain important even with the classifier defense layer in place.
+This extra protection won't be ideal for every use case (for example, use cases without a human in the loop), so if you'd like to opt out and turn it off, [contact support](https://support.claude.com/en/). The precautions above remain important even with these classifiers in place.
 
 Inform end users of relevant risks and obtain their consent prior to enabling computer use in your own products.
 

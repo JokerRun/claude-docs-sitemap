@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: ab07088370b4a7b6bd5c5d72bea49908b10435899888d2f2759efc3bfed1f2d3
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 0189988d1f138585bfc313287d01ba5801ee6ae6d63911dbaabe3d14ca05d072
 ---
 
 ---
@@ -119,6 +119,8 @@ Create Enrollment URL
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+- `"anthropic-workspace-id": optional string`
 
 ## Returns
 

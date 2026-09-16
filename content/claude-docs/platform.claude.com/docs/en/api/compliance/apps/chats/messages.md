@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/messages
-fetched_at: 2026-09-15T02:21:43.636809Z
-sha256: d28f1c42d2b51ae39fe3fcca9b0ab4d2bd537963bcfc01f18d04b13e45850299
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 44e53f922683ccfcf292fd1ec80c9ab5e0ba2eccecc417053ea1e945605d672b
 ---
 
 ---
@@ -115,12 +115,6 @@ Retrieves message history and file metadata for a specific chat.
     format: date-time
 
 ### Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -422,6 +416,7 @@ Retrieves message history and file metadata for a specific chat.
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/chats/$CLAUDE_CHAT_ID/messages \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/results
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: d846cddd779c261662e79769c18af3f1d750d16d0c3dad14ae05916da1075b26
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 163a130a95bc83ba0cf70c14d1cf85b6d6d9c4589bb8ca6dc695c4b1325a4e7e
 ---
 
 ---
@@ -1607,7 +1607,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                 minimum: 0
 
-              - `model: Model`
+              - `model: Model or null`
 
                 The model that will complete your prompt.
 
@@ -1705,10 +1705,12 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               Token usage for the fallback-model attempt of a server-side fallback request.
 
-              Produced in place of a `message` entry for whichever hop served the
-              response. A declined hop produces the existing `message` entry. Whether
-              a fallback model served the response is signalled by the presence of this
-              entry in `usage.iterations`.
+              The terminal entry of a fallback-served turn: when a fallback hop's
+              output is the returned message, the entry for the iteration that
+              completed it carries this type in place of `message`. A declined hop
+              and the serving hop's earlier tool-loop iterations produce `message`
+              entries. Whether a fallback model served the response is signalled by
+              the presence of this entry in `usage.iterations`.
 
               - `type: "fallback_message"`
 

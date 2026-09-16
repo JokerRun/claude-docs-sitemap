@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments
-fetched_at: 2026-09-15T02:21:43.636809Z
-sha256: 81de8b85623a493207fd7b662d4d8a4a2f54f0f4583df9d3b363d85383180fdc
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 78bce40e76a2884a9060671374f371aed2e028fcc2f6bad860bd0e31160d4067
 ---
 
 ---
@@ -46,12 +46,6 @@ GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
   Opaque pagination token from a previous response's `next_page` field. Pass this to retrieve the next page of results. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
 
 ### Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -145,6 +139,7 @@ GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID/attachments \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

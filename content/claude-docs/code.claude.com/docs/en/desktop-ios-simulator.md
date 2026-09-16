@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop-ios-simulator
-fetched_at: 2026-09-03T02:44:34.856042Z
-sha256: 9ef38bd26965240e873fa23a9b06bcac4e78e280a2f384bf3daf59a800b13a9f
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: b4f6563f75bd2dce63f19ce56cf66eaffe9fdc110d58b1c20e64ab93291253f7
 ---
 
 > ## Documentation Index
@@ -34,7 +34,7 @@ The simulator pane uses Apple's simulator tooling, which the desktop app doesn't
   On this page, "device" refers to a simulated iPhone or iPad, one of the same simulator devices you manage in Xcode under **Window → Devices and Simulators**, not physical hardware.
 </Note>
 
-The simulator pane is available in local sessions only. In [cloud](/docs/en/desktop#run-long-running-tasks-remotely) and [SSH](/docs/en/desktop#ssh-sessions) sessions, Claude runs on a machine that can't reach the simulators on your Mac.
+The simulator pane is available in local sessions only. In [cloud](/docs/en/desktop#run-long-running-tasks-in-the-cloud) and [SSH](/docs/en/desktop#ssh-sessions) sessions, Claude runs on a machine that can't reach the simulators on your Mac.
 
 ## Run your app in the simulator
 
@@ -79,7 +79,7 @@ The simulator pane is interactive, not only a viewer. While Claude works, or bet
 
 The row under the device name tunes the video stream from the simulator. Lower **Frame rate** or **Resolution** if the pane strains your Mac, switch **Encoding** between H.264 and JPEG, or check **FPS** to display the frame rate the pane is receiving. These settings change how the pane displays the device, not how the app runs.
 
-You and Claude drive the same device, so your taps change the app state Claude sees. To have Claude check a specific screen, navigate to it by tapping, then ask. While Claude is driving the device, the pane shows a **Claude is using this device** badge above the screen; hold off tapping until the badge clears, so the result reflects the app rather than your input.
+You and Claude drive the same device, so your taps change the app state Claude sees. To have Claude check a specific screen, tap through to it, then ask. While Claude is driving the device, the pane shows a **Claude is using this device** badge above the screen; hold off tapping until the badge clears, so the result reflects the app rather than your input.
 
 ## How sessions manage devices
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/code/artifacts/retrieve_version
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: be082bafb803e593145238bf5f05f899c72f26967478b6c23137940c20e1b072
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 9034166e7c297a13a67217673337c12b2808932a6578d51cbd211fd43474055c
 ---
 
 ---
@@ -39,17 +39,12 @@ only for identity-stored content; validate against it when present.
 
 ## Headers
 
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
-
 - `"x-api-key": optional string`
 
 ## Example
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/code/artifacts/$ARTIFACT_ID/versions/$VERSION_ID \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```

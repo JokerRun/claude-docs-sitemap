@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/users
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 6ae98072d39dfb93af6a927bf1f700e31465b4e7fe162f74aa491a58dafdb833
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: ec6dae0ecc249b24843c7b9630552a93699c8f29d4fff8fb323be00b3ac77ac5
 ---
 
 ---
@@ -37,12 +37,6 @@ List current user members of an organization.
   Opaque pagination token from a previous response's `next_page` field. Pass this to retrieve the next page of results. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
 
 ### Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -104,6 +98,7 @@ List current user members of an organization.
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/users \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

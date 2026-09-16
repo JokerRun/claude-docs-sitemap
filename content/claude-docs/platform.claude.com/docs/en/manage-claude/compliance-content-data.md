@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-content-data
-fetched_at: 2026-09-03T02:44:34.856042Z
-sha256: d66d8b3f9b9503f43763e4dc21593f0dc8683dba1e5fff590b3b58da1b3bf9e2
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 0dc2d5e3156f76d7dca5a29715769dfca7230e3f4e00c68c90cf8f84f954f925
 ---
 
 ---
@@ -202,15 +202,16 @@ The response carries these headers:
 ```bash cURL
 file_id="claude_file_01UaT9wBcDfGhJkLmNpQrSv7"
 
-curl --fail-with-body -sS -OJ \
+curl --fail-with-body -sS \
+  "https://api.anthropic.com/v1/compliance/apps/chats/files/$file_id/content" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
   --header "anthropic-version: 2023-06-01" \
-  "https://api.anthropic.com/v1/compliance/apps/chats/files/$file_id/content"
+  --output "dashboard_mockup_v1.pdf"
 ```
 
-The `-OJ` flags tell curl to save the response under the file name from `Content-Disposition`, which is the original file name the user uploaded.
+In curl, the `--remote-header-name` (`-J`) option, which normally saves a download under the `Content-Disposition` file name, does not read the `filename*` form, so name the saved file yourself with `--output`. In a script, take the name from the file's `filename` field in the chat messages or [Get file metadata](https://platform.claude.com/docs/en/api/compliance/apps/chats/files/retrieve) response, or decode `filename*`. Either way, it is the name the user gave the upload, so treat it as untrusted before using it as an output path: keep only the base name, allow only characters that are safe on your filesystem, and refuse names that begin with `-` or `.`.
 
-The artifact content endpoint returns the text body of one artifact version. Pass the `version_id` from one of the entries in an assistant message's `artifacts` array, not the artifact's stable `id`. Each new version of an artifact has its own `version_id`, and the Compliance API serves the exact bytes of that version.
+Unlike the file content endpoint, the artifact content endpoint returns a JSON object. Pass the `version_id` from one of the entries in an assistant message's `artifacts` array, not the artifact's stable `id`; each new version of an artifact has its own `version_id`. The response's `content` field holds exactly that version's text, and its `title` and `artifact_type` fields describe the artifact. [Get artifact metadata](https://platform.claude.com/docs/en/api/compliance/apps/artifacts/retrieve) computes `size_bytes` and `md5` over the UTF-8 encoding of that text, so compare them with the `content` value rather than the whole response body.
 
 ## Retrieve projects and attachments
 
@@ -313,7 +314,7 @@ A project cannot be deleted while any chats remain attached to it. The API retur
 ```json
 {
   "error": {
-    "type": "conflict_error",
+    "type": "invalid_request_error",
     "message": "The \"claude_proj_01KGp4eZNug9ri4kE35RSppq\" project cannot be deleted as it has chats attached to it. Delete or detach all chats, and try deleting the project again."
   }
 }

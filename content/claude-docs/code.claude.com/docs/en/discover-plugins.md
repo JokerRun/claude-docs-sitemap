@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/discover-plugins
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: cfd0b8779b8a6b79318183b0de47991ffc0eb8b2652b41066e517fbde345f57c
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 3819c328e2525576e1c5b53e0ac745c9350f50561b8288f8050faf266f8a0911
 ---
 
 > ## Documentation Index
@@ -79,7 +79,7 @@ Install the language server binary from the table below before using these plugi
 You can also [create your own LSP plugin](/docs/en/plugins-reference#lsp-servers) for other languages.
 
 <Note>
-  If you see `Executable not found in $PATH` in the `/plugin` Errors tab after installing a plugin, install the required binary from the table above.
+  If you see `Executable not found in $PATH` in the `/plugin` Errors tab after installing a plugin, install the binary the [code intelligence](#code-intelligence) table lists for that plugin.
 </Note>
 
 #### What Claude gains from code intelligence plugins

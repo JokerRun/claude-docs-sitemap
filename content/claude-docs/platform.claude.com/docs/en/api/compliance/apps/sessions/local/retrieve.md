@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/retrieve
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: dc5db44131ab83065cfeecbb2eac24ad67392c502b58c95b67b210e8f1b64975
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: edee8af6394baa34b99552b75dde271e5a7d6815f2767b3e9e39a72384fb6662
 ---
 
 ---
@@ -26,12 +26,6 @@ inference call has aged out returns 404.
 - `local_session_id: string`
 
 ## Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -91,6 +85,7 @@ inference call has aged out returns 404.
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/sessions/local/$LOCAL_SESSION_ID \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

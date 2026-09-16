@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-faq
-fetched_at: 2026-09-03T02:44:34.856042Z
-sha256: 26682dbb7e11829aa42bd307efeb24397e66491f08d8a17464b008ef3bde5d3a
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 5bf64030dfe74a7f445991ded3f0240660e949b96dc6e4555cc2bc1e3983960b
 ---
 
 ---
@@ -48,13 +48,13 @@ description: Answers to common questions about Compliance API access, scopes, re
   </Accordion>
 
   <Accordion title="Why does my Admin API key return 403 on chat or file endpoints?">
-    Admin API keys carry a fixed `read:compliance_activities` scope, which authorizes the Activity Feed only. Every other Compliance API endpoint requires a scope that only a Compliance Access Key created in claude.ai can carry. Calling a content or directory endpoint with an Admin API key returns a 403 naming the scope that endpoint family requires: `read:compliance_user_data` for chats, files, projects, project attachments, sessions, users, and group members, and `read:compliance_org_data` for organizations, roles, groups, and effective organization settings. For example, listing chats returns the following response.
+    An Admin API key's only Compliance API scope is `read:compliance_activities`, which authorizes the Activity Feed only. Every other Compliance API endpoint requires a scope that only a Compliance Access Key created in claude.ai can carry. Calling a content or directory endpoint with an Admin API key returns a 403 naming the scope that endpoint family requires: `read:compliance_user_data` for chats, files, projects, project attachments, sessions, users, and group members, and `read:compliance_org_data` for organizations, roles, groups, and effective organization settings. For example, listing chats returns the following response.
 
     ```json Response
     {
       "error": {
         "type": "permission_error",
-        "message": "Missing required scopes. Got: ['read:compliance_activities'] Needed: ['read:compliance_user_data']"
+        "message": "Missing required scopes. Got: ['api:admin', 'read:compliance_activities'] Needed one of: ['read:compliance_user_data', 'read:org_audit']"
       }
     }
     ```

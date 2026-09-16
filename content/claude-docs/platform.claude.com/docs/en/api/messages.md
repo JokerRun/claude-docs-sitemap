@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: c2346f267237b6949aa2b7a1f46a64a4ba8b48e7c36b637b2b004f58a08fdc6a
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: ab406f77dd6dc73c75384c086a7ff60b45fb40a69422bf3324f9707ee0d7739a
 ---
 
 ---
@@ -2938,7 +2938,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
 - `temperature: optional number`
 
-  **Deprecated**: Deprecated. Models released after Claude Opus 4.6 do not support setting temperature. A value of 1.0 of will be accepted for backwards compatibility, all other values will be rejected with a 400 error.
+  **Deprecated**: Deprecated. Models released after Claude Opus 4.6 do not support setting temperature. A value of 1.0 will be accepted for backwards compatibility, all other values will be rejected with a 400 error.
 
   Amount of randomness injected into the response.
 
@@ -30214,7 +30214,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     - `temperature: optional number`
 
-      **Deprecated**: Deprecated. Models released after Claude Opus 4.6 do not support setting temperature. A value of 1.0 of will be accepted for backwards compatibility, all other values will be rejected with a 400 error.
+      **Deprecated**: Deprecated. Models released after Claude Opus 4.6 do not support setting temperature. A value of 1.0 will be accepted for backwards compatibility, all other values will be rejected with a 400 error.
 
       Amount of randomness injected into the response.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/send
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 1c402da409b7daffe6a9c38c1f66321d0f1cf2c22ec264a32e8b2fe5daac172b
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: e2c1a2bdde304a031e6c303d7dfdfc9075f5d1a96ae870a1c162858c819e65a4
 ---
 
 ---
@@ -718,7 +718,7 @@ Send Events
 
       - `session_thread_id: optional string or null`
 
-        When set, the confirmation routes to this subagent's thread rather than the primary. Echo this from the `session_thread_id` on the `agent.tool_use` or `agent.mcp_tool_use` event that prompted the approval.
+        Set by the server to the subagent thread this confirmation was routed to. Omitted when it was routed to the primary thread.
 
     - `BetaManagedAgentsUserCustomToolResultEvent object`
 
@@ -800,7 +800,7 @@ Send Events
 
       - `session_thread_id: optional string or null`
 
-        Routes this result to a subagent thread. Copy from the `agent.custom_tool_use` event's `session_thread_id`.
+        Set by the server to the subagent thread this result was routed to. Omitted when it was routed to the primary thread.
 
     - `BetaManagedAgentsUserDefineOutcomeEvent object`
 
@@ -902,7 +902,7 @@ Send Events
 
       - `session_thread_id: optional string or null`
 
-        Routes this result to a subagent thread. Copy from the `agent.tool_use` event's `session_thread_id`.
+        Set by the server to the subagent thread this result was routed to. Omitted when it was routed to the primary thread.
 
     - `BetaManagedAgentsSystemMessageEvent object`
 

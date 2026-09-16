@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: bc4760da73dede16e5565035f18bafff51f2b86fcd28c0ce0ecc17a479f30d72
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: a01276cfa14266cd7e358d1c61939e69233adf105b79d9847d7d3c653011d912
 ---
 
 ---
@@ -266,7 +266,7 @@ Future models and features will not be compatible with Text Completions. See our
 
 - `temperature: optional number`
 
-  **Deprecated**: Deprecated. Models released after Claude Opus 4.6 do not support setting temperature. A value of 1.0 of will be accepted for backwards compatibility, all other values will be rejected with a 400 error.
+  **Deprecated**: Deprecated. Models released after Claude Opus 4.6 do not support setting temperature. A value of 1.0 will be accepted for backwards compatibility, all other values will be rejected with a 400 error.
 
   Amount of randomness injected into the response.
 

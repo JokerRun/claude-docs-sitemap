@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: b5cf2cf4e9e9c96842d2313e2aea69a744e493e2a81c67f143391a294b31923b
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: ce1a43dbd0b3cea8ed8928a38dcfa534c18fe520f781af8f9dea798c4d420dd4
 ---
 
 ---
@@ -115,6 +115,8 @@ Create User Profile
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+- `"anthropic-workspace-id": optional string`
 
 ## Body parameters
 

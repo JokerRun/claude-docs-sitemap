@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization
-fetched_at: 2026-09-15T02:21:43.636809Z
-sha256: 469c9d56f46ff972146ae3e07e549ac430533aa80e6f5518ed42e8a2aa86f0bd
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 3ac15191a8d3ae3b1bdd878620d9a8ac2585164b94215cc8a1ee902179569677
 ---
 
 ---
@@ -8024,19 +8024,27 @@ List Workspaces
 
     Data residency configuration.
 
-    - `allowed_inference_geos: array of string or "unrestricted"`
+    - `allowed_inference_geos: array of BetaAllowedInferenceGeo or "unrestricted"`
 
       Permitted inference geo values. 'unrestricted' means all geos are allowed.
 
-      - `Geos = array of string`
+      - `Geos = array of BetaAllowedInferenceGeo`
+
+        - `"global"`
+
+        - `"us"`
 
       - `Unrestricted = "unrestricted"`
 
-    - `default_inference_geo: string`
+    - `default_inference_geo: "global" or "us"`
 
       Default inference geo applied when requests omit the parameter.
 
-    - `workspace_geo: string`
+      - `"global"`
+
+      - `"us"`
+
+    - `workspace_geo: "us"`
 
       Geographic region for workspace data storage. Immutable after creation.
 
@@ -8098,8 +8106,8 @@ curl https://api.anthropic.com/v1/organizations/workspaces \
       "created_at": "2024-10-30T23:58:27.427722Z",
       "data_residency": {
         "allowed_inference_geos": "unrestricted",
-        "default_inference_geo": "default_inference_geo",
-        "workspace_geo": "workspace_geo"
+        "default_inference_geo": "global",
+        "workspace_geo": "us"
       },
       "display_color": "#6C5BB9",
       "external_key_id": "ekey_01SDCCSbTxrXDpWc1phhtcfK",
@@ -8329,19 +8337,27 @@ Create Workspace
 
     Data residency configuration.
 
-    - `allowed_inference_geos: array of string or "unrestricted"`
+    - `allowed_inference_geos: array of BetaAllowedInferenceGeo or "unrestricted"`
 
       Permitted inference geo values. 'unrestricted' means all geos are allowed.
 
-      - `Geos = array of string`
+      - `Geos = array of BetaAllowedInferenceGeo`
+
+        - `"global"`
+
+        - `"us"`
 
       - `Unrestricted = "unrestricted"`
 
-    - `default_inference_geo: string`
+    - `default_inference_geo: "global" or "us"`
 
       Default inference geo applied when requests omit the parameter.
 
-    - `workspace_geo: string`
+      - `"global"`
+
+      - `"us"`
+
+    - `workspace_geo: "us"`
 
       Geographic region for workspace data storage. Immutable after creation.
 
@@ -8399,8 +8415,8 @@ curl https://api.anthropic.com/v1/organizations/workspaces \
   "created_at": "2024-10-30T23:58:27.427722Z",
   "data_residency": {
     "allowed_inference_geos": "unrestricted",
-    "default_inference_geo": "default_inference_geo",
-    "workspace_geo": "workspace_geo"
+    "default_inference_geo": "global",
+    "workspace_geo": "us"
   },
   "display_color": "#6C5BB9",
   "external_key_id": "ekey_01SDCCSbTxrXDpWc1phhtcfK",
@@ -8471,19 +8487,27 @@ Get Workspace
 
     Data residency configuration.
 
-    - `allowed_inference_geos: array of string or "unrestricted"`
+    - `allowed_inference_geos: array of BetaAllowedInferenceGeo or "unrestricted"`
 
       Permitted inference geo values. 'unrestricted' means all geos are allowed.
 
-      - `Geos = array of string`
+      - `Geos = array of BetaAllowedInferenceGeo`
+
+        - `"global"`
+
+        - `"us"`
 
       - `Unrestricted = "unrestricted"`
 
-    - `default_inference_geo: string`
+    - `default_inference_geo: "global" or "us"`
 
       Default inference geo applied when requests omit the parameter.
 
-    - `workspace_geo: string`
+      - `"global"`
+
+      - `"us"`
+
+    - `workspace_geo: "us"`
 
       Geographic region for workspace data storage. Immutable after creation.
 
@@ -8531,8 +8555,8 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID \
   "created_at": "2024-10-30T23:58:27.427722Z",
   "data_residency": {
     "allowed_inference_geos": "unrestricted",
-    "default_inference_geo": "default_inference_geo",
-    "workspace_geo": "workspace_geo"
+    "default_inference_geo": "global",
+    "workspace_geo": "us"
   },
   "display_color": "#6C5BB9",
   "external_key_id": "ekey_01SDCCSbTxrXDpWc1phhtcfK",
@@ -8657,19 +8681,27 @@ Update Workspace
 
     Data residency configuration.
 
-    - `allowed_inference_geos: array of string or "unrestricted"`
+    - `allowed_inference_geos: array of BetaAllowedInferenceGeo or "unrestricted"`
 
       Permitted inference geo values. 'unrestricted' means all geos are allowed.
 
-      - `Geos = array of string`
+      - `Geos = array of BetaAllowedInferenceGeo`
+
+        - `"global"`
+
+        - `"us"`
 
       - `Unrestricted = "unrestricted"`
 
-    - `default_inference_geo: string`
+    - `default_inference_geo: "global" or "us"`
 
       Default inference geo applied when requests omit the parameter.
 
-    - `workspace_geo: string`
+      - `"global"`
+
+      - `"us"`
+
+    - `workspace_geo: "us"`
 
       Geographic region for workspace data storage. Immutable after creation.
 
@@ -8726,8 +8758,8 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID \
   "created_at": "2024-10-30T23:58:27.427722Z",
   "data_residency": {
     "allowed_inference_geos": "unrestricted",
-    "default_inference_geo": "default_inference_geo",
-    "workspace_geo": "workspace_geo"
+    "default_inference_geo": "global",
+    "workspace_geo": "us"
   },
   "display_color": "#6C5BB9",
   "external_key_id": "ekey_01SDCCSbTxrXDpWc1phhtcfK",
@@ -8796,19 +8828,27 @@ Archive Workspace
 
     Data residency configuration.
 
-    - `allowed_inference_geos: array of string or "unrestricted"`
+    - `allowed_inference_geos: array of BetaAllowedInferenceGeo or "unrestricted"`
 
       Permitted inference geo values. 'unrestricted' means all geos are allowed.
 
-      - `Geos = array of string`
+      - `Geos = array of BetaAllowedInferenceGeo`
+
+        - `"global"`
+
+        - `"us"`
 
       - `Unrestricted = "unrestricted"`
 
-    - `default_inference_geo: string`
+    - `default_inference_geo: "global" or "us"`
 
       Default inference geo applied when requests omit the parameter.
 
-    - `workspace_geo: string`
+      - `"global"`
+
+      - `"us"`
+
+    - `workspace_geo: "us"`
 
       Geographic region for workspace data storage. Immutable after creation.
 
@@ -8857,8 +8897,8 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/archive
   "created_at": "2024-10-30T23:58:27.427722Z",
   "data_residency": {
     "allowed_inference_geos": "unrestricted",
-    "default_inference_geo": "default_inference_geo",
-    "workspace_geo": "workspace_geo"
+    "default_inference_geo": "global",
+    "workspace_geo": "us"
   },
   "display_color": "#6C5BB9",
   "external_key_id": "ekey_01SDCCSbTxrXDpWc1phhtcfK",
@@ -18531,7 +18571,6 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 ```bash
 curl https://api.anthropic.com/v1/organizations/rbac_groups \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: ce-user-management-2026-07-13' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
@@ -18620,7 +18659,6 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 ```bash
 curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: ce-user-management-2026-07-13' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
@@ -18706,7 +18744,6 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 curl https://api.anthropic.com/v1/organizations/rbac_groups \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: ce-user-management-2026-07-13' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
     -d '{
           "name": "Engineering"
@@ -18801,7 +18838,6 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: ce-user-management-2026-07-13' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
     -d '{
           "name": "Engineering"
@@ -18860,7 +18896,6 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: ce-user-management-2026-07-13' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
@@ -18946,7 +18981,6 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 ```bash
 curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID/members \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: ce-user-management-2026-07-13' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
@@ -19024,7 +19058,6 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID/members \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: ce-user-management-2026-07-13' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
     -d '{
           "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
@@ -19085,7 +19118,6 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID/members/$USER_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: ce-user-management-2026-07-13' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
@@ -19169,7 +19201,6 @@ The RBAC Roles API is available to Claude Enterprise organizations only.
 ```bash
 curl https://api.anthropic.com/v1/organizations/rbac_roles \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: ce-user-management-2026-07-13' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
@@ -19242,7 +19273,6 @@ The RBAC Roles API is available to Claude Enterprise organizations only.
 ```bash
 curl https://api.anthropic.com/v1/organizations/rbac_roles/$ROLE_ID \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: ce-user-management-2026-07-13' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
@@ -19415,7 +19445,6 @@ The RBAC Roles API is available to Claude Enterprise organizations only.
 ```bash
 curl https://api.anthropic.com/v1/organizations/rbac_roles/$ROLE_ID/permissions \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: ce-user-management-2026-07-13' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 

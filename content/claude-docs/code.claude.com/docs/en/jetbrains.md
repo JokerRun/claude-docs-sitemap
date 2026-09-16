@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/jetbrains
-fetched_at: 2026-09-15T02:21:43.636809Z
-sha256: 4e07df4595e8da869ed6bfe0c93cbfbf68695d04548c897e88b8b09deba76cd6
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: ae9180b6e3ee1b4abaa2692daf222ad50cb8b20c1ee5ba71575ec01993dd3d0e
 ---
 
 > ## Documentation Index
@@ -196,7 +196,7 @@ If clicking the Claude icon shows "command not found":
 
 ## Security considerations
 
-When Claude Code runs in a JetBrains IDE in [`acceptEdits` permission mode](/docs/en/permission-modes#auto-approve-file-edits-with-acceptedits-mode), it may be able to modify IDE configuration files that can be automatically executed by your IDE. This may increase the risk of running Claude Code in `acceptEdits` mode and allow bypassing Claude Code's permission prompts for bash execution.
+When Claude Code runs in a JetBrains IDE in [`acceptEdits` permission mode](/docs/en/permission-modes#auto-approve-file-edits-with-acceptedits-mode), it may be able to modify IDE configuration files that can be automatically executed by your IDE. This may increase the risk of running Claude Code in `acceptEdits` mode and allow bypassing Claude Code's permission prompts for Bash execution.
 
 When running in JetBrains IDEs, consider:
 

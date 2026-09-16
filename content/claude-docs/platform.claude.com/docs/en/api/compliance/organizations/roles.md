@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 657d93d4927126aa8ca9806e380a96aa2e73586484c4ab45cd56f27fbce4f083
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 3195c044c74fb27b410899495251c0b1bfd256a32027d689480bfe502bdb7ce9
 ---
 
 ---
@@ -37,12 +37,6 @@ List Compliance Roles
   Opaque pagination token from a previous response's `next_page` field. Pass this to retrieve the next page of results. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
 
 ### Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -88,6 +82,7 @@ List Compliance Roles
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
@@ -127,12 +122,6 @@ Get Compliance Role
 
 ### Headers
 
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
-
 - `"x-api-key": optional string`
 
 ### Returns
@@ -165,6 +154,7 @@ Get Compliance Role
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles/$ROLE_ID \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
@@ -274,12 +264,6 @@ List Compliance Role Permissions
 
 #### Headers
 
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
-
 - `"x-api-key": optional string`
 
 #### Returns
@@ -312,6 +296,7 @@ List Compliance Role Permissions
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles/$ROLE_ID/permissions \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

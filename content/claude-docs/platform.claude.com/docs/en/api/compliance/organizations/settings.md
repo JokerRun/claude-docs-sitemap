@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/settings
-fetched_at: 2026-09-15T02:21:43.636809Z
-sha256: df1a3b7129a4e5bea3538b3ebfad8c55ad70e01723901c32ea071a66231d8cf5
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: f8c536730c17e7d30bb288f1630c0d7871c34d322aa85791a3e8058a6fcce19f
 ---
 
 ---
@@ -34,12 +34,6 @@ unknown organizations and organizations outside the hierarchy return 404.
   The organization's UUID
 
 ### Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -344,6 +338,7 @@ unknown organizations and organizations outside the hierarchy return 404.
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/organizations/$ORGANIZATION_ID/settings \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

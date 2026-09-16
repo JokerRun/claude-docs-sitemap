@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/update
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 99af909599b1e09a0ac13b531aaedb59f661fb70c9cc7524929d09150041e847
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: de892aebf8170634c538ab325ce16eff98fad3e174c604cda41b3fc3cea252f5
 ---
 
 ---
@@ -119,6 +119,8 @@ Update User Profile
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+- `"anthropic-workspace-id": optional string`
 
 ## Body parameters
 

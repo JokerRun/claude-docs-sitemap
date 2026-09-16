@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 7bdcabc23f688b49695d8795464af6cb2ed3bafa5f310507a72c3cf34adda13a
+fetched_at: 2026-09-16T02:20:57.252456Z
+sha256: 2217276dce67d432c88009067da8020f56aeaa55b51481e8814b9fd658b444f4
 ---
 
 ---
@@ -25,12 +25,6 @@ Get detailed information for a specific project document.
   The document ID (tagged ID, e.g., claude_proj_doc_abc123)
 
 ### Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -74,6 +68,7 @@ Get detailed information for a specific project document.
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/projects/documents/$DOCUMENT_ID \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
@@ -110,12 +105,6 @@ consumer can dedupe or match hashes without downloading every document.
   The document ID (tagged ID, e.g., claude_proj_doc_abc123)
 
 ### Headers
-
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -173,6 +162,7 @@ consumer can dedupe or match hashes without downloading every document.
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/projects/documents/$DOCUMENT_ID/metadata \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
@@ -210,12 +200,6 @@ Hard-deletes the project document permanently.
 
 ### Headers
 
-- `"anthropic-version": optional string`
-
-  The version of the Claude API you want to use.
-
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
-
 - `"x-api-key": optional string`
 
 ### Returns
@@ -235,6 +219,7 @@ Hard-deletes the project document permanently.
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/projects/documents/$DOCUMENT_ID \
     -X DELETE \
+    -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
