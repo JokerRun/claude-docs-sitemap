@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/csharp
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 8e4bbe1c2df0d696f80505ae6197a45c678070b37a4891cd61e3523b5aa1d418
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 8cba0cffe8bee0812069c3189b31cc07061da08427be0bd72547571afcdcc6d0
 ---
 
 ---
@@ -12,10 +12,6 @@ description: Instal dan konfigurasikan Anthropic C# SDK untuk aplikasi .NET deng
 ---
 
 Anthropic C# SDK menyediakan akses yang mudah ke Claude API dari aplikasi yang ditulis dalam C#.
-
-<Info>
-  C# SDK saat ini dalam versi beta. API dapat berubah antar versi.
-</Info>
 
 <Info>
   Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](https://platform.claude.com/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK khusus C#.
@@ -454,10 +450,6 @@ C# SDK mendukung platform berikut melalui paket NuGet terpisah:
 Gunakan `AnthropicBedrockMantleClient` untuk proyek baru; `AnthropicBedrockClient` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
 
 ## Semantic versioning
-
-<Warning>
-  Meskipun paket ini diberi versi 10+, paket ini saat ini dalam versi beta. Selama periode beta, perubahan yang merusak kompatibilitas dapat terjadi pada rilis minor atau patch. Setelah library mencapai rilis stabil, konvensi SemVer akan diikuti dengan lebih ketat. Sampaikan masukan dengan [mengajukan issue](https://github.com/anthropics/anthropic-sdk-csharp/issues/new).
-</Warning>
 
 Paket ini secara umum mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang dapat dirilis sebagai versi minor:
 

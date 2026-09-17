@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/environments
-fetched_at: 2026-09-04T02:21:22.489135Z
-sha256: 27af1a04bb9c5be7dd67b91a9d31d4160371459a7a87c8d4e10d8d59b33a9351
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: e4ae8b510f08e57f81520ac095355c30fe76545e4d2434f5110d15d5895a4442
 ---
 
 ---
@@ -11,13 +11,13 @@ url: https://platform.claude.com/docs/en/managed-agents/environments
 description: Customize cloud sandboxes for your sessions.
 ---
 
+## Compatibility
+- Status: Beta
+- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `managed-agents-2026-04-01`
+
 Environments define the sandbox configuration where your agent runs. You create an environment once, then reference its ID each time you start a session. Multiple sessions can share the same environment, but each session gets its own isolated sandbox (a fresh Linux container).
 
 This page covers `type: cloud` environments. To run sandboxes on your own infrastructure, see [Self-hosted sandboxes](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes).
-
-<Note>
-  Managed Agents API requests require the `managed-agents-2026-04-01` beta header, except memory store endpoints, which use `agent-memory-2026-07-22` instead. The SDK sets the correct beta header automatically. See [Beta headers](https://platform.claude.com/docs/en/api/beta-headers#endpoint-specific-headers).
-</Note>
 
 ## Create an environment
 

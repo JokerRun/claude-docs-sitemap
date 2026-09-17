@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/archive
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: a99f9071b91e8546cdabe7f125024518f0d90ebb2c9591e573adac0c8e5ee448
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 352d50a3b29a766e001bcdd6a47e1dc7f021324394ae99ef2aebf8d0c67bc715
 ---
 
 ---
@@ -28,7 +28,7 @@ Archive a Dream
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -119,6 +119,8 @@ Archive a Dream
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

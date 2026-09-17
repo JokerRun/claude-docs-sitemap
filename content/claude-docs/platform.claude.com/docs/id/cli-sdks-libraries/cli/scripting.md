@@ -1,104 +1,29 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: e61ded7973adc74414ffd78dc08f312a90e75bfa25ae79f71ca6107a110f8aff
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 8e4cfde0baffb14a7581b5d8ce9fabd5004c59d85835e9e1f63c9f5636942e9b
 ---
 
 ---
 title: Scripting dan otomatisasi CLI
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting
-description: Kelola versi sumber daya API sebagai YAML, rangkai perintah CLI ant dalam skrip, operasikan sumber daya dari Claude Code, dan autentikasi panggilan curl dengan kredensial CLI.
+description: Kelola versi sumber daya API sebagai file dengan ant apply, rangkai perintah CLI ant dalam skrip, operasikan sumber daya dari Claude Code, dan autentikasi panggilan curl dengan kredensial CLI.
 ---
 
 Halaman ini membahas alur kerja berorientasi tugas yang dibangun di atas CLI `ant`. Untuk flag dan opsi output yang mendasarinya, lihat [Menggunakan CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using).
 
 ## Mengelola versi sumber daya API
 
-Anda dapat menggunakan CLI untuk mengelola versi (version control) sumber daya API seperti skill, agen, environment, atau deployment sebagai file YAML di repositori Anda dan menjaganya tetap sinkron dengan Claude API.
+Untuk menyimpan agen, lingkungan, dan sumber daya Claude Managed Agents lainnya sebagai file di repositori Anda, lihat [Mengelola sumber daya sebagai kode dengan ant apply](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply).
 
-<Note>
-  Untuk informasi lebih lanjut tentang sumber daya ini, lihat [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview).
-</Note>
+### Menjalankan agen yang telah diterapkan dari shell
+
+Setelah agen dan lingkungan tersedia, Anda dapat menjalankan sesi dari shell:
 
 <Steps>
-  <Step title="Definisikan agen Anda">
-    Tulis definisi agen ke `summarizer.agent.yaml`:
-
-    ```yaml summarizer.agent.yaml
-    name: Summarizer
-    model: claude-opus-5
-    system: |
-      You are a helpful assistant that writes concise summaries.
-    tools:
-      - type: agent_toolset_20260401
-    ```
-  </Step>
-
-  <Step title="Buat agen">
-    ```bash
-    ant beta:agents create < summarizer.agent.yaml
-    ```
-
-    ```json Output
-    {
-      "id": "agent_011CYm1BLqPXpQRk5khsSXrs",
-      "version": 1,
-      "name": "Summarizer",
-      "model": "claude-opus-5"
-      /* ... */
-    }
-    ```
-
-    Catat `id` dari respons. Anda akan meneruskannya ke perintah pembuatan sesi pada langkah berikutnya.
-
-    <Tip>
-      Masukkan `summarizer.agent.yaml` ke repositori Anda dan jaga agar tetap sinkron dengan API di pipeline CI Anda. Perintah update memerlukan ID agen dan versi saat ini sebagai flag:
-
-      ```bash CLI
-      ant beta:agents update --agent-id agent_011CYm1BLqPXpQRk5khsSXrs --version 1 < summarizer.agent.yaml
-      ```
-    </Tip>
-  </Step>
-
-  <Step title="Definisikan environment">
-    Sebuah sesi berjalan dalam sebuah [environment](https://platform.claude.com/docs/id/api/cli/beta/environments), yang mendefinisikan sandbox tempat sesi tersebut dieksekusi. Tulis definisi environment ke `summarizer.environment.yaml`:
-
-    ```yaml summarizer.environment.yaml
-    name: summarizer-env
-    config:
-      type: cloud
-      networking:
-        type: unrestricted
-    ```
-  </Step>
-
-  <Step title="Buat environment">
-    ```bash
-    ant beta:environments create < summarizer.environment.yaml
-    ```
-
-    ```json Output
-    {
-      "id": "env_01595EKxaaTTGwwY3kyXdtbs",
-      "name": "summarizer-env"
-      /* ... */
-    }
-    ```
-
-    Catat `id` dari respons. Anda akan meneruskannya ke perintah pembuatan sesi pada langkah berikutnya.
-
-    <Tip>
-      Masukkan `summarizer.environment.yaml` ke repositori Anda dan jaga agar tetap sinkron dengan API di pipeline CI Anda. Perintah update memerlukan ID environment sebagai flag:
-
-      ```bash CLI
-      ant beta:environments update --environment-id env_01595EKxaaTTGwwY3kyXdtbs < summarizer.environment.yaml
-      ```
-    </Tip>
-  </Step>
-
-  <Step title="Mulai sesi">
-    Tempelkan `id` agen dan `id` environment dari output sebelumnya ke perintah pembuatan sesi:
+  <Step title="Memulai sesi">
+    Berikan ID agen dan ID lingkungan ke perintah pembuatan sesi. Setelah `ant apply`, baca ID tersebut dari `claude-lock.json`: setiap entri di bawah `resources` memiliki `id`, dan untuk proyek di [Mengelola sumber daya sebagai kode dengan ant apply](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) entrinya adalah `./agents/summarizer.md` dan `./environments/cloud.yaml`.
 
     ```bash
     ant beta:sessions create \
@@ -127,12 +52,14 @@ Anda dapat menggunakan CLI untuk mengelola versi (version control) sumber daya A
   </Step>
 
   <Step title="Baca percakapan">
-    `--transform` dijalankan terhadap setiap event yang terdaftar, sehingga ini mencetak teks dari setiap pesan secara berurutan. `--format auto` menimpa explorer interaktif yang secara default dibuka oleh perintah list di terminal:
+    Setelah agen membalas, tampilkan daftar event. `--transform` dijalankan terhadap setiap event yang terdaftar, sehingga perintah ini mencetak teks dari setiap pesan secara berurutan. `--format auto` menggantikan penjelajah interaktif yang secara default dibuka oleh perintah list di terminal:
 
     ```bash
     ant beta:sessions:events list \
       --session-id session_01JZCh78XvmxJjiXVy3oSi7K \
-      --transform 'content.0.text' --format auto --raw-output
+      --transform 'content.0.text' \
+      --raw-output \
+      --format auto
     ```
 
     ```text Output wrap
@@ -141,7 +68,7 @@ Anda dapat menggunakan CLI untuk mengelola versi (version control) sumber daya A
     ```
 
     <Tip>
-      Untuk memantau sesi saat sedang berjalan, gunakan `ant beta:sessions:events stream --session-id session_01JZCh78XvmxJjiXVy3oSi7K`. Event ditulis ke stdout saat tiba.
+      Untuk memantau sesi saat berjalan, gunakan `ant beta:sessions:events stream --session-id session_01JZCh78XvmxJjiXVy3oSi7K --format jsonl`, yang menulis setiap event ke stdout saat event tersebut tiba. Tanpa `--format`, terminal akan membuka penjelajah interaktif sebagai gantinya.
     </Tip>
   </Step>
 </Steps>
@@ -178,7 +105,7 @@ Agent not found.
 
 ## Menggunakan CLI dari Claude Code
 
-[Claude Code](https://code.claude.com/docs/en/overview) dapat menggunakan CLI `ant` secara langsung tanpa konfigurasi tambahan. Dengan CLI yang sudah terinstal dan terautentikasi, Anda dapat meminta Claude Code untuk mengoperasikan sumber daya API Anda secara langsung. Misalnya:
+[Claude Code](https://code.claude.com/docs/id/overview) dapat menggunakan CLI `ant` secara langsung tanpa konfigurasi tambahan. Dengan CLI yang sudah terinstal dan terautentikasi, Anda dapat meminta Claude Code untuk mengoperasikan sumber daya API Anda secara langsung. Misalnya:
 
 * "Tampilkan daftar sesi agen terbaru saya dan rangkum mana saja yang mengalami error."
 * "Unggah setiap PDF di `./reports` ke Files API dan cetak ID yang dihasilkan."

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/extended-thinking
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 420eb18d47c0cd5071b5813ec613127d0073f03644d406ece3ee02db528943e3
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 15daa5bd519d8ded05507af4d18daafd71d41f1fe17ace630b51ba939646b24e
 ---
 
 ---
@@ -297,7 +297,7 @@ Ketika Anda siap untuk beralih dari anggaran manual, lihat [Migrasi ke pemikiran
 
 "Interleaved thinking" (pemikiran berselang-seling) memungkinkan Claude berpikir di antara pemanggilan alat dalam satu giliran asisten, bernalar tentang setiap hasil alat sebelum memutuskan apa yang harus dilakukan selanjutnya. Untuk konsepnya, struktur giliran, dan bagaimana perilakunya pada model pemikiran adaptif, lihat [pemikiran berselang-seling](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking) di ikhtisar pemikiran. Bagian ini membahas cara mengaktifkannya ketika Anda menggunakan pemikiran manual `type: "enabled"`.
 
-Pada Claude Opus 4.5, Claude Sonnet 4.5, dan model Claude 4 sebelumnya (Claude Opus 4.1, Claude Opus 4, dan Claude Sonnet 4), tambahkan [header beta](https://platform.claude.com/docs/id/api/beta-headers) `interleaved-thinking-2025-05-14` ke permintaan API Anda.
+Pada Claude Opus 4.5, Claude Sonnet 4.5, dan model Claude 4 sebelumnya, tambahkan [header beta](https://platform.claude.com/docs/id/api/beta-headers) `interleaved-thinking-2025-05-14` ke permintaan API Anda.
 
 Generasi 4.6 terbagi dalam mode manual:
 

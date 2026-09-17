@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-09-04T02:21:22.489135Z
-sha256: 778e73bdc6a29dc937b89591a9acf332feaa8a7c902dd1c1574c59f734708d30
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 508fa482f491aee8b2308a88b846b2d7c684254909d734ee88dc55da2076f6f3
 ---
 
 ---
@@ -790,7 +790,7 @@ Retrieve information about a specific file:
   ```
 
   ```go Go
-  metadata, err := client.Files.GetMetadata(context.TODO(), fileID)
+  metadata, err := client.Files.GetMetadata(context.TODO(), fileID, anthropic.FileGetMetadataParams{})
   if err != nil {
   	log.Fatal(err)
   }
@@ -844,7 +844,7 @@ Remove a file from your workspace:
   ```
 
   ```go Go
-  _, err = client.Files.Delete(context.TODO(), fileID)
+  _, err = client.Files.Delete(context.TODO(), fileID, anthropic.FileDeleteParams{})
   if err != nil {
   	log.Fatal(err)
   }
@@ -903,7 +903,7 @@ Download files that were created by [skills](https://platform.claude.com/docs/en
 
   ```go Go
   func downloadFile(client anthropic.Client, fileID string) error {
-  	resp, err := client.Files.Download(context.TODO(), fileID)
+  	resp, err := client.Files.Download(context.TODO(), fileID, anthropic.FileDownloadParams{})
   	if err != nil {
   		return err
   	}

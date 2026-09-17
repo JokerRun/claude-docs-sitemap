@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/rotate_token
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: d2bef3b1c82d2dc7173fb28c203d0c88292b1e5b1403766893f4e57a2b14fb47
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: a69694a04d99fb1978bb513402dd45309fde72d98af0bd3b378a4599930b6642
 ---
 
 ---
@@ -38,7 +38,7 @@ restarted after rotation must use the new value. An optional
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -129,6 +129,8 @@ restarted after rotation must use the new value. An optional
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 ## Body parameters
 

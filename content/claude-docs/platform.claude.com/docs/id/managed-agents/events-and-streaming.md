@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: 7f20f28fc8b745a03a0c70e5e1e8417162c83cc293922a227ae201a0d8c585a5
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: bf13d16983eb120f8c19e1bfd8c6bcf70977e8001a1e1f19fa94ddc992eb3708
 ---
 
 ---
@@ -2169,12 +2169,30 @@ Ketika agen memanggil [alat kustom](https://platform.claude.com/docs/id/managed-
 
 ### Konfirmasi alat
 
-Ketika [kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) memerlukan konfirmasi sebelum alat dijalankan:
+Panggilan alat menunggu konfirmasi Anda di bawah [kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) `always_ask`, atau di bawah `auto` saat server tidak mencapai keputusan. Saat hal itu terjadi:
 
 1. Sesi memancarkan event `agent.tool_use` atau `agent.mcp_tool_use`.
-2. Sesi berhenti sejenak dengan event `session.status_idle` yang berisi `stop_reason: requires_action`. ID event yang memblokir ada di array `stop_reason.event_ids`.
+2. Sesi dijeda dengan event `session.status_idle` yang `stop_reason.type`-nya adalah `requires_action`. ID event yang memblokir ada di array `stop_reason.event_ids`.
 3. Kirim event `user.tool_confirmation` untuk masing-masing, dengan meneruskan ID event di parameter `tool_use_id`. Atur `result` ke `"allow"` atau `"deny"`. Gunakan `deny_message` untuk menjelaskan penolakan.
-4. Setelah semua event yang memblokir terselesaikan, sesi bertransisi kembali ke `running`.
+4. Setelah semua event yang memblokir diselesaikan, sesi kembali beralih ke `running`.
+
+Setiap event `agent.tool_use` dan `agent.mcp_tool_use` membawa `evaluated_permission` (`allow`, `ask`, atau `deny`), dan hanya event yang `evaluated_permission`-nya `"ask"` yang menunggu konfirmasi. Sebagian besar event juga membawa objek `evaluation` yang mencatat kebijakan mana yang menghasilkan keputusan tersebut, seperti dijelaskan di [Melihat bagaimana setiap panggilan dievaluasi](https://platform.claude.com/docs/id/managed-agents/permission-policies#see-how-each-call-was-evaluated). Misalnya, panggilan `bash` yang dijeda di bawah kebijakan `always_ask` muncul di stream sebagai berikut:
+
+```json
+{
+  "type": "agent.tool_use",
+  "id": "sevt_01def...",
+  "name": "bash",
+  "input": {
+    "command": "pip install -r requirements.txt"
+  },
+  "evaluated_permission": "ask",
+  "evaluation": {
+    "type": "always_ask"
+  },
+  "processed_at": "2026-03-25T14:01:45Z"
+}
+```
 
 <CodeGroup>
   ```bash cURL
@@ -2791,6 +2809,8 @@ Claude Console menyertakan penampil sesi untuk memeriksa apa yang dilakukan agen
   * **Threads** mencantumkan setiap thread beserta status, ukuran konteks, dan biayanya. Pilih sebuah thread untuk melihat detailnya, seperti agen, model, penggunaan konteks, dan biaya.
 
 Tambahkan `?event={event_id}` ke URL sesi untuk membuka sesi pada event tertentu.
+
+Dengan `ant beta:sessions connect`, Anda dapat membuka penampil yang sama dari CLI `ant` atau mengikuti sesi di terminal Anda. Lihat [Menghubungkan ke sesi Managed Agents dari terminal Anda](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/sessions-connect).
 
 ## Tips debugging
 

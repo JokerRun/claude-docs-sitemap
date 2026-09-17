@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 5c46492b7d0c1934787fd629b981bf18b4ba2b104ead2b741c6607a53481ac6c
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 6828640164ed4c850085e242bba3931190506bcbb14b903b5df111736243fbe0
 ---
 
 ---
@@ -16,11 +16,11 @@ url: https://platform.claude.com/docs/en/api/beta
 
 ### Anthropic Beta
 
-- `AnthropicBeta = string or "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+- `AnthropicBeta = string or "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -111,6 +111,8 @@ url: https://platform.claude.com/docs/en/api/beta
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 ### Beta API Error
 
@@ -470,7 +472,7 @@ The Models API response can be used to determine which models are available for 
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -562,6 +564,8 @@ The Models API response can be used to determine which models are available for 
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
+    - `"compact-2026-09-04"`
+
 - `"anthropic-workspace-id": optional string`
 
 #### Returns
@@ -603,6 +607,20 @@ The Models API response can be used to determine which models are available for 
     - `code_execution: BetaCapabilitySupport`
 
       Whether the model supports code execution tools.
+
+    - `compaction: BetaCompactionCapability or null`
+
+      Compaction capability details: whether the model accepts the top-level
+      `compaction` request parameter, with one entry per supported
+      `compaction.type` value.
+
+      - `summarize: BetaCapabilitySupport`
+
+        Whether the summarize compaction type is supported.
+
+      - `supported: boolean`
+
+        Whether this capability is supported by the model.
 
     - `context_management: BetaContextManagementCapability`
 
@@ -742,6 +760,12 @@ curl https://api.anthropic.com/v1/models \
         "code_execution": {
           "supported": true
         },
+        "compaction": {
+          "summarize": {
+            "supported": true
+          },
+          "supported": true
+        },
         "context_management": {
           "clear_thinking_20251015": {
             "supported": true
@@ -828,7 +852,7 @@ The Models API response can be used to determine information about a specific mo
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -920,6 +944,8 @@ The Models API response can be used to determine information about a specific mo
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
+    - `"compact-2026-09-04"`
+
 - `"anthropic-workspace-id": optional string`
 
 #### Returns
@@ -961,6 +987,20 @@ The Models API response can be used to determine information about a specific mo
     - `code_execution: BetaCapabilitySupport`
 
       Whether the model supports code execution tools.
+
+    - `compaction: BetaCompactionCapability or null`
+
+      Compaction capability details: whether the model accepts the top-level
+      `compaction` request parameter, with one entry per supported
+      `compaction.type` value.
+
+      - `summarize: BetaCapabilitySupport`
+
+        Whether the summarize compaction type is supported.
+
+      - `supported: boolean`
+
+        Whether this capability is supported by the model.
 
     - `context_management: BetaContextManagementCapability`
 
@@ -1086,6 +1126,12 @@ curl https://api.anthropic.com/v1/models/$MODEL_ID \
     "code_execution": {
       "supported": true
     },
+    "compaction": {
+      "summarize": {
+        "supported": true
+      },
+      "supported": true
+    },
     "context_management": {
       "clear_thinking_20251015": {
         "supported": true
@@ -1165,7 +1211,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -1256,6 +1302,8 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-user-profile-id": optional string`
 
@@ -2427,6 +2475,10 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
           Opaque metadata from prior compaction, to be round-tripped verbatim
 
+        - `signature: optional string or null`
+
+          The block's signature as returned, to be sent back verbatim
+
       - `BetaRequestToolAdditionBlock object`
 
         Mid-conversation directive to surface a declared tool.
@@ -2666,6 +2718,25 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 - `cache_control: optional BetaCacheControlEphemeral or null`
 
   Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
+
+- `compaction: optional BetaCompactionConfig or null`
+
+  Compact the whole conversation and return a signed `compaction` block,
+  alone, that a later request sends back first in `messages`, in place of
+  the messages it summarizes. There is no trigger and no pause flag: sending
+  the parameter compacts, and nothing is sampled after the block.
+
+  The summarization prompt is the server's own unless `instructions` are
+  given, which then replace it for this request; a value that is empty or
+  only whitespace counts as absent.
+
+  - `type: "summarize"`
+
+  - `instructions: optional string or null`
+
+    Replaces the server's default summarization prompt for this request. An empty or whitespace-only value counts as absent.
+
+    maxLength: 16384
 
 - `container: optional BetaContainerParams or string or null`
 
@@ -4585,6 +4656,97 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       When true, guarantees schema validation on tool names and inputs
 
+    - `url_sources: optional BetaWebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
+
+      - `client_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+        Which client tools' results contribute fetchable URLs: "all", "none", or an only or except list of client tool names from tools[].
+
+        - `BetaWebFetchURLSourceAll object`
+
+          The `url_sources` variant under which a source contributes in
+          full: every result of the tool filter's source, or all user input.
+
+          - `type: "all"`
+
+        - `BetaWebFetchURLSourceNone object`
+
+          The `url_sources` variant under which a source contributes nothing:
+          no result of the tool filter's source, or no user input.
+
+          - `type: "none"`
+
+        - `BetaWebFetchURLSourceOnly object`
+
+          The tool filter variant under which only the named tools' results
+          contribute.
+
+          - `type: "only"`
+
+          - `tools: array of BetaWebFetchURLSourceToolReference`
+
+            - `type: "tool_reference"`
+
+            - `name: string`
+
+        - `BetaWebFetchURLSourceExcept object`
+
+          The tool filter variant under which every result but the named
+          tools' contributes.
+
+          - `type: "except"`
+
+          - `tools: array of BetaWebFetchURLSourceToolReference`
+
+            - `type: "tool_reference"`
+
+            - `name: string`
+
+      - `server_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+        Which server tools' results contribute fetchable URLs: "all", "none", or an only or except list of server tool names from tools[]; only web_search and web_fetch results ever contribute.
+
+        - `BetaWebFetchURLSourceAll object`
+
+          The `url_sources` variant under which a source contributes in
+          full: every result of the tool filter's source, or all user input.
+
+        - `BetaWebFetchURLSourceNone object`
+
+          The `url_sources` variant under which a source contributes nothing:
+          no result of the tool filter's source, or no user input.
+
+        - `BetaWebFetchURLSourceOnly object`
+
+          The tool filter variant under which only the named tools' results
+          contribute.
+
+        - `BetaWebFetchURLSourceExcept object`
+
+          The tool filter variant under which every result but the named
+          tools' contributes.
+
+      - `user_input: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone`
+
+        Whether URLs in user messages are fetchable: "all" or "none".
+
+        - `BetaWebFetchURLSourceAll object`
+
+          The `url_sources` variant under which a source contributes in
+          full: every result of the tool filter's source, or all user input.
+
+        - `BetaWebFetchURLSourceNone object`
+
+          The `url_sources` variant under which a source contributes nothing:
+          no result of the tool filter's source, or no user input.
+
   - `BetaWebSearchTool20260209 object`
 
     - `type: "web_search_20260209"`
@@ -4691,6 +4853,15 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       When true, guarantees schema validation on tool names and inputs
 
+    - `url_sources: optional BetaWebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
+
   - `BetaWebFetchTool20260309 object`
 
     Web fetch tool with use_cache parameter for bypassing cached content.
@@ -4748,6 +4919,15 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
     - `strict: optional boolean`
 
       When true, guarantees schema validation on tool names and inputs
+
+    - `url_sources: optional BetaWebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
 
     - `use_cache: optional boolean`
 
@@ -4874,6 +5054,15 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
     - `strict: optional boolean`
 
       When true, guarantees schema validation on tool names and inputs
+
+    - `url_sources: optional BetaWebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
 
     - `use_cache: optional boolean`
 
@@ -5985,6 +6174,10 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
         Opaque metadata from prior compaction, to be round-tripped verbatim
 
+      - `signature: optional string or null`
+
+        Signature over the summary, to be sent back with the block verbatim
+
     - `BetaFallbackBlock object`
 
       Marks the point in `content` where one model's output gives way to the next.
@@ -6748,59 +6941,101 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       - `"fast"`
 
-  - `input_transformations: optional array of BetaThinkingDroppedInputTransformation or null`
+  - `input_transformations: optional array of BetaInputTransformation or null`
 
-    Changes the API made to the request's input before showing it to the model:
-    one entry per change, in request order. Today the only entry type is
-    `thinking_dropped` — a `thinking`, `redacted_thinking` or `connector_text`
-    block from the request's `messages` that was removed from the prompt instead
-    of being shown to the model because it failed a binding check. More entry
-    types may be added over time; ignore types you do not recognize.
+    Changes the API made to the request's input before showing it to the model,
+    and blocks that failed a binding check but were left unchanged: one entry per
+    block, in request order. Two entry types today. `thinking_dropped` — a
+    `thinking`, `redacted_thinking` or `connector_text` block from the request's
+    `messages` that was removed from the prompt instead of being shown to the
+    model because it failed a binding check. `thinking_mismatch_allowed` — a
+    `thinking` or `redacted_thinking` block that failed the conversation check
+    (the conversation before it differs from the one it was created in, or it
+    carries no record of one on a model that requires it) and was shown to the
+    model all the same, because that check is not enforced for this request.
+    More entry types may be added over time; ignore types you do not recognize.
 
     Requires `anthropic-beta: thinking-binding-controls-2026-08-01`. Present on
     every such response from a model that supports extended thinking, as `[]`
-    when nothing was changed; without the beta, blocks are removed all the same
-    but nothing is reported. Removed blocks contribute nothing to
-    `usage.input_tokens`. When streaming, the array is final in `message_start`;
-    the final `message_delta` event carries it only when a server-side model
-    fallback happened mid-stream, in which case it holds the serving model's
-    entries and replaces the one in `message_start`.
+    when there is no entry to report; without the beta, blocks are removed or
+    left in place all the same but nothing is reported. Removed blocks contribute
+    nothing to `usage.input_tokens`; blocks left in place count as sent. When
+    streaming, the array is final in `message_start`; the final `message_delta`
+    event carries it only when a server-side model fallback happened mid-stream,
+    in which case it holds the serving model's entries and replaces the one in
+    `message_start`.
 
-    - `type: "thinking_dropped"`
+    - `BetaThinkingDroppedInputTransformation object`
 
-      Always `thinking_dropped` for this entry type.
+      - `type: "thinking_dropped"`
 
-      default: thinking_dropped
+        Always `thinking_dropped` for this entry type.
 
-    - `path: string`
+        default: thinking_dropped
 
-      Where the removed block was in your request, as `messages.{i}.content.{j}`:
-      `i` indexes the `messages` array you sent and `j` that message's `content`
-      array — the same form error messages use.
+      - `path: string`
 
-    - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
+        Where the removed block was in your request, as `messages.{i}.content.{j}`:
+        `i` indexes the `messages` array you sent and `j` that message's `content`
+        array — the same form error messages use.
 
-      Which binding check removed the block: `model_binding_mismatch` — it was
-      created by a model whose reasoning the requested model may not read;
-      `prefix_binding_mismatch` — the conversation before it differs from the
-      conversation it was created in (the rest of that turn's consecutive thinking
-      blocks are removed with it, each with this reason);
-      `organization_binding_mismatch` — it was created under a different
-      organization (an Anthropic organization, AWS account or Google Cloud project)
-      and this organization is not one of its additional organizations;
-      `end_user_binding_mismatch` — it was created for a different end user, or
-      was removed by the consumer-organization binding. A block that would fail
-      several checks reports one reason, in this order of precedence:
-      `organization_binding_mismatch`, `end_user_binding_mismatch`,
-      `model_binding_mismatch`, `prefix_binding_mismatch`.
+      - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
 
-      - `"model_binding_mismatch"`
+        Which binding check removed the block: `model_binding_mismatch` — it was
+        created by a model whose reasoning the requested model may not read;
+        `prefix_binding_mismatch` — the conversation before it differs from the
+        conversation it was created in (the rest of that turn's consecutive thinking
+        blocks are removed with it, each with this reason);
+        `organization_binding_mismatch` — it was created under a different
+        organization (an Anthropic organization, AWS account or Google Cloud project)
+        and this organization is not one of its additional organizations;
+        `end_user_binding_mismatch` — it was created for a different end user, or
+        was removed by the consumer-organization binding. A block that would fail
+        several checks reports one reason, in this order of precedence:
+        `organization_binding_mismatch`, `end_user_binding_mismatch`,
+        `model_binding_mismatch`, `prefix_binding_mismatch`.
 
-      - `"prefix_binding_mismatch"`
+        - `"model_binding_mismatch"`
 
-      - `"organization_binding_mismatch"`
+        - `"prefix_binding_mismatch"`
 
-      - `"end_user_binding_mismatch"`
+        - `"organization_binding_mismatch"`
+
+        - `"end_user_binding_mismatch"`
+
+    - `BetaThinkingMismatchAllowedInputTransformation object`
+
+      - `type: "thinking_mismatch_allowed"`
+
+        Always `thinking_mismatch_allowed` for this entry type.
+
+        default: thinking_mismatch_allowed
+
+      - `path: string`
+
+        Where the block is in your request, as `messages.{i}.content.{j}`:
+        `i` indexes the `messages` array you sent and `j` that message's `content`
+        array — the same form error messages use.
+
+      - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
+
+        Which binding check the block failed; the block was shown to the model all
+        the same. Always `prefix_binding_mismatch` today — the conversation before
+        the block differs from the conversation it was created in, or the block
+        carries no record of one on a model that requires it. Were the check
+        enforced for this request, the block would have been removed or the request
+        rejected (`thinking.block_binding.prefix_mismatch_behavior`). A removal also
+        takes the rest of that turn's consecutive thinking blocks, whereas here each
+        block is checked on its own, so `thinking_mismatch_allowed` entries are a
+        lower bound on what enforcement would remove.
+
+        - `"model_binding_mismatch"`
+
+        - `"prefix_binding_mismatch"`
+
+        - `"organization_binding_mismatch"`
+
+        - `"end_user_binding_mismatch"`
 
 - `BetaRawMessageStreamEvent = BetaRawMessageStartEvent or BetaRawMessageDeltaEvent or BetaRawMessageStopEvent or 3 more`
 
@@ -6899,51 +7134,33 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
         The number of server tool requests.
 
-    - `input_transformations: optional array of BetaThinkingDroppedInputTransformation or null`
+    - `input_transformations: optional array of BetaInputTransformation or null`
 
-      Changes the API made to the request's input before showing it to the model:
-      one entry per change, in request order. Today the only entry type is
-      `thinking_dropped` — a `thinking`, `redacted_thinking` or `connector_text`
-      block from the request's `messages` that was removed from the prompt instead
-      of being shown to the model because it failed a binding check. More entry
-      types may be added over time; ignore types you do not recognize.
+      Changes the API made to the request's input before showing it to the model,
+      and blocks that failed a binding check but were left unchanged: one entry per
+      block, in request order. Two entry types today. `thinking_dropped` — a
+      `thinking`, `redacted_thinking` or `connector_text` block from the request's
+      `messages` that was removed from the prompt instead of being shown to the
+      model because it failed a binding check. `thinking_mismatch_allowed` — a
+      `thinking` or `redacted_thinking` block that failed the conversation check
+      (the conversation before it differs from the one it was created in, or it
+      carries no record of one on a model that requires it) and was shown to the
+      model all the same, because that check is not enforced for this request.
+      More entry types may be added over time; ignore types you do not recognize.
 
       Requires `anthropic-beta: thinking-binding-controls-2026-08-01`. Present on
       every such response from a model that supports extended thinking, as `[]`
-      when nothing was changed; without the beta, blocks are removed all the same
-      but nothing is reported. Removed blocks contribute nothing to
-      `usage.input_tokens`. When streaming, the array is final in `message_start`;
-      the final `message_delta` event carries it only when a server-side model
-      fallback happened mid-stream, in which case it holds the serving model's
-      entries and replaces the one in `message_start`.
+      when there is no entry to report; without the beta, blocks are removed or
+      left in place all the same but nothing is reported. Removed blocks contribute
+      nothing to `usage.input_tokens`; blocks left in place count as sent. When
+      streaming, the array is final in `message_start`; the final `message_delta`
+      event carries it only when a server-side model fallback happened mid-stream,
+      in which case it holds the serving model's entries and replaces the one in
+      `message_start`.
 
-      - `type: "thinking_dropped"`
+      - `BetaThinkingDroppedInputTransformation object`
 
-        Always `thinking_dropped` for this entry type.
-
-        default: thinking_dropped
-
-      - `path: string`
-
-        Where the removed block was in your request, as `messages.{i}.content.{j}`:
-        `i` indexes the `messages` array you sent and `j` that message's `content`
-        array — the same form error messages use.
-
-      - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
-
-        Which binding check removed the block: `model_binding_mismatch` — it was
-        created by a model whose reasoning the requested model may not read;
-        `prefix_binding_mismatch` — the conversation before it differs from the
-        conversation it was created in (the rest of that turn's consecutive thinking
-        blocks are removed with it, each with this reason);
-        `organization_binding_mismatch` — it was created under a different
-        organization (an Anthropic organization, AWS account or Google Cloud project)
-        and this organization is not one of its additional organizations;
-        `end_user_binding_mismatch` — it was created for a different end user, or
-        was removed by the consumer-organization binding. A block that would fail
-        several checks reports one reason, in this order of precedence:
-        `organization_binding_mismatch`, `end_user_binding_mismatch`,
-        `model_binding_mismatch`, `prefix_binding_mismatch`.
+      - `BetaThinkingMismatchAllowedInputTransformation object`
 
   - `BetaRawMessageStopEvent object`
 
@@ -7279,7 +7496,7 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -7370,6 +7587,8 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-user-profile-id": optional string`
 
@@ -8529,6 +8748,10 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
           Opaque metadata from prior compaction, to be round-tripped verbatim
 
+        - `signature: optional string or null`
+
+          The block's signature as returned, to be sent back verbatim
+
       - `BetaRequestToolAdditionBlock object`
 
         Mid-conversation directive to surface a declared tool.
@@ -8768,6 +8991,25 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 - `cache_control: optional BetaCacheControlEphemeral or null`
 
   Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
+
+- `compaction: optional BetaCompactionConfig or null`
+
+  Compact the whole conversation and return a signed `compaction` block,
+  alone, that a later request sends back first in `messages`, in place of
+  the messages it summarizes. There is no trigger and no pause flag: sending
+  the parameter compacts, and nothing is sampled after the block.
+
+  The summarization prompt is the server's own unless `instructions` are
+  given, which then replace it for this request; a value that is empty or
+  only whitespace counts as absent.
+
+  - `type: "summarize"`
+
+  - `instructions: optional string or null`
+
+    Replaces the server's default summarization prompt for this request. An empty or whitespace-only value counts as absent.
+
+    maxLength: 16384
 
 - `context_management: optional BetaContextManagementConfig or null`
 
@@ -10513,6 +10755,97 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
       When true, guarantees schema validation on tool names and inputs
 
+    - `url_sources: optional BetaWebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
+
+      - `client_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+        Which client tools' results contribute fetchable URLs: "all", "none", or an only or except list of client tool names from tools[].
+
+        - `BetaWebFetchURLSourceAll object`
+
+          The `url_sources` variant under which a source contributes in
+          full: every result of the tool filter's source, or all user input.
+
+          - `type: "all"`
+
+        - `BetaWebFetchURLSourceNone object`
+
+          The `url_sources` variant under which a source contributes nothing:
+          no result of the tool filter's source, or no user input.
+
+          - `type: "none"`
+
+        - `BetaWebFetchURLSourceOnly object`
+
+          The tool filter variant under which only the named tools' results
+          contribute.
+
+          - `type: "only"`
+
+          - `tools: array of BetaWebFetchURLSourceToolReference`
+
+            - `type: "tool_reference"`
+
+            - `name: string`
+
+        - `BetaWebFetchURLSourceExcept object`
+
+          The tool filter variant under which every result but the named
+          tools' contributes.
+
+          - `type: "except"`
+
+          - `tools: array of BetaWebFetchURLSourceToolReference`
+
+            - `type: "tool_reference"`
+
+            - `name: string`
+
+      - `server_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+        Which server tools' results contribute fetchable URLs: "all", "none", or an only or except list of server tool names from tools[]; only web_search and web_fetch results ever contribute.
+
+        - `BetaWebFetchURLSourceAll object`
+
+          The `url_sources` variant under which a source contributes in
+          full: every result of the tool filter's source, or all user input.
+
+        - `BetaWebFetchURLSourceNone object`
+
+          The `url_sources` variant under which a source contributes nothing:
+          no result of the tool filter's source, or no user input.
+
+        - `BetaWebFetchURLSourceOnly object`
+
+          The tool filter variant under which only the named tools' results
+          contribute.
+
+        - `BetaWebFetchURLSourceExcept object`
+
+          The tool filter variant under which every result but the named
+          tools' contributes.
+
+      - `user_input: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone`
+
+        Whether URLs in user messages are fetchable: "all" or "none".
+
+        - `BetaWebFetchURLSourceAll object`
+
+          The `url_sources` variant under which a source contributes in
+          full: every result of the tool filter's source, or all user input.
+
+        - `BetaWebFetchURLSourceNone object`
+
+          The `url_sources` variant under which a source contributes nothing:
+          no result of the tool filter's source, or no user input.
+
   - `BetaWebSearchTool20260209 object`
 
     - `type: "web_search_20260209"`
@@ -10619,6 +10952,15 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
       When true, guarantees schema validation on tool names and inputs
 
+    - `url_sources: optional BetaWebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
+
   - `BetaWebFetchTool20260309 object`
 
     Web fetch tool with use_cache parameter for bypassing cached content.
@@ -10676,6 +11018,15 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
     - `strict: optional boolean`
 
       When true, guarantees schema validation on tool names and inputs
+
+    - `url_sources: optional BetaWebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
 
     - `use_cache: optional boolean`
 
@@ -10802,6 +11153,15 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
     - `strict: optional boolean`
 
       When true, guarantees schema validation on tool names and inputs
+
+    - `url_sources: optional BetaWebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
 
     - `use_cache: optional boolean`
 
@@ -11065,7 +11425,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -11156,6 +11516,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-user-profile-id": optional string`
 
@@ -12347,6 +12709,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               Opaque metadata from prior compaction, to be round-tripped verbatim
 
+            - `signature: optional string or null`
+
+              The block's signature as returned, to be sent back verbatim
+
           - `BetaRequestToolAdditionBlock object`
 
             Mid-conversation directive to surface a declared tool.
@@ -12586,6 +12952,25 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `cache_control: optional BetaCacheControlEphemeral or null`
 
       Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
+
+    - `compaction: optional BetaCompactionConfig or null`
+
+      Compact the whole conversation and return a signed `compaction` block,
+      alone, that a later request sends back first in `messages`, in place of
+      the messages it summarizes. There is no trigger and no pause flag: sending
+      the parameter compacts, and nothing is sampled after the block.
+
+      The summarization prompt is the server's own unless `instructions` are
+      given, which then replace it for this request; a value that is empty or
+      only whitespace counts as absent.
+
+      - `type: "summarize"`
+
+      - `instructions: optional string or null`
+
+        Replaces the server's default summarization prompt for this request. An empty or whitespace-only value counts as absent.
+
+        maxLength: 16384
 
     - `container: optional BetaContainerParams or string or null`
 
@@ -14505,6 +14890,97 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           When true, guarantees schema validation on tool names and inputs
 
+        - `url_sources: optional BetaWebFetchURLSources or null`
+
+          Which sources contribute to the set of URLs web fetch may fetch.
+
+          Each key is a tagged variant: `user_input` is `all` or `none`; the
+          two tool filters are `all`, `none`, `only` (only the named tools'
+          results) or `except` (every result but the named tools'). A named tool
+          must be declared in this request's `tools[]`.
+
+          - `client_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+            Which client tools' results contribute fetchable URLs: "all", "none", or an only or except list of client tool names from tools[].
+
+            - `BetaWebFetchURLSourceAll object`
+
+              The `url_sources` variant under which a source contributes in
+              full: every result of the tool filter's source, or all user input.
+
+              - `type: "all"`
+
+            - `BetaWebFetchURLSourceNone object`
+
+              The `url_sources` variant under which a source contributes nothing:
+              no result of the tool filter's source, or no user input.
+
+              - `type: "none"`
+
+            - `BetaWebFetchURLSourceOnly object`
+
+              The tool filter variant under which only the named tools' results
+              contribute.
+
+              - `type: "only"`
+
+              - `tools: array of BetaWebFetchURLSourceToolReference`
+
+                - `type: "tool_reference"`
+
+                - `name: string`
+
+            - `BetaWebFetchURLSourceExcept object`
+
+              The tool filter variant under which every result but the named
+              tools' contributes.
+
+              - `type: "except"`
+
+              - `tools: array of BetaWebFetchURLSourceToolReference`
+
+                - `type: "tool_reference"`
+
+                - `name: string`
+
+          - `server_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+            Which server tools' results contribute fetchable URLs: "all", "none", or an only or except list of server tool names from tools[]; only web_search and web_fetch results ever contribute.
+
+            - `BetaWebFetchURLSourceAll object`
+
+              The `url_sources` variant under which a source contributes in
+              full: every result of the tool filter's source, or all user input.
+
+            - `BetaWebFetchURLSourceNone object`
+
+              The `url_sources` variant under which a source contributes nothing:
+              no result of the tool filter's source, or no user input.
+
+            - `BetaWebFetchURLSourceOnly object`
+
+              The tool filter variant under which only the named tools' results
+              contribute.
+
+            - `BetaWebFetchURLSourceExcept object`
+
+              The tool filter variant under which every result but the named
+              tools' contributes.
+
+          - `user_input: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone`
+
+            Whether URLs in user messages are fetchable: "all" or "none".
+
+            - `BetaWebFetchURLSourceAll object`
+
+              The `url_sources` variant under which a source contributes in
+              full: every result of the tool filter's source, or all user input.
+
+            - `BetaWebFetchURLSourceNone object`
+
+              The `url_sources` variant under which a source contributes nothing:
+              no result of the tool filter's source, or no user input.
+
       - `BetaWebSearchTool20260209 object`
 
         - `type: "web_search_20260209"`
@@ -14611,6 +15087,15 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           When true, guarantees schema validation on tool names and inputs
 
+        - `url_sources: optional BetaWebFetchURLSources or null`
+
+          Which sources contribute to the set of URLs web fetch may fetch.
+
+          Each key is a tagged variant: `user_input` is `all` or `none`; the
+          two tool filters are `all`, `none`, `only` (only the named tools'
+          results) or `except` (every result but the named tools'). A named tool
+          must be declared in this request's `tools[]`.
+
       - `BetaWebFetchTool20260309 object`
 
         Web fetch tool with use_cache parameter for bypassing cached content.
@@ -14668,6 +15153,15 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
         - `strict: optional boolean`
 
           When true, guarantees schema validation on tool names and inputs
+
+        - `url_sources: optional BetaWebFetchURLSources or null`
+
+          Which sources contribute to the set of URLs web fetch may fetch.
+
+          Each key is a tagged variant: `user_input` is `all` or `none`; the
+          two tool filters are `all`, `none`, `only` (only the named tools'
+          results) or `except` (every result but the named tools'). A named tool
+          must be declared in this request's `tools[]`.
 
         - `use_cache: optional boolean`
 
@@ -14794,6 +15288,15 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
         - `strict: optional boolean`
 
           When true, guarantees schema validation on tool names and inputs
+
+        - `url_sources: optional BetaWebFetchURLSources or null`
+
+          Which sources contribute to the set of URLs web fetch may fetch.
+
+          Each key is a tagged variant: `user_input` is `all` or `none`; the
+          two tool filters are `all`, `none`, `only` (only the named tools'
+          results) or `except` (every result but the named tools'). A named tool
+          must be declared in this request's `tools[]`.
 
         - `use_cache: optional boolean`
 
@@ -15186,7 +15689,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -15277,6 +15780,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -15456,7 +15961,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -15547,6 +16052,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -15735,7 +16242,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -15826,6 +16333,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -15996,7 +16505,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -16087,6 +16596,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -16149,7 +16660,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -16240,6 +16751,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -17166,6 +17679,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               Opaque metadata from prior compaction, to be round-tripped verbatim
 
+            - `signature: optional string or null`
+
+              Signature over the summary, to be sent back with the block verbatim
+
           - `BetaFallbackBlock object`
 
             Marks the point in `content` where one model's output gives way to the next.
@@ -17929,59 +18446,101 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `"fast"`
 
-        - `input_transformations: optional array of BetaThinkingDroppedInputTransformation or null`
+        - `input_transformations: optional array of BetaInputTransformation or null`
 
-          Changes the API made to the request's input before showing it to the model:
-          one entry per change, in request order. Today the only entry type is
-          `thinking_dropped` — a `thinking`, `redacted_thinking` or `connector_text`
-          block from the request's `messages` that was removed from the prompt instead
-          of being shown to the model because it failed a binding check. More entry
-          types may be added over time; ignore types you do not recognize.
+          Changes the API made to the request's input before showing it to the model,
+          and blocks that failed a binding check but were left unchanged: one entry per
+          block, in request order. Two entry types today. `thinking_dropped` — a
+          `thinking`, `redacted_thinking` or `connector_text` block from the request's
+          `messages` that was removed from the prompt instead of being shown to the
+          model because it failed a binding check. `thinking_mismatch_allowed` — a
+          `thinking` or `redacted_thinking` block that failed the conversation check
+          (the conversation before it differs from the one it was created in, or it
+          carries no record of one on a model that requires it) and was shown to the
+          model all the same, because that check is not enforced for this request.
+          More entry types may be added over time; ignore types you do not recognize.
 
           Requires `anthropic-beta: thinking-binding-controls-2026-08-01`. Present on
           every such response from a model that supports extended thinking, as `[]`
-          when nothing was changed; without the beta, blocks are removed all the same
-          but nothing is reported. Removed blocks contribute nothing to
-          `usage.input_tokens`. When streaming, the array is final in `message_start`;
-          the final `message_delta` event carries it only when a server-side model
-          fallback happened mid-stream, in which case it holds the serving model's
-          entries and replaces the one in `message_start`.
+          when there is no entry to report; without the beta, blocks are removed or
+          left in place all the same but nothing is reported. Removed blocks contribute
+          nothing to `usage.input_tokens`; blocks left in place count as sent. When
+          streaming, the array is final in `message_start`; the final `message_delta`
+          event carries it only when a server-side model fallback happened mid-stream,
+          in which case it holds the serving model's entries and replaces the one in
+          `message_start`.
 
-          - `type: "thinking_dropped"`
+          - `BetaThinkingDroppedInputTransformation object`
 
-            Always `thinking_dropped` for this entry type.
+            - `type: "thinking_dropped"`
 
-            default: thinking_dropped
+              Always `thinking_dropped` for this entry type.
 
-          - `path: string`
+              default: thinking_dropped
 
-            Where the removed block was in your request, as `messages.{i}.content.{j}`:
-            `i` indexes the `messages` array you sent and `j` that message's `content`
-            array — the same form error messages use.
+            - `path: string`
 
-          - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
+              Where the removed block was in your request, as `messages.{i}.content.{j}`:
+              `i` indexes the `messages` array you sent and `j` that message's `content`
+              array — the same form error messages use.
 
-            Which binding check removed the block: `model_binding_mismatch` — it was
-            created by a model whose reasoning the requested model may not read;
-            `prefix_binding_mismatch` — the conversation before it differs from the
-            conversation it was created in (the rest of that turn's consecutive thinking
-            blocks are removed with it, each with this reason);
-            `organization_binding_mismatch` — it was created under a different
-            organization (an Anthropic organization, AWS account or Google Cloud project)
-            and this organization is not one of its additional organizations;
-            `end_user_binding_mismatch` — it was created for a different end user, or
-            was removed by the consumer-organization binding. A block that would fail
-            several checks reports one reason, in this order of precedence:
-            `organization_binding_mismatch`, `end_user_binding_mismatch`,
-            `model_binding_mismatch`, `prefix_binding_mismatch`.
+            - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
 
-            - `"model_binding_mismatch"`
+              Which binding check removed the block: `model_binding_mismatch` — it was
+              created by a model whose reasoning the requested model may not read;
+              `prefix_binding_mismatch` — the conversation before it differs from the
+              conversation it was created in (the rest of that turn's consecutive thinking
+              blocks are removed with it, each with this reason);
+              `organization_binding_mismatch` — it was created under a different
+              organization (an Anthropic organization, AWS account or Google Cloud project)
+              and this organization is not one of its additional organizations;
+              `end_user_binding_mismatch` — it was created for a different end user, or
+              was removed by the consumer-organization binding. A block that would fail
+              several checks reports one reason, in this order of precedence:
+              `organization_binding_mismatch`, `end_user_binding_mismatch`,
+              `model_binding_mismatch`, `prefix_binding_mismatch`.
 
-            - `"prefix_binding_mismatch"`
+              - `"model_binding_mismatch"`
 
-            - `"organization_binding_mismatch"`
+              - `"prefix_binding_mismatch"`
 
-            - `"end_user_binding_mismatch"`
+              - `"organization_binding_mismatch"`
+
+              - `"end_user_binding_mismatch"`
+
+          - `BetaThinkingMismatchAllowedInputTransformation object`
+
+            - `type: "thinking_mismatch_allowed"`
+
+              Always `thinking_mismatch_allowed` for this entry type.
+
+              default: thinking_mismatch_allowed
+
+            - `path: string`
+
+              Where the block is in your request, as `messages.{i}.content.{j}`:
+              `i` indexes the `messages` array you sent and `j` that message's `content`
+              array — the same form error messages use.
+
+            - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
+
+              Which binding check the block failed; the block was shown to the model all
+              the same. Always `prefix_binding_mismatch` today — the conversation before
+              the block differs from the conversation it was created in, or the block
+              carries no record of one on a model that requires it. Were the check
+              enforced for this request, the block would have been removed or the request
+              rejected (`thinking.block_binding.prefix_mismatch_behavior`). A removal also
+              takes the rest of that turn's consecutive thinking blocks, whereas here each
+              block is checked on its own, so `thinking_mismatch_allowed` entries are a
+              lower bound on what enforcement would remove.
+
+              - `"model_binding_mismatch"`
+
+              - `"prefix_binding_mismatch"`
+
+              - `"organization_binding_mismatch"`
+
+              - `"end_user_binding_mismatch"`
 
     - `BetaMessageBatchErroredResult object`
 
@@ -18126,7 +18685,7 @@ Create Agent
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -18217,6 +18776,8 @@ Create Agent
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -19647,7 +20208,7 @@ List Agents
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -19738,6 +20299,8 @@ List Agents
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -20442,7 +21005,7 @@ Get Agent
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -20533,6 +21096,8 @@ Get Agent
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -21220,7 +21785,7 @@ Update Agent
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -21311,6 +21876,8 @@ Update Agent
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -22714,7 +23281,7 @@ Archive Agent
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -22805,6 +23372,8 @@ Archive Agent
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -23507,7 +24076,7 @@ List Agent Versions
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -23598,6 +24167,8 @@ List Agent Versions
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -24292,7 +24863,7 @@ Create a new environment with the specified configuration.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -24383,6 +24954,8 @@ Create a new environment with the specified configuration.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -24753,7 +25326,7 @@ List environments with pagination support.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -24844,6 +25417,8 @@ List environments with pagination support.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -25066,7 +25641,7 @@ Retrieve a specific environment by ID.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -25157,6 +25732,8 @@ Retrieve a specific environment by ID.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -25370,7 +25947,7 @@ Update an existing environment's configuration.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -25461,6 +26038,8 @@ Update an existing environment's configuration.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -25800,7 +26379,7 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -25891,6 +26470,8 @@ Delete an environment by ID. Returns a confirmation of the deletion.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -25947,7 +26528,7 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -26038,6 +26619,8 @@ Archive an environment by ID. Archived environments cannot be used to create new
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -26258,7 +26841,7 @@ Retrieve detailed information about a specific work item.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -26349,6 +26932,8 @@ Retrieve detailed information about a specific work item.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -26502,7 +27087,7 @@ Long poll for work items in the queue.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -26593,6 +27178,8 @@ Long poll for work items in the queue.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"Anthropic-Worker-ID": optional string`
 
@@ -26736,7 +27323,7 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -26827,6 +27414,8 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -26977,7 +27566,7 @@ Record a heartbeat for a work item to maintain the lease.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -27068,6 +27657,8 @@ Record a heartbeat for a work item to maintain the lease.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -27151,7 +27742,7 @@ Stop a work item, initiating graceful or forced shutdown.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -27242,6 +27833,8 @@ Stop a work item, initiating graceful or forced shutdown.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -27403,7 +27996,7 @@ List work items in an environment.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -27494,6 +28087,8 @@ List work items in an environment.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -27642,7 +28237,7 @@ Update work item metadata with merge semantics.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -27733,6 +28328,8 @@ Update work item metadata with merge semantics.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -27882,7 +28479,7 @@ Get statistics about the work queue for an environment.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -27973,6 +28570,8 @@ Get statistics about the work queue for an environment.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -28045,7 +28644,7 @@ Create Session
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -28136,6 +28735,8 @@ Create Session
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -30340,7 +30941,7 @@ List Sessions
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -30431,6 +31032,8 @@ List Sessions
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -31553,7 +32156,7 @@ Get Session
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -31644,6 +32247,8 @@ Get Session
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -32752,7 +33357,7 @@ Update Session
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -32843,6 +33448,8 @@ Update Session
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -34441,7 +35048,7 @@ Delete Session
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -34532,6 +35139,8 @@ Delete Session
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -34582,7 +35191,7 @@ Archive Session
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -34673,6 +35282,8 @@ Archive Session
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -35832,7 +36443,7 @@ List Events
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -35923,6 +36534,8 @@ List Events
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -38221,7 +38834,7 @@ Send Events
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -38312,6 +38925,8 @@ Send Events
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -39196,7 +39811,7 @@ Stream Events
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -39287,6 +39902,8 @@ Stream Events
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -41619,7 +42236,7 @@ Add Session Resource
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -41710,6 +42327,8 @@ Add Session Resource
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -41811,7 +42430,7 @@ List Session Resources
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -41902,6 +42521,8 @@ List Session Resources
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -42076,7 +42697,7 @@ Get Session Resource
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -42167,6 +42788,8 @@ Get Session Resource
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -42320,7 +42943,7 @@ Update Session Resource
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -42411,6 +43034,8 @@ Update Session Resource
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -42576,7 +43201,7 @@ Delete Session Resource
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -42667,6 +43292,8 @@ Delete Session Resource
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -42731,7 +43358,7 @@ List Session Threads
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -42822,6 +43449,8 @@ List Session Threads
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -43634,7 +44263,7 @@ Get Session Thread
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -43725,6 +44354,8 @@ Get Session Thread
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -44528,7 +45159,7 @@ Archive Session Thread
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -44619,6 +45250,8 @@ Archive Session Thread
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -45437,7 +46070,7 @@ List Session Thread Events
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -45528,6 +46161,8 @@ List Session Thread Events
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -47827,7 +48462,7 @@ Stream Session Thread Events
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -47918,6 +48553,8 @@ Stream Session Thread Events
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -50246,7 +50883,7 @@ Create Deployment
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -50337,6 +50974,8 @@ Create Deployment
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -51405,7 +52044,7 @@ List Deployments
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -51496,6 +52135,8 @@ List Deployments
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -52118,7 +52759,7 @@ Get Deployment
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -52209,6 +52850,8 @@ Get Deployment
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -52822,7 +53465,7 @@ Update Deployment
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -52913,6 +53556,8 @@ Update Deployment
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -53930,7 +54575,7 @@ Archive Deployment
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -54021,6 +54666,8 @@ Archive Deployment
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -54635,7 +55282,7 @@ Run Deployment Now
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -54726,6 +55373,8 @@ Run Deployment Now
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -55006,7 +55655,7 @@ Pause Deployment
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -55097,6 +55746,8 @@ Pause Deployment
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -55711,7 +56362,7 @@ Unpause Deployment
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -55802,6 +56453,8 @@ Unpause Deployment
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -56466,7 +57119,7 @@ List Deployment Runs
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -56557,6 +57210,8 @@ List Deployment Runs
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -56845,7 +57500,7 @@ Get Deployment Run
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -56936,6 +57591,8 @@ Get Deployment Run
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -57213,7 +57870,7 @@ Create Vault
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -57304,6 +57961,8 @@ Create Vault
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -57419,7 +58078,7 @@ List Vaults
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -57510,6 +58169,8 @@ List Vaults
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -57603,7 +58264,7 @@ Get Vault
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -57694,6 +58355,8 @@ Get Vault
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -57778,7 +58441,7 @@ Update Vault
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -57869,6 +58532,8 @@ Update Vault
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -57972,7 +58637,7 @@ Delete Vault
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -58063,6 +58728,8 @@ Delete Vault
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -58115,7 +58782,7 @@ Archive Vault
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -58206,6 +58873,8 @@ Archive Vault
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -58293,7 +58962,7 @@ Create Credential
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -58384,6 +59053,8 @@ Create Credential
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -58791,7 +59462,7 @@ List Credentials
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -58882,6 +59553,8 @@ List Credentials
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -59098,7 +59771,7 @@ Get Credential
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -59189,6 +59862,8 @@ Get Credential
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -59396,7 +60071,7 @@ Update Credential
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -59487,6 +60162,8 @@ Update Credential
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -59833,7 +60510,7 @@ Delete Credential
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -59924,6 +60601,8 @@ Delete Credential
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -59978,7 +60657,7 @@ Archive Credential
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -60069,6 +60748,8 @@ Archive Credential
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -60277,7 +60958,7 @@ Validate Credential
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -60368,6 +61049,8 @@ Validate Credential
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -60514,7 +61197,7 @@ Create a memory store
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -60605,6 +61288,8 @@ Create a memory store
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -60740,7 +61425,7 @@ List memory stores
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -60831,6 +61516,8 @@ List memory stores
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -60929,7 +61616,7 @@ Retrieve a memory store
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -61020,6 +61707,8 @@ Retrieve a memory store
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -61109,7 +61798,7 @@ Update a memory store
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -61200,6 +61889,8 @@ Update a memory store
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -61309,7 +62000,7 @@ Delete a memory store
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -61400,6 +62091,8 @@ Delete a memory store
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -61452,7 +62145,7 @@ Archive a memory store
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -61543,6 +62236,8 @@ Archive a memory store
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -61645,7 +62340,7 @@ Create a memory
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -61736,6 +62431,8 @@ Create a memory
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -61880,7 +62577,7 @@ List memories
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -61971,6 +62668,8 @@ List memories
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -62103,7 +62802,7 @@ Retrieve a memory
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -62194,6 +62893,8 @@ Retrieve a memory
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -62303,7 +63004,7 @@ Update a memory
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -62394,6 +63095,8 @@ Update a memory
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -62523,7 +63226,7 @@ Delete a memory
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -62614,6 +63317,8 @@ Delete a memory
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -62726,7 +63431,7 @@ List memory versions
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -62817,6 +63522,8 @@ List memory versions
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -63010,7 +63717,7 @@ Retrieve a memory version
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -63101,6 +63808,8 @@ Retrieve a memory version
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -63275,7 +63984,7 @@ Redact a memory version
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -63366,6 +64075,8 @@ Redact a memory version
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -63537,7 +64248,7 @@ Upload File
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -63628,6 +64339,8 @@ Upload File
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -63774,7 +64487,7 @@ List Files
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -63865,6 +64578,8 @@ List Files
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -63990,7 +64705,7 @@ Download File
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -64081,6 +64796,8 @@ Download File
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -64112,7 +64829,7 @@ Get File Metadata
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -64203,6 +64920,8 @@ Get File Metadata
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -64317,7 +65036,7 @@ Delete File
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -64408,6 +65127,8 @@ Delete File
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -64461,7 +65182,7 @@ Create Skill
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -64552,6 +65273,8 @@ Create Skill
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -64704,7 +65427,7 @@ List Skills
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -64795,6 +65518,8 @@ List Skills
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -64927,7 +65652,7 @@ Get Skill
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -65018,6 +65743,8 @@ Get Skill
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -65137,7 +65864,7 @@ Delete Skill
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -65228,6 +65955,8 @@ Delete Skill
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -65291,7 +66020,7 @@ Create Skill Version
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -65382,6 +66111,8 @@ Create Skill Version
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -65494,7 +66225,7 @@ List Skill Versions
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -65585,6 +66316,8 @@ List Skill Versions
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -65692,7 +66425,7 @@ Download a skill version's content as a zip archive.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -65783,6 +66516,8 @@ Download a skill version's content as a zip archive.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -65822,7 +66557,7 @@ Get Skill Version
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -65913,6 +66648,8 @@ Get Skill Version
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -66007,7 +66744,7 @@ Delete Skill Version
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -66098,6 +66835,8 @@ Delete Skill Version
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -66152,7 +66891,7 @@ Create User Profile
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -66243,6 +66982,8 @@ Create User Profile
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -66531,7 +67272,7 @@ List User Profiles
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -66622,6 +67363,8 @@ List User Profiles
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -66805,7 +67548,7 @@ Get User Profile
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -66896,6 +67639,8 @@ Get User Profile
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -67068,7 +67813,7 @@ Update User Profile
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -67159,6 +67904,8 @@ Update User Profile
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -67421,7 +68168,7 @@ Create Enrollment URL
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -67512,6 +68259,8 @@ Create Enrollment URL
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -67569,7 +68318,7 @@ Create a Dream
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -67660,6 +68409,8 @@ Create a Dream
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -67992,7 +68743,7 @@ List Dreams
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -68083,6 +68834,8 @@ List Dreams
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -68306,7 +69059,7 @@ Get a Dream
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -68397,6 +69150,8 @@ Get a Dream
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -68615,7 +69370,7 @@ Cancel a Dream
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -68706,6 +69461,8 @@ Cancel a Dream
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -68925,7 +69682,7 @@ Archive a Dream
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -69016,6 +69773,8 @@ Archive a Dream
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -69235,7 +69994,7 @@ Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel;
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -69326,6 +70085,8 @@ Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel;
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -69413,7 +70174,7 @@ Fetches a tunnel by ID.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -69504,6 +70265,8 @@ Fetches a tunnel by ID.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -69593,7 +70356,7 @@ Lists tunnels. Results are ordered by creation time, newest first; archived tunn
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -69684,6 +70447,8 @@ Lists tunnels. Results are ordered by creation time, newest first; archived tunn
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -69770,7 +70535,7 @@ Archives a tunnel. Archival is irreversible: every non-archived certificate on t
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -69861,6 +70626,8 @@ Archives a tunnel. Archival is irreversible: every non-archived certificate on t
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -69939,7 +70706,7 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -70030,6 +70797,8 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -70089,7 +70858,7 @@ Rotates a tunnel's connector token. Rotation invalidates the current token for n
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -70180,6 +70949,8 @@ Rotates a tunnel's connector token. Rotation invalidates the current token for n
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -70250,7 +71021,7 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -70341,6 +71112,8 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -70439,7 +71212,7 @@ Fetches a tunnel certificate by ID.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -70530,6 +71303,8 @@ Fetches a tunnel certificate by ID.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -70630,7 +71405,7 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -70721,6 +71496,8 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -70816,7 +71593,7 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -70907,6 +71684,8 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -72467,7 +73246,7 @@ matched as the JWT's `iss` claim and is not fetched.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -72558,6 +73337,8 @@ matched as the JWT's `iss` claim and is not fetched.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Body parameters
 
@@ -72855,7 +73636,7 @@ Archived issuers are excluded unless `include_archived=true`.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -72946,6 +73727,8 @@ Archived issuers are excluded unless `include_archived=true`.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -73154,7 +73937,7 @@ Retrieve a federation issuer by its ID (`fdis_...`).
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -73245,6 +74028,8 @@ Retrieve a federation issuer by its ID (`fdis_...`).
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -73456,7 +74241,7 @@ session.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -73547,6 +74332,8 @@ session.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Body parameters
 
@@ -73836,7 +74623,7 @@ issuer cannot be changed), or recreate them against another issuer.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -73927,6 +74714,8 @@ issuer cannot be changed), or recreate them against another issuer.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -74142,7 +74931,7 @@ manage rules whose `oauth_scope` is `workspace:developer` or
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -74233,6 +75022,8 @@ manage rules whose `oauth_scope` is `workspace:developer` or
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Body parameters
 
@@ -74551,7 +75342,7 @@ unless `include_archived=true`.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -74642,6 +75433,8 @@ unless `include_archived=true`.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -74846,7 +75639,7 @@ Retrieve a federation rule by its ID (`fdrl_...`).
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -74937,6 +75730,8 @@ Retrieve a federation rule by its ID (`fdrl_...`).
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -75159,7 +75954,7 @@ Console session.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -75250,6 +76045,8 @@ Console session.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Body parameters
 
@@ -75548,7 +76345,7 @@ other scopes require a Console session.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -75639,6 +76436,8 @@ other scopes require a Console session.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -75857,7 +76656,7 @@ other scopes require a Console session.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -75948,6 +76747,8 @@ other scopes require a Console session.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Body parameters
 
@@ -76050,7 +76851,7 @@ rules with `applies_to_all_workspaces` or a legacy single
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -76141,6 +76942,8 @@ rules with `applies_to_all_workspaces` or a legacy single
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -76233,7 +77036,7 @@ Console session.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -76324,6 +77127,8 @@ Console session.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -76856,7 +77661,7 @@ accounts.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -76947,6 +77752,8 @@ accounts.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Body parameters
 
@@ -77101,7 +77908,7 @@ archived service accounts.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -77192,6 +77999,8 @@ archived service accounts.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -77308,7 +78117,7 @@ Retrieve a service account by its ID (`svac_...`).
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -77399,6 +78208,8 @@ Retrieve a service account by its ID (`svac_...`).
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -77516,7 +78327,7 @@ interactive credential (a user OAuth token or a Console session).
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -77607,6 +78418,8 @@ interactive credential (a user OAuth token or a Console session).
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Body parameters
 
@@ -77742,7 +78555,7 @@ those rules first or change their target to another service account.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -77833,6 +78646,8 @@ those rules first or change their target to another service account.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -77955,7 +78770,7 @@ rejected.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -78046,6 +78861,8 @@ rejected.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Body parameters
 
@@ -78177,7 +78994,7 @@ page to recover.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -78268,6 +79085,8 @@ page to recover.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -78371,7 +79190,7 @@ to the implicit `workspace_user` membership. Archived workspaces return
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -78462,6 +79281,8 @@ to the implicit `workspace_user` membership. Archived workspaces return
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -79055,7 +79876,7 @@ Create Workspace
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -79146,6 +79967,8 @@ Create Workspace
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Body parameters
 
@@ -80419,7 +81242,7 @@ omitted from the results.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -80510,6 +81333,8 @@ omitted from the results.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -80610,7 +81435,7 @@ accounts cannot be added and are rejected.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -80701,6 +81526,8 @@ accounts cannot be added and are rejected.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Body parameters
 
@@ -80817,7 +81644,7 @@ account returns 404.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -80908,6 +81735,8 @@ account returns 404.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -81001,7 +81830,7 @@ rejected.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -81092,6 +81921,8 @@ rejected.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Body parameters
 
@@ -81202,7 +82033,7 @@ membership. Archived workspaces return 400.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -81293,6 +82124,8 @@ membership. Archived workspaces return 400.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -81740,7 +82573,7 @@ Get Messages Usage Report
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -81831,6 +82664,8 @@ Get Messages Usage Report
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -82322,7 +83157,7 @@ Get Cost Report
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -82413,6 +83248,8 @@ Get Cost Report
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -82605,7 +83442,7 @@ archived tunnels are excluded unless `include_archived` is set.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -82696,6 +83533,8 @@ archived tunnels are excluded unless `include_archived` is set.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -82794,7 +83633,7 @@ Retrieve a single tunnel in the caller's organization by ID.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -82885,6 +83724,8 @@ Retrieve a single tunnel in the caller's organization by ID.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -82979,7 +83820,7 @@ tunnel returns the existing record unchanged.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -83070,6 +83911,8 @@ tunnel returns the existing record unchanged.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -83165,7 +84008,7 @@ access logs.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -83256,6 +84099,8 @@ access logs.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -83323,7 +84168,7 @@ restarted after rotation must use the new value. An optional
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -83414,6 +84259,8 @@ restarted after rotation must use the new value. An optional
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Body parameters
 
@@ -83492,7 +84339,7 @@ holds at most two non-archived certificates.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -83583,6 +84430,8 @@ holds at most two non-archived certificates.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Body parameters
 
@@ -83707,7 +84556,7 @@ Archived certificates are excluded unless `include_archived` is set.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -83798,6 +84647,8 @@ Archived certificates are excluded unless `include_archived` is set.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -83900,7 +84751,7 @@ Retrieve a single certificate registered on a tunnel by ID.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -83991,6 +84842,8 @@ Retrieve a single certificate registered on a tunnel by ID.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 
@@ -84088,7 +84941,7 @@ certificate is added.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -84179,6 +85032,8 @@ certificate is added.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 #### Returns
 

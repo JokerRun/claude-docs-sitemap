@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/retrieve
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 53ad6c408dcf17e98989e1e832fc2ca3a8e46c0ac119a3dc6ebf833de96d492b
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: fad830a672af6ed718d7add63a6e86a80aa08ebef30ecac2e487dabf4b739426
 ---
 
 ---
@@ -28,7 +28,7 @@ Get User Profile
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -119,6 +119,8 @@ Get User Profile
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

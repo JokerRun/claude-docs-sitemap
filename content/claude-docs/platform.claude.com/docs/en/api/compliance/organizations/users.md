@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/users
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: ec6dae0ecc249b24843c7b9630552a93699c8f29d4fff8fb323be00b3ac77ac5
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 9790e2884f4c6308cb2c4947217ccee4a2f3fd71b9c93607dccb1c545cd9e5f9
 ---
 
 ---
@@ -64,7 +64,7 @@ List current user members of an organization.
 
     User's current full name
 
-  - `organization_role: "admin" or "billing" or "claude_code_user" or 6 more`
+  - `organization_role: "admin" or "billing" or "claude_code_user" or 8 more`
 
     User's built-in role within the organization. This is distinct from any custom RBAC roles that may also be assigned.
 
@@ -81,6 +81,10 @@ List current user members of an organization.
     - `"membership_admin"`
 
     - `"owner"`
+
+    - `"parent_org_admin"`
+
+    - `"parent_org_owner"`
 
     - `"primary_owner"`
 
@@ -146,7 +150,7 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/users \
 
     User's current full name
 
-  - `organization_role: "admin" or "billing" or "claude_code_user" or 6 more`
+  - `organization_role: "admin" or "billing" or "claude_code_user" or 8 more`
 
     User's built-in role within the organization. This is distinct from any custom RBAC roles that may also be assigned.
 
@@ -163,6 +167,10 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/users \
     - `"membership_admin"`
 
     - `"owner"`
+
+    - `"parent_org_admin"`
+
+    - `"parent_org_owner"`
 
     - `"primary_owner"`
 

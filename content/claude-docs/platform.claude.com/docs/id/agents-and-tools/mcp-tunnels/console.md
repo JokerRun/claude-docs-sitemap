@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 984c2e3a68140a736ecb10430c9546336b81ee6609e7e8abf3aa74719fcaa1b8
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 6cfbbc07d7d2038654dfa640c26c826136732959906378ab23c18071afecf7b7
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Buat tunnel, daftarkan sertifikat CA, ambil token tunnel, dan lampi
 ---
 
 <Note>
-  Tunnel MCP sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/claude-managed-agents) untuk mencobanya.
+  MCP tunnels (terowongan MCP) sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/mcp-tunnels) untuk mencobanya.
 </Note>
 
 Halaman ini membahas sisi Console dari deployment MCP tunnels: membuat tunnel, mendaftarkan sertifikat CA Anda, mengambil token tunnel, dan melampirkan [server MCP upstream](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) ke agen. [Deploy MCP tunnels dengan Helm](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm) dan [Deploy MCP tunnels dengan Docker Compose](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-compose) membahas cara menjalankan [tunnel stack](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) di dalam jaringan Anda.

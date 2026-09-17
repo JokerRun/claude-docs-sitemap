@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cli-reference
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 6c310f8870369d80a335d2bd12b45f7dd42cf17b742b58bc9a4ea334a91b4828
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: a43cdbaed0f2cb8c0746ff941f6eb8bbc36c4971ab37134be08b6ee503a66317
 ---
 
 > ## Documentation Index
@@ -166,7 +166,7 @@ For persistent personas you can switch between and share across a project, use [
 
 By default, Claude Code builds the system prompt once, on a conversation's first request, with the text from any system prompt flags applied, and records it in the session. Until the conversation is compacted, every later request uses that recorded prompt, including after you return to the conversation with `--resume` or `--continue`. If you pass different system prompt flag text, or none, on that later launch, it takes effect once the conversation is compacted or when you start a new conversation.
 
-If you start Claude Code in [bare mode](/docs/en/headless#start-faster-with-bare-mode), by passing `--bare` or setting `CLAUDE_CODE_SIMPLE=1`, recording stays off unless you pass `--system-prompt-snapshot on`. Before v2.1.268, sessions that don't [fetch feature flags](/docs/en/env-vars#features-that-need-feature-flag-fetching), including sessions on Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry, rebuilt the prompt on every request and `--system-prompt-snapshot` had no effect.
+Outside of [cloud sessions](/docs/en/cloud-environments), if you start Claude Code in [bare mode](/docs/en/headless#start-faster-with-bare-mode) by passing `--bare` or setting `CLAUDE_CODE_SIMPLE=1`, recording stays off unless you pass `--system-prompt-snapshot on`. Before v2.1.268, sessions that don't [fetch feature flags](/docs/en/env-vars#features-that-need-feature-flag-fetching), including sessions on Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry, rebuilt the prompt on every request and `--system-prompt-snapshot` had no effect.
 
 To rebuild the prompt on every request instead, for example while you iterate on its wording across `--continue` runs, pass `--system-prompt-snapshot off`. Before v2.1.265, passing any of the system prompt flags also turned recording off unless you passed `--system-prompt-snapshot on`.
 

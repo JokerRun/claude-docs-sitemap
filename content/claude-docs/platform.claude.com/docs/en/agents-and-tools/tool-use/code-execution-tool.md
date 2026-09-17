@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-09-04T02:21:22.489135Z
-sha256: 1bdd8eca0b867b47f651494877064c02be7dbd10ea6a8bdbd879b2db8e64fa79
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 3d7dfbb56ef575ce6b8ca3ed7dfd6dfc19be76a24f4e2798108a4b0526cfda33
 ---
 
 ---
@@ -693,12 +693,12 @@ When Claude saves files to its output directory during code execution (see [How 
   	fileIDs := extractFileIDs(response)
 
   	for _, fileID := range fileIDs {
-  		fileMetadata, err := client.Files.GetMetadata(ctx, fileID)
+  		fileMetadata, err := client.Files.GetMetadata(ctx, fileID, anthropic.FileGetMetadataParams{})
   		if err != nil {
   			log.Fatal(err)
   		}
 
-  		fileContent, err := client.Files.Download(ctx, fileID)
+  		fileContent, err := client.Files.Download(ctx, fileID, anthropic.FileDownloadParams{})
   		if err != nil {
   			log.Fatal(err)
   		}

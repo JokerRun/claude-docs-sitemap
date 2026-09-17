@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/update
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: b151ad154eb5e5581f688b61684288e8443ca8346f8dc71eb3c56e0c67691e09
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: a8052544d243bff756d3e15c62fcf36a70b6642a83d8d00dc077420a54f643ba
 ---
 
 ---
@@ -28,7 +28,7 @@ Update Agent
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -119,6 +119,8 @@ Update Agent
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

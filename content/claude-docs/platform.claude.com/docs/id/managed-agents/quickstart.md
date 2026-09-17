@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: 39cf1b2b09b4bd1ad7ee7da916553ea08110a62e2e63eca6796374532c625738
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 69eb2d2ea9f4ec9faa9ed137e5252385a1c834d79fa8c0803b128a09d9deaa5a
 ---
 
 ---
@@ -44,7 +44,7 @@ Panduan ini memandu Anda dalam membuat agen, menyiapkan environment, memulai ses
     Untuk environment Linux, unduh binary rilis secara langsung.
 
     ```bash
-    VERSION=1.27.0
+    VERSION=1.32.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -95,7 +95,7 @@ ant --version
 
   <Tab title="Java">
     ```groovy Gradle
-    implementation("com.anthropic:anthropic-java:2.58.0")
+    implementation("com.anthropic:anthropic-java:2.60.0")
     ```
   </Tab>
 
@@ -170,19 +170,19 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 
       <MultiFileExample language="cli" label="CLI">
         ```bash CLI
-        AGENT_ID=$(ant beta:agents create --transform id --raw-output < coding-assistant.agent.yaml)
-
-        echo "Agent ID: $AGENT_ID"
+        ant apply coding-assistant.md
         ```
 
-        <File filename="coding-assistant.agent.yaml">
-          ```yaml
+        <File filename="coding-assistant.md">
+          ```markdown
+          ---
           name: Coding Assistant
-          model:
-            id: claude-opus-5
-          system: You are a helpful coding assistant. Write clean, well-documented code.
+          model: claude-opus-5
           tools:
             - type: agent_toolset_20260401
+          ---
+
+          You are a helpful coding assistant. Write clean, well-documented code.
           ```
         </File>
       </MultiFileExample>
@@ -343,7 +343,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 
     Tipe alat `agent_toolset_20260401` mengaktifkan set lengkap alat agen bawaan (bash, operasi file, pencarian web, dan lainnya). Lihat [Alat](https://platform.claude.com/docs/id/managed-agents/tools) untuk daftar lengkap dan opsi konfigurasi per alat.
 
-    Simpan `agent.id` yang dikembalikan. Anda akan mereferensikannya di setiap sesi yang Anda buat.
+    Simpan `agent.id` yang dikembalikan ([`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) pada CLI mencetaknya dan mencatatnya di `claude-lock.json`). Anda akan mereferensikannya di setiap sesi yang Anda buat.
   </Step>
 
   <Step title="Buat environment">
@@ -375,12 +375,10 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 
       <MultiFileExample language="cli" label="CLI">
         ```bash CLI
-        ENVIRONMENT_ID=$(ant beta:environments create --transform id --raw-output < quickstart.environment.yaml)
-
-        echo "Environment ID: $ENVIRONMENT_ID"
+        ant apply environment.yaml
         ```
 
-        <File filename="quickstart.environment.yaml">
+        <File filename="environment.yaml">
           ```yaml
           name: quickstart-env
           config:
@@ -473,7 +471,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       ```
     </CodeGroup>
 
-    Simpan `environment.id` yang dikembalikan. Anda akan mereferensikannya di setiap sesi yang Anda buat.
+    Simpan `environment.id` yang dikembalikan (juga tercatat di `claude-lock.json` jika Anda menggunakan `ant apply`). Anda akan mereferensikannya di setiap sesi yang Anda buat.
 
     <Tip>
       Untuk menjalankan sandbox di infrastruktur Anda sendiri alih-alih sandbox cloud, lihat 
@@ -605,8 +603,8 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       ```
 
       ```bash CLI
-      # Alur kerja ini tidak cocok diterjemahkan ke perintah shell sekali jalan.
-      # Gunakan salah satu contoh SDK di grup kode ini sebagai gantinya.
+      # Alur kerja ini tidak cocok diterjemahkan menjadi perintah shell sekali jalan.
+      # Sebagai gantinya, gunakan salah satu contoh SDK di grup kode ini.
       ```
 
       ```python Python

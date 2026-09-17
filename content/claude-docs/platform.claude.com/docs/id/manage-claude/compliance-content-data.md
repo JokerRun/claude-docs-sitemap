@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-content-data
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 089810e2f3e66d5ca7f5bea7bf48f90c8435f593960a79f83abc34771bb11171
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 84a4f7ee04baaf8eaa896036980ecd24c2d4c0ed97fdc0bb518e1595f1d0ef94
 ---
 
 ---
@@ -12,31 +12,32 @@ description: Akses konten chat, lampiran file, dan proyek untuk organisasi claud
 ---
 
 <Note>
-  Endpoint di halaman ini hanya tersedia untuk organisasi Claude Enterprise. Endpoint ini mengambil dan menghapus chat, file, dan proyek claude.ai; transkrip sesi di aplikasi seperti Cowork dan Claude Code dibahas di [Mengambil transkrip sesi](https://platform.claude.com/docs/id/manage-claude/compliance-sessions). Lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access).
+  Endpoint di halaman ini hanya tersedia untuk organisasi Claude Enterprise. Endpoint ini mengambil dan menghapus chat, file, dan proyek claude.ai. Transkrip sesi di aplikasi seperti Cowork dan Claude Code dibahas di [Mengambil transkrip sesi](https://platform.claude.com/docs/id/manage-claude/compliance-sessions). Lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access).
 </Note>
 
 <Check>
   **Scope yang diperlukan:** `read:compliance_user_data` pada Compliance Access Key. Endpoint penghapusan juga memerlukan `delete:compliance_user_data`.
 
-  **Prasyarat:** Tidak ada untuk mendaftar chat di seluruh organisasi. Untuk memfilter daftar chat ke pengguna tertentu, Anda memerlukan ID pengguna dari [Mendaftar pengguna organisasi](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-organization-users). Endpoint lain di halaman ini menerima ID sumber daya secara langsung.
+  **Prasyarat:** Tidak ada untuk mencantumkan chat di seluruh organisasi. Untuk memfilter daftar chat ke pengguna tertentu, Anda memerlukan ID pengguna dari [Mencantumkan pengguna organisasi](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-organization-users). Endpoint lain di halaman ini menerima ID sumber daya secara langsung.
 </Check>
 
-Endpoint di halaman ini mengekspos konten chat, unggahan file, proyek, dan lampiran proyek Claude Enterprise kepada peninjau kepatuhan. Endpoint ini mendukung ekspor eDiscovery (electronic discovery atau penemuan elektronik), penegakan "data loss prevention" (pencegahan kehilangan data), atau DLP, dan respons penghapusan akun. Konten chat, file, dan proyek disimpan selama kebijakan retensi organisasi Anda mengizinkan. Ketika pengguna menghapus chat di claude.ai, konten pesannya, file terlampir, file yang dihasilkan alat, dan artifact dihapus bersamanya. Compliance API tetap mendaftar chat tersebut, dengan `deleted_at` terisi dan `name` kosong, serta mengembalikan pesan-pesannya tanpa kontennya. Chat yang telah dihapus permanen (hard-deleted) (melalui Compliance API itu sendiri, atau setelah jendela retensi organisasi berakhir) tidak dapat diambil.
+Endpoint di halaman ini menyediakan konten chat Claude Enterprise, unggahan file, proyek, dan lampiran proyek bagi peninjau kepatuhan. Endpoint ini mendukung ekspor eDiscovery (electronic discovery), penegakan "data loss prevention" (pencegahan kehilangan data), atau DLP, serta penanganan permintaan penghapusan akun. Konten chat, file, dan proyek disimpan selama diizinkan oleh kebijakan retensi organisasi Anda. Ketika pengguna menghapus chat di claude.ai, konten pesannya, file terlampir, file yang dihasilkan alat, dan artifact ikut terhapus. Compliance API tetap mencantumkan chat tersebut, dengan `deleted_at` terisi dan `name` kosong, serta mengembalikan pesan-pesannya tanpa konten. Chat yang telah dihapus secara permanen ("hard-delete") tidak dapat diambil, baik penghapusan itu dilakukan melalui Compliance API sendiri maupun setelah jendela retensi organisasi berakhir.
 
-Kedua scope hanya diberikan pada Compliance Access Key (`sk-ant-api01-...`) yang dibuat di claude.ai; lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access) untuk menyediakannya. Scope `read:compliance_user_data` mencakup pengambilan; `delete:compliance_user_data` hanya diperlukan untuk endpoint penghapusan. Endpoint chat, file, proyek, dan lampiran tidak tersedia untuk kunci Admin API (`sk-ant-admin01-...`); panggilan yang diautentikasi dengan kunci Admin API mengembalikan [403 Forbidden](https://platform.claude.com/docs/id/manage-claude/compliance-errors#403-forbidden).
+Kedua scope hanya diberikan pada Compliance Access Key (`sk-ant-api01-...`) yang dibuat di claude.ai. Lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access) untuk membuatnya. Scope `read:compliance_user_data` mencakup pengambilan data, sedangkan `delete:compliance_user_data` hanya diperlukan untuk endpoint penghapusan. Endpoint chat, file, proyek, dan lampiran tidak tersedia untuk kunci Admin API (`sk-ant-admin01-...`). Panggilan yang diautentikasi dengan kunci Admin API akan mengembalikan [403 Forbidden](https://platform.claude.com/docs/id/manage-claude/compliance-errors#403-forbidden).
 
-Endpoint di halaman ini melakukan paginasi dengan dua cara; lihat [Memaginasi hasil](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#paginate-results) untuk referensi lengkapnya. Setiap bagian mencatat skema mana yang berlaku.
+Endpoint di halaman ini menggunakan dua cara "pagination" (paginasi). Lihat [Paginasi hasil](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#paginate-results) untuk referensi lengkapnya. Setiap bagian menyebutkan skema mana yang berlaku.
 
 ## Mengambil chat dan pesan
 
-Gunakan [Mendaftar chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/list) untuk menelusuri halaman metadata chat, lalu [Mendapatkan pesan chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/messages/list) untuk mengambil konten pesan lengkap dari satu chat.
+Gunakan [Mencantumkan chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/list) untuk menelusuri metadata chat halaman demi halaman, lalu [Mendapatkan pesan chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/messages/list) untuk mengambil konten pesan lengkap dari satu chat.
 
-Endpoint daftar chat secara default menggunakan cakupan seluruh organisasi: hilangkan `user_ids[]` untuk menyertakan setiap chat di bawah organisasi induk Anda. Tambahkan `order_by=updated_at` untuk mengurutkan berdasarkan waktu pembaruan terakhir. Kombinasi ini adalah cara yang direkomendasikan untuk mengekspor chat dan menjaga ekspor tetap mutakhir, karena satu loop berpaginasi menangkap chat baru, chat yang dimodifikasi, dan chat yang dihapus di claude.ai untuk setiap pengguna tanpa perlu mengenumerasi pengguna terlebih dahulu. Permintaan berikut mendaftar chat yang diperbarui sejak tanggal tertentu.
+Secara default, endpoint daftar chat mencakup seluruh organisasi: hilangkan `user_ids[]` untuk menyertakan setiap chat di bawah organisasi induk Anda. Tambahkan `order_by=updated_at` untuk mengurutkan berdasarkan waktu pembaruan terakhir. Kombinasi ini adalah cara yang direkomendasikan untuk mengekspor chat dan menjaga ekspor tetap mutakhir. Dengan satu loop paginasi, Anda mendapatkan chat baru, chat yang diubah, dan chat yang dihapus di claude.ai untuk setiap pengguna tanpa perlu mendata pengguna terlebih dahulu. Permintaan berikut mencantumkan chat yang diperbarui sejak tanggal tertentu.
 
 ```bash cURL
 curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/apps/chats" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+  --header "anthropic-version: 2023-06-01" \
   --data-urlencode "order_by=updated_at" \
   --data-urlencode "updated_at.gte=2025-06-01T00:00:00Z" \
   --data-urlencode "limit=100"
@@ -67,34 +68,50 @@ curl --fail-with-body -sS -G \
 }
 ```
 
-Hasil diurutkan menaik berdasarkan field `order_by`, yang terlama lebih dulu, dengan nilai yang sama dipisahkan berdasarkan `id`. Paginasi menggunakan field kursor standar `first_id`/`last_id`/`has_more` yang dijelaskan di [Memaginasi hasil](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#paginate-results). Untuk bergerak maju menuju chat yang lebih baru, teruskan `last_id` dari respons sebagai `after_id` pada permintaan berikutnya.
+Hasil diurutkan secara menaik berdasarkan field `order_by`, dari yang terlama. Jika nilainya sama, urutan ditentukan oleh `id`. Paginasi menggunakan field kursor standar `first_id`/`last_id`/`has_more` yang dijelaskan di [Paginasi hasil](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#paginate-results). Untuk bergerak maju ke chat yang lebih baru, kirimkan `last_id` dari respons sebagai `after_id` pada permintaan berikutnya.
 
-Penelusuran maju itu juga merupakan cara Anda menjaga ekspor tetap mutakhir di antara beberapa kali eksekusi: simpan `last_id` dari halaman terakhir dan lanjutkan darinya sebagai `after_id` pada eksekusi berikutnya. Karena daftar diurutkan berdasarkan `updated_at`, chat yang berubah setelah kursor tersimpan Anda akan muncul kembali di depannya, sehingga setiap eksekusi inkremental mengembalikan chat yang benar-benar baru maupun chat lama yang sejak itu telah dimodifikasi atau dihapus di claude.ai. Proses hasil secara idempoten, dengan kunci berupa `id` chat, untuk menangani kemunculan ulang tersebut. Chat yang kembali dengan `deleted_at` terisi tidak memiliki konten tersisa untuk diambil, jadi perlakukan sebagai dihapus, bukan diperbarui.
+Penelusuran maju ini juga merupakan cara menjaga ekspor tetap mutakhir dari satu eksekusi ke eksekusi berikutnya. Simpan `last_id` dari halaman terakhir, lalu lanjutkan darinya sebagai `after_id` pada eksekusi berikutnya. Karena daftar diurutkan berdasarkan `updated_at`, chat yang berubah setelah kursor tersimpan akan muncul kembali di depannya. Dengan demikian, setiap eksekusi inkremental mengembalikan chat yang benar-benar baru sekaligus chat lama yang sejak itu diubah atau dihapus di claude.ai. Proses hasil secara idempoten dengan `id` chat sebagai kunci agar kemunculan ulang tersebut tertangani. Chat yang kembali dengan `deleted_at` terisi tidak lagi memiliki konten untuk diambil, jadi perlakukan sebagai chat yang dihapus, bukan yang diperbarui.
 
-Beberapa batasan berlaku untuk kueri seluruh organisasi ini. Kursor bersifat opaque dan terikat pada kunci pengurutan, sehingga `after_id` yang diterbitkan di bawah satu nilai `order_by` ditolak dengan error 400 di bawah nilai lainnya. Batas filter waktu juga harus cocok dengan kunci pengurutan: pasangkan batas `updated_at.*` dengan `order_by=updated_at`, dan batas `created_at.*` dengan `order_by=created_at` default. Paginasi mundur dengan `before_id` tidak didukung, dan filter `project_ids[]` tidak tersedia. Lihat [Mendaftar chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/list) untuk referensi filter lengkap.
+Beberapa batasan berlaku untuk kueri di seluruh organisasi ini:
 
-Untuk membatasi daftar ke pengguna tertentu (misalnya, legal hold pada kustodian yang disebutkan namanya), teruskan 1–10 nilai `user_ids[]`. Dapatkan ID tersebut dari [Mendaftar pengguna organisasi](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-organization-users). Kueri yang difilter berdasarkan pengguna selalu diurutkan berdasarkan `created_at` (meneruskan `order_by=updated_at` mengembalikan error 400) dan mendukung `after_id` maupun `before_id`. Pemfilteran berdasarkan `project_ids[]` hanya tersedia dalam bentuk yang difilter berdasarkan pengguna ini. Menggabungkan `user_ids[]` dengan batas `updated_at.*` apa pun sudah deprecated dan akan ditolak dengan error 400 setelah 2026-09-22; untuk menjaga kumpulan kustodian tetap mutakhir berdasarkan waktu pembaruan, jalankan penelusuran seluruh organisasi `order_by=updated_at` tanpa `user_ids[]` dan pilih chat milik kustodian dari hasilnya, serta pertahankan daftar yang difilter berdasarkan pengguna untuk ekspor yang diurutkan berdasarkan `created_at`.
+* Kursor bersifat opaque dan terikat pada kunci pengurutan. `after_id` yang diterbitkan dengan satu nilai `order_by` akan ditolak dengan error 400 jika digunakan dengan nilai lainnya.
+* Batas filter waktu juga harus sesuai dengan kunci pengurutan. Pasangkan batas `updated_at.*` dengan `order_by=updated_at`, dan batas `created_at.*` dengan `order_by=created_at` default.
+* Paginasi mundur dengan `before_id` tidak didukung, dan filter `project_ids[]` tidak tersedia.
+
+Lihat [Mencantumkan chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/list) untuk referensi filter lengkap.
+
+Untuk membatasi daftar ke pengguna tertentu (misalnya, legal hold pada kustodian yang disebutkan namanya), kirimkan 1–10 nilai `user_ids[]`. Dapatkan ID tersebut dari [Mencantumkan pengguna organisasi](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-organization-users). Kueri yang difilter berdasarkan pengguna selalu diurutkan berdasarkan `created_at` (mengirimkan `order_by=updated_at` akan mengembalikan error 400) dan mendukung `after_id` maupun `before_id`. Filter `project_ids[]` hanya tersedia dalam bentuk yang difilter berdasarkan pengguna ini.
+
+Menggabungkan `user_ids[]` dengan batas `updated_at.*` apa pun sudah deprecated dan akan ditolak dengan error 400 setelah 2026-09-22. Untuk menjaga kumpulan kustodian tetap mutakhir berdasarkan waktu pembaruan, jalankan penelusuran `order_by=updated_at` di seluruh organisasi tanpa `user_ids[]`, lalu pilih chat milik para kustodian dari hasilnya. Gunakan daftar yang difilter berdasarkan pengguna untuk ekspor yang diurutkan berdasarkan `created_at`.
 
 ```bash cURL
 curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/apps/chats" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+  --header "anthropic-version: 2023-06-01" \
   --data-urlencode "user_ids[]=user_01XyDMpzjS89pFZXqSFUBDr6" \
   --data-urlencode "created_at.gte=2025-06-01T00:00:00Z" \
   --data-urlencode "limit=100"
 ```
 
-Respons daftar hanya membawa metadata chat. Untuk mengambil konten chat sebenarnya, file terlampir, dan artifact inline (dokumen terstruktur yang dihasilkan Claude di dalam chat), lanjutkan dengan endpoint pesan untuk setiap ID chat:
+Respons daftar hanya berisi metadata chat. Untuk mengambil konten chat yang sebenarnya, file terlampir, dan artifact inline (dokumen terstruktur yang dihasilkan Claude di dalam chat), lanjutkan dengan memanggil endpoint pesan untuk setiap ID chat:
 
 ```bash cURL
 chat_id="claude_chat_01H5CWunD7RpVJ5bHa8RCkja"
 
 curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/compliance/apps/chats/$chat_id/messages" \
-  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
+  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+  --header "anthropic-version: 2023-06-01"
 ```
 
-Endpoint pesan mengembalikan metadata chat ditambah array `chat_messages` yang diurutkan berdasarkan `created_at`. Ketika `limit` dihilangkan, seluruh kumpulan pesan dikembalikan dalam satu respons; teruskan `limit`, `after_id`, atau `before_id` untuk menelusuri halaman chat yang sangat panjang. Endpoint ini juga menerima batas rentang `created_at.*` dan `updated_at.*` (`gt`, `gte`, `lt`, `lte`) serta parameter `order` (`asc` atau `desc`). Lihat [Mendapatkan pesan chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/messages/list) untuk daftar parameter lengkap. Untuk pesan pengguna, `created_at` adalah waktu pesan dikirim; untuk pesan asisten, itu adalah waktu Claude selesai menghasilkan pesan. Setiap pesan membawa konten teksnya dan, jika ada, file yang diunggah (biasanya pada pesan pengguna), file yang dihasilkan alat, dan artifact yang dihasilkan atau diperbarui asisten (biasanya pada pesan asisten):
+Endpoint pesan mengembalikan metadata chat beserta array `chat_messages` yang diurutkan berdasarkan `created_at`. Jika `limit` dihilangkan, seluruh pesan dikembalikan dalam satu respons. Kirimkan `limit`, `after_id`, atau `before_id` untuk menelusuri chat yang sangat panjang halaman demi halaman. Endpoint ini juga menerima batas rentang `created_at.*` dan `updated_at.*` (`gt`, `gte`, `lt`, `lte`) serta parameter `order` (`asc` atau `desc`). Lihat [Mendapatkan pesan chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/messages/list) untuk daftar parameter lengkap.
+
+Untuk pesan pengguna, `created_at` adalah waktu pesan dikirim. Untuk pesan asisten, `created_at` adalah waktu Claude selesai menghasilkan pesan. Setiap pesan berisi konten teksnya dan, jika ada:
+
+* file yang diunggah (biasanya pada pesan pengguna)
+* file yang dihasilkan alat
+* artifact yang dibuat atau diperbarui oleh asisten (biasanya pada pesan asisten)
 
 ```json Response
 {
@@ -168,71 +185,92 @@ Endpoint pesan mengembalikan metadata chat ditambah array `chat_messages` yang d
 }
 ```
 
-`files`, `generated_files`, dan `artifacts` masing-masing dapat bernilai `null` pada pesan tertentu. `files` adalah file dan lampiran teks (misalnya, PDF, gambar, spreadsheet, dokumen, dan teks yang ditempel) yang dilampirkan pengguna ke pesan, sebagaimana claude.ai menyimpannya. `generated_files` adalah file biner yang dibuat asisten selama percakapan melalui "tool use" (penggunaan alat) (misalnya, PDF, spreadsheet, atau slide deck). `artifacts` adalah dokumen berversi (misalnya, kode atau markdown) yang dihasilkan atau diperbarui asisten dalam responsnya; sebuah artifact dapat direvisi di beberapa giliran asisten dalam chat yang sama, dan setiap revisi muncul sebagai `version_id` baru di bawah `id` artifact yang sama. Teruskan `id` setiap entri (atau `version_id` untuk artifact) ke endpoint konten yang sesuai di [Mengambil file dan artifact](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-files-and-artifacts) untuk mengunduhnya.
+Masing-masing `files`, `generated_files`, dan `artifacts` dapat bernilai `null` pada pesan tertentu:
+
+* `files` adalah file dan lampiran teks (misalnya, PDF, gambar, spreadsheet, dokumen, dan teks yang ditempel) yang dilampirkan pengguna ke pesan, sebagaimana disimpan oleh claude.ai.
+* `generated_files` adalah file biner yang dibuat asisten selama percakapan melalui "tool use" (penggunaan alat), misalnya PDF, spreadsheet, atau slide presentasi.
+* `artifacts` adalah dokumen berversi (misalnya, kode atau markdown) yang dibuat atau diperbarui asisten dalam responsnya. Sebuah artifact dapat direvisi di beberapa giliran asisten dalam chat yang sama, dan setiap revisi muncul sebagai `version_id` baru di bawah `id` artifact yang sama.
+
+Untuk mengunduh setiap entri, kirimkan `id`-nya (atau `version_id` untuk artifact) ke endpoint konten yang sesuai di [Mengambil file dan artifact](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-files-and-artifacts).
 
 ## Mengambil file dan artifact
 
-File dan artifact diunduh berdasarkan ID, bukan didaftar secara independen. ID tersebut berasal dari endpoint pesan chat di [Mengambil chat dan pesan](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-chats-and-messages) (array `files`, `generated_files`, dan `artifacts` pada setiap pesan) atau, untuk unggahan tingkat proyek, dari [endpoint lampiran proyek](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-projects-and-attachments).
+File dan artifact diunduh berdasarkan ID dan tidak dicantumkan secara terpisah. ID tersebut berasal dari endpoint pesan chat di [Mengambil chat dan pesan](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-chats-and-messages), yaitu array `files`, `generated_files`, dan `artifacts` pada setiap pesan. Untuk unggahan tingkat proyek, ID berasal dari [endpoint lampiran proyek](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-projects-and-attachments).
 
-Pilih endpoint yang cocok dengan jenis ID Anda dan data yang Anda butuhkan. Endpoint konten file yang sama melayani file chat maupun file proyek.
+Pilih endpoint yang sesuai dengan jenis ID Anda dan data yang Anda butuhkan. Endpoint konten file yang sama melayani file chat maupun file proyek.
 
-| Anda memiliki                  | Anda menginginkan                        | Gunakan endpoint ini                                                                                                                |
+| Yang Anda miliki               | Yang Anda inginkan                       | Gunakan endpoint ini                                                                                                                |
 | ------------------------------ | ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | ID `claude_file_*`             | Konten file                              | [Mengunduh konten file](https://platform.claude.com/docs/id/api/compliance/apps/chats/files/download)                               |
 | ID `claude_file_*`             | Hanya metadata file                      | [Mendapatkan metadata file](https://platform.claude.com/docs/id/api/compliance/apps/chats/files/retrieve)                           |
 | ID `claude_gen_file_*`         | Konten biner file yang dihasilkan alat   | [Mengunduh file yang dihasilkan Claude](https://platform.claude.com/docs/id/api/compliance/apps/chats/generated_files/download)     |
 | ID `claude_gen_file_*`         | Hanya metadata file yang dihasilkan alat | [Mendapatkan metadata file yang dihasilkan](https://platform.claude.com/docs/id/api/compliance/apps/chats/generated_files/retrieve) |
-| ID `claude_artifact_version_*` | Teks satu versi artifact                 | [Mengunduh konten artifact](https://platform.claude.com/docs/id/api/compliance/apps/artifacts/download)                             |
+| ID `claude_artifact_version_*` | Teks dari satu versi artifact            | [Mengunduh konten artifact](https://platform.claude.com/docs/id/api/compliance/apps/artifacts/download)                             |
 | ID `claude_artifact_version_*` | Hanya metadata versi artifact            | [Mendapatkan metadata artifact](https://platform.claude.com/docs/id/api/compliance/apps/artifacts/retrieve)                         |
 | ID `claude_proj_doc_*`         | Konten teks biasa dokumen proyek         | [Mendapatkan konten dokumen proyek](https://platform.claude.com/docs/id/api/compliance/apps/projects/documents/retrieve)            |
 | ID `claude_proj_doc_*`         | Hanya metadata dokumen proyek            | [Mendapatkan metadata dokumen proyek](https://platform.claude.com/docs/id/api/compliance/apps/projects/documents/metadata)          |
 
-Endpoint konten file melakukan streaming konten yang disimpan claude.ai untuk file tersebut sebagai respons biner chunked. Konten itu tidak selalu identik dengan file yang diunggah pengguna. Gambar dapat disajikan sebagai salinan yang telah diproses, bukan byte yang diunggah. Beberapa dokumen yang dilampirkan ke chat (misalnya, file Word, file PowerPoint, dan beberapa PDF) disimpan sebagai teks yang diekstrak claude.ai darinya. Untuk dokumen-dokumen ini, endpoint mengembalikan teks yang diekstrak dengan nama file asli, dan dokumen asli tidak tersedia melalui Compliance API. Field `size_bytes` dan `md5` mendeskripsikan konten yang disimpan, bukan file yang diunggah. Nama file dan `mime_type` masih dapat menyebutkan format dokumen yang diunggah. Identifikasi format file dari byte yang dikembalikan, bukan dari nama atau tipe yang dideklarasikan.
+Endpoint konten file melakukan streaming konten yang disimpan claude.ai untuk file tersebut sebagai respons biner chunked. Konten itu tidak selalu identik dengan file yang diunggah pengguna:
 
-Respons membawa header berikut:
+* Gambar dapat disajikan sebagai salinan yang telah diproses, bukan byte asli yang diunggah.
+* Beberapa dokumen yang dilampirkan ke chat (misalnya, file Word, file PowerPoint, dan sebagian PDF) disimpan sebagai teks yang diekstrak claude.ai darinya. Untuk dokumen seperti ini, endpoint mengembalikan teks hasil ekstraksi dengan nama file asli, dan dokumen aslinya tidak tersedia melalui Compliance API.
 
-* `Content-Disposition: attachment; filename*=utf-8''<percent-encoded filename>` membawa nama file unggahan asli dalam bentuk extended RFC 5987. Bentuk extended digunakan untuk setiap nama file, bukan hanya yang non-ASCII.
-* `Content-Type` membawa tipe MIME yang dicatat untuk konten yang disimpan, yang untuk dokumen yang disimpan sebagai teks terekstrak masih dapat menyebutkan format dokumen asli.
-* `Content-MD5` membawa digest MD5 dari byte yang disajikan, dienkode base64 sebagaimana ditentukan dalam RFC 1864.
+Field `size_bytes` dan `md5` menggambarkan konten yang disimpan, bukan file yang diunggah. Nama file dan `mime_type` mungkin tetap menunjukkan format dokumen yang diunggah. Karena itu, tentukan format file dari byte yang dikembalikan, bukan dari nama atau tipe yang dideklarasikan.
+
+Respons menyertakan header berikut:
+
+* `Content-Disposition: attachment; filename*=utf-8''<percent-encoded filename>` berisi nama file unggahan asli dalam bentuk extended RFC 5987. Bentuk extended ini digunakan untuk setiap nama file, tidak hanya yang mengandung karakter non-ASCII.
+* `Content-Type` berisi tipe MIME yang tercatat untuk konten yang disimpan. Untuk dokumen yang disimpan sebagai teks hasil ekstraksi, nilainya mungkin tetap menunjukkan format dokumen asli.
+* `Content-MD5` berisi digest MD5 dari byte yang disajikan, dienkode base64 sesuai RFC 1864.
 * `Transfer-Encoding: chunked` selalu disetel.
 
 ```bash cURL
 file_id="claude_file_01UaT9wBcDfGhJkLmNpQrSv7"
 
-curl --fail-with-body -sS -OJ \
+curl --fail-with-body -sS \
+  "https://api.anthropic.com/v1/compliance/apps/chats/files/$file_id/content" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  "https://api.anthropic.com/v1/compliance/apps/chats/files/$file_id/content"
+  --header "anthropic-version: 2023-06-01" \
+  --output "dashboard_mockup_v1.pdf"
 ```
 
-Flag `-OJ` memberi tahu curl untuk menyimpan respons dengan nama file dari `Content-Disposition`, yaitu nama file asli yang diunggah pengguna.
+Di curl, opsi `--remote-header-name` (`-J`) biasanya menyimpan unduhan dengan nama file dari `Content-Disposition`, tetapi opsi ini tidak membaca bentuk `filename*`. Karena itu, tentukan sendiri nama file yang disimpan dengan `--output`. Dalam skrip, ambil nama dari field `filename` file tersebut di respons pesan chat atau [Mendapatkan metadata file](https://platform.claude.com/docs/id/api/compliance/apps/chats/files/retrieve), atau dekode `filename*`.
 
-Endpoint konten artifact mengembalikan isi teks dari satu versi artifact. Teruskan `version_id` dari salah satu entri dalam array `artifacts` pesan asisten, bukan `id` stabil artifact. Setiap versi baru artifact memiliki `version_id` sendiri, dan Compliance API menyajikan byte persis dari versi tersebut.
+Apa pun caranya, nama tersebut adalah nama yang diberikan pengguna saat mengunggah, jadi anggap tidak tepercaya sebelum menggunakannya sebagai path output:
+
+* Ambil hanya nama dasarnya.
+* Izinkan hanya karakter yang aman untuk sistem file Anda.
+* Tolak nama yang diawali dengan `-` atau `.`.
+
+Berbeda dengan endpoint konten file, endpoint konten artifact mengembalikan objek JSON. Kirimkan `version_id` dari salah satu entri dalam array `artifacts` pada pesan asisten, bukan `id` artifact yang stabil. Setiap versi baru artifact memiliki `version_id` sendiri. Field `content` pada respons berisi teks dari versi tersebut secara persis, sedangkan field `title` dan `artifact_type` menggambarkan artifact-nya. [Mendapatkan metadata artifact](https://platform.claude.com/docs/id/api/compliance/apps/artifacts/retrieve) menghitung `size_bytes` dan `md5` dari encoding UTF-8 teks tersebut. Jadi, bandingkan keduanya dengan nilai `content`, bukan dengan seluruh body respons.
 
 ## Mengambil proyek dan lampiran
 
-Proyek menggabungkan chat terkait bersama dengan instruksi kustom, konten basis pengetahuan, dan file atau dokumen teks terlampir. Compliance API mengekspos metadata proyek, detail proyek, dan daftar lampiran yang dimiliki suatu proyek.
+Proyek mengelompokkan chat yang saling terkait beserta instruksi kustom, konten basis pengetahuan, dan file atau dokumen teks terlampir. Compliance API menyediakan metadata proyek, detail proyek, dan daftar lampiran milik sebuah proyek.
 
-* [Mendaftar proyek](https://platform.claude.com/docs/id/api/compliance/apps/projects/list)
+* [Mencantumkan proyek](https://platform.claude.com/docs/id/api/compliance/apps/projects/list)
 * [Mendapatkan detail proyek](https://platform.claude.com/docs/id/api/compliance/apps/projects/retrieve)
-* [Mendaftar lampiran proyek](https://platform.claude.com/docs/id/api/compliance/apps/projects/attachments/list)
+* [Mencantumkan lampiran proyek](https://platform.claude.com/docs/id/api/compliance/apps/projects/attachments/list)
 * [Mendapatkan konten dokumen proyek](https://platform.claude.com/docs/id/api/compliance/apps/projects/documents/retrieve)
 
-Hasil proyek diurutkan berdasarkan tanggal pembuatan secara menaik. Hasil lampiran diurutkan berdasarkan `created_at` secara menaik, dengan nilai yang sama dipisahkan berdasarkan `id`. Respons daftar proyek dan daftar lampiran melakukan paginasi dengan token halaman `next_page` yang opaque, bukan kursor `first_id`/`last_id` yang digunakan oleh chat dan Activity Feed. Teruskan token tersebut kembali sebagai parameter kueri `page` pada permintaan berikutnya.
+Hasil proyek diurutkan secara menaik berdasarkan tanggal pembuatan. Hasil lampiran diurutkan secara menaik berdasarkan `created_at`, dan jika nilainya sama, urutan ditentukan oleh `id`. Respons daftar proyek dan daftar lampiran menggunakan token halaman `next_page` yang bersifat opaque untuk paginasi, bukan kursor `first_id`/`last_id` seperti pada chat dan Activity Feed. Kirimkan token tersebut sebagai parameter kueri `page` pada permintaan berikutnya.
 
 ### File proyek versus dokumen proyek
 
-Lampiran proyek memiliki salah satu dari dua bentuk berbeda, yang diidentifikasi oleh diskriminator `type` pada setiap entri:
+Lampiran proyek memiliki salah satu dari dua bentuk berbeda, yang dibedakan oleh diskriminator `type` pada setiap entri:
 
-Entri dengan `type` bernilai `project_file` adalah unggahan file (PDF, gambar, spreadsheet) yang ID-nya dimulai dengan `claude_file_`; unduh dengan [Mengunduh konten file](https://platform.claude.com/docs/id/api/compliance/apps/chats/files/download). Entri dengan `type` bernilai `project_doc` adalah dokumen teks biasa (selalu `text/plain`) yang ID-nya dimulai dengan `claude_proj_doc_`, termasuk dokumen seperti file Word yang dikonversi claude.ai menjadi teks ketika ditambahkan ke proyek; ambil dengan [Mendapatkan konten dokumen proyek](https://platform.claude.com/docs/id/api/compliance/apps/projects/documents/retrieve).
+* Entri dengan `type` bernilai `project_file` adalah unggahan file (PDF, gambar, spreadsheet) dengan ID yang diawali `claude_file_`. Unduh dengan [Mengunduh konten file](https://platform.claude.com/docs/id/api/compliance/apps/chats/files/download).
+* Entri dengan `type` bernilai `project_doc` adalah dokumen teks biasa (selalu `text/plain`) dengan ID yang diawali `claude_proj_doc_`. Ini termasuk dokumen seperti file Word yang dikonversi claude.ai menjadi teks saat ditambahkan ke proyek. Ambil dengan [Mendapatkan konten dokumen proyek](https://platform.claude.com/docs/id/api/compliance/apps/projects/documents/retrieve).
 
-Konsumen yang menelusuri daftar lampiran harus bercabang berdasarkan `type` dan memanggil endpoint konten yang sesuai untuk setiap entri. Permintaan berikut mendaftar satu halaman lampiran; lakukan paginasi dengan meneruskan `next_page` kembali sebagai parameter `page` hingga `has_more` bernilai `false`.
+Kode yang menelusuri daftar lampiran harus bercabang berdasarkan `type` dan memanggil endpoint konten yang sesuai untuk setiap entri. Permintaan berikut mencantumkan satu halaman lampiran. Untuk paginasi, kirimkan `next_page` sebagai parameter `page` hingga `has_more` bernilai `false`.
 
 ```bash cURL
 project_id="claude_proj_01KGp4eZNug9ri4kE35RSppq"
 
 curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/apps/projects/$project_id/attachments" \
-  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
+  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+  --header "anthropic-version: 2023-06-01"
 ```
 
 ```json Response
@@ -263,24 +301,24 @@ curl --fail-with-body -sS -G \
 ## Menghapus konten
 
 <Warning>
-  Setiap penghapusan yang berhasil bersifat permanen dan langsung berlaku. Tidak ada jendela pemulihan.
+  Setiap penghapusan yang berhasil bersifat permanen dan langsung berlaku. Tidak ada periode pemulihan.
 </Warning>
 
-Compliance API mengekspos endpoint hard-delete untuk chat, file, dokumen proyek, dan seluruh proyek. Chat yang dihapus permanen tidak dapat dipulihkan, dan setelahnya berhenti muncul dalam respons daftar.
+Compliance API menyediakan endpoint penghapusan permanen untuk chat, file, dokumen proyek, dan seluruh proyek. Chat yang dihapus secara permanen tidak dapat dipulihkan dan tidak lagi muncul di respons daftar.
 
-* [Menghapus chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/delete): juga menghapus pesan-pesan chat dan file apa pun yang dilampirkan ke pesan tersebut.
+* [Menghapus chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/delete): juga menghapus pesan-pesan chat dan semua file yang dilampirkan ke pesan tersebut.
 * [Menghapus file](https://platform.claude.com/docs/id/api/compliance/apps/chats/files/delete): menangani file chat maupun file proyek.
 * [Menghapus dokumen proyek](https://platform.claude.com/docs/id/api/compliance/apps/projects/documents/delete): menghapus satu dokumen proyek berdasarkan ID.
 * [Menghapus proyek](https://platform.claude.com/docs/id/api/compliance/apps/projects/delete): lihat [Melepaskan chat sebelum menghapus proyek](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#detach-chats-before-deleting-a-project).
 
-Keempat endpoint memerlukan scope `delete:compliance_user_data`, yang diberikan secara terpisah dari scope baca ketika Compliance Access Key dibuat.
+Keempat endpoint memerlukan scope `delete:compliance_user_data`. Scope ini diberikan terpisah dari scope baca saat Compliance Access Key dibuat.
 
-Permintaan berikut menghapus satu chat. Pola yang sama berlaku untuk endpoint penghapusan lainnya; hanya URL-nya yang berubah.
+Permintaan berikut menghapus satu chat. Pola yang sama berlaku untuk endpoint penghapusan lainnya; hanya URL-nya yang berbeda.
 
 ```bash cURL
 # PERINGATAN: Operasi ini menghapus chat secara PERMANEN, beserta semua pesannya,
-# dan semua file terlampir. Penghapusan berlangsung seketika dan tidak dapat dibatalkan. Operasi ini
-# memerlukan scope `delete:compliance_user_data`, yang diberikan secara terpisah
+# dan semua file terlampir. Penghapusan berlaku seketika dan tidak dapat dibatalkan. Operasi ini
+# memerlukan scope `delete:compliance_user_data`, yang diberikan terpisah
 # dari `read:compliance_user_data` saat Compliance Access Key dibuat.
 # Pastikan Anda memiliki otorisasi eksplisit sebelum menjalankan ini.
 
@@ -288,7 +326,8 @@ chat_id="claude_chat_01H5CWunD7RpVJ5bHa8RCkja"
 
 curl --fail-with-body -sS -X DELETE \
   "https://api.anthropic.com/v1/compliance/apps/chats/$chat_id" \
-  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
+  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+  --header "anthropic-version: 2023-06-01"
 ```
 
 ```json Response
@@ -298,22 +337,26 @@ curl --fail-with-body -sS -X DELETE \
 }
 ```
 
-Setiap penghapusan yang berhasil mengembalikan amplop konfirmasi kecil dengan `id` dan diskriminator `type`. Endpoint chat mengembalikan `claude_chat_deleted`; periksa field `type` sebelum menganggap penghapusan telah terkonfirmasi. Lihat skema respons di halaman [referensi API](https://platform.claude.com/docs/id/api/compliance/apps) setiap endpoint penghapusan untuk nilai `type` persis yang dikembalikan endpoint lainnya.
+Setiap penghapusan yang berhasil mengembalikan envelope konfirmasi kecil berisi `id` dan diskriminator `type`. Endpoint chat mengembalikan `claude_chat_deleted`. Periksa field `type` sebelum menganggap penghapusan telah terkonfirmasi. Untuk nilai `type` persis yang dikembalikan endpoint lainnya, lihat skema respons di halaman [referensi API](https://platform.claude.com/docs/id/api/compliance/apps) masing-masing endpoint penghapusan.
 
 ### Melepaskan chat sebelum menghapus proyek
 
-Proyek tidak dapat dihapus selama masih ada chat yang terlampir padanya. API mengembalikan 409 dengan isi berikut:
+Proyek tidak dapat dihapus selama masih ada chat yang terlampir padanya. API mengembalikan 409 dengan body berikut:
 
 ```json
 {
   "error": {
-    "type": "conflict_error",
+    "type": "invalid_request_error",
     "message": "The \"claude_proj_01KGp4eZNug9ri4kE35RSppq\" project cannot be deleted as it has chats attached to it. Delete or detach all chats, and try deleting the project again."
   }
 }
 ```
 
-Untuk menyelesaikannya, daftar chat proyek dengan `GET /v1/compliance/apps/chats?user_ids[]={user_id}&project_ids[]={project_id}` (filter `project_ids[]` memerlukan setidaknya satu nilai `user_ids[]`; enumerasi ID melalui [Mendaftar pengguna organisasi](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-organization-users)), hapus masing-masing dengan `DELETE /v1/compliance/apps/chats/{claude_chat_id}` (atau pindahkan keluar dari proyek melalui claude.ai), lalu coba lagi penghapusan proyek.
+Untuk mengatasinya:
+
+1. Cantumkan chat milik proyek dengan `GET /v1/compliance/apps/chats?user_ids[]={user_id}&project_ids[]={project_id}`. Filter `project_ids[]` memerlukan setidaknya satu nilai `user_ids[]`; dapatkan ID tersebut melalui [Mencantumkan pengguna organisasi](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-organization-users).
+2. Hapus setiap chat dengan `DELETE /v1/compliance/apps/chats/{claude_chat_id}`, atau pindahkan chat keluar dari proyek melalui claude.ai.
+3. Coba lagi penghapusan proyek.
 
 ## Langkah selanjutnya
 
@@ -323,10 +366,10 @@ Untuk menyelesaikannya, daftar chat proyek dengan `GET /v1/compliance/apps/chats
   </Card>
 
   <Card title="Mengambil transkrip sesi" href="https://platform.claude.com/docs/id/manage-claude/compliance-sessions">
-    Daftar sesi yang dijalankan pengguna Anda di aplikasi dan agen Claude, seperti Cowork dan Claude Code, dan ambil transkripnya.
+    Cantumkan sesi yang dijalankan pengguna Anda di aplikasi dan agen Claude, seperti Cowork dan Claude Code, lalu ambil transkripnya.
   </Card>
 
-  <Card title="Mendaftar organisasi, pengguna, peran, grup, dan pengaturan" href="https://platform.claude.com/docs/id/manage-claude/compliance-org-data">
-    Enumerasi orang dan tim yang terkait dengan chat dan proyek di halaman ini.
+  <Card title="Mencantumkan organisasi, pengguna, peran, grup, dan pengaturan" href="https://platform.claude.com/docs/id/manage-claude/compliance-org-data">
+    Data orang dan tim yang terkait dengan chat dan proyek di halaman ini.
   </Card>
 </CardGroup>

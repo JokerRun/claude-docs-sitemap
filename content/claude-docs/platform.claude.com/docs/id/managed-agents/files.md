@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/files
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 0d9abdd18173e8344bf7236ca268bd0de5bc625015a747269ca6648942e1911d
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: cc27c63302290165a1180106ec47fb3717331d55f7c322a8fa6c8cfad6adcd46
 ---
 
 ---
@@ -249,26 +249,57 @@ Sebuah `file_id` baru dibuat yang mereferensikan instance file tersebut di dalam
 Mount beberapa file dengan menambahkan entri ke array `resources`:
 
 <CodeGroup>
-  ```json cURL
-  "resources": [
-    { "type": "file", "file_id": "file_abc123", "mount_path": "/data.csv" },
-    { "type": "file", "file_id": "file_def456", "mount_path": "/config.json" },
-    { "type": "file", "file_id": "file_ghi789", "mount_path": "/src/main.py" }
-  ]
+  ```bash cURL
+  curl -fsSL https://api.anthropic.com/v1/sessions \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "content-type: application/json" \
+    -d '{
+      "agent": "agent_01J8XkN5uT3vHpLqRfWdY2",
+      "environment_id": "env_01K2mPsT7hNwR4jXuLvCqD8",
+      "resources": [
+        {
+          "type": "file",
+          "file_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+          "mount_path": "/data.csv"
+        },
+        {
+          "type": "file",
+          "file_id": "file_011CPMxVD3fHLUhvTqtsQA5w",
+          "mount_path": "/config.json"
+        },
+        {
+          "type": "file",
+          "file_id": "file_011CRb3kQ7tWx9ZsLmDe2Vh4",
+          "mount_path": "/src/main.py"
+        }
+      ]
+    }'
   ```
 
-  ```yaml CLI
-  resources:
-    - type: file
-      file_id: file_abc123
-      mount_path: /data.csv
-    - type: file
-      file_id: file_def456
-      mount_path: /config.json
-    - type: file
-      file_id: file_ghi789
-      mount_path: /src/main.py
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant beta:sessions create \
+      --agent agent_01J8XkN5uT3vHpLqRfWdY2 \
+      --environment-id env_01K2mPsT7hNwR4jXuLvCqD8 < session.yaml
+    ```
+
+    <File filename="session.yaml">
+      ```yaml
+      resources:
+        - type: file
+          file_id: file_011CNha8iCJcU1wXNR6q4V8w
+          mount_path: /data.csv
+        - type: file
+          file_id: file_011CPMxVD3fHLUhvTqtsQA5w
+          mount_path: /config.json
+        - type: file
+          file_id: file_011CRb3kQ7tWx9ZsLmDe2Vh4
+          mount_path: /src/main.py
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   resources = [

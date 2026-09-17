@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/prompt-caching
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: a158a25e8c0938171e8696dbf5a959645c08e47a86eaacc0f300abe92ad10b13
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 718e4cff0c3081f44897cb2b51c999f069e617eabb2334dfa81220f6fa1efbd5
 ---
 
 > ## Documentation Index
@@ -249,7 +249,7 @@ Restoring file checkpoints alongside the conversation has no separate effect on 
 
 When you [resume a session](/docs/en/sessions#resume-a-session), Claude Code sends the whole conversation again, and the request reads from the cache whatever part of its prefix is unchanged and still within the [cache lifetime](#cache-lifetime). The layer table at the top of this page says what changes each layer.
 
-The system prompt would change after a [Claude Code upgrade](#upgrading-claude-code) or with different [`--append-system-prompt`](/docs/en/cli-reference#system-prompt-flags) text on the resume. By default, the resumed conversation keeps the system prompt it started with, so its history still sits behind the same prompt, and the change takes effect once the conversation is compacted or in a new conversation. [System prompt flags in resumed conversations](/docs/en/cli-reference#system-prompt-flags-in-resumed-conversations) covers `--system-prompt-snapshot off` and bare mode, where this doesn't apply.
+The system prompt would change after a [Claude Code upgrade](#upgrading-claude-code) or with different [`--append-system-prompt`](/docs/en/cli-reference#system-prompt-flags) text on the resume. By default, the resumed conversation keeps the system prompt it started with, so its history still sits behind the same prompt, and the change takes effect once the conversation is compacted or in a new conversation. [System prompt flags in resumed conversations](/docs/en/cli-reference#system-prompt-flags-in-resumed-conversations) covers the cases where Claude Code rebuilds the prompt on every request instead.
 
 ## Cache lifetime
 

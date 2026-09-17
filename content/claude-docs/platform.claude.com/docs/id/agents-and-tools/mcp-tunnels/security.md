@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/security
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 7e3ebe47e753500526b752c94c8f9dc6601633e2524e879016a247a53743747d
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 8312cc6bd308df8f6ff91593b48c8c386df84b9cee5ef4528791a95c733be917
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Panduan hardening, rotasi kredensial, respons terhadap pelanggaran,
 ---
 
 <Note>
-  Tunnel MCP sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/claude-managed-agents) untuk mencobanya.
+  MCP tunnels (terowongan MCP) sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/mcp-tunnels) untuk mencobanya.
 </Note>
 
 Arsitektur tunnel menyediakan default yang kuat (konektivitas hanya-keluar, enkripsi end-to-end, dan validasi IP), tetapi keamanan keseluruhan [tunnel stack](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) Anda juga bergantung pada cara Anda mengonfigurasi dan mengoperasikannya. Halaman ini membahas hardening (penguatan keamanan) yang direkomendasikan, respons terhadap pelanggaran, dan cara menonaktifkan tunnel.

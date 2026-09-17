@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/delete
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 8ab1dd9edfe1ca4c44dc83a73edf28af9596dc9f35f1a583214fb163900fa486
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 3f72c56185ce0daa8f56f4a1f5daee9ce6831ce99be009e7b35462f4e03b968f
 ---
 
 ---
@@ -36,7 +36,7 @@ Delete a memory
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -127,6 +127,8 @@ Delete a memory
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

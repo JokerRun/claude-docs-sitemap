@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: a484936b117859b6cb09e50422a3c4d16b32fce9ed6347af8b419a7be3592302
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: fb9189c8333472772e3000333504a6be0aa95d859044ea580235069229a63a5d
 ---
 
 ---
@@ -92,7 +92,7 @@ Anda memerlukan:
 
       <MultiFileExample language="cli" label="CLI">
         ```bash CLI
-        ant beta:environments create < environment.yaml
+        ant apply environment.yaml
         ```
 
         <File filename="environment.yaml">
@@ -221,7 +221,7 @@ Pilih **always-on** untuk penyiapan paling sederhana: proses yang berjalan lama 
             Untuk environment Linux, unduh biner rilis secara langsung.
 
             ```bash
-            VERSION=1.27.0
+            VERSION=1.32.0
             OS=$(uname -s | tr '[:upper:]' '[:lower:]')
             case $(uname -m) in
               x86_64) ARCH=amd64 ;;
@@ -259,7 +259,7 @@ Pilih **always-on** untuk penyiapan paling sederhana: proses yang berjalan lama 
 
         ```text
         FROM your-base-image
-        ARG ANT_VERSION=1.27.0
+        ARG ANT_VERSION=1.32.0
         ARG TARGETARCH
         RUN ARCH=$([ "$TARGETARCH" = "arm64" ] && echo arm64 || echo amd64) && \
             curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${ANT_VERSION}/ant_${ANT_VERSION}_linux_${ARCH}.tar.gz" \

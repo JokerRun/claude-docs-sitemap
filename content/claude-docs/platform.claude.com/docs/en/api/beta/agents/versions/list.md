@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/versions/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 52febfe94bfeb787eb3f837909d2ba3573679953a69279c875dcf62ff4c2447d
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 9c06daf1983e3c8da5ee498cc2fb9ab369d2be04b06b7d8e78b4fd8043d2d352
 ---
 
 ---
@@ -40,7 +40,7 @@ List Agent Versions
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -131,6 +131,8 @@ List Agent Versions
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

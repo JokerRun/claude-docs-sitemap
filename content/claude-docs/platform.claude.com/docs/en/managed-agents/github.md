@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/github
-fetched_at: 2026-09-04T02:21:22.489135Z
-sha256: d6697bc7b40756767a2eb7088c0a81743e70f2803a83d81ab53741c1dcab18d7
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 1b7f6320315b8c4769953d4450fd521618960524df324cd4e1d7deed06194580
 ---
 
 ---
@@ -11,13 +11,13 @@ url: https://platform.claude.com/docs/en/managed-agents/github
 description: Connect your agent to GitHub repositories for cloning, reading, and creating pull requests.
 ---
 
+## Compatibility
+- Status: Beta
+- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `managed-agents-2026-04-01`
+
 You can mount a GitHub repository to your session sandbox and connect to the GitHub MCP for making pull requests.
 
 GitHub repositories are cached, so future sessions that use the same repository start faster.
-
-<Note>
-  Managed Agents API requests require the `managed-agents-2026-04-01` beta header, except memory store endpoints, which use `agent-memory-2026-07-22` instead. The SDK sets the correct beta header automatically. See [Beta headers](https://platform.claude.com/docs/en/api/beta-headers#endpoint-specific-headers).
-</Note>
 
 ## GitHub MCP and session resources
 

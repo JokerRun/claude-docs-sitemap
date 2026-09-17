@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 886920e61b9b87a38259db3d6d078547e87fd5694881f78654fdfe6bf04059eb
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 112696b8b1794f93d1a2f6a48ac9e21ffda4632b917692f2f9b857cfc1fdc916
 ---
 
 ---
@@ -63,13 +63,19 @@ Ubah permintaan ke `thinking: {type: "adaptive"}` dan arahkan kedalaman thinking
 
 ## Error 400 menyatakan `"thinking.type.disabled"` tidak didukung
 
-Permintaan gagal dengan error 400 yang pesannya berbunyi:
+Permintaan gagal dengan error 400. Pada Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5, pesannya berbunyi:
+
+```text wrap
+"thinking.type.disabled" is not supported for this model. Use "thinking.type.adaptive" and "output_config.effort" to control thinking behavior.
+```
+
+Pada Claude Mythos Preview, satu-satunya model di antara model-model ini yang menerima pemikiran diperpanjang, pesannya berbunyi:
 
 ```text wrap
 "thinking.type.disabled" is not supported for this model. Thinking defaults to adaptive mode when not specified; use "thinking.type.enabled" with "budget_tokens" for extended thinking.
 ```
 
-Ini terjadi pada model yang thinking-nya selalu aktif: Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, dan Claude Mythos Preview menolak `"disabled"`. Semua model ini kecuali Claude Mythos Preview juga menolak `"thinking.type.enabled"` yang disarankan oleh teks error.
+Hal ini terjadi karena pemikiran selalu aktif untuk semua model ini (lihat [tabel konfigurasi per model](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#rejected-configurations)).
 
 Hilangkan parameter `thinking`; model-model ini berpikir tanpa konfigurasi apa pun. Jika tujuan Anda adalah agar teks thinking tidak muncul dalam respons, gunakan `display: "omitted"` alih-alih menonaktifkan thinking; lihat [Mengontrol tampilan thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#controlling-thinking-display).
 
@@ -107,9 +113,13 @@ Permintaan ke Claude Fable 5.1 yang memutar ulang blok thinking sebelumnya gagal
 messages.{i}.content.{j}: Invalid `signature` in `thinking` block. The block is bound to a different conversation. Remove the block, or set `thinking.block_binding.prefix_mismatch_behavior` to "drop_block".
 ```
 
-Jika permintaan tidak mengirim header beta `thinking-binding-controls-2026-08-01`, pesan tersebut menambahkan ``That setting requires the `thinking-binding-controls-2026-08-01` value in the `anthropic-beta` header.`` Pesan tersebut juga dapat diakhiri dengan kalimat yang menyebutkan pesan pertama yang berubah. Jika pesan tidak memiliki klausa alasan sama sekali, konten blok tersebut telah dimodifikasi. Lihat [Error 400 menyatakan blok thinking tidak dapat dimodifikasi](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-blocks-modified).
+Jika permintaan tidak mengirim header beta `thinking-binding-controls-2026-08-01`, pesan tersebut akan ditambahkan dengan ``That setting requires the `thinking-binding-controls-2026-08-01` value in the `anthropic-beta` header.``
 
-Pada Claude Fable 5.1, API menerima blok thinking yang diputar ulang [hanya selama prompt `system`, `tools`, dan pesan yang mendahuluinya tidak berubah](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation). Error ini berarti sesuatu yang lebih awal dalam percakapan berubah di antara permintaan: giliran yang diedit, diurutkan ulang, atau dihapus, pengingat per giliran yang disisipkan lalu dihapus, prompt `system` atau array `tools` yang dibangun ulang, atau compaction sisi klien yang mempertahankan giliran terbaru dan thinking-nya secara verbatim. Pemeriksaan ini diberlakukan untuk akun baru yang dibuat pada atau setelah 31 Agustus 2026, dan untuk setiap permintaan yang menetapkan `thinking.block_binding.prefix_mismatch_behavior`. [Compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) sisi server dan [context editing](https://platform.claude.com/docs/id/build-with-claude/context-editing) tidak pernah memicunya.
+Pesan tersebut biasanya diakhiri dengan kalimat yang menyebutkan apa yang berubah. Perubahan itu bisa berupa prompt `system`, daftar `tools`, pesan atau blok pertama yang berbeda, konten yang hilang atau baru, atau blok thinking sebelumnya yang hilang atau tidak berurutan. Kalimat tersebut ditujukan untuk manusia dan log. Susunan katanya dapat berubah, jadi jangan mencocokkannya di dalam kode.
+
+Jika pesan berhenti setelah ``Invalid `signature` in `thinking` block``, berarti signature itu sendiri tidak lolos verifikasi. Signature tersebut terpotong, diubah, atau dikirim kembali dalam keadaan kosong, dan `prefix_mismatch_behavior` tidak berlaku. Teks pemikiran yang diedit menghasilkan error yang berbeda. Lihat [Error 400 menyatakan blok thinking tidak dapat dimodifikasi](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-blocks-modified).
+
+Pada Claude Fable 5.1, API hanya menerima blok thinking yang diputar ulang selama prompt `system`, `tools`, dan pesan-pesan yang mendahuluinya tidak berubah. Lihat [Menjaga prefiks tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check). Error ini berarti ada sesuatu di bagian awal percakapan yang berubah di antara permintaan. Contohnya adalah giliran yang diedit, diurutkan ulang, atau dihapus; pengingat per giliran yang disisipkan lalu kemudian dihapus; prompt `system` atau array `tools` yang disusun ulang; atau compaction sisi klien yang mempertahankan giliran terbaru beserta pemikirannya apa adanya. Pemeriksaan ini diberlakukan untuk akun baru yang dibuat pada atau setelah 31 Agustus 2026, serta untuk setiap permintaan yang menetapkan `thinking.block_binding.prefix_mismatch_behavior`. [Compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) dan [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) sisi server tidak pernah memicunya.
 
 Untuk memperbaikinya, jaga agar riwayat bersifat append-only: kirim kembali giliran sebelumnya persis seperti yang dikirim dan diterima, tambahkan instruksi dengan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) alih-alih mengedit `system` atau `tools`, dan biarkan [context editing](https://platform.claude.com/docs/id/build-with-claude/context-editing) atau [compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) sisi server melakukan pemangkasan apa pun. Mencoba ulang body permintaan yang sama tidak menghilangkan error. Untuk melanjutkan permintaan ini tanpa penalaran yang telah diinvalidasi, kirim header beta `thinking-binding-controls-2026-08-01` dan tetapkan `thinking.block_binding.prefix_mismatch_behavior` ke `"drop_block"`. Sebagai alternatif, hapus setiap blok `thinking` dan `redacted_thinking` dari riwayat (minimal blok yang disebutkan dan setiap blok setelahnya, dalam giliran tersebut dan semua giliran berikutnya), biarkan blok lain di setiap giliran tetap di tempatnya, dan coba ulang sekali.
 
@@ -122,6 +132,8 @@ Respons berisi blok `thinking`, tetapi field `thinking`-nya adalah string kosong
 Ini terjadi karena `display` secara default bernilai `"omitted"` pada model yang lebih baru, yang mengembalikan blok thinking tanpa teksnya.
 
 Tetapkan `display: "summarized"` dalam konfigurasi thinking Anda untuk menerima teks thinking yang diringkas. Lihat [Mengontrol tampilan thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#controlling-thinking-display) untuk default per model. Jika Anda hanya menginginkan baris status singkat yang ditulis beberapa model di antara pemanggilan alat, dan bukan penalarannya, tetapkan `display: "updates"` (beta) sebagai gantinya. Lihat [Pembaruan progres di antara pemanggilan alat](https://platform.claude.com/docs/id/build-with-claude/thinking#progress-updates).
+
+Blok yang field `thinking`-nya kosong tetap lengkap, karena `signature` menyimpan penalarannya. Kirim kembali blok tersebut bersama gilirannya seperti blok lainnya. Lihat [Kirim kembali giliran asisten persis seperti yang dikembalikan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#append-assistant-turns-exactly-as-returned).
 
 ## Tidak ada blok thinking yang muncul pada beberapa giliran
 

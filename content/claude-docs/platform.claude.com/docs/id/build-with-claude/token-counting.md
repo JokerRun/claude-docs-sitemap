@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 0696f7421fd74d8fa203955138b7e803ec8bc9e2f9f6d32dee79a3539576d4b1
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 0689534aad1b3cfd9f1a73fa62d61a8727aa251f31a7d372cbc94fde95b1def6
 ---
 
 ---
@@ -26,6 +26,8 @@ description: Hitung token dalam sebuah pesan sebelum Anda mengirimkannya ke Clau
 ## Cara menghitung token pesan
 
 Endpoint [penghitungan token](https://platform.claude.com/docs/id/api/messages-count-tokens) menerima daftar input terstruktur yang sama seperti untuk membuat pesan, termasuk dukungan untuk prompt sistem, [alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), [gambar](https://platform.claude.com/docs/id/build-with-claude/vision), dan [PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support). Respons berisi jumlah total token input.
+
+Endpoint ini mengembalikan `invalid_request_error` untuk beberapa input yang diterima oleh Messages API: [alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) seperti pencarian web, pengambilan web, eksekusi kode, dan pencarian alat (setiap alat server kecuali [alat advisor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool)), [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector), serta blok `image` atau `document` dengan sumber `url` atau `file`. Kirim gambar dan PDF sebagai base64 untuk menghitungnya. Untuk permintaan yang menggunakan alat server atau server MCP, respons Messages API melaporkan token yang digunakan dalam objek `usage`-nya.
 
 <Note>
   Jumlah token adalah sebuah **estimasi**. Dalam beberapa kasus, jumlah token input aktual yang digunakan saat membuat pesan mungkin berbeda sedikit.
@@ -191,7 +193,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
 ### Menghitung token dalam pesan dengan alat
 
 <Note>
-  Jumlah token [alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) hanya berlaku untuk panggilan sampling pertama.
+  Penghitungan token mendukung alat klien dan [alat advisor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool). Permintaan yang menyertakan [alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) lainnya akan mengembalikan error. Untuk alat advisor, penghitungan hanya mencakup panggilan sampling pertama dari executor.
 </Note>
 
 <CodeGroup>
@@ -784,10 +786,10 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
 ### Menghitung token dalam pesan dengan thinking
 
 <Note>
-  Lihat [Thinking dan jendela konteks](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-the-context-window) untuk detail lebih lanjut.
+  Lihat [Pemikiran dan jendela konteks](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-the-context-window) untuk detail lebih lanjut.
 
-  * Blok thinking dari giliran asisten **sebelumnya** diabaikan dan **tidak** dihitung terhadap token input Anda
-  * Thinking pada giliran asisten **saat ini** **dihitung** terhadap token input Anda
+  * Blok thinking dari giliran asisten **sebelumnya** dihitung sebagai token input Anda pada model yang [menyimpan semua giliran sebelumnya](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-block-preservation-by-model); pada model yang hanya menyimpan giliran terakhir, API menghapusnya dan blok tersebut **tidak** dihitung
+  * Thinking pada giliran asisten **saat ini** **tetap** dihitung sebagai token input Anda
 </Note>
 
 <CodeGroup>
@@ -797,10 +799,9 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
     -H "content-type: application/json" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-sonnet-4-6",
+      "model": "claude-opus-5",
       "thinking": {
-        "type": "enabled",
-        "budget_tokens": 16000
+        "type": "adaptive"
       },
       "messages": [
         {
@@ -831,10 +832,9 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
 
   ```bash CLI
   ant messages count-tokens <<'YAML'
-  model: claude-sonnet-4-6
+  model: claude-opus-5
   thinking:
-    type: enabled
-    budget_tokens: 16000
+    type: adaptive
   messages:
     - role: user
       content: Are there an infinite number of prime numbers such that n mod 4 == 3?
@@ -856,8 +856,8 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
   client = anthropic.Anthropic()
 
   response = client.messages.count_tokens(
-      model="claude-sonnet-4-6",
-      thinking={"type": "enabled", "budget_tokens": 16000},
+      model="claude-opus-5",
+      thinking={"type": "adaptive"},
       messages=[
           {
               "role": "user",
@@ -888,11 +888,8 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
   const client = new Anthropic();
 
   const response = await client.messages.countTokens({
-    model: "claude-sonnet-4-6",
-    thinking: {
-      type: "enabled",
-      budget_tokens: 16000
-    },
+    model: "claude-opus-5",
+    thinking: { type: "adaptive" },
     messages: [
       {
         role: "user",
@@ -935,8 +932,8 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
 
   var parameters = new MessageCountTokensParams
   {
-      Model = Model.ClaudeSonnet4_6,
-      Thinking = new ThinkingConfigEnabled(budgetTokens: 16000),
+      Model = Model.ClaudeOpus5,
+      Thinking = new ThinkingConfigAdaptive(),
       Messages =
       [
           new()
@@ -982,8 +979,10 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
   )
 
   response, err := client.Messages.CountTokens(context.TODO(), anthropic.MessageCountTokensParams{
-  	Model:    anthropic.ModelClaudeSonnet4_6,
-  	Thinking: anthropic.ThinkingConfigParamOfEnabled(16000),
+  	Model: anthropic.ModelClaudeOpus5,
+  	Thinking: anthropic.ThinkingConfigParamUnion{
+  		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
+  	},
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Are there an infinite number of prime numbers such that n mod 4 == 3?")),
   		anthropic.NewAssistantMessage(thinkingBlock, textBlock),
@@ -1002,6 +1001,7 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
   import com.anthropic.models.messages.MessageTokensCount;
   // ...
   import com.anthropic.models.messages.ThinkingBlockParam;
+  import com.anthropic.models.messages.ThinkingConfigAdaptive;
   // ...
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
@@ -1024,8 +1024,8 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
       );
 
       MessageCountTokensParams params = MessageCountTokensParams.builder()
-        .model(Model.CLAUDE_SONNET_4_6)
-        .enabledThinking(16000)
+        .model(Model.CLAUDE_OPUS_5)
+        .thinking(ThinkingConfigAdaptive.builder().build())
         .addUserMessage("Are there an infinite number of prime numbers such that n mod 4 == 3?")
         .addAssistantMessageOfBlockParams(assistantBlocks)
         .addUserMessage("Can you write a formal proof?")
@@ -1063,11 +1063,8 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
               'content' => 'Can you write a formal proof?'
           ]
       ],
-      model: 'claude-sonnet-4-6',
-      thinking: [
-          'type' => 'enabled',
-          'budget_tokens' => 16000
-      ],
+      model: 'claude-opus-5',
+      thinking: ['type' => 'adaptive'],
   );
 
   echo json_encode($response);
@@ -1077,10 +1074,9 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
   client = Anthropic::Client.new
 
   response = client.messages.count_tokens(
-    model: "claude-sonnet-4-6",
+    model: "claude-opus-5",
     thinking: {
-      type: "enabled",
-      budget_tokens: 16000
+      type: "adaptive"
     },
     messages: [
       {
@@ -1119,7 +1115,7 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
 ### Menghitung token dalam pesan dengan PDF
 
 <Note>
-  Penghitungan token mendukung PDF dengan [batasan dukungan PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support#pdf-support-limitations) yang sama seperti Messages API.
+  Penghitungan token mendukung PDF yang dienkode base64 dengan [persyaratan PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support#check-pdf-requirements) yang sama seperti Messages API. Endpoint ini tidak mendukung sumber dokumen `url` atau `file`.
 </Note>
 
 <CodeGroup>

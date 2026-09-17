@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-compose
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: a5c28f8a3f131d655fcc7780c0a034200696d149817f9feb4f5d42f837660738
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 4acf6eb0497ec8d189b93ab0d2d566a354b31bdfb2ab29ee252e5325739b1baf
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Instal stack tunnel MCP pada VM menggunakan Docker Compose.
 ---
 
 <Note>
-  Tunnel MCP sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/claude-managed-agents) untuk mencobanya.
+  MCP tunnels (terowongan MCP) sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/mcp-tunnels) untuk mencobanya.
 </Note>
 
 Panduan ini men-deploy [stack tunnel](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) sebagai container yang diperkeras (hardened) pada satu host. Konfigurasi yang sama dapat direplikasi ke beberapa host untuk ketersediaan.

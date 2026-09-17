@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions/create
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 7157815f842c17a22670791d56bc1b021225487a5eebdc8462a15eb67856b281
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: a6f63a2bc17174d1fff9f73bb2effb9dda27a64e20f803d404dcfd0054a7b034
 ---
 
 ---
@@ -28,7 +28,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -119,6 +119,8 @@ Future models and features will not be compatible with Text Completions. See our
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

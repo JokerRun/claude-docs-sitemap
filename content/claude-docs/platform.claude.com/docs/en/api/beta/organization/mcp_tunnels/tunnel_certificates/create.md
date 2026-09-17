@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/create
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: f7a4e60708ade94b5641d661872d43986dde068d5874e455ac63ddc6ead7554c
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: a46b3349fbbeb85a8c9a4336879bbdea1da460cc40c4cd73481db250998728ec
 ---
 
 ---
@@ -39,7 +39,7 @@ holds at most two non-archived certificates.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -130,6 +130,8 @@ holds at most two non-archived certificates.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 ## Body parameters
 

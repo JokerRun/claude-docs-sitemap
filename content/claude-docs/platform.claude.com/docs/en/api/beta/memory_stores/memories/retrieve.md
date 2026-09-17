@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/retrieve
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 37708aa2a84e95bd2be6b568297e8f25d75cea1b3c9e51f6f65c0b5cc85b4c22
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 21c8130ad9dcfe31536d753591d6bbcca238859f4f68e1867c4a2d9e5b9d5a0d
 ---
 
 ---
@@ -40,7 +40,7 @@ Retrieve a memory
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -131,6 +131,8 @@ Retrieve a memory
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

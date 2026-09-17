@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 8b4fe3d2b744ede7e4ffac938b8a8500b09d2040070c8d0cd2e7f5c27323c513
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 0066b8e7abda48cb38992ba23c76641a2f0d9fdb1e59b32f133bc4061e5e74c8
 ---
 
 ---
@@ -50,7 +50,7 @@ rules with `applies_to_all_workspaces` or a legacy single
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -141,6 +141,8 @@ rules with `applies_to_all_workspaces` or a legacy single
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/create
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: 5a684dee287f164b405004eccf9ba2eea48ae9def51b9b77b1e6394683a3303e
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 9a89bc96f821a13056e955df249587702ba921e293c1631726675ad7aa3aa02c
 ---
 
 ---
@@ -24,7 +24,7 @@ Create a Dream
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -115,6 +115,8 @@ Create a Dream
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

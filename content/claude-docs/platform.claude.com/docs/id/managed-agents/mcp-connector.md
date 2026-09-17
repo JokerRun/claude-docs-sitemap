@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/mcp-connector
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: f26740b16af3021795156e4958a7b5f048ea4170117c1e50a8b459ded12981bf
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: d185e2d930db0ea5e92bbdb8a873e8c2284dbd39f112c70a558022c2cf758671
 ---
 
 ---
@@ -60,14 +60,14 @@ Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang sesua
 
   <MultiFileExample language="cli" label="CLI">
     ```bash CLI
-    AGENT_ID=$(ant beta:agents create --transform id --raw-output < github-assistant.agent.yaml)
+    ant apply github-assistant.md
     ```
 
-    <File filename="github-assistant.agent.yaml">
-      ```yaml
+    <File filename="github-assistant.md">
+      ```markdown
+      ---
       name: GitHub Assistant
-      model:
-        id: claude-opus-5
+      model: claude-opus-5
       mcp_servers:
         - type: url
           name: github
@@ -76,6 +76,7 @@ Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang sesua
         - type: agent_toolset_20260401
         - type: mcp_toolset
           mcp_server_name: github
+      ---
       ```
     </File>
   </MultiFileExample>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/spend-limits-api
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 5ca6fe118600231f83ceded01b42a18ffc1cd4c630f43740fedfebfbc5c808ab
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: c13a83177fde7067db1dae8220a664632d6707a685140ab84b882f9e74745b84
 ---
 
 ---
@@ -18,7 +18,7 @@ Untuk *pelaporan* penggunaan dan biaya per pengguna dan per rentang waktu, lihat
 <Check>
   **Diperlukan kunci Admin API dengan cakupan**
 
-  Endpoint ini memerlukan kunci Admin API dengan cakupan `read:spend_limits` (untuk endpoint `GET`) atau cakupan `write:spend_limits` (untuk endpoint `POST` dan `DELETE`). Lihat [Membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys#create-a-key-for-a-claude-enterprise-organization) untuk mengetahui di mana primary owner Anda membuatnya dan cakupan mana yang harus dipilih. Sertakan kunci tersebut dalam header `x-api-key` pada setiap permintaan.
+  Endpoint ini memerlukan kunci Admin API dengan "scope" (cakupan) `read:spend_limits` (untuk endpoint `GET`) atau cakupan `write:spend_limits` (untuk endpoint `POST` dan `DELETE`). Lihat [Membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys#create-a-key-for-a-claude-enterprise-organization) untuk mengetahui di mana pemilik utama Anda membuatnya dan cakupan mana yang harus dipilih. Sertakan kunci tersebut di header `x-api-key` pada setiap permintaan, bersama dengan header [`anthropic-version`](https://platform.claude.com/docs/id/api/versioning).
 </Check>
 
 <Note>
@@ -47,7 +47,8 @@ Daftarkan batas pengeluaran bulanan efektif dan pengeluaran periode berjalan set
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/spend_limits/effective?limit=20" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
+  --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  --header "anthropic-version: 2023-06-01"
 ```
 
 ## Konsep utama
@@ -88,6 +89,10 @@ Menyetujui dengan `POST /v1/organizations/spend_limit_increase_requests/{id}/app
 
 Secara default, Anthropic mengirim email kepada anggota ketika permintaan mereka disetujui atau ditolak. Sertakan `suppress_notification: true` pada approve atau deny untuk menekan email tersebut (misalnya, ketika sistem Anda sendiri yang memberi tahu anggota).
 
+## Pembuatan versi
+
+Kirim header `anthropic-version` pada setiap permintaan; lihat [Versi API](https://platform.claude.com/docs/id/api/versioning) untuk versi yang tersedia.
+
 ## Pembatasan laju
 
 Kedelapan endpoint berbagi satu "rate limit" (batas laju) per organisasi sebesar **60 permintaan per menit**. Permintaan yang melebihi batas mengembalikan **429 Too Many Requests**.
@@ -120,7 +125,8 @@ Untuk detail parameter lengkap dan skema respons, lihat [List effective spend li
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/spend_limits/effective?limit=20" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
+  --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  --header "anthropic-version: 2023-06-01"
 ```
 
 ```json
@@ -155,7 +161,8 @@ Untuk detail parameter lengkap dan skema respons, lihat [Retrieve a spend limit]
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/spend_limits/spl_01AbCdEfGhIjKlMnOpQrSt" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
+  --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  --header "anthropic-version: 2023-06-01"
 ```
 
 ### Menetapkan override per pengguna
@@ -168,6 +175,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [Create a spend limit](h
 curl --request POST "https://api.anthropic.com/v1/organizations/spend_limits" \
   --header "content-type: application/json" \
   --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  --header "anthropic-version: 2023-06-01" \
   --data '{"scope": {"type": "user", "user_id": "user_01AbCdEfGh"}, "amount": "75000"}'
 ```
 
@@ -192,7 +200,8 @@ Untuk detail parameter lengkap dan skema respons, lihat [Delete a spend limit](h
 
 ```bash cURL
 curl --request DELETE "https://api.anthropic.com/v1/organizations/spend_limits/spl_01RsTuVwXyZaBcDeFgHiJk" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
+  --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  --header "anthropic-version: 2023-06-01"
 ```
 
 ## Spend limit increase requests
@@ -205,7 +214,8 @@ Untuk detail parameter lengkap dan skema respons, lihat [List spend limit increa
 
 ```bash cURL
 curl --globoff "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests?status[]=pending&limit=50" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
+  --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  --header "anthropic-version: 2023-06-01"
 ```
 
 Setiap permintaan pending membawa `spend_summary` langsung yang menunjukkan batas pengeluaran efektif pemohon saat ini dan pengeluaran periode berjalan, cukup untuk memutuskan tanpa pencarian terpisah.
@@ -218,7 +228,8 @@ Untuk detail parameter lengkap dan skema respons, lihat [Retrieve a spend limit 
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/slir_01AbCdEfGhIjKlMnOpQrSt" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
+  --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  --header "anthropic-version: 2023-06-01"
 ```
 
 ### Menyetujui permintaan kenaikan
@@ -231,6 +242,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [Approve a spend limit i
 curl --request POST "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/slir_01AbCdEfGhIjKlMnOpQrSt/approve" \
   --header "content-type: application/json" \
   --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  --header "anthropic-version: 2023-06-01" \
   --data '{"amount": "75000", "suppress_notification": true}'
 ```
 
@@ -244,6 +256,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [Deny a spend limit incr
 curl --request POST "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/slir_01AbCdEfGhIjKlMnOpQrSt/deny" \
   --header "content-type: application/json" \
   --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  --header "anthropic-version: 2023-06-01" \
   --data '{"suppress_notification": true}'
 ```
 
@@ -261,7 +274,8 @@ Jalankan job terjadwal yang mengambil permintaan pending, menerapkan kebijakan p
 
    ```bash cURL
    curl --globoff "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests?status[]=pending&limit=100" \
-     --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
+     --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+     --header "anthropic-version: 2023-06-01"
    ```
 
    Setiap permintaan membawa `actor.user_id` pemohon dan `spend_summary` langsung dengan `amount` efektif mereka saat ini dan `period_to_date_spend`, cukup untuk memutuskan tanpa pencarian terpisah.
@@ -274,6 +288,7 @@ Jalankan job terjadwal yang mengambil permintaan pending, menerapkan kebijakan p
    curl --request POST "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/{id}/approve" \
      --header "content-type: application/json" \
      --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+     --header "anthropic-version: 2023-06-01" \
      --data '{"amount": "75000", "suppress_notification": true}'
    ```
 
@@ -287,7 +302,8 @@ Temukan anggota yang mendekati batas mereka sehingga Anda dapat menaikkannya seb
 
    ```bash cURL
    curl "https://api.anthropic.com/v1/organizations/analytics/user_cost_report?starting_at=2026-06-01T00:00:00Z&limit=1000" \
-     --header "x-api-key: $ANALYTICS_API_KEY"
+     --header "x-api-key: $ANALYTICS_API_KEY" \
+     --header "anthropic-version: 2023-06-01"
    ```
 
    Setiap baris membawa `actor.user_id`, `actor.email`, dan `amount` (pengeluaran anggota dalam sen). Telusuri halaman melalui `next_page` untuk mencakup seluruh organisasi.
@@ -296,7 +312,8 @@ Temukan anggota yang mendekati batas mereka sehingga Anda dapat menaikkannya seb
 
    ```bash cURL
    curl --globoff "https://api.anthropic.com/v1/organizations/spend_limits/effective?user_ids[]=user_01Ab...&user_ids[]=user_01Cd...&limit=100" \
-     --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
+     --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+     --header "anthropic-version: 2023-06-01"
    ```
 
    Setiap baris mengembalikan batas sebagai `amount` (`null` = tanpa batas, `"0"` = hanya penggunaan termasuk) bersama `period_to_date_spend`.
@@ -313,7 +330,8 @@ Munculkan anggota yang pengeluarannya melonjak dari minggu ke minggu.
 
    ```bash cURL
    curl "https://api.anthropic.com/v1/organizations/analytics/user_cost_report?starting_at=2026-06-09T00:00:00Z&ending_at=2026-06-23T00:00:00Z&bucket_width=1d&limit=1000" \
-     --header "x-api-key: $ANALYTICS_API_KEY"
+     --header "x-api-key: $ANALYTICS_API_KEY" \
+     --header "anthropic-version: 2023-06-01"
    ```
 
    Dengan `bucket_width` ditetapkan, setiap anggota mencakup satu baris per hari dengan penggunaan; telusuri halaman melalui `next_page` untuk mengumpulkan seri lengkap setiap anggota.
@@ -330,7 +348,8 @@ Beri ruang bagi penanggap insiden untuk bekerja selama insiden terbuka: naikkan 
 
    ```bash cURL
    curl --globoff "https://api.anthropic.com/v1/organizations/spend_limits/effective?user_ids[]=user_01AbCdEfGh&period[]=monthly" \
-     --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
+     --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+     --header "anthropic-version: 2023-06-01"
    ```
 
 2. Naikkan batas:
@@ -339,6 +358,7 @@ Beri ruang bagi penanggap insiden untuk bekerja selama insiden terbuka: naikkan 
    curl --request POST "https://api.anthropic.com/v1/organizations/spend_limits" \
      --header "content-type: application/json" \
      --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+     --header "anthropic-version: 2023-06-01" \
      --data '{"scope": {"type": "user", "user_id": "user_01AbCdEfGh"}, "amount": "500000", "period": "monthly"}'
    ```
 
@@ -348,6 +368,7 @@ Beri ruang bagi penanggap insiden untuk bekerja selama insiden terbuka: naikkan 
    curl --request POST "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYzAbCdEfGhIjKlMn/members" \
      --header "content-type: application/json" \
      --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+     --header "anthropic-version: 2023-06-01" \
      --data '{"user_id": "user_01AbCdEfGh"}'
    ```
 

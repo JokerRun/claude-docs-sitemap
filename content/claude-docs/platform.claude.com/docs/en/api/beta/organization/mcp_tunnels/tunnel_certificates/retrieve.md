@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/retrieve
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: d3c9c375449034341853aac874c356b6b524f68609d028fb4156dba4e4efa9bb
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: d1f009d304afe403b2767a69046d79c357342fee35d77257f9af05e7de24d882
 ---
 
 ---
@@ -38,7 +38,7 @@ Retrieve a single certificate registered on a tunnel by ID.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -129,6 +129,8 @@ Retrieve a single certificate registered on a tunnel by ID.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 ## Returns
 

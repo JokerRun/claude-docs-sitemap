@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 6b9512f3f6c449ef07bf48bd313ffdc56668cf14737b094e9765e1c8c79b84ca
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: e0111fef8660505377af8e0d98c3cb6848a866ccc8f912290dc5172a094f0b7b
 ---
 
 ---
@@ -77,7 +77,7 @@ Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk mendaft
   ```
 
   ```go Go
-  // Daftar Skill yang dikelola Anthropic
+  // List Anthropic-managed Skills
   skills, err := client.Skills.List(ctx, anthropic.SkillListParams{
   	Source: anthropic.String("anthropic"),
   })
@@ -247,7 +247,7 @@ Gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbarukan. Ten
   ```
 
   ```go Go
-  // Buat pesan dengan Skill PowerPoint
+  // Create a message with the PowerPoint Skill
   response, err := client.Messages.New(ctx, anthropic.MessageNewParams{
   	Model:     anthropic.ModelClaudeOpus5,
   	MaxTokens: 16000,
@@ -488,9 +488,9 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. `r
   ```
 
   ```go Go
-  // Ekstrak ID file. Alat eksekusi kode menjalankan kode Skill melalui
-  // sub-alat Bash-nya, dan file yang dihasilkan muncul sebagai bash_code_execution_output
-  // di dalam blok bash_code_execution_tool_result.
+  // Extract the file ID. The code execution tool runs the Skill's code through
+  // its Bash sub-tool, and generated files appear as bash_code_execution_output
+  // items inside the bash_code_execution_tool_result block.
   var fileID string
   for _, block := range response.Content {
   	switch result := block.AsAny().(type) {
@@ -504,9 +504,9 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. `r
   }
 
   if fileID != "" {
-  	// Unduh file dan simpan
+  	// Download the file and save it
   	outputPath := filepath.Join(os.TempDir(), "renewable_energy.pptx")
-  	fileContent, err := client.Files.Download(ctx, fileID)
+  	fileContent, err := client.Files.Download(ctx, fileID, anthropic.FileDownloadParams{})
   	if err != nil {
   		panic(err)
   	}

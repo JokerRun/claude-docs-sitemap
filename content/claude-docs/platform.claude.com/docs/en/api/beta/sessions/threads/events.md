@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/events
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: bb3c3dc20e0b5c73731d86abf3b4431b0a792236246cf27734b4f15a46c5ad08
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 6178ea39d63fb3906043dd8deefe4fdefe4ded7f40f7e13e7167bb8331ebc9d6
 ---
 
 ---
@@ -44,7 +44,7 @@ List Session Thread Events
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -135,6 +135,8 @@ List Session Thread Events
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -2434,7 +2436,7 @@ Stream Session Thread Events
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -2525,6 +2527,8 @@ Stream Session Thread Events
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

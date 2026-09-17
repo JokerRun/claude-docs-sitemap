@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 035c5ac328b7d97ea9d2236453ded8b37c8abc78b9847e3e93682ad316e19329
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 39cbbea198953689369d5690c2d8a6f0f7910e777395ad22073695fdd699ffa1
 ---
 
 ---
@@ -312,14 +312,14 @@ Klien membaca `AWS_REGION` dari lingkungan jika `aws_region`/`awsRegion` tidak d
 
   <Tab title="Java">
     ```kotlin Gradle
-    implementation("com.anthropic:anthropic-java-aws:2.58.0")
+    implementation("com.anthropic:anthropic-java-aws:2.60.0")
     ```
 
     ```xml Maven
     <dependency>
       <groupId>com.anthropic</groupId>
       <artifactId>anthropic-java-aws</artifactId>
-      <version>2.58.0</version>
+      <version>2.60.0</version>
     </dependency>
     ```
   </Tab>

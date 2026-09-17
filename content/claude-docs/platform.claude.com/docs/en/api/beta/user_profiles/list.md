@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/list
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 38db5aa65fe022dd8c6911ece7a0c9b13a28fb5f1b913987743c1fc2d352aa2f
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 65854ca58367089c7f62b70de2b41366c229be4506e30393a540b5b3ffe45ced
 ---
 
 ---
@@ -52,7 +52,7 @@ List User Profiles
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -143,6 +143,8 @@ List User Profiles
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: eea7855d8fdb5dc12f0f8fc459515fb5dfccffad0596063c47fff76680692cb2
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 277d871fea1931c456765e0b434ad9bf6c8dc277ba5af23d8830fb353db22b47
 ---
 
 ---
 title: Alat web fetch
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool
-description: Ambil dan baca konten dari URL tertentu untuk memperkaya konteks Claude dengan konten web langsung.
+description: Ambil dan baca konten dari URL tertentu untuk memperkaya konteks Claude dengan konten web terkini.
 ---
 
 <Note>
@@ -17,71 +17,79 @@ description: Ambil dan baca konten dari URL tertentu untuk memperkaya konteks Cl
 
 Alat web fetch memungkinkan Claude mengambil konten lengkap dari halaman web dan dokumen PDF yang ditentukan.
 
-Versi alat web fetch terbaru (`web_fetch_20260318`) mendukung **dynamic filtering** (pemfilteran dinamis): Claude dapat menulis dan mengeksekusi kode untuk memfilter konten yang diambil sebelum mencapai "context window" (jendela konteks), hanya menyimpan informasi yang relevan dan membuang sisanya. Ini mengurangi konsumsi token sambil mempertahankan kualitas respons. Pemfilteran dinamis tersedia dengan Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, dan Claude Sonnet 4.6. `web_fetch_20260318` juga menambahkan kontrol [response inclusion](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#response-inclusion) untuk alur kerja agentik. Versi sebelumnya (`web_fetch_20260309` untuk pemfilteran dinamis dan [cache bypass](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#cache-bypass), `web_fetch_20260209` hanya untuk pemfilteran dinamis, `web_fetch_20250910` untuk fetch dasar) tetap tersedia.
+Versi alat web fetch terbaru (`web_fetch_20260318`) mendukung **dynamic filtering** (pemfilteran dinamis). Dengan fitur ini, Claude dapat menulis dan mengeksekusi kode untuk memfilter konten yang diambil sebelum konten tersebut masuk ke "context window" (jendela konteks). Hanya informasi yang relevan yang disimpan, sedangkan sisanya dibuang. Cara ini mengurangi konsumsi token tanpa menurunkan kualitas respons. Pemfilteran dinamis tersedia untuk Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, dan Claude Sonnet 4.6. `web_fetch_20260318` juga menambahkan kontrol [response inclusion (penyertaan respons)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#response-inclusion) untuk alur kerja agentik. Versi-versi sebelumnya tetap tersedia: `web_fetch_20260309` untuk pemfilteran dinamis dan [cache bypass (pelewatan cache)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#cache-bypass), `web_fetch_20260209` khusus untuk pemfilteran dinamis, dan `web_fetch_20250910` untuk fetch dasar.
 
-Web fetch (dengan dan tanpa pemfilteran dinamis) tersedia di Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Di Microsoft Foundry, deployment yang [di-hosting di Azure](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure) hanya mendukung alat web fetch dasar (`web_fetch_20250910`, tanpa pemfilteran dinamis). Deployment yang di-hosting di Anthropic mendukung semua versi. Web fetch saat ini tidak tersedia di Amazon Bedrock atau Google Cloud.
+Web fetch (dengan maupun tanpa pemfilteran dinamis) tersedia di Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Di Microsoft Foundry, deployment yang [di-hosting di Azure](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure) hanya mendukung alat web fetch dasar (`web_fetch_20250910`, tanpa pemfilteran dinamis). Deployment yang di-hosting di Anthropic mendukung semua versi. Web fetch saat ini belum tersedia di Amazon Bedrock maupun Google Cloud.
 
 <Note>
-  Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), web fetch tersedia di Claude API dan Microsoft Foundry. Saat ini tidak tersedia untuk Mythos Preview di Amazon Bedrock atau Google Cloud.
+  Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), web fetch tersedia di Claude API dan Microsoft Foundry. Fitur ini saat ini belum tersedia untuk Mythos Preview di Amazon Bedrock maupun Google Cloud.
 </Note>
 
 <Note>
-  Gunakan [formulir umpan balik](https://forms.gle/NhWcgmkcvPCMmPE86) untuk memberikan umpan balik tentang kualitas respons model, API itu sendiri, atau kualitas dokumentasi.
+  Gunakan [formulir umpan balik](https://forms.gle/NhWcgmkcvPCMmPE86) untuk memberikan masukan tentang kualitas respons model, API itu sendiri, atau kualitas dokumentasi.
 </Note>
 
-Untuk kelayakan Zero Data Retention dan solusi `allowed_callers`, lihat [Alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#zdr-and-allowed-callers).
+Untuk kelayakan Zero Data Retention dan solusi alternatif `allowed_callers`, lihat [Alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#zdr-and-allowed-callers).
 
 <Warning>
-  Mengaktifkan alat web fetch di lingkungan tempat Claude memproses input yang tidak tepercaya bersama data sensitif menimbulkan risiko eksfiltrasi data. Gunakan alat ini hanya di lingkungan tepercaya atau saat menangani data yang tidak sensitif.
+  Mengaktifkan alat web fetch di lingkungan tempat Claude memproses input yang tidak tepercaya bersama data sensitif menimbulkan risiko "data exfiltration" (eksfiltrasi data). Gunakan alat ini hanya di lingkungan tepercaya atau saat menangani data yang tidak sensitif.
 
-  Untuk meminimalkan risiko eksfiltrasi, Claude tidak diizinkan membuat URL secara dinamis. Claude hanya dapat mengambil URL yang telah diberikan secara eksplisit oleh pengguna atau yang berasal dari hasil web search atau web fetch sebelumnya. Namun, masih ada risiko residual yang harus Anda pertimbangkan dengan cermat saat menggunakan alat ini.
+  Untuk meminimalkan risiko eksfiltrasi, Claude tidak dapat mengambil URL yang hanya muncul dalam output-nya sendiri. Claude hanya dapat mengambil URL yang sebelumnya sudah muncul dalam percakapan, yaitu:
 
-  Jika eksfiltrasi data menjadi kekhawatiran, pertimbangkan:
+  * URL dalam pesan pengguna
+  * URL dalam hasil alat sisi klien (termasuk ketika hasil tersebut mengulang teks yang dihasilkan Claude)
+  * URL dari hasil web search atau web fetch sebelumnya (lihat [Validasi URL](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#url-validation))
+
+  Meski demikian, masih ada risiko tersisa yang perlu Anda pertimbangkan dengan cermat saat menggunakan alat ini.
+
+  Jika eksfiltrasi data menjadi perhatian, pertimbangkan untuk:
 
   * Menonaktifkan alat web fetch sepenuhnya
   * Menggunakan parameter `max_uses` untuk membatasi jumlah permintaan
-  * Menggunakan parameter `allowed_domains` untuk membatasi ke domain yang diketahui aman
+  * Menggunakan parameter `allowed_domains` untuk membatasi akses hanya ke domain yang diketahui aman
 </Warning>
 
 Untuk dukungan model, lihat [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference).
 
 ## Cara kerja web fetch
 
-Web fetch adalah [alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools): API mengambil konten selama permintaan dan menyisipkan hasilnya ke dalam percakapan. Anda tidak menjalankan apa pun atau mengembalikan `tool_result`. Pengecualiannya adalah ketika Claude memanggil web fetch dan salah satu alat klien Anda dalam kelompok panggilan alat paralel yang sama: API mengembalikan respons dengan `stop_reason: "tool_use"` sebelum fetch tersebut dijalankan, lalu menjalankan fetch ketika Anda mengirim kembali blok `tool_result` klien. Lihat [Mencampur alat server dan alat klien dalam satu giliran](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#mixing-server-tools-and-client-tools-in-one-turn).
+Web fetch adalah sebuah ["server tool" (alat server)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools): API mengambil konten selama permintaan berlangsung dan menyisipkan hasilnya ke dalam percakapan. Anda tidak perlu menjalankan apa pun atau mengembalikan `tool_result`.
+
+Ada satu pengecualian, yaitu ketika Claude memanggil web fetch bersamaan dengan salah satu alat klien Anda dalam kelompok panggilan alat paralel yang sama. Dalam kasus ini, API mengembalikan respons dengan `stop_reason: "tool_use"` sebelum fetch tersebut dijalankan. Fetch baru dijalankan setelah Anda mengirimkan kembali blok `tool_result` klien. Lihat [Menggabungkan alat server dan alat klien dalam satu giliran](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#mixing-server-tools-and-client-tools-in-one-turn).
 
 Saat Anda menambahkan alat web fetch ke permintaan API Anda:
 
-1. Claude menentukan kapan mengambil konten berdasarkan prompt dan URL yang tersedia.
+1. Claude menentukan kapan harus mengambil konten berdasarkan prompt dan URL yang tersedia.
 2. API mengambil konten teks lengkap dari URL yang ditentukan.
-3. Untuk PDF, API mengembalikan konten sebagai data yang dienkode base64 dan memprosesnya seperti dokumen PDF yang dilampirkan langsung.
-4. Claude menganalisis konten yang diambil dan memberikan respons dengan sitasi opsional.
+3. Untuk PDF, API mengembalikan konten sebagai data berenkode base64 dan memprosesnya seperti dokumen PDF yang dilampirkan secara langsung.
+4. Claude menganalisis konten yang diambil dan memberikan respons, dengan sitasi opsional.
 
 <Note>
-  Alat web fetch saat ini tidak mendukung situs web yang dirender secara dinamis dengan JavaScript. Untuk halaman yang memerlukan browser sungguhan (rendering JavaScript, mengklik, atau mengisi formulir), pertimbangkan [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool), alat klien di mana aplikasi Anda mengendalikan browser dan mengembalikan teks halaman atau tangkapan layar ke Claude sebagai hasil alat.
+  Alat web fetch saat ini tidak mendukung situs web yang dirender secara dinamis dengan JavaScript. Untuk halaman yang memerlukan browser sungguhan (rendering JavaScript, mengklik, atau mengisi formulir), pertimbangkan [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool). Alat ini adalah alat klien: aplikasi Anda mengendalikan browser, lalu mengembalikan teks halaman atau tangkapan layar kepada Claude sebagai hasil alat.
 </Note>
 
 ### Kapan Claude melakukan fetch
 
-Claude melakukan fetch ketika permintaan menunjuk ke halaman atau dokumen tertentu:
+Claude melakukan fetch ketika permintaan merujuk ke halaman atau dokumen tertentu:
 
-* Sebuah URL diberikan dalam percakapan (atau hasil alat sebelumnya)
-* Pengguna menyebutkan sumber daya tertentu (artikel, README, halaman harga, atau bagian dokumentasi tertentu) tanpa URL, dan [alat web search](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool) juga diaktifkan sehingga Claude dapat menemukannya terlebih dahulu (lihat [Gabungan search dan fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#combined-search-and-fetch))
+* Sebuah URL diberikan dalam percakapan (atau dalam hasil alat sebelumnya).
+* Pengguna menyebutkan sumber daya tertentu tanpa URL (misalnya artikel, README, halaman harga, atau bagian dokumentasi tertentu), dan [alat web search](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool) juga diaktifkan sehingga Claude dapat menemukannya terlebih dahulu (lihat [Gabungan pencarian dan fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#combined-search-and-fetch)).
 
-Claude **tidak** melakukan fetch untuk pertanyaan pengetahuan umum atau pertanyaan terbuka yang tidak merujuk ke halaman tertentu. "Ringkas artikel ini: `<url>`" memicu fetch. "Apa praktik terbaik untuk desain REST API?" dijawab secara langsung.
+Claude **tidak** melakukan fetch untuk pertanyaan pengetahuan umum atau pertanyaan terbuka yang tidak merujuk ke halaman tertentu. Contohnya, "Ringkas artikel ini: `<url>`" akan memicu fetch, sedangkan "Apa praktik terbaik untuk desain REST API?" akan dijawab secara langsung.
 
 ### Pemfilteran dinamis
 
-Mengambil halaman web dan PDF lengkap dapat dengan cepat menghabiskan token, terutama ketika hanya informasi tertentu yang dibutuhkan dari dokumen besar. Dengan `web_fetch_20260209` atau yang lebih baru, Claude dapat menulis dan mengeksekusi kode untuk memfilter konten yang diambil sebelum memuatnya ke dalam konteks.
+Mengambil halaman web dan PDF secara utuh dapat menghabiskan token dengan cepat, terutama jika Anda hanya membutuhkan informasi tertentu dari dokumen berukuran besar. Dengan `web_fetch_20260209` atau versi yang lebih baru, Claude dapat menulis dan mengeksekusi kode untuk memfilter konten yang diambil sebelum memuatnya ke dalam konteks.
 
 Pemfilteran dinamis ini sangat berguna untuk:
 
-* Mengekstrak bagian tertentu dari dokumen panjang
+* Mengekstrak bagian tertentu dari dokumen yang panjang
 * Memproses data terstruktur dari halaman web
-* Memfilter informasi relevan dari PDF
-* Mengurangi biaya token saat bekerja dengan dokumen besar
+* Memfilter informasi yang relevan dari PDF
+* Mengurangi biaya token saat bekerja dengan dokumen berukuran besar
 
 <Note>
-  Pemfilteran dinamis berjalan di atas [alat code execution](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool), yang diaktifkan API secara otomatis untuk permintaan tersebut. Anda tidak perlu menambahkan alat code execution ke array `tools`.
+  Pemfilteran dinamis berjalan di atas [alat code execution](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool), yang diaktifkan secara otomatis oleh API untuk permintaan tersebut. Anda tidak perlu menambahkan alat code execution ke array `tools`.
 </Note>
 
 Untuk mengaktifkan pemfilteran dinamis, gunakan `web_fetch_20260209` atau versi yang lebih baru. Contoh berikut menggunakan `web_fetch_20260318`:
@@ -248,7 +256,7 @@ Untuk mengaktifkan pemfilteran dinamis, gunakan `web_fetch_20260209` atau versi 
 
 ## Cara menggunakan web fetch
 
-Sediakan alat web fetch dalam permintaan API Anda:
+Sertakan alat web fetch dalam permintaan API Anda:
 
 <CodeGroup>
   ```bash cURL
@@ -443,35 +451,43 @@ Alat web fetch mendukung parameter berikut:
 }
 ```
 
-Versi alat yang lebih baru menambahkan dua parameter opsional lagi: `use_cache` memerlukan `web_fetch_20260309` atau yang lebih baru (lihat [Cache bypass](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#cache-bypass)), dan `response_inclusion` memerlukan `web_fetch_20260318` atau yang lebih baru (lihat [Response inclusion](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#response-inclusion)).
+Versi alat yang lebih baru menambahkan dua parameter opsional lagi:
 
-### Max uses
+* `use_cache` memerlukan `web_fetch_20260309` atau versi yang lebih baru (lihat [Pelewatan cache](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#cache-bypass)).
+* `response_inclusion` memerlukan `web_fetch_20260318` atau versi yang lebih baru (lihat [Penyertaan respons](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#response-inclusion)).
 
-Parameter `max_uses` membatasi jumlah web fetch yang dilakukan. Fetch yang gagal dihitung terhadap batas tersebut. Jika Claude mencoba lebih banyak fetch daripada yang diizinkan, `web_fetch_tool_result` berupa error dengan kode error `max_uses_exceeded`. Saat ini tidak ada batas default.
+### Penggunaan maksimum
+
+Parameter `max_uses` membatasi jumlah web fetch yang dilakukan. Fetch yang gagal tetap dihitung terhadap batas ini. Jika Claude mencoba melakukan fetch melebihi jumlah yang diizinkan, `web_fetch_tool_result` akan berupa error dengan kode error `max_uses_exceeded`. Saat ini tidak ada batas default.
 
 ### Pemfilteran domain
 
 Untuk pemfilteran domain dengan `allowed_domains` dan `blocked_domains`, lihat [Alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#domain-filtering).
 
-Di [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), atur field ini pada entri `web_fetch` dari toolset agen, di mana setiap domain yang tercantum harus berupa hostname biasa tanpa path; lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
+Di [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), atur kolom-kolom ini pada entri `web_fetch` di toolset agen. Setiap domain yang dicantumkan harus berupa hostname biasa tanpa path. Lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
 
 ### Batas konten
 
-Parameter `max_content_tokens` membatasi jumlah konten yang disertakan dalam konteks. Jika konten yang diambil melebihi batas ini, alat akan memotongnya. Ini membantu mengontrol penggunaan token saat mengambil dokumen besar. Batas ini berlaku untuk konten teks, bukan untuk konten biner seperti PDF.
+Parameter `max_content_tokens` membatasi jumlah konten yang disertakan dalam konteks. Jika konten yang diambil melebihi batas ini, alat akan memotongnya. Parameter ini membantu mengendalikan penggunaan token saat mengambil dokumen berukuran besar. Batas ini berlaku untuk konten teks, bukan untuk konten biner seperti PDF.
 
 <Note>
-  Batas parameter `max_content_tokens` bersifat perkiraan. Jumlah token input aktual yang digunakan dapat sedikit bervariasi.
+  Batas parameter `max_content_tokens` bersifat perkiraan. Jumlah token input yang sebenarnya digunakan dapat sedikit berbeda.
 </Note>
 
-Di Claude Managed Agents, entri `web_fetch` dari toolset agen juga menerima `max_content_tokens`; lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
+Di Claude Managed Agents, entri `web_fetch` di toolset agen juga menerima `max_content_tokens`. Lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
 
-### Cache bypass
+### Pelewatan cache
 
 <Note>
-  Memerlukan `web_fetch_20260309` atau yang lebih baru (termasuk `web_fetch_20260318`).
+  Memerlukan `web_fetch_20260309` atau versi yang lebih baru (termasuk `web_fetch_20260318`).
 </Note>
 
-Parameter `use_cache` mengontrol apakah konten yang di-cache boleh dikembalikan. Atur `"use_cache": false` untuk melewati cache dan mengambil konten baru. Default-nya adalah `true`. Nonaktifkan caching hanya ketika pengguna secara eksplisit meminta konten baru atau saat mengambil sumber yang berubah dengan cepat, karena melewati cache meningkatkan "latency" (latensi).
+Parameter `use_cache` mengontrol apakah konten yang di-cache boleh dikembalikan. Atur `"use_cache": false` untuk melewati cache dan mengambil konten terbaru. Nilai default-nya adalah `true`.
+
+Karena melewati cache meningkatkan "latency" (latensi), nonaktifkan caching hanya jika:
+
+* pengguna secara eksplisit meminta konten terbaru, atau
+* Anda mengambil konten dari sumber yang berubah dengan cepat.
 
 ```json
 {
@@ -485,13 +501,17 @@ Parameter `use_cache` mengontrol apakah konten yang di-cache boleh dikembalikan.
 }
 ```
 
-### Response inclusion
+### Penyertaan respons
 
 <Note>
-  Memerlukan `web_fetch_20260318` atau yang lebih baru.
+  Memerlukan `web_fetch_20260318` atau versi yang lebih baru.
 </Note>
 
-Parameter `response_inclusion` mengontrol bagaimana blok hasil fetch muncul dalam respons API ketika hasil tersebut dikonsumsi oleh panggilan [code execution](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) yang telah selesai dalam giliran yang sama. Atur `"response_inclusion": "excluded"` untuk menghilangkan pasangan blok `server_tool_use` dan blok hasil bersarang tersebut sepenuhnya dari respons, mengurangi biaya token output untuk alur kerja agentik yang tidak perlu menggemakan konten halaman mentah kembali ke klien. Default-nya adalah `"full"`. Hasil dari panggilan langsung, atau dari panggilan code execution yang dijeda sebelum selesai, selalu dikembalikan secara penuh sehingga dapat dikirim kembali pada giliran berikutnya.
+Parameter `response_inclusion` mengontrol cara blok hasil fetch ditampilkan dalam respons API, khusus untuk hasil yang telah digunakan oleh panggilan [code execution](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) yang sudah selesai dalam giliran yang sama. Nilai default-nya adalah `"full"`.
+
+Atur `"response_inclusion": "excluded"` untuk menghapus sepenuhnya pasangan blok `server_tool_use` dan blok hasil yang bersarang tersebut dari respons. Pengaturan ini mengurangi biaya token output untuk alur kerja agentik yang tidak perlu mengirimkan kembali konten halaman mentah ke klien.
+
+Hasil dari panggilan langsung, atau dari panggilan code execution yang dijeda sebelum selesai, selalu dikembalikan secara lengkap agar dapat dikirim kembali pada giliran berikutnya.
 
 ```json
 {
@@ -507,10 +527,10 @@ Parameter `response_inclusion` mengontrol bagaimana blok hasil fetch muncul dala
 
 ### Sitasi
 
-Tidak seperti web search di mana sitasi selalu diaktifkan, sitasi bersifat opsional untuk web fetch dan dinonaktifkan secara default. Atur `"citations": {"enabled": true}` untuk memungkinkan Claude mengutip bagian tertentu dari dokumen yang diambil.
+Berbeda dengan web search yang sitasinya selalu aktif, sitasi pada web fetch bersifat opsional dan dinonaktifkan secara default. Atur `"citations": {"enabled": true}` agar Claude dapat mengutip bagian tertentu dari dokumen yang diambil.
 
 <Note>
-  Saat menampilkan output API langsung kepada pengguna akhir, sertakan sitasi ke sumber aslinya. Jika Anda melakukan modifikasi pada output API, termasuk dengan memproses ulang dan/atau menggabungkannya dengan materi Anda sendiri sebelum menampilkannya kepada pengguna akhir, tampilkan sitasi sebagaimana mestinya berdasarkan konsultasi dengan tim hukum Anda.
+  Saat menampilkan output API secara langsung kepada pengguna akhir, sertakan sitasi ke sumber aslinya. Jika Anda memodifikasi output API sebelum menampilkannya kepada pengguna akhir, termasuk dengan memproses ulang atau menggabungkannya dengan materi Anda sendiri, tampilkan sitasi sebagaimana mestinya berdasarkan konsultasi dengan tim hukum Anda.
 </Note>
 
 ## Respons
@@ -593,13 +613,13 @@ Hasil fetch mencakup:
 
 * `url`: URL yang diambil
 * `content`: Blok dokumen yang berisi konten yang diambil
-* `retrieved_at`: Timestamp saat konten diambil
+* `retrieved_at`: Stempel waktu saat konten diambil
 
 <Note>
-  Alat web fetch menyimpan hasil dalam cache untuk meningkatkan performa dan mengurangi permintaan yang berulang. Konten yang dikembalikan mungkin tidak selalu mencerminkan versi terbaru yang tersedia di URL tersebut. Perilaku cache dikelola secara otomatis dan dapat berubah seiring waktu untuk mengoptimalkan berbagai jenis konten dan pola penggunaan. Untuk mengambil konten baru, atur `"use_cache": false` (lihat [Cache bypass](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#cache-bypass)).
+  Alat web fetch menyimpan hasil dalam cache untuk meningkatkan performa dan mengurangi permintaan yang berulang. Akibatnya, konten yang dikembalikan mungkin tidak selalu mencerminkan versi terbaru yang tersedia di URL tersebut. Perilaku cache dikelola secara otomatis dan dapat berubah seiring waktu untuk mengoptimalkan berbagai jenis konten dan pola penggunaan. Untuk mengambil konten terbaru, atur `"use_cache": false` (lihat [Pelewatan cache](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#cache-bypass)).
 </Note>
 
-Untuk dokumen PDF, konten dikembalikan sebagai data yang dienkode base64:
+Untuk dokumen PDF, konten dikembalikan sebagai data berenkode base64:
 
 ```json Output
 {
@@ -624,7 +644,7 @@ Untuk dokumen PDF, konten dikembalikan sebagai data yang dienkode base64:
 
 ### Error
 
-Ketika alat web fetch mengalami error, Claude API mengembalikan respons 200 (sukses) dengan error yang direpresentasikan dalam body respons. Claude melihat hasil error tersebut dan melanjutkan giliran. Contohnya:
+Ketika alat web fetch mengalami error, Claude API tetap mengembalikan respons 200 (sukses), dengan error dicantumkan di dalam body respons. Claude melihat hasil error tersebut dan melanjutkan gilirannya. Contohnya:
 
 ```json Output
 {
@@ -639,29 +659,33 @@ Ketika alat web fetch mengalami error, Claude API mengembalikan respons 200 (suk
 
 Berikut kode error yang mungkin muncul:
 
-* `invalid_tool_input`: Input alat tidak valid, seperti URL yang salah format atau skema non-HTTP(S)
+* `invalid_tool_input`: Input alat tidak valid, misalnya URL yang formatnya salah atau skema selain HTTP(S)
 * `url_too_long`: URL melebihi panjang maksimum (250 karakter)
-* `url_not_allowed`: URL diblokir oleh aturan pemfilteran domain (termasuk pengaturan organisasi Anda) atau oleh pembatasan di sisi Anthropic, seperti alamat privat dan `robots.txt`
-* `url_not_in_prior_context`: URL tidak muncul sebelumnya dalam percakapan (lihat [Validasi URL](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#url-validation))
+* `url_not_allowed`: URL diblokir oleh aturan pemfilteran domain (termasuk pengaturan organisasi Anda) atau oleh pembatasan dari sisi Anthropic, seperti alamat privat dan `robots.txt`
+* `url_not_in_prior_context`: URL belum pernah muncul sebelumnya dalam percakapan (lihat [Validasi URL](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#url-validation))
 * `url_not_accessible`: Gagal mengambil konten (error HTTP)
 * `too_many_requests`: "Rate limit" (batas laju) terlampaui
-* `unsupported_content_type`: Jenis konten tidak didukung (hanya teks, HTML, dan PDF)
-* `max_uses_exceeded`: Penggunaan maksimum alat web fetch terlampaui
+* `unsupported_content_type`: Jenis konten tidak didukung (hanya teks, HTML, dan PDF yang didukung)
+* `max_uses_exceeded`: Jumlah penggunaan maksimum alat web fetch terlampaui
 * `unavailable`: Terjadi error internal
 
 ## Validasi URL
 
-Untuk alasan keamanan, alat web fetch hanya dapat mengambil URL yang sebelumnya telah muncul dalam konteks percakapan. Ini mencakup:
+Demi keamanan, alat web fetch hanya dapat mengambil URL yang sebelumnya sudah muncul dalam konteks percakapan. Ini mencakup:
 
 * URL dalam pesan pengguna
 * URL dalam hasil alat sisi klien
 * URL dari hasil web search atau web fetch sebelumnya
 
-Alat ini tidak dapat mengambil URL sembarang yang dihasilkan Claude atau URL dari alat server berbasis container (seperti Code Execution dan Bash).
+Alat ini tidak dapat mengambil URL yang hanya muncul dalam output Claude sendiri atau hanya dalam "system prompt" (prompt sistem). Agar URL dari prompt sistem dapat diambil, sertakan juga URL tersebut dalam pesan pengguna.
 
-## Gabungan search dan fetch
+Hasil dari alat sisi server lainnya juga bukan sumber yang diizinkan. Contohnya adalah [code execution](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool), [konektor "Model Context Protocol", atau MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector), dan [tool search](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool).
 
-Ketika alat web search dan web fetch keduanya diaktifkan, dan pengguna menyebutkan halaman atau dokumen tertentu tanpa memberikan URL (misalnya, "baca README dari repositori anthropics/anthropic-sdk-python"), Claude menggunakan web search untuk menemukannya, lalu mengambil hasilnya. Contoh berikut meminta pencarian dan analisis dalam satu permintaan:
+Sebaliknya, hasil alat sisi klien tetap merupakan sumber yang diizinkan, bahkan ketika hasil tersebut mengulang teks yang dihasilkan Claude. Contohnya adalah perintah yang mencetak input-nya, atau pesan error yang mengutip input tersebut.
+
+## Gabungan pencarian dan fetch
+
+Ketika alat web search dan web fetch sama-sama diaktifkan, dan pengguna menyebutkan halaman atau dokumen tertentu tanpa memberikan URL, Claude menggunakan web search untuk menemukannya, lalu mengambil hasilnya. Contoh permintaan seperti ini adalah "baca README dari repositori anthropics/anthropic-sdk-python". Contoh berikut meminta pencarian dan analisis dalam satu permintaan:
 
 <CodeGroup>
   ```bash cURL
@@ -895,15 +919,15 @@ Dalam alur kerja ini, Claude:
 1. Menggunakan web search untuk menemukan artikel yang relevan.
 2. Memilih hasil yang paling menjanjikan.
 3. Menggunakan web fetch untuk mengambil konten lengkap.
-4. Memberikan analisis terperinci dengan sitasi.
+4. Memberikan analisis mendetail beserta sitasi.
 
 ## Caching prompt
 
-Untuk menyimpan definisi alat dalam cache lintas giliran, lihat [Penggunaan alat dengan caching prompt](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching).
+Untuk menyimpan definisi alat dalam cache di seluruh giliran, lihat ["Tool use" (penggunaan alat) dengan "prompt caching" (caching prompt)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching).
 
 ## Streaming
 
-Dengan streaming diaktifkan, event fetch menjadi bagian dari stream dengan jeda selama pengambilan konten:
+Saat streaming diaktifkan, event fetch menjadi bagian dari stream, dengan jeda selama proses pengambilan konten:
 
 ```sse Output
 event: message_start
@@ -932,7 +956,7 @@ data: {"type": "content_block_start", "index": 2, "content_block": {"type": "web
 
 ## Permintaan batch
 
-Anda dapat menyertakan alat web fetch dalam [Messages Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing). Panggilan alat web fetch melalui Messages Batches API dikenai harga yang sama dengan panggilan dalam permintaan Messages API biasa.
+Anda dapat menyertakan alat web fetch dalam [Messages Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing). Harga panggilan alat web fetch melalui Messages Batches API sama dengan harga panggilan dalam permintaan Messages API biasa.
 
 ## Penggunaan dan harga
 
@@ -966,14 +990,14 @@ Contoh penggunaan token untuk konten umum:
 
 <CardGroup>
   <Card href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool" title="Alat code execution" icon="code">
-    Jalankan kode Python dan bash dalam container sandbox untuk menganalisis data, menghasilkan file, dan mengiterasi solusi.
+    Jalankan kode Python dan bash dalam container sandbox untuk menganalisis data, menghasilkan file, dan menyempurnakan solusi secara iteratif.
   </Card>
 
   <Card href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools" title="Alat server" icon="cloud">
-    Bekerja dengan alat yang dieksekusi Anthropic: blok server\_tool\_use, kelanjutan pause\_turn, dan pemfilteran domain.
+    Bekerja dengan alat yang dieksekusi oleh Anthropic: blok server\_tool\_use, kelanjutan pause\_turn, dan pemfilteran domain.
   </Card>
 
   <Card href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference" title="Referensi alat" icon="book">
-    Direktori alat yang disediakan Anthropic dan referensi untuk properti definisi alat opsional.
+    Direktori alat yang disediakan Anthropic dan referensi untuk properti opsional definisi alat.
   </Card>
 </CardGroup>

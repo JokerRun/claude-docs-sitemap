@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/onboarding
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 611deb8c80fc79af2d6902c0954671a9c8a642c54c14271d3df35366d832174d
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: b714e2783e3940e7d95b8194fa36de44e329297c6e314321711a1b19a8af1159
 ---
 
 ---
@@ -11,11 +11,11 @@ url: https://platform.claude.com/docs/en/managed-agents/onboarding
 description: Create, test, and iterate on agents visually in Console, then run them from your code with the API.
 ---
 
-[Console](https://platform.claude.com/workspaces/default/agent-quickstart/) provides a visual interface for creating and configuring agents. It lets you iterate on configuration interactively before writing code.
+## Compatibility
+- Status: Beta
+- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `managed-agents-2026-04-01`
 
-<Note>
-  Managed Agents API requests require the `managed-agents-2026-04-01` beta header, except memory store endpoints, which use `agent-memory-2026-07-22` instead. The SDK sets the correct beta header automatically. See [Beta headers](https://platform.claude.com/docs/en/api/beta-headers#endpoint-specific-headers).
-</Note>
+[Console](https://platform.claude.com/workspaces/default/agent-quickstart/) provides a visual interface for creating and configuring agents. It lets you iterate on configuration interactively before writing code.
 
 ## How to build an agent
 

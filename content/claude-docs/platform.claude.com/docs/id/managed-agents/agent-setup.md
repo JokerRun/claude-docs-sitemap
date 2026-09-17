@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/agent-setup
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: f7ea17e03ab58de432c0ddf781a3c857962f75520724ae30023bdd88b9d6a596
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 0c8d1e660a0d5cd7ce040e65188f38449a36258b60b0725a40c8144a3b2904d9
 ---
 
 ---
@@ -61,19 +61,19 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
 
   <MultiFileExample language="cli" label="CLI">
     ```bash CLI
-    agent=$(ant beta:agents create --format json < coding-assistant.agent.yaml)
-
-    AGENT_ID=$(jq -r '.id' <<< "$agent")
+    ant apply coding-assistant.md
     ```
 
-    <File filename="coding-assistant.agent.yaml">
-      ```yaml
+    <File filename="coding-assistant.md">
+      ```markdown
+      ---
       name: Coding Assistant
-      model:
-        id: claude-opus-5
-      system: You are a helpful coding agent.
+      model: claude-opus-5
       tools:
         - type: agent_toolset_20260401
+      ---
+
+      You are a helpful coding agent.
       ```
     </File>
   </MultiFileExample>
@@ -217,7 +217,7 @@ Respons menggemakan konfigurasi Anda dan menambahkan field `id`, `type`, `versio
 
 Seperti `speed` dan `effort`, `inference_geo` ditetapkan melalui bentuk objek dari `model`: teruskan `model` sebagai objek dan tetapkan `inference_geo` bersama `id`. Field ini menerima `"us"` atau `"global"`. Ketika tidak ditetapkan, setiap permintaan model mengikuti inference geo default workspace pada saat permintaan dilayani. Lihat [Residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency) untuk kontrol geo tingkat workspace dan harga.
 
-Contoh berikut menyematkan agen ke inferensi US dan mencetak nilai `inference_geo` yang digemakan dalam objek `model` pada respons:
+Contoh berikut menyematkan agen ke inferensi AS dan mencetak nilai `inference_geo` dari objek `model` milik agen:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -237,18 +237,19 @@ Contoh berikut menyematkan agen ke inferensi US dan mencetak nilai `inference_ge
 
   <MultiFileExample language="cli" label="CLI">
     ```bash CLI
-    agent=$(ant beta:agents create --format json < geo-pinned.agent.yaml)
-
-    echo "Inference geo: $(jq -r '.model.inference_geo' <<< "$agent")"
+    ant apply geo-pinned-assistant.md
     ```
 
-    <File filename="geo-pinned.agent.yaml">
-      ```yaml
+    <File filename="geo-pinned-assistant.md">
+      ```markdown
+      ---
       name: Geo-pinned assistant
       model:
         id: claude-opus-5
         inference_geo: us
-      system: You are a helpful assistant.
+      ---
+
+      You are a helpful assistant.
       ```
     </File>
   </MultiFileExample>
@@ -356,6 +357,8 @@ Menetapkan `inference_geo` pada model yang tidak mendukung penyematan inferensi 
 
 Memperbarui agen menghasilkan versi baru ketika konfigurasi berubah. Field `version` bersifat opsional: sediakan untuk optimistic concurrency (ketidakcocokan mengembalikan 409), atau hilangkan untuk menerapkan pembaruan tanpa syarat (penulisan terakhir menang). Pembaruan pada agen yang diarsipkan ditolak.
 
+Dengan CLI, edit file agen dan jalankan `ant apply` lagi; apply akan memberikan `version` untuk Anda.
+
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
   updated_agent=$(curl -fsSL "https://api.anthropic.com/v1/agents/$AGENT_ID" \
@@ -376,17 +379,19 @@ Memperbarui agen menghasilkan versi baru ketika konfigurasi berubah. Field `vers
 
   <MultiFileExample language="cli" label="CLI">
     ```bash CLI
-    ant beta:agents update --agent-id "$AGENT_ID" < coding-assistant.agent.yaml
+    ant apply coding-assistant.md
     ```
 
-    <File filename="coding-assistant.agent.yaml">
-      ```yaml
+    <File filename="coding-assistant.md">
+      ```markdown
+      ---
       name: Coding Assistant
-      model:
-        id: claude-opus-5
-      system: You are a helpful coding agent. Always write tests.
+      model: claude-opus-5
       tools:
         - type: agent_toolset_20260401
+      ---
+
+      You are a helpful coding agent. Always write tests.
       ```
     </File>
   </MultiFileExample>

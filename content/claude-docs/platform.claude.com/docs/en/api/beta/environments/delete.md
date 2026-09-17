@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/delete
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 8dbf4cd0716c9026f277240f088edbbdaf69c573c5a109d0a6d019ddfcb4ca1a
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 87bbb560f989a6e6556563629610042d90b7d4146977b0cc5d430fbd1a30e70b
 ---
 
 ---
@@ -28,7 +28,7 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -119,6 +119,8 @@ Delete an environment by ID. Returns a confirmation of the deletion.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

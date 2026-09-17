@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/retrieve
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: bc1789c899031705c89755fea4ef123b5177b1364d5cebcef5717dd4a218b723
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: b8f04d0c09eb193a4d11c0875cb34a33aea51c92fec24cc6a51b35a3fe394682
 ---
 
 ---
@@ -32,7 +32,7 @@ Retrieve detailed information about a specific work item.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -123,6 +123,8 @@ Retrieve detailed information about a specific work item.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 8539209d553ff159e85c1d87eacf9e73b19a1d9cb8db396ceb6fa29a33108b00
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 02fec67dc63627e326c783445b233f018af17ad860ccf91988bd98c549154ec4
 ---
 
 ---
@@ -44,7 +44,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -135,6 +135,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

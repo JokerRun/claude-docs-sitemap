@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces/add
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 8eed55bfe2663a095bca29c880ef9a99e207bbd5226ec8bbd525cc683dd68bf2
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 300f8b55c17c2e1bf1693a0be95cbd0f27561675edf7e717ee6eeb324bc79c63
 ---
 
 ---
@@ -41,7 +41,7 @@ other scopes require a Console session.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -132,6 +132,8 @@ other scopes require a Console session.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 ## Body parameters
 

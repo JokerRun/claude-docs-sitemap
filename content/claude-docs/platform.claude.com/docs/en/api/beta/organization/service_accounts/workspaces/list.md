@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 804ad26ec2d416096f0a4caa44944267f0dc65fad2ef64a084c0de0853e6fc7e
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 75bfcada2bdd3c783d6a0dd9a9182d358bfbffb97be5cc8951b78233b7ce5550
 ---
 
 ---
@@ -58,7 +58,7 @@ page to recover.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -149,6 +149,8 @@ page to recover.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 ## Returns
 

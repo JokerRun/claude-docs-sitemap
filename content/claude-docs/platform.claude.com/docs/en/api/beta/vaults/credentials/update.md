@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/update
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: 839ea24540440b8793e911132b5f6121aaad734801e33e0691ccda2f1717c595
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: c78e095e7d6eccb3c1c84a273887ec7f347eb21ed3171bd092857676845b38d3
 ---
 
 ---
@@ -30,7 +30,7 @@ Update Credential
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -121,6 +121,8 @@ Update Credential
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

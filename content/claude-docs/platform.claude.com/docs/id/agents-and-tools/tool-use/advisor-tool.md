@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: ed3e4831e9539af543c95452f139c247cadae97b3abbbd3473adca8e5bba8632
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 41baa66d293f0f37e23e128fb3e4597bc61a4c454a978696e2af6fbdd8c7d158
 ---
 
 ---
@@ -38,8 +38,8 @@ sequenceDiagram
 
 Advisor cocok untuk konfigurasi berikut:
 
-* **Anda saat ini menggunakan Sonnet untuk tugas kompleks:** Tambahkan advisor dengan tingkat lebih tinggi. Opus menjaga total biaya tetap serupa atau lebih rendah; Claude Fable 5 memaksimalkan peningkatan kualitas.
-* **Anda saat ini menggunakan Haiku dan ingin peningkatan kecerdasan:** Tambahkan advisor Opus atau Fable. Perkirakan biaya lebih tinggi daripada Haiku saja, tetapi lebih rendah daripada mengganti executor ke model yang lebih besar.
+* **Anda saat ini menggunakan Sonnet untuk tugas kompleks:** Tambahkan advisor dari tingkat yang lebih tinggi. Opus menjaga total biaya tetap serupa atau lebih rendah; Claude Fable 5.1 memaksimalkan peningkatan kualitas.
+* **Anda saat ini menggunakan Haiku dan menginginkan peningkatan kecerdasan:** Tambahkan advisor Opus atau Fable. Perkirakan biaya yang lebih tinggi daripada Haiku saja, tetapi lebih rendah daripada mengganti eksekutor ke model yang lebih besar.
 
 Hasilnya bergantung pada tugas. Evaluasi pada beban kerja Anda sendiri.
 

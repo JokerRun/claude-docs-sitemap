@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: ce1a43dbd0b3cea8ed8928a38dcfa534c18fe520f781af8f9dea798c4d420dd4
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 97a24b17edc3d3bc2aff5f211e890db0c074efa8f26fcd6b6224a1bc3e159e81
 ---
 
 ---
@@ -24,7 +24,7 @@ Create User Profile
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -115,6 +115,8 @@ Create User Profile
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

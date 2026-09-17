@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 387ba61a928463a278e490713a69a23cbf6180f775752be2996616acca2c8efd
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: f52b8fd90fdc3124495892bbfb42fe4a908dbdea45c9d0fddffa5d4d0917fc16
 ---
 
 ---
@@ -113,7 +113,7 @@ These features remain available, but their data is not encrypted under your key.
 **Claude Enterprise**
 
 * Beta and research preview features might not be covered by CMEK and can break in CMEK organizations, for example, Claude Security and Claude Design.
-* [Personal preferences - Instructions for Claude section](https://claude.ai/new#settings/general) and Cowork Global instructions. These are set at the account level and shared across all of a user's organizations.
+* [Personal preferences - Instructions for Claude section](https://claude.ai/new#settings/account) and Cowork Global instructions. These are set at the account level and shared across all of a user's organizations.
 
 On both products, account data for users in your organization (such as names, email addresses, and profile pictures) is not encrypted under your key.
 

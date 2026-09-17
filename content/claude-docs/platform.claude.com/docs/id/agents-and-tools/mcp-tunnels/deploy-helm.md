@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 8111cf3c9c64caaa7552569424e4161f86bd7b5f314f041184cc3fcce01749a4
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: dacae8c64f5320d9b39309091c5b1faee99aa05556e47a495224d6c09e31c1ac
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Instal tunnel stack pada cluster Kubernetes menggunakan Helm chart 
 ---
 
 <Note>
-  Tunnel MCP sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/claude-managed-agents) untuk mencobanya.
+  MCP tunnels (terowongan MCP) sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/mcp-tunnels) untuk mencobanya.
 </Note>
 
 Helm chart Anthropic menginstal [tunnel stack](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) sebagai satu Deployment dan melampirkannya ke tunnel Anda: tunnel yang dibuat oleh setup hook chart untuk Anda, atau tunnel yang sudah ada yang Anda buat di [Console](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#create-a-tunnel).

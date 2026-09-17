@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/update
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 9a576b238a528b1d96d77e5166cc4f7eb613cbea0c68cd986f8a80449267cc8e
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: b4b358d627553824313383b498b6419d03ffed91aac1cec50cb80e0e1fa6774c
 ---
 
 ---
@@ -28,7 +28,7 @@ Update Vault
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -119,6 +119,8 @@ Update Vault
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

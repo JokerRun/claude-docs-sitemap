@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 953afeb874bf0a1f7c2ab2e83e94dcbc8e0c9fd72e601298a05c075d4a66993d
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 40b766e571e644f949ad7675397f44274a1b411b7f15e68798afb04f67ec0649
 ---
 
 ---
@@ -51,7 +51,7 @@ omitted from the results.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -142,6 +142,8 @@ omitted from the results.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 ## Returns
 

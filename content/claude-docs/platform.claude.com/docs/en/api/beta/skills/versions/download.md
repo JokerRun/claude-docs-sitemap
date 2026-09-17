@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/download
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 37d4be5cb61e6734d8edced6dfa3c23f7dc36d4dac0477d2ac2f30083960744f
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 72254c22a87825cdbbeaa37c5b73f8857437dfcf562d393d478e2ea55b42fbbb
 ---
 
 ---
@@ -38,7 +38,7 @@ Download a skill version's content as a zip archive.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -129,6 +129,8 @@ Download a skill version's content as a zip archive.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

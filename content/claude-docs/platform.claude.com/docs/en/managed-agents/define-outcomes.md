@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/define-outcomes
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 8fbd51acb27443bbd75cd7ef074ffb0be7df8b1e1cd914f4f946cfa38780f63b
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 08fd67d4b05d19cf69265a85acc3b9ffe0ebfe44a9e78fe16e00e96ea3e0021e
 ---
 
 ---
@@ -11,15 +11,15 @@ url: https://platform.claude.com/docs/en/managed-agents/define-outcomes
 description: Tell the agent what 'done' looks like, and let it iterate until it gets there.
 ---
 
+## Compatibility
+- Status: Beta
+- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `managed-agents-2026-04-01`
+
 An outcome tells the session what the end result should look like and how to measure its quality. The agent works toward that target, self-evaluating and iterating until the outcome is met.
 
 When you define an outcome, the harness automatically provisions a *grader* to evaluate the artifact against a rubric. The grader uses a separate context window to avoid being influenced by the main agent's implementation choices.
 
 The grader returns an explanation summarizing which criteria passed or failed, or confirming that the artifact satisfies the rubric. That feedback is handed back to the agent for the next iteration.
-
-<Note>
-  Managed Agents API requests require the `managed-agents-2026-04-01` beta header, except memory store endpoints, which use `agent-memory-2026-07-22` instead. The SDK sets the correct beta header automatically. See [Beta headers](https://platform.claude.com/docs/en/api/beta-headers#endpoint-specific-headers).
-</Note>
 
 ## Create a rubric
 
@@ -823,7 +823,7 @@ The agent writes output files to `/mnt/session/outputs/` inside the sandbox. To 
 
   // Download a file
   if len(files.Data) > 0 {
-  	resp, err := client.Files.Download(ctx, files.Data[0].ID)
+  	resp, err := client.Files.Download(ctx, files.Data[0].ID, anthropic.FileDownloadParams{})
   	if err != nil {
   		panic(err)
   	}

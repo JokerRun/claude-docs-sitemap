@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: dd9bd58188edab808fcf373a458fc538023e3a1fa0d0d7b7c28525a7107646df
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: ac07940f41afedfca9e9ef192197be3c8566c1daeb73f20ef9355eaaae413cb6
 ---
 
 ---
@@ -45,10 +45,10 @@ Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di inf
 
   <MultiFileExample language="cli" label="CLI">
     ```bash CLI
-    ant beta:environments create < python-dev.environment.yaml
+    ant apply environment.yaml
     ```
 
-    <File filename="python-dev.environment.yaml">
+    <File filename="environment.yaml">
       ```yaml
       name: python-dev
       config:
@@ -258,7 +258,7 @@ Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dim
 
   <MultiFileExample language="cli" label="CLI">
     ```bash CLI
-    ant beta:environments create < environment.yaml
+    ant apply environment.yaml
     ```
 
     <File filename="environment.yaml">
@@ -436,7 +436,7 @@ Contoh berikut membuat environment dengan jaringan `limited`:
 
   <MultiFileExample language="cli" label="CLI">
     ```bash CLI
-    ant beta:environments create < environment.yaml
+    ant apply environment.yaml
     ```
 
     <File filename="environment.yaml">

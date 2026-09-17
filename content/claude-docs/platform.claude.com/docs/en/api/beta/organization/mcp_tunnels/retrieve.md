@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/retrieve
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: f4bf042f7cf24b9854af839d732eb46e47dc928f77d80a3317674fd6b35f3e78
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: fbe21971807dbed1728fb11358e40a230096162ad39c893a31ab3964d83dc540
 ---
 
 ---
@@ -34,7 +34,7 @@ Retrieve a single tunnel in the caller's organization by ID.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -125,6 +125,8 @@ Retrieve a single tunnel in the caller's organization by ID.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-org-data
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 3df8e20a5eb714d4f5e38325c4b9c1052888b0869ee946f5794e90f8c7b9b97c
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 00ce20928649ac652debf158499b88325a0c3ebd6f0b3d6c741662dfc99331a9
 ---
 
 ---
@@ -32,7 +32,8 @@ Panggilan berikut mendaftar setiap organisasi di bawah induk Anda. Responsnya ad
 ```bash cURL
 curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/compliance/organizations" \
-  -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
+  -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+  -H "anthropic-version: 2023-06-01"
 ```
 
 ```json Response
@@ -84,6 +85,7 @@ org_uuid="91012d09-e48b-438e-a489-1bebfd8fa6f9"
 curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/organizations/$org_uuid/users" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+  -H "anthropic-version: 2023-06-01" \
   --data-urlencode "limit=500"
 ```
 
@@ -118,7 +120,8 @@ org_uuid="91012d09-e48b-438e-a489-1bebfd8fa6f9"
 
 curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/compliance/organizations/${org_uuid}/roles" \
-  -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
+  -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+  -H "anthropic-version: 2023-06-01"
 ```
 
 ```json Response
@@ -152,7 +155,8 @@ Daftar grup, lalu untuk setiap grup daftar anggotanya:
 ```bash cURL
 curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/groups" \
-  -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
+  -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+  -H "anthropic-version: 2023-06-01"
 ```
 
 ```json Response
@@ -180,7 +184,8 @@ group_id="rbac_group_01P9qRsTuVwXyZa2BcDeFgHjK"
 
 curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/groups/$group_id/members" \
-  -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
+  -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+  -H "anthropic-version: 2023-06-01"
 ```
 
 ```json Response
@@ -215,7 +220,8 @@ org_uuid="91012d09-e48b-438e-a489-1bebfd8fa6f9"
 
 curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/compliance/organizations/$org_uuid/settings" \
-  -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
+  -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+  -H "anthropic-version: 2023-06-01"
 ```
 
 Responsnya adalah daftar baris pengaturan bertipe, dan baris mana yang muncul bervariasi menurut organisasi: pengaturan yang tidak dapat diubah oleh administrator organisasi, karena dikendalikan oleh kebijakan Anthropic atau tidak tersedia untuk organisasi tersebut, dihilangkan dari daftar. Perlakukan baris yang tidak ada sebagai "tidak dapat dikendalikan oleh administrator organisasi ini", bukan sebagai "nonaktif". Contoh ringkas berikut menunjukkan tiga dari baris yang dapat dimuat sebuah respons:

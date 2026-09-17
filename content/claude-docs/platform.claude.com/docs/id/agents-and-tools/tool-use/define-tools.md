@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 9dbe6475de6d80015f04ca5d752a19f5b5e00337ad2134d1d857fce9b389b13e
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 141409806b842d3a9f0aab03c3679cbca6d64322264f3394f2797fcb145ad9fa
 ---
 
 ---
@@ -24,12 +24,12 @@ description: Tentukan skema alat, tulis deskripsi yang efektif, dan kendalikan k
 
 "Client tools" (alat klien) ditentukan dalam parameter tingkat atas `tools` pada permintaan API. Alat klien berskema Anthropic, seperti alat bash dan editor teks, dideklarasikan dengan `type` berversi tanggal; lihat halaman masing-masing alat, yang ditautkan dari [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference), untuk field yang diterimanya. Alat computer use dan browser use adalah [toolset klien](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets): satu entri tanpa `name` yang mendeklarasikan sekumpulan alat anggota yang tetap. Definisi alat yang ditentukan pengguna mencakup:
 
-| Parameter        | Deskripsi                                                                                                                                                                                                                                     |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`           | Nama alat. Harus cocok dengan regex `^[a-zA-Z0-9_-]{1,64}$`.                                                                                                                                                                                  |
-| `description`    | Deskripsi teks biasa yang terperinci tentang apa yang dilakukan alat, kapan alat harus digunakan, dan bagaimana perilakunya.                                                                                                                  |
-| `input_schema`   | Objek [JSON Schema](https://json-schema.org/) yang mendefinisikan parameter yang diharapkan untuk alat tersebut.                                                                                                                              |
-| `input_examples` | (Opsional) Array objek input contoh untuk membantu Claude memahami cara menggunakan alat. Lihat [Menyediakan contoh penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#providing-tool-use-examples). |
+| Parameter        | Deskripsi                                                                                                                                                                                                                                           |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`           | Nama alat. Harus cocok dengan regex `^[a-zA-Z0-9_-]{1,128}$`.                                                                                                                                                                                       |
+| `description`    | Deskripsi teks biasa yang terperinci tentang apa yang dilakukan alat, kapan alat harus digunakan, dan bagaimana perilakunya.                                                                                                                        |
+| `input_schema`   | Objek [JSON Schema](https://json-schema.org/) yang mendefinisikan parameter yang diharapkan untuk alat.                                                                                                                                             |
+| `input_examples` | (Opsional) Array berisi objek input contoh untuk membantu Claude memahami cara menggunakan alat. Lihat [Memberikan contoh penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#providing-tool-use-examples). |
 
 Untuk kumpulan lengkap properti opsional yang tersedia pada definisi alat tunggal mana pun, termasuk `cache_control`, `strict`, `defer_loading`, dan `allowed_callers`, lihat [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#tool-definition-properties). Entri toolset klien menerima `cache_control` dan `allowed_callers` pada entri tersebut dan menetapkan `defer_loading` per anggota; lihat [Toolset klien](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets).
 

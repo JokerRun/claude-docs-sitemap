@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-faq
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 85c2bbacc24287d25f850692c41d5878dd3a2238aae417067c393300dc6b2e15
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 0e232b23a0e73c9ab4b36929205e57ca3bc3a02ecf6d6bfb45a0659b9f32ec98
 ---
 
 ---
@@ -47,14 +47,14 @@ description: Jawaban atas pertanyaan umum tentang akses, cakupan (scope), retens
     Tidak. "API key" (kunci API) Claude (`sk-ant-api03-...`) mengautentikasi panggilan ke model Claude di Claude API; kunci tersebut tidak mengautentikasi panggilan ke `/v1/compliance/*`. Compliance API hanya menerima Compliance Access Key (`sk-ant-api01-...`) dan Admin API key (`sk-ant-admin01-...`). Lihat [Kunci mana yang Anda perlukan?](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#which-key-do-you-need) untuk pemetaan lengkapnya.
   </Accordion>
 
-  <Accordion title="Mengapa Admin API key saya mengembalikan 403 pada endpoint chat atau file?">
-    Admin API key membawa scope tetap `read:compliance_activities`, yang hanya mengotorisasi Activity Feed. Setiap endpoint Compliance API lainnya memerlukan scope yang hanya dapat dibawa oleh Compliance Access Key yang dibuat di claude.ai. Memanggil endpoint konten atau direktori dengan Admin API key mengembalikan 403 yang menyebutkan scope yang diperlukan oleh kelompok endpoint tersebut: `read:compliance_user_data` untuk chat, file, proyek, lampiran proyek, sesi, pengguna, dan anggota grup, serta `read:compliance_org_data` untuk organisasi, peran, grup, dan pengaturan organisasi efektif. Misalnya, mencantumkan daftar chat mengembalikan respons berikut.
+  <Accordion title="Mengapa kunci Admin API saya mengembalikan 403 pada endpoint chat atau file?">
+    Satu-satunya scope Compliance API pada kunci Admin API adalah `read:compliance_activities`, yang hanya mengotorisasi Activity Feed. Setiap endpoint Compliance API lainnya memerlukan scope yang hanya dapat dimiliki oleh Compliance Access Key yang dibuat di claude.ai. Memanggil endpoint konten atau direktori dengan kunci Admin API akan mengembalikan 403 yang menyebutkan scope yang diperlukan oleh kelompok endpoint tersebut: `read:compliance_user_data` untuk chat, file, proyek, lampiran proyek, sesi, pengguna, dan anggota grup, serta `read:compliance_org_data` untuk organisasi, peran, grup, dan pengaturan organisasi efektif. Misalnya, menampilkan daftar chat akan mengembalikan respons berikut.
 
     ```json Response
     {
       "error": {
         "type": "permission_error",
-        "message": "Missing required scopes. Got: ['read:compliance_activities'] Needed: ['read:compliance_user_data']"
+        "message": "Missing required scopes. Got: ['api:admin', 'read:compliance_activities'] Needed one of: ['read:compliance_user_data', 'read:org_audit']"
       }
     }
     ```
@@ -77,11 +77,11 @@ description: Jawaban atas pertanyaan umum tentang akses, cakupan (scope), retens
   </Accordion>
 
   <Accordion title="Apakah sesi Cowork, Claude Code, Claude Science, dan Claude for Microsoft 365 muncul di Compliance API?">
-    Ya. Sesi Cowork di Claude Desktop yang berjalan di mesin pengguna, sesi Claude Code (di terminal, di Claude Desktop, atau di ekstensi IDE), sesi di aplikasi desktop Claude Science, dan sesi Claude for Microsoft 365 di Excel, PowerPoint, Word, dan Outlook direkam selama pengguna masuk dengan akun Claude Enterprise mereka dan tersedia melalui [endpoint sesi lokal](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions). Sesi Cowork yang dimulai di claude.ai web atau seluler, yang berjalan di cloud dalam lingkungan yang dikelola Anthropic, tersedia melalui [endpoint sesi jarak jauh](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-remote-sessions). Setiap kelompok memiliki endpoint daftar yang mengembalikan metadata sesi dan endpoint pesan yang mengembalikan transkrip sesi (prompt pengguna, respons asisten, serta pemanggilan alat dan hasilnya). Kelompok lokal menambahkan endpoint ketiga yang mengambil metadata satu sesi. Semua endpoint ini menggunakan Compliance Access Key Anda yang sudah ada dengan `read:compliance_user_data`; tidak diperlukan kunci atau scope baru.
+    Ya. Sesi Cowork di Claude Desktop yang berjalan di mesin pengguna, sesi Claude Code (di terminal, di Claude Desktop, atau di ekstensi IDE), sesi di aplikasi desktop Claude Science, dan sesi Claude for Microsoft 365 di Excel, PowerPoint, Word, dan Outlook direkam selama pengguna masuk dengan akun Claude Enterprise mereka dan tersedia melalui [endpoint sesi lokal](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions). Sesi Cowork yang dimulai di claude.ai web atau seluler, yang berjalan di cloud dalam lingkungan yang dikelola Anthropic, tersedia melalui [endpoint sesi jarak jauh](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-remote-sessions). Setiap kelompok memiliki endpoint daftar yang mengembalikan metadata sesi dan endpoint pesan yang mengembalikan transkrip sesi (prompt pengguna, respons asisten, serta panggilan alat dan hasilnya). Kelompok lokal menambahkan endpoint ketiga yang mengambil metadata satu sesi. Semua endpoint ini menggunakan Compliance Access Key Anda yang sudah ada dengan `read:compliance_user_data`; tidak diperlukan kunci atau scope baru.
 
     Sesi lokal direkam saat permintaannya mencapai Claude API, sehingga tidak ada yang diinstal di perangkat, dan aktivitas di perangkat yang tidak pernah mencapai API tidak direkam. Sesi Claude Code yang diautentikasi dengan kunci API Claude Console, sesi Claude Code yang dijalankan melalui platform cloud pihak ketiga (Amazon Bedrock, Google Cloud, atau Microsoft Foundry), dan Claude Code di web tidak direkam. Claude Code di web juga berjalan di cloud dalam lingkungan yang dikelola Anthropic, tetapi bukan merupakan sesi jarak jauh; endpoint sesi jarak jauh hanya mengembalikan sesi Cowork. Organisasi dengan [kesiapan HIPAA](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#hipaa-readiness) yang diaktifkan tidak mendapatkan data sesi lokal, dan sesi yang menerapkan [zero data retention (ZDR)](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) dikecualikan.
 
-    Endpoint sesi lokal dan jarak jauh sudah stabil untuk sesi Cowork dan Claude Code; cakupan sesi Claude Science dan Claude for Microsoft 365 masih dalam versi beta.
+    Endpoint sesi lokal dan jarak jauh sudah stabil untuk sesi Cowork dan Claude Code; cakupan untuk sesi Claude Science dan Claude for Microsoft 365 masih dalam tahap beta.
   </Accordion>
 
   <Accordion title="Apa saja yang termasuk dalam transkrip sesi?">
@@ -104,13 +104,13 @@ description: Jawaban atas pertanyaan umum tentang akses, cakupan (scope), retens
   </Accordion>
 
   <Accordion title="Bagaimana perbandingan cakupan sesi dengan logging OpenTelemetry (OTEL) untuk Cowork dan Claude Code?">
-    [Logging OpenTelemetry Cowork](https://support.claude.com/en/articles/14477985-monitor-claude-cowork-activity-with-opentelemetry) dan [pemantauan Claude Code](https://code.claude.com/docs/en/monitoring-usage) tumpang tindih dengan endpoint sesi tetapi menjawab kebutuhan yang berbeda: OTEL melakukan streaming telemetri per peristiwa ke infrastruktur yang Anda jalankan saat aktivitas terjadi, sedangkan Compliance API memungkinkan Anda mengambil transkrip per sesi yang disimpan dari Anthropic setelah kejadian. OTEL juga dapat merekam prompt dan respons, tetapi Anthropic merekomendasikan Compliance API untuk mengambil konten sesi Cowork dan Claude Code. Untuk tabel yang membandingkan sesi lokal, sesi jarak jauh, dan OTEL, lihat pengantar [Mengambil transkrip sesi](https://platform.claude.com/docs/id/manage-claude/compliance-sessions).
+    [Logging OpenTelemetry Cowork](https://support.claude.com/en/articles/14477985-monitor-claude-cowork-activity-with-opentelemetry) dan [pemantauan Claude Code](https://code.claude.com/docs/id/monitoring-usage) tumpang tindih dengan endpoint sesi tetapi menjawab kebutuhan yang berbeda: OTEL melakukan streaming telemetri per peristiwa ke infrastruktur yang Anda jalankan saat aktivitas terjadi, sedangkan Compliance API memungkinkan Anda mengambil transkrip per sesi yang disimpan dari Anthropic setelah kejadian. OTEL juga dapat merekam prompt dan respons, tetapi Anthropic merekomendasikan Compliance API untuk mengambil konten sesi Cowork dan Claude Code. Untuk tabel yang membandingkan sesi lokal, sesi jarak jauh, dan OTEL, lihat pengantar [Mengambil transkrip sesi](https://platform.claude.com/docs/id/manage-claude/compliance-sessions).
 
     Peristiwa OTEL dan catatan Compliance API berbagi pengidentifikasi organisasi dan pengguna, sehingga Anda dapat menggabungkannya.
   </Accordion>
 
   <Accordion title="Apakah konten yang dihapus dapat dipulihkan melalui Compliance API?">
-    Tidak. Penghapusan yang dilakukan melalui Compliance API bersifat langsung, permanen, dan tidak dapat dipulihkan. Konten chat yang dihapus pengguna di claude.ai juga tidak dapat dipulihkan: Compliance API tetap mengembalikan chat dan pesan-pesannya, dengan `deleted_at` terisi, tetapi tidak dengan kontennya. Ambil konten apa pun yang perlu Anda simpan (untuk legal hold atau pengarsipan) selagi masih tersedia. Lihat [Merencanakan retensi konten](https://platform.claude.com/docs/id/manage-claude/compliance-integration-patterns#plan-content-retention) untuk mengetahui kapan harus mengekspor konten ke arsip Anda sendiri.
+    Tidak. Penghapusan yang dilakukan melalui Compliance API bersifat langsung, permanen, dan tidak dapat dipulihkan. Konten chat yang dihapus pengguna di claude.ai juga tidak dapat dipulihkan: Compliance API tetap mengembalikan chat dan pesannya, dengan `deleted_at` terisi, tetapi tanpa kontennya. Sesi jarak jauh yang dihapus pengguna juga tidak dapat dipulihkan, dan endpoint sesi jarak jauh tidak lagi mengembalikannya. Ambil konten apa pun yang perlu Anda simpan (untuk legal hold atau pengarsipan) selagi masih tersedia. Lihat [Merencanakan retensi konten](https://platform.claude.com/docs/id/manage-claude/compliance-integration-patterns#plan-content-retention) untuk mengetahui kapan harus mengekspor konten ke arsip Anda sendiri.
   </Accordion>
 
   <Accordion title="Apa yang tidak direkam oleh Compliance API?">

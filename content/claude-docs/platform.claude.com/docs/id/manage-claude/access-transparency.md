@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/access-transparency
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: d2579500ecac8f8d060f7d859c692bc7a21067f65981b4b2b480a8639d401fe7
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 9539247a45cb75a2a562bd5c4d10e1ff765f44cb8f1f720a87cbd705b7b91a04
 ---
 
 ---
@@ -74,7 +74,8 @@ curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/activities" \
   --data-urlencode "activity_types[]=anthropic_access" \
   --data-urlencode "limit=50" \
-  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
+  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+  --header "anthropic-version: 2023-06-01"
 ```
 
 Paginasi, pemfilteran rentang tanggal (`created_at.gte` / `.lt`), dan envelope respons (`has_more`, `first_id`, `last_id`) sama dengan bagian lain dari Activity Feed. Lihat [Mengkueri Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed).
@@ -128,7 +129,8 @@ curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/activities" \
   --data-urlencode "activity_types[]=cmek_preserve" \
   --data-urlencode "limit=50" \
-  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
+  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+  --header "anthropic-version: 2023-06-01"
 ```
 
 Contoh pesan JSON:

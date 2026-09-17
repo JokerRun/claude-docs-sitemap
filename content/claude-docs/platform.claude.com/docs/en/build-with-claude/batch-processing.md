@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/batch-processing
-fetched_at: 2026-09-04T02:21:22.489135Z
-sha256: e1df24b2de12d22c8eed0e85d4dbc46cf6c2e1c8300d6d635d0667fd22a439c4
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 16e64554cda0e626e61dd9614de4fdb60aebdfcf7b04654786f8c92307a1dab0
 ---
 
 ---
@@ -536,7 +536,7 @@ To poll a Message Batch, you'll need its `id`, which is provided in the response
   var messageBatch *anthropic.MessageBatch
   for {
   	var err error
-  	messageBatch, err = client.Messages.Batches.Get(context.TODO(), messageBatchID)
+  	messageBatch, err = client.Messages.Batches.Get(context.TODO(), messageBatchID, anthropic.MessageBatchGetParams{})
   	if err != nil {
   		log.Fatal(err)
   	}
@@ -829,7 +829,7 @@ Results of the batch are available for download at the `results_url` property on
   ```go Go
   client := anthropic.NewClient()
 
-  stream := client.Messages.Batches.ResultsStreaming(context.TODO(), "msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d")
+  stream := client.Messages.Batches.ResultsStreaming(context.TODO(), "msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d", anthropic.MessageBatchResultsParams{})
 
   for stream.Next() {
   	result := stream.Current()
@@ -993,7 +993,7 @@ You can cancel a Message Batch that is currently processing using the [cancel en
   client := anthropic.NewClient()
   messageBatchID := os.Getenv("MESSAGE_BATCH_ID")
 
-  messageBatch, err := client.Messages.Batches.Cancel(context.TODO(), messageBatchID)
+  messageBatch, err := client.Messages.Batches.Cancel(context.TODO(), messageBatchID, anthropic.MessageBatchCancelParams{})
   if err != nil {
   	log.Fatal(err)
   }

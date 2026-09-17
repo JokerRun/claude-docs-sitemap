@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 037c0f09811f72bc7582b5555ad66418e12ef7c3a08713592cd6861ca78bf043
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: afcde0f93f67aadbd2db8f9a751440c309dd01f5315bab8fd6a44d6d45bd89e7
 ---
 
 ---
@@ -56,7 +56,7 @@ Archived certificates are excluded unless `include_archived` is set.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -147,6 +147,8 @@ Archived certificates are excluded unless `include_archived` is set.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 ## Returns
 

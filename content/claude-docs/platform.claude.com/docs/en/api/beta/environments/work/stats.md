@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/stats
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 872a0f28fa6dd486a4e3a9f7abb4ae7b115bbb3ba14f9eca5ff7ffcfb0cc8ee9
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 5aaedb2d7feca3a9a67dd95e637f96bc235ed2dcd8a39b30572ee4548ac1a35b
 ---
 
 ---
@@ -28,7 +28,7 @@ Get statistics about the work queue for an environment.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -119,6 +119,8 @@ Get statistics about the work queue for an environment.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

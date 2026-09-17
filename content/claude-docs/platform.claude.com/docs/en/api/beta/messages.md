@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: d1e51f6aba554fa29b99d88122676f650bc96df996a4cc2c4ec67a881a275cad
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 2680e5d117874f9691fff21cda1e35b3ab267a9d6819e0dec782e5d7fafddcf0
 ---
 
 ---
@@ -30,7 +30,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -121,6 +121,8 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-user-profile-id": optional string`
 
@@ -1292,6 +1294,10 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
           Opaque metadata from prior compaction, to be round-tripped verbatim
 
+        - `signature: optional string or null`
+
+          The block's signature as returned, to be sent back verbatim
+
       - `BetaRequestToolAdditionBlock object`
 
         Mid-conversation directive to surface a declared tool.
@@ -1531,6 +1537,25 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 - `cache_control: optional BetaCacheControlEphemeral or null`
 
   Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
+
+- `compaction: optional BetaCompactionConfig or null`
+
+  Compact the whole conversation and return a signed `compaction` block,
+  alone, that a later request sends back first in `messages`, in place of
+  the messages it summarizes. There is no trigger and no pause flag: sending
+  the parameter compacts, and nothing is sampled after the block.
+
+  The summarization prompt is the server's own unless `instructions` are
+  given, which then replace it for this request; a value that is empty or
+  only whitespace counts as absent.
+
+  - `type: "summarize"`
+
+  - `instructions: optional string or null`
+
+    Replaces the server's default summarization prompt for this request. An empty or whitespace-only value counts as absent.
+
+    maxLength: 16384
 
 - `container: optional BetaContainerParams or string or null`
 
@@ -3450,6 +3475,97 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       When true, guarantees schema validation on tool names and inputs
 
+    - `url_sources: optional BetaWebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
+
+      - `client_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+        Which client tools' results contribute fetchable URLs: "all", "none", or an only or except list of client tool names from tools[].
+
+        - `BetaWebFetchURLSourceAll object`
+
+          The `url_sources` variant under which a source contributes in
+          full: every result of the tool filter's source, or all user input.
+
+          - `type: "all"`
+
+        - `BetaWebFetchURLSourceNone object`
+
+          The `url_sources` variant under which a source contributes nothing:
+          no result of the tool filter's source, or no user input.
+
+          - `type: "none"`
+
+        - `BetaWebFetchURLSourceOnly object`
+
+          The tool filter variant under which only the named tools' results
+          contribute.
+
+          - `type: "only"`
+
+          - `tools: array of BetaWebFetchURLSourceToolReference`
+
+            - `type: "tool_reference"`
+
+            - `name: string`
+
+        - `BetaWebFetchURLSourceExcept object`
+
+          The tool filter variant under which every result but the named
+          tools' contributes.
+
+          - `type: "except"`
+
+          - `tools: array of BetaWebFetchURLSourceToolReference`
+
+            - `type: "tool_reference"`
+
+            - `name: string`
+
+      - `server_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+        Which server tools' results contribute fetchable URLs: "all", "none", or an only or except list of server tool names from tools[]; only web_search and web_fetch results ever contribute.
+
+        - `BetaWebFetchURLSourceAll object`
+
+          The `url_sources` variant under which a source contributes in
+          full: every result of the tool filter's source, or all user input.
+
+        - `BetaWebFetchURLSourceNone object`
+
+          The `url_sources` variant under which a source contributes nothing:
+          no result of the tool filter's source, or no user input.
+
+        - `BetaWebFetchURLSourceOnly object`
+
+          The tool filter variant under which only the named tools' results
+          contribute.
+
+        - `BetaWebFetchURLSourceExcept object`
+
+          The tool filter variant under which every result but the named
+          tools' contributes.
+
+      - `user_input: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone`
+
+        Whether URLs in user messages are fetchable: "all" or "none".
+
+        - `BetaWebFetchURLSourceAll object`
+
+          The `url_sources` variant under which a source contributes in
+          full: every result of the tool filter's source, or all user input.
+
+        - `BetaWebFetchURLSourceNone object`
+
+          The `url_sources` variant under which a source contributes nothing:
+          no result of the tool filter's source, or no user input.
+
   - `BetaWebSearchTool20260209 object`
 
     - `type: "web_search_20260209"`
@@ -3556,6 +3672,15 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       When true, guarantees schema validation on tool names and inputs
 
+    - `url_sources: optional BetaWebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
+
   - `BetaWebFetchTool20260309 object`
 
     Web fetch tool with use_cache parameter for bypassing cached content.
@@ -3613,6 +3738,15 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
     - `strict: optional boolean`
 
       When true, guarantees schema validation on tool names and inputs
+
+    - `url_sources: optional BetaWebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
 
     - `use_cache: optional boolean`
 
@@ -3739,6 +3873,15 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
     - `strict: optional boolean`
 
       When true, guarantees schema validation on tool names and inputs
+
+    - `url_sources: optional BetaWebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
 
     - `use_cache: optional boolean`
 
@@ -4850,6 +4993,10 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
         Opaque metadata from prior compaction, to be round-tripped verbatim
 
+      - `signature: optional string or null`
+
+        Signature over the summary, to be sent back with the block verbatim
+
     - `BetaFallbackBlock object`
 
       Marks the point in `content` where one model's output gives way to the next.
@@ -5613,59 +5760,101 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       - `"fast"`
 
-  - `input_transformations: optional array of BetaThinkingDroppedInputTransformation or null`
+  - `input_transformations: optional array of BetaInputTransformation or null`
 
-    Changes the API made to the request's input before showing it to the model:
-    one entry per change, in request order. Today the only entry type is
-    `thinking_dropped` — a `thinking`, `redacted_thinking` or `connector_text`
-    block from the request's `messages` that was removed from the prompt instead
-    of being shown to the model because it failed a binding check. More entry
-    types may be added over time; ignore types you do not recognize.
+    Changes the API made to the request's input before showing it to the model,
+    and blocks that failed a binding check but were left unchanged: one entry per
+    block, in request order. Two entry types today. `thinking_dropped` — a
+    `thinking`, `redacted_thinking` or `connector_text` block from the request's
+    `messages` that was removed from the prompt instead of being shown to the
+    model because it failed a binding check. `thinking_mismatch_allowed` — a
+    `thinking` or `redacted_thinking` block that failed the conversation check
+    (the conversation before it differs from the one it was created in, or it
+    carries no record of one on a model that requires it) and was shown to the
+    model all the same, because that check is not enforced for this request.
+    More entry types may be added over time; ignore types you do not recognize.
 
     Requires `anthropic-beta: thinking-binding-controls-2026-08-01`. Present on
     every such response from a model that supports extended thinking, as `[]`
-    when nothing was changed; without the beta, blocks are removed all the same
-    but nothing is reported. Removed blocks contribute nothing to
-    `usage.input_tokens`. When streaming, the array is final in `message_start`;
-    the final `message_delta` event carries it only when a server-side model
-    fallback happened mid-stream, in which case it holds the serving model's
-    entries and replaces the one in `message_start`.
+    when there is no entry to report; without the beta, blocks are removed or
+    left in place all the same but nothing is reported. Removed blocks contribute
+    nothing to `usage.input_tokens`; blocks left in place count as sent. When
+    streaming, the array is final in `message_start`; the final `message_delta`
+    event carries it only when a server-side model fallback happened mid-stream,
+    in which case it holds the serving model's entries and replaces the one in
+    `message_start`.
 
-    - `type: "thinking_dropped"`
+    - `BetaThinkingDroppedInputTransformation object`
 
-      Always `thinking_dropped` for this entry type.
+      - `type: "thinking_dropped"`
 
-      default: thinking_dropped
+        Always `thinking_dropped` for this entry type.
 
-    - `path: string`
+        default: thinking_dropped
 
-      Where the removed block was in your request, as `messages.{i}.content.{j}`:
-      `i` indexes the `messages` array you sent and `j` that message's `content`
-      array — the same form error messages use.
+      - `path: string`
 
-    - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
+        Where the removed block was in your request, as `messages.{i}.content.{j}`:
+        `i` indexes the `messages` array you sent and `j` that message's `content`
+        array — the same form error messages use.
 
-      Which binding check removed the block: `model_binding_mismatch` — it was
-      created by a model whose reasoning the requested model may not read;
-      `prefix_binding_mismatch` — the conversation before it differs from the
-      conversation it was created in (the rest of that turn's consecutive thinking
-      blocks are removed with it, each with this reason);
-      `organization_binding_mismatch` — it was created under a different
-      organization (an Anthropic organization, AWS account or Google Cloud project)
-      and this organization is not one of its additional organizations;
-      `end_user_binding_mismatch` — it was created for a different end user, or
-      was removed by the consumer-organization binding. A block that would fail
-      several checks reports one reason, in this order of precedence:
-      `organization_binding_mismatch`, `end_user_binding_mismatch`,
-      `model_binding_mismatch`, `prefix_binding_mismatch`.
+      - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
 
-      - `"model_binding_mismatch"`
+        Which binding check removed the block: `model_binding_mismatch` — it was
+        created by a model whose reasoning the requested model may not read;
+        `prefix_binding_mismatch` — the conversation before it differs from the
+        conversation it was created in (the rest of that turn's consecutive thinking
+        blocks are removed with it, each with this reason);
+        `organization_binding_mismatch` — it was created under a different
+        organization (an Anthropic organization, AWS account or Google Cloud project)
+        and this organization is not one of its additional organizations;
+        `end_user_binding_mismatch` — it was created for a different end user, or
+        was removed by the consumer-organization binding. A block that would fail
+        several checks reports one reason, in this order of precedence:
+        `organization_binding_mismatch`, `end_user_binding_mismatch`,
+        `model_binding_mismatch`, `prefix_binding_mismatch`.
 
-      - `"prefix_binding_mismatch"`
+        - `"model_binding_mismatch"`
 
-      - `"organization_binding_mismatch"`
+        - `"prefix_binding_mismatch"`
 
-      - `"end_user_binding_mismatch"`
+        - `"organization_binding_mismatch"`
+
+        - `"end_user_binding_mismatch"`
+
+    - `BetaThinkingMismatchAllowedInputTransformation object`
+
+      - `type: "thinking_mismatch_allowed"`
+
+        Always `thinking_mismatch_allowed` for this entry type.
+
+        default: thinking_mismatch_allowed
+
+      - `path: string`
+
+        Where the block is in your request, as `messages.{i}.content.{j}`:
+        `i` indexes the `messages` array you sent and `j` that message's `content`
+        array — the same form error messages use.
+
+      - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
+
+        Which binding check the block failed; the block was shown to the model all
+        the same. Always `prefix_binding_mismatch` today — the conversation before
+        the block differs from the conversation it was created in, or the block
+        carries no record of one on a model that requires it. Were the check
+        enforced for this request, the block would have been removed or the request
+        rejected (`thinking.block_binding.prefix_mismatch_behavior`). A removal also
+        takes the rest of that turn's consecutive thinking blocks, whereas here each
+        block is checked on its own, so `thinking_mismatch_allowed` entries are a
+        lower bound on what enforcement would remove.
+
+        - `"model_binding_mismatch"`
+
+        - `"prefix_binding_mismatch"`
+
+        - `"organization_binding_mismatch"`
+
+        - `"end_user_binding_mismatch"`
 
 - `BetaRawMessageStreamEvent = BetaRawMessageStartEvent or BetaRawMessageDeltaEvent or BetaRawMessageStopEvent or 3 more`
 
@@ -5764,51 +5953,33 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
         The number of server tool requests.
 
-    - `input_transformations: optional array of BetaThinkingDroppedInputTransformation or null`
+    - `input_transformations: optional array of BetaInputTransformation or null`
 
-      Changes the API made to the request's input before showing it to the model:
-      one entry per change, in request order. Today the only entry type is
-      `thinking_dropped` — a `thinking`, `redacted_thinking` or `connector_text`
-      block from the request's `messages` that was removed from the prompt instead
-      of being shown to the model because it failed a binding check. More entry
-      types may be added over time; ignore types you do not recognize.
+      Changes the API made to the request's input before showing it to the model,
+      and blocks that failed a binding check but were left unchanged: one entry per
+      block, in request order. Two entry types today. `thinking_dropped` — a
+      `thinking`, `redacted_thinking` or `connector_text` block from the request's
+      `messages` that was removed from the prompt instead of being shown to the
+      model because it failed a binding check. `thinking_mismatch_allowed` — a
+      `thinking` or `redacted_thinking` block that failed the conversation check
+      (the conversation before it differs from the one it was created in, or it
+      carries no record of one on a model that requires it) and was shown to the
+      model all the same, because that check is not enforced for this request.
+      More entry types may be added over time; ignore types you do not recognize.
 
       Requires `anthropic-beta: thinking-binding-controls-2026-08-01`. Present on
       every such response from a model that supports extended thinking, as `[]`
-      when nothing was changed; without the beta, blocks are removed all the same
-      but nothing is reported. Removed blocks contribute nothing to
-      `usage.input_tokens`. When streaming, the array is final in `message_start`;
-      the final `message_delta` event carries it only when a server-side model
-      fallback happened mid-stream, in which case it holds the serving model's
-      entries and replaces the one in `message_start`.
+      when there is no entry to report; without the beta, blocks are removed or
+      left in place all the same but nothing is reported. Removed blocks contribute
+      nothing to `usage.input_tokens`; blocks left in place count as sent. When
+      streaming, the array is final in `message_start`; the final `message_delta`
+      event carries it only when a server-side model fallback happened mid-stream,
+      in which case it holds the serving model's entries and replaces the one in
+      `message_start`.
 
-      - `type: "thinking_dropped"`
+      - `BetaThinkingDroppedInputTransformation object`
 
-        Always `thinking_dropped` for this entry type.
-
-        default: thinking_dropped
-
-      - `path: string`
-
-        Where the removed block was in your request, as `messages.{i}.content.{j}`:
-        `i` indexes the `messages` array you sent and `j` that message's `content`
-        array — the same form error messages use.
-
-      - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
-
-        Which binding check removed the block: `model_binding_mismatch` — it was
-        created by a model whose reasoning the requested model may not read;
-        `prefix_binding_mismatch` — the conversation before it differs from the
-        conversation it was created in (the rest of that turn's consecutive thinking
-        blocks are removed with it, each with this reason);
-        `organization_binding_mismatch` — it was created under a different
-        organization (an Anthropic organization, AWS account or Google Cloud project)
-        and this organization is not one of its additional organizations;
-        `end_user_binding_mismatch` — it was created for a different end user, or
-        was removed by the consumer-organization binding. A block that would fail
-        several checks reports one reason, in this order of precedence:
-        `organization_binding_mismatch`, `end_user_binding_mismatch`,
-        `model_binding_mismatch`, `prefix_binding_mismatch`.
+      - `BetaThinkingMismatchAllowedInputTransformation object`
 
   - `BetaRawMessageStopEvent object`
 
@@ -6144,7 +6315,7 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -6235,6 +6406,8 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-user-profile-id": optional string`
 
@@ -7394,6 +7567,10 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
           Opaque metadata from prior compaction, to be round-tripped verbatim
 
+        - `signature: optional string or null`
+
+          The block's signature as returned, to be sent back verbatim
+
       - `BetaRequestToolAdditionBlock object`
 
         Mid-conversation directive to surface a declared tool.
@@ -7633,6 +7810,25 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 - `cache_control: optional BetaCacheControlEphemeral or null`
 
   Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
+
+- `compaction: optional BetaCompactionConfig or null`
+
+  Compact the whole conversation and return a signed `compaction` block,
+  alone, that a later request sends back first in `messages`, in place of
+  the messages it summarizes. There is no trigger and no pause flag: sending
+  the parameter compacts, and nothing is sampled after the block.
+
+  The summarization prompt is the server's own unless `instructions` are
+  given, which then replace it for this request; a value that is empty or
+  only whitespace counts as absent.
+
+  - `type: "summarize"`
+
+  - `instructions: optional string or null`
+
+    Replaces the server's default summarization prompt for this request. An empty or whitespace-only value counts as absent.
+
+    maxLength: 16384
 
 - `context_management: optional BetaContextManagementConfig or null`
 
@@ -9378,6 +9574,97 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
       When true, guarantees schema validation on tool names and inputs
 
+    - `url_sources: optional BetaWebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
+
+      - `client_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+        Which client tools' results contribute fetchable URLs: "all", "none", or an only or except list of client tool names from tools[].
+
+        - `BetaWebFetchURLSourceAll object`
+
+          The `url_sources` variant under which a source contributes in
+          full: every result of the tool filter's source, or all user input.
+
+          - `type: "all"`
+
+        - `BetaWebFetchURLSourceNone object`
+
+          The `url_sources` variant under which a source contributes nothing:
+          no result of the tool filter's source, or no user input.
+
+          - `type: "none"`
+
+        - `BetaWebFetchURLSourceOnly object`
+
+          The tool filter variant under which only the named tools' results
+          contribute.
+
+          - `type: "only"`
+
+          - `tools: array of BetaWebFetchURLSourceToolReference`
+
+            - `type: "tool_reference"`
+
+            - `name: string`
+
+        - `BetaWebFetchURLSourceExcept object`
+
+          The tool filter variant under which every result but the named
+          tools' contributes.
+
+          - `type: "except"`
+
+          - `tools: array of BetaWebFetchURLSourceToolReference`
+
+            - `type: "tool_reference"`
+
+            - `name: string`
+
+      - `server_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+        Which server tools' results contribute fetchable URLs: "all", "none", or an only or except list of server tool names from tools[]; only web_search and web_fetch results ever contribute.
+
+        - `BetaWebFetchURLSourceAll object`
+
+          The `url_sources` variant under which a source contributes in
+          full: every result of the tool filter's source, or all user input.
+
+        - `BetaWebFetchURLSourceNone object`
+
+          The `url_sources` variant under which a source contributes nothing:
+          no result of the tool filter's source, or no user input.
+
+        - `BetaWebFetchURLSourceOnly object`
+
+          The tool filter variant under which only the named tools' results
+          contribute.
+
+        - `BetaWebFetchURLSourceExcept object`
+
+          The tool filter variant under which every result but the named
+          tools' contributes.
+
+      - `user_input: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone`
+
+        Whether URLs in user messages are fetchable: "all" or "none".
+
+        - `BetaWebFetchURLSourceAll object`
+
+          The `url_sources` variant under which a source contributes in
+          full: every result of the tool filter's source, or all user input.
+
+        - `BetaWebFetchURLSourceNone object`
+
+          The `url_sources` variant under which a source contributes nothing:
+          no result of the tool filter's source, or no user input.
+
   - `BetaWebSearchTool20260209 object`
 
     - `type: "web_search_20260209"`
@@ -9484,6 +9771,15 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
       When true, guarantees schema validation on tool names and inputs
 
+    - `url_sources: optional BetaWebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
+
   - `BetaWebFetchTool20260309 object`
 
     Web fetch tool with use_cache parameter for bypassing cached content.
@@ -9541,6 +9837,15 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
     - `strict: optional boolean`
 
       When true, guarantees schema validation on tool names and inputs
+
+    - `url_sources: optional BetaWebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
 
     - `use_cache: optional boolean`
 
@@ -9667,6 +9972,15 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
     - `strict: optional boolean`
 
       When true, guarantees schema validation on tool names and inputs
+
+    - `url_sources: optional BetaWebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
 
     - `use_cache: optional boolean`
 
@@ -13576,6 +13890,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     Opaque metadata from prior compaction, to be round-tripped verbatim
 
+  - `signature: optional string or null`
+
+    Signature over the summary, to be sent back with the block verbatim
+
 ### Beta Compaction Block Param
 
 - `BetaCompactionBlockParam object`
@@ -13618,6 +13936,31 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
   - `encrypted_content: optional string or null`
 
     Opaque metadata from prior compaction, to be round-tripped verbatim
+
+  - `signature: optional string or null`
+
+    The block's signature as returned, to be sent back verbatim
+
+### Beta Compaction Config
+
+- `BetaCompactionConfig object`
+
+  Compact the whole conversation and return a signed `compaction` block,
+  alone, that a later request sends back first in `messages`, in place of
+  the messages it summarizes. There is no trigger and no pause flag: sending
+  the parameter compacts, and nothing is sampled after the block.
+
+  The summarization prompt is the server's own unless `instructions` are
+  given, which then replace it for this request; a value that is empty or
+  only whitespace counts as absent.
+
+  - `type: "summarize"`
+
+  - `instructions: optional string or null`
+
+    Replaces the server's default summarization prompt for this request. An empty or whitespace-only value counts as absent.
+
+    maxLength: 16384
 
 ### Beta Compaction Content Block Delta
 
@@ -15353,6 +15696,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       Opaque metadata from prior compaction, to be round-tripped verbatim
 
+    - `signature: optional string or null`
+
+      Signature over the summary, to be sent back with the block verbatim
+
   - `BetaFallbackBlock object`
 
     Marks the point in `content` where one model's output gives way to the next.
@@ -16589,6 +16936,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
     - `encrypted_content: optional string or null`
 
       Opaque metadata from prior compaction, to be round-tripped verbatim
+
+    - `signature: optional string or null`
+
+      The block's signature as returned, to be sent back verbatim
 
   - `BetaRequestToolAdditionBlock object`
 
@@ -18868,6 +19219,87 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     minimum: 1
 
+### Beta Input Transformation
+
+- `BetaInputTransformation = BetaThinkingDroppedInputTransformation or BetaThinkingMismatchAllowedInputTransformation`
+
+  One entry of `input_transformations`: either a change the API made to the
+  request's input before showing it to the model, or a block that failed a
+  binding check and was still shown to the model unchanged. The `type` field
+  says which.
+
+  - `BetaThinkingDroppedInputTransformation object`
+
+    - `type: "thinking_dropped"`
+
+      Always `thinking_dropped` for this entry type.
+
+      default: thinking_dropped
+
+    - `path: string`
+
+      Where the removed block was in your request, as `messages.{i}.content.{j}`:
+      `i` indexes the `messages` array you sent and `j` that message's `content`
+      array — the same form error messages use.
+
+    - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
+
+      Which binding check removed the block: `model_binding_mismatch` — it was
+      created by a model whose reasoning the requested model may not read;
+      `prefix_binding_mismatch` — the conversation before it differs from the
+      conversation it was created in (the rest of that turn's consecutive thinking
+      blocks are removed with it, each with this reason);
+      `organization_binding_mismatch` — it was created under a different
+      organization (an Anthropic organization, AWS account or Google Cloud project)
+      and this organization is not one of its additional organizations;
+      `end_user_binding_mismatch` — it was created for a different end user, or
+      was removed by the consumer-organization binding. A block that would fail
+      several checks reports one reason, in this order of precedence:
+      `organization_binding_mismatch`, `end_user_binding_mismatch`,
+      `model_binding_mismatch`, `prefix_binding_mismatch`.
+
+      - `"model_binding_mismatch"`
+
+      - `"prefix_binding_mismatch"`
+
+      - `"organization_binding_mismatch"`
+
+      - `"end_user_binding_mismatch"`
+
+  - `BetaThinkingMismatchAllowedInputTransformation object`
+
+    - `type: "thinking_mismatch_allowed"`
+
+      Always `thinking_mismatch_allowed` for this entry type.
+
+      default: thinking_mismatch_allowed
+
+    - `path: string`
+
+      Where the block is in your request, as `messages.{i}.content.{j}`:
+      `i` indexes the `messages` array you sent and `j` that message's `content`
+      array — the same form error messages use.
+
+    - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
+
+      Which binding check the block failed; the block was shown to the model all
+      the same. Always `prefix_binding_mismatch` today — the conversation before
+      the block differs from the conversation it was created in, or the block
+      carries no record of one on a model that requires it. Were the check
+      enforced for this request, the block would have been removed or the request
+      rejected (`thinking.block_binding.prefix_mismatch_behavior`). A removal also
+      takes the rest of that turn's consecutive thinking blocks, whereas here each
+      block is checked on its own, so `thinking_mismatch_allowed` entries are a
+      lower bound on what enforcement would remove.
+
+      - `"model_binding_mismatch"`
+
+      - `"prefix_binding_mismatch"`
+
+      - `"organization_binding_mismatch"`
+
+      - `"end_user_binding_mismatch"`
+
 ### Beta Iterations Usage
 
 - `BetaIterationsUsage = array of BetaMessageIterationUsage or BetaCompactionIterationUsage or BetaAdvisorMessageIterationUsage or BetaFallbackMessageIterationUsage`
@@ -20634,6 +21066,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         Opaque metadata from prior compaction, to be round-tripped verbatim
 
+      - `signature: optional string or null`
+
+        Signature over the summary, to be sent back with the block verbatim
+
     - `BetaFallbackBlock object`
 
       Marks the point in `content` where one model's output gives way to the next.
@@ -21397,59 +21833,101 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"fast"`
 
-  - `input_transformations: optional array of BetaThinkingDroppedInputTransformation or null`
+  - `input_transformations: optional array of BetaInputTransformation or null`
 
-    Changes the API made to the request's input before showing it to the model:
-    one entry per change, in request order. Today the only entry type is
-    `thinking_dropped` — a `thinking`, `redacted_thinking` or `connector_text`
-    block from the request's `messages` that was removed from the prompt instead
-    of being shown to the model because it failed a binding check. More entry
-    types may be added over time; ignore types you do not recognize.
+    Changes the API made to the request's input before showing it to the model,
+    and blocks that failed a binding check but were left unchanged: one entry per
+    block, in request order. Two entry types today. `thinking_dropped` — a
+    `thinking`, `redacted_thinking` or `connector_text` block from the request's
+    `messages` that was removed from the prompt instead of being shown to the
+    model because it failed a binding check. `thinking_mismatch_allowed` — a
+    `thinking` or `redacted_thinking` block that failed the conversation check
+    (the conversation before it differs from the one it was created in, or it
+    carries no record of one on a model that requires it) and was shown to the
+    model all the same, because that check is not enforced for this request.
+    More entry types may be added over time; ignore types you do not recognize.
 
     Requires `anthropic-beta: thinking-binding-controls-2026-08-01`. Present on
     every such response from a model that supports extended thinking, as `[]`
-    when nothing was changed; without the beta, blocks are removed all the same
-    but nothing is reported. Removed blocks contribute nothing to
-    `usage.input_tokens`. When streaming, the array is final in `message_start`;
-    the final `message_delta` event carries it only when a server-side model
-    fallback happened mid-stream, in which case it holds the serving model's
-    entries and replaces the one in `message_start`.
+    when there is no entry to report; without the beta, blocks are removed or
+    left in place all the same but nothing is reported. Removed blocks contribute
+    nothing to `usage.input_tokens`; blocks left in place count as sent. When
+    streaming, the array is final in `message_start`; the final `message_delta`
+    event carries it only when a server-side model fallback happened mid-stream,
+    in which case it holds the serving model's entries and replaces the one in
+    `message_start`.
 
-    - `type: "thinking_dropped"`
+    - `BetaThinkingDroppedInputTransformation object`
 
-      Always `thinking_dropped` for this entry type.
+      - `type: "thinking_dropped"`
 
-      default: thinking_dropped
+        Always `thinking_dropped` for this entry type.
 
-    - `path: string`
+        default: thinking_dropped
 
-      Where the removed block was in your request, as `messages.{i}.content.{j}`:
-      `i` indexes the `messages` array you sent and `j` that message's `content`
-      array — the same form error messages use.
+      - `path: string`
 
-    - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
+        Where the removed block was in your request, as `messages.{i}.content.{j}`:
+        `i` indexes the `messages` array you sent and `j` that message's `content`
+        array — the same form error messages use.
 
-      Which binding check removed the block: `model_binding_mismatch` — it was
-      created by a model whose reasoning the requested model may not read;
-      `prefix_binding_mismatch` — the conversation before it differs from the
-      conversation it was created in (the rest of that turn's consecutive thinking
-      blocks are removed with it, each with this reason);
-      `organization_binding_mismatch` — it was created under a different
-      organization (an Anthropic organization, AWS account or Google Cloud project)
-      and this organization is not one of its additional organizations;
-      `end_user_binding_mismatch` — it was created for a different end user, or
-      was removed by the consumer-organization binding. A block that would fail
-      several checks reports one reason, in this order of precedence:
-      `organization_binding_mismatch`, `end_user_binding_mismatch`,
-      `model_binding_mismatch`, `prefix_binding_mismatch`.
+      - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
 
-      - `"model_binding_mismatch"`
+        Which binding check removed the block: `model_binding_mismatch` — it was
+        created by a model whose reasoning the requested model may not read;
+        `prefix_binding_mismatch` — the conversation before it differs from the
+        conversation it was created in (the rest of that turn's consecutive thinking
+        blocks are removed with it, each with this reason);
+        `organization_binding_mismatch` — it was created under a different
+        organization (an Anthropic organization, AWS account or Google Cloud project)
+        and this organization is not one of its additional organizations;
+        `end_user_binding_mismatch` — it was created for a different end user, or
+        was removed by the consumer-organization binding. A block that would fail
+        several checks reports one reason, in this order of precedence:
+        `organization_binding_mismatch`, `end_user_binding_mismatch`,
+        `model_binding_mismatch`, `prefix_binding_mismatch`.
 
-      - `"prefix_binding_mismatch"`
+        - `"model_binding_mismatch"`
 
-      - `"organization_binding_mismatch"`
+        - `"prefix_binding_mismatch"`
 
-      - `"end_user_binding_mismatch"`
+        - `"organization_binding_mismatch"`
+
+        - `"end_user_binding_mismatch"`
+
+    - `BetaThinkingMismatchAllowedInputTransformation object`
+
+      - `type: "thinking_mismatch_allowed"`
+
+        Always `thinking_mismatch_allowed` for this entry type.
+
+        default: thinking_mismatch_allowed
+
+      - `path: string`
+
+        Where the block is in your request, as `messages.{i}.content.{j}`:
+        `i` indexes the `messages` array you sent and `j` that message's `content`
+        array — the same form error messages use.
+
+      - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
+
+        Which binding check the block failed; the block was shown to the model all
+        the same. Always `prefix_binding_mismatch` today — the conversation before
+        the block differs from the conversation it was created in, or the block
+        carries no record of one on a model that requires it. Were the check
+        enforced for this request, the block would have been removed or the request
+        rejected (`thinking.block_binding.prefix_mismatch_behavior`). A removal also
+        takes the rest of that turn's consecutive thinking blocks, whereas here each
+        block is checked on its own, so `thinking_mismatch_allowed` entries are a
+        lower bound on what enforcement would remove.
+
+        - `"model_binding_mismatch"`
+
+        - `"prefix_binding_mismatch"`
+
+        - `"organization_binding_mismatch"`
+
+        - `"end_user_binding_mismatch"`
 
 ### Beta Message Delta Usage
 
@@ -23101,6 +23579,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           Opaque metadata from prior compaction, to be round-tripped verbatim
 
+        - `signature: optional string or null`
+
+          The block's signature as returned, to be sent back verbatim
+
       - `BetaRequestToolAdditionBlock object`
 
         Mid-conversation directive to surface a declared tool.
@@ -24652,6 +25134,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         Opaque metadata from prior compaction, to be round-tripped verbatim
 
+      - `signature: optional string or null`
+
+        Signature over the summary, to be sent back with the block verbatim
+
     - `BetaFallbackBlock object`
 
       Marks the point in `content` where one model's output gives way to the next.
@@ -25428,59 +25914,101 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         default: 0, minimum: 0
 
-  - `input_transformations: optional array of BetaThinkingDroppedInputTransformation or null`
+  - `input_transformations: optional array of BetaInputTransformation or null`
 
-    Changes the API made to the request's input before showing it to the model:
-    one entry per change, in request order. Today the only entry type is
-    `thinking_dropped` — a `thinking`, `redacted_thinking` or `connector_text`
-    block from the request's `messages` that was removed from the prompt instead
-    of being shown to the model because it failed a binding check. More entry
-    types may be added over time; ignore types you do not recognize.
+    Changes the API made to the request's input before showing it to the model,
+    and blocks that failed a binding check but were left unchanged: one entry per
+    block, in request order. Two entry types today. `thinking_dropped` — a
+    `thinking`, `redacted_thinking` or `connector_text` block from the request's
+    `messages` that was removed from the prompt instead of being shown to the
+    model because it failed a binding check. `thinking_mismatch_allowed` — a
+    `thinking` or `redacted_thinking` block that failed the conversation check
+    (the conversation before it differs from the one it was created in, or it
+    carries no record of one on a model that requires it) and was shown to the
+    model all the same, because that check is not enforced for this request.
+    More entry types may be added over time; ignore types you do not recognize.
 
     Requires `anthropic-beta: thinking-binding-controls-2026-08-01`. Present on
     every such response from a model that supports extended thinking, as `[]`
-    when nothing was changed; without the beta, blocks are removed all the same
-    but nothing is reported. Removed blocks contribute nothing to
-    `usage.input_tokens`. When streaming, the array is final in `message_start`;
-    the final `message_delta` event carries it only when a server-side model
-    fallback happened mid-stream, in which case it holds the serving model's
-    entries and replaces the one in `message_start`.
+    when there is no entry to report; without the beta, blocks are removed or
+    left in place all the same but nothing is reported. Removed blocks contribute
+    nothing to `usage.input_tokens`; blocks left in place count as sent. When
+    streaming, the array is final in `message_start`; the final `message_delta`
+    event carries it only when a server-side model fallback happened mid-stream,
+    in which case it holds the serving model's entries and replaces the one in
+    `message_start`.
 
-    - `type: "thinking_dropped"`
+    - `BetaThinkingDroppedInputTransformation object`
 
-      Always `thinking_dropped` for this entry type.
+      - `type: "thinking_dropped"`
 
-      default: thinking_dropped
+        Always `thinking_dropped` for this entry type.
 
-    - `path: string`
+        default: thinking_dropped
 
-      Where the removed block was in your request, as `messages.{i}.content.{j}`:
-      `i` indexes the `messages` array you sent and `j` that message's `content`
-      array — the same form error messages use.
+      - `path: string`
 
-    - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
+        Where the removed block was in your request, as `messages.{i}.content.{j}`:
+        `i` indexes the `messages` array you sent and `j` that message's `content`
+        array — the same form error messages use.
 
-      Which binding check removed the block: `model_binding_mismatch` — it was
-      created by a model whose reasoning the requested model may not read;
-      `prefix_binding_mismatch` — the conversation before it differs from the
-      conversation it was created in (the rest of that turn's consecutive thinking
-      blocks are removed with it, each with this reason);
-      `organization_binding_mismatch` — it was created under a different
-      organization (an Anthropic organization, AWS account or Google Cloud project)
-      and this organization is not one of its additional organizations;
-      `end_user_binding_mismatch` — it was created for a different end user, or
-      was removed by the consumer-organization binding. A block that would fail
-      several checks reports one reason, in this order of precedence:
-      `organization_binding_mismatch`, `end_user_binding_mismatch`,
-      `model_binding_mismatch`, `prefix_binding_mismatch`.
+      - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
 
-      - `"model_binding_mismatch"`
+        Which binding check removed the block: `model_binding_mismatch` — it was
+        created by a model whose reasoning the requested model may not read;
+        `prefix_binding_mismatch` — the conversation before it differs from the
+        conversation it was created in (the rest of that turn's consecutive thinking
+        blocks are removed with it, each with this reason);
+        `organization_binding_mismatch` — it was created under a different
+        organization (an Anthropic organization, AWS account or Google Cloud project)
+        and this organization is not one of its additional organizations;
+        `end_user_binding_mismatch` — it was created for a different end user, or
+        was removed by the consumer-organization binding. A block that would fail
+        several checks reports one reason, in this order of precedence:
+        `organization_binding_mismatch`, `end_user_binding_mismatch`,
+        `model_binding_mismatch`, `prefix_binding_mismatch`.
 
-      - `"prefix_binding_mismatch"`
+        - `"model_binding_mismatch"`
 
-      - `"organization_binding_mismatch"`
+        - `"prefix_binding_mismatch"`
 
-      - `"end_user_binding_mismatch"`
+        - `"organization_binding_mismatch"`
+
+        - `"end_user_binding_mismatch"`
+
+    - `BetaThinkingMismatchAllowedInputTransformation object`
+
+      - `type: "thinking_mismatch_allowed"`
+
+        Always `thinking_mismatch_allowed` for this entry type.
+
+        default: thinking_mismatch_allowed
+
+      - `path: string`
+
+        Where the block is in your request, as `messages.{i}.content.{j}`:
+        `i` indexes the `messages` array you sent and `j` that message's `content`
+        array — the same form error messages use.
+
+      - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
+
+        Which binding check the block failed; the block was shown to the model all
+        the same. Always `prefix_binding_mismatch` today — the conversation before
+        the block differs from the conversation it was created in, or the block
+        carries no record of one on a model that requires it. Were the check
+        enforced for this request, the block would have been removed or the request
+        rejected (`thinking.block_binding.prefix_mismatch_behavior`). A removal also
+        takes the rest of that turn's consecutive thinking blocks, whereas here each
+        block is checked on its own, so `thinking_mismatch_allowed` entries are a
+        lower bound on what enforcement would remove.
+
+        - `"model_binding_mismatch"`
+
+        - `"prefix_binding_mismatch"`
+
+        - `"organization_binding_mismatch"`
+
+        - `"end_user_binding_mismatch"`
 
 ### Beta Raw Message Start Event
 
@@ -26389,6 +26917,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           Opaque metadata from prior compaction, to be round-tripped verbatim
 
+        - `signature: optional string or null`
+
+          Signature over the summary, to be sent back with the block verbatim
+
       - `BetaFallbackBlock object`
 
         Marks the point in `content` where one model's output gives way to the next.
@@ -27152,59 +27684,101 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `"fast"`
 
-    - `input_transformations: optional array of BetaThinkingDroppedInputTransformation or null`
+    - `input_transformations: optional array of BetaInputTransformation or null`
 
-      Changes the API made to the request's input before showing it to the model:
-      one entry per change, in request order. Today the only entry type is
-      `thinking_dropped` — a `thinking`, `redacted_thinking` or `connector_text`
-      block from the request's `messages` that was removed from the prompt instead
-      of being shown to the model because it failed a binding check. More entry
-      types may be added over time; ignore types you do not recognize.
+      Changes the API made to the request's input before showing it to the model,
+      and blocks that failed a binding check but were left unchanged: one entry per
+      block, in request order. Two entry types today. `thinking_dropped` — a
+      `thinking`, `redacted_thinking` or `connector_text` block from the request's
+      `messages` that was removed from the prompt instead of being shown to the
+      model because it failed a binding check. `thinking_mismatch_allowed` — a
+      `thinking` or `redacted_thinking` block that failed the conversation check
+      (the conversation before it differs from the one it was created in, or it
+      carries no record of one on a model that requires it) and was shown to the
+      model all the same, because that check is not enforced for this request.
+      More entry types may be added over time; ignore types you do not recognize.
 
       Requires `anthropic-beta: thinking-binding-controls-2026-08-01`. Present on
       every such response from a model that supports extended thinking, as `[]`
-      when nothing was changed; without the beta, blocks are removed all the same
-      but nothing is reported. Removed blocks contribute nothing to
-      `usage.input_tokens`. When streaming, the array is final in `message_start`;
-      the final `message_delta` event carries it only when a server-side model
-      fallback happened mid-stream, in which case it holds the serving model's
-      entries and replaces the one in `message_start`.
+      when there is no entry to report; without the beta, blocks are removed or
+      left in place all the same but nothing is reported. Removed blocks contribute
+      nothing to `usage.input_tokens`; blocks left in place count as sent. When
+      streaming, the array is final in `message_start`; the final `message_delta`
+      event carries it only when a server-side model fallback happened mid-stream,
+      in which case it holds the serving model's entries and replaces the one in
+      `message_start`.
 
-      - `type: "thinking_dropped"`
+      - `BetaThinkingDroppedInputTransformation object`
 
-        Always `thinking_dropped` for this entry type.
+        - `type: "thinking_dropped"`
 
-        default: thinking_dropped
+          Always `thinking_dropped` for this entry type.
 
-      - `path: string`
+          default: thinking_dropped
 
-        Where the removed block was in your request, as `messages.{i}.content.{j}`:
-        `i` indexes the `messages` array you sent and `j` that message's `content`
-        array — the same form error messages use.
+        - `path: string`
 
-      - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
+          Where the removed block was in your request, as `messages.{i}.content.{j}`:
+          `i` indexes the `messages` array you sent and `j` that message's `content`
+          array — the same form error messages use.
 
-        Which binding check removed the block: `model_binding_mismatch` — it was
-        created by a model whose reasoning the requested model may not read;
-        `prefix_binding_mismatch` — the conversation before it differs from the
-        conversation it was created in (the rest of that turn's consecutive thinking
-        blocks are removed with it, each with this reason);
-        `organization_binding_mismatch` — it was created under a different
-        organization (an Anthropic organization, AWS account or Google Cloud project)
-        and this organization is not one of its additional organizations;
-        `end_user_binding_mismatch` — it was created for a different end user, or
-        was removed by the consumer-organization binding. A block that would fail
-        several checks reports one reason, in this order of precedence:
-        `organization_binding_mismatch`, `end_user_binding_mismatch`,
-        `model_binding_mismatch`, `prefix_binding_mismatch`.
+        - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
 
-        - `"model_binding_mismatch"`
+          Which binding check removed the block: `model_binding_mismatch` — it was
+          created by a model whose reasoning the requested model may not read;
+          `prefix_binding_mismatch` — the conversation before it differs from the
+          conversation it was created in (the rest of that turn's consecutive thinking
+          blocks are removed with it, each with this reason);
+          `organization_binding_mismatch` — it was created under a different
+          organization (an Anthropic organization, AWS account or Google Cloud project)
+          and this organization is not one of its additional organizations;
+          `end_user_binding_mismatch` — it was created for a different end user, or
+          was removed by the consumer-organization binding. A block that would fail
+          several checks reports one reason, in this order of precedence:
+          `organization_binding_mismatch`, `end_user_binding_mismatch`,
+          `model_binding_mismatch`, `prefix_binding_mismatch`.
 
-        - `"prefix_binding_mismatch"`
+          - `"model_binding_mismatch"`
 
-        - `"organization_binding_mismatch"`
+          - `"prefix_binding_mismatch"`
 
-        - `"end_user_binding_mismatch"`
+          - `"organization_binding_mismatch"`
+
+          - `"end_user_binding_mismatch"`
+
+      - `BetaThinkingMismatchAllowedInputTransformation object`
+
+        - `type: "thinking_mismatch_allowed"`
+
+          Always `thinking_mismatch_allowed` for this entry type.
+
+          default: thinking_mismatch_allowed
+
+        - `path: string`
+
+          Where the block is in your request, as `messages.{i}.content.{j}`:
+          `i` indexes the `messages` array you sent and `j` that message's `content`
+          array — the same form error messages use.
+
+        - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
+
+          Which binding check the block failed; the block was shown to the model all
+          the same. Always `prefix_binding_mismatch` today — the conversation before
+          the block differs from the conversation it was created in, or the block
+          carries no record of one on a model that requires it. Were the check
+          enforced for this request, the block would have been removed or the request
+          rejected (`thinking.block_binding.prefix_mismatch_behavior`). A removal also
+          takes the rest of that turn's consecutive thinking blocks, whereas here each
+          block is checked on its own, so `thinking_mismatch_allowed` entries are a
+          lower bound on what enforcement would remove.
+
+          - `"model_binding_mismatch"`
+
+          - `"prefix_binding_mismatch"`
+
+          - `"organization_binding_mismatch"`
+
+          - `"end_user_binding_mismatch"`
 
 ### Beta Raw Message Stop Event
 
@@ -28123,6 +28697,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
             Opaque metadata from prior compaction, to be round-tripped verbatim
 
+          - `signature: optional string or null`
+
+            Signature over the summary, to be sent back with the block verbatim
+
         - `BetaFallbackBlock object`
 
           Marks the point in `content` where one model's output gives way to the next.
@@ -28886,59 +29464,101 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           - `"fast"`
 
-      - `input_transformations: optional array of BetaThinkingDroppedInputTransformation or null`
+      - `input_transformations: optional array of BetaInputTransformation or null`
 
-        Changes the API made to the request's input before showing it to the model:
-        one entry per change, in request order. Today the only entry type is
-        `thinking_dropped` — a `thinking`, `redacted_thinking` or `connector_text`
-        block from the request's `messages` that was removed from the prompt instead
-        of being shown to the model because it failed a binding check. More entry
-        types may be added over time; ignore types you do not recognize.
+        Changes the API made to the request's input before showing it to the model,
+        and blocks that failed a binding check but were left unchanged: one entry per
+        block, in request order. Two entry types today. `thinking_dropped` — a
+        `thinking`, `redacted_thinking` or `connector_text` block from the request's
+        `messages` that was removed from the prompt instead of being shown to the
+        model because it failed a binding check. `thinking_mismatch_allowed` — a
+        `thinking` or `redacted_thinking` block that failed the conversation check
+        (the conversation before it differs from the one it was created in, or it
+        carries no record of one on a model that requires it) and was shown to the
+        model all the same, because that check is not enforced for this request.
+        More entry types may be added over time; ignore types you do not recognize.
 
         Requires `anthropic-beta: thinking-binding-controls-2026-08-01`. Present on
         every such response from a model that supports extended thinking, as `[]`
-        when nothing was changed; without the beta, blocks are removed all the same
-        but nothing is reported. Removed blocks contribute nothing to
-        `usage.input_tokens`. When streaming, the array is final in `message_start`;
-        the final `message_delta` event carries it only when a server-side model
-        fallback happened mid-stream, in which case it holds the serving model's
-        entries and replaces the one in `message_start`.
+        when there is no entry to report; without the beta, blocks are removed or
+        left in place all the same but nothing is reported. Removed blocks contribute
+        nothing to `usage.input_tokens`; blocks left in place count as sent. When
+        streaming, the array is final in `message_start`; the final `message_delta`
+        event carries it only when a server-side model fallback happened mid-stream,
+        in which case it holds the serving model's entries and replaces the one in
+        `message_start`.
 
-        - `type: "thinking_dropped"`
+        - `BetaThinkingDroppedInputTransformation object`
 
-          Always `thinking_dropped` for this entry type.
+          - `type: "thinking_dropped"`
 
-          default: thinking_dropped
+            Always `thinking_dropped` for this entry type.
 
-        - `path: string`
+            default: thinking_dropped
 
-          Where the removed block was in your request, as `messages.{i}.content.{j}`:
-          `i` indexes the `messages` array you sent and `j` that message's `content`
-          array — the same form error messages use.
+          - `path: string`
 
-        - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
+            Where the removed block was in your request, as `messages.{i}.content.{j}`:
+            `i` indexes the `messages` array you sent and `j` that message's `content`
+            array — the same form error messages use.
 
-          Which binding check removed the block: `model_binding_mismatch` — it was
-          created by a model whose reasoning the requested model may not read;
-          `prefix_binding_mismatch` — the conversation before it differs from the
-          conversation it was created in (the rest of that turn's consecutive thinking
-          blocks are removed with it, each with this reason);
-          `organization_binding_mismatch` — it was created under a different
-          organization (an Anthropic organization, AWS account or Google Cloud project)
-          and this organization is not one of its additional organizations;
-          `end_user_binding_mismatch` — it was created for a different end user, or
-          was removed by the consumer-organization binding. A block that would fail
-          several checks reports one reason, in this order of precedence:
-          `organization_binding_mismatch`, `end_user_binding_mismatch`,
-          `model_binding_mismatch`, `prefix_binding_mismatch`.
+          - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
 
-          - `"model_binding_mismatch"`
+            Which binding check removed the block: `model_binding_mismatch` — it was
+            created by a model whose reasoning the requested model may not read;
+            `prefix_binding_mismatch` — the conversation before it differs from the
+            conversation it was created in (the rest of that turn's consecutive thinking
+            blocks are removed with it, each with this reason);
+            `organization_binding_mismatch` — it was created under a different
+            organization (an Anthropic organization, AWS account or Google Cloud project)
+            and this organization is not one of its additional organizations;
+            `end_user_binding_mismatch` — it was created for a different end user, or
+            was removed by the consumer-organization binding. A block that would fail
+            several checks reports one reason, in this order of precedence:
+            `organization_binding_mismatch`, `end_user_binding_mismatch`,
+            `model_binding_mismatch`, `prefix_binding_mismatch`.
 
-          - `"prefix_binding_mismatch"`
+            - `"model_binding_mismatch"`
 
-          - `"organization_binding_mismatch"`
+            - `"prefix_binding_mismatch"`
 
-          - `"end_user_binding_mismatch"`
+            - `"organization_binding_mismatch"`
+
+            - `"end_user_binding_mismatch"`
+
+        - `BetaThinkingMismatchAllowedInputTransformation object`
+
+          - `type: "thinking_mismatch_allowed"`
+
+            Always `thinking_mismatch_allowed` for this entry type.
+
+            default: thinking_mismatch_allowed
+
+          - `path: string`
+
+            Where the block is in your request, as `messages.{i}.content.{j}`:
+            `i` indexes the `messages` array you sent and `j` that message's `content`
+            array — the same form error messages use.
+
+          - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
+
+            Which binding check the block failed; the block was shown to the model all
+            the same. Always `prefix_binding_mismatch` today — the conversation before
+            the block differs from the conversation it was created in, or the block
+            carries no record of one on a model that requires it. Were the check
+            enforced for this request, the block would have been removed or the request
+            rejected (`thinking.block_binding.prefix_mismatch_behavior`). A removal also
+            takes the rest of that turn's consecutive thinking blocks, whereas here each
+            block is checked on its own, so `thinking_mismatch_allowed` entries are a
+            lower bound on what enforcement would remove.
+
+            - `"model_binding_mismatch"`
+
+            - `"prefix_binding_mismatch"`
+
+            - `"organization_binding_mismatch"`
+
+            - `"end_user_binding_mismatch"`
 
   - `BetaRawMessageDeltaEvent object`
 
@@ -29027,51 +29647,33 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         The number of server tool requests.
 
-    - `input_transformations: optional array of BetaThinkingDroppedInputTransformation or null`
+    - `input_transformations: optional array of BetaInputTransformation or null`
 
-      Changes the API made to the request's input before showing it to the model:
-      one entry per change, in request order. Today the only entry type is
-      `thinking_dropped` — a `thinking`, `redacted_thinking` or `connector_text`
-      block from the request's `messages` that was removed from the prompt instead
-      of being shown to the model because it failed a binding check. More entry
-      types may be added over time; ignore types you do not recognize.
+      Changes the API made to the request's input before showing it to the model,
+      and blocks that failed a binding check but were left unchanged: one entry per
+      block, in request order. Two entry types today. `thinking_dropped` — a
+      `thinking`, `redacted_thinking` or `connector_text` block from the request's
+      `messages` that was removed from the prompt instead of being shown to the
+      model because it failed a binding check. `thinking_mismatch_allowed` — a
+      `thinking` or `redacted_thinking` block that failed the conversation check
+      (the conversation before it differs from the one it was created in, or it
+      carries no record of one on a model that requires it) and was shown to the
+      model all the same, because that check is not enforced for this request.
+      More entry types may be added over time; ignore types you do not recognize.
 
       Requires `anthropic-beta: thinking-binding-controls-2026-08-01`. Present on
       every such response from a model that supports extended thinking, as `[]`
-      when nothing was changed; without the beta, blocks are removed all the same
-      but nothing is reported. Removed blocks contribute nothing to
-      `usage.input_tokens`. When streaming, the array is final in `message_start`;
-      the final `message_delta` event carries it only when a server-side model
-      fallback happened mid-stream, in which case it holds the serving model's
-      entries and replaces the one in `message_start`.
+      when there is no entry to report; without the beta, blocks are removed or
+      left in place all the same but nothing is reported. Removed blocks contribute
+      nothing to `usage.input_tokens`; blocks left in place count as sent. When
+      streaming, the array is final in `message_start`; the final `message_delta`
+      event carries it only when a server-side model fallback happened mid-stream,
+      in which case it holds the serving model's entries and replaces the one in
+      `message_start`.
 
-      - `type: "thinking_dropped"`
+      - `BetaThinkingDroppedInputTransformation object`
 
-        Always `thinking_dropped` for this entry type.
-
-        default: thinking_dropped
-
-      - `path: string`
-
-        Where the removed block was in your request, as `messages.{i}.content.{j}`:
-        `i` indexes the `messages` array you sent and `j` that message's `content`
-        array — the same form error messages use.
-
-      - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
-
-        Which binding check removed the block: `model_binding_mismatch` — it was
-        created by a model whose reasoning the requested model may not read;
-        `prefix_binding_mismatch` — the conversation before it differs from the
-        conversation it was created in (the rest of that turn's consecutive thinking
-        blocks are removed with it, each with this reason);
-        `organization_binding_mismatch` — it was created under a different
-        organization (an Anthropic organization, AWS account or Google Cloud project)
-        and this organization is not one of its additional organizations;
-        `end_user_binding_mismatch` — it was created for a different end user, or
-        was removed by the consumer-organization binding. A block that would fail
-        several checks reports one reason, in this order of precedence:
-        `organization_binding_mismatch`, `end_user_binding_mismatch`,
-        `model_binding_mismatch`, `prefix_binding_mismatch`.
+      - `BetaThinkingMismatchAllowedInputTransformation object`
 
   - `BetaRawMessageStopEvent object`
 
@@ -30344,6 +30946,27 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
   - `"model_context_window_exceeded"`
 
+### Beta Summarize Compaction
+
+- `BetaSummarizeCompaction object`
+
+  Compact the whole conversation and return a signed `compaction` block,
+  alone, that a later request sends back first in `messages`, in place of
+  the messages it summarizes. There is no trigger and no pause flag: sending
+  the parameter compacts, and nothing is sampled after the block.
+
+  The summarization prompt is the server's own unless `instructions` are
+  given, which then replace it for this request; a value that is empty or
+  only whitespace counts as absent.
+
+  - `type: "summarize"`
+
+  - `instructions: optional string or null`
+
+    Replaces the server's default summarization prompt for this request. An empty or whitespace-only value counts as absent.
+
+    maxLength: 16384
+
 ### Beta System Message Output Config
 
 - `BetaSystemMessageOutputConfig object`
@@ -31507,6 +32130,42 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
     several checks reports one reason, in this order of precedence:
     `organization_binding_mismatch`, `end_user_binding_mismatch`,
     `model_binding_mismatch`, `prefix_binding_mismatch`.
+
+    - `"model_binding_mismatch"`
+
+    - `"prefix_binding_mismatch"`
+
+    - `"organization_binding_mismatch"`
+
+    - `"end_user_binding_mismatch"`
+
+### Beta Thinking Mismatch Allowed Input Transformation
+
+- `BetaThinkingMismatchAllowedInputTransformation object`
+
+  - `type: "thinking_mismatch_allowed"`
+
+    Always `thinking_mismatch_allowed` for this entry type.
+
+    default: thinking_mismatch_allowed
+
+  - `path: string`
+
+    Where the block is in your request, as `messages.{i}.content.{j}`:
+    `i` indexes the `messages` array you sent and `j` that message's `content`
+    array — the same form error messages use.
+
+  - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
+
+    Which binding check the block failed; the block was shown to the model all
+    the same. Always `prefix_binding_mismatch` today — the conversation before
+    the block differs from the conversation it was created in, or the block
+    carries no record of one on a model that requires it. Were the check
+    enforced for this request, the block would have been removed or the request
+    rejected (`thinking.block_binding.prefix_mismatch_behavior`). A removal also
+    takes the rest of that turn's consecutive thinking blocks, whereas here each
+    block is checked on its own, so `thinking_mismatch_allowed` entries are a
+    lower bound on what enforcement would remove.
 
     - `"model_binding_mismatch"`
 
@@ -34538,6 +35197,97 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       When true, guarantees schema validation on tool names and inputs
 
+    - `url_sources: optional BetaWebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
+
+      - `client_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+        Which client tools' results contribute fetchable URLs: "all", "none", or an only or except list of client tool names from tools[].
+
+        - `BetaWebFetchURLSourceAll object`
+
+          The `url_sources` variant under which a source contributes in
+          full: every result of the tool filter's source, or all user input.
+
+          - `type: "all"`
+
+        - `BetaWebFetchURLSourceNone object`
+
+          The `url_sources` variant under which a source contributes nothing:
+          no result of the tool filter's source, or no user input.
+
+          - `type: "none"`
+
+        - `BetaWebFetchURLSourceOnly object`
+
+          The tool filter variant under which only the named tools' results
+          contribute.
+
+          - `type: "only"`
+
+          - `tools: array of BetaWebFetchURLSourceToolReference`
+
+            - `type: "tool_reference"`
+
+            - `name: string`
+
+        - `BetaWebFetchURLSourceExcept object`
+
+          The tool filter variant under which every result but the named
+          tools' contributes.
+
+          - `type: "except"`
+
+          - `tools: array of BetaWebFetchURLSourceToolReference`
+
+            - `type: "tool_reference"`
+
+            - `name: string`
+
+      - `server_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+        Which server tools' results contribute fetchable URLs: "all", "none", or an only or except list of server tool names from tools[]; only web_search and web_fetch results ever contribute.
+
+        - `BetaWebFetchURLSourceAll object`
+
+          The `url_sources` variant under which a source contributes in
+          full: every result of the tool filter's source, or all user input.
+
+        - `BetaWebFetchURLSourceNone object`
+
+          The `url_sources` variant under which a source contributes nothing:
+          no result of the tool filter's source, or no user input.
+
+        - `BetaWebFetchURLSourceOnly object`
+
+          The tool filter variant under which only the named tools' results
+          contribute.
+
+        - `BetaWebFetchURLSourceExcept object`
+
+          The tool filter variant under which every result but the named
+          tools' contributes.
+
+      - `user_input: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone`
+
+        Whether URLs in user messages are fetchable: "all" or "none".
+
+        - `BetaWebFetchURLSourceAll object`
+
+          The `url_sources` variant under which a source contributes in
+          full: every result of the tool filter's source, or all user input.
+
+        - `BetaWebFetchURLSourceNone object`
+
+          The `url_sources` variant under which a source contributes nothing:
+          no result of the tool filter's source, or no user input.
+
   - `BetaWebSearchTool20260209 object`
 
     - `type: "web_search_20260209"`
@@ -34644,6 +35394,15 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       When true, guarantees schema validation on tool names and inputs
 
+    - `url_sources: optional BetaWebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
+
   - `BetaWebFetchTool20260309 object`
 
     Web fetch tool with use_cache parameter for bypassing cached content.
@@ -34701,6 +35460,15 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
     - `strict: optional boolean`
 
       When true, guarantees schema validation on tool names and inputs
+
+    - `url_sources: optional BetaWebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
 
     - `use_cache: optional boolean`
 
@@ -34827,6 +35595,15 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
     - `strict: optional boolean`
 
       When true, guarantees schema validation on tool names and inputs
+
+    - `url_sources: optional BetaWebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
 
     - `use_cache: optional boolean`
 
@@ -36105,6 +36882,97 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     When true, guarantees schema validation on tool names and inputs
 
+  - `url_sources: optional BetaWebFetchURLSources or null`
+
+    Which sources contribute to the set of URLs web fetch may fetch.
+
+    Each key is a tagged variant: `user_input` is `all` or `none`; the
+    two tool filters are `all`, `none`, `only` (only the named tools'
+    results) or `except` (every result but the named tools'). A named tool
+    must be declared in this request's `tools[]`.
+
+    - `client_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+      Which client tools' results contribute fetchable URLs: "all", "none", or an only or except list of client tool names from tools[].
+
+      - `BetaWebFetchURLSourceAll object`
+
+        The `url_sources` variant under which a source contributes in
+        full: every result of the tool filter's source, or all user input.
+
+        - `type: "all"`
+
+      - `BetaWebFetchURLSourceNone object`
+
+        The `url_sources` variant under which a source contributes nothing:
+        no result of the tool filter's source, or no user input.
+
+        - `type: "none"`
+
+      - `BetaWebFetchURLSourceOnly object`
+
+        The tool filter variant under which only the named tools' results
+        contribute.
+
+        - `type: "only"`
+
+        - `tools: array of BetaWebFetchURLSourceToolReference`
+
+          - `type: "tool_reference"`
+
+          - `name: string`
+
+      - `BetaWebFetchURLSourceExcept object`
+
+        The tool filter variant under which every result but the named
+        tools' contributes.
+
+        - `type: "except"`
+
+        - `tools: array of BetaWebFetchURLSourceToolReference`
+
+          - `type: "tool_reference"`
+
+          - `name: string`
+
+    - `server_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+      Which server tools' results contribute fetchable URLs: "all", "none", or an only or except list of server tool names from tools[]; only web_search and web_fetch results ever contribute.
+
+      - `BetaWebFetchURLSourceAll object`
+
+        The `url_sources` variant under which a source contributes in
+        full: every result of the tool filter's source, or all user input.
+
+      - `BetaWebFetchURLSourceNone object`
+
+        The `url_sources` variant under which a source contributes nothing:
+        no result of the tool filter's source, or no user input.
+
+      - `BetaWebFetchURLSourceOnly object`
+
+        The tool filter variant under which only the named tools' results
+        contribute.
+
+      - `BetaWebFetchURLSourceExcept object`
+
+        The tool filter variant under which every result but the named
+        tools' contributes.
+
+    - `user_input: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone`
+
+      Whether URLs in user messages are fetchable: "all" or "none".
+
+      - `BetaWebFetchURLSourceAll object`
+
+        The `url_sources` variant under which a source contributes in
+        full: every result of the tool filter's source, or all user input.
+
+      - `BetaWebFetchURLSourceNone object`
+
+        The `url_sources` variant under which a source contributes nothing:
+        no result of the tool filter's source, or no user input.
+
 ### Beta Web Fetch Tool 20260209
 
 - `BetaWebFetchTool20260209 object`
@@ -36181,6 +37049,97 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
   - `strict: optional boolean`
 
     When true, guarantees schema validation on tool names and inputs
+
+  - `url_sources: optional BetaWebFetchURLSources or null`
+
+    Which sources contribute to the set of URLs web fetch may fetch.
+
+    Each key is a tagged variant: `user_input` is `all` or `none`; the
+    two tool filters are `all`, `none`, `only` (only the named tools'
+    results) or `except` (every result but the named tools'). A named tool
+    must be declared in this request's `tools[]`.
+
+    - `client_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+      Which client tools' results contribute fetchable URLs: "all", "none", or an only or except list of client tool names from tools[].
+
+      - `BetaWebFetchURLSourceAll object`
+
+        The `url_sources` variant under which a source contributes in
+        full: every result of the tool filter's source, or all user input.
+
+        - `type: "all"`
+
+      - `BetaWebFetchURLSourceNone object`
+
+        The `url_sources` variant under which a source contributes nothing:
+        no result of the tool filter's source, or no user input.
+
+        - `type: "none"`
+
+      - `BetaWebFetchURLSourceOnly object`
+
+        The tool filter variant under which only the named tools' results
+        contribute.
+
+        - `type: "only"`
+
+        - `tools: array of BetaWebFetchURLSourceToolReference`
+
+          - `type: "tool_reference"`
+
+          - `name: string`
+
+      - `BetaWebFetchURLSourceExcept object`
+
+        The tool filter variant under which every result but the named
+        tools' contributes.
+
+        - `type: "except"`
+
+        - `tools: array of BetaWebFetchURLSourceToolReference`
+
+          - `type: "tool_reference"`
+
+          - `name: string`
+
+    - `server_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+      Which server tools' results contribute fetchable URLs: "all", "none", or an only or except list of server tool names from tools[]; only web_search and web_fetch results ever contribute.
+
+      - `BetaWebFetchURLSourceAll object`
+
+        The `url_sources` variant under which a source contributes in
+        full: every result of the tool filter's source, or all user input.
+
+      - `BetaWebFetchURLSourceNone object`
+
+        The `url_sources` variant under which a source contributes nothing:
+        no result of the tool filter's source, or no user input.
+
+      - `BetaWebFetchURLSourceOnly object`
+
+        The tool filter variant under which only the named tools' results
+        contribute.
+
+      - `BetaWebFetchURLSourceExcept object`
+
+        The tool filter variant under which every result but the named
+        tools' contributes.
+
+    - `user_input: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone`
+
+      Whether URLs in user messages are fetchable: "all" or "none".
+
+      - `BetaWebFetchURLSourceAll object`
+
+        The `url_sources` variant under which a source contributes in
+        full: every result of the tool filter's source, or all user input.
+
+      - `BetaWebFetchURLSourceNone object`
+
+        The `url_sources` variant under which a source contributes nothing:
+        no result of the tool filter's source, or no user input.
 
 ### Beta Web Fetch Tool 20260309
 
@@ -36260,6 +37219,97 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
   - `strict: optional boolean`
 
     When true, guarantees schema validation on tool names and inputs
+
+  - `url_sources: optional BetaWebFetchURLSources or null`
+
+    Which sources contribute to the set of URLs web fetch may fetch.
+
+    Each key is a tagged variant: `user_input` is `all` or `none`; the
+    two tool filters are `all`, `none`, `only` (only the named tools'
+    results) or `except` (every result but the named tools'). A named tool
+    must be declared in this request's `tools[]`.
+
+    - `client_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+      Which client tools' results contribute fetchable URLs: "all", "none", or an only or except list of client tool names from tools[].
+
+      - `BetaWebFetchURLSourceAll object`
+
+        The `url_sources` variant under which a source contributes in
+        full: every result of the tool filter's source, or all user input.
+
+        - `type: "all"`
+
+      - `BetaWebFetchURLSourceNone object`
+
+        The `url_sources` variant under which a source contributes nothing:
+        no result of the tool filter's source, or no user input.
+
+        - `type: "none"`
+
+      - `BetaWebFetchURLSourceOnly object`
+
+        The tool filter variant under which only the named tools' results
+        contribute.
+
+        - `type: "only"`
+
+        - `tools: array of BetaWebFetchURLSourceToolReference`
+
+          - `type: "tool_reference"`
+
+          - `name: string`
+
+      - `BetaWebFetchURLSourceExcept object`
+
+        The tool filter variant under which every result but the named
+        tools' contributes.
+
+        - `type: "except"`
+
+        - `tools: array of BetaWebFetchURLSourceToolReference`
+
+          - `type: "tool_reference"`
+
+          - `name: string`
+
+    - `server_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+      Which server tools' results contribute fetchable URLs: "all", "none", or an only or except list of server tool names from tools[]; only web_search and web_fetch results ever contribute.
+
+      - `BetaWebFetchURLSourceAll object`
+
+        The `url_sources` variant under which a source contributes in
+        full: every result of the tool filter's source, or all user input.
+
+      - `BetaWebFetchURLSourceNone object`
+
+        The `url_sources` variant under which a source contributes nothing:
+        no result of the tool filter's source, or no user input.
+
+      - `BetaWebFetchURLSourceOnly object`
+
+        The tool filter variant under which only the named tools' results
+        contribute.
+
+      - `BetaWebFetchURLSourceExcept object`
+
+        The tool filter variant under which every result but the named
+        tools' contributes.
+
+    - `user_input: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone`
+
+      Whether URLs in user messages are fetchable: "all" or "none".
+
+      - `BetaWebFetchURLSourceAll object`
+
+        The `url_sources` variant under which a source contributes in
+        full: every result of the tool filter's source, or all user input.
+
+      - `BetaWebFetchURLSourceNone object`
+
+        The `url_sources` variant under which a source contributes nothing:
+        no result of the tool filter's source, or no user input.
 
   - `use_cache: optional boolean`
 
@@ -36349,6 +37399,97 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
   - `strict: optional boolean`
 
     When true, guarantees schema validation on tool names and inputs
+
+  - `url_sources: optional BetaWebFetchURLSources or null`
+
+    Which sources contribute to the set of URLs web fetch may fetch.
+
+    Each key is a tagged variant: `user_input` is `all` or `none`; the
+    two tool filters are `all`, `none`, `only` (only the named tools'
+    results) or `except` (every result but the named tools'). A named tool
+    must be declared in this request's `tools[]`.
+
+    - `client_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+      Which client tools' results contribute fetchable URLs: "all", "none", or an only or except list of client tool names from tools[].
+
+      - `BetaWebFetchURLSourceAll object`
+
+        The `url_sources` variant under which a source contributes in
+        full: every result of the tool filter's source, or all user input.
+
+        - `type: "all"`
+
+      - `BetaWebFetchURLSourceNone object`
+
+        The `url_sources` variant under which a source contributes nothing:
+        no result of the tool filter's source, or no user input.
+
+        - `type: "none"`
+
+      - `BetaWebFetchURLSourceOnly object`
+
+        The tool filter variant under which only the named tools' results
+        contribute.
+
+        - `type: "only"`
+
+        - `tools: array of BetaWebFetchURLSourceToolReference`
+
+          - `type: "tool_reference"`
+
+          - `name: string`
+
+      - `BetaWebFetchURLSourceExcept object`
+
+        The tool filter variant under which every result but the named
+        tools' contributes.
+
+        - `type: "except"`
+
+        - `tools: array of BetaWebFetchURLSourceToolReference`
+
+          - `type: "tool_reference"`
+
+          - `name: string`
+
+    - `server_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+      Which server tools' results contribute fetchable URLs: "all", "none", or an only or except list of server tool names from tools[]; only web_search and web_fetch results ever contribute.
+
+      - `BetaWebFetchURLSourceAll object`
+
+        The `url_sources` variant under which a source contributes in
+        full: every result of the tool filter's source, or all user input.
+
+      - `BetaWebFetchURLSourceNone object`
+
+        The `url_sources` variant under which a source contributes nothing:
+        no result of the tool filter's source, or no user input.
+
+      - `BetaWebFetchURLSourceOnly object`
+
+        The tool filter variant under which only the named tools' results
+        contribute.
+
+      - `BetaWebFetchURLSourceExcept object`
+
+        The tool filter variant under which every result but the named
+        tools' contributes.
+
+    - `user_input: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone`
+
+      Whether URLs in user messages are fetchable: "all" or "none".
+
+      - `BetaWebFetchURLSourceAll object`
+
+        The `url_sources` variant under which a source contributes in
+        full: every result of the tool filter's source, or all user input.
+
+      - `BetaWebFetchURLSourceNone object`
+
+        The `url_sources` variant under which a source contributes nothing:
+        no result of the tool filter's source, or no user input.
 
   - `use_cache: optional boolean`
 
@@ -36900,6 +38041,158 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
   - `"unavailable"`
 
   - `"content_too_large"`
+
+### Beta Web Fetch URL Source All
+
+- `BetaWebFetchURLSourceAll object`
+
+  The `url_sources` variant under which a source contributes in
+  full: every result of the tool filter's source, or all user input.
+
+  - `type: "all"`
+
+### Beta Web Fetch URL Source Except
+
+- `BetaWebFetchURLSourceExcept object`
+
+  The tool filter variant under which every result but the named
+  tools' contributes.
+
+  - `type: "except"`
+
+  - `tools: array of BetaWebFetchURLSourceToolReference`
+
+    - `type: "tool_reference"`
+
+    - `name: string`
+
+### Beta Web Fetch URL Source None
+
+- `BetaWebFetchURLSourceNone object`
+
+  The `url_sources` variant under which a source contributes nothing:
+  no result of the tool filter's source, or no user input.
+
+  - `type: "none"`
+
+### Beta Web Fetch URL Source Only
+
+- `BetaWebFetchURLSourceOnly object`
+
+  The tool filter variant under which only the named tools' results
+  contribute.
+
+  - `type: "only"`
+
+  - `tools: array of BetaWebFetchURLSourceToolReference`
+
+    - `type: "tool_reference"`
+
+    - `name: string`
+
+### Beta Web Fetch URL Source Tool Reference
+
+- `BetaWebFetchURLSourceToolReference object`
+
+  One entry of a tool filter's `tools`: it must name a tool declared
+  in this request's `tools[]`.
+
+  - `type: "tool_reference"`
+
+  - `name: string`
+
+### Beta Web Fetch URL Sources
+
+- `BetaWebFetchURLSources object`
+
+  Which sources contribute to the set of URLs web fetch may fetch.
+
+  Each key is a tagged variant: `user_input` is `all` or `none`; the
+  two tool filters are `all`, `none`, `only` (only the named tools'
+  results) or `except` (every result but the named tools'). A named tool
+  must be declared in this request's `tools[]`.
+
+  - `client_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+    Which client tools' results contribute fetchable URLs: "all", "none", or an only or except list of client tool names from tools[].
+
+    - `BetaWebFetchURLSourceAll object`
+
+      The `url_sources` variant under which a source contributes in
+      full: every result of the tool filter's source, or all user input.
+
+      - `type: "all"`
+
+    - `BetaWebFetchURLSourceNone object`
+
+      The `url_sources` variant under which a source contributes nothing:
+      no result of the tool filter's source, or no user input.
+
+      - `type: "none"`
+
+    - `BetaWebFetchURLSourceOnly object`
+
+      The tool filter variant under which only the named tools' results
+      contribute.
+
+      - `type: "only"`
+
+      - `tools: array of BetaWebFetchURLSourceToolReference`
+
+        - `type: "tool_reference"`
+
+        - `name: string`
+
+    - `BetaWebFetchURLSourceExcept object`
+
+      The tool filter variant under which every result but the named
+      tools' contributes.
+
+      - `type: "except"`
+
+      - `tools: array of BetaWebFetchURLSourceToolReference`
+
+        - `type: "tool_reference"`
+
+        - `name: string`
+
+  - `server_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+    Which server tools' results contribute fetchable URLs: "all", "none", or an only or except list of server tool names from tools[]; only web_search and web_fetch results ever contribute.
+
+    - `BetaWebFetchURLSourceAll object`
+
+      The `url_sources` variant under which a source contributes in
+      full: every result of the tool filter's source, or all user input.
+
+    - `BetaWebFetchURLSourceNone object`
+
+      The `url_sources` variant under which a source contributes nothing:
+      no result of the tool filter's source, or no user input.
+
+    - `BetaWebFetchURLSourceOnly object`
+
+      The tool filter variant under which only the named tools' results
+      contribute.
+
+    - `BetaWebFetchURLSourceExcept object`
+
+      The tool filter variant under which every result but the named
+      tools' contributes.
+
+  - `user_input: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone`
+
+    Whether URLs in user messages are fetchable: "all" or "none".
+
+    - `BetaWebFetchURLSourceAll object`
+
+      The `url_sources` variant under which a source contributes in
+      full: every result of the tool filter's source, or all user input.
+
+    - `BetaWebFetchURLSourceNone object`
+
+      The `url_sources` variant under which a source contributes nothing:
+      no result of the tool filter's source, or no user input.
 
 ### Beta Web Search Result Block
 
@@ -37537,7 +38830,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -37628,6 +38921,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-user-profile-id": optional string`
 
@@ -38819,6 +40114,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               Opaque metadata from prior compaction, to be round-tripped verbatim
 
+            - `signature: optional string or null`
+
+              The block's signature as returned, to be sent back verbatim
+
           - `BetaRequestToolAdditionBlock object`
 
             Mid-conversation directive to surface a declared tool.
@@ -39058,6 +40357,25 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `cache_control: optional BetaCacheControlEphemeral or null`
 
       Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
+
+    - `compaction: optional BetaCompactionConfig or null`
+
+      Compact the whole conversation and return a signed `compaction` block,
+      alone, that a later request sends back first in `messages`, in place of
+      the messages it summarizes. There is no trigger and no pause flag: sending
+      the parameter compacts, and nothing is sampled after the block.
+
+      The summarization prompt is the server's own unless `instructions` are
+      given, which then replace it for this request; a value that is empty or
+      only whitespace counts as absent.
+
+      - `type: "summarize"`
+
+      - `instructions: optional string or null`
+
+        Replaces the server's default summarization prompt for this request. An empty or whitespace-only value counts as absent.
+
+        maxLength: 16384
 
     - `container: optional BetaContainerParams or string or null`
 
@@ -40977,6 +42295,97 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           When true, guarantees schema validation on tool names and inputs
 
+        - `url_sources: optional BetaWebFetchURLSources or null`
+
+          Which sources contribute to the set of URLs web fetch may fetch.
+
+          Each key is a tagged variant: `user_input` is `all` or `none`; the
+          two tool filters are `all`, `none`, `only` (only the named tools'
+          results) or `except` (every result but the named tools'). A named tool
+          must be declared in this request's `tools[]`.
+
+          - `client_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+            Which client tools' results contribute fetchable URLs: "all", "none", or an only or except list of client tool names from tools[].
+
+            - `BetaWebFetchURLSourceAll object`
+
+              The `url_sources` variant under which a source contributes in
+              full: every result of the tool filter's source, or all user input.
+
+              - `type: "all"`
+
+            - `BetaWebFetchURLSourceNone object`
+
+              The `url_sources` variant under which a source contributes nothing:
+              no result of the tool filter's source, or no user input.
+
+              - `type: "none"`
+
+            - `BetaWebFetchURLSourceOnly object`
+
+              The tool filter variant under which only the named tools' results
+              contribute.
+
+              - `type: "only"`
+
+              - `tools: array of BetaWebFetchURLSourceToolReference`
+
+                - `type: "tool_reference"`
+
+                - `name: string`
+
+            - `BetaWebFetchURLSourceExcept object`
+
+              The tool filter variant under which every result but the named
+              tools' contributes.
+
+              - `type: "except"`
+
+              - `tools: array of BetaWebFetchURLSourceToolReference`
+
+                - `type: "tool_reference"`
+
+                - `name: string`
+
+          - `server_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+            Which server tools' results contribute fetchable URLs: "all", "none", or an only or except list of server tool names from tools[]; only web_search and web_fetch results ever contribute.
+
+            - `BetaWebFetchURLSourceAll object`
+
+              The `url_sources` variant under which a source contributes in
+              full: every result of the tool filter's source, or all user input.
+
+            - `BetaWebFetchURLSourceNone object`
+
+              The `url_sources` variant under which a source contributes nothing:
+              no result of the tool filter's source, or no user input.
+
+            - `BetaWebFetchURLSourceOnly object`
+
+              The tool filter variant under which only the named tools' results
+              contribute.
+
+            - `BetaWebFetchURLSourceExcept object`
+
+              The tool filter variant under which every result but the named
+              tools' contributes.
+
+          - `user_input: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone`
+
+            Whether URLs in user messages are fetchable: "all" or "none".
+
+            - `BetaWebFetchURLSourceAll object`
+
+              The `url_sources` variant under which a source contributes in
+              full: every result of the tool filter's source, or all user input.
+
+            - `BetaWebFetchURLSourceNone object`
+
+              The `url_sources` variant under which a source contributes nothing:
+              no result of the tool filter's source, or no user input.
+
       - `BetaWebSearchTool20260209 object`
 
         - `type: "web_search_20260209"`
@@ -41083,6 +42492,15 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           When true, guarantees schema validation on tool names and inputs
 
+        - `url_sources: optional BetaWebFetchURLSources or null`
+
+          Which sources contribute to the set of URLs web fetch may fetch.
+
+          Each key is a tagged variant: `user_input` is `all` or `none`; the
+          two tool filters are `all`, `none`, `only` (only the named tools'
+          results) or `except` (every result but the named tools'). A named tool
+          must be declared in this request's `tools[]`.
+
       - `BetaWebFetchTool20260309 object`
 
         Web fetch tool with use_cache parameter for bypassing cached content.
@@ -41140,6 +42558,15 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
         - `strict: optional boolean`
 
           When true, guarantees schema validation on tool names and inputs
+
+        - `url_sources: optional BetaWebFetchURLSources or null`
+
+          Which sources contribute to the set of URLs web fetch may fetch.
+
+          Each key is a tagged variant: `user_input` is `all` or `none`; the
+          two tool filters are `all`, `none`, `only` (only the named tools'
+          results) or `except` (every result but the named tools'). A named tool
+          must be declared in this request's `tools[]`.
 
         - `use_cache: optional boolean`
 
@@ -41266,6 +42693,15 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
         - `strict: optional boolean`
 
           When true, guarantees schema validation on tool names and inputs
+
+        - `url_sources: optional BetaWebFetchURLSources or null`
+
+          Which sources contribute to the set of URLs web fetch may fetch.
+
+          Each key is a tagged variant: `user_input` is `all` or `none`; the
+          two tool filters are `all`, `none`, `only` (only the named tools'
+          results) or `except` (every result but the named tools'). A named tool
+          must be declared in this request's `tools[]`.
 
         - `use_cache: optional boolean`
 
@@ -41658,7 +43094,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -41749,6 +43185,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -41928,7 +43366,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -42019,6 +43457,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -42207,7 +43647,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -42298,6 +43738,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -42468,7 +43910,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -42559,6 +44001,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -42621,7 +44065,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -42712,6 +44156,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -43638,6 +45084,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               Opaque metadata from prior compaction, to be round-tripped verbatim
 
+            - `signature: optional string or null`
+
+              Signature over the summary, to be sent back with the block verbatim
+
           - `BetaFallbackBlock object`
 
             Marks the point in `content` where one model's output gives way to the next.
@@ -44401,59 +45851,101 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `"fast"`
 
-        - `input_transformations: optional array of BetaThinkingDroppedInputTransformation or null`
+        - `input_transformations: optional array of BetaInputTransformation or null`
 
-          Changes the API made to the request's input before showing it to the model:
-          one entry per change, in request order. Today the only entry type is
-          `thinking_dropped` — a `thinking`, `redacted_thinking` or `connector_text`
-          block from the request's `messages` that was removed from the prompt instead
-          of being shown to the model because it failed a binding check. More entry
-          types may be added over time; ignore types you do not recognize.
+          Changes the API made to the request's input before showing it to the model,
+          and blocks that failed a binding check but were left unchanged: one entry per
+          block, in request order. Two entry types today. `thinking_dropped` — a
+          `thinking`, `redacted_thinking` or `connector_text` block from the request's
+          `messages` that was removed from the prompt instead of being shown to the
+          model because it failed a binding check. `thinking_mismatch_allowed` — a
+          `thinking` or `redacted_thinking` block that failed the conversation check
+          (the conversation before it differs from the one it was created in, or it
+          carries no record of one on a model that requires it) and was shown to the
+          model all the same, because that check is not enforced for this request.
+          More entry types may be added over time; ignore types you do not recognize.
 
           Requires `anthropic-beta: thinking-binding-controls-2026-08-01`. Present on
           every such response from a model that supports extended thinking, as `[]`
-          when nothing was changed; without the beta, blocks are removed all the same
-          but nothing is reported. Removed blocks contribute nothing to
-          `usage.input_tokens`. When streaming, the array is final in `message_start`;
-          the final `message_delta` event carries it only when a server-side model
-          fallback happened mid-stream, in which case it holds the serving model's
-          entries and replaces the one in `message_start`.
+          when there is no entry to report; without the beta, blocks are removed or
+          left in place all the same but nothing is reported. Removed blocks contribute
+          nothing to `usage.input_tokens`; blocks left in place count as sent. When
+          streaming, the array is final in `message_start`; the final `message_delta`
+          event carries it only when a server-side model fallback happened mid-stream,
+          in which case it holds the serving model's entries and replaces the one in
+          `message_start`.
 
-          - `type: "thinking_dropped"`
+          - `BetaThinkingDroppedInputTransformation object`
 
-            Always `thinking_dropped` for this entry type.
+            - `type: "thinking_dropped"`
 
-            default: thinking_dropped
+              Always `thinking_dropped` for this entry type.
 
-          - `path: string`
+              default: thinking_dropped
 
-            Where the removed block was in your request, as `messages.{i}.content.{j}`:
-            `i` indexes the `messages` array you sent and `j` that message's `content`
-            array — the same form error messages use.
+            - `path: string`
 
-          - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
+              Where the removed block was in your request, as `messages.{i}.content.{j}`:
+              `i` indexes the `messages` array you sent and `j` that message's `content`
+              array — the same form error messages use.
 
-            Which binding check removed the block: `model_binding_mismatch` — it was
-            created by a model whose reasoning the requested model may not read;
-            `prefix_binding_mismatch` — the conversation before it differs from the
-            conversation it was created in (the rest of that turn's consecutive thinking
-            blocks are removed with it, each with this reason);
-            `organization_binding_mismatch` — it was created under a different
-            organization (an Anthropic organization, AWS account or Google Cloud project)
-            and this organization is not one of its additional organizations;
-            `end_user_binding_mismatch` — it was created for a different end user, or
-            was removed by the consumer-organization binding. A block that would fail
-            several checks reports one reason, in this order of precedence:
-            `organization_binding_mismatch`, `end_user_binding_mismatch`,
-            `model_binding_mismatch`, `prefix_binding_mismatch`.
+            - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
 
-            - `"model_binding_mismatch"`
+              Which binding check removed the block: `model_binding_mismatch` — it was
+              created by a model whose reasoning the requested model may not read;
+              `prefix_binding_mismatch` — the conversation before it differs from the
+              conversation it was created in (the rest of that turn's consecutive thinking
+              blocks are removed with it, each with this reason);
+              `organization_binding_mismatch` — it was created under a different
+              organization (an Anthropic organization, AWS account or Google Cloud project)
+              and this organization is not one of its additional organizations;
+              `end_user_binding_mismatch` — it was created for a different end user, or
+              was removed by the consumer-organization binding. A block that would fail
+              several checks reports one reason, in this order of precedence:
+              `organization_binding_mismatch`, `end_user_binding_mismatch`,
+              `model_binding_mismatch`, `prefix_binding_mismatch`.
 
-            - `"prefix_binding_mismatch"`
+              - `"model_binding_mismatch"`
 
-            - `"organization_binding_mismatch"`
+              - `"prefix_binding_mismatch"`
 
-            - `"end_user_binding_mismatch"`
+              - `"organization_binding_mismatch"`
+
+              - `"end_user_binding_mismatch"`
+
+          - `BetaThinkingMismatchAllowedInputTransformation object`
+
+            - `type: "thinking_mismatch_allowed"`
+
+              Always `thinking_mismatch_allowed` for this entry type.
+
+              default: thinking_mismatch_allowed
+
+            - `path: string`
+
+              Where the block is in your request, as `messages.{i}.content.{j}`:
+              `i` indexes the `messages` array you sent and `j` that message's `content`
+              array — the same form error messages use.
+
+            - `reason: "model_binding_mismatch" or "prefix_binding_mismatch" or "organization_binding_mismatch" or "end_user_binding_mismatch"`
+
+              Which binding check the block failed; the block was shown to the model all
+              the same. Always `prefix_binding_mismatch` today — the conversation before
+              the block differs from the conversation it was created in, or the block
+              carries no record of one on a model that requires it. Were the check
+              enforced for this request, the block would have been removed or the request
+              rejected (`thinking.block_binding.prefix_mismatch_behavior`). A removal also
+              takes the rest of that turn's consecutive thinking blocks, whereas here each
+              block is checked on its own, so `thinking_mismatch_allowed` entries are a
+              lower bound on what enforcement would remove.
+
+              - `"model_binding_mismatch"`
+
+              - `"prefix_binding_mismatch"`
+
+              - `"organization_binding_mismatch"`
+
+              - `"end_user_binding_mismatch"`
 
     - `BetaMessageBatchErroredResult object`
 

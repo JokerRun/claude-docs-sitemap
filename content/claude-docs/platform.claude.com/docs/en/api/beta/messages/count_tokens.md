@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/count_tokens
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: 6081bea9f226015e1071dfad4b3e3edf1f0f16dabe53cc258bc785ab1dd8b79d
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: c70854e0d463bbd8726d53650d4a3ef6159bce28df460d47c96f9ac421975c95
 ---
 
 ---
@@ -28,7 +28,7 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -119,6 +119,8 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-user-profile-id": optional string`
 
@@ -1278,6 +1280,10 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
           Opaque metadata from prior compaction, to be round-tripped verbatim
 
+        - `signature: optional string or null`
+
+          The block's signature as returned, to be sent back verbatim
+
       - `BetaRequestToolAdditionBlock object`
 
         Mid-conversation directive to surface a declared tool.
@@ -1517,6 +1523,25 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 - `cache_control: optional BetaCacheControlEphemeral or null`
 
   Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
+
+- `compaction: optional BetaCompactionConfig or null`
+
+  Compact the whole conversation and return a signed `compaction` block,
+  alone, that a later request sends back first in `messages`, in place of
+  the messages it summarizes. There is no trigger and no pause flag: sending
+  the parameter compacts, and nothing is sampled after the block.
+
+  The summarization prompt is the server's own unless `instructions` are
+  given, which then replace it for this request; a value that is empty or
+  only whitespace counts as absent.
+
+  - `type: "summarize"`
+
+  - `instructions: optional string or null`
+
+    Replaces the server's default summarization prompt for this request. An empty or whitespace-only value counts as absent.
+
+    maxLength: 16384
 
 - `context_management: optional BetaContextManagementConfig or null`
 
@@ -3262,6 +3287,97 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
       When true, guarantees schema validation on tool names and inputs
 
+    - `url_sources: optional BetaWebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
+
+      - `client_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+        Which client tools' results contribute fetchable URLs: "all", "none", or an only or except list of client tool names from tools[].
+
+        - `BetaWebFetchURLSourceAll object`
+
+          The `url_sources` variant under which a source contributes in
+          full: every result of the tool filter's source, or all user input.
+
+          - `type: "all"`
+
+        - `BetaWebFetchURLSourceNone object`
+
+          The `url_sources` variant under which a source contributes nothing:
+          no result of the tool filter's source, or no user input.
+
+          - `type: "none"`
+
+        - `BetaWebFetchURLSourceOnly object`
+
+          The tool filter variant under which only the named tools' results
+          contribute.
+
+          - `type: "only"`
+
+          - `tools: array of BetaWebFetchURLSourceToolReference`
+
+            - `type: "tool_reference"`
+
+            - `name: string`
+
+        - `BetaWebFetchURLSourceExcept object`
+
+          The tool filter variant under which every result but the named
+          tools' contributes.
+
+          - `type: "except"`
+
+          - `tools: array of BetaWebFetchURLSourceToolReference`
+
+            - `type: "tool_reference"`
+
+            - `name: string`
+
+      - `server_tool_results: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone or BetaWebFetchURLSourceOnly or BetaWebFetchURLSourceExcept`
+
+        Which server tools' results contribute fetchable URLs: "all", "none", or an only or except list of server tool names from tools[]; only web_search and web_fetch results ever contribute.
+
+        - `BetaWebFetchURLSourceAll object`
+
+          The `url_sources` variant under which a source contributes in
+          full: every result of the tool filter's source, or all user input.
+
+        - `BetaWebFetchURLSourceNone object`
+
+          The `url_sources` variant under which a source contributes nothing:
+          no result of the tool filter's source, or no user input.
+
+        - `BetaWebFetchURLSourceOnly object`
+
+          The tool filter variant under which only the named tools' results
+          contribute.
+
+        - `BetaWebFetchURLSourceExcept object`
+
+          The tool filter variant under which every result but the named
+          tools' contributes.
+
+      - `user_input: optional BetaWebFetchURLSourceAll or BetaWebFetchURLSourceNone`
+
+        Whether URLs in user messages are fetchable: "all" or "none".
+
+        - `BetaWebFetchURLSourceAll object`
+
+          The `url_sources` variant under which a source contributes in
+          full: every result of the tool filter's source, or all user input.
+
+        - `BetaWebFetchURLSourceNone object`
+
+          The `url_sources` variant under which a source contributes nothing:
+          no result of the tool filter's source, or no user input.
+
   - `BetaWebSearchTool20260209 object`
 
     - `type: "web_search_20260209"`
@@ -3368,6 +3484,15 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
       When true, guarantees schema validation on tool names and inputs
 
+    - `url_sources: optional BetaWebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
+
   - `BetaWebFetchTool20260309 object`
 
     Web fetch tool with use_cache parameter for bypassing cached content.
@@ -3425,6 +3550,15 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
     - `strict: optional boolean`
 
       When true, guarantees schema validation on tool names and inputs
+
+    - `url_sources: optional BetaWebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
 
     - `use_cache: optional boolean`
 
@@ -3551,6 +3685,15 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
     - `strict: optional boolean`
 
       When true, guarantees schema validation on tool names and inputs
+
+    - `url_sources: optional BetaWebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
 
     - `use_cache: optional boolean`
 

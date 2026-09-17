@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/analytics-api
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 81628d6c2ed7e2656b4c4de5a4935a5f8d51c1ef0e8da7829fc7646596e49e38
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: d477023f154df17e6c468f74fd45836da0afed09e560feb843419753fe8da02d
 ---
 
 ---
@@ -71,7 +71,7 @@ Claude Enterprise Analytics API tersedia untuk organisasi Claude Enterprise. Dat
   </Step>
 
   <Step title="Panggil API">
-    Teruskan kunci di header `x-api-key`. Endpoint berada di bawah `https://api.anthropic.com/v1/organizations/analytics/`. Untuk contoh permintaan, parameter, dan skema respons, lihat [referensi Claude Enterprise Analytics API](https://platform.claude.com/docs/id/api/admin/analytics).
+    Teruskan kunci di header `x-api-key` dan sertakan header [`anthropic-version`](https://platform.claude.com/docs/id/api/versioning) pada setiap permintaan. Endpoint berada di bawah `https://api.anthropic.com/v1/organizations/analytics/`. Untuk contoh permintaan, parameter, dan skema respons, lihat [referensi Claude Enterprise Analytics API](https://platform.claude.com/docs/id/api/admin/analytics).
   </Step>
 </Steps>
 
@@ -88,7 +88,7 @@ Untuk detail endpoint, parameter, dan skema respons, lihat [referensi Claude Ent
 
 Data Claude Enterprise Analytics API tersedia untuk tanggal pada atau setelah 1 Januari 2026.
 
-**Endpoint keterlibatan dan adopsi** (aktivitas pengguna, ringkasan, proyek, skill, konektor) mengembalikan snapshot per hari untuk tanggal yang Anda tentukan. Data untuk hari tertentu diagregasi pada pukul 10:00 UTC hari berikutnya dan biasanya tersedia dengan jeda 1 hari. Kesegaran yang tepat bervariasi menurut kueri, jadi alih-alih mengasumsikan jeda tetap, periksa respons error: meminta tanggal yang belum tersedia akan mengembalikan error 400 yang menyebutkan hari terbaru yang tersedia. Jika data tidak tersedia jauh melewati jeda yang biasa, hal ini umumnya menunjukkan kegagalan pipeline data di sisi Anthropic; hubungi dukungan jika kesenjangan tersebut berlanjut.
+**Endpoint keterlibatan dan adopsi** (aktivitas pengguna, ringkasan, proyek, skill, konektor) mengembalikan snapshot per hari untuk tanggal yang Anda tentukan. Data untuk hari tertentu biasanya tersedia mulai sekitar pukul 17:00 UTC pada hari berikutnya (jeda 1 hari); sebelum itu, hari terbaru yang tersedia biasanya adalah dua hari sebelum tanggal UTC saat ini. Data terkadang tiba lebih lambat, dan kesegaran pastinya bervariasi menurut kueri, jadi alih-alih mengasumsikan waktu yang tetap, periksa respons error: meminta tanggal yang belum tersedia akan mengembalikan error 400 yang menyebutkan hari terbaru yang tersedia. Jika data belum tersedia jauh melewati jeda yang biasa, hal ini biasanya menandakan kegagalan pipeline data di sisi Anthropic; hubungi dukungan jika kesenjangan tersebut berlanjut.
 
 **Endpoint biaya dan penggunaan** mengikuti model kesegaran yang berbeda. Data biasanya tersedia dalam empat jam setelah penggunaan yang mendasarinya, tetapi dapat memerlukan waktu hingga 24 jam. Nilai untuk tanggal tertentu dapat direvisi hingga 30 hari seiring datangnya peristiwa yang terlambat dan berjalannya rekonsiliasi. Untuk total setingkat penagihan, kueri tanggal setidaknya 30 hari yang lalu.
 
@@ -113,6 +113,10 @@ Data Claude Enterprise Analytics API tersedia untuk tanggal pada atau setelah 1 
 **Field jumlah adalah string desimal dalam sen.** Jumlah mata uang dikembalikan sebagai string desimal seperti `"41280.000000"` (yang merepresentasikan $412,80). Untuk mengonversi ke dolar, parse sebagai desimal dan bagi dengan 100. Hindari parsing floating-point biner untuk nilai yang mungkin melebihi beberapa juta dolar.
 
 **Batas laju (rate limit) berlaku di tingkat organisasi**, bukan per kunci, dengan default 60 permintaan per menit di seluruh endpoint dalam API ini. Jika itu tidak mencukupi untuk kasus penggunaan Anda, hubungi tim akun Anthropic Anda untuk mendiskusikan penyesuaian batas tersebut.
+
+## Pembuatan versi
+
+Kirim header `anthropic-version` pada setiap permintaan; lihat [versi API](https://platform.claude.com/docs/id/api/versioning) untuk versi yang tersedia.
 
 ## Keterbatasan yang diketahui
 

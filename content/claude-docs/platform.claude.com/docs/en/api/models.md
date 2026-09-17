@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: a47e87acb4f7516c6a0500747862db33c412d9a4a656e92460a7393d364e6d57
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 4f9ff1885eef58654487ab8c120e9d5b1c6a519b05ad46821889412cb7de1610
 ---
 
 ---
@@ -46,7 +46,7 @@ The Models API response can be used to determine which models are available for 
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -137,6 +137,8 @@ The Models API response can be used to determine which models are available for 
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -397,7 +399,7 @@ The Models API response can be used to determine information about a specific mo
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -488,6 +490,8 @@ The Models API response can be used to determine information about a specific mo
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/update
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 40d80350ee4e3b92f132d30fdf1302c7ec9df57bb4075f81b487d442a191bab7
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: b3ba1dc667c7ad214555d9d59ce79210427ba2ab9b02366d8cd7a57b7d7df379
 ---
 
 ---
@@ -37,7 +37,7 @@ interactive credential (a user OAuth token or a Console session).
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -128,6 +128,8 @@ interactive credential (a user OAuth token or a Console session).
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 ## Body parameters
 

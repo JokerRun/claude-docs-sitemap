@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/permission-policies
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: d03ca796dc741503168ea5ebe9105ef26e0a49774f7d658c9250a7740241ac54
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 51d3e5da655d3f5c9d4409c3c4f1d5bc73ad80f4a51b1806654b7eed5a57c954
 ---
 
 ---
@@ -11,11 +11,11 @@ url: https://platform.claude.com/docs/en/managed-agents/permission-policies
 description: Control when agent and MCP tools execute.
 ---
 
-Permission policies control whether server-executed tools (the pre-built agent toolset and MCP toolset) run automatically, wait for your approval, or have each call evaluated by the server. Custom tools are executed by your application and controlled by you, so they are not governed by permission policies.
+## Compatibility
+- Status: Beta
+- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `managed-agents-2026-04-01`
 
-<Note>
-  Managed Agents API requests require the `managed-agents-2026-04-01` beta header, except memory store endpoints, which use `agent-memory-2026-07-22` instead. The SDK sets the correct beta header automatically. See [Beta headers](https://platform.claude.com/docs/en/api/beta-headers#endpoint-specific-headers).
-</Note>
+Permission policies control whether server-executed tools (the pre-built agent toolset and MCP toolset) run automatically, wait for your approval, or have each call evaluated by the server. Custom tools are executed by your application and controlled by you, so they are not governed by permission policies.
 
 ## Permission policy types
 

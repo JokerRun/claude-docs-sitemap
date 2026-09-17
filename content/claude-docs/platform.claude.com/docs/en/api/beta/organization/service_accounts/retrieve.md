@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/retrieve
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: b0b202b62e101f5f791b38d3433ffe2c2c91d40777bdbde2f31f524a8af1df16
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: c2d9a8fdfb2d009732d51860c230a962c7bdd2c138e387ee82049c3ce4d0ad6d
 ---
 
 ---
@@ -32,7 +32,7 @@ Retrieve a service account by its ID (`svac_...`).
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -123,6 +123,8 @@ Retrieve a service account by its ID (`svac_...`).
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 ## Returns
 

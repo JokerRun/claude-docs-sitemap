@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 2e12b1641699d9d24bfb3836c6fdcd3284c681c5d3d860bb3f7bf4863877bc88
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 1752f9ed59fb4125ee8ea2c8b6c1110848396bd78f5b6df807aa8a095d09a1be
 ---
 
 ---
@@ -26,7 +26,8 @@ Activity Feed mencatat aktivitas autentikasi, chat, file, proyek, administratif,
 ```bash cURL
 curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/compliance/activities?limit=1" \
-  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
+  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+  --header "anthropic-version: 2023-06-01"
 ```
 
 ```json Response
@@ -67,7 +68,8 @@ curl --fail-with-body -sS -G \
   --data-urlencode "activity_types[]=claude_file_uploaded" \
   --data-urlencode "activity_types[]=claude_chat_created" \
   --data-urlencode "created_at.gte=2026-04-01T00:00:00Z" \
-  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
+  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+  --header "anthropic-version: 2023-06-01"
 ```
 
 Activity Feed menghasilkan ratusan jenis aktivitas yang berbeda. Lihat [Mengkueri aktivitas kepatuhan](https://platform.claude.com/docs/id/api/compliance/activities/list) di referensi API untuk daftar lengkap nilai yang diterima `activity_types[]`.
@@ -107,12 +109,14 @@ Parameter cursor menentukan arah halaman; urutan pengurutan endpoint menentukan 
 # Ambil halaman pertama (aktivitas terbaru lebih dulu) dan simpan cursor di akhirnya.
 last_id=$(curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/compliance/activities?limit=2" \
-  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" | jq -er '.last_id')
+  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+  --header "anthropic-version: 2023-06-01" | jq -er '.last_id')
 
-# Kirim kembali cursor tanpa perubahan untuk mengambil halaman berikutnya (lebih lama).
+# Kirim kembali cursor tanpa diubah untuk mengambil halaman berikutnya (yang lebih lama).
 curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/activities" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+  --header "anthropic-version: 2023-06-01" \
   --data-urlencode "limit=2" \
   --data-urlencode "after_id=${last_id}"
 ```

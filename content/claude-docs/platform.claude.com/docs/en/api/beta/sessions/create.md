@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/create
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 0fa573577e0b55a92dd1bef057b2736c365e31b34ae10f562120c2f96619e136
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 89cf15c4c2b70e376d26f31ecbdaaac8326be394d96b2264ccc08e89f4ff3e4d
 ---
 
 ---
@@ -24,7 +24,7 @@ Create Session
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -115,6 +115,8 @@ Create Session
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

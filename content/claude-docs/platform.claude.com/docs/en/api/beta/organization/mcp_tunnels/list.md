@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 1a20b2f05014b5cc2848ca416097c3dbc35deec24bfc16becc2b0136ecea27ff
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: e6b566620052f781139d979d5c000ae8f4f83b2204666e0ab9c5ce96a9837aa1
 ---
 
 ---
@@ -57,7 +57,7 @@ archived tunnels are excluded unless `include_archived` is set.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -148,6 +148,8 @@ archived tunnels are excluded unless `include_archived` is set.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 ## Returns
 

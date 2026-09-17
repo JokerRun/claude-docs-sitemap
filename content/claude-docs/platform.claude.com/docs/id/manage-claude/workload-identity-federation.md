@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workload-identity-federation
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: f72b0a81232a543ac29026bd20a278875a59d3c0326e6c4bdeeaf0d5c2afb705
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 5a63f560c4951d762bfaaa3b3092bf13f323863c5850f2ed0bc870ed1fb75c6a
 ---
 
 ---
@@ -256,8 +256,8 @@ Anda dapat membuat klien dengan kredensial eksplisit atau tanpa argumen. Tanpa a
   ```
 
   ```csharp C#
-  using Anthropic.Models.Messages;
-  using Anthropic.Oidc;
+  using Anthropic.Credentials;
+  // ...
 
   var credentials = new WorkloadIdentityCredentials(new WorkloadIdentityOptions
   {
@@ -267,7 +267,7 @@ Anda dapat membuat klien dengan kredensial eksplisit atau tanpa argumen. Tanpa a
       WorkspaceId = "wrkspc_...",
       IdentityTokenProvider = new FileIdentityTokenProvider("/var/run/secrets/anthropic.com/token"),
   });
-  using var client = new AnthropicOidcClient(credentials);
+  using var client = new AnthropicClient(new ClientOptions { Credentials = credentials });
 
   var message = await client.Messages.Create(new()
   {

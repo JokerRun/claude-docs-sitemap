@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/batch-processing
-fetched_at: 2026-09-04T02:21:22.489135Z
-sha256: 9ce53f32ecbb899711ffb4cfd7f35b2e4f597a8f7240f738a7689094c8f79cf1
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 1cb5ba49298fa4180f09db071049de7ee5e0a7f0d63515ac91e960ce78a8a331
 ---
 
 ---
@@ -77,7 +77,7 @@ Sejumlah kecil parameter Messages API **tidak** didukung dalam permintaan batch.
 | Parameter                                                                               | Alasan                                                                                                           |
 | --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | `stream: true`                                                                          | Hasil batch dikembalikan sebagai satu file, bukan stream.                                                        |
-| `speed` ([Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode)) | Mode cepat menyetel latensi sinkron, yang tidak berlaku untuk pemrosesan batch asinkron.                         |
+| `speed` ([Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode)) | Mode cepat menyetel "latency" (latensi) sinkron, yang tidak berlaku untuk pemrosesan batch asinkron.             |
 | `max_tokens: 0`                                                                         | Lihat [Batasan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing#batch-limitations). |
 
 <Tip>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/overview
-fetched_at: 2026-09-04T02:21:22.489135Z
-sha256: 2fab8d010c46878e6f3e6e7387a0566fd6ca06f7711dca972517fa212460ba13
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: f1eda352040eb98610b11d23588bb8067d21c4890fc10da158baa36d89fa67e6
 ---
 
 ---
@@ -63,7 +63,7 @@ When accessing Claude through a [cloud platform](https://platform.claude.com/doc
 
 ### Getting API keys
 
-The API is made available through the web [Console](https://platform.claude.com/). You can use [playground](https://platform.claude.com/playground) to try out the API in the browser and then generate API keys in [Account Settings](https://platform.claude.com/settings/keys). You choose each key's type (see [Key types](https://platform.claude.com/docs/en/manage-claude/authentication#key-types)) and its [expiration](https://platform.claude.com/docs/en/manage-claude/authentication#key-expiration) when you create it. Use [workspaces](https://platform.claude.com/settings/workspaces) to separate environments and [control spend](https://platform.claude.com/docs/en/api/rate-limits) by use case.
+The API is made available through the web [Console](https://platform.claude.com/). You can use [playground](https://platform.claude.com/playground) to try out the API in the browser and then generate API keys in [Account Settings](https://platform.claude.com/settings/keys) (see [Get your Claude API key](https://platform.claude.com/docs/en/get-api-key)). You choose each key's type (see [Key types](https://platform.claude.com/docs/en/manage-claude/authentication#key-types)) and its [expiration](https://platform.claude.com/docs/en/manage-claude/authentication#key-expiration) when you create it. Use [workspaces](https://platform.claude.com/settings/workspaces) to separate environments and [control spend](https://platform.claude.com/docs/en/api/rate-limits) by use case.
 
 ## Client SDKs
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: e4163467b4458473fa24183b0123663b5925dd2c850ef2f878a7e54540ef9699
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: e9b56b7069889a15fd83091362d7cceb93e9ef8b40df67b84ba709c37a271999
 ---
 
 ---
@@ -166,7 +166,11 @@ Susun aplikasi Anda sehingga Claude dapat secara andal membedakan konten yang ti
 
   [alat computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool)
 
-  , Anthropic menjalankan pengklasifikasi tambahan yang mendeteksi potensi injeksi prompt dalam tangkapan layar dan mengarahkan Claude untuk meminta konfirmasi pengguna sebelum bertindak. Lihat halaman tersebut untuk detail dan informasi opt-out.
+   atau 
+
+  [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool)
+
+  , Anthropic menjalankan classifier tambahan yang memindai apa yang dikembalikan oleh alat tersebut, seperti tangkapan layar atau teks halaman, untuk mendeteksi potensi prompt injection dan mengarahkan Claude untuk memeriksa apakah instruksi tersebut benar-benar berasal dari Anda sebelum bertindak. Lihat halaman-halaman tersebut untuk detail dan informasi cara menonaktifkannya.
 </Note>
 
 ## Pemantauan berkelanjutan

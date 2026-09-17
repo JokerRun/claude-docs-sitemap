@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/users/list
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 2780007f6d07b1b99c79a90ef7ef75ebecd2833b421e2bbae28649a24cefb897
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 7c16da3bf5baecee393403ab4dca82aaaa576492ceddce08d81ff80a9a290a4f
 ---
 
 ---
@@ -62,7 +62,7 @@ List current user members of an organization.
 
     User's current full name
 
-  - `organization_role: "admin" or "billing" or "claude_code_user" or 6 more`
+  - `organization_role: "admin" or "billing" or "claude_code_user" or 8 more`
 
     User's built-in role within the organization. This is distinct from any custom RBAC roles that may also be assigned.
 
@@ -79,6 +79,10 @@ List current user members of an organization.
     - `"membership_admin"`
 
     - `"owner"`
+
+    - `"parent_org_admin"`
+
+    - `"parent_org_owner"`
 
     - `"primary_owner"`
 

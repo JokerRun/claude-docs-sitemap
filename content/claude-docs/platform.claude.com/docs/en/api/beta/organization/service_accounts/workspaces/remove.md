@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces/remove
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 16dcba1fe70809a488e885af6469015257a46fc5408968d2d375a55bc6040327
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 9213828d8b60b997f37bf186e5670dd6163ce6fba7a09c60beffcc3087ff77ff
 ---
 
 ---
@@ -44,7 +44,7 @@ to the implicit `workspace_user` membership. Archived workspaces return
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -135,6 +135,8 @@ to the implicit `workspace_user` membership. Archived workspaces return
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 ## Returns
 

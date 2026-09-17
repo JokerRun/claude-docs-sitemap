@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/archive
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: d353ab206d985e3cfe364742b848940d9f70905d7db9a8680c41c65576668a70
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: ba8640dfb456e624ba5a6b8dca70951ec3c9762a6f3d4c4aad589aa6a92ebb7b
 ---
 
 ---
@@ -28,7 +28,7 @@ Archive Agent
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -119,6 +119,8 @@ Archive Agent
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

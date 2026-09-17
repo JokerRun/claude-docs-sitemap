@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/github
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: e22340dc2cbf682b644439f4c6b50ce1c9327361e0fcb7f4452f6011538cc9f2
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 9b70e96698d347e3f0311d439f82f32ef105480d09d25663c9724d93da036d8f
 ---
 
 ---
@@ -56,15 +56,14 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
 
   <MultiFileExample language="cli" label="CLI">
     ```bash CLI
-    AGENT_ID=$(ant beta:agents create --transform id --raw-output < code-reviewer.agent.yaml)
+    ant apply code-reviewer.md
     ```
 
-    <File filename="code-reviewer.agent.yaml">
-      ```yaml
+    <File filename="code-reviewer.md">
+      ```markdown
+      ---
       name: Code Reviewer
-      model:
-        id: claude-opus-5
-      system: You are a code review assistant with access to GitHub.
+      model: claude-opus-5
       mcp_servers:
         - type: url
           name: github
@@ -73,6 +72,9 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
         - type: agent_toolset_20260401
         - type: mcp_toolset
           mcp_server_name: github
+      ---
+
+      You are a code review assistant with access to GitHub.
       ```
     </File>
   </MultiFileExample>

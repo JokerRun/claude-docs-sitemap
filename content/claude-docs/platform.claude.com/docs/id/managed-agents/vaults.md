@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/vaults
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 0a7f644ecc147d407267adb3f9ed5cdd02584df572fa5493a4ae096ee9f3418e
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 210638950cb856e16548912f749b141de03ce0d54b05803245c50438859875f7
 ---
 
 ---
@@ -175,7 +175,7 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
           "access_token": "xoxp-...",
           "expires_at": "2099-12-31T23:59:59Z",
           "refresh": {
-            "token_endpoint": "https://slack.com/api/oauth.v2.access",
+            "token_endpoint": "https://slack.com/api/oauth.v2.user.access",
             "client_id": "1234567890.0987654321",
             "scope": "channels:read chat:write",
             "refresh_token": "xoxe-1-...",
@@ -198,7 +198,7 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
         access_token: xoxp-...
         expires_at: "2099-12-31T23:59:59Z"
         refresh:
-          token_endpoint: https://slack.com/api/oauth.v2.access
+          token_endpoint: https://slack.com/api/oauth.v2.user.access
           client_id: "1234567890.0987654321"
           scope: channels:read chat:write
           refresh_token: xoxe-1-...
@@ -219,7 +219,7 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
               "access_token": "xoxp-...",
               "expires_at": "2099-12-31T23:59:59Z",
               "refresh": {
-                  "token_endpoint": "https://slack.com/api/oauth.v2.access",
+                  "token_endpoint": "https://slack.com/api/oauth.v2.user.access",
                   "client_id": "1234567890.0987654321",
                   "scope": "channels:read chat:write",
                   "refresh_token": "xoxe-1-...",
@@ -238,7 +238,7 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
           access_token: "xoxp-...",
           expires_at: "2099-12-31T23:59:59Z",
           refresh: {
-            token_endpoint: "https://slack.com/api/oauth.v2.access",
+            token_endpoint: "https://slack.com/api/oauth.v2.user.access",
             client_id: "1234567890.0987654321",
             scope: "channels:read chat:write",
             refresh_token: "xoxe-1-...",
@@ -263,7 +263,7 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
               ExpiresAt = DateTimeOffset.Parse("2099-12-31T23:59:59Z"),
               Refresh = new()
               {
-                  TokenEndpoint = "https://slack.com/api/oauth.v2.access",
+                  TokenEndpoint = "https://slack.com/api/oauth.v2.user.access",
                   ClientID = "1234567890.0987654321",
                   Scope = "channels:read chat:write",
                   RefreshToken = "xoxe-1-...",
@@ -287,7 +287,7 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
       			AccessToken:  "xoxp-...",
       			ExpiresAt:    anthropic.Time(time.Date(2099, time.December, 31, 23, 59, 59, 0, time.UTC)),
       			Refresh: anthropic.BetaManagedAgentsMCPOAuthRefreshParams{
-      				TokenEndpoint: "https://slack.com/api/oauth.v2.access",
+      				TokenEndpoint: "https://slack.com/api/oauth.v2.user.access",
       				ClientID:      "1234567890.0987654321",
       				Scope:         anthropic.String("channels:read chat:write"),
       				RefreshToken:  "xoxe-1-...",
@@ -316,7 +316,7 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
                   .accessToken("xoxp-...")
                   .expiresAt(OffsetDateTime.parse("2099-12-31T23:59:59Z"))
                   .refresh(BetaManagedAgentsMcpOAuthRefreshParams.builder()
-                      .tokenEndpoint("https://slack.com/api/oauth.v2.access")
+                      .tokenEndpoint("https://slack.com/api/oauth.v2.user.access")
                       .clientId("1234567890.0987654321")
                       .scope("channels:read chat:write")
                       .refreshToken("xoxe-1-...")
@@ -336,7 +336,7 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
               accessToken: 'xoxp-...',
               expiresAt: new DateTimeImmutable('2099-12-31T23:59:59Z'),
               refresh: ManagedAgentsMCPOAuthRefreshParams::with(
-                  tokenEndpoint: 'https://slack.com/api/oauth.v2.access',
+                  tokenEndpoint: 'https://slack.com/api/oauth.v2.user.access',
                   clientID: '1234567890.0987654321',
                   scope: 'channels:read chat:write',
                   refreshToken: 'xoxe-1-...',
@@ -359,7 +359,7 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
           access_token: "xoxp-...",
           expires_at: "2099-12-31T23:59:59Z",
           refresh: {
-            token_endpoint: "https://slack.com/api/oauth.v2.access",
+            token_endpoint: "https://slack.com/api/oauth.v2.user.access",
             client_id: "1234567890.0987654321",
             scope: "channels:read chat:write",
             refresh_token: "xoxe-1-...",

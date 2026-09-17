@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 0189988d1f138585bfc313287d01ba5801ee6ae6d63911dbaabe3d14ca05d072
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 70b96032d35d83545740f2740a0e4142794f9f25013d85792c117ebf3a16f1a3
 ---
 
 ---
@@ -28,7 +28,7 @@ Create Enrollment URL
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -119,6 +119,8 @@ Create Enrollment URL
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

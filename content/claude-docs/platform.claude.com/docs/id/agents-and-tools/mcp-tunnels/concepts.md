@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 47f9d50a5753d63d022432faeb515e06a760b24b42b125ed4e9b8781a61c9eac
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 5c4dafd77ccd1040945d2e5d2dae16bd9e1d382948d001b0713212a5537bee76
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Nama kanonis untuk bagian-bagian deployment tunnel MCP, dua mode pe
 ---
 
 <Note>
-  Tunnel MCP sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/claude-managed-agents) untuk mencobanya.
+  MCP tunnels (terowongan MCP) sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/mcp-tunnels) untuk mencobanya.
 </Note>
 
 Halaman ini mendefinisikan istilah-istilah yang digunakan di seluruh dokumentasi [tunnel MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview). Beberapa komponen muncul dengan nama yang berbeda dalam file konfigurasi, image container, dan teks penjelasan; tabel-tabel berikut memberikan satu nama kanonis untuk masing-masing komponen dan mencantumkan alias yang mungkin Anda temui.

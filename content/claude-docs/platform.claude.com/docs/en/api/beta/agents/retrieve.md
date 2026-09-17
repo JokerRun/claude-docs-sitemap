@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/retrieve
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: ff27a9b8d73edbada421ebc522680562369b6c4689cd688dd5910aa673e8e292
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 4a7b157f343d83dcb29eda69f37b77c63a57d7e7bbc14c33401457f6c0303e58
 ---
 
 ---
@@ -36,7 +36,7 @@ Get Agent
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -127,6 +127,8 @@ Get Agent
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

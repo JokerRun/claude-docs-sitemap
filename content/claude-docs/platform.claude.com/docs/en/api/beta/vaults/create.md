@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/create
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: e477d367d2d9b2c28fa9008d41972d9266ffbcd0c4e811ebc9320d82e7284942
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 9a66567d5696d5f7b359d90499247c58ae38ffa8b3bd861d35814fc78ca54d91
 ---
 
 ---
@@ -24,7 +24,7 @@ Create Vault
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -115,6 +115,8 @@ Create Vault
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

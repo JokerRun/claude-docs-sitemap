@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: f9a8d091e7c92ca40bb98d81ac6652e656d325a92f47b6dbf9d497dc97c156bf
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: cac77bcd98d8f31f8f8597c299fd8e37d2aa330b4a3e2dab6cc17d63da1dcc3e
 ---
 
 ---
@@ -235,9 +235,10 @@ Spesifikasi pod di [Mengonfigurasi Kubernetes](https://platform.claude.com/docs/
   ```
 
   ```csharp C#
-  var result = AnthropicCredentials.Resolve()
-      ?? throw new InvalidOperationException("No federation credentials found in environment");
-  using var client = new AnthropicOidcClient(result);
+  // Membaca ANTHROPIC_IDENTITY_TOKEN_FILE, ANTHROPIC_FEDERATION_RULE_ID,
+  // ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID, dan ANTHROPIC_WORKSPACE_ID
+  // dari environment pod.
+  using var client = new AnthropicClient();
 
   var message = await client.Messages.Create(new()
   {

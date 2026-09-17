@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 83c26ce604ab0c80baf16e3becade9e056fdb81dd855261f55c87a2783be0ce1
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 7f8e329e71df454f4cb6df44123e1f3aff8dfa5e99e5edff9bbc6b377be499de
 ---
 
 ---
@@ -11,13 +11,13 @@ url: https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration
 description: Coordinate multiple agents within a single session.
 ---
 
+## Compatibility
+- Status: Beta
+- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `managed-agents-2026-04-01`
+
 Multiagent orchestration lets one agent coordinate with others to complete complex work. Agents can act in parallel with their own isolated context, which helps improve output quality and can also improve time to completion.
 
 Not sure a multiagent setup fits your problem? See [when to use multiagent systems (and when not to)](https://claude.com/blog/building-multi-agent-systems-when-and-how-to-use-them).
-
-<Note>
-  Managed Agents API requests require the `managed-agents-2026-04-01` beta header, except memory store endpoints, which use `agent-memory-2026-07-22` instead. The SDK sets the correct beta header automatically. See [Beta headers](https://platform.claude.com/docs/en/api/beta-headers#endpoint-specific-headers).
-</Note>
 
 ## How it works
 

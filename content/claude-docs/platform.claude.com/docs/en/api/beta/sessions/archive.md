@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/archive
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 808eee8cac9200c01e1ae98dbbe9339203896a0f1697fe60a331b9f6e1edf52c
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 7407279d7c6955683f145766a4d41cc638e609ce320a79fc8d74f80dcb766146
 ---
 
 ---
@@ -28,7 +28,7 @@ Archive Session
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -119,6 +119,8 @@ Archive Session
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

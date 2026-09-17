@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 965bca20f12455980cc93e54a6494b232d58cd2b2ad5d27139ef786094b3b77b
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: eb72706c68b5a4670ca1d0d8385334a39599c2ec849c16caef25e710e7ff9c95
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Field konfigurasi proxy, Tunnels REST API, persyaratan sertifikat, 
 ---
 
 <Note>
-  Tunnel MCP sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/claude-managed-agents) untuk mencobanya.
+  MCP tunnels (terowongan MCP) sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/mcp-tunnels) untuk mencobanya.
 </Note>
 
 ## Konfigurasi proxy

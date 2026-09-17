@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 1769438e0657fee2ad73aec41a91c32d613c2812de4502caf0c31fe93fb18f94
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: c81fee4c87cfd3268772b45e8bf87b758016d38c11e0d16a60141e2106c84fbc
 ---
 
 ---
@@ -43,7 +43,7 @@ other scopes require a Console session.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -134,6 +134,8 @@ other scopes require a Console session.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 ### Body parameters
 
@@ -236,7 +238,7 @@ rules with `applies_to_all_workspaces` or a legacy single
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -327,6 +329,8 @@ rules with `applies_to_all_workspaces` or a legacy single
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 ### Returns
 
@@ -419,7 +423,7 @@ Console session.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -510,6 +514,8 @@ Console session.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 ### Returns
 

@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/glossary
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: fb3a84841e6657eb1c20380e3bcdb877064e35850a61e6ce4fd8289101b5f021
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: ae5229f6883ac2ca5a10b37f2e621439d0df2a82335fc52f642e9002a50c56cb
 ---
 
 ---
 title: Glosarium
 url: https://platform.claude.com/docs/id/about-claude/glossary
-description: Konsep-konsep ini tidak unik untuk Claude. Halaman ini menyajikan ringkasan singkat istilah-istilah kunci.
+description: Konsep-konsep ini tidak hanya berlaku untuk Claude. Halaman ini menyajikan ringkasan singkat istilah-istilah kunci.
 ---
 
 ## Context window

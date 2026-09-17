@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: aa28f846483ce7778166b9f88d3c65f2825e20b9058c54161e04323ba1011283
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 93ddaaee194955291127dd882ae88f329e1592c2392ffd55274ac3e4abc5825c
 ---
 
 ---
@@ -429,7 +429,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
   ```
 
   ```go Go
-  // Buat sesi
+  // Create a session
   session, err := client.Beta.Sessions.New(ctx, anthropic.BetaSessionNewParams{
   	Agent: anthropic.BetaSessionNewParamsAgentUnion{
   		OfString: anthropic.String(agent.ID),
@@ -441,7 +441,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
   	panic(err)
   }
 
-  // Definisikan hasil — agen mulai bekerja saat diterima
+  // Define the outcome — agent starts working on receipt
   _, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   		OfUserDefineOutcome: &anthropic.BetaManagedAgentsUserDefineOutcomeEventParams{
@@ -453,7 +453,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
   					Content: rubric,
   				},
   			},
-  			// atau: OfFile: &anthropic.BetaManagedAgentsFileRubricParams{
+  			// or: OfFile: &anthropic.BetaManagedAgentsFileRubricParams{
   			//     Type: anthropic.BetaManagedAgentsFileRubricParamsTypeFile, FileID: uploaded.ID},
   			MaxIterations: anthropic.Int(5), // optional; default 3, max 20
   		},
@@ -808,8 +808,8 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk meng
   ```
 
   ```go Go
-  // Daftar file yang dihasilkan oleh sesi ini
-  // (pemfilteran scope_id memerlukan beta managed-agents pada permintaan files)
+  // List files produced by this session
+  // (scope_id filtering requires the managed-agents beta on the files request)
   files, err := client.Beta.Files.List(ctx, anthropic.BetaFileListParams{
   	ScopeID: anthropic.String(session.ID),
   	Betas:   []anthropic.AnthropicBeta{anthropic.AnthropicBetaManagedAgents2026_04_01},
@@ -821,9 +821,9 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk meng
   	fmt.Println(file.ID, file.Filename)
   }
 
-  // Unduh file
+  // Download a file
   if len(files.Data) > 0 {
-  	resp, err := client.Files.Download(ctx, files.Data[0].ID)
+  	resp, err := client.Files.Download(ctx, files.Data[0].ID, anthropic.FileDownloadParams{})
   	if err != nil {
   		panic(err)
   	}

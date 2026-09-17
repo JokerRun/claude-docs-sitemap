@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/overview
-fetched_at: 2026-09-03T02:44:34.856042Z
-sha256: 11a1a8f81d9f5b5f5f557cfca286c76a923e953f239da98df56c212a12f39e3e
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 742f169c319e9eb0504757d54667e12ebc4719436a4ef0696207fa0f5f76a8fd
 ---
 
 ---
@@ -29,7 +29,7 @@ Claude adalah keluarga model bahasa besar mutakhir yang dikembangkan oleh Anthro
 
 ## Bandingkan model
 
-Jika Anda tidak yakin model mana yang harus digunakan, mulailah dengan [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview) untuk sebagian besar beban kerja. Gunakan [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) untuk penalaran yang menuntut dan pekerjaan agentik berjangka panjang, atau ketika evaluasi Anda pada Claude Opus 5 dengan effort yang lebih tinggi masih belum memadai. Semua model terkini mendukung input teks dan gambar, output teks, kemampuan multibahasa, visi, dan "tool use" (penggunaan alat). Halaman setiap model mencantumkan platform tempat model tersebut tersedia.
+Jika Anda tidak yakin model mana yang harus digunakan, mulailah dengan [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview) untuk sebagian besar beban kerja. Gunakan [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) untuk penalaran yang menuntut dan pekerjaan agentik jangka panjang, atau ketika hasil evaluasi (evals) Anda pada Claude Opus 5 dengan tingkat effort yang lebih tinggi masih belum memadai. Semua model saat ini mendukung input teks dan gambar, output teks, kemampuan multibahasa, "vision" (penglihatan), dan "tool use" (penggunaan alat). Halaman setiap model mencantumkan platform tempat model tersebut tersedia.
 
 | Feature                                                                                                   | Claude Fable 5.1                                                                  | Claude Opus 5                                                               | Claude Sonnet 5                                                                 | Claude Haiku 4.5                                                                  |
 | :-------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------- | :-------------------------------------------------------------------------- | :------------------------------------------------------------------------------ | :-------------------------------------------------------------------------------- |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/create
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 12a710c5cfea298e8f579b4fb134d0b02e4e6c2b237a917ce1cd16335fad55d3
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: db6da4cc2e0835b21239b086ad8656aa2de57239fca9ea4ace988abc4180b700
 ---
 
 ---
@@ -32,7 +32,7 @@ Create Skill Version
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -123,6 +123,8 @@ Create Skill Version
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/retrieve
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: ed62d49f4de3b1e9b02299e330aebaeb13f9fa27b828ccba9433e82dfd0f8693
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 638bbd49ae3194ea78eda7f0af8895cb9cbd2f40038d0e2e371fdef6fd0c763d
 ---
 
 ---
@@ -32,7 +32,7 @@ Retrieve a federation rule by its ID (`fdrl_...`).
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -123,6 +123,8 @@ Retrieve a federation rule by its ID (`fdrl_...`).
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 ## Returns
 

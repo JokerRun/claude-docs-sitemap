@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/create
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 82290cb513f93205d36b50ad71f0a4e2f3aa18aacca7c62e3b2a4872a9b3838d
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 03146029c5f6afc01082885ec193192a4f9def5717052d652e3674e05f64d4c1
 ---
 
 ---
@@ -40,7 +40,7 @@ manage rules whose `oauth_scope` is `workspace:developer` or
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -131,6 +131,8 @@ manage rules whose `oauth_scope` is `workspace:developer` or
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 ## Body parameters
 

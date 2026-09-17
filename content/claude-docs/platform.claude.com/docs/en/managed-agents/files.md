@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/files
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: 85966b7e86ad45b2f7e041660e100d9725ed22b6bd614e6c95d318fc3aa2c34e
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 8908d422a446ed5606901247f5c710eb8b95c327755d84dd6c8b601030357351
 ---
 
 ---
@@ -11,11 +11,11 @@ url: https://platform.claude.com/docs/en/managed-agents/files
 description: Upload files and mount them in your sandbox for reading and processing.
 ---
 
-You can provide files to your agent by uploading them through the Files API and mounting them in the session's sandbox.
+## Compatibility
+- Status: Beta
+- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `managed-agents-2026-04-01`
 
-<Note>
-  Managed Agents API requests require the `managed-agents-2026-04-01` beta header, except memory store endpoints, which use `agent-memory-2026-07-22` instead. The SDK sets the correct beta header automatically. See [Beta headers](https://platform.claude.com/docs/en/api/beta-headers#endpoint-specific-headers).
-</Note>
+You can provide files to your agent by uploading them through the Files API and mounting them in the session's sandbox.
 
 ## Uploading files
 
@@ -656,7 +656,7 @@ Filtering by `scope_id` requires the `managed-agents-2026-04-01` beta header, so
   }
 
   // Download a file
-  resp, err := client.Files.Download(ctx, files.Data[0].ID)
+  resp, err := client.Files.Download(ctx, files.Data[0].ID, anthropic.FileDownloadParams{})
   if err != nil {
   	panic(err)
   }

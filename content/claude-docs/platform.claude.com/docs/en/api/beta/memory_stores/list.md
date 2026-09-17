@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 80c020b1fc83c8d88402116a511bc623f3b88a533187a65fc1c51c8177757bfd
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: eed5a491fda919b917a6b0875aba5da783e4697b80f2405c54b37f0e66bc2de5
 ---
 
 ---
@@ -52,7 +52,7 @@ List memory stores
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -143,6 +143,8 @@ List memory stores
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

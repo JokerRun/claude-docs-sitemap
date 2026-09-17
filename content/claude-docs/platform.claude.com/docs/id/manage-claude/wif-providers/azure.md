@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/azure
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: b0f2a09f48af8480b370fa00680dfbb7108095cfc8b6664d7dc4b9ad86647c01
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: c3804125ad6b60927e9b29801064cb2ad7ea2b0a32123486b4b71e811e28c212
 ---
 
 ---
@@ -424,6 +424,9 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
   ```
 
   ```csharp C#
+  using Anthropic.Credentials;
+  // ...
+
   var credentials = new WorkloadIdentityCredentials(new WorkloadIdentityOptions
   {
       FederationRuleId = Environment.GetEnvironmentVariable("ANTHROPIC_FEDERATION_RULE_ID")!,
@@ -432,7 +435,7 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
       WorkspaceId = Environment.GetEnvironmentVariable("ANTHROPIC_WORKSPACE_ID"),
       IdentityTokenProvider = new EntraTokenProvider(),
   });
-  using var client = new AnthropicOidcClient(credentials);
+  using var client = new AnthropicClient(new ClientOptions { Credentials = credentials });
 
   var message = await client.Messages.Create(new()
   {
@@ -450,7 +453,7 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
 
   class EntraTokenProvider : IIdentityTokenProvider
   {
-      // URI pengenal pendaftaran aplikasi audiens (lihat Mendaftarkan audiens token).
+      // URI pengenal dari pendaftaran aplikasi audiens (lihat Register the token audience).
       private const string Audience = "api://<APP_ID>";
 
       private static readonly HttpClient httpClient = new();
@@ -459,7 +462,7 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
       {
           // App Service, Functions, dan Container Apps menyuntikkan IDENTITY_ENDPOINT;
           // VM dan VM Scale Sets menggunakan IMDS.
-          // Dengan beberapa identitas yang ditetapkan pengguna, tambahkan &client_id=<IDENTITY_CLIENT_ID>.
+          // Jika ada beberapa identitas yang ditetapkan pengguna, tambahkan &client_id=<IDENTITY_CLIENT_ID>.
           var identityEndpoint = Environment.GetEnvironmentVariable("IDENTITY_ENDPOINT");
           using var request = identityEndpoint is not null
               ? new HttpRequestMessage(HttpMethod.Get,
@@ -1024,6 +1027,9 @@ Dua client ID berbeda muncul dalam sampel. `<APP_ID>` adalah client ID app regis
   ```
 
   ```csharp C#
+  using Anthropic.Credentials;
+  // ...
+
   var credentials = new WorkloadIdentityCredentials(new WorkloadIdentityOptions
   {
       FederationRuleId = Environment.GetEnvironmentVariable("ANTHROPIC_FEDERATION_RULE_ID")!,
@@ -1032,7 +1038,7 @@ Dua client ID berbeda muncul dalam sampel. `<APP_ID>` adalah client ID app regis
       WorkspaceId = Environment.GetEnvironmentVariable("ANTHROPIC_WORKSPACE_ID"),
       IdentityTokenProvider = new EntraFederationTokenProvider(),
   });
-  using var client = new AnthropicOidcClient(credentials);
+  using var client = new AnthropicClient(new ClientOptions { Credentials = credentials });
 
   var message = await client.Messages.Create(new()
   {

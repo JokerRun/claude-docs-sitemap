@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/archive
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: 783f652aeb5f910a51ffd37b646a3b002c6cbf32529ec6c3f30fcceb3dd634da
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 11a10fc8efd8d069c00af79b54c7de04f5e157739d562ac702ce14fb5d8699dc
 ---
 
 ---
@@ -30,7 +30,7 @@ Archive Credential
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -121,6 +121,8 @@ Archive Credential
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

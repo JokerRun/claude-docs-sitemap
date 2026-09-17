@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/overview
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 8d0cb1e79d151965810584296d1d96489948b8599b0389d3761fb472525f4761
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: cf3cb6ccb3d6599532e7fa5a4c994831375317d287dd64c7d5f1d1187798f073
 ---
 
 ---
@@ -49,13 +49,13 @@ Untuk referensi API lengkap dengan semua endpoint, parameter, dan skema respons,
 
 Untuk detail tentang setiap metode autentikasi dan kapan menggunakannya, lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Permintaan ke Claude API menyertakan header berikut:
 
-| Header                   | Nilai                                                                                                                                                                                                                                                                         | Wajib                                                                                                                                                                              |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `x-api-key`              | Kunci API Anda dari Console                                                                                                                                                                                                                                                   | Salah satu dari `x-api-key` atau `Authorization`                                                                                                                                   |
-| `Authorization`          | `Bearer <token>`, di mana `<token>` adalah token akses berumur pendek yang diperoleh dari `POST /v1/oauth/token` melalui [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation)                                       | Salah satu dari `x-api-key` atau `Authorization`                                                                                                                                   |
-| `anthropic-workspace-id` | ID dari [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) tempat permintaan dijalankan (misalnya, `wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ`). Lihat [Memilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace). | Wajib dengan kunci API multi-workspace. Opsional untuk kunci API lainnya. Tidak digunakan dengan token Workload Identity Federation, yang memilih workspace saat pertukaran token. |
-| `anthropic-version`      | Versi API (misalnya, `2023-06-01`)                                                                                                                                                                                                                                            | Ya                                                                                                                                                                                 |
-| `content-type`           | `application/json`                                                                                                                                                                                                                                                            | Ya                                                                                                                                                                                 |
+| Header                   | Nilai                                                                                                                                                                                                                                                                    | Wajib                                                                                                                                                                              |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Authorization`          | `Bearer <token>`, dengan `<token>` adalah kunci API Anda atau token akses berumur pendek yang diperoleh dari `POST /v1/oauth/token` melalui [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation)               | Ya, kecuali `x-api-key` diatur                                                                                                                                                     |
+| `x-api-key`              | Kunci API Anda dari Console. Alternatif lama untuk `Authorization`, masih didukung                                                                                                                                                                                       | Tidak                                                                                                                                                                              |
+| `anthropic-workspace-id` | ID [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) tempat permintaan dijalankan (misalnya, `wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ`). Lihat [Memilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace). | Wajib dengan kunci API multi-workspace. Opsional untuk kunci API lainnya. Tidak digunakan dengan token Workload Identity Federation, yang memilih workspace saat pertukaran token. |
+| `anthropic-version`      | Versi API (misalnya, `2023-06-01`)                                                                                                                                                                                                                                       | Ya                                                                                                                                                                                 |
+| `content-type`           | `application/json`                                                                                                                                                                                                                                                       | Ya                                                                                                                                                                                 |
 
 Jika Anda menggunakan [SDK Klien](https://platform.claude.com/docs/id/api/overview#client-sdks), SDK mengirimkan header autentikasi, versi, dan content-type secara otomatis; Anda meneruskan `anthropic-workspace-id` sendiri ketika kunci Anda memerlukannya. Untuk detail pembuatan versi API, lihat [Versi API](https://platform.claude.com/docs/id/api/versioning).
 
@@ -63,7 +63,7 @@ Saat mengakses Claude melalui [platform cloud](https://platform.claude.com/docs/
 
 ### Mendapatkan kunci API
 
-API tersedia melalui [Console](https://platform.claude.com/) web. Anda dapat menggunakan [playground](https://platform.claude.com/playground) untuk mencoba API di browser lalu membuat kunci API di [Pengaturan Akun](https://platform.claude.com/settings/keys). Anda memilih jenis setiap kunci (lihat [Jenis kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-types)) dan [masa berlakunya](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration) saat Anda membuatnya. Gunakan [workspace](https://platform.claude.com/settings/workspaces) untuk memisahkan lingkungan dan [mengontrol pengeluaran](https://platform.claude.com/docs/id/api/rate-limits) berdasarkan kasus penggunaan.
+API tersedia melalui [Console](https://platform.claude.com/) web. Anda dapat menggunakan [playground](https://platform.claude.com/playground) untuk mencoba API di browser lalu membuat kunci API di [Pengaturan Akun](https://platform.claude.com/settings/keys) (lihat [Dapatkan kunci API Claude Anda](https://platform.claude.com/docs/id/get-api-key)). Anda memilih jenis setiap kunci (lihat [Jenis kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-types)) dan [masa berlakunya](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration) saat Anda membuatnya. Gunakan [workspace](https://platform.claude.com/settings/workspaces) untuk memisahkan lingkungan dan [mengontrol pengeluaran](https://platform.claude.com/docs/id/api/rate-limits) berdasarkan kasus penggunaan.
 
 ## SDK Klien
 
@@ -71,11 +71,11 @@ Anthropic menyediakan SDK resmi yang menyederhanakan integrasi API dengan menang
 
 **Manfaat:**
 
-* Manajemen header otomatis (`x-api-key`, `anthropic-version`, `content-type`)
+* Pengelolaan header otomatis (autentikasi, `anthropic-version`, `content-type`)
 * Penanganan permintaan dan respons yang type-safe
-* Logika retry dan penanganan kesalahan bawaan
+* Logika percobaan ulang (retry) dan penanganan error bawaan
 * Dukungan streaming
-* Timeout permintaan dan manajemen koneksi
+* Batas waktu permintaan dan pengelolaan koneksi
 
 Untuk daftar SDK klien, lihat [SDK Klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview).
 

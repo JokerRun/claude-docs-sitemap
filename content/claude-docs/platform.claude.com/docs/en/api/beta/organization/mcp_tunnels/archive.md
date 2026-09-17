@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/archive
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 923fed46963b6bf6ae8a038071c364c2d8f44141016d77aa14bf578aedfe3033
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 9a0c6ca03175ffca45ed5eddf95ea69fc833742f894c54bd552ea5f3cad35d7e
 ---
 
 ---
@@ -39,7 +39,7 @@ tunnel returns the existing record unchanged.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -130,6 +130,8 @@ tunnel returns the existing record unchanged.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 ## Returns
 

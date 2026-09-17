@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/quickstart
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 2a7bc72b519e21f2f366bf50e371400a642bba301df71f5feaa687b07057df88
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 576e8a4e23993931438fdb63cdaab3be69fcadf69eb9dcb96716879685bc018d
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Hubungkan Claude ke server MCP privat menggunakan deployment Docker
 ---
 
 <Note>
-  Tunnel MCP sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/claude-managed-agents) untuk mencobanya.
+  MCP tunnels (terowongan MCP) sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/mcp-tunnels) untuk mencobanya.
 </Note>
 
 Panduan memulai cepat ini membawa Anda dari nol hingga Claude memanggil server MCP privat melalui sebuah tunnel. Panduan ini menggunakan Docker Compose dengan penyediaan kredensial [manual](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning), yang merupakan jalur terpendek untuk pengujian lokal. Untuk deployment produksi, lihat [Deploy dengan Helm](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm) atau [Deploy dengan Docker Compose](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-compose).

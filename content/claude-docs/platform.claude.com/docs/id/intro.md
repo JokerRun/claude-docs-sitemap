@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/intro
-fetched_at: 2026-09-03T02:44:34.856042Z
-sha256: 7b5aeefa43e52730208ff952fbbd2a7c22700528e934bef354f1718a376c534a
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: be0738c50fde15ef6316dd704a30fb43c6526ea2d9b86ef648dd200aa665b96b
 ---
 
 ---
@@ -10,20 +10,6 @@ title: Pengantar Claude
 url: https://platform.claude.com/docs/id/intro
 description: Claude adalah platform AI berkinerja tinggi, tepercaya, dan cerdas yang dibangun oleh Anthropic. Claude unggul dalam tugas-tugas yang melibatkan bahasa, penalaran, analisis, pengodean, dan banyak lagi.
 ---
-
-<Tip>
-  Generasi terbaru model Claude:
-
-  **Claude Fable 5.1** - Untuk penalaran yang menuntut dan pekerjaan agentik berjangka panjang. Baca [pengumuman Claude Fable 5.1](https://www.anthropic.com/claude-fable-and-mythos-5-1).
-
-  **Claude Mythos 5.1** - Menawarkan kemampuan Claude Fable 5.1 melalui undangan lewat [Project Glasswing](https://anthropic.com/glasswing).
-
-  **Claude Opus 5** - Untuk pengodean agentik yang kompleks dan pekerjaan enterprise. Baca [pengumuman Claude Opus 5](https://www.anthropic.com/news/claude-opus-5).
-
-  **Claude Sonnet 5** - Kecerdasan terdepan dalam skala besar, dibangun untuk pengodean, agen, dan alur kerja enterprise. Baca [pengumuman Claude Sonnet 5](https://www.anthropic.com/news/claude-sonnet-5).
-
-  **Claude Haiku 4.5** - Model tercepat dengan kecerdasan mendekati terdepan. Baca [pengumuman Claude Haiku 4.5](https://www.anthropic.com/news/claude-haiku-4-5).
-</Tip>
 
 <Note>
   Ingin mengobrol dengan Claude? Kunjungi [claude.ai](https://claude.ai).
@@ -37,6 +23,19 @@ Anthropic menawarkan dua cara untuk membangun dengan Claude, masing-masing cocok
 | **Paling cocok untuk** | Loop agen kustom dan kontrol yang terperinci    | Tugas yang berjalan lama dan pekerjaan asinkron                                          |
 
 Untuk mempelajari lebih lanjut tentang masing-masing, lihat [Menggunakan Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) dan [ikhtisar Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview).
+
+## Jelajahi generasi terbaru model Claude
+
+Jika Anda tidak yakin model mana yang harus digunakan, mulailah dengan [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview) untuk sebagian besar beban kerja. Gunakan [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) untuk penalaran yang menuntut dan pekerjaan agentik jangka panjang, atau ketika hasil evaluasi (evals) Anda pada Claude Opus 5 dengan tingkat effort yang lebih tinggi masih belum memadai. Semua model saat ini mendukung input teks dan gambar, output teks, kemampuan multibahasa, "vision" (penglihatan), dan "tool use" (penggunaan alat). Halaman setiap model mencantumkan platform tempat model tersebut tersedia.
+
+* [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) (`claude-fable-5-1`) — New — *For demanding reasoning and long-horizon agentic work* — Most capable · Research · Multi-day tasks
+* [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview) (`claude-opus-5`) — *For complex agentic coding and enterprise work* — Complex projects · Agents · Coding
+* [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview) (`claude-sonnet-5`) — *The best combination of speed and intelligence* — Everyday tasks · Writing · Cost-efficient
+* [Claude Haiku 4.5](https://platform.claude.com/docs/id/models/haiku-4-5/overview) (`claude-haiku-4-5`) — *The fastest model with near-frontier intelligence* — Fastest · Lowest cost · High volume
+
+[Bandingkan model](https://platform.claude.com/docs/id/models/overview)
+
+***
 
 ## Jalur yang direkomendasikan untuk developer baru
 

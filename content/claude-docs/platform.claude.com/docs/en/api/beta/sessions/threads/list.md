@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: ab3a158f0ddf7d0a5305b6191b55cf809fb7f6ad5c192f07c4ec2fccee1a2876
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 24f9de47bb82d162baa5123f40b4d831d912ff2c8691496c9a413647fd08f392
 ---
 
 ---
@@ -40,7 +40,7 @@ List Session Threads
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -131,6 +131,8 @@ List Session Threads
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

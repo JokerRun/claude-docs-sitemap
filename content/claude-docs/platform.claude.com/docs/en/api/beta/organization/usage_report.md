@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/usage_report
-fetched_at: 2026-09-15T02:21:43.636809Z
-sha256: d856f6038d6c321ffbea392f97f4f89f7ebd963e6017c8936407d7845b07e68e
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: e7c8c3c0e07d43d54200d951c168a217c24b600d8da12de19db3101c1a1d1410
 ---
 
 ---
@@ -151,7 +151,7 @@ Get Messages Usage Report
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -242,6 +242,8 @@ Get Messages Usage Report
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 ### Returns
 

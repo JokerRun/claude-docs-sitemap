@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-management
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: e92e6f2d9b98db4a9967d71223c7cfcc9b1ca8fe68d698d70461040099ab413a
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 4d4af04824ca2c1bdb4ee4b7fc7ad15a30069aa0da01ab039b6ff32f749bcfa1
 ---
 
 ---
@@ -34,7 +34,7 @@ Anggota dan undangan adalah endpoint yang sama untuk kedua jenis organisasi; hal
 <Check>
   **Diperlukan kunci Admin API dengan cakupan (scope)**
 
-  Endpoint ini memerlukan kunci Admin API dengan cakupan `read:members` (endpoint `GET` anggota dan undangan, serta semua endpoint peran kustom; tidak ada cakupan peran terpisah), cakupan `write:members` (endpoint `POST` dan `DELETE` anggota dan undangan), cakupan `read:rbac_groups` (endpoint `GET` grup), atau cakupan `write:rbac_groups` (endpoint `POST` dan `DELETE` grup). Kunci yang membawa cakupan `read:org_audit` (cakupan hanya-baca untuk integrasi audit keamanan) juga dapat memanggil setiap endpoint `GET` di halaman ini dan endpoint baca [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api). Lihat [Membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys#create-a-key-for-a-claude-enterprise-organization) untuk mengetahui di mana primary owner Anda membuatnya dan cakupan mana yang harus dipilih. Sertakan kunci tersebut dalam header `x-api-key` pada setiap permintaan. Permintaan anggota dan undangan juga memerlukan header `anthropic-version: 2023-06-01`, seperti ditunjukkan dalam contoh; permintaan grup dan peran kustom tidak memerlukannya.
+  Endpoint ini memerlukan kunci Admin API dengan "scope" (cakupan) `read:members` (endpoint `GET` anggota dan undangan, serta semua endpoint peran kustom; tidak ada scope peran terpisah), scope `write:members` (endpoint `POST` dan `DELETE` anggota dan undangan), scope `read:rbac_groups` (endpoint `GET` grup), atau scope `write:rbac_groups` (endpoint `POST` dan `DELETE` grup). Kunci yang memiliki scope `read:org_audit` (scope hanya-baca untuk integrasi audit keamanan) juga dapat memanggil setiap endpoint `GET` di halaman ini serta endpoint baca [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api). Lihat [Membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys#create-a-key-for-a-claude-enterprise-organization) untuk mengetahui di mana primary owner Anda membuatnya dan scope mana yang harus dipilih. Kirimkan kunci di header `x-api-key` pada setiap permintaan, bersama dengan header [`anthropic-version`](https://platform.claude.com/docs/id/api/versioning).
 </Check>
 
 ## Ikhtisar
@@ -104,6 +104,10 @@ Jika paket organisasi Anda mengambil anggota dari kumpulan seat yang dibeli dala
 ### Grup dan peran
 
 Grup menghubungkan anggota dengan peran kustom ("role-based access control" (kontrol akses berbasis peran), atau `rbac` dalam path endpoint dan nama cakupan). Grup dimiliki oleh enterprise Anda secara keseluruhan (organisasi induk bersama setiap organisasi di bawahnya), bukan oleh satu organisasi, sehingga cakupan grup (`read:rbac_groups` dan `write:rbac_groups`) memerlukan kunci yang dibuat untuk semua organisasi tertaut. Setiap grup membawa `source_type`: `direct` untuk grup yang dibuat di claude.ai, `scim` untuk grup yang diprovisikan oleh penyedia identitas Anda. Field `roles` pada grup mencantumkan ID peran kustom yang terlampir padanya; uraikan menjadi nama dan izin dengan [endpoint peran kustom](https://platform.claude.com/docs/id/manage-claude/user-management#custom-roles), dengan catatan bahwa katalog peran bersifat per-organisasi sementara grup berlaku di seluruh enterprise, sehingga mengambil peran yang dimiliki organisasi lain dalam enterprise Anda akan mengembalikan 404 untuk kunci Anda. Field ini bernilai `null` (bukan `[]`) ketika data peran sementara tidak tersedia, jadi coba lagi untuk membedakan pembacaan yang terdegradasi dari grup yang tidak memiliki peran.
+
+## Pembuatan versi
+
+Kirimkan header `anthropic-version` pada setiap permintaan; lihat [Versi API](https://platform.claude.com/docs/id/api/versioning) untuk versi yang tersedia.
 
 ## Batas laju
 
@@ -252,7 +256,7 @@ curl -X DELETE "https://api.anthropic.com/v1/organizations/invites/invite_01QrSt
 
 ## Grup
 
-Grup yang dibuat langsung oleh enterprise Anda, di [pengaturan organisasi claude.ai](https://claude.ai/admin-settings) atau melalui API ini (`source_type: "direct"`), mendukung setiap endpoint di bagian ini. Grup yang diprovisikan oleh penyedia identitas Anda (`source_type: "scim"`) dapat dibaca tetapi tidak dapat diubah: mengganti nama atau menghapus grup SCIM, atau mengubah keanggotaannya, mengembalikan 400, karena penyedia identitas Anda yang memilikinya. Tidak seperti permintaan anggota dan undangan, permintaan grup tidak memerlukan header `anthropic-version`.
+Grup yang dibuat langsung oleh enterprise Anda, di [pengaturan organisasi claude.ai](https://claude.ai/admin-settings) atau melalui API ini (`source_type: "direct"`), mendukung setiap endpoint di bagian ini. Grup yang disediakan oleh penyedia identitas Anda (`source_type: "scim"`) dapat dibaca tetapi tidak dapat diubah: mengganti nama atau menghapus grup SCIM, atau mengubah keanggotaannya, akan mengembalikan 400, karena grup tersebut dimiliki oleh penyedia identitas Anda.
 
 ### Mendaftarkan grup
 
@@ -262,7 +266,8 @@ Untuk detail parameter lengkap dan skema respons, lihat [List groups](https://pl
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/rbac_groups?limit=20" \
-  -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  -H "anthropic-version: 2023-06-01"
 ```
 
 ```json
@@ -291,7 +296,8 @@ Untuk detail parameter lengkap dan skema respons, lihat [Get group](https://plat
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYzAbCdEfGhIjKlMn" \
-  -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  -H "anthropic-version: 2023-06-01"
 ```
 
 ### Membuat grup
@@ -304,6 +310,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [Create group](https://p
 curl -X POST "https://api.anthropic.com/v1/organizations/rbac_groups" \
   -H "content-type: application/json" \
   -H "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  -H "anthropic-version: 2023-06-01" \
   -d '{"name": "Engineering"}'
 ```
 
@@ -329,6 +336,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [Update group](https://p
 curl -X POST "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYzAbCdEfGhIjKlMn" \
   -H "content-type: application/json" \
   -H "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  -H "anthropic-version: 2023-06-01" \
   -d '{"name": "Platform Engineering"}'
 ```
 
@@ -340,7 +348,8 @@ Untuk detail parameter lengkap dan skema respons, lihat [Delete group](https://p
 
 ```bash cURL
 curl -X DELETE "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYzAbCdEfGhIjKlMn" \
-  -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  -H "anthropic-version: 2023-06-01"
 ```
 
 ```json
@@ -358,7 +367,8 @@ Untuk detail parameter lengkap dan skema respons, lihat [List group members](htt
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYzAbCdEfGhIjKlMn/members?limit=100" \
-  -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  -H "anthropic-version: 2023-06-01"
 ```
 
 ```json
@@ -387,6 +397,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [Add group member](https
 curl -X POST "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYzAbCdEfGhIjKlMn/members" \
   -H "content-type: application/json" \
   -H "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  -H "anthropic-version: 2023-06-01" \
   -d '{"user_id": "user_01AbCdEfGhIjKlMnOpQrSt"}'
 ```
 
@@ -408,7 +419,8 @@ Untuk detail parameter lengkap dan skema respons, lihat [Remove group member](ht
 
 ```bash cURL
 curl -X DELETE "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYzAbCdEfGhIjKlMn/members/user_01AbCdEfGhIjKlMnOpQrSt" \
-  -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  -H "anthropic-version: 2023-06-01"
 ```
 
 ```json
@@ -431,7 +443,8 @@ Untuk detail parameter lengkap dan skema respons, lihat [List roles](https://pla
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/rbac_roles?limit=20" \
-  -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  -H "anthropic-version: 2023-06-01"
 ```
 
 ```json
@@ -458,7 +471,8 @@ Untuk detail parameter lengkap dan skema respons, lihat [Get role](https://platf
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/rbac_roles/rbac_role_01CdEfGhIjKlMnOpQrStUv" \
-  -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  -H "anthropic-version: 2023-06-01"
 ```
 
 ### Mendaftarkan izin peran
@@ -471,7 +485,8 @@ Untuk detail parameter lengkap dan skema respons, lihat [List role permissions](
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/rbac_roles/rbac_role_01CdEfGhIjKlMnOpQrStUv/permissions?limit=20" \
-  -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  -H "anthropic-version: 2023-06-01"
 ```
 
 ```json

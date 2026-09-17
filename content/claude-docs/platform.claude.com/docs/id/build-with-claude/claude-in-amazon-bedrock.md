@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 80a64db6dbd1b10ee0e09ebcf5521f5f2f151d360b0739b7796f82773bed8bcc
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 03cbc175d165bc4ee5d8680516c5ecf002688cb50d8271e783997ccc6f9beafa
 ---
 
 ---
@@ -109,7 +109,7 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java-bedrock:2.58.0")
+        implementation("com.anthropic:anthropic-java-bedrock:2.60.0")
         ```
       </Tab>
 
@@ -118,7 +118,7 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-bedrock</artifactId>
-            <version>2.58.0</version>
+            <version>2.60.0</version>
         </dependency>
         ```
       </Tab>

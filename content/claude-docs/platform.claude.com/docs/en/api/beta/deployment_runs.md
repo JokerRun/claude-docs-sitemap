@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployment_runs
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: ba75254ce6e53e53e99a921ff7304c52437c71f34e37d35534a328a406dbe188
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 1ba1b8e2b931f6db5dc2fff5a9b8ed69bf294aa09d28ed1ab0576c67848adb76
 ---
 
 ---
@@ -78,7 +78,7 @@ List Deployment Runs
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -169,6 +169,8 @@ List Deployment Runs
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -457,7 +459,7 @@ Get Deployment Run
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -548,6 +550,8 @@ Get Deployment Run
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

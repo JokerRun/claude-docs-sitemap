@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/pause
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 596ae0163420281e0b55140c66b30c4118160c7071d4ff54521017b2f3ce85ad
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 54f661676f08895e035ac654fcc89dfa3120de3d4eff86cbc4932518c126027e
 ---
 
 ---
@@ -28,7 +28,7 @@ Pause Deployment
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -119,6 +119,8 @@ Pause Deployment
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: dc6868eb202a437e2ce50a5bb928af8c4adc1ed3ee33ed372f75423271ba5b16
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: ce0b96b32823e6a1aac1337864d3d6da89b4c7e65aac521eac4df1ffb06a3eb5
 ---
 
 ---
@@ -46,7 +46,7 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -137,6 +137,8 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

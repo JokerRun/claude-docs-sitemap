@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/create
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: dceb3d6bd0b54be76943200f62145ae06ac5fa336c0294757e7211948ba539ef
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 6ce8029e129a512e35ef00af476a5bbfd95d367e7cde5b07db15547eb1b15a4f
 ---
 
 ---
@@ -26,7 +26,7 @@ Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel;
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -117,6 +117,8 @@ Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel;
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

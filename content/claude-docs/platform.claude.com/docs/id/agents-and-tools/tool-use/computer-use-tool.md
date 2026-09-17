@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 50a79709202a1d9fec330750872ee23e81577e1e63e843347e8581c552005497
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 8272d8ce9f7c4ae69f5c0f05e82702b6416bc4d4e5c037bb3df4e37dd31f4ae8
 ---
 
 ---
@@ -45,9 +45,9 @@ Penggunaan komputer memiliki risiko unik yang berbeda dari fitur API standar. Ri
 
 Dalam beberapa keadaan, Claude akan mengikuti perintah yang ditemukan dalam konten meskipun bertentangan dengan instruksi Anda. Misalnya, instruksi pada halaman web atau yang terkandung dalam gambar dapat mengesampingkan instruksi Anda atau menyebabkan Claude membuat kesalahan. Ambil tindakan pencegahan untuk mengisolasi Claude dari data dan tindakan sensitif guna menghindari risiko terkait prompt injection.
 
-Anthropic telah melatih model untuk menahan prompt injection ini dan telah menambahkan lapisan pertahanan ekstra. Jika Anda menggunakan alat penggunaan komputer, classifier akan berjalan secara otomatis pada prompt Anda untuk menandai potensi kejadian prompt injection. Ketika classifier ini mengidentifikasi potensi prompt injection dalam tangkapan layar, classifier akan secara otomatis mengarahkan model untuk meminta konfirmasi pengguna sebelum melanjutkan ke tindakan berikutnya. Perlindungan ekstra ini tidak akan ideal untuk setiap kasus penggunaan (misalnya, kasus penggunaan tanpa manusia dalam loop), jadi jika Anda ingin memilih keluar dan menonaktifkannya, [hubungi dukungan](https://support.claude.com/en/).
+Anthropic telah melatih model untuk menahan prompt injection ini dan telah menambahkan lapisan pertahanan ekstra. Jika Anda menggunakan alat computer use, classifier akan secara otomatis memindai apa yang dikembalikan oleh alat, seperti tangkapan layar, untuk menandai potensi prompt injection. Ketika classifier ini mengidentifikasi potensi prompt injection, classifier akan secara otomatis mengarahkan model untuk memeriksa apakah instruksi tersebut benar-benar berasal dari Anda sebelum menindaklanjutinya.
 
-Tindakan pencegahan ini tetap penting meskipun lapisan pertahanan classifier sudah ada.
+Perlindungan ekstra ini tidak akan ideal untuk setiap kasus penggunaan (misalnya, kasus penggunaan tanpa keterlibatan manusia), jadi jika Anda ingin memilih keluar dan menonaktifkannya, [hubungi dukungan](https://support.claude.com/en/). Tindakan pencegahan di atas tetap penting meskipun classifier ini sudah diterapkan.
 
 Informasikan risiko yang relevan kepada pengguna akhir dan dapatkan persetujuan mereka sebelum mengaktifkan penggunaan komputer dalam produk Anda sendiri.
 

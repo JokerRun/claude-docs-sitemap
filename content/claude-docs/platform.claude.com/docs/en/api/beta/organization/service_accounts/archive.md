@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/archive
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 9c37ccf031c3f0a9ab9408bd6107636093d421844db09be663363377869c770a
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 6ce85540f5b608e7ba8a399131c0a0c53921fead870b52f02c8e6a8107b6f1f9
 ---
 
 ---
@@ -37,7 +37,7 @@ those rules first or change their target to another service account.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -128,6 +128,8 @@ those rules first or change their target to another service account.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 ## Returns
 

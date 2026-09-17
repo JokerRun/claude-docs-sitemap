@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 7a496b860a7af272e24a72d3591c832a7796a1e559d86fd1363bf6490367ccf6
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 64eecf8d6354a4c189c6f41137bbb60aad8d1fc11e51acc73ca9b328d523213d
 ---
 
 ---
@@ -790,7 +790,7 @@ Ambil informasi tentang file tertentu:
   ```
 
   ```go Go
-  metadata, err := client.Files.GetMetadata(context.TODO(), fileID)
+  metadata, err := client.Files.GetMetadata(context.TODO(), fileID, anthropic.FileGetMetadataParams{})
   if err != nil {
   	log.Fatal(err)
   }
@@ -844,7 +844,7 @@ Hapus file dari workspace Anda:
   ```
 
   ```go Go
-  _, err = client.Files.Delete(context.TODO(), fileID)
+  _, err = client.Files.Delete(context.TODO(), fileID, anthropic.FileDeleteParams{})
   if err != nil {
   	log.Fatal(err)
   }
@@ -903,7 +903,7 @@ Unduh file yang dibuat oleh [skills](https://platform.claude.com/docs/id/build-w
 
   ```go Go
   func downloadFile(client anthropic.Client, fileID string) error {
-  	resp, err := client.Files.Download(context.TODO(), fileID)
+  	resp, err := client.Files.Download(context.TODO(), fileID, anthropic.FileDownloadParams{})
   	if err != nil {
   		return err
   	}
@@ -947,7 +947,7 @@ Unduh file yang dibuat oleh [skills](https://platform.claude.com/docs/id/build-w
   Sebuah file hanya dapat diunduh ketika metadatanya menunjukkan `"downloadable": true`, yang berlaku untuk file yang dibuat oleh skills atau alat eksekusi kode. Mengunduh file yang Anda unggah akan mengembalikan error 400.
 </Note>
 
-Di Claude API, file gambar dan video yang didukung yang dihasilkan Claude dengan alat eksekusi kode, termasuk file yang dibuat oleh skills, membawa Content Credentials C2PA bertanda tangan saat Anda mengunduhnya. Lihat [Content Credentials pada file yang dihasilkan](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#content-credentials-on-generated-files) untuk mengetahui isi kredensial tersebut dan cara memverifikasinya.
+Di Claude API, file gambar, video, dan audio yang didukung yang dihasilkan Claude dengan alat eksekusi kode, termasuk file yang dibuat oleh skills, membawa C2PA Content Credentials yang ditandatangani saat Anda mengunduhnya. Lihat [Content Credentials pada file yang dihasilkan](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#content-credentials-on-generated-files) untuk mengetahui isi kredensial tersebut dan cara memverifikasinya.
 
 ## Penyimpanan dan batas file
 

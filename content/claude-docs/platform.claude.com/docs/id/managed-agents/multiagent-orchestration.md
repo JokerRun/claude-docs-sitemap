@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: 3b30b1d5fa5c0283498c48ebef0a287e7195c734b89ee9efd15aa99d639bd630
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: cd5522d29366e8480554d93879eae7fc49464d49629a48fe9d02f6b5e07a9acb
 ---
 
 ---
@@ -72,23 +72,46 @@ Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agen
 
   <MultiFileExample language="cli" label="CLI">
     ```bash CLI
-    ant beta:agents create < coordinator.agent.yaml
+    ant apply engineering-lead.md reviewer.md test-writer.md
     ```
 
-    <File filename="coordinator.agent.yaml">
-      ```yaml
+    <File filename="engineering-lead.md">
+      ```markdown
+      ---
       name: Engineering Lead
       model: claude-opus-5
-      system: You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.
       tools:
         - type: agent_toolset_20260401
       multiagent:
         type: coordinator
-        agents:
-          - type: agent
-            id: $REVIEWER_AGENT_ID # replace before running command
-          - type: agent
-            id: $TEST_WRITER_AGENT_ID # replace before running command
+        agents: # paths: ant apply substitutes {type: agent, id, version}
+          - ./reviewer.md
+          - ./test-writer.md
+      ---
+
+      You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.
+      ```
+    </File>
+
+    <File filename="reviewer.md">
+      ```markdown
+      ---
+      name: reviewer
+      model: claude-haiku-4-5
+      ---
+
+      You are a code reviewer.
+      ```
+    </File>
+
+    <File filename="test-writer.md">
+      ```markdown
+      ---
+      name: test-writer
+      model: claude-haiku-4-5
+      ---
+
+      You write unit tests.
       ```
     </File>
   </MultiFileExample>
@@ -241,6 +264,8 @@ Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agen
 * `{"type": "agent", "id": agent.id, "version": agent.version}` menyematkan versi agen tertentu.
 * `{"type": "self"}` memungkinkan koordinator membuat salinan dirinya sendiri. Jika sesi dibuat dengan [override konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session), override tersebut juga berlaku untuk salinan ini; entri roster yang direferensikan berdasarkan ID tidak terpengaruh.
 * `{"type": "advisor", "model": "<model id>"}` memberikan primary thread sesi sebuah advisor yang dapat dikonsultasikan di tengah giliran. Maksimal satu entri advisor per roster. Lihat [Berikan sesi sebuah advisor](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor).
+
+Dalam file agen [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) (tab CLI), entri roster juga dapat berupa path ke file agen lain, seperti `./reviewer.md`. Apply akan membuat agen tersebut terlebih dahulu, lalu mengganti path dengan referensi `{"type": "agent", "id": ..., "version": ...}` yang disematkan.
 
 Konfigurasi koordinator, termasuk roster `multiagent.agents`-nya, di-snapshot saat koordinator dibuat atau diperbarui. Agen yang direferensikan tetap disematkan ke versi yang diselesaikan pada saat itu dan tidak secara otomatis mengambil pembaruan selanjutnya pada definisinya. Untuk mendelegasikan ke versi yang lebih baru dari agen yang direferensikan, [perbarui koordinator](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-an-agent) agar roster-nya mereferensikan versi tersebut.
 
@@ -435,11 +460,27 @@ Server MCP memiliki cakupan agen (setiap definisi agen mendeklarasikan server da
 
   <MultiFileExample language="cli" label="CLI">
     ```bash CLI
-    research_agent_id=$(ant beta:agents create --transform id --raw-output < researcher.agent.yaml)
+    ant apply coordinator.md researcher.md
     ```
 
-    <File filename="researcher.agent.yaml">
-      ```yaml
+    <File filename="coordinator.md">
+      ```markdown
+      ---
+      name: coordinator
+      model: claude-opus-5
+      tools:
+        - type: agent_toolset_20260401
+      multiagent:
+        type: coordinator
+        agents: # path: ant apply substitutes {type: agent, id, version}
+          - ./researcher.md
+      ---
+      ```
+    </File>
+
+    <File filename="researcher.md">
+      ```markdown
+      ---
       name: researcher
       model: claude-haiku-4-5
       mcp_servers:
@@ -449,26 +490,11 @@ Server MCP memiliki cakupan agen (setiap definisi agen mendeklarasikan server da
       tools:
         - type: mcp_toolset
           mcp_server_name: github
-      ```
-    </File>
-
-    <File filename="subagent-coordinator.agent.yaml">
-      ```yaml
-      name: coordinator
-      model: claude-opus-5
-      tools:
-        - type: agent_toolset_20260401
-      multiagent:
-        type: coordinator
-        agents:
-          - type: agent
-            id: $research_agent_id # replace before running command
+      ---
       ```
     </File>
 
     ```bash CLI
-    coordinator_id=$(ant beta:agents create --transform id --raw-output < subagent-coordinator.agent.yaml)
-
     session_id=$(ant beta:sessions create \
       --agent "$coordinator_id" \
       --environment-id "$environment_id" \
@@ -1147,7 +1173,7 @@ Event penting diproksikan ke primary thread. Namun, Anda mungkin masih ingin men
 Setiap session thread memiliki aliran event sendiri di `/v1/sessions/{session_id}/threads/{thread_id}/stream`, dan menerima parameter `event_deltas[]` yang sama dengan aliran tingkat sesi, sehingga Anda dapat melihat pratinjau teks subagen saat model menghasilkannya. Sebuah koneksi hanya mempratinjau thread yang sedang dibacanya: pratinjau thread anak tidak pernah muncul di aliran tingkat sesi, jadi untuk memantau subagen secara langsung, buka aliran thread miliknya sendiri. Lihat [Pratinjau event session thread](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#preview-session-thread-events) untuk cara mengaktifkan, mengakumulasi, dan merekonsiliasi pratinjau.
 
 <Tabs>
-  <Tab title="Streaming event session thread">
+  <Tab title="Streaming event thread sesi">
     <CodeGroup>
       ```bash cURL
       curl -fsSN "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/stream?beta=true" \
@@ -1396,7 +1422,7 @@ Setiap session thread memiliki aliran event sendiri di `/v1/sessions/{session_id
 
 ### Izin alat dan alat kustom
 
-Jika subagen membutuhkan sesuatu dari klien Anda, seperti [izin](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#tool-confirmation) untuk menjalankan alat `always_ask`, atau [hasil dari alat kustom](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls), event tersebut diposting silang ke **primary thread** dengan `session_thread_id` yang mengidentifikasi session thread asalnya.
+Jika subagen membutuhkan sesuatu dari klien Anda, seperti [izin](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#tool-confirmation) untuk menjalankan panggilan alat atau [hasil alat kustom](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls), event tersebut juga diposting ke **thread utama** dengan `session_thread_id` yang mengidentifikasi thread sesi asalnya. Panggilan alat memerlukan izin Anda jika menggunakan `always_ask`, atau jika menggunakan [`auto`](https://platform.claude.com/docs/id/managed-agents/permission-policies#let-the-server-evaluate-each-call-with-auto) dan server tidak dapat mengambil keputusan.
 
 ```json
 {
@@ -1412,6 +1438,8 @@ Jika subagen membutuhkan sesuatu dari klien Anda, seperti [izin](https://platfor
 ```
 
 Posting `user.tool_confirmation` (dengan `tool_use_id`) atau `user.custom_tool_result` (dengan `custom_tool_use_id`); server merutekan respons ke thread yang benar secara otomatis.
+
+Dengan `auto`, event `user.message` Anda dapat membuat server mengizinkan panggilan yang seharusnya ditolak. Namun, tidak ada apa pun di thread subagen yang dianggap sebagai maksud Anda: klien Anda tidak memposting pesan apa pun di sana, dan pesan koordinator kepada subagen tidak diperhitungkan. Ketika server menolak panggilan dengan `auto`, tidak ada yang diposting ke thread utama. Event dan hasil alat berupa error hanya muncul di [aliran thread](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#session-thread-events) milik subagen itu sendiri, dan subagen tetap berjalan.
 
 Contoh berikut memperluas [handler konfirmasi alat](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#tool-confirmation) untuk merutekan balasan. Pola yang sama berlaku untuk `user.custom_tool_result`.
 
@@ -1431,7 +1459,7 @@ Contoh berikut memperluas [handler konfirmasi alat](https://platform.claude.com/
 
   ```bash CLI
   # Alur kerja ini tidak cocok diterjemahkan menjadi perintah shell sekali jalan.
-  # Gunakan salah satu contoh SDK dalam grup kode ini sebagai gantinya.
+  # Sebagai gantinya, gunakan salah satu contoh SDK di grup kode ini.
   ```
 
   ```python Python

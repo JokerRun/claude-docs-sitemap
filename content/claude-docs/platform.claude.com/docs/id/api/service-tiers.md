@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/service-tiers
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: f163b55b53c21328e17cd1a2d22b1b35a28a2e6551a59e3c1ccebb4fd426dfed
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: edd390084f9b8bb19c5afb883ec0c7aaee192f02d737f35bb791e5edb2695552
 ---
 
 ---
@@ -21,7 +21,7 @@ Anthropic menawarkan tiga "service tiers" (tingkat layanan):
 * **Standard:** Tingkat default untuk uji coba maupun penskalaan kasus penggunaan sehari-hari
 * **Batch:** Paling cocok untuk alur kerja asinkron yang dapat menunggu atau diuntungkan dengan berada di luar kapasitas normal Anda
 
-## Standard Tier
+## Tingkat standar
 
 Standard tier adalah tingkat layanan default untuk semua permintaan API. API memprioritaskan permintaan ini bersama semua permintaan lainnya dengan ketersediaan best-effort (upaya terbaik).
 

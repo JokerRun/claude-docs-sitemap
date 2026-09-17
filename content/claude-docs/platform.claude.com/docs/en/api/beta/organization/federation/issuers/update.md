@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/update
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 3809c034f49a11da3f7140faa95f7a34722ce26ad1b62a6c7d03cf44d249674a
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: e0f2e100224abb6d80900b204db838a8aa405ef91da5186e3521a5cd25d49d64
 ---
 
 ---
@@ -39,7 +39,7 @@ session.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -130,6 +130,8 @@ session.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 ## Body parameters
 

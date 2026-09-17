@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-api-access
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 87ebe91d75d4b89bf2ff40eb5181e3a30bb2fdfd8a8f36084e527f66b599e4f8
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 9c374332d990ed5b2528dbeba5c9d19690c07fe63e049f42d924cc8f52342edf
 ---
 
 ---
@@ -130,15 +130,15 @@ Untuk peran kunci yang sama dalam mengelola organisasi Claude Console Anda, liha
 
 Untuk memeriksa scope pada kunci yang sudah Anda miliki, gunakan salah satu sinyal berikut.
 
-* **Prefiks kunci.** `sk-ant-admin01-` adalah kunci Admin API (hanya membawa `read:compliance_activities`, bergantung pada waktu pengaktifan yang dijelaskan di bagian sebelumnya). `sk-ant-api01-` adalah Compliance Access Key; scope-nya adalah subset yang Anda pilih saat pembuatan.
-* **UI pengaturan.** Buka bagian **Keys** di [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access), atau bagian **Admin keys** di [Claude Console > Settings > Admin keys](https://platform.claude.com/settings/admin-keys), dan baca kolom **Scopes** untuk kunci tersebut.
-* **Respons error.** Panggilan yang melampaui scope kunci mengembalikan 403 dengan pesan dalam format `Missing required scopes. Got: [<scopes the key carries>] Needed: [<scopes the endpoint requires>]`. Lihat [Menangani error Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-errors#403-forbidden) untuk katalog error lengkap.
+* **Prefiks kunci.** `sk-ant-admin01-` adalah kunci Admin API (hanya membawa `read:compliance_activities`, bergantung pada waktu pengaktifan yang dijelaskan di bagian sebelumnya). `sk-ant-api01-` adalah Compliance Access Key; cakupannya adalah subset yang Anda pilih saat pembuatan.
+* **UI pengaturan.** Buka bagian **Keys** di [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access), atau bagian **Admin keys** di [Claude Console > Settings > Admin keys](https://platform.claude.com/settings/admin-keys), lalu baca kolom **Scopes** untuk kunci tersebut.
+* **Respons error.** Panggilan yang melebihi cakupan kunci akan mengembalikan 403 dengan pesan dalam format `Missing required scopes. Got: [<scopes the key carries>] Needed one of: [<scopes the endpoint accepts>]` (`Needed: [...]` pada endpoint penghapusan). Lihat [Menangani error Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-errors#403-forbidden) untuk katalog error lengkap.
 
 ```json
 {
   "error": {
     "type": "permission_error",
-    "message": "Missing required scopes. Got: ['read:compliance_activities'] Needed: ['read:compliance_user_data']"
+    "message": "Missing required scopes. Got: ['read:compliance_activities'] Needed one of: ['read:compliance_user_data', 'read:org_audit']"
   }
 }
 ```

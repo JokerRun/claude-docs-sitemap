@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/unpause
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 3403f20b4279f2f9ff76fe9c6e1cc95db4ba024c7b9b953281f98d1a2cca56dd
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 7b265394d200eb3843980ba23607bbf317d7d06240dbb2ec54bf0a4fa82bcace
 ---
 
 ---
@@ -28,7 +28,7 @@ Unpause Deployment
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -119,6 +119,8 @@ Unpause Deployment
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

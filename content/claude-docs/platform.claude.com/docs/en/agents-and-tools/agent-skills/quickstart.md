@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-09-01T02:22:36.834082Z
-sha256: d771a4e22252d993ba065c723dcff583a72bfcdf3be59adc575dba374f8f3168
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: f878c9a34fc19b3104b88ed2393ee1459b2476016b87f7c8d7e61e7244c7d956
 ---
 
 ---
@@ -506,7 +506,7 @@ The presentation was created in the code execution container and saved as a file
   if fileID != "" {
   	// Download the file and save it
   	outputPath := filepath.Join(os.TempDir(), "renewable_energy.pptx")
-  	fileContent, err := client.Files.Download(ctx, fileID)
+  	fileContent, err := client.Files.Download(ctx, fileID, anthropic.FileDownloadParams{})
   	if err != nil {
   		panic(err)
   	}

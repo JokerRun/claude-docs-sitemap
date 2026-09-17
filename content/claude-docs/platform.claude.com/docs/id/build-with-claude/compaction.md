@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 28ca6247ccbf47f8cb8f0ffc4488f90be050b6c7c6db160e09c4fd1a59270fa7
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: b42720adfc296a582c8012f86a85a94e567137bb7d4eb632d6ca2cebf1b892d6
 ---
 
 ---
@@ -45,6 +45,8 @@ Ketika compaction diaktifkan, Claude secara otomatis meringkas percakapan Anda k
 Pada permintaan berikutnya, tambahkan respons tersebut ke pesan Anda. API secara otomatis membuang semua blok konten sebelum blok `compaction`, melanjutkan percakapan dari ringkasan.
 
 ![Alur compaction: ketika input tokens (token input) mencapai trigger (pemicu), Claude menulis ringkasan ke dalam compaction block (blok compaction) dan melanjutkan](https://platform.claude.com/docs/images/compaction-flow.svg)
+
+Langkah-langkah sebelumnya menjelaskan compaction berbasis ambang, yang dibahas di sebagian besar halaman ini. Dengan header beta `compact-2026-09-04`, Anda dapat meminta ringkasan sesuai permintaan sebagai gantinya. Permintaan tersebut terpisah dari giliran percakapan Anda dan hanya mengembalikan ringkasan, sehingga dapat berjalan di latar belakang. Saat blok tiba, Anda menukarnya dengan pesan-pesan yang diringkasnya. Lihat [Compaction sesuai permintaan dengan parameter `compaction`](https://platform.claude.com/docs/id/build-with-claude/compaction#compact-on-demand-with-the-compaction-parameter).
 
 ## Penggunaan dasar
 
@@ -3415,6 +3417,188 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
   ```text wrap
   Summarize the transcript inside <summary></summary> tags. Include relevant information in the summary for continuing the task in the next context window. Do not call any tools while writing this summary; respond with text only.
   ```
+
+## Compaction sesuai permintaan dengan parameter `compaction`
+
+Beta `compact-2026-09-04` menambahkan cara kedua untuk melakukan compaction. Compaction berbasis ambang meringkas di tengah permintaan setelah ambang yang Anda tetapkan tercapai. Dengan beta ini, Anda justru mengirim parameter `compaction` tingkat atas pada permintaan pilihan Anda. Respons berisi satu blok `compaction` bertanda tangan dan tanpa balasan. Sejak saat itu, kirim blok tersebut terlebih dahulu dalam `messages`, menggantikan pesan-pesan yang diringkasnya, diikuti oleh giliran apa pun yang terjadi sejak itu. Claude melihat ringkasan di tempat pesan-pesan tersebut sebelumnya berada. Semua yang ada setelah ringkasan sampai ke Claude tanpa perubahan. Blok compaction berbasis ambang mengikuti pesan-pesan yang diringkasnya, tetapi blok bertanda tangan menggantikannya. Membiarkan pesan yang diringkas tetap berada di depan blok bertanda tangan menghasilkan error 400.
+
+Melakukan compaction dengan cara ini memberi Anda tiga hal. Pertama, Anda menentukan kapan compaction dilakukan. Kedua, permintaan peringkasan dapat berjalan di latar belakang sementara percakapan berlanjut dengan riwayat lengkapnya, dan Anda menukar blok tersebut saat tiba. Ini sering disebut compaction async atau compaction latar belakang. Ketiga, Anda dapat mempertahankan giliran terbaru kata demi kata setelah ringkasan, yang sering disebut compaction keep-tail. Model dengan "preserved thinking" ([pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking)) memeriksa blok thinking sebelumnya terhadap percakapan. Pada model-model tersebut, thinking dalam giliran yang mengikuti ringkasan, dari kedua pola tersebut, dapat tetap valid setelah penukaran, dengan kondisi yang dijelaskan di [Melanjutkan dari ringkasan](https://platform.claude.com/docs/id/build-with-claude/compaction#continue-from-the-summary). Hal ini memungkinkan agen yang berjalan lama mempertahankan alur pemikirannya. Gunakan compaction berbasis ambang saat Anda ingin API mengelola konteks di dalam permintaan biasa. Gunakan parameter `compaction` saat aplikasi Anda perlu mengontrol kapan compaction terjadi, tidak dapat berhenti sejenak saat ringkasan sedang ditulis, atau harus mempertahankan giliran terbaru beserta thinking-nya setelah ringkasan.
+
+Kirim header beta `compact-2026-09-04` pada permintaan yang meminta ringkasan dan pada setiap permintaan berikutnya yang membawa blok bertanda tangan. Compaction sesuai permintaan tersedia di Claude API tetapi tidak di Amazon Bedrock atau Google Cloud. Fitur ini berfungsi pada Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Mythos Preview, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, dan Claude Sonnet 4.6. Anda juga dapat memanggil [Models API](https://platform.claude.com/docs/id/api/beta/models/list) dengan header beta dan membaca `capabilities.compaction` dari setiap model. Anda tidak dapat menggabungkan `compaction` dengan `context_management` dalam satu permintaan.
+
+### Meminta ringkasan
+
+Kirim percakapan apa adanya dengan `"compaction": {"type": "summarize"}`. API meringkas setiap pesan dalam permintaan satu kali, tidak menghasilkan balasan setelahnya, dan hanya mengembalikan blok tersebut dengan `stop_reason` `"compaction"`. Kirim prompt `system` dan `tools` yang sama dengan yang Anda gunakan untuk sisa percakapan. Peringkas membacanya, dan pada model dengan preserved thinking, giliran yang Anda pertahankan tetap valid hanya jika keduanya cocok:
+
+<CodeGroup exclude="python, typescript, csharp, go, java, php, ruby">
+  ```bash cURL
+  curl https://api.anthropic.com/v1/messages \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: compact-2026-09-04" \
+    -H "content-type: application/json" \
+    -d '{
+      "model": "claude-opus-5",
+      "max_tokens": 4096,
+      "messages": [
+        {"role": "user", "content": "I am building a recipe app. Help me name the main entities in the data model."},
+        {"role": "assistant", "content": "Start with Recipe, Ingredient, and Step. Add a RecipeIngredient entry that holds the quantity and unit for each ingredient in a recipe."},
+        {"role": "user", "content": "Good. Now suggest field names for Recipe."}
+      ],
+      "compaction": {"type": "summarize"}
+    }'
+  ```
+
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant beta:messages create --beta compact-2026-09-04 < request.yaml
+    ```
+
+    <File filename="request.yaml">
+      ```yaml
+      model: claude-opus-5
+      max_tokens: 4096
+      messages:
+        - role: user
+          content: I am building a recipe app. Help me name the main entities in the data model.
+        - role: assistant
+          content: Start with Recipe, Ingredient, and Step. Add a RecipeIngredient entry that holds the quantity and unit for each ingredient in a recipe.
+        - role: user
+          content: Good. Now suggest field names for Recipe.
+      compaction:
+        type: summarize
+      ```
+    </File>
+  </MultiFileExample>
+</CodeGroup>
+
+```json Response
+{
+  "id": "msg_013Zva2CMHLNnXjNJJKqJ2EF",
+  "type": "message",
+  "role": "assistant",
+  "model": "claude-opus-5",
+  "content": [
+    {
+      "type": "compaction",
+      "content": "Summary of the conversation: the user is designing the data model for a recipe app. The entities agreed so far are Recipe, Ingredient, Step, and RecipeIngredient, which holds the quantity and unit. The user then asked for field names for Recipe.",
+      "signature": "EuYBCkQY..."
+    }
+  ],
+  "stop_reason": "compaction",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "iterations": [{ "type": "compaction", "input_tokens": 144, "output_tokens": 276 }]
+  }
+}
+```
+
+Panggilan peringkasan menggunakan model, `system`, `tools`, pengaturan thinking, dan `max_tokens` dari permintaan. Peringkas membaca definisi alat tetapi tidak pernah menjalankan alat, dan respons tidak membawa thinking. `max_tokens` membatasi seluruh panggilan, termasuk thinking apa pun yang dilakukan model sebelum menulis ringkasan, jadi sediakan beberapa ribu token. Panggilan ini ditagih dan dikenai batas laju seperti permintaan lainnya, dan `usage.iterations` melaporkannya sebagai entri `compaction`. `input_tokens` dan `output_tokens` tingkat atas bernilai nol karena tidak ada balasan yang dihasilkan.
+
+Jika giliran `assistant` terakhir diakhiri dengan pemanggilan alat yang belum memiliki hasil, API menolak permintaan tersebut. Kirim hasil alat dari giliran tersebut terlebih dahulu. Jangan sertakan juga `stop_sequences`, `output_config.format` untuk structured output, dan `tool_choice` dengan tipe `any` atau `tool`. Parameter-parameter tersebut tidak akan berpengaruh apa pun pada panggilan peringkasan, dan API menolaknya. Percakapan tetap harus muat dalam jendela konteks model, jadi lakukan compaction sebelum Anda melampauinya, bukan sesudahnya.
+
+Saat Anda melakukan streaming respons, blok tiba secara utuh. Anda mendapatkan satu event `content_block_start` yang membawa blok lengkap, lalu `content_block_stop`, tanpa event `content_block_delta`. Event `ping` dapat tiba sebelum atau di antara keduanya.
+
+### Melanjutkan dari ringkasan
+
+Dalam riwayat Anda, ganti pesan-pesan yang Anda kirim dengan pesan asisten yang dikembalikan. Pertahankan blok `compaction` persis seperti yang dikembalikan API, termasuk `signature`-nya. Kirim blok tersebut terlebih dahulu pada setiap permintaan berikutnya, dengan header beta:
+
+```json
+{
+  "model": "claude-opus-5",
+  "max_tokens": 2048,
+  "messages": [
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "compaction",
+          "content": "Summary of the conversation: the user is designing the data model for a recipe app. The entities agreed so far are Recipe, Ingredient, Step, and RecipeIngredient, which holds the quantity and unit. The user then asked for field names for Recipe.",
+          "signature": "EuYBCkQY..."
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": "For Recipe, use title, description, servings, prep_minutes, and cook_minutes. Add created_at and updated_at timestamps."
+    },
+    { "role": "user", "content": "Now do the same for Ingredient." }
+  ]
+}
+```
+
+Di sini, pesan `assistant` kedua adalah balasan untuk giliran `user` terakhir yang diringkas. Pesan tersebut tiba saat ringkasan sedang ditulis, sehingga tidak termasuk dalam pesan-pesan yang diringkas. Dua pesan `assistant` berturut-turut tidak menjadi masalah di sini, karena blok tetap berada di urutan pertama.
+
+API menempatkan ringkasan di posisi blok dan meneruskan setiap pesan berikutnya ke Claude tanpa perubahan. Ikuti aturan berikut:
+
+* Letakkan blok di urutan pertama dalam `messages`, baik sebagai pesan `assistant` tersendiri maupun sebagai blok konten pertama dari pesan pertama, baik itu pesan `user` maupun `assistant`.
+* Hapus pesan-pesan yang diringkas. Jika ada yang tersisa di depan blok, permintaan mengembalikan error 400 (`compaction_block_misplaced`). Jika ada yang tersisa setelahnya, API tidak menolak permintaan karena alasan tersebut dan mengirimkannya lagi ke model.
+* Kirim tepat satu blok `compaction` per permintaan, pada setiap permintaan berikutnya. Permintaan tanpa blok tersebut sampai ke Claude tanpa ringkasan.
+
+Untuk mempertahankan ekor berupa giliran terbaru kata demi kata, jangan sertakan giliran-giliran tersebut dalam permintaan compaction. API meringkas setiap pesan yang dikirimkan kepadanya, jadi kirim hanya giliran yang lebih lama, lalu letakkan blok di depan giliran yang Anda pertahankan.
+
+Jika percakapan berlanjut beberapa giliran saat permintaan ringkasan latar belakang sedang berjalan, buang tepat pesan-pesan yang Anda kirim dalam permintaan compaction dari bagian depan riwayat Anda. Letakkan pesan yang dikembalikan di tempatnya, dan pertahankan semua yang ditambahkan sejak itu:
+
+```python
+# sent_count = len(pesan yang dikirim dalam permintaan compaction)
+# response   = hasil permintaan tersebut, tiba saat agen masih terus bekerja
+if response.stop_reason == "compaction":
+    compaction_message = {"role": "assistant", "content": response.content}
+    history = [compaction_message] + history[sent_count:]
+# Jika tidak, pertahankan riwayat lengkap dan coba lagi nanti (lihat "Saat tidak ada ringkasan yang kembali").
+```
+
+Jangan mengedit riwayat Anda di antara pengiriman permintaan compaction dan pelaksanaan penukaran, dan lakukan penukaran pada permintaan pertama setelah blok tiba. Dengan begitu, thinking yang dihasilkan saat ringkasan sedang ditulis tetap valid.
+
+Pada model dengan preserved thinking, blok thinking dalam giliran yang dipertahankan tetap valid selama kedua kondisi berikut terpenuhi:
+
+* Giliran yang dipertahankan langsung mengikuti pesan-pesan yang diringkas.
+* Parameter `system` dan `tools` yang tidak ditandai `defer_loading: true` tidak berubah dari permintaan compaction.
+
+Kondisi pertama juga mengecualikan pesan pertama yang dipertahankan yang akan digabungkan API ke dalam pesan terakhir yang diringkas: pesan dengan peran yang sama dengan pesan terakhir yang diringkas, atau pesan `role: "system"`. Cara paling sederhana untuk memenuhinya adalah melakukan compaction tepat pada `messages` dari permintaan yang sudah Anda buat. Untuk mengubah `system` atau `tools` tanpa membatalkan thinking yang dipertahankan, lakukan compaction pada seluruh percakapan terlebih dahulu, sehingga tidak ada giliran yang dipertahankan. Kemudian ubah keduanya pada permintaan berikutnya.
+
+Permintaan berikutnya dapat menggunakan model, `system`, atau `tools` yang berbeda dari permintaan compaction, dan API tetap menerima blok tersebut. Perubahan seperti itu dapat membatalkan thinking dalam giliran yang dipertahankan, tetapi tidak memiliki efek lain.
+
+Untuk melakukan compaction pada percakapan yang sudah diawali dengan blok, kirim `compaction` lagi. Blok baru meringkas ringkasan lama dan semua yang ada setelahnya. Sejak saat itu, kirim hanya blok terbaru.
+
+### Menulis prompt peringkasan Anda sendiri
+
+Tanpa `instructions`, API menggunakan prompt peringkasannya sendiri. String `instructions` yang tidak kosong (hingga 16.384 karakter) menggantikan prompt tersebut sepenuhnya, sama seperti pada compaction berbasis ambang (lihat [Instruksi peringkasan kustom](https://platform.claude.com/docs/id/build-with-claude/compaction#custom-summarization-instructions)). Misalnya:
+
+```json
+{
+  "compaction": {
+    "type": "summarize",
+    "instructions": "Summarize this recipe app design conversation. Preserve every entity and field name agreed so far, and the user's latest open request. Do not call tools; respond with the summary text only."
+  }
+}
+```
+
+Peringkas membaca seluruh percakapan, termasuk thinking sebelumnya, dengan atau tanpa `instructions`. Hal ini berbeda dari compaction berbasis ambang pada Claude Fable 5.1 dan Claude Mythos 5.1, di mana `instructions` kustom mengecualikan thinking sebelumnya. Dalam `instructions` Anda, sebutkan apa yang harus dipertahankan oleh ringkasan dan beri tahu model untuk tidak memanggil alat. Panggilan peringkasan berjalan di bawah perlindungan yang sama seperti permintaan lainnya.
+
+### Saat tidak ada ringkasan yang dikembalikan
+
+Ringkasan hanya dihasilkan saat panggilan peringkasan berakhir secara normal dengan teks dan tanpa pemanggilan alat. Jika tidak, respons tetap berupa 200 dengan `content` kosong. Panggilan tersebut tetap ditagih dan dilaporkan dalam `usage.iterations`, dengan penggunaan nol jika tidak ada panggilan yang dapat dilakukan. `stop_reason` adalah alasan berakhirnya panggilan peringkasan:
+
+* `"max_tokens"`: ringkasan terpotong.
+* `"model_context_window_exceeded"`: tidak ada ruang untuk prompt peringkasan.
+* `"refusal"`: permintaan ditolak. Permintaan ini tunduk pada perlindungan yang sama seperti permintaan Anda lainnya, dan [`stop_details`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#refusal) mengidentifikasi kategori kebijakan di baliknya.
+* `"tool_use"`: model memanggil alat alih-alih menulis ringkasan.
+* `"end_turn"`: panggilan tidak mengembalikan teks.
+
+Kirim ulang dengan `max_tokens` yang lebih besar setelah `"max_tokens"`, dengan `instructions` yang lebih pendek atau pesan yang lebih sedikit setelah `"model_context_window_exceeded"`, atau dengan `instructions` yang memberi tahu model untuk tidak memanggil alat setelah `"tool_use"`. Anda juga dapat melanjutkan tanpa ringkasan.
+
+Masalah server sementara saat menghasilkan blok, atau saat membaca blok yang Anda kirim kembali, mengembalikan `overloaded_error` 529 yang dapat dicoba ulang dengan `error.details.error_code` bernilai `compaction_unavailable`. Coba ulang permintaan tersebut. Penolakan lain yang khusus untuk beta ini adalah error 400, dan sebagian besar memiliki pesan yang menyebutkan apa yang harus dihapus atau dikirim ulang. Pengecualiannya adalah permintaan yang tidak menyertakan header beta: permintaan tersebut gagal dengan error validasi generik, seperti `compaction: Extra inputs are not permitted`, yang tidak menyebutkan header tersebut. Beberapa juga membawa `error.details.error_code` yang diawali dengan `compaction_`, sebagian besar error tentang blok itu sendiri: blok yang diubah, salah tempat, atau terduplikasi, atau permintaan yang tidak lagi memiliki apa pun untuk diringkas. Error parameter, seperti field yang tidak dapat digabungkan dengan `compaction`, hanya membawa pesan.
+
+### Bagaimana fitur ini berpadu dengan bagian API lainnya
+
+* **Compaction berbasis ambang dan pengeditan konteks.** Anda tidak dapat mengirim `compaction` dan `context_management` pada permintaan yang sama. Compaction berbasis ambang (`compact_20260112`) tidak dapat berjalan pada permintaan yang membawa blok bertanda tangan.
+* **Caching prompt.** `cache_control` pada blok menempatkan breakpoint setelah ringkasan.
+* **Pesan sistem di tengah percakapan dan perubahan alat.** Pesan `role: "system"` di dalam rentang yang diringkas akan ikut diringkas. Apa yang dideklarasikannya berhenti berlaku setelah blok menggantikannya. Jika suatu instruksi atau [perubahan alat](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes) masih penting, nyatakan kembali dalam pesan `role: "system"`. Kirim pesan tersebut tepat setelah giliran `user` baru Anda berikutnya, yang datang setelah giliran yang dipertahankan, dan biarkan pesan tersebut tetap ada dalam riwayat Anda sejak saat itu. Jangan letakkan pesan tersebut di antara blok dan giliran yang dipertahankan, karena hal itu merusak thinking dari giliran yang dipertahankan.
+* **Anggaran tugas.** Jangan kirim nilai `remaining` dari [anggaran tugas](https://platform.claude.com/docs/id/build-with-claude/task-budgets) (`output_config.task_budget.remaining`) bersama `compaction` atau pada permintaan yang membawa blok. Melakukannya akan mengembalikan error 400.
+* **Penghitungan token.** Endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting) mengabaikan parameter `compaction`.
+* **Konten yang tidak dapat dibawa oleh ringkasan.** Gambar, dokumen, blok `container_upload`, dan URL yang diambil di dalam pesan yang diringkas akan hilang setelah blok menggantikannya. Nyatakan ulang atau unggah ulang apa pun yang masih dibutuhkan oleh giliran berikutnya.
 
 ## Langkah selanjutnya
 

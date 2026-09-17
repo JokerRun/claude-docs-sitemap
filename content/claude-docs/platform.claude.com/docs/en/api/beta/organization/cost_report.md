@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/cost_report
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 589b9717fcd639ad8c37c74cee292c35ad5da317f619127e3d7b8f67071d23db
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 858c1a74cf830ee2dc060ca881c45b0d76dfb33aa3f75b427f7c332771c80e12
 ---
 
 ---
@@ -65,7 +65,7 @@ Get Cost Report
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -156,6 +156,8 @@ Get Cost Report
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 ### Returns
 

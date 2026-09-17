@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: fe195fe985e23801e3b2bc14a39cdc48e0305e6c554c0871b7bd81e98c519b4e
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 31c2bf8ae4367fd4ea19a7af641d4bb7726e946025e7ceb650e85e6ebee33fa5
 ---
 
 ---
@@ -14,7 +14,7 @@ description: Hubungkan Claude secara aman ke server MCP yang berjalan di jaringa
 Tunnel MCP memungkinkan Anda menghubungkan Claude ke server "Model Context Protocol", atau MCP, yang berjalan di dalam jaringan privat Anda. Lalu lintas mengalir melalui koneksi yang hanya bersifat keluar (outbound-only), sehingga Anda tidak perlu membuka port firewall masuk, mengekspos layanan ke internet publik, atau memasukkan rentang IP Anthropic ke daftar izin (allowlist) pada origin Anda.
 
 <Note>
-  Tunnel MCP berada dalam pratinjau riset (research preview). [Minta akses](https://claude.com/form/claude-managed-agents) untuk mencobanya. Fitur ini disediakan "sebagaimana adanya" tanpa komitmen apa pun terkait waktu aktif, dukungan, atau keberlanjutan, dan bergantung pada penyedia jaringan pihak ketiga (Cloudflare) yang tidak memberikan komitmen ketersediaan untuk transport yang mendasarinya. Anthropic dapat mengubah atau menghentikan tunnel MCP kapan saja.
+  Tunnel MCP sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/mcp-tunnels) untuk mencobanya. Tunnel MCP disediakan "apa adanya" tanpa komitmen uptime, dukungan, atau kelangsungan apa pun, dan bergantung pada penyedia jaringan pihak ketiga (Cloudflare) yang tidak memberikan komitmen ketersediaan untuk transport yang mendasarinya. Anthropic dapat mengubah atau menghentikan tunnel MCP kapan saja.
 </Note>
 
 Untuk kelayakan Zero Data Retention dan HIPAA BAA, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility).

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/gcp
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 7632ea24b92dba7233a14103fa8287c7957b18b774abbef81149db0a9a7d3050
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: cb8fc704d1a57468171b9fd636fc2b3b5f892592b5794992f6ae0c7ca8dc82aa
 ---
 
 ---
@@ -315,6 +315,9 @@ Di dalam workload Google Cloud Anda, ambil token identitas dari server metadata,
   ```
 
   ```csharp C#
+  using Anthropic.Credentials;
+  // ...
+
   var credentials = new WorkloadIdentityCredentials(new WorkloadIdentityOptions
   {
       FederationRuleId = Environment.GetEnvironmentVariable("ANTHROPIC_FEDERATION_RULE_ID")!,
@@ -323,7 +326,7 @@ Di dalam workload Google Cloud Anda, ambil token identitas dari server metadata,
       WorkspaceId = Environment.GetEnvironmentVariable("ANTHROPIC_WORKSPACE_ID"),
       IdentityTokenProvider = new MetadataTokenProvider(),
   });
-  using var client = new AnthropicOidcClient(credentials);
+  using var client = new AnthropicClient(new ClientOptions { Credentials = credentials });
 
   var message = await client.Messages.Create(new()
   {

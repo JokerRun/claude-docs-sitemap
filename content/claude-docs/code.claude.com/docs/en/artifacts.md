@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/artifacts
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 492a12958c361764b71acfaf0164140c65c3f22ffc23b99ef121f1350e00de5c
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 775c2561af3120ddd2552f96bc99e5f99f4a1cc2c354bc44c4c83eee93de1e46
 ---
 
 > ## Documentation Index
@@ -17,7 +17,7 @@ sha256: 492a12958c361764b71acfaf0164140c65c3f22ffc23b99ef121f1350e00de5c
   Artifacts are available on Pro, Max, Team, and Enterprise plans and require a session signed in with [`/login`](/docs/en/setup#authenticate). See [Availability](#availability) for the full set of requirements.
 </Note>
 
-An artifact is a live, interactive web page that Claude Code publishes from your session to a private URL on claude.ai. You open it in a browser, and it updates in place as the session continues. Share it from the page header when you want someone else to see it too.
+An [artifact](https://claude.com/features/artifacts) is a live, interactive web page that Claude Code publishes from your session to a private URL on claude.ai. You open it in a browser, and it updates in place as the session continues. Share it from the page header when you want someone else to see it too.
 
 <Frame>
   <img src="https://mintcdn.com/claude-code/kaHIYYMIYMYPxQg9/images/artifacts-viewer.png?fit=max&auto=format&n=kaHIYYMIYMYPxQg9&q=85&s=dbfd671cdb0d15f49f808b9e89778fe1" alt="An artifact open in a browser at claude.ai/code/artifact. The viewer header shows the artifact title acme-funnel-fix, a Share button, and the author avatar. The Share menu is open with the Always share latest version toggle, a version picker reading Sharing version 2, an Everyone at Acme audience selector, and a Copy link button. Below the header, the artifact page shows two mobile mockups side by side, a funnel chart, and a row of metric cards." width="2511" height="1890" data-path="images/artifacts-viewer.png" />

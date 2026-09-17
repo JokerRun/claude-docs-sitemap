@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: 1f7859dc89e17f00a3dc7ec93296471611247acca42ed2149c714b5102c1ac2b
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 753522af27a8ea593fb4b89fb87c7e31d40921286836377f6b4637d733f69dfd
 ---
 
 ---
@@ -10,6 +10,10 @@ title: Self-hosted sandboxes
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes
 description: Run Claude Managed Agents sessions in self-hosted sandboxes, keeping tool execution, files, and network egress in your own infrastructure.
 ---
+
+## Compatibility
+- Status: Beta
+- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `managed-agents-2026-04-01`
 
 By default, Managed Agents executes tools and code inside [Anthropic-managed cloud sandboxes](https://platform.claude.com/docs/en/managed-agents/cloud-sandboxes-reference). Self-hosted sandboxes keep the orchestration on Anthropic's side but move tool execution into infrastructure you control, so the agent's code, filesystem, and network egress never leave your environment.
 
@@ -221,7 +225,7 @@ Choose **always-on** for the simplest setup: a long-running process polls the qu
             For Linux environments, download the release binary directly.
 
             ```bash
-            VERSION=1.30.0
+            VERSION=1.33.0
             OS=$(uname -s | tr '[:upper:]' '[:lower:]')
             case $(uname -m) in
               x86_64) ARCH=amd64 ;;
@@ -259,7 +263,7 @@ Choose **always-on** for the simplest setup: a long-running process polls the qu
 
         ```text
         FROM your-base-image
-        ARG ANT_VERSION=1.30.0
+        ARG ANT_VERSION=1.33.0
         ARG TARGETARCH
         RUN ARCH=$([ "$TARGETARCH" = "arm64" ] && echo arm64 || echo amd64) && \
             curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${ANT_VERSION}/ant_${ANT_VERSION}_linux_${ARCH}.tar.gz" \

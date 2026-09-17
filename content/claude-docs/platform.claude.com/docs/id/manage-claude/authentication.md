@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/authentication
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: c1e9644fda74684afc13c3686eb7ccd16b7eac063fb8d3b86b3ec4a7488cbec1
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: d92eb935c0022b86707d8dbac9c46a5c6a31647b613f33caa9ccbbbe27420717
 ---
 
 ---
@@ -13,17 +13,17 @@ description: Lakukan autentikasi ke Claude API dengan kunci API, Workload Identi
 
 Claude API mendukung tiga cara untuk mengautentikasi permintaan:
 
-| Metode                                                                                                                        | Kredensial                                                                                                                        | Paling cocok untuk                                                                                                                                |
-| ----------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Kunci API](https://platform.claude.com/docs/id/manage-claude/authentication#api-keys)                                        | Rahasia statis `sk-ant-api...` di header `x-api-key`                                                                              | Pengembangan lokal, pembuatan prototipe, skrip, dan server tempat Anda mengontrol penyimpanan rahasia                                             |
-| [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/authentication#workload-identity-federation) | Bearer token berumur pendek yang ditukar dari token identitas penyedia identitas Anda                                             | Beban kerja produksi di platform cloud (AWS, Google Cloud, Azure), pipeline CI/CD, dan Kubernetes, tempat Anda ingin menghilangkan rahasia statis |
-| [App Attest](https://platform.claude.com/docs/id/manage-claude/authentication#app-attest)                                     | Token akses berumur pendek yang diterbitkan untuk instalasi asli dan teratestasi dari aplikasi iOS atau macOS Anda yang terdaftar | Aplikasi iOS dan macOS yang didistribusikan ke pengguna akhir, tempat aplikasi memanggil Claude API secara langsung tanpa back end atau proxy     |
+| Metode                                                                                                                        | Kredensial                                                                                                                                    | Paling cocok untuk                                                                                                                                |
+| ----------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Kunci API](https://platform.claude.com/docs/id/manage-claude/authentication#api-keys)                                        | Rahasia statis `sk-ant-api...` yang dikirim sebagai "bearer token" (token pembawa) di header `Authorization`                                  | Pengembangan lokal, pembuatan prototipe, skrip, dan server tempat Anda mengendalikan penyimpanan rahasia                                          |
+| [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/authentication#workload-identity-federation) | Bearer token berumur pendek yang ditukar dari token identitas penyedia identitas Anda                                                         | Beban kerja produksi di platform cloud (AWS, Google Cloud, Azure), pipeline CI/CD, dan Kubernetes, ketika Anda ingin menghilangkan rahasia statis |
+| [App Attest](https://platform.claude.com/docs/id/manage-claude/authentication#app-attest)                                     | "Access token" (token akses) berumur pendek yang diterbitkan untuk instalasi asli dan teratestasi dari aplikasi iOS atau macOS terdaftar Anda | Aplikasi iOS dan macOS yang didistribusikan kepada pengguna akhir, ketika aplikasi memanggil Claude API secara langsung tanpa back end atau proxy |
 
 Kunci API dan Workload Identity Federation memberikan akses yang sama ke endpoint Claude API. Pilih kunci API untuk memulai dengan cepat: kunci pribadi untuk pengembangan Anda sendiri, atau kunci akun layanan untuk apa pun yang dibagikan. Beralihlah ke Workload Identity Federation ketika beban kerja Anda sudah memiliki identitas yang diterbitkan platform yang dapat Anda federasikan. Gunakan App Attest untuk aplikasi iOS dan macOS yang Anda distribusikan ke pengguna akhir.
 
 ## Kunci API
 
-"API key" (kunci API) adalah rahasia statis yang Anda buat di Claude Console dan kirimkan pada setiap permintaan di header `x-api-key`.
+"API key" (kunci API) adalah rahasia statis yang Anda buat di Claude Console dan kirimkan pada setiap permintaan sebagai bearer token di header `Authorization`.
 
 ### Jenis kunci
 
@@ -43,15 +43,17 @@ Kunci API workspace masih berfungsi tetapi sebaiknya dianggap legacy; kunci yang
 
 ### Membuat dan menggunakan kunci
 
-* **Buat kunci:** Buka [Settings → API keys](https://platform.claude.com/settings/keys) di Claude Console dan klik **Create key**. Beri nama kunci dan pilih [kedaluwarsa](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration). Atur **Linked account** ke diri Anda sendiri untuk kunci pribadi, atau ke akun layanan untuk kunci yang dibagikan ke beberapa pengguna. Anda juga dapat membatasi cakupan kunci ke workspace tertentu, yang memungkinkan Anda melewati pengaturan ID workspace secara manual pada permintaan berikutnya.
-* **Gunakan kunci:** Atur header `x-api-key` pada permintaan HTTP langsung, atau atur variabel lingkungan `ANTHROPIC_API_KEY` dan [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) akan mengambilnya secara otomatis.
+* **Membuat kunci:** Buka [Settings → API keys](https://platform.claude.com/settings/keys) di Claude Console dan klik **Create key**. Beri nama kunci dan pilih [masa kedaluwarsa](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration). Atur **Linked account** ke diri Anda sendiri untuk kunci pribadi, atau ke akun layanan untuk kunci yang digunakan bersama oleh beberapa pengguna. Anda juga dapat membatasi cakupan kunci ke workspace tertentu, sehingga Anda tidak perlu mengatur ID workspace secara manual pada permintaan berikutnya.
+* **Menggunakan kunci:** Kirimkan sebagai `Authorization: Bearer <key>` pada permintaan HTTP langsung, atau atur variabel lingkungan `ANTHROPIC_API_KEY` dan [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) akan mengambilnya secara otomatis.
 
 ```http
 POST /v1/messages
-x-api-key: YOUR_API_KEY
+Authorization: Bearer YOUR_API_KEY
 anthropic-version: 2023-06-01
 content-type: application/json
 ```
+
+Header lama `x-api-key: YOUR_API_KEY` masih didukung sebagai pengganti `Authorization`.
 
 Simpan kunci API di pengelola rahasia, rotasi secara berkala, dan nonaktifkan atau hapus kunci apa pun yang Anda curigai telah bocor. Di [halaman API keys](https://platform.claude.com/settings/keys), **Disable** dapat dibatalkan (Admin API melaporkan `status` kunci sebagai `"inactive"`, dan **Re-enable** mengembalikannya ke `"active"`), sedangkan **Delete** bersifat permanen: kunci diarsipkan dan masih muncul di [List API Keys](https://platform.claude.com/docs/id/api/admin/api_keys/list) dengan `status: "archived"`. Kunci yang kedaluwarsa hanya dapat dihapus. Anda juga dapat mengatur [kedaluwarsa](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration) saat membuat kunci untuk membatasi berapa lama kredensial yang bocor tetap dapat digunakan.
 
@@ -134,7 +136,7 @@ Jika kunci API Anda tidak dibatasi cakupannya ke suatu workspace, Anda harus men
 
 [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) menerima kunci pribadi atau kunci akun layanan hanya jika kunci tersebut tidak dibatasi cakupannya ke workspace tertentu.
 
-Anda dapat menemukan ID workspace di kolom **ID** pada [Settings → Workspaces](https://platform.claude.com/settings/workspaces) di Claude Console, atau dengan memanggil endpoint [List Workspaces](https://platform.claude.com/docs/id/api/admin/workspaces/list). Keduanya tidak mencantumkan ID Default Workspace: baca ID tersebut dari [header respons](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response) `anthropic-workspace-id` dari permintaan apa pun yang berjalan di sana (misalnya, permintaan yang dibuat dengan kunci workspace dari Default Workspace), atau dari `scope.workspace_id` pada kunci semacam itu di [List API Keys](https://platform.claude.com/docs/id/api/admin/api_keys/list).
+Anda dapat menemukan ID workspace di kolom **ID** pada [Settings → Workspaces](https://platform.claude.com/settings/workspaces) di Claude Console, atau dengan memanggil endpoint [List Workspaces](https://platform.claude.com/docs/id/api/admin/workspaces/list). List Workspaces tidak menyertakan Default Workspace; ID-nya terdapat di [header respons](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response) `anthropic-workspace-id` dari setiap permintaan yang dijalankan di sana.
 
 <CodeGroup>
   ```bash cURL

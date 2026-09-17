@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 4b56b43acbf5ea11dfb75a3266bb358ad9c260f6069eb55d050ad9902d6f67ad
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 5ffec2d72bb929d1bb941f57399f3e661b51ccf75f815991ed57056dcf25e7e9
 ---
 
 ---
@@ -364,7 +364,7 @@ Saat menggunakan [thinking](https://platform.claude.com/docs/id/build-with-claud
 
 Untuk konten thinking, event `signature_delta` khusus dikirim tepat sebelum event `content_block_stop`. Signature ini digunakan untuk memverifikasi integritas blok thinking.
 
-Ketika `display: "omitted"` diatur pada konfigurasi thinking, tidak ada event `thinking_delta` yang dikirim. Blok thinking dibuka, menerima satu `signature_delta`, lalu ditutup. Dengan `display: "updates"` (beta), blok penalaran di-stream dengan cara yang sama, dan hanya [pembaruan progres](https://platform.claude.com/docs/id/build-with-claude/thinking#progress-updates) yang ditulis beberapa model di antara pemanggilan alat yang men-stream event `thinking_delta`. Lihat [Mengontrol tampilan thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#controlling-thinking-display).
+Ketika `display: "omitted"` diatur pada konfigurasi thinking, tidak ada teks thinking yang di-stream. Blok thinking terbuka, menerima `thinking_delta` dengan string `thinking` kosong lalu satu `signature_delta`, kemudian tertutup. Dengan `display: "updates"` (beta), blok penalaran di-stream dengan cara yang sama, dan hanya [pembaruan progres](https://platform.claude.com/docs/id/build-with-claude/thinking#progress-updates) yang ditulis oleh beberapa model di antara pemanggilan alat yang men-stream event `thinking_delta` yang membawa teks. Lihat [Mengontrol tampilan thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#controlling-thinking-display).
 
 Delta thinking yang umum terlihat seperti:
 

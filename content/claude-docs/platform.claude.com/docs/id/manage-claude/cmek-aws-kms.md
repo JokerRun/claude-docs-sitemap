@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 93053e0d3ae165db60cdde7aa50e8c4933abcea64e4897eb1a86f39a02c5f1c0
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 6073884b071c1bb664d19338cf17b8d7225732229a02cf63e6fa4cb9f38b08ec
 ---
 
 ---
@@ -629,12 +629,12 @@ Anda juga dapat membuat kunci dari AWS Console: pilih kunci simetris dengan peng
 
     Inilah saat kunci divalidasi: panggilan lampir memeriksa akses principal Anda ke kunci dan melakukan round enkripsi/dekripsi terhadapnya dengan ID compartment workspace sebagai konteks enkripsi, sehingga masalah dengan kebijakan kunci atau izin principal Anda muncul sebagai kesalahan pada panggilan tersebut. Jika lampir gagal dengan kesalahan akses KMS, periksa hal berikut:
 
-    * Kebijakan kunci menamai principal layanan `aws-external-anthropic.amazonaws.com` dan memberikan `kms:Encrypt`, `kms:Decrypt`, dan `kms:GenerateDataKey`, ditambah `kms:DescribeKey` dalam pernyataan terpisah yang tidak memiliki kondisi `EncryptionContext`.
-    * Kondisi `aws:SourceArn` cocok dengan ARN workspace ini (ID akun Anda, dan workspace jika Anda mencantumkan ARN tertentu), dan kondisi `EncryptionContext` apa pun menyertakan ID compartment workspace ini.
-    * Kunci diaktifkan, single-region, dan berada di akun serta region AWS yang sama dengan workspace.
+    * Kebijakan kunci menyebutkan service principal `aws-external-anthropic.amazonaws.com` dan memberikan `kms:Encrypt`, `kms:Decrypt`, dan `kms:GenerateDataKey`, ditambah `kms:DescribeKey` dalam pernyataan terpisah yang tidak memiliki kondisi `EncryptionContext`.
+    * Kondisi `aws:SourceArn` cocok dengan ARN workspace ini (ID akun Anda, dan workspace jika Anda mencantumkan ARN tertentu), dan setiap kondisi `EncryptionContext` menyertakan ID kompartemen workspace ini.
+    * Kunci aktif, satu wilayah, dan berada di akun serta wilayah AWS yang sama dengan workspace.
     * Principal yang Anda gunakan untuk masuk memiliki `kms:DescribeKey`, `kms:Encrypt`, dan `kms:Decrypt` pada kunci.
-    * Tidak ada service control policy atau resource control policy di organisasi AWS Anda yang mencegah principal layanan atau principal Anda menggunakan kunci.
-    * Jika kebijakan terlihat benar dan lampir masih gagal, temukan event `kms:` yang ditolak di CloudTrail di akun kunci (ini menunjukkan principal pemanggil dan, untuk panggilan kriptografis, konteks enkripsi), lalu coba lagi dengan kondisi `aws:SourceArn` dihapus sementara untuk membedakan ketidakcocokan source-ARN dari ketidakcocokan konteks enkripsi.
+    * Tidak ada kebijakan kontrol layanan atau kebijakan kontrol sumber daya di organisasi AWS Anda yang mencegah service principal atau principal Anda menggunakan kunci.
+    * Jika kebijakan terlihat benar dan pelampiran masih gagal, temukan event `kms:` yang ditolak di CloudTrail pada akun kunci (event tersebut menampilkan principal pemanggil dan, untuk panggilan kriptografis, konteks enkripsinya), lalu coba lagi dengan kondisi `aws:SourceArn` dihapus sementara untuk membedakan ketidakcocokan ARN sumber dari ketidakcocokan konteks enkripsi. Setelah kunci dilampirkan, baik pada percobaan ulang tersebut maupun setelah Anda memperbaiki konteks enkripsi, pulihkan entri `ArnLike` pada kedua pernyataan service principal dengan `kms:PutKeyPolicy`, menggunakan pola `aws:SourceArn` untuk seluruh akun atau ARN dari setiap workspace yang dilampiri kunci.
   </Step>
 </Steps>
 

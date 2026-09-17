@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: f9f01bc3da6439a49dd51c4fb88e2e21dfcf0b6a1b1c34b073a0ea0e1d16da69
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 229fc93ee23a25da788dbc32e0d057f7618787fbfdbdec6e66c3780e32b32d9b
 ---
 
 ---
@@ -38,7 +38,7 @@ Ketika output alat melebihi 100.000 karakter (sekitar 25.000 token), output ters
 
 ## Mengonfigurasi toolset
 
-Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Gunakan array `configs` untuk menonaktifkan alat tertentu atau menimpa pengaturannya. Setiap entri config juga dapat menetapkan `permission_policy` yang mengontrol apakah panggilan alat tersebut disetujui otomatis atau memerlukan konfirmasi. Lihat [Kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) untuk jenis kebijakan yang tersedia.
+Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Gunakan array `configs` untuk menonaktifkan alat tertentu atau menimpa pengaturannya. Setiap entri konfigurasi juga dapat menetapkan `permission_policy` yang mengontrol apakah panggilan alat dijalankan tanpa konfirmasi, memerlukan konfirmasi, atau dievaluasi satu per satu oleh server. Lihat [Kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) untuk jenis kebijakan yang tersedia.
 
 Entri config untuk `web_search` dan `web_fetch` juga menerima filter domain dan pengaturan web lainnya; lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
 
@@ -701,11 +701,12 @@ Jika sesi Anda berjalan di sandbox self-hosted, worker environment dapat [menyaj
 
   <MultiFileExample language="cli" label="CLI">
     ```bash CLI
-    ant beta:agents create < agent.yaml
+    ant apply agent.md
     ```
 
-    <File filename="agent.yaml">
-      ```yaml
+    <File filename="agent.md">
+      ```markdown
+      ---
       name: Weather Agent
       model: claude-opus-5
       tools:
@@ -721,6 +722,7 @@ Jika sesi Anda berjalan di sandbox self-hosted, worker environment dapat [menyaj
                 description: City name
             required:
               - location
+      ---
       ```
     </File>
   </MultiFileExample>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/update
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 8a95f32e9339b6dc3284e25635911f106c1b6946d7ff6e2e06b4b98b0609e164
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: e3a863e4ba1d689fd02b8a362ea4a32afd55c8cac0fce432f2f4ccd34d37ab3e
 ---
 
 ---
@@ -28,7 +28,7 @@ Update an existing environment's configuration.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -119,6 +119,8 @@ Update an existing environment's configuration.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

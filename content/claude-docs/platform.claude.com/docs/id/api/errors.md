@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/errors
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 59659f193489d76c3e69097bab3faaf27b814ae8961fca64c30f190db2087dce
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 5a5f58c3fa99fb1048cba02bce23015e52a8b6d077b31bee7ae13d8c8f9f90b1
 ---
 
 ---
@@ -17,7 +17,7 @@ API mengikuti format kode error HTTP yang dapat diprediksi:
 
 * 400 - `invalid_request_error`: Ada masalah dengan format atau isi permintaan Anda. Tipe error ini juga dapat digunakan untuk kode status 4XX lain yang tidak tercantum di bagian ini. API juga mengembalikan 400 ketika penggunaan mencapai [batas pengeluaran yang Anda tetapkan](https://platform.claude.com/docs/id/api/rate-limits#setting-your-own-spend-limit) untuk organisasi atau workspace, kecuali batas pada [workspace Claude Code](https://platform.claude.com/docs/id/manage-claude/workspaces#claude-code-workspace), yang dapat mengembalikan 429 sebagai gantinya.
 
-* 401 - `authentication_error`: Ada masalah dengan "API key" (kunci API) Anda (misalnya, formatnya salah, dicabut, atau kedaluwarsa; lihat [Kedaluwarsa kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration)). Pada Claude Platform on AWS, ini juga dapat menunjukkan masalah dengan kredensial AWS atau tanda tangan SigV4 Anda.
+* 401 - `authentication_error`: Ada masalah dengan ["API key" (kunci API)](https://platform.claude.com/docs/id/get-api-key) Anda (misalnya, formatnya salah, dicabut, atau kedaluwarsa; lihat [Kedaluwarsa kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration)). Pada Claude Platform on AWS, ini juga dapat menunjukkan masalah dengan kredensial AWS atau tanda tangan SigV4 Anda.
 
 * 402 - `billing_error`: Ada masalah dengan informasi penagihan atau pembayaran Anda. Periksa detail pembayaran Anda di [Claude Console](https://platform.claude.com), atau di AWS Marketplace jika Anda menggunakan Claude Platform on AWS.
 
@@ -482,13 +482,19 @@ Gunakan `thinking: {"type": "enabled", "budget_tokens": N}` pada model-model ini
 
 ### Thinking tidak dapat dinonaktifkan
 
-Pada Claude Fable 5.1, [Claude Mythos 5.1](https://anthropic.com/glasswing), Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), dan [Claude Mythos Preview](https://anthropic.com/glasswing), thinking selalu aktif. Mengirim `thinking: {"type": "disabled"}` ke salah satu model ini akan mengembalikan 400 `invalid_request_error`:
+Pada Claude Fable 5.1, [Claude Mythos 5.1](https://anthropic.com/glasswing), Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), dan [Claude Mythos Preview](https://anthropic.com/glasswing), thinking selalu aktif. Mengirim `thinking: {"type": "disabled"}` ke salah satu model ini akan mengembalikan 400 `invalid_request_error`. Pada semua model ini kecuali Claude Mythos Preview, pesannya berbunyi:
+
+```text wrap
+"thinking.type.disabled" is not supported for this model. Use "thinking.type.adaptive" and "output_config.effort" to control thinking behavior.
+```
+
+Pada Claude Mythos Preview, satu-satunya model di antara model-model ini yang menerima pemikiran diperpanjang, pesannya berbunyi:
 
 ```text wrap
 "thinking.type.disabled" is not supported for this model. Thinking defaults to adaptive mode when not specified; use "thinking.type.enabled" with "budget_tokens" for extended thinking.
 ```
 
-Pada Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5, saran `"thinking.type.enabled"` dari pesan error itu sendiri juga ditolak. Hilangkan parameter `thinking` dan permintaan akan berjalan dengan adaptive thinking. Untuk menjaga agar konten thinking tidak muncul dalam respons tanpa menonaktifkan thinking, tetapkan `display: "omitted"` pada konfigurasi thinking. Lihat [Pemecahan masalah thinking](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-type-disabled).
+Hilangkan parameter `thinking`, dan permintaan akan berjalan dengan adaptive thinking. Agar konten thinking tidak muncul dalam respons tanpa menonaktifkan thinking, tetapkan `display: "omitted"` pada konfigurasi thinking. Lihat [Pemecahan masalah thinking](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-type-disabled).
 
 ### Penggunaan alat paksa tidak didukung
 
@@ -508,7 +514,7 @@ Pada Claude Fable 5.1, API menerima blok thinking yang diputar ulang hanya selam
 messages.{i}.content.{j}: Invalid `signature` in `thinking` block. The block is bound to a different conversation. Remove the block, or set `thinking.block_binding.prefix_mismatch_behavior` to "drop_block".
 ```
 
-Tanpa header beta `thinking-binding-controls-2026-08-01`, pesan tersebut juga menyebutkan nama header itu. Jaga agar riwayat percakapan bersifat append-only, atau kirim header beta dengan `prefix_mismatch_behavior: "drop_block"` untuk membuang blok tersebut dan melanjutkan. Blok dari model yang tidak dapat dibaca oleh model target akan dibuang, bukan ditolak. Lihat [Thinking yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation) dan [Pemecahan masalah thinking](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-block-signature).
+Tanpa beta header `thinking-binding-controls-2026-08-01`, pesan tersebut juga menyebutkan nama header itu. Pertahankan riwayat percakapan agar hanya ditambahkan (append-only), atau kirim beta header dengan `prefix_mismatch_behavior: "drop_block"` untuk membuang blok dan melanjutkan. Blok dari model yang tidak dapat dibaca oleh model target akan dibuang, bukan ditolak. Lihat [Menjaga prefix tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check) dan [Pemecahan masalah thinking](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-block-signature).
 
 Mengirim `thinking.block_binding` tanpa [header beta](https://platform.claude.com/docs/id/api/beta-headers) `thinking-binding-controls-2026-08-01` akan mengembalikan 400 `invalid_request_error` yang pesannya diakhiri dengan:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: d2d526b83962822d4babb5b9572ac91218eb27a7187eac7c5df1696760f636bf
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 20c5b7f4de763b7cd968816b8a9f66598d3e079425a6e4b92fbd506b45b70868
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Mendiagnosis masalah konektivitas, TLS, validasi IP, dan perutean O
 ---
 
 <Note>
-  Tunnel MCP sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/claude-managed-agents) untuk mencobanya.
+  MCP tunnels (terowongan MCP) sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/mcp-tunnels) untuk mencobanya.
 </Note>
 
 Sebuah permintaan melalui tunnel dapat gagal di salah satu dari tiga lapisan; diagnosis secara berurutan: koneksi keluar ke [tunnel edge](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components), [inner TLS](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) dari Anthropic ke [proxy](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) Anda, lalu perutean dan validasi IP menuju [server MCP upstream](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components).

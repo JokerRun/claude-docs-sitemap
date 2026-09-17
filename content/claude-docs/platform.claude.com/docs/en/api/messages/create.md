@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/create
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: cc0d555acf8da35c1da33d2e42b9c8fde8004a82a6699697c53ab0d2a1eae6d5
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 3f46fdad67b06bf6c22c6128d17c39e3719a3cb96ebadc3884a5719b26a0f4c3
 ---
 
 ---
@@ -2568,6 +2568,97 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       When true, guarantees schema validation on tool names and inputs
 
+    - `url_sources: optional WebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
+
+      - `client_tool_results: optional WebFetchURLSourceAll or WebFetchURLSourceNone or WebFetchURLSourceOnly or WebFetchURLSourceExcept`
+
+        Which client tools' results contribute fetchable URLs: "all", "none", or an only or except list of client tool names from tools[].
+
+        - `WebFetchURLSourceAll object`
+
+          The `url_sources` variant under which a source contributes in
+          full: every result of the tool filter's source, or all user input.
+
+          - `type: "all"`
+
+        - `WebFetchURLSourceNone object`
+
+          The `url_sources` variant under which a source contributes nothing:
+          no result of the tool filter's source, or no user input.
+
+          - `type: "none"`
+
+        - `WebFetchURLSourceOnly object`
+
+          The tool filter variant under which only the named tools' results
+          contribute.
+
+          - `type: "only"`
+
+          - `tools: array of WebFetchURLSourceToolReference`
+
+            - `type: "tool_reference"`
+
+            - `name: string`
+
+        - `WebFetchURLSourceExcept object`
+
+          The tool filter variant under which every result but the named
+          tools' contributes.
+
+          - `type: "except"`
+
+          - `tools: array of WebFetchURLSourceToolReference`
+
+            - `type: "tool_reference"`
+
+            - `name: string`
+
+      - `server_tool_results: optional WebFetchURLSourceAll or WebFetchURLSourceNone or WebFetchURLSourceOnly or WebFetchURLSourceExcept`
+
+        Which server tools' results contribute fetchable URLs: "all", "none", or an only or except list of server tool names from tools[]; only web_search and web_fetch results ever contribute.
+
+        - `WebFetchURLSourceAll object`
+
+          The `url_sources` variant under which a source contributes in
+          full: every result of the tool filter's source, or all user input.
+
+        - `WebFetchURLSourceNone object`
+
+          The `url_sources` variant under which a source contributes nothing:
+          no result of the tool filter's source, or no user input.
+
+        - `WebFetchURLSourceOnly object`
+
+          The tool filter variant under which only the named tools' results
+          contribute.
+
+        - `WebFetchURLSourceExcept object`
+
+          The tool filter variant under which every result but the named
+          tools' contributes.
+
+      - `user_input: optional WebFetchURLSourceAll or WebFetchURLSourceNone`
+
+        Whether URLs in user messages are fetchable: "all" or "none".
+
+        - `WebFetchURLSourceAll object`
+
+          The `url_sources` variant under which a source contributes in
+          full: every result of the tool filter's source, or all user input.
+
+        - `WebFetchURLSourceNone object`
+
+          The `url_sources` variant under which a source contributes nothing:
+          no result of the tool filter's source, or no user input.
+
   - `WebSearchTool20260209 object`
 
     - `type: "web_search_20260209"`
@@ -2674,6 +2765,15 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       When true, guarantees schema validation on tool names and inputs
 
+    - `url_sources: optional WebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
+
   - `WebFetchTool20260309 object`
 
     Web fetch tool with use_cache parameter for bypassing cached content.
@@ -2731,6 +2831,15 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
     - `strict: optional boolean`
 
       When true, guarantees schema validation on tool names and inputs
+
+    - `url_sources: optional WebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
 
     - `use_cache: optional boolean`
 
@@ -2857,6 +2966,15 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
     - `strict: optional boolean`
 
       When true, guarantees schema validation on tool names and inputs
+
+    - `url_sources: optional WebFetchURLSources or null`
+
+      Which sources contribute to the set of URLs web fetch may fetch.
+
+      Each key is a tagged variant: `user_input` is `all` or `none`; the
+      two tool filters are `all`, `none`, `only` (only the named tools'
+      results) or `except` (every result but the named tools'). A named tool
+      must be declared in this request's `tools[]`.
 
     - `use_cache: optional boolean`
 

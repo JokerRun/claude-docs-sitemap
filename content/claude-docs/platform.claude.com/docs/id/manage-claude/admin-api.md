@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/admin-api
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: ece205f1ab65547bd9bf031c2ec6cd31f0da4277aa46fda36e6927bcc7755db7
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 1ae41878465156d64aedf3e555e2c215a9792ba7d7e82b00674eb31e91b503a0
 ---
 
 ---
@@ -239,7 +239,7 @@ Ada lima peran tingkat organisasi. Untuk detailnya, lihat [Peran dan izin API Co
 | Peran              | Izin                                                                                     |
 | ------------------ | ---------------------------------------------------------------------------------------- |
 | user               | Dapat menggunakan playground                                                             |
-| claude\_code\_user | Dapat menggunakan playground dan [Claude Code](https://code.claude.com/docs/en/overview) |
+| claude\_code\_user | Dapat menggunakan playground dan [Claude Code](https://code.claude.com/docs/id/overview) |
 | developer          | Dapat menggunakan playground dan mengelola kunci API                                     |
 | billing            | Dapat menggunakan playground dan mengelola detail penagihan                              |
 | admin              | Dapat melakukan semua hal di atas, ditambah mengelola pengguna                           |

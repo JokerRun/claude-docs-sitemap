@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/retrieve
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 0ccc70a680b620188f63ef6752d603795a8e4f7c664b40ffc7cb21aacb446c65
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 32c8079fc46ea8f2b29f590bb4641b84709af1155d50dc3ada252af4137702a2
 ---
 
 ---
@@ -30,7 +30,7 @@ Get Session Resource
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -121,6 +121,8 @@ Get Session Resource
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

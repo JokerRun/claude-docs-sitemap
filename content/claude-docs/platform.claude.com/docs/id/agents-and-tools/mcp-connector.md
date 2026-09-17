@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-connector
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 4430d2c9c89b3e620ea60523a2edc4f6598275329579a52975476df09973deb2
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 8e0585a958f616e91371df3700a3267dadc536761dceb36753f02ed09aae04c8
 ---
 
 ---
@@ -670,7 +670,7 @@ Instal Anthropic SDK dan MCP SDK:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java-mcp:2.58.0")
+        implementation("com.anthropic:anthropic-java-mcp:2.60.0")
         ```
       </Tab>
 
@@ -679,7 +679,7 @@ Instal Anthropic SDK dan MCP SDK:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-mcp</artifactId>
-            <version>2.58.0</version>
+            <version>2.60.0</version>
         </dependency>
         ```
       </Tab>
@@ -1234,7 +1234,7 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   ```
 
   ```go Go
-  // Sebagai blok konten dalam pesan
+  // As a content block in a message
   resource, err := session.ReadResource(ctx, &mcpsdk.ReadResourceParams{URI: "file:///path/to/doc.txt"})
   if err != nil {
   	log.Fatal(err)
@@ -1249,9 +1249,9 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   	MaxTokens: 1024,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(
-  			// ResourceToBlock mengembalikan union konten tool-result; konten
-  			// pesan adalah tipe union terpisah, jadi bungkus ulang varian bersama
-  			// (mcp.ToMessage melakukan hal yang sama secara internal).
+  			// ResourceToBlock returns the tool-result content union; message
+  			// content is a separate union type, so re-wrap the shared variants
+  			// (mcp.ToMessage does the same internally).
   			anthropic.BetaContentBlockParamUnion{
   				OfText:     block.OfText,
   				OfImage:    block.OfImage,
@@ -1266,7 +1266,7 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   }
   fmt.Println(response.RawJSON())
 
-  // Sebagai unggahan file
+  // As a file upload
   fileResult, err := session.ReadResource(ctx, &mcpsdk.ReadResourceParams{URI: "file:///path/to/data.json"})
   if err != nil {
   	log.Fatal(err)

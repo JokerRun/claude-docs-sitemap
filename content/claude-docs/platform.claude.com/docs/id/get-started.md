@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-started
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: b6ebc48d187b46f9b3ac5163c96c649257d9448107a7449dea0f7e39f0f86572
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 0d20143446c8f6775514f67f601b908ecde47c1b045340b4574e88c947a19761
 ---
 
 ---
@@ -14,7 +14,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
 ## Prasyarat
 
 * Sebuah [akun Claude Console](https://platform.claude.com)
-* Sebuah [kunci API](https://platform.claude.com/settings/keys)
+* Sebuah [kunci API](https://platform.claude.com/docs/id/get-api-key)
 
 ## Memanggil API
 
@@ -443,7 +443,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
             }
 
             dependencies {
-                implementation("com.anthropic:anthropic-java:2.58.0")
+                implementation("com.anthropic:anthropic-java:2.60.0")
             }
 
             application {
@@ -469,7 +469,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
                 <dependency>
                   <groupId>com.anthropic</groupId>
                   <artifactId>anthropic-java</artifactId>
-                  <version>2.58.0</version>
+                  <version>2.60.0</version>
                 </dependency>
               </dependencies>
             </project>

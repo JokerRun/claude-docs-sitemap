@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/create
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 764b8ef0e4236c362d0a2d344f6e5a25f836434f753ea30471b5fa8e0d8f8177
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 46138c126aef8853bb60030484ba606091eacc00a6b827119d67b51fbbadf098
 ---
 
 ---
@@ -24,7 +24,7 @@ Create a new environment with the specified configuration.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -115,6 +115,8 @@ Create a new environment with the specified configuration.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 6302c77152b150bc9836d6c7a5d48d6f8e0f384671ce7993ef5c61035bf0bcbf
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: fa702c4e3a054f22169e878bcfa482394b96e0ef26cf3bc9b444ae8edaa54c3a
 ---
 
 ---
@@ -46,7 +46,7 @@ List Files
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -137,6 +137,8 @@ List Files
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

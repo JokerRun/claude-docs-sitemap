@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision-coordinates
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: ea35315ed049029b5e175e310fb63976942d6c03077552d511731f0235a2ef8b
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: db8db032f2e876c76da3bb8b4ee6d9af0e2792e77f87351dedbb5bcdf629900f
 ---
 
 ---
@@ -479,7 +479,7 @@ Pengaturan ini berlaku per gambar. `"oversized_image": "downsize"` (default keti
 * [Halaman PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support) dirasterisasi di sisi server pada dimensi yang tidak Anda kendalikan; blok `document` tidak menerima field ini (blok gambar yang bersarang di dalam konten dokumen menerimanya seperti blok lainnya).
 * Gambar bertanda yang dimensinya tidak dapat ditentukan ditolak alih-alih diteruskan: penolakan tersebut melaporkan bahwa dimensi sumber gambar tidak dapat ditentukan, bukan pesan pengubahan ukuran yang dikutip di atas. Tidak ada gambar yang mengatur `"error"` yang mencapai model dalam keadaan diubah ukurannya.
 
-Endpoint [Penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting) juga mematuhi `transformations`, menolak gambar yang disematkan persis seperti yang dilakukan Messages API, sehingga Anda dapat memeriksa apakah gambar yang disematkan sesuai tanpa diubah ukurannya, sebelum menjalankan inferensi. Penghitungan tidak pernah mengambil gambar yang disediakan melalui URL atau ID file, sehingga gambar bertanda dari sumber tersebut hanya diperiksa pada saat Messages, seperti dijelaskan di atas.
+Endpoint [Penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting) juga mematuhi `transformations`, menolak gambar yang disematkan persis seperti yang dilakukan Messages API, sehingga Anda dapat memeriksa apakah gambar yang disematkan muat tanpa diubah ukurannya, sebelum menjalankan inferensi. Penghitungan menolak gambar yang diberikan melalui URL atau ID file alih-alih mengambilnya, sehingga gambar bertanda dari sumber tersebut hanya diperiksa pada saat Messages.
 
 ## Skalakan ulang koordinat ketika Anda tidak dapat mengubah ukuran terlebih dahulu
 

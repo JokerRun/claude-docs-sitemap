@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/tools
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 31db41fc6f0eb43f11aa30c9696bdf27bac5573351b0c82ef23dc65ca4d2140f
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: b632a7ea1dcba5e12358bbd6e0490b7957045897767846bfb46e75ee10d296b5
 ---
 
 ---
@@ -11,13 +11,13 @@ url: https://platform.claude.com/docs/en/managed-agents/tools
 description: Configure tools available to your agent.
 ---
 
+## Compatibility
+- Status: Beta
+- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `managed-agents-2026-04-01`
+
 Claude Managed Agents provides a set of built-in tools that Claude can use autonomously within a [session](https://platform.claude.com/docs/en/managed-agents/sessions). You control which tools are available by specifying them in the agent configuration.
 
 Claude Managed Agents also supports custom, user-defined tools. Your application executes these tools separately and returns the results to Claude, which uses them to continue the task. To give the agent tools from an MCP server, use the [MCP connector](https://platform.claude.com/docs/en/managed-agents/mcp-connector) instead.
-
-<Note>
-  Managed Agents API requests require the `managed-agents-2026-04-01` beta header, except memory store endpoints, which use `agent-memory-2026-07-22` instead. The SDK sets the correct beta header automatically. See [Beta headers](https://platform.claude.com/docs/en/api/beta-headers#endpoint-specific-headers).
-</Note>
 
 ## Available tools
 

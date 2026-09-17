@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-integration-patterns
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 85accb03348b4b86eb78c6f91215d92a71613160f0ed9ca8e56a3718f09ccb52
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: d03384ef03ae7aaa4504d48675a7790eb58d33094a473de6fee2f47e1f1b92a0
 ---
 
 ---
@@ -51,6 +51,7 @@ Tetapkan `created_at.lt` setidaknya 1 menit di masa lalu sehingga setiap aktivit
 curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/activities" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+  --header "anthropic-version: 2023-06-01" \
   --data-urlencode "created_at.gte=2026-04-20T07:00:00Z" \
   --data-urlencode "created_at.lt=2026-04-20T08:00:00Z" \
   --data-urlencode "limit=5000"
@@ -72,6 +73,7 @@ first_id="activity_01XyDMpzjS89pFZXqSFUBDr6"  # first_id from a previous respons
 curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/activities" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+  --header "anthropic-version: 2023-06-01" \
   --data-urlencode "limit=5000" \
   --data-urlencode "before_id=$first_id"
 ```
@@ -117,22 +119,22 @@ Panggilan ke Compliance API itu sendiri menghasilkan aktivitas `compliance_api_a
 
 Lima horizon retensi mengatur apa yang dapat Anda ambil nanti:
 
-| Data                                              | Disimpan selama                                                                                                   | Dikendalikan oleh                                                          |
-| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| Catatan Activity Feed                             | 6 tahun                                                                                                           | Anthropic                                                                  |
-| Konten chat, file, dan proyek                     | Kebijakan retensi claude.ai organisasi Anda, kecuali pengguna menghapusnya lebih awal                             | Organisasi Anda                                                            |
-| Transkrip sesi lokal (sesi di mesin pengguna)     | 6 tahun secara default, atau periode retensi percakapan kustom organisasi Anda ketika periode terbatas ditetapkan | Anthropic secara default; organisasi Anda ketika menetapkan periode kustom |
-| Transkrip sesi remote (sesi di cloud)             | 6 tahun                                                                                                           | Anthropic                                                                  |
-| Konten yang di-hard-delete melalui Compliance API | Tidak disimpan; penghapusan bersifat langsung dan permanen                                                        | Pemanggil endpoint `DELETE`                                                |
+| Data                                                | Disimpan selama                                                                                                   | Dikendalikan oleh                                                          |
+| --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| Catatan Activity Feed                               | 6 tahun                                                                                                           | Anthropic                                                                  |
+| Konten chat, file, dan proyek                       | Kebijakan retensi claude.ai organisasi Anda, kecuali pengguna menghapusnya lebih awal                             | Organisasi Anda                                                            |
+| Transkrip sesi lokal (sesi di mesin pengguna)       | 6 tahun secara default, atau periode retensi percakapan kustom organisasi Anda ketika periode terbatas ditetapkan | Anthropic secara default; organisasi Anda ketika menetapkan periode kustom |
+| Transkrip sesi jarak jauh (sesi di cloud)           | 6 tahun, kecuali pengguna menghapus sesi lebih awal                                                               | Anthropic                                                                  |
+| Konten yang dihapus permanen melalui Compliance API | Tidak disimpan; penghapusan bersifat langsung dan permanen                                                        | Pemanggil endpoint `DELETE`                                                |
 
 Untuk mempelajari bagaimana bagian lain Claude Platform menangani retensi, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 
 Putuskan antara ekspor-dan-arsip dan pengambilan API sesuai permintaan sebagai berikut:
 
-* Jika horizon legal-hold atau audit Anda melebihi 6 tahun untuk metadata aktivitas atau transkrip sesi, ekspor halaman Activity Feed dan transkrip sesi ke arsip Anda sendiri saat Anda mengingestnya.
-* Jika kebijakan retensi konten Anda lebih pendek dari horizon eDiscovery Anda, ekspor konten chat dan file sebelum jendela retensi berakhir; Compliance API tidak dapat mengembalikan konten yang sudah dihapus oleh retensi. Hal yang sama berlaku untuk transkrip sesi lokal, yang mengikuti periode retensi percakapan kustom organisasi Anda ketika periode terbatas ditetapkan, bahkan ketika periode tersebut lebih pendek dari 6 tahun. Endpoint sesi lokal berhenti mengembalikan pesan yang lebih lama dari periode organisasi Anda saat ini segera setelah pengaturan berubah, dan memperpanjang periode di kemudian hari tidak memulihkan transkrip yang sudah kedaluwarsa, jadi ekspor transkrip apa pun yang harus Anda simpan melampaui periode tersebut.
-* Jika Anda harus menyimpan konten chat setelah pengguna menghapusnya di claude.ai (misalnya, di bawah legal hold), ekspor konten chat, file, dan artifact ke arsip Anda sendiri saat Anda mengingestnya; Compliance API tidak dapat mengembalikan konten yang sudah dihapus pengguna.
-* Jika suatu alur kerja mungkin mengeluarkan hard-delete Compliance API (misalnya, penegakan DLP), ambil dan arsipkan konten target terlebih dahulu. Tidak ada jendela pemulihan setelah hard-delete.
+* Jika horizon "legal hold" (penahanan hukum) atau audit Anda melebihi 6 tahun untuk metadata aktivitas atau transkrip sesi, ekspor halaman Activity Feed dan transkrip sesi ke arsip Anda sendiri saat Anda menyerapnya.
+* Jika kebijakan retensi konten Anda lebih pendek dari horizon "eDiscovery" (penemuan elektronik) Anda, ekspor konten chat dan file sebelum jendela retensi berakhir; Compliance API tidak dapat mengembalikan konten yang sudah dihapus oleh retensi. Hal yang sama berlaku untuk transkrip sesi lokal, yang mengikuti periode retensi percakapan kustom organisasi Anda ketika periode terbatas ditetapkan, bahkan ketika periode tersebut lebih pendek dari 6 tahun. Endpoint sesi lokal berhenti mengembalikan pesan yang lebih lama dari periode organisasi Anda saat ini segera setelah pengaturan berubah, dan memperpanjang periode di kemudian hari tidak memulihkan transkrip yang sudah kedaluwarsa, jadi ekspor setiap transkrip yang harus Anda simpan melampaui periode tersebut.
+* Jika Anda harus menyimpan konten chat atau transkrip sesi jarak jauh setelah pengguna menghapusnya di claude.ai (misalnya, di bawah legal hold), ekspor konten chat, file, artifact, dan sesi jarak jauh ke arsip Anda sendiri saat Anda menyerapnya; Compliance API tidak dapat mengembalikan konten yang sudah dihapus oleh pengguna.
+* Jika suatu alur kerja mungkin menjalankan "hard-delete" (penghapusan permanen) melalui Compliance API (misalnya, penegakan "data loss prevention" (pencegahan kehilangan data), atau DLP), ambil dan arsipkan konten target terlebih dahulu. Tidak ada jendela pemulihan setelah hard-delete.
 
 Dalam semua kasus lainnya, andalkan pengambilan API langsung dan hindari memelihara salinan paralel.
 
@@ -151,17 +153,18 @@ Volume aktivitas bukanlah pemeriksaan kelengkapan. Tipe aktivitas `claude_*_view
 Endpoint konten (chat, file, proyek, lampiran proyek, serta transkrip sesi lokal dan remote) hanya melayani data Claude Enterprise. Activity Feed menampilkan event administratif dan sumber daya di seluruh organisasi. Compliance API tidak mencakup:
 
 * Teks prompt atau respons model dari Claude Console, atau dari beban kerja Claude API yang diautentikasi dengan kunci API.
-* Aktivitas di perangkat dalam sesi lokal yang tidak pernah dikirim ke Anthropic, seperti file lokal yang tidak dibaca Claude.
+* Aktivitas di perangkat dalam sesi lokal yang tidak pernah dikirim ke Anthropic, seperti file lokal yang tidak dibaca oleh Claude.
 * Penggunaan Claude Code yang diautentikasi dengan kunci API Claude Console, dijalankan melalui platform cloud pihak ketiga (Amazon Bedrock, Google Cloud, atau Microsoft Foundry), atau dijalankan di Claude Code di web.
-* Sesi lokal dari organisasi dengan [kesiapan HIPAA](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#hipaa-readiness) diaktifkan, dan sesi lokal yang berlaku [zero data retention](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope).
-* Blok thinking, serta gambar atau konten biner lainnya, di dalam transkrip sesi (transkrip hanya membawa prompt pengguna, respons asisten, dan aktivitas alat; transkrip sesi lokal menampilkan blok `text` placeholder di tempat konten biner dihilangkan).
-* File asli untuk lampiran chat yang disimpan claude.ai sebagai teks terekstrak, seperti beberapa unggahan Word, PowerPoint, dan PDF (endpoint konten file mengembalikan teks terekstrak; lihat [Ambil file dan artifact](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-files-and-artifacts)).
-* Prompt sistem sesi lokal (pesan penanda menggantikannya).
-* Definisi alat dan konfigurasi server MCP dalam transkrip sesi (lokal atau remote), serta metadata sitasi pada blok `text` dalam transkrip sesi lokal.
-* Konten transkrip sesi lokal dalam organisasi yang [kunci enkripsi yang dikelola pelanggan](https://platform.claude.com/docs/id/manage-claude/cmek)-nya saat ini tidak dapat digunakan. Permintaan tersebut mengembalikan [503 Service Unavailable](https://platform.claude.com/docs/id/manage-claude/compliance-errors#local-sessions-temporarily-unavailable), dan metadata sesi tetap terdaftar.
+* Sesi lokal dari organisasi yang mengaktifkan [kesiapan HIPAA](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#hipaa-readiness), dan sesi lokal yang dikenai ["zero data retention" (retensi data nol)](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope).
+* Blok thinking, serta gambar atau konten biner lainnya, di dalam transkrip sesi (transkrip hanya memuat prompt pengguna, respons asisten, dan aktivitas alat; transkrip sesi lokal menampilkan blok `text` placeholder di tempat konten biner dihilangkan).
+* File asli untuk lampiran chat yang disimpan claude.ai sebagai teks hasil ekstraksi, seperti beberapa unggahan Word, PowerPoint, dan PDF (endpoint konten file mengembalikan teks hasil ekstraksi; lihat [Ambil file dan artifact](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-files-and-artifacts)).
+* Prompt sistem dari sesi lokal (pesan penanda menggantikannya).
+* Definisi alat dan konfigurasi server "Model Context Protocol", atau MCP, dalam transkrip sesi (lokal atau jarak jauh), serta metadata sitasi pada blok `text` dalam transkrip sesi lokal.
+* Konten transkrip sesi lokal di organisasi yang ["customer-managed encryption key" (kunci enkripsi yang dikelola pelanggan)](https://platform.claude.com/docs/id/manage-claude/cmek)-nya saat ini tidak dapat digunakan. Permintaan tersebut mengembalikan [503 Service Unavailable](https://platform.claude.com/docs/id/manage-claude/compliance-errors#local-sessions-temporarily-unavailable), dan metadata sesi tetap dicantumkan.
 * Konten yang dihapus oleh kebijakan retensi organisasi Anda.
-* Konten chat yang dihapus pengguna di claude.ai (chat tetap terdaftar, dengan `deleted_at` terisi).
-* Konten yang di-hard-delete melalui Compliance API.
+* Konten chat yang dihapus pengguna di claude.ai (chat tersebut tetap dicantumkan, dengan `deleted_at` terisi).
+* Sesi jarak jauh yang dihapus pengguna (sesi yang dihapus tidak lagi dicantumkan, dan endpoint pesan mengembalikan 404 untuk sesi tersebut).
+* Konten yang dihapus permanen melalui Compliance API.
 
 Lihat [FAQ Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-faq#data-coverage-and-retention) untuk informasi lebih lanjut tentang apa yang ditangkap dan tidak ditangkap oleh Compliance API.
 

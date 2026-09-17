@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-teams
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 5b0e96d7dd9d36179705b2ebb99af2ff13cb9d902c15944a816285d5110e62bc
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 953216d8650c039c20ef1bc507a5a6280407a7958ee1d90786869bc987d1ba4a
 ---
 
 > ## Documentation Index
@@ -115,7 +115,7 @@ Agent teams support two display modes:
   `tmux` has known limitations on certain operating systems and traditionally works best on macOS. Using `tmux -CC` in iTerm2 is the suggested entrypoint into `tmux`.
 </Note>
 
-The default is `"in-process"`. Before v2.1.179 the default was `"auto"`, so upgraded sessions that previously opened split panes now stay in one terminal unless you set the mode explicitly. Set `"auto"` to enable split panes when you're already running inside a tmux session, or when your terminal is iTerm2 with the `it2` CLI installed, falling back to in-process otherwise. The `"tmux"` setting enables split-pane mode and auto-detects whether to use tmux or iTerm2 based on your terminal.
+The default is `"in-process"`. Set `"auto"` to enable split panes when you're already running inside a tmux session, or when your terminal is iTerm2 with the `it2` CLI installed, falling back to in-process otherwise. The `"tmux"` setting enables split-pane mode and auto-detects whether to use tmux or iTerm2 based on your terminal.
 
 As of v2.1.186, set `"iterm2"` to use iTerm2 native split panes explicitly. This mode requires the [`it2` CLI](https://github.com/mkusaka/it2) and shows an error with the install command if `it2` is missing. The setup prompt that offers to install `it2` or switch to tmux appears under `"auto"` or `"tmux"` when your terminal is iTerm2 and tmux is available as a fallback.
 

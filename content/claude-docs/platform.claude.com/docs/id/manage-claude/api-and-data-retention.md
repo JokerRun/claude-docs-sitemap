@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/api-and-data-retention
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 91ae0b231be6c16e30c01f18150bdc1df7d889ed2ceba73369b9275afe5e617e
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: f04a4c70f379a980f065cec2aa4e98fec338d7740ec8e44cb5ea30ced637c312
 ---
 
 ---
@@ -23,7 +23,7 @@ API dan fitur yang berbeda memiliki kebutuhan penyimpanan yang berbeda. Di mana 
 * Hanya apa yang secara teknis diperlukan agar fitur berfungsi yang disimpan. Konten percakapan (prompt Anda dan output Claude) tidak disimpan secara default; pengecualiannya adalah [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements), yang memerlukan retensi 30 hari.
 * Data yang disimpan dihapus pada time to live (TTL) praktis terpendek, dan Anthropic bertujuan untuk memberi pelanggan kontrol atas berapa lama data disimpan. Apa yang disimpan, dan durasi retensi di mana TTL tertentu berlaku, didokumentasikan pada halaman masing-masing fitur.
 
-Beberapa model retensi berada di luar pengaturan ZDR dan HIPAA yang dijelaskan pada halaman ini. Data yang dapat diakses melalui [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) mengikuti model retensinya sendiri. [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) menyimpan data selama 6 tahun. Konten chat, file, dan proyek dari claude.ai mengikuti kebijakan retensi organisasi Anda yang diatur di [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls). [Transkrip sesi lokal](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions) (dari sesi pada mesin pengguna, dalam aplikasi seperti Cowork dan Claude Code) disimpan selama 6 tahun secara default, atau untuk periode retensi percakapan kustom organisasi Anda ketika periode terbatas diatur (pengaturan claude.ai yang sama). [Transkrip sesi jarak jauh](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-remote-sessions) (Cowork di cloud) disimpan selama 6 tahun. Compliance API tidak menangkap sesi lokal yang ZDR-nya berlaku, atau sesi lokal apa pun dari organisasi dengan kesiapan HIPAA diaktifkan.
+Beberapa model retensi berada di luar pengaturan ZDR dan HIPAA yang dijelaskan di halaman ini. Data yang dapat diakses melalui [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) mengikuti model retensinya sendiri. [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) menyimpan data selama 6 tahun. Konten chat, file, dan proyek dari claude.ai mengikuti kebijakan retensi organisasi Anda yang diatur di [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls), kecuali pengguna menghapusnya lebih awal. [Transkrip sesi lokal](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions) (dari sesi di mesin pengguna, dalam aplikasi seperti Cowork dan Claude Code) disimpan selama 6 tahun secara default, atau selama periode retensi percakapan kustom organisasi Anda jika periode terbatas telah ditetapkan (pengaturan claude.ai yang sama). [Transkrip sesi jarak jauh](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-remote-sessions) (Cowork di cloud) disimpan selama 6 tahun, kecuali pengguna menghapus sesi tersebut lebih awal. Compliance API tidak merekam sesi lokal yang memberlakukan ZDR, maupun sesi lokal apa pun dari organisasi yang mengaktifkan kesiapan HIPAA.
 
 ## Zero data retention (ZDR)
 
@@ -32,7 +32,7 @@ Di bawah pengaturan ZDR, Anthropic tidak menyimpan prompt atau respons pelanggan
 ### Apa yang dicakup ZDR
 
 * **Claude Messages dan Token Counting API:** ZDR berlaku untuk endpoint ini untuk fitur yang memenuhi syarat yang tercantum dalam [tabel kelayakan fitur](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility). Fitur yang berjalan di `/v1/messages` tetapi ditandai "No" dalam tabel (seperti eksekusi kode) tidak dicakup.
-* **Claude Code:** ZDR berlaku ketika Claude Code digunakan dengan kunci API dari organisasi Komersial (organisasi di bawah Commercial Terms of Service Anthropic, yang berbeda dari akun Claude konsumen) atau melalui Claude Enterprise dengan ZDR diaktifkan. Jika logging metrik diaktifkan di Claude Code, data produktivitas seperti statistik penggunaan dikecualikan dari ZDR dan dapat disimpan. Lihat [dokumentasi ZDR Claude Code](https://code.claude.com/docs/en/zero-data-retention) untuk detail lengkap.
+* **Claude Code:** ZDR berlaku ketika Claude Code digunakan dengan kunci API dari organisasi Komersial (organisasi di bawah Commercial Terms of Service Anthropic, yang berbeda dari akun Claude konsumen) atau melalui Claude Enterprise dengan ZDR diaktifkan. Jika logging metrik diaktifkan di Claude Code, data produktivitas seperti statistik penggunaan dikecualikan dari ZDR dan dapat disimpan. Lihat [dokumentasi ZDR Claude Code](https://code.claude.com/docs/id/zero-data-retention) untuk detail lengkap.
 * **Claude Platform on AWS:** [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) mengikuti kebijakan retensi data yang sama dengan Claude API pihak pertama. ZDR tersedia atas permintaan; hubungi perwakilan akun Anthropic Anda untuk mengaktifkannya.
 
 ### Apa yang tidak dicakup ZDR
@@ -271,7 +271,7 @@ Bahkan dengan pengaturan ZDR atau HIPAA yang berlaku, Anthropic dapat menyimpan 
 
     Selain itu, jika Anda mengaktifkan logging metrik di Claude Code, data produktivitas (seperti statistik penggunaan) dikecualikan dari ZDR dan dapat disimpan.
 
-    Untuk detail lengkap tentang ZDR untuk Claude Code pada Claude Enterprise, termasuk fitur yang dinonaktifkan dan cara meminta pengaktifan, lihat [dokumentasi ZDR Claude Code](https://code.claude.com/docs/en/zero-data-retention).
+    Untuk detail lengkap tentang ZDR untuk Claude Code pada Claude Enterprise, termasuk fitur yang dinonaktifkan dan cara meminta pengaktifan, lihat [dokumentasi ZDR Claude Code](https://code.claude.com/docs/id/zero-data-retention).
   </Accordion>
 
   <Accordion title="Apakah Claude for Excel mendukung ZDR?">

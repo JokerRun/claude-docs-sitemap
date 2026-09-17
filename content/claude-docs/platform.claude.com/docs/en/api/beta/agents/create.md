@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/create
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 0c3b46eb1b860a76adbd74a2384c203122a1d5aabd734463ee21e64874926a6e
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 3ada2f6241e673b549bbef9f0dca5355731dff4912aa79f4ce98cc3393dadbb3
 ---
 
 ---
@@ -24,7 +24,7 @@ Create Agent
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -115,6 +115,8 @@ Create Agent
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

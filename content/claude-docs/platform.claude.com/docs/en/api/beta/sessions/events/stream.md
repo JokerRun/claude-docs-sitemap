@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/stream
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: e0cab90c283f519503185a459219c6632833afdadd27a7f5c7350ffbf82c9eb5
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: a60402c89892faa981332ff0cfb64d83938444e441c5a9f941ac16ee1d5b3534
 ---
 
 ---
@@ -38,7 +38,7 @@ Stream Events
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -129,6 +129,8 @@ Stream Events
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
 

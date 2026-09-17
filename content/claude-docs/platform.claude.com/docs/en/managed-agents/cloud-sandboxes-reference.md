@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/cloud-sandboxes-reference
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 10078bc26b5c405cf9cd3ee2a2176b50ea7271a69a2d5cb4da787765868ca26f
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: d5c4b90d0b7390aaba969789a7f1fb9731ecf2667d97f45790bd81751bfb6711
 ---
 
 ---
@@ -11,13 +11,13 @@ url: https://platform.claude.com/docs/en/managed-agents/cloud-sandboxes-referenc
 description: Pre-installed packages, databases, and utilities available in cloud sandboxes.
 ---
 
+## Compatibility
+- Status: Beta
+- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `managed-agents-2026-04-01`
+
 Cloud sandboxes run as isolated Linux containers on Anthropic-managed infrastructure. They come pre-installed with a comprehensive set of programming languages, databases, and utilities. The agent can use these immediately without any installation steps.
 
 These specifications apply to `cloud` environments. Self-hosted sandboxes run on your infrastructure with whatever your worker provides.
-
-<Note>
-  Managed Agents API requests require the `managed-agents-2026-04-01` beta header, except memory store endpoints, which use `agent-memory-2026-07-22` instead. The SDK sets the correct beta header automatically. See [Beta headers](https://platform.claude.com/docs/en/api/beta-headers#endpoint-specific-headers).
-</Note>
 
 ## Programming languages
 

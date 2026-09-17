@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/poll
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: b406e1649f9f7c795045fbd4eb0fba3b75ab3c0a2c228828e42201ecc0fd2a21
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 52e8b445f955bb4db8336508f74c507866465bc6909b103b0dca37eea3f4d6d3
 ---
 
 ---
@@ -44,7 +44,7 @@ Long poll for work items in the queue.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 42 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -135,6 +135,8 @@ Long poll for work items in the queue.
     - `"thinking-binding-controls-2026-08-01"`
 
     - `"mid-conversation-system-clear-at-2026-08-21"`
+
+    - `"compact-2026-09-04"`
 
 - `"Anthropic-Worker-ID": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/get-started
-fetched_at: 2026-09-03T02:44:34.856042Z
-sha256: 3a0c329e5d9acb156a1670f58d063dfa82f656ca7ed15035ca5db3ff44472dae
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 8f089710465a9c627f3a33dfaec33dcd3352a81c80013967206187b81245422c
 ---
 
 ---
@@ -14,7 +14,7 @@ description: Make your first API call to Claude and build a simple web search as
 ## Prerequisites
 
 * A [Claude Console account](https://platform.claude.com)
-* An [API key](https://platform.claude.com/settings/keys)
+* An [API key](https://platform.claude.com/docs/en/get-api-key)
 
 ## Call the API
 

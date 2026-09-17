@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-protocol
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 296f53d8f5ed4a5824e9de3de710691d0475d28e84be3c9ea5781adae6c58cac
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 8e2d29d0db638a5d3ddd5523b12300206127f9a952e2e7540fbfb1df0847a385
 ---
 
 > ## Documentation Index
@@ -155,8 +155,10 @@ The `ANTHROPIC_DEFAULT_*_MODEL_SUPPORTED_CAPABILITIES` [variables](/docs/en/mode
 What Claude Code does after an upstream rejection depends on what was rejected:
 
 * When the upstream rejects the `thinking` field, a mid-conversation system message, or the `cache_control` marker on such a message, Claude Code retries the request and disables the rejected capability for the rest of the conversation
-* When the upstream rejects a [thinking signature](https://platform.claude.com/docs/en/build-with-claude/extended-thinking), Claude Code retries the request without the conversation's earlier thinking blocks and keeps them out of every later request. New responses still include thinking
+* When the upstream rejects a [thinking signature](https://platform.claude.com/docs/en/build-with-claude/extended-thinking), including with a `400` whose message says the block is `bound to a different conversation`, Claude Code removes earlier thinking blocks from the request, retries, and keeps them out of every later request. New responses still include thinking
 * Claude Code doesn't retry rejections of context management or tool schema fields, so those `400` errors reach the developer
+
+The `bound to a different conversation` rejection comes from the API's [preserved thinking](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking) check, which fails when `system`, `tools`, or earlier `messages` content differs from the request that produced the thinking. A gateway that rewrites any of that content can cause the rejection itself; [Libraries, proxies, and gateways](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking#libraries-proxies-gateways) covers what to pass through unchanged.
 
 The retry logic matches on the upstream's error wording, so forward error response bodies unmodified. A gateway that wraps upstream errors in its own envelope breaks the recovery path, even when it preserves the status code, unless the envelope's message carries a stable `capability_rejected:` token. [Claude apps gateway substitutes those tokens for cloud providers' error wording](/docs/en/claude-apps-gateway-config#upstream-error-messages), for example `capability_rejected: prompt_too_long`.
 

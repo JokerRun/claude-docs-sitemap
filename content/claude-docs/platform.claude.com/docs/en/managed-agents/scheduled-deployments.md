@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/scheduled-deployments
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 36043fbab73e9b53a3adb956747f2ef2db22b37392806da78a2bb3c5aa34511c
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 8f24632d566aa3ea531b66e112e1cd060d9fe97a869a00f4af57ffaf6a0de679
 ---
 
 ---
@@ -11,13 +11,13 @@ url: https://platform.claude.com/docs/en/managed-agents/scheduled-deployments
 description: "Create and manage deployments with the Claude API: run an agent on a recurring cron schedule and inspect its run history."
 ---
 
+## Compatibility
+- Status: Beta
+- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `managed-agents-2026-04-01`
+
 A **scheduled deployment** allows an [agent](https://platform.claude.com/docs/en/managed-agents/agent-setup) to start [sessions](https://platform.claude.com/docs/en/managed-agents/sessions) autonomously, enabling task completion over a predictable cadence. You create and manage deployments with the Deployments API, part of the Claude API.
 
 For the launch context and examples of what teams run on schedules, see [scheduled deployments and vaults in Claude Managed Agents](https://claude.com/blog/whats-new-in-claude-managed-agents) on the blog.
-
-<Note>
-  All Managed Agents API requests require the `managed-agents-2026-04-01` beta header. The SDK sets the beta header automatically.
-</Note>
 
 ## Create a scheduled deployment
 

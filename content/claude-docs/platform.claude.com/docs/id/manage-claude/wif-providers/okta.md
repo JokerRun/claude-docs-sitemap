@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/okta
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: c05c760b83631dc0fb384e37f4c190b050f7e3036da917d8aed1cfc7e95f93fa
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: b973fc1b77ef405d7e44815df11b691ed7a74ae55a0d463b6257fac2dcb10564
 ---
 
 ---
@@ -314,6 +314,9 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
   ```
 
   ```csharp C#
+  using Anthropic.Credentials;
+  // ...
+
   var credentials = new WorkloadIdentityCredentials(new WorkloadIdentityOptions
   {
       FederationRuleId = Environment.GetEnvironmentVariable("ANTHROPIC_FEDERATION_RULE_ID")!,
@@ -322,7 +325,7 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
       WorkspaceId = Environment.GetEnvironmentVariable("ANTHROPIC_WORKSPACE_ID"),
       IdentityTokenProvider = new OktaTokenProvider(),
   });
-  using var client = new AnthropicOidcClient(credentials);
+  using var client = new AnthropicClient(new ClientOptions { Credentials = credentials });
 
   var message = await client.Messages.Create(new()
   {

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 37590fd1b37e83d7368b36d4d4b2e369d9ef498ae6350e91f023ee84b0f41048
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: e19530ebc7709e76ace04022835e8dc55c46247152f1e4b3449e84c6ebdcb5a4
 ---
 
 > ## Documentation Index
@@ -626,7 +626,7 @@ In addition to the [common fields](#common-fields), prompt and agent hooks accep
 Use these placeholders to reference hook scripts relative to the project or plugin root, regardless of the working directory when the hook runs:
 
 * `${CLAUDE_PROJECT_DIR}`: the project root where the session started. Claude Code also sets this variable in the environment of [stdio MCP servers](/docs/en/mcp#option-3-add-a-local-stdio-server) and plugin LSP servers.
-* `${CLAUDE_PLUGIN_ROOT}`: the plugin's installation directory, for scripts bundled with a [plugin](/docs/en/plugins). Changes on each plugin update.
+* `${CLAUDE_PLUGIN_ROOT}`: the plugin's installation directory, for scripts bundled with a [plugin](/docs/en/plugins). See [plugin environment variables](/docs/en/plugins-reference#environment-variables) for how the path behaves across updates.
 * `${CLAUDE_PLUGIN_DATA}`: the plugin's [persistent data directory](/docs/en/plugins-reference#persistent-data-directory), for dependencies and state that should survive plugin updates.
 
 <Note>

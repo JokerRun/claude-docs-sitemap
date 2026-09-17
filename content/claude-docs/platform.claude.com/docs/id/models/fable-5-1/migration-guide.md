@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5-1/migration-guide
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: da1d9fdfd9ecbdad85cb842c61586c468dbfbc69d622ba13606a3fa73455f52e
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: f7bda9d1d201025404402cac4bd57368eff3003b9cb2af77d010ffaeecdc51a1
 ---
 
 ---
@@ -700,9 +700,9 @@ model = "claude-mythos-5-1"  # After
                  "content": "Thanks for confirming. How can I help with order A1234?",
              },
              {"role": "user", "content": "I opened the box. Can I still return them?"},
-             # Aplikasi mewajibkan pencarian pusat bantuan sebelum jawaban
-             # kebijakan apa pun. Menambahkan persyaratan sebagai pesan sistem membuat
-             # giliran sebelumnya tidak berubah.
+             # Aplikasi mewajibkan pencarian di pusat bantuan sebelum memberikan
+             # jawaban kebijakan apa pun. Menambahkan persyaratan ini sebagai pesan sistem membuat
+             # giliran-giliran sebelumnya tetap tidak berubah.
              {
                  "role": "system",
                  "content": "Tool-use requirement for the current turn: the application requires a call to the search_help_center tool in your response to the user's latest message. Begin your response with the search_help_center tool call. Do not reply with text only.",
@@ -736,9 +736,9 @@ model = "claude-mythos-5-1"  # After
          { role: "user", content: "My headphones from order A1234 arrived yesterday." },
          { role: "assistant", content: "Thanks for confirming. How can I help with order A1234?" },
          { role: "user", content: "I opened the box. Can I still return them?" },
-         // Aplikasi mewajibkan pencarian pusat bantuan sebelum jawaban
-         // kebijakan apa pun. Menambahkan persyaratan sebagai pesan sistem
-         // membiarkan giliran sebelumnya tidak berubah.
+         // Aplikasi mewajibkan pencarian di pusat bantuan sebelum memberikan
+         // jawaban terkait kebijakan apa pun. Menambahkan persyaratan ini sebagai system message (pesan sistem) membuat
+         // giliran-giliran sebelumnya tetap tidak berubah.
          {
            role: "system",
            content:
@@ -779,9 +779,9 @@ model = "claude-mythos-5-1"  # After
              new() { Role = Role.User, Content = "My headphones from order A1234 arrived yesterday." },
              new() { Role = Role.Assistant, Content = "Thanks for confirming. How can I help with order A1234?" },
              new() { Role = Role.User, Content = "I opened the box. Can I still return them?" },
-             // Aplikasi mewajibkan pencarian pusat bantuan sebelum jawaban
-             // kebijakan apa pun. Menambahkan persyaratan ini sebagai pesan sistem
-             // membiarkan giliran sebelumnya tidak berubah.
+             // Aplikasi mewajibkan pencarian di pusat bantuan sebelum memberikan jawaban
+             // terkait kebijakan apa pun. Menambahkan persyaratan ini sebagai "system message" (pesan sistem) membuat
+             // giliran sebelumnya tetap tidak berubah.
              new()
              {
                  Role = Role.System,
@@ -823,9 +823,9 @@ model = "claude-mythos-5-1"  # After
      		anthropic.NewUserMessage(anthropic.NewTextBlock("My headphones from order A1234 arrived yesterday.")),
      		anthropic.NewAssistantMessage(anthropic.NewTextBlock("Thanks for confirming. How can I help with order A1234?")),
      		anthropic.NewUserMessage(anthropic.NewTextBlock("I opened the box. Can I still return them?")),
-     		// Aplikasi mewajibkan pencarian pusat bantuan sebelum jawaban
-     		// kebijakan apa pun. Menambahkan persyaratan sebagai pesan sistem
-     		// membiarkan giliran sebelumnya tidak berubah.
+     		// Aplikasi mewajibkan pencarian di pusat bantuan sebelum memberikan
+     		// jawaban apa pun terkait kebijakan. Menambahkan persyaratan ini sebagai pesan sistem membuat
+     		// giliran sebelumnya tetap tidak berubah.
      		{
      			Role: anthropic.MessageParamRoleSystem,
      			Content: []anthropic.ContentBlockParamUnion{
@@ -862,9 +862,9 @@ model = "claude-mythos-5-1"  # After
              .addUserMessage("My headphones from order A1234 arrived yesterday.")
              .addAssistantMessage("Thanks for confirming. How can I help with order A1234?")
              .addUserMessage("I opened the box. Can I still return them?")
-             // Aplikasi mewajibkan pencarian pusat bantuan sebelum jawaban
-             // kebijakan apa pun. Menambahkan persyaratan sebagai pesan sistem membuat
-             // giliran sebelumnya tidak berubah.
+             // Aplikasi mewajibkan pencarian di pusat bantuan sebelum memberikan jawaban
+             // apa pun terkait kebijakan. Menambahkan persyaratan ini sebagai pesan sistem membuat
+             // giliran-giliran sebelumnya tetap tidak berubah.
              .addMessage(MessageParam.builder()
                  .role(MessageParam.Role.SYSTEM)
                  .content("Tool-use requirement for the current turn: the application requires a call to the search_help_center tool in your response to the user's latest message. Begin your response with the search_help_center tool call. Do not reply with text only.")
@@ -885,9 +885,9 @@ model = "claude-mythos-5-1"  # After
              ['role' => 'user', 'content' => 'My headphones from order A1234 arrived yesterday.'],
              ['role' => 'assistant', 'content' => 'Thanks for confirming. How can I help with order A1234?'],
              ['role' => 'user', 'content' => 'I opened the box. Can I still return them?'],
-             // Aplikasi mewajibkan pencarian pusat bantuan sebelum jawaban
-             // kebijakan apa pun. Menambahkan persyaratan sebagai pesan sistem
-             // membiarkan giliran sebelumnya tidak berubah.
+             // Aplikasi mewajibkan pencarian di pusat bantuan sebelum memberikan
+             // jawaban kebijakan apa pun. Menambahkan persyaratan ini sebagai pesan sistem membuat
+             // giliran-giliran sebelumnya tetap tidak berubah.
              ['role' => 'system', 'content' => 'Tool-use requirement for the current turn: the application requires a call to the search_help_center tool in your response to the user\'s latest message. Begin your response with the search_help_center tool call. Do not reply with text only.']
          ],
          model: 'claude-fable-5-1',
@@ -936,9 +936,9 @@ model = "claude-mythos-5-1"  # After
          { role: "user", content: "My headphones from order A1234 arrived yesterday." },
          { role: "assistant", content: "Thanks for confirming. How can I help with order A1234?" },
          { role: "user", content: "I opened the box. Can I still return them?" },
-         # Aplikasi mewajibkan pencarian pusat bantuan sebelum jawaban
-         # kebijakan apa pun. Menambahkan persyaratan sebagai pesan sistem membuat
-         # giliran sebelumnya tetap tidak berubah.
+         # Aplikasi mewajibkan pencarian di pusat bantuan sebelum memberi jawaban
+         # kebijakan apa pun. Menambahkan persyaratan ini sebagai pesan sistem membuat
+         # giliran-giliran sebelumnya tetap tidak berubah.
          {
            role: "system",
            content: "Tool-use requirement for the current turn: the application requires a call to the search_help_center tool in your response to the user's latest message. Begin your response with the search_help_center tool call. Do not reply with text only."
@@ -953,7 +953,7 @@ model = "claude-mythos-5-1"  # After
 
 2. **Blok thinking hanya dipertahankan untuk model yang menghasilkannya, atau model yang lebih baru:** Setiap blok `thinking` mencatat model mana yang menghasilkannya. Claude Fable 5.1 membaca bloknya sendiri dan blok dari Claude Mythos 5.1, Claude Opus 5, Claude Fable 5, Claude Mythos 5, dan model Claude sebelumnya. Percakapan yang berpindah ke `claude-fable-5-1` dari salah satu model tersebut mempertahankan penalaran sebelumnya. Kondisi ini bersifat satu arah: selain Claude Mythos 5.1, tidak satu pun dari model tersebut dapat membaca blok milik Claude Fable 5.1.
 
-   Percakapan yang berjalan di Claude Fable 5.1 dapat berakhir di model yang lebih lama melalui peralihan router, percobaan ulang di sisi klien, atau [fallback penolakan pengklasifikasi](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback), termasuk [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback). API menghapus blok yang tidak dapat dibaca model tersebut sebelum model melihatnya, permintaan berhasil, dan Anda tidak ditagih untuk token input yang dibuang. Model target merencanakan ulang tanpa penalaran tersebut, yang dapat meningkatkan biaya dan latensi pada giliran pertama setelah peralihan. Untuk melihat apa yang dibuang, kirim [header beta](https://platform.claude.com/docs/id/api/beta-headers) `thinking-binding-controls-2026-08-01`: respons kemudian membawa array `input_transformations` yang menyebutkan setiap blok yang dibuang dengan `reason: "model_binding_mismatch"`. Lihat [Thinking yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-for-model).
+   Percakapan yang berjalan di Claude Fable 5.1 dapat berakhir di model yang lebih lama melalui peralihan router, percobaan ulang di sisi klien, atau [fallback penolakan pengklasifikasi](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback), termasuk [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback). API menghapus blok yang tidak dapat dibaca model tersebut sebelum model melihatnya, permintaan berhasil, dan Anda tidak ditagih untuk token input yang dibuang. Model target merencanakan ulang tanpa penalaran tersebut, yang dapat meningkatkan biaya dan "latency" (latensi) pada giliran pertama setelah peralihan. Untuk melihat apa yang dibuang, kirim [beta header](https://platform.claude.com/docs/id/api/beta-headers) `thinking-binding-controls-2026-08-01`: respons kemudian membawa array `input_transformations` yang menyebutkan setiap blok yang dibuang dengan `reason: "model_binding_mismatch"`. Lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models).
 
 3. **Mengedit giliran sebelumnya membatalkan blok thinking:** Setiap blok `thinking` dari Claude Fable 5.1 hanya valid terhadap prompt `system`, `tools`, dan riwayat percakapan yang mendahuluinya. Jika Claude Code, claude.ai, [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), atau [Claude Agent SDK](https://code.claude.com/docs/id/agent-sdk/overview) mengelola riwayat percakapan Anda, prefiks tersebut sudah dijaga tetap utuh. Jika kode Anda membangun array `messages` sendiri, butir ini berlaku untuk Anda, dan [Thinking yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking) adalah panduan integrasi lengkapnya. Di mana pemeriksaan ini diberlakukan, permintaan yang mengirim kembali blok tersebut setelah salah satu dari hal-hal itu berubah akan ditolak dengan error 400:
 
@@ -1228,9 +1228,9 @@ model = "claude-mythos-5-1"  # After
    Pola yang membatalkan blok thinking berikutnya, dan apa yang harus dilakukan sebagai gantinya:
 
    * Mengedit, mengurutkan ulang, atau menghapus giliran sebelumnya. Ini termasuk menghapus hasil alat lama, memotong giliran dari tengah transkrip, dan compaction sisi klien yang mempertahankan giliran terbaru beserta blok thinking-nya secara verbatim di belakang ringkasan (termasuk compaction latar belakang yang menukar ringkasannya beberapa giliran kemudian). Sebagai gantinya, gunakan [compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) sisi server atau [context editing](https://platform.claude.com/docs/id/build-with-claude/context-editing) ([pembersihan hasil alat](https://platform.claude.com/docs/id/build-with-claude/context-editing#tool-result-clearing) untuk hasil alat lama), atau salah satu bentuk compaction sisi klien di [Pangkas konteks di server](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide#fable-5-1-trim-context).
-   * Menyisipkan konten yang tidak Anda simpan, misalnya pengingat per giliran yang ditambahkan setelah blok `tool_result` dan dihapus pada permintaan berikutnya. Sebagai gantinya, kirim pengingat sebagai [pesan sistem cakupan giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) dan biarkan dalam riwayat.
-   * Membangun ulang prompt `system` tingkat atas atau array `tools` di antara permintaan dalam percakapan yang sama, misalnya untuk memperbarui tanggal saat ini atau untuk menambah atau menghapus alat. Sebagai gantinya, tambahkan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) yang membawa instruksi baru ("The current date is 2026-09-14.") atau blok `tool_addition` dan `tool_removal`.
-   * URL gambar atau dokumen yang menyajikan byte berbeda pada permintaan berikutnya. Pemeriksaan mencakup byte-nya, bukan string URL, jadi signed URL yang berotasi untuk file yang sama tidak masalah. Untuk konten yang Anda referensikan lintas giliran, unggah sekali dengan [Files API](https://platform.claude.com/docs/id/build-with-claude/files) dan kirim `file_id`, atau kirim base64.
+   * Menyisipkan konten yang tidak Anda simpan, misalnya pengingat per giliran yang ditambahkan setelah blok `tool_result` dan dihapus pada permintaan berikutnya. Sebagai gantinya, kirim pengingat tersebut sebagai [pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) dan biarkan tetap ada dalam riwayat.
+   * Membangun ulang prompt `system` tingkat atas atau array `tools` di antara permintaan dalam percakapan yang sama, misalnya untuk memperbarui tanggal saat ini atau untuk menambah atau menghapus alat. Sebagai gantinya, tambahkan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) yang membawa instruksi baru ("Tanggal saat ini adalah 2026-09-14.") atau blok `tool_addition` dan `tool_removal`.
+   * URL gambar atau dokumen yang menyajikan byte berbeda pada permintaan berikutnya. Pemeriksaan mencakup byte, bukan string URL, sehingga signed URL yang berotasi untuk file yang sama tidak menjadi masalah. Untuk konten yang Anda referensikan lintas giliran, unggah sekali dengan [Files API](https://platform.claude.com/docs/id/build-with-claude/files) dan kirim `file_id`, atau kirim base64.
 
    Setiap pengganti juga menjaga giliran sebelumnya identik byte demi byte dan mempertahankan hit [cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) yang akan hilang jika riwayat, prompt `system`, atau array `tools` diedit.
 
@@ -1243,9 +1243,9 @@ model = "claude-mythos-5-1"  # After
 
    Untuk memeriksa integrasi yang sudah ada:
 
-   1. Tangkap body permintaan persis yang dikirimnya selama beberapa giliran normal, termasuk compaction atau perubahan alat jika produk Anda memilikinya. Untuk setiap pasangan permintaan berurutan, bandingkan prompt `system`, array `tools`, dan prefiks bersama dari `messages`. Semuanya harus identik byte demi byte hingga giliran yang baru ditambahkan.
-   2. Jalankan sesi multi-giliran normal terhadap `claude-fable-5-1` dengan header beta `thinking-binding-controls-2026-08-01` dan `prefix_mismatch_behavior: "drop_block"`, dan catat `input_transformations` pada setiap respons. Array kosong pada setiap giliran berarti riwayat utuh. Entri dengan `reason: "prefix_binding_mismatch"` berarti sesuatu sebelum blok di `path` berubah sejak permintaan sebelumnya. Entri dengan `reason: "model_binding_mismatch"` berarti percakapan berpindah model, yang bukan bug dalam kode Anda. Ini berfungsi dari akun mana pun, karena mengatur field tersebut mengaktifkan pemberlakuan untuk permintaan itu. Di CI, atur `"error"` sebagai gantinya agar pengeditan menggagalkan proses.
-   3. Pilih pengaturan produksi. Biarkan default `"error"` jika ketidakcocokan prefiks hanya dapat berarti bug dalam kode Anda, atau atur `"drop_block"` untuk membuang blok yang terpengaruh alih-alih gagal, dan pantau error 400 atau entri `input_transformations` dalam kedua kasus.
+   1. Tangkap body permintaan persis yang dikirimnya selama beberapa giliran normal, termasuk compaction atau perubahan alat jika produk Anda memilikinya. Untuk setiap pasangan permintaan berurutan, bandingkan prompt `system`, array `tools`, dan prefiks bersama dari `messages`. Semuanya harus identik byte demi byte hingga giliran yang baru ditambahkan. Pengecualian yang wajar adalah permintaan yang menukar masuk blok `compaction` bertanda tangan dari [compaction sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/compaction#compact-on-demand-with-the-compaction-parameter): blok tersebut menggantikan pesan yang diringkasnya di bagian depan `messages`, dan semua yang ada setelahnya harus tetap cocok.
+   2. Jalankan sesi multi-giliran normal terhadap `claude-fable-5-1` dengan beta header `thinking-binding-controls-2026-08-01` dan `prefix_mismatch_behavior: "drop_block"`, lalu catat `input_transformations` pada setiap respons. Array kosong pada setiap giliran berarti riwayat utuh. Entri dengan `reason: "prefix_binding_mismatch"` berarti ada sesuatu sebelum blok di `path` yang berubah sejak permintaan sebelumnya. Entri dengan `reason: "model_binding_mismatch"` berarti percakapan beralih model, yang bukan bug dalam kode Anda. Ini berfungsi dari akun mana pun, karena mengatur field tersebut mengikutsertakan permintaan dalam penegakan. Di CI, atur `"error"` sebagai gantinya agar edit menggagalkan run.
+   3. Pilih pengaturan produksi. Biarkan default `"error"` jika ketidakcocokan prefiks hanya bisa berarti bug dalam kode Anda, atau atur `"drop_block"` untuk membuang blok yang terpengaruh alih-alih gagal, dan pantau error 400 atau entri `input_transformations` dalam kedua kasus.
 
    Membuang blok thinking sekali, misalnya pada batas compaction, hanya berdampak kecil. Integrasi yang membatalkan thinking sebelumnya pada setiap permintaan memulai ulang cache prompt setiap kali, yang dapat meningkatkan biaya per tugas (lihat [Jaga riwayat percakapan tetap append-only](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#keep-the-conversation-history-append-only)).
 
@@ -1542,13 +1542,13 @@ Perubahan ini tidak wajib, tetapi masing-masing menurunkan biaya atau latensi at
 
    Nilai tersebut berlaku untuk giliran pengguna berikutnya dan setiap giliran setelahnya hingga pesan `role: "system"` lain mengubahnya. Hanya level bernama yang diterima (`low`, `medium`, `high`, `xhigh`, `max`), dan header beta `mid-conversation-output-config-2026-07-01` diperlukan. Lihat [Effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta).
 
-2. **Ubah instruksi dan alat dengan pesan sistem di tengah percakapan:** Untuk mengubah instruksi atau alat di tengah sesi, tambahkan [pesan `role: "system"`](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages), dengan blok `tool_addition` dan `tool_removal` untuk perubahan alat (header beta `mid-conversation-tool-changes-2026-07-01`, dengan set alat lengkap dideklarasikan dalam `tools` di awal sesi). Ini mempertahankan hit cache prompt pada giliran sebelumnya dan menjaga riwayat percakapan tetap append-only. Pesan yang sama menggantikan `tool_choice` paksa ketika alat tertentu harus dijalankan pada giliran saat ini (lihat [Perubahan yang merusak kompatibilitas](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide#fable-5-1-breaking-changes)). Untuk pengingat yang hanya berlaku untuk satu giliran, kirim sebagai pesan `role: "system"` terpisah yang hanya berisi teks dengan `clear_at: "next_user_message"` ([pesan sistem cakupan giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages), header beta `mid-conversation-system-clear-at-2026-08-21`) dan biarkan dalam riwayat: pesan tersebut berhenti dirender setelah pesan pengguna berikutnya dan tidak memakan token setelah dibersihkan. Pesan yang membawa blok `tool_addition` atau `tool_removal` tidak dapat dicakup per giliran.
+2. **Ubah instruksi dan alat dengan pesan sistem di tengah percakapan:** Untuk mengubah instruksi atau alat di tengah sesi, tambahkan [pesan `role: "system"`](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages), dengan blok `tool_addition` dan `tool_removal` untuk perubahan alat (beta header `mid-conversation-tool-changes-2026-07-01`, dengan set alat lengkap dideklarasikan dalam `tools` saat sesi dimulai). Ini mempertahankan hit cache prompt pada giliran sebelumnya dan menjaga riwayat percakapan tetap append-only. Pesan yang sama menggantikan `tool_choice` paksa ketika alat tertentu harus dijalankan pada giliran saat ini (lihat [Perubahan yang merusak kompatibilitas](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide#fable-5-1-breaking-changes)). Untuk pengingat yang hanya berlaku untuk satu giliran, kirim sebagai pesan `role: "system"` terpisah yang hanya berisi teks dengan `clear_at: "next_user_message"` ([pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages), beta header `mid-conversation-system-clear-at-2026-08-21`) dan biarkan tetap ada dalam riwayat: pesan tersebut berhenti dirender setelah pesan pengguna berikutnya dan tidak memakan token setelah dibersihkan. Pesan yang membawa blok `tool_addition` atau `tool_removal` tidak dapat dibuat berlingkup giliran.
 
 3. **Gunakan `fallbacks: "default"` untuk penolakan:** Tetap tangani `stop_reason: "refusal"` dan baca `stop_details.category` sebelum konten respons. Untuk menjalankan ulang permintaan yang ditolak pada model lain secara otomatis, atur `fallbacks: "default"` (beta, header `server-side-fallback-2026-07-01`). `"default"` mencoba ulang permintaan yang ditolak pada model yang direkomendasikan Anthropic untuk kategori tersebut. Target fallback yang diizinkan untuk Claude Fable 5.1 adalah Claude Opus 4.8 (`claude-opus-4-8`) dan Claude Opus 5 (`claude-opus-5`). Daftar `fallbacks` eksplisit dapat menyebutkan salah satunya. Model fallback tidak menerima blok thinking milik Claude Fable 5.1. Jika Anda membangun percobaan ulang sendiri, [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) berlaku dengan ketentuan yang sama seperti Claude Fable 5. Lihat [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback).
 
 4. **Mulai dari effort `high` dan lakukan sweep:** Default [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort) adalah `high`, dan kelima level didukung. Pertahankan panduan Claude Fable 5: `high` untuk sebagian besar pekerjaan, dan `medium` sebagai kontrol biaya yang layak diuji. Peningkatan Claude Fable 5.1 dibandingkan Claude Fable 5 paling besar pada `xhigh` dan `max`, tetapi level tersebut juga menambah waktu berpikir dan waktu hingga respons pertama, jadi naikkan ke level tersebut untuk tugas yang paling sensitif terhadap kemampuan dan di mana eval Anda menunjukkan peningkatan. Jalankan sweep baru pada eval Anda sendiri alih-alih membawa pengaturan yang disetel untuk Claude Fable 5. Lihat [Level effort yang direkomendasikan untuk Claude Fable 5.1](https://platform.claude.com/docs/id/build-with-claude/effort#recommended-effort-levels-for-claude-fable-5-1).
 
-5. **Pangkas konteks di server, atau lakukan compaction dalam bentuk yang tidak membawa thinking usang:** Jika kode Anda memotong atau meringkas giliran lama di klien, perbaikan paling sederhana adalah memindahkan pekerjaan itu ke [compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) sisi server atau [context editing](https://platform.claude.com/docs/id/build-with-claude/context-editing). Keduanya tidak dihitung sebagai pengeditan, karena [pemeriksaan riwayat](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide#fable-5-1-preserved-thinking) membandingkan percakapan sebagaimana Anda mengirimnya, sehingga tidak ada yang dihapusnya membatalkan blok thinking berikutnya, dan [parameter `instructions`](https://platform.claude.com/docs/id/build-with-claude/compaction#custom-summarization-instructions) pada compaction menerima prompt peringkasan Anda sendiri. Jika Anda mempertahankan compaction di klien, pilih salah satu dari tiga bentuk:
+5. **Pangkas konteks di server, atau lakukan compaction dalam bentuk yang tidak membawa thinking usang:** Jika kode Anda memotong atau meringkas giliran lama di klien, perbaikan paling sederhana adalah memindahkan pekerjaan tersebut ke [compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) sisi server atau [context editing](https://platform.claude.com/docs/id/build-with-claude/context-editing). Keduanya tidak dihitung sebagai edit, karena [pemeriksaan riwayat](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide#fable-5-1-preserved-thinking) membandingkan percakapan seperti yang Anda kirim, sehingga apa pun yang dihapusnya tidak membatalkan validitas blok thinking berikutnya, dan [parameter `instructions`](https://platform.claude.com/docs/id/build-with-claude/compaction#custom-summarization-instructions) milik compaction menerima prompt peringkasan Anda sendiri. Jika Anda mempertahankan giliran terbaru secara verbatim di belakang ringkasan, atau meringkas di latar belakang sementara percakapan berlanjut, gunakan [compaction sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/compaction#compact-on-demand-with-the-compaction-parameter) (beta header `compact-2026-09-04`, di Claude API) alih-alih ringkasan yang ditulis klien. API menulis blok ringkasan bertanda tangan yang Anda tempatkan sebagai pengganti pesan yang diringkasnya. Blok thinking dalam giliran yang Anda pertahankan dapat tetap valid, dengan kondisi yang tercantum di bagian tersebut. Jika Anda tetap melakukan compaction di klien, pilih salah satu dari tiga bentuk berikut:
 
    * **Compaction sederhana (direkomendasikan):** ganti seluruh riwayat dengan satu pesan ringkasan ditambah giliran pengguna baru dan jangan putar ulang apa pun lainnya. Tidak ada blok thinking yang dibawa, sehingga tidak ada yang gagal. Model Claude dilatih pada tugas jangka panjang dengan skema ini, dan kinerjanya sebanding dengan skema yang lebih rumit untuk sebagian besar beban kerja.
    * **Compaction keep-tail:** jika Anda mempertahankan giliran terbaru secara verbatim di belakang ringkasan, hapus blok `thinking` dan `redacted_thinking` dari giliran tersebut (teks dan pemanggilan alat boleh tetap ada), atau atur `prefix_mismatch_behavior: "drop_block"`. Thinking-nya dihasilkan terhadap riwayat lengkap dan akan gagal di belakang ringkasan jika tidak.
@@ -1558,17 +1558,17 @@ Perubahan ini tidak wajib, tetapi masing-masing menurunkan biaya atau latensi at
 
 ### Daftar periksa migrasi
 
-* Perbarui nama model dari `claude-fable-5` menjadi `claude-fable-5-1` (atau `claude-mythos-5` menjadi `claude-mythos-5-1`).
-* Ganti `tool_choice` paksa (`{type: "any"}` atau `{type: "tool", ...}`). Ini mengembalikan error 400. Gunakan `{type: "auto"}` ditambah instruksi eksplisit dan alat `strict: true`, atau output JSON. Letakkan instruksi di giliran `user`, atau di pesan `role: "system"` di tengah percakapan ketika aplikasi Anda mengharuskan pemanggilan tersebut.
-* Terus kirimkan kembali blok `thinking` tanpa perubahan pada setiap giliran, termasuk yang kosong. Claude Fable 5.1 membaca blok dari Claude Opus 5, Claude Fable 5, Claude Mythos 5, dan model sebelumnya. Memindahkan percakapan dari Claude Fable 5.1 ke model sebelumnya akan membuang bloknya (Claude Mythos 5.1 membacanya).
-* Jika kode Anda membangun array `messages` sendiri, periksa apakah kode tersebut [mengedit giliran sebelumnya](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide#fable-5-1-preserved-thinking): jalankan sesi dengan header beta `thinking-binding-controls-2026-08-01` dan `prefix_mismatch_behavior: "drop_block"`, catat `input_transformations`, dan perbaiki setiap `prefix_binding_mismatch`. Entri `model_binding_mismatch` setelah pergantian model adalah hal yang diharapkan.
-* Jaga riwayat percakapan agar hanya-tambah (append-only): bekukan `system` dan `tools` pada awal sesi dan pindahkan perubahan di tengah sesi ke pesan `role: "system"` serta blok `tool_addition` / `tool_removal`, kirim pengingat per giliran sebagai pesan sistem lingkup-giliran yang tidak pernah Anda hapus, pangkas konteks di sisi server atau hapus blok thinking dari giliran mana pun yang Anda bawa melintasi ringkasan sisi klien, dan referensikan file lintas giliran dengan `file_id`.
-* Pilih `prefix_mismatch_behavior` produksi (`"error"` secara default, atau `"drop_block"`) dan pantau. Jika Anda memelihara alat yang dijalankan orang lain dengan kunci API mereka sendiri, uji dengan field tersebut disetel: akun baru diberlakukan secara default meskipun akun Anda tidak.
-* Tinjau loop agen untuk perilaku satu-pemanggilan-alat-per-giliran dan tambahkan instruksi batching.
-* Jika antarmuka Anda merender teks progres di antara pemanggilan alat, setel `thinking.display` ke `"updates"` (beta) atau `"summarized"` dan minta pembaruan melalui prompt.
-* Jika Anda mengubah effort di antara permintaan, pindahkan perubahan tersebut ke pesan `role: "system"` [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta) untuk mempertahankan cache hit.
+* Perbarui nama model dari `claude-fable-5` ke `claude-fable-5-1` (atau `claude-mythos-5` ke `claude-mythos-5-1`).
+* Ganti `tool_choice` paksa (`{type: "any"}` atau `{type: "tool", ...}`). Ini mengembalikan error 400. Gunakan `{type: "auto"}` ditambah instruksi eksplisit dan alat `strict: true`, atau output JSON. Letakkan instruksi di giliran `user`, atau dalam pesan `role: "system"` di tengah percakapan ketika aplikasi Anda memerlukan panggilan tersebut.
+* Tetap kirim kembali blok `thinking` tanpa perubahan pada setiap giliran, termasuk yang kosong. Claude Fable 5.1 membaca blok dari Claude Opus 5, Claude Fable 5, Claude Mythos 5, dan model sebelumnya. Memindahkan percakapan dari Claude Fable 5.1 ke model sebelumnya akan membuang bloknya (Claude Mythos 5.1 dapat membacanya).
+* Jika kode Anda membangun array `messages` sendiri, periksa apakah kode tersebut [mengedit giliran sebelumnya](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide#fable-5-1-preserved-thinking): jalankan sesi dengan beta header `thinking-binding-controls-2026-08-01` dan `prefix_mismatch_behavior: "drop_block"`, catat `input_transformations`, dan perbaiki setiap `prefix_binding_mismatch`. Entri `model_binding_mismatch` setelah peralihan model memang wajar.
+* Jaga riwayat percakapan tetap append-only: bekukan `system` dan `tools` saat sesi dimulai dan pindahkan perubahan di tengah sesi ke pesan `role: "system"` serta blok `tool_addition` / `tool_removal`, kirim pengingat per giliran sebagai pesan sistem berlingkup giliran yang tidak pernah Anda hapus, pangkas konteks di sisi server atau hapus blok thinking dari giliran mana pun yang Anda bawa melewati ringkasan sisi klien, dan referensikan file lintas giliran dengan `file_id`.
+* Pilih `prefix_mismatch_behavior` untuk produksi (`"error"` secara default, atau `"drop_block"`) dan pantau. Jika Anda memelihara alat yang dijalankan orang lain dengan kunci API mereka sendiri, uji dengan field tersebut diatur: akun baru diberlakukan secara default meskipun akun Anda tidak.
+* Tinjau agent loop untuk perilaku satu-panggilan-alat-per-giliran dan tambahkan instruksi batching.
+* Jika antarmuka Anda menampilkan teks progres di antara panggilan alat, atur `thinking.display` ke `"updates"` (beta) atau `"summarized"` dan minta pembaruan dalam prompt.
+* Jika Anda mengubah effort di antara permintaan, pindahkan perubahan tersebut ke pesan `role: "system"` [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta) untuk mempertahankan hit cache.
 * Tangani `stop_reason: "refusal"` dan baca `stop_details.category`. Pertimbangkan `fallbacks: "default"` (beta).
-* Evaluasi ulang `effort` dengan sapuan baru, dimulai dari `high`, dan tetapkan ulang baseline biaya dan latensi pada beban kerja Anda sendiri. Jumlah token kurang lebih tidak berubah. Pembacaan cache prompt berbiaya seperempat dari tarif Claude Fable 5.
+* Evaluasi ulang `effort` dengan sweep baru, dimulai dari `high`, dan tetapkan ulang baseline biaya dan latensi pada beban kerja Anda sendiri. Tokenizer tidak berubah. Pembacaan cache prompt seharga seperempat dari tarif Claude Fable 5.
 
 ## Migrasi ke Claude Fable 5.1 dari Claude Opus 5
 
@@ -1602,13 +1602,13 @@ model = "claude-mythos-5-1"  # After
 
 ### Daftar periksa migrasi
 
-* Jika organisasi Anda memiliki pengaturan zero data retention (ZDR), konfirmasikan kelayakan terlebih dahulu: model-model ini tidak tersedia di bawah ZDR kecuali diizinkan secara tegas oleh Anthropic. Lihat [Persyaratan retensi data khusus model](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+* Jika organisasi Anda memiliki pengaturan "zero data retention" (retensi data nol), atau ZDR, pastikan kelayakan terlebih dahulu: model-model ini tidak tersedia di bawah ZDR kecuali diizinkan secara tegas oleh Anthropic. Lihat [Persyaratan retensi data khusus model](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
 * Perbarui nama model dari `claude-opus-5` menjadi `claude-fable-5-1` (atau `claude-mythos-5-1`).
-* Hapus konfigurasi `thinking: {type: "disabled"}` apa pun: ini mengembalikan error 400 pada `claude-fable-5-1`. Kendalikan pengeluaran token dengan level [effort](https://platform.claude.com/docs/id/build-with-claude/effort) yang lebih rendah, dan tinjau kembali `max_tokens`.
-* Ganti `tool_choice` paksa (`any` atau `tool`) dengan `auto` ditambah instruksi eksplisit (giliran `user` atau pesan sistem di tengah percakapan) dan alat `strict: true`, atau dengan output JSON.
-* Jika antarmuka Anda merender teks di antara pemanggilan alat, setel `display: "updates"` (beta) atau `"summarized"` dan render blok `thinking` yang tidak kosong.
-* Terapkan item thinking yang dipertahankan, pengeditan riwayat, perilaku, effort, dan fallback dari [daftar periksa Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide#migration-checklist-fable-5-1-from-fable-5).
-* Tetapkan ulang baseline biaya pada beban kerja Anda sendiri. Jumlah token kurang lebih tidak berubah. Harga per token berbeda.
+* Hapus konfigurasi `thinking: {type: "disabled"}` apa pun karena konfigurasi tersebut mengembalikan error 400 pada `claude-fable-5-1`. Kendalikan penggunaan token dengan level [effort](https://platform.claude.com/docs/id/build-with-claude/effort) yang lebih rendah, dan tinjau kembali `max_tokens`.
+* Ganti `tool_choice` yang dipaksakan (`any` atau `tool`) dengan `auto` ditambah instruksi eksplisit (giliran `user` atau pesan sistem di tengah percakapan) dan alat dengan `strict: true`, atau dengan output JSON.
+* Jika antarmuka Anda menampilkan teks di antara pemanggilan alat, atur `display: "updates"` (beta) atau `"summarized"` dan tampilkan blok `thinking` yang tidak kosong.
+* Terapkan item preserved-thinking, pengeditan riwayat, perilaku, effort, dan fallback dari [daftar periksa Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide#migration-checklist-fable-5-1-from-fable-5).
+* Tetapkan ulang baseline biaya pada beban kerja Anda sendiri. Tokenizer tidak berubah. Harga per token berbeda.
 
 ## Migrasi ke Claude Fable 5.1 dari Claude Opus 4.8 atau sebelumnya
 

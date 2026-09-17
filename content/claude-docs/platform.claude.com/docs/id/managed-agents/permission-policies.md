@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/permission-policies
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 2d81a428ab3361bcce3001fd271d222d0de889b16b2be7ee1ab0b09ca1ffc7d7
+fetched_at: 2026-09-17T02:21:00.513769Z
+sha256: 5422a2c5be485a2b8d5530cab29ae3bae7070797d7895f181f920ee37d925978
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/managed-agents/permission-policies
 description: Kontrol kapan alat agen dan MCP dieksekusi.
 ---
 
-"Permission policies" (kebijakan izin) mengontrol apakah alat yang dieksekusi server (toolset agen bawaan dan toolset MCP) berjalan secara otomatis atau menunggu persetujuan Anda. Alat kustom dieksekusi oleh aplikasi Anda dan dikontrol oleh Anda, sehingga tidak diatur oleh kebijakan izin.
+"Permission policies" (kebijakan izin) mengontrol apakah alat yang dieksekusi server, yaitu "toolset" (kumpulan alat) agen bawaan dan toolset MCP, berjalan secara otomatis, menunggu persetujuan Anda, atau setiap panggilannya dievaluasi oleh server. "Custom tools" (alat kustom) dieksekusi dan dikendalikan oleh aplikasi Anda sendiri, sehingga tidak diatur oleh kebijakan izin.
 
 <Note>
   Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
@@ -19,10 +19,11 @@ description: Kontrol kapan alat agen dan MCP dieksekusi.
 
 ## Jenis kebijakan izin
 
-| Kebijakan      | Perilaku                                                                                                                                                                                                                           |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `always_allow` | Alat dieksekusi secara otomatis tanpa konfirmasi.                                                                                                                                                                                  |
-| `always_ask`   | Sesi dijeda dan menunggu persetujuan Anda sebelum mengeksekusi. Lihat [Merespons permintaan konfirmasi](https://platform.claude.com/docs/id/managed-agents/permission-policies#respond-to-confirmation-requests) untuk alur event. |
+| Kebijakan      | Perilaku                                                                                                                                                                                                                                                                                                    |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `always_allow` | Alat dieksekusi secara otomatis tanpa konfirmasi.                                                                                                                                                                                                                                                           |
+| `always_ask`   | Sesi dijeda dan menunggu persetujuan Anda sebelum alat dieksekusi. Lihat [Menanggapi permintaan konfirmasi](https://platform.claude.com/docs/id/managed-agents/permission-policies#respond-to-confirmation-requests) untuk alur event-nya.                                                                  |
+| `auto`         | Server mengevaluasi setiap panggilan, lalu menjalankannya, menolaknya, atau menjeda untuk meminta persetujuan Anda. Lihat [Biarkan server mengevaluasi setiap panggilan dengan `auto`](https://platform.claude.com/docs/id/managed-agents/permission-policies#let-the-server-evaluate-each-call-with-auto). |
 
 Setiap jenis toolset memiliki default-nya sendiri: toolset agen default-nya `always_allow`, dan toolset MCP default-nya `always_ask`.
 
@@ -59,11 +60,12 @@ Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_t
 
   <MultiFileExample language="cli" label="CLI">
     ```bash CLI
-    ant beta:agents create < agent.yaml
+    ant apply agent.md
     ```
 
-    <File filename="agent.yaml">
-      ```yaml
+    <File filename="agent.md">
+      ```markdown
+      ---
       name: Coding Assistant
       model: claude-opus-5
       tools:
@@ -71,6 +73,7 @@ Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_t
           default_config:
             permission_policy:
               type: always_ask
+      ---
       ```
     </File>
   </MultiFileExample>
@@ -249,11 +252,12 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
 
   <MultiFileExample language="cli" label="CLI">
     ```bash CLI
-    ant beta:agents create < agent.yaml
+    ant apply agent.md
     ```
 
-    <File filename="agent.yaml">
-      ```yaml
+    <File filename="agent.md">
+      ```markdown
+      ---
       name: Dev Assistant
       model: claude-opus-5
       mcp_servers:
@@ -267,6 +271,7 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
           default_config:
             permission_policy:
               type: always_allow
+      ---
       ```
     </File>
   </MultiFileExample>
@@ -667,14 +672,413 @@ Gunakan array `configs` untuk mengganti default untuk alat individual. Nilai `na
 
 Teruskan konfigurasi `tools` ini dalam permintaan pembuatan agen (tab CLI menampilkan perintah lengkapnya). Toolset MCP mendukung penggantian per alat yang sama, dengan `name` diatur ke nama alat yang dilaporkan oleh server MCP. Lihat [Mengonfigurasi alat MCP mana yang tersedia](https://platform.claude.com/docs/id/managed-agents/mcp-connector#configure-which-mcp-tools-are-available).
 
+## Biarkan server mengevaluasi setiap panggilan dengan `auto`
+
+Dengan kebijakan izin `auto`, server mengevaluasi setiap panggilan sebelum dijalankan. Karena evaluasi mempertimbangkan alat, input panggilan, dan konten sesi hingga titik tersebut, server dapat memperlakukan dua panggilan ke alat yang sama secara berbeda. Setiap panggilan memiliki salah satu dari tiga hasil:
+
+* **Panggilan dijalankan.** Ketika server menentukan bahwa panggilan tersebut aman, alat dijalankan seperti di bawah `always_allow`.
+* **Panggilan ditolak.** Ketika server mengevaluasi panggilan sebagai berisiko tinggi, alat tidak dijalankan. Agen menerima hasil alat berupa error dengan konten `Permission to use {tool_name} has been denied.` dan `is_error: true`. Sesi tetap berjalan, dan klien Anda tidak dapat membatalkan penolakan tersebut.
+* **Panggilan dijeda untuk meminta persetujuan Anda.** Ketika server tidak mencapai keputusan, sesi dijeda seperti di bawah `always_ask`. Lihat [Menanggapi permintaan konfirmasi](https://platform.claude.com/docs/id/managed-agents/permission-policies#respond-to-confirmation-requests).
+
+Untuk mengaktifkan `auto`, atur `permission_policy` ke `{"type": "auto"}`. Pengaturan ini ditempatkan di dua tempat yang sama seperti kebijakan lainnya: [`default_config`](https://platform.claude.com/docs/id/managed-agents/permission-policies#set-a-policy-for-a-toolset) milik toolset untuk seluruh toolset, atau [entri `configs`](https://platform.claude.com/docs/id/managed-agents/permission-policies#override-an-individual-tool-policy) untuk satu alat. Toolset agen dan toolset MCP sama-sama menerimanya. Tidak ada toolset yang menggunakan `auto` secara default.
+
+Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk toolset MCP `github`, serta menimpa `bash` menjadi `always_ask`:
+
+<CodeGroup defaultLanguage="CLI">
+  ```bash cURL
+  agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "content-type: application/json" \
+    -d '{
+      "name": "Ops Agent",
+      "model": "claude-opus-5",
+      "mcp_servers": [
+        {"type": "url", "name": "github", "url": "https://mcp.example.com/github"}
+      ],
+      "tools": [
+        {
+          "type": "agent_toolset_20260401",
+          "default_config": {
+            "permission_policy": {"type": "auto"}
+          },
+          "configs": [
+            {"name": "bash", "permission_policy": {"type": "always_ask"}}
+          ]
+        },
+        {
+          "type": "mcp_toolset",
+          "mcp_server_name": "github",
+          "default_config": {
+            "permission_policy": {"type": "auto"}
+          }
+        }
+      ]
+    }')
+  ```
+
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant apply agent.md
+    ```
+
+    <File filename="agent.md">
+      ```markdown
+      ---
+      name: Ops Agent
+      model: claude-opus-5
+      mcp_servers:
+        - type: url
+          name: github
+          url: https://mcp.example.com/github
+      tools:
+        - type: agent_toolset_20260401
+          default_config:
+            permission_policy:
+              type: auto
+          configs:
+            - name: bash
+              permission_policy:
+                type: always_ask
+        - type: mcp_toolset
+          mcp_server_name: github
+          default_config:
+            permission_policy:
+              type: auto
+      ---
+      ```
+    </File>
+  </MultiFileExample>
+
+  ```python Python
+  agent = client.beta.agents.create(
+      name="Ops Agent",
+      model="claude-opus-5",
+      mcp_servers=[
+          {"type": "url", "name": "github", "url": "https://mcp.example.com/github"},
+      ],
+      tools=[
+          {
+              "type": "agent_toolset_20260401",
+              "default_config": {
+                  "permission_policy": {"type": "auto"},
+              },
+              "configs": [
+                  {"name": "bash", "permission_policy": {"type": "always_ask"}},
+              ],
+          },
+          {
+              "type": "mcp_toolset",
+              "mcp_server_name": "github",
+              "default_config": {
+                  "permission_policy": {"type": "auto"},
+              },
+          },
+      ],
+  )
+  ```
+
+  ```typescript TypeScript
+  const agent = await client.beta.agents.create({
+    name: "Ops Agent",
+    model: "claude-opus-5",
+    mcp_servers: [{ type: "url", name: "github", url: "https://mcp.example.com/github" }],
+    tools: [
+      {
+        type: "agent_toolset_20260401",
+        default_config: {
+          permission_policy: { type: "auto" }
+        },
+        configs: [{ name: "bash", permission_policy: { type: "always_ask" } }]
+      },
+      {
+        type: "mcp_toolset",
+        mcp_server_name: "github",
+        default_config: {
+          permission_policy: { type: "auto" }
+        }
+      }
+    ]
+  });
+  ```
+
+  ```csharp C#
+  using Anthropic.Models.Beta.Agents;
+
+  var agent = await client.Beta.Agents.Create(new()
+  {
+      Name = "Ops Agent",
+      Model = BetaManagedAgentsModel.ClaudeOpus5,
+      McpServers =
+      [
+          new()
+          {
+              Type = BetaManagedAgentsUrlMcpServerParamsType.Url,
+              Name = "github",
+              Url = "https://mcp.example.com/github",
+          },
+      ],
+      Tools =
+      [
+          new BetaManagedAgentsAgentToolset20260401Params
+          {
+              Type = BetaManagedAgentsAgentToolset20260401ParamsType.AgentToolset20260401,
+              DefaultConfig = new()
+              {
+                  PermissionPolicy = new BetaManagedAgentsAutoPolicy(),
+              },
+              Configs =
+              [
+                  new BetaManagedAgentsBashToolConfigParams
+                  {
+                      PermissionPolicy = new BetaManagedAgentsAlwaysAskPolicy { Type = "always_ask" },
+                  },
+              ],
+          },
+          new BetaManagedAgentsMcpToolsetParams
+          {
+              Type = BetaManagedAgentsMcpToolsetParamsType.McpToolset,
+              McpServerName = "github",
+              DefaultConfig = new()
+              {
+                  PermissionPolicy = new BetaManagedAgentsAutoPolicy(),
+              },
+          },
+      ],
+  });
+  ```
+
+  ```go Go
+  agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
+  	Name: "Ops Agent",
+  	Model: anthropic.BetaManagedAgentsModelConfigParams{
+  		ID: "claude-opus-5",
+  	},
+  	MCPServers: []anthropic.BetaManagedAgentsURLMCPServerParams{{
+  		Type: anthropic.BetaManagedAgentsURLMCPServerParamsTypeURL,
+  		Name: "github",
+  		URL:  "https://mcp.example.com/github",
+  	}},
+  	Tools: []anthropic.BetaAgentNewParamsToolUnion{
+  		{
+  			OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
+  				Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
+  				DefaultConfig: anthropic.BetaManagedAgentsAgentToolsetDefaultConfigParams{
+  					PermissionPolicy: anthropic.BetaManagedAgentsAgentToolsetDefaultConfigParamsPermissionPolicyUnion{
+  						OfAuto: &anthropic.BetaManagedAgentsAutoPolicyParam{},
+  					},
+  				},
+  				Configs: []anthropic.BetaManagedAgentsAgentToolConfigParamsUnion{{
+  					OfBash: &anthropic.BetaManagedAgentsBashToolConfigParams{
+  						PermissionPolicy: anthropic.BetaManagedAgentsBashToolConfigParamsPermissionPolicyUnion{
+  							OfAlwaysAsk: &anthropic.BetaManagedAgentsAlwaysAskPolicyParam{
+  								Type: anthropic.BetaManagedAgentsAlwaysAskPolicyTypeAlwaysAsk,
+  							},
+  						},
+  					},
+  				}},
+  			},
+  		},
+  		{
+  			OfMCPToolset: &anthropic.BetaManagedAgentsMCPToolsetParams{
+  				Type:          anthropic.BetaManagedAgentsMCPToolsetParamsTypeMCPToolset,
+  				MCPServerName: "github",
+  				DefaultConfig: anthropic.BetaManagedAgentsMCPToolsetDefaultConfigParams{
+  					PermissionPolicy: anthropic.BetaManagedAgentsMCPToolsetDefaultConfigParamsPermissionPolicyUnion{
+  						OfAuto: &anthropic.BetaManagedAgentsAutoPolicyParam{},
+  					},
+  				},
+  			},
+  		},
+  	},
+  })
+  if err != nil {
+  	panic(err)
+  }
+  _ = agent
+  ```
+
+  ```java Java
+  import com.anthropic.models.beta.agents.*;
+
+  var agent = client.beta().agents().create(
+      AgentCreateParams.builder()
+          .name("Ops Agent")
+          .model(BetaManagedAgentsModel.CLAUDE_OPUS_5)
+          .addMcpServer(
+              BetaManagedAgentsUrlMcpServerParams.builder()
+                  .type(BetaManagedAgentsUrlMcpServerParams.Type.URL)
+                  .name("github")
+                  .url("https://mcp.example.com/github")
+                  .build()
+          )
+          .addTool(
+              BetaManagedAgentsAgentToolset20260401Params.builder()
+                  .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
+                  .defaultConfig(
+                      BetaManagedAgentsAgentToolsetDefaultConfigParams.builder()
+                          .permissionPolicy(BetaManagedAgentsAutoPolicy.builder().build())
+                          .build()
+                  )
+                  .addConfig(
+                      BetaManagedAgentsBashToolConfigParams.builder()
+                          .permissionPolicy(
+                              BetaManagedAgentsAlwaysAskPolicy.builder()
+                                  .type(BetaManagedAgentsAlwaysAskPolicy.Type.ALWAYS_ASK)
+                                  .build()
+                          )
+                          .build()
+                  )
+                  .build()
+          )
+          .addTool(
+              BetaManagedAgentsMcpToolsetParams.builder()
+                  .type(BetaManagedAgentsMcpToolsetParams.Type.MCP_TOOLSET)
+                  .mcpServerName("github")
+                  .defaultConfig(
+                      BetaManagedAgentsMcpToolsetDefaultConfigParams.builder()
+                          .permissionPolicy(BetaManagedAgentsAutoPolicy.builder().build())
+                          .build()
+                  )
+                  .build()
+          )
+          .build()
+  );
+  ```
+
+  ```php PHP
+  use Anthropic\Beta\Agents\BetaManagedAgentsAgentToolset20260401Params;
+  use Anthropic\Beta\Agents\BetaManagedAgentsAgentToolsetDefaultConfigParams;
+  use Anthropic\Beta\Agents\BetaManagedAgentsAlwaysAskPolicy;
+  use Anthropic\Beta\Agents\BetaManagedAgentsAutoPolicy;
+  use Anthropic\Beta\Agents\BetaManagedAgentsBashToolConfigParams;
+  use Anthropic\Beta\Agents\BetaManagedAgentsMCPToolsetDefaultConfigParams;
+  use Anthropic\Beta\Agents\BetaManagedAgentsMCPToolsetParams;
+  use Anthropic\Beta\Agents\BetaManagedAgentsURLMCPServerParams;
+
+  $agent = $client->beta->agents->create(
+      name: 'Ops Agent',
+      model: 'claude-opus-5',
+      mcpServers: [
+          BetaManagedAgentsURLMCPServerParams::with(
+              type: 'url',
+              name: 'github',
+              url: 'https://mcp.example.com/github',
+          ),
+      ],
+      tools: [
+          BetaManagedAgentsAgentToolset20260401Params::with(
+              type: 'agent_toolset_20260401',
+              defaultConfig: BetaManagedAgentsAgentToolsetDefaultConfigParams::with(
+                  permissionPolicy: BetaManagedAgentsAutoPolicy::with(),
+              ),
+              configs: [
+                  BetaManagedAgentsBashToolConfigParams::with(
+                      permissionPolicy: BetaManagedAgentsAlwaysAskPolicy::with(type: 'always_ask'),
+                  ),
+              ],
+          ),
+          BetaManagedAgentsMCPToolsetParams::with(
+              type: 'mcp_toolset',
+              mcpServerName: 'github',
+              defaultConfig: BetaManagedAgentsMCPToolsetDefaultConfigParams::with(
+                  permissionPolicy: BetaManagedAgentsAutoPolicy::with(),
+              ),
+          ),
+      ],
+  );
+  ```
+
+  ```ruby Ruby
+  agent = client.beta.agents.create(
+    name: "Ops Agent",
+    model: "claude-opus-5",
+    mcp_servers: [
+      {type: "url", name: "github", url: "https://mcp.example.com/github"}
+    ],
+    tools: [
+      {
+        type: "agent_toolset_20260401",
+        default_config: {
+          permission_policy: {type: "auto"}
+        },
+        configs: [
+          {name: "bash", permission_policy: {type: "always_ask"}}
+        ]
+      },
+      {
+        type: "mcp_toolset",
+        mcp_server_name: "github",
+        default_config: {
+          permission_policy: {type: "auto"}
+        }
+      }
+    ]
+  )
+  ```
+</CodeGroup>
+
+Apa yang Anda kirim dalam event `user.message` dihitung sebagai niat Anda, dan hal itu dapat membuat server mengizinkan panggilan yang sebaliknya akan ditolak. Server tidak membaca niat dari hasil alat, halaman web yang diambil, respons server MCP, atau pesan antar [thread sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#tool-permissions-and-custom-tools). Server menilai konten tersebut tetapi tidak menerima instruksi darinya. Server mengevaluasi beberapa panggilan sebagai berisiko tinggi terlepas dari siapa yang memintanya. Jika Anda meneruskan input pengguna akhir yang tidak tepercaya dalam event `user.message`, server juga membaca input tersebut sebagai niat Anda, dan input itu dapat membuat suatu panggilan diizinkan. Konfigurasikan `always_ask` pada alat yang tidak akan Anda biarkan dijalankan oleh pengguna akhir tersebut tanpa peninjauan.
+
+<Warning>
+  `auto` bukanlah titik pemeriksaan oleh manusia. Jika server menentukan bahwa suatu panggilan aman, panggilan tersebut dijalankan sebelum ada yang melihatnya, dan efeknya mungkin tidak dapat dibatalkan. Jika seseorang harus meninjau panggilan suatu alat sebelum dijalankan, konfigurasikan `always_ask` pada alat tersebut.
+</Warning>
+
+## Melihat bagaimana setiap panggilan dievaluasi
+
+Di bawah kebijakan izin apa pun, setiap event `agent.tool_use` dan `agent.mcp_tool_use` membawa `evaluated_permission`, yaitu hasil pemeriksaan izin panggilan tersebut: `"allow"`, `"ask"`, atau `"deny"`. Sebagian besar event juga membawa objek `evaluation` yang `type`-nya menyebutkan kebijakan yang menghasilkan hasil tersebut. Di bawah `auto`, objek tersebut juga mencatat keputusan server, ditambah `reason_code` ketika hasilnya adalah `ask` atau `deny`.
+
+Misalnya, ketika `bash` berada di bawah `auto` dan server mengevaluasi suatu panggilan sebagai berisiko tinggi, panggilan yang ditolak muncul di aliran event sebagai berikut:
+
+```json
+{
+  "type": "agent.tool_use",
+  "id": "sevt_01pqr...",
+  "name": "bash",
+  "input": {
+    "command": "rm -rf /workspace/reports"
+  },
+  "evaluated_permission": "deny",
+  "evaluation": {
+    "type": "auto",
+    "evaluated_permission": {
+      "type": "deny",
+      "reason_code": "high_risk"
+    }
+  },
+  "processed_at": "2026-03-25T14:05:12Z"
+}
+```
+
+Objek `evaluation` mengambil salah satu bentuk dalam tabel berikut.
+
+| `evaluation`                                                                                | `evaluated_permission` tingkat atas | Arti                                                                                                        |
+| ------------------------------------------------------------------------------------------- | ----------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `{"type": "always_allow"}`                                                                  | `"allow"`                           | Kebijakan yang berlaku adalah `always_allow`, sehingga panggilan dijalankan.                                |
+| `{"type": "always_ask"}`                                                                    | `"ask"`                             | Kebijakan yang berlaku adalah `always_ask`, sehingga panggilan dijeda untuk meminta persetujuan Anda.       |
+| `{"type": "auto", "evaluated_permission": {"type": "allow"}}`                               | `"allow"`                           | Di bawah `auto`, server menentukan bahwa panggilan tersebut aman, dan panggilan dijalankan.                 |
+| `{"type": "auto", "evaluated_permission": {"type": "ask", "reason_code": "indeterminate"}}` | `"ask"`                             | Di bawah `auto`, server tidak mencapai keputusan, sehingga panggilan dijeda untuk meminta persetujuan Anda. |
+| `{"type": "auto", "evaluated_permission": {"type": "deny", "reason_code": "high_risk"}}`    | `"deny"`                            | Di bawah `auto`, server mengevaluasi panggilan sebagai berisiko tinggi dan menolaknya.                      |
+
+Ketika `evaluation.type` adalah `"auto"`, `evaluated_permission.type` yang bersarang di dalamnya mengulang `evaluated_permission` tingkat atas milik event, sehingga Anda dapat membaca hasilnya dari salah satu field tersebut. `reason_code` adalah nilai yang dapat digunakan klien Anda untuk percabangan logika dan disimpan dalam catatan audit, bukan teks untuk ditampilkan kepada pengguna akhir.
+
+`evaluation` tidak ada dalam dua kasus. Ketika agen menyebutkan alat yang tidak diaktifkan dalam sesi, server menolak panggilan tanpa mengevaluasi kebijakan: event membawa `evaluated_permission: "deny"` dan tanpa `evaluation`. Event yang dicatat sebelum `evaluation` diperkenalkan juga tidak menyertakannya: baca event tersebut sebagai `always_allow` ketika `evaluated_permission` adalah `"allow"` dan sebagai `always_ask` ketika nilainya `"ask"`.
+
+Tulis klien Anda agar dapat menoleransi `evaluation.type` atau `reason_code` yang tidak dikenalinya. Event `agent.custom_tool_use` tidak membawa kedua field tersebut, karena kebijakan izin tidak mengatur [alat kustom](https://platform.claude.com/docs/id/managed-agents/permission-policies#custom-tools).
+
 ## Merespons permintaan konfirmasi
 
-Ketika agen memanggil alat dengan kebijakan `always_ask`:
+Panggilan alat dievaluasi menjadi `ask` di bawah kebijakan `always_ask`, atau di bawah `auto` ketika server tidak mencapai keputusan. Ketika hal itu terjadi:
 
 1. Sesi memancarkan event `agent.tool_use` atau `agent.mcp_tool_use`.
 2. Sesi dijeda dengan event `session.status_idle` yang `stop_reason.type`-nya adalah `requires_action`. ID event yang memblokir terdapat dalam array `stop_reason.event_ids`. Sesi menunggu respons tanpa batas waktu.
 3. Kirim event `user.tool_confirmation` untuk setiap event yang memblokir, dengan meneruskan ID event dalam parameter `tool_use_id`. Atur `result` ke `"allow"` atau `"deny"`. Gunakan `deny_message` untuk menjelaskan penolakan. Anda dapat mengirim beberapa konfirmasi dalam satu permintaan `events`.
 4. Setelah semua event yang memblokir diselesaikan, sesi bertransisi kembali ke `running`. Alat yang diizinkan dieksekusi. Alat yang ditolak tidak berjalan, dan agen menerima hasil alat yang menyatakan bahwa panggilan ditolak, termasuk `deny_message` Anda.
+
+Jika Anda mengirim `user.tool_confirmation` untuk event yang `evaluated_permission`-nya bukan `ask`, API menolaknya dengan error 400. Hal ini termasuk panggilan yang ditolak server di bawah `auto`: klien Anda tidak dapat membatalkannya.
+
+Untuk menjawab secara interaktif, gunakan `ant beta:sessions connect`, yang menampilkan panggilan yang sedang menunggu dan mengirim event ini ketika Anda mengizinkan atau menolaknya. Lihat [Menghubungkan ke sesi Managed Agents dari terminal Anda](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/sessions-connect#follow-and-steer-the-session).
 
 Dalam contoh berikut, ID event tool-use berasal dari array `stop_reason.event_ids` pada event `session.status_idle`. Pelajari lebih lanjut tentang menerima event dalam panduan [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events), atau [berlangganan webhook](https://platform.claude.com/docs/id/managed-agents/webhooks) untuk mendapatkan notifikasi ketika sesi dijeda untuk menunggu input.
 
