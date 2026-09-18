@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/pricing
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: a24307b29df318ab8dae2878df958421527716fda65de9c178969e8d946b20f2
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: 52ec9ccca111bc1635c300684c893fcedff8b146e5f6bed3c1c8c0fdf29a8d84
 ---
 
 ---
@@ -193,7 +193,7 @@ For more information, see [Fast mode](https://platform.claude.com/docs/en/build-
 The Batch API allows asynchronous processing of large volumes of requests with a 50% discount on both input and output tokens.
 
 | Model                                                                                                                                 | Batch input  | Batch output  |
-| ------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ------------- |
+| :------------------------------------------------------------------------------------------------------------------------------------ | :----------- | :------------ |
 | Claude Fable 5.1                                                                                                                      | $5 / MTok    | $25 / MTok    |
 | Claude Mythos 5.1 ([limited availability](https://anthropic.com/glasswing))                                                           | $5 / MTok    | $25 / MTok    |
 | Claude Fable 5                                                                                                                        | $5 / MTok    | $25 / MTok    |

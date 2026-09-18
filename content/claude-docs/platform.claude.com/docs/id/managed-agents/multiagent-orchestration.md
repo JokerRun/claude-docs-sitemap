@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: cd5522d29366e8480554d93879eae7fc49464d49629a48fe9d02f6b5e07a9acb
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: 677cc525c3a76c5b929869c948dab2215f2e7221ab453d557a1d7968c1453bce
 ---
 
 ---
@@ -1220,15 +1220,17 @@ Setiap session thread memiliki aliran event sendiri di `/v1/sessions/{session_id
         session_id: session.id,
       });
 
-      for await (const event of stream) {
-        if (event.type === "agent.message") {
-          for (const block of event.content) {
-            if (block.type === "text") {
-              process.stdout.write(block.text);
+      loop: for await (const event of stream) {
+        switch (event.type) {
+          case "agent.message":
+            for (const block of event.content) {
+              if (block.type === "text") {
+                process.stdout.write(block.text);
+              }
             }
-          }
-        } else if (event.type === "session.thread_status_idle") {
-          break;
+            break;
+          case "session.thread_status_idle":
+            break loop;
         }
       }
       ```
@@ -1283,13 +1285,17 @@ Setiap session thread memiliki aliran event sendiri di `/v1/sessions/{session_id
           thread.id(),
           EventStreamParams.builder().sessionId(session.id()).build()
       )) {
+          loop:
           for (var event : (Iterable<BetaManagedAgentsStreamSessionThreadEvents>) streamResponse.stream()::iterator) {
-              if (event.isAgentMessage()) {
-                  for (var block : event.asAgentMessage().content()) {
-                      block.text().ifPresent(textBlock -> IO.print(textBlock.text()));
+              switch (event.type().value()) {
+                  case AGENT_MESSAGE -> {
+                      for (var block : event.asAgentMessage().content()) {
+                          block.text().ifPresent(textBlock -> IO.print(textBlock.text()));
+                      }
                   }
-              } else if (event.isSessionThreadStatusIdle()) {
-                  break;
+                  case SESSION_THREAD_STATUS_IDLE -> {
+                      break loop;
+                  }
               }
           }
       }
@@ -1302,26 +1308,28 @@ Setiap session thread memiliki aliran event sendiri di `/v1/sessions/{session_id
       );
 
       foreach ($stream as $event) {
-          if ($event->type === 'agent.message') {
-              foreach ($event->content as $block) {
-                  if ($block->type === 'text') {
-                      echo $block->text;
+          switch (true) {
+              case $event instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsAgentMessageEvent:
+                  foreach ($event->content as $block) {
+                      if ($block instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsTextBlock) {
+                          echo $block->text;
+                      }
                   }
-              }
-          } elseif ($event->type === 'session.thread_status_idle') {
-              break;
+                  break;
+              case $event instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsSessionThreadStatusIdleEvent:
+                  break 2;
           }
       }
       ```
 
       ```ruby Ruby
       client.beta.sessions.threads.events.stream_events(thread.id, session_id: session.id).each do |event|
-        case event.type
-        when :"agent.message"
+        case event
+        when Anthropic::Beta::Sessions::BetaManagedAgentsAgentMessageEvent
           event.content.each do |block|
-            print block.text if block.type == :text
+            print block.text if block.is_a?(Anthropic::Beta::Sessions::BetaManagedAgentsTextBlock)
           end
-        when :"session.thread_status_idle"
+        when Anthropic::Beta::Sessions::BetaManagedAgentsSessionThreadStatusIdleEvent
           break
         end
       end

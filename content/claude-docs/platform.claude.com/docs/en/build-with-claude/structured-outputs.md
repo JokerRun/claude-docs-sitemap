@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/structured-outputs
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 4e500fed30c759764ba06bcd96b9df7160ecb8e5e7611aae9bc229086e0b9204
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: d5ffcb2a35df0070fa77e003d0f2faa92045abb1f93bf7fd5f67b9bfc60d34de
 ---
 
 ---
@@ -2553,10 +2553,13 @@ When combined, Claude can call tools with guaranteed-valid parameters AND return
   // Claude may call the tool first (tool_use) or respond with JSON (text)
   console.log("Stop reason:", response.stop_reason);
   for (const block of response.content) {
-    if (block.type === "tool_use") {
-      console.log(`Tool call: ${block.name}(${JSON.stringify(block.input)})`);
-    } else if (block.type === "text") {
-      console.log("Response:", block.text);
+    switch (block.type) {
+      case "tool_use":
+        console.log(`Tool call: ${block.name}(${JSON.stringify(block.input)})`);
+        break;
+      case "text":
+        console.log("Response:", block.text);
+        break;
     }
   }
   ```

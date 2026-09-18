@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/extended-thinking
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 15daa5bd519d8ded05507af4d18daafd71d41f1fe17ace630b51ba939646b24e
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: 6d85b40b3b8e5d5d489e8aef64047c1fbd5480de4e4735997e5315e430ff438d
 ---
 
 ---
@@ -115,12 +115,15 @@ Berikut adalah contoh penggunaan pemikiran diperpanjang di Messages API:
     ],
   });
 
-  // Respons berisi blok pemikiran yang diringkas dan blok teks
+  // The response contains summarized thinking blocks and text blocks
   for (const block of response.content) {
-    if (block.type === "thinking") {
-      console.log(`\nThinking summary: ${block.thinking}`);
-    } else if (block.type === "text") {
-      console.log(`\nResponse: ${block.text}`);
+    switch (block.type) {
+      case "thinking":
+        console.log(`\nThinking summary: ${block.thinking}`);
+        break;
+      case "text":
+        console.log(`\nResponse: ${block.text}`);
+        break;
     }
   }
   ```
@@ -227,11 +230,11 @@ Berikut adalah contoh penggunaan pemikiran diperpanjang di Messages API:
       ],
   );
 
-  // Respons berisi blok pemikiran yang diringkas dan blok teks
+  // The response contains summarized thinking blocks and text blocks
   foreach ($response->content as $block) {
-      echo match ($block->type) {
-          'thinking' => "\nThinking summary: {$block->thinking}",
-          'text' => "\nResponse: {$block->text}",
+      echo match (true) {
+          $block instanceof \Anthropic\Messages\ThinkingBlock => "\nThinking summary: {$block->thinking}",
+          $block instanceof \Anthropic\Messages\TextBlock => "\nResponse: {$block->text}",
           default => '',
       };
   }
@@ -255,14 +258,13 @@ Berikut adalah contoh penggunaan pemikiran diperpanjang di Messages API:
     ]
   )
 
-  # Respons berisi blok pemikiran yang diringkas dan blok teks
+  # The response contains summarized thinking blocks and text blocks
   response.content.each do |block|
     case block
-    in {type: :thinking, thinking:}
-      puts "\nThinking summary: #{thinking}"
-    in {type: :text, text:}
-      puts "\nResponse: #{text}"
-    else
+    when Anthropic::Models::ThinkingBlock
+      puts "\nThinking summary: #{block.thinking}"
+    when Anthropic::Models::TextBlock
+      puts "\nResponse: #{block.text}"
     end
   end
   ```

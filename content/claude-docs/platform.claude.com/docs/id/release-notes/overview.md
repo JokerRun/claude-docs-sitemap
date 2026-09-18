@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/overview
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 2132d185fa446fee1c20d6279354377a8cb084bbd50938b7ab0178ec65425ffb
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: e0feaf30e3a2ce6f8e4949cd802fea52fc4dfe7df5f2bda364e8683cd37117e9
 ---
 
 ---
@@ -18,6 +18,10 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 
   Untuk pembaruan Claude Code, lihat [CHANGELOG.md lengkap](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) di repositori `claude-code`.
 </Tip>
+
+### 18 September 2026
+
+* Endpoint sesi lokal [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) kini juga mengembalikan transkrip sesi Claude in Chrome (nilai `product_surface` `claude_in_chrome`), dalam beta untuk organisasi Claude Enterprise, dengan Compliance Access Key Anda yang sudah ada dan scope `read:compliance_user_data`. Lihat [Sesi di mesin pengguna](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions).
 
 ### 14 September 2026
 

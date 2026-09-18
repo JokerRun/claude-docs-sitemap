@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-09-03T02:44:34.856042Z
-sha256: eed74bbeb6a246b30e9a1ae2d00abf5599d291f16bda75f3c1cb045b7648a0a6
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: 773fcff1c17504f467db332367447a21aa74fe72ff82ce6679b0fcd9f33cb97e
 ---
 
 ---
@@ -665,12 +665,13 @@ Install both the Anthropic SDK and the MCP SDK:
   </Tab>
 
   <Tab title="Java">
-    The helpers live in the separate `anthropic-java-mcp` artifact, which requires Java 17 or later (the core SDK supports Java 8):
+    The helpers live in the separate `anthropic-java-mcp` artifact, which requires Java 17 or later (the base SDK supports Java 8). Add it alongside the base `anthropic-java` dependency:
 
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java-mcp:2.60.0")
+        implementation("com.anthropic:anthropic-java:2.63.0")
+        implementation("com.anthropic:anthropic-java-mcp:2.63.0")
         ```
       </Tab>
 
@@ -678,8 +679,13 @@ Install both the Anthropic SDK and the MCP SDK:
         ```xml
         <dependency>
             <groupId>com.anthropic</groupId>
+            <artifactId>anthropic-java</artifactId>
+            <version>2.63.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-mcp</artifactId>
-            <version>2.60.0</version>
+            <version>2.63.0</version>
         </dependency>
         ```
       </Tab>

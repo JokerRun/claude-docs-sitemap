@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/memory
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: f212449ea6fbdb88bea34ad85c967ae3681470bdbd376ac84bda7f535029e677
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: 98c6d06ea754d557011393608849dfbe23eed8634edb3db318f77178b6ce0f1b
 ---
 
 > ## Documentation Index
@@ -387,7 +387,9 @@ To store auto memory in a different location, set `autoMemoryDirectory` in your 
 }
 ```
 
-The value must be an absolute path or start with `~/`. When you set it in a project's `.claude/settings.json` or `.claude/settings.local.json`, Claude Code honors it under the same [workspace trust rule as hooks in settings files](/docs/en/permissions#what-runs-before-you-trust-a-folder).
+The value must be an absolute path or start with `~/`.
+
+When you set it in a project's `.claude/settings.json` or `.claude/settings.local.json`, Claude Code honors it under the same [workspace trust rule as hooks in settings files](/docs/en/permissions#what-runs-before-you-trust-a-folder). While [`permissions.blockReadsOutsideWorkingDirectories`](/docs/en/settings-reference#permissions-blockreadsoutsideworkingdirectories) is on, Claude Code loads no auto memory from a directory that a [repository-supplied settings file](/docs/en/permissions#when-your-local-settings-file-needs-trust) chooses and saves none to it, wherever that directory sits.
 
 The directory contains a `MEMORY.md` index and one topic file per memory:
 

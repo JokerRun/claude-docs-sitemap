@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-09-03T02:44:34.856042Z
-sha256: f8e3dda0d43c9cd7976aab818d1b0d9f06f7d425812ee4a5e9aa5cb49c99ed60
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: 6988971f491ba5e1ea14f954454b532d0e9b156f4818f69045e368b222744b5d
 ---
 
 ---
@@ -84,7 +84,8 @@ Anthropic's [client SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java-foundry:2.60.0")
+        implementation("com.anthropic:anthropic-java:2.63.0")
+        implementation("com.anthropic:anthropic-java-foundry:2.63.0")
 
         // For Entra ID authentication, also add the Azure Identity library
         implementation("com.azure:azure-identity:1.18.3")
@@ -95,8 +96,13 @@ Anthropic's [client SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries
         ```xml
         <dependency>
             <groupId>com.anthropic</groupId>
+            <artifactId>anthropic-java</artifactId>
+            <version>2.63.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-foundry</artifactId>
-            <version>2.60.0</version>
+            <version>2.63.0</version>
         </dependency>
         <!-- For Entra ID authentication, also add the Azure Identity library -->
         <dependency>

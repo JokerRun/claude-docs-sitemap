@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/vaults
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 7f19f26fa99c2fcfe55b0bcaed09798c68ba363a0e2bd709fe6133c333cb8ad0
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: 50cdf58be928566dd357a92e960eade32c61bf813966b050500a0d59c9e9ee79
 ---
 
 ---
@@ -680,7 +680,7 @@ The actual credential values you supply (`token`, `access_token`, `refresh_token
               injectionLocation: ManagedAgentsInjectionLocationParams::with(header: true),
           ),
       );
-      if ($envVarCredential->auth instanceof ManagedAgentsEnvironmentVariableAuthResponse) {
+      if ($envVarCredential->auth instanceof \Anthropic\Beta\Vaults\Credentials\ManagedAgentsEnvironmentVariableAuthResponse) {
           $injectionLocation = $envVarCredential->auth->injectionLocation;
           echo 'header: ' . json_encode($injectionLocation->header) . "\n"; // header: true
           echo 'body: ' . json_encode($injectionLocation->body) . "\n"; // body: false

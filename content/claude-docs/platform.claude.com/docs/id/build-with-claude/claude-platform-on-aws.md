@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 39cbbea198953689369d5690c2d8a6f0f7910e777395ad22073695fdd699ffa1
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: 62d18787f905578cc2c3823c3523dd96f66f9dc0cbb08a3e8fda6934afbf144c
 ---
 
 ---
@@ -21,7 +21,7 @@ Claude Platform di AWS memberi Anda pengalaman platform Anthropic yang lengkap, 
 
 Model Claude berjalan di infrastruktur yang dikelola Anthropic. Ini adalah integrasi komersial untuk penagihan dan akses melalui AWS. Anthropic adalah pemroses data untuk input dan output inferensi. AWS memproses metadata penagihan dan identitas berdasarkan model marketplace. Pelanggan yang menggunakan Claude melalui Claude Platform di AWS tunduk pada [ketentuan penggunaan data](https://www.anthropic.com/legal) Anthropic.
 
-Claude Platform di AWS memiliki karakteristik operasional berikut: data mungkin tidak berada di AWS, inferensi mungkin dirutekan ke cloud utama Anthropic, dan sublayanan dapat berubah tanpa pemberitahuan. Atur parameter [`inference_geo`](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#data-residency) per permintaan untuk mengunci inferensi ke geografi tertentu.
+Anthropic menggunakan infrastruktur AWS untuk memproses permintaan API Anda, menjalankan inferensi model, dan menyimpan konten workspace Anda (seperti prompt, output, file, Skills, dan batch). Untuk workspace yang dibuat sebelum 18 September 2026, 00:00 UTC, Anthropic mungkin memproses permintaan, menyimpan data, dan menjalankan inferensi di luar AWS. Dalam kedua kasus, subservice mungkin berubah tanpa pemberitahuan. Atur parameter [`inference_geo`](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#data-residency) per permintaan untuk menyematkan inferensi ke geografi tertentu.
 
 Claude Platform di AWS mengikuti kebijakan retensi data yang sama dengan Claude API pihak pertama. Zero Data Retention (ZDR) tersedia berdasarkan permintaan. Hubungi perwakilan akun Anthropic Anda untuk mengaktifkannya bagi organisasi Anda.
 
@@ -79,7 +79,7 @@ Penyiapan Claude Platform di AWS berlangsung dalam empat fase: mendaftar di hala
     Jika organisasi Anda memiliki private offer dari Anthropic, Console akan mencarinya dan meminta Anda untuk menerimanya di AWS Marketplace. Lihat [Private offer](https://platform.claude.com/docs/id/about-claude/pricing#private-offers) untuk detailnya.
 
     <Note>
-      Jika Anda menggunakan Claude Platform di AWS, konten Anda (seperti prompt dan completion) diproses oleh Anthropic di luar AWS. Lihat [kebijakan penggunaan data](https://www.anthropic.com/legal) Anthropic untuk detail tentang bagaimana konten dan metadata diproses dan disimpan.
+      Ketika Anda menggunakan Claude Platform on AWS, Anthropic memproses dan menyimpan konten Anda (seperti prompt dan output) pada infrastruktur AWS. Untuk workspace yang dibuat sebelum 18 September 2026, 00:00 UTC, Anthropic mungkin memproses dan menyimpan konten tersebut di luar AWS. [Kebijakan penggunaan data](https://www.anthropic.com/legal) Anthropic menjelaskan bagaimana konten dan metadata diproses dan disimpan.
     </Note>
   </Step>
 
@@ -312,14 +312,20 @@ Klien membaca `AWS_REGION` dari lingkungan jika `aws_region`/`awsRegion` tidak d
 
   <Tab title="Java">
     ```kotlin Gradle
-    implementation("com.anthropic:anthropic-java-aws:2.60.0")
+    implementation("com.anthropic:anthropic-java:2.63.0")
+    implementation("com.anthropic:anthropic-java-aws:2.63.0")
     ```
 
     ```xml Maven
     <dependency>
       <groupId>com.anthropic</groupId>
+      <artifactId>anthropic-java</artifactId>
+      <version>2.63.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.anthropic</groupId>
       <artifactId>anthropic-java-aws</artifactId>
-      <version>2.60.0</version>
+      <version>2.63.0</version>
     </dependency>
     ```
   </Tab>
@@ -345,17 +351,17 @@ Klien membaca `AWS_REGION` dari lingkungan jika `aws_region`/`awsRegion` tidak d
 
 Model berikut tersedia di Claude Platform di AWS:
 
-| Model             | ID Model          |
-| ----------------- | ----------------- |
+| Model             | Model ID          |
+| :---------------- | :---------------- |
 | Claude Fable 5.1  | claude-fable-5-1  |
 | Claude Fable 5    | claude-fable-5    |
 | Claude Opus 5     | claude-opus-5     |
 | Claude Opus 4.8   | claude-opus-4-8   |
 | Claude Opus 4.7   | claude-opus-4-7   |
 | Claude Opus 4.6   | claude-opus-4-6   |
+| Claude Opus 4.5   | claude-opus-4-5   |
 | Claude Sonnet 5   | claude-sonnet-5   |
 | Claude Sonnet 4.6 | claude-sonnet-4-6 |
-| Claude Opus 4.5   | claude-opus-4-5   |
 | Claude Sonnet 4.5 | claude-sonnet-4-5 |
 | Claude Haiku 4.5  | claude-haiku-4-5  |
 

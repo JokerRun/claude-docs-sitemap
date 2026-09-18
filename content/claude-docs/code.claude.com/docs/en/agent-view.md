@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-view
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 59af5e713f96beabdd1115efca8aff8f91228ff4a78ca19e44c1d6d9bf6479f1
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: 730e22a90eb9a54bffd478b372ae80675872cade7f9c4daa8fc13661a426cca6
 ---
 
 > ## Documentation Index
@@ -23,7 +23,7 @@ Use agent view when you have several independent tasks Claude can work on withou
 
 When you want to work more directly in any agent's session, attach to the row to enter the full conversation.
 
-To compare agent view with subagents, agent teams, and worktrees, see [Run agents in parallel](/docs/en/agents).
+To compare agent view with subagents, agent teams, and worktrees, see [Run agents in parallel](/docs/en/agents). Agent view runs sessions on your machine and you dispatch each one; to have Claude start and track parallel sessions in the cloud from one conversation instead, see [Projects](/docs/en/claude-projects).
 
 <Note>
   Agent view is in research preview. The interface and keyboard shortcuts may change as the feature evolves.
@@ -933,6 +933,7 @@ For other ways to run Claude in parallel, and for passing findings between the s
 * [Cross-session messaging](/docs/en/cross-session-messaging): have your sessions pass findings to each other
 * [Agent teams](/docs/en/agent-teams): coordinate multiple sessions that message each other
 * [Use Claude Code in the cloud](/docs/en/claude-code-on-the-web): run sessions in a managed cloud environment instead of locally
+* [Projects](/docs/en/claude-projects): have Claude coordinate parallel cloud sessions from one conversation and tell you which need you
 
 ## Version history
 

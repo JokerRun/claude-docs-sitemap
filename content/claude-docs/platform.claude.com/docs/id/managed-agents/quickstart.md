@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 69eb2d2ea9f4ec9faa9ed137e5252385a1c834d79fa8c0803b128a09d9deaa5a
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: b670bec303c7c368796ce0cdc5d32d006f8e64e3c316521f19d06a016592fca6
 ---
 
 ---
@@ -642,7 +642,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       ```typescript TypeScript
       const stream = await client.beta.sessions.events.stream(session.id);
 
-      // Kirim pesan pengguna setelah stream terbuka
+      // Send the user message after the stream opens
       await client.beta.sessions.events.send(session.id, {
         events: [
           {
@@ -657,19 +657,22 @@ export ANTHROPIC_API_KEY="your-api-key-here"
         ],
       });
 
-      // Proses event streaming
-      for await (const event of stream) {
-        if (event.type === "agent.message") {
-          for (const block of event.content) {
-            if (block.type === "text") {
-              process.stdout.write(block.text);
+      // Process streaming events
+      loop: for await (const event of stream) {
+        switch (event.type) {
+          case "agent.message":
+            for (const block of event.content) {
+              if (block.type === "text") {
+                process.stdout.write(block.text);
+              }
             }
-          }
-        } else if (event.type === "agent.tool_use") {
-          console.log(`\n[Using tool: ${event.name}]`);
-        } else if (event.type === "session.status_idle") {
-          console.log("\n\nAgent finished.");
-          break;
+            break;
+          case "agent.tool_use":
+            console.log(`\n[Using tool: ${event.name}]`);
+            break;
+          case "session.status_idle":
+            console.log("\n\nAgent finished.");
+            break loop;
         }
       }
       ```
@@ -768,7 +771,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 
       ```java Java
       try (var stream = client.beta().sessions().events().streamStreaming(session.id())) {
-          // Kirim pesan pengguna setelah stream terbuka
+          // Send the user message after the stream opens
           client.beta().sessions().events().send(session.id(), EventSendParams.builder()
               .addEvent(BetaManagedAgentsUserMessageEventParams.builder()
                   .type(BetaManagedAgentsUserMessageEventParams.Type.USER_MESSAGE)
@@ -776,15 +779,16 @@ export ANTHROPIC_API_KEY="your-api-key-here"
                   .build())
               .build());
 
-          // Proses event streaming
+          // Process streaming events
+          loop:
           for (var event : (Iterable<BetaManagedAgentsStreamSessionEvents>) stream.stream()::iterator) {
-              if (event.isAgentMessage()) {
-                  event.asAgentMessage().content().forEach(block -> block.text().ifPresent(textBlock -> IO.print(textBlock.text())));
-              } else if (event.isAgentToolUse()) {
-                  IO.println("\n[Using tool: " + event.asAgentToolUse().name() + "]");
-              } else if (event.isSessionStatusIdle()) {
-                  IO.println("\n\nAgent finished.");
-                  break;
+              switch (event.type().value()) {
+                  case AGENT_MESSAGE -> event.asAgentMessage().content().forEach(block -> block.text().ifPresent(textBlock -> IO.print(textBlock.text())));
+                  case AGENT_TOOL_USE -> IO.println("\n[Using tool: " + event.asAgentToolUse().name() + "]");
+                  case SESSION_STATUS_IDLE -> {
+                      IO.println("\n\nAgent finished.");
+                      break loop;
+                  }
               }
           }
       }
@@ -793,7 +797,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       ```php PHP
       $stream = $client->beta->sessions->events->streamStream($session->id);
 
-      // Kirim pesan pengguna setelah stream terbuka
+      // Send the user message after the stream opens
       $client->beta->sessions->events->send(
           $session->id,
           events: [
@@ -806,15 +810,15 @@ export ANTHROPIC_API_KEY="your-api-key-here"
           ],
       );
 
-      // Proses event streaming
+      // Process streaming events
       foreach ($stream as $event) {
-          match ($event->type) {
-              'agent.message' => array_walk(
+          match (true) {
+              $event instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsAgentMessageEvent => array_walk(
                   $event->content,
-                  static fn ($block) => $block->type === 'text' ? print($block->text) : null,
+                  static fn ($block) => $block instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsTextBlock ? print($block->text) : null,
               ),
-              'agent.tool_use' => print("\n[Using tool: {$event->name}]\n"),
-              'session.status_idle' => print("\n\nAgent finished.\n"),
+              $event instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsAgentToolUseEvent => print("\n[Using tool: {$event->name}]\n"),
+              $event instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsSessionStatusIdleEvent => print("\n\nAgent finished.\n"),
               default => null,
           };
           if ($event->type === 'session.status_idle') {
@@ -826,7 +830,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       ```ruby Ruby
       stream = client.beta.sessions.events.stream_events(session.id)
 
-      # Kirim pesan pengguna setelah stream terbuka
+      # Send the user message after the stream opens
       client.beta.sessions.events.send_(
         session.id,
         events: [{
@@ -835,18 +839,18 @@ export ANTHROPIC_API_KEY="your-api-key-here"
         }]
       )
 
-      # Proses event streaming
+      # Process streaming events
       stream.each do |event|
-        case event.type
-        in :"agent.message"
-          event.content.each { print it.text if it.type == :text }
-        in :"agent.tool_use"
+        case event
+        when Anthropic::Beta::Sessions::BetaManagedAgentsAgentMessageEvent
+          event.content.each { print it.text if it.is_a?(Anthropic::Beta::Sessions::BetaManagedAgentsTextBlock) }
+        when Anthropic::Beta::Sessions::BetaManagedAgentsAgentToolUseEvent
           puts "\n[Using tool: #{event.name}]"
-        in :"session.status_idle"
+        when Anthropic::Beta::Sessions::BetaManagedAgentsSessionStatusIdleEvent
           puts "\n\nAgent finished."
           break
         else
-          # abaikan tipe event lainnya
+          # ignore other event types
         end
       end
       ```

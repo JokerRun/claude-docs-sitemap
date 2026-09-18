@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: 6c70c63566162d11cbe51abb10c94225e0c090b1f2efd1c0589dc9ff16159dd2
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: d3e28ffed4926bb94eb4007a6592f53357e9a9d28a87e0822fb2db536118da17
 ---
 
 ---
@@ -687,11 +687,16 @@ In streaming responses, `diagnostics` appears on the `message_start` event.
 
   $diagnostics = null;
   foreach ($stream as $event) {
-      if ($event instanceof BetaRawMessageStartEvent) {
-          // diagnostics arrives on the message_start event's embedded BetaMessage
-          $diagnostics = $event->message->diagnostics;
-      } elseif ($event instanceof BetaRawContentBlockDeltaEvent && $event->delta instanceof BetaTextDelta) {
-          echo $event->delta->text;
+      switch (true) {
+          case $event instanceof \Anthropic\Beta\Messages\BetaRawMessageStartEvent:
+              // diagnostics arrives on the message_start event's embedded BetaMessage
+              $diagnostics = $event->message->diagnostics;
+              break;
+          case $event instanceof \Anthropic\Beta\Messages\BetaRawContentBlockDeltaEvent:
+              if ($event->delta instanceof \Anthropic\Beta\Messages\BetaTextDelta) {
+                  echo $event->delta->text;
+              }
+              break;
       }
   }
   echo PHP_EOL;

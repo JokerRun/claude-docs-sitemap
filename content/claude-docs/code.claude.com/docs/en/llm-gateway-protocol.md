@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-protocol
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 8e2d29d0db638a5d3ddd5523b12300206127f9a952e2e7540fbfb1df0847a385
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: 19c52d46285264754c3e271d8234e98767b5d6fd25201f92ed883ab5a00c2e0e
 ---
 
 > ## Documentation Index
@@ -190,7 +190,9 @@ Discovery still runs when [nonessential traffic is turned off](/docs/en/llm-gate
 
 ### Request and response
 
-The request is `GET /v1/models?limit=1000` with a 3-second timeout, and any redirect is treated as failure so the credential can't leak to a redirect target. A gateway that responds slowly or redirects `/v1/models`, even `http` to `https`, fails discovery silently; serve the endpoint directly at the configured base URL.
+The request is `GET /v1/models?limit=1000` with a timeout of 3 seconds by default, and any redirect is treated as failure so the credential can't leak to a redirect target. A gateway that responds slower than the timeout, or one that redirects `/v1/models`, even `http` to `https`, fails discovery silently; serve the endpoint directly at the configured base URL.
+
+To give a slow gateway longer, set [`CLAUDE_CODE_GATEWAY_MODEL_DISCOVERY_TIMEOUT_MS`](/docs/en/env-vars#variables). The variable requires Claude Code v2.1.269 or later.
 
 Claude Code sends the discovery request with both credential headers below and omits a header whose value doesn't resolve. Sending both headers requires Claude Code v2.1.248 or later. Earlier versions send only `Authorization` when `ANTHROPIC_AUTH_TOKEN` is set and only `x-api-key` otherwise.
 

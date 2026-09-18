@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-faq
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 0e232b23a0e73c9ab4b36929205e57ca3bc3a02ecf6d6bfb45a0659b9f32ec98
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: a3feffe67d2e21f0db7645f89fc2dec2388d06fb5e2a83daefb56a9b24a66eeb
 ---
 
 ---
@@ -77,11 +77,11 @@ description: Jawaban atas pertanyaan umum tentang akses, cakupan (scope), retens
   </Accordion>
 
   <Accordion title="Apakah sesi Cowork, Claude Code, Claude Science, dan Claude for Microsoft 365 muncul di Compliance API?">
-    Ya. Sesi Cowork di Claude Desktop yang berjalan di mesin pengguna, sesi Claude Code (di terminal, di Claude Desktop, atau di ekstensi IDE), sesi di aplikasi desktop Claude Science, dan sesi Claude for Microsoft 365 di Excel, PowerPoint, Word, dan Outlook direkam selama pengguna masuk dengan akun Claude Enterprise mereka dan tersedia melalui [endpoint sesi lokal](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions). Sesi Cowork yang dimulai di claude.ai web atau seluler, yang berjalan di cloud dalam lingkungan yang dikelola Anthropic, tersedia melalui [endpoint sesi jarak jauh](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-remote-sessions). Setiap kelompok memiliki endpoint daftar yang mengembalikan metadata sesi dan endpoint pesan yang mengembalikan transkrip sesi (prompt pengguna, respons asisten, serta panggilan alat dan hasilnya). Kelompok lokal menambahkan endpoint ketiga yang mengambil metadata satu sesi. Semua endpoint ini menggunakan Compliance Access Key Anda yang sudah ada dengan `read:compliance_user_data`; tidak diperlukan kunci atau scope baru.
+    Ya. Sesi Cowork di Claude Desktop yang berjalan di mesin pengguna, sesi Claude Code (di terminal, di Claude Desktop, atau di ekstensi IDE), sesi di aplikasi desktop Claude Science, sesi Claude for Microsoft 365 (di Excel, PowerPoint, Word, dan Outlook), serta chat di ekstensi browser Claude in Chrome direkam selama pengguna masuk dengan akun Claude Enterprise mereka dan tersedia melalui [endpoint sesi lokal](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions). Sesi Cowork yang dimulai di claude.ai web atau seluler, yang berjalan di cloud dalam lingkungan yang dikelola Anthropic, tersedia melalui [endpoint sesi jarak jauh](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-remote-sessions). Setiap kelompok memiliki endpoint daftar yang mengembalikan metadata sesi dan endpoint pesan yang mengembalikan transkrip sesi (prompt pengguna, respons asisten, serta panggilan alat dan hasilnya). Kelompok lokal menambahkan endpoint ketiga yang mengambil metadata satu sesi. Semua endpoint ini menggunakan Compliance Access Key Anda yang sudah ada dengan `read:compliance_user_data`; tidak diperlukan kunci atau scope baru.
 
     Sesi lokal direkam saat permintaannya mencapai Claude API, sehingga tidak ada yang diinstal di perangkat, dan aktivitas di perangkat yang tidak pernah mencapai API tidak direkam. Sesi Claude Code yang diautentikasi dengan kunci API Claude Console, sesi Claude Code yang dijalankan melalui platform cloud pihak ketiga (Amazon Bedrock, Google Cloud, atau Microsoft Foundry), dan Claude Code di web tidak direkam. Claude Code di web juga berjalan di cloud dalam lingkungan yang dikelola Anthropic, tetapi bukan merupakan sesi jarak jauh; endpoint sesi jarak jauh hanya mengembalikan sesi Cowork. Organisasi dengan [kesiapan HIPAA](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#hipaa-readiness) yang diaktifkan tidak mendapatkan data sesi lokal, dan sesi yang menerapkan [zero data retention (ZDR)](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) dikecualikan.
 
-    Endpoint sesi lokal dan jarak jauh sudah stabil untuk sesi Cowork dan Claude Code; cakupan untuk sesi Claude Science dan Claude for Microsoft 365 masih dalam tahap beta.
+    Endpoint sesi lokal dan jarak jauh sudah stabil untuk sesi Cowork dan Claude Code; cakupan untuk sesi Claude Science, Claude for Microsoft 365, dan Claude in Chrome masih dalam tahap beta.
   </Accordion>
 
   <Accordion title="Apa saja yang termasuk dalam transkrip sesi?">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: db04c59098955d6f262f3c64053a341690a96faba7b419527d86c750bca4b45f
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: 20005bb5e9611aba08ec8436c5b25d7575318acbff8338abdba67ffb3c601818
 ---
 
 ---
@@ -445,6 +445,8 @@ Depending on the SDK's tool signature, a tool returns its result as a string or 
     <?php
 
     use Anthropic\Client;
+    use Anthropic\Beta\Messages\BetaTextBlock;
+    use Anthropic\Beta\Messages\BetaToolUseBlock;
     use Anthropic\Lib\Tools\BetaRunnableTool;
     use Anthropic\Messages\Model;
 
@@ -502,10 +504,13 @@ Depending on the SDK's tool signature, a tool returns its result as a string or 
 
     foreach ($runner as $message) {
         foreach ($message->content as $block) {
-            if ($block->type === 'text') {
-                echo $block->text, "\n";
-            } elseif ($block->type === 'tool_use') {
-                echo "[Tool call: {$block->name}]\n";
+            switch (true) {
+                case $block instanceof BetaTextBlock:
+                    echo $block->text, "\n";
+                    break;
+                case $block instanceof BetaToolUseBlock:
+                    echo "[Tool call: {$block->name}]\n";
+                    break;
             }
         }
     }
@@ -1458,7 +1463,7 @@ In the Python and TypeScript SDKs, use the tool response method to get the tool 
     foreach ($runner as $message) {
         $toolResults = [];
         foreach ($message->content as $block) {
-            if ($block instanceof BetaToolUseBlock) {
+            if ($block instanceof \Anthropic\Beta\Messages\BetaToolUseBlock) {
                 $toolResults[] = [
                     'type' => 'tool_result',
                     'tool_use_id' => $block->id,

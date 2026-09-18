@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/extended-thinking
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: f36ffca7bb81f3a718ac63d4feddc5d0579349aa60e328285bea1b996afc466b
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: cb6d05be6b84ca90b2f36c1993ef56655d4a47959e190d3ed26437e9bd7aadc6
 ---
 
 ---
@@ -117,10 +117,13 @@ Here is an example of using extended thinking in the Messages API:
 
   // The response contains summarized thinking blocks and text blocks
   for (const block of response.content) {
-    if (block.type === "thinking") {
-      console.log(`\nThinking summary: ${block.thinking}`);
-    } else if (block.type === "text") {
-      console.log(`\nResponse: ${block.text}`);
+    switch (block.type) {
+      case "thinking":
+        console.log(`\nThinking summary: ${block.thinking}`);
+        break;
+      case "text":
+        console.log(`\nResponse: ${block.text}`);
+        break;
     }
   }
   ```
@@ -229,9 +232,9 @@ Here is an example of using extended thinking in the Messages API:
 
   // The response contains summarized thinking blocks and text blocks
   foreach ($response->content as $block) {
-      echo match ($block->type) {
-          'thinking' => "\nThinking summary: {$block->thinking}",
-          'text' => "\nResponse: {$block->text}",
+      echo match (true) {
+          $block instanceof \Anthropic\Messages\ThinkingBlock => "\nThinking summary: {$block->thinking}",
+          $block instanceof \Anthropic\Messages\TextBlock => "\nResponse: {$block->text}",
           default => '',
       };
   }
@@ -258,11 +261,10 @@ Here is an example of using extended thinking in the Messages API:
   # The response contains summarized thinking blocks and text blocks
   response.content.each do |block|
     case block
-    in {type: :thinking, thinking:}
-      puts "\nThinking summary: #{thinking}"
-    in {type: :text, text:}
-      puts "\nResponse: #{text}"
-    else
+    when Anthropic::Models::ThinkingBlock
+      puts "\nThinking summary: #{block.thinking}"
+    when Anthropic::Models::TextBlock
+      puts "\nResponse: #{block.text}"
     end
   end
   ```

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-09-15T02:21:43.636809Z
-sha256: 6ea4606207c9a740c076d141f5601f9bb55d41704807fd3aa50c40b3b502535d
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: fb1e00c168c9640c979ed302a18726443246049b9a7d82684a0684871db65c4d
 ---
 
 > ## Documentation Index
@@ -582,7 +582,7 @@ Claude answers a side question from what's already in the conversation: your mes
 In the [VS Code extension](/docs/en/vs-code#use-the-prompt-box)'s chat panel, `/btw` opens a panel rather than the overlay this section describes, and you ask follow-up questions right in the panel. The panel's thread survives window reloads, on the retention schedule that page describes. You need the extension at v2.1.227 or later. Earlier extension versions don't offer `/btw`.
 
 * **Available while Claude is working**: you can run `/btw` even while Claude is processing a response. The side question runs independently and doesn't interrupt the main turn. It sees everything in the conversation so far, except the reply Claude is still writing.
-* **No tool access**: side questions answer only from what is already in context. Claude can't read files, run commands, or search when answering a side question.
+* **No tool access**: side questions answer only from what is already in context. Claude can't read files, run commands, or search when answering a side question. If Claude writes out tool calls as text anyway, the answer ends with a note that nothing was executed.
 * **Single response**: there are no follow-up turns in the overlay. To continue the thread, ask another `/btw` question. To continue with full tool access in a local session, press `f` to fork this question and answer into a [background subagent](/docs/en/sub-agents#fork-the-current-conversation).
 * **Low cost**: while the conversation's [prompt cache](/docs/en/prompt-caching) is warm, a side question costs little beyond the answer itself.
 

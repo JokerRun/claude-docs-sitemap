@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5/overview
-fetched_at: 2026-09-03T02:44:34.856042Z
-sha256: 726410737663e45f21533ff2204d20e7bb0b23772bbd465380b87b1aa0418a74
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: 14343cd4262122bbc1c62ddcec5d9ff9d9e14d9e30153104d8f2d99525472bd2
 ---
 
 ---
@@ -54,6 +54,7 @@ Claude Opus 5 adalah peningkatan lompatan besar dibandingkan Claude Opus 4.8, de
 | [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)       | `anthropic.claude-opus-5` |
 | [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai)              | `claude-opus-5`           |
 | [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | `claude-opus-5`           |
+| [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) | `claude-opus-5`           |
 
 ### Pricing
 
@@ -83,12 +84,12 @@ Claude Opus 5 adalah peningkatan lompatan besar dibandingkan Claude Opus 4.8, de
 
 ### Availability
 
-| Feature                                                                       | Value                                                                                                                                                                                                                                                                                                           |
-| :---------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Status](https://platform.claude.com/docs/id/about-claude/model-deprecations) | Active (latest)                                                                                                                                                                                                                                                                                                 |
-| Released                                                                      | July 24, 2026                                                                                                                                                                                                                                                                                                   |
-| Retirement                                                                    | Not sooner than July 24, 2027                                                                                                                                                                                                                                                                                   |
-| Platforms                                                                     | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
+| Feature                                                                       | Value                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| :---------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Status](https://platform.claude.com/docs/id/about-claude/model-deprecations) | Active (latest)                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Released                                                                      | July 24, 2026                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Retirement                                                                    | Not sooner than July 24, 2027                                                                                                                                                                                                                                                                                                                                                                                           |
+| Platforms                                                                     | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
 
 ## Perlu diketahui
 

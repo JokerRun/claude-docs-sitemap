@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/modifying-system-prompts
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 1c1bb26b5c85e93062a9f1f222e31744f451ddaf2d741f6997bf481929f67c9a
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: 4d57e2b00ed1c5537269d85fe4560d0c1f6974c59101a549ce03e6402f98aa0f
 ---
 
 > ## Documentation Index
@@ -143,7 +143,7 @@ For every code submission:
 
 Once created, activate output styles via:
 
-* **CLI**: run `/config` and select an output style
+* **CLI**: run `/output-style <style>`, for example `/output-style concise`, or run `/config` and select one. The `/output-style` command requires Claude Code v2.1.269 or later.
 * **Settings**: set `outputStyle` in `.claude/settings.local.json`
 * **TypeScript SDK**: set `outputStyle` inside the inline `settings` object passed to `query()`, or point `settings` at a settings file that sets it. `outputStyle` is not a top-level `Options` field:
 

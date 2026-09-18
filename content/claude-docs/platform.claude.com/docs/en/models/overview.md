@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/overview
-fetched_at: 2026-09-03T02:44:34.856042Z
-sha256: b2ae292320b5d068b20c426e6e4e0333d1a11e25c8457748ca39de25de283c27
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: 24cee96a02abd68ca1bae07a6791fc1a9f4ba66fbbc3f6385369d7f9d4ebd7e1
 ---
 
 ---
@@ -49,7 +49,7 @@ If you're unsure which model to use, start with [Claude Opus 5](https://platform
 | [Amazon Bedrock ID](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock)       | `anthropic.claude-fable-5-1`                                                      | `anthropic.claude-opus-5`                                                   | `anthropic.claude-sonnet-5`                                                     | `anthropic.claude-haiku-4-5`                                                      |
 | [Google Cloud ID](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai)              | `claude-fable-5-1`                                                                | `claude-opus-5`                                                             | `claude-sonnet-5`                                                               | `claude-haiku-4-5@20251001`                                                       |
 | [Microsoft Foundry ID](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry) | `claude-fable-5-1`                                                                | `claude-opus-5`                                                             | `claude-sonnet-5`                                                               | `claude-haiku-4-5`                                                                |
-| [Claude Platform on AWS ID](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws) | `claude-fable-5-1`                                                                | —                                                                           | `claude-sonnet-5`                                                               | `claude-haiku-4-5`                                                                |
+| [Claude Platform on AWS ID](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws) | `claude-fable-5-1`                                                                | `claude-opus-5`                                                             | `claude-sonnet-5`                                                               | `claude-haiku-4-5`                                                                |
 
 * **Comparative latency:** Relative to the current lineup. Actual latency depends on prompt length, output length, and thinking effort.
 * **Pricing:** Base price per million tokens. Batch API requests are 50% off; prompt cache reads cost 10% of the base input price (2.5% on Claude Fable 5.1 and Claude Mythos 5.1). See Pricing for cache writes, long-context, and per-platform pricing.

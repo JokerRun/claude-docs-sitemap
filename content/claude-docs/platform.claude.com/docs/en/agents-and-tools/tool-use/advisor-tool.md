@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-09-03T02:44:34.856042Z
-sha256: e798608a5dfa622e88c58c702ea92d194e53b19d6d35af59857ed01dddea26ab
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: d022531041a070a4d8ffa8208db88cb31bef9f3b5de335b045d82c0d21151f8a
 ---
 
 ---
@@ -573,18 +573,7 @@ Pass the full assistant content, including `advisor_tool_result` blocks, back to
   }
 
   // Append the full response content, including any advisor_tool_result blocks.
-  // BetaMessage.ToParam drops advisor result content as of anthropic-sdk-go
-  // v1.61.0, so re-parse each response block's raw JSON into a param block instead.
-  assistantContent := make([]anthropic.BetaContentBlockParamUnion, len(response.Content))
-  for i, block := range response.Content {
-  	if err := json.Unmarshal([]byte(block.RawJSON()), &assistantContent[i]); err != nil {
-  		log.Fatal(err)
-  	}
-  }
-  messages = append(messages, anthropic.BetaMessageParam{
-  	Role:    anthropic.BetaMessageParamRoleAssistant,
-  	Content: assistantContent,
-  })
+  messages = append(messages, response.ToParam())
 
   // Continue the conversation
   messages = append(messages, anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Now add a max-in-flight limit of 10.")))
@@ -1010,19 +999,7 @@ With the default `NUDGE_TURN` of 2, the reminder typically arrives after the mod
   			log.Fatal(err)
   		}
 
-  		// Append the full response content, including any advisor_tool_result blocks.
-  		// BetaMessage.ToParam drops advisor result content as of anthropic-sdk-go
-  		// v1.61.0, so re-parse each response block's raw JSON into a param block instead.
-  		assistantContent := make([]anthropic.BetaContentBlockParamUnion, len(response.Content))
-  		for i, block := range response.Content {
-  			if err := json.Unmarshal([]byte(block.RawJSON()), &assistantContent[i]); err != nil {
-  				log.Fatal(err)
-  			}
-  		}
-  		messages = append(messages, anthropic.BetaMessageParam{
-  			Role:    anthropic.BetaMessageParamRoleAssistant,
-  			Content: assistantContent,
-  		})
+  		messages = append(messages, response.ToParam())
 
   		for _, block := range response.Content {
   			if block.Type == "server_tool_use" && block.Name == "advisor" {

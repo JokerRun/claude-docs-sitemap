@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: bf13d16983eb120f8c19e1bfd8c6bcf70977e8001a1e1f19fa94ddc992eb3708
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: 6244dfa8bf2a7b384c05d5f1c186d12b93726db7e5cdb1f34adb0145df724f7f
 ---
 
 ---
@@ -332,8 +332,8 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
       ```
 
       ```php PHP
-      // Agen sedang menganalisis sebuah file...
-      // Interupsi dengan arahan baru:
+      // Agent is currently analyzing a file...
+      // Interrupt with a new direction:
       $client->beta->sessions->events->send(
           $session->id,
           events: [
@@ -352,8 +352,8 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
       ```
 
       ```ruby Ruby
-      # Agen sedang menganalisis sebuah file...
-      # Interupsi dengan arahan baru:
+      # Agent is currently analyzing a file...
+      # Interrupt with a new direction:
       client.beta.sessions.events.send_(
         session.id,
         events: [
@@ -457,7 +457,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
       ```
 
       ```typescript TypeScript
-      // Buka stream terlebih dahulu, lalu kirim pesan pengguna
+      // Open the stream first, then send the user message
       const stream = await client.beta.sessions.events.stream(session.id);
       await client.beta.sessions.events.send(session.id, {
         events: [
@@ -468,18 +468,20 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
         ]
       });
 
-      for await (const event of stream) {
-        if (event.type === "agent.message") {
-          for (const block of event.content) {
-            if (block.type === "text") {
-              process.stdout.write(block.text);
+      events: for await (const event of stream) {
+        switch (event.type) {
+          case "agent.message":
+            for (const block of event.content) {
+              if (block.type === "text") {
+                process.stdout.write(block.text);
+              }
             }
-          }
-        } else if (event.type === "session.status_idle") {
-          break;
-        } else if (event.type === "session.error") {
-          console.log(`\n[Error: ${event.error?.message ?? "unknown"}]`);
-          break;
+            break;
+          case "session.status_idle":
+            break events;
+          case "session.error":
+            console.log(`\n[Error: ${event.error?.message ?? "unknown"}]`);
+            break events;
         }
       }
       ```
@@ -572,7 +574,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
       ```
 
       ```java Java
-      // Buka stream terlebih dahulu, lalu kirim pesan pengguna
+      // Open the stream first, then send the user message
       try (var stream = client.beta().sessions().events().streamStreaming(session.id())) {
           client.beta().sessions().events().send(
               session.id(),
@@ -585,26 +587,29 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
           );
 
           Iterable<BetaManagedAgentsStreamSessionEvents> events = stream.stream()::iterator;
+          events:
           for (var event : events) {
-              if (event.isAgentMessage()) {
-                  event.asAgentMessage().content().forEach(block -> block.text().ifPresent(textBlock -> IO.print(textBlock.text())));
-              } else if (event.isSessionStatusIdle()) {
-                  break;
-              } else if (event.isSessionError()) {
-                  // Field `message` mencakup semua varian error; baca dari JSON mentah.
-                  var errorMessage =
-                      event.asSessionError().error()._json().orElse(null) instanceof JsonObject json
-                          ? json.values().get("message").asStringOrThrow()
-                          : "unknown";
-                  IO.println("\n[Error: " + errorMessage + "]");
-                  break;
+              switch (event.type().value()) {
+                  case AGENT_MESSAGE -> event.asAgentMessage().content().forEach(block -> block.text().ifPresent(textBlock -> IO.print(textBlock.text())));
+                  case SESSION_STATUS_IDLE -> {
+                      break events;
+                  }
+                  case SESSION_ERROR -> {
+                      // The `message` field spans all error variants; read it from the raw JSON.
+                      var errorMessage =
+                          event.asSessionError().error()._json().orElse(null) instanceof JsonObject json
+                              ? json.values().get("message").asStringOrThrow()
+                              : "unknown";
+                      IO.println("\n[Error: " + errorMessage + "]");
+                      break events;
+                  }
               }
           }
       }
       ```
 
       ```php PHP
-      // Buka stream terlebih dahulu, lalu kirim pesan pengguna
+      // Open the stream first, then send the user message
       $stream = $client->beta->sessions->events->streamStream($session->id);
       $client->beta->sessions->events->send(
           $session->id,
@@ -617,12 +622,12 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
       );
 
       foreach ($stream as $event) {
-          match ($event->type) {
-              'agent.message' => array_walk(
+          match (true) {
+              $event instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsAgentMessageEvent => array_walk(
                   $event->content,
-                  static fn ($block) => $block->type === 'text' ? print($block->text) : null,
+                  static fn ($block) => $block instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsTextBlock ? print($block->text) : null,
               ),
-              'session.error' => printf("\n[Error: %s]", $event->error?->message ?? 'unknown'),
+              $event instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsSessionErrorEvent => printf("\n[Error: %s]", $event->error?->message ?? 'unknown'),
               default => null,
           };
           if ($event->type === 'session.status_idle' || $event->type === 'session.error') {
@@ -633,7 +638,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
       ```
 
       ```ruby Ruby
-      # Buka stream terlebih dahulu, lalu kirim pesan pengguna
+      # Open the stream first, then send the user message
       stream = client.beta.sessions.events.stream_events(session.id)
 
       client.beta.sessions.events.send_(
@@ -645,16 +650,16 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
       )
 
       stream.each do |event|
-        case event.type
-        in :"agent.message"
+        case event
+        when Anthropic::Beta::Sessions::BetaManagedAgentsAgentMessageEvent
           event.content.each { print it.text }
-        in :"session.status_idle"
+        when Anthropic::Beta::Sessions::BetaManagedAgentsSessionStatusIdleEvent
           break
-        in :"session.error"
+        when Anthropic::Beta::Sessions::BetaManagedAgentsSessionErrorEvent
           puts "\n[Error: #{event.error&.message || "unknown"}]"
           break
         else
-          # abaikan tipe event lainnya
+          # ignore other event types
         end
       end
       ```
@@ -742,25 +747,27 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
       const seenEventIds = new Set<string>();
       const stream = await client.beta.sessions.events.stream(session.id);
 
-      // Stream terbuka dan melakukan buffering. Tampilkan riwayat sebelum mengikuti event langsung.
+      // Stream is open and buffering. List history before tailing live.
       for await (const event of client.beta.sessions.events.list(session.id)) {
         seenEventIds.add(event.id);
       }
 
-      // Ikuti event langsung, lewati yang sudah terlihat
-      for await (const event of stream) {
-        // Event pratinjau (event_start/event_delta) tidak membawa id tingkat atas
+      // Tail live events, skipping anything already seen
+      tail: for await (const event of stream) {
+        // Preview events (event_start/event_delta) carry no top-level id
         if (event.type === "event_start" || event.type === "event_delta") continue;
         if (seenEventIds.has(event.id)) continue;
         seenEventIds.add(event.id);
-        if (event.type === "agent.message") {
-          for (const block of event.content) {
-            if (block.type === "text") {
-              process.stdout.write(block.text);
+        switch (event.type) {
+          case "agent.message":
+            for (const block of event.content) {
+              if (block.type === "text") {
+                process.stdout.write(block.text);
+              }
             }
-          }
-        } else if (event.type === "session.status_idle") {
-          break;
+            break;
+          case "session.status_idle":
+            break tail;
         }
       }
       ```
@@ -839,8 +846,8 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
 
       ```java Java
       try (var stream = client.beta().sessions().events().streamStreaming(session.id())) {
-          // Stream terbuka dan sedang buffering. Tampilkan riwayat sebelum tailing live.
-          // Setiap varian event membawa `id`; baca dari JSON mentah untuk dedup lintas varian.
+          // Stream is open and buffering. List history before tailing live.
+          // Every event variant carries `id`; read it from the raw JSON to dedup across variants.
           var seenEventIds = new HashSet<String>();
           for (var pastEvent : client.beta().sessions().events().list(session.id()).autoPager()) {
               if (pastEvent._json().orElseThrow() instanceof JsonObject json) {
@@ -848,7 +855,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
               }
           }
 
-          // Tail event live; Set.add mengembalikan false untuk ID yang sudah dilihat, melewati replay.
+          // Tail live events; Set.add returns false for already-seen IDs, skipping the replay.
           stream.stream()
               .filter(event -> event._json().orElseThrow() instanceof JsonObject json
                   && seenEventIds.add(json.values().get("id").asStringOrThrow()))
@@ -862,22 +869,22 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
       ```php PHP
       $stream = $client->beta->sessions->events->streamStream($session->id);
 
-      // Stream terbuka dan sedang buffering. Tampilkan riwayat sebelum mengikuti event langsung.
+      // Stream is open and buffering. List history before tailing live.
       $seenEventIds = [];
       foreach ($client->beta->sessions->events->list($session->id)->pagingEachItem() as $event) {
           $seenEventIds[$event->id] = true;
       }
 
-      // Ikuti event langsung, lewati apa pun yang sudah terlihat
+      // Tail live events, skipping anything already seen
       foreach ($stream as $event) {
           if (isset($seenEventIds[$event->id])) {
               continue;
           }
           $seenEventIds[$event->id] = true;
-          match ($event->type) {
-              'agent.message' => array_walk(
+          match (true) {
+              $event instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsAgentMessageEvent => array_walk(
                   $event->content,
-                  static fn ($block) => $block->type === 'text' ? print($block->text) : null,
+                  static fn ($block) => $block instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsTextBlock ? print($block->text) : null,
               ),
               default => null,
           };
@@ -891,20 +898,20 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
       ```ruby Ruby
       stream = client.beta.sessions.events.stream_events(session.id)
 
-      # Stream terbuka dan melakukan buffering. Tampilkan riwayat sebelum mengikuti event langsung.
+      # Stream is open and buffering. List history before tailing live.
       seen_event_ids = Set.new
       client.beta.sessions.events.list(session.id).auto_paging_each { seen_event_ids << it.id }
 
-      # Ikuti event langsung, lewati yang sudah terlihat — Set#add? mengembalikan nil untuk duplikat
+      # Tail live events, skipping anything already seen — Set#add? returns nil for duplicates
       stream.each do |event|
         next unless seen_event_ids.add?(event.id)
-        case event.type
-        in :"agent.message"
+        case event
+        when Anthropic::Beta::Sessions::BetaManagedAgentsAgentMessageEvent
           event.content.each { print it.text }
-        in :"session.status_idle"
+        when Anthropic::Beta::Sessions::BetaManagedAgentsSessionStatusIdleEvent
           break
         else
-          # abaikan tipe event lainnya
+          # ignore other event types
         end
       end
       ```
@@ -1264,11 +1271,11 @@ Jaminan yang diandalkan pola ini:
   ```
 
   ```typescript TypeScript
-  // Snapshot pratinjau, dikunci berdasarkan id event. `accumulateManagedAgentsEvent`
-  // menggabungkan pratinjau event_start / event_delta menjadi snapshot agent.message.
+  // Preview snapshots, keyed by event id. `accumulateManagedAgentsEvent`
+  // folds event_start / event_delta previews into an agent.message snapshot.
   const previews = new Map<string, BetaManagedAgentsAgentMessageEvent>();
 
-  // Aktifkan pratinjau agent.message hanya untuk koneksi ini
+  // Opt in to agent.message previews for this connection only
   const stream = await client.beta.sessions.events.stream(session.id, {
     event_deltas: ["agent.message"],
   });
@@ -1281,39 +1288,47 @@ Jaminan yang diandalkan pola ini:
     ]
   });
 
-  for await (const event of stream) {
-    if (event.type === "event_start") {
-      // 1. Catat id yang diumumkan dan buka snapshot. Delta dan
-      //    event yang di-buffer membawa id yang sama.
-      const preview = accumulateManagedAgentsEvent(undefined, event);
-      if (preview) previews.set(event.event.id, preview);
-      console.log(`event_start             ${event.event.type} ${event.event.id}`);
-    } else if (event.type === "event_delta") {
-      // 2. Gabungkan fragmen ke dalam snapshot dan render
-      const preview = accumulateManagedAgentsEvent(previews.get(event.event_id), event);
-      if (preview) {
-        previews.set(event.event_id, preview);
-        const text = preview.content
+  deltas: for await (const event of stream) {
+    switch (event.type) {
+      case "event_start": {
+        // 1. Note the announced id and open the snapshot. Deltas and the
+        //    buffered event carry the same id.
+        const preview = accumulateManagedAgentsEvent(undefined, event);
+        if (preview) previews.set(event.event.id, preview);
+        console.log(`event_start             ${event.event.type} ${event.event.id}`);
+        break;
+      }
+      case "event_delta": {
+        // 2. Fold the fragment into the snapshot and render it
+        const preview = accumulateManagedAgentsEvent(previews.get(event.event_id), event);
+        if (preview) {
+          previews.set(event.event_id, preview);
+          const text = preview.content
+            .map((block) => (block.type === "text" ? block.text : ""))
+            .join("");
+          console.log(`event_delta             preview: ${JSON.stringify(text)}`);
+        }
+        break;
+      }
+      case "agent.message": {
+        // 3. The buffered event is the record: it replaces and closes the preview
+        const message = accumulateManagedAgentsEvent(previews.get(event.id), event);
+        previews.delete(event.id);
+        const text = message.content
           .map((block) => (block.type === "text" ? block.text : ""))
           .join("");
-        console.log(`event_delta             preview: ${JSON.stringify(text)}`);
+        console.log(`agent.message           ${event.id} ${JSON.stringify(text)}`);
+        break;
       }
-    } else if (event.type === "agent.message") {
-      // 3. Event yang di-buffer adalah rekamannya: menggantikan dan menutup pratinjau
-      const message = accumulateManagedAgentsEvent(previews.get(event.id), event);
-      previews.delete(event.id);
-      const text = message.content
-        .map((block) => (block.type === "text" ? block.text : ""))
-        .join("");
-      console.log(`agent.message           ${event.id} ${JSON.stringify(text)}`);
-    } else if (event.type === "span.model_request_end") {
-      // 4. Tidak ada delta lagi yang akan datang. Tutup pratinjau yang belum pernah direkonsiliasi.
-      for (const eventId of previews.keys()) {
-        console.log(`span.model_request_end  closing preview for ${eventId}`);
-      }
-      previews.clear();
-    } else if (event.type === "session.status_idle") {
-      break;
+      case "span.model_request_end":
+        // 4. No more deltas are coming. Close any preview that was never reconciled.
+        for (const eventId of previews.keys()) {
+          console.log(`span.model_request_end  closing preview for ${eventId}`);
+        }
+        previews.clear();
+        break;
+      case "session.status_idle":
+        break deltas;
     }
   }
   stream.controller.abort();
@@ -1454,10 +1469,10 @@ Jaminan yang diandalkan pola ini:
   ```
 
   ```java Java
-  // Teks pratinjau, dikunci oleh ID event lalu indeks konten. agent.message yang di-buffer menggantikannya.
+  // Preview text, keyed by event ID then content index. The buffered agent.message replaces it.
   Map<String, Map<Long, StringBuilder>> previews = new HashMap<>();
 
-  // Aktifkan pratinjau agent.message pada koneksi ini
+  // Opt in to agent.message previews on this connection
   try (var stream = client.beta().sessions().events().streamStreaming(
           session.id(),
           EventStreamParams.builder()
@@ -1475,34 +1490,43 @@ Jaminan yang diandalkan pola ini:
       );
 
       Iterable<BetaManagedAgentsStreamSessionEvents> events = stream.stream()::iterator;
+      deltas:
       for (var event : events) {
-          if (event.isEventStart() && event.asEventStart().event().isAgentMessage()) {
-              var preview = event.asEventStart().event().asAgentMessage();
-              IO.println("event_start             " + preview.type().asString() + " " + preview.id());
-          } else if (event.isEventDelta()) {
-              var eventDelta = event.asEventDelta();
-              var fragment = eventDelta.delta();
-              var buffer = previews
-                  .computeIfAbsent(eventDelta.eventId(), _ -> new HashMap<>())
-                  .computeIfAbsent(fragment.index().orElse(0L), _ -> new StringBuilder());
-              buffer.append(fragment.content().text());
-              IO.println("event_delta             preview: " + buffer);
-          } else if (event.isAgentMessage()) {
-              // Event yang di-buffer adalah catatan resminya: buang pratinjaunya, render kontennya
-              var message = event.asAgentMessage();
-              previews.remove(message.id());
-              var text = message.content().stream()
-                  .flatMap(block -> block.text().stream())
-                  .map(textBlock -> textBlock.text())
-                  .collect(Collectors.joining());
-              IO.println("agent.message           " + message.id() + " " + text);
-          } else if (event.isSpanModelRequestEnd()) {
-              // Tidak ada delta lagi yang datang. Tutup pratinjau yang event buffer-nya tidak pernah tiba.
-              previews.keySet().forEach(eventId ->
-                  IO.println("span.model_request_end  closing preview for " + eventId));
-              previews.clear();
-          } else if (event.isSessionStatusIdle()) {
-              break;
+          switch (event.type().value()) {
+              case EVENT_START -> {
+                  if (event.asEventStart().event().isAgentMessage()) {
+                      var preview = event.asEventStart().event().asAgentMessage();
+                      IO.println("event_start             " + preview.type().asString() + " " + preview.id());
+                  }
+              }
+              case EVENT_DELTA -> {
+                  var eventDelta = event.asEventDelta();
+                  var fragment = eventDelta.delta();
+                  var buffer = previews
+                      .computeIfAbsent(eventDelta.eventId(), _ -> new HashMap<>())
+                      .computeIfAbsent(fragment.index().orElse(0L), _ -> new StringBuilder());
+                  buffer.append(fragment.content().text());
+                  IO.println("event_delta             preview: " + buffer);
+              }
+              case AGENT_MESSAGE -> {
+                  // The buffered event is the record: drop its preview, render its content
+                  var message = event.asAgentMessage();
+                  previews.remove(message.id());
+                  var text = message.content().stream()
+                      .flatMap(block -> block.text().stream())
+                      .map(textBlock -> textBlock.text())
+                      .collect(Collectors.joining());
+                  IO.println("agent.message           " + message.id() + " " + text);
+              }
+              case SPAN_MODEL_REQUEST_END -> {
+                  // No more deltas are coming. Close any preview whose buffered event never arrived.
+                  previews.keySet().forEach(eventId ->
+                      IO.println("span.model_request_end  closing preview for " + eventId));
+                  previews.clear();
+              }
+              case SESSION_STATUS_IDLE -> {
+                  break deltas;
+              }
           }
       }
   }
@@ -1513,7 +1537,7 @@ Jaminan yang diandalkan pola ini:
   ```
 
   ```ruby Ruby
-  # Aktifkan delta event: pratinjau agent.message di-stream sebagai fragmen inkremental.
+  # Opt in to event deltas: agent.message previews stream as incremental fragments.
   stream = client.beta.sessions.events.stream_events(
     session.id,
     event_deltas: [Anthropic::Beta::BetaManagedAgentsDeltaType::AGENT_MESSAGE]
@@ -1527,34 +1551,34 @@ Jaminan yang diandalkan pola ini:
     }]
   )
 
-  # Akumulasikan fragmen pratinjau berdasarkan (event_id, index) ke dalam buffer yang
-  # secara eksplisit mutable (`+""`) agar `<<` bisa menambahkan di tempat. agent.message ter-buffer dengan
-  # id yang sama bersifat otoritatif dan menggantikan apa pun yang dibangun oleh delta.
+  # Accumulate preview fragments by (event_id, index) into explicitly mutable
+  # (`+""`) buffers so `<<` can append in place. The buffered agent.message with
+  # the same id is authoritative and replaces whatever the deltas built up.
   buffers = Hash.new do |by_event, event_id|
     by_event[event_id] = Hash.new { |fragments, index| fragments[index] = +"" }
   end
 
   stream.each do |event|
-    case event.type
-    in :event_start
+    case event
+    when Anthropic::Beta::BetaManagedAgentsStartEvent
       puts "event_start             #{event.event.type} #{event.event.id}"
-    in :event_delta
+    when Anthropic::Beta::BetaManagedAgentsDeltaEvent
       delta = event.delta
       fragment = delta.content.text
       buffers[event.event_id][delta.index || 0] << fragment
       puts "event_delta             preview: #{buffers[event.event_id][delta.index || 0].inspect}"
-    in :"agent.message"
-      # Ganti: buang pratinjau yang terakumulasi dan render event lengkapnya.
+    when Anthropic::Beta::Sessions::BetaManagedAgentsAgentMessageEvent
+      # Replace: drop the accumulated preview and render the complete event.
       buffers.delete(event.id)
       puts "agent.message           #{event.id} #{event.content.map(&:text).join.inspect}"
-    in :"span.model_request_end"
-      # Tidak ada delta lagi yang akan datang. Tutup pratinjau yang belum pernah direkonsiliasi.
+    when Anthropic::Beta::Sessions::BetaManagedAgentsSpanModelRequestEndEvent
+      # No more deltas are coming. Close any preview that was never reconciled.
       buffers.each_key { |event_id| puts "span.model_request_end  closing preview for #{event_id}" }
       buffers.clear
-    in :"session.status_idle"
+    when Anthropic::Beta::Sessions::BetaManagedAgentsSessionStatusIdleEvent
       break
     else
-      # abaikan tipe event lainnya
+      # ignore other event types
     end
   end
   ```
@@ -1683,8 +1707,8 @@ Event pratinjaunya sendiri tidak berubah. `event_start` dan `event_delta` memili
   ```
 
   ```typescript TypeScript
-  // Tampilkan daftar thread sesi dan pilih anak: thread anak membawa parent_thread_id
-  // non-null, dan parent_thread_id thread utama bernilai null.
+  // List the session's threads and pick a child: child threads carry a non-null
+  // parent_thread_id, and the primary thread's parent_thread_id is null.
   let childThreadId: string | undefined;
   for await (const thread of client.beta.sessions.threads.list(session.id)) {
     if (thread.parent_thread_id !== null) {
@@ -1694,25 +1718,29 @@ Event pratinjaunya sendiri tidak berubah. `event_start` dan `event_delta` memili
   }
   if (!childThreadId) throw new Error("No child thread found");
 
-  // Stream thread anak menerima parameter event_deltas yang sama dengan
-  // stream sesi.
+  // The child thread's stream takes the same event_deltas parameter as the
+  // session stream.
   const stream = await client.beta.sessions.threads.events.stream(childThreadId, {
     session_id: session.id,
     event_deltas: ["agent.message"],
   });
 
-  for await (const event of stream) {
-    if (event.type === "event_delta") {
-      process.stdout.write(event.delta.content.text);
-    } else if (event.type === "agent.message") {
-      // Event yang di-buffer adalah rekaman otoritatif; render kontennya.
-      process.stdout.write("\n");
-      const text = event.content
-        .map((block) => (block.type === "text" ? block.text : ""))
-        .join("");
-      console.log(text);
-    } else if (event.type === "session.thread_status_idle") {
-      break;
+  threadDeltas: for await (const event of stream) {
+    switch (event.type) {
+      case "event_delta":
+        process.stdout.write(event.delta.content.text);
+        break;
+      case "agent.message": {
+        // The buffered event is the authoritative record; render its content.
+        process.stdout.write("\n");
+        const text = event.content
+          .map((block) => (block.type === "text" ? block.text : ""))
+          .join("");
+        console.log(text);
+        break;
+      }
+      case "session.thread_status_idle":
+        break threadDeltas;
     }
   }
   stream.controller.abort();
@@ -1800,15 +1828,15 @@ Event pratinjaunya sendiri tidak berubah. `event_start` dan `event_delta` memili
   ```
 
   ```java Java
-  // Daftar thread sesi dan pilih satu child: child thread membawa parent_thread_id
-  // yang non-null, dan parent_thread_id thread utama bernilai null.
+  // List the session's threads and pick a child: child threads carry a non-null
+  // parent_thread_id, and the primary thread's parent_thread_id is null.
   var childThread = client.beta().sessions().threads().list(session.id()).autoPager().stream()
       .filter(thread -> thread.parentThreadId().isPresent())
       .findFirst()
       .orElseThrow();
 
-  // Stream child thread menerima parameter event_deltas yang sama dengan stream sesi.
-  // Kelas params-nya berbagi nama sederhana dengan yang level sesi, jadi kualifikasikan.
+  // The child thread's stream takes the same event_deltas parameter as the session
+  // stream. Its params class shares the session-level one's simple name, so qualify it.
   try (var stream = client.beta().sessions().threads().events().streamStreaming(
           childThread.id(),
           com.anthropic.models.beta.sessions.threads.events.EventStreamParams.builder()
@@ -1817,16 +1845,19 @@ Event pratinjaunya sendiri tidak berubah. `event_start` dan `event_delta` memili
               .build()
   )) {
       Iterable<BetaManagedAgentsStreamSessionThreadEvents> events = stream.stream()::iterator;
+      threadDeltas:
       for (var event : events) {
-          if (event.isEventDelta()) {
-              IO.print(event.asEventDelta().delta().content().text());
-          } else if (event.isAgentMessage()) {
-              // Event yang di-buffer adalah catatan otoritatif; render kontennya.
-              IO.println();
-              event.asAgentMessage().content().forEach(block -> block.text().ifPresent(textBlock -> IO.print(textBlock.text())));
-              IO.println();
-          } else if (event.isSessionThreadStatusIdle()) {
-              break;
+          switch (event.type().value()) {
+              case EVENT_DELTA -> IO.print(event.asEventDelta().delta().content().text());
+              case AGENT_MESSAGE -> {
+                  // The buffered event is the authoritative record; render its content.
+                  IO.println();
+                  event.asAgentMessage().content().forEach(block -> block.text().ifPresent(textBlock -> IO.print(textBlock.text())));
+                  IO.println();
+              }
+              case SESSION_THREAD_STATUS_IDLE -> {
+                  break threadDeltas;
+              }
           }
       }
   }
@@ -1837,12 +1868,12 @@ Event pratinjaunya sendiri tidak berubah. `event_start` dan `event_delta` memili
   ```
 
   ```ruby Ruby
-  # Daftarkan thread milik sesi dan pilih satu anak: thread anak memiliki
-  # parent_thread_id non-null, dan parent_thread_id thread utama bernilai null.
+  # List the session's threads and pick a child: child threads carry a non-null
+  # parent_thread_id, and the primary thread's parent_thread_id is null.
   child_thread = client.beta.sessions.threads.list(session.id).to_enum.find { it.parent_thread_id }
 
-  # Stream thread anak menerima parameter event_deltas yang sama dengan
-  # stream sesi.
+  # The child thread's stream takes the same event_deltas parameter as the
+  # session stream.
   stream = client.beta.sessions.threads.events.stream_events(
     child_thread.id,
     session_id: session.id,
@@ -1850,18 +1881,18 @@ Event pratinjaunya sendiri tidak berubah. `event_start` dan `event_delta` memili
   )
 
   stream.each do |event|
-    case event.type
-    in :event_delta
+    case event
+    when Anthropic::Beta::BetaManagedAgentsDeltaEvent
       print event.delta.content.text
-    in :"agent.message"
-      # Event yang ter-buffer adalah catatan otoritatif; render kontennya.
+    when Anthropic::Beta::Sessions::BetaManagedAgentsAgentMessageEvent
+      # The buffered event is the authoritative record; render its content.
       puts
       event.content.each { print it.text }
       puts
-    in :"session.thread_status_idle"
+    when Anthropic::Beta::Sessions::BetaManagedAgentsSessionThreadStatusIdleEvent
       break
     else
-      # abaikan tipe event lainnya
+      # ignore other event types
     end
   end
   ```
@@ -2113,27 +2144,29 @@ Ketika agen memanggil [alat kustom](https://platform.claude.com/docs/id/managed-
   $stream = $client->beta->sessions->events->streamStream($session->id);
 
   foreach ($stream as $event) {
-      if ($event->type === 'session.status_idle' && $event->stopReason) {
-          if ($event->stopReason->type === 'requires_action') {
-              foreach ($event->stopReason->eventIDs as $eventId) {
-                  // Cari event penggunaan alat kustom lalu eksekusi
-                  $toolEvent = $eventsById[$eventId];
-                  $result = callTool($toolEvent->name, $toolEvent->input);
+      if ($event instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsSessionStatusIdleEvent && $event->stopReason) {
+          switch (true) {
+              case $event->stopReason instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsSessionRequiresAction:
+                  foreach ($event->stopReason->eventIDs as $eventId) {
+                      // Look up the custom tool use event and execute it
+                      $toolEvent = $eventsById[$eventId];
+                      $result = callTool($toolEvent->name, $toolEvent->input);
 
-                  // Kirim kembali hasilnya
-                  $client->beta->sessions->events->send(
-                      $session->id,
-                      events: [
-                          [
-                              'type' => 'user.custom_tool_result',
-                              'custom_tool_use_id' => $eventId,
-                              'content' => [['type' => 'text', 'text' => $result]],
+                      // Send the result back
+                      $client->beta->sessions->events->send(
+                          $session->id,
+                          events: [
+                              [
+                                  'type' => 'user.custom_tool_result',
+                                  'custom_tool_use_id' => $eventId,
+                                  'content' => [['type' => 'text', 'text' => $result]],
+                              ],
                           ],
-                      ],
-                  );
-              }
-          } elseif ($event->stopReason->type === 'end_turn') {
-              break;
+                      );
+                  }
+                  break;
+              case $event->stopReason instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsSessionEndTurn:
+                  break 2;
           }
       }
   }
@@ -2142,26 +2175,29 @@ Ketika agen memanggil [alat kustom](https://platform.claude.com/docs/id/managed-
   ```ruby Ruby
   client.beta.sessions.events.stream_events(session.id).each do |event|
     case event
-    in {type: :"session.status_idle", stop_reason: {type: :requires_action, event_ids:}}
-      event_ids.each do |event_id|
-        # Cari event custom tool use dan jalankan
-        tool_event = events_by_id[event_id]
-        result = call_tool.call(tool_event.name, tool_event.input)
-        # Kirim hasilnya kembali
-        client.beta.sessions.events.send_(
-          session.id,
-          events: [
-            {
-              type: "user.custom_tool_result",
-              custom_tool_use_id: event_id,
-              content: [{type: "text", text: result}]
-            }
-          ]
-        )
+    when Anthropic::Beta::Sessions::BetaManagedAgentsSessionStatusIdleEvent
+      stop_reason = event.stop_reason
+      case stop_reason
+      when Anthropic::Beta::Sessions::BetaManagedAgentsSessionRequiresAction
+        stop_reason.event_ids.each do |event_id|
+          # Look up the custom tool use event and execute it
+          tool_event = events_by_id[event_id]
+          result = call_tool.call(tool_event.name, tool_event.input)
+          # Send the result back
+          client.beta.sessions.events.send_(
+            session.id,
+            events: [
+              {
+                type: "user.custom_tool_result",
+                custom_tool_use_id: event_id,
+                content: [{type: "text", text: result}]
+              }
+            ]
+          )
+        end
+      when Anthropic::Beta::Sessions::BetaManagedAgentsSessionEndTurn
+        break
       end
-    in {type: :"session.status_idle", stop_reason: {type: :end_turn}}
-      break
-    else
     end
   end
   ```
@@ -2372,23 +2408,25 @@ Setiap event `agent.tool_use` dan `agent.mcp_tool_use` membawa `evaluated_permis
   $stream = $client->beta->sessions->events->streamStream($session->id);
 
   foreach ($stream as $event) {
-      if ($event->type === 'session.status_idle' && $event->stopReason) {
-          if ($event->stopReason->type === 'requires_action') {
-              foreach ($event->stopReason->eventIDs as $eventId) {
-                  // Setujui panggilan alat yang tertunda
-                  $client->beta->sessions->events->send(
-                      $session->id,
-                      events: [
-                          [
-                              'type' => 'user.tool_confirmation',
-                              'tool_use_id' => $eventId,
-                              'result' => 'allow',
+      if ($event instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsSessionStatusIdleEvent && $event->stopReason) {
+          switch (true) {
+              case $event->stopReason instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsSessionRequiresAction:
+                  foreach ($event->stopReason->eventIDs as $eventId) {
+                      // Approve the pending tool call
+                      $client->beta->sessions->events->send(
+                          $session->id,
+                          events: [
+                              [
+                                  'type' => 'user.tool_confirmation',
+                                  'tool_use_id' => $eventId,
+                                  'result' => 'allow',
+                              ],
                           ],
-                      ],
-                  );
-              }
-          } elseif ($event->stopReason->type === 'end_turn') {
-              break;
+                      );
+                  }
+                  break;
+              case $event->stopReason instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsSessionEndTurn:
+                  break 2;
           }
       }
   }
@@ -2397,19 +2435,22 @@ Setiap event `agent.tool_use` dan `agent.mcp_tool_use` membawa `evaluated_permis
   ```ruby Ruby
   client.beta.sessions.events.stream_events(session.id).each do |event|
     case event
-    in {type: :"session.status_idle", stop_reason: {type: :requires_action, event_ids:}}
-      event_ids.each do |event_id|
-        # Setujui pemanggilan alat yang tertunda
-        client.beta.sessions.events.send_(
-          session.id,
-          events: [
-            {type: "user.tool_confirmation", tool_use_id: event_id, result: "allow"}
-          ]
-        )
+    when Anthropic::Beta::Sessions::BetaManagedAgentsSessionStatusIdleEvent
+      stop_reason = event.stop_reason
+      case stop_reason
+      when Anthropic::Beta::Sessions::BetaManagedAgentsSessionRequiresAction
+        stop_reason.event_ids.each do |event_id|
+          # Approve the pending tool call
+          client.beta.sessions.events.send_(
+            session.id,
+            events: [
+              {type: "user.tool_confirmation", tool_use_id: event_id, result: "allow"}
+            ]
+          )
+        end
+      when Anthropic::Beta::Sessions::BetaManagedAgentsSessionEndTurn
+        break
       end
-    in {type: :"session.status_idle", stop_reason: {type: :end_turn}}
-      break
-    else
     end
   end
   ```
@@ -2552,8 +2593,8 @@ Untuk melanjutkan sesi, kirim event `user.message` ke sesi tersebut seperti bias
   ```
 
   ```php PHP
-  // Lanjutkan sesi yang dibuat sebelumnya dengan mengirimkan event user.message baru.
-  // Di produksi, berikan ID sesi yang Anda simpan saat sesi dibuat.
+  // Resume a previously created session by sending it a new user.message event.
+  // In production, pass the session ID you stored when the session was created.
   $client->beta->sessions->events->send(
       $session->id,
       events: [
@@ -2571,8 +2612,8 @@ Untuk melanjutkan sesi, kirim event `user.message` ke sesi tersebut seperti bias
   ```
 
   ```ruby Ruby
-  # Melanjutkan sesi cukup dengan mengirim event berikutnya ke sesi tersebut. Di produksi,
-  # teruskan ID sesi yang Anda simpan saat sesi dibuat.
+  # Resuming a session is just sending the next event to it. In production,
+  # pass the session ID you stored when the session was created.
   client.beta.sessions.events.send_(
     session.id,
     events: [

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/opus-5/migration-guide
-fetched_at: 2026-08-29T02:18:19.758736Z
-sha256: 2c90776b634505f2d6035e2f08ffac4bf934f8e5be4f77391f159416c7bd5cc5
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: e6494704d2743676c6408165baa96bdcca155282392f8dde918c73896cc70d24
 ---
 
 ---
@@ -230,7 +230,7 @@ These are not required but will improve your experience:
 * Audit requests that disable thinking: `thinking: {type: "disabled"}` with effort `xhigh` or `max` returns a 400 error, enforced on each request. Re-enable thinking or lower the effort to `high` or below.
 * If you removed sampling parameters during the Opus 4.7 migration, no action is needed. If you re-added them with a 400-retry path, remove that retry path.
 * Re-evaluate your `effort` setting: run a fresh [effort](https://platform.claude.com/docs/en/build-with-claude/effort) sweep on your own evals rather than carrying over a setting tuned for Claude Opus 4.7. Test `low` and `medium` effort as cost and latency controls, and `max` effort where maximum capability matters more than token spend. If you run at `xhigh` or `max` effort, raise `max_tokens` to at least 64k as a starting point.
-* Remove any context-window beta header. The 1M context window is the default on the Claude API, Amazon Bedrock, Google Cloud, and Microsoft Foundry.
+* Remove any context-window beta header. The 1M context window is the default on the Claude API, Amazon Bedrock, Claude Platform on AWS, Google Cloud, and Microsoft Foundry.
 * If you rebuild conversation history to update instructions, consider switching to a mid-conversation system message to preserve prompt cache hits.
 * Verify your stop-reason handling reads `stop_details` on refusals (available since Claude Opus 4.7; now publicly documented), and consider `fallbacks: "default"` (beta) to re-run refused requests on a recommended fallback model automatically.
 * Review prompts near the caching minimum: prompts of 512 tokens or more can now create cache entries.

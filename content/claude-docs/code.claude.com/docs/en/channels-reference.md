@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/channels-reference
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 9ea1a92e784f8960727f463f3c9040bd3f665d28ff91a95257d5d516e04e2c09
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: ff07eaca09f2fe7a89b148682eccc8a9fdadd915c05dd950ae60f9ac5e87e826
 ---
 
 > ## Documentation Index
@@ -494,7 +494,7 @@ Clients on Claude Code v2.1.234 or later also mask credentials in `description` 
 
 Masking doesn't change who receives the fields. Whatever stays unmasked goes only to servers you opted in with `--channels` or the development flag. Treat both fields as untrusted unless you control the client fleet.
 
-The verdict your server sends back is `notifications/claude/channel/permission` with two fields: `request_id` echoing the ID above, and `behavior` set to `'allow'` or `'deny'`. Allow lets the tool call proceed; deny rejects it, the same as answering No in the local dialog. Neither verdict affects future calls.
+The verdict your server sends back is `notifications/claude/channel/permission` with two fields: `request_id` echoing the ID above, and `behavior` set to `'allow'` or `'deny'`. Allow lets the tool call proceed; deny rejects it. Neither verdict affects future calls.
 
 ### Add relay to a chat bridge
 

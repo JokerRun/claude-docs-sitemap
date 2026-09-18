@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 69cbdf078f8bc8f60a7841bfe11fbcde5fd1be7b598de5dfb41e9bc86076d15b
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: 93b6d8801c4bbc292b8c80043c09b81492f36bbed1e6d666334992a2ad9bafcb
 ---
 
 ---
@@ -613,7 +613,7 @@ Berikut kerangka langkah panggilan alat dari loop tersebut dalam dua bagian. Per
   ```
 
   ```php PHP
-  // Pengganti untuk byte PNG asli; executor nyata menangkap viewport
+  // Stand-in for real PNG bytes; a real executor captures the viewport
   const PLACEHOLDER_PNG = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==';
 
   function navigateTo(string $url): string
@@ -631,7 +631,7 @@ Berikut kerangka langkah panggilan alat dari loop tersebut dalam dua bagian. Per
 
   function clickTarget(array $target): string
   {
-      // Target adalah referensi elemen dari read_page atau find, atau koordinat piksel viewport
+      // A target is an element reference from read_page or find, or a viewport pixel coordinate
       if ($target['type'] === 'ref') {
           return "clicked {$target['ref']}";
       }
@@ -646,7 +646,7 @@ Berikut kerangka langkah panggilan alat dari loop tersebut dalam dua bagian. Per
 
   function captureScreenshot(): array
   {
-      // screenshot menjawab dengan blok gambar, bukan teks, jadi kembalikan daftar konten hasil
+      // screenshot answers with an image block rather than text, so return the result content list
       $image = [
           'type' => 'image',
           'source' => ['type' => 'base64', 'media_type' => 'image/png', 'data' => PLACEHOLDER_PNG],
@@ -663,7 +663,7 @@ Berikut kerangka langkah panggilan alat dari loop tersebut dalam dua bagian. Per
           'left_click' => clickTarget($input['target']),
           'type' => typeText($input['text']),
           'screenshot' => captureScreenshot(),
-          // Tangani aksi lain sesuai kebutuhan
+          // Handle other actions as needed
           default => throw new RuntimeException("Unknown or unimplemented member: {$name}"),
       };
   }
@@ -984,18 +984,18 @@ Bagian kedua menjalankan batch secara berurutan, mengirim setiap blok ke handler
       $toolResults = [];
       $failed = false;
       foreach ($response->content as $block) {
-          // Contoh ini hanya mendeklarasikan toolset browser; arahkan alat lain ke sini jika Anda menambahkannya.
-          if (!($block instanceof ToolUseBlock) || $block->toolsetName !== 'browser') {
+          // This example declares only the browser toolset; route other tools here if you add them.
+          if (!($block instanceof \Anthropic\Messages\ToolUseBlock) || $block->toolsetName !== 'browser') {
               continue;
           }
           $result = ['type' => 'tool_result', 'tool_use_id' => $block->id, 'toolset_name' => 'browser'];
           if ($failed) {
-              // Batch berhenti pada kegagalan pertama; aksi sisanya dijawab tanpa dijalankan
+              // A batch stops at its first failure; the remaining actions are answered without running
               $toolResults[] = [...$result, 'content' => HALT_TEXT, 'is_error' => true];
               continue;
           }
           try {
-              // Executor nyata juga mengembalikan blok browser_state pada hasil navigasi dan manajemen tab
+              // A real executor also returns a browser_state block on navigation and tab-management results
               $toolResults[] = [...$result, 'content' => handleBrowserAction($block->name, $block->input)];
           } catch (Throwable $e) {
               $failed = true;

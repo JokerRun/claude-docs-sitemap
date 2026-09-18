@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-dependencies
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 00a0c4ecf579422dcf1e8cced5d41ef0cbc0f9f49875495f08db3bee04237cfd
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: 51a35b04e9dca54f568fcd70351f8db009aa75a40cdb87a34e5a4b309c93d434
 ---
 
 > ## Documentation Index
@@ -76,7 +76,7 @@ For example, a platform team can publish role-specific bundles in an internal ma
 
 Installing `backend-standard` resolves and installs all four dependencies.
 
-To add a tool to the standard set later, publish a new `backend-standard` version with the extra dependency. Auto-update is off by default for non-Anthropic marketplaces, so engineers pick up the new version in one of two ways:
+To add a tool to the standard set later, publish a new `backend-standard` version with the extra dependency. Unless the marketplace [auto-updates](/docs/en/discover-plugins#configure-auto-updates), engineers pick up the new version in one of two ways:
 
 * Enable auto-update for the marketplace in `/plugin`. The next auto-update moves the bundle to the new version and installs any dependencies it adds.
 * Run `claude plugin update backend-standard`, then `/reload-plugins` to install the newly added dependencies.

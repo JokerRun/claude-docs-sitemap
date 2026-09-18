@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/migration
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 4624fa13705f3c0b9f32aafbf59692450c4b75ee582934b71b77c5609198790a
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: 49e179c6a278e247ffce713f2f6a9cc4053809edee440ae91019ac65264f73a4
 ---
 
 ---
@@ -746,28 +746,28 @@ If you built with the [Claude Agent SDK](https://code.claude.com/docs/en/agent-s
           ],
       )
       for event in stream:
-          if event.type == "agent.message":
-              print(
-                  "".join(block.text for block in event.content if block.type == "text")
-              )
-          elif event.type == "agent.custom_tool_use":
-              result = get_weather(**event.input)
-              client.beta.sessions.events.send(
-                  session.id,
-                  events=[
-                      {
-                          "type": "user.custom_tool_result",
-                          "custom_tool_use_id": event.id,
-                          "content": [{"type": "text", "text": result}],
-                      }
-                  ],
-              )
-          elif (
-              event.type == "session.status_idle"
-              and event.stop_reason
-              and event.stop_reason.type == "end_turn"
-          ):
-              break
+          match event.type:
+              case "agent.message":
+                  print(
+                      "".join(
+                          block.text for block in event.content if block.type == "text"
+                      )
+                  )
+              case "agent.custom_tool_use":
+                  result = get_weather(**event.input)
+                  client.beta.sessions.events.send(
+                      session.id,
+                      events=[
+                          {
+                              "type": "user.custom_tool_result",
+                              "custom_tool_use_id": event.id,
+                              "content": [{"type": "text", "text": result}],
+                          }
+                      ],
+                  )
+              case "session.status_idle":
+                  if event.stop_reason and event.stop_reason.type == "end_turn":
+                      break
   ```
 
   ```typescript TypeScript
@@ -817,26 +817,33 @@ If you built with the [Claude Agent SDK](https://code.claude.com/docs/en/agent-s
     ]
   });
 
-  for await (const event of stream) {
-    if (event.type === "agent.message") {
-      for (const block of event.content) {
-        if (block.type === "text") {
-          console.log(block.text);
-        }
-      }
-    } else if (event.type === "agent.custom_tool_use") {
-      const result = getWeather(event.input);
-      await client.beta.sessions.events.send(session.id, {
-        events: [
-          {
-            type: "user.custom_tool_result",
-            custom_tool_use_id: event.id,
-            content: [{ type: "text", text: result }]
+  loop: for await (const event of stream) {
+    switch (event.type) {
+      case "agent.message":
+        for (const block of event.content) {
+          if (block.type === "text") {
+            console.log(block.text);
           }
-        ]
-      });
-    } else if (event.type === "session.status_idle" && event.stop_reason?.type === "end_turn") {
-      break;
+        }
+        break;
+      case "agent.custom_tool_use": {
+        const result = getWeather(event.input);
+        await client.beta.sessions.events.send(session.id, {
+          events: [
+            {
+              type: "user.custom_tool_result",
+              custom_tool_use_id: event.id,
+              content: [{ type: "text", text: result }]
+            }
+          ]
+        });
+        break;
+      }
+      case "session.status_idle":
+        if (event.stop_reason?.type === "end_turn") {
+          break loop;
+        }
+        break;
     }
   }
   ```
@@ -1133,27 +1140,33 @@ If you built with the [Claude Agent SDK](https://code.claude.com/docs/en/agent-s
                   .build())
               .build());
 
+      loop:
       for (var event : (Iterable<BetaManagedAgentsStreamSessionEvents>) stream.stream()::iterator) {
-          if (event.isAgentMessage()) {
-              for (var block : event.asAgentMessage().content()) {
-                  block.text().ifPresent(textBlock -> IO.println(textBlock.text()));
+          switch (event.type().value()) {
+              case AGENT_MESSAGE -> {
+                  for (var block : event.asAgentMessage().content()) {
+                      block.text().ifPresent(textBlock -> IO.println(textBlock.text()));
+                  }
               }
-          } else if (event.isAgentCustomToolUse()) {
-              var toolUse = event.asAgentCustomToolUse();
-              var city = toolUse.input()._additionalProperties().get("city").asStringOrThrow();
-              var result = getWeather.apply(city);
-              client.beta().sessions().events().send(
-                  session.id(),
-                  EventSendParams.builder()
-                      .addEvent(BetaManagedAgentsUserCustomToolResultEventParams.builder()
-                          .type(BetaManagedAgentsUserCustomToolResultEventParams.Type.USER_CUSTOM_TOOL_RESULT)
-                          .customToolUseId(toolUse.id())
-                          .addTextContent(result)
-                          .build())
-                      .build());
-          } else if (event.isSessionStatusIdle()
-              && event.asSessionStatusIdle().stopReason().isEndTurn()) {
-              break;
+              case AGENT_CUSTOM_TOOL_USE -> {
+                  var toolUse = event.asAgentCustomToolUse();
+                  var city = toolUse.input()._additionalProperties().get("city").asStringOrThrow();
+                  var result = getWeather.apply(city);
+                  client.beta().sessions().events().send(
+                      session.id(),
+                      EventSendParams.builder()
+                          .addEvent(BetaManagedAgentsUserCustomToolResultEventParams.builder()
+                              .type(BetaManagedAgentsUserCustomToolResultEventParams.Type.USER_CUSTOM_TOOL_RESULT)
+                              .customToolUseId(toolUse.id())
+                              .addTextContent(result)
+                              .build())
+                          .build());
+              }
+              case SESSION_STATUS_IDLE -> {
+                  if (event.asSessionStatusIdle().stopReason().isEndTurn()) {
+                      break loop;
+                  }
+              }
           }
       }
   }
@@ -1164,6 +1177,11 @@ If you built with the [Claude Agent SDK](https://code.claude.com/docs/en/agent-s
   use Anthropic\Beta\Agents\BetaManagedAgentsCustomToolInputSchema;
   use Anthropic\Beta\Agents\BetaManagedAgentsCustomToolParams;
   use Anthropic\Beta\Sessions\BetaManagedAgentsAgentParams;
+  use Anthropic\Beta\Sessions\Events\ManagedAgentsAgentCustomToolUseEvent;
+  use Anthropic\Beta\Sessions\Events\ManagedAgentsAgentMessageEvent;
+  use Anthropic\Beta\Sessions\Events\ManagedAgentsSessionEndTurn;
+  use Anthropic\Beta\Sessions\Events\ManagedAgentsSessionStatusIdleEvent;
+  use Anthropic\Beta\Sessions\Events\ManagedAgentsTextBlock;
 
   $client = new Client();
 
@@ -1215,26 +1233,32 @@ If you built with the [Claude Agent SDK](https://code.claude.com/docs/en/agent-s
   );
 
   foreach ($stream as $event) {
-      if ($event->type === 'agent.message') {
-          foreach ($event->content as $block) {
-              if ($block->type === 'text') {
-                  echo $block->text . "\n";
+      switch (true) {
+          case $event instanceof ManagedAgentsAgentMessageEvent:
+              foreach ($event->content as $block) {
+                  if ($block instanceof ManagedAgentsTextBlock) {
+                      echo $block->text . "\n";
+                  }
               }
-          }
-      } elseif ($event->type === 'agent.custom_tool_use') {
-          $result = getWeather($event->input['city']);
-          $client->beta->sessions->events->send(
-              $session->id,
-              events: [
-                  [
-                      'type' => 'user.custom_tool_result',
-                      'custom_tool_use_id' => $event->id,
-                      'content' => [['type' => 'text', 'text' => $result]],
+              break;
+          case $event instanceof ManagedAgentsAgentCustomToolUseEvent:
+              $result = getWeather($event->input['city']);
+              $client->beta->sessions->events->send(
+                  $session->id,
+                  events: [
+                      [
+                          'type' => 'user.custom_tool_result',
+                          'custom_tool_use_id' => $event->id,
+                          'content' => [['type' => 'text', 'text' => $result]],
+                      ],
                   ],
-              ],
-          );
-      } elseif ($event->type === 'session.status_idle' && $event->stopReason?->type === 'end_turn') {
-          break;
+              );
+              break;
+          case $event instanceof ManagedAgentsSessionStatusIdleEvent:
+              if ($event->stopReason instanceof ManagedAgentsSessionEndTurn) {
+                  break 2;
+              }
+              break;
       }
   }
   $stream->close();
@@ -1283,12 +1307,12 @@ If you built with the [Claude Agent SDK](https://code.claude.com/docs/en/agent-s
   )
 
   stream.each do |event|
-    case event.type
-    when :"agent.message"
+    case event
+    when Anthropic::Beta::Sessions::BetaManagedAgentsAgentMessageEvent
       event.content.each do |block|
-        puts block.text if block.type == :text
+        puts block.text if block.is_a?(Anthropic::Beta::Sessions::BetaManagedAgentsTextBlock)
       end
-    when :"agent.custom_tool_use"
+    when Anthropic::Beta::Sessions::BetaManagedAgentsAgentCustomToolUseEvent
       result = get_weather(event.input[:city])
       client.beta.sessions.events.send_(
         session.id,
@@ -1300,8 +1324,8 @@ If you built with the [Claude Agent SDK](https://code.claude.com/docs/en/agent-s
           }
         ]
       )
-    when :"session.status_idle"
-      break if event.stop_reason&.type == :end_turn
+    when Anthropic::Beta::Sessions::BetaManagedAgentsSessionStatusIdleEvent
+      break if event.stop_reason.is_a?(Anthropic::Beta::Sessions::BetaManagedAgentsSessionEndTurn)
     end
   end
   ```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-integration-patterns
-fetched_at: 2026-09-03T02:44:34.856042Z
-sha256: e754883edc9c4825cdebb5e43b00f9112e77899d0d66bf8d2a5be518523237a2
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: eed8ca349247004d27e826c36e031e90fb750a1d577ea98f127c5d863569b8ee
 ---
 
 ---
@@ -154,7 +154,7 @@ The content endpoints (chats, files, projects, project attachments, and local an
 
 * Prompt text or model responses from Claude Console, or from Claude API workloads authenticated with an API key.
 * On-device activity in local sessions that is never sent to Anthropic, such as local files that Claude did not read.
-* Claude Code usage authenticated with a Claude Console API key, run through a third-party cloud platform (Amazon Bedrock, Google Cloud, or Microsoft Foundry), or run in Claude Code on the web.
+* Claude Code usage authenticated with a Claude Console API key, run through a third-party cloud platform (Amazon Bedrock, Google Cloud, or Microsoft Foundry), or run in a [Claude Code cloud session](https://code.claude.com/docs/en/claude-code-on-the-web), which runs on cloud infrastructure instead of the user's machine.
 * Local sessions from organizations with [HIPAA readiness](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#hipaa-readiness) enabled, and local sessions for which [zero data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) is in effect.
 * Thinking blocks, and images or other binary content, inside session transcripts (transcripts carry user prompts, assistant responses, and tool activity only; local session transcripts show a placeholder `text` block where binary content was omitted).
 * The original file for a chat attachment that claude.ai stored as extracted text, such as some Word, PowerPoint, and PDF uploads (the file content endpoint returns the extracted text; see [Retrieve files and artifacts](https://platform.claude.com/docs/en/manage-claude/compliance-content-data#retrieve-files-and-artifacts)).

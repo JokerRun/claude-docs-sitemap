@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/files
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: cc27c63302290165a1180106ec47fb3717331d55f7c322a8fa6c8cfad6adcd46
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: 13205bd21a557643f09258a781bf51b7ec67c5ac45e2bfa820e69a6b14dcd2bd
 ---
 
 ---
@@ -539,12 +539,15 @@ Daftarkan semua resource pada sesi dengan `resources.list`. Untuk menghapus file
   ```java Java
   var listed = client.beta().sessions().resources().list(session.id());
   for (var entry : listed.data()) {
-      if (entry.isFile()) {
-          var fileResource = entry.asFile();
-          IO.println(fileResource.id() + " " + fileResource.type());
-      } else if (entry.isGitHubRepository()) {
-          var repoResource = entry.asGitHubRepository();
-          IO.println(repoResource.id() + " " + repoResource.type());
+      switch (entry.type().value()) {
+          case FILE -> {
+              var fileResource = entry.asFile();
+              IO.println(fileResource.id() + " " + fileResource.type());
+          }
+          case GITHUB_REPOSITORY -> {
+              var repoResource = entry.asGitHubRepository();
+              IO.println(repoResource.id() + " " + repoResource.type());
+          }
       }
   }
 

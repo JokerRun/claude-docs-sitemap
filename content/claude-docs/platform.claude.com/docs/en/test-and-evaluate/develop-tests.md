@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/develop-tests
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: df88c8c7e4b3990cbb558d16fcf6e02c4a542e576079e96b377ecaf24e525138
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: 007bdee68b71817910e7a5ceefca77dcc6d36768a4fafd6de5f89dcc9c215c21
 ---
 
 ---
@@ -425,7 +425,7 @@ Most use cases need multidimensional evaluation along several success criteria.
       {
           $text = '';
           foreach ($message->content as $block) {
-              if ($block instanceof TextBlock) {
+              if ($block instanceof \Anthropic\Messages\TextBlock) {
                   $text .= $block->text;
               }
           }
@@ -1081,7 +1081,7 @@ Most use cases need multidimensional evaluation along several success criteria.
       {
           $text = '';
           foreach ($message->content as $block) {
-              if ($block instanceof TextBlock) {
+              if ($block instanceof \Anthropic\Messages\TextBlock) {
                   $text .= $block->text;
               }
           }
@@ -1563,7 +1563,7 @@ Most use cases need multidimensional evaluation along several success criteria.
       {
           $text = '';
           foreach ($message->content as $block) {
-              if ($block instanceof TextBlock) {
+              if ($block instanceof \Anthropic\Messages\TextBlock) {
                   $text .= $block->text;
               }
           }
@@ -2100,7 +2100,7 @@ Most use cases need multidimensional evaluation along several success criteria.
       {
           $text = '';
           foreach ($message->content as $block) {
-              if ($block instanceof TextBlock) {
+              if ($block instanceof \Anthropic\Messages\TextBlock) {
                   $text .= $block->text;
               }
           }
@@ -2733,7 +2733,7 @@ Most use cases need multidimensional evaluation along several success criteria.
       {
           $text = '';
           foreach ($message->content as $block) {
-              if ($block instanceof TextBlock) {
+              if ($block instanceof \Anthropic\Messages\TextBlock) {
                   $text .= $block->text;
               }
           }
@@ -3236,7 +3236,7 @@ When deciding which method to use to grade evals, choose the fastest, most relia
     {
         $text = '';
         foreach ($message->content as $block) {
-            if ($block instanceof TextBlock) {
+            if ($block instanceof \Anthropic\Messages\TextBlock) {
                 $text .= $block->text;
             }
         }

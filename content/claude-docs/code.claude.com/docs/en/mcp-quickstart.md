@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp-quickstart
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: e6f3e2fe45247a80656332d133e27f0016521abaf3e9fbcdb26f70c7f301d1a2
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: 5286c4f4e6491af477e07d3b78fe60d3cceed4ad247962759453ad3c383223fe
 ---
 
 > ## Documentation Index
@@ -291,7 +291,7 @@ This guide uses the `claude mcp` CLI commands, but every Claude Code surface can
 * **Claude Code desktop app**: add servers through the [Connectors UI](/docs/en/desktop#connect-external-tools).
 * **Claude Desktop chat app**: a separate app from Claude Code. To copy servers from its `claude_desktop_config.json` into the CLI, run `claude mcp add-from-claude-desktop` on macOS or WSL.
 * **VS Code**: see [Connect to external tools with MCP](/docs/en/vs-code#connect-to-external-tools-with-mcp).
-* **Cloud sessions**: commit a `.mcp.json` to your repository. See [Edit .mcp.json directly](#edit-mcp-json-directly).
+* **Cloud sessions**: commit a `.mcp.json` to your repository; a session with one repository loads it. See [Edit .mcp.json directly](#edit-mcp-json-directly) and [What carries over from your setup](/docs/en/cloud-environments#what-carries-over-from-your-setup).
 * **Claude.ai**: connectors you add at [claude.ai/customize/connectors](https://claude.ai/customize/connectors) load automatically in the CLI when you sign in with that account. See [Use MCP servers from Claude.ai](/docs/en/mcp#use-mcp-servers-from-claude-ai).
 
 ## Troubleshooting

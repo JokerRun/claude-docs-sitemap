@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/files
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 8908d422a446ed5606901247f5c710eb8b95c327755d84dd6c8b601030357351
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: 6e8298ee92853581cdbbbad3c25c122c6a145f842c3930162d6ee9ffbe547da7
 ---
 
 ---
@@ -539,12 +539,15 @@ List all resources on a session with `resources.list`. To remove a file, call `r
   ```java Java
   var listed = client.beta().sessions().resources().list(session.id());
   for (var entry : listed.data()) {
-      if (entry.isFile()) {
-          var fileResource = entry.asFile();
-          IO.println(fileResource.id() + " " + fileResource.type());
-      } else if (entry.isGitHubRepository()) {
-          var repoResource = entry.asGitHubRepository();
-          IO.println(repoResource.id() + " " + repoResource.type());
+      switch (entry.type().value()) {
+          case FILE -> {
+              var fileResource = entry.asFile();
+              IO.println(fileResource.id() + " " + fileResource.type());
+          }
+          case GITHUB_REPOSITORY -> {
+              var repoResource = entry.asGitHubRepository();
+              IO.println(repoResource.id() + " " + repoResource.type());
+          }
       }
   }
 

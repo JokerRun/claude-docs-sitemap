@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 4fd46c0244951439e66a99df21f6692da049b1c53ef8d21d6abd23a7fb8417ef
+fetched_at: 2026-09-18T02:20:36.295342Z
+sha256: ef4f6b5dec0bc8ad1fe6c4df969030cd2c91d0842f810f56886af7d966410d78
 ---
 
 > ## Documentation Index
@@ -226,7 +226,7 @@ Before running the `awsAuthRefresh` command, Claude Code makes an STS `GetCaller
 }
 ```
 
-As of Claude Code v2.1.181, the flat output from `aws configure export-credentials --format process` is also accepted, with the same keys at the top level instead of nested under `Credentials`.
+The flat output from `aws configure export-credentials --format process` is also accepted, with the same keys at the top level instead of nested under `Credentials`.
 
 `Expiration` is optional. When the command returns a valid ISO 8601 `Expiration`, Claude Code caches the credentials until five minutes before that time. Without it, credentials are cached for one hour.
 
