@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5/migration-guide
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: 7031835550ce0d045cfcd043c0b1596f0785389d96d0d94335003a5b4db4bd3c
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: c3b9a996ff91007af7229dae95f512e671aa3b562ef72120e669b97c2dec7948
 ---
 
 ---
@@ -342,7 +342,7 @@ Butir 4 dan 5 dalam daftar berikut adalah perubahan yang merusak kompatibilitas.
 
          ```bash CLI
          ant messages create \
-           --transform content --format yaml <<'YAML'
+           --format yaml <<'YAML'
          model: claude-sonnet-4-6
          max_tokens: 16000
          thinking:

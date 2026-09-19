@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/context-window
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 1ce0cea3bc4090ff1d5d49723a93027fed687cab4a21d0e659976e93ae0a65f2
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: f334fe44527612b0847e28c0b56a630c9b3f3f33f2c709ee4d1e9a16daa3c2e1
 ---
 
 > ## Documentation Index
@@ -1591,7 +1591,7 @@ Claude Code's context window holds everything Claude knows about your session: y
 
 The session walks through a realistic flow with representative token counts:
 
-* **Before you type anything**: CLAUDE.md, auto memory, MCP tool names, and skill descriptions all load into context. Your own setup may add more here, like an [output style](/docs/en/output-styles) or text from [`--append-system-prompt`](/docs/en/cli-reference).
+* **Before you type anything**: CLAUDE.md, auto memory, MCP tool names, and skill descriptions all load into context. [AGENTS.md files](/docs/en/memory#agents-md) can load too, on their own or alongside CLAUDE.md. Your own setup may add more here, like an [output style](/docs/en/output-styles) or text from [`--append-system-prompt`](/docs/en/cli-reference).
 * **As Claude works**: each file read adds to context, [path-scoped rules](/docs/en/memory#path-specific-rules) load automatically alongside matching files, and a [PostToolUse hook](/docs/en/hooks-guide) fires after each edit.
 * **The follow-up prompt**: a [subagent](/docs/en/sub-agents) handles the research in its own separate context window, so the large file reads stay out of yours. Only the summary and a small metadata trailer come back.
 * **At the end**: `/compact` replaces the conversation with a structured summary. Most startup content reloads automatically; the table below shows what happens to each mechanism.

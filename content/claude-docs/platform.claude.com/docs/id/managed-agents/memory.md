@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/memory
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 4a3f1b79caf0239cc7d55f141f4eaab9ff78842edffca9c27a5bb9e02b4c0b7d
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: 401c9430d929a12baddeb8f907dabdfa656b94cce51363ad6de6bba7fb3ea4f6
 ---
 
 ---
@@ -37,21 +37,18 @@ Berikan store sebuah `name` dan `description`. Deskripsi tersebut diteruskan ke 
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  store=$(curl -s https://api.anthropic.com/v1/memory_stores \
+  curl -s https://api.anthropic.com/v1/memory_stores \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: agent-memory-2026-07-22" \
     -H "content-type: application/json" \
-    -d '{"name": "User Preferences", "description": "Per-user preferences and project context."}')
-  store_id=$(jq -r '.id' <<< "$store")
-  echo "$store_id"  # memstore_01Hx...
+    -d '{"name": "User Preferences", "description": "Per-user preferences and project context."}'
   ```
 
   ```bash CLI
-  store_id=$(ant beta:memory-stores create \
+  ant beta:memory-stores create \
     --name "User Preferences" \
-    --description "Per-user preferences and project context." \
-    --transform id --raw-output)
+    --description "Per-user preferences and project context."
   ```
 
   ```python Python
@@ -412,7 +409,7 @@ Daftar memori dalam sebuah store. Hasil dikembalikan dalam urutan yang stabil da
   curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memories?path_prefix=/" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: agent-memory-2026-07-22" | jq -r '.data[] | "\(.type)  \(.path)"'
+    -H "anthropic-beta: agent-memory-2026-07-22"
   ```
 
   ```bash CLI
@@ -508,7 +505,7 @@ Mengambil memori individual mengembalikan konten lengkapnya.
   curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memories/$mem_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: agent-memory-2026-07-22" | jq -r '.content'
+    -H "anthropic-beta: agent-memory-2026-07-22"
   ```
 
   ```bash CLI
@@ -580,24 +577,19 @@ Lihat [referensi Retrieve a memory](https://platform.claude.com/docs/id/api/beta
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  mem=$(curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memories" \
+  curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memories" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: agent-memory-2026-07-22" \
     -H "content-type: application/json" \
-    -d '{"path": "/preferences/formatting.md", "content": "Always use tabs, not spaces."}')
-  mem_id=$(jq -r '.id' <<< "$mem")
-  mem_sha=$(jq -r '.content_sha256' <<< "$mem")
+    -d '{"path": "/preferences/formatting.md", "content": "Always use tabs, not spaces."}'
   ```
 
   ```bash CLI
-  mem=$(ant beta:memory-stores:memories create \
+  ant beta:memory-stores:memories create \
     --memory-store-id "$store_id" \
     --path "/preferences/formatting.md" \
-    --content "Always use tabs, not spaces." \
-    --format json)
-  mem_id=$(jq -r '.id' <<< "$mem")
-  mem_sha=$(jq -r '.content_sha256' <<< "$mem")
+    --content "Always use tabs, not spaces."
   ```
 
   ```python Python
@@ -936,22 +928,17 @@ Daftar riwayat versi untuk sebuah store, yang terbaru lebih dulu. Contoh berikut
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  versions=$(curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memory_versions?memory_id=$mem_id" \
+  curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memory_versions?memory_id=$mem_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: agent-memory-2026-07-22")
-  jq -r '.data[] | "\(.id): \(.operation)"' <<< "$versions"
-  version_id=$(jq -r '.data[1].id' <<< "$versions")
+    -H "anthropic-beta: agent-memory-2026-07-22"
   ```
 
   ```bash CLI
-  versions=$(ant beta:memory-stores:memory-versions list \
+  ant beta:memory-stores:memory-versions list \
     --memory-store-id "$store_id" \
     --memory-id "$mem_id" \
-    --format json)
-  # `list --format json` menghasilkan satu objek JSON per item.
-  jq -r '"\(.id): \(.operation)"' <<< "$versions"
-  version_id=$(jq -rs '.[1].id' <<< "$versions")
+    --format json
   ```
 
   ```python Python
@@ -1217,7 +1204,7 @@ Daftar store dalam workspace. Store yang diarsipkan dikecualikan secara default;
   curl -s "https://api.anthropic.com/v1/memory_stores?include_archived=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: agent-memory-2026-07-22" | jq '.data[] | {id, name, archived_at}'
+    -H "anthropic-beta: agent-memory-2026-07-22"
   ```
 
   ```bash CLI

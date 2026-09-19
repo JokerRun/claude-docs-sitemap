@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/sessions
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: c3711e8d9269d80316e492cf401916eaa541c19817de0a88d1f004a4f8b6af1f
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: 1662a1617230866b6c7fa8637c56a8fa9add387b809ff650748102a2d6c93f4f
 ---
 
 ---
@@ -23,7 +23,7 @@ Sesi memerlukan ID `agent` dan ID `environment`. Agen adalah sumber daya bervers
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  session=$(curl -fsSL https://api.anthropic.com/v1/sessions \
+  curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -34,8 +34,6 @@ Sesi memerlukan ID `agent` dan ID `environment`. Agen adalah sumber daya bervers
     "environment_id": "$ENVIRONMENT_ID"
   }
   EOF
-  )
-  SESSION_ID=$(jq -r '.id' <<< "$session")
   ```
 
   ```bash CLI
@@ -104,7 +102,7 @@ Untuk menyematkan sesi ke versi agen tertentu, teruskan sebuah objek. Ini memung
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  pinned_session=$(curl -fsSL https://api.anthropic.com/v1/sessions \
+  curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -115,8 +113,6 @@ Untuk menyematkan sesi ke versi agen tertentu, teruskan sebuah objek. Ini memung
     "environment_id": "$ENVIRONMENT_ID"
   }
   EOF
-  )
-  PINNED_SESSION_ID=$(jq -r '.id' <<< "$pinned_session")
   ```
 
   ```bash CLI
@@ -226,8 +222,8 @@ Contoh berikut membuat sesi dengan satu `user.message` di `initial_events`:
   )
   SEEDED_SESSION_ID=$(jq -r '.id' <<< "$seeded_session")
 
-  # initial_events tidak ikut dikembalikan pada respons create; tampilkan daftar
-  # event sesi untuk melihat pesan yang di-seed.
+  # initial_events aren't echoed on the create response; list the session's
+  # events to see the seeded message.
   seeded_events=$(curl -fsSL \
     "https://api.anthropic.com/v1/sessions/$SEEDED_SESSION_ID/events" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -250,8 +246,8 @@ Contoh berikut membuat sesi dengan satu `user.message` di `initial_events`:
   YAML
   )
 
-  # initial_events tidak ikut dikembalikan pada respons create; tampilkan daftar
-  # event sesi untuk melihat pesan yang di-seed.
+  # initial_events aren't echoed on the create response; list the session's
+  # events to see the seeded message.
   echo "Seeded event: $(ant beta:sessions:events list \
     --session-id "$SEEDED_SESSION_ID" \
     --format raw \
@@ -490,7 +486,7 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  override_session=$(curl -fsSL https://api.anthropic.com/v1/sessions \
+  curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -506,17 +502,12 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
     "environment_id": "$ENVIRONMENT_ID"
   }
   EOF
-  )
-  jq '.agent | {id, version, model, system}' <<< "$override_session"
-  OVERRIDE_SESSION_ID=$(jq -r '.id' <<< "$override_session")
   ```
 
   ```bash CLI
-  # `agent` pada respons adalah snapshot hasil resolusi: setiap override mengganti
-  # field tersebut hanya untuk sesi ini, dan resource agen tetap menyimpan id dan versinya.
-  ant beta:sessions create \
-    --transform 'agent.{id,version,model,system}' \
-    --format json <<YAML
+  # The response's `agent` is the resolved snapshot: each override replaces that
+  # field for this session only, and the agent resource keeps its id and version.
+  ant beta:sessions create <<YAML
   agent:
     type: agent_with_overrides
     id: $AGENT_ID
@@ -845,7 +836,7 @@ Jika agen Anda menggunakan alat MCP yang memerlukan autentikasi, teruskan `vault
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  vault_session=$(curl -fsSL https://api.anthropic.com/v1/sessions \
+  curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -857,8 +848,6 @@ Jika agen Anda menggunakan alat MCP yang memerlukan autentikasi, teruskan `vault
     "vault_ids": ["$VAULT_ID"]
   }
   EOF
-  )
-  VAULT_SESSION_ID=$(jq -r '.id' <<< "$vault_session")
   ```
 
   ```bash CLI

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: 9a4afa7cd93b30333d3b858e1d17b0bea21362530a0d8e77739be422f488b21f
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: d32778b2e59d9f20f307051a5b3f8fe418d84642196cd9a464001f93a85bf018
 ---
 
 ---
@@ -422,7 +422,9 @@ MCP servers are agent-scoped (each agent definition declares its own servers and
 
 [Agent configuration overrides](https://platform.claude.com/docs/en/managed-agents/sessions#override-agent-configuration-for-a-session) at session creation can replace the coordinator's MCP servers and those of its `self` copies.
 
-<CodeGroup>
+Create the researcher, which declares the GitHub MCP server, and the coordinator that delegates to the researcher:
+
+<CodeGroup defaultLanguage="CLI">
   ```bash cURL
   research_agent_id=$(curl --fail-with-body -sS "$BASE/v1/agents" "${H[@]}" --data @- <<'EOF' | jq -er '.id'
   {
@@ -446,16 +448,6 @@ MCP servers are agent-scoped (each agent definition declares its own servers and
   }
   EOF
   )
-
-  session_id=$(curl --fail-with-body -sS "$BASE/v1/sessions" "${H[@]}" --data @- <<EOF | jq -er '.id'
-  {
-    "agent": "$coordinator_id",
-    "environment_id": "$environment_id",
-    "vault_ids": ["$vault_id"]
-  }
-  EOF
-  )
-  echo "$session_id"
   ```
 
   <MultiFileExample language="cli" label="CLI">
@@ -493,15 +485,6 @@ MCP servers are agent-scoped (each agent definition declares its own servers and
       ---
       ```
     </File>
-
-    ```bash CLI
-    session_id=$(ant beta:sessions create \
-      --agent "$coordinator_id" \
-      --environment-id "$environment_id" \
-      --vault-id "$vault_id" \
-      --transform id --raw-output)
-    echo "$session_id"
-    ```
   </MultiFileExample>
 
   ```python Python
@@ -523,13 +506,6 @@ MCP servers are agent-scoped (each agent definition declares its own servers and
           "agents": [{"type": "agent", "id": research_agent.id}],
       },
   )
-
-  session = client.beta.sessions.create(
-      agent=coordinator.id,
-      environment_id=environment.id,
-      vault_ids=[vault.id],
-  )
-  print(session.id)
   ```
 
   ```typescript TypeScript
@@ -551,13 +527,6 @@ MCP servers are agent-scoped (each agent definition declares its own servers and
       agents: [{ type: "agent", id: researchAgent.id }],
     },
   });
-
-  const session = await client.beta.sessions.create({
-    agent: coordinator.id,
-    environment_id: environment.id,
-    vault_ids: [vault.id],
-  });
-  console.log(session.id);
   ```
 
   ```csharp C#
@@ -608,14 +577,6 @@ MCP servers are agent-scoped (each agent definition declares its own servers and
           ],
       },
   });
-
-  var session = await client.Beta.Sessions.Create(new()
-  {
-      Agent = coordinator.ID,
-      EnvironmentID = environment.ID,
-      VaultIds = [vault.ID],
-  });
-  Console.WriteLine(session.ID);
   ```
 
   ```go Go
@@ -659,18 +620,6 @@ MCP servers are agent-scoped (each agent definition declares its own servers and
   if err != nil {
   	panic(err)
   }
-
-  session, err := client.Beta.Sessions.New(ctx, anthropic.BetaSessionNewParams{
-  	Agent: anthropic.BetaSessionNewParamsAgentUnion{
-  		OfString: anthropic.String(coordinator.ID),
-  	},
-  	EnvironmentID: environment.ID,
-  	VaultIDs:      []string{vault.ID},
-  })
-  if err != nil {
-  	panic(err)
-  }
-  fmt.Println(session.ID)
   ```
 
   ```java Java
@@ -706,13 +655,6 @@ MCP servers are agent-scoped (each agent definition declares its own servers and
               .build())
           .build()
   );
-
-  var session = client.beta().sessions().create(SessionCreateParams.builder()
-      .agent(coordinator.id())
-      .environmentId(environment.id())
-      .vaultIds(List.of(vault.id()))
-      .build());
-  IO.println(session.id());
   ```
 
   ```php PHP
@@ -740,13 +682,6 @@ MCP servers are agent-scoped (each agent definition declares its own servers and
           ],
       ],
   );
-
-  $session = $client->beta->sessions->create(
-      agent: $coordinator->id,
-      environmentID: $environment->id,
-      vaultIDs: [$vault->id],
-  );
-  echo "{$session->id}\n";
   ```
 
   ```ruby Ruby
@@ -774,7 +709,94 @@ MCP servers are agent-scoped (each agent definition declares its own servers and
       ]
     }
   )
+  ```
+</CodeGroup>
 
+Then create the session with the vault that holds the GitHub credential:
+
+<CodeGroup>
+  ```bash cURL
+  session_id=$(curl --fail-with-body -sS "$BASE/v1/sessions" "${H[@]}" --data @- <<EOF | jq -er '.id'
+  {
+    "agent": "$coordinator_id",
+    "environment_id": "$environment_id",
+    "vault_ids": ["$vault_id"]
+  }
+  EOF
+  )
+  echo "$session_id"
+  ```
+
+  ```bash CLI
+  session_id=$(ant beta:sessions create \
+    --agent "$coordinator_id" \
+    --environment-id "$environment_id" \
+    --vault-id "$vault_id" \
+    --transform id --raw-output)
+  echo "$session_id"
+  ```
+
+  ```python Python
+  session = client.beta.sessions.create(
+      agent=coordinator.id,
+      environment_id=environment.id,
+      vault_ids=[vault.id],
+  )
+  print(session.id)
+  ```
+
+  ```typescript TypeScript
+  const session = await client.beta.sessions.create({
+    agent: coordinator.id,
+    environment_id: environment.id,
+    vault_ids: [vault.id],
+  });
+  console.log(session.id);
+  ```
+
+  ```csharp C#
+  var session = await client.Beta.Sessions.Create(new()
+  {
+      Agent = coordinator.ID,
+      EnvironmentID = environment.ID,
+      VaultIds = [vault.ID],
+  });
+  Console.WriteLine(session.ID);
+  ```
+
+  ```go Go
+  session, err := client.Beta.Sessions.New(ctx, anthropic.BetaSessionNewParams{
+  	Agent: anthropic.BetaSessionNewParamsAgentUnion{
+  		OfString: anthropic.String(coordinator.ID),
+  	},
+  	EnvironmentID: environment.ID,
+  	VaultIDs:      []string{vault.ID},
+  })
+  if err != nil {
+  	panic(err)
+  }
+  fmt.Println(session.ID)
+  ```
+
+  ```java Java
+  var session = client.beta().sessions().create(SessionCreateParams.builder()
+      .agent(coordinator.id())
+      .environmentId(environment.id())
+      .vaultIds(List.of(vault.id()))
+      .build());
+  IO.println(session.id());
+  ```
+
+  ```php PHP
+  $session = $client->beta->sessions->create(
+      agent: $coordinator->id,
+      environmentID: $environment->id,
+      vaultIDs: [$vault->id],
+  );
+  echo "{$session->id}\n";
+  ```
+
+  ```ruby Ruby
   session = client.beta.sessions.create(
     agent: coordinator.id,
     environment_id: environment.id,

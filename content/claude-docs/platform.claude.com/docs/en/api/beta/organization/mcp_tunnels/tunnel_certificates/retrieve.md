@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/retrieve
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: d1f009d304afe403b2767a69046d79c357342fee35d77257f9af05e7de24d882
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: 03ccfe2ed7e13d5eb3154023bb333125fc839150f928ffc3ffabe5fba88cae48
 ---
 
 ---
@@ -34,7 +34,7 @@ Retrieve a single certificate registered on a tunnel by ID.
 
 - `"anthropic-beta": array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `mcp-tunnels-2026-05-19` in this header.
 
   - `string`
 
@@ -179,6 +179,7 @@ Retrieve a single certificate registered on a tunnel by ID.
 ```bash
 curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/certificates/$CERTIFICATE_ID \
     -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-beta: mcp-tunnels-2026-05-19' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: 167c5456e0649ced062e5fe06757ebf69ae6499e50fd5970db137b90427eec27
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: bff22aa7961d6269538c6b0522696bbb6955b71feb02b6311b60a5b68566a6e2
 ---
 
 > ## Documentation Index
@@ -256,6 +256,8 @@ You pick a cloud session's [permission mode](/docs/en/permission-modes) from the
 ### Review changes
 
 Each session shows a diff indicator with lines added and removed, like `+42 -18`. Select it to open the diff view, leave inline comments on specific lines, and send them to Claude with your next message.
+
+The diff view compares the session's changes against its base branch by default. To compare against any other branch in the repository, select **Compare against** and pick one.
 
 Claude Code computes these diffs, including the per-file diffs shown as Claude edits, from raw git blob content, so diff drivers and `textconv` filters configured in the repository don't apply. For a file in a repository that isn't one of the session's own checkouts, such as one cloned inside the workspace during the session, the per-file diff shows Claude's edit itself rather than a git comparison.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 2680e5d117874f9691fff21cda1e35b3ab267a9d6819e0dec782e5d7fafddcf0
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: ed69f7228cc253e62396f8c52568bf832107ba8e2fad28541a932620981bb3d6
 ---
 
 ---
@@ -1325,7 +1325,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
           - `BetaToolChangeMCPToolReference object`
 
-            Reference to a single MCP tool by its server and remote name — the
+            Reference to a single MCP tool by its server and remote name; the
             same `server_name`/`name` pair `mcp_tool_use` carries.
 
             - `type: "mcp_tool_reference"`
@@ -1367,7 +1367,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
           - `BetaToolChangeMCPToolReference object`
 
-            Reference to a single MCP tool by its server and remote name — the
+            Reference to a single MCP tool by its server and remote name; the
             same `server_name`/`name` pair `mcp_tool_use` carries.
 
           - `BetaToolChangeMCPToolsetReference object`
@@ -7598,7 +7598,7 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
           - `BetaToolChangeMCPToolReference object`
 
-            Reference to a single MCP tool by its server and remote name — the
+            Reference to a single MCP tool by its server and remote name; the
             same `server_name`/`name` pair `mcp_tool_use` carries.
 
             - `type: "mcp_tool_reference"`
@@ -7640,7 +7640,7 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
           - `BetaToolChangeMCPToolReference object`
 
-            Reference to a single MCP tool by its server and remote name — the
+            Reference to a single MCP tool by its server and remote name; the
             same `server_name`/`name` pair `mcp_tool_use` carries.
 
           - `BetaToolChangeMCPToolsetReference object`
@@ -16968,7 +16968,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `BetaToolChangeMCPToolReference object`
 
-        Reference to a single MCP tool by its server and remote name — the
+        Reference to a single MCP tool by its server and remote name; the
         same `server_name`/`name` pair `mcp_tool_use` carries.
 
         - `type: "mcp_tool_reference"`
@@ -17010,7 +17010,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `BetaToolChangeMCPToolReference object`
 
-        Reference to a single MCP tool by its server and remote name — the
+        Reference to a single MCP tool by its server and remote name; the
         same `server_name`/`name` pair `mcp_tool_use` carries.
 
       - `BetaToolChangeMCPToolsetReference object`
@@ -23610,7 +23610,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           - `BetaToolChangeMCPToolReference object`
 
-            Reference to a single MCP tool by its server and remote name — the
+            Reference to a single MCP tool by its server and remote name; the
             same `server_name`/`name` pair `mcp_tool_use` carries.
 
             - `type: "mcp_tool_reference"`
@@ -23652,7 +23652,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           - `BetaToolChangeMCPToolReference object`
 
-            Reference to a single MCP tool by its server and remote name — the
+            Reference to a single MCP tool by its server and remote name; the
             same `server_name`/`name` pair `mcp_tool_use` carries.
 
           - `BetaToolChangeMCPToolsetReference object`
@@ -30441,7 +30441,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `BetaToolChangeMCPToolReference object`
 
-      Reference to a single MCP tool by its server and remote name — the
+      Reference to a single MCP tool by its server and remote name; the
       same `server_name`/`name` pair `mcp_tool_use` carries.
 
       - `type: "mcp_tool_reference"`
@@ -30508,7 +30508,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `BetaToolChangeMCPToolReference object`
 
-      Reference to a single MCP tool by its server and remote name — the
+      Reference to a single MCP tool by its server and remote name; the
       same `server_name`/`name` pair `mcp_tool_use` carries.
 
       - `type: "mcp_tool_reference"`
@@ -32408,7 +32408,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
 - `BetaToolChangeMCPToolReference object`
 
-  Reference to a single MCP tool by its server and remote name — the
+  Reference to a single MCP tool by its server and remote name; the
   same `server_name`/`name` pair `mcp_tool_use` carries.
 
   - `type: "mcp_tool_reference"`
@@ -40145,7 +40145,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               - `BetaToolChangeMCPToolReference object`
 
-                Reference to a single MCP tool by its server and remote name — the
+                Reference to a single MCP tool by its server and remote name; the
                 same `server_name`/`name` pair `mcp_tool_use` carries.
 
                 - `type: "mcp_tool_reference"`
@@ -40187,7 +40187,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               - `BetaToolChangeMCPToolReference object`
 
-                Reference to a single MCP tool by its server and remote name — the
+                Reference to a single MCP tool by its server and remote name; the
                 same `server_name`/`name` pair `mcp_tool_use` carries.
 
               - `BetaToolChangeMCPToolsetReference object`

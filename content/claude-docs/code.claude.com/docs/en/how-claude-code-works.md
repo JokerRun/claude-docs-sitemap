@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/how-claude-code-works
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: fd2cf401b1c2b0921cd46dee3c892d3c0d353d72b8c849288ddb5c23e6cc8246
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: b07472946283485c42cb15990019aa39d636fceb2471abaf7d8282dfb9726c1d
 ---
 
 > ## Documentation Index
@@ -75,7 +75,7 @@ When you run `claude` in a directory, Claude Code gains access to:
 * **Your project.** Files in your directory and subdirectories, plus files elsewhere with your permission.
 * **Your terminal.** Any command you could run: build tools, git, package managers, system utilities, scripts. If you can do it from the command line, Claude can too.
 * **Your git state.** Current branch, uncommitted changes, and recent commit history.
-* **Your [CLAUDE.md](/docs/en/memory).** A markdown file where you store project-specific instructions, conventions, and context that Claude should know every session.
+* **Your [CLAUDE.md](/docs/en/memory).** A markdown file where you store project-specific instructions, conventions, and context that Claude should know every session. If your repository has an AGENTS.md for other coding agents, Claude [can read that](/docs/en/memory#agents-md) on its own or alongside CLAUDE.md.
 * **[Auto memory](/docs/en/memory#auto-memory).** Learnings Claude saves automatically as you work, like your preferences. The first 200 lines or 25KB of MEMORY.md, whichever comes first, load at the start of each session.
 * **Extensions you configure.** [MCP servers](/docs/en/mcp) for external services, [skills](/docs/en/skills) for workflows, [subagents](/docs/en/sub-agents) for delegated work, and [Claude in Chrome](/docs/en/chrome) for browser interaction.
 

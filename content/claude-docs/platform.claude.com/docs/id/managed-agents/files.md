@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/files
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: 13205bd21a557643f09258a781bf51b7ec67c5ac45e2bfa820e69a6b14dcd2bd
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: a9a9d5a27fb5e7b79442124d87d03825a16dabfe499d3a36f14ee02909089fd9
 ---
 
 ---
@@ -26,8 +26,7 @@ Pertama, unggah file menggunakan [Files API](https://platform.claude.com/docs/id
   file=$(curl --fail-with-body -sS "${auth[@]}" \
     "${base_url}/files" \
     -F file=@data.csv)
-  file_id=$(jq -er '.id' <<<"${file}")
-  printf 'File ID: %s\n' "${file_id}"
+  FILE_ID=$(jq -er '.id' <<<"${file}")
   ```
 
   ```bash CLI
@@ -98,37 +97,32 @@ Mount file yang telah diunggah ke dalam sandbox dengan menambahkannya ke array `
 
 <CodeGroup>
   ```bash cURL
-  session=$(
-    jq -n \
-      --arg agent_id "${agent_id}" \
-      --arg environment_id "${environment_id}" \
-      --arg file_id "${file_id}" \
-      '{
-        agent: $agent_id,
-        environment_id: $environment_id,
-        resources: [
-          {
-            type: "file",
-            file_id: $file_id,
-            mount_path: "/data.csv"
-          }
-        ]
-      }' | curl --fail-with-body -sS "${auth[@]}" "${base_url}/sessions" --json @-
-  )
-  session_id=$(jq -er '.id' <<<"${session}")
+  jq -n \
+    --arg agent_id "${AGENT_ID}" \
+    --arg environment_id "${ENVIRONMENT_ID}" \
+    --arg file_id "${FILE_ID}" \
+    '{
+      agent: $agent_id,
+      environment_id: $environment_id,
+      resources: [
+        {
+          type: "file",
+          file_id: $file_id,
+          mount_path: "/data.csv"
+        }
+      ]
+    }' | curl --fail-with-body -sS "${auth[@]}" "${base_url}/sessions" --json @-
   ```
 
   ```bash CLI
-  SESSION_ID=$(ant beta:sessions create \
+  ant beta:sessions create \
     --agent "$AGENT_ID" \
-    --environment-id "$ENVIRONMENT_ID" \
-    --transform id --raw-output <<EOF
+    --environment-id "$ENVIRONMENT_ID" <<EOF
   resources:
     - type: file
       file_id: $FILE_ID
       mount_path: /data.csv
   EOF
-  )
   ```
 
   ```python Python
@@ -375,21 +369,16 @@ Anda dapat menambahkan atau menghapus file dari sesi setelah pembuatan menggunak
 
 <CodeGroup>
   ```bash cURL
-  resource=$(
-    jq -n --arg file_id "${file_id}" '{type: "file", file_id: $file_id}' \
-      | curl --fail-with-body -sS "${auth[@]}" \
-          "${base_url}/sessions/${session_id}/resources" --json @-
-  )
-  resource_id=$(jq -er '.id' <<<"${resource}")
-  printf '%s\n' "${resource_id}"  # "sesrsc_01ABC..."
+  jq -n --arg file_id "${FILE_ID}" '{type: "file", file_id: $file_id}' \
+    | curl --fail-with-body -sS "${auth[@]}" \
+        "${base_url}/sessions/${SESSION_ID}/resources" --json @-
   ```
 
   ```bash CLI
-  RESOURCE_ID=$(ant beta:sessions:resources add \
+  ant beta:sessions:resources add \
     --session-id "$SESSION_ID" \
     --type file \
-    --file-id "$FILE_ID" \
-    --transform id --raw-output)
+    --file-id "$FILE_ID"
   ```
 
   ```python Python
@@ -473,11 +462,10 @@ Daftarkan semua resource pada sesi dengan `resources.list`. Untuk menghapus file
 <CodeGroup>
   ```bash cURL
   curl --fail-with-body -sS "${auth[@]}" \
-    "${base_url}/sessions/${session_id}/resources" \
-    | jq -r '.data[] | "\(.id) \(.type)"'
+    "${base_url}/sessions/${SESSION_ID}/resources"
 
   curl --fail-with-body -sS "${auth[@]}" -X DELETE \
-    "${base_url}/sessions/${session_id}/resources/${resource_id}" >/dev/null
+    "${base_url}/sessions/${SESSION_ID}/resources/${RESOURCE_ID}" >/dev/null
   ```
 
   ```bash CLI

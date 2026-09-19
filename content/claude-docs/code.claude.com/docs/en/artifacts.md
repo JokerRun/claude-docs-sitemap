@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/artifacts
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 775c2561af3120ddd2552f96bc99e5f99f4a1cc2c354bc44c4c83eee93de1e46
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: 5452dc9afd6f3d30827bdb0186b3d6d966df2381dc8896a9d3efb894345f30e6
 ---
 
 > ## Documentation Index
@@ -256,7 +256,7 @@ Turn this migration plan into a checklist artifact. Check items off as you compl
 
 ## Improve the visual design
 
-Claude applies a built-in design skill when it builds an artifact, so pages get a deliberate palette, typography, and layout without extra prompting. Requires Claude Code v2.1.182 or later. That skill also looks for an existing design system in your project before choosing its own. Design tokens are the named color, typography, and spacing values your design system reuses. To keep artifacts consistent with your product's branding, record them where Claude can find them, such as the project's [CLAUDE.md](/docs/en/memory) or a theme file in your repository:
+Claude applies a built-in design skill when it builds an artifact, so pages get a deliberate palette, typography, and layout without extra prompting. That skill also looks for an existing design system in your project before choosing its own. Design tokens are the named color, typography, and spacing values your design system reuses. To keep artifacts consistent with your product's branding, record them where Claude can find them, such as the project's [CLAUDE.md](/docs/en/memory) or a theme file in your repository:
 
 ```markdown theme={null}
 ## Design system

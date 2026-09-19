@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/web-quickstart
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: 3e1276fde82eb25e52e8813c6efa212378d3db6b0ee669ecc44a0fa072a41ae7
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: 56b31df35fcb954fd588a4c61e1e936bc79a0b6614b442cc4ae49436a1c5c510
 ---
 
 > ## Documentation Index
@@ -189,6 +189,8 @@ When Claude finishes, review the changes, leave feedback on specific lines, and 
 <Steps>
   <Step title="Open the diff view">
     A diff indicator shows lines added and removed across the session, for example `+42 -18`. Select it to open the diff view, with a file list on the left and changes on the right.
+
+    The diff compares the session's changes against its base branch by default. To compare against a different branch, select **Compare against** and pick one.
   </Step>
 
   <Step title="Leave inline comments">

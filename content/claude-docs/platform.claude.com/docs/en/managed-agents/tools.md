@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/tools
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: b632a7ea1dcba5e12358bbd6e0490b7957045897767846bfb46e75ee10d296b5
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: e4f61473e4f82712e033b5e1410930be9ff2286def074fb39e09f904d3649bd4
 ---
 
 ---
@@ -42,7 +42,7 @@ Enable the full toolset with `agent_toolset_20260401` when creating an agent. Us
 
 Config entries for `web_search` and `web_fetch` also accept domain filters and other web settings; see [Restrict web search and web fetch domains](https://platform.claude.com/docs/en/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -265,7 +265,7 @@ The following toolset limits `web_search` to two sites and localizes its results
 
 The following request creates an agent with this toolset and prints the `configs` array from the response:
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \

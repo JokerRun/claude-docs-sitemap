@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/onboarding
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: b714e2783e3940e7d95b8194fa36de44e329297c6e314321711a1b19a8af1159
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: f11626f1e51ed477e278c12deb1a356f6c7871a23ed3bba97023a50d546cadaf
 ---
 
 ---
@@ -39,9 +39,9 @@ Once your agent works as expected:
 1. Copy the agent ID and [environment ID](https://platform.claude.com/docs/en/managed-agents/environments) from Console.
 2. Reference them in your code when [creating sessions](https://platform.claude.com/docs/en/managed-agents/sessions):
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
-  session=$(curl -fsSL https://api.anthropic.com/v1/sessions \
+  curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -50,7 +50,7 @@ Once your agent works as expected:
       "agent": "agent_01J8XkN5uT3vHpLqRfWdY2",
       "environment_id": "env_01K2mPsT7hNwR4jXuLvCqD8",
       "title": "My first session"
-    }')
+    }'
   ```
 
   ```bash CLI

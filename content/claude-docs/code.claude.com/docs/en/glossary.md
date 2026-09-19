@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 00b68b486a912831e613733ffa85344eb9ddd33f324eeea5cd77ea0b77c211aa
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: 1ab3fe3d0f14e34504d4f44ee789b5277c117583601be0550b497aa6a8b8ecf2
 ---
 
 > ## Documentation Index
@@ -16,6 +16,12 @@ sha256: 00b68b486a912831e613733ffa85344eb9ddd33f324eeea5cd77ea0b77c211aa
 This glossary defines Claude Code terminology. Each entry links to the page where the concept is covered in depth. For model-level concepts like tokens, temperature, and RAG, see the [platform glossary](https://platform.claude.com/docs/en/about-claude/glossary). For Claude Desktop terms such as desktop extension, MCPB, and DXT, see the [Claude Help Center](https://support.claude.com/).
 
 ## A
+
+### AGENTS.md
+
+A markdown file of project instructions you write for AI coding agents. If your repository has one and no [CLAUDE.md](#claude-md), Claude reads it as your project instructions without you adding a second file. You can change the **Project instructions** setting in `/config` to have Claude read both files or only `CLAUDE.md`. Reading `AGENTS.md` directly requires Claude Code v2.1.277 or later in a session that fetches feature flags; on other versions, import it from a CLAUDE.md.
+
+Learn more: [AGENTS.md](/docs/en/memory#agents-md)
 
 ### Agent teams
 
@@ -97,7 +103,7 @@ Learn more: [The `.claude` directory](/docs/en/claude-directory)
 
 A markdown file of persistent instructions you write for Claude, loaded at the start of every session as a user message after the system prompt. Put project conventions, architecture notes, and "always do X" rules here. Project-root CLAUDE.md survives [compaction](#compaction) and is re-read fresh from disk afterward.
 
-You can place CLAUDE.md at project scope in `./CLAUDE.md` or `./.claude/CLAUDE.md`, at user scope in `~/.claude/CLAUDE.md`, or as [managed policy](#managed-settings) for your organization. All discovered files are concatenated into context rather than overriding each other, ordered from broadest scope to most specific.
+You can place CLAUDE.md at project scope in `./CLAUDE.md` or `./.claude/CLAUDE.md`, at user scope in `~/.claude/CLAUDE.md`, or as [managed policy](#managed-settings) for your organization. All discovered files are concatenated into context rather than overriding each other, ordered from broadest scope to most specific. Claude Code can also load a project's [AGENTS.md](#agents-md) files, on their own or alongside CLAUDE.md.
 
 Learn more: [CLAUDE.md files](/docs/en/memory#claude-md-files)
 

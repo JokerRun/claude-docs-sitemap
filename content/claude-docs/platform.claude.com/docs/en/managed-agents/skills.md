@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/skills
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: 9103ef787e4627af1795423fb40622414e5ecc81bfbb79eb135803e5f9689976
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: 6df6edb76335f1cc8e0a13981a01c6c82af4c6925838911eee12e73c61e9af51
 ---
 
 ---
@@ -438,7 +438,7 @@ Repository skills use the same `SKILL.md` format as the custom skills you upload
 
 To load skills from a repository, create a session that mounts it. This is the same request shown in [Accessing GitHub](https://platform.claude.com/docs/en/managed-agents/github#token-permissions); `mount_path` is optional and defaults to `/workspace/<repo-name>`:
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   session_id=$(curl -fsS https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \

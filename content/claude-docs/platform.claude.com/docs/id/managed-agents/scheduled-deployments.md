@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/scheduled-deployments
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 5cbf3fc82469b612331e8bbbe1dbe37239280387eeab81aeeafdaf91d8612431
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: 681906f562440ffc0f0d55a11d4e3b00429a1572019ba2c015517de677deb55e
 ---
 
 ---
@@ -29,13 +29,12 @@ Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.cla
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  DEPLOYMENT_ID=$(
-    curl --fail-with-body -sS "https://api.anthropic.com/v1/deployments?beta=true" \
-      -H "x-api-key: $ANTHROPIC_API_KEY" \
-      -H "anthropic-version: 2023-06-01" \
-      -H "anthropic-beta: managed-agents-2026-04-01" \
-      -H "content-type: application/json" \
-      -d @- <<EOF | jq -er '.id'
+  curl --fail-with-body -sS "https://api.anthropic.com/v1/deployments?beta=true" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "content-type: application/json" \
+    -d @- <<EOF
   {
     "name": "Weekly compliance scan",
     "agent": "$AGENT_ID",
@@ -50,11 +49,10 @@ Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.cla
     }
   }
   EOF
-  )
   ```
 
   ```bash CLI
-  DEPLOYMENT_ID=$(ant beta:deployments create <<YAML | jq -er '.id'
+  ant beta:deployments create <<YAML
   name: Weekly compliance scan
   agent: $AGENT_ID
   environment_id: $ENVIRONMENT_ID
@@ -68,7 +66,6 @@ Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.cla
     expression: "0 20 * * 5"
     timezone: America/New_York
   YAML
-  )
   ```
 
   ```python Python

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 753522af27a8ea593fb4b89fb87c7e31d40921286836377f6b4637d733f69dfd
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: 9b20a8970d4d9dc9e4e34aed95bf7d8622173ca4448ac84886ebb681c47c1d22
 ---
 
 ---
@@ -81,7 +81,7 @@ You need:
 
     Or through the API:
 
-    <CodeGroup>
+    <CodeGroup defaultLanguage="CLI">
       ```bash cURL
       curl -sS --fail-with-body https://api.anthropic.com/v1/environments \
         -H "x-api-key: $ANTHROPIC_API_KEY" \

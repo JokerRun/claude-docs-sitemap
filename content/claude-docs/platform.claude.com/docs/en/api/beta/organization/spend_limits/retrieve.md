@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/retrieve
-fetched_at: 2026-09-15T02:21:43.636809Z
-sha256: 9ea5a2cb4b08a6f0045a5fdc83d09c26b2f43671995ea82d7972447fe8f819f2
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: 68fc43e70e039ead2141d08d0dd2ed3db5219cb3cedddf5d2842e5e3a3940a45
 ---
 
 ---
@@ -62,7 +62,7 @@ Retrieve a spend limit by ID.
 
     - `"weekly"`
 
-  - `scope: User or SeatTier or RBACGroup or 2 more`
+  - `scope: User or SeatTier or RBACGroup or 3 more`
 
     What the limit applies to. A tagged union on `type`; each variant carries the identifier for its scope.
 
@@ -109,6 +109,20 @@ Retrieve a spend limit by ID.
       - `type: "organization"`
 
         default: organization
+
+    - `Workspace object`
+
+      Scope selecting one workspace of a Claude Console organization.
+
+      - `type: "workspace"`
+
+        Scope type. Always `workspace` for this scope.
+
+        default: workspace
+
+      - `workspace_id: string`
+
+        Tagged ID of the workspace the spend limit applies to.
 
   - `updated_at: string`
 

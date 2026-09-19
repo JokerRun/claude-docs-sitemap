@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/create
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: cd90d550939f994bacae8dcbe4dc74abbfc56294126317bf19b2130acb74ffcf
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: d043430520e16f1fd3ec8e2f4210d576a226f2504f5aaa9f6eee25f9bba905c0
 ---
 
 ---
@@ -1343,7 +1343,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               - `BetaToolChangeMCPToolReference object`
 
-                Reference to a single MCP tool by its server and remote name — the
+                Reference to a single MCP tool by its server and remote name; the
                 same `server_name`/`name` pair `mcp_tool_use` carries.
 
                 - `type: "mcp_tool_reference"`
@@ -1385,7 +1385,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               - `BetaToolChangeMCPToolReference object`
 
-                Reference to a single MCP tool by its server and remote name — the
+                Reference to a single MCP tool by its server and remote name; the
                 same `server_name`/`name` pair `mcp_tool_use` carries.
 
               - `BetaToolChangeMCPToolsetReference object`

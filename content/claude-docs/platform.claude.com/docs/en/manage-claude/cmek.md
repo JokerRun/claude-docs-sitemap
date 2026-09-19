@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: f52b8fd90fdc3124495892bbfb42fe4a908dbdea45c9d0fddffa5d4d0917fc16
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: 5a9e0e82a0e1744e0d38c472cad8129f90c63a2eb0706aaf435e70ffe940c48b
 ---
 
 ---
@@ -30,7 +30,7 @@ The use of CMEK is optional. Eligible organizations can **opt in** to use custom
 
 ## How it works
 
-Only Organization Admins (on Claude Platform; the Admin role on Claude Platform on AWS) or Owners and the Primary Owner (on Claude Enterprise) can configure CMEK. On Claude Platform, CMEK is scoped per workspace and configured with the Admin API (on Claude Platform on AWS, in the Claude Console or through the IAM-authorized external key and workspace endpoints). On Claude Enterprise, CMEK is scoped per organization and configured in [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls). On either product, CMEK protects data written after your key takes effect. Existing data (prior chats, files, and sessions) remains encrypted with Anthropic-managed keys and is not re-encrypted under your key.
+Only Organization Admins (on Claude Platform; the Admin role on Claude Platform on AWS) or Owners and the Primary Owner (on Claude Enterprise) can configure CMEK. On Claude Platform, CMEK is scoped per workspace and configured in the Claude Console or with the Admin API (on Claude Platform on AWS, in the Claude Console or through the IAM-authorized external key and workspace endpoints). On Claude Enterprise, CMEK is scoped per organization and configured in [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls). On either product, CMEK protects data written after your key takes effect. Existing data (prior chats, files, and sessions) remains encrypted with Anthropic-managed keys and is not re-encrypted under your key.
 
 On Claude Platform, Anthropic recommends attaching your key to a new workspace before you send any requests to that workspace. If you attach a key to a workspace that already receives requests, your key can take up to a day to take effect. Data written before then, like existing data, is encrypted with Anthropic-managed keys and is not re-encrypted.
 

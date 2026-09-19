@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: a17fc295554efd8ec6860edf3ea0b45ba60edfe431bb888ff5bc1d86530c759c
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: 5c0a2bc88989093c1c6803f3efaaf27851c8f0bbc41cbfecfc4ac938cfe6292b
 ---
 
 > ## Documentation Index
@@ -321,7 +321,7 @@ The `--allowedTools` flag uses [permission rule syntax](/docs/en/settings-refere
   * User-invoked [skills](/docs/en/skills) and custom commands work. Include `/skill-name` in the prompt string and Claude Code expands it before running.
   * Built-in commands that only run in the terminal interface, such as `/login`, aren't available.
   * `/model`, `/effort`, `/fast`, `/color`, and `/rename` accept the value as an argument, for example `/model sonnet`, and `/mcp` with no argument prints a text summary of server status. These forms require Claude Code v2.1.205 or later and follow each command's [availability notes](/docs/en/commands#all-commands).
-  * To change a setting, pass `key=value` to `/config`, for example `/config thinking=false`. Requires Claude Code v2.1.181 or later.
+  * To change a setting, pass `key=value` to `/config`, for example `/config thinking=false`.
   * `/output-style <style>` switches [output styles](/docs/en/output-styles) and `/output-style` alone lists them. Requires Claude Code v2.1.269 or later.
 </Note>
 

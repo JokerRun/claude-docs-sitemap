@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/vaults
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: 2e9b58fa499c77e3588c3367a775029a525ca8c1e2f47a08c87456fed6fc3946
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: 4e239398415fcfa8f0801fe937face9ffc0c7ff6dedf8244bda268f45fc1182e
 ---
 
 ---
@@ -29,25 +29,22 @@ Vault adalah kumpulan `credentials` yang terkait dengan seorang pengguna akhir. 
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  vault_id=$(curl --fail-with-body -sS https://api.anthropic.com/v1/vaults \
+  curl --fail-with-body -sS https://api.anthropic.com/v1/vaults \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data @- <<'EOF' | jq -r '.id'
+    --data @- <<'EOF'
   {
     "display_name": "Alice",
     "metadata": {"external_user_id": "usr_abc123"}
   }
   EOF
-  )
-  echo "$vault_id"  # "vlt_01ABC..."
   ```
 
   <MultiFileExample language="cli" label="CLI">
     ```bash CLI
-    VAULT_ID=$(ant beta:vaults create --transform id --raw-output < alice.vault.yaml)
-    echo "$VAULT_ID"  # "vlt_01ABC..."
+    ant beta:vaults create < alice.vault.yaml
     ```
 
     <File filename="alice.vault.yaml">
@@ -161,12 +158,12 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
 
     <CodeGroup defaultLanguage="CLI">
       ```bash cURL
-      credential_id=$(curl --fail-with-body -sS "https://api.anthropic.com/v1/vaults/$vault_id/credentials" \
+      curl --fail-with-body -sS "https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
         -H "content-type: application/json" \
-        --data @- <<'EOF' | jq -r '.id'
+        --data @- <<'EOF'
       {
         "display_name": "Alice's Slack",
         "auth": {
@@ -184,14 +181,12 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
         }
       }
       EOF
-      )
       ```
 
       ```bash CLI
-      CREDENTIAL_ID=$(ant beta:vaults:credentials create \
+      ant beta:vaults:credentials create \
         --vault-id "$VAULT_ID" \
-        --display-name "Alice's Slack" \
-        --transform id --raw-output <<'YAML'
+        --display-name "Alice's Slack" <<'YAML'
       auth:
         type: mcp_oauth
         mcp_server_url: https://mcp.slack.com/mcp
@@ -206,7 +201,6 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
             type: client_secret_post
             client_secret: abc123...
       YAML
-      )
       ```
 
       ```python Python
@@ -379,7 +373,7 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
 
     <CodeGroup defaultLanguage="CLI">
       ```bash cURL
-      curl --fail-with-body -sS "https://api.anthropic.com/v1/vaults/$vault_id/credentials" \
+      curl --fail-with-body -sS "https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -512,12 +506,12 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
 
     <CodeGroup defaultLanguage="CLI">
       ```bash cURL
-      curl --fail-with-body -sS "https://api.anthropic.com/v1/vaults/$vault_id/credentials" \
+      curl --fail-with-body -sS "https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
         -H "content-type: application/json" \
-        --data @- <<'EOF' | jq '.auth.injection_location'
+        --data @- <<'EOF'
       {
         "auth": {
           "type": "environment_variable",
@@ -535,9 +529,7 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
       ```
 
       ```bash CLI
-      ant beta:vaults:credentials create \
-        --vault-id "$VAULT_ID" \
-        --transform 'auth.injection_location' --format json <<'YAML'
+      ant beta:vaults:credentials create --vault-id "$VAULT_ID" <<'YAML'
       display_name: Notion API key for sandbox
       auth:
         type: environment_variable
@@ -750,29 +742,27 @@ Berikan `vault_ids` saat membuat sesi:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  session_id=$(curl --fail-with-body -sS https://api.anthropic.com/v1/sessions \
+  curl --fail-with-body -sS https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data @- <<EOF | jq -r '.id'
+    --data @- <<EOF
   {
-    "agent": "$agent_id",
-    "environment_id": "$environment_id",
-    "vault_ids": ["$vault_id"],
+    "agent": "$AGENT_ID",
+    "environment_id": "$ENVIRONMENT_ID",
+    "vault_ids": ["$VAULT_ID"],
     "title": "Alice's Slack digest"
   }
   EOF
-  )
   ```
 
   ```bash CLI
-  SESSION_ID=$(ant beta:sessions create \
+  ant beta:sessions create \
     --agent "$AGENT_ID" \
     --environment-id "$ENVIRONMENT_ID" \
     --vault-id "$VAULT_ID" \
-    --title "Alice's Slack digest" \
-    --transform id --raw-output)
+    --title "Alice's Slack digest"
   ```
 
   ```python Python
@@ -858,7 +848,7 @@ Nilai rahasia, `display_name`, dan (pada kredensial variabel lingkungan) `inject
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
   curl --fail-with-body -sS \
-    "https://api.anthropic.com/v1/vaults/$vault_id/credentials/$credential_id" \
+    "https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials/$CREDENTIAL_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -1023,7 +1013,7 @@ Untuk mendiagnosis mengapa refresh gagal, panggil `POST /v1/vaults/{vault_id}/cr
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
   curl --fail-with-body -sS -X POST \
-    "https://api.anthropic.com/v1/vaults/$vault_id/credentials/$credential_id/mcp_oauth_validate?beta=true" \
+    "https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials/$CREDENTIAL_ID/mcp_oauth_validate?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01"
@@ -1032,8 +1022,7 @@ Untuk mendiagnosis mengapa refresh gagal, panggil `POST /v1/vaults/{vault_id}/cr
   ```bash CLI
   ant beta:vaults:credentials mcp-oauth-validate \
     --vault-id "$VAULT_ID" \
-    --credential-id "$CREDENTIAL_ID" \
-    --transform status --raw-output  # "valid", "invalid", or "unknown"
+    --credential-id "$CREDENTIAL_ID"
   ```
 
   ```python Python

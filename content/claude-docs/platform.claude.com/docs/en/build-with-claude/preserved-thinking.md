@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/preserved-thinking
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: b9938c83c6f5f9ff043412edbfe60b3591a1ceff5f0b12949635fcec9ca58731
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: fdb4924557d628d3a207ec29adb07747306fdf33b5801aa083e75269a45673f8
 ---
 
 ---
@@ -147,7 +147,6 @@ The following request opts into dropping rather than rejecting. On a first turn 
 
   ```bash CLI
   ant beta:messages create --beta thinking-binding-controls-2026-08-01 \
-    --transform '{content.#(type=="text")#.text,input_transformations}' \
     --format yaml <<'YAML'
   model: claude-fable-5-1
   max_tokens: 16000

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: f878c9a34fc19b3104b88ed2393ee1459b2476016b87f7c8d7e61e7244c7d956
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: cd2529828e1a658d83bfe9555b1ca1fa360d60fcfa09c7a6a0c90ee4815d3edc
 ---
 
 ---
@@ -36,7 +36,7 @@ Pre-built Agent Skills extend Claude's capabilities with specialized expertise f
 
 First, check what Skills are available. Use the Skills API to list all Anthropic-managed Skills. Each language tab is an excerpt from one continuous script, with any imports and client setup at the top:
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   # List Anthropic-managed Skills
   curl --fail-with-body -sS "https://api.anthropic.com/v1/skills?source=anthropic" \

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: a6e39544b8a8ab6c5eb705d79d83b4b99b39a9dab1bd0960ee9ded1a4e5bf648
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: 8709039766227a6ba216a959552bf0fd8aee8835a96603cc680dd9aa73c523ed
 ---
 
 ---
@@ -36,7 +36,7 @@ The simplest setup, in beta on the Claude API: set `fallbacks` to `"default"`, a
       "max_tokens": 1024,
       "fallbacks": "default",
       "messages": [{"role": "user", "content": "Hello, Claude"}]
-    }' | jq -r '.model'
+    }'
   ```
 
   ```bash CLI
@@ -45,8 +45,7 @@ The simplest setup, in beta on the Claude API: set `fallbacks` to `"default"`, a
     --max-tokens 1024 \
     --message '{"role":"user","content":"Hello, Claude"}' \
     --fallbacks default \
-    --beta server-side-fallback-2026-07-01 \
-    --transform model --raw-output
+    --beta server-side-fallback-2026-07-01
   ```
 
   ```python Python
@@ -511,7 +510,7 @@ The highlighted lines are the only difference from the default-routing request.
       "max_tokens": 1024,
       "fallbacks": [{"model": "claude-opus-4-8"}],
       "messages": [{"role": "user", "content": "Hello, Claude"}]
-    }' | jq -r '.model'
+    }'
   ```
 
   ```bash CLI
@@ -520,8 +519,7 @@ The highlighted lines are the only difference from the default-routing request.
     --max-tokens 1024 \
     --message '{"role":"user","content":"Hello, Claude"}' \
     --fallbacks '[{"model":"claude-opus-4-8"}]' \
-    --beta server-side-fallback-2026-07-01 \
-    --transform model --raw-output
+    --beta server-side-fallback-2026-07-01
   ```
 
   ```python Python

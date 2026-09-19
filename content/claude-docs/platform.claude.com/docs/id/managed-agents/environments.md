@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: ac07940f41afedfca9e9ef192197be3c8566c1daeb73f20ef9355eaaae413cb6
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: 334872765938ca83d6a5cf82a53a47489fd44dbffdc7882890c8e237aa1e7f1d
 ---
 
 ---
@@ -23,7 +23,7 @@ Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di inf
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  environment=$(curl -fsS https://api.anthropic.com/v1/environments \
+  curl -fsS https://api.anthropic.com/v1/environments \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -37,10 +37,6 @@ Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di inf
     }
   }
   EOF
-  )
-  environment_id=$(jq -r '.id' <<< "$environment")
-
-  echo "Environment ID: $environment_id"
   ```
 
   <MultiFileExample language="cli" label="CLI">
@@ -153,18 +149,17 @@ Teruskan ID environment sebagai string saat [membuat sesi](https://platform.clau
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  session=$(curl -fsS https://api.anthropic.com/v1/sessions \
+  curl -fsS https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     --data @- <<EOF
   {
-    "agent": "$agent_id",
-    "environment_id": "$environment_id"
+    "agent": "$AGENT_ID",
+    "environment_id": "$ENVIRONMENT_ID"
   }
   EOF
-  )
   ```
 
   ```bash CLI
@@ -590,26 +585,26 @@ Saat menggunakan jaringan `limited`:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  # Daftar environment
-  environments=$(curl -fsS https://api.anthropic.com/v1/environments \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01")
-
-  # Ambil environment tertentu
-  env=$(curl -fsS "https://api.anthropic.com/v1/environments/$environment_id" \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01")
-
-  # Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
-  curl -fsS -X POST "https://api.anthropic.com/v1/environments/$environment_id/archive" \
+  # List environments
+  curl -fsS https://api.anthropic.com/v1/environments \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01"
 
-  # Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
-  curl -fsS -X DELETE "https://api.anthropic.com/v1/environments/$environment_id" \
+  # Retrieve a specific environment
+  curl -fsS "https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01"
+
+  # Archive an environment (read-only, existing sessions continue)
+  curl -fsS -X POST "https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/archive" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01"
+
+  # Delete an environment (only if no sessions reference it)
+  curl -fsS -X DELETE "https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01"

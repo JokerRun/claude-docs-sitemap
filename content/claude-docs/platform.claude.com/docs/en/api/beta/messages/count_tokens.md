@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/count_tokens
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: c70854e0d463bbd8726d53650d4a3ef6159bce28df460d47c96f9ac421975c95
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: a409e8fed684f9b4ab7c1ca1ed02a1f0720f46c8336b232e03088232349ca27b
 ---
 
 ---
@@ -1311,7 +1311,7 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
           - `BetaToolChangeMCPToolReference object`
 
-            Reference to a single MCP tool by its server and remote name — the
+            Reference to a single MCP tool by its server and remote name; the
             same `server_name`/`name` pair `mcp_tool_use` carries.
 
             - `type: "mcp_tool_reference"`
@@ -1353,7 +1353,7 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
           - `BetaToolChangeMCPToolReference object`
 
-            Reference to a single MCP tool by its server and remote name — the
+            Reference to a single MCP tool by its server and remote name; the
             same `server_name`/`name` pair `mcp_tool_use` carries.
 
           - `BetaToolChangeMCPToolsetReference object`

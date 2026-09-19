@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: 6244dfa8bf2a7b384c05d5f1c186d12b93726db7e5cdb1f34adb0145df724f7f
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: e4dec25109166f9d302e41f6f837f050723168fd2d9bb31e3a0caadb812febdc
 ---
 
 ---
@@ -187,8 +187,8 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
 
     <CodeGroup>
       ```bash cURL
-      # Agen sedang menganalisis sebuah file...
-      # Interupsi dengan arahan baru:
+      # Agent is currently analyzing a file...
+      # Interrupt with a new direction:
       curl --fail-with-body -sS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
@@ -210,8 +210,8 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
       ```
 
       ```bash CLI
-      # Agen sedang menganalisis sebuah file...
-      # Interupsi dengan arahan baru:
+      # Agent is currently analyzing a file...
+      # Interrupt with a new direction:
       ant beta:sessions:events send --session-id "$SESSION_ID" <<'YAML'
       events:
         - type: user.interrupt
@@ -927,13 +927,11 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
-        -H "content-type: application/json" \
-        | jq -r '.data[] | "[\(.type)] \(.processed_at)"'
+        -H "content-type: application/json"
       ```
 
       ```bash CLI
-      ant beta:sessions:events list --session-id "$SESSION_ID" \
-        --format jsonl --transform '{type,processed_at}'
+      ant beta:sessions:events list --session-id "$SESSION_ID" --format jsonl
       ```
 
       ```python Python
@@ -998,14 +996,13 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
       curl --fail-with-body -sS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true&types[]=agent.tool_use&types[]=agent.tool_result" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
-        -H "anthropic-beta: managed-agents-2026-04-01" \
-        | jq -r '.data[] | "[\(.type)] \(.processed_at)"'
+        -H "anthropic-beta: managed-agents-2026-04-01"
       ```
 
       ```bash CLI
       ant beta:sessions:events list --session-id "$SESSION_ID" \
         --type agent.tool_use --type agent.tool_result \
-        --format jsonl --transform '{type,processed_at}'
+        --format jsonl
       ```
 
       ```python Python
@@ -1948,7 +1945,7 @@ Ketika agen memanggil [alat kustom](https://platform.claude.com/docs/id/managed-
     case "$stop_reason" in
       requires_action)
         while IFS= read -r event_id; do
-          # Jalankan alat dan kirim hasilnya kembali
+          # Execute the tool and send the result back
           result=$(call_tool "$event_id")
           jq -n --arg id "$event_id" --arg result "$result" \
             '{events: [{type: "user.custom_tool_result", custom_tool_use_id: $id, content: [{type: "text", text: $result}]}]}' |
@@ -1970,8 +1967,8 @@ Ketika agen memanggil [alat kustom](https://platform.claude.com/docs/id/managed-
   ```
 
   ```bash CLI
-  # Alur kerja ini tidak cocok diterjemahkan ke perintah shell sekali jalan.
-  # Gunakan salah satu contoh SDK dalam grup kode ini sebagai gantinya.
+  # This workflow does not translate well to a one-off shell command.
+  # Use one of the SDK examples in this code group instead.
   ```
 
   ```python Python
@@ -2247,7 +2244,7 @@ Setiap event `agent.tool_use` dan `agent.mcp_tool_use` membawa `evaluated_permis
     case "$stop_reason" in
       requires_action)
         while IFS= read -r event_id; do
-          # Setujui panggilan alat yang tertunda
+          # Approve the pending tool call
           jq -n --arg id "$event_id" \
             '{events: [{type: "user.tool_confirmation", tool_use_id: $id, result: "allow"}]}' |
             curl --fail-with-body -sS \
@@ -2268,8 +2265,8 @@ Setiap event `agent.tool_use` dan `agent.mcp_tool_use` membawa `evaluated_permis
   ```
 
   ```bash CLI
-  # Alur kerja ini tidak cocok diterjemahkan ke perintah shell sekali jalan.
-  # Gunakan salah satu contoh SDK dalam grup kode ini sebagai gantinya.
+  # This workflow does not translate well to a one-off shell command.
+  # Use one of the SDK examples in this code group instead.
   ```
 
   ```python Python
@@ -2468,7 +2465,7 @@ Untuk melanjutkan sesi, kirim event `user.message` ke sesi tersebut seperti bias
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  # Di produksi, berikan ID tersimpan dari sesi yang ingin Anda lanjutkan.
+  # In production, pass the stored ID of the session you want to resume.
   curl --fail-with-body -sS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -2489,7 +2486,7 @@ Untuk melanjutkan sesi, kirim event `user.message` ke sesi tersebut seperti bias
   ```
 
   ```bash CLI
-  # Di produksi, berikan ID tersimpan dari sesi yang ingin Anda lanjutkan.
+  # In production, pass the stored ID of the session you want to resume.
   ant beta:sessions:events send --session-id "$SESSION_ID" <<'YAML'
   events:
     - type: user.message

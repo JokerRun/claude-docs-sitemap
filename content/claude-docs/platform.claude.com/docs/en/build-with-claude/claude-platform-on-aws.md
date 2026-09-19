@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: 95d6892924e5e6dde77da6b2f7fcb1fd38f67985fbe437c7e0efb47f67c2a4ba
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: bdb738c6445b4be9267271767f647b00b7a25f85f5d2bfe2a02c509cd1bb6ccb
 ---
 
 ---
@@ -351,19 +351,19 @@ Anthropic's [client SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries
 
 The following models are available on Claude Platform on AWS:
 
-| Model             | Model ID          |
-| :---------------- | :---------------- |
-| Claude Fable 5.1  | claude-fable-5-1  |
-| Claude Fable 5    | claude-fable-5    |
-| Claude Opus 5     | claude-opus-5     |
-| Claude Opus 4.8   | claude-opus-4-8   |
-| Claude Opus 4.7   | claude-opus-4-7   |
-| Claude Opus 4.6   | claude-opus-4-6   |
-| Claude Opus 4.5   | claude-opus-4-5   |
-| Claude Sonnet 5   | claude-sonnet-5   |
-| Claude Sonnet 4.6 | claude-sonnet-4-6 |
-| Claude Sonnet 4.5 | claude-sonnet-4-5 |
-| Claude Haiku 4.5  | claude-haiku-4-5  |
+| Model             | Model ID            |
+| :---------------- | :------------------ |
+| Claude Fable 5.1  | `claude-fable-5-1`  |
+| Claude Fable 5    | `claude-fable-5`    |
+| Claude Opus 5     | `claude-opus-5`     |
+| Claude Opus 4.8   | `claude-opus-4-8`   |
+| Claude Opus 4.7   | `claude-opus-4-7`   |
+| Claude Opus 4.6   | `claude-opus-4-6`   |
+| Claude Opus 4.5   | `claude-opus-4-5`   |
+| Claude Sonnet 5   | `claude-sonnet-5`   |
+| Claude Sonnet 4.6 | `claude-sonnet-4-6` |
+| Claude Sonnet 4.5 | `claude-sonnet-4-5` |
+| Claude Haiku 4.5  | `claude-haiku-4-5`  |
 
 Model IDs are identical to the first-party Claude API. There are no Bedrock-style ARNs or `anthropic.` prefixes.
 

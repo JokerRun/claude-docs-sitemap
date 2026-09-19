@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/extended-thinking
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: cb6d05be6b84ca90b2f36c1993ef56655d4a47959e190d3ed26437e9bd7aadc6
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: ea43633786686f4881dc1bbb04c0069e6d75088d21eadd4a7a888e98d228f7e7
 ---
 
 ---
@@ -61,7 +61,7 @@ Here is an example of using extended thinking in the Messages API:
 
   ```bash CLI
   ant messages create \
-    --transform content --format yaml <<'YAML'
+    --format yaml <<'YAML'
   model: claude-sonnet-4-6
   max_tokens: 16000
   thinking:

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/retrieve
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: fbe21971807dbed1728fb11358e40a230096162ad39c893a31ab3964d83dc540
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: 554eeba945856b9cce66dec2dd514183c4ee73c21639acf77f2546b19a61ec7a
 ---
 
 ---
@@ -30,7 +30,7 @@ Retrieve a single tunnel in the caller's organization by ID.
 
 - `"anthropic-beta": array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `mcp-tunnels-2026-05-19` in this header.
 
   - `string`
 
@@ -175,6 +175,7 @@ Retrieve a single tunnel in the caller's organization by ID.
 ```bash
 curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID \
     -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-beta: mcp-tunnels-2026-05-19' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 

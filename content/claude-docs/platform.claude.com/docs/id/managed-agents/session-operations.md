@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-operations
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 8224d50c6e13b5262b9b640d5f1a5c950644844c4c87dceba774d62b5a3e2039
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: c1348ea3e7e450a4b5f749d0fb8ac35b168f7b7f8ca97b5420a174764451b7cc
 ---
 
 ---
@@ -226,11 +226,10 @@ Sesi yang [dibuat dengan anggaran](https://platform.claude.com/docs/id/managed-a
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  retrieved=$(curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID" \
+  curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01")
-  echo "Status: $(jq -r '.status' <<< "$retrieved")"
+    -H "anthropic-beta: managed-agents-2026-04-01"
   ```
 
   ```bash CLI
@@ -310,8 +309,8 @@ Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang mengha
   ```
 
   ```bash CLI
-  # --format raw mengembalikan satu amplop halaman dengan kursor prev_page dan
-  # next_page-nya; output default melakukan paginasi otomatis dan hanya mengeluarkan sesi.
+  # --format raw returns one page envelope with its prev_page and next_page
+  # cursors; the default output auto-paginates and emits only the sessions.
   cursors=$(ant beta:sessions list \
     --agent-id "$AGENT_ID" \
     --limit 1 \
@@ -319,7 +318,7 @@ Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang mengha
     --transform '{prev_page,next_page}')
   printf '%s\n' "$cursors"
 
-  # Teruskan kursor next_page kembali sebagai --page untuk mengambil halaman berikutnya.
+  # Pass the next_page cursor back as --page to fetch the next page.
   NEXT_PAGE=$(jq -r '.next_page' <<< "$cursors")
   ant beta:sessions list \
     --agent-id "$AGENT_ID" \
@@ -327,7 +326,7 @@ Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang mengha
     --page "$NEXT_PAGE" \
     --format raw \
     --transform '{prev_page,next_page}'
-  # Teruskan prev_page dari respons itu sebagai --page untuk kembali dengan cara yang sama.
+  # Pass that response's prev_page as --page to go back the same way.
   ```
 
   ```python Python

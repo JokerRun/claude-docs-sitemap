@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/overview
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: 3e40a3b91b0d01dbde0c5c7d32dec14a90d2ab237c100c50e44b80af6e5ce55a
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: 1e235e1f7d470485720b87f48d03d914796fe6e2ce0c39915f2f7bcb6af744a1
 ---
 
 > ## Documentation Index
@@ -172,7 +172,7 @@ Here are some of the ways you can use Claude Code:
   </Accordion>
 
   <Accordion title="Customize with instructions, skills, and hooks" icon="sliders">
-    [`CLAUDE.md`](/docs/en/memory) is a markdown file you add to your project root that Claude Code reads at the start of every session. Use it to set coding standards, architecture decisions, preferred libraries, and review checklists. Claude also builds [auto memory](/docs/en/memory#auto-memory) as it works, saving learnings across sessions without you writing anything.
+    [`CLAUDE.md`](/docs/en/memory) is a markdown file you add to your project root that Claude Code reads at the start of every session. Use it to set coding standards, architecture decisions, preferred libraries, and review checklists. If your repository already has an `AGENTS.md` for other coding agents, Claude Code [can read that](/docs/en/memory#agents-md) on its own or alongside `CLAUDE.md`. Claude also builds [auto memory](/docs/en/memory#auto-memory) as it works, saving learnings across sessions without you writing anything.
 
     Create [skills](/docs/en/skills) to package repeatable workflows your team can share, like `/review-pr` or `/deploy-staging`.
 

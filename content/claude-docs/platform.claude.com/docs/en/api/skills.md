@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/skills
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 9a5eac4fb34e925a81dc7a49e29f282a4e5c9220fd3bf351cef25cfaccfe1c0d
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: 58e691ceceb88cce81ee55af2df2fb89360cd964b8a6354c52b45911a32830a7
 ---
 
 ---
@@ -113,7 +113,7 @@ curl https://api.anthropic.com/v1/skills \
     -H 'Content-Type: multipart/form-data' \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    -F files='["Example data"]'
+    -F 'files[]=@/path/to/file'
 ```
 
 #### Response (200)
@@ -630,7 +630,7 @@ curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions \
     -H 'Content-Type: multipart/form-data' \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
-    -F files='["Example data"]'
+    -F 'files[]=@/path/to/file'
 ```
 
 ##### Response (200)

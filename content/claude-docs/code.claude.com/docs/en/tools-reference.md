@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/tools-reference
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: db05442248b85c9bd4302e70b86a0ad14ea9d82ee567956694922e323bd85d82
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: 72201e1682f1bdc04bcf7b892e072da1427094c84b2b26c20829e11cc23f2406
 ---
 
 > ## Documentation Index
@@ -169,10 +169,10 @@ Each command runs under a timeout, and Claude manages it: when it wants longer t
 
 Claude Code streams a command's output to a working file as the command runs; a command whose output passes 5 GB is killed. When the command finishes, Claude Code reads the output back from that file, up to the read-back window described below. How much of the output reaches Claude inline depends on whether Claude Code treats the result as a failure:
 
-| Result  | What Claude gets                                                                                                                                                                                                                             |
-| :------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Valid   | Inline up to roughly 30,000 characters by default; past that, the path of a file saved to the session directory and truncated past 64 MiB, plus a short preview from the start, and Claude reads or searches the file when it needs the rest |
-| Failure | Inline up to roughly 10,000 characters; past that, a head-and-tail excerpt of that size cut from the read-back window, with no file path                                                                                                     |
+| Result  | What Claude gets                                                                                                                                                                                                                                            |
+| :------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Valid   | Inline up to roughly 30,000 characters by default; past that, the path of a file saved to the session directory and truncated past 64 MiB, plus a preview of up to the first 2,000 characters, and Claude reads or searches the file when it needs the rest |
+| Failure | Inline up to roughly 10,000 characters; past that, a head-and-tail excerpt of that size cut from the read-back window, with no file path                                                                                                                    |
 
 A command that exits 1 counts as a valid result for the Bash tool only when Claude Code recognizes exit code 1 as a benign outcome for that command: `grep`, `rg`, `egrep`, `fgrep`, `find`, `diff`, `test`, and `[`, plus `git diff` and `git grep`. Every other command that exits 1 counts as a failure, even when exit 1 is a benign informational outcome: no matches for `pgrep` and `jq -e`, files that differ for `cmp`.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: 62d18787f905578cc2c3823c3523dd96f66f9dc0cbb08a3e8fda6934afbf144c
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: 6481889e175f71db4619c0fcd4fcfea0cc86329abaae4552286b05bc9b2a5dbf
 ---
 
 ---
@@ -351,19 +351,19 @@ Klien membaca `AWS_REGION` dari lingkungan jika `aws_region`/`awsRegion` tidak d
 
 Model berikut tersedia di Claude Platform di AWS:
 
-| Model             | Model ID          |
-| :---------------- | :---------------- |
-| Claude Fable 5.1  | claude-fable-5-1  |
-| Claude Fable 5    | claude-fable-5    |
-| Claude Opus 5     | claude-opus-5     |
-| Claude Opus 4.8   | claude-opus-4-8   |
-| Claude Opus 4.7   | claude-opus-4-7   |
-| Claude Opus 4.6   | claude-opus-4-6   |
-| Claude Opus 4.5   | claude-opus-4-5   |
-| Claude Sonnet 5   | claude-sonnet-5   |
-| Claude Sonnet 4.6 | claude-sonnet-4-6 |
-| Claude Sonnet 4.5 | claude-sonnet-4-5 |
-| Claude Haiku 4.5  | claude-haiku-4-5  |
+| Model             | Model ID            |
+| :---------------- | :------------------ |
+| Claude Fable 5.1  | `claude-fable-5-1`  |
+| Claude Fable 5    | `claude-fable-5`    |
+| Claude Opus 5     | `claude-opus-5`     |
+| Claude Opus 4.8   | `claude-opus-4-8`   |
+| Claude Opus 4.7   | `claude-opus-4-7`   |
+| Claude Opus 4.6   | `claude-opus-4-6`   |
+| Claude Opus 4.5   | `claude-opus-4-5`   |
+| Claude Sonnet 5   | `claude-sonnet-5`   |
+| Claude Sonnet 4.6 | `claude-sonnet-4-6` |
+| Claude Sonnet 4.5 | `claude-sonnet-4-5` |
+| Claude Haiku 4.5  | `claude-haiku-4-5`  |
 
 ID model identik dengan Claude API pihak pertama. Tidak ada ARN gaya Bedrock atau prefiks `anthropic.`.
 

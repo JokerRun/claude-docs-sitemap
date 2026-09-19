@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings-reference
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: 912a26a5f027e0495aa9ddf1ffc41723c6275efaf083eb6e3c20dfaabdee5219
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: ac4329e74a5b56185b5b1a0cc65f7b7916463ff7e87a5b3ac62c82a181ce2b17
 ---
 
 > ## Documentation Index
@@ -4611,6 +4611,8 @@ This example stores the `api_endpoint` option for the `deployer` plugin from `ac
 }
 ```
 
+Built-in plugins store their options under the same key with an `@builtin` suffix. For example, the [**Project instructions**](/docs/en/memory#choose-which-instruction-files-load) setting that controls whether Claude Code reads `AGENTS.md` files is `pluginConfigs["agents-md@builtin"].options.instructionFiles`.
+
 Claude Code ignores project and local entries because it substitutes these values into plugin hook, MCP, and LSP configurations, and a cloned repository must not be able to supply them. Before v2.1.207, project and local settings were also read.
 
 ## MCP
@@ -4702,7 +4704,7 @@ The denylist takes precedence over [`allowedMcpServers`](#allowedmcpservers), so
 
 ### `disableClaudeAiConnectors`
 
-Turn off the [claude.ai MCP connectors](/docs/en/mcp#use-mcp-servers-from-claude-ai) [Claude Code fetches itself](/docs/en/mcp#how-connectors-reach-claude-code), so it neither fetches nor connects them. A `true` in any settings file applies: a checked-in project `.claude/settings.json` can opt a repository out of those connectors, but a project-level `false` can't override a user- or managed-level `true`. Requires Claude Code v2.1.182 or later.
+Turn off the [claude.ai MCP connectors](/docs/en/mcp#use-mcp-servers-from-claude-ai) [Claude Code fetches itself](/docs/en/mcp#how-connectors-reach-claude-code), so it neither fetches nor connects them. A `true` in any settings file applies: a checked-in project `.claude/settings.json` can opt a repository out of those connectors, but a project-level `false` can't override a user- or managed-level `true`.
 
 * **Scope**: [`Any file`](#scopes)
 * **Type**: Boolean
@@ -4717,7 +4719,7 @@ Turn off the [claude.ai MCP connectors](/docs/en/mcp#use-mcp-servers-from-claude
 }
 ```
 
-Servers you pass explicitly with `--mcp-config` are unaffected. To block individual connectors instead of all of them, use [`deniedMcpServers`](#deniedmcpservers). See [Disable claude.ai connectors](/docs/en/mcp#disable-claude-ai-connectors). Requires Claude Code v2.1.182 or later.
+Servers you pass explicitly with `--mcp-config` are unaffected. To block individual connectors instead of all of them, use [`deniedMcpServers`](#deniedmcpservers). See [Disable claude.ai connectors](/docs/en/mcp#disable-claude-ai-connectors).
 
 ### `disabledMcpjsonServers`
 

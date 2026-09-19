@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/budgets
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 081f05cf3221bb78cd9df975868522cc6e69fe75d6d3fe52c27acafba0ff6b20
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: 7dfdc8cc5bf7cf3fdd83a1e1b7e5175db2f46cee7673a3d18d365cf62c7f6912
 ---
 
 ---
@@ -23,7 +23,7 @@ Teruskan field opsional `budget` saat Anda membuat sesi:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  session=$(curl -sS --fail-with-body https://api.anthropic.com/v1/sessions \
+  curl -sS --fail-with-body https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -38,17 +38,14 @@ Teruskan field opsional `budget` saat Anda membuat sesi:
     }
   }
   EOF
-  )
-  SESSION_ID=$(jq -r '.id' <<< "$session")
   ```
 
   ```bash CLI
-  # Biarkan jumlah tetap dalam tanda kutip agar dikirim sebagai string, bukan angka.
-  SESSION_ID=$(ant beta:sessions create \
+  # Keep the amount quoted so it is sent as a string, not a number.
+  ant beta:sessions create \
     --agent "$AGENT_ID" \
     --environment-id "$ENVIRONMENT_ID" \
-    --budget '{type: limit, max_list_cost: {amount: "125", currency: USD}}' \
-    --transform id --raw-output)
+    --budget '{type: limit, max_list_cost: {amount: "125", currency: USD}}'
   ```
 
   ```python Python

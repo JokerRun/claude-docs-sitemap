@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/sonnet-5/migration-guide
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: 756681842fe2d97a4873e4abbab03a2e6e8c9668682f1d2573206261bf089b68
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: b8c29a3eb6bbe5483e794e706d8019383f45ef2db7e089519283e54ec9451437
 ---
 
 ---
@@ -347,7 +347,7 @@ Items 4 and 5 in the following list are breaking changes. `max_tokens` remains a
 
          ```bash CLI
          ant messages create \
-           --transform content --format yaml <<'YAML'
+           --format yaml <<'YAML'
          model: claude-sonnet-4-6
          max_tokens: 16000
          thinking:

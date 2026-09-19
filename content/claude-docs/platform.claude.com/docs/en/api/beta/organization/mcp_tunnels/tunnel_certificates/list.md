@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/list
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: afcde0f93f67aadbd2db8f9a751440c309dd01f5315bab8fd6a44d6d45bd89e7
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: bab80d4b8eaea453c1b3d839cdc9dcb1d6c83645e6408689e158bb8448ae7eff
 ---
 
 ---
@@ -52,7 +52,7 @@ Archived certificates are excluded unless `include_archived` is set.
 
 - `"anthropic-beta": array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `mcp-tunnels-2026-05-19` in this header.
 
   - `string`
 
@@ -201,6 +201,7 @@ Archived certificates are excluded unless `include_archived` is set.
 ```bash
 curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/certificates \
     -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-beta: mcp-tunnels-2026-05-19' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/dreams
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 97b3d54a8ba3fe98727138ad6e404a36aff3f136feed4deb39030d2e707110d7
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: a5a79dda83b0cb2894b9f230fb84e97d2c3642b42f2e1fb6965fbb99b6875fc3
 ---
 
 ---
@@ -38,7 +38,7 @@ The dream produces another **output memory store**, separate from the input. The
 
 <CodeGroup>
   ```bash cURL
-  dream=$(curl -s https://api.anthropic.com/v1/dreams \
+  curl -s https://api.anthropic.com/v1/dreams \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01,dreaming-2026-04-21" \
@@ -53,13 +53,10 @@ The dream produces another **output memory store**, separate from the input. The
     "instructions": "Focus on coding-style preferences; ignore one-off debugging notes."
   }
   EOF
-  )
-  dream_id=$(jq -r '.id' <<< "$dream")
-  echo "$dream_id"  # drm_01...
   ```
 
   ```bash CLI
-  dream_id=$(ant beta:dreams create --transform id --raw-output <<YAML
+  ant beta:dreams create <<YAML
   inputs:
     - type: memory_store
       memory_store_id: $store_id
@@ -68,7 +65,6 @@ The dream produces another **output memory store**, separate from the input. The
   model: claude-opus-4-8
   instructions: Focus on coding-style preferences; ignore one-off debugging notes.
   YAML
-  )
   ```
 
   ```python Python

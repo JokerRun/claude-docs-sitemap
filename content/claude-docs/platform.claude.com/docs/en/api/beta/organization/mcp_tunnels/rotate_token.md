@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/rotate_token
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: a69694a04d99fb1978bb513402dd45309fde72d98af0bd3b378a4599930b6642
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: 42e90d7f6515a4db428c8d6338cbffcdde3cf903f012f30a8a2e46318a800a4c
 ---
 
 ---
@@ -34,7 +34,7 @@ restarted after rotation must use the new value. An optional
 
 - `"anthropic-beta": array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `mcp-tunnels-2026-05-19` in this header.
 
   - `string`
 
@@ -165,6 +165,7 @@ restarted after rotation must use the new value. An optional
 curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/rotate_token \
     -X POST \
     -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-beta: mcp-tunnels-2026-05-19' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 

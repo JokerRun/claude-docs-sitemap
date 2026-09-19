@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/create
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 33e1a3e0688f393dce4402859130e4f7f1dfb3842ccabdb4b37d6f854452b6d5
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: 358ed3d5a70127677ce710506641537ca675289dd412cca5b37e5acc62e02a03
 ---
 
 ---
@@ -1323,7 +1323,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
           - `BetaToolChangeMCPToolReference object`
 
-            Reference to a single MCP tool by its server and remote name — the
+            Reference to a single MCP tool by its server and remote name; the
             same `server_name`/`name` pair `mcp_tool_use` carries.
 
             - `type: "mcp_tool_reference"`
@@ -1365,7 +1365,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
           - `BetaToolChangeMCPToolReference object`
 
-            Reference to a single MCP tool by its server and remote name — the
+            Reference to a single MCP tool by its server and remote name; the
             same `server_name`/`name` pair `mcp_tool_use` carries.
 
           - `BetaToolChangeMCPToolsetReference object`

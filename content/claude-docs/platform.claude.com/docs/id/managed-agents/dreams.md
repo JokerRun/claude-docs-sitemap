@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/dreams
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 3e1335699899d37b98e85672b869a57debd7b623aae29aad3a5a7878d13160ba
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: cfe10324f7c465caf0724b61b4bd67240ee932536a5914229501a17f6ee95788
 ---
 
 ---
@@ -38,7 +38,7 @@ Dream menghasilkan **memory store output** lain, yang terpisah dari input. ID st
 
 <CodeGroup>
   ```bash cURL
-  dream=$(curl -s https://api.anthropic.com/v1/dreams \
+  curl -s https://api.anthropic.com/v1/dreams \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01,dreaming-2026-04-21" \
@@ -53,13 +53,10 @@ Dream menghasilkan **memory store output** lain, yang terpisah dari input. ID st
     "instructions": "Focus on coding-style preferences; ignore one-off debugging notes."
   }
   EOF
-  )
-  dream_id=$(jq -r '.id' <<< "$dream")
-  echo "$dream_id"  # drm_01...
   ```
 
   ```bash CLI
-  dream_id=$(ant beta:dreams create --transform id --raw-output <<YAML
+  ant beta:dreams create <<YAML
   inputs:
     - type: memory_store
       memory_store_id: $store_id
@@ -68,7 +65,6 @@ Dream menghasilkan **memory store output** lain, yang terpisah dari input. ID st
   model: claude-opus-4-8
   instructions: Focus on coding-style preferences; ignore one-off debugging notes.
   YAML
-  )
   ```
 
   ```python Python
@@ -317,7 +313,7 @@ Ketika `status` mencapai `completed`, entri `memory_store` di `outputs[]` merefe
 
 <CodeGroup>
   ```bash cURL
-  # Setelah dream berakhir, output memory_store menyimpan store yang dibangun ulang
+  # After the dream ends, the memory_store output holds the rebuilt store
   output_store_id=$(jq -r 'first(.outputs[] | select(.type == "memory_store")).memory_store_id' <<< "$dream")
 
   curl -s https://api.anthropic.com/v1/sessions \

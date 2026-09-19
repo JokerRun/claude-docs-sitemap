@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/reveal_token
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 0b5143e070756db1d63de04209200bf602fba7dc703362b29ac268850f20c2a5
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: 895168719c81f175fb639e8a3903ad5b54c15a7611587a39a4774d91515b6547
 ---
 
 ---
@@ -35,7 +35,7 @@ access logs.
 
 - `"anthropic-beta": array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `mcp-tunnels-2026-05-19` in this header.
 
   - `string`
 
@@ -158,6 +158,7 @@ access logs.
 curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/reveal_token \
     -X POST \
     -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-beta: mcp-tunnels-2026-05-19' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 

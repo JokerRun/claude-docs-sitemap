@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 93ddaaee194955291127dd882ae88f329e1592c2392ffd55274ac3e4abc5825c
+fetched_at: 2026-09-19T02:20:35.649299Z
+sha256: fe06df7e2469c0f980bce604a392c811da32bb8017e83fb9a3b1b7d553365183
 ---
 
 ---
@@ -63,19 +63,15 @@ Teruskan rubrik sebagai teks inline pada `user.define_outcome` (lihat [Membuat s
 
 <CodeGroup>
   ```bash cURL
-  rubric=$(curl -fsSL https://api.anthropic.com/v1/files \
+  curl -fsSL https://api.anthropic.com/v1/files \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
-    -F file=@/tmp/rubric.md)
-  rubric_id=$(jq -r '.id' <<<"$rubric")
-  printf 'Uploaded rubric: %s\n' "$rubric_id"
+    -F file=@/tmp/rubric.md
   ```
 
   ```bash CLI
-  RUBRIC_ID=$(ant files upload \
-    --file /tmp/rubric.md \
-    --transform id --raw-output)
+  ant files upload --file /tmp/rubric.md
   ```
 
   ```python Python
@@ -297,23 +293,23 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
 
 <CodeGroup>
   ```bash cURL
-  # Membuat sesi
+  # Create a session
   session=$(curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     --json @- <<EOF
   {
-    "agent": "$agent_id",
-    "environment_id": "$environment_id",
+    "agent": "$AGENT_ID",
+    "environment_id": "$ENVIRONMENT_ID",
     "title": "Financial analysis on Costco"
   }
   EOF
   )
-  session_id=$(jq -r '.id' <<<"$session")
+  SESSION_ID=$(jq -r '.id' <<<"$session")
 
-  # Mendefinisikan hasil — agen mulai bekerja begitu menerimanya
-  curl -fsSL "https://api.anthropic.com/v1/sessions/$session_id/events" \
+  # Define the outcome — agent starts working on receipt
+  curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -329,25 +325,25 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
     ]
   }
   EOF
-  # atau: "rubric": {"type": "file", "file_id": "$rubric_id"}
-  # "max_iterations" bersifat opsional; default 3, maksimum 20
+  # or: "rubric": {"type": "file", "file_id": "$RUBRIC_ID"}
+  # "max_iterations" is optional; default 3, max 20
   ```
 
   ```bash CLI
-  # Buat sesi
+  # Create a session
   SESSION_ID=$(ant beta:sessions create \
     --agent "$AGENT_ID" \
     --environment-id "$ENVIRONMENT_ID" \
     --title "Financial analysis on Costco" \
     --transform id --raw-output)
 
-  # Definisikan hasil — agen mulai bekerja saat diterima
+  # Define the outcome — agent starts working on receipt
   ant beta:sessions:events send --session-id "$SESSION_ID" <<YAML
   events:
     - type: user.define_outcome
       description: Build a DCF model for Costco in .xlsx
       rubric: {type: file, file_id: $RUBRIC_ID}
-      # atau: rubric: {type: text, content: "..."}
+      # or: rubric: {type: text, content: "..."}
       max_iterations: 5  # optional; default 3, max 20
   YAML
   ```
@@ -634,18 +630,14 @@ Anda dapat mendengarkan [stream event](https://platform.claude.com/docs/id/manag
 
 <CodeGroup>
   ```bash cURL
-  session=$(curl -fsSL "https://api.anthropic.com/v1/sessions/$session_id" \
+  curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01")
-
-  jq -r '.outcome_evaluations[] | "\(.outcome_id): \(.result)"' <<<"$session"
-  # outc_01a...: satisfied
+    -H "anthropic-beta: managed-agents-2026-04-01"
   ```
 
   ```bash CLI
-  ant beta:sessions retrieve --session-id "$SESSION_ID" \
-    --transform 'outcome_evaluations' --format yaml
+  ant beta:sessions retrieve --session-id "$SESSION_ID"
   ```
 
   ```python Python
@@ -721,18 +713,20 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk meng
 
 <CodeGroup>
   ```bash cURL
-  # Mencantumkan file yang dihasilkan oleh sesi ini
-  # Pemfilteran scope_id memerlukan beta managed-agents
-  files=$(curl -fsSL "https://api.anthropic.com/v1/files?scope_id=$session_id" \
+  # List files produced by this session
+  # scope_id filtering requires the managed-agents beta
+  curl -fsSL "https://api.anthropic.com/v1/files?scope_id=$SESSION_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01")
-  jq -r '.data[] | "\(.id) \(.filename)"' <<<"$files"
+    -H "anthropic-beta: managed-agents-2026-04-01"
 
-  # Mengunduh file
-  file_id=$(jq -r '.data[0].id // empty' <<<"$files")
-  if [[ -n $file_id ]]; then
-    curl -fsSL "https://api.anthropic.com/v1/files/$file_id/content" \
+  # Download a file
+  FILE_ID=$(curl -fsSL "https://api.anthropic.com/v1/files?scope_id=$SESSION_ID" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" | jq -r '.data[0].id // empty')
+  if [[ -n $FILE_ID ]]; then
+    curl -fsSL "https://api.anthropic.com/v1/files/$FILE_ID/content" \
       -H "x-api-key: $ANTHROPIC_API_KEY" \
       -H "anthropic-version: 2023-06-01" \
       -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -741,11 +735,11 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk meng
   ```
 
   ```bash CLI
-  # Daftar file yang dihasilkan oleh sesi ini
-  # Pemfilteran scope_id memerlukan beta managed-agents pada permintaan files
+  # List files produced by this session
+  # scope_id filtering requires the managed-agents beta on the files request
   ant beta:files list --scope-id "$SESSION_ID" --beta managed-agents-2026-04-01
 
-  # Unduh file
+  # Download a file
   FILE_ID=$(ant beta:files list --scope-id "$SESSION_ID" \
     --beta managed-agents-2026-04-01 \
     --transform 'data[0].id' --raw-output)
