@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/changelog
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: a739ba546e1775c60beefa53510ad652137c32629159b54f8292c2afefa6abbe
+fetched_at: 2026-09-20T02:21:19.017205Z
+sha256: 837a9299c3415beb26ac7a75847154cbb89e996dc7e4f9ab2a8e6609031c85bb
 ---
 
 > ## Documentation Index
@@ -16,6 +16,11 @@ sha256: a739ba546e1775c60beefa53510ad652137c32629159b54f8292c2afefa6abbe
 This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md).
 
 Run `claude --version` to check your installed version.
+
+<Update label="2.1.278" description="September 19, 2026">
+  * Changed auto mode for Claude API and Enterprise users, and on Bedrock, Vertex, Foundry and gateways, to default to the server-side classifier, which does not charge for classifier overhead (`CLAUDE_CODE_AUTO_MODE_SERVER=0` opts out on Bedrock, Vertex, Foundry and gateways); warns on billed fallback. See [https://code.claude.com/docs/en/auto-mode-classifier-billing](https://code.claude.com/docs/en/auto-mode-classifier-billing)
+  * Added an `Auto mode server` row to `/status` showing whether this session's auto mode classifier runs on the server
+</Update>
 
 <Update label="2.1.277" description="September 18, 2026">
   * Added AGENTS.md support: in a project with no CLAUDE.md, Claude Code reads AGENTS.md instead; change it under "Project instructions" in `/config` (not yet on Bedrock, Vertex or Foundry)
