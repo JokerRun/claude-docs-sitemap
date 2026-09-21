@@ -283,8 +283,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/artifacts",
     "local_path": "content/claude-docs/code.claude.com/docs/en/artifacts.md",
-    "fetched_at": "2026-09-19T02:20:35.649299Z",
-    "sha256": "5452dc9afd6f3d30827bdb0186b3d6d966df2381dc8896a9d3efb894345f30e6"
+    "fetched_at": "2026-09-21T02:24:49.551584Z",
+    "sha256": "1498338d2eb7a4ef60daca4ec77e7e1a52400e55dddbc2e56ce7db39148eb59d"
   },
   {
     "source": "code",
@@ -458,8 +458,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/commands",
     "local_path": "content/claude-docs/code.claude.com/docs/en/commands.md",
-    "fetched_at": "2026-09-19T02:20:35.649299Z",
-    "sha256": "ba8c67752aac27c6a43317bb5f6abc1a26750c84c50e5e5e40fe8a8929e5601a"
+    "fetched_at": "2026-09-21T02:24:49.551584Z",
+    "sha256": "e39a4d537052f0537a4dd27ad7e59775662faba8adfa7b5f20b31211c0c476b0"
   },
   {
     "source": "code",

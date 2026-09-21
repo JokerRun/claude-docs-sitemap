@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/artifacts
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 5452dc9afd6f3d30827bdb0186b3d6d966df2381dc8896a9d3efb894345f30e6
+fetched_at: 2026-09-21T02:24:49.551584Z
+sha256: 1498338d2eb7a4ef60daca4ec77e7e1a52400e55dddbc2e56ce7db39148eb59d
 ---
 
 > ## Documentation Index
@@ -272,15 +272,15 @@ For typography, Claude can load a typeface from Google Fonts, the one external f
 
 ## Draft a design canvas
 
-To mock up a UI, a screen flow, a landing page, or a poster rather than build a page, run `/design` with a brief. Claude drafts the design as artboards on one canvas and publishes the canvas as an artifact that runs a research preview of Claude Design's editor. The brief names what you want drawn:
+To mock up a UI, a screen flow, a landing page, or a poster rather than build a page, run `/design` with a brief. Claude drafts the design as artboards on one canvas and publishes the canvas as a Design artifact. The brief names what you want drawn:
 
 ```text wrap theme={null}
 /design a settings screen for a mobile banking app
 ```
 
-Open the published artifact to review the artboards. Where saving is enabled for your account, select an element on an artboard, change it, and save to publish a new version; otherwise you view the draft and export it as PNG or PDF.
+Open the published artifact in a desktop browser to review the artboards. Select an element on an artboard and change it, and your edits save automatically. You can export each artboard as PNG or PDF.
 
-`/design` requires a session where [artifacts are available](#availability) and Claude Code v2.1.234 or later.
+`/design` requires a session where [artifacts are available](#availability) and Claude Code v2.1.265 or later.
 
 ## Page constraints
 
