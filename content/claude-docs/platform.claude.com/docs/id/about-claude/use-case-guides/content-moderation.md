@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/content-moderation
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: b0fbd0464403602397a0f34b1b0a134465e67dafe0e5720baa47a22ed20fae2f
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 264b5465368fccae404efc430352b32667bd29de21fc53d1f2d9bdd274943163
 ---
 
 ---
@@ -262,10 +262,10 @@ Sebelum mengembangkan solusi moderasi konten, pertama-tama buatlah contoh konten
       'Congratulations! You have won a $1,000 gift card. Click here to claim your prize!',
   ];
 
-  // Sample user comments to test the content moderation
+  // Contoh komentar pengguna untuk menguji moderasi konten
   $userComments = [...$allowedUserComments, ...$disallowedUserComments];
 
-  // Categories considered unsafe for content moderation
+  // Kategori yang dianggap tidak aman untuk moderasi konten
   $unsafeCategories = [
       'Child Exploitation',
       'Conspiracy Theories',
@@ -752,10 +752,10 @@ Untuk menggunakan Claude dalam moderasi konten, Claude harus memahami persyarata
 
   ```php PHP
   $moderateMessage = function (string $message, array $unsafeCategories) use ($client): array {
-      // Convert the unsafe categories into a string, with each category on a new line
+      // Ubah kategori tidak aman menjadi string, dengan setiap kategori pada baris baru
       $unsafeCategoryStr = implode("\n", $unsafeCategories);
 
-      // Construct the prompt for Claude, including the message and unsafe categories
+      // Susun prompt untuk Claude, termasuk pesan dan kategori tidak aman
       $assessmentPrompt = <<<PROMPT
 
           Determine whether the following message warrants moderation,
@@ -778,30 +778,30 @@ Untuk menggunakan Claude dalam moderasi konten, Claude harus memahami persyarata
       Do not include markdown formatting or code fences in your response.
       PROMPT;
 
-      // Send the request to Claude for content moderation
+      // Kirim permintaan ke Claude untuk moderasi konten
       $response = $client->messages->create(
           model: 'claude-haiku-4-5-20251001', // Using the Haiku model for lower costs
           maxTokens: 200,
           messages: [['role' => 'user', 'content' => $assessmentPrompt]],
       );
 
-      // Parse the JSON response from Claude. The SDK decodes each content block
-      // into its concrete class, so find the TextBlock before reading the text.
+      // Parse respons JSON dari Claude. SDK mendekode setiap blok konten
+      // ke kelas konkretnya, jadi cari TextBlock sebelum membaca teksnya.
       $textBlock = array_find($response->content, fn ($block) => $block instanceof \Anthropic\Messages\TextBlock)
           ?? throw new RuntimeException('Expected a text block in the response.');
       $assessment = json_decode($textBlock->text, associative: true, flags: JSON_THROW_ON_ERROR);
 
-      // Extract the violation status from the assessment
+      // Ekstrak status pelanggaran dari hasil penilaian
       $containsViolation = $assessment['violation'];
 
-      // If there's a violation, get the categories and explanation; otherwise, use empty defaults
+      // Jika ada pelanggaran, ambil kategori dan penjelasannya; jika tidak, gunakan nilai default kosong
       $violatedCategories = $containsViolation ? ($assessment['categories'] ?? []) : [];
       $explanation = $containsViolation ? ($assessment['explanation'] ?? null) : null;
 
       return [$containsViolation, $violatedCategories, $explanation];
   };
 
-  // Process each comment and print the results
+  // Proses setiap komentar dan cetak hasilnya
   foreach ($userComments as $comment) {
       echo "\nComment: {$comment}\n";
       [$violation, $violatedCategories, $explanation] = $moderateMessage($comment, $unsafeCategories);
@@ -1297,10 +1297,10 @@ Satu pertimbangan tambahan adalah bahwa alih-alih memperlakukan moderasi konten 
 
   ```php PHP
   $assessRiskLevel = function (string $message, array $unsafeCategories) use ($client): array {
-      // Convert the unsafe categories into a string, with each category on a new line
+      // Ubah kategori tidak aman menjadi string, dengan setiap kategori pada baris baru
       $unsafeCategoryStr = implode("\n", $unsafeCategories);
 
-      // Construct the prompt for Claude, including the message, unsafe categories, and risk level definitions
+      // Susun prompt untuk Claude, termasuk pesan, kategori tidak aman, dan definisi tingkat risiko
       $assessmentPrompt = <<<PROMPT
 
           Assess the risk level of the following message,
@@ -1331,20 +1331,20 @@ Satu pertimbangan tambahan adalah bahwa alih-alih memperlakukan moderasi konten 
       Do not include markdown formatting or code fences in your response.
       PROMPT;
 
-      // Send the request to Claude for risk assessment
+      // Kirim permintaan ke Claude untuk penilaian risiko
       $response = $client->messages->create(
           model: 'claude-haiku-4-5-20251001', // Using the Haiku model for lower costs
           maxTokens: 200,
           messages: [['role' => 'user', 'content' => $assessmentPrompt]],
       );
 
-      // Parse the JSON response from Claude. The SDK decodes each content block
-      // into its concrete class, so find the TextBlock before reading the text.
+      // Parse respons JSON dari Claude. SDK mendekode setiap blok konten
+      // ke kelas konkretnya, jadi cari TextBlock sebelum membaca teksnya.
       $textBlock = array_find($response->content, fn ($block) => $block instanceof \Anthropic\Messages\TextBlock)
           ?? throw new RuntimeException('Expected a text block in the response.');
       $assessment = json_decode($textBlock->text, associative: true, flags: JSON_THROW_ON_ERROR);
 
-      // Extract the risk level, violated categories, and explanation from the assessment
+      // Ekstrak tingkat risiko, kategori yang dilanggar, dan penjelasan dari hasil penilaian
       $riskLevel = $assessment['risk_level'];
       $violatedCategories = $assessment['categories'];
       $explanation = $assessment['explanation'] ?? null;
@@ -1352,7 +1352,7 @@ Satu pertimbangan tambahan adalah bahwa alih-alih memperlakukan moderasi konten 
       return [$riskLevel, $violatedCategories, $explanation];
   };
 
-  // Process each comment and print the results
+  // Proses setiap komentar dan cetak hasilnya
   foreach ($userComments as $comment) {
       echo "\nComment: {$comment}\n";
       [$riskLevel, $violatedCategories, $explanation] = $assessRiskLevel($comment, $unsafeCategories);
@@ -2020,7 +2020,7 @@ Selain mencantumkan kategori tidak aman dalam prompt, peningkatan lebih lanjut d
   ```
 
   ```php PHP
-  // Categories considered unsafe for content moderation, with their definitions
+  // Kategori yang dianggap tidak aman untuk moderasi konten, beserta definisinya
   $unsafeCategoryDefinitions = [
       'Child Exploitation' => 'Content that depicts child nudity or that enables, encourages, excuses, or depicts the sexual abuse of children.',
       'Conspiracy Theories' => 'Content that promotes or endorses unfounded, false, or misleading theories about events, situations, or individuals,
@@ -2041,14 +2041,14 @@ Selain mencantumkan kategori tidak aman dalam prompt, peningkatan lebih lanjut d
   ];
 
   $moderateMessageWithDefinitions = function (string $message, array $unsafeCategoryDefinitions) use ($client): array {
-      // Format the unsafe categories string, with each category and its definition on a new line
+      // Format string kategori tidak aman, dengan setiap kategori dan definisinya pada baris baru
       $categoryLines = [];
       foreach ($unsafeCategoryDefinitions as $category => $definition) {
           $categoryLines[] = "{$category}: {$definition}";
       }
       $unsafeCategoryStr = implode("\n", $categoryLines);
 
-      // Construct the prompt for Claude, including the message and unsafe categories
+      // Susun prompt untuk Claude, termasuk pesan dan kategori tidak aman
       $assessmentPrompt = <<<PROMPT
       Determine whether the following message warrants moderation, based on the unsafe categories outlined below.
 
@@ -2071,30 +2071,30 @@ Selain mencantumkan kategori tidak aman dalam prompt, peningkatan lebih lanjut d
       Do not include markdown formatting or code fences in your response.
       PROMPT;
 
-      // Send the request to Claude for content moderation
+      // Kirim permintaan ke Claude untuk moderasi konten
       $response = $client->messages->create(
           model: 'claude-haiku-4-5-20251001', // Using the Haiku model for lower costs
           maxTokens: 200,
           messages: [['role' => 'user', 'content' => $assessmentPrompt]],
       );
 
-      // Parse the JSON response from Claude. The SDK decodes each content block
-      // into its concrete class, so find the TextBlock before reading the text.
+      // Parse respons JSON dari Claude. SDK mendekode setiap blok konten
+      // ke kelas konkretnya, jadi cari TextBlock sebelum membaca teksnya.
       $textBlock = array_find($response->content, fn ($block) => $block instanceof \Anthropic\Messages\TextBlock)
           ?? throw new RuntimeException('Expected a text block in the response.');
       $assessment = json_decode($textBlock->text, associative: true, flags: JSON_THROW_ON_ERROR);
 
-      // Extract the violation status from the assessment
+      // Ekstrak status pelanggaran dari hasil penilaian
       $containsViolation = $assessment['violation'];
 
-      // If there's a violation, get the categories and explanation; otherwise, use empty defaults
+      // Jika ada pelanggaran, ambil kategori dan penjelasannya; jika tidak, gunakan nilai default kosong
       $violatedCategories = $containsViolation ? ($assessment['categories'] ?? []) : [];
       $explanation = $containsViolation ? ($assessment['explanation'] ?? null) : null;
 
       return [$containsViolation, $violatedCategories, $explanation];
   };
 
-  // Process each comment and print the results
+  // Proses setiap komentar dan cetak hasilnya
   foreach ($userComments as $comment) {
       echo "\nComment: {$comment}\n";
       [$violation, $violatedCategories, $explanation] = $moderateMessageWithDefinitions($comment, $unsafeCategoryDefinitions);
@@ -2605,17 +2605,17 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
 
   ```php PHP
   $batchModerateMessages = function (array $messages, array $unsafeCategories) use ($client): array {
-      // Convert the unsafe categories into a string, with each category on a new line
+      // Ubah kategori tidak aman menjadi string, dengan setiap kategori pada baris baru
       $unsafeCategoryStr = implode("\n", $unsafeCategories);
 
-      // Format the messages string, with each message wrapped in XML-like tags and given an ID
+      // Format string pesan, dengan setiap pesan dibungkus tag mirip XML dan diberi ID
       $messageLines = [];
       foreach ($messages as $idx => $msg) {
           $messageLines[] = "<message id={$idx}>{$msg}</message>";
       }
       $messagesStr = implode("\n", $messageLines);
 
-      // Construct the prompt for Claude, including the messages and unsafe categories
+      // Susun prompt untuk Claude, termasuk pesan-pesan dan kategori tidak aman
       $assessmentPrompt = <<<PROMPT
       Determine the messages to moderate, based on the unsafe categories outlined below.
 
@@ -2646,25 +2646,25 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
       - Do not include markdown formatting or code fences in your response.
       PROMPT;
 
-      // Send the request to Claude for content moderation
+      // Kirim permintaan ke Claude untuk moderasi konten
       $response = $client->messages->create(
           model: 'claude-haiku-4-5-20251001', // Using the Haiku model for lower costs
           maxTokens: 2048, // Increased max token count to handle batches
           messages: [['role' => 'user', 'content' => $assessmentPrompt]],
       );
 
-      // Parse the JSON response from Claude. The SDK decodes each content block
-      // into its concrete class, so find the TextBlock before reading the text.
+      // Parse respons JSON dari Claude. SDK mendekode setiap blok konten
+      // ke kelas konkretnya, jadi cari TextBlock sebelum membaca teksnya.
       $textBlock = array_find($response->content, fn ($block) => $block instanceof \Anthropic\Messages\TextBlock)
           ?? throw new RuntimeException('Expected a text block in the response.');
 
       return json_decode($textBlock->text, associative: true, flags: JSON_THROW_ON_ERROR);
   };
 
-  // Process the batch of comments and get the response
+  // Proses batch komentar dan dapatkan responsnya
   $responseObj = $batchModerateMessages($userComments, $unsafeCategories);
 
-  // Print the results for each detected violation
+  // Cetak hasil untuk setiap pelanggaran yang terdeteksi
   foreach ($responseObj['violations'] as $violation) {
       echo "Comment: {$userComments[$violation['id']]}\n";
       echo 'Violated Categories: ' . implode(', ', $violation['categories']) . "\n";

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/update
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 8fcaceeacbb6f97f7ca76baff94c0c0fd2e1c703688e896f306c87109d22ab4c
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 7b9f095ebe73d7e7fa53a22537eed578190b5f8d4502fe3057c16a7a7d2d8786
 ---
 
 ---
@@ -19,6 +19,8 @@ Update User Profile
 ## Path parameters
 
 - `user_profile_id: string`
+
+  The ID of the user profile to update (`uprof_...`).
 
 ## Headers
 
@@ -124,6 +126,10 @@ Update User Profile
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 ## Body parameters
 
 - `access_type: optional "application" or "passthrough" or null`
@@ -132,7 +138,11 @@ Update User Profile
 
   - `"application"`
 
+    The user profile represents an individual end-user of a product that the platform builds on the API. New profiles get this value by default.
+
   - `"passthrough"`
+
+    The user profile represents a company that the platform resells Claude access to.
 
 - `external_id: optional string or null`
 
@@ -150,9 +160,15 @@ Update User Profile
 
     - `"active"`
 
+      The platform has neither restricted nor barred the account of the entity that the user profile represents.
+
     - `"suspended"`
 
+      The platform has restricted the account of the entity that the user profile represents and may restore it.
+
     - `"blocked"`
+
+      The platform has barred the account of the entity that the user profile represents.
 
   - `country: optional string or null`
 
@@ -214,6 +230,10 @@ Update User Profile
 
 - `BetaUserProfile object`
 
+  A record of an entity that the platform serves through the API, such as an end-user of the platform's product or a company that the platform resells Claude access to.
+
+  A Messages, Message Batches or token counting request can send a profile's `id` in the `anthropic-user-profile-id` header to attribute the request to that entity.
+
   - `type: "user_profile"`
 
     Object type. Always `user_profile`.
@@ -258,7 +278,11 @@ Update User Profile
 
     - `"application"`
 
+      The user profile represents an individual end-user of a product that the platform builds on the API. New profiles get this value by default.
+
     - `"passthrough"`
+
+      The user profile represents a company that the platform resells Claude access to.
 
   - `external_id: optional string or null`
 
@@ -274,9 +298,15 @@ Update User Profile
 
       - `"active"`
 
+        The platform has neither restricted nor barred the account of the entity that the user profile represents.
+
       - `"suspended"`
 
+        The platform has restricted the account of the entity that the user profile represents and may restore it.
+
       - `"blocked"`
+
+        The platform has barred the account of the entity that the user profile represents.
 
     - `country: string or null`
 

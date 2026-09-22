@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 81a1aa4f5b13d5f25d4fbfaaf8e070c2316b1fc8777919977f9fe2afb62c9bd1
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 7422c16485e1245e2b416ef5490508ae3a89fbc08d4a04fe440edaa8e5658eea
 ---
 
 ---
@@ -129,6 +129,10 @@ Retrieve detailed information about a specific work item.
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ### Returns
 
@@ -1031,6 +1035,10 @@ Stop a work item, initiating graceful or forced shutdown.
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 ### Body parameters
 
 - `force: optional boolean`
@@ -1526,6 +1534,10 @@ Update work item metadata with merge semantics.
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 ### Body parameters
 
 - `metadata: map[string]`
@@ -1767,6 +1779,10 @@ Get statistics about the work queue for an environment.
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ### Returns
 

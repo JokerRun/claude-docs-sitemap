@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/send
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 661f5713f033c88f83b15fa0303fc2f7f97caf96a8606d696d4d453db3f817f3
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 9b254eed3ba4f3afe672a7056d05f1e0d55bba0db42b027f83857a296f7744e0
 ---
 
 ---
@@ -123,6 +123,10 @@ Send Events
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Body parameters
 

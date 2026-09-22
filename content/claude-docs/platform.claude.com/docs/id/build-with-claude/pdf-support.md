@@ -1,19 +1,26 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/pdf-support
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 32da2fdfb76f3efce8b97e3525c1d8e620316355c741f384d60ccce4b991652e
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 712519dc80e43b8688043c8033925513c625a44a2cf49fef19e7b7032819f6d0
 ---
 
 ---
 title: Dukungan PDF
 url: https://platform.claude.com/docs/id/build-with-claude/pdf-support
 description: "Proses PDF dengan Claude: ekstrak teks, analisis grafik, dan pahami konten visual dari dokumen Anda."
+featureMetadata:
+  status: ga
+  zdr:
+    eligibility: eligible
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+  supportedPlatforms:
+    Claude API: ga
+    Claude Platform on AWS: ga
+    Amazon Bedrock: ga
+    Google Cloud: ga
+    Microsoft Foundry: ga
 ---
-
-## Compatibility
-- [ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention): eligible (excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))
-- Platforms: Claude API, Claude Platform on AWS, Amazon Bedrock, Google Cloud, Microsoft Foundry
 
 Anda dapat bertanya kepada Claude tentang teks, gambar, grafik, dan tabel apa pun dalam PDF yang Anda berikan. Beberapa contoh kasus penggunaan:
 

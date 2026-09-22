@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/download
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 72254c22a87825cdbbeaa37c5b73f8857437dfcf562d393d478e2ea55b42fbbb
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 3595588240162f4f242143de8b4ca00fcda21b34816b4d4333e3770bf57fafa7
 ---
 
 ---
@@ -133,6 +133,10 @@ Download a skill version's content as a zip archive.
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Example
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 369d7f0635c33469ec313858451bd977c3b4b4364e969f0de52696b6c618314a
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 6f449fc092c12e53536f61649398ab78b278f2b6762366c3edfe2bef621b740e
 ---
 
 ---
@@ -2085,21 +2085,23 @@ Biasakan untuk memeriksa `stop_reason` dalam logika penanganan respons Anda:
 <CodeGroup exclude="shell">
   ```python Python
   def handle_response(response):
-      if response.stop_reason == "tool_use":
-          return handle_tool_use(response)
-      elif response.stop_reason == "max_tokens":
-          return handle_truncation(response)
-      elif response.stop_reason == "model_context_window_exceeded":
-          return handle_context_limit(response)
-      elif response.stop_reason == "pause_turn":
-          return handle_pause(response)
-      elif response.stop_reason == "refusal":
-          return handle_refusal(response)
-      else:
-          # Tangani end_turn dan kasus lainnya
-          return next(
-              (block.text for block in response.content if block.type == "text"), ""
-          )
+      match response.stop_reason:
+          case "tool_use":
+              return handle_tool_use(response)
+          case "max_tokens":
+              return handle_truncation(response)
+          case "model_context_window_exceeded":
+              return handle_context_limit(response)
+          case "pause_turn":
+              return handle_pause(response)
+          case "refusal":
+              return handle_refusal(response)
+          case _:
+              # Tangani end_turn dan kasus lainnya
+              return next(
+                  (block.text for block in response.content if block.type == "text"),
+                  "",
+              )
   ```
 
   ```typescript TypeScript
@@ -2660,10 +2662,11 @@ Penting untuk membedakan antara nilai `stop_reason` dan error yang sebenarnya:
 
   except anthropic.APIStatusError as e:
       # Tangani error yang sebenarnya
-      if e.status_code == 429:
-          print("Rate limit exceeded")
-      elif e.status_code == 500:
-          print("Server error")
+      match e.status_code:
+          case 429:
+              print("Rate limit exceeded")
+          case 500:
+              print("Server error")
   ```
 
   ```typescript TypeScript
@@ -2683,10 +2686,13 @@ Penting untuk membedakan antara nilai `stop_reason` dan error yang sebenarnya:
   } catch (err) {
     // Tangani error yang sebenarnya
     if (err instanceof Anthropic.APIError) {
-      if (err.status === 429) {
-        console.log("Rate limit exceeded");
-      } else if (err.status === 500) {
-        console.log("Server error");
+      switch (err.status) {
+        case 429:
+          console.log("Rate limit exceeded");
+          break;
+        case 500:
+          console.log("Server error");
+          break;
       }
     } else {
       throw err;
@@ -2966,7 +2972,7 @@ Saat menggunakan streaming, `stop_reason`:
   );
 
   foreach ($stream as $event) {
-      if ($event instanceof RawMessageDeltaEvent && $event->delta->stopReason !== null) {
+      if ($event instanceof \Anthropic\Messages\RawMessageDeltaEvent && $event->delta->stopReason !== null) {
           echo "Stream ended with: {$event->delta->stopReason}", PHP_EOL;
       }
   }
@@ -3465,17 +3471,22 @@ Dengan alasan berhenti `model_context_window_exceeded`, Anda dapat meminta token
           max_tokens=20000,  # Python SDK requires streaming for max_tokens above ~21k
       )
 
-      if response.stop_reason == "model_context_window_exceeded":
-          # Mendapat token maksimum yang mungkin berdasarkan ukuran input
-          print(
-              f"Generated {response.usage.output_tokens} tokens (context limit reached)"
-          )
-      elif response.stop_reason == "max_tokens":
-          # Mendapat token persis sesuai yang diminta
-          print(f"Generated {response.usage.output_tokens} tokens (max_tokens reached)")
-      else:
-          # Penyelesaian alami
-          print(f"Generated {response.usage.output_tokens} tokens (natural completion)")
+      match response.stop_reason:
+          case "model_context_window_exceeded":
+              # Mendapatkan jumlah token maksimum yang dimungkinkan berdasarkan ukuran input
+              print(
+                  f"Generated {response.usage.output_tokens} tokens (context limit reached)"
+              )
+          case "max_tokens":
+              # Mendapatkan jumlah token persis seperti yang diminta
+              print(
+                  f"Generated {response.usage.output_tokens} tokens (max_tokens reached)"
+              )
+          case _:
+              # Penyelesaian alami
+              print(
+                  f"Generated {response.usage.output_tokens} tokens (natural completion)"
+              )
 
       return next((block.text for block in response.content if block.type == "text"), "")
   ```
@@ -3489,15 +3500,18 @@ Dengan alasan berhenti `model_context_window_exceeded`, Anda dapat meminta token
     });
 
     const tokens = response.usage.output_tokens;
-    if (response.stop_reason === "model_context_window_exceeded") {
-      // Mendapat token maksimum yang mungkin berdasarkan ukuran input
-      console.log(`Generated ${tokens} tokens (context limit reached)`);
-    } else if (response.stop_reason === "max_tokens") {
-      // Mendapat token persis sesuai yang diminta
-      console.log(`Generated ${tokens} tokens (max_tokens reached)`);
-    } else {
-      // Penyelesaian alami
-      console.log(`Generated ${tokens} tokens (natural completion)`);
+    switch (response.stop_reason) {
+      case "model_context_window_exceeded":
+        // Mendapatkan token maksimum yang dimungkinkan berdasarkan ukuran input
+        console.log(`Generated ${tokens} tokens (context limit reached)`);
+        break;
+      case "max_tokens":
+        // Mendapatkan token persis sesuai yang diminta
+        console.log(`Generated ${tokens} tokens (max_tokens reached)`);
+        break;
+      default:
+        // Penyelesaian alami
+        console.log(`Generated ${tokens} tokens (natural completion)`);
     }
 
     const textBlock = response.content.find(

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/delete
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 66f4efc2a8d6d5e93d6cf90a4f7b32735e0363efc87430b3ce536cd27f89ac74
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 12171eede18a6c4df9ab85993664326350eac620d2d858de56891f291feb8831
 ---
 
 ---
@@ -19,6 +19,8 @@ Delete Vault
 ## Path parameters
 
 - `vault_id: string`
+
+  Unique identifier of the vault to delete.
 
 ## Headers
 
@@ -123,6 +125,10 @@ Delete Vault
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

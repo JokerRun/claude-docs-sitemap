@@ -1,14 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/mcp-connector
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: d185e2d930db0ea5e92bbdb8a873e8c2284dbd39f112c70a558022c2cf758671
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 8b3c33d6a7545066848157ba6971c8a1cb40d649a34d720ab4a716247839ecbd
 ---
 
 ---
 title: Konektor MCP
 url: https://platform.claude.com/docs/id/managed-agents/mcp-connector
 description: Hubungkan server MCP ke agen Anda untuk mengakses alat dan sumber data eksternal.
+featureMetadata:
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
 
 Claude Managed Agents mendukung penghubungan server [Model Context Protocol (MCP)](https://modelcontextprotocol.io) ke agen Anda. Ini memberi agen akses ke alat, sumber data, dan layanan eksternal melalui protokol yang terstandar.
@@ -19,10 +22,6 @@ Konfigurasi MCP dibagi menjadi dua langkah:
 2. **Pembuatan sesi** menyediakan autentikasi untuk server tersebut dengan mereferensikan vault yang telah didaftarkan sebelumnya (lihat [Autentikasi dengan vault](https://platform.claude.com/docs/id/managed-agents/vaults)).
 
 Pemisahan ini menjaga rahasia agar tidak masuk ke dalam definisi agen yang dapat digunakan ulang, sekaligus memungkinkan setiap sesi melakukan autentikasi dengan kredensialnya sendiri.
-
-<Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
-</Note>
 
 ## Mendeklarasikan server MCP pada agen
 

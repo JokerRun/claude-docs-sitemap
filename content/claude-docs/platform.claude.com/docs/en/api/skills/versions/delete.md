@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/skills/versions/delete
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: f541f02f005ac59e121b82778c0b7cd67f59dfbe3bcadd6b40909939b959a9bb
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 26fab29b2b2b20a5424aa876f1322406a099e039cb798f58292b196ebd0d4c7e
 ---
 
 ---
@@ -33,6 +33,10 @@ Delete Skill Version
 ## Headers
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

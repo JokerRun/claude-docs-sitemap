@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 152652614b9e0c36ea94079d11dec8fb76d02dadcf83ab4ed30aaed26340a0ad
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 04f4cb1d1ab6787125e57f01900ae64871645399d5e9c3beb11bbd58ffab0cb7
 ---
 
 ---
@@ -138,6 +138,10 @@ List Session Threads
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 ### Returns
 
 - `data: optional array of BetaManagedAgentsSessionThread`
@@ -152,7 +156,7 @@ List Session Threads
 
   - `agent: BetaManagedAgentsSessionThreadAgent or BetaManagedAgentsAdvisor`
 
-    The resolved agent a session thread runs: a saved-agent snapshot, the platform advisor entry, or an inline-defined (ephemeral) agent snapshot.
+    The resolved agent a `session_thread` runs.
 
     - `BetaManagedAgentsSessionThreadAgent object`
 
@@ -1043,6 +1047,10 @@ Get Session Thread
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 ### Returns
 
 - `BetaManagedAgentsSessionThread object`
@@ -1057,7 +1065,7 @@ Get Session Thread
 
   - `agent: BetaManagedAgentsSessionThreadAgent or BetaManagedAgentsAdvisor`
 
-    The resolved agent a session thread runs: a saved-agent snapshot, the platform advisor entry, or an inline-defined (ephemeral) agent snapshot.
+    The resolved agent a `session_thread` runs.
 
     - `BetaManagedAgentsSessionThreadAgent object`
 
@@ -1939,6 +1947,10 @@ Archive Session Thread
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 ### Returns
 
 - `BetaManagedAgentsSessionThread object`
@@ -1953,7 +1965,7 @@ Archive Session Thread
 
   - `agent: BetaManagedAgentsSessionThreadAgent or BetaManagedAgentsAdvisor`
 
-    The resolved agent a session thread runs: a saved-agent snapshot, the platform advisor entry, or an inline-defined (ephemeral) agent snapshot.
+    The resolved agent a `session_thread` runs.
 
     - `BetaManagedAgentsSessionThreadAgent object`
 
@@ -2736,7 +2748,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/archiv
 
   - `agent: BetaManagedAgentsSessionThreadAgent or BetaManagedAgentsAdvisor`
 
-    The resolved agent a session thread runs: a saved-agent snapshot, the platform advisor entry, or an inline-defined (ephemeral) agent snapshot.
+    The resolved agent a `session_thread` runs.
 
     - `BetaManagedAgentsSessionThreadAgent object`
 
@@ -5818,13 +5830,9 @@ List Session Thread Events
 
 - `limit: optional number`
 
-  Query parameter for limit
-
   format: int32
 
 - `page: optional string`
-
-  Query parameter for page
 
 #### Headers
 
@@ -5929,6 +5937,10 @@ List Session Thread Events
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -8321,6 +8333,10 @@ Stream Session Thread Events
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 

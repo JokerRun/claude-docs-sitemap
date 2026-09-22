@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/list
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: ce0b96b32823e6a1aac1337864d3d6da89b4c7e65aac521eac4df1ffb06a3eb5
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: f42b826332ed760c6c41c4780a26f464a44e5d0005b2c544102f2cb7260c043a
 ---
 
 ---
@@ -21,6 +21,8 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 ## Path parameters
 
 - `tunnel_id: string`
+
+  ID of the tunnel (`tnl_...`).
 
 ## Query parameters
 
@@ -141,6 +143,10 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

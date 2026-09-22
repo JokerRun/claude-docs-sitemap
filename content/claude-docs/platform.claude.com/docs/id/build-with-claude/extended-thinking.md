@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/extended-thinking
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 477e8b5734574ee40d680c9c342bfa79b0fb48e4b504458b62372de9e41c971b
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 8b8ee44a067c8d9b39a04a7c95c1be595865f8b1798fcbb2b1124f10f4390e15
 ---
 
 ---
@@ -115,7 +115,7 @@ Berikut adalah contoh penggunaan pemikiran diperpanjang di Messages API:
     ],
   });
 
-  // The response contains summarized thinking blocks and text blocks
+  // Respons berisi blok pemikiran yang diringkas dan blok teks
   for (const block of response.content) {
     switch (block.type) {
       case "thinking":
@@ -230,7 +230,7 @@ Berikut adalah contoh penggunaan pemikiran diperpanjang di Messages API:
       ],
   );
 
-  // The response contains summarized thinking blocks and text blocks
+  // Respons berisi blok pemikiran yang diringkas dan blok teks
   foreach ($response->content as $block) {
       echo match (true) {
           $block instanceof \Anthropic\Messages\ThinkingBlock => "\nThinking summary: {$block->thinking}",
@@ -258,7 +258,7 @@ Berikut adalah contoh penggunaan pemikiran diperpanjang di Messages API:
     ]
   )
 
-  # The response contains summarized thinking blocks and text blocks
+  # Respons berisi blok pemikiran yang diringkas dan blok teks
   response.content.each do |block|
     case block
     when Anthropic::Models::ThinkingBlock

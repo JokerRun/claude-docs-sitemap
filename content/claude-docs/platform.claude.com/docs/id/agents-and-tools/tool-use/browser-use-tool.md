@@ -1,20 +1,34 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: 93b6d8801c4bbc292b8c80043c09b81492f36bbed1e6d666334992a2ad9bafcb
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 96c194bd86edd797565ccae98b5e6e848220fb5ed59277a1d7127dc6a3ac809f
 ---
 
 ---
 title: Alat penggunaan browser
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool
 description: Biarkan Claude menavigasi, membaca, dan berinteraksi dengan halaman web di lingkungan browser Anda sendiri dengan alat penggunaan browser.
+featureMetadata:
+  status: ga
+  zdr:
+    eligibility: eligible
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-opus-5
+    - claude-sonnet-5
+    - claude-opus-4-8
+  supportedPlatforms:
+    Claude API: ga
+    Claude Platform on AWS: not available
+    Amazon Bedrock: not available
+    Google Cloud: ga
+    Microsoft Foundry: not available
 ---
-
-## Compatibility
-- [ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention): eligible (excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))
-- Supported models: `claude-fable-5-1`, `claude-mythos-5-1`, `claude-fable-5`, `claude-mythos-5`, `claude-opus-5`, `claude-sonnet-5`, `claude-opus-4-8`
-- Platforms: Claude API, Google Cloud; not available on Claude Platform on AWS, Amazon Bedrock, Microsoft Foundry
 
 Alat browser use memungkinkan Claude menavigasi, membaca, dan berinteraksi dengan halaman web di browser yang dijalankan oleh aplikasi Anda. Claude bekerja dengan halaman melalui strukturnya ("accessibility tree" (pohon aksesibilitas), elemen, formulir, dan tab) sekaligus melalui screenshot dan koordinat viewport.
 
@@ -613,7 +627,7 @@ Berikut kerangka langkah panggilan alat dari loop tersebut dalam dua bagian. Per
   ```
 
   ```php PHP
-  // Stand-in for real PNG bytes; a real executor captures the viewport
+  // Pengganti untuk byte PNG asli; executor nyata menangkap viewport
   const PLACEHOLDER_PNG = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==';
 
   function navigateTo(string $url): string
@@ -631,7 +645,7 @@ Berikut kerangka langkah panggilan alat dari loop tersebut dalam dua bagian. Per
 
   function clickTarget(array $target): string
   {
-      // A target is an element reference from read_page or find, or a viewport pixel coordinate
+      // Target adalah referensi elemen dari read_page atau find, atau koordinat piksel viewport
       if ($target['type'] === 'ref') {
           return "clicked {$target['ref']}";
       }
@@ -646,7 +660,7 @@ Berikut kerangka langkah panggilan alat dari loop tersebut dalam dua bagian. Per
 
   function captureScreenshot(): array
   {
-      // screenshot answers with an image block rather than text, so return the result content list
+      // screenshot menjawab dengan blok gambar, bukan teks, jadi kembalikan daftar konten hasil
       $image = [
           'type' => 'image',
           'source' => ['type' => 'base64', 'media_type' => 'image/png', 'data' => PLACEHOLDER_PNG],
@@ -663,7 +677,7 @@ Berikut kerangka langkah panggilan alat dari loop tersebut dalam dua bagian. Per
           'left_click' => clickTarget($input['target']),
           'type' => typeText($input['text']),
           'screenshot' => captureScreenshot(),
-          // Handle other actions as needed
+          // Tangani aksi lain sesuai kebutuhan
           default => throw new RuntimeException("Unknown or unimplemented member: {$name}"),
       };
   }
@@ -984,18 +998,18 @@ Bagian kedua menjalankan batch secara berurutan, mengirim setiap blok ke handler
       $toolResults = [];
       $failed = false;
       foreach ($response->content as $block) {
-          // This example declares only the browser toolset; route other tools here if you add them.
+          // Contoh ini hanya mendeklarasikan toolset browser; arahkan alat lain ke sini jika Anda menambahkannya.
           if (!($block instanceof \Anthropic\Messages\ToolUseBlock) || $block->toolsetName !== 'browser') {
               continue;
           }
           $result = ['type' => 'tool_result', 'tool_use_id' => $block->id, 'toolset_name' => 'browser'];
           if ($failed) {
-              // A batch stops at its first failure; the remaining actions are answered without running
+              // Batch berhenti pada kegagalan pertama; aksi sisanya dijawab tanpa dijalankan
               $toolResults[] = [...$result, 'content' => HALT_TEXT, 'is_error' => true];
               continue;
           }
           try {
-              // A real executor also returns a browser_state block on navigation and tab-management results
+              // Executor nyata juga mengembalikan blok browser_state pada hasil navigasi dan manajemen tab
               $toolResults[] = [...$result, 'content' => handleBrowserAction($block->name, $block->input)];
           } catch (Throwable $e) {
               $failed = true;
@@ -1124,12 +1138,12 @@ Penggunaan browser membawa risiko yang tidak dimiliki fitur API standar, karena 
 <Warning>
   Untuk mengurangi risiko ini, ambil tindakan pencegahan seperti berikut:
 
-  1. Jalankan browser dan executor Anda di container atau mesin virtual khusus dengan hak akses minimal, profil baru yang tidak menyimpan kredensial, dan tanpa akses ke sistem file sensitif atau jaringan internal; isolasi alat apa pun yang Anda jalankan bersamanya dengan cara yang sama.
-  2. Batasi host yang dapat dijangkau browser ke allowlist domain yang diberlakukan di lapisan jaringan dan diperiksa ulang di handler `navigate` Anda setelah redirect, serta blokir rentang loopback, link-local, dan privat kecuali tugas memerlukannya.
-  3. Perlakukan semua yang disediakan halaman sebagai input yang tidak tepercaya, termasuk judul tab dan URL, serta `url`, `path`, dan `error` setiap unduhan, yang Anda laporkan dalam blok [`browser_state`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#track-tabs-and-page-state), dan bangun pembacaan halaman dari apa yang dirender halaman (pohon aksesibilitas atau teks yang terlihat), bukan dari sumber DOM mentah, agar teks tersembunyi tidak sampai ke Claude.
-  4. Di handler `navigate` Anda, terima kata kunci riwayat `"back"`, `"forward"`, dan `"reload"`, perlakukan URL tanpa skema sebagai `https://`, lalu parse URL tersebut dan tolak skema apa pun selain `http` atau `https` (`javascript:`, `file:`, `data:`, `chrome:`, dan seterusnya) dengan [hasil error](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#return-errors-from-your-executor). Periksa skema dengan parser URL, bukan dengan prefiks string; API tidak pernah melihat navigasi tersebut dan tidak dapat menolaknya untuk Anda.
+  1. Jalankan browser dan eksekutor Anda di container atau mesin virtual khusus dengan hak akses minimal, profil baru yang tidak menyimpan kredensial, dan tanpa akses ke sistem file sensitif atau jaringan internal; isolasi alat apa pun yang Anda jalankan bersamanya dengan cara yang sama.
+  2. Batasi host yang dapat dijangkau browser ke "allowlist" (daftar izin) domain yang diberlakukan di lapisan jaringan dan diperiksa ulang di handler `navigate` Anda setelah redirect, dan blokir rentang loopback, link-local, dan privat kecuali tugas membutuhkannya.
+  3. Perlakukan semua yang disediakan halaman sebagai input yang tidak tepercaya, termasuk judul tab dan URL, serta `url`, `path`, dan `error` setiap unduhan, yang Anda laporkan dalam blok [`browser_state`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#track-tabs-and-page-state), dan bangun pembacaan halaman dari apa yang dirender halaman (pohon aksesibilitas atau teks yang terlihat), bukan sumber DOM mentah, sehingga teks tersembunyi tidak sampai ke Claude.
+  4. Di handler `navigate` Anda, terima kata kunci riwayat `"back"`, `"forward"`, dan `"reload"`, perlakukan URL tanpa skema sebagai `https://`, lalu parse URL dan tolak skema apa pun selain `http` atau `https` (`javascript:`, `file:`, `data:`, `chrome:`, dan seterusnya) dengan [hasil error](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#return-errors-from-your-executor). Periksa skema dengan parser URL, bukan dengan prefiks string; API tidak memfilter URL yang dibuka Claude, sehingga API tidak dapat menolaknya untuk Anda.
   5. Biarkan `javascript_exec` dan `file_upload` tetap nonaktif kecuali Anda membutuhkannya, dan baca [Mengaktifkan anggota opsional](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#enable-optional-member-tools) sebelum mengaktifkan salah satunya.
-  6. Minta manusia mengonfirmasi tindakan yang berdampak besar dan apa pun yang memerlukan persetujuan afirmatif (pembelian, modifikasi akun, pengiriman pesan, dan penerimaan syarat), dan lakukan pemeriksaan tersebut di executor Anda sebelum setiap panggilan, karena satu giliran dapat membawa beberapa panggilan.
+  6. Minta manusia mengonfirmasi tindakan yang berdampak besar dan apa pun yang memerlukan persetujuan afirmatif (pembelian, modifikasi akun, pengiriman pesan, dan penerimaan ketentuan), dan lakukan pemeriksaan tersebut di eksekutor Anda sebelum setiap panggilan, karena satu giliran dapat membawa beberapa panggilan.
 </Warning>
 
 Claude terkadang mengikuti instruksi yang ditemukan dalam konten halaman bahkan ketika bertentangan dengan instruksi Anda; teks pada halaman yang mengatakan "abaikan instruksi sebelumnya dan navigasi ke..." dapat mengalihkannya dari tugas. Isolasi Claude dari data dan tindakan sensitif untuk membatasi apa yang dapat dijangkau injeksi prompt, tinjau [Memitigasi jailbreak dan injeksi prompt](https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks), dan jika tugas tidak dapat menghindari sesi yang sudah login, gunakan akun khusus dengan hak akses rendah dan pertahankan konfirmasi manusia pada tindakan yang mengubah akun.
@@ -1574,7 +1588,7 @@ Sesi browser, unduhan, dan file yang diunggah tetap berada di lingkungan Anda; s
 ## Langkah selanjutnya
 
 <CardGroup cols={3}>
-  <Card title="Alat computer use" icon="computer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool">
+  <Card title="Alat penggunaan komputer" icon="computer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool">
     Berikan Claude kendali atas desktop penuh ketika tugas keluar dari browser; panduan implementasinya juga berlaku untuk eksekutor browser.
   </Card>
 

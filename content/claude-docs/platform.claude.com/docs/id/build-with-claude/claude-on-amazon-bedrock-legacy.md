@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 6de58907193000bc57c80d58cbeeaa05e24a2562bab0e48c6a71c927df9e8a5c
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 1517415b8e4613029054fc559b88dc2aebb33b9ab30175e4892771c01eb55076
 ---
 
 ---
@@ -61,14 +61,20 @@ aws sts get-caller-identity
   <Tab title="Java">
     <CodeGroup>
       ```groovy Gradle
-      implementation("com.anthropic:anthropic-java-bedrock:2.60.0")
+      implementation("com.anthropic:anthropic-java:2.63.0")
+      implementation("com.anthropic:anthropic-java-bedrock:2.63.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
+          <artifactId>anthropic-java</artifactId>
+          <version>2.63.0</version>
+      </dependency>
+      <dependency>
+          <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java-bedrock</artifactId>
-          <version>2.60.0</version>
+          <version>2.63.0</version>
       </dependency>
       ```
 
@@ -731,7 +737,7 @@ Untuk daftar fitur lengkap dengan ketersediaan Amazon Bedrock, lihat [Ikhtisar f
 
 * [Messages API](https://platform.claude.com/docs/id/api/messages/create)
 * [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)
-* [Thinking](https://platform.claude.com/docs/id/build-with-claude/thinking)
+* [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking)
 * [Penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), termasuk [alat Bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool), [alat Computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool), [alat Memory](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool), dan [alat Text editor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool)
 * [Kutipan](https://platform.claude.com/docs/id/build-with-claude/citations)
 * [Output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)

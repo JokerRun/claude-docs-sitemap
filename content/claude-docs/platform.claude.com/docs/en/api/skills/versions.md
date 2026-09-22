@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/skills/versions
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 29e394fea0d5e53ce6bf3ac3e578745b7ea6899ab0c28ab45ee5aeff7cd1865c
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 541fc4713a98208c183d342cd6f3e647a2230cd66b02a1a10d3a3762b4126cd6
 ---
 
 ---
@@ -29,6 +29,10 @@ Create Skill Version
 ### Headers
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ### Body parameters (form-data)
 
@@ -135,6 +139,10 @@ List Skill Versions
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 ### Returns
 
 - `data: array of SkillVersion`
@@ -235,6 +243,10 @@ Get Skill Version
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 ### Returns
 
 - `SkillVersion object`
@@ -321,6 +333,10 @@ Delete Skill Version
 ### Headers
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ### Returns
 

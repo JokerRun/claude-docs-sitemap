@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/list
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: fa702c4e3a054f22169e878bcfa482394b96e0ef26cf3bc9b444ae8edaa54c3a
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: bf65e8102bac4e6b8399fecf4906ce3ebf5c461ce3e5f45927245279879e4b7a
 ---
 
 ---
@@ -141,6 +141,10 @@ List Files
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

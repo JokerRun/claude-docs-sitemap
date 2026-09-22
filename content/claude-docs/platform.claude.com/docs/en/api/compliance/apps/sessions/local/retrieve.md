@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/retrieve
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: edee8af6394baa34b99552b75dde271e5a7d6815f2767b3e9e39a72384fb6662
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 7349c519b722e78f07cdbbe688627ef3e3397f4bd2b604d1f41f2e77bb19cd35
 ---
 
 ---
@@ -51,7 +51,7 @@ inference call has aged out returns 404.
 
 - `product_surface: string or null`
 
-  The product the session ran in: `cowork` (Cowork in Claude Desktop on the user's machine), `claude_code` (Claude Code), `claude_science` (Claude Science), or one of `office_agents/excel`, `office_agents/powerpoint`, `office_agents/word`, and `office_agents/outlook` (Claude for Microsoft 365, by app; `office_agents` alone when the app is not identified). New values appear as coverage expands; treat unrecognized values as opaque. `null` when the surface was not recorded.
+  The product the session ran in: `cowork` (Cowork in Claude Desktop on the user's machine), `claude_code` (Claude Code), `claude_science` (Claude Science), `claude_in_chrome` (the Claude in Chrome browser extension's built-in chat), or one of `office_agents/excel`, `office_agents/powerpoint`, `office_agents/word`, and `office_agents/outlook` (Claude for Microsoft 365, by app; `office_agents` alone when the app is not identified). New values appear as coverage expands; treat unrecognized values as opaque. `null` when the surface was not recorded.
 
 - `truncated: boolean`
 

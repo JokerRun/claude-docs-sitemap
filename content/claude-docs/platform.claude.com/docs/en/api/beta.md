@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 03c80004e1db6f4896b146bdd2fcdbf83068b302c61a94dd764914a3bf56d34a
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: b576fe9d7ad2e45256cef0d221d52eb734549d6b3d33c6542b7cba55be5efc2f
 ---
 
 ---
@@ -568,6 +568,10 @@ The Models API response can be used to determine which models are available for 
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `data: array of BetaModelInfo`
@@ -948,6 +952,10 @@ The Models API response can be used to determine information about a specific mo
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaModelInfo object`
@@ -1310,6 +1318,10 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
   The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization. Requires the `user-profiles` beta header.
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Body parameters
 
@@ -6370,8 +6382,8 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
   - `diagnostics: BetaDiagnostics or null`
 
-    Response envelope for request-level diagnostics. Present (possibly
-    null) whenever the caller supplied `diagnostics` on the request.
+    Request-level diagnostics: why the prompt cache could not fully reuse
+    the prefix of the request named by `diagnostics.previous_message_id`.
 
     - `cache_miss_reason: BetaCacheMissModelChanged or BetaCacheMissSystemChanged or BetaCacheMissToolsChanged or 3 more or null`
 
@@ -7595,6 +7607,10 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
   The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization. Requires the `user-profiles` beta header.
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Body parameters
 
@@ -11524,6 +11540,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
   The user profile ID to attribute the requests in this batch to. Use when acting on behalf of a party other than your organization. Requires the `user-profiles` beta header. Applies to every request in the batch; an individual request whose `user_profile_id` body field conflicts with this header is errored.
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Body parameters
 
@@ -15785,6 +15805,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaMessageBatch object`
@@ -16056,6 +16080,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -16338,6 +16366,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaMessageBatch object`
@@ -16601,6 +16633,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaDeletedMessageBatch object`
@@ -16755,6 +16791,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -17875,8 +17915,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
         - `diagnostics: BetaDiagnostics or null`
 
-          Response envelope for request-level diagnostics. Present (possibly
-          null) whenever the caller supplied `diagnostics` on the request.
+          Request-level diagnostics: why the prompt cache could not fully reuse
+          the prefix of the request named by `diagnostics.previous_message_id`.
 
           - `cache_miss_reason: BetaCacheMissModelChanged or BetaCacheMissSystemChanged or BetaCacheMissToolsChanged or 3 more or null`
 
@@ -18781,6 +18821,10 @@ Create Agent
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Body parameters
 
 - `model: BetaManagedAgentsModel or BetaManagedAgentsModelConfigParams`
@@ -18877,13 +18921,23 @@ Create Agent
 
         - `"low"`
 
+          Low effort. Favors latency over reasoning depth.
+
         - `"medium"`
+
+          Medium effort. Balances latency and reasoning depth.
 
         - `"high"`
 
+          High effort. Favors reasoning depth.
+
         - `"xhigh"`
 
+          Extra-high effort. Not all models accept this level.
+
         - `"max"`
+
+          Maximum effort. Favors reasoning depth over latency.
 
       - `BetaManagedAgentsEffortLow object`
 
@@ -20304,6 +20358,10 @@ List Agents
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `data: array of BetaManagedAgentsAgent`
@@ -20989,6 +21047,8 @@ Get Agent
 
 - `agent_id: string`
 
+  Unique identifier of the agent to retrieve.
+
 #### Query parameters
 
 - `version: optional number`
@@ -21100,6 +21160,10 @@ Get Agent
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -21777,6 +21841,8 @@ Update Agent
 
 - `agent_id: string`
 
+  Unique identifier of the agent to update.
+
 #### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -21880,6 +21946,10 @@ Update Agent
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Body parameters
 
@@ -22005,13 +22075,23 @@ Update Agent
 
         - `"low"`
 
+          Low effort. Favors latency over reasoning depth.
+
         - `"medium"`
+
+          Medium effort. Balances latency and reasoning depth.
 
         - `"high"`
 
+          High effort. Favors reasoning depth.
+
         - `"xhigh"`
 
+          Extra-high effort. Not all models accept this level.
+
         - `"max"`
+
+          Maximum effort. Favors reasoning depth over latency.
 
       - `BetaManagedAgentsEffortLow object`
 
@@ -23273,6 +23353,8 @@ Archive Agent
 
 - `agent_id: string`
 
+  Unique identifier of the agent to archive.
+
 #### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -23376,6 +23458,10 @@ Archive Agent
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -24056,6 +24142,8 @@ List Agent Versions
 
 - `agent_id: string`
 
+  Agent ID to list versions for.
+
 #### Query parameters
 
 - `limit: optional number`
@@ -24171,6 +24259,10 @@ List Agent Versions
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -24959,6 +25051,10 @@ Create a new environment with the specified configuration.
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Body parameters
 
 - `name: string`
@@ -25422,6 +25518,10 @@ List environments with pagination support.
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `data: array of BetaEnvironment`
@@ -25737,6 +25837,10 @@ Retrieve a specific environment by ID.
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaEnvironment object`
@@ -26042,6 +26146,10 @@ Update an existing environment's configuration.
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Body parameters
 
@@ -26475,6 +26583,10 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaEnvironmentDeleteResponse object`
@@ -26623,6 +26735,10 @@ Archive an environment by ID. Archived environments cannot be used to create new
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -26936,6 +27052,10 @@ Retrieve detailed information about a specific work item.
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -27838,6 +27958,10 @@ Stop a work item, initiating graceful or forced shutdown.
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Body parameters
 
 - `force: optional boolean`
@@ -28333,6 +28457,10 @@ Update work item metadata with merge semantics.
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Body parameters
 
 - `metadata: map[string]`
@@ -28575,6 +28703,10 @@ Get statistics about the work queue for an environment.
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaSelfHostedWorkQueueStats object`
@@ -28740,6 +28872,10 @@ Create Session
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Body parameters
 
 - `agent: string or BetaManagedAgentsAgentParams or BetaManagedAgentsAgentWithOverridesParams`
@@ -28890,13 +29026,23 @@ Create Session
 
             - `"low"`
 
+              Low effort. Favors latency over reasoning depth.
+
             - `"medium"`
+
+              Medium effort. Balances latency and reasoning depth.
 
             - `"high"`
 
+              High effort. Favors reasoning depth.
+
             - `"xhigh"`
 
+              Extra-high effort. Not all models accept this level.
+
             - `"max"`
+
+              Maximum effort. Favors reasoning depth over latency.
 
           - `BetaManagedAgentsEffortLow object`
 
@@ -30554,11 +30700,19 @@ Create Session
 
     - `"rescheduling"`
 
+      Transient error occurred, retrying automatically.
+
     - `"running"`
+
+      Agent is actively executing.
 
     - `"idle"`
 
+      Agent is waiting for input, including user messages or tool confirmations. Sessions start in idle.
+
     - `"terminated"`
+
+      Session has ended, either due to an error or completion.
 
   - `title: string or null`
 
@@ -30927,11 +31081,19 @@ List Sessions
 
   - `"rescheduling"`
 
+    Transient error occurred, retrying automatically.
+
   - `"running"`
+
+    Agent is actively executing.
 
   - `"idle"`
 
+    Agent is waiting for input, including user messages or tool confirmations. Sessions start in idle.
+
   - `"terminated"`
+
+    Session has ended, either due to an error or completion.
 
 #### Headers
 
@@ -31036,6 +31198,10 @@ List Sessions
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -31835,11 +32001,19 @@ List Sessions
 
     - `"rescheduling"`
 
+      Transient error occurred, retrying automatically.
+
     - `"running"`
+
+      Agent is actively executing.
 
     - `"idle"`
 
+      Agent is waiting for input, including user messages or tool confirmations. Sessions start in idle.
+
     - `"terminated"`
+
+      Session has ended, either due to an error or completion.
 
   - `title: string or null`
 
@@ -32251,6 +32425,10 @@ Get Session
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -33050,11 +33228,19 @@ Get Session
 
     - `"rescheduling"`
 
+      Transient error occurred, retrying automatically.
+
     - `"running"`
+
+      Agent is actively executing.
 
     - `"idle"`
 
+      Agent is waiting for input, including user messages or tool confirmations. Sessions start in idle.
+
     - `"terminated"`
+
+      Session has ended, either due to an error or completion.
 
   - `title: string or null`
 
@@ -33452,6 +33638,10 @@ Update Session
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Body parameters
 
@@ -34737,11 +34927,19 @@ Update Session
 
     - `"rescheduling"`
 
+      Transient error occurred, retrying automatically.
+
     - `"running"`
+
+      Agent is actively executing.
 
     - `"idle"`
 
+      Agent is waiting for input, including user messages or tool confirmations. Sessions start in idle.
+
     - `"terminated"`
+
+      Session has ended, either due to an error or completion.
 
   - `title: string or null`
 
@@ -35144,6 +35342,10 @@ Delete Session
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaManagedAgentsDeletedSession object`
@@ -35286,6 +35488,10 @@ Archive Session
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -36085,11 +36291,19 @@ Archive Session
 
     - `"rescheduling"`
 
+      Transient error occurred, retrying automatically.
+
     - `"running"`
+
+      Agent is actively executing.
 
     - `"idle"`
 
+      Agent is waiting for input, including user messages or tool confirmations. Sessions start in idle.
+
     - `"terminated"`
+
+      Session has ended, either due to an error or completion.
 
   - `title: string or null`
 
@@ -36415,8 +36629,6 @@ List Events
 
 - `limit: optional number`
 
-  Query parameter for limit
-
   format: int32
 
 - `order: optional "asc" or "desc"`
@@ -36538,6 +36750,10 @@ List Events
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -38930,6 +39146,10 @@ Send Events
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Body parameters
 
 - `events: array of BetaManagedAgentsEventParams`
@@ -39906,6 +40126,10 @@ Stream Events
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -42332,6 +42556,10 @@ Add Session Resource
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Body parameters
 
 - `file_id: string`
@@ -42525,6 +42753,10 @@ List Session Resources
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -42793,6 +43025,10 @@ Get Session Resource
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaManagedAgentsGitHubRepositoryResource object`
@@ -43038,6 +43274,10 @@ Update Session Resource
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Body parameters
 
@@ -43297,6 +43537,10 @@ Delete Session Resource
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaManagedAgentsDeleteSessionResource object`
@@ -43454,6 +43698,10 @@ List Session Threads
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `data: optional array of BetaManagedAgentsSessionThread`
@@ -43468,7 +43716,7 @@ List Session Threads
 
   - `agent: BetaManagedAgentsSessionThreadAgent or BetaManagedAgentsAdvisor`
 
-    The resolved agent a session thread runs: a saved-agent snapshot, the platform advisor entry, or an inline-defined (ephemeral) agent snapshot.
+    The resolved agent a `session_thread` runs.
 
     - `BetaManagedAgentsSessionThreadAgent object`
 
@@ -44359,6 +44607,10 @@ Get Session Thread
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaManagedAgentsSessionThread object`
@@ -44373,7 +44625,7 @@ Get Session Thread
 
   - `agent: BetaManagedAgentsSessionThreadAgent or BetaManagedAgentsAdvisor`
 
-    The resolved agent a session thread runs: a saved-agent snapshot, the platform advisor entry, or an inline-defined (ephemeral) agent snapshot.
+    The resolved agent a `session_thread` runs.
 
     - `BetaManagedAgentsSessionThreadAgent object`
 
@@ -45255,6 +45507,10 @@ Archive Session Thread
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaManagedAgentsSessionThread object`
@@ -45269,7 +45525,7 @@ Archive Session Thread
 
   - `agent: BetaManagedAgentsSessionThreadAgent or BetaManagedAgentsAdvisor`
 
-    The resolved agent a session thread runs: a saved-agent snapshot, the platform advisor entry, or an inline-defined (ephemeral) agent snapshot.
+    The resolved agent a `session_thread` runs.
 
     - `BetaManagedAgentsSessionThreadAgent object`
 
@@ -46054,13 +46310,9 @@ List Session Thread Events
 
 - `limit: optional number`
 
-  Query parameter for limit
-
   format: int32
 
 - `page: optional string`
-
-  Query parameter for page
 
 #### Headers
 
@@ -46165,6 +46417,10 @@ List Session Thread Events
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -48557,6 +48813,10 @@ Stream Session Thread Events
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -50979,6 +51239,10 @@ Create Deployment
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Body parameters
 
 - `agent: string or BetaManagedAgentsAgentParams`
@@ -51867,7 +52131,11 @@ Create Deployment
 
     - `"active"`
 
+      The deployment is active and can run sessions. Archived deployments also report this status; check `archived_at` to distinguish them.
+
     - `"paused"`
+
+      The deployment is paused. Autonomous triggers are suppressed; manual runs are still permitted.
 
   - `updated_at: string`
 
@@ -52034,7 +52302,11 @@ List Deployments
 
   - `"active"`
 
+    The deployment is active and can run sessions. Archived deployments also report this status; check `archived_at` to distinguish them.
+
   - `"paused"`
+
+    The deployment is paused. Autonomous triggers are suppressed; manual runs are still permitted.
 
 #### Headers
 
@@ -52139,6 +52411,10 @@ List Deployments
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -52626,7 +52902,11 @@ List Deployments
 
     - `"active"`
 
+      The deployment is active and can run sessions. Archived deployments also report this status; check `archived_at` to distinguish them.
+
     - `"paused"`
+
+      The deployment is paused. Autonomous triggers are suppressed; manual runs are still permitted.
 
   - `updated_at: string`
 
@@ -52751,6 +53031,8 @@ Get Deployment
 
 - `deployment_id: string`
 
+  Unique identifier of the deployment.
+
 #### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -52854,6 +53136,10 @@ Get Deployment
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -53341,7 +53627,11 @@ Get Deployment
 
     - `"active"`
 
+      The deployment is active and can run sessions. Archived deployments also report this status; check `archived_at` to distinguish them.
+
     - `"paused"`
+
+      The deployment is paused. Autonomous triggers are suppressed; manual runs are still permitted.
 
   - `updated_at: string`
 
@@ -53457,6 +53747,8 @@ Update Deployment
 
 - `deployment_id: string`
 
+  Unique identifier of the deployment to update.
+
 #### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -53560,6 +53852,10 @@ Update Deployment
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Body parameters
 
@@ -54449,7 +54745,11 @@ Update Deployment
 
     - `"active"`
 
+      The deployment is active and can run sessions. Archived deployments also report this status; check `archived_at` to distinguish them.
+
     - `"paused"`
+
+      The deployment is paused. Autonomous triggers are suppressed; manual runs are still permitted.
 
   - `updated_at: string`
 
@@ -54567,6 +54867,8 @@ Archive Deployment
 
 - `deployment_id: string`
 
+  Unique identifier of the deployment to archive.
+
 #### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -54670,6 +54972,10 @@ Archive Deployment
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -55157,7 +55463,11 @@ Archive Deployment
 
     - `"active"`
 
+      The deployment is active and can run sessions. Archived deployments also report this status; check `archived_at` to distinguish them.
+
     - `"paused"`
+
+      The deployment is paused. Autonomous triggers are suppressed; manual runs are still permitted.
 
   - `updated_at: string`
 
@@ -55274,6 +55584,8 @@ Run Deployment Now
 
 - `deployment_id: string`
 
+  Unique identifier of the deployment to run.
+
 #### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -55377,6 +55689,10 @@ Run Deployment Now
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -55647,6 +55963,8 @@ Pause Deployment
 
 - `deployment_id: string`
 
+  Unique identifier of the deployment to pause.
+
 #### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -55750,6 +56068,10 @@ Pause Deployment
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -56237,7 +56559,11 @@ Pause Deployment
 
     - `"active"`
 
+      The deployment is active and can run sessions. Archived deployments also report this status; check `archived_at` to distinguish them.
+
     - `"paused"`
+
+      The deployment is paused. Autonomous triggers are suppressed; manual runs are still permitted.
 
   - `updated_at: string`
 
@@ -56354,6 +56680,8 @@ Unpause Deployment
 
 - `deployment_id: string`
 
+  Unique identifier of the deployment to unpause.
+
 #### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -56457,6 +56785,10 @@ Unpause Deployment
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -56944,7 +57276,11 @@ Unpause Deployment
 
     - `"active"`
 
+      The deployment is active and can run sessions. Archived deployments also report this status; check `archived_at` to distinguish them.
+
     - `"paused"`
+
+      The deployment is paused. Autonomous triggers are suppressed; manual runs are still permitted.
 
   - `updated_at: string`
 
@@ -57109,7 +57445,11 @@ List Deployment Runs
 
   - `"schedule"`
 
+    The run was fired by the deployment's cron schedule.
+
   - `"manual"`
+
+    The run was started manually by creating a session directly against the deployment.
 
 #### Headers
 
@@ -57214,6 +57554,10 @@ List Deployment Runs
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -57492,6 +57836,8 @@ Get Deployment Run
 
 - `deployment_run_id: string`
 
+  Unique identifier of the deployment run.
+
 #### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -57595,6 +57941,10 @@ Get Deployment Run
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -57966,6 +58316,10 @@ Create Vault
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Body parameters
 
 - `display_name: string`
@@ -58174,6 +58528,10 @@ List Vaults
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `data: optional array of BetaManagedAgentsVault`
@@ -58256,6 +58614,8 @@ Get Vault
 
 - `vault_id: string`
 
+  Unique identifier of the vault to retrieve.
+
 #### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -58359,6 +58719,10 @@ Get Vault
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -58433,6 +58797,8 @@ Update Vault
 
 - `vault_id: string`
 
+  Unique identifier of the vault to update.
+
 #### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -58536,6 +58902,10 @@ Update Vault
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Body parameters
 
@@ -58629,6 +58999,8 @@ Delete Vault
 
 - `vault_id: string`
 
+  Unique identifier of the vault to delete.
+
 #### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -58732,6 +59104,10 @@ Delete Vault
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -58774,6 +59150,8 @@ Archive Vault
 
 - `vault_id: string`
 
+  Unique identifier of the vault to archive.
+
 #### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -58877,6 +59255,10 @@ Archive Vault
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -58954,6 +59336,8 @@ Create Credential
 
 - `vault_id: string`
 
+  Identifier of the vault to create the credential in.
+
 #### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -59057,6 +59441,10 @@ Create Credential
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Body parameters
 
@@ -59438,6 +59826,8 @@ List Credentials
 
 - `vault_id: string`
 
+  Identifier of the vault to list credentials for.
+
 #### Query parameters
 
 - `include_archived: optional boolean`
@@ -59557,6 +59947,10 @@ List Credentials
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -59761,7 +60155,11 @@ Get Credential
 
 - `vault_id: string`
 
+  Identifier of the vault containing the credential.
+
 - `credential_id: string`
+
+  Unique identifier of the credential to retrieve.
 
 #### Headers
 
@@ -59866,6 +60264,10 @@ Get Credential
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -60061,7 +60463,11 @@ Update Credential
 
 - `vault_id: string`
 
+  Identifier of the vault containing the credential.
+
 - `credential_id: string`
+
+  Unique identifier of the credential to update.
 
 #### Headers
 
@@ -60166,6 +60572,10 @@ Update Credential
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Body parameters
 
@@ -60500,7 +60910,11 @@ Delete Credential
 
 - `vault_id: string`
 
+  Identifier of the vault containing the credential.
+
 - `credential_id: string`
+
+  Unique identifier of the credential to delete.
 
 #### Headers
 
@@ -60605,6 +61019,10 @@ Delete Credential
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -60647,7 +61065,11 @@ Archive Credential
 
 - `vault_id: string`
 
+  Identifier of the vault containing the credential.
+
 - `credential_id: string`
+
+  Unique identifier of the credential to archive.
 
 #### Headers
 
@@ -60752,6 +61174,10 @@ Archive Credential
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -60948,7 +61374,11 @@ Validate Credential
 
 - `vault_id: string`
 
+  Identifier of the vault containing the credential.
+
 - `credential_id: string`
+
+  Unique identifier of the credential to validate.
 
 #### Headers
 
@@ -61054,6 +61484,10 @@ Validate Credential
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaManagedAgentsCredentialValidation object`
@@ -61114,11 +61548,19 @@ Validate Credential
 
       - `"succeeded"`
 
+        The token endpoint returned a new access token.
+
       - `"failed"`
+
+        The token endpoint returned an error response. See `http_response` for detail.
 
       - `"connect_error"`
 
+        The token endpoint could not be reached (DNS, TLS, or connection error).
+
       - `"no_refresh_token"`
+
+        No refresh token is stored for the credential, so no exchange was attempted.
 
   - `status: BetaManagedAgentsCredentialValidationStatus`
 
@@ -61126,9 +61568,15 @@ Validate Credential
 
     - `"valid"`
 
+      The credential successfully authenticated against its MCP server.
+
     - `"invalid"`
 
+      The probe reached the MCP server and was rejected, and a refresh (if attempted) did not recover it.
+
     - `"unknown"`
+
+      The probe could not determine validity — for example, a transport error or a successful refresh that was not re-probed.
 
   - `validated_at: string`
 
@@ -61292,6 +61740,10 @@ Create a memory store
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Body parameters
 
@@ -61521,6 +61973,10 @@ List memory stores
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `data: optional array of BetaManagedAgentsMemoryStore`
@@ -61608,6 +62064,8 @@ Retrieve a memory store
 
 - `memory_store_id: string`
 
+  ID of the memory store to retrieve (a `memstore_...` identifier). Required. Enumerate IDs via `GET /v1/memory_stores`.
+
 #### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -61711,6 +62169,10 @@ Retrieve a memory store
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -61790,6 +62252,8 @@ Update a memory store
 
 - `memory_store_id: string`
 
+  ID of the memory store to update (a `memstore_...` identifier). Required. Enumerate IDs via `GET /v1/memory_stores`. Updating an archived store returns 400.
+
 #### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -61893,6 +62357,10 @@ Update a memory store
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Body parameters
 
@@ -61992,6 +62460,8 @@ Delete a memory store
 
 - `memory_store_id: string`
 
+  ID of the memory store to permanently delete (a `memstore_...` identifier). Required. Deletion cascades to all memories and memory versions in the store and cannot be undone.
+
 #### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -62095,6 +62565,10 @@ Delete a memory store
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -62137,6 +62611,8 @@ Archive a memory store
 
 - `memory_store_id: string`
 
+  ID of the memory store to archive (a `memstore_...` identifier). Required. Archiving is one-way and idempotent; archived stores cannot be unarchived. Enumerate IDs via `GET /v1/memory_stores`.
+
 #### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -62240,6 +62716,10 @@ Archive a memory store
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -62322,15 +62802,21 @@ Create a memory
 
 - `memory_store_id: string`
 
+  The ID of the memory store to create the memory in (`memstore_...`).
+
 #### Query parameters
 
 - `view: optional BetaManagedAgentsMemoryView`
 
-  Query parameter for view
+  Selects which projection of a `memory` or `memory_version` the server returns. `basic` returns the object with `content` set to `null`; `full` populates `content`. When omitted, the default is endpoint-specific: retrieve operations default to `full`; list, create, and update operations default to `basic`. Listing with `view=full` caps `limit` at 20.
 
   - `"basic"`
 
+    Return the object with `content` set to `null`. The `content_size_bytes` and `content_sha256` fields remain populated, so sync clients can diff without fetching content.
+
   - `"full"`
+
+    Return the object with `content` populated. On list endpoints, `view=full` caps `limit` at 20.
 
 #### Headers
 
@@ -62435,6 +62921,10 @@ Create a memory
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Body parameters
 
@@ -62539,6 +63029,8 @@ List memories
 
 - `memory_store_id: string`
 
+  The ID of the memory store to list memories from (`memstore_...`).
+
 #### Query parameters
 
 - `depth: optional number`
@@ -62567,7 +63059,11 @@ List memories
 
   - `"basic"`
 
+    Return the object with `content` set to `null`. The `content_size_bytes` and `content_sha256` fields remain populated, so sync clients can diff without fetching content.
+
   - `"full"`
+
+    Return the object with `content` populated. On list endpoints, `view=full` caps `limit` at 20.
 
 #### Headers
 
@@ -62672,6 +63168,10 @@ List memories
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -62782,17 +63282,25 @@ Retrieve a memory
 
 - `memory_store_id: string`
 
+  The ID of the memory store that holds the memory (`memstore_...`).
+
 - `memory_id: string`
+
+  The ID of the memory to retrieve (`mem_...`).
 
 #### Query parameters
 
 - `view: optional BetaManagedAgentsMemoryView`
 
-  Query parameter for view
+  Selects which projection of a `memory` or `memory_version` the server returns. `basic` returns the object with `content` set to `null`; `full` populates `content`. When omitted, the default is endpoint-specific: retrieve operations default to `full`; list, create, and update operations default to `basic`. Listing with `view=full` caps `limit` at 20.
 
   - `"basic"`
 
+    Return the object with `content` set to `null`. The `content_size_bytes` and `content_sha256` fields remain populated, so sync clients can diff without fetching content.
+
   - `"full"`
+
+    Return the object with `content` populated. On list endpoints, `view=full` caps `limit` at 20.
 
 #### Headers
 
@@ -62897,6 +63405,10 @@ Retrieve a memory
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -62984,17 +63496,25 @@ Update a memory
 
 - `memory_store_id: string`
 
+  The ID of the memory store that holds the memory (`memstore_...`).
+
 - `memory_id: string`
+
+  The ID of the memory to update (`mem_...`).
 
 #### Query parameters
 
 - `view: optional BetaManagedAgentsMemoryView`
 
-  Query parameter for view
+  Selects which projection of a `memory` or `memory_version` the server returns. `basic` returns the object with `content` set to `null`; `full` populates `content`. When omitted, the default is endpoint-specific: retrieve operations default to `full`; list, create, and update operations default to `basic`. Listing with `view=full` caps `limit` at 20.
 
   - `"basic"`
 
+    Return the object with `content` set to `null`. The `content_size_bytes` and `content_sha256` fields remain populated, so sync clients can diff without fetching content.
+
   - `"full"`
+
+    Return the object with `content` populated. On list endpoints, `view=full` caps `limit` at 20.
 
 #### Headers
 
@@ -63099,6 +63619,10 @@ Update a memory
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Body parameters
 
@@ -63210,13 +63734,19 @@ Delete a memory
 
 - `memory_store_id: string`
 
+  The ID of the memory store that holds the memory (`memstore_...`).
+
 - `memory_id: string`
+
+  The ID of the memory to delete (`mem_...`).
 
 #### Query parameters
 
 - `expected_content_sha256: optional string`
 
-  Query parameter for expected_content_sha256
+  Delete the memory only if its current `content_sha256` equals this value, given as 64 lowercase hexadecimal characters. Omit it to delete unconditionally.
+
+  If the hashes differ, the request fails with HTTP status 409 and nothing is deleted.
 
 #### Headers
 
@@ -63321,6 +63851,10 @@ Delete a memory
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -63365,11 +63899,13 @@ List memory versions
 
 - `memory_store_id: string`
 
+  The ID of the memory store whose version history to list (`memstore_...`).
+
 #### Query parameters
 
 - `api_key_id: optional string`
 
-  Query parameter for api_key_id
+  Return only versions written with the API key that has this ID.
 
 - `"created_at[gte]": optional string`
 
@@ -63385,43 +63921,55 @@ List memory versions
 
 - `limit: optional number`
 
-  Query parameter for limit
+  The maximum number of versions to return per page. Defaults to 20.
 
   format: int32
 
 - `memory_id: optional string`
 
-  Query parameter for memory_id
+  Return only versions of the memory with this ID (`mem_...`).
+
+  The filter still works after the memory is deleted. The results then include the version whose `operation` is `deleted`.
 
 - `operation: optional BetaManagedAgentsMemoryVersionOperation`
 
-  Query parameter for operation
+  Return only versions that record this kind of change.
 
   - `"created"`
 
+    The memory was created. The first version in any memory's lineage.
+
   - `"modified"`
+
+    The memory's `content`, `path`, or both were changed via update. Writes the agent makes through the filesystem mount also appear as `modified`.
 
   - `"deleted"`
 
+    The memory was deleted. The `content`, `content_size_bytes`, and `content_sha256` fields are `null` on this version. The preceding version, while it is retained, records the deleted content's size and hash.
+
 - `page: optional string`
 
-  Query parameter for page
+  The `next_page` value from a previous response, to get the next page. Omit it to get the first page.
 
 - `service_account_id: optional string`
 
-  Query parameter for service_account_id
+  Return only versions written by the service account with this ID (`svac_...`).
 
 - `session_id: optional string`
 
-  Query parameter for session_id
+  Return only versions written by the session with this ID.
 
 - `view: optional BetaManagedAgentsMemoryView`
 
-  Query parameter for view
+  Selects which projection of a `memory` or `memory_version` the server returns. `basic` returns the object with `content` set to `null`; `full` populates `content`. When omitted, the default is endpoint-specific: retrieve operations default to `full`; list, create, and update operations default to `basic`. Listing with `view=full` caps `limit` at 20.
 
   - `"basic"`
 
+    Return the object with `content` set to `null`. The `content_size_bytes` and `content_sha256` fields remain populated, so sync clients can diff without fetching content.
+
   - `"full"`
+
+    Return the object with `content` populated. On list endpoints, `view=full` caps `limit` at 20.
 
 #### Headers
 
@@ -63527,6 +64075,10 @@ List memory versions
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `data: optional array of BetaManagedAgentsMemoryVersion`
@@ -63559,9 +64111,15 @@ List memory versions
 
     - `"created"`
 
+      The memory was created. The first version in any memory's lineage.
+
     - `"modified"`
 
+      The memory's `content`, `path`, or both were changed via update. Writes the agent makes through the filesystem mount also appear as `modified`.
+
     - `"deleted"`
+
+      The memory was deleted. The `content`, `content_size_bytes`, and `content_sha256` fields are `null` on this version. The preceding version, while it is retained, records the deleted content's size and hash.
 
   - `content: optional string or null`
 
@@ -63697,17 +64255,25 @@ Retrieve a memory version
 
 - `memory_store_id: string`
 
+  The ID of the memory store that holds the version (`memstore_...`).
+
 - `memory_version_id: string`
+
+  The ID of the memory version to retrieve (`memver_...`).
 
 #### Query parameters
 
 - `view: optional BetaManagedAgentsMemoryView`
 
-  Query parameter for view
+  Selects which projection of a `memory` or `memory_version` the server returns. `basic` returns the object with `content` set to `null`; `full` populates `content`. When omitted, the default is endpoint-specific: retrieve operations default to `full`; list, create, and update operations default to `basic`. Listing with `view=full` caps `limit` at 20.
 
   - `"basic"`
 
+    Return the object with `content` set to `null`. The `content_size_bytes` and `content_sha256` fields remain populated, so sync clients can diff without fetching content.
+
   - `"full"`
+
+    Return the object with `content` populated. On list endpoints, `view=full` caps `limit` at 20.
 
 #### Headers
 
@@ -63813,6 +64379,10 @@ Retrieve a memory version
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaManagedAgentsMemoryVersion object`
@@ -63845,9 +64415,15 @@ Retrieve a memory version
 
     - `"created"`
 
+      The memory was created. The first version in any memory's lineage.
+
     - `"modified"`
 
+      The memory's `content`, `path`, or both were changed via update. Writes the agent makes through the filesystem mount also appear as `modified`.
+
     - `"deleted"`
+
+      The memory was deleted. The `content`, `content_size_bytes`, and `content_sha256` fields are `null` on this version. The preceding version, while it is retained, records the deleted content's size and hash.
 
   - `content: optional string or null`
 
@@ -63974,7 +64550,11 @@ Redact a memory version
 
 - `memory_store_id: string`
 
+  The ID of the memory store that holds the version (`memstore_...`).
+
 - `memory_version_id: string`
+
+  The ID of the memory version to redact (`memver_...`).
 
 #### Headers
 
@@ -64080,6 +64660,10 @@ Redact a memory version
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaManagedAgentsMemoryVersion object`
@@ -64112,9 +64696,15 @@ Redact a memory version
 
     - `"created"`
 
+      The memory was created. The first version in any memory's lineage.
+
     - `"modified"`
 
+      The memory's `content`, `path`, or both were changed via update. Writes the agent makes through the filesystem mount also appear as `modified`.
+
     - `"deleted"`
+
+      The memory was deleted. The `content`, `content_size_bytes`, and `content_sha256` fields are `null` on this version. The preceding version, while it is retained, records the deleted content's size and hash.
 
   - `content: optional string or null`
 
@@ -64343,6 +64933,10 @@ Upload File
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Body parameters (form-data)
 
@@ -64583,6 +65177,10 @@ List Files
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `data: array of BetaFileMetadata`
@@ -64801,6 +65399,10 @@ Download File
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Example
 
 ```bash
@@ -64924,6 +65526,10 @@ Get File Metadata
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -65132,6 +65738,10 @@ Delete File
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaDeletedFile object`
@@ -65277,6 +65887,10 @@ Create Skill
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Body parameters (form-data)
 
@@ -65523,6 +66137,10 @@ List Skills
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `data: array of BetaSkill`
@@ -65748,6 +66366,10 @@ Get Skill
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaSkill object`
@@ -65960,6 +66582,10 @@ Delete Skill
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaDeletedSkill object`
@@ -66115,6 +66741,10 @@ Create Skill Version
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Body parameters (form-data)
 
@@ -66321,6 +66951,10 @@ List Skill Versions
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `data: array of BetaSkillVersion`
@@ -66521,6 +67155,10 @@ Download a skill version's content as a zip archive.
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Example
 
 ```bash
@@ -66652,6 +67290,10 @@ Get Skill Version
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -66840,6 +67482,10 @@ Delete Skill Version
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaDeletedSkillVersion object`
@@ -66987,6 +67633,10 @@ Create User Profile
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Body parameters
 
 - `access_type: optional "application" or "passthrough"`
@@ -66995,7 +67645,11 @@ Create User Profile
 
   - `"application"`
 
+    The user profile represents an individual end-user of a product that the platform builds on the API. New profiles get this value by default.
+
   - `"passthrough"`
+
+    The user profile represents a company that the platform resells Claude access to.
 
 - `external_id: optional string or null`
 
@@ -67013,9 +67667,15 @@ Create User Profile
 
     - `"active"`
 
+      The platform has neither restricted nor barred the account of the entity that the user profile represents.
+
     - `"suspended"`
 
+      The platform has restricted the account of the entity that the user profile represents and may restore it.
+
     - `"blocked"`
+
+      The platform has barred the account of the entity that the user profile represents.
 
   - `country: optional string or null`
 
@@ -67077,6 +67737,10 @@ Create User Profile
 
 - `BetaUserProfile object`
 
+  A record of an entity that the platform serves through the API, such as an end-user of the platform's product or a company that the platform resells Claude access to.
+
+  A Messages, Message Batches or token counting request can send a profile's `id` in the `anthropic-user-profile-id` header to attribute the request to that entity.
+
   - `type: "user_profile"`
 
     Object type. Always `user_profile`.
@@ -67121,7 +67785,11 @@ Create User Profile
 
     - `"application"`
 
+      The user profile represents an individual end-user of a product that the platform builds on the API. New profiles get this value by default.
+
     - `"passthrough"`
+
+      The user profile represents a company that the platform resells Claude access to.
 
   - `external_id: optional string or null`
 
@@ -67137,9 +67805,15 @@ Create User Profile
 
       - `"active"`
 
+        The platform has neither restricted nor barred the account of the entity that the user profile represents.
+
       - `"suspended"`
 
+        The platform has restricted the account of the entity that the user profile represents and may restore it.
+
       - `"blocked"`
+
+        The platform has barred the account of the entity that the user profile represents.
 
     - `country: string or null`
 
@@ -67240,29 +67914,39 @@ List User Profiles
 
 - `limit: optional number`
 
-  Query parameter for limit
+  The maximum number of user profiles to return, from 1 to 100. Defaults to 20.
 
   format: int32
 
 - `order: optional "asc" or "desc"`
 
-  Query parameter for order
+  The sort direction, applied to the field that `order_by` selects. Defaults to `desc`.
 
   - `"asc"`
 
+    Oldest first when `order_by` is `created_at`, or names in ascending order when `order_by` is `name`.
+
   - `"desc"`
+
+    Newest first when `order_by` is `created_at`, or names in descending order when `order_by` is `name`. This is the default.
 
 - `order_by: optional "created_at" or "name"`
 
-  Query parameter for order_by
+  The field to sort user profiles by, in the direction that `order` sets. Defaults to `created_at`.
 
   - `"created_at"`
 
+    Sort by when each user profile was created. This is the default.
+
   - `"name"`
+
+    Sort by `name`, ignoring the case of ASCII letters. Profiles without a name come last in either direction.
 
 - `page: optional string`
 
-  Query parameter for page
+  The cursor for the page to return, taken from `next_page` in a previous response.
+
+  Leave it out to get the first page.
 
 #### Headers
 
@@ -67368,6 +68052,10 @@ List User Profiles
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `data: array of BetaUserProfile`
@@ -67418,7 +68106,11 @@ List User Profiles
 
     - `"application"`
 
+      The user profile represents an individual end-user of a product that the platform builds on the API. New profiles get this value by default.
+
     - `"passthrough"`
+
+      The user profile represents a company that the platform resells Claude access to.
 
   - `external_id: optional string or null`
 
@@ -67434,9 +68126,15 @@ List User Profiles
 
       - `"active"`
 
+        The platform has neither restricted nor barred the account of the entity that the user profile represents.
+
       - `"suspended"`
 
+        The platform has restricted the account of the entity that the user profile represents and may restore it.
+
       - `"blocked"`
+
+        The platform has barred the account of the entity that the user profile represents.
 
     - `country: string or null`
 
@@ -67540,6 +68238,8 @@ Get User Profile
 
 - `user_profile_id: string`
 
+  The ID of the user profile to get (`uprof_...`).
+
 #### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -67644,9 +68344,17 @@ Get User Profile
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaUserProfile object`
+
+  A record of an entity that the platform serves through the API, such as an end-user of the platform's product or a company that the platform resells Claude access to.
+
+  A Messages, Message Batches or token counting request can send a profile's `id` in the `anthropic-user-profile-id` header to attribute the request to that entity.
 
   - `type: "user_profile"`
 
@@ -67692,7 +68400,11 @@ Get User Profile
 
     - `"application"`
 
+      The user profile represents an individual end-user of a product that the platform builds on the API. New profiles get this value by default.
+
     - `"passthrough"`
+
+      The user profile represents a company that the platform resells Claude access to.
 
   - `external_id: optional string or null`
 
@@ -67708,9 +68420,15 @@ Get User Profile
 
       - `"active"`
 
+        The platform has neither restricted nor barred the account of the entity that the user profile represents.
+
       - `"suspended"`
 
+        The platform has restricted the account of the entity that the user profile represents and may restore it.
+
       - `"blocked"`
+
+        The platform has barred the account of the entity that the user profile represents.
 
     - `country: string or null`
 
@@ -67805,6 +68523,8 @@ Update User Profile
 
 - `user_profile_id: string`
 
+  The ID of the user profile to update (`uprof_...`).
+
 #### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -67909,6 +68629,10 @@ Update User Profile
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Body parameters
 
 - `access_type: optional "application" or "passthrough" or null`
@@ -67917,7 +68641,11 @@ Update User Profile
 
   - `"application"`
 
+    The user profile represents an individual end-user of a product that the platform builds on the API. New profiles get this value by default.
+
   - `"passthrough"`
+
+    The user profile represents a company that the platform resells Claude access to.
 
 - `external_id: optional string or null`
 
@@ -67935,9 +68663,15 @@ Update User Profile
 
     - `"active"`
 
+      The platform has neither restricted nor barred the account of the entity that the user profile represents.
+
     - `"suspended"`
 
+      The platform has restricted the account of the entity that the user profile represents and may restore it.
+
     - `"blocked"`
+
+      The platform has barred the account of the entity that the user profile represents.
 
   - `country: optional string or null`
 
@@ -67999,6 +68733,10 @@ Update User Profile
 
 - `BetaUserProfile object`
 
+  A record of an entity that the platform serves through the API, such as an end-user of the platform's product or a company that the platform resells Claude access to.
+
+  A Messages, Message Batches or token counting request can send a profile's `id` in the `anthropic-user-profile-id` header to attribute the request to that entity.
+
   - `type: "user_profile"`
 
     Object type. Always `user_profile`.
@@ -68043,7 +68781,11 @@ Update User Profile
 
     - `"application"`
 
+      The user profile represents an individual end-user of a product that the platform builds on the API. New profiles get this value by default.
+
     - `"passthrough"`
+
+      The user profile represents a company that the platform resells Claude access to.
 
   - `external_id: optional string or null`
 
@@ -68059,9 +68801,15 @@ Update User Profile
 
       - `"active"`
 
+        The platform has neither restricted nor barred the account of the entity that the user profile represents.
+
       - `"suspended"`
 
+        The platform has restricted the account of the entity that the user profile represents and may restore it.
+
       - `"blocked"`
+
+        The platform has barred the account of the entity that the user profile represents.
 
     - `country: string or null`
 
@@ -68160,6 +68908,8 @@ Create Enrollment URL
 
 - `user_profile_id: string`
 
+  The ID of the user profile to create an enrollment URL for (`uprof_...`).
+
 #### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -68264,9 +69014,15 @@ Create Enrollment URL
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaUserProfileEnrollmentURL object`
+
+  A URL to give to the entity that a user profile represents, so that the entity can enroll for a trust grant.
 
   - `type: "enrollment_url"`
 
@@ -68308,7 +69064,11 @@ curl https://api.anthropic.com/v1/user_profiles/$USER_PROFILE_ID/enrollment_url 
 
 **POST** `/v1/dreams`
 
-Create a Dream
+Start an asynchronous job that uses past sessions to produce a reorganized version of a memory store and get back the dream to poll for the result.
+
+By default the dream writes its result to a new memory store and doesn't change the input memory store. The response has `status` set to `pending` and an empty `outputs` array. Poll the dream until `status` is `completed`, `failed`, or `canceled`.
+
+See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#create-a-dream) to learn more about creating dreams.
 
 #### Headers
 
@@ -68414,39 +69174,67 @@ Create a Dream
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Body parameters
 
 - `inputs: array of BetaDreamInput`
 
+  The memory store and sessions for the dream to read, as exactly one `memory_store` entry and exactly one `sessions` entry.
+
   - `BetaDreamMemoryStoreInput object`
 
-    An input memory store the dream reads from. The dream never mutates this store unless it is also the destination: with output_behavior {type: "update_existing"} the job consolidates this store in place.
+    The memory store that a dream reads, given as an entry in `inputs`.
+
+    With `output_behavior` set to `update_existing`, the dream writes its result into this memory store. Otherwise the dream doesn't change it.
 
     - `type: "memory_store"`
 
     - `memory_store_id: string`
 
+      The ID of the memory store for the dream to read (`memstore_...`).
+
+      The memory store must be in the same workspace as the dream and must not be archived.
+
       minLength: 1
 
   - `BetaDreamSessionsInput object`
 
-    Input session transcripts the dream reads.
+    The sessions that a dream reads, given as an entry in `inputs`.
 
     - `type: "sessions"`
 
     - `session_ids: array of string`
 
+      The IDs of the sessions whose transcripts the dream reads (`sesn_...`).
+
+      Give 1 to 100 IDs, with no duplicates. Each session must be in the same workspace as the dream. Responses list the IDs in sorted order.
+
+      The [limits table in the Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#limits) lists all the limits on a dream.
+
 - `model: string or BetaDreamModelConfigParam`
+
+  The model that runs a dream, given as a model ID or as an object with `id` and `speed`.
+
+  In the object form, `speed` can only be `standard`.
+
+  The [limits table in the Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#limits) lists the supported models.
 
   - `string`
 
   - `BetaDreamModelConfigParam object`
 
-    Model identifier and configuration applied to every pipeline stage.
+    The object form of `model` in a request to create a dream.
 
     - `id: string`
 
-      Model identifier, e.g. "claude-opus-5". 1-256 characters.
+      The ID of the model to run the dream with.
+
+      The ID can be 1 to 256 characters long.
+
+      The [limits table in the Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#limits) lists the supported models.
 
       minLength: 1, maxLength: 256
 
@@ -68460,23 +69248,35 @@ Create a Dream
 
 - `instructions: optional string or null`
 
+  Guidance that steers how the dream reads the sessions and organizes the output memory store, from 1 to 4,096 characters.
+
+  See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#steer-with-instructions) for what kinds of instructions work well.
+
   minLength: 1, maxLength: 4096
 
 - `output_behavior: optional BetaOutputBehavior`
 
+  Which memory store a dream writes its result to. Defaults to `create_new` when left out of a create request.
+
   - `BetaOutputBehaviorCreateNew object`
 
-    The default destination: the job creates a new output memory store as a clone of the memory_store input and writes the consolidated memories into it. The input store is never mutated.
+    Write the result to a new memory store that starts as a copy of the input memory store. This is the default.
+
+    The new memory store is in the same workspace as the dream. The dream doesn't change the input memory store.
 
     - `type: "create_new"`
 
   - `BetaOutputBehaviorUpdateExisting object`
 
-    The job writes the consolidated memories into this existing memory store instead of creating one. In EAP the store must be the job's own memory_store input, so the job consolidates the store in place.
+    Write the result into the input memory store instead of a new memory store.
+
+    The credential must be allowed to write memory stores, or the request returns a 403 error. While another `update_existing` dream on the same memory store hasn't fully stopped, the request returns a 409 error.
 
     - `type: "update_existing"`
 
     - `memory_store_id: string`
+
+      The ID of the memory store for the dream to write its result to (`memstore_...`). It must be the memory store in the `memory_store` entry of `inputs`.
 
       minLength: 1
 
@@ -68484,11 +69284,17 @@ Create a Dream
 
 - `BetaDream object`
 
-  An asynchronous memory-consolidation job that reads a memory store plus a set of session transcripts and writes consolidated memories into an output memory store — a new store by default, or an existing store chosen via output_behavior. The Dreams API is in research preview: the request and response shapes are volatile and may change without the deprecation period that applies to generally-available endpoints.
+  An asynchronous job that reads a memory store and past sessions, then writes a reorganized version of that memory store.
+
+  By default the dream writes its result to a new memory store and doesn't change the input memory store. With `output_behavior` set to `update_existing`, it writes its result into the input memory store instead. The Dreams API is in research preview, so this resource can still change.
+
+  See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#how-it-works) for what a dream reads and produces.
 
   - `type: "dream"`
 
   - `id: string`
+
+    The unique ID of the dream (`drm_...`).
 
   - `archived_at: string or null`
 
@@ -68514,37 +69320,61 @@ Create a Dream
 
     - `type: string`
 
+      A code for why the dream failed, such as `timeout` or `internal_error`.
+
+      The [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#errors) lists common error codes and when they occur.
+
     - `message: string`
+
+      A human-readable explanation of why the dream failed.
 
   - `inputs: array of BetaDreamInput`
 
+    The sources that the dream reads, from the request that created it.
+
     - `BetaDreamMemoryStoreInput object`
 
-      An input memory store the dream reads from. The dream never mutates this store unless it is also the destination: with output_behavior {type: "update_existing"} the job consolidates this store in place.
+      The memory store that a dream reads, given as an entry in `inputs`.
+
+      With `output_behavior` set to `update_existing`, the dream writes its result into this memory store. Otherwise the dream doesn't change it.
 
       - `type: "memory_store"`
 
       - `memory_store_id: string`
 
+        The ID of the memory store for the dream to read (`memstore_...`).
+
+        The memory store must be in the same workspace as the dream and must not be archived.
+
         minLength: 1
 
     - `BetaDreamSessionsInput object`
 
-      Input session transcripts the dream reads.
+      The sessions that a dream reads, given as an entry in `inputs`.
 
       - `type: "sessions"`
 
       - `session_ids: array of string`
 
+        The IDs of the sessions whose transcripts the dream reads (`sesn_...`).
+
+        Give 1 to 100 IDs, with no duplicates. Each session must be in the same workspace as the dream. Responses list the IDs in sorted order.
+
+        The [limits table in the Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#limits) lists all the limits on a dream.
+
   - `instructions: string or null`
+
+    The guidance given when the dream was created, or `null` if none was given.
 
   - `model: BetaDreamModelConfig`
 
-    Model identifier and configuration applied to every pipeline stage. Same wire shape as the Agents API ModelConfig.
+    The model that runs a dream, from the request that created it.
+
+    The dream uses this model for all of its work. The response always gives the model as an object, even if the request gave only a model ID.
 
     - `id: string`
 
-      Model identifier, e.g. "claude-opus-5". 1-256 characters.
+      The ID of the model that runs the dream, as given in the request that created it.
 
       minLength: 1, maxLength: 256
 
@@ -68558,69 +69388,119 @@ Create a Dream
 
   - `output_behavior: BetaOutputBehavior`
 
+    Which memory store a dream writes its result to. Defaults to `create_new` when left out of a create request.
+
     - `BetaOutputBehaviorCreateNew object`
 
-      The default destination: the job creates a new output memory store as a clone of the memory_store input and writes the consolidated memories into it. The input store is never mutated.
+      Write the result to a new memory store that starts as a copy of the input memory store. This is the default.
+
+      The new memory store is in the same workspace as the dream. The dream doesn't change the input memory store.
 
       - `type: "create_new"`
 
     - `BetaOutputBehaviorUpdateExisting object`
 
-      The job writes the consolidated memories into this existing memory store instead of creating one. In EAP the store must be the job's own memory_store input, so the job consolidates the store in place.
+      Write the result into the input memory store instead of a new memory store.
+
+      The credential must be allowed to write memory stores, or the request returns a 403 error. While another `update_existing` dream on the same memory store hasn't fully stopped, the request returns a 409 error.
 
       - `type: "update_existing"`
 
       - `memory_store_id: string`
 
+        The ID of the memory store for the dream to write its result to (`memstore_...`). It must be the memory store in the `memory_store` entry of `inputs`.
+
         minLength: 1
 
   - `outputs: array of BetaDreamOutput`
+
+    The memory store that holds the dream's result, as a one-item array, or an empty array until the dream records that memory store.
+
+    The array is empty while the dream is `pending` and for a short time after it starts `running`. It can stay empty if the dream fails or is canceled before then. The memory store holds the complete result only once `status` is `completed`.
+
+    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#use-the-output) for how to review and use the result.
 
     - `type: "memory_store"`
 
     - `memory_store_id: string`
 
+      The ID of the memory store that the dream writes its result to (`memstore_...`).
+
+      With `output_behavior` set to `create_new`, this is a new memory store. With `update_existing`, it is the input memory store.
+
   - `session_id: string or null`
+
+    The ID of the session that runs the dream (`sesn_...`), or `null` if that session hasn't started.
+
+    Stream that session's events to follow what the dream reads and writes.
+
+    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#watch-the-pipeline-run) for how to watch a running dream.
 
   - `status: BetaDreamStatus`
 
-    Lifecycle status of a Dream.
+    Where a dream is in its lifecycle.
+
+    `completed`, `failed`, and `canceled` are final: once a dream has one of these statuses, its status doesn't change again.
+
+    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#lifecycle) for what each status means.
 
     - `"pending"`
 
+      The dream is waiting to start and hasn't read its inputs yet.
+
+      `outputs` is empty and every `usage` count is zero.
+
     - `"running"`
+
+      The dream is reading its inputs and writing its result.
+
+      `usage` updates while the dream has this status.
 
     - `"completed"`
 
+      The dream finished and its output memory store holds the complete result.
+
     - `"failed"`
+
+      The dream stopped with an error, which `error` describes.
+
+      If `outputs` references a memory store, that memory store keeps what the dream wrote before it stopped.
 
     - `"canceled"`
 
+      A cancel request stopped the dream before it reached `completed` or `failed`.
+
+      If `outputs` references a memory store, that memory store keeps what the dream wrote. `usage` can keep changing after the cancel.
+
   - `usage: BetaDreamUsage`
 
-    Cumulative token usage for the dream across every pipeline stage.
+    The tokens that a dream has used so far.
+
+    The counts are zero while the dream is `pending` and update while it is `running`. They can keep changing after a cancel.
+
+    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#billing) for how dreams are billed. See the [prompt caching guide](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#tracking-cache-performance) for how the input token counts add up.
 
     - `cache_creation_input_tokens: number`
 
-      Total tokens used to create prompt-cache entries (sum of all TTL tiers).
+      The dream's input tokens that were written to the prompt cache, for both the 5-minute and 1-hour cache durations.
 
       format: int32
 
     - `cache_read_input_tokens: number`
 
-      Total tokens read from prompt cache.
+      The dream's input tokens that were read from the prompt cache.
 
       format: int32
 
     - `input_tokens: number`
 
-      Total uncached input tokens consumed across every pipeline stage.
+      The dream's input tokens that weren't read from or written to the prompt cache.
 
       format: int32
 
     - `output_tokens: number`
 
-      Total output tokens generated across every pipeline stage.
+      The tokens that the model generated for the dream.
 
       format: int32
 
@@ -68691,49 +69571,75 @@ curl https://api.anthropic.com/v1/dreams \
 
 **GET** `/v1/dreams`
 
-List Dreams
+List the dreams in the workspace, newest first.
+
+Archived dreams are left out unless `include_archived` is `true`.
+
+See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#list-dreams) for how to page through dreams.
 
 #### Query parameters
 
 - `"created_at[gt]": optional string`
 
-  Return dreams with `created_at` strictly after this timestamp (exclusive lower bound, RFC 3339). Unset applies no lower bound.
+  Return only dreams created after this time (exclusive), in RFC 3339.
 
   format: date-time
 
 - `"created_at[lt]": optional string`
 
-  Return dreams with `created_at` strictly before this timestamp (exclusive upper bound, RFC 3339). Unset applies no upper bound.
+  Return only dreams created before this time (exclusive), in RFC 3339.
 
   format: date-time
 
 - `include_archived: optional boolean`
 
-  Query parameter for include_archived
+  Whether to include archived dreams. Defaults to `false`.
 
 - `limit: optional number`
 
-  Query parameter for limit
+  The maximum number of dreams to return, from 1 to 100. Defaults to 20.
 
   format: int32
 
 - `page: optional string`
 
-  Query parameter for page
+  The cursor for the page to return, taken from `next_page` in a previous response.
+
+  Leave it out to get the first page.
 
 - `statuses: optional array of BetaDreamStatus`
 
-  Filter by lifecycle status. Repeat the parameter to match any of multiple statuses. Empty applies no status filter.
+  Return only dreams that have one of these statuses.
+
+  Repeat the parameter to give more than one status. Leave it out to return dreams of every status.
 
   - `"pending"`
 
+    The dream is waiting to start and hasn't read its inputs yet.
+
+    `outputs` is empty and every `usage` count is zero.
+
   - `"running"`
+
+    The dream is reading its inputs and writing its result.
+
+    `usage` updates while the dream has this status.
 
   - `"completed"`
 
+    The dream finished and its output memory store holds the complete result.
+
   - `"failed"`
 
+    The dream stopped with an error, which `error` describes.
+
+    If `outputs` references a memory store, that memory store keeps what the dream wrote before it stopped.
+
   - `"canceled"`
+
+    A cancel request stopped the dream before it reached `completed` or `failed`.
+
+    If `outputs` references a memory store, that memory store keeps what the dream wrote. `usage` can keep changing after the cancel.
 
 #### Headers
 
@@ -68839,13 +69745,21 @@ List Dreams
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `data: array of BetaDream`
 
+  The dreams on this page, newest first.
+
   - `type: "dream"`
 
   - `id: string`
+
+    The unique ID of the dream (`drm_...`).
 
   - `archived_at: string or null`
 
@@ -68871,37 +69785,61 @@ List Dreams
 
     - `type: string`
 
+      A code for why the dream failed, such as `timeout` or `internal_error`.
+
+      The [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#errors) lists common error codes and when they occur.
+
     - `message: string`
+
+      A human-readable explanation of why the dream failed.
 
   - `inputs: array of BetaDreamInput`
 
+    The sources that the dream reads, from the request that created it.
+
     - `BetaDreamMemoryStoreInput object`
 
-      An input memory store the dream reads from. The dream never mutates this store unless it is also the destination: with output_behavior {type: "update_existing"} the job consolidates this store in place.
+      The memory store that a dream reads, given as an entry in `inputs`.
+
+      With `output_behavior` set to `update_existing`, the dream writes its result into this memory store. Otherwise the dream doesn't change it.
 
       - `type: "memory_store"`
 
       - `memory_store_id: string`
 
+        The ID of the memory store for the dream to read (`memstore_...`).
+
+        The memory store must be in the same workspace as the dream and must not be archived.
+
         minLength: 1
 
     - `BetaDreamSessionsInput object`
 
-      Input session transcripts the dream reads.
+      The sessions that a dream reads, given as an entry in `inputs`.
 
       - `type: "sessions"`
 
       - `session_ids: array of string`
 
+        The IDs of the sessions whose transcripts the dream reads (`sesn_...`).
+
+        Give 1 to 100 IDs, with no duplicates. Each session must be in the same workspace as the dream. Responses list the IDs in sorted order.
+
+        The [limits table in the Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#limits) lists all the limits on a dream.
+
   - `instructions: string or null`
+
+    The guidance given when the dream was created, or `null` if none was given.
 
   - `model: BetaDreamModelConfig`
 
-    Model identifier and configuration applied to every pipeline stage. Same wire shape as the Agents API ModelConfig.
+    The model that runs a dream, from the request that created it.
+
+    The dream uses this model for all of its work. The response always gives the model as an object, even if the request gave only a model ID.
 
     - `id: string`
 
-      Model identifier, e.g. "claude-opus-5". 1-256 characters.
+      The ID of the model that runs the dream, as given in the request that created it.
 
       minLength: 1, maxLength: 256
 
@@ -68915,73 +69853,127 @@ List Dreams
 
   - `output_behavior: BetaOutputBehavior`
 
+    Which memory store a dream writes its result to. Defaults to `create_new` when left out of a create request.
+
     - `BetaOutputBehaviorCreateNew object`
 
-      The default destination: the job creates a new output memory store as a clone of the memory_store input and writes the consolidated memories into it. The input store is never mutated.
+      Write the result to a new memory store that starts as a copy of the input memory store. This is the default.
+
+      The new memory store is in the same workspace as the dream. The dream doesn't change the input memory store.
 
       - `type: "create_new"`
 
     - `BetaOutputBehaviorUpdateExisting object`
 
-      The job writes the consolidated memories into this existing memory store instead of creating one. In EAP the store must be the job's own memory_store input, so the job consolidates the store in place.
+      Write the result into the input memory store instead of a new memory store.
+
+      The credential must be allowed to write memory stores, or the request returns a 403 error. While another `update_existing` dream on the same memory store hasn't fully stopped, the request returns a 409 error.
 
       - `type: "update_existing"`
 
       - `memory_store_id: string`
 
+        The ID of the memory store for the dream to write its result to (`memstore_...`). It must be the memory store in the `memory_store` entry of `inputs`.
+
         minLength: 1
 
   - `outputs: array of BetaDreamOutput`
+
+    The memory store that holds the dream's result, as a one-item array, or an empty array until the dream records that memory store.
+
+    The array is empty while the dream is `pending` and for a short time after it starts `running`. It can stay empty if the dream fails or is canceled before then. The memory store holds the complete result only once `status` is `completed`.
+
+    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#use-the-output) for how to review and use the result.
 
     - `type: "memory_store"`
 
     - `memory_store_id: string`
 
+      The ID of the memory store that the dream writes its result to (`memstore_...`).
+
+      With `output_behavior` set to `create_new`, this is a new memory store. With `update_existing`, it is the input memory store.
+
   - `session_id: string or null`
+
+    The ID of the session that runs the dream (`sesn_...`), or `null` if that session hasn't started.
+
+    Stream that session's events to follow what the dream reads and writes.
+
+    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#watch-the-pipeline-run) for how to watch a running dream.
 
   - `status: BetaDreamStatus`
 
-    Lifecycle status of a Dream.
+    Where a dream is in its lifecycle.
+
+    `completed`, `failed`, and `canceled` are final: once a dream has one of these statuses, its status doesn't change again.
+
+    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#lifecycle) for what each status means.
 
     - `"pending"`
 
+      The dream is waiting to start and hasn't read its inputs yet.
+
+      `outputs` is empty and every `usage` count is zero.
+
     - `"running"`
+
+      The dream is reading its inputs and writing its result.
+
+      `usage` updates while the dream has this status.
 
     - `"completed"`
 
+      The dream finished and its output memory store holds the complete result.
+
     - `"failed"`
+
+      The dream stopped with an error, which `error` describes.
+
+      If `outputs` references a memory store, that memory store keeps what the dream wrote before it stopped.
 
     - `"canceled"`
 
+      A cancel request stopped the dream before it reached `completed` or `failed`.
+
+      If `outputs` references a memory store, that memory store keeps what the dream wrote. `usage` can keep changing after the cancel.
+
   - `usage: BetaDreamUsage`
 
-    Cumulative token usage for the dream across every pipeline stage.
+    The tokens that a dream has used so far.
+
+    The counts are zero while the dream is `pending` and update while it is `running`. They can keep changing after a cancel.
+
+    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#billing) for how dreams are billed. See the [prompt caching guide](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#tracking-cache-performance) for how the input token counts add up.
 
     - `cache_creation_input_tokens: number`
 
-      Total tokens used to create prompt-cache entries (sum of all TTL tiers).
+      The dream's input tokens that were written to the prompt cache, for both the 5-minute and 1-hour cache durations.
 
       format: int32
 
     - `cache_read_input_tokens: number`
 
-      Total tokens read from prompt cache.
+      The dream's input tokens that were read from the prompt cache.
 
       format: int32
 
     - `input_tokens: number`
 
-      Total uncached input tokens consumed across every pipeline stage.
+      The dream's input tokens that weren't read from or written to the prompt cache.
 
       format: int32
 
     - `output_tokens: number`
 
-      Total output tokens generated across every pipeline stage.
+      The tokens that the model generated for the dream.
 
       format: int32
 
 - `next_page: string or null`
+
+  The cursor for the next page, or `null` if this is the last page.
+
+  Pass it as `page` to get the next page.
 
 #### Example
 
@@ -69045,11 +70037,17 @@ curl https://api.anthropic.com/v1/dreams \
 
 **GET** `/v1/dreams/{dream_id}`
 
-Get a Dream
+Get a dream by ID to check its status, output memory store, and token usage.
+
+Archived dreams are returned too.
+
+See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#track-progress) for how to poll a dream and what each status means.
 
 #### Path parameters
 
 - `dream_id: string`
+
+  The ID of the dream to get (`drm_...`).
 
 #### Headers
 
@@ -69155,15 +70153,25 @@ Get a Dream
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaDream object`
 
-  An asynchronous memory-consolidation job that reads a memory store plus a set of session transcripts and writes consolidated memories into an output memory store — a new store by default, or an existing store chosen via output_behavior. The Dreams API is in research preview: the request and response shapes are volatile and may change without the deprecation period that applies to generally-available endpoints.
+  An asynchronous job that reads a memory store and past sessions, then writes a reorganized version of that memory store.
+
+  By default the dream writes its result to a new memory store and doesn't change the input memory store. With `output_behavior` set to `update_existing`, it writes its result into the input memory store instead. The Dreams API is in research preview, so this resource can still change.
+
+  See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#how-it-works) for what a dream reads and produces.
 
   - `type: "dream"`
 
   - `id: string`
+
+    The unique ID of the dream (`drm_...`).
 
   - `archived_at: string or null`
 
@@ -69189,37 +70197,61 @@ Get a Dream
 
     - `type: string`
 
+      A code for why the dream failed, such as `timeout` or `internal_error`.
+
+      The [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#errors) lists common error codes and when they occur.
+
     - `message: string`
+
+      A human-readable explanation of why the dream failed.
 
   - `inputs: array of BetaDreamInput`
 
+    The sources that the dream reads, from the request that created it.
+
     - `BetaDreamMemoryStoreInput object`
 
-      An input memory store the dream reads from. The dream never mutates this store unless it is also the destination: with output_behavior {type: "update_existing"} the job consolidates this store in place.
+      The memory store that a dream reads, given as an entry in `inputs`.
+
+      With `output_behavior` set to `update_existing`, the dream writes its result into this memory store. Otherwise the dream doesn't change it.
 
       - `type: "memory_store"`
 
       - `memory_store_id: string`
 
+        The ID of the memory store for the dream to read (`memstore_...`).
+
+        The memory store must be in the same workspace as the dream and must not be archived.
+
         minLength: 1
 
     - `BetaDreamSessionsInput object`
 
-      Input session transcripts the dream reads.
+      The sessions that a dream reads, given as an entry in `inputs`.
 
       - `type: "sessions"`
 
       - `session_ids: array of string`
 
+        The IDs of the sessions whose transcripts the dream reads (`sesn_...`).
+
+        Give 1 to 100 IDs, with no duplicates. Each session must be in the same workspace as the dream. Responses list the IDs in sorted order.
+
+        The [limits table in the Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#limits) lists all the limits on a dream.
+
   - `instructions: string or null`
+
+    The guidance given when the dream was created, or `null` if none was given.
 
   - `model: BetaDreamModelConfig`
 
-    Model identifier and configuration applied to every pipeline stage. Same wire shape as the Agents API ModelConfig.
+    The model that runs a dream, from the request that created it.
+
+    The dream uses this model for all of its work. The response always gives the model as an object, even if the request gave only a model ID.
 
     - `id: string`
 
-      Model identifier, e.g. "claude-opus-5". 1-256 characters.
+      The ID of the model that runs the dream, as given in the request that created it.
 
       minLength: 1, maxLength: 256
 
@@ -69233,69 +70265,119 @@ Get a Dream
 
   - `output_behavior: BetaOutputBehavior`
 
+    Which memory store a dream writes its result to. Defaults to `create_new` when left out of a create request.
+
     - `BetaOutputBehaviorCreateNew object`
 
-      The default destination: the job creates a new output memory store as a clone of the memory_store input and writes the consolidated memories into it. The input store is never mutated.
+      Write the result to a new memory store that starts as a copy of the input memory store. This is the default.
+
+      The new memory store is in the same workspace as the dream. The dream doesn't change the input memory store.
 
       - `type: "create_new"`
 
     - `BetaOutputBehaviorUpdateExisting object`
 
-      The job writes the consolidated memories into this existing memory store instead of creating one. In EAP the store must be the job's own memory_store input, so the job consolidates the store in place.
+      Write the result into the input memory store instead of a new memory store.
+
+      The credential must be allowed to write memory stores, or the request returns a 403 error. While another `update_existing` dream on the same memory store hasn't fully stopped, the request returns a 409 error.
 
       - `type: "update_existing"`
 
       - `memory_store_id: string`
 
+        The ID of the memory store for the dream to write its result to (`memstore_...`). It must be the memory store in the `memory_store` entry of `inputs`.
+
         minLength: 1
 
   - `outputs: array of BetaDreamOutput`
+
+    The memory store that holds the dream's result, as a one-item array, or an empty array until the dream records that memory store.
+
+    The array is empty while the dream is `pending` and for a short time after it starts `running`. It can stay empty if the dream fails or is canceled before then. The memory store holds the complete result only once `status` is `completed`.
+
+    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#use-the-output) for how to review and use the result.
 
     - `type: "memory_store"`
 
     - `memory_store_id: string`
 
+      The ID of the memory store that the dream writes its result to (`memstore_...`).
+
+      With `output_behavior` set to `create_new`, this is a new memory store. With `update_existing`, it is the input memory store.
+
   - `session_id: string or null`
+
+    The ID of the session that runs the dream (`sesn_...`), or `null` if that session hasn't started.
+
+    Stream that session's events to follow what the dream reads and writes.
+
+    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#watch-the-pipeline-run) for how to watch a running dream.
 
   - `status: BetaDreamStatus`
 
-    Lifecycle status of a Dream.
+    Where a dream is in its lifecycle.
+
+    `completed`, `failed`, and `canceled` are final: once a dream has one of these statuses, its status doesn't change again.
+
+    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#lifecycle) for what each status means.
 
     - `"pending"`
 
+      The dream is waiting to start and hasn't read its inputs yet.
+
+      `outputs` is empty and every `usage` count is zero.
+
     - `"running"`
+
+      The dream is reading its inputs and writing its result.
+
+      `usage` updates while the dream has this status.
 
     - `"completed"`
 
+      The dream finished and its output memory store holds the complete result.
+
     - `"failed"`
+
+      The dream stopped with an error, which `error` describes.
+
+      If `outputs` references a memory store, that memory store keeps what the dream wrote before it stopped.
 
     - `"canceled"`
 
+      A cancel request stopped the dream before it reached `completed` or `failed`.
+
+      If `outputs` references a memory store, that memory store keeps what the dream wrote. `usage` can keep changing after the cancel.
+
   - `usage: BetaDreamUsage`
 
-    Cumulative token usage for the dream across every pipeline stage.
+    The tokens that a dream has used so far.
+
+    The counts are zero while the dream is `pending` and update while it is `running`. They can keep changing after a cancel.
+
+    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#billing) for how dreams are billed. See the [prompt caching guide](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#tracking-cache-performance) for how the input token counts add up.
 
     - `cache_creation_input_tokens: number`
 
-      Total tokens used to create prompt-cache entries (sum of all TTL tiers).
+      The dream's input tokens that were written to the prompt cache, for both the 5-minute and 1-hour cache durations.
 
       format: int32
 
     - `cache_read_input_tokens: number`
 
-      Total tokens read from prompt cache.
+      The dream's input tokens that were read from the prompt cache.
 
       format: int32
 
     - `input_tokens: number`
 
-      Total uncached input tokens consumed across every pipeline stage.
+      The dream's input tokens that weren't read from or written to the prompt cache.
 
       format: int32
 
     - `output_tokens: number`
 
-      Total output tokens generated across every pipeline stage.
+      The tokens that the model generated for the dream.
 
       format: int32
 
@@ -69356,11 +70438,17 @@ curl https://api.anthropic.com/v1/dreams/$DREAM_ID \
 
 **POST** `/v1/dreams/{dream_id}/cancel`
 
-Cancel a Dream
+Stop a `pending` or `running` dream.
+
+The response shows `status` as `canceled`, unless the dream reached `completed` or `failed` first. `usage` can keep changing after the response. Canceling a `canceled` dream returns it unchanged. Canceling a `completed` or `failed` dream returns a 400 error.
+
+See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#cancel-a-dream) to learn more about canceling dreams.
 
 #### Path parameters
 
 - `dream_id: string`
+
+  The ID of the dream to cancel (`drm_...`).
 
 #### Headers
 
@@ -69466,15 +70554,25 @@ Cancel a Dream
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaDream object`
 
-  An asynchronous memory-consolidation job that reads a memory store plus a set of session transcripts and writes consolidated memories into an output memory store — a new store by default, or an existing store chosen via output_behavior. The Dreams API is in research preview: the request and response shapes are volatile and may change without the deprecation period that applies to generally-available endpoints.
+  An asynchronous job that reads a memory store and past sessions, then writes a reorganized version of that memory store.
+
+  By default the dream writes its result to a new memory store and doesn't change the input memory store. With `output_behavior` set to `update_existing`, it writes its result into the input memory store instead. The Dreams API is in research preview, so this resource can still change.
+
+  See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#how-it-works) for what a dream reads and produces.
 
   - `type: "dream"`
 
   - `id: string`
+
+    The unique ID of the dream (`drm_...`).
 
   - `archived_at: string or null`
 
@@ -69500,37 +70598,61 @@ Cancel a Dream
 
     - `type: string`
 
+      A code for why the dream failed, such as `timeout` or `internal_error`.
+
+      The [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#errors) lists common error codes and when they occur.
+
     - `message: string`
+
+      A human-readable explanation of why the dream failed.
 
   - `inputs: array of BetaDreamInput`
 
+    The sources that the dream reads, from the request that created it.
+
     - `BetaDreamMemoryStoreInput object`
 
-      An input memory store the dream reads from. The dream never mutates this store unless it is also the destination: with output_behavior {type: "update_existing"} the job consolidates this store in place.
+      The memory store that a dream reads, given as an entry in `inputs`.
+
+      With `output_behavior` set to `update_existing`, the dream writes its result into this memory store. Otherwise the dream doesn't change it.
 
       - `type: "memory_store"`
 
       - `memory_store_id: string`
 
+        The ID of the memory store for the dream to read (`memstore_...`).
+
+        The memory store must be in the same workspace as the dream and must not be archived.
+
         minLength: 1
 
     - `BetaDreamSessionsInput object`
 
-      Input session transcripts the dream reads.
+      The sessions that a dream reads, given as an entry in `inputs`.
 
       - `type: "sessions"`
 
       - `session_ids: array of string`
 
+        The IDs of the sessions whose transcripts the dream reads (`sesn_...`).
+
+        Give 1 to 100 IDs, with no duplicates. Each session must be in the same workspace as the dream. Responses list the IDs in sorted order.
+
+        The [limits table in the Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#limits) lists all the limits on a dream.
+
   - `instructions: string or null`
+
+    The guidance given when the dream was created, or `null` if none was given.
 
   - `model: BetaDreamModelConfig`
 
-    Model identifier and configuration applied to every pipeline stage. Same wire shape as the Agents API ModelConfig.
+    The model that runs a dream, from the request that created it.
+
+    The dream uses this model for all of its work. The response always gives the model as an object, even if the request gave only a model ID.
 
     - `id: string`
 
-      Model identifier, e.g. "claude-opus-5". 1-256 characters.
+      The ID of the model that runs the dream, as given in the request that created it.
 
       minLength: 1, maxLength: 256
 
@@ -69544,69 +70666,119 @@ Cancel a Dream
 
   - `output_behavior: BetaOutputBehavior`
 
+    Which memory store a dream writes its result to. Defaults to `create_new` when left out of a create request.
+
     - `BetaOutputBehaviorCreateNew object`
 
-      The default destination: the job creates a new output memory store as a clone of the memory_store input and writes the consolidated memories into it. The input store is never mutated.
+      Write the result to a new memory store that starts as a copy of the input memory store. This is the default.
+
+      The new memory store is in the same workspace as the dream. The dream doesn't change the input memory store.
 
       - `type: "create_new"`
 
     - `BetaOutputBehaviorUpdateExisting object`
 
-      The job writes the consolidated memories into this existing memory store instead of creating one. In EAP the store must be the job's own memory_store input, so the job consolidates the store in place.
+      Write the result into the input memory store instead of a new memory store.
+
+      The credential must be allowed to write memory stores, or the request returns a 403 error. While another `update_existing` dream on the same memory store hasn't fully stopped, the request returns a 409 error.
 
       - `type: "update_existing"`
 
       - `memory_store_id: string`
 
+        The ID of the memory store for the dream to write its result to (`memstore_...`). It must be the memory store in the `memory_store` entry of `inputs`.
+
         minLength: 1
 
   - `outputs: array of BetaDreamOutput`
+
+    The memory store that holds the dream's result, as a one-item array, or an empty array until the dream records that memory store.
+
+    The array is empty while the dream is `pending` and for a short time after it starts `running`. It can stay empty if the dream fails or is canceled before then. The memory store holds the complete result only once `status` is `completed`.
+
+    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#use-the-output) for how to review and use the result.
 
     - `type: "memory_store"`
 
     - `memory_store_id: string`
 
+      The ID of the memory store that the dream writes its result to (`memstore_...`).
+
+      With `output_behavior` set to `create_new`, this is a new memory store. With `update_existing`, it is the input memory store.
+
   - `session_id: string or null`
+
+    The ID of the session that runs the dream (`sesn_...`), or `null` if that session hasn't started.
+
+    Stream that session's events to follow what the dream reads and writes.
+
+    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#watch-the-pipeline-run) for how to watch a running dream.
 
   - `status: BetaDreamStatus`
 
-    Lifecycle status of a Dream.
+    Where a dream is in its lifecycle.
+
+    `completed`, `failed`, and `canceled` are final: once a dream has one of these statuses, its status doesn't change again.
+
+    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#lifecycle) for what each status means.
 
     - `"pending"`
 
+      The dream is waiting to start and hasn't read its inputs yet.
+
+      `outputs` is empty and every `usage` count is zero.
+
     - `"running"`
+
+      The dream is reading its inputs and writing its result.
+
+      `usage` updates while the dream has this status.
 
     - `"completed"`
 
+      The dream finished and its output memory store holds the complete result.
+
     - `"failed"`
+
+      The dream stopped with an error, which `error` describes.
+
+      If `outputs` references a memory store, that memory store keeps what the dream wrote before it stopped.
 
     - `"canceled"`
 
+      A cancel request stopped the dream before it reached `completed` or `failed`.
+
+      If `outputs` references a memory store, that memory store keeps what the dream wrote. `usage` can keep changing after the cancel.
+
   - `usage: BetaDreamUsage`
 
-    Cumulative token usage for the dream across every pipeline stage.
+    The tokens that a dream has used so far.
+
+    The counts are zero while the dream is `pending` and update while it is `running`. They can keep changing after a cancel.
+
+    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#billing) for how dreams are billed. See the [prompt caching guide](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#tracking-cache-performance) for how the input token counts add up.
 
     - `cache_creation_input_tokens: number`
 
-      Total tokens used to create prompt-cache entries (sum of all TTL tiers).
+      The dream's input tokens that were written to the prompt cache, for both the 5-minute and 1-hour cache durations.
 
       format: int32
 
     - `cache_read_input_tokens: number`
 
-      Total tokens read from prompt cache.
+      The dream's input tokens that were read from the prompt cache.
 
       format: int32
 
     - `input_tokens: number`
 
-      Total uncached input tokens consumed across every pipeline stage.
+      The dream's input tokens that weren't read from or written to the prompt cache.
 
       format: int32
 
     - `output_tokens: number`
 
-      Total output tokens generated across every pipeline stage.
+      The tokens that the model generated for the dream.
 
       format: int32
 
@@ -69668,11 +70840,17 @@ curl https://api.anthropic.com/v1/dreams/$DREAM_ID/cancel \
 
 **POST** `/v1/dreams/{dream_id}/archive`
 
-Archive a Dream
+Hide a `completed`, `failed`, or `canceled` dream from the default list of dreams.
+
+Archiving a `pending` or `running` dream returns a 400 error, so cancel it first. Archiving an archived dream returns it unchanged. An archived dream can still be fetched by ID. Archiving can't be undone.
+
+See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#archive-a-dream) to learn more about archiving dreams.
 
 #### Path parameters
 
 - `dream_id: string`
+
+  The ID of the dream to archive (`drm_...`).
 
 #### Headers
 
@@ -69778,15 +70956,25 @@ Archive a Dream
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaDream object`
 
-  An asynchronous memory-consolidation job that reads a memory store plus a set of session transcripts and writes consolidated memories into an output memory store — a new store by default, or an existing store chosen via output_behavior. The Dreams API is in research preview: the request and response shapes are volatile and may change without the deprecation period that applies to generally-available endpoints.
+  An asynchronous job that reads a memory store and past sessions, then writes a reorganized version of that memory store.
+
+  By default the dream writes its result to a new memory store and doesn't change the input memory store. With `output_behavior` set to `update_existing`, it writes its result into the input memory store instead. The Dreams API is in research preview, so this resource can still change.
+
+  See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#how-it-works) for what a dream reads and produces.
 
   - `type: "dream"`
 
   - `id: string`
+
+    The unique ID of the dream (`drm_...`).
 
   - `archived_at: string or null`
 
@@ -69812,37 +71000,61 @@ Archive a Dream
 
     - `type: string`
 
+      A code for why the dream failed, such as `timeout` or `internal_error`.
+
+      The [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#errors) lists common error codes and when they occur.
+
     - `message: string`
+
+      A human-readable explanation of why the dream failed.
 
   - `inputs: array of BetaDreamInput`
 
+    The sources that the dream reads, from the request that created it.
+
     - `BetaDreamMemoryStoreInput object`
 
-      An input memory store the dream reads from. The dream never mutates this store unless it is also the destination: with output_behavior {type: "update_existing"} the job consolidates this store in place.
+      The memory store that a dream reads, given as an entry in `inputs`.
+
+      With `output_behavior` set to `update_existing`, the dream writes its result into this memory store. Otherwise the dream doesn't change it.
 
       - `type: "memory_store"`
 
       - `memory_store_id: string`
 
+        The ID of the memory store for the dream to read (`memstore_...`).
+
+        The memory store must be in the same workspace as the dream and must not be archived.
+
         minLength: 1
 
     - `BetaDreamSessionsInput object`
 
-      Input session transcripts the dream reads.
+      The sessions that a dream reads, given as an entry in `inputs`.
 
       - `type: "sessions"`
 
       - `session_ids: array of string`
 
+        The IDs of the sessions whose transcripts the dream reads (`sesn_...`).
+
+        Give 1 to 100 IDs, with no duplicates. Each session must be in the same workspace as the dream. Responses list the IDs in sorted order.
+
+        The [limits table in the Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#limits) lists all the limits on a dream.
+
   - `instructions: string or null`
+
+    The guidance given when the dream was created, or `null` if none was given.
 
   - `model: BetaDreamModelConfig`
 
-    Model identifier and configuration applied to every pipeline stage. Same wire shape as the Agents API ModelConfig.
+    The model that runs a dream, from the request that created it.
+
+    The dream uses this model for all of its work. The response always gives the model as an object, even if the request gave only a model ID.
 
     - `id: string`
 
-      Model identifier, e.g. "claude-opus-5". 1-256 characters.
+      The ID of the model that runs the dream, as given in the request that created it.
 
       minLength: 1, maxLength: 256
 
@@ -69856,69 +71068,119 @@ Archive a Dream
 
   - `output_behavior: BetaOutputBehavior`
 
+    Which memory store a dream writes its result to. Defaults to `create_new` when left out of a create request.
+
     - `BetaOutputBehaviorCreateNew object`
 
-      The default destination: the job creates a new output memory store as a clone of the memory_store input and writes the consolidated memories into it. The input store is never mutated.
+      Write the result to a new memory store that starts as a copy of the input memory store. This is the default.
+
+      The new memory store is in the same workspace as the dream. The dream doesn't change the input memory store.
 
       - `type: "create_new"`
 
     - `BetaOutputBehaviorUpdateExisting object`
 
-      The job writes the consolidated memories into this existing memory store instead of creating one. In EAP the store must be the job's own memory_store input, so the job consolidates the store in place.
+      Write the result into the input memory store instead of a new memory store.
+
+      The credential must be allowed to write memory stores, or the request returns a 403 error. While another `update_existing` dream on the same memory store hasn't fully stopped, the request returns a 409 error.
 
       - `type: "update_existing"`
 
       - `memory_store_id: string`
 
+        The ID of the memory store for the dream to write its result to (`memstore_...`). It must be the memory store in the `memory_store` entry of `inputs`.
+
         minLength: 1
 
   - `outputs: array of BetaDreamOutput`
+
+    The memory store that holds the dream's result, as a one-item array, or an empty array until the dream records that memory store.
+
+    The array is empty while the dream is `pending` and for a short time after it starts `running`. It can stay empty if the dream fails or is canceled before then. The memory store holds the complete result only once `status` is `completed`.
+
+    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#use-the-output) for how to review and use the result.
 
     - `type: "memory_store"`
 
     - `memory_store_id: string`
 
+      The ID of the memory store that the dream writes its result to (`memstore_...`).
+
+      With `output_behavior` set to `create_new`, this is a new memory store. With `update_existing`, it is the input memory store.
+
   - `session_id: string or null`
+
+    The ID of the session that runs the dream (`sesn_...`), or `null` if that session hasn't started.
+
+    Stream that session's events to follow what the dream reads and writes.
+
+    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#watch-the-pipeline-run) for how to watch a running dream.
 
   - `status: BetaDreamStatus`
 
-    Lifecycle status of a Dream.
+    Where a dream is in its lifecycle.
+
+    `completed`, `failed`, and `canceled` are final: once a dream has one of these statuses, its status doesn't change again.
+
+    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#lifecycle) for what each status means.
 
     - `"pending"`
 
+      The dream is waiting to start and hasn't read its inputs yet.
+
+      `outputs` is empty and every `usage` count is zero.
+
     - `"running"`
+
+      The dream is reading its inputs and writing its result.
+
+      `usage` updates while the dream has this status.
 
     - `"completed"`
 
+      The dream finished and its output memory store holds the complete result.
+
     - `"failed"`
+
+      The dream stopped with an error, which `error` describes.
+
+      If `outputs` references a memory store, that memory store keeps what the dream wrote before it stopped.
 
     - `"canceled"`
 
+      A cancel request stopped the dream before it reached `completed` or `failed`.
+
+      If `outputs` references a memory store, that memory store keeps what the dream wrote. `usage` can keep changing after the cancel.
+
   - `usage: BetaDreamUsage`
 
-    Cumulative token usage for the dream across every pipeline stage.
+    The tokens that a dream has used so far.
+
+    The counts are zero while the dream is `pending` and update while it is `running`. They can keep changing after a cancel.
+
+    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#billing) for how dreams are billed. See the [prompt caching guide](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#tracking-cache-performance) for how the input token counts add up.
 
     - `cache_creation_input_tokens: number`
 
-      Total tokens used to create prompt-cache entries (sum of all TTL tiers).
+      The dream's input tokens that were written to the prompt cache, for both the 5-minute and 1-hour cache durations.
 
       format: int32
 
     - `cache_read_input_tokens: number`
 
-      Total tokens read from prompt cache.
+      The dream's input tokens that were read from the prompt cache.
 
       format: int32
 
     - `input_tokens: number`
 
-      Total uncached input tokens consumed across every pipeline stage.
+      The dream's input tokens that weren't read from or written to the prompt cache.
 
       format: int32
 
     - `output_tokens: number`
 
-      Total output tokens generated across every pipeline stage.
+      The tokens that the model generated for the dream.
 
       format: int32
 
@@ -70090,6 +71352,10 @@ Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel;
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Body parameters
 
 - `display_name: optional string or null`
@@ -70165,6 +71431,8 @@ Fetches a tunnel by ID.
 #### Path parameters
 
 - `tunnel_id: string`
+
+  ID of the tunnel (`tnl_...`).
 
 #### Headers
 
@@ -70269,6 +71537,10 @@ Fetches a tunnel by ID.
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -70452,6 +71724,10 @@ Lists tunnels. Results are ordered by creation time, newest first; archived tunn
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `data: array of BetaTunnel`
@@ -70527,6 +71803,8 @@ Archives a tunnel. Archival is irreversible: every non-archived certificate on t
 
 - `tunnel_id: string`
 
+  ID of the tunnel (`tnl_...`).
+
 #### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -70630,6 +71908,10 @@ Archives a tunnel. Archival is irreversible: every non-archived certificate on t
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -70698,6 +71980,8 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
 
 - `tunnel_id: string`
 
+  ID of the tunnel (`tnl_...`).
+
 #### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -70801,6 +72085,10 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -70850,6 +72138,8 @@ Rotates a tunnel's connector token. Rotation invalidates the current token for n
 
 - `tunnel_id: string`
 
+  ID of the tunnel (`tnl_...`).
+
 #### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -70953,6 +72243,10 @@ Rotates a tunnel's connector token. Rotation invalidates the current token for n
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Body parameters
 
@@ -71013,6 +72307,8 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
 
 - `tunnel_id: string`
 
+  ID of the tunnel (`tnl_...`).
+
 #### Headers
 
 - `"anthropic-beta": optional array of AnthropicBeta`
@@ -71116,6 +72412,10 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Body parameters
 
@@ -71202,7 +72502,11 @@ Fetches a tunnel certificate by ID.
 
 - `tunnel_id: string`
 
+  ID of the tunnel (`tnl_...`).
+
 - `certificate_id: string`
+
+  ID of the certificate (`tcrt_...`).
 
 #### Headers
 
@@ -71308,6 +72612,10 @@ Fetches a tunnel certificate by ID.
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaTunnelCertificate object`
@@ -71380,6 +72688,8 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 #### Path parameters
 
 - `tunnel_id: string`
+
+  ID of the tunnel (`tnl_...`).
 
 #### Query parameters
 
@@ -71501,6 +72811,10 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `data: array of BetaTunnelCertificate`
@@ -71583,7 +72897,11 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
 
 - `tunnel_id: string`
 
+  ID of the tunnel (`tnl_...`).
+
 - `certificate_id: string`
+
+  ID of the certificate to archive (`tcrt_...`).
 
 #### Headers
 
@@ -71688,6 +73006,10 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -80714,21 +82036,85 @@ the remaining entries.
 
     default: workspace_rate_limit
 
-  - `group_type: "batch" or "files" or "model_group" or 3 more`
+  - `group: BetaOrganizationRateLimitModelGroup or BetaOrganizationRateLimitBatchGroup or BetaOrganizationRateLimitTokenCountGroup or 3 more`
 
-    The kind of rate-limit group this entry represents. `model_group` entries apply to a family of models (listed in `models`); other values apply to an API-surface category and have `models` set to `null`.
+    The rate-limit group this entry's limits apply to. Its `type` equals `group_type`.
 
-    - `"batch"`
+    - `BetaOrganizationRateLimitModelGroup object`
 
-    - `"files"`
+      - `type: "model_group"`
 
-    - `"model_group"`
+        Always `model_group`: a family of models.
 
-    - `"skills"`
+        default: model_group
 
-    - `"token_count"`
+      - `id: string`
 
-    - `"web_search"`
+        Opaque identifier of the rate-limit group (for example, `rlg_01VPTCmyiu5ZLsWkcxYG2pY8`). It is the same in every organization and never changes, unlike the entry's own identifier, which differs per organization.
+
+      - `display_name: string`
+
+        Human-readable name of the model group (for example, `Claude Sonnet 4.x`). For display only; it may change.
+
+    - `BetaOrganizationRateLimitBatchGroup object`
+
+      - `type: "batch"`
+
+        Always `batch`: the Message Batches API.
+
+        default: batch
+
+      - `id: string`
+
+        Opaque identifier of the rate-limit group (for example, `rlg_01VPTCmyiu5ZLsWkcxYG2pY8`). It is the same in every organization and never changes, unlike the entry's own identifier, which differs per organization.
+
+    - `BetaOrganizationRateLimitTokenCountGroup object`
+
+      - `type: "token_count"`
+
+        Always `token_count`: the Token Count API.
+
+        default: token_count
+
+      - `id: string`
+
+        Opaque identifier of the rate-limit group (for example, `rlg_01VPTCmyiu5ZLsWkcxYG2pY8`). It is the same in every organization and never changes, unlike the entry's own identifier, which differs per organization.
+
+    - `BetaOrganizationRateLimitFilesGroup object`
+
+      - `type: "files"`
+
+        Always `files`: the Files API.
+
+        default: files
+
+      - `id: string`
+
+        Opaque identifier of the rate-limit group (for example, `rlg_01VPTCmyiu5ZLsWkcxYG2pY8`). It is the same in every organization and never changes, unlike the entry's own identifier, which differs per organization.
+
+    - `BetaOrganizationRateLimitSkillsGroup object`
+
+      - `type: "skills"`
+
+        Always `skills`: the Skills API.
+
+        default: skills
+
+      - `id: string`
+
+        Opaque identifier of the rate-limit group (for example, `rlg_01VPTCmyiu5ZLsWkcxYG2pY8`). It is the same in every organization and never changes, unlike the entry's own identifier, which differs per organization.
+
+    - `BetaOrganizationRateLimitWebSearchGroup object`
+
+      - `type: "web_search"`
+
+        Always `web_search`: the Messages API web search tool.
+
+        default: web_search
+
+      - `id: string`
+
+        Opaque identifier of the rate-limit group (for example, `rlg_01VPTCmyiu5ZLsWkcxYG2pY8`). It is the same in every organization and never changes, unlike the entry's own identifier, which differs per organization.
 
   - `limits: array of BetaWorkspaceRateLimitValue`
 
@@ -80752,11 +82138,29 @@ the remaining entries.
 
   - `rate_limit_id: string`
 
-    The `id` of the RateLimit group this override applies to.
+    The `id` of the organization's RateLimit entry this override applies to.
 
   - `workspace_id: string`
 
     ID of the Workspace this override applies to.
+
+  - `group_type: "batch" or "files" or "model_group" or 3 more`
+
+    **Deprecated**: Use `group.type` instead. `group_type` is still returned and always equals `group.type`.
+
+    Deprecated: use `group.type` instead. The kind of rate-limit group this entry represents. `model_group` entries apply to a family of models (listed in `models`); other values apply to an API-surface category and have `models` set to `null`. Always equal to `group.type`.
+
+    - `"batch"`
+
+    - `"files"`
+
+    - `"model_group"`
+
+    - `"skills"`
+
+    - `"token_count"`
+
+    - `"web_search"`
 
 - `next_page: string or null`
 
@@ -80776,6 +82180,11 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/rate_li
 {
   "data": [
     {
+      "group": {
+        "id": "id",
+        "display_name": "display_name",
+        "type": "model_group"
+      },
       "group_type": "batch",
       "limits": [
         {
@@ -82224,23 +83633,87 @@ the remaining entries.
 
   - `id: string`
 
-    Stable identifier for this rate-limit group within the organization.
+    Identifier of this rate-limit entry. It is stable within the organization and differs between organizations; the group's own identifier is `group.id`.
 
-  - `group_type: "batch" or "files" or "model_group" or 3 more`
+  - `group: BetaOrganizationRateLimitModelGroup or BetaOrganizationRateLimitBatchGroup or BetaOrganizationRateLimitTokenCountGroup or 3 more`
 
-    The kind of rate-limit group this entry represents. `model_group` entries apply to a family of models (listed in `models`); other values apply to an API-surface category and have `models` set to `null`.
+    The rate-limit group this entry's limits apply to. Its `type` equals `group_type`.
 
-    - `"batch"`
+    - `BetaOrganizationRateLimitModelGroup object`
 
-    - `"files"`
+      - `type: "model_group"`
 
-    - `"model_group"`
+        Always `model_group`: a family of models.
 
-    - `"skills"`
+        default: model_group
 
-    - `"token_count"`
+      - `id: string`
 
-    - `"web_search"`
+        Opaque identifier of the rate-limit group (for example, `rlg_01VPTCmyiu5ZLsWkcxYG2pY8`). It is the same in every organization and never changes, unlike the entry's own identifier, which differs per organization.
+
+      - `display_name: string`
+
+        Human-readable name of the model group (for example, `Claude Sonnet 4.x`). For display only; it may change.
+
+    - `BetaOrganizationRateLimitBatchGroup object`
+
+      - `type: "batch"`
+
+        Always `batch`: the Message Batches API.
+
+        default: batch
+
+      - `id: string`
+
+        Opaque identifier of the rate-limit group (for example, `rlg_01VPTCmyiu5ZLsWkcxYG2pY8`). It is the same in every organization and never changes, unlike the entry's own identifier, which differs per organization.
+
+    - `BetaOrganizationRateLimitTokenCountGroup object`
+
+      - `type: "token_count"`
+
+        Always `token_count`: the Token Count API.
+
+        default: token_count
+
+      - `id: string`
+
+        Opaque identifier of the rate-limit group (for example, `rlg_01VPTCmyiu5ZLsWkcxYG2pY8`). It is the same in every organization and never changes, unlike the entry's own identifier, which differs per organization.
+
+    - `BetaOrganizationRateLimitFilesGroup object`
+
+      - `type: "files"`
+
+        Always `files`: the Files API.
+
+        default: files
+
+      - `id: string`
+
+        Opaque identifier of the rate-limit group (for example, `rlg_01VPTCmyiu5ZLsWkcxYG2pY8`). It is the same in every organization and never changes, unlike the entry's own identifier, which differs per organization.
+
+    - `BetaOrganizationRateLimitSkillsGroup object`
+
+      - `type: "skills"`
+
+        Always `skills`: the Skills API.
+
+        default: skills
+
+      - `id: string`
+
+        Opaque identifier of the rate-limit group (for example, `rlg_01VPTCmyiu5ZLsWkcxYG2pY8`). It is the same in every organization and never changes, unlike the entry's own identifier, which differs per organization.
+
+    - `BetaOrganizationRateLimitWebSearchGroup object`
+
+      - `type: "web_search"`
+
+        Always `web_search`: the Messages API web search tool.
+
+        default: web_search
+
+      - `id: string`
+
+        Opaque identifier of the rate-limit group (for example, `rlg_01VPTCmyiu5ZLsWkcxYG2pY8`). It is the same in every organization and never changes, unlike the entry's own identifier, which differs per organization.
 
   - `limits: array of BetaOrganizationRateLimitValue`
 
@@ -82257,6 +83730,24 @@ the remaining entries.
   - `models: array of string or null`
 
     Model names this entry's limits apply to, including aliases. `null` when `group_type` is not `"model_group"`.
+
+  - `group_type: "batch" or "files" or "model_group" or 3 more`
+
+    **Deprecated**: Use `group.type` instead. `group_type` is still returned and always equals `group.type`.
+
+    Deprecated: use `group.type` instead. The kind of rate-limit group this entry represents. `model_group` entries apply to a family of models (listed in `models`); other values apply to an API-surface category and have `models` set to `null`. Always equal to `group.type`.
+
+    - `"batch"`
+
+    - `"files"`
+
+    - `"model_group"`
+
+    - `"skills"`
+
+    - `"token_count"`
+
+    - `"web_search"`
 
 - `next_page: string or null`
 
@@ -82277,6 +83768,11 @@ curl https://api.anthropic.com/v1/organizations/rate_limits \
   "data": [
     {
       "id": "id",
+      "group": {
+        "id": "id",
+        "display_name": "display_name",
+        "type": "model_group"
+      },
       "group_type": "batch",
       "limits": [
         {
@@ -90752,7 +92248,7 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
     Name of the RBAC Group. Not uniqueness-enforced.
 
-  - `roles: array of string or null`
+  - `role_ids: array of string or null`
 
     RBAC Role IDs attached to this RBAC Group. Role attachment is managed in the admin settings and is read-only on this API. `null` means role data was temporarily unavailable — retry to distinguish from an empty list.
 
@@ -90769,6 +92265,12 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
     RFC 3339 timestamp of when the RBAC Group was last updated.
 
     format: date-time
+
+  - `roles: array of string or null`
+
+    **Deprecated**: Use `role_ids` instead; `roles` always has the same value.
+
+    Deprecated: use `role_ids` instead. IDs of the RBAC Roles attached to this RBAC Group; always the same value as `role_ids`, `null` included.
 
 - `has_more: boolean`
 
@@ -90795,6 +92297,9 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups \
       "id": "rbac_group_012rppKaSVsmTo6NqRDXQXNF",
       "created_at": "2024-10-30T23:58:27.427722Z",
       "name": "Engineering",
+      "role_ids": [
+        "rbac_role_016J8xVtKpDq3Wy9ZmN2hR4s"
+      ],
       "roles": [
         "rbac_role_016J8xVtKpDq3Wy9ZmN2hR4s"
       ],
@@ -90810,7 +92315,7 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups \
 
 ### Get RBAC Group
 
-**GET** `/v1/organizations/rbac_groups/{group_id}`
+**GET** `/v1/organizations/rbac_groups/{rbac_group_id}`
 
 Retrieve an RBAC Group by ID.
 
@@ -90818,7 +92323,7 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
 #### Path parameters
 
-- `group_id: string`
+- `rbac_group_id: string`
 
   ID of the RBAC Group.
 
@@ -90848,7 +92353,7 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
     Name of the RBAC Group. Not uniqueness-enforced.
 
-  - `roles: array of string or null`
+  - `role_ids: array of string or null`
 
     RBAC Role IDs attached to this RBAC Group. Role attachment is managed in the admin settings and is read-only on this API. `null` means role data was temporarily unavailable — retry to distinguish from an empty list.
 
@@ -90866,10 +92371,16 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
     format: date-time
 
+  - `roles: array of string or null`
+
+    **Deprecated**: Use `role_ids` instead; `roles` always has the same value.
+
+    Deprecated: use `role_ids` instead. IDs of the RBAC Roles attached to this RBAC Group; always the same value as `role_ids`, `null` included.
+
 #### Example
 
 ```bash
-curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID \
+curl https://api.anthropic.com/v1/organizations/rbac_groups/$RBAC_GROUP_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
@@ -90881,6 +92392,9 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID \
   "id": "rbac_group_012rppKaSVsmTo6NqRDXQXNF",
   "created_at": "2024-10-30T23:58:27.427722Z",
   "name": "Engineering",
+  "role_ids": [
+    "rbac_role_016J8xVtKpDq3Wy9ZmN2hR4s"
+  ],
   "roles": [
     "rbac_role_016J8xVtKpDq3Wy9ZmN2hR4s"
   ],
@@ -90932,7 +92446,7 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
     Name of the RBAC Group. Not uniqueness-enforced.
 
-  - `roles: array of string or null`
+  - `role_ids: array of string or null`
 
     RBAC Role IDs attached to this RBAC Group. Role attachment is managed in the admin settings and is read-only on this API. `null` means role data was temporarily unavailable — retry to distinguish from an empty list.
 
@@ -90949,6 +92463,12 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
     RFC 3339 timestamp of when the RBAC Group was last updated.
 
     format: date-time
+
+  - `roles: array of string or null`
+
+    **Deprecated**: Use `role_ids` instead; `roles` always has the same value.
+
+    Deprecated: use `role_ids` instead. IDs of the RBAC Roles attached to this RBAC Group; always the same value as `role_ids`, `null` included.
 
 #### Example
 
@@ -90969,6 +92489,9 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups \
   "id": "rbac_group_012rppKaSVsmTo6NqRDXQXNF",
   "created_at": "2024-10-30T23:58:27.427722Z",
   "name": "Engineering",
+  "role_ids": [
+    "rbac_role_016J8xVtKpDq3Wy9ZmN2hR4s"
+  ],
   "roles": [
     "rbac_role_016J8xVtKpDq3Wy9ZmN2hR4s"
   ],
@@ -90980,7 +92503,7 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups \
 
 ### Update RBAC Group
 
-**POST** `/v1/organizations/rbac_groups/{group_id}`
+**POST** `/v1/organizations/rbac_groups/{rbac_group_id}`
 
 Update an RBAC Group's name. Groups provisioned by an identity provider (source type `"scim"`) cannot be modified via the API while an organization in the tenant uses SCIM provisioning.
 
@@ -90988,7 +92511,7 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
 #### Path parameters
 
-- `group_id: string`
+- `rbac_group_id: string`
 
   ID of the RBAC Group.
 
@@ -91026,7 +92549,7 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
     Name of the RBAC Group. Not uniqueness-enforced.
 
-  - `roles: array of string or null`
+  - `role_ids: array of string or null`
 
     RBAC Role IDs attached to this RBAC Group. Role attachment is managed in the admin settings and is read-only on this API. `null` means role data was temporarily unavailable — retry to distinguish from an empty list.
 
@@ -91044,10 +92567,16 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
     format: date-time
 
+  - `roles: array of string or null`
+
+    **Deprecated**: Use `role_ids` instead; `roles` always has the same value.
+
+    Deprecated: use `role_ids` instead. IDs of the RBAC Roles attached to this RBAC Group; always the same value as `role_ids`, `null` included.
+
 #### Example
 
 ```bash
-curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID \
+curl https://api.anthropic.com/v1/organizations/rbac_groups/$RBAC_GROUP_ID \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
@@ -91063,6 +92592,9 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID \
   "id": "rbac_group_012rppKaSVsmTo6NqRDXQXNF",
   "created_at": "2024-10-30T23:58:27.427722Z",
   "name": "Engineering",
+  "role_ids": [
+    "rbac_role_016J8xVtKpDq3Wy9ZmN2hR4s"
+  ],
   "roles": [
     "rbac_role_016J8xVtKpDq3Wy9ZmN2hR4s"
   ],
@@ -91074,7 +92606,7 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID \
 
 ### Delete RBAC Group
 
-**DELETE** `/v1/organizations/rbac_groups/{group_id}`
+**DELETE** `/v1/organizations/rbac_groups/{rbac_group_id}`
 
 Delete an RBAC Group. Groups provisioned by an identity provider (source type `"scim"`) cannot be deleted via the API while an organization in the tenant uses SCIM provisioning.
 
@@ -91082,7 +92614,7 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
 #### Path parameters
 
-- `group_id: string`
+- `rbac_group_id: string`
 
   ID of the RBAC Group.
 
@@ -91105,7 +92637,7 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 #### Example
 
 ```bash
-curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID \
+curl https://api.anthropic.com/v1/organizations/rbac_groups/$RBAC_GROUP_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
@@ -91124,7 +92656,7 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID \
 
 ### List RBAC Group Members
 
-**GET** `/v1/organizations/rbac_groups/{group_id}/members`
+**GET** `/v1/organizations/rbac_groups/{rbac_group_id}/members`
 
 List members of an RBAC Group.
 
@@ -91132,7 +92664,7 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
 #### Path parameters
 
-- `group_id: string`
+- `rbac_group_id: string`
 
   ID of the RBAC Group.
 
@@ -91172,13 +92704,19 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
     Email of the User.
 
-  - `group_id: string`
+  - `rbac_group_id: string`
 
     ID of the RBAC Group.
 
   - `user_id: string`
 
     ID of the User.
+
+  - `group_id: string`
+
+    **Deprecated**: Use `rbac_group_id` instead; `group_id` always has the same value.
+
+    Deprecated: use `rbac_group_id` instead. ID of the RBAC Group; always the same value as `rbac_group_id`.
 
 - `has_more: boolean`
 
@@ -91191,7 +92729,7 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 #### Example
 
 ```bash
-curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID/members \
+curl https://api.anthropic.com/v1/organizations/rbac_groups/$RBAC_GROUP_ID/members \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
@@ -91205,6 +92743,7 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID/members \
       "created_at": "2024-10-30T23:58:27.427722Z",
       "email": "user@emaildomain.com",
       "group_id": "rbac_group_012rppKaSVsmTo6NqRDXQXNF",
+      "rbac_group_id": "rbac_group_012rppKaSVsmTo6NqRDXQXNF",
       "type": "rbac_group_member",
       "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
     }
@@ -91216,7 +92755,7 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID/members \
 
 ### Add RBAC Group Member
 
-**POST** `/v1/organizations/rbac_groups/{group_id}/members`
+**POST** `/v1/organizations/rbac_groups/{rbac_group_id}/members`
 
 Add a User to an RBAC Group. Membership of groups provisioned by an identity provider (source type `"scim"`) cannot be modified via the API while an organization in the tenant uses SCIM provisioning.
 
@@ -91224,7 +92763,7 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
 #### Path parameters
 
-- `group_id: string`
+- `rbac_group_id: string`
 
   ID of the RBAC Group.
 
@@ -91256,7 +92795,7 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
     Email of the User.
 
-  - `group_id: string`
+  - `rbac_group_id: string`
 
     ID of the RBAC Group.
 
@@ -91264,10 +92803,16 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
     ID of the User.
 
+  - `group_id: string`
+
+    **Deprecated**: Use `rbac_group_id` instead; `group_id` always has the same value.
+
+    Deprecated: use `rbac_group_id` instead. ID of the RBAC Group; always the same value as `rbac_group_id`.
+
 #### Example
 
 ```bash
-curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID/members \
+curl https://api.anthropic.com/v1/organizations/rbac_groups/$RBAC_GROUP_ID/members \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
@@ -91283,6 +92828,7 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID/members \
   "created_at": "2024-10-30T23:58:27.427722Z",
   "email": "user@emaildomain.com",
   "group_id": "rbac_group_012rppKaSVsmTo6NqRDXQXNF",
+  "rbac_group_id": "rbac_group_012rppKaSVsmTo6NqRDXQXNF",
   "type": "rbac_group_member",
   "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
 }
@@ -91290,7 +92836,7 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID/members \
 
 ### Remove RBAC Group Member
 
-**DELETE** `/v1/organizations/rbac_groups/{group_id}/members/{user_id}`
+**DELETE** `/v1/organizations/rbac_groups/{rbac_group_id}/members/{user_id}`
 
 Remove a User from an RBAC Group. Membership of groups provisioned by an identity provider (source type `"scim"`) cannot be modified via the API while an organization in the tenant uses SCIM provisioning.
 
@@ -91298,7 +92844,7 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
 #### Path parameters
 
-- `group_id: string`
+- `rbac_group_id: string`
 
   ID of the RBAC Group.
 
@@ -91316,7 +92862,7 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
     default: rbac_group_member_deleted
 
-  - `group_id: string`
+  - `rbac_group_id: string`
 
     ID of the RBAC Group.
 
@@ -91324,10 +92870,16 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
     ID of the User.
 
+  - `group_id: string`
+
+    **Deprecated**: Use `rbac_group_id` instead; `group_id` always has the same value.
+
+    Deprecated: use `rbac_group_id` instead. ID of the RBAC Group; always the same value as `rbac_group_id`.
+
 #### Example
 
 ```bash
-curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID/members/$USER_ID \
+curl https://api.anthropic.com/v1/organizations/rbac_groups/$RBAC_GROUP_ID/members/$USER_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
@@ -91338,6 +92890,7 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups/$GROUP_ID/members/$U
 ```json
 {
   "group_id": "rbac_group_012rppKaSVsmTo6NqRDXQXNF",
+  "rbac_group_id": "rbac_group_012rppKaSVsmTo6NqRDXQXNF",
   "type": "rbac_group_member_deleted",
   "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
 }
@@ -91436,7 +92989,7 @@ curl https://api.anthropic.com/v1/organizations/rbac_roles \
 
 ### Get RBAC Role
 
-**GET** `/v1/organizations/rbac_roles/{role_id}`
+**GET** `/v1/organizations/rbac_roles/{rbac_role_id}`
 
 Retrieve an RBAC Role by ID.
 
@@ -91444,7 +92997,7 @@ The RBAC Roles API is available to Claude Enterprise organizations only.
 
 #### Path parameters
 
-- `role_id: string`
+- `rbac_role_id: string`
 
   ID of the RBAC Role.
 
@@ -91483,7 +93036,7 @@ The RBAC Roles API is available to Claude Enterprise organizations only.
 #### Example
 
 ```bash
-curl https://api.anthropic.com/v1/organizations/rbac_roles/$ROLE_ID \
+curl https://api.anthropic.com/v1/organizations/rbac_roles/$RBAC_ROLE_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
@@ -91504,7 +93057,7 @@ curl https://api.anthropic.com/v1/organizations/rbac_roles/$ROLE_ID \
 
 ### List RBAC Role Permissions
 
-**GET** `/v1/organizations/rbac_roles/{role_id}/permissions`
+**GET** `/v1/organizations/rbac_roles/{rbac_role_id}/permissions`
 
 List the permissions an RBAC Role grants.
 
@@ -91512,7 +93065,7 @@ The RBAC Roles API is available to Claude Enterprise organizations only.
 
 #### Path parameters
 
-- `role_id: string`
+- `rbac_role_id: string`
 
   ID of the RBAC Role.
 
@@ -91655,7 +93208,7 @@ The RBAC Roles API is available to Claude Enterprise organizations only.
 #### Example
 
 ```bash
-curl https://api.anthropic.com/v1/organizations/rbac_roles/$ROLE_ID/permissions \
+curl https://api.anthropic.com/v1/organizations/rbac_roles/$RBAC_ROLE_ID/permissions \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```

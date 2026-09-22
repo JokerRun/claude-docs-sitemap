@@ -1,14 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: fb9189c8333472772e3000333504a6be0aa95d859044ea580235069229a63a5d
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: cb2183b0ffce55b7ec4c9d0c3df78834bb4807f653a8817d3255f4d3dedd8344
 ---
 
 ---
 title: Sandbox self-hosted
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
 description: Jalankan sesi Claude Managed Agents di sandbox self-hosted, sehingga eksekusi alat, file, dan egress jaringan tetap berada di infrastruktur Anda sendiri.
+featureMetadata:
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
 
 Secara default, Managed Agents mengeksekusi alat dan kode di dalam [sandbox cloud yang dikelola Anthropic](https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference). "Self-hosted sandboxes" (sandbox yang di-hosting sendiri) mempertahankan orkestrasi di sisi Anthropic tetapi memindahkan eksekusi alat ke infrastruktur yang Anda kendalikan, sehingga kode, sistem file, dan egress jaringan agen tidak pernah meninggalkan lingkungan Anda.
@@ -77,7 +80,7 @@ Anda memerlukan:
 
     Atau melalui API:
 
-    <CodeGroup>
+    <CodeGroup defaultLanguage="CLI">
       ```bash cURL
       curl -sS --fail-with-body https://api.anthropic.com/v1/environments \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -221,7 +224,7 @@ Pilih **always-on** untuk penyiapan paling sederhana: proses yang berjalan lama 
             Untuk environment Linux, unduh biner rilis secara langsung.
 
             ```bash
-            VERSION=1.32.0
+            VERSION=1.33.0
             OS=$(uname -s | tr '[:upper:]' '[:lower:]')
             case $(uname -m) in
               x86_64) ARCH=amd64 ;;
@@ -243,7 +246,7 @@ Pilih **always-on** untuk penyiapan paling sederhana: proses yang berjalan lama 
       </Step>
 
       <Step title="Jalankan worker">
-        **In-process**
+        **Dalam proses worker**
 
         `ant beta:worker poll` mengklaim work item yang ditugaskan ke environment, mengunduh skills, mengeksekusi panggilan alat di direktori kerja, dan mengirimkan hasilnya kembali. Perintah ini membaca `ANTHROPIC_ENVIRONMENT_KEY` dan `ANTHROPIC_ENVIRONMENT_ID` dari environment.
 
@@ -259,7 +262,7 @@ Pilih **always-on** untuk penyiapan paling sederhana: proses yang berjalan lama 
 
         ```text
         FROM your-base-image
-        ARG ANT_VERSION=1.32.0
+        ARG ANT_VERSION=1.33.0
         ARG TARGETARCH
         RUN ARCH=$([ "$TARGETARCH" = "arm64" ] && echo arm64 || echo amd64) && \
             curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${ANT_VERSION}/ant_${ANT_VERSION}_linux_${ARCH}.tar.gz" \

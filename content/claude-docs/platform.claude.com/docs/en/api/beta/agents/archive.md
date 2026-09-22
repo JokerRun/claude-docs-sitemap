@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/archive
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: ba8640dfb456e624ba5a6b8dca70951ec3c9762a6f3d4c4aad589aa6a92ebb7b
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 14df52a5620fa6b6a85f1e3fabefc5e77a1cd34c224e87e43b95e6b9523302f8
 ---
 
 ---
@@ -19,6 +19,8 @@ Archive Agent
 ## Path parameters
 
 - `agent_id: string`
+
+  Unique identifier of the agent to archive.
 
 ## Headers
 
@@ -123,6 +125,10 @@ Archive Agent
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 70b96032d35d83545740f2740a0e4142794f9f25013d85792c117ebf3a16f1a3
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: dadf79fc160a4a9e36860efebb9b49a7eb5f98f2f40fe497f6385141453c48cc
 ---
 
 ---
@@ -19,6 +19,8 @@ Create Enrollment URL
 ## Path parameters
 
 - `user_profile_id: string`
+
+  The ID of the user profile to create an enrollment URL for (`uprof_...`).
 
 ## Headers
 
@@ -124,9 +126,15 @@ Create Enrollment URL
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 ## Returns
 
 - `BetaUserProfileEnrollmentURL object`
+
+  A URL to give to the entity that a user profile represents, so that the entity can enroll for a trust grant.
 
   - `type: "enrollment_url"`
 

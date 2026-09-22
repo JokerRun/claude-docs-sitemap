@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/results
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 1bc9b6149df77c80b6e24e37bb025615be72b23fb890d683b521a1a7e123d913
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: c0754f9fd98667ad9d08214c57af0319d64f38fe305fdf9688d3576e17a0495a
 ---
 
 ---
@@ -129,6 +129,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 
@@ -1249,8 +1253,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
         - `diagnostics: BetaDiagnostics or null`
 
-          Response envelope for request-level diagnostics. Present (possibly
-          null) whenever the caller supplied `diagnostics` on the request.
+          Request-level diagnostics: why the prompt cache could not fully reuse
+          the prefix of the request named by `diagnostics.previous_message_id`.
 
           - `cache_miss_reason: BetaCacheMissModelChanged or BetaCacheMissSystemChanged or BetaCacheMissToolsChanged or 3 more or null`
 

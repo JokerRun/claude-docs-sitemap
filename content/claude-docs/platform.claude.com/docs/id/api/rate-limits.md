@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/rate-limits
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 1f42c09f8217c1816c9b729b089fc84c0704f52a64c8a14f98f26997d43cffd9
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 2a46e92f7dcc18324d02b1a3042511ab93d5a394a4baf334fb27b9546e55ef42
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Untuk memitigasi penyalahgunaan dan mengelola kapasitas pada API, t
 ---
 
 <Note>
-  **[Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws):** Batas laju pada halaman ini berlaku untuk Claude Platform on AWS, tetapi penagihan dan pengelolaan batasnya berbeda. Penagihan dilakukan melalui AWS Marketplace (bukan pembelian kredit Anthropic). Organisasi di Claude Platform on AWS ditempatkan pada tingkat Start dan tidak berpindah antar tingkat penggunaan secara otomatis. Untuk meminta batas yang lebih tinggi, hubungi perwakilan akun Anthropic Anda atau [dukungan Anthropic](https://support.claude.com); alur **Request rate limit increase** tidak tersedia. Konfigurasi batas laju per workspace dan [fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) tidak tersedia di Claude Platform on AWS. Untuk detailnya, lihat [Batas laju dan kuota di Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#rate-limits-and-quotas).
+  **[Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws):** Batas laju di halaman ini berlaku untuk Claude Platform on AWS, tetapi penagihan dan pengelolaan batas berbeda. Penagihan dilakukan melalui AWS Marketplace (bukan pembelian kredit Anthropic). Organisasi di Claude Platform on AWS ditempatkan pada tingkat Start dan dapat naik ke tingkat yang lebih tinggi secara otomatis seiring mereka membangun riwayat faktur AWS Marketplace yang telah dibayar. Untuk meminta batas yang lebih tinggi, hubungi perwakilan akun Anthropic Anda atau [dukungan Anthropic](https://support.claude.com); alur **Request rate limit increase** tidak tersedia. Konfigurasi batas laju per workspace dan [fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) (mode cepat) tidak tersedia di Claude Platform on AWS. Untuk detailnya, lihat [Batas laju dan kuota di Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#rate-limits-and-quotas).
 </Note>
 
 Ada dua jenis batas:

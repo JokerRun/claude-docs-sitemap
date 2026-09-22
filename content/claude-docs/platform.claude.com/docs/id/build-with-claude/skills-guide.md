@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/skills-guide
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: ccbc2db22359fefc90905bfceb4de8fe2a801149996270d12dfe5d238cc9fa5b
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 44974f21146ab23145826074c2befc997aed4da8f601da4629c5927ba2cd56b5
 ---
 
 ---
@@ -573,12 +573,12 @@ Untuk menyediakan file input yang akan dikerjakan oleh Skills, [unggah file ters
 
   	// Langkah 3: Unduh file menggunakan Files API
   	for _, fileID := range fileIDs {
-  		fileMetadata, err := client.Files.GetMetadata(context.TODO(), fileID)
+  		fileMetadata, err := client.Files.GetMetadata(context.TODO(), fileID, anthropic.FileGetMetadataParams{})
   		if err != nil {
   			log.Fatal(err)
   		}
 
-  		fileContent, err := client.Files.Download(context.TODO(), fileID)
+  		fileContent, err := client.Files.Download(context.TODO(), fileID, anthropic.FileDownloadParams{})
   		if err != nil {
   			log.Fatal(err)
   		}
@@ -854,13 +854,13 @@ Untuk menyediakan file input yang akan dikerjakan oleh Skills, [unggah file ters
   fileID := "file_011CNha8iCJcU1wXNR6q4V8w"
 
   // Dapatkan metadata file
-  fileInfo, err := client.Files.GetMetadata(context.TODO(), fileID)
+  fileInfo, err := client.Files.GetMetadata(context.TODO(), fileID, anthropic.FileGetMetadataParams{})
   if err != nil {
   	log.Fatal(err)
   }
   fmt.Printf("Filename: %s, Size: %d bytes\n", fileInfo.Filename, fileInfo.SizeBytes)
 
-  // Daftar semua file
+  // Tampilkan daftar semua file
   files := client.Files.ListAutoPaging(context.TODO(), anthropic.FileListParams{})
   for files.Next() {
   	file := files.Current()
@@ -871,7 +871,7 @@ Untuk menyediakan file input yang akan dikerjakan oleh Skills, [unggah file ters
   }
 
   // Hapus file
-  _, err = client.Files.Delete(context.TODO(), fileID)
+  _, err = client.Files.Delete(context.TODO(), fileID, anthropic.FileDeleteParams{})
   if err != nil {
   	log.Fatal(err)
   }
@@ -2173,7 +2173,7 @@ Unggah Skill kustom Anda agar tersedia di workspace Anda. Anda dapat mengunggah 
 
 File diidentifikasi berdasarkan nama file yang Anda lampirkan (sufiks `;filename=` dalam contoh cURL dan argumen nama file dalam contoh SDK). Untuk skill dalam panduan ini, buat zip dengan `zip -r financial_skill.zip financial_skill/` dan gunakan sebagai pengganti placeholder `example_skill.zip` dalam opsi unggah zip.
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   curl -X POST "https://api.anthropic.com/v1/skills" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -2478,14 +2478,14 @@ Untuk skema permintaan/respons lengkap, lihat [referensi API Create Skill](https
 
 Ambil semua Skills yang tersedia untuk workspace Anda, termasuk Skills bawaan Anthropic dan Skills kustom Anda. Gunakan parameter `source` untuk memfilter berdasarkan jenis skill:
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
-  # Daftar semua Skills
+  # Tampilkan daftar semua Skills
   curl "https://api.anthropic.com/v1/skills" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01"
 
-  # Daftar hanya Skills kustom
+  # Tampilkan daftar Skills kustom saja
   curl "https://api.anthropic.com/v1/skills?source=custom" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01"
@@ -2624,7 +2624,7 @@ Lihat [referensi API List Skills](https://platform.claude.com/docs/id/api/skills
 
 Dapatkan detail tentang Skill tertentu:
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   curl "https://api.anthropic.com/v1/skills/skill_01AbCdEfGhIjKlMnOpQrStUv" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -2671,6 +2671,7 @@ Dapatkan detail tentang Skill tertentu:
   skill, err := client.Skills.Get(
   	context.TODO(),
   	"skill_01AbCdEfGhIjKlMnOpQrStUv",
+  	anthropic.SkillGetParams{},
   )
   if err != nil {
   	log.Fatal(err)
@@ -2720,7 +2721,7 @@ Dapatkan detail tentang Skill tertentu:
 
 Menghapus Skill juga menghapus semua versinya.
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   curl -X DELETE "https://api.anthropic.com/v1/skills/skill_01AbCdEfGhIjKlMnOpQrStUv" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -2755,6 +2756,7 @@ Menghapus Skill juga menghapus semua versinya.
   _, err := client.Skills.Delete(
   	context.TODO(),
   	"skill_01AbCdEfGhIjKlMnOpQrStUv",
+  	anthropic.SkillDeleteParams{},
   )
   if err != nil {
   	log.Fatal(err)
@@ -2800,7 +2802,7 @@ Skills mendukung pembuatan versi untuk mengelola pembaruan dengan aman:
 
 Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Skill setiap kali. File yang Anda hilangkan tidak akan dibawa, dan `name` dalam `SKILL.md` versi baru harus cocok dengan nama Skill yang sudah ada. Contoh berikut mengunggah ulang bundle `financial_skill/` lengkap dari [Membuat Skill](https://platform.claude.com/docs/id/build-with-claude/skills-guide#creating-a-skill).
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   # Buat versi baru
   NEW_VERSION=$(curl -X POST "https://api.anthropic.com/v1/skills/skill_01AbCdEfGhIjKlMnOpQrStUv/versions" \

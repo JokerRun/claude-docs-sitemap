@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 41baa66d293f0f37e23e128fb3e4597bc61a4c454a978696e2af6fbdd8c7d158
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 110e545d1d8c73fec045d67c4b266d8f42096e64d3257ebc930ad5a6e1e36b86
 ---
 
 ---
@@ -572,19 +572,8 @@ Kirimkan konten asisten lengkap, termasuk blok `advisor_tool_result`, kembali ke
   	log.Fatal(err)
   }
 
-  // Tambahkan konten respons lengkap, termasuk blok advisor_tool_result apa pun.
-  // BetaMessage.ToParam membuang konten hasil advisor sejak anthropic-sdk-go
-  // v1.61.0, jadi parse ulang JSON mentah setiap blok respons menjadi blok param.
-  assistantContent := make([]anthropic.BetaContentBlockParamUnion, len(response.Content))
-  for i, block := range response.Content {
-  	if err := json.Unmarshal([]byte(block.RawJSON()), &assistantContent[i]); err != nil {
-  		log.Fatal(err)
-  	}
-  }
-  messages = append(messages, anthropic.BetaMessageParam{
-  	Role:    anthropic.BetaMessageParamRoleAssistant,
-  	Content: assistantContent,
-  })
+  // Tambahkan seluruh konten respons, termasuk blok advisor_tool_result apa pun.
+  messages = append(messages, response.ToParam())
 
   // Lanjutkan percakapan
   messages = append(messages, anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Now add a max-in-flight limit of 10.")))
@@ -1010,19 +999,7 @@ Dengan `NUDGE_TURN` default sebesar 2, pengingat biasanya tiba setelah model ber
   			log.Fatal(err)
   		}
 
-  		// Tambahkan seluruh konten respons, termasuk blok advisor_tool_result apa pun.
-  		// BetaMessage.ToParam membuang konten hasil advisor sejak anthropic-sdk-go
-  		// v1.61.0, jadi parse ulang JSON mentah tiap blok respons menjadi blok param.
-  		assistantContent := make([]anthropic.BetaContentBlockParamUnion, len(response.Content))
-  		for i, block := range response.Content {
-  			if err := json.Unmarshal([]byte(block.RawJSON()), &assistantContent[i]); err != nil {
-  				log.Fatal(err)
-  			}
-  		}
-  		messages = append(messages, anthropic.BetaMessageParam{
-  			Role:    anthropic.BetaMessageParamRoleAssistant,
-  			Content: assistantContent,
-  		})
+  		messages = append(messages, response.ToParam())
 
   		for _, block := range response.Content {
   			if block.Type == "server_tool_use" && block.Name == "advisor" {
@@ -1043,7 +1020,7 @@ Dengan `NUDGE_TURN` default sebesar 2, pengingat biasanya tiba setelah model ber
   				Content: results,
   			})
   		}
-  		// Lewati ini jika prompt sistem Anda sudah menyuruh model memanggil dengan hemat.
+  		// Lewati ini jika prompt sistem Anda sudah meminta model untuk jarang memanggil alat.
   		if turn == nudgeTurn-1 && !advisorCalled {
   			messages = append(messages, anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock(nudgeText)))
   		}

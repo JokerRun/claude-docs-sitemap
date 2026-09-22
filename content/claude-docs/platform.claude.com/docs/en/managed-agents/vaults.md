@@ -1,19 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/vaults
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: da1ae2d4d62f60340640067bce593ddfd377ec7d21e5411bee8e3e5cdf5fafb4
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 62d856729e3fb1942886646ad2ec79f1c5dabe9ec46ba399f28d5dbc8bb64f1a
 ---
 
 ---
 title: Authenticate with vaults
 url: https://platform.claude.com/docs/en/managed-agents/vaults
 description: Register per-user credentials when creating sessions.
+featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
-
-## Compatibility
-- Status: Beta
-- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `managed-agents-2026-04-01`
 
 Vaults and credentials are authentication primitives that let you register credentials for third-party services once and reference them by ID at session creation. This means you don't need to run your own secret store, transmit tokens on every call, or lose track of which end user an agent acted on behalf of.
 

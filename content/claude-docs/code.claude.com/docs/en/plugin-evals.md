@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-evals
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: c61f4f5c286e54a7bcc7482536b6375a4734358c1082fd5e36203a74f7ac732a
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: c371e3b73da971a1aa924c6430ca07d57ead45803f250ce4fa1f278fbe65834d
 ---
 
 > ## Documentation Index
@@ -318,7 +318,9 @@ Add `--case <glob>` to filter by case name and `--tag <tag>` to keep cases with 
 
 ### Grant tools
 
-Runs never stop to ask for permission. Built-in tools that need a grant you didn't give, such as `Bash`, `Write`, `Edit`, `WebFetch`, and `WebSearch`, are removed from the session, so Claude can't call them at all. The allowlist is the read-only tools the case lists in `allowed_tools`, from `Read`, `Glob`, `Grep`, `NotebookRead`, `Skill`, `Agent`, `TodoWrite`, and the task tools `TaskCreate`, `TaskGet`, `TaskList`, `TaskUpdate`, `TaskStop`, and `TaskOutput`, plus whatever you grant with `--allow-tools`, which applies to every case in the run. To let cases use `Bash`, `Write`, `Edit`, `WebFetch`, or `WebSearch`, grant them yourself:
+Runs never stop to ask for permission. Built-in tools that need a grant you didn't give, such as `Bash`, `Write`, `Edit`, `WebFetch`, and `WebSearch`, are removed from the session, so Claude can't call them at all.
+
+The allowlist is the read-only tools the case lists in `allowed_tools`, from `Read`, `Glob`, `Grep`, `NotebookRead`, `Skill`, `Agent`, `TodoWrite`, and the task tools `TaskCreate`, `TaskGet`, `TaskList`, `TaskUpdate`, and `TaskStop`, plus whatever you grant with `--allow-tools`. That grant applies to every case in the run. To let cases use `Bash`, `Write`, `Edit`, `WebFetch`, or `WebSearch`, grant them yourself:
 
 ```bash theme={null}
 claude plugin eval . --allow-tools Write Edit "Bash(npm test *)"

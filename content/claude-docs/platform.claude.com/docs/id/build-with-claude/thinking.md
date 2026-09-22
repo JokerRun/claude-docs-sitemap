@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: b0d8b93e712c59b582bf43c014c392eaeb70916ec0cc69da8791dd7d545df6de
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 8876c8811ac93fa1a7c814695a0105939d4b343f5f0733ffb77153a94d1d9131
 ---
 
 ---
@@ -23,7 +23,7 @@ Pemikiran memiliki biaya. Token yang dihabiskan Claude untuk bernalar ditagih se
 
 ## Cara kerja pemikiran
 
-![Diagram cara kerja thinking (pemikiran): Claude mengevaluasi permintaan dan memutuskan apakah akan berpikir; dengan tool use (penggunaan alat), pemikiran dapat berulang di antara pemanggilan alat; satu respons mengembalikan thinking blocks (blok pemikiran), lalu text blocks (blok teks)](https://platform.claude.com/docs/images/how-thinking-works.svg)
+![Diagram cara kerja thinking (pemikiran): Claude mengevaluasi permintaan dan memutuskan apakah akan berpikir; dengan tool use (penggunaan alat), pemikiran dapat berulang di antara tool calls (panggilan alat); satu respons mengembalikan thinking blocks (blok pemikiran), lalu text blocks (blok teks)](https://platform.claude.com/docs/images/how-thinking-works.svg)
 
 Apakah Claude berpikir pada permintaan tertentu, dan seberapa dalam, bergantung pada konfigurasi pemikiran Anda dan kompleksitas permintaan.
 
@@ -105,10 +105,11 @@ Pada Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6, p
   )
 
   for block in response.content:
-      if block.type == "thinking":
-          print(f"\nThinking: {block.thinking}")
-      elif block.type == "text":
-          print(f"\nResponse: {block.text}")
+      match block.type:
+          case "thinking":
+              print(f"\nThinking: {block.thinking}")
+          case "text":
+              print(f"\nResponse: {block.text}")
   ```
 
   ```typescript TypeScript
@@ -130,10 +131,13 @@ Pada Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6, p
   });
 
   for (const block of response.content) {
-    if (block.type === "thinking") {
-      console.log(`\nThinking: ${block.thinking}`);
-    } else if (block.type === "text") {
-      console.log(`\nResponse: ${block.text}`);
+    switch (block.type) {
+      case "thinking":
+        console.log(`\nThinking: ${block.thinking}`);
+        break;
+      case "text":
+        console.log(`\nResponse: ${block.text}`);
+        break;
     }
   }
   ```
@@ -227,6 +231,9 @@ Pada Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6, p
   ```
 
   ```php PHP
+  use Anthropic\Messages\TextBlock;
+  use Anthropic\Messages\ThinkingBlock;
+
   $client = new Client();
 
   $message = $client->messages->create(
@@ -242,10 +249,13 @@ Pada Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6, p
   );
 
   foreach ($message->content as $block) {
-      if ($block->type === 'thinking') {
-          echo "\nThinking: " . $block->thinking;
-      } elseif ($block->type === 'text') {
-          echo "\nResponse: " . $block->text;
+      switch (true) {
+          case $block instanceof ThinkingBlock:
+              echo "\nThinking: " . $block->thinking;
+              break;
+          case $block instanceof TextBlock:
+              echo "\nResponse: " . $block->text;
+              break;
       }
   }
   ```
@@ -269,10 +279,10 @@ Pada Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6, p
   )
 
   message.content.each do |block|
-    case block.type
-    when :thinking
+    case block
+    when Anthropic::Models::ThinkingBlock
       puts "\nThinking: #{block.thinking}"
-    when :text
+    when Anthropic::Models::TextBlock
       puts "\nResponse: #{block.text}"
     end
   end
@@ -507,7 +517,7 @@ Untuk melihat penalaran model, baca blok `thinking` alih-alih meminta penalaran 
 
 Pemikiran berfungsi dengan [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming). Blok pemikiran di-stream sebagai event `thinking_delta` di dalam event `content_block_delta`, diikuti oleh satu event `signature_delta` tepat sebelum `content_block_stop` milik blok tersebut. Setelah itu, blok teks di-stream seperti biasa.
 
-![Diagram urutan streaming event (event streaming) dengan thinking (pemikiran): thinking block (blok pemikiran) terbuka, thinking deltas (delta pemikiran) membawa teks hanya ketika pengaturan display mengembalikan teks (summarized, atau updates untuk progress-update blocks (blok pembaruan progres)), satu signature delta (delta signature) menutup blok, lalu text deltas (delta teks) di-stream](https://platform.claude.com/docs/images/how-thinking-streams.svg)
+![Diagram urutan event streaming dengan thinking (pemikiran): thinking block (blok pemikiran) terbuka, thinking deltas (delta pemikiran) membawa teks hanya ketika pengaturan display mengembalikan teks (summarized, atau updates untuk progress-update blocks (blok pembaruan progres)), satu signature delta (delta signature) menutup blok, lalu text deltas (delta teks) di-stream](https://platform.claude.com/docs/images/how-thinking-streams.svg)
 
 Contoh berikut men-stream respons dengan pemikiran adaptif dan mencetak delta pemikiran serta delta teks begitu tiba:
 
@@ -559,13 +569,16 @@ Contoh berikut men-stream respons dengan pemikiran adaptif dan mencetak delta pe
       ],
   ) as stream:
       for event in stream:
-          if event.type == "content_block_start":
-              print(f"\nStarting {event.content_block.type} block...")
-          elif event.type == "content_block_delta":
-              if event.delta.type == "thinking_delta":
-                  print(event.delta.thinking, end="", flush=True)
-              elif event.delta.type == "text_delta":
-                  print(event.delta.text, end="", flush=True)
+          match event.type:
+              case "content_block_start":
+                  print(f"\nStarting {event.content_block.type} block...")
+              case "content_block_delta":
+                  delta = event.delta
+                  match delta.type:
+                      case "thinking_delta":
+                          print(delta.thinking, end="", flush=True)
+                      case "text_delta":
+                          print(delta.text, end="", flush=True)
   ```
 
   ```typescript TypeScript
@@ -579,14 +592,20 @@ Contoh berikut men-stream respons dengan pemikiran adaptif dan mencetak delta pe
   });
 
   for await (const event of stream) {
-    if (event.type === "content_block_start") {
-      console.log(`\nStarting ${event.content_block.type} block...`);
-    } else if (event.type === "content_block_delta") {
-      if (event.delta.type === "thinking_delta") {
-        process.stdout.write(event.delta.thinking);
-      } else if (event.delta.type === "text_delta") {
-        process.stdout.write(event.delta.text);
-      }
+    switch (event.type) {
+      case "content_block_start":
+        console.log(`\nStarting ${event.content_block.type} block...`);
+        break;
+      case "content_block_delta":
+        switch (event.delta.type) {
+          case "thinking_delta":
+            process.stdout.write(event.delta.thinking);
+            break;
+          case "text_delta":
+            process.stdout.write(event.delta.text);
+            break;
+        }
+        break;
     }
   }
   ```
@@ -674,22 +693,24 @@ Contoh berikut men-stream respons dengan pemikiran adaptif dan mencetak delta pe
 
       try (var streamResponse = client.messages().createStreaming(params)) {
           streamResponse.stream().forEach(event -> {
-              if (event.contentBlockStart().isPresent()) {
-                  var startEvent = event.contentBlockStart().get();
-                  var block = startEvent.contentBlock();
-                  if (block.isThinking()) {
-                      IO.println("\nStarting thinking block...");
-                  } else if (block.isText()) {
-                      IO.println("\nStarting text block...");
+              switch (event.type().value()) {
+                  case CONTENT_BLOCK_START -> {
+                      var startEvent = event.asContentBlockStart();
+                      var block = startEvent.contentBlock();
+                      switch (block.type().value()) {
+                          case THINKING -> IO.println("\nStarting thinking block...");
+                          case TEXT -> IO.println("\nStarting text block...");
+                      }
                   }
-              } else if (event.contentBlockDelta().isPresent()) {
-                  var deltaEvent = event.contentBlockDelta().get();
-                  deltaEvent.delta().thinking().ifPresent(td ->
-                      IO.print(td.thinking())
-                  );
-                  deltaEvent.delta().text().ifPresent(td ->
-                      IO.print(td.text())
-                  );
+                  case CONTENT_BLOCK_DELTA -> {
+                      var deltaEvent = event.asContentBlockDelta();
+                      deltaEvent.delta().thinking().ifPresent(td ->
+                          IO.print(td.thinking())
+                      );
+                      deltaEvent.delta().text().ifPresent(td ->
+                          IO.print(td.text())
+                      );
+                  }
               }
           });
       }
@@ -697,6 +718,11 @@ Contoh berikut men-stream respons dengan pemikiran adaptif dan mencetak delta pe
   ```
 
   ```php PHP
+  use Anthropic\Messages\RawContentBlockDeltaEvent;
+  use Anthropic\Messages\RawContentBlockStartEvent;
+  use Anthropic\Messages\TextDelta;
+  use Anthropic\Messages\ThinkingDelta;
+
   $client = new Client();
 
   $stream = $client->messages->createStream(
@@ -709,14 +735,20 @@ Contoh berikut men-stream respons dengan pemikiran adaptif dan mencetak delta pe
   );
 
   foreach ($stream as $event) {
-      if ($event->type === 'content_block_start') {
-          echo "\nStarting {$event->contentBlock->type} block...\n";
-      } elseif ($event->type === 'content_block_delta') {
-          if ($event->delta->type === 'thinking_delta') {
-              echo $event->delta->thinking;
-          } elseif ($event->delta->type === 'text_delta') {
-              echo $event->delta->text;
-          }
+      switch (true) {
+          case $event instanceof RawContentBlockStartEvent:
+              echo "\nStarting {$event->contentBlock->type} block...\n";
+              break;
+          case $event instanceof RawContentBlockDeltaEvent:
+              switch (true) {
+                  case $event->delta instanceof ThinkingDelta:
+                      echo $event->delta->thinking;
+                      break;
+                  case $event->delta instanceof TextDelta:
+                      echo $event->delta->text;
+                      break;
+              }
+              break;
       }
   }
   ```
@@ -1138,22 +1170,22 @@ Anda tidak dapat melakukan prefill pada respons asisten saat pemikiran aktif. Pe
 
 Setiap model menerima `max_tokens` hingga batas atas yang tercantum di sini. Pada [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing#extended-output-beta), [header beta](https://platform.claude.com/docs/id/api/beta-headers) `output-300k-2026-03-24` menaikkan batas atas tersebut untuk model yang memiliki batas atas batch yang tercantum.
 
-| Model                 | Token output maksimum | Batas atas beta batch |
-| --------------------- | --------------------- | --------------------- |
-| Claude Fable 5.1      | 128k                  | —                     |
-| Claude Mythos 5.1     | 128k                  | —                     |
-| Claude Fable 5        | 128k                  | —                     |
-| Claude Mythos 5       | 128k                  | —                     |
-| Claude Mythos Preview | 128k                  | Tidak tersedia        |
-| Claude Opus 5         | 128k                  | 300k                  |
-| Claude Opus 4.8       | 128k                  | 300k                  |
-| Claude Opus 4.7       | 128k                  | 300k                  |
-| Claude Sonnet 5       | 128k                  | 300k                  |
-| Claude Opus 4.6       | 128k                  | 300k                  |
-| Claude Sonnet 4.6     | 128k                  | 300k                  |
-| Claude Haiku 4.5      | 64k                   | Tidak tersedia        |
-| Claude Sonnet 4.5     | 64k                   | Tidak tersedia        |
-| Claude Opus 4.5       | 64k                   | Tidak tersedia        |
+| Model                 | Max output tokens | Batches beta ceiling |
+| :-------------------- | :---------------- | :------------------- |
+| Claude Fable 5.1      | 128K              | —                    |
+| Claude Mythos 5.1     | 128K              | —                    |
+| Claude Fable 5        | 128K              | —                    |
+| Claude Mythos 5       | 128K              | —                    |
+| Claude Mythos Preview | 128K              | Not available        |
+| Claude Opus 5         | 128K              | 300K                 |
+| Claude Opus 4.8       | 128K              | 300K                 |
+| Claude Opus 4.7       | 128K              | 300K                 |
+| Claude Opus 4.6       | 128K              | 300K                 |
+| Claude Opus 4.5       | 64K               | Not available        |
+| Claude Sonnet 5       | 128K              | 300K                 |
+| Claude Sonnet 4.6     | 128K              | 300K                 |
+| Claude Sonnet 4.5     | 64K               | Not available        |
+| Claude Haiku 4.5      | 64K               | Not available        |
 
 Lihat [ikhtisar model](https://platform.claude.com/docs/id/models/overview) untuk batasan pada model lama.
 

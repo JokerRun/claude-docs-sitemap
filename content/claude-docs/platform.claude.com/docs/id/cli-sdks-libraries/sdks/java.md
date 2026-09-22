@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 224d198c04f20d533e919c17a2d3064639c77bbbdc9b3ac384ba49fbabccdeec
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 367a424d3f9d133aa19a3027a1dcfe94b90274b2d3e6fdeb2d28fd1e269a86b2
 ---
 
 ---
@@ -22,7 +22,7 @@ Anthropic Java SDK menyediakan akses yang mudah ke Claude API dari aplikasi yang
 <Tabs>
   <Tab title="Gradle">
     ```kotlin
-    implementation("com.anthropic:anthropic-java:2.60.0")
+    implementation("com.anthropic:anthropic-java:2.63.0")
     ```
   </Tab>
 
@@ -31,7 +31,7 @@ Anthropic Java SDK menyediakan akses yang mudah ke Claude API dari aplikasi yang
     <dependency>
         <groupId>com.anthropic</groupId>
         <artifactId>anthropic-java</artifactId>
-        <version>2.60.0</version>
+        <version>2.63.0</version>
     </dependency>
     ```
   </Tab>
@@ -1091,7 +1091,7 @@ Java SDK mendukung platform berikut melalui dependensi terpisah yang menyediakan
 
 Gunakan `BedrockMantleBackend` untuk proyek baru; `BedrockBackend` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
 
-Setiap implementasi `Backend` diteruskan ke klien dengan `.backend()` pada `AnthropicOkHttpClient.builder()`. Setiap backend cloud menarik kelas SDK platform cloud masing-masing sebagai dependensi transitif.
+Artefak platform merupakan add-on untuk dependensi dasar `com.anthropic:anthropic-java`, yang menyediakan `AnthropicOkHttpClient`, jadi instal keduanya. Setiap implementasi `Backend` diteruskan ke klien dengan `.backend()` pada `AnthropicOkHttpClient.builder()`. Setiap backend cloud menarik kelas SDK platform cloud masing-masing sebagai dependensi transitif.
 
 ## Penggunaan lanjutan
 
@@ -1260,7 +1260,7 @@ void main() {
   </Accordion>
 </AccordionGroup>
 
-## Semantic versioning
+## Versioning semantik
 
 Paket ini umumnya mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang mungkin dirilis sebagai versi minor:
 

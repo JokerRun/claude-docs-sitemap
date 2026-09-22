@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/retrieve
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 2922d82ff3e01666d20413b15924099fe57cc18d5dc2ac6b8a0e0eba7999aade
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 9935e72d1f1494474bab1d83bb98eb3f63269ae4df0ad2a47872ceaaa837600f
 ---
 
 ---
@@ -22,7 +22,11 @@ Fetches a tunnel certificate by ID.
 
 - `tunnel_id: string`
 
+  ID of the tunnel (`tnl_...`).
+
 - `certificate_id: string`
+
+  ID of the certificate (`tcrt_...`).
 
 ## Headers
 
@@ -127,6 +131,10 @@ Fetches a tunnel certificate by ID.
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

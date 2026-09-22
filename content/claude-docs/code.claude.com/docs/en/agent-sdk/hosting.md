@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/hosting
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 9352342cc8998162cdcc6b5f209ec79672dd306018cf45dae67c84d6ccc94358
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 67bb05fd2e177ce1b9b0cef8a15afc8edab26771cc1758be0e3aebc3f6360dbf
 ---
 
 > ## Documentation Index
@@ -17,7 +17,7 @@ The Agent SDK spawns and supervises a `claude` CLI subprocess that owns a shell,
 
 This page covers self-hosting on your own infrastructure. For deployable Dockerfiles and Kubernetes manifests, see the [hosting cookbook](https://github.com/anthropics/claude-cookbooks/tree/main/claude_agent_sdk/hosting).
 
-If you do not need infrastructure control, custom isolation, or your own data plane, consider [Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview) instead: a hosted REST API where Anthropic runs the agent and the sandbox, so your application sends events and streams back results with no hosting infrastructure to operate.
+If you don't need to run the agent loop itself on your own infrastructure, consider [Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview) instead. Anthropic hosts the agent loop, and your application sends events and receives streamed results through the client SDKs or the REST API. Tool execution runs in an Anthropic-managed cloud sandbox or a [self-hosted sandbox](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes) on your own infrastructure.
 
 ## The subprocess model
 

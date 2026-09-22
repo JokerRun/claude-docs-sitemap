@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployment_runs/list
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 0dae7668aaf270068dd3a6ef630eeb1ece874c1b6314389f03ea57c54175023b
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 8548b499183ee47a4b872f36918ed31893a4ece2a8a27d6663a9621c584ec0ea
 ---
 
 ---
@@ -66,7 +66,11 @@ List Deployment Runs
 
   - `"schedule"`
 
+    The run was fired by the deployment's cron schedule.
+
   - `"manual"`
+
+    The run was started manually by creating a session directly against the deployment.
 
 ## Headers
 
@@ -171,6 +175,10 @@ List Deployment Runs
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

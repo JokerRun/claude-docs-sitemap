@@ -1,23 +1,43 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 104305bcdef39780dc0fe148215f3741536d2bd315d4ce4a13cbeef522f0bfbf
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: eb5b3c66e735fac2b82fc048687cca06946f887527cd19c3516199151c65cbea
 ---
 
 ---
 title: Alat eksekusi kode
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
 description: Jalankan kode Python dan bash dalam container sandbox untuk menganalisis data, menghasilkan file, dan melakukan iterasi pada solusi.
+featureMetadata:
+  status: ga
+  zdr: not-eligible
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-opus-5
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-5
+    - claude-sonnet-4-6
+    - claude-sonnet-4-5-20250929
+    - claude-haiku-4-5-20251001
+  supportedPlatforms:
+    Claude API: ga
+    Claude Platform on AWS: ga
+    Amazon Bedrock: not available
+    Google Cloud: not available
+    Microsoft Foundry:
+      availability: ga
+      note: Di [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), eksekusi kode memerlukan [deployment Hosted on Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure).
+  details:
+    - Setiap model yang didukung menerima ketiga [versi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#tool-versions). Pada Claude Haiku 4.5, pemanggilan alat terprogram dan persistensi status REPL tidak tersedia, sehingga versi yang lebih baru berperilaku seperti `code_execution_20250825` di sana.
+    - Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), eksekusi kode didukung di Claude API dan Microsoft Foundry.
 ---
-
-## Compatibility
-- [ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention): not eligible
-- Supported models: `claude-fable-5-1`, `claude-mythos-5-1`, `claude-fable-5`, `claude-mythos-5`, `claude-opus-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-opus-4-6`, `claude-opus-4-5-20251101`, `claude-sonnet-5`, `claude-sonnet-4-6`, `claude-sonnet-4-5-20250929`, `claude-haiku-4-5-20251001`
-- Platforms: Claude API, Claude Platform on AWS, Microsoft Foundry [1]; not available on Amazon Bedrock, Google Cloud
-- Setiap model yang didukung menerima ketiga [versi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#tool-versions). Pada Claude Haiku 4.5, pemanggilan alat terprogram dan persistensi status REPL tidak tersedia, sehingga versi yang lebih baru berperilaku seperti `code_execution_20250825` di sana.
-- Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), eksekusi kode didukung di Claude API dan Microsoft Foundry.
-1. Di [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), eksekusi kode memerlukan [deployment Hosted on Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure).
 
 Claude dapat menganalisis data, membuat visualisasi, melakukan perhitungan kompleks, menjalankan perintah sistem, membuat dan mengedit file, serta memproses file yang diunggah langsung di dalam percakapan API. Alat eksekusi kode memungkinkan Claude menjalankan perintah Bash dan memanipulasi file, termasuk menulis kode, dalam lingkungan "sandbox" (lingkungan terisolasi) yang aman.
 
@@ -693,12 +713,12 @@ Ketika Claude menyimpan file ke direktori output-nya selama eksekusi kode (lihat
   	fileIDs := extractFileIDs(response)
 
   	for _, fileID := range fileIDs {
-  		fileMetadata, err := client.Files.GetMetadata(ctx, fileID)
+  		fileMetadata, err := client.Files.GetMetadata(ctx, fileID, anthropic.FileGetMetadataParams{})
   		if err != nil {
   			log.Fatal(err)
   		}
 
-  		fileContent, err := client.Files.Download(ctx, fileID)
+  		fileContent, err := client.Files.Download(ctx, fileID, anthropic.FileDownloadParams{})
   		if err != nil {
   			log.Fatal(err)
   		}

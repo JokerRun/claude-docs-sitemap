@@ -1,19 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/define-outcomes
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: b565a2d7a0685d2eae3c102c5ddf52a90cbe5c60feb5de27b5561c606ab8e6c7
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: c609fca2ca842575df8ea47eeea2cc00b460e8c0698cebde38db9868d1e9fab0
 ---
 
 ---
 title: Define outcomes
 url: https://platform.claude.com/docs/en/managed-agents/define-outcomes
 description: Tell the agent what 'done' looks like, and let it iterate until it gets there.
+featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
-
-## Compatibility
-- Status: Beta
-- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `managed-agents-2026-04-01`
 
 An outcome tells the session what the end result should look like and how to measure its quality. The agent works toward that target, self-evaluating and iterating until the outcome is met.
 

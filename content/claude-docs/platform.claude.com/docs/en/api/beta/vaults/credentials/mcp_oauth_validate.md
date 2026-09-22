@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/mcp_oauth_validate
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 7c33b7becb8d4510d96377cdf057fb2e247e6d14cfa145c644fb7aba8c91e966
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 8f89f10026bdf6496609e2d5553f73426a9e340f513d4aac001fa609b5c67b84
 ---
 
 ---
@@ -20,7 +20,11 @@ Validate Credential
 
 - `vault_id: string`
 
+  Identifier of the vault containing the credential.
+
 - `credential_id: string`
+
+  Unique identifier of the credential to validate.
 
 ## Headers
 
@@ -126,6 +130,10 @@ Validate Credential
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 ## Returns
 
 - `BetaManagedAgentsCredentialValidation object`
@@ -186,11 +194,19 @@ Validate Credential
 
       - `"succeeded"`
 
+        The token endpoint returned a new access token.
+
       - `"failed"`
+
+        The token endpoint returned an error response. See `http_response` for detail.
 
       - `"connect_error"`
 
+        The token endpoint could not be reached (DNS, TLS, or connection error).
+
       - `"no_refresh_token"`
+
+        No refresh token is stored for the credential, so no exchange was attempted.
 
   - `status: BetaManagedAgentsCredentialValidationStatus`
 
@@ -198,9 +214,15 @@ Validate Credential
 
     - `"valid"`
 
+      The credential successfully authenticated against its MCP server.
+
     - `"invalid"`
 
+      The probe reached the MCP server and was rejected, and a refresh (if attempted) did not recover it.
+
     - `"unknown"`
+
+      The probe could not determine validity — for example, a transport error or a successful refresh that was not re-probed.
 
   - `validated_at: string`
 

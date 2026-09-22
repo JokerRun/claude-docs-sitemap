@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: a67e223a5b972aa6cee399419865fe6265e6338a5581c719504cbb98a95ece8e
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 7c2f331466de6487628cb596b00a933f0fd8ce6c65615e15da1858804d52362c
 ---
 
 ---
@@ -445,6 +445,8 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
     <?php
 
     use Anthropic\Client;
+    use Anthropic\Beta\Messages\BetaTextBlock;
+    use Anthropic\Beta\Messages\BetaToolUseBlock;
     use Anthropic\Lib\Tools\BetaRunnableTool;
     use Anthropic\Messages\Model;
 
@@ -502,10 +504,13 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
 
     foreach ($runner as $message) {
         foreach ($message->content as $block) {
-            if ($block->type === 'text') {
-                echo $block->text, "\n";
-            } elseif ($block->type === 'tool_use') {
-                echo "[Tool call: {$block->name}]\n";
+            switch (true) {
+                case $block instanceof BetaTextBlock:
+                    echo $block->text, "\n";
+                    break;
+                case $block instanceof BetaToolUseBlock:
+                    echo "[Tool call: {$block->name}]\n";
+                    break;
             }
         }
     }
@@ -1458,7 +1463,7 @@ Di Python dan TypeScript SDK, gunakan metode respons alat untuk mendapatkan hasi
     foreach ($runner as $message) {
         $toolResults = [];
         foreach ($message->content as $block) {
-            if ($block instanceof BetaToolUseBlock) {
+            if ($block instanceof \Anthropic\Beta\Messages\BetaToolUseBlock) {
                 $toolResults[] = [
                     'type' => 'tool_result',
                     'tool_use_id' => $block->id,
@@ -1470,14 +1475,14 @@ Di Python dan TypeScript SDK, gunakan metode respons alat untuk mendapatkan hasi
         }
 
         if ($toolResults !== []) {
-            // pushMessages() menandai state sebagai telah diubah, sehingga runner melewati
+            // pushMessages() menandai state sebagai termutasi, sehingga runner melewati
             // penambahan otomatisnya. Push pesan asisten dan hasil alat.
             $runner->pushMessages(
                 ['role' => 'assistant', 'content' => $message->content],
                 ['role' => 'user', 'content' => $toolResults],
             );
         }
-        // Tidak ada pemanggilan alat: biarkan state tidak tersentuh agar loop berhenti.
+        // Tidak ada panggilan alat: biarkan state tidak berubah agar loop berhenti.
     }
     ```
   </Tab>

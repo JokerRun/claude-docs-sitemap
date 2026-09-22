@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/settings/retrieve
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: d5dfb74b2b057c16bcb7e9aa1d870f468915d208e6de7aab8be737dd1bc727c3
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 23bef3ad9adfb52237c1052e5e689de42071309d41f88099fd40ccf88faad7cc
 ---
 
 ---
@@ -100,7 +100,7 @@ unknown organizations and organizations outside the hierarchy return 404.
 
       default: boolean
 
-    - `name: "access_transparency_enabled" or "ai_powered_artifacts_enabled" or "api_workbench_feedback_collection_enabled" or 57 more`
+    - `name: "access_transparency_enabled" or "ai_powered_artifacts_enabled" or "api_workbench_feedback_collection_enabled" or 58 more`
 
       - `"access_transparency_enabled"`
 
@@ -115,6 +115,8 @@ unknown organizations and organizations outside the hierarchy return 404.
       - `"ask_your_org_enabled"`
 
       - `"chat_enabled"`
+
+      - `"claude_academy_inference_enabled"`
 
       - `"claude_ai_chat_sharing_enabled"`
 

@@ -1,21 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/reference
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 51de3e7e9978bf15a40372a883063800686531192689ea433dfab0ff8ef846fb
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 7d422672594c8a7840b50b9a03ab71095896e7153a4d70d1fcddd4001c9479ea
 ---
 
 ---
 title: Referensi
 url: https://platform.claude.com/docs/id/managed-agents/reference
 description: Tipe event, flag CLI worker self-hosted, tipe server MCP yang didukung, batas laju, dan pedoman branding untuk Claude Managed Agents.
+featureMetadata:
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
 
 Halaman ini mengumpulkan materi referensi untuk Claude Managed Agents. Untuk panduan berorientasi tugas, ikuti tautan di setiap bagian. Untuk operasi pada resource sesi, lihat [Operasi sesi](https://platform.claude.com/docs/id/managed-agents/session-operations).
-
-<Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
-</Note>
 
 ## Tipe event
 

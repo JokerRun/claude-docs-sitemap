@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/retrieve
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: b8f04d0c09eb193a4d11c0875cb34a33aea51c92fec24cc6a51b35a3fe394682
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 490d83c4ba9c1c6add5e08daf17b5d0b8b4150464144b92912755e71e03dd505
 ---
 
 ---
@@ -127,6 +127,10 @@ Retrieve detailed information about a specific work item.
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

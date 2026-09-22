@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/discover-plugins
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: 2600fca633e0c31edd0ac5a0f8816e1fedee1f554c4c3ed6acc393966b2a1784
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: a91b8196a7347d39deb8c16ed66c5452556068d5c5b0c257ff7755323f10113d
 ---
 
 > ## Documentation Index
@@ -45,7 +45,11 @@ To install a plugin from the official marketplace, use `/plugin install <name>@c
 /plugin install github@claude-plugins-official
 ```
 
-`/plugin` opens an interactive panel in the terminal CLI. If Claude replies that `/plugin` isn't available in this environment, use the [plugin browser](/docs/en/desktop#install-plugins) in the Claude desktop app, or declare the plugin under [`enabledPlugins`](/docs/en/settings-reference#enabledplugins) in `.claude/settings.json` for cloud sessions.
+`/plugin` opens an interactive panel in the terminal CLI. If Claude replies that `/plugin` isn't available in this environment, install the plugin another way:
+
+* **Claude desktop app**: use the [plugin browser](/docs/en/desktop#install-plugins).
+* **VS Code extension**: install from the [**Manage plugins** dialog](/docs/en/vs-code#manage-plugins).
+* **Cloud sessions**: enable the plugin for your claude.ai account so Claude Code loads it as a [synced plugin](/docs/en/plugins-reference#synced-plugins).
 
 If the install fails, match the message Claude Code reports:
 

@@ -1,23 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: cade72c6e38bb2973c31463d70e2fc10600bf6c227a6ac5eb1c8c8c6f2f9976f
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 8cc17c2c7f028405d8ed1dce620e5ef69e39acce3d74dae9c3ed49bb3809573c
 ---
 
 ---
 title: Referensi sandbox cloud
 url: https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference
 description: Paket, database, dan utilitas pra-instal yang tersedia di sandbox cloud.
+featureMetadata:
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
 
 Sandbox cloud berjalan sebagai kontainer Linux terisolasi pada infrastruktur yang dikelola Anthropic. Sandbox ini sudah dilengkapi dengan serangkaian lengkap bahasa pemrograman, database, dan utilitas yang telah terinstal sebelumnya. Agen dapat langsung menggunakannya tanpa langkah instalasi apa pun.
 
 Spesifikasi ini berlaku untuk lingkungan `cloud`. Sandbox self-hosted berjalan pada infrastruktur Anda dengan apa pun yang disediakan oleh worker Anda.
-
-<Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
-</Note>
 
 ## Bahasa pemrograman
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-editing
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: 4dade9f302c9cdc3c8ff91797b421dd37c98634c940825e4a9a68d7fae26a247
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: dfab285c79c8f5552fe0df8b2644dfc25e5bbf9a9dcf1a1e5e9907f41c23b72b
 ---
 
 ---
@@ -2372,7 +2372,7 @@ Add `compaction_control` to your `tool_runner` call to enable automatic summariz
 
   <Tab title="Python">
     <Note>
-      In v1.0 and later, the Python SDK's tool runner does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
+      In v1.0 and later, the Python SDK's tool runner does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
     </Note>
   </Tab>
 
@@ -2396,25 +2396,25 @@ Add `compaction_control` to your `tool_runner` call to enable automatic summariz
 
   <Tab title="C#">
     <Note>
-      The C# SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
+      The C# SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
     </Note>
   </Tab>
 
   <Tab title="Go">
     <Note>
-      The Go SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
+      The Go SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
     </Note>
   </Tab>
 
   <Tab title="Java">
     <Note>
-      The Java SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
+      The Java SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
     </Note>
   </Tab>
 
   <Tab title="PHP">
     <Note>
-      The PHP SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
+      The PHP SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
     </Note>
   </Tab>
 
@@ -2504,7 +2504,7 @@ The threshold determines when compaction occurs. A lower threshold means more fr
 
   <Tab title="Python">
     <Note>
-      In v1.0 and later, the Python SDK's tool runner does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
+      In v1.0 and later, the Python SDK's tool runner does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
     </Note>
   </Tab>
 
@@ -2529,25 +2529,25 @@ The threshold determines when compaction occurs. A lower threshold means more fr
 
   <Tab title="C#">
     <Note>
-      The C# SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
+      The C# SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
     </Note>
   </Tab>
 
   <Tab title="Go">
     <Note>
-      The Go SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
+      The Go SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
     </Note>
   </Tab>
 
   <Tab title="Java">
     <Note>
-      The Java SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
+      The Java SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
     </Note>
   </Tab>
 
   <Tab title="PHP">
     <Note>
-      The PHP SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
+      The PHP SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
     </Note>
   </Tab>
 
@@ -2590,7 +2590,7 @@ You can use a faster or cheaper model for generating summaries:
 
   <Tab title="Python">
     <Note>
-      In v1.0 and later, the Python SDK's tool runner does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
+      In v1.0 and later, the Python SDK's tool runner does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
     </Note>
   </Tab>
 
@@ -2618,25 +2618,25 @@ You can use a faster or cheaper model for generating summaries:
 
   <Tab title="C#">
     <Note>
-      The C# SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
+      The C# SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
     </Note>
   </Tab>
 
   <Tab title="Go">
     <Note>
-      The Go SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
+      The Go SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
     </Note>
   </Tab>
 
   <Tab title="Java">
     <Note>
-      The Java SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
+      The Java SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
     </Note>
   </Tab>
 
   <Tab title="PHP">
     <Note>
-      The PHP SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
+      The PHP SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
     </Note>
   </Tab>
 
@@ -2682,7 +2682,7 @@ You can provide a custom prompt for domain-specific needs. Your prompt should in
 
   <Tab title="Python">
     <Note>
-      In v1.0 and later, the Python SDK's tool runner does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
+      In v1.0 and later, the Python SDK's tool runner does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
     </Note>
   </Tab>
 
@@ -2715,25 +2715,25 @@ You can provide a custom prompt for domain-specific needs. Your prompt should in
 
   <Tab title="C#">
     <Note>
-      The C# SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
+      The C# SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
     </Note>
   </Tab>
 
   <Tab title="Go">
     <Note>
-      The Go SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
+      The Go SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
     </Note>
   </Tab>
 
   <Tab title="Java">
     <Note>
-      The Java SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
+      The Java SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
     </Note>
   </Tab>
 
   <Tab title="PHP">
     <Note>
-      The PHP SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
+      The PHP SDK includes a tool runner, but it does not support client-side `compaction_control`. Use [server-side compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold) instead: it works with the tool runner by passing the `compact_20260112` edit in the request's `context_management` parameter.
     </Note>
   </Tab>
 

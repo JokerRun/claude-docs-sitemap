@@ -1,19 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/agent-setup
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 870eee664ffb02bd891e1a4c0d9808d343222f3367d1c9bb7035916dfc022a13
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 9023af6625b2a2a53a1f4726710350069a1e56260430e786a640dd07cd4a1230
 ---
 
 ---
 title: Define your agent
 url: https://platform.claude.com/docs/en/managed-agents/agent-setup
 description: Create a reusable, versioned agent configuration.
+featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
-
-## Compatibility
-- Status: Beta
-- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `managed-agents-2026-04-01`
 
 An agent is a reusable, versioned configuration that defines persona and capabilities. It bundles the model, system prompt, tools, MCP servers, and skills that shape how Claude behaves during a session.
 
@@ -168,6 +170,10 @@ The examples use curl, the `ant` CLI, or one of the SDKs. If you haven't set one
     tools: [{type: "agent_toolset_20260401"}]
   )
   ```
+
+  <ForLanguage tab="CLI">
+    [`ant apply`](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/apply) creates the agent from `coding-assistant.md`, prints its ID, and records it in `claude-lock.json`. Commit `claude-lock.json` so the next `ant apply` updates this agent instead of creating a second one.
+  </ForLanguage>
 </CodeGroup>
 
 The response echoes your configuration and adds `id`, `type`, `version`, `created_at`, `updated_at`, and `archived_at` fields, and fills in `model` fields you omit, such as `effort`, with their defaults. The `version` starts at 1 and increments each time an update changes the agent.

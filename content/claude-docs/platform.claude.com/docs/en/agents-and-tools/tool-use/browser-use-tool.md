@@ -1,20 +1,34 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: cab42ac0c7ade7c3a8a6edbd41b1c15361a0e4b645d3ff32892c61be5126ff01
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 494a5a435933ac60271121e68eabf317df214614bc975f209c7c8c2b7be29964
 ---
 
 ---
 title: Browser use tool
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool
 description: Let Claude navigate, read, and interact with webpages in your own browser environment with the browser use tool.
+featureMetadata:
+  status: ga
+  zdr:
+    eligibility: eligible
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-opus-5
+    - claude-sonnet-5
+    - claude-opus-4-8
+  supportedPlatforms:
+    Claude API: ga
+    Claude Platform on AWS: not available
+    Amazon Bedrock: not available
+    Google Cloud: ga
+    Microsoft Foundry: not available
 ---
-
-## Compatibility
-- [ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention): eligible (excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))
-- Supported models: `claude-fable-5-1`, `claude-mythos-5-1`, `claude-fable-5`, `claude-mythos-5`, `claude-opus-5`, `claude-sonnet-5`, `claude-opus-4-8`
-- Platforms: Claude API, Google Cloud; not available on Claude Platform on AWS, Amazon Bedrock, Microsoft Foundry
 
 The browser use tool lets Claude navigate, read, and interact with webpages in a browser that your application runs. Claude works with the page both through its structure (the accessibility tree, elements, forms, and tabs) and through screenshots and viewport coordinates.
 

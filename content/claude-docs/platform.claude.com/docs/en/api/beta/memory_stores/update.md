@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/update
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 587524715dfca237df5be8e182a8eebb7aedcdc02e97f41fca122664d7a09d28
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: c51461b842d40bbeb383841b10d379d3a9d54dc4cc0d7516b95894aa8233359a
 ---
 
 ---
@@ -19,6 +19,8 @@ Update a memory store
 ## Path parameters
 
 - `memory_store_id: string`
+
+  ID of the memory store to update (a `memstore_...` identifier). Required. Enumerate IDs via `GET /v1/memory_stores`. Updating an archived store returns 400.
 
 ## Headers
 
@@ -123,6 +125,10 @@ Update a memory store
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Body parameters
 

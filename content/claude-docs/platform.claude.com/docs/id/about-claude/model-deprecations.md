@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/model-deprecations
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 4d33a492e28ae076bfe4aacae3f82e49f297a98c5adcffb49486f4be096f78b4
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 3e2c7cee5c7f7f8ee2b9dd4d47a0e5d439959df28cf054b5eadd3c76e917440b
 ---
 
 ---
@@ -77,25 +77,28 @@ Pada suatu saat, Anthropic berharap dapat membuat model-model lama tersedia kemb
 
 Model saat ini dan yang baru saja dipensiunkan tercantum dalam tabel berikut beserta statusnya:
 
-| Nama model API             | Status saat ini | Dihentikan       | Tanggal pensiun tentatif                |
-| -------------------------- | --------------- | ---------------- | --------------------------------------- |
-| claude-fable-5-1           | Aktif           | N/A              | Tidak lebih awal dari 1 September 2027  |
-| claude-fable-5             | Aktif           | N/A              | Tidak lebih awal dari 9 Juni 2027       |
-| claude-opus-5              | Aktif           | N/A              | Tidak lebih awal dari 24 Juli 2027      |
-| claude-opus-4-8            | Aktif           | N/A              | Tidak lebih awal dari 28 Mei 2027       |
-| claude-opus-4-7            | Aktif           | N/A              | Tidak lebih awal dari 16 April 2027     |
-| claude-opus-4-6            | Aktif           | N/A              | Tidak lebih awal dari 5 Februari 2027   |
-| claude-opus-4-5-20251101   | Aktif           | N/A              | Tidak lebih awal dari 24 November 2026  |
-| claude-opus-4-1-20250805   | Dipensiunkan    | 5 Juni 2026      | 5 Agustus 2026                          |
-| claude-opus-4-20250514     | Dipensiunkan    | 14 April 2026    | 15 Juni 2026                            |
-| claude-sonnet-5            | Aktif           | N/A              | Tidak lebih awal dari 30 Juni 2027      |
-| claude-sonnet-4-6          | Aktif           | N/A              | Tidak lebih awal dari 17 Februari 2027  |
-| claude-sonnet-4-5-20250929 | Aktif           | N/A              | Tidak lebih awal dari 29 September 2026 |
-| claude-sonnet-4-20250514   | Dipensiunkan    | 14 April 2026    | 15 Juni 2026                            |
-| claude-3-7-sonnet-20250219 | Dipensiunkan    | 28 Oktober 2025  | 19 Februari 2026                        |
-| claude-haiku-4-5-20251001  | Aktif           | N/A              | Tidak lebih awal dari 15 Oktober 2026   |
-| claude-3-5-haiku-20241022  | Dipensiunkan    | 19 Desember 2025 | 19 Februari 2026                        |
-| claude-3-haiku-20240307    | Dipensiunkan    | 19 Februari 2026 | 20 April 2026                           |
+| API model name             | Current state | Deprecated        | Tentative retirement date          |
+| :------------------------- | :------------ | :---------------- | :--------------------------------- |
+| claude-fable-5-1           | Active        | N/A               | Not sooner than September 1, 2027  |
+| claude-mythos-5-1          | Active        | N/A               | Not sooner than September 1, 2027  |
+| claude-fable-5             | Active        | N/A               | Not sooner than June 9, 2027       |
+| claude-mythos-5            | Active        | N/A               | Not sooner than June 9, 2027       |
+| claude-mythos-preview      | Deprecated    | June 9, 2026      | To be announced                    |
+| claude-opus-5              | Active        | N/A               | Not sooner than July 24, 2027      |
+| claude-opus-4-8            | Active        | N/A               | Not sooner than May 28, 2027       |
+| claude-opus-4-7            | Active        | N/A               | Not sooner than April 16, 2027     |
+| claude-opus-4-6            | Active        | N/A               | Not sooner than February 5, 2027   |
+| claude-opus-4-5-20251101   | Active        | N/A               | Not sooner than November 24, 2026  |
+| claude-opus-4-1-20250805   | Retired       | June 5, 2026      | August 5, 2026                     |
+| claude-opus-4-20250514     | Retired       | April 14, 2026    | June 15, 2026                      |
+| claude-sonnet-5            | Active        | N/A               | Not sooner than June 30, 2027      |
+| claude-sonnet-4-6          | Active        | N/A               | Not sooner than February 17, 2027  |
+| claude-sonnet-4-5-20250929 | Active        | N/A               | Not sooner than September 29, 2026 |
+| claude-sonnet-4-20250514   | Retired       | April 14, 2026    | June 15, 2026                      |
+| claude-3-7-sonnet-20250219 | Retired       | October 28, 2025  | February 19, 2026                  |
+| claude-haiku-4-5-20251001  | Active        | N/A               | Not sooner than October 15, 2026   |
+| claude-3-5-haiku-20241022  | Retired       | December 19, 2025 | February 19, 2026                  |
+| claude-3-haiku-20240307    | Retired       | February 19, 2026 | April 20, 2026                     |
 
 ## Riwayat penghentian
 

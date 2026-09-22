@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/retrieve
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 32c8079fc46ea8f2b29f590bb4641b84709af1155d50dc3ada252af4137702a2
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 2346890875ef14c0414acabc25a96c8a5ee7634935316f5d0e46beff23d60446
 ---
 
 ---
@@ -125,6 +125,10 @@ Get Session Resource
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

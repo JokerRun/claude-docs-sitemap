@@ -1,23 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: 677cc525c3a76c5b929869c948dab2215f2e7221ab453d557a1d7968c1453bce
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 72b9c4ccaff8b37f99776437a8e483ab4322cfd53e0ccee9cc19ca88cf45b98f
 ---
 
 ---
 title: Orkestrasi multiagen
 url: https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration
 description: Koordinasikan beberapa agen dalam satu sesi.
+featureMetadata:
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
 
 Orkestrasi multiagen memungkinkan satu agen berkoordinasi dengan agen lain untuk menyelesaikan pekerjaan yang kompleks. Agen dapat bertindak secara paralel dengan konteks terisolasi masing-masing, yang membantu meningkatkan kualitas output dan juga dapat mempercepat waktu penyelesaian.
 
 Tidak yakin apakah pengaturan multiagen cocok untuk masalah Anda? Lihat [kapan menggunakan sistem multiagen (dan kapan tidak)](https://claude.com/blog/building-multi-agent-systems-when-and-how-to-use-them).
-
-<Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
-</Note>
 
 ## Cara kerjanya
 
@@ -422,7 +421,9 @@ Server MCP memiliki cakupan agen (setiap definisi agen mendeklarasikan server da
 
 [Override konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) saat pembuatan sesi dapat menggantikan server MCP koordinator dan server MCP salinan `self`-nya.
 
-<CodeGroup>
+Buat agen researcher, yang mendeklarasikan server MCP GitHub, dan koordinator yang mendelegasikan ke researcher tersebut:
+
+<CodeGroup defaultLanguage="CLI">
   ```bash cURL
   research_agent_id=$(curl --fail-with-body -sS "$BASE/v1/agents" "${H[@]}" --data @- <<'EOF' | jq -er '.id'
   {
@@ -446,16 +447,6 @@ Server MCP memiliki cakupan agen (setiap definisi agen mendeklarasikan server da
   }
   EOF
   )
-
-  session_id=$(curl --fail-with-body -sS "$BASE/v1/sessions" "${H[@]}" --data @- <<EOF | jq -er '.id'
-  {
-    "agent": "$coordinator_id",
-    "environment_id": "$environment_id",
-    "vault_ids": ["$vault_id"]
-  }
-  EOF
-  )
-  echo "$session_id"
   ```
 
   <MultiFileExample language="cli" label="CLI">
@@ -493,15 +484,6 @@ Server MCP memiliki cakupan agen (setiap definisi agen mendeklarasikan server da
       ---
       ```
     </File>
-
-    ```bash CLI
-    session_id=$(ant beta:sessions create \
-      --agent "$coordinator_id" \
-      --environment-id "$environment_id" \
-      --vault-id "$vault_id" \
-      --transform id --raw-output)
-    echo "$session_id"
-    ```
   </MultiFileExample>
 
   ```python Python
@@ -523,13 +505,6 @@ Server MCP memiliki cakupan agen (setiap definisi agen mendeklarasikan server da
           "agents": [{"type": "agent", "id": research_agent.id}],
       },
   )
-
-  session = client.beta.sessions.create(
-      agent=coordinator.id,
-      environment_id=environment.id,
-      vault_ids=[vault.id],
-  )
-  print(session.id)
   ```
 
   ```typescript TypeScript
@@ -551,13 +526,6 @@ Server MCP memiliki cakupan agen (setiap definisi agen mendeklarasikan server da
       agents: [{ type: "agent", id: researchAgent.id }],
     },
   });
-
-  const session = await client.beta.sessions.create({
-    agent: coordinator.id,
-    environment_id: environment.id,
-    vault_ids: [vault.id],
-  });
-  console.log(session.id);
   ```
 
   ```csharp C#
@@ -608,14 +576,6 @@ Server MCP memiliki cakupan agen (setiap definisi agen mendeklarasikan server da
           ],
       },
   });
-
-  var session = await client.Beta.Sessions.Create(new()
-  {
-      Agent = coordinator.ID,
-      EnvironmentID = environment.ID,
-      VaultIds = [vault.ID],
-  });
-  Console.WriteLine(session.ID);
   ```
 
   ```go Go
@@ -659,18 +619,6 @@ Server MCP memiliki cakupan agen (setiap definisi agen mendeklarasikan server da
   if err != nil {
   	panic(err)
   }
-
-  session, err := client.Beta.Sessions.New(ctx, anthropic.BetaSessionNewParams{
-  	Agent: anthropic.BetaSessionNewParamsAgentUnion{
-  		OfString: anthropic.String(coordinator.ID),
-  	},
-  	EnvironmentID: environment.ID,
-  	VaultIDs:      []string{vault.ID},
-  })
-  if err != nil {
-  	panic(err)
-  }
-  fmt.Println(session.ID)
   ```
 
   ```java Java
@@ -706,13 +654,6 @@ Server MCP memiliki cakupan agen (setiap definisi agen mendeklarasikan server da
               .build())
           .build()
   );
-
-  var session = client.beta().sessions().create(SessionCreateParams.builder()
-      .agent(coordinator.id())
-      .environmentId(environment.id())
-      .vaultIds(List.of(vault.id()))
-      .build());
-  IO.println(session.id());
   ```
 
   ```php PHP
@@ -740,13 +681,6 @@ Server MCP memiliki cakupan agen (setiap definisi agen mendeklarasikan server da
           ],
       ],
   );
-
-  $session = $client->beta->sessions->create(
-      agent: $coordinator->id,
-      environmentID: $environment->id,
-      vaultIDs: [$vault->id],
-  );
-  echo "{$session->id}\n";
   ```
 
   ```ruby Ruby
@@ -774,7 +708,94 @@ Server MCP memiliki cakupan agen (setiap definisi agen mendeklarasikan server da
       ]
     }
   )
+  ```
+</CodeGroup>
 
+Kemudian buat sesi dengan vault yang menyimpan kredensial GitHub:
+
+<CodeGroup>
+  ```bash cURL
+  session_id=$(curl --fail-with-body -sS "$BASE/v1/sessions" "${H[@]}" --data @- <<EOF | jq -er '.id'
+  {
+    "agent": "$coordinator_id",
+    "environment_id": "$environment_id",
+    "vault_ids": ["$vault_id"]
+  }
+  EOF
+  )
+  echo "$session_id"
+  ```
+
+  ```bash CLI
+  session_id=$(ant beta:sessions create \
+    --agent "$coordinator_id" \
+    --environment-id "$environment_id" \
+    --vault-id "$vault_id" \
+    --transform id --raw-output)
+  echo "$session_id"
+  ```
+
+  ```python Python
+  session = client.beta.sessions.create(
+      agent=coordinator.id,
+      environment_id=environment.id,
+      vault_ids=[vault.id],
+  )
+  print(session.id)
+  ```
+
+  ```typescript TypeScript
+  const session = await client.beta.sessions.create({
+    agent: coordinator.id,
+    environment_id: environment.id,
+    vault_ids: [vault.id],
+  });
+  console.log(session.id);
+  ```
+
+  ```csharp C#
+  var session = await client.Beta.Sessions.Create(new()
+  {
+      Agent = coordinator.ID,
+      EnvironmentID = environment.ID,
+      VaultIds = [vault.ID],
+  });
+  Console.WriteLine(session.ID);
+  ```
+
+  ```go Go
+  session, err := client.Beta.Sessions.New(ctx, anthropic.BetaSessionNewParams{
+  	Agent: anthropic.BetaSessionNewParamsAgentUnion{
+  		OfString: anthropic.String(coordinator.ID),
+  	},
+  	EnvironmentID: environment.ID,
+  	VaultIDs:      []string{vault.ID},
+  })
+  if err != nil {
+  	panic(err)
+  }
+  fmt.Println(session.ID)
+  ```
+
+  ```java Java
+  var session = client.beta().sessions().create(SessionCreateParams.builder()
+      .agent(coordinator.id())
+      .environmentId(environment.id())
+      .vaultIds(List.of(vault.id()))
+      .build());
+  IO.println(session.id());
+  ```
+
+  ```php PHP
+  $session = $client->beta->sessions->create(
+      agent: $coordinator->id,
+      environmentID: $environment->id,
+      vaultIDs: [$vault->id],
+  );
+  echo "{$session->id}\n";
+  ```
+
+  ```ruby Ruby
   session = client.beta.sessions.create(
     agent: coordinator.id,
     environment_id: environment.id,

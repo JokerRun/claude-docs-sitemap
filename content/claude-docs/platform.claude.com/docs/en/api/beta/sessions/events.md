@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 340d06c155351b77fe7940968c1523d1db11090b22b169feca7d3426822e81e3
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 2e37bb39d9700c20b30784f87347e5a188560bd74193b32126e2ca290758267b
 ---
 
 ---
@@ -49,8 +49,6 @@ List Events
   format: date-time
 
 - `limit: optional number`
-
-  Query parameter for limit
 
   format: int32
 
@@ -173,6 +171,10 @@ List Events
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ### Returns
 
@@ -2565,6 +2567,10 @@ Send Events
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 ### Body parameters
 
 - `events: array of BetaManagedAgentsEventParams`
@@ -3541,6 +3547,10 @@ Stream Events
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ### Returns
 

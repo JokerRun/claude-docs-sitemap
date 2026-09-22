@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/retrieve
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 9e94a86869b85acb893eead9c498903fbed84651c0ae9178a227966c7d16d2ad
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: ca0897bcde3e0cbe7c77b4bdb852baf7c7fe2ba5238f730204886b6d4b739ccb
 ---
 
 ---
@@ -19,6 +19,8 @@ Get Vault
 ## Path parameters
 
 - `vault_id: string`
+
+  Unique identifier of the vault to retrieve.
 
 ## Headers
 
@@ -123,6 +125,10 @@ Get Vault
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

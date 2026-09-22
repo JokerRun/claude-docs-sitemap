@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployment_runs/retrieve
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 17e967561b2cda07658da2722e45830c7600d5cb65b0118e86b2c3ece9b1d22b
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: a0430cf5e529cd057f0212748d7f07eca9c699dd38768a82bbd9dac46b840a25
 ---
 
 ---
@@ -19,6 +19,8 @@ Get Deployment Run
 ## Path parameters
 
 - `deployment_run_id: string`
+
+  Unique identifier of the deployment run.
 
 ## Headers
 
@@ -123,6 +125,10 @@ Get Deployment Run
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

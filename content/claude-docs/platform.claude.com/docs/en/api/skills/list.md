@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/skills/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 3b7206c5b66eed32dfad767ecf0abea398e393875bb55996fdcaf0bca446c2c7
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 4b6dcdff19435f3f28094be3b285d5bc5f86c0857a4b8623a4ce19db648cfb90
 ---
 
 ---
@@ -44,6 +44,10 @@ List Skills
 ## Headers
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

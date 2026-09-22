@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/preserved-thinking
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: b8d0485e5404b398d69c400f43494d8080e20eb9688398cb5677a561e0167d1f
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: ff06d36f48da4e1b9b17a41eb08517243497dd3bd29092f424366ec9bafa9104
 ---
 
 ---
@@ -147,7 +147,6 @@ Permintaan berikut memilih untuk membuang alih-alih menolak. Pada giliran pertam
 
   ```bash CLI
   ant beta:messages create --beta thinking-binding-controls-2026-08-01 \
-    --transform '{content.#(type=="text")#.text,input_transformations}' \
     --format yaml <<'YAML'
   model: claude-fable-5-1
   max_tokens: 16000
@@ -959,7 +958,7 @@ Anda tetap dapat melakukan "compaction" (pemadatan) di sisi klien. Jika Anda men
 
 Ketika percakapan menjadi terlalu panjang, ringkas seluruh sesi menjadi satu pesan pengguna dan kirim hanya pesan tersebut beserta instruksi berikutnya. Tidak ada bagian sebelumnya yang diputar ulang, sehingga tidak ada thinking tersisa yang dapat gagal dalam pemeriksaan, dan model bernalar dari awal berdasarkan ringkasan.
 
-![Simple compaction (compaction sederhana): permintaan 4 mengirim riwayat lengkap dengan thinking pada setiap giliran asisten; permintaan 5 mengirim satu pesan pengguna yang berisi ringkasan giliran 1 hingga 4 beserta instruksi berikutnya, sehingga tidak ada thinking sebelumnya yang dikirim dan tidak ada yang diperiksa](https://platform.claude.com/docs/images/preserved-thinking-simple-compaction.svg)
+![Simple compaction (pemadatan sederhana): permintaan 4 mengirim riwayat lengkap dengan thinking pada setiap giliran asisten; permintaan 5 mengirim satu pesan pengguna berisi ringkasan giliran 1 hingga 4 ditambah instruksi berikutnya, sehingga tidak ada thinking sebelumnya yang dikirim dan tidak ada yang diperiksa](https://platform.claude.com/docs/images/preserved-thinking-simple-compaction.svg)
 
 ```json
 [
@@ -986,7 +985,7 @@ Cara paling sederhana untuk memenuhi kondisi kedua adalah melakukan compaction t
 
 Sisa bagian ini membahas ringkasan yang Anda tulis sendiri.
 
-![Keep-tail compaction (compaction keep-tail): riwayat diganti dengan ringkasan giliran 1 dan 2 diikuti giliran 3 hingga 5 secara verbatim; thinking pada giliran asisten 3 dan 4 dihasilkan setelah giliran asli, bukan ringkasan, sehingga gagal; permintaan yang sama yang dikirim dengan prefix\_mismatch\_behavior drop\_block berhasil, API membuang kedua blok tersebut dan mencantumkannya di input\_transformations](https://platform.claude.com/docs/images/preserved-thinking-keep-tail-compaction.svg)
+![Keep-tail compaction (pemadatan keep-tail): riwayat diganti dengan ringkasan giliran 1 dan 2 diikuti giliran 3 hingga 5 apa adanya; thinking pada giliran asisten 3 dan 4 dihasilkan setelah giliran asli, bukan ringkasan, sehingga gagal; permintaan yang sama yang dikirim dengan prefix\_mismatch\_behavior drop\_block berhasil, API membuang kedua blok tersebut dan mencantumkannya dalam input\_transformations](https://platform.claude.com/docs/images/preserved-thinking-keep-tail-compaction.svg)
 
 Perbaikan: pertahankan giliran persis seperti adanya dan kirim `prefix_mismatch_behavior: "drop_block"`. API membuang blok thinking yang usang, model membaca blok `text` dan `tool_use` dari giliran yang dipertahankan, dan permintaan berhasil.
 

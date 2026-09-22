@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/list
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: eed5a491fda919b917a6b0875aba5da783e4697b80f2405c54b37f0e66bc2de5
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: b70a4abf6e61e2f36025c88500b9cf3a5a45f2f49ca48d4026f3870bdd718840
 ---
 
 ---
@@ -147,6 +147,10 @@ List memory stores
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

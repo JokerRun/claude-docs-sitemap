@@ -1,19 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/onboarding
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: f11626f1e51ed477e278c12deb1a356f6c7871a23ed3bba97023a50d546cadaf
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: ccf93fce3c446c5d1b4e94267008270dc782c635538333925edca61ed42a0d91
 ---
 
 ---
 title: Build in Console
 url: https://platform.claude.com/docs/en/managed-agents/onboarding
 description: Create, test, and iterate on agents visually in Console, then run them from your code with the API.
+featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
-
-## Compatibility
-- Status: Beta
-- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `managed-agents-2026-04-01`
 
 [Console](https://platform.claude.com/workspaces/default/agent-quickstart/) provides a visual interface for creating and configuring agents. It lets you iterate on configuration interactively before writing code.
 

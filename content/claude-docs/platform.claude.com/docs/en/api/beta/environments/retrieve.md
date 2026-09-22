@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/retrieve
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 39023bbc54e6bc968fa34528a3998e7e52f0bbab00512eea1397d08916e181c7
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 553f020565a628e34cf4112aedb1b771996c3e9e3ae22820fe35a7eedc2fa8ef
 ---
 
 ---
@@ -123,6 +123,10 @@ Retrieve a specific environment by ID.
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

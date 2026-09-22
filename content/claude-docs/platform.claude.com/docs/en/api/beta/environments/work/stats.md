@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/stats
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 5aaedb2d7feca3a9a67dd95e637f96bc235ed2dcd8a39b30572ee4548ac1a35b
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 665f1b3586db631c4d048e218a22c0bbd824631cab04adf523121cd95eb0b7c7
 ---
 
 ---
@@ -123,6 +123,10 @@ Get statistics about the work queue for an environment.
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

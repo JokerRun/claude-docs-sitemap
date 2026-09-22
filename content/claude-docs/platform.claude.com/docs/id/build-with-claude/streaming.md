@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 5ffec2d72bb929d1bb941f57399f3e661b51ccf75f815991ed57056dcf25e7e9
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 148599e1f22015f3792b17c69dff02c484a998d0f5eb8c43973d7cada261383d
 ---
 
 ---
@@ -1020,10 +1020,12 @@ Permintaan ini mengaktifkan thinking dengan streaming. Pengaturan `display: "sum
   ) as stream:
       for event in stream:
           if event.type == "content_block_delta":
-              if event.delta.type == "thinking_delta":
-                  print(event.delta.thinking, end="", flush=True)
-              elif event.delta.type == "text_delta":
-                  print(event.delta.text, end="", flush=True)
+              delta = event.delta
+              match delta.type:
+                  case "thinking_delta":
+                      print(delta.thinking, end="", flush=True)
+                  case "text_delta":
+                      print(delta.text, end="", flush=True)
   ```
 
   ```typescript TypeScript
@@ -1043,10 +1045,13 @@ Permintaan ini mengaktifkan thinking dengan streaming. Pengaturan `display: "sum
 
   for await (const event of stream) {
     if (event.type === "content_block_delta") {
-      if (event.delta.type === "thinking_delta") {
-        process.stdout.write(event.delta.thinking);
-      } else if (event.delta.type === "text_delta") {
-        process.stdout.write(event.delta.text);
+      switch (event.delta.type) {
+        case "thinking_delta":
+          process.stdout.write(event.delta.thinking);
+          break;
+        case "text_delta":
+          process.stdout.write(event.delta.text);
+          break;
       }
     }
   }
@@ -1161,11 +1166,13 @@ Permintaan ini mengaktifkan thinking dengan streaming. Pengaturan `display: "sum
   )
 
   stream.each do |event|
-    if event.type == :content_block_delta
-      if event.delta.type == :thinking_delta
-        print(event.delta.thinking)
-      elsif event.delta.type == :text_delta
-        print(event.delta.text)
+    if event.is_a?(Anthropic::Models::RawContentBlockDeltaEvent)
+      delta = event.delta
+      case delta
+      when Anthropic::Models::ThinkingDelta
+        print(delta.thinking)
+      when Anthropic::Models::TextDelta
+        print(delta.text)
       end
     end
   end

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/delete
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: cfc92cadd08c192437aabe2098dde459169cb559d49bbf47e48ea61a31b0fd8b
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: ce84075c26ab1e601287efab998d23861f7c386e6736808eb18024c1d9e70af7
 ---
 
 ---
@@ -129,6 +129,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

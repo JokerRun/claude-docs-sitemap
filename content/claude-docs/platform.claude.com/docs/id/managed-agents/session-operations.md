@@ -1,21 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-operations
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: c1348ea3e7e450a4b5f749d0fb8ac35b168f7b7f8ca97b5420a174764451b7cc
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 05e4d10047337210aed71c052a4bd6d7a92f307636671b5b676b7c1d18f2f067
 ---
 
 ---
 title: Operasi sesi
 url: https://platform.claude.com/docs/id/managed-agents/session-operations
 description: Mengambil, mendaftar, memperbarui, mengarsipkan, dan menghapus sesi Claude Managed Agents.
+featureMetadata:
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
 
 Setelah sebuah sesi ada, gunakan operasi-operasi ini untuk membaca, memperbarui, mengarsipkan, atau menghapusnya. Lihat [Memulai sesi](https://platform.claude.com/docs/id/managed-agents/sessions) untuk membuat sesi dan mengirimkan pekerjaan kepadanya.
-
-<Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
-</Note>
 
 ## Status sesi
 
@@ -38,7 +37,7 @@ Semantik pembaruan `tools` atau `mcp_servers` adalah penggantian penuh: array ya
 
 Sesi harus berstatus `idle` untuk memperbarui agen. Untuk memperbarui agen saat sesi sedang berjalan, kirimkan [event `user.interrupt`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events) secara tersendiri dan tunggu hingga sesi menjadi `idle`.
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   curl -sS --fail-with-body "https://api.anthropic.com/v1/sessions/$SESSION_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -224,7 +223,7 @@ Sesi yang [dibuat dengan anggaran](https://platform.claude.com/docs/id/managed-a
 
 ## Mengambil sesi
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -283,7 +282,7 @@ Untuk kembali satu halaman, teruskan `prev_page` sebagai parameter `page`. `prev
 
 Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang menghasilkannya. Parameter query `order` menetapkan arah pengurutan hasil, `asc` atau `desc` berdasarkan waktu pembuatan; nilai default-nya adalah `desc` (terbaru lebih dulu). Menggunakan kembali kursor dengan `order` yang berbeda akan mengembalikan kesalahan 400, begitu pula mengubah filter `created_at` sehingga mengecualikan posisi kursor. Parameter query lainnya, termasuk filter-filter yang tersisa dan `limit`, dapat berubah di antara permintaan yang dipaginasi. Untuk field paginasi yang digunakan bersama di seluruh endpoint daftar, lihat [Paginasi](https://platform.claude.com/docs/id/api/overview#pagination).
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   first_page=$(curl -sS --fail-with-body \
     "https://api.anthropic.com/v1/sessions?agent_id=$AGENT_ID&limit=1" \
@@ -309,8 +308,8 @@ Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang mengha
   ```
 
   ```bash CLI
-  # --format raw returns one page envelope with its prev_page and next_page
-  # cursors; the default output auto-paginates and emits only the sessions.
+  # --format raw mengembalikan satu amplop halaman dengan kursor prev_page dan
+  # next_page-nya; output default melakukan paginasi otomatis dan hanya mengeluarkan sesi.
   cursors=$(ant beta:sessions list \
     --agent-id "$AGENT_ID" \
     --limit 1 \
@@ -318,7 +317,7 @@ Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang mengha
     --transform '{prev_page,next_page}')
   printf '%s\n' "$cursors"
 
-  # Pass the next_page cursor back as --page to fetch the next page.
+  # Teruskan kursor next_page kembali sebagai --page untuk mengambil halaman berikutnya.
   NEXT_PAGE=$(jq -r '.next_page' <<< "$cursors")
   ant beta:sessions list \
     --agent-id "$AGENT_ID" \
@@ -326,7 +325,7 @@ Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang mengha
     --page "$NEXT_PAGE" \
     --format raw \
     --transform '{prev_page,next_page}'
-  # Pass that response's prev_page as --page to go back the same way.
+  # Teruskan prev_page dari respons itu sebagai --page untuk kembali dengan cara yang sama.
   ```
 
   ```python Python
@@ -540,7 +539,7 @@ Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang mengha
 
 Arsipkan sesi untuk mencegah event baru dikirim sambil tetap mempertahankan riwayatnya. Sesi yang berstatus `running` tidak dapat diarsipkan; untuk mengarsipkannya, kirimkan [event `user.interrupt`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events) secara tersendiri dan tunggu hingga sesi menjadi `idle`.
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   curl -fsSL -X POST "https://api.anthropic.com/v1/sessions/$SESSION_ID/archive" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -591,7 +590,7 @@ Hapus sesi untuk menghilangkan secara permanen catatan, event, dan sandbox terka
 
 Memory store, vault, skill, environment, dan agen adalah sumber daya independen dan tidak terpengaruh oleh penghapusan sesi. File yang Anda unggah melalui Files API juga tidak terpengaruh, tetapi file yang dihasilkan oleh sesi itu sendiri terikat pada sesi tersebut dan dihapus secara permanen bersama sistem file-nya. Unduh apa pun yang perlu Anda simpan sebelum menghapus sesi. File output yang ditulis di akhir giliran terakhir dapat memerlukan beberapa detik setelah sesi menjadi idle untuk muncul di [daftar file sesi](https://platform.claude.com/docs/id/managed-agents/files#listing-and-downloading-session-files), jadi periksa terlebih dahulu bahwa file yang Anda harapkan sudah terdaftar.
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   curl -fsSL -X DELETE "https://api.anthropic.com/v1/sessions/$SESSION_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \

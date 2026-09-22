@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/create
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 43943fb6a142c7e25c50492886a12b0e34d6f39d7c238e2f56d888990938146e
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 7b04c8d8a739cd6cf14794b9e7052586b0f4884adfd6e3f0bc7c3c32a2dd30d0
 ---
 
 ---
@@ -119,6 +119,10 @@ Create Deployment
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Body parameters
 
@@ -1008,7 +1012,11 @@ Create Deployment
 
     - `"active"`
 
+      The deployment is active and can run sessions. Archived deployments also report this status; check `archived_at` to distinguish them.
+
     - `"paused"`
+
+      The deployment is paused. Autonomous triggers are suppressed; manual runs are still permitted.
 
   - `updated_at: string`
 

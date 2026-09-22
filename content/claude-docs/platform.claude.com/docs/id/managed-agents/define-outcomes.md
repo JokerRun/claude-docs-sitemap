@@ -1,14 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: fe06df7e2469c0f980bce604a392c811da32bb8017e83fb9a3b1b7d553365183
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: dcb4ca6cd398b9e9ac42fe719cee7e9e32ab7abe317f3da11b83ec14fd34341a
 ---
 
 ---
 title: Mendefinisikan outcome
 url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
 description: Beri tahu agen seperti apa 'selesai' itu, dan biarkan agen beriterasi hingga mencapainya.
+featureMetadata:
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
 
 Sebuah "outcome" (hasil akhir) memberi tahu sesi seperti apa hasil akhir yang seharusnya dan bagaimana mengukur kualitasnya. Agen bekerja menuju target tersebut, mengevaluasi diri dan beriterasi hingga outcome terpenuhi.
@@ -16,10 +19,6 @@ Sebuah "outcome" (hasil akhir) memberi tahu sesi seperti apa hasil akhir yang se
 Saat Anda mendefinisikan outcome, harness secara otomatis menyediakan sebuah *grader* (penilai) untuk mengevaluasi artefak terhadap sebuah rubrik. Grader menggunakan "context window" (jendela konteks) terpisah agar tidak terpengaruh oleh pilihan implementasi agen utama.
 
 Grader mengembalikan penjelasan yang merangkum kriteria mana yang lolos atau gagal, atau mengonfirmasi bahwa artefak memenuhi rubrik. Umpan balik tersebut diserahkan kembali kepada agen untuk iterasi berikutnya.
-
-<Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
-</Note>
 
 ## Membuat rubrik
 
@@ -293,7 +292,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
 
 <CodeGroup>
   ```bash cURL
-  # Create a session
+  # Membuat sesi
   session=$(curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -308,7 +307,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
   )
   SESSION_ID=$(jq -r '.id' <<<"$session")
 
-  # Define the outcome — agent starts working on receipt
+  # Mendefinisikan hasil — agen mulai bekerja begitu menerimanya
   curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -325,19 +324,19 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
     ]
   }
   EOF
-  # or: "rubric": {"type": "file", "file_id": "$RUBRIC_ID"}
-  # "max_iterations" is optional; default 3, max 20
+  # atau: "rubric": {"type": "file", "file_id": "$RUBRIC_ID"}
+  # "max_iterations" bersifat opsional; default 3, maksimum 20
   ```
 
   ```bash CLI
-  # Create a session
+  # Buat sesi
   SESSION_ID=$(ant beta:sessions create \
     --agent "$AGENT_ID" \
     --environment-id "$ENVIRONMENT_ID" \
     --title "Financial analysis on Costco" \
     --transform id --raw-output)
 
-  # Define the outcome — agent starts working on receipt
+  # Definisikan hasil — agen mulai bekerja saat diterima
   ant beta:sessions:events send --session-id "$SESSION_ID" <<YAML
   events:
     - type: user.define_outcome
@@ -425,7 +424,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
   ```
 
   ```go Go
-  // Create a session
+  // Buat sesi
   session, err := client.Beta.Sessions.New(ctx, anthropic.BetaSessionNewParams{
   	Agent: anthropic.BetaSessionNewParamsAgentUnion{
   		OfString: anthropic.String(agent.ID),
@@ -437,7 +436,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
   	panic(err)
   }
 
-  // Define the outcome — agent starts working on receipt
+  // Definisikan hasil — agen mulai bekerja saat diterima
   _, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   		OfUserDefineOutcome: &anthropic.BetaManagedAgentsUserDefineOutcomeEventParams{
@@ -449,7 +448,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
   					Content: rubric,
   				},
   			},
-  			// or: OfFile: &anthropic.BetaManagedAgentsFileRubricParams{
+  			// atau: OfFile: &anthropic.BetaManagedAgentsFileRubricParams{
   			//     Type: anthropic.BetaManagedAgentsFileRubricParamsTypeFile, FileID: uploaded.ID},
   			MaxIterations: anthropic.Int(5), // optional; default 3, max 20
   		},
@@ -565,7 +564,7 @@ Ini adalah event yang Anda kirim untuk memulai sebuah outcome. Event ini dipantu
 }
 ```
 
-### Outcome evaluation start
+### Awal evaluasi outcome
 
 Dipancarkan saat grader memulai evaluasi atas satu loop iterasi. Field `iteration` adalah penghitung revisi berindeks 0: `0` adalah evaluasi pertama, `1` adalah evaluasi ulang setelah revisi pertama, dan seterusnya.
 
@@ -579,7 +578,7 @@ Dipancarkan saat grader memulai evaluasi atas satu loop iterasi. Field `iteratio
 }
 ```
 
-### Outcome evaluation ongoing
+### Evaluasi outcome sedang berlangsung
 
 Heartbeat yang dipancarkan selama grader berjalan. Penalaran internal grader bersifat tertutup: Anda melihat bahwa grader sedang bekerja, bukan apa yang dipikirkannya.
 
@@ -593,11 +592,11 @@ Heartbeat yang dipancarkan selama grader berjalan. Penalaran internal grader ber
 }
 ```
 
-### Outcome evaluation end
+### Akhir evaluasi outcome
 
 Dipancarkan ketika siklus evaluasi outcome berakhir: setelah grader selesai mengevaluasi satu iterasi, atau ketika sesi diinterupsi saat sebuah outcome sedang aktif. Field `result` menunjukkan apa yang terjadi selanjutnya.
 
-| Result                   | Selanjutnya                                                                                                                                                                                                                             |
+| Hasil                    | Selanjutnya                                                                                                                                                                                                                             |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `satisfied`              | Sesi beralih ke `idle`.                                                                                                                                                                                                                 |
 | `needs_revision`         | Agen memulai siklus iterasi baru.                                                                                                                                                                                                       |
@@ -713,14 +712,14 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk meng
 
 <CodeGroup>
   ```bash cURL
-  # List files produced by this session
-  # scope_id filtering requires the managed-agents beta
+  # Mencantumkan file yang dihasilkan oleh sesi ini
+  # Pemfilteran scope_id memerlukan beta managed-agents
   curl -fsSL "https://api.anthropic.com/v1/files?scope_id=$SESSION_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01"
 
-  # Download a file
+  # Mengunduh file
   FILE_ID=$(curl -fsSL "https://api.anthropic.com/v1/files?scope_id=$SESSION_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -735,11 +734,11 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk meng
   ```
 
   ```bash CLI
-  # List files produced by this session
-  # scope_id filtering requires the managed-agents beta on the files request
+  # Daftar file yang dihasilkan oleh sesi ini
+  # Pemfilteran scope_id memerlukan beta managed-agents pada permintaan files
   ant beta:files list --scope-id "$SESSION_ID" --beta managed-agents-2026-04-01
 
-  # Download a file
+  # Unduh file
   FILE_ID=$(ant beta:files list --scope-id "$SESSION_ID" \
     --beta managed-agents-2026-04-01 \
     --transform 'data[0].id' --raw-output)
@@ -802,8 +801,8 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk meng
   ```
 
   ```go Go
-  // List files produced by this session
-  // (scope_id filtering requires the managed-agents beta on the files request)
+  // Daftar file yang dihasilkan oleh sesi ini
+  // (pemfilteran scope_id memerlukan beta managed-agents pada permintaan files)
   files, err := client.Beta.Files.List(ctx, anthropic.BetaFileListParams{
   	ScopeID: anthropic.String(session.ID),
   	Betas:   []anthropic.AnthropicBeta{anthropic.AnthropicBetaManagedAgents2026_04_01},
@@ -815,7 +814,7 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk meng
   	fmt.Println(file.ID, file.Filename)
   }
 
-  // Download a file
+  // Unduh file
   if len(files.Data) > 0 {
   	resp, err := client.Files.Download(ctx, files.Data[0].ID, anthropic.FileDownloadParams{})
   	if err != nil {

@@ -1,23 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 334872765938ca83d6a5cf82a53a47489fd44dbffdc7882890c8e237aa1e7f1d
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 183c682705be1a5d87662e51eca151179a90d7ef13d457a97773514c79779f7f
 ---
 
 ---
 title: Penyiapan environment cloud
 url: https://platform.claude.com/docs/id/managed-agents/environments
 description: Sesuaikan sandbox cloud untuk sesi Anda.
+featureMetadata:
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
 
 Environment (lingkungan) mendefinisikan konfigurasi sandbox tempat agen Anda berjalan. Anda membuat environment satu kali, lalu mereferensikan ID-nya setiap kali Anda memulai sesi. Beberapa sesi dapat berbagi environment yang sama, tetapi setiap sesi mendapatkan sandbox terisolasinya sendiri (container Linux baru).
 
 Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di infrastruktur Anda sendiri, lihat [Sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes).
-
-<Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
-</Note>
 
 ## Membuat environment
 
@@ -147,7 +146,7 @@ Gunakan `name` yang unik dan deskriptif agar Anda dapat membedakan environment s
 
 Teruskan ID environment sebagai string saat [membuat sesi](https://platform.claude.com/docs/id/managed-agents/sessions).
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   curl -fsS https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -230,7 +229,7 @@ Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dim
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  environment=$(curl -fsS https://api.anthropic.com/v1/environments \
+  curl -fsS https://api.anthropic.com/v1/environments \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -248,7 +247,6 @@ Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dim
     }
   }
   EOF
-  )
   ```
 
   <MultiFileExample language="cli" label="CLI">
@@ -583,27 +581,27 @@ Saat menggunakan jaringan `limited`:
 
 ## Mengelola environment
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
-  # List environments
+  # Daftar environment
   curl -fsS https://api.anthropic.com/v1/environments \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01"
 
-  # Retrieve a specific environment
+  # Ambil environment tertentu
   curl -fsS "https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01"
 
-  # Archive an environment (read-only, existing sessions continue)
+  # Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
   curl -fsS -X POST "https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/archive" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01"
 
-  # Delete an environment (only if no sessions reference it)
+  # Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
   curl -fsS -X DELETE "https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \

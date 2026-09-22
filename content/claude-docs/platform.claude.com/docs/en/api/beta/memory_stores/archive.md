@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/archive
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: f00d38c0b7f612fb2aaa15f15a24dab355b3905f5a3c656f17048356bbfde45e
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 44734902eae7018bedb3cf2746b525d7aa0c328076453d8792eff31fe5607ad3
 ---
 
 ---
@@ -19,6 +19,8 @@ Archive a memory store
 ## Path parameters
 
 - `memory_store_id: string`
+
+  ID of the memory store to archive (a `memstore_...` identifier). Required. Archiving is one-way and idempotent; archived stores cannot be unarchived. Enumerate IDs via `GET /v1/memory_stores`.
 
 ## Headers
 
@@ -123,6 +125,10 @@ Archive a memory store
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

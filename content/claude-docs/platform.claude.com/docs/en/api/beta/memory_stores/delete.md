@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/delete
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 9b04df004bcec65c21db2924d41b50f157078f2314ad47c8021bad20ebe76444
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 503d8b943a3731f6e4437d97239e0473fc2cc37b5028780bfa8f7c80e118cb8d
 ---
 
 ---
@@ -19,6 +19,8 @@ Delete a memory store
 ## Path parameters
 
 - `memory_store_id: string`
+
+  ID of the memory store to permanently delete (a `memstore_...` identifier). Required. Deletion cascades to all memories and memory versions in the store and cannot be undone.
 
 ## Headers
 
@@ -123,6 +125,10 @@ Delete a memory store
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

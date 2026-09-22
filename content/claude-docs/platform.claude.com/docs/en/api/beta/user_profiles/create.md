@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 97a24b17edc3d3bc2aff5f211e890db0c074efa8f26fcd6b6224a1bc3e159e81
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: aefbf7da6ef728613496ce880ab84cb2c43591cd7d7d2b85a083355cdf2afb7d
 ---
 
 ---
@@ -120,6 +120,10 @@ Create User Profile
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 ## Body parameters
 
 - `access_type: optional "application" or "passthrough"`
@@ -128,7 +132,11 @@ Create User Profile
 
   - `"application"`
 
+    The user profile represents an individual end-user of a product that the platform builds on the API. New profiles get this value by default.
+
   - `"passthrough"`
+
+    The user profile represents a company that the platform resells Claude access to.
 
 - `external_id: optional string or null`
 
@@ -146,9 +154,15 @@ Create User Profile
 
     - `"active"`
 
+      The platform has neither restricted nor barred the account of the entity that the user profile represents.
+
     - `"suspended"`
 
+      The platform has restricted the account of the entity that the user profile represents and may restore it.
+
     - `"blocked"`
+
+      The platform has barred the account of the entity that the user profile represents.
 
   - `country: optional string or null`
 
@@ -210,6 +224,10 @@ Create User Profile
 
 - `BetaUserProfile object`
 
+  A record of an entity that the platform serves through the API, such as an end-user of the platform's product or a company that the platform resells Claude access to.
+
+  A Messages, Message Batches or token counting request can send a profile's `id` in the `anthropic-user-profile-id` header to attribute the request to that entity.
+
   - `type: "user_profile"`
 
     Object type. Always `user_profile`.
@@ -254,7 +272,11 @@ Create User Profile
 
     - `"application"`
 
+      The user profile represents an individual end-user of a product that the platform builds on the API. New profiles get this value by default.
+
     - `"passthrough"`
+
+      The user profile represents a company that the platform resells Claude access to.
 
   - `external_id: optional string or null`
 
@@ -270,9 +292,15 @@ Create User Profile
 
       - `"active"`
 
+        The platform has neither restricted nor barred the account of the entity that the user profile represents.
+
       - `"suspended"`
 
+        The platform has restricted the account of the entity that the user profile represents and may restore it.
+
       - `"blocked"`
+
+        The platform has barred the account of the entity that the user profile represents.
 
     - `country: string or null`
 

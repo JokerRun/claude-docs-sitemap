@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/events
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 6178ea39d63fb3906043dd8deefe4fdefe4ded7f40f7e13e7167bb8331ebc9d6
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 3ed57e310bb205d43609f8cce646f78f61964dee05707de5c995b910da431e16
 ---
 
 ---
@@ -28,13 +28,9 @@ List Session Thread Events
 
 - `limit: optional number`
 
-  Query parameter for limit
-
   format: int32
 
 - `page: optional string`
-
-  Query parameter for page
 
 ### Headers
 
@@ -139,6 +135,10 @@ List Session Thread Events
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ### Returns
 
@@ -2531,6 +2531,10 @@ Stream Session Thread Events
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ### Returns
 

@@ -1,21 +1,43 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/structured-outputs
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: ed5f6abb855a7717c5eee13af4ca69d353759529894fca9eb73a476c53f09661
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: dba8e7143de906fecfc7a857f7b40bd156a3ae95e781a18343dee80bbb2b1882
 ---
 
 ---
 title: Output terstruktur
 url: https://platform.claude.com/docs/id/build-with-claude/structured-outputs
 description: Dapatkan hasil JSON yang tervalidasi dari alur kerja agen
+featureMetadata:
+  status: ga
+  zdr:
+    eligibility: eligible
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-5
+    - claude-sonnet-4-6
+    - claude-sonnet-4-5-20250929
+    - claude-opus-4-5-20251101
+    - claude-haiku-4-5-20251001
+  supportedPlatforms:
+    Claude API: ga
+    Claude Platform on AWS: ga
+    Amazon Bedrock:
+      availability: ga
+      note: Di Amazon Bedrock, output terstruktur tersedia untuk Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, dan Claude Haiku 4.5.
+    Google Cloud: ga
+    Microsoft Foundry: ga
 ---
-
-## Compatibility
-- [ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention): eligible (excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))
-- Supported models: `claude-fable-5-1`, `claude-mythos-5-1`, `claude-fable-5`, `claude-mythos-5`, `claude-mythos-preview`, `claude-opus-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-opus-4-6`, `claude-sonnet-5`, `claude-sonnet-4-6`, `claude-sonnet-4-5-20250929`, `claude-opus-4-5-20251101`, `claude-haiku-4-5-20251001`
-- Platforms: Claude API, Claude Platform on AWS, Amazon Bedrock [1], Google Cloud, Microsoft Foundry
-1. Di Amazon Bedrock, output terstruktur tersedia untuk Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, dan Claude Haiku 4.5.
 
 "Structured outputs" (output terstruktur) membatasi respons Claude agar mengikuti skema tertentu, memastikan output yang valid dan dapat di-parse untuk pemrosesan lanjutan. Output terstruktur menyediakan dua fitur yang saling melengkapi:
 
@@ -2531,7 +2553,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
         }
       }
     },
-    // Penggunaan alat ketat: parameter alat terjamin
+    // Strict tool use (penggunaan alat ketat): parameter alat yang terjamin
     tools: [
       {
         name: "search_flights",
@@ -2553,10 +2575,13 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
   // Claude dapat memanggil alat terlebih dahulu (tool_use) atau merespons dengan JSON (text)
   console.log("Stop reason:", response.stop_reason);
   for (const block of response.content) {
-    if (block.type === "tool_use") {
-      console.log(`Tool call: ${block.name}(${JSON.stringify(block.input)})`);
-    } else if (block.type === "text") {
-      console.log("Response:", block.text);
+    switch (block.type) {
+      case "tool_use":
+        console.log(`Tool call: ${block.name}(${JSON.stringify(block.input)})`);
+        break;
+      case "text":
+        console.log("Response:", block.text);
+        break;
     }
   }
   ```

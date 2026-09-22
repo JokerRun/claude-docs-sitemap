@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/create
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 3f46fdad67b06bf6c22c6128d17c39e3719a3cb96ebadc3884a5719b26a0f4c3
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 267c3dc4bf4c79c6dd66281a8646d9dbe1285fc8157f8e70ffeb9350140ad0ea
 ---
 
 ---
@@ -27,6 +27,10 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
   The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization. Requires the `user-profiles` beta header.
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Body parameters
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/skills/versions/create
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: de480e5105f48ccfb816ffe5180afa5dbb868af9a0c9fa99f5e8ecce3915e9b1
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 00bab06f1a26bda30634eb0393cf059301c6fdcced82c7709458a110fa96143d
 ---
 
 ---
@@ -27,6 +27,10 @@ Create Skill Version
 ## Headers
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Body parameters (form-data)
 

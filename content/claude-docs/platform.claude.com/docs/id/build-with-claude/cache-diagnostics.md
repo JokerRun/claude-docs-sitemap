@@ -1,21 +1,27 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: f1897f315d96acc05553279824dfa532242bfe556b4463e402e154f13ef86f4d
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: c4a3e5fa8d124cd511df000616ac157e8e6c1b0b72840a86e5780f4934a2f24a
 ---
 
 ---
 title: Diagnostik cache
 url: https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics
 description: Diagnosis cache miss prompt yang tidak terduga dengan membandingkan permintaan berurutan dan mengidentifikasi secara tepat di mana prefiks prompt menyimpang.
+featureMetadata:
+  status: beta
+  betaHeader: cache-diagnosis-2026-04-07
+  zdr:
+    eligibility: eligible
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+  supportedPlatforms:
+    Claude API: beta
+    Claude Platform on AWS: not available
+    Amazon Bedrock: not available
+    Google Cloud: not available
+    Microsoft Foundry: not available
 ---
-
-## Compatibility
-- Status: Beta
-- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `cache-diagnosis-2026-04-07`
-- [ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention): eligible (excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))
-- Platforms: Claude API (beta); not available on Claude Platform on AWS, Amazon Bedrock, Google Cloud, Microsoft Foundry
 
 [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) memangkas latensi dan biaya secara signifikan, tetapi hanya ketika bagian awal prompt Anda identik byte demi byte dengan permintaan terbaru. Alat yang diurutkan ulang, timestamp yang diinterpolasi ke dalam "system prompt" (prompt sistem) Anda, atau pengeditan pada pesan sebelumnya dapat secara diam-diam membatalkan cache. Tanpa diagnostik cache, satu-satunya sinyal adalah `usage.cache_read_input_tokens` yang turun menjadi nol, tanpa indikasi apa pun tentang apa yang berubah.
 
@@ -687,11 +693,16 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
 
   $diagnostics = null;
   foreach ($stream as $event) {
-      if ($event instanceof BetaRawMessageStartEvent) {
-          // diagnostics tiba pada BetaMessage yang tersemat di event message_start
-          $diagnostics = $event->message->diagnostics;
-      } elseif ($event instanceof BetaRawContentBlockDeltaEvent && $event->delta instanceof BetaTextDelta) {
-          echo $event->delta->text;
+      switch (true) {
+          case $event instanceof \Anthropic\Beta\Messages\BetaRawMessageStartEvent:
+              // diagnostics tiba pada BetaMessage yang tertanam di event message_start
+              $diagnostics = $event->message->diagnostics;
+              break;
+          case $event instanceof \Anthropic\Beta\Messages\BetaRawContentBlockDeltaEvent:
+              if ($event->delta instanceof \Anthropic\Beta\Messages\BetaTextDelta) {
+                  echo $event->delta->text;
+              }
+              break;
       }
   }
   echo PHP_EOL;

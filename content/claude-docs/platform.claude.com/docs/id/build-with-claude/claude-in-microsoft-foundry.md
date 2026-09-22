@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: ff4f2012f8a2f4c16d6d876a8e7adc84771dd74d9ad8d029e8306203978ce248
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 4570e2f9448e80b883783f562ac30e8331b5b769f391189314b97da707f74d7c
 ---
 
 ---
@@ -84,7 +84,8 @@ Sebelum memulai, pastikan Anda memiliki:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java-foundry:2.60.0")
+        implementation("com.anthropic:anthropic-java:2.63.0")
+        implementation("com.anthropic:anthropic-java-foundry:2.63.0")
 
         // Untuk autentikasi Entra ID, tambahkan juga pustaka Azure Identity
         implementation("com.azure:azure-identity:1.18.3")
@@ -95,8 +96,13 @@ Sebelum memulai, pastikan Anda memiliki:
         ```xml
         <dependency>
             <groupId>com.anthropic</groupId>
+            <artifactId>anthropic-java</artifactId>
+            <version>2.63.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-foundry</artifactId>
-            <version>2.60.0</version>
+            <version>2.63.0</version>
         </dependency>
         <!-- For Entra ID authentication, also add the Azure Identity library -->
         <dependency>
@@ -676,19 +682,19 @@ Istilah siklus hidup (Deprecated, Retired) didefinisikan di [Penghentian model](
 
 Model Claude berikut tersedia melalui Foundry:
 
-| Model             | Nama deployment default | Hosted on Azure | Hosted on Anthropic |
-| ----------------- | ----------------------- | --------------- | ------------------- |
-| Claude Fable 5.1  | claude-fable-5-1        |                 | ✓                   |
-| Claude Fable 5    | claude-fable-5          |                 | ✓                   |
-| Claude Opus 5     | claude-opus-5           | ✓               | ✓                   |
-| Claude Opus 4.8   | claude-opus-4-8         | ✓               | ✓                   |
-| Claude Opus 4.7   | claude-opus-4-7         |                 | ✓                   |
-| Claude Opus 4.6   | claude-opus-4-6         |                 | ✓                   |
-| Claude Opus 4.5   | claude-opus-4-5         |                 | ✓                   |
-| Claude Sonnet 5   | claude-sonnet-5         | ✓               | ✓                   |
-| Claude Sonnet 4.6 | claude-sonnet-4-6       |                 | ✓                   |
-| Claude Sonnet 4.5 | claude-sonnet-4-5       |                 | ✓                   |
-| Claude Haiku 4.5  | claude-haiku-4-5        | ✓               | ✓                   |
+| Model             | Default deployment name | Hosted on Azure | Hosted on Anthropic |
+| :---------------- | :---------------------- | :-------------: | :-----------------: |
+| Claude Fable 5.1  | `claude-fable-5-1`      |                 |          ✓          |
+| Claude Fable 5    | `claude-fable-5`        |                 |          ✓          |
+| Claude Opus 5     | `claude-opus-5`         |        ✓        |          ✓          |
+| Claude Opus 4.8   | `claude-opus-4-8`       |        ✓        |          ✓          |
+| Claude Opus 4.7   | `claude-opus-4-7`       |                 |          ✓          |
+| Claude Opus 4.6   | `claude-opus-4-6`       |                 |          ✓          |
+| Claude Opus 4.5   | `claude-opus-4-5`       |                 |          ✓          |
+| Claude Sonnet 5   | `claude-sonnet-5`       |        ✓        |          ✓          |
+| Claude Sonnet 4.6 | `claude-sonnet-4-6`     |                 |          ✓          |
+| Claude Sonnet 4.5 | `claude-sonnet-4-5`     |                 |          ✓          |
+| Claude Haiku 4.5  | `claude-haiku-4-5`      |        ✓        |          ✓          |
 
 Secara default, nama deployment sama dengan ID model yang ditampilkan pada tabel di atas. Namun, Anda dapat membuat deployment kustom dengan nama berbeda di portal Foundry untuk mengelola konfigurasi, versi, atau batas laju yang berbeda. Gunakan nama deployment (tidak harus ID model) dalam permintaan API Anda.
 

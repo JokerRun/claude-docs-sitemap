@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/list
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 0a791aec237e901babbff349ac1c576b5763531b8863a753362ff6fda5ed1324
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 945039f0ae9f44ad1e6811121f7bfb62a55bf3f60fdd3fcf6be183d79a5021a7
 ---
 
 ---
@@ -83,7 +83,7 @@ forward-only via `next_page`; there is no reverse cursor.
 
   - `product_surface: string or null`
 
-    The product the session ran in: `cowork` (Cowork in Claude Desktop on the user's machine), `claude_code` (Claude Code), `claude_science` (Claude Science), or one of `office_agents/excel`, `office_agents/powerpoint`, `office_agents/word`, and `office_agents/outlook` (Claude for Microsoft 365, by app; `office_agents` alone when the app is not identified). New values appear as coverage expands; treat unrecognized values as opaque. `null` when the surface was not recorded.
+    The product the session ran in: `cowork` (Cowork in Claude Desktop on the user's machine), `claude_code` (Claude Code), `claude_science` (Claude Science), `claude_in_chrome` (the Claude in Chrome browser extension's built-in chat), or one of `office_agents/excel`, `office_agents/powerpoint`, `office_agents/word`, and `office_agents/outlook` (Claude for Microsoft 365, by app; `office_agents` alone when the app is not identified). New values appear as coverage expands; treat unrecognized values as opaque. `null` when the surface was not recorded.
 
   - `truncated: boolean`
 

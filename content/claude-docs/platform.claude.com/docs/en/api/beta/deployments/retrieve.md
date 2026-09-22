@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/retrieve
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 5b859c9ebf5d539c4025beb10d2117c996a98c58a8b5a77f5c73fbfc382c0b62
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 64dc9ab39597206f036a8d9362cb25d3b098ae59f7c7f96d3d9ad78d9bda0a40
 ---
 
 ---
@@ -19,6 +19,8 @@ Get Deployment
 ## Path parameters
 
 - `deployment_id: string`
+
+  Unique identifier of the deployment.
 
 ## Headers
 
@@ -123,6 +125,10 @@ Get Deployment
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 
@@ -610,7 +616,11 @@ Get Deployment
 
     - `"active"`
 
+      The deployment is active and can run sessions. Archived deployments also report this status; check `archived_at` to distinguish them.
+
     - `"paused"`
+
+      The deployment is paused. Autonomous triggers are suppressed; manual runs are still permitted.
 
   - `updated_at: string`
 

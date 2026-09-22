@@ -1,20 +1,26 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/task-budgets
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: a3d19e56e4e33283ca9f898515066f5406e94776d2cb146710ca59f773dabccf
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 10c818f35a12137b3e0e61c8f722c3325367e977d48865547f3721d2efb7d8fa
 ---
 
 ---
 title: Anggaran tugas
 url: https://platform.claude.com/docs/id/build-with-claude/task-budgets
 description: Berikan Claude anggaran token yang bersifat saran untuk seluruh loop agentik guna membantu model mengatur dirinya sendiri pada tugas agentik yang panjang.
+featureMetadata:
+  status: beta
+  betaHeader: task-budgets-2026-03-13
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-opus-5
+    - claude-opus-4-8
+    - claude-opus-4-7
 ---
-
-## Compatibility
-- Status: Beta
-- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `task-budgets-2026-03-13`
-- Supported models: `claude-fable-5-1`, `claude-mythos-5-1`, `claude-fable-5`, `claude-mythos-5`, `claude-opus-5`, `claude-opus-4-8`, `claude-opus-4-7`
 
 "Task budgets" (anggaran tugas) memungkinkan Anda memberi tahu Claude berapa banyak token yang dimilikinya untuk seluruh loop agentik, termasuk pemikiran, pemanggilan alat, hasil alat, dan output. Model melihat hitung mundur yang terus berjalan dan menggunakannya untuk memprioritaskan pekerjaan serta menyelesaikannya dengan baik seiring anggaran terpakai.
 

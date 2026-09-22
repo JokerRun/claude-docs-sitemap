@@ -1,27 +1,26 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/sessions
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 1662a1617230866b6c7fa8637c56a8fa9add387b809ff650748102a2d6c93f4f
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: cc277dd68139c671331665cd640532e269d9f936c5d6e9638cd2cb563026833c
 ---
 
 ---
 title: Memulai sesi
 url: https://platform.claude.com/docs/id/managed-agents/sessions
 description: Buat sesi untuk menjalankan agen Anda dan mulai mengeksekusi tugas.
+featureMetadata:
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
 
 Sesi adalah instans agen di dalam sebuah environment (lingkungan). Setiap sesi mereferensikan sebuah [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) dan sebuah [environment](https://platform.claude.com/docs/id/managed-agents/environments) (keduanya dibuat secara terpisah), serta mempertahankan riwayat percakapan di berbagai interaksi. Sesi mengikuti siklus hidup dua langkah: pertama [buat sesi](https://platform.claude.com/docs/id/managed-agents/sessions#creating-a-session), lalu [kirim event pengguna](https://platform.claude.com/docs/id/managed-agents/sessions#starting-the-session) untuk memulai pekerjaan. Anda juga dapat menggabungkan kedua langkah tersebut menjadi satu panggilan dengan [`initial_events`](https://platform.claude.com/docs/id/managed-agents/sessions#seed-the-session-with-initial-events).
-
-<Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
-</Note>
 
 ## Membuat sesi
 
 Sesi memerlukan ID `agent` dan ID `environment`. Agen adalah sumber daya berversi; meneruskan ID `agent` sebagai string akan membuat sesi dengan versi agen terbaru.
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -100,7 +99,7 @@ Sesi memerlukan ID `agent` dan ID `environment`. Agen adalah sumber daya bervers
 
 Untuk menyematkan sesi ke versi agen tertentu, teruskan sebuah objek. Ini memungkinkan Anda mengontrol dengan tepat versi mana yang berjalan dan melakukan peluncuran bertahap versi baru secara independen.
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -200,7 +199,7 @@ Anda dapat membuat sesi dan memulai pekerjaannya dalam satu panggilan. `initial_
 
 Contoh berikut membuat sesi dengan satu `user.message` di `initial_events`:
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   seeded_session=$(curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -222,8 +221,8 @@ Contoh berikut membuat sesi dengan satu `user.message` di `initial_events`:
   )
   SEEDED_SESSION_ID=$(jq -r '.id' <<< "$seeded_session")
 
-  # initial_events aren't echoed on the create response; list the session's
-  # events to see the seeded message.
+  # initial_events tidak ikut dikembalikan pada respons create; tampilkan daftar
+  # event sesi untuk melihat pesan yang di-seed.
   seeded_events=$(curl -fsSL \
     "https://api.anthropic.com/v1/sessions/$SEEDED_SESSION_ID/events" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -246,8 +245,8 @@ Contoh berikut membuat sesi dengan satu `user.message` di `initial_events`:
   YAML
   )
 
-  # initial_events aren't echoed on the create response; list the session's
-  # events to see the seeded message.
+  # initial_events tidak ikut dikembalikan pada respons create; tampilkan daftar
+  # event sesi untuk melihat pesan yang di-seed.
   echo "Seeded event: $(ant beta:sessions:events list \
     --session-id "$SEEDED_SESSION_ID" \
     --format raw \
@@ -484,7 +483,7 @@ Dalam respons, objek `agent` mencerminkan konfigurasi yang digunakan sesi setela
 
 Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -505,8 +504,8 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
   ```
 
   ```bash CLI
-  # The response's `agent` is the resolved snapshot: each override replaces that
-  # field for this session only, and the agent resource keeps its id and version.
+  # `agent` pada respons adalah snapshot hasil resolusi: setiap override mengganti
+  # field tersebut hanya untuk sesi ini, dan resource agen tetap menyimpan id dan versinya.
   ant beta:sessions create <<YAML
   agent:
     type: agent_with_overrides
@@ -651,7 +650,7 @@ Karena override `model` menggantikan objek `model` agen secara penuh, override t
 
 Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki pin geo, menyematkan permintaan model sesi ke inferensi US dengan menyertakan `inference_geo` dalam override `model`, dan mencetak nilai yang dikembalikan dalam `agent.model` pada respons:
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   # Menggantikan `model` agen sepenuhnya: nyatakan ulang `id`, tambahkan `inference_geo` untuk menyematkan.
   session=$(curl -fsSL https://api.anthropic.com/v1/sessions \
@@ -834,7 +833,7 @@ Lihat [Anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets
 
 Jika agen Anda menggunakan alat MCP yang memerlukan autentikasi, teruskan `vault_ids` saat pembuatan sesi untuk mereferensikan vault yang berisi kredensial OAuth tersimpan. Anthropic mengelola refresh token atas nama Anda. Lihat [Autentikasi dengan vault](https://platform.claude.com/docs/id/managed-agents/vaults) untuk mengetahui cara membuat vault dan mendaftarkan kredensial.
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -926,7 +925,7 @@ Jika agen Anda menggunakan alat MCP yang memerlukan autentikasi, teruskan `vault
 
 Membuat sesi tanpa `initial_events` akan mendaftarkan sesi tetapi tidak memulai pekerjaan apa pun; sandbox environment mulai diprovisikan segera setelah sesi dibuat, sehingga panggilan alat pertama tidak perlu menunggunya. Untuk mendelegasikan tugas, kirim event ke sesi menggunakan [event pengguna](https://platform.claude.com/docs/id/managed-agents/reference#event-types). Untuk menyediakan event pertama dalam permintaan pembuatan, lihat [Mengisi sesi dengan event awal](https://platform.claude.com/docs/id/managed-agents/sessions#seed-the-session-with-initial-events). Sesi bertindak sebagai state machine yang melacak kemajuan sementara event menggerakkan eksekusi yang sebenarnya.
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \

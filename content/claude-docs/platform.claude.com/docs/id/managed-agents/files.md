@@ -1,21 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/files
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: a9a9d5a27fb5e7b79442124d87d03825a16dabfe499d3a36f14ee02909089fd9
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: a1d585c8c7e84bb3c4712f67a4daecf5b5993ac27c9a01129f7e492c3793d1db
 ---
 
 ---
 title: Menambahkan file
 url: https://platform.claude.com/docs/id/managed-agents/files
 description: Unggah file dan mount ke dalam sandbox Anda untuk dibaca dan diproses.
+featureMetadata:
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
 
 Anda dapat menyediakan file untuk agen Anda dengan mengunggahnya melalui Files API dan me-mount-nya di sandbox sesi.
-
-<Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
-</Note>
 
 ## Mengunggah file
 
@@ -637,7 +636,7 @@ Pemfilteran berdasarkan `scope_id` memerlukan header beta `managed-agents-2026-0
   ```
 
   ```go Go
-  // Daftar file yang terkait dengan sebuah sesi
+  // Daftar file yang terkait dengan sesi
   files, err := client.Beta.Files.List(ctx, anthropic.BetaFileListParams{
   	ScopeID: anthropic.String("sesn_abc123"),
   	Betas:   []anthropic.AnthropicBeta{"managed-agents-2026-04-01"},
@@ -646,8 +645,8 @@ Pemfilteran berdasarkan `scope_id` memerlukan header beta `managed-agents-2026-0
   	panic(err)
   }
 
-  // Unduh sebuah file
-  resp, err := client.Files.Download(ctx, files.Data[0].ID)
+  // Unduh file
+  resp, err := client.Files.Download(ctx, files.Data[0].ID, anthropic.FileDownloadParams{})
   if err != nil {
   	panic(err)
   }

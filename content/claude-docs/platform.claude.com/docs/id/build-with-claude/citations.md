@@ -1,19 +1,26 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/citations
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: f4784549a0ab11952fd397a82570b7c69669fdb877cfab2edf448a3732e44fd6
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 86601d844d860e05b2e2613dbfb33c36066fa16613c6c02d95ff6234728f29cd
 ---
 
 ---
 title: Kutipan
 url: https://platform.claude.com/docs/id/build-with-claude/citations
 description: Dasarkan respons Claude pada dokumen sumber Anda. Kutipan mengembalikan bagian teks yang tepat yang mendukung setiap klaim, sehingga Anda dapat memverifikasi jawaban dan menampilkan sumber kepada pengguna Anda.
+featureMetadata:
+  status: ga
+  zdr:
+    eligibility: eligible
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+  supportedPlatforms:
+    Claude API: ga
+    Claude Platform on AWS: ga
+    Amazon Bedrock: ga
+    Google Cloud: ga
+    Microsoft Foundry: ga
 ---
-
-## Compatibility
-- [ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention): eligible (excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))
-- Platforms: Claude API, Claude Platform on AWS, Amazon Bedrock, Google Cloud, Microsoft Foundry
 
 Claude dapat memberikan kutipan terperinci saat menjawab pertanyaan tentang dokumen, membantu Anda melacak dan memverifikasi sumber di balik setiap respons.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/create
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 3ada2f6241e673b549bbef9f0dca5355731dff4912aa79f4ce98cc3393dadbb3
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 275e1e94a042244183b015fb3055ddd09583c9bce0a197a3ff757d13eea890b8
 ---
 
 ---
@@ -120,6 +120,10 @@ Create Agent
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 ## Body parameters
 
 - `model: BetaManagedAgentsModel or BetaManagedAgentsModelConfigParams`
@@ -216,13 +220,23 @@ Create Agent
 
         - `"low"`
 
+          Low effort. Favors latency over reasoning depth.
+
         - `"medium"`
+
+          Medium effort. Balances latency and reasoning depth.
 
         - `"high"`
 
+          High effort. Favors reasoning depth.
+
         - `"xhigh"`
 
+          Extra-high effort. Not all models accept this level.
+
         - `"max"`
+
+          Maximum effort. Favors reasoning depth over latency.
 
       - `BetaManagedAgentsEffortLow object`
 

@@ -1,27 +1,26 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/budgets
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 7dfdc8cc5bf7cf3fdd83a1e1b7e5175db2f46cee7673a3d18d365cf62c7f6912
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 36d2b1679b408da45ab4e2064125b41d795aeb2c44f5a35f4b26043a64111b8e
 ---
 
 ---
 title: Anggaran sesi
 url: https://platform.claude.com/docs/id/managed-agents/budgets
 description: Batasi pengeluaran sesi dengan anggaran dolar yang ketat, diberlakukan berdasarkan tarif daftar publik.
+featureMetadata:
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
 
 "Session budget" (anggaran sesi) adalah batas atas pengeluaran ketat opsional yang Anda tetapkan saat [membuat sesi](https://platform.claude.com/docs/id/managed-agents/sessions). Platform secara terus-menerus menghitung harga semua yang dikonsumsi sesi berdasarkan tarif daftar publik (**list cost** atau biaya daftar sesi) dan berhenti mengeluarkan permintaan model baru setelah biaya tersebut mencapai anggaran. Permintaan yang sedang berjalan saat batas terlampaui tetap diselesaikan, sehingga biaya daftar akhir dapat berakhir [sedikit melewati anggaran](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget). Sesi yang mencapai anggarannya akan dijeda dan menjadi [idle](https://platform.claude.com/docs/id/managed-agents/session-operations#session-statuses) alih-alih dihentikan; mengubah atau menghapus anggaran akan melanjutkan pekerjaannya secara otomatis. Deployment menerima anggaran yang sama dan menerapkannya ke setiap sesi yang dimulainya; lihat [Anggaran pada deployment](https://platform.claude.com/docs/id/managed-agents/budgets#budgets-on-deployments).
-
-<Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
-</Note>
 
 ## Menetapkan anggaran saat pembuatan sesi
 
 Teruskan field opsional `budget` saat Anda membuat sesi:
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   curl -sS --fail-with-body https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -41,7 +40,7 @@ Teruskan field opsional `budget` saat Anda membuat sesi:
   ```
 
   ```bash CLI
-  # Keep the amount quoted so it is sent as a string, not a number.
+  # Biarkan jumlah tetap dalam tanda kutip agar dikirim sebagai string, bukan angka.
   ant beta:sessions create \
     --agent "$AGENT_ID" \
     --environment-id "$ENVIRONMENT_ID" \
@@ -198,7 +197,7 @@ Ubah atau hapus anggaran dengan pembaruan sesi. Pembaruan yang diterima akan mel
 
 Perbarui sesi dengan `max_list_cost` baru. Nilai baru dapat lebih tinggi atau lebih rendah dari batas saat ini, tetapi harus benar-benar lebih besar dari biaya daftar yang telah dikonsumsi sesi; jika tidak, pembaruan ditolak dengan error 400: `budget.max_list_cost must be greater than the session's consumed list cost`. Karena biaya yang dikonsumsi biasanya berada [sedikit melewati batas lama](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget) saat sesi dijeda, dasarkan nilai baru pada `usage.list_cost` yang dilaporkan sesi, bukan pada `max_list_cost` lama. Tetapkan satu sen atau lebih di atas angka tersebut: nilai yang dilaporkan dibulatkan dan dapat berada sedikit di bawah biaya konsumsi tepat yang digunakan pemeriksaan.
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   curl -sS --fail-with-body "https://api.anthropic.com/v1/sessions/$SESSION_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -308,7 +307,7 @@ Perbarui sesi dengan `max_list_cost` baru. Nilai baru dapat lebih tinggi atau le
 
 Tetapkan `budget` ke `null` untuk menghapus batas sepenuhnya. Pekerjaan sesi yang dijeda dilanjutkan, dan event `session.updated` yang dihasilkan membawa `budget` bernilai `null`.
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   curl -sS --fail-with-body "https://api.anthropic.com/v1/sessions/$SESSION_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \

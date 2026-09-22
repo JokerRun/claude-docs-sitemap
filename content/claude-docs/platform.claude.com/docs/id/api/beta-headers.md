@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/beta-headers
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: f62986149f339648f9a6bf77015c2b0f7c14c59801759a3f25b822f9ca2cf1b8
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 702674dda2f1058de16a6aac7bbaf0891546556036ff373564fa77a1ce4f8413
 ---
 
 ---
@@ -175,7 +175,15 @@ Untuk menggunakan beberapa fitur beta dalam satu permintaan, sertakan semua nama
 anthropic-beta: feature1,feature2,feature3
 ```
 
-Saat menggunakan SDK, cantumkan setiap fitur dalam parameter `betas` (misalnya, `betas=["feature1", "feature2"]`). Dengan CLI, berikan satu flag `--beta` dengan nama fitur yang dipisahkan dengan koma (misalnya, `--beta feature1,feature2`). Hindari mengulang flag tersebut: saat ini hanya nilai flag pertama yang berlaku.
+Anda juga dapat mengirim header `anthropic-beta` lebih dari sekali dalam permintaan yang sama. Claude API membaca setiap header `anthropic-beta`, sehingga contoh berikut setara dengan contoh sebelumnya:
+
+```http
+anthropic-beta: feature1
+anthropic-beta: feature2
+anthropic-beta: feature3
+```
+
+Saat menggunakan SDK, cantumkan setiap fitur dalam parameter `betas` (misalnya, `betas=["feature1", "feature2"]`). Dengan CLI, berikan satu flag `--beta` dengan nama-nama fitur yang dipisahkan koma (misalnya, `--beta feature1,feature2`). Anda juga dapat mengulangi flag tersebut (misalnya, `--beta feature1 --beta feature2`).
 
 ### Header khusus endpoint
 

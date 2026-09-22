@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: e81b9a24daf95b3d2a43d557645d7e9ea2af0b02305fa872a2cc656fa7813bf0
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: b384e2f75e93f4d0df50e8846213f2045493f1007b9194c24bf285eee3b70d7b
 ---
 
 ---
@@ -409,17 +409,18 @@ Contoh berikut mengaktifkan streaming fine-grained untuk alat `make_file` dan me
   $toolInputs = [];
 
   foreach ($stream as $event) {
-      if (
-          $event instanceof RawContentBlockStartEvent
-          && $event->contentBlock instanceof ToolUseBlock
-      ) {
-          $toolInputs[$event->index] = '';
-      } elseif (
-          $event instanceof RawContentBlockDeltaEvent
-          && $event->delta instanceof InputJSONDelta
-      ) {
-          echo $event->delta->partialJSON;
-          $toolInputs[$event->index] .= $event->delta->partialJSON;
+      switch (true) {
+          case $event instanceof RawContentBlockStartEvent:
+              if ($event->contentBlock instanceof ToolUseBlock) {
+                  $toolInputs[$event->index] = '';
+              }
+              break;
+          case $event instanceof RawContentBlockDeltaEvent:
+              if ($event->delta instanceof InputJSONDelta) {
+                  echo $event->delta->partialJSON;
+                  $toolInputs[$event->index] .= $event->delta->partialJSON;
+              }
+              break;
       }
   }
 
@@ -577,22 +578,32 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
   });
 
   for await (const event of stream) {
-    if (event.type === "content_block_start" && event.content_block.type === "tool_use") {
-      toolInputs.set(event.index, "");
-    } else if (event.type === "content_block_delta" && event.delta.type === "input_json_delta") {
-      toolInputs.set(
-        event.index,
-        (toolInputs.get(event.index) ?? "") + event.delta.partial_json
-      );
-    } else if (event.type === "content_block_stop" && toolInputs.has(event.index)) {
-      const rawInput = toolInputs.get(event.index)!;
-      try {
-        console.log("Tool input:", JSON.parse(rawInput));
-      } catch {
-        // String yang terakumulasi tidak dijamin berupa JSON yang valid.
-        // Lihat "Menangani JSON tidak valid dalam respons alat" di halaman ini.
-        console.log("Invalid tool input:", rawInput);
-      }
+    switch (event.type) {
+      case "content_block_start":
+        if (event.content_block.type === "tool_use") {
+          toolInputs.set(event.index, "");
+        }
+        break;
+      case "content_block_delta":
+        if (event.delta.type === "input_json_delta") {
+          toolInputs.set(
+            event.index,
+            (toolInputs.get(event.index) ?? "") + event.delta.partial_json
+          );
+        }
+        break;
+      case "content_block_stop":
+        if (toolInputs.has(event.index)) {
+          const rawInput = toolInputs.get(event.index)!;
+          try {
+            console.log("Tool input:", JSON.parse(rawInput));
+          } catch {
+            // String yang terakumulasi tidak dijamin merupakan JSON yang valid.
+            // Lihat "Menangani JSON yang tidak valid dalam respons alat" di halaman ini.
+            console.log("Invalid tool input:", rawInput);
+          }
+        }
+        break;
     }
   }
   ```
@@ -749,26 +760,30 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
       var eventIterator = streamResponse.stream().iterator();
       while (eventIterator.hasNext()) {
           RawMessageStreamEvent event = eventIterator.next();
-          if (event.isContentBlockStart()) {
-              var blockStart = event.asContentBlockStart();
-              if (blockStart.contentBlock().isToolUse()) {
-                  toolInputs.put(blockStart.index(), new StringBuilder());
+          switch (event.type().value()) {
+              case CONTENT_BLOCK_START -> {
+                  var blockStart = event.asContentBlockStart();
+                  if (blockStart.contentBlock().isToolUse()) {
+                      toolInputs.put(blockStart.index(), new StringBuilder());
+                  }
               }
-          } else if (event.isContentBlockDelta()) {
-              var blockDelta = event.asContentBlockDelta();
-              if (blockDelta.delta().isInputJson() && toolInputs.containsKey(blockDelta.index())) {
-                  toolInputs.get(blockDelta.index()).append(blockDelta.delta().asInputJson().partialJson());
+              case CONTENT_BLOCK_DELTA -> {
+                  var blockDelta = event.asContentBlockDelta();
+                  if (blockDelta.delta().isInputJson() && toolInputs.containsKey(blockDelta.index())) {
+                      toolInputs.get(blockDelta.index()).append(blockDelta.delta().asInputJson().partialJson());
+                  }
               }
-          } else if (event.isContentBlockStop()) {
-              var blockStop = event.asContentBlockStop();
-              if (toolInputs.containsKey(blockStop.index())) {
-                  String accumulated = toolInputs.get(blockStop.index()).toString();
-                  try {
-                      IO.println("Tool input: " + objectMapper.readTree(accumulated));
-                  } catch (JsonProcessingException e) {
-                      // String yang terakumulasi tidak dijamin merupakan JSON yang valid.
-                      // Lihat "Menangani JSON tidak valid dalam respons alat" di halaman ini.
-                      IO.println("Invalid tool input: " + accumulated);
+              case CONTENT_BLOCK_STOP -> {
+                  var blockStop = event.asContentBlockStop();
+                  if (toolInputs.containsKey(blockStop.index())) {
+                      String accumulated = toolInputs.get(blockStop.index()).toString();
+                      try {
+                          IO.println("Tool input: " + objectMapper.readTree(accumulated));
+                      } catch (JsonProcessingException e) {
+                          // String yang terakumulasi tidak dijamin merupakan JSON yang valid.
+                          // Lihat "Menangani JSON tidak valid dalam respons alat" di halaman ini.
+                          IO.println("Invalid tool input: " + accumulated);
+                      }
                   }
               }
           }
@@ -787,7 +802,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
 
   $client = new Client();
 
-  // SDK PHP tidak menyediakan akumulator stream untuk input alat;
+  // PHP SDK tidak menyediakan akumulator stream untuk input alat;
   // pola manual yang ditunjukkan di sini adalah pendekatan yang didukung.
   $toolInputs = []; // index => accumulated JSON string
 
@@ -810,29 +825,30 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
   );
 
   foreach ($stream as $event) {
-      if (
-          $event instanceof RawContentBlockStartEvent
-          && $event->contentBlock instanceof ToolUseBlock
-      ) {
-          $toolInputs[$event->index] = '';
-      } elseif (
-          $event instanceof RawContentBlockDeltaEvent
-          && $event->delta instanceof InputJSONDelta
-      ) {
-          $toolInputs[$event->index] .= $event->delta->partialJSON;
-      } elseif (
-          $event instanceof RawContentBlockStopEvent
-          && isset($toolInputs[$event->index])
-      ) {
-          $accumulated = $toolInputs[$event->index];
-          try {
-              $parsed = json_decode($accumulated, associative: true, flags: JSON_THROW_ON_ERROR);
-              echo "Tool input: " . json_encode($parsed) . "\n";
-          } catch (JsonException $e) {
-              // String yang diakumulasi tidak dijamin berupa JSON yang valid.
-              // Lihat "Handling invalid JSON in tool responses" di halaman ini.
-              echo "Invalid tool input: {$accumulated}\n";
-          }
+      switch (true) {
+          case $event instanceof RawContentBlockStartEvent:
+              if ($event->contentBlock instanceof ToolUseBlock) {
+                  $toolInputs[$event->index] = '';
+              }
+              break;
+          case $event instanceof RawContentBlockDeltaEvent:
+              if ($event->delta instanceof InputJSONDelta) {
+                  $toolInputs[$event->index] .= $event->delta->partialJSON;
+              }
+              break;
+          case $event instanceof RawContentBlockStopEvent:
+              if (isset($toolInputs[$event->index])) {
+                  $accumulated = $toolInputs[$event->index];
+                  try {
+                      $parsed = json_decode($accumulated, associative: true, flags: JSON_THROW_ON_ERROR);
+                      echo "Tool input: " . json_encode($parsed) . "\n";
+                  } catch (JsonException $e) {
+                      // String yang terakumulasi tidak dijamin merupakan JSON yang valid.
+                      // Lihat "Menangani JSON tidak valid dalam respons alat" di halaman ini.
+                      echo "Invalid tool input: {$accumulated}\n";
+                  }
+              }
+              break;
       }
   }
   ```

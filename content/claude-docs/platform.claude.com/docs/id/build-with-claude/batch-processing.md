@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/batch-processing
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 1cb5ba49298fa4180f09db071049de7ee5e0a7f0d63515ac91e960ce78a8a331
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 2cdfc38aa0514e5f07fcc034dc381b498d7539e412dd626043a6b6de57221ff9
 ---
 
 ---
@@ -88,25 +88,25 @@ Sejumlah kecil parameter Messages API **tidak** didukung dalam permintaan batch.
 
 Batches API menawarkan penghematan biaya yang signifikan. Semua penggunaan dikenai biaya sebesar 50% dari harga API standar.
 
-| Model                                                                                                                                     | Input batch  | Output batch  |
-| ----------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ------------- |
-| Claude Fable 5.1                                                                                                                          | $5 / MTok    | $25 / MTok    |
-| Claude Mythos 5.1 ([ketersediaan terbatas](https://anthropic.com/glasswing))                                                              | $5 / MTok    | $25 / MTok    |
-| Claude Fable 5                                                                                                                            | $5 / MTok    | $25 / MTok    |
-| Claude Mythos 5 ([ketersediaan terbatas](https://anthropic.com/glasswing))                                                                | $5 / MTok    | $25 / MTok    |
-| Claude Opus 5                                                                                                                             | $2,50 / MTok | $12,50 / MTok |
-| Claude Opus 4.8                                                                                                                           | $2,50 / MTok | $12,50 / MTok |
-| Claude Opus 4.7                                                                                                                           | $2,50 / MTok | $12,50 / MTok |
-| Claude Opus 4.6                                                                                                                           | $2,50 / MTok | $12,50 / MTok |
-| Claude Opus 4.5                                                                                                                           | $2,50 / MTok | $12,50 / MTok |
-| Claude Opus 4.1 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | $7,50 / MTok | $37,50 / MTok |
-| Claude Opus 4 ([dihentikan, kecuali di Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))                | $7,50 / MTok | $37,50 / MTok |
-| Claude Sonnet 5                                                                                                                           | $1 / MTok    | $5 / MTok     |
-| Claude Sonnet 4.6                                                                                                                         | $1,50 / MTok | $7,50 / MTok  |
-| Claude Sonnet 4.5                                                                                                                         | $1,50 / MTok | $7,50 / MTok  |
-| Claude Sonnet 4 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | $1,50 / MTok | $7,50 / MTok  |
-| Claude Haiku 4.5                                                                                                                          | $0,50 / MTok | $2,50 / MTok  |
-| Claude Haiku 3.5 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $0,40 / MTok | $2 / MTok     |
+| Model                                                                                                                                 | Batch input  | Batch output  |
+| :------------------------------------------------------------------------------------------------------------------------------------ | :----------- | :------------ |
+| Claude Fable 5.1                                                                                                                      | $5 / MTok    | $25 / MTok    |
+| Claude Mythos 5.1 ([limited availability](https://anthropic.com/glasswing))                                                           | $5 / MTok    | $25 / MTok    |
+| Claude Fable 5                                                                                                                        | $5 / MTok    | $25 / MTok    |
+| Claude Mythos 5 ([limited availability](https://anthropic.com/glasswing))                                                             | $5 / MTok    | $25 / MTok    |
+| Claude Opus 5                                                                                                                         | $2.50 / MTok | $12.50 / MTok |
+| Claude Opus 4.8                                                                                                                       | $2.50 / MTok | $12.50 / MTok |
+| Claude Opus 4.7                                                                                                                       | $2.50 / MTok | $12.50 / MTok |
+| Claude Opus 4.6                                                                                                                       | $2.50 / MTok | $12.50 / MTok |
+| Claude Opus 4.5                                                                                                                       | $2.50 / MTok | $12.50 / MTok |
+| Claude Opus 4.1 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | $7.50 / MTok | $37.50 / MTok |
+| Claude Opus 4 ([retired, except on Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))                | $7.50 / MTok | $37.50 / MTok |
+| Claude Sonnet 5                                                                                                                       | $1 / MTok    | $5 / MTok     |
+| Claude Sonnet 4.6                                                                                                                     | $1.50 / MTok | $7.50 / MTok  |
+| Claude Sonnet 4.5                                                                                                                     | $1.50 / MTok | $7.50 / MTok  |
+| Claude Sonnet 4 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | $1.50 / MTok | $7.50 / MTok  |
+| Claude Haiku 4.5                                                                                                                      | $0.50 / MTok | $2.50 / MTok  |
+| Claude Haiku 3.5 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $0.40 / MTok | $2 / MTok     |
 
 ## Cara menggunakan Message Batches API
 
@@ -536,7 +536,7 @@ Untuk melakukan polling pada Message Batch, Anda memerlukan `id`-nya, yang diber
   var messageBatch *anthropic.MessageBatch
   for {
   	var err error
-  	messageBatch, err = client.Messages.Batches.Get(context.TODO(), messageBatchID)
+  	messageBatch, err = client.Messages.Batches.Get(context.TODO(), messageBatchID, anthropic.MessageBatchGetParams{})
   	if err != nil {
   		log.Fatal(err)
   	}
@@ -758,11 +758,12 @@ Hasil batch tersedia untuk diunduh pada properti `results_url` di Message Batch,
   for result in client.messages.batches.results(
       "msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d",
   ):
-      match result.result.type:
+      outcome = result.result
+      match outcome.type:
           case "succeeded":
               print(f"Success! {result.custom_id}")
           case "errored":
-              if result.result.error.error.type == "invalid_request_error":
+              if outcome.error.error.type == "invalid_request_error":
                   # Body permintaan harus diperbaiki sebelum mengirim ulang permintaan
                   print(f"Validation error {result.custom_id}")
               else:
@@ -829,7 +830,7 @@ Hasil batch tersedia untuk diunduh pada properti `results_url` di Message Batch,
   ```go Go
   client := anthropic.NewClient()
 
-  stream := client.Messages.Batches.ResultsStreaming(context.TODO(), "msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d")
+  stream := client.Messages.Batches.ResultsStreaming(context.TODO(), "msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d", anthropic.MessageBatchResultsParams{})
 
   for stream.Next() {
   	result := stream.Current()
@@ -856,7 +857,7 @@ Hasil batch tersedia untuk diunduh pada properti `results_url` di Message Batch,
   // ...
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-      // Streaming file hasil dalam potongan hemat memori, diproses satu per satu
+      // Streaming file hasil dalam potongan yang hemat memori, diproses satu per satu
       try (
         StreamResponse<MessageBatchIndividualResponse> streamResponse = client
           .messages()
@@ -870,39 +871,43 @@ Hasil batch tersedia untuk diunduh pada properti `results_url` di Message Batch,
         streamResponse
           .stream()
           .forEach(result -> {
-            if (result.result().isSucceeded()) {
-              System.out.println("Success! " + result.customId());
-            } else if (result.result().isErrored()) {
-              if (result.result().asErrored().error().error().isInvalidRequestError()) {
-                // Body permintaan harus diperbaiki sebelum mengirim ulang permintaan
-                System.out.println("Validation error: " + result.customId());
-              } else {
-                // Permintaan dapat langsung dicoba ulang
-                System.out.println("Server error: " + result.customId());
+            switch (result.result().type().value()) {
+              case SUCCEEDED -> System.out.println("Success! " + result.customId());
+              case ERRORED -> {
+                if (result.result().asErrored().error().error().isInvalidRequestError()) {
+                  // Body permintaan harus diperbaiki sebelum permintaan dikirim ulang
+                  System.out.println("Validation error: " + result.customId());
+                } else {
+                  // Permintaan dapat langsung dicoba ulang
+                  System.out.println("Server error: " + result.customId());
+                }
               }
-            } else if (result.result().isExpired()) {
-              System.out.println("Request expired: " + result.customId());
+              case EXPIRED -> System.out.println("Request expired: " + result.customId());
             }
           });
       }
   ```
 
   ```php PHP
+  use Anthropic\Messages\Batches\MessageBatchErroredResult;
+  use Anthropic\Messages\Batches\MessageBatchExpiredResult;
+  use Anthropic\Messages\Batches\MessageBatchSucceededResult;
+
   $client = new Client();
 
   foreach ($client->messages->batches->resultsStream(messageBatchID: 'msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d') as $result) {
-      switch ($result->result->type) {
-          case "succeeded":
+      switch (true) {
+          case $result->result instanceof MessageBatchSucceededResult:
               echo "Success! {$result->customID}\n";
               break;
-          case "errored":
+          case $result->result instanceof MessageBatchErroredResult:
               if ($result->result->error->error->type === "invalid_request_error") {
                   echo "Validation error: {$result->customID}\n";
               } else {
                   echo "Server error: {$result->customID}\n";
               }
               break;
-          case "expired":
+          case $result->result instanceof MessageBatchExpiredResult:
               echo "Request expired: {$result->customID}\n";
               break;
       }
@@ -913,16 +918,17 @@ Hasil batch tersedia untuk diunduh pada properti `results_url` di Message Batch,
   client = Anthropic::Client.new
 
   client.messages.batches.results_streaming("msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d").each do |result|
-    case result.result.type
-    when :succeeded
+    outcome = result.result
+    case outcome
+    when Anthropic::Models::Messages::MessageBatchSucceededResult
       puts "Success! #{result.custom_id}"
-    when :errored
-      if result.result.error.type == :invalid_request
+    when Anthropic::Models::Messages::MessageBatchErroredResult
+      if outcome.error.type == :invalid_request
         puts "Validation error: #{result.custom_id}"
       else
         puts "Server error: #{result.custom_id}"
       end
-    when :expired
+    when Anthropic::Models::Messages::MessageBatchExpiredResult
       puts "Request expired: #{result.custom_id}"
     end
   end
@@ -993,7 +999,7 @@ Anda dapat membatalkan Message Batch yang sedang diproses menggunakan [endpoint 
   client := anthropic.NewClient()
   messageBatchID := os.Getenv("MESSAGE_BATCH_ID")
 
-  messageBatch, err := client.Messages.Batches.Cancel(context.TODO(), messageBatchID)
+  messageBatch, err := client.Messages.Batches.Cancel(context.TODO(), messageBatchID, anthropic.MessageBatchCancelParams{})
   if err != nil {
   	log.Fatal(err)
   }

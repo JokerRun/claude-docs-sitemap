@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-effort-example
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: 2085f02781d68bc0404ae0b2639bcc628e54a69f406260dbee8264c7512bad96
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 925a46fd80bcd80c78e960b6ec95b2bbe8716eddf8dd8dbbd186ee481b8ae504
 ---
 
 ---
@@ -895,8 +895,8 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
 
 <CodeGroup>
   ```python Python
-  # Run bash where the example was launched. In DOC_TEST_MODE the docs harness
-  # points it at a throwaway fixture directory instead, removed on exit.
+  # Jalankan bash di tempat contoh dijalankan. Dalam DOC_TEST_MODE, harness dokumen
+  # mengarahkannya ke direktori fixture sementara, yang dihapus saat keluar.
   if DOC_TEST_MODE:
       WORK_DIR = tempfile.mkdtemp(prefix="orchestration-")
       atexit.register(shutil.rmtree, WORK_DIR, ignore_errors=True)
@@ -944,8 +944,8 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
   ```typescript TypeScript
   const execShell = promisify(exec);
 
-  // Run bash where the example was launched. In DOC_TEST_MODE the docs harness
-  // points it at a throwaway fixture directory instead, removed on exit.
+  // Jalankan bash di tempat contoh diluncurkan. Dalam DOC_TEST_MODE, harness dokumentasi
+  // mengarahkannya ke direktori fixture sementara, yang dihapus saat keluar.
   const WORK_DIR = DOC_TEST_MODE
     ? await mkdtemp(join(tmpdir(), "orchestration-"))
     : process.cwd();
@@ -959,7 +959,7 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
     process.on("exit", () => rmSync(WORK_DIR, { recursive: true, force: true }));
   }
 
-  // Run a shell command and return its output. No sandbox: example code only.
+  // Jalankan perintah shell dan kembalikan outputnya. Tanpa sandbox: hanya kode contoh.
   async function runBash(command: string): Promise<{ output: string; isError: boolean }> {
     console.error(`[bash] ${command}`);
     let stdout = "";
@@ -1266,8 +1266,8 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
   ```
 
   ```php PHP
-  // Run bash where the example was launched. In DOC_TEST_MODE the docs harness
-  // points it at a throwaway fixture directory instead, removed on exit.
+  // Jalankan bash di tempat contoh diluncurkan. Dalam DOC_TEST_MODE, harness dokumentasi
+  // mengarahkannya ke direktori fixture sementara, yang dihapus saat keluar.
   if (DOC_TEST_MODE) {
       $workDir = sys_get_temp_dir() . '/orchestration-' . bin2hex(random_bytes(8));
       if (!mkdir($workDir, 0700)) {
@@ -1297,7 +1297,7 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
   function runBash(string $command): array
   {
       fwrite(STDERR, "[bash] {$command}\n");
-      // Requires GNU coreutils 'timeout'. On macOS: brew install coreutils, or replace with gtimeout.
+      // Memerlukan 'timeout' dari GNU coreutils. Di macOS: brew install coreutils, atau ganti dengan gtimeout.
       exec(
           'cd ' . escapeshellarg(WORK_DIR) . ' && timeout ' . BASH_TIMEOUT_SECONDS
               . ' bash -c ' . escapeshellarg($command) . ' 2>&1',
@@ -1336,8 +1336,8 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
   ```
 
   ```ruby Ruby
-  # Run bash where the example was launched. In DOC_TEST_MODE the docs harness
-  # points it at a throwaway fixture directory instead, removed on exit.
+  # Jalankan bash di tempat contoh diluncurkan. Dalam DOC_TEST_MODE, harness dokumentasi
+  # mengarahkannya ke direktori fixture sementara, yang dihapus saat keluar.
   WORK_DIR =
     if DOC_TEST_MODE
       Dir.mktmpdir("orchestration-").tap do |dir|
@@ -1353,23 +1353,23 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
       Dir.pwd
     end
 
-  # Tool input arrives as a Hash or as a raw JSON string from the streaming
-  # accumulator; normalize either shape to a string-keyed Hash.
+  # Input alat tiba sebagai Hash atau sebagai string JSON mentah dari akumulator
+  # streaming; normalisasi kedua bentuk menjadi Hash berkunci string.
   def parse_tool_input(raw)
     return raw.transform_keys(&:to_s) if raw.is_a?(Hash)
     parsed = JSON.parse(raw.to_s) rescue nil
     parsed.is_a?(Hash) ? parsed : {}
   end
 
-  # Run a shell command and return [output, is_error]. No sandbox: example code only.
+  # Jalankan perintah shell dan kembalikan [output, is_error]. Tanpa sandbox: hanya kode contoh.
   def run_bash(command)
     warn "[bash] #{command}"
     begin
       stdin, stdout_and_stderr, wait_thr = Open3.popen2e("bash", "-c", command, pgroup: true, chdir: WORK_DIR)
       stdin.close
       reader = Thread.new { stdout_and_stderr.read.scrub }
-      # Enforce the time limit with a monotonic-clock deadline so a timed-out command is
-      # terminated rather than left running in the background.
+      # Terapkan batas waktu dengan tenggat monotonic-clock agar perintah yang kehabisan waktu
+      # dihentikan alih-alih dibiarkan berjalan di latar belakang.
       deadline = Process.clock_gettime(Process::CLOCK_MONOTONIC) + BASH_TIMEOUT_SECONDS
       until wait_thr.join(0.1)
         next if Process.clock_gettime(Process::CLOCK_MONOTONIC) < deadline
@@ -1403,7 +1403,7 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
     end
   end
 
-  # Execute one bash tool call requested by the model.
+  # Jalankan satu panggilan alat bash yang diminta oleh model.
   def handle_bash_block(block)
     input = parse_tool_input(block.input)
     return ["Shell restarted.", false] if input["restart"] == true
@@ -1414,9 +1414,9 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
     run_bash(command)
   end
 
-  # Convert response content to request-shaped params. The streaming accumulator
-  # returns tool_use input as a raw JSON string and includes response-only fields,
-  # so reshape each block to the request schema before echoing it back.
+  # Konversi konten respons menjadi parameter berbentuk permintaan. Akumulator streaming
+  # mengembalikan input tool_use sebagai string JSON mentah dan menyertakan field khusus respons,
+  # jadi bentuk ulang setiap blok ke skema permintaan sebelum mengirimkannya kembali.
   def assistant_content_param(content)
     content.map do |block|
       case block
@@ -1498,8 +1498,8 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
   ```
 
   ```typescript TypeScript
-  // One subagent: a small nested agent loop with the bash tool plus report_findings.
-  // Subagents inherit the main loop's effort level.
+  // Satu subagen: loop agen bersarang kecil dengan alat bash plus report_findings.
+  // Subagen mewarisi tingkat upaya loop utama.
   async function runSubagent(model: string, prompt: string): Promise<string> {
     const subagentSystem =
       "You are one agent in a larger parallel fan-out, assigned a single subtask. " +
@@ -1921,8 +1921,8 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
   ```
 
   ```ruby Ruby
-  # One subagent: a small nested agent loop with the bash tool plus report_findings.
-  # Subagents inherit the main loop's effort level.
+  # Satu subagen: loop agen bersarang kecil dengan alat bash plus report_findings.
+  # Subagen mewarisi tingkat effort dari loop utama.
   def run_subagent(model, prompt)
     subagent_system =
       "You are one agent in a larger parallel fan-out, assigned a single subtask. " \
@@ -2034,9 +2034,9 @@ Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Ju
     }
   }
 
-  // Return a cached result for this exact prompt, or compute and persist it. This
-  // makes the fan-out resumable: interrupt the run, rerun it, and only the subtasks
-  // that never finished are recomputed. Delete the journal file to start fresh.
+  // Kembalikan hasil cache untuk prompt yang sama persis, atau hitung dan simpan. Ini
+  // membuat fan-out dapat dilanjutkan: hentikan eksekusi, jalankan ulang, dan hanya subtugas
+  // yang belum selesai yang dihitung ulang. Hapus file jurnal untuk memulai dari awal.
   async function journaled(prompt: string, compute: () => Promise<string>): Promise<string> {
     const key = createHash("sha256").update(prompt).digest("hex");
     const cached = (await loadJournal())[key];
@@ -2045,8 +2045,8 @@ Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Ju
       return cached;
     }
     const result = await compute();
-    // Chain writes so concurrent subagents do not clobber each other's entries.
-    // The chain is kept settled so one failed write does not poison later ones.
+    // Rantai penulisan agar subagen yang berjalan bersamaan tidak saling menimpa entri.
+    // Rantai dijaga tetap settled agar satu penulisan yang gagal tidak merusak penulisan berikutnya.
     await (journalWriteChain = journalWriteChain
       .then(async () => {
         const journal = await loadJournal();
@@ -2244,9 +2244,9 @@ Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Ju
     {}
   end
 
-  # Return a cached result for this exact prompt, or compute and persist it. This
-  # makes the fan-out resumable: interrupt the run, rerun it, and only the subtasks
-  # that never finished are recomputed. Delete the journal file to start fresh.
+  # Kembalikan hasil cache untuk prompt yang persis sama, atau hitung dan simpan. Ini
+  # membuat fan-out dapat dilanjutkan: hentikan eksekusi, jalankan ulang, dan hanya subtugas
+  # yang belum selesai yang dihitung ulang. Hapus file jurnal untuk memulai dari awal.
   def journaled(prompt)
     key = Digest::SHA256.hexdigest(prompt)
     cached = load_journal[key]
@@ -2337,8 +2337,8 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
   ```
 
   ```typescript TypeScript
-  // Accept the subtasks input in whatever shape the model emits: an array, the array
-  // JSON-encoded as a single string, or a newline-separated list.
+  // Terima input subtugas dalam bentuk apa pun yang dihasilkan model: array, array
+  // yang dienkode JSON sebagai satu string, atau daftar yang dipisahkan baris baru.
   function normalizeSubtasks(raw: unknown): string[] {
     let value = raw;
     if (typeof raw === "string") {
@@ -2368,7 +2368,7 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
     );
   }
 
-  // Map with a concurrency limit: at most `limit` tasks are in flight at once.
+  // Map dengan batas konkurensi: paling banyak `limit` tugas berjalan sekaligus.
   async function mapWithLimit<In, Out>(
     items: readonly In[],
     limit: number,
@@ -2386,9 +2386,9 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
     return results;
   }
 
-  // Run subtasks as parallel subagents, then run a second verification wave over
-  // the results, and return both. MAX_TOTAL_SUBTASKS bounds how many the model can
-  // queue; MAX_CONCURRENT bounds how many run at once.
+  // Jalankan subtugas sebagai subagen paralel, lalu jalankan gelombang verifikasi kedua atas
+  // hasilnya, dan kembalikan keduanya. MAX_TOTAL_SUBTASKS membatasi berapa banyak yang dapat
+  // diantrekan model; MAX_CONCURRENT membatasi berapa banyak yang berjalan sekaligus.
   async function runWorkflow(
     model: string,
     rawSubtasks: unknown,
@@ -2405,7 +2405,7 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
       try {
         return await journaled(prompt, () => runSubagent(model, prompt));
       } catch (error) {
-        // Isolation boundary: one bad subagent should not end the run.
+        // Batas isolasi: satu subagen yang bermasalah tidak boleh menghentikan eksekusi.
         const reason = error instanceof Error ? `${error.name}: ${error.message}` : String(error);
         return `(subagent failed: ${reason})`;
       }
@@ -2758,7 +2758,7 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
           try {
               return journaled($prompt, fn () => runSubagent($client, $model, $prompt));
           } catch (Throwable $error) {
-              // Isolation boundary: one bad subagent should not end the run.
+              // Batas isolasi: satu subagen yang bermasalah tidak boleh menghentikan keseluruhan proses.
               return '(subagent failed: ' . $error::class . ': ' . $error->getMessage() . ')';
           }
       };
@@ -2783,8 +2783,8 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
   ```
 
   ```ruby Ruby
-  # Accept the subtasks input in whatever shape the model emits: an array, the array
-  # JSON-encoded as a single string, or a newline-separated list.
+  # Terima input subtugas dalam bentuk apa pun yang dihasilkan model: array, array yang
+  # dikodekan JSON sebagai satu string, atau daftar yang dipisahkan baris baru.
   def normalize_subtasks(raw)
     if raw.is_a?(String)
       begin
@@ -2806,7 +2806,7 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
       "Subtask: #{subtask}\n\nResult to verify:\n#{result}"
   end
 
-  # Map with a concurrency limit: at most `limit` threads are in flight at once.
+  # Map dengan batas konkurensi: paling banyak `limit` thread berjalan sekaligus.
   def map_with_limit(items, limit)
     results = Array.new(items.length)
     queue = Queue.new
@@ -2823,9 +2823,9 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
     results
   end
 
-  # Run subtasks as parallel subagents, then run a second verification wave over
-  # the results, and return both. MAX_TOTAL_SUBTASKS bounds how many the model can
-  # queue; MAX_CONCURRENT bounds how many run at once.
+  # Jalankan subtugas sebagai subagen paralel, lalu jalankan gelombang verifikasi kedua atas
+  # hasilnya, dan kembalikan keduanya. MAX_TOTAL_SUBTASKS membatasi berapa banyak yang dapat
+  # diantrekan model; MAX_CONCURRENT membatasi berapa banyak yang berjalan sekaligus.
   def run_workflow(model, raw_subtasks)
     all_subtasks = normalize_subtasks(raw_subtasks)
     subtasks = all_subtasks.first(MAX_TOTAL_SUBTASKS)
@@ -3001,8 +3001,8 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
           return due
 
       def turn(self, user_input: str) -> str:
-          # Mid-conversation system messages follow the user turn they apply to, which keeps
-          # the cached prefix ahead of them untouched.
+          # Pesan sistem di tengah percakapan mengikuti giliran pengguna yang terkait, sehingga
+          # prefiks yang di-cache di depannya tetap tidak berubah.
           self.messages.append({"role": "user", "content": user_input})
           self.messages.extend(self._due_system_messages())
           self._turns_since_reminder += 1
@@ -3025,7 +3025,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
               if response.stop_reason != "tool_use":
                   text = "".join(block.text for block in response.content if block.type == "text")
                   if response.stop_reason == "max_tokens":
-                      # Drop the truncated assistant message so later turns don't build on it.
+                      # Buang pesan asisten yang terpotong agar giliran berikutnya tidak dibangun di atasnya.
                       self.messages.pop()
                       text += "\n\n(warning: response was truncated at max_tokens)"
                   return text
@@ -3054,7 +3054,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   ```
 
   ```typescript TypeScript
-  // An agent loop whose orchestration mode is toggled with mid-conversation system messages.
+  // Loop agen yang mode orkestrasinya diaktifkan/dinonaktifkan dengan pesan sistem di tengah percakapan.
   class ModeAgent {
     private readonly model: string;
     private modeOn: boolean;
@@ -3068,7 +3068,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
       this.modeOn = modeOn;
     }
 
-    // Turn the mode on or off. The notice is delivered with the next user turn.
+    // Aktifkan atau nonaktifkan mode. Pemberitahuan disampaikan pada giliran pengguna berikutnya.
     setMode(modeOn: boolean): void {
       if (modeOn === this.modeOn) {
         return;
@@ -3083,8 +3083,8 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
       this.modeOn = modeOn;
     }
 
-    // System messages owed on this turn: an exit notice, the full mode text on entry,
-    // or a one-line refresher every TURNS_BETWEEN_REFRESHERS user turns.
+    // Pesan sistem yang harus dikirim pada giliran ini: pemberitahuan keluar, teks mode lengkap saat masuk,
+    // atau pengingat satu baris setiap TURNS_BETWEEN_REFRESHERS giliran pengguna.
     private dueSystemMessages(): Anthropic.MessageParam[] {
       const due: Array<{ role: "system"; content: string }> = [];
       if (this.exitPending) {
@@ -3102,14 +3102,14 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
           due.push({ role: "system", content: MODE_REFRESH });
         }
       }
-      // The published SDK types message roles as "user" | "assistant"; typed support for
-      // mid-conversation system messages ships with the SDK release that includes them.
+      // SDK yang dipublikasikan mengetikkan peran pesan sebagai "user" | "assistant"; dukungan bertipe untuk
+      // pesan sistem di tengah percakapan hadir pada rilis SDK yang menyertakannya.
       return due as unknown as Anthropic.MessageParam[];
     }
 
     async turn(userInput: string): Promise<string> {
-      // Mid-conversation system messages follow the user turn they apply to, which keeps
-      // the cached prefix ahead of them untouched.
+      // Pesan sistem di tengah percakapan mengikuti giliran pengguna yang terkait, sehingga
+      // prefiks yang di-cache sebelumnya tetap tidak tersentuh.
       this.messages.push({ role: "user", content: userInput });
       this.messages.push(...this.dueSystemMessages());
       this.turnsSinceReminder += 1;
@@ -3139,7 +3139,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
             .map((block) => block.text)
             .join("");
           if (response.stop_reason === "max_tokens") {
-            // Drop the truncated assistant message so later turns do not build on it.
+            // Buang pesan asisten yang terpotong agar giliran berikutnya tidak dibangun di atasnya.
             this.messages.pop();
             text += "\n\n(warning: response was truncated at max_tokens)";
           }
@@ -3632,8 +3632,8 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
 
       public function turn(string $userInput): string
       {
-          // Mid-conversation system messages follow the user turn they apply to, which keeps
-          // the cached prefix ahead of them untouched.
+          // Pesan sistem di tengah percakapan mengikuti giliran pengguna yang terkait, sehingga
+          // prefiks yang di-cache sebelum pesan tersebut tetap utuh.
           $this->messages[] = ['role' => 'user', 'content' => $userInput];
           array_push($this->messages, ...$this->dueSystemMessages());
           $this->turnsSinceReminder++;
@@ -3662,7 +3662,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
                       }
                   }
                   if ($stopReason === 'max_tokens') {
-                      // Drop the truncated assistant message so the next turn does not build on it.
+                      // Buang pesan asisten yang terpotong agar giliran berikutnya tidak dibangun di atasnya.
                       array_pop($this->messages);
                       $text .= "\n\n(warning: response was truncated at max_tokens)";
                   }
@@ -3723,7 +3723,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   ```
 
   ```ruby Ruby
-  # An agent loop whose orchestration mode is toggled with mid-conversation system messages.
+  # Loop agen yang mode orkestrasinya diaktifkan/dinonaktifkan dengan pesan sistem di tengah percakapan.
   class ModeAgent
     def initialize(model, mode_on: true)
       @model = model
@@ -3734,7 +3734,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
       @turns_since_reminder = 0
     end
 
-    # Turn the mode on or off. The notice is delivered with the next user turn.
+    # Aktifkan atau nonaktifkan mode. Pemberitahuan disampaikan bersama giliran pengguna berikutnya.
     def set_mode(mode_on)
       return if mode_on == @mode_on
 
@@ -3747,8 +3747,8 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
     end
 
     def turn(user_input)
-      # Mid-conversation system messages follow the user turn they apply to, which keeps
-      # the cached prefix ahead of them untouched.
+      # Pesan sistem di tengah percakapan mengikuti giliran pengguna yang terkait, sehingga
+      # prefiks yang di-cache sebelumnya tetap tidak tersentuh.
       @messages << {role: "user", content: user_input}
       @messages.concat(due_system_messages)
       @turns_since_reminder += 1
@@ -3804,8 +3804,8 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
 
     private
 
-    # System messages owed on this turn: an exit notice, the full mode text on entry,
-    # or a one-line refresher every TURNS_BETWEEN_REFRESHERS user turns.
+    # Pesan sistem yang harus dikirim pada giliran ini: pemberitahuan keluar, teks mode lengkap saat masuk,
+    # atau pengingat satu baris setiap TURNS_BETWEEN_REFRESHERS giliran pengguna.
     def due_system_messages
       due = []
       if @exit_pending

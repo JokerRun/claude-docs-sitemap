@@ -1,20 +1,26 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 64eecf8d6354a4c189c6f41137bbb60aad8d1fc11e51acc73ca9b328d523213d
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 18bb2777286318316fa353e3ba8a57ac89a0aaaa7ee3c331971871295c461aaa
 ---
 
 ---
 title: Files API
 url: https://platform.claude.com/docs/id/build-with-claude/files
 description: Unggah file sekali, referensikan dengan file_id dalam permintaan Messages, dan unduh output yang dibuat oleh skills atau alat eksekusi kode.
+featureMetadata:
+  status: ga
+  zdr: not-eligible
+  supportedPlatforms:
+    Claude API: ga
+    Claude Platform on AWS: beta
+    Amazon Bedrock: not available
+    Google Cloud: not available
+    Microsoft Foundry:
+      availability: beta
+      note: Di [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), Files API memerlukan [deployment Hosted on Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure).
 ---
-
-## Compatibility
-- [ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention): not eligible
-- Platforms: Claude API, Claude Platform on AWS (beta), Microsoft Foundry (beta) [1]; not available on Amazon Bedrock, Google Cloud
-1. Di [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), Files API memerlukan [deployment Hosted on Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure).
 
 Files API memungkinkan Anda mengunggah dan mengelola file untuk digunakan dengan Claude API tanpa perlu mengunggah ulang konten pada setiap permintaan. Ini sangat berguna saat menggunakan [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk menyediakan input (misalnya, dataset dan dokumen) lalu mengunduh output (misalnya, grafik). Anda dapat [menjelajahi referensi API secara langsung](https://platform.claude.com/docs/id/api/files/upload), selain panduan ini.
 

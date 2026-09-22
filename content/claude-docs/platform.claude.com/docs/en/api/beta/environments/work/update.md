@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/update
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 4d9f304da0e004d90e2b692af913e90b8e086019ddfd00cd9917ab03e53b82b2
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 254879104bad18180fcd1a480b1a62d518d604d88365443eec9c07ea26a2b07a
 ---
 
 ---
@@ -127,6 +127,10 @@ Update work item metadata with merge semantics.
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Body parameters
 

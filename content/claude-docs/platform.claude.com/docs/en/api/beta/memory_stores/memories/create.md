@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/create
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 65202fb3425dd4f0538e68a051319b6d54cc13ab481c7aecce2843f88dd23640
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: cce0e2aadf6edf1b975ba2401bf43f3de18d3f3d3f1fe069aa0fbfa1248463ab
 ---
 
 ---
@@ -20,15 +20,21 @@ Create a memory
 
 - `memory_store_id: string`
 
+  The ID of the memory store to create the memory in (`memstore_...`).
+
 ## Query parameters
 
 - `view: optional BetaManagedAgentsMemoryView`
 
-  Query parameter for view
+  Selects which projection of a `memory` or `memory_version` the server returns. `basic` returns the object with `content` set to `null`; `full` populates `content`. When omitted, the default is endpoint-specific: retrieve operations default to `full`; list, create, and update operations default to `basic`. Listing with `view=full` caps `limit` at 20.
 
   - `"basic"`
 
+    Return the object with `content` set to `null`. The `content_size_bytes` and `content_sha256` fields remain populated, so sync clients can diff without fetching content.
+
   - `"full"`
+
+    Return the object with `content` populated. On list endpoints, `view=full` caps `limit` at 20.
 
 ## Headers
 
@@ -133,6 +139,10 @@ Create a memory
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Body parameters
 

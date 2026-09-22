@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/events/stream
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 3e0604da79da1618ed7338d4b37156411b94b01c18583e38c8fa89d50c6980a0
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 2f919182063480b46ada95f05dba2a9ee780ed23b330cd906f5b855be29191ee
 ---
 
 ---
@@ -135,6 +135,10 @@ Stream Session Thread Events
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

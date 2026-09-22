@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/delete
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 3f72c56185ce0daa8f56f4a1f5daee9ce6831ce99be009e7b35462f4e03b968f
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 89486d588f8609afdbff1a460ebd57ec400d5c540f3806469bd5f305eee317ad
 ---
 
 ---
@@ -20,13 +20,19 @@ Delete a memory
 
 - `memory_store_id: string`
 
+  The ID of the memory store that holds the memory (`memstore_...`).
+
 - `memory_id: string`
+
+  The ID of the memory to delete (`mem_...`).
 
 ## Query parameters
 
 - `expected_content_sha256: optional string`
 
-  Query parameter for expected_content_sha256
+  Delete the memory only if its current `content_sha256` equals this value, given as 64 lowercase hexadecimal characters. Omit it to delete unconditionally.
+
+  If the hashes differ, the request fails with HTTP status 409 and nothing is deleted.
 
 ## Headers
 
@@ -131,6 +137,10 @@ Delete a memory
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

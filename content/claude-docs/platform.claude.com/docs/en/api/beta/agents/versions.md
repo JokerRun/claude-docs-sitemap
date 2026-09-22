@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/versions
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 32a532ba652443965e5bccc7bd200170d8c56ea639b0e5276454a392fec4f73c
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: a1a5eca206a40e45152655f85ae9c67e8c6158b8e6d4c57ffafe161fc1391fcc
 ---
 
 ---
@@ -21,6 +21,8 @@ List Agent Versions
 ### Path parameters
 
 - `agent_id: string`
+
+  Agent ID to list versions for.
 
 ### Query parameters
 
@@ -137,6 +139,10 @@ List Agent Versions
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ### Returns
 

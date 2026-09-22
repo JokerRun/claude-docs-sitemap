@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/retrieve
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 014c1b0d4ada58c4a6ecf9ab4a7701d467c065a44c752b7e7d8e88f57461a17d
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 8117b63fe9ad79ce0160cbebc7ee8f527b3f51b7c28fabc549310979014dc665
 ---
 
 ---
@@ -19,6 +19,8 @@ Retrieve a memory store
 ## Path parameters
 
 - `memory_store_id: string`
+
+  ID of the memory store to retrieve (a `memstore_...` identifier). Required. Enumerate IDs via `GET /v1/memory_stores`.
 
 ## Headers
 
@@ -123,6 +125,10 @@ Retrieve a memory store
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

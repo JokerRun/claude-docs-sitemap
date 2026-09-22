@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/archive
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 19ac72297be02be914555987cda6455c137e848227c33cfc01df230f76f3f716
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 4825319bf3e556ab69f650e540ea74ef23ece66ffc5580bc23aed1c5484976cc
 ---
 
 ---
@@ -21,6 +21,8 @@ Archives a tunnel. Archival is irreversible: every non-archived certificate on t
 ## Path parameters
 
 - `tunnel_id: string`
+
+  ID of the tunnel (`tnl_...`).
 
 ## Headers
 
@@ -125,6 +127,10 @@ Archives a tunnel. Archival is irreversible: every non-archived certificate on t
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

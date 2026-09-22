@@ -1,23 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/scheduled-deployments
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 681906f562440ffc0f0d55a11d4e3b00429a1572019ba2c015517de677deb55e
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 94c309d9d34f8505b20ef79bbf8af4ad70b5f9ac3aac06303d284357ea5969a9
 ---
 
 ---
 title: Deployment terjadwal
 url: https://platform.claude.com/docs/id/managed-agents/scheduled-deployments
 description: "Buat dan kelola deployment dengan Claude API: jalankan agen pada jadwal cron berulang dan periksa riwayat eksekusinya."
+featureMetadata:
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
 
 Sebuah **scheduled deployment** (deployment terjadwal) memungkinkan [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) untuk memulai [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) secara otonom, sehingga tugas dapat diselesaikan dalam irama yang dapat diprediksi. Anda membuat dan mengelola deployment dengan Deployments API, bagian dari Claude API.
 
 Untuk konteks peluncuran dan contoh apa yang dijalankan tim secara terjadwal, lihat [deployment terjadwal dan vault di Claude Managed Agents](https://claude.com/blog/whats-new-in-claude-managed-agents) di blog.
-
-<Note>
-  Semua permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`. SDK menetapkan header beta secara otomatis.
-</Note>
 
 ## Membuat deployment terjadwal
 
@@ -27,7 +26,7 @@ Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.cla
 * Deployment juga memerlukan setidaknya satu event awal, sebuah `user.message` atau `user.define_outcome`, yang memulai pekerjaan setiap sesi.
 * Di dalam `schedule`, Anda mendefinisikan `expression` cron dan `timezone`. Granularitas maksimum yang didukung adalah pada tingkat menit.
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   curl --fail-with-body -sS "https://api.anthropic.com/v1/deployments?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -52,20 +51,7 @@ Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.cla
   ```
 
   ```bash CLI
-  ant beta:deployments create <<YAML
-  name: Weekly compliance scan
-  agent: $AGENT_ID
-  environment_id: $ENVIRONMENT_ID
-  initial_events:
-    - type: user.message
-      content:
-        - type: text
-          text: Run the weekly compliance scan.
-  schedule:
-    type: cron
-    expression: "0 20 * * 5"
-    timezone: America/New_York
-  YAML
+  ant apply deployment.md
   ```
 
   ```python Python
@@ -294,7 +280,7 @@ Deployment yang berhasil menghasilkan sesi aktif, dan eksekusi deployment yang b
 
 Daftarkan semua eksekusi deployment untuk sebuah deployment sebagai berikut:
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   curl --fail-with-body -sS "https://api.anthropic.com/v1/deployment_runs?beta=true&deployment_id=$DEPLOYMENT_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -383,7 +369,7 @@ Daftarkan semua eksekusi deployment untuk sebuah deployment sebagai berikut:
 
 Anda juga dapat memfilter eksekusi deployment yang memiliki error:
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   curl --fail-with-body -sS "https://api.anthropic.com/v1/deployment_runs?beta=true&deployment_id=$DEPLOYMENT_ID&has_error=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -493,7 +479,7 @@ Setiap perubahan siklus hidup memancarkan [event webhook](https://platform.claud
 
 **Pause** menekan pemicu terjadwal untuk ke depannya; sesi yang sedang berjalan dari eksekusi deployment sebelumnya tetap dieksekusi. Eksekusi manual melalui endpoint `run` masih diizinkan saat dijeda. Menjeda menetapkan `paused_reason` ke `{"type": "manual"}`; melanjutkan akan menghapusnya.
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   curl --fail-with-body -sS -X POST "https://api.anthropic.com/v1/deployments/$DEPLOYMENT_ID/pause?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -538,7 +524,7 @@ Setiap perubahan siklus hidup memancarkan [event webhook](https://platform.claud
 
 **Unpause** melanjutkan jadwal dari kejadian terjadwal berikutnya. Pemicu yang terlewat tidak diisi ulang.
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   curl --fail-with-body -sS -X POST "https://api.anthropic.com/v1/deployments/$DEPLOYMENT_ID/unpause?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -583,7 +569,7 @@ Setiap perubahan siklus hidup memancarkan [event webhook](https://platform.claud
 
 **Archive**, tidak seperti **pause**, bersifat terminal: jadwal berakhir dan deployment tidak dapat dimodifikasi.
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   curl --fail-with-body -sS -X POST "https://api.anthropic.com/v1/deployments/$DEPLOYMENT_ID/archive?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -636,7 +622,7 @@ Jika agen dari sebuah deployment telah diarsipkan, deployment tersebut secara ot
 
 Untuk menjalankan deployment di luar jadwalnya, panggil [endpoint `run`](https://platform.claude.com/docs/id/api/beta/deployments/run). Ini langsung membuat sesi dan menulis eksekusi deployment dengan `trigger_context.type: "manual"`. Ini memungkinkan Anda menguji deployment sebelum berkomitmen pada jadwal.
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   curl --fail-with-body -sS -X POST "https://api.anthropic.com/v1/deployments/$DEPLOYMENT_ID/run?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \

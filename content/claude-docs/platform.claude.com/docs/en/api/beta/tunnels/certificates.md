@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: ecc01a2241daf20c27dc1b975d8be074297645411d72916412e8f0550fcbe0dd
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 0b5d86e115d56f3ff2a1f607c76898eaa8ee08e84573b1ebeabd547b5fd0284f
 ---
 
 ---
@@ -23,6 +23,8 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
 ### Path parameters
 
 - `tunnel_id: string`
+
+  ID of the tunnel (`tnl_...`).
 
 ### Headers
 
@@ -127,6 +129,10 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ### Body parameters
 
@@ -213,7 +219,11 @@ Fetches a tunnel certificate by ID.
 
 - `tunnel_id: string`
 
+  ID of the tunnel (`tnl_...`).
+
 - `certificate_id: string`
+
+  ID of the certificate (`tcrt_...`).
 
 ### Headers
 
@@ -319,6 +329,10 @@ Fetches a tunnel certificate by ID.
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 ### Returns
 
 - `BetaTunnelCertificate object`
@@ -391,6 +405,8 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 ### Path parameters
 
 - `tunnel_id: string`
+
+  ID of the tunnel (`tnl_...`).
 
 ### Query parameters
 
@@ -512,6 +528,10 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 ### Returns
 
 - `data: array of BetaTunnelCertificate`
@@ -594,7 +614,11 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
 
 - `tunnel_id: string`
 
+  ID of the tunnel (`tnl_...`).
+
 - `certificate_id: string`
+
+  ID of the certificate to archive (`tcrt_...`).
 
 ### Headers
 
@@ -699,6 +723,10 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ### Returns
 

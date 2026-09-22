@@ -1,19 +1,26 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 0689534aad1b3cfd9f1a73fa62d61a8727aa251f31a7d372cbc94fde95b1def6
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 40f9882494c502ce91680e172ebc483c9acbca047888fc3997c7c6d641d6d388
 ---
 
 ---
 title: Penghitungan token
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
 description: Hitung token dalam sebuah pesan sebelum Anda mengirimkannya ke Claude. Gunakan jumlah token untuk mengelola batas laju dan biaya, membuat keputusan perutean model, dan menyesuaikan prompt dengan panjang target.
+featureMetadata:
+  status: ga
+  zdr:
+    eligibility: eligible
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+  supportedPlatforms:
+    Claude API: ga
+    Claude Platform on AWS: ga
+    Amazon Bedrock: ga
+    Google Cloud: ga
+    Microsoft Foundry: ga
 ---
-
-## Compatibility
-- [ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention): eligible (excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))
-- Platforms: Claude API, Claude Platform on AWS, Amazon Bedrock, Google Cloud, Microsoft Foundry
 
 "Token counting" (penghitungan token) memungkinkan Anda menentukan jumlah token dalam sebuah pesan sebelum Anda mengirimkannya ke Claude. Ini membantu Anda membuat keputusan yang tepat tentang prompt dan penggunaan Anda. Dengan penghitungan token, Anda dapat:
 

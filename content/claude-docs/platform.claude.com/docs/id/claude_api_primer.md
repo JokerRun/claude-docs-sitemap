@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/claude_api_primer
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 5c26446db81dffd56a165ba984a8614a02f8c55b04bb2225cd3ebd2c0e128a12
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 93d9a8a0e200f636a29e542aac683c878eee2939e9f88223893bae636e1b5853
 ---
 
 ---
@@ -301,10 +301,11 @@ Ketika thinking aktif, Claude membuat blok konten `thinking` tempat ia mengeluar
 
   # Respons berisi blok pemikiran yang diringkas dan blok teks
   for block in response.content:
-      if block.type == "thinking":
-          print(f"\nThinking summary: {block.thinking}")
-      elif block.type == "text":
-          print(f"\nResponse: {block.text}")
+      match block.type:
+          case "thinking":
+              print(f"\nThinking summary: {block.thinking}")
+          case "text":
+              print(f"\nResponse: {block.text}")
   ```
 </CodeGroup>
 
@@ -537,12 +538,13 @@ Pada model lama yang menggunakan pemikiran diperpanjang manual (model Claude 4, 
   )
 
   for block in response.content:
-      if block.type == "thinking":
-          print(f"Thinking: {block.thinking}")
-      elif block.type == "tool_use":
-          print(f"Tool call: {block.name}({block.input})")
-      elif block.type == "text":
-          print(f"Response: {block.text}")
+      match block.type:
+          case "thinking":
+              print(f"Thinking: {block.thinking}")
+          case "tool_use":
+              print(f"Tool call: {block.name}({block.input})")
+          case "text":
+              print(f"Response: {block.text}")
   ```
 </CodeGroup>
 
@@ -765,7 +767,7 @@ Setiap server-sent event menyertakan tipe event bernama dan data JSON terkait. S
 
 ### Tipe delta blok konten
 
-#### Text delta
+#### Delta teks
 
 ```json
 {
@@ -775,7 +777,7 @@ Setiap server-sent event menyertakan tipe event bernama dan data JSON terkait. S
 }
 ```
 
-#### Input JSON delta
+#### Delta JSON input
 
 Untuk blok konten `tool_use`, delta berupa *string JSON parsial*:
 
@@ -783,7 +785,7 @@ Untuk blok konten `tool_use`, delta berupa *string JSON parsial*:
 {"type": "content_block_delta","index": 1,"delta": {"type": "input_json_delta","partial_json": "{\"location\": \"San Fra"}}}
 ```
 
-#### Thinking delta
+#### Delta thinking
 
 Saat menggunakan thinking dengan streaming:
 

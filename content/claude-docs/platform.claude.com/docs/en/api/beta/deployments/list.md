@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/list
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 2094a660e22217e37e40f75a051e536dc4c95b178fc47c49261fcb5a05857787
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 11120921880135999e456cb1ee29992b42f069ee06968466820e342756cc09e4
 ---
 
 ---
@@ -54,7 +54,11 @@ List Deployments
 
   - `"active"`
 
+    The deployment is active and can run sessions. Archived deployments also report this status; check `archived_at` to distinguish them.
+
   - `"paused"`
+
+    The deployment is paused. Autonomous triggers are suppressed; manual runs are still permitted.
 
 ## Headers
 
@@ -159,6 +163,10 @@ List Deployments
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 
@@ -646,7 +654,11 @@ List Deployments
 
     - `"active"`
 
+      The deployment is active and can run sessions. Archived deployments also report this status; check `archived_at` to distinguish them.
+
     - `"paused"`
+
+      The deployment is paused. Autonomous triggers are suppressed; manual runs are still permitted.
 
   - `updated_at: string`
 

@@ -1,22 +1,37 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: e4a6171f834fefe3027c0e640b4db93006551dcd592d55c646ca9db61f3998ee
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: a61950d7cc88d43c5db6214bd65b62574b96bb5e3cd5ded32c097c80dcfe56ae
 ---
 
 ---
 title: Alat penggunaan komputer
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
 description: Berikan Claude kendali tangkapan layar, mouse, dan keyboard atas lingkungan desktop dengan alat penggunaan komputer, yaitu toolset klien computer_toolset_20260801.
+featureMetadata:
+  status: ga
+  zdr:
+    eligibility: eligible
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-opus-5
+    - claude-sonnet-5
+    - claude-opus-4-8
+  supportedPlatforms:
+    Claude API: ga
+    Claude Platform on AWS: beta
+    Amazon Bedrock: beta
+    Google Cloud: ga
+    Microsoft Foundry: beta
+  details:
+    - Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5 mendukung penggunaan komputer hanya melalui versi alat `computer_20251124` yang lebih lama, yang memerlukan header beta; lihat [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
+    - Platform selain Claude API dan Google Cloud saat ini hanya menawarkan [versi alat beta sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
 ---
-
-## Compatibility
-- [ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention): eligible (excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))
-- Supported models: `claude-fable-5-1`, `claude-mythos-5-1`, `claude-fable-5`, `claude-mythos-5`, `claude-opus-5`, `claude-sonnet-5`, `claude-opus-4-8`
-- Platforms: Claude API, Claude Platform on AWS (beta), Amazon Bedrock (beta), Google Cloud, Microsoft Foundry (beta)
-- Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5 mendukung penggunaan komputer hanya melalui versi alat `computer_20251124` yang lebih lama, yang memerlukan header beta; lihat [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
-- Platform selain Claude API dan Google Cloud saat ini hanya menawarkan [versi alat beta sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
 
 Claude dapat berinteraksi dengan lingkungan komputer melalui alat "computer use" (penggunaan komputer), yang menyediakan kemampuan tangkapan layar serta kendali mouse/keyboard untuk interaksi desktop secara otonom.
 
@@ -475,15 +490,15 @@ Inti dari penggunaan komputer adalah "loop agen": sebuah siklus di mana Claude m
               tools=TOOLS,
           )
 
-          # Add Claude's response to the conversation history
+          # Tambahkan respons Claude ke riwayat percakapan
           messages.append({"role": "assistant", "content": response.content})
 
-          # Run the actions Claude requested, in order, and collect the results
+          # Jalankan aksi yang diminta Claude, secara berurutan, dan kumpulkan hasilnya
           tool_results = process_tool_calls(response)
           if not tool_results:
               return messages  # No more tool use; task complete
 
-          # Send every result back to Claude in a single user message
+          # Kirim semua hasil kembali ke Claude dalam satu pesan user
           messages.append({"role": "user", "content": tool_results})
 
       return messages
@@ -495,8 +510,8 @@ Inti dari penggunaan komputer adalah "loop agen": sebuah siklus di mana Claude m
     messages: Anthropic.MessageParam[],
     maxIterations = 10,
   ): Promise<Anthropic.MessageParam[]> {
-    // Run the computer-use agent loop until Claude stops requesting tools
-    // or the iteration limit is reached.
+    // Jalankan loop agen computer-use hingga Claude berhenti meminta alat
+    // atau batas iterasi tercapai.
     for (let i = 0; i < maxIterations; i++) {
       const response = await client.messages.create({
         model,
@@ -505,16 +520,16 @@ Inti dari penggunaan komputer adalah "loop agen": sebuah siklus di mana Claude m
         tools,
       });
 
-      // Add Claude's response to the conversation history
+      // Tambahkan respons Claude ke riwayat percakapan
       messages.push({ role: "assistant", content: response.content });
 
-      // Run any tools Claude requested and collect results
+      // Jalankan alat apa pun yang diminta Claude dan kumpulkan hasilnya
       const toolResults = processToolCalls(response);
       if (toolResults.length === 0) {
         return messages; // No more tool use; task complete
       }
 
-      // Send tool results back to Claude for the next iteration
+      // Kirim hasil alat kembali ke Claude untuk iterasi berikutnya
       messages.push({ role: "user", content: toolResults });
     }
 
@@ -654,16 +669,16 @@ Inti dari penggunaan komputer adalah "loop agen": sebuah siklus di mana Claude m
               tools: $tools,
           );
 
-          // Add Claude's response to the conversation history
+          // Tambahkan respons Claude ke riwayat percakapan
           $messages[] = MessageParam::with(role: Role::ASSISTANT, content: $response->content);
 
-          // Run any tools Claude requested and collect results
+          // Jalankan alat yang diminta Claude dan kumpulkan hasilnya
           $toolResults = processToolCalls($response);
           if ($toolResults === []) {
               return $messages; // No more tool use; task complete
           }
 
-          // Send tool results back to Claude for the next iteration
+          // Kirim hasil alat kembali ke Claude untuk iterasi berikutnya
           $messages[] = MessageParam::with(role: Role::USER, content: $toolResults);
       }
 
@@ -910,12 +925,12 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
 
     <CodeGroup exclude="shell">
       ```python Python
-      # Placeholder image data; a real executor captures the screen and returns the PNG bytes
+      # Data gambar placeholder; executor sungguhan menangkap layar dan mengembalikan byte PNG
       PLACEHOLDER_PNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
 
 
       def capture_screenshot() -> list[ImageBlockParam]:
-          # screenshot answers with an image block rather than text: return the result content list
+          # screenshot menjawab dengan blok gambar, bukan teks: kembalikan daftar konten hasil
           return [
               {
                   "type": "image",
@@ -940,20 +955,20 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
               case "screenshot":
                   return capture_screenshot()
               case "left_click":
-                  # coordinate is optional; without it, click where the cursor already is
+                  # coordinate bersifat opsional; tanpanya, klik di posisi kursor saat ini
                   return click(tool_input.get("coordinate"))
               case "type":
                   return type_text(tool_input["text"])
-          # Handle other actions as needed
+          # Tangani aksi lain sesuai kebutuhan
           raise ValueError(f"Unknown or unimplemented member: {name}")
       ```
 
       ```typescript TypeScript
-      // Placeholder image data; a real executor captures the screen as PNG bytes
+      // Data gambar placeholder; eksekutor nyata menangkap layar sebagai byte PNG
       const PLACEHOLDER_PNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==";
 
       function captureScreenshot(): Anthropic.ImageBlockParam[] {
-        // screenshot answers with an image block rather than text
+        // screenshot menjawab dengan blok gambar, bukan teks
         return [
           {
             type: "image",
@@ -988,7 +1003,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
           case "screenshot":
             return captureScreenshot();
           case "left_click":
-            // coordinate is optional on the toolset; without one, click at the cursor
+            // coordinate bersifat opsional pada toolset; tanpanya, klik di posisi kursor
             if ("coordinate" in params && Array.isArray(params.coordinate)) {
               const [x, y] = params.coordinate;
               return clickAt(x, y);
@@ -1000,7 +1015,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
             }
             break;
         }
-        // Handle other actions as needed
+        // Tangani aksi lain sesuai kebutuhan
         throw new Error(`Unknown or unimplemented member: ${action}`);
       }
       ```
@@ -1163,12 +1178,12 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       ```
 
       ```php PHP
-      // Stand-in for real PNG bytes; a real executor captures the screen
+      // Pengganti untuk byte PNG asli; eksekutor nyata menangkap layar
       const PLACEHOLDER_PNG = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==';
 
       function captureScreenshot(): array
       {
-          // screenshot answers with an image block rather than text, so return the result content list
+          // screenshot menjawab dengan blok gambar, bukan teks, jadi kembalikan daftar konten hasil
           $image = [
               'type' => 'image',
               'source' => ['type' => 'base64', 'media_type' => 'image/png', 'data' => PLACEHOLDER_PNG],
@@ -1179,7 +1194,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
 
       function clickAt(?array $coordinate): string
       {
-          // left_click may omit coordinate, in which case the click lands where the cursor already is
+          // left_click boleh tanpa coordinate; jika demikian, klik terjadi di posisi kursor saat ini
           if ($coordinate === null) {
               return 'clicked at current cursor';
           }
@@ -1199,7 +1214,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
               'screenshot' => captureScreenshot(),
               'left_click' => clickAt($input['coordinate'] ?? null),
               'type' => typeText($input['text']),
-              // Handle other actions as needed
+              // Tangani aksi lain sesuai kebutuhan
               default => throw new RuntimeException("Unknown or unimplemented member: {$name}"),
           };
       }
@@ -1265,7 +1280,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
           tool_results: list[ToolResultBlockParam] = []
           failed = False
           for block in response.content:
-              # Only the computer toolset is declared; route other tools here if you add them
+              # Hanya toolset computer yang dideklarasikan; arahkan alat lain ke sini jika Anda menambahkannya
               if block.type != "tool_use" or block.toolset_name != "computer":
                   continue
               result: ToolResultBlockParam = {
@@ -1278,7 +1293,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
                   result["is_error"] = True
               else:
                   try:
-                      # A string, or a list of content blocks such as the screenshot image
+                      # Sebuah string, atau daftar blok konten seperti gambar screenshot
                       result["content"] = handle_computer_action(block.name, block.input)
                   except Exception as err:
                       result["content"] = f"Error: {err}"
@@ -1316,17 +1331,17 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
             continue;
           }
           if (block.toolset_name !== "computer") {
-            // This example declares only the computer toolset; route other tools
-            // here if you add them.
+            // Contoh ini hanya mendeklarasikan toolset computer; arahkan alat lain
+            // ke sini jika Anda menambahkannya.
             continue;
           }
           if (failed) {
-            // A batch stops at its first failure; answer later actions unexecuted
+            // Batch berhenti pada kegagalan pertama; jawab aksi berikutnya sebagai tidak dieksekusi
             toolResults.push(computerResult(block.id, HALT_TEXT, true));
             continue;
           }
           try {
-            // A string, or the image block list that screenshot returns
+            // Sebuah string, atau daftar blok gambar yang dikembalikan screenshot
             const result = handleComputerAction(block.name, block.input);
             toolResults.push(computerResult(block.id, result));
           } catch (error) {
@@ -1506,18 +1521,18 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
           $toolResults = [];
           $failed = false;
           foreach ($response->content as $block) {
-              // This example declares only the computer toolset; route other tools here if you add them.
+              // Contoh ini hanya mendeklarasikan toolset computer; arahkan alat lain ke sini jika Anda menambahkannya.
               if (!($block instanceof \Anthropic\Messages\ToolUseBlock) || $block->toolsetName !== 'computer') {
                   continue;
               }
               $result = ['type' => 'tool_result', 'tool_use_id' => $block->id, 'toolset_name' => 'computer'];
               if ($failed) {
-                  // A batch stops at its first failure; the remaining actions are answered without running
+                  // Batch berhenti pada kegagalan pertama; aksi sisanya dijawab tanpa dijalankan
                   $toolResults[] = [...$result, 'content' => HALT_TEXT, 'is_error' => true];
                   continue;
               }
               try {
-                  // A string, or the image block list that screenshot returns
+                  // Sebuah string, atau daftar blok gambar yang dikembalikan screenshot
                   $toolResults[] = [...$result, 'content' => handleComputerAction($block->name, $block->input)];
               } catch (Throwable $e) {
                   $failed = true;

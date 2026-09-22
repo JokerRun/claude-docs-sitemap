@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/update
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: a8052544d243bff756d3e15c62fcf36a70b6642a83d8d00dc077420a54f643ba
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 918e04438864cdbc73deb2c02124234baa2c1248ec96c39702153d553c5f2028
 ---
 
 ---
@@ -19,6 +19,8 @@ Update Agent
 ## Path parameters
 
 - `agent_id: string`
+
+  Unique identifier of the agent to update.
 
 ## Headers
 
@@ -123,6 +125,10 @@ Update Agent
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Body parameters
 
@@ -248,13 +254,23 @@ Update Agent
 
         - `"low"`
 
+          Low effort. Favors latency over reasoning depth.
+
         - `"medium"`
+
+          Medium effort. Balances latency and reasoning depth.
 
         - `"high"`
 
+          High effort. Favors reasoning depth.
+
         - `"xhigh"`
 
+          Extra-high effort. Not all models accept this level.
+
         - `"max"`
+
+          Maximum effort. Favors reasoning depth over latency.
 
       - `BetaManagedAgentsEffortLow object`
 

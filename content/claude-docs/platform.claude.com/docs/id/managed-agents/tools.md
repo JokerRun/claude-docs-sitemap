@@ -1,23 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 229fc93ee23a25da788dbc32e0d057f7618787fbfdbdec6e66c3780e32b32d9b
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: fddd2d93955ff0c732acd1f45776f9c51569e12a7c7ef1587693701b1b6db8b5
 ---
 
 ---
 title: Alat
 url: https://platform.claude.com/docs/id/managed-agents/tools
 description: Konfigurasikan alat yang tersedia untuk agen Anda.
+featureMetadata:
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
 
 Claude Managed Agents menyediakan serangkaian alat bawaan yang dapat digunakan Claude secara otonom di dalam sebuah [sesi](https://platform.claude.com/docs/id/managed-agents/sessions). Anda mengontrol alat mana yang tersedia dengan menentukannya dalam konfigurasi agen.
 
 Claude Managed Agents juga mendukung alat kustom yang didefinisikan pengguna. Aplikasi Anda mengeksekusi alat-alat ini secara terpisah dan mengembalikan hasilnya ke Claude, yang menggunakannya untuk melanjutkan tugas. Untuk memberi agen alat dari server MCP, gunakan [konektor MCP](https://platform.claude.com/docs/id/managed-agents/mcp-connector) sebagai gantinya.
-
-<Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
-</Note>
 
 ## Alat yang tersedia
 
@@ -42,7 +41,7 @@ Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Guna
 
 Entri config untuk `web_search` dan `web_fetch` juga menerima filter domain dan pengaturan web lainnya; lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -265,7 +264,7 @@ Toolset berikut membatasi `web_search` ke dua situs dan melokalkan hasilnya, ser
 
 Permintaan berikut membuat agen dengan toolset ini dan mencetak array `configs` dari respons:
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \

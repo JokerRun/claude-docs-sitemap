@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/terminal-config
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 2b1062c910f02e3c12ec9cd2879391363845caa8c62b378becf3015ce5b25f7a
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 94d7932e33f7e497d5a9d1d8912cf005438371d6d573bc9f072d2801031f8851
 ---
 
 > ## Documentation Index
@@ -317,6 +317,8 @@ Run `/tui fullscreen` to switch and save the preference. Your conversation relau
 ## Paste large content
 
 When you paste more than 800 characters or more than three lines into the prompt, Claude Code collapses the input to a placeholder such as `[Pasted text #1 +120 lines]` so the input box stays usable. In a terminal window shorter than 12 rows the line limit drops, so Claude Code collapses a three-line paste at 11 rows and any multi-line paste at 10 rows or fewer. Claude Code still sends the full content when you submit.
+
+If the paste carries [invisible Unicode characters](/docs/en/interactive-mode#invisible-characters-in-prompts), Claude Code removes them when you press Enter and puts the cleaned prompt back in the input box for you to send with another Enter.
 
 When you delete with a word or line shortcut such as `Ctrl+W` or `Ctrl+K`, or with a vim delete through an `f`/`t` motion such as `df]`, and the deleted range reaches inside a placeholder, Claude Code removes the placeholder whole. You can paste the deletion back to restore it, with [`Ctrl+Y`](/docs/en/interactive-mode#text-editing) after a word or line shortcut, or with [`p` in NORMAL mode](/docs/en/interactive-mode#editing-normal-mode) after a vim delete.
 

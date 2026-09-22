@@ -1,19 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: d32778b2e59d9f20f307051a5b3f8fe418d84642196cd9a464001f93a85bf018
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: c4caf37a73331ef97d69db4cb2218bc4b5ea4cf0f6e8cf28398f8354334f6133
 ---
 
 ---
 title: Multiagent orchestration
 url: https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration
 description: Coordinate multiple agents within a single session.
+featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
-
-## Compatibility
-- Status: Beta
-- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `managed-agents-2026-04-01`
 
 Multiagent orchestration lets one agent coordinate with others to complete complex work. Agents can act in parallel with their own isolated context, which helps improve output quality and can also improve time to completion.
 

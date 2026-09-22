@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/archive
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 51186ff02487c1b1c327f7194c1d50aceed01fd0fca94589181cbdc424e37297
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 7f8d7dfeec771ae4472246e12b628f2520bf30e4392144abd63057820e7c7e48
 ---
 
 ---
@@ -19,6 +19,8 @@ Archive Deployment
 ## Path parameters
 
 - `deployment_id: string`
+
+  Unique identifier of the deployment to archive.
 
 ## Headers
 
@@ -123,6 +125,10 @@ Archive Deployment
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 
@@ -610,7 +616,11 @@ Archive Deployment
 
     - `"active"`
 
+      The deployment is active and can run sessions. Archived deployments also report this status; check `archived_at` to distinguish them.
+
     - `"paused"`
+
+      The deployment is paused. Autonomous triggers are suppressed; manual runs are still permitted.
 
   - `updated_at: string`
 

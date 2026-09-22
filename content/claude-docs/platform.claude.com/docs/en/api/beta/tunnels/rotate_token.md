@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/rotate_token
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 1778d085efa1919dd6fa93c15649670af3e043fcbc62c2ce02159a6ad49e6fe9
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 8c4b78cbd8c72be75f1e5e21673f842700ff1aad87f67bb83af40a7754146d80
 ---
 
 ---
@@ -21,6 +21,8 @@ Rotates a tunnel's connector token. Rotation invalidates the current token for n
 ## Path parameters
 
 - `tunnel_id: string`
+
+  ID of the tunnel (`tnl_...`).
 
 ## Headers
 
@@ -125,6 +127,10 @@ Rotates a tunnel's connector token. Rotation invalidates the current token for n
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Body parameters
 

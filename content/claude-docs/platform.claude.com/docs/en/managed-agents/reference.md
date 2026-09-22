@@ -1,19 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/reference
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 9ed248884a2a6c831906ab122280496ad765ede10e852270349b87bae7ac4af3
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 8475a30044df25e62b3cdfdcf01632187f722eec66de0ac20d15231e5c8611c9
 ---
 
 ---
 title: Reference
 url: https://platform.claude.com/docs/en/managed-agents/reference
 description: Event types, self-hosted worker CLI flags, supported MCP server types, rate limits, and branding guidelines for Claude Managed Agents.
+featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
-
-## Compatibility
-- Status: Beta
-- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `managed-agents-2026-04-01`
 
 This page collects reference material for Claude Managed Agents. For task-oriented guides, follow the links in each section. For the operations on the session resource, see [Session operations](https://platform.claude.com/docs/en/managed-agents/session-operations).
 

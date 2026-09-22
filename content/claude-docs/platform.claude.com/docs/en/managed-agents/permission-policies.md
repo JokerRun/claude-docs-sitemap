@@ -1,19 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/permission-policies
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: ac827a4a89f953f2fb920679ea89eddae0469e9a2ac5b32a811a1b20f5a2f934
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: cf25b2f9272e479bb7c3825e0bf5db59c498df5062d93c8f26b028fa4932f7ac
 ---
 
 ---
 title: Permission policies
 url: https://platform.claude.com/docs/en/managed-agents/permission-policies
 description: Control when agent and MCP tools execute.
+featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
-
-## Compatibility
-- Status: Beta
-- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `managed-agents-2026-04-01`
 
 Permission policies control whether server-executed tools (the pre-built agent toolset and MCP toolset) run automatically, wait for your approval, or have each call evaluated by the server. Custom tools are executed by your application and controlled by you, so they are not governed by permission policies.
 
@@ -482,7 +484,7 @@ This example connects a GitHub MCP server and allows its tools to run without co
 
 Use the `configs` array to override the default for individual tools. The `name` values for the agent toolset are listed in [Available tools](https://platform.claude.com/docs/en/managed-agents/tools#available-tools). This example allows the full agent toolset by default but requires confirmation before any bash command runs:
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   ```bash cURL
   tools='[
     {
@@ -500,21 +502,29 @@ Use the `configs` array to override the default for individual tools. The `name`
   ]'
   ```
 
-  ```bash CLI
-  ant beta:agents create <<'YAML'
-  name: Coding Assistant
-  model: claude-opus-5
-  tools:
-    - type: agent_toolset_20260401
-      default_config:
-        permission_policy:
-          type: always_allow
-      configs:
-        - name: bash
-          permission_policy:
-            type: always_ask
-  YAML
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant apply agent.md
+    ```
+
+    <File filename="agent.md">
+      ```markdown
+      ---
+      name: Coding Assistant
+      model: claude-opus-5
+      tools:
+        - type: agent_toolset_20260401
+          default_config:
+            permission_policy:
+              type: always_allow
+          configs:
+            - name: bash
+              permission_policy:
+                type: always_ask
+      ---
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   tools = [

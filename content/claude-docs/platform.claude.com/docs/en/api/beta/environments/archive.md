@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/archive
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 95ff84ef1c060c6fa8ccce71d75491518295c1b19ddb50cfcf3d4df90d07d0a1
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 23645e7d29f89c52c0976d990e8fa4902de003df032087531ebf37e7b14bd56e
 ---
 
 ---
@@ -123,6 +123,10 @@ Archive an environment by ID. Archived environments cannot be used to create new
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

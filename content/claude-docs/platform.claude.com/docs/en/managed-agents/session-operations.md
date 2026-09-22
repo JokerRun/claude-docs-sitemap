@@ -1,19 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/session-operations
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 7978987d9c8bf934c699559e6d031601b5fb807a673b20ac2666f7ce5eb15ad2
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 987a54e42216781366e5f38779ef8f22e8c899b23a638abb9fdc065bf944c32e
 ---
 
 ---
 title: Session operations
 url: https://platform.claude.com/docs/en/managed-agents/session-operations
 description: Retrieve, list, update, archive, and delete Claude Managed Agents sessions.
+featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
-
-## Compatibility
-- Status: Beta
-- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `managed-agents-2026-04-01`
 
 Once a session exists, use these operations to read, update, archive, or delete it. See [Start a session](https://platform.claude.com/docs/en/managed-agents/sessions) for creating a session and sending it work.
 

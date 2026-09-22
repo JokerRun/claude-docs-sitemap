@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/retrieve
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: f3dd03ffc5709916246283dbefe3cda931dcb8fbf2e2f73afdb535523ed3014f
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 5a24d6053b0a6875f8a909067653670755141e570875da84e22b557ee7c50ba5
 ---
 
 ---
@@ -21,6 +21,8 @@ Fetches a tunnel by ID.
 ## Path parameters
 
 - `tunnel_id: string`
+
+  ID of the tunnel (`tnl_...`).
 
 ## Headers
 
@@ -125,6 +127,10 @@ Fetches a tunnel by ID.
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

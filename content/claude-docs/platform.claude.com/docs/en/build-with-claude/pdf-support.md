@@ -1,19 +1,26 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/pdf-support
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: fe526a04464d0e005159bbfd23cd748c9d6adf569e0af73ac4ade018cf411ec7
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 88d73b1d45f0c5f11bb048a68276013d3b7dbb45d003e5eca210c833efea7afa
 ---
 
 ---
 title: PDF support
 url: https://platform.claude.com/docs/en/build-with-claude/pdf-support
 description: "Process PDFs with Claude: extract text, analyze charts, and understand visual content from your documents."
+featureMetadata:
+  status: ga
+  zdr:
+    eligibility: eligible
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+  supportedPlatforms:
+    Claude API: ga
+    Claude Platform on AWS: ga
+    Amazon Bedrock: ga
+    Google Cloud: ga
+    Microsoft Foundry: ga
 ---
-
-## Compatibility
-- [ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention): eligible (excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))
-- Platforms: Claude API, Claude Platform on AWS, Amazon Bedrock, Google Cloud, Microsoft Foundry
 
 You can ask Claude about any text, pictures, charts, and tables in PDFs you provide. Some sample use cases:
 

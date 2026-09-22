@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/archive
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 65c15e400bb09d5f3b307eba35981f6f6c6aa4461056f9121f913957563cd220
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: c11bb3747336d712ec7d713e6bcf9995f722fd2bc26943a893bec3c1cb6af99f
 ---
 
 ---
@@ -126,6 +126,10 @@ Archive Session Thread
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 ## Returns
 
 - `BetaManagedAgentsSessionThread object`
@@ -140,7 +144,7 @@ Archive Session Thread
 
   - `agent: BetaManagedAgentsSessionThreadAgent or BetaManagedAgentsAdvisor`
 
-    The resolved agent a session thread runs: a saved-agent snapshot, the platform advisor entry, or an inline-defined (ephemeral) agent snapshot.
+    The resolved agent a `session_thread` runs.
 
     - `BetaManagedAgentsSessionThreadAgent object`
 

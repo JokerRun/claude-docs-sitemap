@@ -1,19 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/cloud-sandboxes-reference
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: d5c4b90d0b7390aaba969789a7f1fb9731ecf2667d97f45790bd81751bfb6711
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 4222b196ba5cb553bc03af254a23d3145c2b21ab04a9d1d8134a99d6746ed8d3
 ---
 
 ---
 title: Cloud sandbox reference
 url: https://platform.claude.com/docs/en/managed-agents/cloud-sandboxes-reference
 description: Pre-installed packages, databases, and utilities available in cloud sandboxes.
+featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
-
-## Compatibility
-- Status: Beta
-- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `managed-agents-2026-04-01`
 
 Cloud sandboxes run as isolated Linux containers on Anthropic-managed infrastructure. They come pre-installed with a comprehensive set of programming languages, databases, and utilities. The agent can use these immediately without any installation steps.
 

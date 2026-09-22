@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: bb9bddab169c625f62521523baa030222e8f6d3d51279d9524261b61ec2e5864
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 244588e70389a0fbb755100cc7776753832848f6907048470bfc55df30b01569
 ---
 
 ---
@@ -30,7 +30,7 @@ Penggunaan CMEK bersifat opsional. Organisasi yang memenuhi syarat dapat **memil
 
 ## Cara kerjanya
 
-Hanya Organization Admin (pada Claude Platform; peran Admin pada Claude Platform on AWS) atau Owner dan Primary Owner (pada Claude Enterprise) yang dapat mengonfigurasi CMEK. Pada Claude Platform, CMEK dicakup per workspace dan dikonfigurasi dengan Admin API (pada Claude Platform on AWS, di Claude Console atau melalui endpoint kunci eksternal dan workspace yang diotorisasi IAM). Pada Claude Enterprise, CMEK dicakup per organisasi dan dikonfigurasi di [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls). Pada kedua produk, CMEK melindungi data yang ditulis setelah kunci Anda berlaku. Data yang sudah ada (chat, file, dan sesi sebelumnya) tetap dienkripsi dengan kunci yang dikelola Anthropic dan tidak dienkripsi ulang dengan kunci Anda.
+Hanya Organization Admin (pada Claude Platform; peran Admin pada Claude Platform on AWS) atau Owner dan Primary Owner (pada Claude Enterprise) yang dapat mengonfigurasi CMEK. Pada Claude Platform, CMEK dicakup per workspace dan dikonfigurasi di Claude Console atau dengan Admin API (pada Claude Platform on AWS, di Claude Console atau melalui endpoint kunci eksternal dan workspace yang diotorisasi IAM). Pada Claude Enterprise, CMEK dicakup per organisasi dan dikonfigurasi di [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls). Pada kedua produk, CMEK melindungi data yang ditulis setelah kunci Anda berlaku. Data yang sudah ada (chat, file, dan sesi sebelumnya) tetap dienkripsi dengan kunci yang dikelola Anthropic dan tidak dienkripsi ulang dengan kunci Anda.
 
 Pada Claude Platform, Anthropic merekomendasikan untuk melampirkan kunci Anda ke workspace baru sebelum Anda mengirim permintaan apa pun ke workspace tersebut. Jika Anda melampirkan kunci ke workspace yang sudah menerima permintaan, kunci Anda dapat memerlukan waktu hingga satu hari untuk berlaku. Data yang ditulis sebelum itu, seperti data yang sudah ada, dienkripsi dengan kunci yang dikelola Anthropic dan tidak dienkripsi ulang.
 
@@ -113,7 +113,7 @@ Fitur-fitur ini tetap tersedia, tetapi datanya tidak dienkripsi dengan kunci And
 **Claude Enterprise**
 
 * Fitur beta dan research preview mungkin tidak tercakup oleh CMEK dan dapat tidak berfungsi di organisasi CMEK, misalnya Claude Security dan Claude Design.
-* [Personal preferences - bagian Instructions for Claude](https://claude.ai/new#settings/general) dan Cowork Global instructions. Pengaturan ini ditetapkan di tingkat akun dan dibagikan ke semua organisasi milik pengguna.
+* [Personal preferences - bagian Instructions for Claude](https://claude.ai/new#settings/account) dan Cowork Global instructions. Pengaturan ini ditetapkan di tingkat akun dan dibagikan ke semua organisasi milik pengguna.
 
 Pada kedua produk, data akun untuk pengguna di organisasi Anda (seperti nama, alamat email, dan gambar profil) tidak dienkripsi dengan kunci Anda.
 

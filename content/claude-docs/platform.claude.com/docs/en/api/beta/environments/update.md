@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/update
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: e3a863e4ba1d689fd02b8a362ea4a32afd55c8cac0fce432f2f4ccd34d37ab3e
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 15695726afa86695de98857410dd967fe1a8f6a91467adc0155b482e21c441fa
 ---
 
 ---
@@ -123,6 +123,10 @@ Update an existing environment's configuration.
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Body parameters
 

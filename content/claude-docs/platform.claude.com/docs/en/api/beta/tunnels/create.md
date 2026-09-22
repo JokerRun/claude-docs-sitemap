@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/create
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 6ce8029e129a512e35ef00af476a5bbfd95d367e7cde5b07db15547eb1b15a4f
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 33f1fe8068af22857b470b4682d569a2b96b1f8ff2ac2276a7de4bcaa45bd109
 ---
 
 ---
@@ -121,6 +121,10 @@ Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel;
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Body parameters
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/create
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 89cf15c4c2b70e376d26f31ecbdaaac8326be394d96b2264ccc08e89f4ff3e4d
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 57f481e894cd31f94f6b1d7970b7ca6a55b3f86aec7b0642bd8a9e4d1936d207
 ---
 
 ---
@@ -119,6 +119,10 @@ Create Session
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Body parameters
 
@@ -270,13 +274,23 @@ Create Session
 
             - `"low"`
 
+              Low effort. Favors latency over reasoning depth.
+
             - `"medium"`
+
+              Medium effort. Balances latency and reasoning depth.
 
             - `"high"`
 
+              High effort. Favors reasoning depth.
+
             - `"xhigh"`
 
+              Extra-high effort. Not all models accept this level.
+
             - `"max"`
+
+              Maximum effort. Favors reasoning depth over latency.
 
           - `BetaManagedAgentsEffortLow object`
 
@@ -1934,11 +1948,19 @@ Create Session
 
     - `"rescheduling"`
 
+      Transient error occurred, retrying automatically.
+
     - `"running"`
+
+      Agent is actively executing.
 
     - `"idle"`
 
+      Agent is waiting for input, including user messages or tool confirmations. Sessions start in idle.
+
     - `"terminated"`
+
+      Session has ended, either due to an error or completion.
 
   - `title: string or null`
 

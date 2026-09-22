@@ -1,21 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/permission-policies
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 5422a2c5be485a2b8d5530cab29ae3bae7070797d7895f181f920ee37d925978
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: ba48b5728d15ca86ec8bcd5b983c4abb80cb7fb073978a761b7d8304af40f907
 ---
 
 ---
 title: Kebijakan izin
 url: https://platform.claude.com/docs/id/managed-agents/permission-policies
 description: Kontrol kapan alat agen dan MCP dieksekusi.
+featureMetadata:
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
 
 "Permission policies" (kebijakan izin) mengontrol apakah alat yang dieksekusi server, yaitu "toolset" (kumpulan alat) agen bawaan dan toolset MCP, berjalan secara otomatis, menunggu persetujuan Anda, atau setiap panggilannya dievaluasi oleh server. "Custom tools" (alat kustom) dieksekusi dan dikendalikan oleh aplikasi Anda sendiri, sehingga tidak diatur oleh kebijakan izin.
-
-<Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
-</Note>
 
 ## Jenis kebijakan izin
 
@@ -482,7 +481,7 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
 
 Gunakan array `configs` untuk mengganti default untuk alat individual. Nilai `name` untuk toolset agen tercantum di [Alat yang tersedia](https://platform.claude.com/docs/id/managed-agents/tools#available-tools). Contoh ini mengizinkan seluruh toolset agen secara default tetapi memerlukan konfirmasi sebelum perintah bash apa pun dijalankan:
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   tools='[
     {
@@ -1082,7 +1081,7 @@ Untuk menjawab secara interaktif, gunakan `ant beta:sessions connect`, yang mena
 
 Dalam contoh berikut, ID event tool-use berasal dari array `stop_reason.event_ids` pada event `session.status_idle`. Pelajari lebih lanjut tentang menerima event dalam panduan [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events), atau [berlangganan webhook](https://platform.claude.com/docs/id/managed-agents/webhooks) untuk mendapatkan notifikasi ketika sesi dijeda untuk menunggu input.
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   # Izinkan alat untuk dieksekusi
   curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
@@ -1100,7 +1099,7 @@ Dalam contoh berikut, ID event tool-use berasal dari array `stop_reason.event_id
       ]
     }'
 
-  # Atau tolak dengan penjelasan
+  # Atau tolak dengan disertai penjelasan
   curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \

@@ -1,19 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/skills
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 6df6edb76335f1cc8e0a13981a01c6c82af4c6925838911eee12e73c61e9af51
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 17dc15895d4deec8261d09561544be24f4e2beb85671747fa4f84b4ece9f44b1
 ---
 
 ---
 title: Skills
 url: https://platform.claude.com/docs/en/managed-agents/skills
 description: Attach pre-built or custom skills to an agent in Claude Managed Agents to give it reusable, filesystem-based expertise for domain-specific workflows.
+featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
-
-## Compatibility
-- Status: Beta
-- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `managed-agents-2026-04-01`
 
 Skills are reusable, filesystem-based resources that give your agent domain-specific expertise: workflows, context, and best practices that turn a general-purpose agent into a specialist. Each skill you add incurs a modest cost on the session's context window, adding instructions and metadata that help the model use the skill. Learn more in the [Agent Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) overview.
 

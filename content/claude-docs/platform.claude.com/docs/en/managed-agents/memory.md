@@ -1,19 +1,18 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/memory
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 2cdbef9c20407d8773a5c96cae4ba0e8b2fe158b46ced36ede50126eb67b0773
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 89697fa3ff9a7fe9dfaf2966edaddb426d8ec58687b8f537e1867bb640a6cb39
 ---
 
 ---
 title: Using agent memory
 url: https://platform.claude.com/docs/en/managed-agents/memory
 description: Give your agents persistent memory that survives across sessions using memory stores.
+featureMetadata:
+  status: beta
+  betaHeader: agent-memory-2026-07-22
 ---
-
-## Compatibility
-- Status: Beta
-- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `agent-memory-2026-07-22`
 
 Each Managed Agents session starts with a fresh context by default. When a session ends, any state the agent built up is gone. Memory stores let the agent carry information across sessions: user preferences, project conventions, prior mistakes, and domain context.
 
@@ -35,7 +34,7 @@ Every change to a memory creates an immutable **memory version**, giving you an 
 
 Give the store a `name` and a `description`. The description is passed to the agent, telling it what the store contains.
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   ```bash cURL
   curl -s https://api.anthropic.com/v1/memory_stores \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -45,11 +44,18 @@ Give the store a `name` and a `description`. The description is passed to the ag
     -d '{"name": "User Preferences", "description": "Per-user preferences and project context."}'
   ```
 
-  ```bash CLI
-  ant beta:memory-stores create \
-    --name "User Preferences" \
-    --description "Per-user preferences and project context."
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant apply memory_store.yaml
+    ```
+
+    <File filename="memory_store.yaml">
+      ```yaml
+      name: User Preferences
+      description: Per-user preferences and project context.
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   store = client.beta.memory_stores.create(

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 1c6ce6d475c61d04f56947e7162e4d1fd21ca8269282bad17b26985ba78d216c
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: bd01df39a265a4beadbe48262e9b575cc3949792507d42473f84c1dde54ec0c5
 ---
 
 ---
@@ -125,6 +125,10 @@ Future models and features will not be compatible with Text Completions. See our
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ### Body parameters
 

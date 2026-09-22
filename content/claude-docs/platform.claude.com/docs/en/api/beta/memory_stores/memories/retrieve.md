@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/retrieve
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 21c8130ad9dcfe31536d753591d6bbcca238859f4f68e1867c4a2d9e5b9d5a0d
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 043a9a94e4f27ad7d58ab1967144cca39929c011b88452f41d91160126c0baa5
 ---
 
 ---
@@ -20,17 +20,25 @@ Retrieve a memory
 
 - `memory_store_id: string`
 
+  The ID of the memory store that holds the memory (`memstore_...`).
+
 - `memory_id: string`
+
+  The ID of the memory to retrieve (`mem_...`).
 
 ## Query parameters
 
 - `view: optional BetaManagedAgentsMemoryView`
 
-  Query parameter for view
+  Selects which projection of a `memory` or `memory_version` the server returns. `basic` returns the object with `content` set to `null`; `full` populates `content`. When omitted, the default is endpoint-specific: retrieve operations default to `full`; list, create, and update operations default to `basic`. Listing with `view=full` caps `limit` at 20.
 
   - `"basic"`
 
+    Return the object with `content` set to `null`. The `content_size_bytes` and `content_sha256` fields remain populated, so sync clients can diff without fetching content.
+
   - `"full"`
+
+    Return the object with `content` populated. On list endpoints, `view=full` caps `limit` at 20.
 
 ## Headers
 
@@ -135,6 +143,10 @@ Retrieve a memory
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/reveal_token
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 1eea8d699f3eab8101190ab36c49cb966fcd30fab620285dd7515b38c576ace0
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: bf0eab38add3d30138c7deb5fa46ae486f6b9cb4445b26b2f5553f0fffedca33
 ---
 
 ---
@@ -21,6 +21,8 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
 ## Path parameters
 
 - `tunnel_id: string`
+
+  ID of the tunnel (`tnl_...`).
 
 ## Headers
 
@@ -125,6 +127,10 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: f19dbf585b9f0cfc68c5a37c00f5932944dd6f134bfddc940903a38021d582ef
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: ec38924270733fb9718c5b24e5d352d483aaa5c361874dd8603b1657eda50a81
 ---
 
 ---
@@ -284,7 +284,7 @@ await anthropic.files.upload({ file: mcpResourceToFile(fileResource) });
 
 Fungsi konversi melempar `UnsupportedMCPValueError` jika nilai MCP tidak didukung oleh Claude API (misalnya, tipe konten yang tidak didukung, tipe MIME yang tidak didukung, tautan resource non-http/https).
 
-## Message batches
+## Batch pesan
 
 SDK ini menyediakan dukungan untuk [Pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing) di bawah namespace `client.messages.batches`.
 
@@ -493,7 +493,7 @@ SDK ini juga melempar error jika request non-streaming diperkirakan berlangsung 
 
 Jika didukung oleh implementasi `fetch`, SDK mengatur opsi [TCP socket keep-alive](https://tldp.org/HOWTO/TCP-Keepalive-HOWTO/overview.html) untuk mengurangi dampak timeout koneksi idle pada beberapa jaringan. Ini dapat [ditimpa](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#configuring-proxies) dengan mengonfigurasi proxy kustom.
 
-## Auto-pagination
+## Paginasi otomatis
 
 Metode list di Claude API menggunakan paginasi. Anda dapat menggunakan sintaks `for await ... of` untuk mengiterasi item di semua halaman:
 
@@ -783,7 +783,7 @@ TypeScript SDK mendukung platform berikut:
 
 Gunakan `AnthropicBedrockMantle` untuk proyek baru; `AnthropicBedrock` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
 
-## Semantic versioning
+## Versioning semantik
 
 Paket ini secara umum mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang dapat dirilis sebagai versi minor:
 

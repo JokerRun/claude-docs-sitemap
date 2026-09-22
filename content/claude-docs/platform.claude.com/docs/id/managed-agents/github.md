@@ -1,23 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/github
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 9b70e96698d347e3f0311d439f82f32ef105480d09d25663c9724d93da036d8f
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: c4a90be2cc6392c45ce1a73cdab8e71a8ae33aa45ca0f33d8a0a42630d4cdc74
 ---
 
 ---
 title: Mengakses GitHub
 url: https://platform.claude.com/docs/id/managed-agents/github
 description: Hubungkan agen Anda ke repositori GitHub untuk melakukan clone, membaca, dan membuat pull request.
+featureMetadata:
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
 
 Anda dapat memasang (mount) repositori GitHub ke sandbox sesi Anda dan terhubung ke GitHub MCP untuk membuat pull request.
 
 Repositori GitHub di-cache, sehingga sesi mendatang yang menggunakan repositori yang sama akan dimulai lebih cepat.
-
-<Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
-</Note>
 
 ## GitHub MCP dan sumber daya sesi
 

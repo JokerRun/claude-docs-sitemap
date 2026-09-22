@@ -1,19 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/tools
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: e4f61473e4f82712e033b5e1410930be9ff2286def074fb39e09f904d3649bd4
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 7803ec5ff17106b2341e84eea3e16727c8cf85bac98b920cfd8290f94de2f566
 ---
 
 ---
 title: Tools
 url: https://platform.claude.com/docs/en/managed-agents/tools
 description: Configure tools available to your agent.
+featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
-
-## Compatibility
-- Status: Beta
-- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `managed-agents-2026-04-01`
 
 Claude Managed Agents provides a set of built-in tools that Claude can use autonomously within a [session](https://platform.claude.com/docs/en/managed-agents/sessions). You control which tools are available by specifying them in the agent configuration.
 
@@ -42,7 +44,7 @@ Enable the full toolset with `agent_toolset_20260401` when creating an agent. Us
 
 Config entries for `web_search` and `web_fetch` also accept domain filters and other web settings; see [Restrict web search and web fetch domains](https://platform.claude.com/docs/en/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   ```bash cURL
   agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -66,17 +68,25 @@ Config entries for `web_search` and `web_fetch` also accept domain filters and o
   )
   ```
 
-  ```bash CLI
-  ant beta:agents create <<'YAML'
-  name: Coding Assistant
-  model: claude-opus-5
-  tools:
-    - type: agent_toolset_20260401
-      configs:
-        - name: web_fetch
-          enabled: false
-  YAML
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant apply agent.md
+    ```
+
+    <File filename="agent.md">
+      ```markdown
+      ---
+      name: Coding Assistant
+      model: claude-opus-5
+      tools:
+        - type: agent_toolset_20260401
+          configs:
+            - name: web_fetch
+              enabled: false
+      ---
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   agent = client.beta.agents.create(
@@ -265,7 +275,7 @@ The following toolset limits `web_search` to two sites and localizes its results
 
 The following request creates an agent with this toolset and prints the `configs` array from the response:
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   ```bash cURL
   agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -305,26 +315,34 @@ The following request creates an agent with this toolset and prints the `configs
   jq '.tools[0].configs' <<< "$agent"
   ```
 
-  ```bash CLI
-  ant beta:agents create --transform tools.0.configs <<'YAML'
-  name: Research Agent
-  model: claude-opus-5
-  tools:
-    - type: agent_toolset_20260401
-      configs:
-        - type: web_search
-          name: web_search
-          allowed_domains: [docs.example.com, arxiv.org]
-          user_location:
-            type: approximate
-            country: US
-            timezone: America/Los_Angeles
-        - type: web_fetch
-          name: web_fetch
-          blocked_domains: [ads.example.com]
-          max_content_tokens: 50000
-  YAML
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant apply agent.md
+    ```
+
+    <File filename="agent.md">
+      ```markdown
+      ---
+      name: Research Agent
+      model: claude-opus-5
+      tools:
+        - type: agent_toolset_20260401
+          configs:
+            - type: web_search
+              name: web_search
+              allowed_domains: [docs.example.com, arxiv.org]
+              user_location:
+                type: approximate
+                country: US
+                timezone: America/Los_Angeles
+            - type: web_fetch
+              name: web_fetch
+              blocked_domains: [ads.example.com]
+              max_content_tokens: 50000
+      ---
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   client = Anthropic()
@@ -598,6 +616,10 @@ The following request creates an agent with this toolset and prints the `configs
     puts JSON.pretty_generate(toolset.configs.map(&:to_h))
   end
   ```
+
+  <ForLanguage tab="CLI">
+    [`ant apply`](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/apply) creates the agent and prints its ID, not the `configs` array.
+  </ForLanguage>
 </CodeGroup>
 
 In the Claude Console, set allowed or blocked domains from the `web_search` and `web_fetch` rows of the **Built-in tools** card on the agent form; set `max_content_tokens` and `user_location` in the **Raw** view of the agent's configuration.

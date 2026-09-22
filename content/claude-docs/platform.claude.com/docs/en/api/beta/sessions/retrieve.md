@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/retrieve
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 88ae56395a4cf82be6e29d1cda93639a1ebf8ea502150198073fbe98dcd99961
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: f8831840735f11a162caa1ac2e135c6013590555501922f69768bbbea5fcf453
 ---
 
 ---
@@ -123,6 +123,10 @@ Get Session
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 
@@ -922,11 +926,19 @@ Get Session
 
     - `"rescheduling"`
 
+      Transient error occurred, retrying automatically.
+
     - `"running"`
+
+      Agent is actively executing.
 
     - `"idle"`
 
+      Agent is waiting for input, including user messages or tool confirmations. Sessions start in idle.
+
     - `"terminated"`
+
+      Session has ended, either due to an error or completion.
 
   - `title: string or null`
 

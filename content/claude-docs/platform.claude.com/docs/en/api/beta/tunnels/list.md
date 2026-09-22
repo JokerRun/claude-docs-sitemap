@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/list
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 883a11424b6ceabd1d9aeb3f77c2cf7c83f9a5ea8fef7c1a8f3fe000cf3f3ce0
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 347680a7d1d9aebb740542832630f282a94114f55524afba797bdd2162776913
 ---
 
 ---
@@ -137,6 +137,10 @@ Lists tunnels. Results are ordered by creation time, newest first; archived tunn
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

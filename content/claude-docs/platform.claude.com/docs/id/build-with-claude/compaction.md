@@ -1,22 +1,39 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: b42720adfc296a582c8012f86a85a94e567137bb7d4eb632d6ca2cebf1b892d6
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: b161dcfad9b08c31adeb11476f8c53d3eb13030ea3264e1fcbf49bd923c71e6d
 ---
 
 ---
-title: Compaction
+title: Pemadatan
 url: https://platform.claude.com/docs/id/build-with-claude/compaction
 description: Compaction konteks sisi server untuk mengelola percakapan panjang yang mendekati batas jendela konteks.
+featureMetadata:
+  status: beta
+  betaHeader: compact-2026-01-12
+  zdr:
+    eligibility: eligible
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-5
+    - claude-sonnet-4-6
+  supportedPlatforms:
+    Claude API: beta
+    Claude Platform on AWS: beta
+    Amazon Bedrock: beta
+    Google Cloud: beta
+    Microsoft Foundry: beta
 ---
-
-## Compatibility
-- Status: Beta
-- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `compact-2026-01-12`
-- [ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention): eligible (excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))
-- Supported models: `claude-fable-5-1`, `claude-mythos-5-1`, `claude-fable-5`, `claude-mythos-5`, `claude-mythos-preview`, `claude-opus-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-opus-4-6`, `claude-sonnet-5`, `claude-sonnet-4-6`
-- Platforms: Claude API (beta), Claude Platform on AWS (beta), Amazon Bedrock (beta), Google Cloud (beta), Microsoft Foundry (beta)
 
 <Tip>
   "Server-side compaction" (compaction sisi server) adalah strategi yang direkomendasikan untuk mengelola konteks dalam percakapan yang berjalan lama dan alur kerja agentik. Fitur ini menangani manajemen konteks secara otomatis, tanpa kode peringkasan di sisi klien.
@@ -44,7 +61,7 @@ Ketika compaction diaktifkan, Claude secara otomatis meringkas percakapan Anda k
 
 Pada permintaan berikutnya, tambahkan respons tersebut ke pesan Anda. API secara otomatis membuang semua blok konten sebelum blok `compaction`, melanjutkan percakapan dari ringkasan.
 
-![Alur compaction: ketika input tokens (token input) mencapai trigger (pemicu), Claude menulis ringkasan ke dalam compaction block (blok compaction) dan melanjutkan](https://platform.claude.com/docs/images/compaction-flow.svg)
+![Alur compaction (pemadatan): ketika input tokens (token input) mencapai trigger (pemicu), Claude menulis ringkasan ke dalam compaction block (blok pemadatan) dan melanjutkan](https://platform.claude.com/docs/images/compaction-flow.svg)
 
 Langkah-langkah sebelumnya menjelaskan compaction berbasis ambang, yang dibahas di sebagian besar halaman ini. Dengan header beta `compact-2026-09-04`, Anda dapat meminta ringkasan sesuai permintaan sebagai gantinya. Permintaan tersebut terpisah dari giliran percakapan Anda dan hanya mengembalikan ringkasan, sehingga dapat berjalan di latar belakang. Saat blok tiba, Anda menukarnya dengan pesan-pesan yang diringkasnya. Lihat [Compaction sesuai permintaan dengan parameter `compaction`](https://platform.claude.com/docs/id/build-with-claude/compaction#compact-on-demand-with-the-compaction-parameter).
 
@@ -1762,19 +1779,24 @@ Blok compaction di-streaming secara berbeda dari blok teks. Anda menerima event 
       context_management={"edits": [{"type": "compact_20260112"}]},
   ) as stream:
       for event in stream:
-          if event.type == "content_block_start":
-              if event.content_block.type == "compaction":
-                  print("Compaction started...")
-              elif event.content_block.type == "text":
-                  print("Text response started...")
+          match event.type:
+              case "content_block_start":
+                  block = event.content_block
+                  match block.type:
+                      case "compaction":
+                          print("Compaction started...")
+                      case "text":
+                          print("Text response started...")
 
-          elif event.type == "content_block_delta":
-              if event.delta.type == "compaction_delta":
-                  print(f"Compaction complete: {len(event.delta.content or '')} chars")
-              elif event.delta.type == "text_delta":
-                  print(event.delta.text, end="", flush=True)
+              case "content_block_delta":
+                  delta = event.delta
+                  match delta.type:
+                      case "compaction_delta":
+                          print(f"Compaction complete: {len(delta.content or '')} chars")
+                      case "text_delta":
+                          print(delta.text, end="", flush=True)
 
-      # Dapatkan pesan akhir yang terakumulasi
+      # Dapatkan pesan akhir yang telah terakumulasi
       message = stream.get_final_message()
       messages.append({"role": "assistant", "content": message.content})
   ```
@@ -1796,22 +1818,31 @@ Blok compaction di-streaming secara berbeda dari blok teks. Anda menerima event 
   });
 
   for await (const event of stream) {
-    if (event.type === "content_block_start") {
-      if (event.content_block.type === "compaction") {
-        console.log("Compaction started...");
-      } else if (event.content_block.type === "text") {
-        console.log("Text response started...");
-      }
-    } else if (event.type === "content_block_delta") {
-      if (event.delta.type === "compaction_delta") {
-        console.log(`Compaction complete: ${event.delta.content?.length ?? 0} chars`);
-      } else if (event.delta.type === "text_delta") {
-        process.stdout.write(event.delta.text);
-      }
+    switch (event.type) {
+      case "content_block_start":
+        switch (event.content_block.type) {
+          case "compaction":
+            console.log("Compaction started...");
+            break;
+          case "text":
+            console.log("Text response started...");
+            break;
+        }
+        break;
+      case "content_block_delta":
+        switch (event.delta.type) {
+          case "compaction_delta":
+            console.log(`Compaction complete: ${event.delta.content?.length ?? 0} chars`);
+            break;
+          case "text_delta":
+            process.stdout.write(event.delta.text);
+            break;
+        }
+        break;
     }
   }
 
-  // Dapatkan pesan akhir yang terakumulasi
+  // Dapatkan pesan akhir yang telah terakumulasi
   const message = await stream.finalMessage();
   messages.push({
     role: "assistant",
@@ -1942,6 +1973,13 @@ Blok compaction di-streaming secara berbeda dari blok teks. Anda menerima event 
   ```
 
   ```php PHP
+  use Anthropic\Beta\Messages\BetaCompactionBlock;
+  use Anthropic\Beta\Messages\BetaCompactionContentBlockDelta;
+  use Anthropic\Beta\Messages\BetaRawContentBlockDeltaEvent;
+  use Anthropic\Beta\Messages\BetaRawContentBlockStartEvent;
+  use Anthropic\Beta\Messages\BetaTextBlock;
+  use Anthropic\Beta\Messages\BetaTextDelta;
+
   $client = new Client();
   $messages = [['role' => 'user', 'content' => 'Hello, Claude']];
 
@@ -1958,18 +1996,27 @@ Blok compaction di-streaming secara berbeda dari blok teks. Anda menerima event 
   );
 
   foreach ($stream as $event) {
-      if ($event->type === 'content_block_start') {
-          if ($event->contentBlock->type === 'compaction') {
-              echo "Compaction started...\n";
-          } elseif ($event->contentBlock->type === 'text') {
-              echo "Text response started...\n";
-          }
-      } elseif ($event->type === 'content_block_delta') {
-          if ($event->delta->type === 'compaction_delta') {
-              echo "Compaction complete: " . strlen($event->delta->content ?? '') . " chars\n";
-          } elseif ($event->delta->type === 'text_delta') {
-              echo $event->delta->text;
-          }
+      switch (true) {
+          case $event instanceof BetaRawContentBlockStartEvent:
+              switch (true) {
+                  case $event->contentBlock instanceof BetaCompactionBlock:
+                      echo "Compaction started...\n";
+                      break;
+                  case $event->contentBlock instanceof BetaTextBlock:
+                      echo "Text response started...\n";
+                      break;
+              }
+              break;
+          case $event instanceof BetaRawContentBlockDeltaEvent:
+              switch (true) {
+                  case $event->delta instanceof BetaCompactionContentBlockDelta:
+                      echo "Compaction complete: " . strlen($event->delta->content ?? '') . " chars\n";
+                      break;
+                  case $event->delta instanceof BetaTextDelta:
+                      echo $event->delta->text;
+                      break;
+              }
+              break;
       }
   }
   ```
@@ -1989,18 +2036,21 @@ Blok compaction di-streaming secara berbeda dari blok teks. Anda menerima event 
   )
 
   stream.each do |event|
-    case event.type
-    when :content_block_start
-      if event.content_block.type == :compaction
+    case event
+    when Anthropic::Models::BetaRawContentBlockStartEvent
+      case event.content_block
+      when Anthropic::Models::BetaCompactionBlock
         puts "Compaction started..."
-      elsif event.content_block.type == :text
+      when Anthropic::Models::BetaTextBlock
         puts "Text response started..."
       end
-    when :content_block_delta
-      if event.delta.type == :compaction_delta
-        puts "Compaction complete: #{(event.delta.content || "").length} chars"
-      elsif event.delta.type == :text_delta
-        print event.delta.text
+    when Anthropic::Models::BetaRawContentBlockDeltaEvent
+      delta = event.delta
+      case delta
+      when Anthropic::Models::BetaCompactionContentBlockDelta
+        puts "Compaction complete: #{(delta.content || "").length} chars"
+      when Anthropic::Models::BetaTextDelta
+        print delta.text
       end
     end
   end
@@ -2304,7 +2354,7 @@ Array `iterations` menunjukkan penggunaan untuk setiap iterasi sampling. Ketika 
 
 ## Menggabungkan dengan fitur lain
 
-### Server tools
+### Alat server
 
 Ketika menggunakan server tools (seperti web search), pemicu compaction diperiksa di awal setiap iterasi sampling. Compaction dapat terjadi beberapa kali dalam satu permintaan tergantung pada ambang pemicu Anda dan jumlah output yang dihasilkan.
 
@@ -3428,10 +3478,11 @@ Kirim header beta `compact-2026-09-04` pada permintaan yang meminta ringkasan da
 
 ### Meminta ringkasan
 
-Kirim percakapan apa adanya dengan `"compaction": {"type": "summarize"}`. API meringkas setiap pesan dalam permintaan satu kali, tidak menghasilkan balasan setelahnya, dan hanya mengembalikan blok tersebut dengan `stop_reason` `"compaction"`. Kirim prompt `system` dan `tools` yang sama dengan yang Anda gunakan untuk sisa percakapan. Peringkas membacanya, dan pada model dengan preserved thinking, giliran yang Anda pertahankan tetap valid hanya jika keduanya cocok:
+Kirim percakapan apa adanya dengan `"compaction": {"type": "summarize"}`. API meringkas setiap pesan dalam permintaan satu kali, tidak menghasilkan balasan setelahnya, dan hanya mengembalikan blok tersebut dengan `stop_reason` `"compaction"`. Kirim prompt `system` dan `tools` yang sama dengan yang Anda gunakan untuk sisa percakapan. Peringkas membacanya, dan pada model dengan pemikiran yang dipertahankan, giliran yang Anda pertahankan tetap valid hanya jika keduanya cocok. Percakapan dalam contoh ini tidak memiliki prompt `system` maupun alat, sehingga permintaan tidak mengirim keduanya:
 
-<CodeGroup exclude="python, typescript, csharp, go, java, php, ruby">
+<CodeGroup>
   ```bash cURL
+  # max_tokens membatasi seluruh panggilan, termasuk proses thinking, jadi sediakan beberapa ribu token.
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -3457,6 +3508,7 @@ Kirim percakapan apa adanya dengan `"compaction": {"type": "summarize"}`. API me
     <File filename="request.yaml">
       ```yaml
       model: claude-opus-5
+      # max_tokens caps the whole call, including any thinking, so allow several thousand tokens.
       max_tokens: 4096
       messages:
         - role: user
@@ -3470,6 +3522,206 @@ Kirim percakapan apa adanya dengan `"compaction": {"type": "summarize"}`. API me
       ```
     </File>
   </MultiFileExample>
+
+  ```python Python
+  from anthropic.types.beta import BetaMessageParam
+
+  client = anthropic.Anthropic()
+
+  history: list[BetaMessageParam] = [
+      {
+          "role": "user",
+          "content": "I am building a recipe app. Help me name the main entities in the data model.",
+      },
+      {
+          "role": "assistant",
+          "content": "Start with Recipe, Ingredient, and Step. Add a RecipeIngredient entry that holds the quantity and unit for each ingredient in a recipe.",
+      },
+      {"role": "user", "content": "Good. Now suggest field names for Recipe."},
+  ]
+
+  response = client.beta.messages.create(
+      model="claude-opus-5",
+      # max_tokens membatasi seluruh panggilan, termasuk proses thinking, jadi sediakan beberapa ribu token.
+      max_tokens=4096,
+      betas=["compact-2026-09-04"],
+      messages=history,
+      compaction={"type": "summarize"},
+  )
+  print(f"Stop reason: {response.stop_reason}")
+  ```
+
+  ```typescript TypeScript
+  const client = new Anthropic();
+
+  const history: Anthropic.Beta.Messages.BetaMessageParam[] = [
+    {
+      role: "user",
+      content: "I am building a recipe app. Help me name the main entities in the data model."
+    },
+    {
+      role: "assistant",
+      content:
+        "Start with Recipe, Ingredient, and Step. Add a RecipeIngredient entry that holds the quantity and unit for each ingredient in a recipe."
+    },
+    { role: "user", content: "Good. Now suggest field names for Recipe." }
+  ];
+
+  const response = await client.beta.messages.create({
+    model: "claude-opus-5",
+    // max_tokens membatasi seluruh panggilan, termasuk proses thinking, jadi sediakan beberapa ribu token.
+    max_tokens: 4096,
+    betas: ["compact-2026-09-04"],
+    messages: history,
+    compaction: { type: "summarize" }
+  });
+  console.log(`Stop reason: ${response.stop_reason}`);
+  ```
+
+  ```csharp C#
+  using Anthropic.Models.Beta;
+  using Anthropic.Models.Beta.Messages;
+  using Model = Anthropic.Models.Messages.Model;
+
+  AnthropicClient client = new();
+
+  List<BetaMessageParam> history =
+  [
+      new()
+      {
+          Role = Role.User,
+          Content = "I am building a recipe app. Help me name the main entities in the data model.",
+      },
+      new()
+      {
+          Role = Role.Assistant,
+          Content = "Start with Recipe, Ingredient, and Step. Add a RecipeIngredient entry that holds the quantity and unit for each ingredient in a recipe.",
+      },
+      new() { Role = Role.User, Content = "Good. Now suggest field names for Recipe." },
+  ];
+
+  var response = await client.Beta.Messages.Create(new MessageCreateParams
+  {
+      Model = Model.ClaudeOpus5,
+      // max_tokens membatasi seluruh panggilan, termasuk proses pemikiran apa pun, jadi sediakan beberapa ribu token.
+      MaxTokens = 4096,
+      Betas = [AnthropicBeta.Compact2026_09_04],
+      Messages = history,
+      Compaction = new BetaCompactionConfig(), // type defaults to "summarize"
+  });
+
+  Console.WriteLine($"Stop reason: {response.StopReason?.Raw()}");
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+
+  history := []anthropic.BetaMessageParam{
+  	anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("I am building a recipe app. Help me name the main entities in the data model.")),
+  	{
+  		Role:    anthropic.BetaMessageParamRoleAssistant,
+  		Content: []anthropic.BetaContentBlockParamUnion{anthropic.NewBetaTextBlock("Start with Recipe, Ingredient, and Step. Add a RecipeIngredient entry that holds the quantity and unit for each ingredient in a recipe.")},
+  	},
+  	anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Good. Now suggest field names for Recipe.")),
+  }
+
+  response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
+  	Model: anthropic.ModelClaudeOpus5,
+  	// max_tokens membatasi seluruh panggilan, termasuk proses thinking, jadi sediakan beberapa ribu token.
+  	MaxTokens: 4096,
+  	Betas:     []anthropic.AnthropicBeta{anthropic.AnthropicBetaCompact2026_09_04},
+  	Messages:  history,
+  	Compaction: anthropic.BetaCompactionConfigUnionParam{
+  		OfSummarize: &anthropic.BetaSummarizeCompactionParam{},
+  	},
+  })
+  if err != nil {
+  	log.Fatal(err)
+  }
+  fmt.Println("Stop reason:", response.StopReason)
+  ```
+
+  ```java Java
+  import com.anthropic.models.beta.AnthropicBeta;
+  import com.anthropic.models.beta.messages.BetaCompactionConfig;
+  import com.anthropic.models.beta.messages.MessageCreateParams;
+
+  void main() {
+      var client = AnthropicOkHttpClient.fromEnv();
+
+      var params = MessageCreateParams.builder()
+          .model(Model.CLAUDE_OPUS_5)
+          // max_tokens membatasi seluruh panggilan, termasuk proses thinking, jadi sediakan beberapa ribu token.
+          .maxTokens(4096)
+          .addBeta(AnthropicBeta.COMPACT_2026_09_04)
+          .addUserMessage("I am building a recipe app. Help me name the main entities in the data model.")
+          .addAssistantMessage("Start with Recipe, Ingredient, and Step. Add a RecipeIngredient entry that holds the quantity and unit for each ingredient in a recipe.")
+          .addUserMessage("Good. Now suggest field names for Recipe.")
+          .compaction(BetaCompactionConfig.builder().build()) // type defaults to "summarize"
+          .build();
+
+      var response = client.beta().messages().create(params);
+      response.stopReason().ifPresent(reason -> IO.println("Stop reason: " + reason));
+  }
+  ```
+
+  ```php PHP
+  use Anthropic\Beta\AnthropicBeta;
+  use Anthropic\Beta\Messages\BetaCompactionConfig;
+  use Anthropic\Beta\Messages\BetaMessageParam;
+  use Anthropic\Beta\Messages\BetaMessageParam\Role;
+
+  $client = new Client();
+
+  $history = [
+      BetaMessageParam::with(
+          role: Role::USER,
+          content: 'I am building a recipe app. Help me name the main entities in the data model.',
+      ),
+      BetaMessageParam::with(
+          role: Role::ASSISTANT,
+          content: 'Start with Recipe, Ingredient, and Step. Add a RecipeIngredient entry that holds the quantity and unit for each ingredient in a recipe.',
+      ),
+      BetaMessageParam::with(role: Role::USER, content: 'Good. Now suggest field names for Recipe.'),
+  ];
+
+  $response = $client->beta->messages->create(
+      model: Model::CLAUDE_OPUS_5,
+      // max_tokens membatasi seluruh panggilan, termasuk proses thinking, jadi sediakan beberapa ribu token.
+      maxTokens: 4096,
+      betas: [AnthropicBeta::COMPACT_2026_09_04],
+      messages: $history,
+      compaction: BetaCompactionConfig::with(), // type defaults to 'summarize'
+  );
+
+  echo "Stop reason: {$response->stopReason}", PHP_EOL;
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+
+  history = [
+    {
+      role: "user",
+      content: "I am building a recipe app. Help me name the main entities in the data model."
+    },
+    {
+      role: "assistant",
+      content: "Start with Recipe, Ingredient, and Step. Add a RecipeIngredient entry that holds the quantity and unit for each ingredient in a recipe."
+    },
+    { role: "user", content: "Good. Now suggest field names for Recipe." }
+  ]
+
+  response = client.beta.messages.create(
+    model: Anthropic::Model::CLAUDE_OPUS_5,
+    # max_tokens membatasi seluruh panggilan, termasuk proses thinking, jadi sediakan beberapa ribu token.
+    max_tokens: 4096,
+    betas: [Anthropic::AnthropicBeta::COMPACT_2026_09_04],
+    messages: history,
+    compaction: { type: "summarize" }
+  )
+  puts "Stop reason: #{response.stop_reason}"
+  ```
 </CodeGroup>
 
 ```json Response

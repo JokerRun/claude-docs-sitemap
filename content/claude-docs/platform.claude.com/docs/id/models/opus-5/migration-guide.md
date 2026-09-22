@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5/migration-guide
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: eb9de92175fd122fd87eca12f372622c63a800f7b7a8135c096cfc06a4914b00
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: c9b2de4030420705792613d5c17018fa640cf5a02433891b759eaf2775bf2d94
 ---
 
 ---
@@ -223,22 +223,22 @@ Perubahan ini tidak wajib tetapi akan meningkatkan pengalaman Anda:
 ### Daftar periksa migrasi
 
 * Perbarui nama model dari `claude-opus-4-7` ke `claude-opus-5` (atau perbarui alias).
-* Tinjau beban kerja yang berjalan tanpa field `thinking`: beban kerja tersebut berjalan dengan thinking di Claude Opus 5. Tinjau kembali `max_tokens`, yang tetap menjadi batas keras pada total output (thinking ditambah teks respons), atau kirimkan `thinking: {type: "disabled"}` pada effort `high` atau lebih rendah untuk mempertahankan perilaku lama. Jika Anda menonaktifkan thinking, tinjau [Menjalankan dengan thinking dinonaktifkan](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5#running-with-thinking-disabled) untuk artefak output yang dapat muncul dan mitigasi prompting-nya.
+* Tinjau beban kerja yang berjalan tanpa field `thinking`: beban kerja tersebut berjalan dengan thinking di Claude Opus 5. Tinjau kembali `max_tokens`, yang tetap menjadi batas keras untuk total output (thinking ditambah teks respons), atau berikan `thinking: {type: "disabled"}` pada effort `high` atau lebih rendah untuk mempertahankan perilaku lama. Jika Anda menonaktifkan thinking, tinjau [Menjalankan dengan thinking dinonaktifkan](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5#running-with-thinking-disabled) untuk artefak output yang dapat muncul beserta mitigasi prompting-nya.
 * Perbarui parsing respons yang membaca konten berdasarkan posisi, seperti `content[0].text` atau handler stream yang mengasumsikan blok konten pertama adalah teks: dengan thinking aktif, blok `thinking` tiba sebelum blok `text`. Sebagai gantinya, pilih blok konten berdasarkan `type`.
-* Jika Anda menjalankan loop penggunaan alat, kirimkan kembali blok `thinking` secara lengkap dan tanpa modifikasi saat Anda mengembalikan hasil alat; blok yang dimodifikasi mengembalikan error 400. Lihat [Mempertahankan blok thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks).
-* Verifikasi bahwa kode apa pun yang mem-parsing field `thinking` memperlakukannya hanya sebagai teks tampilan. `thinking.display` secara default bernilai `"omitted"` di Claude Opus 5, sama seperti di Claude Opus 4.7, sehingga blok thinking tiba dengan field `thinking` kosong; atur `display: "summarized"` untuk menerima ringkasan yang dapat dibaca. Lihat [Mengontrol tampilan thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#controlling-thinking-display).
-* Audit permintaan yang menonaktifkan thinking: `thinking: {type: "disabled"}` dengan effort `xhigh` atau `max` mengembalikan error 400, diberlakukan pada setiap permintaan. Aktifkan kembali thinking atau turunkan effort ke `high` atau lebih rendah.
-* Jika Anda telah menghapus parameter sampling selama migrasi Opus 4.7, tidak diperlukan tindakan. Jika Anda menambahkannya kembali dengan jalur retry 400, hapus jalur retry tersebut.
-* Evaluasi ulang pengaturan `effort` Anda: jalankan sweep [effort](https://platform.claude.com/docs/id/build-with-claude/effort) baru pada eval Anda sendiri alih-alih membawa pengaturan yang disetel untuk Claude Opus 4.7. Uji effort `low` dan `medium` sebagai kontrol biaya dan latensi, dan effort `max` jika kapabilitas maksimum lebih penting daripada pengeluaran token. Jika Anda menjalankan pada effort `xhigh` atau `max`, naikkan `max_tokens` ke setidaknya 64k sebagai titik awal.
-* Hapus header beta jendela konteks apa pun. Jendela konteks 1 juta adalah default di Claude API, Amazon Bedrock, Google Cloud, dan Microsoft Foundry.
-* Jika Anda membangun ulang riwayat percakapan untuk memperbarui instruksi, pertimbangkan untuk beralih ke pesan sistem di tengah percakapan untuk mempertahankan hit cache prompt.
+* Jika Anda menjalankan loop penggunaan alat, kirimkan kembali blok `thinking` secara lengkap dan tanpa modifikasi saat Anda mengembalikan hasil alat; blok yang dimodifikasi akan mengembalikan error 400. Lihat [Mempertahankan blok pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks).
+* Verifikasi bahwa kode apa pun yang mem-parsing field `thinking` hanya memperlakukannya sebagai teks tampilan. `thinking.display` secara default bernilai `"omitted"` di Claude Opus 5, sama seperti di Claude Opus 4.7, sehingga blok thinking tiba dengan field `thinking` kosong; atur `display: "summarized"` untuk menerima ringkasan yang dapat dibaca. Lihat [Mengontrol tampilan pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking#controlling-thinking-display).
+* Audit permintaan yang menonaktifkan thinking: `thinking: {type: "disabled"}` dengan effort `xhigh` atau `max` akan mengembalikan error 400, dan aturan ini diberlakukan pada setiap permintaan. Aktifkan kembali thinking atau turunkan effort ke `high` atau lebih rendah.
+* Jika Anda telah menghapus parameter sampling selama migrasi ke Opus 4.7, tidak ada tindakan yang diperlukan. Jika Anda menambahkannya kembali dengan jalur retry untuk error 400, hapus jalur retry tersebut.
+* Evaluasi ulang pengaturan `effort` Anda: jalankan sweep [effort](https://platform.claude.com/docs/id/build-with-claude/effort) baru pada eval Anda sendiri, alih-alih membawa pengaturan yang disetel untuk Claude Opus 4.7. Uji effort `low` dan `medium` sebagai kontrol biaya dan latensi, serta effort `max` jika kapabilitas maksimum lebih penting daripada pengeluaran token. Jika Anda menjalankan pada effort `xhigh` atau `max`, naikkan `max_tokens` ke setidaknya 64k sebagai titik awal.
+* Hapus header beta jendela konteks apa pun. Jendela konteks 1M adalah default di Claude API, Amazon Bedrock, Claude Platform on AWS, Google Cloud, dan Microsoft Foundry.
+* Jika Anda membangun ulang riwayat percakapan untuk memperbarui instruksi, pertimbangkan untuk beralih ke pesan sistem di tengah percakapan agar hit caching prompt tetap terjaga.
 * Verifikasi bahwa penanganan stop reason Anda membaca `stop_details` pada penolakan (tersedia sejak Claude Opus 4.7; kini didokumentasikan secara publik), dan pertimbangkan `fallbacks: "default"` (beta) untuk menjalankan ulang permintaan yang ditolak pada model fallback yang direkomendasikan secara otomatis.
-* Tinjau prompt yang mendekati minimum caching: prompt dengan 512 token atau lebih kini dapat membuat entri cache.
-* Jika Anda menggunakan [web fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool), rencanakan alternatif: fitur ini tidak tersedia di Claude Opus 5.
+* Tinjau prompt yang mendekati batas minimum caching: prompt dengan 512 token atau lebih kini dapat membuat entri cache.
+* Jika Anda menggunakan [web fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool), rencanakan alternatifnya: web fetch tidak tersedia di Claude Opus 5.
 * Jika organisasi Anda memiliki komitmen [Priority Tier](https://platform.claude.com/docs/id/api/service-tiers#supported-models), perhatikan bahwa Priority Tier tidak didukung di Claude Opus 5.
 * Jika Anda menggunakan fast mode di Claude Opus 4.7, tidak diperlukan perubahan permintaan selain ID model: `speed: "fast"` dan header beta `fast-mode-2026-02-01` berfungsi tanpa perubahan di Claude Opus 5.
 * Untuk beban kerja agentik, pertimbangkan [anggaran tugas](https://platform.claude.com/docs/id/build-with-claude/task-budgets) (beta) dan perubahan alat di tengah percakapan (beta).
-* Sesuaikan ulang prompt panjang dan verbositas, dan hapus instruksi verifikasi dan pemeriksaan mandiri yang terbawa dari prompt yang disetel untuk model sebelumnya.
+* Sesuaikan ulang prompt terkait panjang dan verbositas, dan hapus instruksi verifikasi dan pemeriksaan mandiri yang terbawa dari prompt yang disetel untuk model sebelumnya.
 * Tetapkan ulang baseline biaya dan latensi pada tingkat effort pilihan Anda. Harga per token tidak berubah dari Claude Opus 4.7, tetapi token thinking ditagih sebagai token output, sehingga beban kerja yang berjalan tanpa thinking dapat menghasilkan lebih banyak token output per permintaan.
 
 ## Migrasi ke Claude Opus 5 dari Claude Opus 4.6 dan model Opus sebelumnya
@@ -247,7 +247,7 @@ Claude Opus 5 seharusnya memiliki performa langsung pakai yang kuat pada prompt 
 
 * [Jendela konteks 1 juta token](https://platform.claude.com/docs/id/build-with-claude/context-windows) dengan harga API standar tanpa premi konteks panjang
 * [128k token output maksimum](https://platform.claude.com/docs/id/models/overview)
-* [Adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking)
+* [Pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking)
 * [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)
 * [Pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing)
 * [Files API](https://platform.claude.com/docs/id/build-with-claude/files)

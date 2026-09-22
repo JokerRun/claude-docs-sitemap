@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/delete
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 87bbb560f989a6e6556563629610042d90b7d4146977b0cc5d430fbd1a30e70b
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 3228525c5bf13bddcbb0f2e5384bbda24885887d4dfb1a5fd631bcc6e3dc2693
 ---
 
 ---
@@ -123,6 +123,10 @@ Delete an environment by ID. Returns a confirmation of the deletion.
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

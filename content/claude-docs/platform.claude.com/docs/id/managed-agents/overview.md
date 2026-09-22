@@ -1,14 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/overview
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: b94cebf314d48cbb35b86bfed029ee738a4eb5e00d649ffcc2e691adf1c153de
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 900d5b77cfec41eb15371e6b9a64f0ff9d85e153a16ca3bd0e17a067ac5bd0ce
 ---
 
 ---
 title: Ikhtisar Claude Managed Agents
 url: https://platform.claude.com/docs/id/managed-agents/overview
 description: Harness agen siap pakai dan dapat dikonfigurasi yang berjalan di infrastruktur terkelola. Paling cocok untuk tugas yang berjalan lama dan pekerjaan asinkron.
+featureMetadata:
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
 
 Anthropic menawarkan dua cara untuk membangun dengan Claude, masing-masing cocok untuk kasus penggunaan yang berbeda:

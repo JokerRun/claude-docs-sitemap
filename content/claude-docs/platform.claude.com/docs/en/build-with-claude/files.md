@@ -1,20 +1,26 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 508fa482f491aee8b2308a88b846b2d7c684254909d734ee88dc55da2076f6f3
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 8c2d00fd673ef30afd14b6828b2ea64eda8a9afeac9f2f0e285f6093b0915dc7
 ---
 
 ---
 title: Files API
 url: https://platform.claude.com/docs/en/build-with-claude/files
 description: Upload files once, reference them by file_id in Messages requests, and download outputs created by skills or the code execution tool.
+featureMetadata:
+  status: ga
+  zdr: not-eligible
+  supportedPlatforms:
+    Claude API: ga
+    Claude Platform on AWS: beta
+    Amazon Bedrock: not available
+    Google Cloud: not available
+    Microsoft Foundry:
+      availability: beta
+      note: On [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry), the Files API requires a [Hosted on Anthropic deployment](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure).
 ---
-
-## Compatibility
-- [ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention): not eligible
-- Platforms: Claude API, Claude Platform on AWS (beta), Microsoft Foundry (beta) [1]; not available on Amazon Bedrock, Google Cloud
-1. On [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry), the Files API requires a [Hosted on Anthropic deployment](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure).
 
 The Files API lets you upload and manage files to use with the Claude API without re-uploading content with each request. This is particularly useful when using the [code execution tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool) to provide inputs (for example, datasets and documents) and then download outputs (for example, charts). You can [explore the API reference directly](https://platform.claude.com/docs/en/api/files/upload), in addition to this guide.
 

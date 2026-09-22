@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/create
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 9a66567d5696d5f7b359d90499247c58ae38ffa8b3bd861d35814fc78ca54d91
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 04bd4be109caf784df8d85af0f7e5ecfefdb67ee504852eae8d416e5978f43d0
 ---
 
 ---
@@ -119,6 +119,10 @@ Create Vault
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Body parameters
 

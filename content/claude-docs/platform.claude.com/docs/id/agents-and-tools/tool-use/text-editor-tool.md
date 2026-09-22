@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 0c8588f39b19313e5085370ee268a412d065e6422ae50e939ad96344ec4d0e31
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: f305bd1ee6a2684edf1331df921b57756688be7b28c7148131a60a1f2c4acde8
 ---
 
 ---
@@ -1511,18 +1511,19 @@ Tipe alatnya adalah `type: "text_editor_20250728"` untuk model Claude 4 dan yang
           command = input_params.get("command", "")
           file_path = input_params.get("path", "")
 
-          if command == "view":
-              # Baca dan kembalikan isi file
-              pass
-          elif command == "str_replace":
-              # Ganti teks dalam file
-              pass
-          elif command == "create":
-              # Buat file baru
-              pass
-          elif command == "insert":
-              # Sisipkan teks di lokasi tertentu
-              pass
+          match command:
+              case "view":
+                  # Baca dan kembalikan isi file
+                  pass
+              case "str_replace":
+                  # Ganti teks dalam file
+                  pass
+              case "create":
+                  # Buat file baru
+                  pass
+              case "insert":
+                  # Sisipkan teks di lokasi tertentu
+                  pass
       ```
 
       ```typescript TypeScript
@@ -1531,14 +1532,19 @@ Tipe alatnya adalah `type: "text_editor_20250728"` untuk model Claude 4 dan yang
         const command = inputParams.command ?? "";
         const filePath = inputParams.path ?? "";
 
-        if (command === "view") {
-          // Baca dan kembalikan isi file
-        } else if (command === "str_replace") {
-          // Ganti teks dalam file
-        } else if (command === "create") {
-          // Buat file baru
-        } else if (command === "insert") {
-          // Sisipkan teks di lokasi tertentu
+        switch (command) {
+          case "view":
+            // Baca dan kembalikan isi file
+            break;
+          case "str_replace":
+            // Ganti teks dalam file
+            break;
+          case "create":
+            // Buat file baru
+            break;
+          case "insert":
+            // Sisipkan teks di lokasi tertentu
+            break;
         }
       }
       ```

@@ -1,23 +1,42 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 3fcda716153c7b22a3185c4fd200722158526439ab67bb69d8e48150eca2e0ee
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 8ae0cd2bbee18a5d020a682f1091ddeeed5c3318660f132648a08cf51452e815
 ---
 
 ---
 title: Pemanggilan alat secara programatik
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling
 description: Biarkan Claude memanggil alat Anda dari kode di dalam kontainer eksekusi kode, mengurangi perjalanan bolak-balik model dan penggunaan token dalam alur kerja multi-alat.
+featureMetadata:
+  status: ga
+  zdr: not-eligible
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-opus-5
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-5
+    - claude-sonnet-4-6
+    - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: ga
+    Claude Platform on AWS: ga
+    Amazon Bedrock: not available
+    Google Cloud: not available
+    Microsoft Foundry:
+      availability: ga
+      note: Di [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), pemanggilan alat secara programatik memerlukan [deployment Hosted on Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure).
+  details:
+    - Pemanggilan alat secara programatik memerlukan alat eksekusi kode dengan [versi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#tool-versions) `code_execution_20260120` atau yang lebih baru.
+    - Claude Haiku 4.5 menerima versi alat `code_execution_20260120` dan yang lebih baru tetapi tidak mendukung pemanggilan alat secara programatik.
 ---
-
-## Compatibility
-- [ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention): not eligible
-- Supported models: `claude-fable-5-1`, `claude-mythos-5-1`, `claude-fable-5`, `claude-mythos-5`, `claude-opus-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-opus-4-6`, `claude-opus-4-5-20251101`, `claude-sonnet-5`, `claude-sonnet-4-6`, `claude-sonnet-4-5-20250929`
-- Platforms: Claude API, Claude Platform on AWS, Microsoft Foundry [1]; not available on Amazon Bedrock, Google Cloud
-- Pemanggilan alat secara programatik memerlukan alat eksekusi kode dengan [versi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#tool-versions) `code_execution_20260120` atau yang lebih baru.
-- Claude Haiku 4.5 menerima versi alat `code_execution_20260120` dan yang lebih baru tetapi tidak mendukung pemanggilan alat secara programatik.
-1. Di [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), pemanggilan alat secara programatik memerlukan [deployment Hosted on Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure).
 
 "Programmatic tool calling" (pemanggilan alat secara programatik) memungkinkan Claude menulis kode yang memanggil alat Anda secara programatik di dalam kontainer [eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool), alih-alih memerlukan perjalanan bolak-balik melalui model untuk setiap pemanggilan alat. Ini mengurangi "latency" (latensi) untuk alur kerja multi-alat dan menurunkan konsumsi token dengan memungkinkan Claude memfilter atau memproses data sebelum mencapai "context window" (jendela konteks) model. Pada benchmark pencarian agentik seperti [BrowseComp](https://arxiv.org/abs/2504.12516) dan [DeepSearchQA](https://github.com/google-deepmind/deepsearchqa), yang menguji riset web multilangkah dan pengambilan informasi yang kompleks, menambahkan pemanggilan alat secara programatik di atas alat pencarian dasar meningkatkan kinerja rata-rata sebesar 11% sambil menggunakan 24% lebih sedikit token input (lihat [Improved web search with dynamic filtering](https://claude.com/blog/improved-web-search-with-dynamic-filtering)).
 

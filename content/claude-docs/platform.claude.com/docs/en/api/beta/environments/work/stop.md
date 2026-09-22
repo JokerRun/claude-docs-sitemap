@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/stop
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 344296ab17b7d54b09ebe1751ab5a3be69d2f012b138b523d337ee98068bb836
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 4e7b171717c35ec48b0ccb010d42bfce419bcf03edd6db22f62861a9d621aeb7
 ---
 
 ---
@@ -127,6 +127,10 @@ Stop a work item, initiating graceful or forced shutdown.
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Body parameters
 

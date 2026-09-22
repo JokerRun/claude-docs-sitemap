@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/list
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 3755a5b03edb77e867ffe87492a08dd420ecf875e13dffdb8c19aa00fc112ea3
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: bd1e922a7cb786f5d2266ba93eb55a26879c7e7524be04c47647a4b4395c16a3
 ---
 
 ---
@@ -47,8 +47,6 @@ List Events
   format: date-time
 
 - `limit: optional number`
-
-  Query parameter for limit
 
   format: int32
 
@@ -171,6 +169,10 @@ List Events
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

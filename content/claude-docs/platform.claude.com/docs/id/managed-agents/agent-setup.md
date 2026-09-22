@@ -1,23 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/agent-setup
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 0c8d1e660a0d5cd7ce040e65188f38449a36258b60b0725a40c8144a3b2904d9
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: e3a04b3289bd579f2248555dfc51c34734dd6ee1a1fb2fea55c0eca1aeeeedca
 ---
 
 ---
 title: Definisikan agen Anda
 url: https://platform.claude.com/docs/id/managed-agents/agent-setup
 description: Buat konfigurasi agen yang dapat digunakan kembali dan memiliki versi.
+featureMetadata:
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
 
 Agen adalah konfigurasi yang dapat digunakan kembali dan memiliki versi yang mendefinisikan persona dan kemampuan. Agen menggabungkan model, "system prompt" (prompt sistem), alat, server MCP, dan skill yang membentuk bagaimana Claude berperilaku selama sesi.
 
 Buat agen sekali sebagai sumber daya yang dapat digunakan kembali dan referensikan berdasarkan ID setiap kali Anda [memulai sesi](https://platform.claude.com/docs/id/managed-agents/sessions). Agen memiliki versi dan lebih mudah dikelola di banyak sesi.
-
-<Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
-</Note>
 
 ## Field konfigurasi agen
 
@@ -472,7 +471,7 @@ Dengan CLI, edit file agen dan jalankan `ant apply` lagi; apply akan memberikan 
 
 Contoh sebelumnya menyediakan `version` dari respons pembuatan, sehingga pembaruan hanya diterapkan jika tidak ada hal lain yang mengubah agen sejak Anda membacanya. Untuk menerapkan pembaruan tanpa syarat, hilangkan `version` dari permintaan:
 
-<CodeGroup defaultLanguage="cURL">
+<CodeGroup>
   ```bash cURL
   updated_agent=$(curl -fsSL "https://api.anthropic.com/v1/agents/$AGENT_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -517,7 +516,7 @@ Contoh sebelumnya menyediakan `version` dari respons pembuatan, sehingga pembaru
 
 Ambil riwayat versi lengkap untuk melacak bagaimana agen telah berubah dari waktu ke waktu. Hasil dipaginasi, dan contoh SDK mengambil setiap halaman secara otomatis.
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   curl -fsSL "https://api.anthropic.com/v1/agents/$AGENT_ID/versions" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -583,7 +582,7 @@ Ambil riwayat versi lengkap untuk melacak bagaimana agen telah berubah dari wakt
 
 Pengarsipan membuat agen menjadi read-only dan tidak dapat dibatalkan. Sesi yang ada terus berjalan, tetapi sesi baru tidak dapat mereferensikan agen tersebut. Respons menetapkan `archived_at` ke timestamp pengarsipan.
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   archived=$(curl -fsSL -X POST "https://api.anthropic.com/v1/agents/$AGENT_ID/archive" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \

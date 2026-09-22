@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/redact
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: f7eea386c9959c1749f79871119bbe0fa04a986c7e66565b4f3dc04bbc7a9b55
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 0bf48cc1e9e1e8aa503d09a981ae417bf9ac146caacf50fc9785137078215f97
 ---
 
 ---
@@ -20,7 +20,11 @@ Redact a memory version
 
 - `memory_store_id: string`
 
+  The ID of the memory store that holds the version (`memstore_...`).
+
 - `memory_version_id: string`
+
+  The ID of the memory version to redact (`memver_...`).
 
 ## Headers
 
@@ -126,6 +130,10 @@ Redact a memory version
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 ## Returns
 
 - `BetaManagedAgentsMemoryVersion object`
@@ -158,9 +166,15 @@ Redact a memory version
 
     - `"created"`
 
+      The memory was created. The first version in any memory's lineage.
+
     - `"modified"`
 
+      The memory's `content`, `path`, or both were changed via update. Writes the agent makes through the filesystem mount also appear as `modified`.
+
     - `"deleted"`
+
+      The memory was deleted. The `content`, `content_size_bytes`, and `content_sha256` fields are `null` on this version. The preceding version, while it is retained, records the deleted content's size and hash.
 
   - `content: optional string or null`
 

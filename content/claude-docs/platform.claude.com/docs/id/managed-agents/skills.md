@@ -1,14 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/skills
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: aa1edb944c812e246755efe1dacc9f600da118d28a082dd4696322336a50deb1
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 1b7548e07a343b6fdd34accbe4daf63ab2c31e0f6899732c12038d771691ffd8
 ---
 
 ---
 title: Skills
 url: https://platform.claude.com/docs/id/managed-agents/skills
 description: Lampirkan skill bawaan atau kustom ke agen di Claude Managed Agents untuk memberinya keahlian berbasis filesystem yang dapat digunakan kembali untuk alur kerja khusus domain.
+featureMetadata:
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
 
 Skills adalah sumber daya berbasis filesystem yang dapat digunakan kembali dan memberi agen Anda keahlian khusus domain: alur kerja, konteks, dan praktik terbaik yang mengubah agen serbaguna menjadi spesialis. Setiap skill yang Anda tambahkan menimbulkan biaya kecil pada "context window" (jendela konteks) sesi, dengan menambahkan instruksi dan metadata yang membantu model menggunakan skill tersebut. Pelajari lebih lanjut di ikhtisar [Agent Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview).
@@ -19,10 +22,6 @@ Skill sampai ke agen Anda melalui dua cara: lampirkan melalui array `skills` mil
 * **Skill kustom:** Skill yang Anda tulis dan unggah ke workspace Anda.
 
 Untuk mempelajari cara menulis skill kustom, lihat [Agent Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview) dan [Praktik terbaik penulisan skill](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices). Untuk mengunggah skill kustom ke workspace Anda, lihat [Membuat skill kustom](https://platform.claude.com/docs/id/managed-agents/skills#create-a-custom-skill).
-
-<Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
-</Note>
 
 ## Membuat skill kustom
 
@@ -38,9 +37,24 @@ Contoh-contoh ini menghilangkan field opsional `display_name`, sehingga nama tam
     -F "files[]=@example_skill.zip"
   ```
 
-  ```bash CLI
-  ant skills create --file example_skill.zip
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant apply skills/pr-summary
+    ```
+
+    <File filename="skills/pr-summary/SKILL.md">
+      ```markdown
+      ---
+      name: pr-summary
+      description: Summarize a pull request's changes and risks in the team's review format.
+      ---
+
+      # PR summary
+
+      List what changed, why, and anything a reviewer should look at closely, in three short sections.
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   import anthropic
@@ -184,6 +198,10 @@ Contoh-contoh ini menghilangkan field opsional `display_name`, sehingga nama tam
   puts "Created skill: #{skill.id}"
   puts "Latest version: #{skill.latest_version_id}"
   ```
+
+  <ForLanguage tab="CLI">
+    [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) mengunggah direktori `skills/pr-summary`, mencetak ID skill baru, dan mencatatnya di `claude-lock.json`. Commit `claude-lock.json` agar `ant apply` berikutnya mengunggah suntingan Anda sebagai versi baru alih-alih membuat skill kedua.
+  </ForLanguage>
 </CodeGroup>
 
 Untuk mendaftar, mengambil, menghapus, dan membuat versi skill kustom, lihat [Mengelola skill kustom](https://platform.claude.com/docs/id/build-with-claude/skills-guide#managing-custom-skills). Untuk skema permintaan dan respons lengkap, lihat [referensi API Create Skill](https://platform.claude.com/docs/id/api/skills/create). Bundel skill diunggah langsung ke Skills API, bukan melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files).
@@ -419,7 +437,7 @@ Skill repositori menggunakan format `SKILL.md` yang sama dengan skill kustom yan
 
 Untuk memuat skill dari repositori, buat sesi yang me-mount repositori tersebut. Ini adalah permintaan yang sama seperti yang ditunjukkan di [Mengakses GitHub](https://platform.claude.com/docs/id/managed-agents/github#token-permissions); `mount_path` bersifat opsional dan default ke `/workspace/<repo-name>`:
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
   session_id=$(curl -fsS https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \

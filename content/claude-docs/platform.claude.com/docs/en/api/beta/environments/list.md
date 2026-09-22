@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/list
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 6ae52e632af90f790826030574363f30d1804085b932cc2c5a3c439d9a2f5014
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: b38981d48f6523e711a9463e1db4b01c45c0ac0bd7d19d1cdc9c29540fdc8415
 ---
 
 ---
@@ -137,6 +137,10 @@ List environments with pagination support.
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

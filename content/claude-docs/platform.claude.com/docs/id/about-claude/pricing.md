@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/pricing
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 8beae54c1f15dc89f05a9305d2ae483d3d4251fc8f8babe2741bf76a72897dcb
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 60ab6fd5b8d499c80d00ac8a829c6b5ba4daa1ecaccdcddfe6e9482e400d0cd6
 ---
 
 ---
@@ -19,27 +19,27 @@ Untuk informasi harga terkini, kunjungi [claude.com/pricing](https://claude.com/
 
 Tabel berikut menunjukkan harga untuk semua model Claude:
 
-| Model                                                                                                                                       | Token input dasar | Penulisan cache 5m | Penulisan cache 1j | Cache hit dan refresh | Token output |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- | ------------------ | ------------------ | --------------------- | ------------ |
-| Claude Fable 5.1                                                                                                                            | $10 / MTok        | $12,50 / MTok      | $20 / MTok         | $0,25 / MTok1         | $50 / MTok   |
-| Claude Mythos 5.1 ([ketersediaan terbatas](https://anthropic.com/glasswing))                                                                | $10 / MTok        | $12,50 / MTok      | $20 / MTok         | $0,25 / MTok1         | $50 / MTok   |
-| Claude Fable 5                                                                                                                              | $10 / MTok        | $12,50 / MTok      | $20 / MTok         | $1 / MTok             | $50 / MTok   |
-| Claude Mythos 5 ([ketersediaan terbatas](https://anthropic.com/glasswing))                                                                  | $10 / MTok        | $12,50 / MTok      | $20 / MTok         | $1 / MTok             | $50 / MTok   |
-| Claude Opus 5                                                                                                                               | $5 / MTok         | $6,25 / MTok       | $10 / MTok         | $0,50 / MTok          | $25 / MTok   |
-| Claude Opus 4.8                                                                                                                             | $5 / MTok         | $6,25 / MTok       | $10 / MTok         | $0,50 / MTok          | $25 / MTok   |
-| Claude Opus 4.7                                                                                                                             | $5 / MTok         | $6,25 / MTok       | $10 / MTok         | $0,50 / MTok          | $25 / MTok   |
-| Claude Opus 4.6                                                                                                                             | $5 / MTok         | $6,25 / MTok       | $10 / MTok         | $0,50 / MTok          | $25 / MTok   |
-| Claude Opus 4.5                                                                                                                             | $5 / MTok         | $6,25 / MTok       | $10 / MTok         | $0,50 / MTok          | $25 / MTok   |
-| Claude Opus 4.1 ([dipensiunkan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | $15 / MTok        | $18,75 / MTok      | $30 / MTok         | $1,50 / MTok          | $75 / MTok   |
-| Claude Opus 4 ([dipensiunkan, kecuali di Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))                | $15 / MTok        | $18,75 / MTok      | $30 / MTok         | $1,50 / MTok          | $75 / MTok   |
-| Claude Sonnet 5                                                                                                                             | $2 / MTok         | $2,50 / MTok       | $4 / MTok          | $0,20 / MTok          | $10 / MTok   |
-| Claude Sonnet 4.6                                                                                                                           | $3 / MTok         | $3,75 / MTok       | $6 / MTok          | $0,30 / MTok          | $15 / MTok   |
-| Claude Sonnet 4.5                                                                                                                           | $3 / MTok         | $3,75 / MTok       | $6 / MTok          | $0,30 / MTok          | $15 / MTok   |
-| Claude Sonnet 4 ([dipensiunkan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | $3 / MTok         | $3,75 / MTok       | $6 / MTok          | $0,30 / MTok          | $15 / MTok   |
-| Claude Haiku 4.5                                                                                                                            | $1 / MTok         | $1,25 / MTok       | $2 / MTok          | $0,10 / MTok          | $5 / MTok    |
-| Claude Haiku 3.5 ([dipensiunkan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $0,80 / MTok      | $1 / MTok          | $1,60 / MTok       | $0,08 / MTok          | $4 / MTok    |
+| Model                                                                                                                                 | Base input tokens | 5m cache writes | 1h cache writes | Cache hits and refreshes | Output tokens |
+| :------------------------------------------------------------------------------------------------------------------------------------ | :---------------- | :-------------- | :-------------- | :----------------------- | :------------ |
+| Claude Fable 5.1                                                                                                                      | $10 / MTok        | $12.50 / MTok   | $20 / MTok      | $0.25 / MTok<sup>1</sup> | $50 / MTok    |
+| Claude Mythos 5.1 ([limited availability](https://anthropic.com/glasswing))                                                           | $10 / MTok        | $12.50 / MTok   | $20 / MTok      | $0.25 / MTok<sup>1</sup> | $50 / MTok    |
+| Claude Fable 5                                                                                                                        | $10 / MTok        | $12.50 / MTok   | $20 / MTok      | $1 / MTok                | $50 / MTok    |
+| Claude Mythos 5 ([limited availability](https://anthropic.com/glasswing))                                                             | $10 / MTok        | $12.50 / MTok   | $20 / MTok      | $1 / MTok                | $50 / MTok    |
+| Claude Opus 5                                                                                                                         | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok             | $25 / MTok    |
+| Claude Opus 4.8                                                                                                                       | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok             | $25 / MTok    |
+| Claude Opus 4.7                                                                                                                       | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok             | $25 / MTok    |
+| Claude Opus 4.6                                                                                                                       | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok             | $25 / MTok    |
+| Claude Opus 4.5                                                                                                                       | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok             | $25 / MTok    |
+| Claude Opus 4.1 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok             | $75 / MTok    |
+| Claude Opus 4 ([retired, except on Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))                | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok             | $75 / MTok    |
+| Claude Sonnet 5                                                                                                                       | $2 / MTok         | $2.50 / MTok    | $4 / MTok       | $0.20 / MTok             | $10 / MTok    |
+| Claude Sonnet 4.6                                                                                                                     | $3 / MTok         | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok             | $15 / MTok    |
+| Claude Sonnet 4.5                                                                                                                     | $3 / MTok         | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok             | $15 / MTok    |
+| Claude Sonnet 4 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | $3 / MTok         | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok             | $15 / MTok    |
+| Claude Haiku 4.5                                                                                                                      | $1 / MTok         | $1.25 / MTok    | $2 / MTok       | $0.10 / MTok             | $5 / MTok     |
+| Claude Haiku 3.5 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $0.80 / MTok      | $1 / MTok       | $1.60 / MTok    | $0.08 / MTok             | $4 / MTok     |
 
-*1 Cache hit dan refresh pada Claude Fable 5.1 dan Claude Mythos 5.1 dikenakan harga 0,025x dari harga input dasar. Semua model lainnya menggunakan pengali standar 0,1x.*
+*<sup>1 Cache hits and refreshes on Claude Fable 5.1 and Claude Mythos 5.1 are priced at 0.025x the base input price. All other models use the standard 0.1x multiplier.</sup>*
 
 <Note id="claude-sonnet-5-introductory-pricing">
   Harga $2/$10 per juta token input/output untuk Claude Sonnet 5, yang diumumkan saat peluncuran sebagai harga perkenalan hingga 31 Agustus 2026, kini menjadi harga standar. Kenaikan yang sebelumnya dijadwalkan menjadi $3/$15 per juta token input/output pada 1 September 2026 tidak akan terjadi.
@@ -192,25 +192,25 @@ Untuk informasi lebih lanjut, lihat [Fast mode](https://platform.claude.com/docs
 
 Batch API memungkinkan pemrosesan asinkron permintaan dalam volume besar dengan diskon 50% untuk token input maupun output.
 
-| Model                                                                                                                                     | Input batch  | Output batch  |
-| ----------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ------------- |
-| Claude Fable 5.1                                                                                                                          | $5 / MTok    | $25 / MTok    |
-| Claude Mythos 5.1 ([ketersediaan terbatas](https://anthropic.com/glasswing))                                                              | $5 / MTok    | $25 / MTok    |
-| Claude Fable 5                                                                                                                            | $5 / MTok    | $25 / MTok    |
-| Claude Mythos 5 ([ketersediaan terbatas](https://anthropic.com/glasswing))                                                                | $5 / MTok    | $25 / MTok    |
-| Claude Opus 5                                                                                                                             | $2,50 / MTok | $12,50 / MTok |
-| Claude Opus 4.8                                                                                                                           | $2,50 / MTok | $12,50 / MTok |
-| Claude Opus 4.7                                                                                                                           | $2,50 / MTok | $12,50 / MTok |
-| Claude Opus 4.6                                                                                                                           | $2,50 / MTok | $12,50 / MTok |
-| Claude Opus 4.5                                                                                                                           | $2,50 / MTok | $12,50 / MTok |
-| Claude Opus 4.1 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | $7,50 / MTok | $37,50 / MTok |
-| Claude Opus 4 ([dihentikan, kecuali di Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))                | $7,50 / MTok | $37,50 / MTok |
-| Claude Sonnet 5                                                                                                                           | $1 / MTok    | $5 / MTok     |
-| Claude Sonnet 4.6                                                                                                                         | $1,50 / MTok | $7,50 / MTok  |
-| Claude Sonnet 4.5                                                                                                                         | $1,50 / MTok | $7,50 / MTok  |
-| Claude Sonnet 4 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | $1,50 / MTok | $7,50 / MTok  |
-| Claude Haiku 4.5                                                                                                                          | $0,50 / MTok | $2,50 / MTok  |
-| Claude Haiku 3.5 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $0,40 / MTok | $2 / MTok     |
+| Model                                                                                                                                 | Batch input  | Batch output  |
+| :------------------------------------------------------------------------------------------------------------------------------------ | :----------- | :------------ |
+| Claude Fable 5.1                                                                                                                      | $5 / MTok    | $25 / MTok    |
+| Claude Mythos 5.1 ([limited availability](https://anthropic.com/glasswing))                                                           | $5 / MTok    | $25 / MTok    |
+| Claude Fable 5                                                                                                                        | $5 / MTok    | $25 / MTok    |
+| Claude Mythos 5 ([limited availability](https://anthropic.com/glasswing))                                                             | $5 / MTok    | $25 / MTok    |
+| Claude Opus 5                                                                                                                         | $2.50 / MTok | $12.50 / MTok |
+| Claude Opus 4.8                                                                                                                       | $2.50 / MTok | $12.50 / MTok |
+| Claude Opus 4.7                                                                                                                       | $2.50 / MTok | $12.50 / MTok |
+| Claude Opus 4.6                                                                                                                       | $2.50 / MTok | $12.50 / MTok |
+| Claude Opus 4.5                                                                                                                       | $2.50 / MTok | $12.50 / MTok |
+| Claude Opus 4.1 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | $7.50 / MTok | $37.50 / MTok |
+| Claude Opus 4 ([retired, except on Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))                | $7.50 / MTok | $37.50 / MTok |
+| Claude Sonnet 5                                                                                                                       | $1 / MTok    | $5 / MTok     |
+| Claude Sonnet 4.6                                                                                                                     | $1.50 / MTok | $7.50 / MTok  |
+| Claude Sonnet 4.5                                                                                                                     | $1.50 / MTok | $7.50 / MTok  |
+| Claude Sonnet 4 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | $1.50 / MTok | $7.50 / MTok  |
+| Claude Haiku 4.5                                                                                                                      | $0.50 / MTok | $2.50 / MTok  |
+| Claude Haiku 3.5 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $0.40 / MTok | $2 / MTok     |
 
 Untuk informasi lebih lanjut tentang pemrosesan batch, lihat [Pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing).
 

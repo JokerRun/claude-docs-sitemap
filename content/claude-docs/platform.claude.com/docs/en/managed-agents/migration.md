@@ -1,19 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/migration
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: 49e179c6a278e247ffce713f2f6a9cc4053809edee440ae91019ac65264f73a4
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 354e36fc292205d8d7b161e96e557f2e97cacacc4d373358386fcc9f22cc1cb8
 ---
 
 ---
 title: Migration
 url: https://platform.claude.com/docs/en/managed-agents/migration
 description: Move an existing agent built on the Messages API or the Claude Agent SDK to Claude Managed Agents.
+featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
-
-## Compatibility
-- Status: Beta
-- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `managed-agents-2026-04-01`
 
 Claude Managed Agents replaces your hand-written agent loop with managed infrastructure. This page covers what changes when you migrate from a custom loop built on the [Messages API](https://platform.claude.com/docs/en/build-with-claude/working-with-messages) or from the [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview).
 

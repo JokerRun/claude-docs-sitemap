@@ -1,14 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: b670bec303c7c368796ce0cdc5d32d006f8e64e3c316521f19d06a016592fca6
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 90ed90c1b562712c203a5dbb8722d0a86851d36c5b5ba6d280941414adcba0f1
 ---
 
 ---
 title: Memulai dengan Claude Managed Agents
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
 description: Buat agen otonom pertama Anda.
+featureMetadata:
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
 
 Panduan ini memandu Anda dalam membuat agen, menyiapkan environment, memulai sesi, dan melakukan streaming respons agen.
@@ -44,7 +47,7 @@ Panduan ini memandu Anda dalam membuat agen, menyiapkan environment, memulai ses
     Untuk environment Linux, unduh binary rilis secara langsung.
 
     ```bash
-    VERSION=1.32.0
+    VERSION=1.33.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -95,7 +98,7 @@ ant --version
 
   <Tab title="Java">
     ```groovy Gradle
-    implementation("com.anthropic:anthropic-java:2.60.0")
+    implementation("com.anthropic:anthropic-java:2.63.0")
     ```
   </Tab>
 
@@ -131,10 +134,6 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 ```
 
 ## Buat sesi pertama Anda
-
-<Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
-</Note>
 
 <Steps>
   <Step title="Buat agen">
@@ -642,7 +641,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       ```typescript TypeScript
       const stream = await client.beta.sessions.events.stream(session.id);
 
-      // Send the user message after the stream opens
+      // Kirim pesan pengguna setelah stream terbuka
       await client.beta.sessions.events.send(session.id, {
         events: [
           {
@@ -657,7 +656,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
         ],
       });
 
-      // Process streaming events
+      // Proses event streaming
       loop: for await (const event of stream) {
         switch (event.type) {
           case "agent.message":
@@ -771,7 +770,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 
       ```java Java
       try (var stream = client.beta().sessions().events().streamStreaming(session.id())) {
-          // Send the user message after the stream opens
+          // Kirim pesan pengguna setelah stream terbuka
           client.beta().sessions().events().send(session.id(), EventSendParams.builder()
               .addEvent(BetaManagedAgentsUserMessageEventParams.builder()
                   .type(BetaManagedAgentsUserMessageEventParams.Type.USER_MESSAGE)
@@ -779,7 +778,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
                   .build())
               .build());
 
-          // Process streaming events
+          // Proses event streaming
           loop:
           for (var event : (Iterable<BetaManagedAgentsStreamSessionEvents>) stream.stream()::iterator) {
               switch (event.type().value()) {
@@ -797,7 +796,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       ```php PHP
       $stream = $client->beta->sessions->events->streamStream($session->id);
 
-      // Send the user message after the stream opens
+      // Kirim pesan pengguna setelah stream terbuka
       $client->beta->sessions->events->send(
           $session->id,
           events: [
@@ -810,7 +809,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
           ],
       );
 
-      // Process streaming events
+      // Proses event streaming
       foreach ($stream as $event) {
           match (true) {
               $event instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsAgentMessageEvent => array_walk(
@@ -830,7 +829,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       ```ruby Ruby
       stream = client.beta.sessions.events.stream_events(session.id)
 
-      # Send the user message after the stream opens
+      # Kirim pesan pengguna setelah stream terbuka
       client.beta.sessions.events.send_(
         session.id,
         events: [{
@@ -839,7 +838,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
         }]
       )
 
-      # Process streaming events
+      # Proses event streaming
       stream.each do |event|
         case event
         when Anthropic::Beta::Sessions::BetaManagedAgentsAgentMessageEvent
@@ -850,7 +849,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
           puts "\n\nAgent finished."
           break
         else
-          # ignore other event types
+          # abaikan tipe event lainnya
         end
       end
       ```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/update
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: b4b358d627553824313383b498b6419d03ffed91aac1cec50cb80e0e1fa6774c
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: c9bc9f987f5602d65ab90229b61b3419b3efa0f53b8c2d0a37266737459e32c2
 ---
 
 ---
@@ -19,6 +19,8 @@ Update Vault
 ## Path parameters
 
 - `vault_id: string`
+
+  Unique identifier of the vault to update.
 
 ## Headers
 
@@ -123,6 +125,10 @@ Update Vault
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Body parameters
 

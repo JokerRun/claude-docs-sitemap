@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/upload
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: ca09afbbe4c706b62a31fba9d85284516a5ab2a714d1bf8a8cd7c71f8674b478
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 34d55bbf684658b19518fe7e9de94f26a01209a3f8a23ba9c110aa7f60fb8d1d
 ---
 
 ---
@@ -119,6 +119,10 @@ Upload File
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Body parameters (form-data)
 

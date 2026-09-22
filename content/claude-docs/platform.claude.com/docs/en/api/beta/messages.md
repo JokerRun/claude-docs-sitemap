@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: ed69f7228cc253e62396f8c52568bf832107ba8e2fad28541a932620981bb3d6
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: fb6b9472e1933cdea5190165ca5406d8b8da11ab22e4c2acd058a3afdc4a2a05
 ---
 
 ---
@@ -129,6 +129,10 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
   The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization. Requires the `user-profiles` beta header.
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ### Body parameters
 
@@ -5189,8 +5193,8 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
   - `diagnostics: BetaDiagnostics or null`
 
-    Response envelope for request-level diagnostics. Present (possibly
-    null) whenever the caller supplied `diagnostics` on the request.
+    Request-level diagnostics: why the prompt cache could not fully reuse
+    the prefix of the request named by `diagnostics.previous_message_id`.
 
     - `cache_miss_reason: BetaCacheMissModelChanged or BetaCacheMissSystemChanged or BetaCacheMissToolsChanged or 3 more or null`
 
@@ -6414,6 +6418,10 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
   The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization. Requires the `user-profiles` beta header.
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ### Body parameters
 
@@ -17721,8 +17729,8 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
 - `BetaDiagnostics object`
 
-  Response envelope for request-level diagnostics. Present (possibly
-  null) whenever the caller supplied `diagnostics` on the request.
+  Request-level diagnostics: why the prompt cache could not fully reuse
+  the prefix of the request named by `diagnostics.previous_message_id`.
 
   - `cache_miss_reason: BetaCacheMissModelChanged or BetaCacheMissSystemChanged or BetaCacheMissToolsChanged or 3 more or null`
 
@@ -21262,8 +21270,8 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
   - `diagnostics: BetaDiagnostics or null`
 
-    Response envelope for request-level diagnostics. Present (possibly
-    null) whenever the caller supplied `diagnostics` on the request.
+    Request-level diagnostics: why the prompt cache could not fully reuse
+    the prefix of the request named by `diagnostics.previous_message_id`.
 
     - `cache_miss_reason: BetaCacheMissModelChanged or BetaCacheMissSystemChanged or BetaCacheMissToolsChanged or 3 more or null`
 
@@ -27113,8 +27121,8 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `diagnostics: BetaDiagnostics or null`
 
-      Response envelope for request-level diagnostics. Present (possibly
-      null) whenever the caller supplied `diagnostics` on the request.
+      Request-level diagnostics: why the prompt cache could not fully reuse
+      the prefix of the request named by `diagnostics.previous_message_id`.
 
       - `cache_miss_reason: BetaCacheMissModelChanged or BetaCacheMissSystemChanged or BetaCacheMissToolsChanged or 3 more or null`
 
@@ -28893,8 +28901,8 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `diagnostics: BetaDiagnostics or null`
 
-        Response envelope for request-level diagnostics. Present (possibly
-        null) whenever the caller supplied `diagnostics` on the request.
+        Request-level diagnostics: why the prompt cache could not fully reuse
+        the prefix of the request named by `diagnostics.previous_message_id`.
 
         - `cache_miss_reason: BetaCacheMissModelChanged or BetaCacheMissSystemChanged or BetaCacheMissToolsChanged or 3 more or null`
 
@@ -38930,6 +38938,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Body parameters
 
 - `requests: array of object`
@@ -43190,6 +43202,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaMessageBatch object`
@@ -43461,6 +43477,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -43743,6 +43763,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaMessageBatch object`
@@ -44006,6 +44030,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 #### Returns
 
 - `BetaDeletedMessageBatch object`
@@ -44160,6 +44188,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 #### Returns
 
@@ -45280,8 +45312,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
         - `diagnostics: BetaDiagnostics or null`
 
-          Response envelope for request-level diagnostics. Present (possibly
-          null) whenever the caller supplied `diagnostics` on the request.
+          Request-level diagnostics: why the prompt cache could not fully reuse
+          the prefix of the request named by `diagnostics.previous_message_id`.
 
           - `cache_miss_reason: BetaCacheMissModelChanged or BetaCacheMissSystemChanged or BetaCacheMissToolsChanged or 3 more or null`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-sessions
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: c411fccb44fe7f6307c249c2e217ee9f1b4e94e72c10900389c77103f98cb3e7
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: f5f9961fc364b86f942f00defe28a7190f5eb7c29a0c6dc2e3921277888ae71b
 ---
 
 ---
@@ -38,10 +38,10 @@ Tabel berikut memetakan setiap produk, dan tempat produk tersebut berjalan, ke k
 
 Penangkapan sesi lokal terikat pada diaktifkannya Compliance API untuk organisasi Anda dan berlaku selama pengguna masuk dengan akun Claude Enterprise mereka. Endpoint sesi tidak mengembalikan hal-hal berikut:
 
-* Sesi Claude Code yang diautentikasi dengan kunci API Claude Console, atau dijalankan melalui platform cloud pihak ketiga seperti Amazon Bedrock, Google Cloud, atau Microsoft Foundry.
-* Claude Code di web. Claude Code di web juga berjalan di cloud dalam lingkungan yang dikelola Anthropic, tetapi bukan merupakan sesi jarak jauh; endpoint sesi jarak jauh hanya mengembalikan sesi Cowork.
+* Sesi Claude Code yang diautentikasi dengan kunci API Claude Console, atau yang dijalankan melalui platform cloud pihak ketiga seperti Amazon Bedrock, Google Cloud, atau Microsoft Foundry.
+* [Sesi cloud Claude Code](https://code.claude.com/docs/id/claude-code-on-the-web), yang berjalan di infrastruktur cloud alih-alih di mesin pengguna. Sesi cloud ini bukan sesi jarak jauh, meskipun keduanya berjalan di cloud; endpoint sesi jarak jauh hanya mengembalikan sesi Cowork.
 * Sesi lokal di organisasi yang mengaktifkan [kesiapan HIPAA](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#hipaa-readiness). Tidak ada data sesi lokal yang ditangkap, sehingga endpoint sesi lokal tidak mengembalikan sesi apa pun untuk organisasi tersebut.
-* Sesi lokal yang terkena [zero data retention (ZDR)](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope). Sesi ini dikecualikan dari hasil daftar, dan endpoint retrieve serta messages mengembalikan 404 untuk sesi tersebut.
+* Sesi lokal yang dikenai ["zero data retention" (retensi data nol), atau ZDR](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope). Sesi ini dikecualikan dari hasil daftar, dan endpoint retrieve serta endpoint messages mengembalikan 404 untuk sesi tersebut.
 
 Anthropic merekomendasikan Compliance API untuk mengambil konten sesi. Tabel berikut membandingkan [sesi lokal](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions) dan [sesi jarak jauh](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-remote-sessions) dengan alternatif berbasis OpenTelemetry yang tersedia untuk Cowork dan Claude Code, yaitu [logging OpenTelemetry Cowork](https://support.claude.com/en/articles/14477985-monitor-claude-cowork-activity-with-opentelemetry) dan [pemantauan Claude Code](https://code.claude.com/docs/id/monitoring-usage).
 

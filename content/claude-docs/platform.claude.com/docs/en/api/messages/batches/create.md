@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/create
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 20a6e830998cae89028c2427e7047ff4202ab9d5aec0276c2f7c5e48f110aa9a
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 534c508f47acc6bd89508d96f24b7d80e11effd7d9458b20065324c22f3d19f8
 ---
 
 ---
@@ -27,6 +27,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
   The user profile ID to attribute the requests in this batch to. Use when acting on behalf of a party other than your organization. Requires the `user-profiles` beta header. Applies to every request in the batch; an individual request whose `user_profile_id` body field conflicts with this header is errored.
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Body parameters
 

@@ -1,21 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/onboarding
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 5a2c0283cf04f010dae58062ff383289fb8a668701503c0be3de18c443e67c59
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 2e52c3d33da54fb757d8b27e0ed5ed68f274878397e6812e4004c87b146a9960
 ---
 
 ---
 title: Membangun di Console
 url: https://platform.claude.com/docs/id/managed-agents/onboarding
 description: Buat, uji, dan iterasi agen secara visual di Console, lalu jalankan dari kode Anda dengan API.
+featureMetadata:
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
 
 [Console](https://platform.claude.com/workspaces/default/agent-quickstart/) menyediakan antarmuka visual untuk membuat dan mengonfigurasi agen. Console memungkinkan Anda melakukan iterasi konfigurasi secara interaktif sebelum menulis kode.
-
-<Note>
-  Permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`, kecuali endpoint memory store, yang menggunakan `agent-memory-2026-07-22` sebagai gantinya. SDK menetapkan header beta yang benar secara otomatis. Lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers#endpoint-specific-headers).
-</Note>
 
 ## Cara membangun agen
 
@@ -39,9 +38,9 @@ Setelah agen Anda berfungsi sesuai harapan:
 1. Salin ID agen dan [ID environment](https://platform.claude.com/docs/id/managed-agents/environments) dari Console.
 2. Referensikan keduanya dalam kode Anda saat [membuat sesi](https://platform.claude.com/docs/id/managed-agents/sessions):
 
-<CodeGroup defaultLanguage="CLI">
+<CodeGroup>
   ```bash cURL
-  session=$(curl -fsSL https://api.anthropic.com/v1/sessions \
+  curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -50,7 +49,7 @@ Setelah agen Anda berfungsi sesuai harapan:
       "agent": "agent_01J8XkN5uT3vHpLqRfWdY2",
       "environment_id": "env_01K2mPsT7hNwR4jXuLvCqD8",
       "title": "My first session"
-    }')
+    }'
   ```
 
   ```bash CLI

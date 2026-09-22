@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/delete
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: e49b972d0ecb1e18919c083ef2a38d23081c7386d2e6688fd849c8293d229015
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: ed82d6c3e014406f3ea16712d7474ad80b0c26a5e33b361e8d4879240e032ca6
 ---
 
 ---
@@ -123,6 +123,10 @@ Delete Session
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

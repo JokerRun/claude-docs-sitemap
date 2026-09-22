@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/archive
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 35b82035df504ef8adcde381e23406ec793138670576711bbea2199e98e887be
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 46f54509dd47e95c424b65986fb1a369ffe6a077d1903b5eed9f3ab7531dc992
 ---
 
 ---
@@ -22,7 +22,11 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
 
 - `tunnel_id: string`
 
+  ID of the tunnel (`tnl_...`).
+
 - `certificate_id: string`
+
+  ID of the certificate to archive (`tcrt_...`).
 
 ## Headers
 
@@ -127,6 +131,10 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

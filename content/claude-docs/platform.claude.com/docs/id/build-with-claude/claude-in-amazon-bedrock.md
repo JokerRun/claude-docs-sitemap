@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 03cbc175d165bc4ee5d8680516c5ecf002688cb50d8271e783997ccc6f9beafa
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 2f6e7f4cf33574676ca94046104d496581199e1e28d60e00ff9f9b4278dd5d33
 ---
 
 ---
@@ -109,7 +109,8 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java-bedrock:2.60.0")
+        implementation("com.anthropic:anthropic-java:2.63.0")
+        implementation("com.anthropic:anthropic-java-bedrock:2.63.0")
         ```
       </Tab>
 
@@ -117,8 +118,13 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
         ```xml
         <dependency>
             <groupId>com.anthropic</groupId>
+            <artifactId>anthropic-java</artifactId>
+            <version>2.63.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-bedrock</artifactId>
-            <version>2.60.0</version>
+            <version>2.63.0</version>
         </dependency>
         ```
       </Tab>
@@ -358,7 +364,7 @@ Untuk daftar fitur lengkap beserta ketersediaannya di Amazon Bedrock, lihat [Ikh
 
 * [Messages API](https://platform.claude.com/docs/id/api/messages/create) (`/anthropic/v1/messages`)
 * [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)
-* [Thinking](https://platform.claude.com/docs/id/build-with-claude/thinking)
+* [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking)
 * [Penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), termasuk [alat Bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool), [alat Computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool), [alat Memory](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool), dan [alat Text editor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool)
 * [Sitasi](https://platform.claude.com/docs/id/build-with-claude/citations)
 

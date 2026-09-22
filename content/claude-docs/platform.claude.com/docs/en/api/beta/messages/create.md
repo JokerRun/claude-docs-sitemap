@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/create
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 358ed3d5a70127677ce710506641537ca675289dd412cca5b37e5acc62e02a03
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 090c6c61f3f09ea2b3a91b870273973c875e2c4d951db33c4ba376472cee32d2
 ---
 
 ---
@@ -127,6 +127,10 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
   The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization. Requires the `user-profiles` beta header.
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Body parameters
 
@@ -5187,8 +5191,8 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
   - `diagnostics: BetaDiagnostics or null`
 
-    Response envelope for request-level diagnostics. Present (possibly
-    null) whenever the caller supplied `diagnostics` on the request.
+    Request-level diagnostics: why the prompt cache could not fully reuse
+    the prefix of the request named by `diagnostics.previous_message_id`.
 
     - `cache_miss_reason: BetaCacheMissModelChanged or BetaCacheMissSystemChanged or BetaCacheMissToolsChanged or 3 more or null`
 

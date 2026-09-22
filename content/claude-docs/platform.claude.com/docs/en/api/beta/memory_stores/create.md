@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/create
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 648914071b2aadf9d33e1a8d84a6f5d4fcc87cd46f1dcf7065e9ada0b6223c69
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: e2e931205d87a8a38561e95bedcfefac388988d7426194f9d40db25d46dc516a
 ---
 
 ---
@@ -119,6 +119,10 @@ Create a memory store
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Body parameters
 

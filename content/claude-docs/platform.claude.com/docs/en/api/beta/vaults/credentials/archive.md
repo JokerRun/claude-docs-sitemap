@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/archive
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 11a10fc8efd8d069c00af79b54c7de04f5e157739d562ac702ce14fb5d8699dc
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 44f97ad4ce7a00af1a53caa7da16ed777aff1a23096394d2a5022d8929eb6a33
 ---
 
 ---
@@ -20,7 +20,11 @@ Archive Credential
 
 - `vault_id: string`
 
+  Identifier of the vault containing the credential.
+
 - `credential_id: string`
+
+  Unique identifier of the credential to archive.
 
 ## Headers
 
@@ -125,6 +129,10 @@ Archive Credential
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

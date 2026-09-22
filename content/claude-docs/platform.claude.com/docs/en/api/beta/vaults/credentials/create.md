@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/create
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: fc845dbe5832f52b01eb47211082d7d08563528f3574e4a0cd994b7222efc211
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 66ab2e6dbe43581061102eb3749db30d97d4614a3b428d4a2ed32ca0f785aa33
 ---
 
 ---
@@ -19,6 +19,8 @@ Create Credential
 ## Path parameters
 
 - `vault_id: string`
+
+  Identifier of the vault to create the credential in.
 
 ## Headers
 
@@ -123,6 +125,10 @@ Create Credential
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Body parameters
 

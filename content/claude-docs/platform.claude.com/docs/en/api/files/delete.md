@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/files/delete
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 0aa91179534a3a2954cfb3f5743fdaa605304f42031b607d4e41a1aa6abc1c90
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 9da962f777a7120a6b80445c6cda318df9b6a374aad9e61b8536aa7ce3304486
 ---
 
 ---
@@ -25,6 +25,10 @@ Delete File
 ## Headers
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

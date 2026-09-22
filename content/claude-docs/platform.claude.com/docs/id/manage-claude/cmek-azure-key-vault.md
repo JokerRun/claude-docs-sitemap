@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 60be812a3c52db35b1fc929d3b624ce618b59801bdf78903e270b7f03403bc56
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 19df121533f568e44f079561a15ca6ecadc02b00a7848500dcd27c16bb077ca9
 ---
 
 ---
@@ -97,7 +97,7 @@ Agar Anthropic dapat menggunakan kunci enkripsi Anda, Anda harus mengonfigurasi 
     </Frame>
 
     <Frame caption="Batasi Permitted operations (operasi yang diizinkan) ke Wrap Key dan Unwrap Key.">
-      ![Versi kunci Azure Key Vault dengan Permitted operations dibatasi ke Wrap Key dan Unwrap Key.](https://platform.claude.com/docs/images/cmek/azure-permitted-operations.png)
+      ![Versi kunci Azure Key Vault dengan Permitted operations yang dibatasi ke Wrap Key dan Unwrap Key.](https://platform.claude.com/docs/images/cmek/azure-permitted-operations.png)
     </Frame>
   </Step>
 
@@ -150,403 +150,425 @@ Cara Anda mendaftarkan kunci bergantung pada produk yang Anda gunakan.
 
 <Tabs>
   <Tab title="Claude Platform">
-    <Steps>
-      <Step title="Daftarkan kunci ke Anthropic">
-        Buat konfigurasi kunci eksternal melalui Admin API.
+    Anda dapat menyiapkan kunci di Claude Console atau melalui Admin API, dengan hasil yang sama.
 
-        <CodeGroup>
-          ```bash cURL
-          curl -sS "https://api.anthropic.com/v1/organizations/external_keys" \
-            -H "x-api-key: $ANTHROPIC_API_KEY" \
-            -H "anthropic-version: 2023-06-01" \
-            -H "content-type: application/json" \
-            -d '{
-              "display_name": "<friendly-name>",
-              "geo": "us",
-              "provider_config": {
-                "type": "azure",
-                "vault_uri": "https://<your-vault-name>.vault.azure.net/",
-                "key_name": "<your-key-name>",
-                "tenant_id": "<your-tenant-id>"
-              }
-            }'
-          ```
+    <Tabs>
+      <Tab title="Claude Console">
+        <Steps>
+          <Step title="Daftarkan kunci ke Anthropic">
+            Di Claude Console, buka **Settings > Encryption keys** dan klik **Add key**. Masukkan nama tampilan, pilih **Azure Key Vault**, lalu klik **Continue**. Isi **Vault URI**, **Key name**, dan **Tenant ID**, lalu klik **Add**.
+          </Step>
 
-          ```bash CLI
-          ant beta:organization:external-keys create <<'YAML'
-          display_name: "<friendly-name>"
-          geo: us
-          provider_config:
-            type: azure
-            vault_uri: "https://<your-vault-name>.vault.azure.net/"
-            key_name: "<your-key-name>"
-            tenant_id: "<your-tenant-id>"
-          YAML
-          ```
+          <Step title="Validasi kunci">
+            Di halaman **Encryption keys**, klik **Verify** di sebelah kunci. **Connected** akan muncul ketika pemeriksaan berhasil. Jika gagal, sebuah pesan akan memberikan alasannya.
+          </Step>
 
-          ```python Python
-          client = anthropic.Anthropic()
+          <Step title="Lampirkan kunci ke workspace">
+            Buka **Settings > Workspaces**, pilih workspace, lalu buka tab **Security**-nya. Di bawah **Encryption key**, pilih kunci, klik **Save**, dan konfirmasi. Melampirkan kunci tidak dapat dibatalkan. Untuk workspace yang sudah menerima permintaan, kunci dapat memerlukan [hingga satu hari untuk berlaku](https://platform.claude.com/docs/id/manage-claude/cmek#how-it-works).
+          </Step>
+        </Steps>
+      </Tab>
 
-          external_key = client.beta.organization.external_keys.create(
-              display_name="<friendly-name>",
-              geo="us",
-              provider_config={
-                  "type": "azure",
-                  "vault_uri": "https://<your-vault-name>.vault.azure.net/",
-                  "key_name": "<your-key-name>",
-                  "tenant_id": "<your-tenant-id>",
-              },
-          )
+      <Tab title="API">
+        <Steps>
+          <Step title="Daftarkan kunci ke Anthropic">
+            Buat konfigurasi kunci eksternal melalui Admin API.
 
-          print(f"id: {external_key.id}")
-          print(f"display_name: {external_key.display_name}")
-          ```
+            <CodeGroup>
+              ```bash cURL
+              curl -sS "https://api.anthropic.com/v1/organizations/external_keys" \
+                -H "x-api-key: $ANTHROPIC_API_KEY" \
+                -H "anthropic-version: 2023-06-01" \
+                -H "content-type: application/json" \
+                -d '{
+                  "display_name": "<friendly-name>",
+                  "geo": "us",
+                  "provider_config": {
+                    "type": "azure",
+                    "vault_uri": "https://<your-vault-name>.vault.azure.net/",
+                    "key_name": "<your-key-name>",
+                    "tenant_id": "<your-tenant-id>"
+                  }
+                }'
+              ```
 
-          ```typescript TypeScript
-          const client = new Anthropic();
+              ```bash CLI
+              ant beta:organization:external-keys create <<'YAML'
+              display_name: "<friendly-name>"
+              geo: us
+              provider_config:
+                type: azure
+                vault_uri: "https://<your-vault-name>.vault.azure.net/"
+                key_name: "<your-key-name>"
+                tenant_id: "<your-tenant-id>"
+              YAML
+              ```
 
-          const externalKey = await client.beta.organization.externalKeys.create({
-            display_name: "<friendly-name>",
-            geo: "us",
-            provider_config: {
-              type: "azure",
-              vault_uri: "https://<your-vault-name>.vault.azure.net/",
-              key_name: "<your-key-name>",
-              tenant_id: "<your-tenant-id>"
-            }
-          });
+              ```python Python
+              client = anthropic.Anthropic()
 
-          console.log(`id: ${externalKey.id}`);
-          console.log(`display_name: ${externalKey.display_name}`);
-          ```
+              external_key = client.beta.organization.external_keys.create(
+                  display_name="<friendly-name>",
+                  geo="us",
+                  provider_config={
+                      "type": "azure",
+                      "vault_uri": "https://<your-vault-name>.vault.azure.net/",
+                      "key_name": "<your-key-name>",
+                      "tenant_id": "<your-tenant-id>",
+                  },
+              )
 
-          ```csharp C#
-          using Anthropic.Models.Beta.Organization.ExternalKeys;
+              print(f"id: {external_key.id}")
+              print(f"display_name: {external_key.display_name}")
+              ```
 
-          AnthropicClient client = new();
+              ```typescript TypeScript
+              const client = new Anthropic();
 
-          var externalKey = await client.Beta.Organization.ExternalKeys.Create(new()
-          {
-              DisplayName = "<friendly-name>",
-              Geo = Geo.Us,
-              ProviderConfig = new BetaAzureExternalKeyConfigParam
+              const externalKey = await client.beta.organization.externalKeys.create({
+                display_name: "<friendly-name>",
+                geo: "us",
+                provider_config: {
+                  type: "azure",
+                  vault_uri: "https://<your-vault-name>.vault.azure.net/",
+                  key_name: "<your-key-name>",
+                  tenant_id: "<your-tenant-id>"
+                }
+              });
+
+              console.log(`id: ${externalKey.id}`);
+              console.log(`display_name: ${externalKey.display_name}`);
+              ```
+
+              ```csharp C#
+              using Anthropic.Models.Beta.Organization.ExternalKeys;
+
+              AnthropicClient client = new();
+
+              var externalKey = await client.Beta.Organization.ExternalKeys.Create(new()
               {
-                  VaultUri = "https://<your-vault-name>.vault.azure.net/",
-                  KeyName = "<your-key-name>",
-                  TenantID = "<your-tenant-id>"
+                  DisplayName = "<friendly-name>",
+                  Geo = Geo.Us,
+                  ProviderConfig = new BetaAzureExternalKeyConfigParam
+                  {
+                      VaultUri = "https://<your-vault-name>.vault.azure.net/",
+                      KeyName = "<your-key-name>",
+                      TenantID = "<your-tenant-id>"
+                  }
+              });
+
+              Console.WriteLine($"id: {externalKey.ID}");
+              Console.WriteLine($"display_name: {externalKey.DisplayName}");
+              ```
+
+              ```go Go
+              client := anthropic.NewClient()
+
+              externalKey, err := client.Beta.Organization.ExternalKeys.New(context.Background(), anthropic.BetaOrganizationExternalKeyNewParams{
+              	DisplayName: anthropic.String("<friendly-name>"),
+              	Geo:         anthropic.BetaOrganizationExternalKeyNewParamsGeoUs,
+              	ProviderConfig: anthropic.BetaOrganizationExternalKeyNewParamsProviderConfigUnion{
+              		OfAzure: &anthropic.BetaAzureExternalKeyConfigParam{
+              			VaultURI: "https://<your-vault-name>.vault.azure.net/",
+              			KeyName:  "<your-key-name>",
+              			TenantID: "<your-tenant-id>",
+              		},
+              	},
+              })
+              if err != nil {
+              	log.Fatal(err)
               }
-          });
 
-          Console.WriteLine($"id: {externalKey.ID}");
-          Console.WriteLine($"display_name: {externalKey.DisplayName}");
-          ```
+              fmt.Printf("id: %s\n", externalKey.ID)
+              fmt.Printf("display_name: %s\n", externalKey.DisplayName)
+              ```
 
-          ```go Go
-          client := anthropic.NewClient()
+              ```java Java
+              import com.anthropic.models.beta.organization.externalkeys.BetaAzureExternalKeyConfigParam;
+              import com.anthropic.models.beta.organization.externalkeys.ExternalKeyCreateParams;
 
-          externalKey, err := client.Beta.Organization.ExternalKeys.New(context.Background(), anthropic.BetaOrganizationExternalKeyNewParams{
-          	DisplayName: anthropic.String("<friendly-name>"),
-          	Geo:         anthropic.BetaOrganizationExternalKeyNewParamsGeoUs,
-          	ProviderConfig: anthropic.BetaOrganizationExternalKeyNewParamsProviderConfigUnion{
-          		OfAzure: &anthropic.BetaAzureExternalKeyConfigParam{
-          			VaultURI: "https://<your-vault-name>.vault.azure.net/",
-          			KeyName:  "<your-key-name>",
-          			TenantID: "<your-tenant-id>",
-          		},
-          	},
-          })
-          if err != nil {
-          	log.Fatal(err)
-          }
+              void main() {
+                  AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-          fmt.Printf("id: %s\n", externalKey.ID)
-          fmt.Printf("display_name: %s\n", externalKey.DisplayName)
-          ```
+                  var params = ExternalKeyCreateParams.builder()
+                      .displayName("<friendly-name>")
+                      .geo(ExternalKeyCreateParams.Geo.US)
+                      .providerConfig(BetaAzureExternalKeyConfigParam.builder()
+                          .vaultUri("https://<your-vault-name>.vault.azure.net/")
+                          .keyName("<your-key-name>")
+                          .tenantId("<your-tenant-id>")
+                          .build())
+                      .build();
+                  var externalKey = client.beta().organization().externalKeys().create(params);
 
-          ```java Java
-          import com.anthropic.models.beta.organization.externalkeys.BetaAzureExternalKeyConfigParam;
-          import com.anthropic.models.beta.organization.externalkeys.ExternalKeyCreateParams;
+                  IO.println("id: " + externalKey.id());
+                  IO.println("display_name: " + externalKey.displayName().orElseThrow());
+              }
+              ```
 
-          void main() {
-              AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+              ```php PHP
+              use Anthropic\Beta\Organization\ExternalKeys\ExternalKeyCreateParams\Geo;
+              // ...
 
-              var params = ExternalKeyCreateParams.builder()
-                  .displayName("<friendly-name>")
-                  .geo(ExternalKeyCreateParams.Geo.US)
-                  .providerConfig(BetaAzureExternalKeyConfigParam.builder()
-                      .vaultUri("https://<your-vault-name>.vault.azure.net/")
-                      .keyName("<your-key-name>")
-                      .tenantId("<your-tenant-id>")
-                      .build())
-                  .build();
-              var externalKey = client.beta().organization().externalKeys().create(params);
+              $client = new Client();
 
-              IO.println("id: " + externalKey.id());
-              IO.println("display_name: " + externalKey.displayName().orElseThrow());
-          }
-          ```
+              $externalKey = $client->beta->organization->externalKeys->create(
+                  displayName: '<friendly-name>',
+                  geo: Geo::US,
+                  providerConfig: [
+                      'type' => 'azure',
+                      'vaultURI' => 'https://<your-vault-name>.vault.azure.net/',
+                      'keyName' => '<your-key-name>',
+                      'tenantID' => '<your-tenant-id>',
+                  ],
+              );
 
-          ```php PHP
-          use Anthropic\Beta\Organization\ExternalKeys\ExternalKeyCreateParams\Geo;
-          // ...
+              echo "id: {$externalKey->id}\n";
+              echo "display_name: {$externalKey->displayName}\n";
+              ```
 
-          $client = new Client();
+              ```ruby Ruby
+              client = Anthropic::Client.new
 
-          $externalKey = $client->beta->organization->externalKeys->create(
-              displayName: '<friendly-name>',
-              geo: Geo::US,
-              providerConfig: [
-                  'type' => 'azure',
-                  'vaultURI' => 'https://<your-vault-name>.vault.azure.net/',
-                  'keyName' => '<your-key-name>',
-                  'tenantID' => '<your-tenant-id>',
-              ],
-          );
+              external_key = client.beta.organization.external_keys.create(
+                display_name: "<friendly-name>",
+                geo: :us,
+                provider_config: {
+                  type: :azure,
+                  vault_uri: "https://<your-vault-name>.vault.azure.net/",
+                  key_name: "<your-key-name>",
+                  tenant_id: "<your-tenant-id>"
+                }
+              )
 
-          echo "id: {$externalKey->id}\n";
-          echo "display_name: {$externalKey->displayName}\n";
-          ```
+              puts "id: #{external_key.id}"
+              puts "display_name: #{external_key.display_name}"
+              ```
+            </CodeGroup>
 
-          ```ruby Ruby
-          client = Anthropic::Client.new
+            Respons berisi ID kunci eksternal:
 
-          external_key = client.beta.organization.external_keys.create(
-            display_name: "<friendly-name>",
-            geo: :us,
-            provider_config: {
-              type: :azure,
-              vault_uri: "https://<your-vault-name>.vault.azure.net/",
-              key_name: "<your-key-name>",
-              tenant_id: "<your-tenant-id>"
+            ```json
+            {
+              "type": "external_key",
+              "id": "ekey_<id>",
+              "display_name": "<friendly-name>"
             }
-          )
+            ```
+          </Step>
 
-          puts "id: #{external_key.id}"
-          puts "display_name: #{external_key.display_name}"
-          ```
-        </CodeGroup>
+          <Step title="Validasi kunci">
+            Picu proses encrypt dan decrypt bolak-balik terhadap kunci Anda. Ini memastikan bahwa Anthropic dapat melakukan autentikasi ke tenant Anda dan melakukan operasi wrap dan unwrap.
 
-        Respons berisi ID kunci eksternal:
+            <CodeGroup>
+              ```bash cURL
+              curl -sS -X POST "https://api.anthropic.com/v1/organizations/external_keys/ekey_<id>/validate" \
+                -H "x-api-key: $ANTHROPIC_API_KEY" \
+                -H "anthropic-version: 2023-06-01"
+              ```
 
-        ```json
-        {
-          "type": "external_key",
-          "id": "ekey_<id>",
-          "display_name": "<friendly-name>"
-        }
-        ```
-      </Step>
+              ```bash CLI
+              ant beta:organization:external-keys validate --external-key-id "ekey_<id>"
+              ```
 
-      <Step title="Validasi kunci">
-        Picu proses encrypt dan decrypt bolak-balik terhadap kunci Anda. Ini memastikan bahwa Anthropic dapat melakukan autentikasi ke tenant Anda dan melakukan operasi wrap dan unwrap.
+              ```python Python
+              client = anthropic.Anthropic()
 
-        <CodeGroup>
-          ```bash cURL
-          curl -sS -X POST "https://api.anthropic.com/v1/organizations/external_keys/ekey_<id>/validate" \
-            -H "x-api-key: $ANTHROPIC_API_KEY" \
-            -H "anthropic-version: 2023-06-01"
-          ```
+              validation = client.beta.organization.external_keys.validate("ekey_<id>")
 
-          ```bash CLI
-          ant beta:organization:external-keys validate --external-key-id "ekey_<id>"
-          ```
+              print(f"status: {validation.status}")
+              print(f"error: {validation.error}")
+              ```
 
-          ```python Python
-          client = anthropic.Anthropic()
+              ```typescript TypeScript
+              const client = new Anthropic();
 
-          validation = client.beta.organization.external_keys.validate("ekey_<id>")
+              const validation = await client.beta.organization.externalKeys.validate("ekey_<id>");
 
-          print(f"status: {validation.status}")
-          print(f"error: {validation.error}")
-          ```
+              console.log(`status: ${validation.status}`);
+              console.log(`error: ${validation.error}`);
+              ```
 
-          ```typescript TypeScript
-          const client = new Anthropic();
+              ```csharp C#
+              AnthropicClient client = new();
 
-          const validation = await client.beta.organization.externalKeys.validate("ekey_<id>");
+              var validation = await client.Beta.Organization.ExternalKeys.Validate("ekey_<id>");
 
-          console.log(`status: ${validation.status}`);
-          console.log(`error: ${validation.error}`);
-          ```
+              Console.WriteLine($"status: {validation.Status.Raw()}");
+              Console.WriteLine($"error: {validation.Error}");
+              ```
 
-          ```csharp C#
-          AnthropicClient client = new();
+              ```go Go
+              client := anthropic.NewClient()
 
-          var validation = await client.Beta.Organization.ExternalKeys.Validate("ekey_<id>");
+              validation, err := client.Beta.Organization.ExternalKeys.Validate(context.Background(), "ekey_<id>")
+              if err != nil {
+              	log.Fatal(err)
+              }
 
-          Console.WriteLine($"status: {validation.Status.Raw()}");
-          Console.WriteLine($"error: {validation.Error}");
-          ```
+              fmt.Printf("status: %s\n", validation.Status)
+              fmt.Printf("error: %s\n", validation.Error)
+              ```
 
-          ```go Go
-          client := anthropic.NewClient()
-
-          validation, err := client.Beta.Organization.ExternalKeys.Validate(context.Background(), "ekey_<id>")
-          if err != nil {
-          	log.Fatal(err)
-          }
-
-          fmt.Printf("status: %s\n", validation.Status)
-          fmt.Printf("error: %s\n", validation.Error)
-          ```
-
-          ```java Java
-          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-          var validation = client.beta().organization().externalKeys().validate("ekey_<id>");
-
-          IO.println("status: " + validation.status().asString());
-          IO.println("error: " + validation.error().orElse(""));
-          ```
-
-          ```php PHP
-          $client = new Client();
-
-          $validation = $client->beta->organization->externalKeys->validate(
-              externalKeyID: 'ekey_<id>',
-          );
-
-          echo "status: {$validation->status}\n";
-          echo "error: {$validation->error}\n";
-          ```
-
-          ```ruby Ruby
-          client = Anthropic::Client.new
-
-          validation = client.beta.organization.external_keys.validate("ekey_<id>")
-
-          puts "status: #{validation.status}"
-          puts "error: #{validation.error}"
-          ```
-        </CodeGroup>
-
-        Respons yang berhasil terlihat seperti ini:
-
-        ```json
-        { "type": "external_key_validation", "status": "success", "error": null }
-        ```
-
-        Jika validasi gagal, field `error` menjelaskan masalahnya. Penyebab umumnya adalah:
-
-        * **Penundaan propagasi RBAC:** penetapan peran dapat memerlukan beberapa menit untuk berlaku. Tunggu dan coba lagi.
-        * **ACL jaringan memblokir Anthropic:** pastikan akses jaringan publik dan `ipRules` seperti yang dijelaskan pada langkah verifikasi.
-        * **Kebijakan conditional access pada workload identity:** jika tenant Anda memiliki kebijakan conditional access yang menargetkan service principal, kecualikan service principal Anthropic atau tambahkan rentang egress Anthropic ke named locations kebijakan tersebut.
-      </Step>
-
-      <Step title="Lampirkan kunci ke workspace">
-        Setelah kunci divalidasi, lampirkan ke workspace baru sebelum Anda mengirim permintaan apa pun ke workspace tersebut. Untuk workspace yang sudah menerima permintaan, kunci dapat memerlukan waktu [hingga satu hari untuk berlaku](https://platform.claude.com/docs/id/manage-claude/cmek#how-it-works).
-
-        <CodeGroup>
-          ```bash cURL
-          curl -sS -X POST "https://api.anthropic.com/v1/organizations/workspaces/<workspace-id>" \
-            -H "x-api-key: $ANTHROPIC_API_KEY" \
-            -H "anthropic-version: 2023-06-01" \
-            -H "content-type: application/json" \
-            -d '{
-              "external_key_id": "ekey_<id>"
-            }'
-          ```
-
-          ```bash CLI
-          ant beta:organization:workspaces update \
-            --workspace-id "<workspace-id>" \
-            --external-key-id "ekey_<id>"
-          ```
-
-          ```python Python
-          client = anthropic.Anthropic()
-
-          workspace = client.beta.organization.workspaces.update(
-              "<workspace-id>", external_key_id="ekey_<id>"
-          )
-
-          print(f"id: {workspace.id}")
-          print(f"external_key_id: {workspace.external_key_id}")
-          ```
-
-          ```typescript TypeScript
-          const client = new Anthropic();
-
-          const workspace = await client.beta.organization.workspaces.update("<workspace-id>", {
-            external_key_id: "ekey_<id>"
-          });
-
-          console.log(`id: ${workspace.id}`);
-          console.log(`external_key_id: ${workspace.external_key_id}`);
-          ```
-
-          ```csharp C#
-          AnthropicClient client = new();
-
-          var workspace = await client.Beta.Organization.Workspaces.Update("<workspace-id>", new()
-          {
-              ExternalKeyID = "ekey_<id>"
-          });
-
-          Console.WriteLine($"id: {workspace.ID}");
-          Console.WriteLine($"external_key_id: {workspace.ExternalKeyID}");
-          ```
-
-          ```go Go
-          client := anthropic.NewClient()
-
-          workspace, err := client.Beta.Organization.Workspaces.Update(
-          	context.Background(),
-          	"<workspace-id>",
-          	anthropic.BetaOrganizationWorkspaceUpdateParams{
-          		ExternalKeyID: anthropic.String("ekey_<id>"),
-          	},
-          )
-          if err != nil {
-          	log.Fatal(err)
-          }
-
-          fmt.Printf("id: %s\n", workspace.ID)
-          fmt.Printf("external_key_id: %s\n", workspace.ExternalKeyID)
-          ```
-
-          ```java Java
-          import com.anthropic.models.beta.organization.workspaces.WorkspaceUpdateParams;
-
-          void main() {
+              ```java Java
               AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-              var params = WorkspaceUpdateParams.builder()
-                  .externalKeyId("ekey_<id>")
-                  .build();
-              var workspace = client.beta().organization().workspaces().update("<workspace-id>", params);
+              var validation = client.beta().organization().externalKeys().validate("ekey_<id>");
 
-              IO.println("id: " + workspace.id());
-              IO.println("external_key_id: " + workspace.externalKeyId().orElseThrow());
-          }
-          ```
+              IO.println("status: " + validation.status().asString());
+              IO.println("error: " + validation.error().orElse(""));
+              ```
 
-          ```php PHP
-          $client = new Client();
+              ```php PHP
+              $client = new Client();
 
-          $workspace = $client->beta->organization->workspaces->update(
-              workspaceID: '<workspace-id>',
-              externalKeyID: 'ekey_<id>',
-          );
+              $validation = $client->beta->organization->externalKeys->validate(
+                  externalKeyID: 'ekey_<id>',
+              );
 
-          echo "id: {$workspace->id}\n";
-          echo "external_key_id: {$workspace->externalKeyID}\n";
-          ```
+              echo "status: {$validation->status}\n";
+              echo "error: {$validation->error}\n";
+              ```
 
-          ```ruby Ruby
-          client = Anthropic::Client.new
+              ```ruby Ruby
+              client = Anthropic::Client.new
 
-          workspace = client.beta.organization.workspaces.update(
-            "<workspace-id>",
-            external_key_id: "ekey_<id>"
-          )
+              validation = client.beta.organization.external_keys.validate("ekey_<id>")
 
-          puts "id: #{workspace.id}"
-          puts "external_key_id: #{workspace.external_key_id}"
-          ```
-        </CodeGroup>
-      </Step>
-    </Steps>
+              puts "status: #{validation.status}"
+              puts "error: #{validation.error}"
+              ```
+            </CodeGroup>
+
+            Respons yang berhasil terlihat seperti ini:
+
+            ```json
+            { "type": "external_key_validation", "status": "success", "error": null }
+            ```
+
+            Jika validasi gagal, field `error` menjelaskan masalahnya. Penyebab umumnya adalah:
+
+            * **Penundaan propagasi RBAC:** penetapan peran dapat memerlukan beberapa menit untuk berlaku. Tunggu dan coba lagi.
+            * **ACL jaringan memblokir Anthropic:** pastikan akses jaringan publik dan `ipRules` seperti yang dijelaskan pada langkah verifikasi.
+            * **Kebijakan conditional access pada workload identity:** jika tenant Anda memiliki kebijakan conditional access yang menargetkan service principal, kecualikan service principal Anthropic atau tambahkan rentang egress Anthropic ke named locations kebijakan tersebut.
+          </Step>
+
+          <Step title="Lampirkan kunci ke workspace">
+            Setelah kunci divalidasi, lampirkan ke workspace baru sebelum Anda mengirim permintaan apa pun ke workspace tersebut. Untuk workspace yang sudah menerima permintaan, kunci dapat memerlukan waktu [hingga satu hari untuk berlaku](https://platform.claude.com/docs/id/manage-claude/cmek#how-it-works).
+
+            <CodeGroup>
+              ```bash cURL
+              curl -sS -X POST "https://api.anthropic.com/v1/organizations/workspaces/<workspace-id>" \
+                -H "x-api-key: $ANTHROPIC_API_KEY" \
+                -H "anthropic-version: 2023-06-01" \
+                -H "content-type: application/json" \
+                -d '{
+                  "external_key_id": "ekey_<id>"
+                }'
+              ```
+
+              ```bash CLI
+              ant beta:organization:workspaces update \
+                --workspace-id "<workspace-id>" \
+                --external-key-id "ekey_<id>"
+              ```
+
+              ```python Python
+              client = anthropic.Anthropic()
+
+              workspace = client.beta.organization.workspaces.update(
+                  "<workspace-id>", external_key_id="ekey_<id>"
+              )
+
+              print(f"id: {workspace.id}")
+              print(f"external_key_id: {workspace.external_key_id}")
+              ```
+
+              ```typescript TypeScript
+              const client = new Anthropic();
+
+              const workspace = await client.beta.organization.workspaces.update("<workspace-id>", {
+                external_key_id: "ekey_<id>"
+              });
+
+              console.log(`id: ${workspace.id}`);
+              console.log(`external_key_id: ${workspace.external_key_id}`);
+              ```
+
+              ```csharp C#
+              AnthropicClient client = new();
+
+              var workspace = await client.Beta.Organization.Workspaces.Update("<workspace-id>", new()
+              {
+                  ExternalKeyID = "ekey_<id>"
+              });
+
+              Console.WriteLine($"id: {workspace.ID}");
+              Console.WriteLine($"external_key_id: {workspace.ExternalKeyID}");
+              ```
+
+              ```go Go
+              client := anthropic.NewClient()
+
+              workspace, err := client.Beta.Organization.Workspaces.Update(
+              	context.Background(),
+              	"<workspace-id>",
+              	anthropic.BetaOrganizationWorkspaceUpdateParams{
+              		ExternalKeyID: anthropic.String("ekey_<id>"),
+              	},
+              )
+              if err != nil {
+              	log.Fatal(err)
+              }
+
+              fmt.Printf("id: %s\n", workspace.ID)
+              fmt.Printf("external_key_id: %s\n", workspace.ExternalKeyID)
+              ```
+
+              ```java Java
+              import com.anthropic.models.beta.organization.workspaces.WorkspaceUpdateParams;
+
+              void main() {
+                  AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+                  var params = WorkspaceUpdateParams.builder()
+                      .externalKeyId("ekey_<id>")
+                      .build();
+                  var workspace = client.beta().organization().workspaces().update("<workspace-id>", params);
+
+                  IO.println("id: " + workspace.id());
+                  IO.println("external_key_id: " + workspace.externalKeyId().orElseThrow());
+              }
+              ```
+
+              ```php PHP
+              $client = new Client();
+
+              $workspace = $client->beta->organization->workspaces->update(
+                  workspaceID: '<workspace-id>',
+                  externalKeyID: 'ekey_<id>',
+              );
+
+              echo "id: {$workspace->id}\n";
+              echo "external_key_id: {$workspace->externalKeyID}\n";
+              ```
+
+              ```ruby Ruby
+              client = Anthropic::Client.new
+
+              workspace = client.beta.organization.workspaces.update(
+                "<workspace-id>",
+                external_key_id: "ekey_<id>"
+              )
+
+              puts "id: #{workspace.id}"
+              puts "external_key_id: #{workspace.external_key_id}"
+              ```
+            </CodeGroup>
+          </Step>
+        </Steps>
+      </Tab>
+    </Tabs>
   </Tab>
 
   <Tab title="Claude Enterprise">

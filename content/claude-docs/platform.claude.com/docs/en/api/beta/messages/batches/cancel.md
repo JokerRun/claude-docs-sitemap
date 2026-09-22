@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/cancel
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: e9932259530ec920c2bde0b1f563031c0a275293cd736eeda7a3604be434e906
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: cda3c36d42f625d2e43370c813bef23e0cd2c283d967bdb3f14bee173c361aaa
 ---
 
 ---
@@ -129,6 +129,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

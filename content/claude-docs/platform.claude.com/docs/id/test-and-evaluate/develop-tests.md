@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/develop-tests
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 5ddbadb5688e72cfccacab172947459bdb1f97d655133b79fe2d8276785c753e
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: b5fef2c2564f19faabffa9d0e20832ddb860422b9ccee3f94785c004fe7ca297
 ---
 
 ---
@@ -425,7 +425,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       {
           $text = '';
           foreach ($message->content as $block) {
-              if ($block instanceof TextBlock) {
+              if ($block instanceof \Anthropic\Messages\TextBlock) {
                   $text .= $block->text;
               }
           }
@@ -1028,7 +1028,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
               'text' => 'Jane Doe, a local hero, made headlines last week for saving... In city hall news, the budget... Meteorologists predict...',
               'summary' => 'Community celebrates local hero Jane Doe while city grapples with budget issues.',
           ],
-          // Kasus tepi: Judul menyesatkan
+          // Kasus tepi: Judul yang menyesatkan
           [
               'text' => "You won't believe what this celebrity did! ... extensive charity work ...",
               'summary' => "Celebrity's extensive charity work surprises fans",
@@ -1051,9 +1051,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           return contentText($message);
       }
 
-      // ROUGE-L mengukur longest common subsequence (LCS) kata antara
+      // ROUGE-L mengukur "longest common subsequence" (subsekuens bersama terpanjang), atau LCS, dari kata-kata antara
       // ringkasan kandidat dan referensi, dilaporkan di sini sebagai skor F1. Tokenisasi
-      // disederhanakan menjadi kata berbasis spasi; skor mungkin berbeda dari library rouge Python.
+      // disederhanakan menjadi kata yang dipisah spasi; skor dapat berbeda dari pustaka rouge Python.
       function rougeL(string $candidate, string $reference): float
       {
           $candidateWords = preg_split('/\s+/', strtolower(trim($candidate)));
@@ -1081,7 +1081,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       {
           $text = '';
           foreach ($message->content as $block) {
-              if ($block instanceof TextBlock) {
+              if ($block instanceof \Anthropic\Messages\TextBlock) {
                   $text .= $block->text;
               }
           }
@@ -1509,7 +1509,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       $inquiries = [
           // Kasus tepi: Pelanggan yang marah
           ['text' => "This is the third time you've messed up my order. I want a refund NOW!", 'tone' => 'empathetic'],
-          // Kasus tepi: Masalah yang kompleks
+          // Kasus tepi: Masalah kompleks
           ['text' => 'I tried resetting my password but then my account got locked...', 'tone' => 'patient'],
           // Kasus tepi: Pujian sebagai keluhan
           ['text' => "I can't believe how good your product is. It's ruined all others for me!", 'tone' => 'professional'],
@@ -1541,7 +1541,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           Output only the number.
           PROMPT;
 
-          // Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
+          // Praktik terbaiknya, gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
           $response = $client->messages->create(
               model: Model::CLAUDE_OPUS_5,
               maxTokens: 50,
@@ -1563,7 +1563,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       {
           $text = '';
           foreach ($message->content as $block) {
-              if ($block instanceof TextBlock) {
+              if ($block instanceof \Anthropic\Messages\TextBlock) {
                   $text .= $block->text;
               }
           }
@@ -2082,7 +2082,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           Output only 'yes' or 'no'.
           PROMPT;
 
-          // Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
+          // Umumnya praktik terbaik adalah memakai model evaluasi yang berbeda dari model yang menghasilkan output yang dievaluasi
           $response = $client->messages->create(
               model: Model::CLAUDE_OPUS_5,
               maxTokens: 50,
@@ -2100,7 +2100,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       {
           $text = '';
           foreach ($message->content as $block) {
-              if ($block instanceof TextBlock) {
+              if ($block instanceof \Anthropic\Messages\TextBlock) {
                   $text .= $block->text;
               }
           }
@@ -2676,13 +2676,13 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           [
               ['role' => 'user', 'content' => "I'm reading 'To Kill a Mockingbird' for my book club."],
               ['role' => 'assistant', 'content' => "Great choice! 'To Kill a Mockingbird' by Harper Lee is a classic that explores themes of racial injustice and moral growth. How are you finding it so far?"],
-              // Kasus tepi: Pergeseran topik mendadak
+              // Kasus tepi: Pergantian topik yang mendadak
               ['role' => 'user', 'content' => "It's powerful. Hey, when was Scout's birthday again?"],
               ['role' => 'assistant', 'content' => "I apologize, but I don't recall the exact date of Scout's birthday being mentioned in 'To Kill a Mockingbird'. The novel doesn't focus on such specific details. Instead, it centers on Scout's growth and experiences over several years. Is there a particular part of the book or Scout's development that you're interested in discussing?"],
-              // Kasus tepi: Pergeseran topik lainnya
+              // Kasus tepi: Pergantian topik lainnya
               ['role' => 'user', 'content' => 'Oh, right. Well, can you suggest a recipe for a classic Southern cake?'],
           ],
-          // ... 98 percakapan lagi
+          // ... 98 percakapan lainnya
       ];
 
       function getCompletion(Client $client, array $conversation): string
@@ -2711,7 +2711,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           Output only the number and nothing else.
           PROMPT;
 
-          // Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
+          // Praktik terbaik umumnya: gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
           $response = $client->messages->create(
               model: Model::CLAUDE_OPUS_5,
               maxTokens: 50,
@@ -2733,7 +2733,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       {
           $text = '';
           foreach ($message->content as $block) {
-              if ($block instanceof TextBlock) {
+              if ($block instanceof \Anthropic\Messages\TextBlock) {
                   $text .= $block->text;
               }
           }
@@ -3236,7 +3236,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
     {
         $text = '';
         foreach ($message->content as $block) {
-            if ($block instanceof TextBlock) {
+            if ($block instanceof \Anthropic\Messages\TextBlock) {
                 $text .= $block->text;
             }
         }

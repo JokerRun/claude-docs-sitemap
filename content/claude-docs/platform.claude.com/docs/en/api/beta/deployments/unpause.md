@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/unpause
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 7b265394d200eb3843980ba23607bbf317d7d06240dbb2ec54bf0a4fa82bcace
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: e5f690b0ce26a87dc9e9bddb5e4538de6ce5f1108a2156d6ec2ef1419b4da486
 ---
 
 ---
@@ -19,6 +19,8 @@ Unpause Deployment
 ## Path parameters
 
 - `deployment_id: string`
+
+  Unique identifier of the deployment to unpause.
 
 ## Headers
 
@@ -123,6 +125,10 @@ Unpause Deployment
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 
@@ -610,7 +616,11 @@ Unpause Deployment
 
     - `"active"`
 
+      The deployment is active and can run sessions. Archived deployments also report this status; check `archived_at` to distinguish them.
+
     - `"paused"`
+
+      The deployment is paused. Autonomous triggers are suppressed; manual runs are still permitted.
 
   - `updated_at: string`
 

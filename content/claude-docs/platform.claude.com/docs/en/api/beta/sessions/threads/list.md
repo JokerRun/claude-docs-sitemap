@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/list
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 24f9de47bb82d162baa5123f40b4d831d912ff2c8691496c9a413647fd08f392
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: e986fefe13757eb52de5686ff5285e54593707ec7da6cbd04c553fdab8bf798d
 ---
 
 ---
@@ -136,6 +136,10 @@ List Session Threads
 
 - `"anthropic-workspace-id": optional string`
 
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 ## Returns
 
 - `data: optional array of BetaManagedAgentsSessionThread`
@@ -150,7 +154,7 @@ List Session Threads
 
   - `agent: BetaManagedAgentsSessionThreadAgent or BetaManagedAgentsAdvisor`
 
-    The resolved agent a session thread runs: a saved-agent snapshot, the platform advisor entry, or an inline-defined (ephemeral) agent snapshot.
+    The resolved agent a `session_thread` runs.
 
     - `BetaManagedAgentsSessionThreadAgent object`
 

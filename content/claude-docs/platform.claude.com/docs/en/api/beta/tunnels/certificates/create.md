@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/create
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 1036705621ec063cdc446f7d287ce5fc35f6383653acc06568dba26b953c4d90
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 91711c3f57c8254219f57e428e8353cdad2b2ac1597cd81112ef6ba2bfdcd4aa
 ---
 
 ---
@@ -21,6 +21,8 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
 ## Path parameters
 
 - `tunnel_id: string`
+
+  ID of the tunnel (`tnl_...`).
 
 ## Headers
 
@@ -125,6 +127,10 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Body parameters
 

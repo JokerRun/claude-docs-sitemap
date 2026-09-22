@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5/migration-guide
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: c3b9a996ff91007af7229dae95f512e671aa3b562ef72120e669b97c2dec7948
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: e6e6c06884746e7e73ec3f3028a3c6522526541882fcf901503ab97e6a30709e
 ---
 
 ---
@@ -149,12 +149,15 @@ Butir 4 dan 5 dalam daftar berikut adalah perubahan yang merusak kompatibilitas.
            ]
          });
 
-         // Respons berisi blok pemikiran yang diringkas dan blok teks
+         // Respons berisi blok thinking yang diringkas dan blok teks
          for (const block of response.content) {
-           if (block.type === "thinking") {
-             console.log(`\nThinking summary: ${block.thinking}`);
-           } else if (block.type === "text") {
-             console.log(`\nResponse: ${block.text}`);
+           switch (block.type) {
+             case "thinking":
+               console.log(`\nThinking summary: ${block.thinking}`);
+               break;
+             case "text":
+               console.log(`\nResponse: ${block.text}`);
+               break;
            }
          }
          ```
@@ -262,6 +265,9 @@ Butir 4 dan 5 dalam daftar berikut adalah perubahan yang merusak kompatibilitas.
          ```
 
          ```php PHP
+         use Anthropic\Messages\TextBlock;
+         use Anthropic\Messages\ThinkingBlock;
+
          $client = new Client();
 
          $response = $client->messages->create(
@@ -279,9 +285,9 @@ Butir 4 dan 5 dalam daftar berikut adalah perubahan yang merusak kompatibilitas.
 
          // Respons berisi blok thinking yang diringkas dan blok teks
          foreach ($response->content as $block) {
-             echo match ($block->type) {
-                 'thinking' => "\nThinking summary: {$block->thinking}",
-                 'text' => "\nResponse: {$block->text}",
+             echo match (true) {
+                 $block instanceof ThinkingBlock => "\nThinking summary: {$block->thinking}",
+                 $block instanceof TextBlock => "\nResponse: {$block->text}",
                  default => '',
              };
          }
@@ -303,14 +309,13 @@ Butir 4 dan 5 dalam daftar berikut adalah perubahan yang merusak kompatibilitas.
            ]
          )
 
-         # Respons berisi blok pemikiran yang diringkas dan blok teks
+         # Respons berisi blok thinking yang diringkas dan blok teks
          response.content.each do |block|
            case block
-           in {type: :thinking, thinking:}
-             puts "\nThinking summary: #{thinking}"
-           in {type: :text, text:}
-             puts "\nResponse: #{text}"
-           else
+           when Anthropic::Models::ThinkingBlock
+             puts "\nThinking summary: #{block.thinking}"
+           when Anthropic::Models::TextBlock
+             puts "\nResponse: #{block.text}"
            end
          end
          ```
@@ -396,7 +401,7 @@ Butir 4 dan 5 dalam daftar berikut adalah perubahan yang merusak kompatibilitas.
            ],
          });
 
-         // The response contains summarized thinking blocks and text blocks
+         // Respons berisi blok pemikiran yang diringkas dan blok teks
          for (const block of response.content) {
            switch (block.type) {
              case "thinking":
@@ -511,7 +516,7 @@ Butir 4 dan 5 dalam daftar berikut adalah perubahan yang merusak kompatibilitas.
              ],
          );
 
-         // The response contains summarized thinking blocks and text blocks
+         // Respons berisi blok pemikiran yang diringkas dan blok teks
          foreach ($response->content as $block) {
              echo match (true) {
                  $block instanceof \Anthropic\Messages\ThinkingBlock => "\nThinking summary: {$block->thinking}",
@@ -539,7 +544,7 @@ Butir 4 dan 5 dalam daftar berikut adalah perubahan yang merusak kompatibilitas.
            ]
          )
 
-         # The response contains summarized thinking blocks and text blocks
+         # Respons berisi blok pemikiran yang diringkas dan blok teks
          response.content.each do |block|
            case block
            when Anthropic::Models::ThinkingBlock

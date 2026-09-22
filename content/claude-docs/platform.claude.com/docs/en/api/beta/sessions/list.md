@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/list
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: bceade3f40ad02fc5c7a273231b8025926b9a199467d9b6b9251a3c749593ad4
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: ddfb6658c1d0bc9c0a7a89253fa9805ad5570730a8e1a85bd4e6a30c0071118d
 ---
 
 ---
@@ -88,11 +88,19 @@ List Sessions
 
   - `"rescheduling"`
 
+    Transient error occurred, retrying automatically.
+
   - `"running"`
+
+    Agent is actively executing.
 
   - `"idle"`
 
+    Agent is waiting for input, including user messages or tool confirmations. Sessions start in idle.
+
   - `"terminated"`
+
+    Session has ended, either due to an error or completion.
 
 ## Headers
 
@@ -197,6 +205,10 @@ List Sessions
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 
@@ -996,11 +1008,19 @@ List Sessions
 
     - `"rescheduling"`
 
+      Transient error occurred, retrying automatically.
+
     - `"running"`
+
+      Agent is actively executing.
 
     - `"idle"`
 
+      Agent is waiting for input, including user messages or tool confirmations. Sessions start in idle.
+
     - `"terminated"`
+
+      Session has ended, either due to an error or completion.
 
   - `title: string or null`
 

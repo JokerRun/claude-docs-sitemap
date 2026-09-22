@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/retrieve
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 76c0c4b32ae0d25c589d95b7cb338eadc3ab60c64a8a885a5806082c8753ca57
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: f34fe8dcd63e0a94c523bd99ac94e9d3faa63e8bd82d159f994505d2c83570ec
 ---
 
 ---
@@ -20,7 +20,11 @@ Get Credential
 
 - `vault_id: string`
 
+  Identifier of the vault containing the credential.
+
 - `credential_id: string`
+
+  Unique identifier of the credential to retrieve.
 
 ## Headers
 
@@ -125,6 +129,10 @@ Get Credential
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

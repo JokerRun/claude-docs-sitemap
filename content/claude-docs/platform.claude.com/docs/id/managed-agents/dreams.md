@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/dreams
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: cfe10324f7c465caf0724b61b4bd67240ee932536a5914229501a17f6ee95788
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: dfb14b1df8166b727342bbc8518a8b397435a9695d0ed8d248f98d51a70b6102
 ---
 
 ---
@@ -313,7 +313,7 @@ Ketika `status` mencapai `completed`, entri `memory_store` di `outputs[]` merefe
 
 <CodeGroup>
   ```bash cURL
-  # After the dream ends, the memory_store output holds the rebuilt store
+  # Setelah dream berakhir, output memory_store menyimpan store yang dibangun ulang
   output_store_id=$(jq -r 'first(.outputs[] | select(.type == "memory_store")).memory_store_id' <<< "$dream")
 
   curl -s https://api.anthropic.com/v1/sessions \

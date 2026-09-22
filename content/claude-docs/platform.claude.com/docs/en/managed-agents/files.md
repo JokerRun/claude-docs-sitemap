@@ -1,19 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/files
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 1dc8b70d772e1c242e85e1ea1454f230913f4cc3d255679dc071865908d60846
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: d391d1645e833b6d3a5b53f56f9b6abbcb9c23ee5f0ec3698397d4c67a82d2ca
 ---
 
 ---
 title: Adding files
 url: https://platform.claude.com/docs/en/managed-agents/files
 description: Upload files and mount them in your sandbox for reading and processing.
+featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
+  status: beta
+  betaHeader: managed-agents-2026-04-01
 ---
-
-## Compatibility
-- Status: Beta
-- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `managed-agents-2026-04-01`
 
 You can provide files to your agent by uploading them through the Files API and mounting them in the session's sandbox.
 

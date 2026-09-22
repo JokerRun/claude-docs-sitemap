@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/results
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: 9ab488468cabf2e833c5380b490a75645a69d7b4efd1106ee0d4d487cdcf82a5
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 249b7615002012e5900b67c590bd93eb356332b90af5bf215255c490e15bf977
 ---
 
 ---
@@ -29,6 +29,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 ## Headers
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

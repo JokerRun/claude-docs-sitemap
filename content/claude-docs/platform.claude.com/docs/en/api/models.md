@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 4f9ff1885eef58654487ab8c120e9d5b1c6a519b05ad46821889412cb7de1610
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: ed91cc519c451bacd7f100ea9113bc971e0f2fe9fee3a699ed038c5422c20ce7
 ---
 
 ---
@@ -141,6 +141,10 @@ The Models API response can be used to determine which models are available for 
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ### Returns
 
@@ -494,6 +498,10 @@ The Models API response can be used to determine information about a specific mo
     - `"compact-2026-09-04"`
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ### Returns
 

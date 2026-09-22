@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/count_tokens
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: a409e8fed684f9b4ab7c1ca1ed02a1f0720f46c8336b232e03088232349ca27b
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: a71d1a01243eece4d04c0faff4ae9f19ddd3aeea0293241e54a3ce1eee3003f9
 ---
 
 ---
@@ -127,6 +127,10 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
   The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization. Requires the `user-profiles` beta header.
 
 - `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Body parameters
 

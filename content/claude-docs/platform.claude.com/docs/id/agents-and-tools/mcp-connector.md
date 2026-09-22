@@ -1,21 +1,25 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-connector
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 8e0585a958f616e91371df3700a3267dadc536761dceb36753f02ed09aae04c8
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: d777b8f7e3f4cffc4cd23f7078f5391ea7b0e51273dabe213f04edbba3c606a2
 ---
 
 ---
 title: Konektor MCP
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-connector
 description: Hubungkan ke server MCP jarak jauh langsung dari Messages API tanpa klien MCP, dan buat allowlist, denylist, atau konfigurasikan alat satu per satu.
+featureMetadata:
+  status: beta
+  betaHeader: mcp-client-2025-11-20
+  zdr: not-eligible
+  supportedPlatforms:
+    Claude API: beta
+    Claude Platform on AWS: beta
+    Amazon Bedrock: not available
+    Google Cloud: not available
+    Microsoft Foundry: beta
 ---
-
-## Compatibility
-- Status: Beta
-- [Beta header](https://platform.claude.com/docs/en/api/beta-headers): `mcp-client-2025-11-20`
-- [ZDR](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention): not eligible
-- Platforms: Claude API (beta), Claude Platform on AWS (beta), Microsoft Foundry (beta); not available on Amazon Bedrock, Google Cloud
 
 Fitur konektor "Model Context Protocol", atau MCP, milik Claude memungkinkan Anda terhubung ke server MCP jarak jauh langsung dari Messages API tanpa klien MCP terpisah.
 
@@ -665,12 +669,13 @@ Instal Anthropic SDK dan MCP SDK:
   </Tab>
 
   <Tab title="Java">
-    Helper berada dalam artifact terpisah `anthropic-java-mcp`, yang memerlukan Java 17 atau lebih baru (SDK inti mendukung Java 8):
+    Helper berada di artifact terpisah `anthropic-java-mcp`, yang memerlukan Java 17 atau lebih baru (SDK dasar mendukung Java 8). Tambahkan bersama dependensi dasar `anthropic-java`:
 
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java-mcp:2.60.0")
+        implementation("com.anthropic:anthropic-java:2.63.0")
+        implementation("com.anthropic:anthropic-java-mcp:2.63.0")
         ```
       </Tab>
 
@@ -678,8 +683,13 @@ Instal Anthropic SDK dan MCP SDK:
         ```xml
         <dependency>
             <groupId>com.anthropic</groupId>
+            <artifactId>anthropic-java</artifactId>
+            <version>2.63.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-mcp</artifactId>
-            <version>2.60.0</version>
+            <version>2.63.0</version>
         </dependency>
         ```
       </Tab>
@@ -1234,7 +1244,7 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   ```
 
   ```go Go
-  // As a content block in a message
+  // Sebagai blok konten dalam pesan
   resource, err := session.ReadResource(ctx, &mcpsdk.ReadResourceParams{URI: "file:///path/to/doc.txt"})
   if err != nil {
   	log.Fatal(err)
@@ -1249,9 +1259,9 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   	MaxTokens: 1024,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(
-  			// ResourceToBlock returns the tool-result content union; message
-  			// content is a separate union type, so re-wrap the shared variants
-  			// (mcp.ToMessage does the same internally).
+  			// ResourceToBlock mengembalikan union konten tool-result; konten
+  			// pesan adalah tipe union terpisah, jadi bungkus ulang varian bersama
+  			// (mcp.ToMessage melakukan hal yang sama secara internal).
   			anthropic.BetaContentBlockParamUnion{
   				OfText:     block.OfText,
   				OfImage:    block.OfImage,
@@ -1266,7 +1276,7 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   }
   fmt.Println(response.RawJSON())
 
-  // As a file upload
+  // Sebagai unggahan file
   fileResult, err := session.ReadResource(ctx, &mcpsdk.ReadResourceParams{URI: "file:///path/to/data.json"})
   if err != nil {
   	log.Fatal(err)

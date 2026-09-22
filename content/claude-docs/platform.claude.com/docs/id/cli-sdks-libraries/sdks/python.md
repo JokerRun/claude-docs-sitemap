@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: b429fd1ebf78d253f7e7a67dd374b80f8af228a9874cf01cab5ab32b38f7ae53
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 5fd57a4898059bc54cada2531fda9b42141caef65785d492b04ccf148100d988
 ---
 
 ---
@@ -278,7 +278,7 @@ for message in runner:
 
 Pada setiap iterasi, sebuah permintaan API dibuat. Jika respons menyertakan panggilan ke salah satu alat yang diberikan, alat tersebut dipanggil secara otomatis, dan hasilnya dikembalikan langsung ke model pada iterasi berikutnya.
 
-## Message batches
+## Batch pesan
 
 SDK ini menyediakan dukungan untuk [Pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing) di bawah `client.messages.batches`.
 
@@ -761,7 +761,7 @@ Klien `AnthropicAWS` masih dalam beta. Berikan `workspace_id` ke constructor ata
 
 Gunakan `AnthropicBedrockMantle` untuk proyek baru; `AnthropicBedrock` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
 
-## Semantic versioning
+## Versioning semantik
 
 Paket ini secara umum mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang mungkin dirilis sebagai versi minor:
 

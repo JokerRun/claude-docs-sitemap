@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 2b691f45df380fc1670a847b46c065a8d1393b4425f8d19203384112863263b6
+fetched_at: 2026-09-22T02:21:41.260167Z
+sha256: 2a82f36ed81520c87ee802ce8b19559b39c13e92c3e8f3efb12704e19060c3de
 ---
 
 ---
@@ -36,7 +36,7 @@ Penyiapan paling sederhana, dalam beta di Claude API: atur `fallbacks` ke `"defa
       "max_tokens": 1024,
       "fallbacks": "default",
       "messages": [{"role": "user", "content": "Hello, Claude"}]
-    }' | jq -r '.model'
+    }'
   ```
 
   ```bash CLI
@@ -45,8 +45,7 @@ Penyiapan paling sederhana, dalam beta di Claude API: atur `fallbacks` ke `"defa
     --max-tokens 1024 \
     --message '{"role":"user","content":"Hello, Claude"}' \
     --fallbacks default \
-    --beta server-side-fallback-2026-07-01 \
-    --transform model --raw-output
+    --beta server-side-fallback-2026-07-01
   ```
 
   ```python Python
@@ -511,7 +510,7 @@ Baris yang disorot adalah satu-satunya perbedaan dari permintaan routing default
       "max_tokens": 1024,
       "fallbacks": [{"model": "claude-opus-4-8"}],
       "messages": [{"role": "user", "content": "Hello, Claude"}]
-    }' | jq -r '.model'
+    }'
   ```
 
   ```bash CLI
@@ -520,8 +519,7 @@ Baris yang disorot adalah satu-satunya perbedaan dari permintaan routing default
     --max-tokens 1024 \
     --message '{"role":"user","content":"Hello, Claude"}' \
     --fallbacks '[{"model":"claude-opus-4-8"}]' \
-    --beta server-side-fallback-2026-07-01 \
-    --transform model --raw-output
+    --beta server-side-fallback-2026-07-01
   ```
 
   ```python Python
